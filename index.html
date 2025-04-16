@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KampTrail – PWA Version</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50" />
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(function(error) {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+
+    const map = L.map('map').setView([39.8283, -98.5795], 4);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(map);
+    
+    const dummyPOIs = [
+      { name: "BLM Camp Alpha", lat: 38.9936, lng: -105.0442 },
+      { name: "Forest Edge Camp", lat: 39.7392, lng: -104.9903 },
+      { name: "Lakeview Dispersed", lat: 37.7749, lng: -122.4194 },
+      { name: "Quiet Pines Camp", lat: 40.7608, lng: -111.8910 },
+      { name: "Desert Springs", lat: 36.1699, lng: -115.1398 }
+    ];
+    
+    dummyPOIs.forEach(poi => {
+      L.marker([poi.lat, poi.lng]).addTo(map).bindPopup(poi.name);
+    });
+  </script>
+</body>
+</html>
