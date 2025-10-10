@@ -13,9 +13,9 @@
   <meta property="og:image" content="/og.png">
   <meta property="og:description" content="Fast, offline-first campsite map with clustering and 'near me' shortcuts.">
 
-  <!-- Leaflet core -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity=""></script>
+  <!-- Leaflet core (keep versions matched) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- MarkerCluster -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css">
@@ -36,6 +36,16 @@
     *:focus-visible {outline: 3px solid #86b7ff; outline-offset: 2px;}
     @media (prefers-reduced-motion: reduce){ * {animation: none !important; transition: none !important;} }
     .leaflet-container {background:#0b141b;}
+
+    /* ===== CHG: Desync guards (prevent parent scaling/transform) ===== */
+    html, body, #app, #map {
+      zoom: 1 !important;           /* avoid CSS zoom-based scaling */
+      transform: none !important;   /* no transforms on ancestors */
+    }
+    .leaflet-container { will-change: transform; }
+    .leaflet-pane, .leaflet-map-pane, .leaflet-tile-pane, .leaflet-marker-pane {
+      transform: translateZ(0);     /* keep GPU path consistent */
+    }
   </style>
 </head>
 <body>
@@ -76,11 +86,15 @@
   }
 
   // Map init
-  const map = L.map('map', { zoomControl: true }).setView([39.8283, -98.5795], 4); // CONUS
+  const map = L.map('map', {
+    zoomControl: true
+    // CHG: you could add zoomSnap: 1 if you ever see fractional zooms from trackpads
+  }).setView([39.8283, -98.5795], 4); // CONUS
 
   // Tiles (Edit to use your provider/key if needed)
   const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
+    detectRetina: true,                     // CHG: better alignment on high-DPI
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
@@ -99,6 +113,13 @@
     }
   }
   addMarkers(1500);
+
+  // ===== CHG: force layout recalcs (prevents desync after first paint / resizes)
+  setTimeout(() => map.invalidateSize(), 300);
+  window.addEventListener('resize', () => map.invalidateSize());
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') map.invalidateSize();
+  });
 
   // Shortcuts
   const params = new URLSearchParams(location.search);
