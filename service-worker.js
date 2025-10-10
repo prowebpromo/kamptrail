@@ -1,6 +1,8 @@
 // service-worker.js — KampTrail SW (vanilla, no build tools)
 const VERSION = 'kt-v1';
-const SHELL = ['/', '/index.html', '/manifest.json', '/icon-192.png', '/icon-512.png', '/og.png'];
+
+// IMPORTANT for GitHub Project Pages: use RELATIVE paths (no leading slash)
+const SHELL = ['index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'og.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)));
@@ -19,6 +21,7 @@ const isTile = (url) => url.origin === 'https://tile.openstreetmap.org';
 
 self.addEventListener('fetch', (e) => {
   const { request } = e;
+  const url = new URL(request.url);
 
   // HTML pages: NetworkFirst with 4s timeout + cached fallback
   if (request.mode === 'navigate') {
@@ -34,14 +37,15 @@ self.addEventListener('fetch', (e) => {
       } catch (err) {
         clearTimeout(t);
         const cache = await caches.open(VERSION);
-        return (await cache.match('/index.html')) || Response.error();
+        // Fallback to relative 'index.html' (works under /kamptrail/)
+        return (await cache.match('index.html')) || Response.error();
       }
     })());
     return;
   }
 
   // Map tiles: CacheFirst with size cap (~few metro areas)
-  if (isTile(new URL(request.url))) {
+  if (isTile(url)) {
     e.respondWith((async () => {
       const cache = await caches.open('kt-tiles');
       const hit = await cache.match(request);
@@ -58,8 +62,8 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Static assets: Stale-While-Revalidate
-  if (/\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(request.url)) {
+  // Static assets: Stale-While-Revalidate (same-origin only to avoid bloating with CDNs)
+  if (url.origin === self.location.origin && /\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(url.pathname)) {
     e.respondWith((async () => {
       const cache = await caches.open('kt-static');
       const cached = await cache.match(request);
