@@ -8,8 +8,9 @@
   <meta name="theme-color" content="#0b141b">
 
   <!-- PWA / A2HS -->
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="overlays/overlays.css">
   <meta name="application-name" content="KampTrail">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -23,7 +24,7 @@
   <!-- Social cards -->
   <meta property="og:title" content="KampTrail – Free Campsite Map">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/og.png">
+  <meta property="og:image" content="og.png">
   <meta property="og:description" content="Fast, offline-first campsite map with clustering and 'near me' shortcuts.">
   <meta property="og:url" content="https://prowebpromo.github.io/kamptrail/">
   <meta name="twitter:card" content="summary_large_image">
@@ -77,7 +78,7 @@
   // Service Worker registration with update flow
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js').then(reg => {
+      navigator.serviceWorker.register('service-worker.js').then(reg => {
         function promptUpdate(sw){
           const t = document.getElementById('toast');
           t.classList.add('show');
@@ -131,11 +132,6 @@
     if (document.visibilityState === 'visible') map.invalidateSize();
   });
 
-  // Shortcuts
-  const params = new URLSearchParams(location.search);
-  if (params.get('shortcut') === 'near') document.getElementById('near').click();
-  if (params.get('filter') === 'free') document.getElementById('free').click();
-
   // UI handlers
   const nearBtn = document.getElementById('near');
   const freeBtn = document.getElementById('free');
@@ -156,6 +152,21 @@
     // Placeholder: hook your real filter; for demo, zoom to random bbox
     map.fitBounds([[33, -117],[34, -115]]);
   });
+
+  // Shortcuts (RUN AFTER listeners exist)
+  const params = new URLSearchParams(location.search);
+  if (params.get('shortcut') === 'near') nearBtn.click();
+  if (params.get('filter') === 'free') freeBtn.click();
+  </script>
+
+  <!-- Overlays / POIs -->
+  <script src="overlays/overlays.js"></script>
+  <script>
+    window.KampTrailOverlays.init(map, {
+      // Leave empty for now; toggles will prompt you to configure when clicked
+      publicLandsUrl: '', // e.g., 'https://tiles.example.com/publiclands/{z}/{x}/{y}.png'
+      cellCoverageUrl: '' // e.g., 'https://tiles.example.com/cell/{z}/{x}/{y}.png'
+    });
   </script>
 </body>
 </html>
