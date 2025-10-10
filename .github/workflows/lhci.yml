@@ -1,0 +1,19 @@
+name: Lighthouse CI
+on: [push, pull_request]
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install static server & LHCI
+        run: |
+          npm i -g @lhci/cli@0.13.x http-server@14
+      - name: Start server
+        run: |
+          nohup http-server -p 8080 -c-1 . &
+          sleep 2
+      - name: Run Lighthouse
+        run: |
+          lhci autorun --collect.url=http://localhost:8080 \
+            --assert.assertions='categories:pwa:warn,categories:performance:warn' \
+            --upload.target=temporary-public-storage
