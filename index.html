@@ -6,12 +6,30 @@
   <title>KampTrail – Free Campsite Map</title>
   <meta name="description" content="KampTrail is a fast, offline-first PWA for finding free and low-cost campsites.">
   <meta name="theme-color" content="#0b141b">
+
+  <!-- PWA / A2HS -->
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/icon-192.png">
+  <meta name="application-name" content="KampTrail">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Privacy & SEO basics -->
+  <meta name="robots" content="index,follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Social cards -->
   <meta property="og:title" content="KampTrail – Free Campsite Map">
   <meta property="og:type" content="website">
   <meta property="og:image" content="/og.png">
   <meta property="og:description" content="Fast, offline-first campsite map with clustering and 'near me' shortcuts.">
+  <meta property="og:url" content="https://prowebpromo.github.io/kamptrail/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Networking -->
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
 
   <!-- Leaflet core (keep versions matched) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -27,7 +45,7 @@
     #app {display:grid; grid-template-rows: auto 1fr; height: 100%;}
     header {padding: 10px 12px; display:flex; align-items:center; gap:10px; background:#0f1b24; position: sticky; top:0; z-index: 10;}
     header h1 {font-size: 16px; margin:0;}
-    header .btn {border:1px solid #22313f; padding:6px 10px; border-radius:10px; background:#15232e; color:#cfe3f2;}
+    header .btn {border:1px solid #22313f; padding:6px 10px; border-radius:10px; background:#15232e; color:#cfe3f2; cursor:pointer;}
     #map {height: calc(100vh - 56px);}
     .toast {position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); background:#173243; padding:10px 14px; border-radius:12px; border:1px solid #284356; display:none;}
     .toast.show {display:block;}
@@ -37,26 +55,21 @@
     @media (prefers-reduced-motion: reduce){ * {animation: none !important; transition: none !important;} }
     .leaflet-container {background:#0b141b;}
 
-    /* ===== CHG: Desync guards (prevent parent scaling/transform) ===== */
-    html, body, #app, #map {
-      zoom: 1 !important;           /* avoid CSS zoom-based scaling */
-      transform: none !important;   /* no transforms on ancestors */
-    }
+    /* Desync guards (prevent parent scaling/transform) */
+    html, body, #app, #map { zoom: 1 !important; transform: none !important; }
     .leaflet-container { will-change: transform; }
-    .leaflet-pane, .leaflet-map-pane, .leaflet-tile-pane, .leaflet-marker-pane {
-      transform: translateZ(0);     /* keep GPU path consistent */
-    }
+    .leaflet-pane, .leaflet-map-pane, .leaflet-tile-pane, .leaflet-marker-pane { transform: translateZ(0); }
   </style>
 </head>
 <body>
   <div id="app">
     <header>
       <h1>KampTrail</h1>
-      <button id="near" class="btn" aria-label="Find campsites near me">Near me</button>
-      <button id="free" class="btn" aria-label="Filter to free campsites">Free</button>
+      <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">Near me</button>
+      <button id="free" class="btn" aria-label="Filter to free campsites" aria-pressed="false">Free</button>
       <span style="margin-left:auto;font-size:12px;opacity:.7">Offline-ready</span>
     </header>
-    <div id="map" role="region" aria-label="Campsite map"></div>
+    <div id="map" role="region" aria-label="Campsite map" tabindex="0"></div>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite">New version ready — <a href="#" id="update">update now</a></div>
 
@@ -86,15 +99,12 @@
   }
 
   // Map init
-  const map = L.map('map', {
-    zoomControl: true
-    // CHG: you could add zoomSnap: 1 if you ever see fractional zooms from trackpads
-  }).setView([39.8283, -98.5795], 4); // CONUS
+  const map = L.map('map', { zoomControl: true }).setView([39.8283, -98.5795], 4); // CONUS
 
-  // Tiles (Edit to use your provider/key if needed)
+  // Tiles
   const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    detectRetina: true,                     // CHG: better alignment on high-DPI
+    detectRetina: true,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
@@ -114,7 +124,7 @@
   }
   addMarkers(1500);
 
-  // ===== CHG: force layout recalcs (prevents desync after first paint / resizes)
+  // Keep layout correct on first paint / resize / tab focus
   setTimeout(() => map.invalidateSize(), 300);
   window.addEventListener('resize', () => map.invalidateSize());
   document.addEventListener('visibilitychange', () => {
@@ -126,7 +136,12 @@
   if (params.get('shortcut') === 'near') document.getElementById('near').click();
   if (params.get('filter') === 'free') document.getElementById('free').click();
 
-  document.getElementById('near').addEventListener('click', () => {
+  // UI handlers
+  const nearBtn = document.getElementById('near');
+  const freeBtn = document.getElementById('free');
+
+  nearBtn.addEventListener('click', () => {
+    nearBtn.setAttribute('aria-pressed', nearBtn.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
     if (!navigator.geolocation) return alert('Geolocation not supported');
     navigator.geolocation.getCurrentPosition(pos => {
       const {latitude, longitude} = pos.coords;
@@ -135,9 +150,11 @@
     }, err => alert('Location error: ' + err.message), {enableHighAccuracy:true, timeout:8000});
   });
 
-  document.getElementById('free').addEventListener('click', () => {
+  freeBtn.addEventListener('click', () => {
+    const pressed = freeBtn.getAttribute('aria-pressed') === 'true';
+    freeBtn.setAttribute('aria-pressed', pressed ? 'false' : 'true');
     // Placeholder: hook your real filter; for demo, zoom to random bbox
-    map.fitBounds([[33, -117],[34,-115]]);
+    map.fitBounds([[33, -117],[34, -115]]);
   });
   </script>
 </body>
