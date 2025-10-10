@@ -1,24 +1,57 @@
 {
-  "name": "KampTrail - Find Your Next Camp",
+  "name": "KampTrail",
   "short_name": "KampTrail",
-  "description": "Discover and navigate to camping spots across the US",
-  "start_url": "./index.html",
+  "description": "Lightweight campsite mapping PWA\u2014fast, offline-first.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
-  "orientation": "any",
+  "orientation": "portrait",
+  "background_color": "#0b141b",
+  "theme_color": "#0b141b",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Near me",
+      "short_name": "Near me",
+      "url": "/?shortcut=near",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Free sites",
+      "short_name": "Free",
+      "url": "/?filter=free"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/map.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": [
+    "navigation",
+    "travel",
+    "utilities"
+  ],
+  "prefer_related_applications": false
 }
