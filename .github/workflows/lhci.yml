@@ -1,19 +1,34 @@
 name: Lighthouse CI
 on: [push, pull_request]
+
 jobs:
   lhci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install static server & LHCI
+
+      # Node present (good practice, some actions assume it)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # Serve the repo as a static site on :8080
+      - name: Start static server
         run: |
-          npm i -g @lhci/cli@0.13.x http-server@14
-      - name: Start server
-        run: |
-          nohup http-server -p 8080 -c-1 . &
-          sleep 2
+          npm i -g http-server@14
+          nohup http-server -p 8080 -c-1 . >/dev/null 2>&1 &
+          sleep 3
+
+      # Run Lighthouse using an action that includes Chrome
       - name: Run Lighthouse
-        run: |
-          lhci autorun --collect.url=http://localhost:8080 \
-            --assert.assertions='categories:pwa:warn,categories:performance:warn' \
-            --upload.target=temporary-public-storage
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: |
+            http://localhost:8080
+          temporaryPublicStorage: true
+          uploadArtifacts: true
+          runs: 1
+          # Keep these soft (warn) so the run is green unless scores crater
+          assertions: |
+            categories:pwa: warn
+            categories:performance: warn
