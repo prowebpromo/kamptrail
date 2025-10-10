@@ -1,75 +1,76 @@
-/* eslint-disable no-restricted-globals */
-/**
- * KampTrail Service Worker (build-less)
- * Strategy: Precache app shell + runtime caching for pages/assets/map tiles.
- * Workbox CDN: v6.5.4
- */
-// Import Workbox from CDN
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.4/workbox-sw.js');
+// service-worker.js — KampTrail SW (vanilla, no build tools)
+const VERSION = 'kt-v1';
+const SHELL = ['/', '/index.html', '/manifest.json', '/icon-192.png', '/icon-512.png', '/og.png'];
 
-// Ensure Workbox loaded
-if (!self.workbox) {
-  console.warn('Workbox failed to load. Falling back to a very simple SW.');
-} else {
-  const {precacheAndRoute} = workbox.precaching;
-  const {registerRoute} = workbox.routing;
-  const {CacheFirst, StaleWhileRevalidate, NetworkFirst} = workbox.strategies;
-  const {ExpirationPlugin} = workbox.expiration;
-  const {setCacheNameDetails} = workbox.core;
-
-  setCacheNameDetails({prefix: 'kamptrail', suffix: 'v1'});
-
-  // Precache static app shell (EDIT: keep list short; update upon deploy)
-  // You can add more assets as needed; revision strings bust caches.
-  precacheAndRoute([
-    {url: '/', revision: '1'},
-    {url: '/index.html', revision: '1'},
-    {url: '/manifest.json', revision: '1'},
-    {url: '/icon-192.png', revision: '1'},
-    {url: '/icon-512.png', revision: '1'},
-    {url: '/og.png', revision: '1'}
-  ]);
-
-  // HTML documents: try network, fallback to cache quickly
-  registerRoute(
-    ({request}) => request.destination === 'document',
-    new NetworkFirst({ cacheName: 'kt-pages', networkTimeoutSeconds: 4 })
-  );
-
-  // Static assets (CSS/JS/Workers)
-  registerRoute(
-    ({request}) => ['style','script','worker'].includes(request.destination),
-    new StaleWhileRevalidate({ cacheName: 'kt-assets' })
-  );
-
-  // Images (icons, screenshots)
-  registerRoute(
-    ({request}) => request.destination === 'image',
-    new StaleWhileRevalidate({
-      cacheName: 'kt-images',
-      plugins: [new ExpirationPlugin({maxEntries: 80, maxAgeSeconds: 60 * 60 * 24 * 14})]
-    })
-  );
-
-  // Map tiles (OSM/MapTiler/etc.)
-  registerRoute(
-    ({url, request}) => request.destination === 'image' && /tile|tiles|osm|mt1|maptiler|tile\.openstreetmap/.test(url.href),
-    new CacheFirst({
-      cacheName: 'kt-map-tiles',
-      plugins: [new ExpirationPlugin({maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 7})]
-    })
-  );
-}
-
-// Update flow: allow page to trigger skipWaiting
-self.addEventListener('message', (e) => {
-  if (e.data === 'SKIP_WAITING') self.skipWaiting();
+self.addEventListener('install', (e) => {
+  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)));
 });
 
-// Fallback very-simple fetch if Workbox missing
-self.addEventListener('fetch', (event) => {
-  if (self.workbox) return; // Workbox handles routing
-  event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k)))
+    )
   );
+  self.clients.claim();
 });
+
+const isTile = (url) => url.origin === 'https://tile.openstreetmap.org';
+
+self.addEventListener('fetch', (e) => {
+  const { request } = e;
+
+  // HTML pages: NetworkFirst with 4s timeout + cached fallback
+  if (request.mode === 'navigate') {
+    e.respondWith((async () => {
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), 4000);
+      try {
+        const net = await fetch(request, { signal: controller.signal });
+        clearTimeout(t);
+        const cache = await caches.open(VERSION);
+        cache.put(request, net.clone());
+        return net;
+      } catch (err) {
+        clearTimeout(t);
+        const cache = await caches.open(VERSION);
+        return (await cache.match('/index.html')) || Response.error();
+      }
+    })());
+    return;
+  }
+
+  // Map tiles: CacheFirst with size cap (~few metro areas)
+  if (isTile(new URL(request.url))) {
+    e.respondWith((async () => {
+      const cache = await caches.open('kt-tiles');
+      const hit = await cache.match(request);
+      if (hit) return hit;
+      const res = await fetch(request, { mode: 'cors' });
+      if (res.ok) {
+        await cache.put(request, res.clone());
+        const keys = await cache.keys();
+        const LIMIT = 400; // trim oldest
+        if (keys.length > LIMIT) await cache.delete(keys[0]);
+      }
+      return res;
+    })());
+    return;
+  }
+
+  // Static assets: Stale-While-Revalidate
+  if (/\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(request.url)) {
+    e.respondWith((async () => {
+      const cache = await caches.open('kt-static');
+      const cached = await cache.match(request);
+      const fetcher = fetch(request).then((res) => {
+        if (res.ok) cache.put(request, res.clone());
+        return res;
+      }).catch(() => cached);
+      return cached || fetcher;
+    })());
+  }
+});
+
+// Allow page to force an update (your index shows a toast)
+self.addEventListener('message', (e) => { if (e.data === 'SKIP_WAITING') self.skipWaiting(); });
