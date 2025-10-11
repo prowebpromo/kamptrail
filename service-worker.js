@@ -1,8 +1,17 @@
 // service-worker.js — KampTrail SW (vanilla)
-const VERSION = 'kt-v3';
+// Bump this when you deploy changes.
+const VERSION = 'kt-v4';
 
-// IMPORTANT for GitHub Pages: use RELATIVE paths
-const SHELL = ['index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'og.png', 'overlays/overlays-advanced.css', 'overlays/overlays-advanced.js'];
+// IMPORTANT for GitHub Pages: use RELATIVE paths (no leading slash)
+const SHELL = [
+  'index.html',
+  'manifest.json',
+  'icon-192.png',
+  'icon-512.png',
+  'og.png',
+  'overlays/overlays-advanced.css',
+  'overlays/overlays-advanced.js'
+];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)));
@@ -75,7 +84,7 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Optional: cache same-origin data files if you add /data/* later
+  // Same-origin data files (if you add /data/* later)
   if (url.origin === self.location.origin && /\/data\/(places|pois)\/.+\.geojson$/.test(url.pathname)) {
     e.respondWith((async () => {
       const cache = await caches.open('kt-data');
@@ -87,5 +96,5 @@ self.addEventListener('fetch', (e) => {
   }
 });
 
-// Allow page to force an update (your index shows a toast)
+// Allow page to force an update (index shows a toast)
 self.addEventListener('message', (e) => { if (e.data === 'SKIP_WAITING') self.skipWaiting(); });
