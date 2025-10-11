@@ -57,7 +57,6 @@
     *:focus-visible {outline: 3px solid #86b7ff; outline-offset: 2px;}
     @media (prefers-reduced-motion: reduce){ * {animation: none !important; transition: none !important;} }
     .leaflet-container {background:#0b141b;}
-
     /* Desync guards */
     html, body, #app, #map { zoom: 1 !important; transform: none !important; }
     .leaflet-container { will-change: transform; }
@@ -117,7 +116,7 @@
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Cluster group (for any ad-hoc markers you add later)
+  // Cluster group (reserved for any ad-hoc markers you add later)
   const cluster = L.markerClusterGroup({chunkedLoading:true, spiderfyOnMaxZoom:false});
   map.addLayer(cluster);
 
@@ -158,9 +157,8 @@
   <!-- Advanced overlays: panel + loaders -->
   <script src="overlays/overlays-advanced.js"></script>
   <script>
-    // Add your OpenCelliD token to enable cell towers (optional)
     KampTrailAdvanced.init(map, {
-      // openCellIdToken: 'YOUR_OPENCELLID_TOKEN'
+      // openCellIdToken: 'YOUR_OPENCELLID_TOKEN' // optional
     });
   </script>
 </body>
