@@ -36,10 +36,10 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css">
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
-  <!-- Esri Leaflet for US gov map services -->
+  <!-- Esri Leaflet (for PAD-US / BLM / USFS overlays) -->
   <script src="https://unpkg.com/esri-leaflet@3/dist/esri-leaflet.js"></script>
 
-  <!-- Overlays bundle (styles) -->
+  <!-- Overlays bundle (advanced) -->
   <link rel="stylesheet" href="overlays/overlays-advanced.css">
 
   <style>
@@ -58,7 +58,7 @@
     @media (prefers-reduced-motion: reduce){ * {animation: none !important; transition: none !important;} }
     .leaflet-container {background:#0b141b;}
 
-    /* Desync guards (prevent parent scaling/transform) */
+    /* Desync guards */
     html, body, #app, #map { zoom: 1 !important; transform: none !important; }
     .leaflet-container { will-change: transform; }
     .leaflet-pane, .leaflet-map-pane, .leaflet-tile-pane, .leaflet-marker-pane { transform: translateZ(0); }
@@ -117,18 +117,18 @@
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Global cluster group for any ad-hoc markers you add later
+  // Cluster group (for any ad-hoc markers you add later)
   const cluster = L.markerClusterGroup({chunkedLoading:true, spiderfyOnMaxZoom:false});
   map.addLayer(cluster);
 
-  // Layout correctness on first paint / resize / tab focus
+  // Keep layout correct on first paint / resize / tab focus
   setTimeout(() => map.invalidateSize(), 300);
   window.addEventListener('resize', () => map.invalidateSize());
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') map.invalidateSize();
   });
 
-  // UI handlers
+  // Buttons
   const nearBtn = document.getElementById('near');
   const freeBtn = document.getElementById('free');
 
@@ -145,20 +145,20 @@
   freeBtn.addEventListener('click', () => {
     const pressed = freeBtn.getAttribute('aria-pressed') === 'true';
     freeBtn.setAttribute('aria-pressed', pressed ? 'false' : 'true');
-    // Placeholder: your real filter logic can hook into overlays later
+    // Placeholder: hook real filter later
     map.fitBounds([[33, -117],[34, -115]]);
   });
 
-  // Shortcuts (after listeners exist)
+  // URL shortcuts
   const params = new URLSearchParams(location.search);
   if (params.get('shortcut') === 'near') nearBtn.click();
-  if (params.get('filter') === 'free') freeBtn.click();
+  if (params.get('filter') === 'free')  freeBtn.click();
   </script>
 
-  <!-- Overlays / POIs panel & loaders -->
+  <!-- Advanced overlays: panel + loaders -->
   <script src="overlays/overlays-advanced.js"></script>
   <script>
-    // Tip: add your OpenCelliD token below to enable cell towers
+    // Add your OpenCelliD token to enable cell towers (optional)
     KampTrailAdvanced.init(map, {
       // openCellIdToken: 'YOUR_OPENCELLID_TOKEN'
     });
