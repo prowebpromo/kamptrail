@@ -10,16 +10,11 @@
   <!-- PWA / A2HS -->
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="overlays/overlays.css">
   <meta name="application-name" content="KampTrail">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light dark">
-
-  <!-- Privacy & SEO basics -->
-  <meta name="robots" content="index,follow">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Social cards -->
   <meta property="og:title" content="KampTrail – Free Campsite Map">
@@ -32,7 +27,7 @@
   <!-- Networking -->
   <link rel="preconnect" href="https://tile.openstreetmap.org">
 
-  <!-- Leaflet core (keep versions matched) -->
+  <!-- Leaflet core -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -41,13 +36,20 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css">
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
+  <!-- Esri Leaflet for US gov map services -->
+  <script src="https://unpkg.com/esri-leaflet@3/dist/esri-leaflet.js"></script>
+
+  <!-- Overlays bundle (styles) -->
+  <link rel="stylesheet" href="overlays/overlays-advanced.css">
+
   <style>
     html, body {height:100%; margin:0; background:#0b141b; color:#e8f0f7; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;}
-    #app {display:grid; grid-template-rows: auto 1fr; height: 100%;}
+    #app {display:grid; grid-template-rows: auto 1fr auto; height: 100%;}
     header {padding: 10px 12px; display:flex; align-items:center; gap:10px; background:#0f1b24; position: sticky; top:0; z-index: 10;}
     header h1 {font-size: 16px; margin:0;}
     header .btn {border:1px solid #22313f; padding:6px 10px; border-radius:10px; background:#15232e; color:#cfe3f2; cursor:pointer;}
-    #map {height: calc(100vh - 56px);}
+    #map {height: calc(100vh - 92px);} /* header + footer */
+    footer {padding:8px 12px; font-size:12px; color:#b7c7d6; background:#0f1b24; border-top:1px solid #22313f;}
     .toast {position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); background:#173243; padding:10px 14px; border-radius:12px; border:1px solid #284356; display:none;}
     .toast.show {display:block;}
     a {color:#9fd0ff;}
@@ -70,12 +72,18 @@
       <button id="free" class="btn" aria-label="Filter to free campsites" aria-pressed="false">Free</button>
       <span style="margin-left:auto;font-size:12px;opacity:.7">Offline-ready</span>
     </header>
+
     <div id="map" role="region" aria-label="Campsite map" tabindex="0"></div>
+
+    <footer>
+      Map © OpenStreetMap contributors · Data: OSM / USGS PAD-US / BLM / USFS
+    </footer>
   </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite">New version ready — <a href="#" id="update">update now</a></div>
 
   <script>
-  // Service Worker registration with update flow
+  // Service Worker registration with update toast
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('service-worker.js').then(reg => {
@@ -100,32 +108,20 @@
   }
 
   // Map init
-  const map = L.map('map', { zoomControl: true }).setView([39.8283, -98.5795], 4); // CONUS
+  const map = L.map('map', { zoomControl: true }).setView([39.8283, -98.5795], 5);
 
   // Tiles
-  const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     detectRetina: true,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Cluster group
+  // Global cluster group for any ad-hoc markers you add later
   const cluster = L.markerClusterGroup({chunkedLoading:true, spiderfyOnMaxZoom:false});
   map.addLayer(cluster);
 
-  // Dummy data (replace with real data loader by bbox/region)
-  function addMarkers(n=2000) {
-    for (let i=0;i<n;i++){
-      const lat = 25 + Math.random()*20;
-      const lng = -125 + Math.random()*30;
-      const m = L.marker([lat, lng], {title: 'Campsite #' + i});
-      m.bindPopup('<strong>Campsite #' + i + '</strong><br>Type: Free');
-      cluster.addLayer(m);
-    }
-  }
-  addMarkers(1500);
-
-  // Keep layout correct on first paint / resize / tab focus
+  // Layout correctness on first paint / resize / tab focus
   setTimeout(() => map.invalidateSize(), 300);
   window.addEventListener('resize', () => map.invalidateSize());
   document.addEventListener('visibilitychange', () => {
@@ -149,23 +145,22 @@
   freeBtn.addEventListener('click', () => {
     const pressed = freeBtn.getAttribute('aria-pressed') === 'true';
     freeBtn.setAttribute('aria-pressed', pressed ? 'false' : 'true');
-    // Placeholder: hook your real filter; for demo, zoom to random bbox
+    // Placeholder: your real filter logic can hook into overlays later
     map.fitBounds([[33, -117],[34, -115]]);
   });
 
-  // Shortcuts (RUN AFTER listeners exist)
+  // Shortcuts (after listeners exist)
   const params = new URLSearchParams(location.search);
   if (params.get('shortcut') === 'near') nearBtn.click();
   if (params.get('filter') === 'free') freeBtn.click();
   </script>
 
-  <!-- Overlays / POIs -->
-  <script src="overlays/overlays.js"></script>
+  <!-- Overlays / POIs panel & loaders -->
+  <script src="overlays/overlays-advanced.js"></script>
   <script>
-    window.KampTrailOverlays.init(map, {
-      // Leave empty for now; toggles will prompt you to configure when clicked
-      publicLandsUrl: '', // e.g., 'https://tiles.example.com/publiclands/{z}/{x}/{y}.png'
-      cellCoverageUrl: '' // e.g., 'https://tiles.example.com/cell/{z}/{x}/{y}.png'
+    // Tip: add your OpenCelliD token below to enable cell towers
+    KampTrailAdvanced.init(map, {
+      // openCellIdToken: 'YOUR_OPENCELLID_TOKEN'
     });
   </script>
 </body>
