@@ -25,36 +25,20 @@
 
   // ---------- utils ----------
   const $  = (s, r=document) => r.querySelector(s);
-  const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
   const el = (t,c)=>{const n=document.createElement(t); if(c) n.className=c; return n;};
   const deb = (fn,ms)=>{let t; return (...a)=>{clearTimeout(t); t=setTimeout(()=>fn(...a),ms);};};
   const bbox = (map) => { const b=map.getBounds(); return {s:b.getSouth(),w:b.getWest(),n:b.getNorth(),e:b.getEast()}; };
   const clusterGroup = ()=>L.markerClusterGroup({chunkedLoading:true, spiderfyOnMaxZoom:false});
   const has = (map,layer)=> !!layer && map.hasLayer(layer);
-
-  // Robust toggle binder: clicking row OR checkbox toggles and runs handlers
-  function bindToggle(id, {on, off}) {
-    const cb  = $(id);
-    if (!cb) return;
-    const row = cb.closest('.kt2-row') || cb.parentElement;
-
-    const run = () => (cb.checked ? on?.() : off?.());
-
-    cb.addEventListener('change', (e) => { e.stopPropagation(); run(); });
-
-    // Clicking the row/label also toggles checkbox
-    row.addEventListener('click', (e) => {
-      // ignore clicks on actual inputs to avoid double-change
-      if (e.target.tagName === 'INPUT') return;
-      cb.checked = !cb.checked;
-      run();
-    });
-  }
+  const addIf = (map, layer, checked) => {
+    if (checked && !has(map,layer)) map.addLayer(layer);
+    if (!checked && has(map,layer)) map.removeLayer(layer);
+  };
 
   // ---------- UI ----------
   function buildPanel(map){
     const panel = el('div','kt2-panel');
-    panel.style.pointerEvents = 'auto'; // make sure clicks are accepted
+    panel.style.pointerEvents = 'auto';
     panel.innerHTML = `
       <h4>Layers & Data</h4>
       <div class="kt2-row"><input id="kt2-padus" type="checkbox"> <label for="kt2-padus">PAD-US (protected/public lands)</label> <span class="kt2-badge">overlay</span></div>
@@ -67,7 +51,6 @@
       <div class="kt2-row"><input id="kt2-cell" type="checkbox"> <label for="kt2-cell">Cell towers (OpenCelliD)</label> <span class="kt2-badge">live</span></div>
       <div class="kt2-note">OSM & US Gov data. Add API keys/tiles in <code>overlays-advanced.js</code> if needed.</div>`;
     map._container.appendChild(panel);
-    // Stop panning/zoom when clicking panel, but keep clicks active inside
     L.DomEvent.disableClickPropagation(panel);
   }
 
@@ -85,10 +68,8 @@
 
   // ---------- Esri overlays ----------
   function setupEsri(map){
-    if (!L.esri) {
-      console.error('Esri Leaflet not loaded');
-      return;
-    }
+    if (!L.esri) { console.error('Esri Leaflet not loaded'); return; }
+
     const padus = L.esri.dynamicMapLayer({ url: state.config.padusUrl, opacity: .45 });
     const blm   = L.esri.tiledMapLayer({    url: state.config.blmSmaUrl,  opacity: .45 });
     const usfs  = L.esri.featureLayer({     url: state.config.usfsAdminUrl, style: { color: '#33ff99', weight: 1, fill: false } });
@@ -97,19 +78,10 @@
     state.groups.blm   = blm;
     state.groups.usfs  = usfs;
 
-    // Use robust binder so clicking label/row works too
-    bindToggle('#kt2-padus', {
-      on:  () => { if (!has(map,padus)) map.addLayer(padus); },
-      off: () => { if (has(map,padus))  map.removeLayer(padus); }
-    });
-    bindToggle('#kt2-blm', {
-      on:  () => { if (!has(map,blm)) map.addLayer(blm); },
-      off: () => { if (has(map,blm))  map.removeLayer(blm); }
-    });
-    bindToggle('#kt2-usfs', {
-      on:  () => { if (!has(map,usfs)) map.addLayer(usfs); },
-      off: () => { if (has(map,usfs))  map.removeLayer(usfs); }
-    });
+    // Bind ONLY to checkbox change (labels naturally toggle the checkbox)
+    $('#kt2-padus').addEventListener('change', e => addIf(map, padus, e.target.checked));
+    $('#kt2-blm')  .addEventListener('change', e => addIf(map, blm,   e.target.checked));
+    $('#kt2-usfs') .addEventListener('change', e => addIf(map, usfs,  e.target.checked));
   }
 
   // ---------- Overpass ----------
@@ -189,7 +161,8 @@
 
   async function loadTowers(map){
     if(!state.config.openCellIdToken){
-      alert('Add openCellIdToken in KampTrailAdvanced.init to enable towers.'); $('#kt2-cell').checked=false; return;
+      alert('Add openCellIdToken in KampTrailAdvanced.init to enable towers.');
+      $('#kt2-cell').checked=false; return;
     }
     const b=bbox(map);
     const url=`${defaults.openCellIdUrl}?token=${encodeURIComponent(state.config.openCellIdToken)}&bbox=${b.s},${b.w},${b.n},${b.e}&format=json`;
@@ -211,7 +184,6 @@
   }
 
   function applyInitial(map){
-    // honor current checkbox states at load
     if ($('#kt2-padus').checked) map.addLayer(state.groups.padus);
     if ($('#kt2-blm').checked)   map.addLayer(state.groups.blm);
     if ($('#kt2-usfs').checked)  map.addLayer(state.groups.usfs);
@@ -229,11 +201,11 @@
       buildLegend(map);
       setupEsri(map);
 
-      // live layers
-      bindToggle('#kt2-camps', { on: ()=>loadCamps(map),  off: ()=>removeAndClear(map,'campsGroup')  });
-      bindToggle('#kt2-poi',   { on: ()=>loadPois(map),   off: ()=>removeAndClear(map,'poiGroup')    });
-      bindToggle('#kt2-haz',   { on: ()=>loadHazards(map),off: ()=>removeAndClear(map,'hazardGroup') });
-      bindToggle('#kt2-cell',  { on: ()=>loadTowers(map), off: ()=>removeAndClear(map,'cellGroup')   });
+      // live layers (checkbox change ONLY)
+      $('#kt2-camps').addEventListener('change', e => e.target.checked ? loadCamps(map)  : removeAndClear(map,'campsGroup'));
+      $('#kt2-poi')  .addEventListener('change', e => e.target.checked ? loadPois(map)    : removeAndClear(map,'poiGroup'));
+      $('#kt2-haz')  .addEventListener('change', e => e.target.checked ? loadHazards(map) : removeAndClear(map,'hazardGroup'));
+      $('#kt2-cell') .addEventListener('change', e => e.target.checked ? loadTowers(map)  : removeAndClear(map,'cellGroup'));
 
       applyInitial(map);
 
