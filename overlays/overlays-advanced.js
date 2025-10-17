@@ -1,308 +1,95 @@
-/* overlays/overlays-advanced.js
-   Requires: Leaflet + leaflet.markercluster + Esri Leaflet (https://unpkg.com/esri-leaflet@3)
-*/
-(function () {
-  const state = {
-    groups: {},          // Esri overlays
-    cache: {},           // bbox-key -> fetched flag (per layer)
-    inFlight: {          // AbortControllers per live layer
-      camps: null,
-      poi: null,
-      haz: null,
-      cell: null
-    },
-    campsGroup: null,
-    poiGroup: null,
-    hazardGroup: null,
-    cellGroup: null,
-    config: null
-  };
+/* KampTrail Overlays (advanced) */
+(function(){
+  'use strict';
 
-  const defaults = {
-    padusUrl: 'https://services1.arcgis.com/0MSEUqKaxRlEPj5g/ArcGIS/rest/services/PADUS2_1_FederalManagementAgencies/MapServer',
-    blmSmaUrl: 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_SMA_Cached_with_PriUnk/MapServer',
-    usfsAdminUrl: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Forest_Administrative_Boundaries/FeatureServer/0',
-    overpass: 'https://overpass-api.de/api/interpreter',
-    openCellIdUrl: 'https://api.opencellid.org/towers',
-    openCellIdToken: '',
-    maxPoi: 4000,
-    maxCamps: 6000
-  };
+  const state = { group: null, controls: null, layers: {} };
 
-  // ---------- utils ----------
-  const $  = (s, r=document) => r.querySelector(s);
-  const el = (t,c)=>{const n=document.createElement(t); if(c) n.className=c; return n;};
-  const deb = (fn,ms)=>{let t; return (...a)=>{clearTimeout(t); t=setTimeout(()=>fn(...a),ms);};};
-  const bbox = (map) => { const b=map.getBounds(); return {s:b.getSouth(),w:b.getWest(),n:b.getNorth(),e:b.getEast()}; };
-  const bboxKey = (map) => { const b=bbox(map); return [b.s,b.w,b.n,b.e].map(v=>v.toFixed(3)).join(','); };
-  const clusterGroup = ()=>L.markerClusterGroup({chunkedLoading:true, spiderfyOnMaxZoom:false});
-  const has = (map,layer)=> !!layer && map.hasLayer(layer);
-  const addIf = (map, layer, on) => { if (on && !has(map,layer)) map.addLayer(layer); if (!on && has(map,layer)) map.removeLayer(layer); };
-
-  // Busy UI helpers (visual feedback + prevent double-taps)
-  function setBusy(id, busy){
-    const cb = $(id);
-    if (!cb) return;
-    const row = cb.closest('.kt2-row') || cb.parentElement;
-    row.style.opacity = busy ? 0.6 : 1;
-    cb.disabled = !!busy;
-    // Optional: show "loading" in the little badge if present
-    const badge = row.querySelector('.kt2-badge');
-    if (badge) badge.dataset.orig = badge.dataset.orig || badge.textContent;
-    if (badge) badge.textContent = busy ? 'loading' : (badge.dataset.orig || badge.textContent);
+  function padUS(){ // PAD-US polygons via Esri Feature Service (generalized)
+    return L.esri.featureLayer({
+      url: 'https://services1.arcgis.com/er9Y6iQYxw79IYqI/ArcGIS/rest/services/PADUS3_0Combined_Proclamation_Marine_Fee/FeatureServer/0',
+      simplifyFactor: 0.5,
+      precision: 5,
+      style: f => ({ color:'#ff6b6b', weight:1, fillOpacity:.08 })
+    });
   }
 
-  // Abort any running request for a layer
-  function abortLayer(layerKey){
-    const c = state.inFlight[layerKey];
-    if (c){ try{ c.abort(); }catch(_){/* noop */} }
-    state.inFlight[layerKey] = null;
+  function blmMgmt(){
+    return L.esri.dynamicMapLayer({
+      url: 'https://services1.arcgis.com/Yq8rYC2a6bHsH3dS/ArcGIS/rest/services/BLM_National_Surface_Management_Agency/MapServer',
+      opacity: 0.35
+    });
   }
 
-  // ---------- UI ----------
-  function buildPanel(map){
-    const panel = el('div','kt2-panel');
-    panel.style.pointerEvents = 'auto';
-    panel.innerHTML = `
-      <h4>Layers & Data</h4>
-      <div class="kt2-row"><input id="kt2-padus" type="checkbox"> <label for="kt2-padus">PAD-US (protected/public lands)</label> <span class="kt2-badge">overlay</span></div>
-      <div class="kt2-row"><input id="kt2-blm" type="checkbox"> <label for="kt2-blm">BLM Surface Mgmt Agency</label> <span class="kt2-badge">overlay</span></div>
-      <div class="kt2-row"><input id="kt2-usfs" type="checkbox"> <label for="kt2-usfs">USFS Admin boundaries</label> <span class="kt2-badge">overlay</span></div>
-      <hr style="border-color:#284356;opacity:.5;">
-      <div class="kt2-row"><input id="kt2-camps" type="checkbox" checked> <label for="kt2-camps">Free camps (OSM)</label> <span class="kt2-badge">live</span></div>
-      <div class="kt2-row"><input id="kt2-poi" type="checkbox" checked> <label for="kt2-poi">Dump / Water / Propane (OSM)</label> <span class="kt2-badge">live</span></div>
-      <div class="kt2-row"><input id="kt2-haz" type="checkbox"> <label for="kt2-haz">Low clearance (maxheight)</label> <span class="kt2-badge">live</span></div>
-      <div class="kt2-row"><input id="kt2-cell" type="checkbox"> <label for="kt2-cell">Cell towers (OpenCelliD)</label> <span class="kt2-badge">live</span></div>
-      <div class="kt2-note">OSM & US Gov data. Add API keys/tiles in <code>overlays-advanced.js</code> if needed.</div>`;
-    map._container.appendChild(panel);
-    L.DomEvent.disableClickPropagation(panel);
+  function usfsAdmin(){
+    return L.esri.dynamicMapLayer({
+      url: 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ProclaimedForests_01/MapServer',
+      opacity: 0.35
+    });
   }
 
-  function buildLegend(map){
-    const legend = el('div','kt2-legend');
-    legend.innerHTML = `<strong>Legend</strong><br>
-      <span class="chip">Free camp</span>
-      <span class="chip">Dump</span>
-      <span class="chip">Water</span>
-      <span class="chip">Propane</span>
-      <span class="chip" style="border-color:#ff6b6b;color:#ff9b9b;">Maxheight</span>`;
-    map._container.appendChild(legend);
-    L.DomEvent.disableClickPropagation(legend);
+  function checkbox(label, rightTag){
+    const row = document.createElement('label');
+    row.style.cssText='display:flex;align-items:center;gap:8px;padding:6px 8px;';
+    const cb = document.createElement('input'); cb.type='checkbox';
+    const span = document.createElement('span'); span.textContent = label;
+    const tag = document.createElement('small'); tag.textContent = rightTag; tag.style.cssText='margin-left:auto;opacity:.7;border:1px solid #284356;border-radius:10px;padding:2px 6px;';
+    row.append(cb, span, tag);
+    return {row, cb};
   }
 
-  // ---------- Esri overlays (instant toggle) ----------
-  function setupEsri(map){
-    if (!L.esri) { console.error('Esri Leaflet not loaded'); return; }
+  function buildPanel(){
+    const panel = document.createElement('div');
+    panel.className='kt2-panel';
+    panel.style.cssText='position:absolute;top:12px;right:12px;min-width:280px;background:#0f1b24;border:1px solid #284356;border-radius:12px;color:#cfe3f2;z-index:1001;box-shadow:0 8px 24px rgba(0,0,0,.35);';
+    panel.innerHTML = `<div style="padding:10px 12px;border-bottom:1px solid #284356;font-weight:700">Layers & Data</div>`;
+    const body = document.createElement('div'); body.style.padding='6px 8px';
+    panel.append(body);
 
-    const padus = L.esri.dynamicMapLayer({ url: state.config.padusUrl, opacity: .45 });
-    const blm   = L.esri.tiledMapLayer({    url: state.config.blmSmaUrl,  opacity: .45 });
-    const usfs  = L.esri.featureLayer({     url: state.config.usfsAdminUrl, style: { color: '#33ff99', weight: 1, fill: false } });
+    const items = [
+      { key:'pad', label:'PAD-US (protected/public lands)', maker: padUS, tag:'overlay', checked:false },
+      { key:'blm', label:'BLM Surface Mgmt Agency',      maker: blmMgmt, tag:'overlay', checked:false },
+      { key:'usfs', label:'USFS Admin boundaries',       maker: usfsAdmin, tag:'overlay', checked:false }
+    ];
 
-    state.groups.padus = padus;
-    state.groups.blm   = blm;
-    state.groups.usfs  = usfs;
+    items.forEach(it=>{
+      const {row,cb} = checkbox(it.label, it.tag);
+      cb.checked = !!it.checked;
+      cb.addEventListener('change',()=>{
+        toggle(it.key, cb.checked);
+      });
+      body.append(row);
+      state.controls[it.key] = cb;
+    });
 
-    $('#kt2-padus').addEventListener('change', e => addIf(map, padus, e.target.checked));
-    $('#kt2-blm')  .addEventListener('change', e => addIf(map, blm,   e.target.checked));
-    $('#kt2-usfs') .addEventListener('change', e => addIf(map, usfs,  e.target.checked));
+    return panel;
   }
 
-  // ---------- Overpass ----------
-  async function overpass(q, controller){
-    const url = state.config.overpass + '?data=' + encodeURIComponent(q);
-    for (let i=0;i<3;i++){
-      try {
-        const r = await fetch(url, { cache:'no-store', signal: controller.signal });
-        if (!r.ok) throw new Error('HTTP '+r.status);
-        return await r.json();
-      } catch(e){
-        if (e.name === 'AbortError') throw e; // stop retries on abort
-        await new Promise(res=>setTimeout(res, 800*(i+1)));
+  function toggle(key, on){
+    if (on){
+      if (!state.layers[key]){
+        // lazily create the layer
+        if (key==='pad') state.layers[key] = padUS();
+        else if (key==='blm') state.layers[key] = blmMgmt();
+        else if (key==='usfs') state.layers[key] = usfsAdmin();
       }
-    }
-    return { elements: [] };
-  }
-
-  const qCamps = b => `[out:json][timeout:25];
-    ( node["tourism"="camp_site"]["fee"="no"](${b.s},${b.w},${b.n},${b.e});
-      node["tourism"="camp_site"]["camp_site"~"basic|backcountry"](${b.s},${b.w},${b.n},${b.e});
-    ); out center;`;
-
-  const qPois = b => `[out:json][timeout:25];
-    ( node["amenity"="sanitary_dump_station"](${b.s},${b.w},${b.n},${b.e});
-      node["amenity"="drinking_water"](${b.s},${b.w},${b.n},${b.e});
-      node["amenity"="fuel"]["fuel:propane"~"yes|1"](${b.s},${b.w},${b.n},${b.e});
-    ); out center;`;
-
-  const qHaz = b => `[out:json][timeout:25];
-    ( way["maxheight"](${b.s},${b.w},${b.n},${b.e});
-      node["maxheight"](${b.s},${b.w},${b.n},${b.e});
-    ); out center;`;
-
-  const ensure = (name, clustered=true) => state[name] || (state[name] = (clustered ? clusterGroup() : L.layerGroup()));
-
-  // Layer loader template with cancellation + busy UI
-  async function runLoad(layerKey, cbOn, cbOff, loader){
-    const idMap = {
-      camps: '#kt2-camps',
-      poi:   '#kt2-poi',
-      haz:   '#kt2-haz',
-      cell:  '#kt2-cell'
-    };
-    const id = idMap[layerKey];
-    const checked = $(id).checked;
-
-    // Turning ON
-    if (checked){
-      if (state.inFlight[layerKey]) return; // already fetching
-      setBusy(id, true);
-      const controller = new AbortController();
-      state.inFlight[layerKey] = controller;
-      try{
-        await loader(controller);
-        cbOn();
-      }catch(e){
-        if (e.name !== 'AbortError') console.warn(layerKey,'load failed',e);
-      }finally{
-        state.inFlight[layerKey] = null;
-        setBusy(id, false);
-      }
+      state.group.addLayer(state.layers[key]);
     } else {
-      // Turning OFF
-      abortLayer(layerKey);
-      cbOff();
-      setBusy(id, false);
+      if (state.layers[key]) state.group.removeLayer(state.layers[key]);
     }
   }
 
-  async function loadCamps(map, controller){
-    const key = 'camps:'+bboxKey(map);
-    if (state.cache[key]) return;
-    state.cache[key] = true;
-
-    const data = await overpass(qCamps(bbox(map)), controller);
-    const grp = ensure('campsGroup', true);
-    data.elements.slice(0, defaults.maxCamps).forEach(n=>{
-      const name=(n.tags&&(n.tags.name||'Free camp'))||'Free camp';
-      L.marker([n.lat,n.lon],{title:name})
-       .bindPopup(`<strong>${name}</strong><br>OSM: tourism=camp_site`)
-       .addTo(grp);
-    });
-    if (!has(map, grp)) map.addLayer(grp);
-  }
-
-  async function loadPois(map, controller){
-    const key = 'poi:'+bboxKey(map);
-    if (state.cache[key]) return;
-    state.cache[key] = true;
-
-    const data = await overpass(qPois(bbox(map)), controller);
-    const grp = ensure('poiGroup', true);
-    data.elements.slice(0, defaults.maxPoi).forEach(n=>{
-      const type=n.tags.amenity||'poi'; const name=n.tags.name||type;
-      L.marker([n.lat,n.lon],{title:name})
-       .bindPopup(`<strong>${name}</strong><br>${type}`)
-       .addTo(grp);
-    });
-    if (!has(map, grp)) map.addLayer(grp);
-  }
-
-  async function loadHazards(map, controller){
-    const key = 'haz:'+bboxKey(map);
-    if (state.cache[key]) return;
-    state.cache[key] = true;
-
-    const data = await overpass(qHaz(bbox(map)), controller);
-    const grp = ensure('hazardGroup', false);
-    data.elements.forEach(e=>{
-      const lat=e.lat||(e.center&&e.center.lat);
-      const lon=e.lon||(e.center&&e.center.lon);
-      if(lat&&lon) L.circleMarker([lat,lon],{radius:5,color:'#ff6b6b'})
-        .bindPopup(`Max height: ${e.tags.maxheight}`)
-        .addTo(grp);
-    });
-    if (!has(map, grp)) map.addLayer(grp);
-  }
-
-  async function loadTowers(map, controller){
-    if(!state.config.openCellIdToken){
-      alert('Add openCellIdToken in KampTrailAdvanced.init to enable towers.');
-      $('#kt2-cell').checked=false; return;
-    }
-    const b=bbox(map);
-    const url=`${defaults.openCellIdUrl}?token=${encodeURIComponent(state.config.openCellIdToken)}&bbox=${b.s},${b.w},${b.n},${b.e}&format=json`;
-    const r=await fetch(url,{signal:controller.signal}); 
-    if(!r.ok){ alert('OpenCelliD request failed'); $('#kt2-cell').checked=false; return; }
-    const data=await r.json();
-    const grp=ensure('cellGroup',true);
-    (data.cells||[]).forEach(c=>{
-      L.circleMarker([c.lat,c.lon],{radius:4,color:'#74c0fc'})
-       .bindPopup(`Tower<br>Radio:${c.radio||''} MCC:${c.mcc||''} MNC:${c.mnc||''}`)
-       .addTo(grp);
-    });
-    if(!has(map,grp)) map.addLayer(grp);
-  }
-
-  function removeAndClear(map, name){
-    const grp=state[name]; if(!grp) return;
-    if (has(map,grp)) map.removeLayer(grp);
-    if (grp.clearLayers) grp.clearLayers();
-  }
-
-  function applyInitial(map){
-    if ($('#kt2-padus').checked) map.addLayer(state.groups.padus);
-    if ($('#kt2-blm').checked)   map.addLayer(state.groups.blm);
-    if ($('#kt2-usfs').checked)  map.addLayer(state.groups.usfs);
-
-    // Kick off live layers if toggled on (with busy UI)
-    if ($('#kt2-camps').checked) runLoad('camps',
-      ()=>{}, ()=>removeAndClear(map,'campsGroup'),
-      (ctl)=>loadCamps(map, ctl));
-    if ($('#kt2-poi').checked) runLoad('poi',
-      ()=>{}, ()=>removeAndClear(map,'poiGroup'),
-      (ctl)=>loadPois(map, ctl));
-    if ($('#kt2-haz').checked) runLoad('haz',
-      ()=>{}, ()=>removeAndClear(map,'hazardGroup'),
-      (ctl)=>loadHazards(map, ctl));
-    if ($('#kt2-cell').checked) runLoad('cell',
-      ()=>{}, ()=>removeAndClear(map,'cellGroup'),
-      (ctl)=>loadTowers(map, ctl));
-  }
-
-  // ---------- public ----------
   window.KampTrailAdvanced = {
-    init(map, cfg){
-      state.config = Object.assign({}, defaults, cfg||{});
-      buildPanel(map);
-      buildLegend(map);
-      setupEsri(map);
+    init(map, cfg={}){
+      // Container group so we can add/remove overlays cleanly
+      state.group = L.layerGroup().addTo(map);
+      state.controls = {};
+      state.layers = {};
 
-      // Live layer toggles (transactional)
-      $('#kt2-camps').addEventListener('change', ()=>runLoad('camps',
-        ()=>{}, ()=>removeAndClear(map,'campsGroup'),
-        (ctl)=>loadCamps(map, ctl)));
+      const panel = buildPanel();
+      map._container.append(panel);
+      L.DomEvent.disableClickPropagation(panel);
 
-      $('#kt2-poi').addEventListener('change', ()=>runLoad('poi',
-        ()=>{}, ()=>removeAndClear(map,'poiGroup'),
-        (ctl)=>loadPois(map, ctl)));
-
-      $('#kt2-haz').addEventListener('change', ()=>runLoad('haz',
-        ()=>{}, ()=>removeAndClear(map,'hazardGroup'),
-        (ctl)=>loadHazards(map, ctl)));
-
-      $('#kt2-cell').addEventListener('change', ()=>runLoad('cell',
-        ()=>{}, ()=>removeAndClear(map,'cellGroup'),
-        (ctl)=>loadTowers(map, ctl)));
-
-      applyInitial(map);
-
-      // Refresh live layers on pan/zoom if ON and not already fetching
-      map.on('moveend', deb(()=>{
-        if ($('#kt2-camps').checked && !state.inFlight.camps) runLoad('camps', ()=>{}, ()=>{}, (ctl)=>loadCamps(map, ctl));
-        if ($('#kt2-poi').checked   && !state.inFlight.poi)   runLoad('poi',   ()=>{}, ()=>{}, (ctl)=>loadPois(map, ctl));
-        if ($('#kt2-haz').checked   && !state.inFlight.haz)   runLoad('haz',   ()=>{}, ()=>{}, (ctl)=>loadHazards(map, ctl));
-        if ($('#kt2-cell').checked  && !state.inFlight.cell)  runLoad('cell',  ()=>{}, ()=>{}, (ctl)=>loadTowers(map, ctl));
-      }, 350));
+      // default: none on
     }
   };
 })();
