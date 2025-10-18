@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "metadata": { "state": "CA", "count": 3, "source": "sample" },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {"type":"Point","coordinates":[-119.5,37.8]},
+      "properties": {
+        "id":"sample_1","source":"sample","name":"Sample Dispersed Site",
+        "type":"dispersed","cost":0,"description":"Beautiful mountain views near NF."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {"type":"Point","coordinates":[-120.1,38.5]},
+      "properties": {
+        "id":"sample_2","source":"sample","name":"Lake Tahoe Campground",
+        "type":"established","cost":25,"description":"Campground near lake access."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {"type":"Point","coordinates":[-117.2,34.1]},
+      "properties": {
+        "id":"sample_3","source":"sample","name":"Joshua Tree Boondock",
+        "type":"dispersed","cost":0,"description":"Desert pull-outs. Soft sand in spots."
+      }
+    }
+  ]
+}
