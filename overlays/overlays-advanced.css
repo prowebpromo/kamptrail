@@ -1,20 +1,232 @@
-/* overlays/overlays-advanced.css */
-.kt2-panel, .kt2-legend {
-  position: absolute;
-  z-index: 1000;
-  background: rgba(15,27,36,.95);
-  border: 1px solid #284356;
-  color: #cfe3f2;
-  border-radius: 12px;
-  padding: 10px 12px;
-  font: 12px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
-  box-shadow: 0 2px 14px rgba(0,0,0,.35);
+/* overlays/overlays-advanced.css
+   Styles for the KampTrail "Layers & Data" panel and legend.
+   Safe, dependency-free, works on dark or light basemaps. */
+
+:root {
+  --kt2-panel-bg: rgba(15, 27, 36, 0.98);
+  --kt2-border: #284356;
+  --kt2-soft-border: #22313f;
+  --kt2-title: #cfe3f2;
+  --kt2-text: #d7e6f5;
+  --kt2-sub: #9fd0ff;
+  --kt2-badge: #1b2e3d;
+  --kt2-badge-text: #bcd9f1;
+  --kt2-accent: #86b7ff;
+  --kt2-danger: #ff6b6b;
+  --kt2-success: #00b894;
 }
-.kt2-panel { top: 70px; right: 12px; width: 260px; max-width: 38vw; }
-.kt2-panel h4 { margin: 0 0 8px 0; font-size: 13px; color: #9fd0ff; }
-.kt2-row { display: grid; grid-template-columns: 16px 1fr auto; align-items: center; gap: 8px; margin: 6px 0; }
-.kt2-row input[type="checkbox"] { accent-color: #86b7ff; }
-.kt2-badge { border:1px solid #395068; padding:2px 6px; border-radius:999px; background:#173243; color:#cfe3f2; }
-.kt2-legend { bottom: 12px; right: 12px; }
-.kt2-legend .chip { display:inline-block; padding:2px 6px; margin-right:6px; border-radius:999px; border:1px solid #395068; background:#173243; }
-.kt2-note { opacity:.75; font-size:11px; margin-top:8px; }
+
+/* ===== Panel container ===== */
+#kt2-overlays {
+  position: absolute;
+  top: 70px;               /* sits under header */
+  right: 12px;
+  z-index: 1001;
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  background: var(--kt2-panel-bg);
+  border: 1px solid var(--kt2-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.35);
+  color: var(--kt2-text);
+  font: 13px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  user-select: none;
+}
+
+#kt2-overlays * { box-sizing: border-box; }
+#kt2-overlays a { color: var(--kt2-sub); text-decoration: none; }
+#kt2-overlays a:hover { text-decoration: underline; }
+
+/* Prevent map from panning when interacting with panel */
+#kt2-overlays, #kt2-overlays * {
+  -webkit-touch-callout: none;
+}
+.leaflet-container #kt2-overlays {
+  pointer-events: auto;
+}
+#kt2-overlays .kt2-body,
+#kt2-overlays .kt2-header { pointer-events: auto; }
+
+/* ===== Header ===== */
+#kt2-overlays .kt2-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--kt2-border);
+}
+#kt2-overlays .kt2-title {
+  font-weight: 700;
+  color: var(--kt2-title);
+  font-size: 14px;
+  margin: 0;
+  flex: 1;
+}
+#kt2-overlays .kt2-close {
+  border: 1px solid var(--kt2-soft-border);
+  background: #173243;
+  color: var(--kt2-sub);
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#kt2-overlays .kt2-close:hover {
+  background: #1f3d52;
+}
+
+/* ===== Body / list ===== */
+#kt2-overlays .kt2-body {
+  padding: 10px 12px;
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+}
+
+#kt2-overlays .kt2-row {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 8px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+#kt2-overlays .kt2-row + .kt2-row { margin-top: 6px; }
+#kt2-overlays .kt2-row:hover {
+  border-color: var(--kt2-soft-border);
+  background: rgba(23, 50, 67, .4);
+}
+
+#kt2-overlays .kt2-row input[type="checkbox"] {
+  width: 16px; height: 16px; margin: 0;
+  accent-color: var(--kt2-accent);
+  cursor: pointer;
+}
+
+#kt2-overlays .kt2-name {
+  color: var(--kt2-text);
+}
+#kt2-overlays .kt2-badges {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+#kt2-overlays .kt2-badge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1;
+  background: var(--kt2-badge);
+  color: var(--kt2-badge-text);
+  border: 1px solid var(--kt2-soft-border);
+  white-space: nowrap;
+}
+#kt2-overlays .kt2-badge.live { background: #14322a; color: #b9f5df; border-color: #1d4a3b; }
+#kt2-overlays .kt2-badge.overlay { background: #142a3d; color: #bcd9f1; border-color: #20364a; }
+#kt2-overlays .kt2-badge.err { background: #3a1e1e; color: #ffd1d1; border-color: #512626; }
+#kt2-overlays .kt2-badge.ok { background: #14322a; color: #b9f5df; border-color: #1d4a3b; }
+
+/* Small description under a row (optional) */
+#kt2-overlays .kt2-note {
+  grid-column: 2 / 4;
+  font-size: 11px;
+  color: #9cb6cc;
+  margin-top: 3px;
+}
+
+/* Spinner row state (when layer is loading) */
+#kt2-overlays .kt2-row.loading {
+  opacity: 0.65;
+  position: relative;
+}
+#kt2-overlays .kt2-row.loading:after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid #355a75;
+  border-top-color: var(--kt2-accent);
+  animation: kt2spin 1s linear infinite;
+}
+@keyframes kt2spin { to { transform: rotate(360deg); } }
+
+/* ===== Legend (bottom-right) ===== */
+#kt2-legend {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1000;
+  background: var(--kt2-panel-bg);
+  border: 1px solid var(--kt2-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.33);
+  padding: 8px 10px;
+  color: var(--kt2-text);
+  font: 12px/1.25 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+}
+#kt2-legend .kt2-legend-title {
+  font-weight: 700;
+  color: var(--kt2-title);
+  margin-bottom: 6px;
+}
+#kt2-legend .kt2-legend-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+#kt2-legend .kt2-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--kt2-soft-border);
+  background: #173243;
+  color: var(--kt2-sub);
+}
+#kt2-legend .kt2-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.15) inset;
+}
+
+/* Example colors for legend dots */
+.kt2-dot.free { background: #00b894; }
+.kt2-dot.dump { background: #4dd2ff; }
+.kt2-dot.water { background: #86b7ff; }
+.kt2-dot.propane { background: #ffb142; }
+.kt2-dot.maxheight { background: #ff7675; }
+
+/* ===== Mobile adjustments ===== */
+@media (max-width: 768px) {
+  #kt2-overlays {
+    width: 94vw;
+    right: 3vw;
+    top: auto;
+    bottom: 90px;
+  }
+  #kt2-legend {
+    left: 12px;
+    right: 12px;
+    bottom: 8px;
+  }
+}
+
+/* ===== Tiny utility for a soft divider ===== */
+#kt2-overlays .kt2-sep {
+  height: 1px;
+  background: var(--kt2-border);
+  margin: 8px 0;
+}
+
+/* ===== Tooltip-ish hint (optional) ===== */
+#kt2-overlays .kt2-hint {
+  font-size: 11px;
+  color: #9cb6cc;
+  background: #12202b;
+  border: 1px dashed var(--kt2-soft-border);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+/* End of file */
