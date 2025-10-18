@@ -1,8 +1,5 @@
-// service-worker.js — KampTrail SW (vanilla)
-// Bump this when you deploy changes.
-const VERSION = 'kt-v4';
-
-// IMPORTANT for GitHub Pages: use RELATIVE paths (no leading slash)
+// service-worker.js — KampTrail SW
+const VERSION = 'kt-v7';
 const SHELL = [
   'index.html',
   'manifest.json',
@@ -10,7 +7,10 @@ const SHELL = [
   'icon-512.png',
   'og.png',
   'overlays/overlays-advanced.css',
-  'overlays/overlays-advanced.js'
+  'overlays/overlays-advanced.js',
+  'data-loader.js',
+  'filters.js',
+  'trip-planner.js'
 ];
 
 self.addEventListener('install', (e) => {
@@ -19,8 +19,8 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k)))
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))
     )
   );
   self.clients.claim();
@@ -30,9 +30,8 @@ const isTile = (url) => url.origin === 'https://tile.openstreetmap.org';
 
 self.addEventListener('fetch', (e) => {
   const { request } = e;
-  const url = new URL(request.url);
 
-  // HTML: NetworkFirst with 4s timeout + cached fallback
+  // HTML pages: NetworkFirst with 4s timeout + cached fallback
   if (request.mode === 'navigate') {
     e.respondWith((async () => {
       const controller = new AbortController();
@@ -43,7 +42,7 @@ self.addEventListener('fetch', (e) => {
         const cache = await caches.open(VERSION);
         cache.put(request, net.clone());
         return net;
-      } catch (err) {
+      } catch {
         clearTimeout(t);
         const cache = await caches.open(VERSION);
         return (await cache.match('index.html')) || Response.error();
@@ -52,8 +51,8 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Map tiles: CacheFirst with size cap
-  if (isTile(url)) {
+  // OSM tiles: CacheFirst with size cap
+  if (isTile(new URL(request.url))) {
     e.respondWith((async () => {
       const cache = await caches.open('kt-tiles');
       const hit = await cache.match(request);
@@ -62,16 +61,15 @@ self.addEventListener('fetch', (e) => {
       if (res.ok) {
         await cache.put(request, res.clone());
         const keys = await cache.keys();
-        const LIMIT = 400; // ~few metro areas
-        if (keys.length > LIMIT) await cache.delete(keys[0]);
+        if (keys.length > 400) await cache.delete(keys[0]); // trim oldest
       }
       return res;
     })());
     return;
   }
 
-  // Static assets (same-origin): Stale-While-Revalidate
-  if (url.origin === self.location.origin && /\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(url.pathname)) {
+  // Static assets: Stale-While-Revalidate
+  if (/\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(request.url)) {
     e.respondWith((async () => {
       const cache = await caches.open('kt-static');
       const cached = await cache.match(request);
@@ -81,20 +79,10 @@ self.addEventListener('fetch', (e) => {
       }).catch(() => cached);
       return cached || fetcher;
     })());
-    return;
-  }
-
-  // Same-origin data files (if you add /data/* later)
-  if (url.origin === self.location.origin && /\/data\/(places|pois)\/.+\.geojson$/.test(url.pathname)) {
-    e.respondWith((async () => {
-      const cache = await caches.open('kt-data');
-      const cached = await cache.match(request);
-      const fetcher = fetch(request).then(res => { if(res.ok) cache.put(request, res.clone()); return res; }).catch(()=>cached);
-      return cached || fetcher;
-    })());
-    return;
   }
 });
 
 // Allow page to force an update (index shows a toast)
-self.addEventListener('message', (e) => { if (e.data === 'SKIP_WAITING') self.skipWaiting(); });
+self.addEventListener('message', (e) => {
+  if (e.data === 'SKIP_WAITING') self.skipWaiting();
+});
