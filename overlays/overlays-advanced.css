@@ -1,232 +1,243 @@
-/* overlays/overlays-advanced.css
-   Styles for the KampTrail "Layers & Data" panel and legend.
-   Safe, dependency-free, works on dark or light basemaps. */
+/* overlays-advanced.css - COMPLETE FILE */
 
-:root {
-  --kt2-panel-bg: rgba(15, 27, 36, 0.98);
-  --kt2-border: #284356;
-  --kt2-soft-border: #22313f;
-  --kt2-title: #cfe3f2;
-  --kt2-text: #d7e6f5;
-  --kt2-sub: #9fd0ff;
-  --kt2-badge: #1b2e3d;
-  --kt2-badge-text: #bcd9f1;
-  --kt2-accent: #86b7ff;
-  --kt2-danger: #ff6b6b;
-  --kt2-success: #00b894;
-}
-
-/* ===== Panel container ===== */
 #kt2-overlays {
-  position: absolute;
-  top: 70px;               /* sits under header */
-  right: 12px;
-  z-index: 1001;
-  width: 320px;
-  max-width: calc(100vw - 24px);
-  background: var(--kt2-panel-bg);
-  border: 1px solid var(--kt2-border);
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 8px 28px rgba(0,0,0,.35);
-  color: var(--kt2-text);
-  font: 13px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-  user-select: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  min-width: 280px;
+  max-width: 320px;
+  z-index: 1000;
+  font-family: system-ui, -apple-system, sans-serif;
+  display: none;
 }
 
-#kt2-overlays * { box-sizing: border-box; }
-#kt2-overlays a { color: var(--kt2-sub); text-decoration: none; }
-#kt2-overlays a:hover { text-decoration: underline; }
-
-/* Prevent map from panning when interacting with panel */
-#kt2-overlays, #kt2-overlays * {
-  -webkit-touch-callout: none;
+@media (prefers-color-scheme: dark) {
+  #kt2-overlays {
+    background: #1a1a1a;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
 }
-.leaflet-container #kt2-overlays {
-  pointer-events: auto;
-}
-#kt2-overlays .kt2-body,
-#kt2-overlays .kt2-header { pointer-events: auto; }
 
-/* ===== Header ===== */
-#kt2-overlays .kt2-header {
+.kt2-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--kt2-border);
-}
-#kt2-overlays .kt2-title {
-  font-weight: 700;
-  color: var(--kt2-title);
-  font-size: 14px;
-  margin: 0;
-  flex: 1;
-}
-#kt2-overlays .kt2-close {
-  border: 1px solid var(--kt2-soft-border);
-  background: #173243;
-  color: var(--kt2-sub);
-  border-radius: 8px;
-  padding: 4px 8px;
-  cursor: pointer;
-  font-size: 12px;
-}
-#kt2-overlays .kt2-close:hover {
-  background: #1f3d52;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-/* ===== Body / list ===== */
-#kt2-overlays .kt2-body {
-  padding: 10px 12px;
-  max-height: calc(100vh - 170px);
+@media (prefers-color-scheme: dark) {
+  .kt2-header {
+    border-bottom-color: #333;
+  }
+}
+
+.kt2-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .kt2-title {
+    color: #ffffff;
+  }
+}
+
+.kt2-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.kt2-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .kt2-close {
+    color: #aaa;
+  }
+  .kt2-close:hover {
+    background: #333;
+    color: #fff;
+  }
+}
+
+.kt2-body {
+  padding: 12px;
+  max-height: 400px;
   overflow-y: auto;
 }
 
-#kt2-overlays .kt2-row {
-  display: grid;
-  grid-template-columns: 18px 1fr auto;
+.kt2-row {
+  display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 8px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-}
-#kt2-overlays .kt2-row + .kt2-row { margin-top: 6px; }
-#kt2-overlays .kt2-row:hover {
-  border-color: var(--kt2-soft-border);
-  background: rgba(23, 50, 67, .4);
-}
-
-#kt2-overlays .kt2-row input[type="checkbox"] {
-  width: 16px; height: 16px; margin: 0;
-  accent-color: var(--kt2-accent);
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 4px;
 }
 
-#kt2-overlays .kt2-name {
-  color: var(--kt2-text);
-}
-#kt2-overlays .kt2-badges {
-  display: inline-flex;
-  gap: 6px;
-  align-items: center;
-}
-#kt2-overlays .kt2-badge {
-  padding: 3px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  line-height: 1;
-  background: var(--kt2-badge);
-  color: var(--kt2-badge-text);
-  border: 1px solid var(--kt2-soft-border);
-  white-space: nowrap;
-}
-#kt2-overlays .kt2-badge.live { background: #14322a; color: #b9f5df; border-color: #1d4a3b; }
-#kt2-overlays .kt2-badge.overlay { background: #142a3d; color: #bcd9f1; border-color: #20364a; }
-#kt2-overlays .kt2-badge.err { background: #3a1e1e; color: #ffd1d1; border-color: #512626; }
-#kt2-overlays .kt2-badge.ok { background: #14322a; color: #b9f5df; border-color: #1d4a3b; }
-
-/* Small description under a row (optional) */
-#kt2-overlays .kt2-note {
-  grid-column: 2 / 4;
-  font-size: 11px;
-  color: #9cb6cc;
-  margin-top: 3px;
+.kt2-row:hover {
+  background: #f5f5f5;
 }
 
-/* Spinner row state (when layer is loading) */
-#kt2-overlays .kt2-row.loading {
-  opacity: 0.65;
-  position: relative;
+@media (prefers-color-scheme: dark) {
+  .kt2-row:hover {
+    background: #2a2a2a;
+  }
 }
-#kt2-overlays .kt2-row.loading:after {
-  content: '';
-  position: absolute;
-  right: 10px;
-  width: 16px; height: 16px;
-  border-radius: 50%;
-  border: 2px solid #355a75;
-  border-top-color: var(--kt2-accent);
-  animation: kt2spin 1s linear infinite;
-}
-@keyframes kt2spin { to { transform: rotate(360deg); } }
 
-/* ===== Legend (bottom-right) ===== */
-#kt2-legend {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  z-index: 1000;
-  background: var(--kt2-panel-bg);
-  border: 1px solid var(--kt2-border);
+.kt2-row input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #2196F3;
+}
+
+.kt2-name {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .kt2-name {
+    color: #e0e0e0;
+  }
+}
+
+.kt2-badge {
+  padding: 2px 8px;
   border-radius: 12px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.33);
-  padding: 8px 10px;
-  color: var(--kt2-text);
-  font: 12px/1.25 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-}
-#kt2-legend .kt2-legend-title {
-  font-weight: 700;
-  color: var(--kt2-title);
-  margin-bottom: 6px;
-}
-#kt2-legend .kt2-legend-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-#kt2-legend .kt2-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
-  border-radius: 999px;
-  border: 1px solid var(--kt2-soft-border);
-  background: #173243;
-  color: var(--kt2-sub);
-}
-#kt2-legend .kt2-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  box-shadow: 0 0 0 2px rgba(255,255,255,.15) inset;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Example colors for legend dots */
-.kt2-dot.free { background: #00b894; }
-.kt2-dot.dump { background: #4dd2ff; }
-.kt2-dot.water { background: #86b7ff; }
-.kt2-dot.propane { background: #ffb142; }
-.kt2-dot.maxheight { background: #ff7675; }
+.kt2-badge.overlay {
+  background: #E3F2FD;
+  color: #1976D2;
+}
 
-/* ===== Mobile adjustments ===== */
+.kt2-badge.data {
+  background: #F3E5F5;
+  color: #7B1FA2;
+}
+
+.kt2-badge.alert {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+@media (prefers-color-scheme: dark) {
+  .kt2-badge.overlay {
+    background: #1565C0;
+    color: #BBDEFB;
+  }
+  .kt2-badge.data {
+    background: #6A1B9A;
+    color: #E1BEE7;
+  }
+  .kt2-badge.alert {
+    background: #B71C1C;
+    color: #FFCDD2;
+  }
+}
+
+.kt2-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.kt2-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.kt2-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.kt2-body::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+@media (prefers-color-scheme: dark) {
+  .kt2-body::-webkit-scrollbar-track {
+    background: #2a2a2a;
+  }
+  .kt2-body::-webkit-scrollbar-thumb {
+    background: #555;
+  }
+  .kt2-body::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+}
+
 @media (max-width: 768px) {
   #kt2-overlays {
-    width: 94vw;
-    right: 3vw;
+    position: fixed;
     top: auto;
-    bottom: 90px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transform: none;
+    border-radius: 16px 16px 0 0;
+    max-width: none;
   }
-  #kt2-legend {
-    left: 12px;
-    right: 12px;
-    bottom: 8px;
+
+  .kt2-body {
+    max-height: 60vh;
   }
 }
 
-/* ===== Tiny utility for a soft divider ===== */
-#kt2-overlays .kt2-sep {
-  height: 1px;
-  background: var(--kt2-border);
-  margin: 8px 0;
-}
-
-/* ===== Tooltip-ish hint (optional) ===== */
-#kt2-overlays .kt2-hint {
-  font-size: 11px;
-  color: #9cb6cc;
-  background: #12202b;
-  border: 1px dashed var(--kt2-soft-border);
+#layers-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #2196F3;
+  color: white;
+  border: none;
   border-radius: 8px;
-  padding: 6px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* End of file */
+#layers-toggle:hover {
+  background: #1976D2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#layers-toggle:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-color-scheme: dark) {
+  #layers-toggle {
+    background: #1976D2;
+  }
+  #layers-toggle:hover {
+    background: #1565C0;
+  }
+}
