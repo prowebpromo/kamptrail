@@ -1,12 +1,12 @@
 /* data-loader.js
  * Viewport/state-based campsite & POI loading + clustering.
- * Exposes window.KampTrailData with init(map, config) and filter update hooks.
  */
 (function () {
   'use strict';
 
-  // --- State bounding boxes (rough, fast) ---
-  const BBOX = { AL:{s:30.2,w:-88.5,n:35,e:-84.9}, AK:{s:51.2,w:-179.1,n:71.4,e:-129.9}, AZ:{s:31.3,w:-114.8,n:37,e:-109},
+  // State bounding boxes
+  const BBOX = { 
+    AL:{s:30.2,w:-88.5,n:35,e:-84.9}, AK:{s:51.2,w:-179.1,n:71.4,e:-129.9}, AZ:{s:31.3,w:-114.8,n:37,e:-109},
     AR:{s:33,w:-94.6,n:36.5,e:-89.6}, CA:{s:32.5,w:-124.4,n:42,e:-114.1}, CO:{s:37,w:-109.1,n:41,e:-102},
     CT:{s:40.9,w:-73.7,n:42.1,e:-71.8}, DE:{s:38.4,w:-75.8,n:39.8,e:-75}, FL:{s:24.5,w:-87.6,n:31,e:-80},
     GA:{s:30.4,w:-85.6,n:35,e:-80.8}, HI:{s:18.9,w:-160.3,n:22.3,e:-154.8}, ID:{s:42,w:-117.2,n:49,e:-111},
@@ -22,7 +22,8 @@
     SC:{s:32,w:-83.4,n:35.2,e:-78.5}, SD:{s:42.5,w:-104.1,n:46,e:-96.4}, TN:{s:35,w:-90.3,n:36.7,e:-81.6},
     TX:{s:25.8,w:-106.6,n:36.5,e:-93.5}, UT:{s:37,w:-114.1,n:42,e:-109}, VT:{s:42.7,w:-73.4,n:45,e:-71.5},
     VA:{s:36.5,w:-83.7,n:39.5,e:-75.2}, WA:{s:45.5,w:-124.8,n:49,e:-116.9}, WV:{s:37.2,w:-82.6,n:40.6,e:-77.7},
-    WI:{s:42.5,w:-92.9,n:47.3,e:-86.8}, WY:{s:41,w:-111.1,n:45,e:-104} };
+    WI:{s:42.5,w:-92.9,n:47.3,e:-86.8}, WY:{s:41,w:-111.1,n:45,e:-104} 
+  };
 
   const state = {
     map: null,
@@ -33,16 +34,25 @@
     config: { maxMarkers: 5000, isFavorite: null, onTripAdd: null, onFavoriteToggle: null }
   };
 
-  const debounce = (fn, ms) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; };
+  const debounce = (fn, ms) => { 
+    let t; 
+    return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; 
+  };
 
-  function intersect(a,b){ return !(a.e<b.w||a.w>b.e||a.n<a.s||a.s>b.n); }
+  function intersect(a,b){ 
+    return !(a.e<b.w||a.w>b.e||a.n<b.s||a.s>b.n); 
+  }
+  
   function bboxOfMap(map){
     const b = map.getBounds();
     return {s:b.getSouth(), w:b.getWest(), n:b.getNorth(), e:b.getEast()};
   }
+  
   function visibleStates(map){
     const v = bboxOfMap(map), out=[];
-    for(const [code,bb] of Object.entries(BBOX)){ if(intersect(v,bb)) out.push(code); }
+    for(const [code,bb] of Object.entries(BBOX)){ 
+      if(intersect(v,bb)) out.push(code); 
+    }
     return out;
   }
 
@@ -56,7 +66,8 @@
     const icon = L.divIcon({
       className: 'kt-camp-marker',
       html: `<div style="background:${color};color:#fff;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:16px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3);">${label}</div>`,
-      iconSize: [28,28], iconAnchor:[14,14]
+      iconSize: [28,28], 
+      iconAnchor:[14,14]
     });
 
     const m = L.marker([lat,lng], { icon, title: p.name || 'Campsite' });
@@ -64,6 +75,7 @@
                 (p.cost?`$${p.cost}/night`:'Unknown');
     const rating = p.rating ? `⭐ ${(+p.rating).toFixed(1)}/5 (${p.reviews_count||0})` : '';
     const rig = (p.rig_friendly||[]).join(', ');
+    
     m.bindPopup(`
       <div style="min-width:220px">
         <h3 style="margin:0 0 6px 0;font-size:15px;color:#fff;">${p.name||'Campsite'}</h3>
@@ -101,26 +113,48 @@
   }
 
   function applyFilters(feats, filters){
+    if(!filters) return feats; // No filters = show all
+    
     return feats.filter(f=>{
       const p=f.properties||{};
-      if(filters.cost==='free' && !(p.cost===0)) return false;
-      if(filters.cost==='paid' && p.cost===0) return false;
-      if(filters.type!=='all' && p.type!==filters.type) return false;
-      if(filters.rigSize!=='all' && !(p.rig_friendly||[]).includes(filters.rigSize)) return false;
-      if(filters.roadDifficulty!=='all' && p.road_difficulty!==filters.roadDifficulty) return false;
-      if(filters.amenities?.length){
+      
+      // Cost filter
+      if(filters.cost==='free' && p.cost !== 0) return false;
+      if(filters.cost==='paid' && p.cost === 0) return false;
+      
+      // Type filter
+      if(filters.type && filters.type!=='all' && p.type!==filters.type) return false;
+      
+      // Rig size filter (simplified - just check if rig_friendly array exists)
+      if(filters.rigSize && filters.rigSize!=='all') {
+        const rigs = p.rig_friendly || [];
+        if(rigs.length === 0) return false;
+      }
+      
+      // Road difficulty filter
+      if(filters.roadDifficulty && filters.roadDifficulty!=='all' && p.road_difficulty!==filters.roadDifficulty) return false;
+      
+      // Amenities filter
+      if(filters.amenities && filters.amenities.length > 0){
         const hasAll = filters.amenities.every(a => (p.amenities||[]).includes(a));
         if(!hasAll) return false;
       }
-      if((+filters.minRating||0) > 0 && (!p.rating || +p.rating < +filters.minRating)) return false;
+      
+      // Rating filter
+      if(filters.minRating && (+filters.minRating||0) > 0) {
+        if(!p.rating || +p.rating < +filters.minRating) return false;
+      }
+      
       return true;
     });
   }
 
   function refreshMarkers(filters){
     const bounds = state.map.getBounds();
-    const vis = applyFilters(state.all, filters).filter(f=>{
-      const [lng,lat]=f.geometry.coordinates; return bounds.contains([lat,lng]);
+    const filtered = applyFilters(state.all, filters);
+    const vis = filtered.filter(f=>{
+      const [lng,lat]=f.geometry.coordinates; 
+      return bounds.contains([lat,lng]);
     }).slice(0, state.config.maxMarkers);
 
     state.cluster.clearLayers();
@@ -144,12 +178,15 @@
 
       // Cluster group
       state.cluster = L.markerClusterGroup({
-        chunkedLoading:true, spiderfyOnMaxZoom:false, maxClusterRadius:50,
+        chunkedLoading:true, 
+        spiderfyOnMaxZoom:false, 
+        maxClusterRadius:50,
         iconCreateFunction:(c)=>{
           const n=c.getChildCount();
           return L.divIcon({
             html:`<div style="background:#0984e3;color:#fff;border-radius:50%;width:40px;height:40px;display:grid;place-items:center;font-weight:700;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);">${n}</div>`,
-            className:'kt-clu', iconSize:[40,40]
+            className:'kt-clu', 
+            iconSize:[40,40]
           });
         }
       });
@@ -164,13 +201,22 @@
         await ensureVisibleStates();
         refreshMarkers(this.getCurrentFilters());
       }, 400));
+      
+      console.log('✓ Data loader ready');
     },
 
     getDefaultFilters(){
       return { cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0 };
     },
-    getCurrentFilters(){ return window.kamptrailFilters || this.getDefaultFilters(); },
-    updateFilters(filters){ window.kamptrailFilters = filters; refreshMarkers(filters); },
+    
+    getCurrentFilters(){ 
+      return window.kamptrailFilters || this.getDefaultFilters(); 
+    },
+    
+    updateFilters(filters){ 
+      window.kamptrailFilters = filters; 
+      refreshMarkers(filters); 
+    },
 
     getAllCampsites(){ return state.all; },
     getCampsiteById(id){ return state.all.find(s=>s.properties?.id===id); },
