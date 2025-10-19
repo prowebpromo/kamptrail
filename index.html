@@ -80,8 +80,11 @@
     <header>
       <h1>🏕️ KampTrail</h1>
       <div class="actions">
-        <button id="filters" class="btn" aria-label="Open filters">🔍 Filters</button>
-        <button id="trip" class="btn" aria-label="Open trip planner">🧭 My Trip (0)</button>
+        <button id="filters" class="btn" aria-label="Open filters">
+          🔍 Filters
+          <span id="filter-badge" style="display:none;background:#ff6b6b;color:#fff;border-radius:999px;padding:2px 6px;font-size:10px;margin-left:4px;"></span>
+        </button>
+        <button id="trip" class="btn" aria-label="Open trip planner">🧭 My Trip <span id="trip-count">(0)</span></button>
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">📍 Near me</button>
       </div>
     </header>
@@ -106,7 +109,7 @@
   <div id="loading" class="loading"><div class="spinner"></div></div>
 
   <script>
-    // Service Worker (relative path for GitHub Pages)
+    // Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js').then(reg => {
@@ -127,44 +130,73 @@
       });
     }
 
-    // Small helpers
+    // Helpers
     function showToast(msg, type='info', ms=5000){
       const t=document.getElementById('toast'); t.innerHTML=msg; t.className='toast show '+type;
       if(ms>0) setTimeout(()=>t.classList.remove('show'), ms);
     }
     function setLoading(on){document.getElementById('loading').classList.toggle('show', !!on)}
-    function updateOnline(){const d=document.getElementById('status-dot'),s=document.getElementById('status-text');
-      if(navigator.onLine){d.style.color='#00b894';s.textContent='Online';}else{d.style.color='#e17055';s.textContent='Offline';}}
-    window.addEventListener('online',updateOnline);window.addEventListener('offline',updateOnline);updateOnline();
+    function updateOnline(){
+      const d=document.getElementById('status-dot'),s=document.getElementById('status-text');
+      if(navigator.onLine){d.style.color='#00b894';s.textContent='Online';}
+      else{d.style.color='#e17055';s.textContent='Offline';}
+    }
+    window.addEventListener('online',updateOnline);
+    window.addEventListener('offline',updateOnline);
+    updateOnline();
 
     // Map init
     const map = L.map('map',{zoomControl:true,preferCanvas:true});
     const saved = (()=>{try{return JSON.parse(localStorage.getItem('kt_last_position'))}catch{return null}})();
     if(saved){map.setView([saved.lat,saved.lng],saved.zoom)}else{map.setView([39.8283,-98.5795],5)}
-    map.on('moveend',()=>{const c=map.getCenter();try{localStorage.setItem('kt_last_position',JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()}))}catch{}})
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,detectRetina:true,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-    setTimeout(()=>map.invalidateSize(),300); window.addEventListener('resize',()=>map.invalidateSize());
-    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible') map.invalidateSize()});
+    map.on('moveend',()=>{
+      const c=map.getCenter();
+      try{localStorage.setItem('kt_last_position',JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()}))}catch{}
+    });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:19,detectRetina:true,attribution:'&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    setTimeout(()=>map.invalidateSize(),300);
+    window.addEventListener('resize',()=>map.invalidateSize());
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible') map.invalidateSize()
+    });
 
     // Header actions
     document.getElementById('near').addEventListener('click',function(){
-      const was=this.classList.contains('active'); this.classList.toggle('active'); this.setAttribute('aria-pressed',!was);
+      const was=this.classList.contains('active');
+      this.classList.toggle('active');
+      this.setAttribute('aria-pressed',!was);
       if(was) return;
-      if(!navigator.geolocation){showToast('Geolocation not supported','error'); this.classList.remove('active'); return;}
+      if(!navigator.geolocation){
+        showToast('Geolocation not supported','error');
+        this.classList.remove('active');
+        return;
+      }
       setLoading(true);
       navigator.geolocation.getCurrentPosition(
-        pos=>{const {latitude,longitude}=pos.coords; map.setView([latitude,longitude],11);
-              L.circle([latitude,longitude],{radius:5000,color:'#86b7ff',fillColor:'#86b7ff',fillOpacity:.1}).addTo(map);
-              setLoading(false); showToast('📍 Zoomed to your location','success');},
-        err=>{setLoading(false); showToast('Location error: '+err.message,'error'); this.classList.remove('active');},
+        pos=>{
+          const {latitude,longitude}=pos.coords;
+          map.setView([latitude,longitude],11);
+          L.circle([latitude,longitude],{
+            radius:5000,color:'#86b7ff',fillColor:'#86b7ff',fillOpacity:.1
+          }).addTo(map);
+          setLoading(false);
+          showToast('📍 Zoomed to your location','success');
+        },
+        err=>{
+          setLoading(false);
+          showToast('Location error: '+err.message,'error');
+          this.classList.remove('active');
+        },
         {enableHighAccuracy:true,timeout:8000}
       );
     });
-    document.getElementById('filters').addEventListener('click',()=>{const p=document.getElementById('kt-filter-panel'); if(p) p.classList.toggle('expanded')});
-    document.getElementById('trip').addEventListener('click',()=>{window.KampTrailTrip && KampTrailTrip.toggle()});
+
+    // Filters and Trip buttons handled by their respective modules
   </script>
 
-  <!-- Feature modules — order matters (all RELATIVE paths) -->
+  <!-- Feature modules -->
   <script src="overlays/overlays-advanced.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
@@ -174,14 +206,12 @@
   <script>
     (async () => {
       try {
-        // 1) Overlays (PAD-US, BLM, USFS, etc.)
+        // 1) Overlays
         if (window.KampTrailAdvanced) {
-          KampTrailAdvanced.init(map, {
-            // openCellIdToken: 'YOUR_OPENCELLID_TOKEN' // optional
-          });
+          KampTrailAdvanced.init(map, {});
         }
 
-        // 2) Campsite data loader (state-based)
+        // 2) Campsite data loader
         if (window.KampTrailData) {
           setLoading(true);
           await KampTrailData.init(map, {
@@ -194,7 +224,8 @@
             onFavoriteToggle: (id) => {
               try{
                 const favs = JSON.parse(localStorage.getItem('kt_favorites')||'[]');
-                const i=favs.indexOf(id); i>-1?favs.splice(i,1):favs.push(id);
+                const i=favs.indexOf(id);
+                i>-1?favs.splice(i,1):favs.push(id);
                 localStorage.setItem('kt_favorites',JSON.stringify(favs));
               }catch{}
             }
@@ -208,12 +239,17 @@
         // 4) Trip planner
         if (window.KampTrailTrip) KampTrailTrip.init(map);
 
-        // First-time welcome
+        // Welcome message
         if (!localStorage.getItem('kt_welcomed')) {
-          setTimeout(()=>{showToast('👋 Welcome! Use Filters to refine sites and My Trip to build an itinerary.', 'success', 7000); localStorage.setItem('kt_welcomed','1');}, 800);
+          setTimeout(()=>{
+            showToast('👋 Welcome! Use Filters to refine sites and My Trip to plan your route.', 'success', 7000);
+            localStorage.setItem('kt_welcomed','1');
+          }, 800);
         }
       } catch (e) {
-        console.error(e); setLoading(false); showToast('Error loading features. Refresh the page.', 'error', 0);
+        console.error(e);
+        setLoading(false);
+        showToast('Error loading features. Check console.', 'error', 0);
       }
     })();
   </script>
