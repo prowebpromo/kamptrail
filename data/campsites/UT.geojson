@@ -1,0 +1,388 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.3495,
+          38.5055
+        ]
+      },
+      "properties": {
+        "id": "UT-001",
+        "name": "Utah Campground 1",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.1",
+        "reviews_count": 15,
+        "amenities": [
+          "picnic_tables",
+          "trash",
+          "toilets",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.1671,
+          40.4477
+        ]
+      },
+      "properties": {
+        "id": "UT-002",
+        "name": "Utah Backcountry 2",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "3.5",
+        "reviews_count": 19,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.2797,
+          37.8638
+        ]
+      },
+      "properties": {
+        "id": "UT-003",
+        "name": "Utah Campground 3",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.0",
+        "reviews_count": 31,
+        "amenities": [
+          "trash",
+          "water",
+          "fire_rings",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8167,
+          38.8588
+        ]
+      },
+      "properties": {
+        "id": "UT-004",
+        "name": "Utah Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.7311,
+          38.911
+        ]
+      },
+      "properties": {
+        "id": "UT-005",
+        "name": "Utah Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1403,
+          40.0689
+        ]
+      },
+      "properties": {
+        "id": "UT-006",
+        "name": "Utah Campground 6",
+        "type": "established",
+        "cost": 15,
+        "rating": "4.4",
+        "reviews_count": 19,
+        "amenities": [
+          "water",
+          "toilets",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.8446,
+          38.4568
+        ]
+      },
+      "properties": {
+        "id": "UT-007",
+        "name": "Utah Campground 7",
+        "type": "established",
+        "cost": 15,
+        "rating": "3.7",
+        "reviews_count": 37,
+        "amenities": [
+          "picnic_tables",
+          "fire_rings",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.2233,
+          39.2777
+        ]
+      },
+      "properties": {
+        "id": "UT-008",
+        "name": "Utah Campground 8",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.8",
+        "reviews_count": 48,
+        "amenities": [
+          "picnic_tables",
+          "fire_rings",
+          "trash",
+          "water",
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2203,
+          39.7028
+        ]
+      },
+      "properties": {
+        "id": "UT-009",
+        "name": "Utah Campground 9",
+        "type": "established",
+        "cost": 15,
+        "rating": "3.8",
+        "reviews_count": 47,
+        "amenities": [
+          "fire_rings",
+          "trash",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.4805,
+          39.2289
+        ]
+      },
+      "properties": {
+        "id": "UT-010",
+        "name": "Utah Campground 10",
+        "type": "established",
+        "cost": 25,
+        "rating": "3.9",
+        "reviews_count": 19,
+        "amenities": [
+          "picnic_tables",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.8003,
+          37.8525
+        ]
+      },
+      "properties": {
+        "id": "UT-011",
+        "name": "Utah Backcountry 11",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.6",
+        "reviews_count": 54,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.0724,
+          38.2778
+        ]
+      },
+      "properties": {
+        "id": "UT-012",
+        "name": "Utah Campground 12",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.6",
+        "reviews_count": 15,
+        "amenities": [
+          "water",
+          "toilets",
+          "showers",
+          "trash",
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.5563,
+          40.0711
+        ]
+      },
+      "properties": {
+        "id": "UT-013",
+        "name": "Utah Backcountry 13",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "3.6",
+        "reviews_count": 52,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.0305,
+          38.0943
+        ]
+      },
+      "properties": {
+        "id": "UT-014",
+        "name": "Utah Backcountry 14",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.7",
+        "reviews_count": 26,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "generated"
+      }
+    }
+  ]
+}

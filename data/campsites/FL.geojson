@@ -1,0 +1,272 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9104,
+          28.2358
+        ]
+      },
+      "properties": {
+        "id": "FL-001",
+        "name": "Florida Backcountry 1",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.7",
+        "reviews_count": 7,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.9109,
+          28.867
+        ]
+      },
+      "properties": {
+        "id": "FL-002",
+        "name": "Florida Campground 2",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.9",
+        "reviews_count": 39,
+        "amenities": [
+          "picnic_tables",
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0984,
+          27.2482
+        ]
+      },
+      "properties": {
+        "id": "FL-003",
+        "name": "Florida Campground 3",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.8",
+        "reviews_count": 26,
+        "amenities": [
+          "water",
+          "trash",
+          "picnic_tables",
+          "electricity",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.6122,
+          27.8729
+        ]
+      },
+      "properties": {
+        "id": "FL-004",
+        "name": "Florida Campground 4",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.6",
+        "reviews_count": 12,
+        "amenities": [
+          "picnic_tables",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.3024,
+          28.6169
+        ]
+      },
+      "properties": {
+        "id": "FL-005",
+        "name": "Florida Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.4117,
+          28.8031
+        ]
+      },
+      "properties": {
+        "id": "FL-006",
+        "name": "Florida Dispersed 6",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9109,
+          28.967
+        ]
+      },
+      "properties": {
+        "id": "FL-007",
+        "name": "Florida Backcountry 7",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.4",
+        "reviews_count": 43,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.5805,
+          29.0423
+        ]
+      },
+      "properties": {
+        "id": "FL-008",
+        "name": "Florida Campground 8",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.6",
+        "reviews_count": 45,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.903,
+          27.9806
+        ]
+      },
+      "properties": {
+        "id": "FL-009",
+        "name": "Florida Backcountry 9",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.9",
+        "reviews_count": 11,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "FL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.2663,
+          29.6597
+        ]
+      },
+      "properties": {
+        "id": "FL-010",
+        "name": "Florida Dispersed 10",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "FL",
+        "source": "generated"
+      }
+    }
+  ]
+}

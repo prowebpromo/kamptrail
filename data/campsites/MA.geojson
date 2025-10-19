@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9473,
+          42.7358
+        ]
+      },
+      "properties": {
+        "id": "MA-001",
+        "name": "Massachusetts Dispersed 1",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MA",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.8665,
+          40.8999
+        ]
+      },
+      "properties": {
+        "id": "MA-002",
+        "name": "Massachusetts Campground 2",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.6",
+        "reviews_count": 44,
+        "amenities": [
+          "showers",
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MA",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.4339,
+          42.1574
+        ]
+      },
+      "properties": {
+        "id": "MA-003",
+        "name": "Massachusetts Campground 3",
+        "type": "established",
+        "cost": 25,
+        "rating": "3.8",
+        "reviews_count": 24,
+        "amenities": [
+          "trash",
+          "picnic_tables",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MA",
+        "source": "generated"
+      }
+    }
+  ]
+}

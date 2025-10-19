@@ -1,0 +1,406 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3937,
+          45.261
+        ]
+      },
+      "properties": {
+        "id": "OR-001",
+        "name": "Oregon Backcountry 1",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "3.7",
+        "reviews_count": 44,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.785,
+          44.3149
+        ]
+      },
+      "properties": {
+        "id": "OR-002",
+        "name": "Oregon Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.5466,
+          42.8831
+        ]
+      },
+      "properties": {
+        "id": "OR-003",
+        "name": "Oregon Campground 3",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.6",
+        "reviews_count": 47,
+        "amenities": [
+          "fire_rings",
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.9455,
+          43.1366
+        ]
+      },
+      "properties": {
+        "id": "OR-004",
+        "name": "Oregon Campground 4",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.8",
+        "reviews_count": 5,
+        "amenities": [
+          "water",
+          "picnic_tables",
+          "toilets",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5169,
+          45.452
+        ]
+      },
+      "properties": {
+        "id": "OR-005",
+        "name": "Oregon Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.7214,
+          42.6817
+        ]
+      },
+      "properties": {
+        "id": "OR-006",
+        "name": "Oregon Campground 6",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.2",
+        "reviews_count": 35,
+        "amenities": [
+          "water",
+          "toilets",
+          "picnic_tables",
+          "trash",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.1682,
+          44.5269
+        ]
+      },
+      "properties": {
+        "id": "OR-007",
+        "name": "Oregon Backcountry 7",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.5",
+        "reviews_count": 8,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5834,
+          45.0997
+        ]
+      },
+      "properties": {
+        "id": "OR-008",
+        "name": "Oregon Campground 8",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.8",
+        "reviews_count": 46,
+        "amenities": [
+          "water",
+          "toilets",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.3048,
+          43.1802
+        ]
+      },
+      "properties": {
+        "id": "OR-009",
+        "name": "Oregon Dispersed 9",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.7306,
+          44.43
+        ]
+      },
+      "properties": {
+        "id": "OR-010",
+        "name": "Oregon Campground 10",
+        "type": "established",
+        "cost": 15,
+        "rating": "3.6",
+        "reviews_count": 14,
+        "amenities": [
+          "water",
+          "toilets",
+          "showers",
+          "fire_rings",
+          "electricity"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.0738,
+          45.1312
+        ]
+      },
+      "properties": {
+        "id": "OR-011",
+        "name": "Oregon Backcountry 11",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.8",
+        "reviews_count": 42,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.0218,
+          44.7204
+        ]
+      },
+      "properties": {
+        "id": "OR-012",
+        "name": "Oregon Campground 12",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.1",
+        "reviews_count": 16,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "toilets",
+          "picnic_tables",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.035,
+          43.5239
+        ]
+      },
+      "properties": {
+        "id": "OR-013",
+        "name": "Oregon Backcountry 13",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "3.5",
+        "reviews_count": 26,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.0921,
+          45.0758
+        ]
+      },
+      "properties": {
+        "id": "OR-014",
+        "name": "Oregon Backcountry 14",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.8",
+        "reviews_count": 12,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OR",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.2939,
+          44.4663
+        ]
+      },
+      "properties": {
+        "id": "OR-015",
+        "name": "Oregon Backcountry 15",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.6",
+        "reviews_count": 14,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OR",
+        "source": "generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.2175,
+          43.7289
+        ]
+      },
+      "properties": {
+        "id": "WY-001",
+        "name": "Wyoming Backcountry 1",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.4",
+        "reviews_count": 48,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.9055,
+          42.0906
+        ]
+      },
+      "properties": {
+        "id": "WY-002",
+        "name": "Wyoming Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.0445,
+          42.5218
+        ]
+      },
+      "properties": {
+        "id": "WY-003",
+        "name": "Wyoming Dispersed 3",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0872,
+          42.7743
+        ]
+      },
+      "properties": {
+        "id": "WY-004",
+        "name": "Wyoming Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.749,
+          41.8168
+        ]
+      },
+      "properties": {
+        "id": "WY-005",
+        "name": "Wyoming Campground 5",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.0",
+        "reviews_count": 35,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0059,
+          43.7525
+        ]
+      },
+      "properties": {
+        "id": "WY-006",
+        "name": "Wyoming Dispersed 6",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.7594,
+          43.7828
+        ]
+      },
+      "properties": {
+        "id": "WY-007",
+        "name": "Wyoming Campground 7",
+        "type": "established",
+        "cost": 20,
+        "rating": "3.9",
+        "reviews_count": 44,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.7137,
+          43.2146
+        ]
+      },
+      "properties": {
+        "id": "WY-008",
+        "name": "Wyoming Campground 8",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.8",
+        "reviews_count": 25,
+        "amenities": [
+          "picnic_tables",
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.8285,
+          43.2602
+        ]
+      },
+      "properties": {
+        "id": "WY-009",
+        "name": "Wyoming Backcountry 9",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "3.9",
+        "reviews_count": 7,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.6438,
+          42.7981
+        ]
+      },
+      "properties": {
+        "id": "WY-010",
+        "name": "Wyoming Campground 10",
+        "type": "established",
+        "cost": 30,
+        "rating": "4.7",
+        "reviews_count": 40,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.737,
+          43.5465
+        ]
+      },
+      "properties": {
+        "id": "WY-011",
+        "name": "Wyoming Dispersed 11",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.5529,
+          41.6185
+        ]
+      },
+      "properties": {
+        "id": "WY-012",
+        "name": "Wyoming Backcountry 12",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.3",
+        "reviews_count": 28,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "WY",
+        "source": "generated"
+      }
+    }
+  ]
+}

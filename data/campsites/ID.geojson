@@ -1,0 +1,291 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.6039,
+          44.1784
+        ]
+      },
+      "properties": {
+        "id": "ID-001",
+        "name": "Idaho Backcountry 1",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.4",
+        "reviews_count": 15,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.7815,
+          44.7398
+        ]
+      },
+      "properties": {
+        "id": "ID-002",
+        "name": "Idaho Campground 2",
+        "type": "established",
+        "cost": 30,
+        "rating": "4.9",
+        "reviews_count": 19,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.2765,
+          44.7348
+        ]
+      },
+      "properties": {
+        "id": "ID-003",
+        "name": "Idaho Campground 3",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.0",
+        "reviews_count": 18,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.9627,
+          43.8874
+        ]
+      },
+      "properties": {
+        "id": "ID-004",
+        "name": "Idaho Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.889,
+          44.8778
+        ]
+      },
+      "properties": {
+        "id": "ID-005",
+        "name": "Idaho Campground 5",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.9",
+        "reviews_count": 54,
+        "amenities": [
+          "picnic_tables",
+          "fire_rings",
+          "water",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.1386,
+          45.2673
+        ]
+      },
+      "properties": {
+        "id": "ID-006",
+        "name": "Idaho Campground 6",
+        "type": "established",
+        "cost": 25,
+        "rating": "3.6",
+        "reviews_count": 31,
+        "amenities": [
+          "toilets",
+          "picnic_tables",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.0534,
+          44.2363
+        ]
+      },
+      "properties": {
+        "id": "ID-007",
+        "name": "Idaho Campground 7",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.8",
+        "reviews_count": 8,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.1301,
+          43.0321
+        ]
+      },
+      "properties": {
+        "id": "ID-008",
+        "name": "Idaho Campground 8",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.5",
+        "reviews_count": 13,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "water",
+          "electricity",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.4619,
+          43.1887
+        ]
+      },
+      "properties": {
+        "id": "ID-009",
+        "name": "Idaho Dispersed 9",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "ID",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.4624,
+          44.6714
+        ]
+      },
+      "properties": {
+        "id": "ID-010",
+        "name": "Idaho Campground 10",
+        "type": "established",
+        "cost": 15,
+        "rating": "3.6",
+        "reviews_count": 36,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "trash",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "ID",
+        "source": "generated"
+      }
+    }
+  ]
+}

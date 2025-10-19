@@ -1,0 +1,142 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9237,
+          42.7635
+        ]
+      },
+      "properties": {
+        "id": "VT-001",
+        "name": "Vermont Backcountry 1",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.5",
+        "reviews_count": 5,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "VT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.3861,
+          42.5068
+        ]
+      },
+      "properties": {
+        "id": "VT-002",
+        "name": "Vermont Campground 2",
+        "type": "established",
+        "cost": 15,
+        "rating": "5.0",
+        "reviews_count": 52,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "toilets",
+          "picnic_tables",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4863,
+          44.872
+        ]
+      },
+      "properties": {
+        "id": "VT-003",
+        "name": "Vermont Campground 3",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.4",
+        "reviews_count": 16,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "trash",
+          "toilets",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "VT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.6964,
+          44.5831
+        ]
+      },
+      "properties": {
+        "id": "VT-004",
+        "name": "Vermont Campground 4",
+        "type": "established",
+        "cost": 25,
+        "rating": "3.8",
+        "reviews_count": 46,
+        "amenities": [
+          "trash",
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.38,
+          42.7104
+        ]
+      },
+      "properties": {
+        "id": "VT-005",
+        "name": "Vermont Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "VT",
+        "source": "generated"
+      }
+    }
+  ]
+}

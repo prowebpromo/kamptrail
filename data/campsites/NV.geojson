@@ -1,0 +1,223 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.871,
+          38.208
+        ]
+      },
+      "properties": {
+        "id": "NV-001",
+        "name": "Nevada Campground 1",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.0",
+        "reviews_count": 22,
+        "amenities": [
+          "water",
+          "toilets",
+          "picnic_tables",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NV",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0653,
+          38.3964
+        ]
+      },
+      "properties": {
+        "id": "NV-002",
+        "name": "Nevada Backcountry 2",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.7",
+        "reviews_count": 37,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.2943,
+          38.5028
+        ]
+      },
+      "properties": {
+        "id": "NV-003",
+        "name": "Nevada Campground 3",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.5",
+        "reviews_count": 42,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NV",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.1651,
+          40.406
+        ]
+      },
+      "properties": {
+        "id": "NV-004",
+        "name": "Nevada Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "NV",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.0245,
+          39.4211
+        ]
+      },
+      "properties": {
+        "id": "NV-005",
+        "name": "Nevada Campground 5",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.7",
+        "reviews_count": 9,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NV",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6924,
+          37.791
+        ]
+      },
+      "properties": {
+        "id": "NV-006",
+        "name": "Nevada Campground 6",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.5",
+        "reviews_count": 25,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "showers",
+          "water",
+          "electricity"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NV",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.1821,
+          38.9182
+        ]
+      },
+      "properties": {
+        "id": "NV-007",
+        "name": "Nevada Backcountry 7",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.4",
+        "reviews_count": 13,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NV",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.4137,
+          37.9375
+        ]
+      },
+      "properties": {
+        "id": "NV-008",
+        "name": "Nevada Dispersed 8",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.0024,
+          46.8447
+        ]
+      },
+      "properties": {
+        "id": "MT-001",
+        "name": "Montana Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.2",
+        "reviews_count": 43,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9561,
+          47.3781
+        ]
+      },
+      "properties": {
+        "id": "MT-002",
+        "name": "Montana Campground 2",
+        "type": "established",
+        "cost": 30,
+        "rating": "4.0",
+        "reviews_count": 47,
+        "amenities": [
+          "picnic_tables",
+          "fire_rings",
+          "toilets",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9588,
+          46.3979
+        ]
+      },
+      "properties": {
+        "id": "MT-003",
+        "name": "Montana Campground 3",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.4",
+        "reviews_count": 18,
+        "amenities": [
+          "water",
+          "showers",
+          "fire_rings",
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7261,
+          48.3479
+        ]
+      },
+      "properties": {
+        "id": "MT-004",
+        "name": "Montana Campground 4",
+        "type": "established",
+        "cost": 25,
+        "rating": "3.8",
+        "reviews_count": 54,
+        "amenities": [
+          "picnic_tables",
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.83,
+          46.1212
+        ]
+      },
+      "properties": {
+        "id": "MT-005",
+        "name": "Montana Campground 5",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.6",
+        "reviews_count": 26,
+        "amenities": [
+          "fire_rings",
+          "trash",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2964,
+          45.7072
+        ]
+      },
+      "properties": {
+        "id": "MT-006",
+        "name": "Montana Backcountry 6",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "5.0",
+        "reviews_count": 46,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.5277,
+          46.9624
+        ]
+      },
+      "properties": {
+        "id": "MT-007",
+        "name": "Montana Campground 7",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.1",
+        "reviews_count": 30,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "trash",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.9905,
+          48.4624
+        ]
+      },
+      "properties": {
+        "id": "MT-008",
+        "name": "Montana Campground 8",
+        "type": "established",
+        "cost": 20,
+        "rating": "3.8",
+        "reviews_count": 36,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "toilets",
+          "trash",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.7701,
+          46.1623
+        ]
+      },
+      "properties": {
+        "id": "MT-009",
+        "name": "Montana Backcountry 9",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.5",
+        "reviews_count": 31,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.3059,
+          45.9133
+        ]
+      },
+      "properties": {
+        "id": "MT-010",
+        "name": "Montana Campground 10",
+        "type": "established",
+        "cost": 25,
+        "rating": "3.6",
+        "reviews_count": 22,
+        "amenities": [
+          "toilets",
+          "showers",
+          "fire_rings",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8832,
+          45.9524
+        ]
+      },
+      "properties": {
+        "id": "MT-011",
+        "name": "Montana Dispersed 11",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.2769,
+          47.4686
+        ]
+      },
+      "properties": {
+        "id": "MT-012",
+        "name": "Montana Dispersed 12",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.5607,
+          48.3773
+        ]
+      },
+      "properties": {
+        "id": "MT-013",
+        "name": "Montana Campground 13",
+        "type": "established",
+        "cost": 30,
+        "rating": "3.9",
+        "reviews_count": 22,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "toilets",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9259,
+          47.9298
+        ]
+      },
+      "properties": {
+        "id": "MT-014",
+        "name": "Montana Campground 14",
+        "type": "established",
+        "cost": 15,
+        "rating": "4.0",
+        "reviews_count": 7,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.3324,
+          46.641
+        ]
+      },
+      "properties": {
+        "id": "MT-015",
+        "name": "Montana Campground 15",
+        "type": "established",
+        "cost": 0,
+        "rating": "5.0",
+        "reviews_count": 13,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "generated"
+      }
+    }
+  ]
+}

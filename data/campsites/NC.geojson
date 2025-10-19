@@ -1,0 +1,234 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8308,
+          34.7521
+        ]
+      },
+      "properties": {
+        "id": "NC-001",
+        "name": "North Carolina Backcountry 1",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "3.9",
+        "reviews_count": 8,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7312,
+          36.4801
+        ]
+      },
+      "properties": {
+        "id": "NC-002",
+        "name": "North Carolina Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3987,
+          35.8562
+        ]
+      },
+      "properties": {
+        "id": "NC-003",
+        "name": "North Carolina Campground 3",
+        "type": "established",
+        "cost": 20,
+        "rating": "3.7",
+        "reviews_count": 25,
+        "amenities": [
+          "toilets",
+          "water",
+          "electricity",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1618,
+          34.6054
+        ]
+      },
+      "properties": {
+        "id": "NC-004",
+        "name": "North Carolina Campground 4",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.5",
+        "reviews_count": 49,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8005,
+          34.5063
+        ]
+      },
+      "properties": {
+        "id": "NC-005",
+        "name": "North Carolina Backcountry 5",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.1",
+        "reviews_count": 9,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.584,
+          34.0438
+        ]
+      },
+      "properties": {
+        "id": "NC-006",
+        "name": "North Carolina Dispersed 6",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.491,
+          35.9687
+        ]
+      },
+      "properties": {
+        "id": "NC-007",
+        "name": "North Carolina Dispersed 7",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0889,
+          35.7853
+        ]
+      },
+      "properties": {
+        "id": "NC-008",
+        "name": "North Carolina Backcountry 8",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "3.8",
+        "reviews_count": 45,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NC",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0258,
+          36.5268
+        ]
+      },
+      "properties": {
+        "id": "NC-009",
+        "name": "North Carolina Campground 9",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.6",
+        "reviews_count": 15,
+        "amenities": [
+          "water",
+          "picnic_tables",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NC",
+        "source": "generated"
+      }
+    }
+  ]
+}

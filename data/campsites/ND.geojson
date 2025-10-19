@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.3013,
+          46.9565
+        ]
+      },
+      "properties": {
+        "id": "ND-001",
+        "name": "North Dakota Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.5",
+        "reviews_count": 47,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash",
+          "electricity"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "ND",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.0576,
+          46.8698
+        ]
+      },
+      "properties": {
+        "id": "ND-002",
+        "name": "North Dakota Campground 2",
+        "type": "established",
+        "cost": 20,
+        "rating": "3.6",
+        "reviews_count": 25,
+        "amenities": [
+          "picnic_tables",
+          "water",
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "ND",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.012,
+          47.4024
+        ]
+      },
+      "properties": {
+        "id": "ND-003",
+        "name": "North Dakota Dispersed 3",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "ND",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.1882,
+          46.8148
+        ]
+      },
+      "properties": {
+        "id": "ND-004",
+        "name": "North Dakota Backcountry 4",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.7",
+        "reviews_count": 33,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "ND",
+        "source": "generated"
+      }
+    }
+  ]
+}
