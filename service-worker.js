@@ -1,5 +1,7 @@
-// service-worker.js — KampTrail SW v9
+// service-worker.js — KampTrail SW (safe with 3rd-party tiles)
+// BUMP VERSION to force a fresh install whenever you change shell files.
 const VERSION = 'kt-v9';
+
 const SHELL = [
   'index.html',
   'manifest.json',
@@ -13,77 +15,104 @@ const SHELL = [
   'trip-planner.js'
 ];
 
-self.addEventListener('install', (e) => {
-  console.log('[SW] Installing kt-v9');
-  e.waitUntil(
+// ------- Install: cache app shell -------
+self.addEventListener('install', (event) => {
+  event.waitUntil(
     caches.open(VERSION).then((c) => c.addAll(SHELL))
   );
-  self.skipWaiting();
 });
 
-self.addEventListener('activate', (e) => {
-  console.log('[SW] Activating kt-v9');
-  e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== VERSION && k !== 'kt-tiles' && k !== 'kt-static').map(k => caches.delete(k)))
+// ------- Activate: clean old caches -------
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k)))
     )
   );
-  return self.clients.claim();
+  self.clients.claim();
 });
 
-const isTile = (url) => url.origin === 'https://tile.openstreetmap.org';
+// Helper: is OSM base tile (we allow caching these only)
+const isOsmTile = (url) =>
+  url.origin === 'https://tile.openstreetmap.org';
 
-self.addEventListener('fetch', (e) => {
-  const { request } = e;
-  
+// ------- Fetch strategy matrix -------
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // 1) HTML navigation: Network First (4s timeout) with cached fallback
   if (request.mode === 'navigate') {
-    e.respondWith((async () => {
-      const controller = new AbortController();
-      const t = setTimeout(() => controller.abort(), 4000);
-      try {
-        const net = await fetch(request, { signal: controller.signal });
-        clearTimeout(t);
-        const cache = await caches.open(VERSION);
-        cache.put(request, net.clone());
-        return net;
-      } catch {
-        clearTimeout(t);
-        const cache = await caches.open(VERSION);
-        return (await cache.match('index.html')) || Response.error();
-      }
-    })());
+    event.respondWith(networkFirstHTML(request));
     return;
   }
-  
-  if (isTile(new URL(request.url))) {
-    e.respondWith((async () => {
-      const cache = await caches.open('kt-tiles');
-      const hit = await cache.match(request);
-      if (hit) return hit;
-      const res = await fetch(request, { mode: 'cors' });
-      if (res.ok) {
-        await cache.put(request, res.clone());
-        const keys = await cache.keys();
-        if (keys.length > 400) await cache.delete(keys[0]);
-      }
-      return res;
-    })());
+
+  // 2) OSM base tiles ONLY: Cache First with small cap
+  if (isOsmTile(url)) {
+    event.respondWith(cacheFirstTiles(request));
     return;
   }
-  
-  if (/\.(?:js|css|png|svg|webp|jpg|jpeg|ico|geojson)$/.test(request.url)) {
-    e.respondWith((async () => {
-      const cache = await caches.open('kt-static');
-      const cached = await cache.match(request);
-      const fetcher = fetch(request).then((res) => {
-        if (res.ok) cache.put(request, res.clone());
-        return res;
-      }).catch(() => cached);
-      return cached || fetcher;
-    })());
+
+  // 3) Same-origin static assets (JS/CSS/PNG/SVG/WEBP/JPG/ICO): Stale-While-Revalidate
+  //    IMPORTANT: skip cross-origin assets to avoid OpaqueResponseBlocking
+  const isStatic = /\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(url.pathname);
+  const isSameOrigin = url.origin === self.location.origin;
+
+  if (isStatic && isSameOrigin) {
+    event.respondWith(staleWhileRevalidate(request));
+    return;
   }
+
+  // Otherwise: do nothing — let the browser handle it (prevents ORB on 3rd-party tiles)
 });
 
+// ------- Strategies -------
+async function networkFirstHTML(request) {
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 4000);
+  try {
+    const net = await fetch(request, { signal: controller.signal });
+    clearTimeout(t);
+    const cache = await caches.open(VERSION);
+    cache.put('index.html', net.clone()); // keep index fresh
+    return net;
+  } catch {
+    clearTimeout(t);
+    const cache = await caches.open(VERSION);
+    return (await cache.match('index.html')) || Response.error();
+  }
+}
+
+async function cacheFirstTiles(request) {
+  const cache = await caches.open('kt-tiles');
+  const hit = await cache.match(request, { ignoreSearch: true });
+  if (hit) return hit;
+
+  const res = await fetch(request, { mode: 'cors' });
+  // For cross-origin tiles, the response may be opaque; just cache the entry without reading.
+  if (res && res.ok) {
+    try { await cache.put(request, res.clone()); } catch {}
+    // Trim oldest
+    const keys = await cache.keys();
+    const LIMIT = 400; // ~a few metro areas worth
+    if (keys.length > LIMIT) await cache.delete(keys[0]);
+  }
+  return res;
+}
+
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open('kt-static');
+  const cached = await cache.match(request, { ignoreSearch: true });
+
+  const fetching = fetch(request).then((res) => {
+    if (res && res.ok) cache.put(request, res.clone());
+    return res;
+  }).catch(() => cached);
+
+  return cached || fetching;
+}
+
+// Allow page to force an update (index shows a toast)
 self.addEventListener('message', (e) => {
   if (e.data === 'SKIP_WAITING') self.skipWaiting();
 });
