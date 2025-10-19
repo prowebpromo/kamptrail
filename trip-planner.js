@@ -1,4 +1,4 @@
-/* trip-planner.js – minimal trip drawer + GPX export (localStorage only) */
+/* trip-planner.js – minimal trip drawer + GPX export */
 (function(){
   'use strict';
   const st = { map:null, open:false, stops:[], el:null };
@@ -8,8 +8,15 @@
   function getSite(id){ return (window.KampTrailData && window.KampTrailData.getCampsiteById(id)) || null; }
 
   function render(){
+    // Update header badge
+    const badge = document.getElementById('trip-count');
+    if(badge) badge.textContent = `(${st.stops.length})`;
+    
     const list = st.el.querySelector('#kt-trip-list');
-    if(!st.stops.length){ list.innerHTML='<div style="opacity:.7;text-align:center;padding:20px">No stops yet</div>'; return; }
+    if(!st.stops.length){
+      list.innerHTML='<div style="opacity:.7;text-align:center;padding:20px">No stops yet</div>';
+      return;
+    }
     list.innerHTML = st.stops.map((id,i)=>{
       const s=getSite(id); if(!s) return '';
       const [lng,lat]=s.geometry.coordinates, n=s.properties.name||'Campsite';
@@ -38,8 +45,10 @@
     const d=document.createElement('div');
     d.style.position='fixed'; d.style.top='60px'; d.style.right='-360px'; d.style.width='340px';
     d.style.maxWidth='calc(100vw - 24px)'; d.style.height='calc(100vh - 80px)';
-    d.style.background='rgba(15,27,36,.98)'; d.style.border='1px solid #284356'; d.style.borderRadius='12px 0 0 12px';
-    d.style.boxShadow='-4px 0 20px rgba(0,0,0,.4)'; d.style.zIndex=1002; d.style.transition='right .25s ease';
+    d.style.background='rgba(15,27,36,.98)'; d.style.border='1px solid #284356';
+    d.style.borderRadius='12px 0 0 12px';
+    d.style.boxShadow='-4px 0 20px rgba(0,0,0,.4)'; d.style.zIndex=1002;
+    d.style.transition='right .25s ease';
     d.innerHTML=`
       <div style="padding:10px 12px;border-bottom:1px solid #284356;display:flex;align-items:center;gap:8px">
         <div style="font-weight:700;color:#cfe3f2;flex:1">My Trip</div>
@@ -70,7 +79,8 @@ ${wpts}
 </gpx>`;
     const blob=new Blob([gpx],{type:'application/gpx+xml'});
     const url=URL.createObjectURL(blob); const a=document.createElement('a');
-    a.href=url; a.download=`KampTrail_Trip_${Date.now()}.gpx`; a.click(); URL.revokeObjectURL(url);
+    a.href=url; a.download=`KampTrail_Trip_${Date.now()}.gpx`; a.click();
+    URL.revokeObjectURL(url);
   }
 
   window.KampTrailTrip = {
@@ -79,11 +89,15 @@ ${wpts}
       st.el = drawer(); render();
       document.getElementById('trip').onclick = ()=> (st.open?close():open());
       st.el.querySelector('#kt-trip-close').onclick = close;
-      st.el.querySelector('#kt-trip-clear').onclick = ()=>{ if(confirm('Clear trip?')){ st.stops=[]; save(); render(); } };
+      st.el.querySelector('#kt-trip-clear').onclick = ()=>{
+        if(confirm('Clear trip?')){ st.stops=[]; save(); render(); }
+      };
       st.el.querySelector('#kt-trip-export').onclick = exportGPX;
-      console.log('Trip planner ready');
+      console.log('✓ Trip planner ready');
     },
-    addStop(id){ if(!st.stops.includes(id)){ st.stops.push(id); save(); render(); open(); } },
+    addStop(id){
+      if(!st.stops.includes(id)){ st.stops.push(id); save(); render(); open(); }
+    },
     toggle(){ st.open?close():open(); }
   };
 })();
