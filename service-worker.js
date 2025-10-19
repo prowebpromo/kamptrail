@@ -1,36 +1,40 @@
-// service-worker.js — KampTrail SW
-const VERSION = 'kt-v7';
+// service-worker.js — KampTrail SW (Fixed)
+const VERSION = 'kt-v8';  // Changed to v8 so browser knows it's new
 const SHELL = [
   'index.html',
   'manifest.json',
   'icon-192.png',
   'icon-512.png',
   'og.png',
-  'overlays/overlays-advanced.css',
-  'overlays/overlays-advanced.js',
   'data-loader.js',
   'filters.js',
   'trip-planner.js'
+  // Removed the overlays files that don't exist
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)));
+  console.log('Installing Service Worker v8');
+  e.waitUntil(
+    caches.open(VERSION).then((c) => c.addAll(SHELL))
+  );
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (e) => {
+  console.log('Activating Service Worker v8');
   e.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))
     )
   );
-  self.clients.claim();
+  return self.clients.claim();
 });
 
 const isTile = (url) => url.origin === 'https://tile.openstreetmap.org';
 
 self.addEventListener('fetch', (e) => {
   const { request } = e;
-
+  
   // HTML pages: NetworkFirst with 4s timeout + cached fallback
   if (request.mode === 'navigate') {
     e.respondWith((async () => {
@@ -50,7 +54,7 @@ self.addEventListener('fetch', (e) => {
     })());
     return;
   }
-
+  
   // OSM tiles: CacheFirst with size cap
   if (isTile(new URL(request.url))) {
     e.respondWith((async () => {
@@ -61,13 +65,13 @@ self.addEventListener('fetch', (e) => {
       if (res.ok) {
         await cache.put(request, res.clone());
         const keys = await cache.keys();
-        if (keys.length > 400) await cache.delete(keys[0]); // trim oldest
+        if (keys.length > 400) await cache.delete(keys[0]);
       }
       return res;
     })());
     return;
   }
-
+  
   // Static assets: Stale-While-Revalidate
   if (/\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(request.url)) {
     e.respondWith((async () => {
@@ -82,7 +86,6 @@ self.addEventListener('fetch', (e) => {
   }
 });
 
-// Allow page to force an update (index shows a toast)
 self.addEventListener('message', (e) => {
   if (e.data === 'SKIP_WAITING') self.skipWaiting();
 });
