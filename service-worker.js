@@ -1,19 +1,20 @@
-// service-worker.js — KampTrail SW (Fixed)
-const VERSION = 'kt-v8';  // Changed to v8 so browser knows it's new
+// service-worker.js — KampTrail SW v9
+const VERSION = 'kt-v9';
 const SHELL = [
   'index.html',
   'manifest.json',
   'icon-192.png',
   'icon-512.png',
   'og.png',
+  'overlays/overlays-advanced.css',
+  'overlays/overlays-advanced.js',
   'data-loader.js',
   'filters.js',
   'trip-planner.js'
-  // Removed the overlays files that don't exist
 ];
 
 self.addEventListener('install', (e) => {
-  console.log('Installing Service Worker v8');
+  console.log('[SW] Installing kt-v9');
   e.waitUntil(
     caches.open(VERSION).then((c) => c.addAll(SHELL))
   );
@@ -21,10 +22,10 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('activate', (e) => {
-  console.log('Activating Service Worker v8');
+  console.log('[SW] Activating kt-v9');
   e.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))
+      Promise.all(keys.filter(k => k !== VERSION && k !== 'kt-tiles' && k !== 'kt-static').map(k => caches.delete(k)))
     )
   );
   return self.clients.claim();
@@ -35,7 +36,6 @@ const isTile = (url) => url.origin === 'https://tile.openstreetmap.org';
 self.addEventListener('fetch', (e) => {
   const { request } = e;
   
-  // HTML pages: NetworkFirst with 4s timeout + cached fallback
   if (request.mode === 'navigate') {
     e.respondWith((async () => {
       const controller = new AbortController();
@@ -55,7 +55,6 @@ self.addEventListener('fetch', (e) => {
     return;
   }
   
-  // OSM tiles: CacheFirst with size cap
   if (isTile(new URL(request.url))) {
     e.respondWith((async () => {
       const cache = await caches.open('kt-tiles');
@@ -72,8 +71,7 @@ self.addEventListener('fetch', (e) => {
     return;
   }
   
-  // Static assets: Stale-While-Revalidate
-  if (/\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(request.url)) {
+  if (/\.(?:js|css|png|svg|webp|jpg|jpeg|ico|geojson)$/.test(request.url)) {
     e.respondWith((async () => {
       const cache = await caches.open('kt-static');
       const cached = await cache.match(request);
