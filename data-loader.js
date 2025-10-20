@@ -1,4 +1,4 @@
-/* data-loader.js - COMPLETE FILE - Fixed Marker Display */
+/* data-loader.js - FIXED VERSION - Forces initial data load */
 
 (function() {
   'use strict';
@@ -91,11 +91,15 @@
     };
 
     const visible = [];
-    for (const [state, bbox] of Object.entries(STATE_BOUNDS)) {
+    for (const [stateCode, bbox] of Object.entries(STATE_BOUNDS)) {
       if (boundsIntersect(viewport, bbox)) {
-        visible.push(state);
+        visible.push(stateCode);
       }
     }
+    
+    console.log(`🗺️ Viewport: lat ${viewport.s.toFixed(2)} to ${viewport.n.toFixed(2)}, lng ${viewport.w.toFixed(2)} to ${viewport.e.toFixed(2)}`);
+    console.log(`🗺️ Visible states detected: ${visible.join(', ') || 'NONE'}`);
+    
     return visible;
   }
 
@@ -130,7 +134,7 @@
       state.allCampsites.push(...newSites);
       state.loadedStates.add(stateCode);
       
-      console.log(`✓ Loaded ${newSites.length} sites from ${stateCode}`);
+      console.log(`✅ Loaded ${newSites.length} sites from ${stateCode} (Total: ${state.allCampsites.length})`);
       
       return newSites;
     } catch (err) {
@@ -280,13 +284,32 @@
 
       await loadIndex();
 
-      const initialStates = getVisibleStates(map);
+      // Get visible states
+      let initialStates = getVisibleStates(map);
+      
+      // FALLBACK: If no states detected, force load popular camping states
+      if (initialStates.length === 0) {
+        console.warn('⚠️ No states detected in viewport, loading popular states as fallback...');
+        initialStates = ['CA', 'CO', 'UT', 'AZ', 'WA', 'OR', 'MT', 'WY'];
+      }
+      
       console.log('🚀 Loading initial states:', initialStates.join(', '));
-      await Promise.all(initialStates.map(s => loadStateData(s)));
+      
+      // Load states one at a time with progress logging
+      for (const stateCode of initialStates) {
+        await loadStateData(stateCode);
+      }
+      
+      console.log(`✅ Initial load complete: ${state.allCampsites.length} total sites`);
 
       updateMarkers(map, this.getDefaultFilters(), state.config);
 
       map.on('moveend', debounce(() => {
+        refreshData(map, this.getCurrentFilters(), state.config);
+      }, 500));
+      
+      // Also trigger on first zoom
+      map.on('zoomend', debounce(() => {
         refreshData(map, this.getCurrentFilters(), state.config);
       }, 500));
     },
