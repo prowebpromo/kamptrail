@@ -1,69 +1,52 @@
-/* overlays-advanced.js - COMPLETE FILE - Working Overlays */
+/* overlays-advanced.js - Base Map Switcher (No CORS Issues) */
 
 (function(){
   'use strict';
 
   const state = { 
-    group: null, 
-    controls: null, 
-    layers: {},
+    currentBase: 'osm',
+    baseLayers: {},
+    controls: {},
     map: null
   };
 
-  function publicLandsOverlay(){
-    return L.tileLayer('https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Public_Lands/MapServer/tile/{z}/{y}/{x}', {
+  // Base map layers that work without CORS issues
+  function osmLayer() {
+    return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      opacity: 0.4,
-      attribution: 'BLM, USFS, NPS'
+      attribution: '© OpenStreetMap contributors'
     });
   }
 
-  function blmLandsOverlay(){
-    return L.tileLayer('https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_SMA_LR_Bounds/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
-      opacity: 0.4,
-      attribution: 'Bureau of Land Management'
+  function topoLayer() {
+    return L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      maxZoom: 17,
+      attribution: '© OpenTopoMap'
     });
   }
 
-  function usfsLandsOverlay(){
-    return L.tileLayer('https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/tile/{z}/{y}/{x}', {
+  function satelliteLayer() {
+    return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 19,
-      opacity: 0.4,
-      attribution: 'US Forest Service'
+      attribution: '© Esri'
     });
   }
 
-  function npsLandsOverlay(){
-    return L.tileLayer('https://mapservices.nps.gov/arcgis/rest/services/LandResourcesDivisionTractAndBoundaryService/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
-      opacity: 0.4,
-      attribution: 'National Park Service'
-    });
-  }
-
-  function cellTowersOverlay(){
-    return L.tileLayer('https://tiles.opencellid.org/tiles/{z}/{x}/{y}.png', {
+  function terrainLayer() {
+    return L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg', {
+      subdomains: 'abcd',
       maxZoom: 16,
-      opacity: 0.5,
-      attribution: 'OpenCelliD'
+      attribution: '© Stamen Design'
     });
   }
 
-  function fireHazardOverlay(){
-    return L.tileLayer('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=fires_modis_24&SRS=EPSG:3857&BBOX={bbox}&WIDTH=256&HEIGHT=256&FORMAT=image/png&TRANSPARENT=TRUE', {
-      maxZoom: 12,
-      opacity: 0.6,
-      attribution: 'NASA FIRMS'
-    });
-  }
-
-  function checkbox(label, rightTag){
+  function checkbox(label, rightTag, isRadio = false){
     const row = document.createElement('label');
     row.className = 'kt2-row';
     
-    const cb = document.createElement('input'); 
-    cb.type = 'checkbox';
+    const input = document.createElement('input'); 
+    input.type = isRadio ? 'radio' : 'checkbox';
+    if (isRadio) input.name = 'basemap';
     
     const span = document.createElement('span'); 
     span.textContent = label;
@@ -71,10 +54,10 @@
     
     const tag = document.createElement('small'); 
     tag.textContent = rightTag; 
-    tag.className = 'kt2-badge overlay';
+    tag.className = `kt2-badge ${rightTag.toLowerCase()}`;
     
-    row.append(cb, span, tag);
-    return {row, cb};
+    row.append(input, span, tag);
+    return {row, input};
   }
 
   function buildPanel(){
@@ -82,31 +65,39 @@
     panel.id = 'kt2-overlays';
     panel.innerHTML = `
       <div class="kt2-header">
-        <h2 class="kt2-title">🗺️ Layers & Data</h2>
+        <h2 class="kt2-title">🗺️ Map Styles</h2>
         <button class="kt2-close">✕</button>
       </div>`;
     
     const body = document.createElement('div'); 
     body.className = 'kt2-body';
+    
+    // Add description
+    const desc = document.createElement('p');
+    desc.style.cssText = 'font-size:12px;color:#666;margin:0 0 12px 0;padding:0 10px;';
+    desc.textContent = 'Choose your base map style:';
+    body.append(desc);
+    
     panel.append(body);
     
     const items = [
-      { key: 'public', label: 'Public Lands (All)', maker: publicLandsOverlay, tag: 'overlay', checked: false },
-      { key: 'blm', label: 'BLM Lands', maker: blmLandsOverlay, tag: 'overlay', checked: false },
-      { key: 'usfs', label: 'National Forests (USFS)', maker: usfsLandsOverlay, tag: 'overlay', checked: false },
-      { key: 'nps', label: 'National Parks (NPS)', maker: npsLandsOverlay, tag: 'overlay', checked: false },
-      { key: 'cell', label: 'Cell Towers', maker: cellTowersOverlay, tag: 'data', checked: false },
-      { key: 'fire', label: 'Fire Risk', maker: fireHazardOverlay, tag: 'alert', checked: false }
+      { key: 'osm', label: 'Standard Map', maker: osmLayer, tag: 'default', checked: true },
+      { key: 'topo', label: 'Topographic', maker: topoLayer, tag: 'terrain', checked: false },
+      { key: 'satellite', label: 'Satellite', maker: satelliteLayer, tag: 'imagery', checked: false },
+      { key: 'terrain', label: 'Terrain', maker: terrainLayer, tag: 'terrain', checked: false }
     ];
     
     items.forEach(it => {
-      const {row, cb} = checkbox(it.label, it.tag);
-      cb.checked = !!it.checked;
-      cb.addEventListener('change', () => {
-        toggle(it.key, cb.checked, it.maker);
+      const {row, input} = checkbox(it.label, it.tag, true);
+      input.value = it.key;
+      input.checked = !!it.checked;
+      input.addEventListener('change', () => {
+        if (input.checked) {
+          switchBaseMap(it.key, it.maker);
+        }
       });
       body.append(row);
-      state.controls[it.key] = {checkbox: cb, maker: it.maker};
+      state.controls[it.key] = {input, maker: it.maker};
     });
     
     panel.querySelector('.kt2-close').onclick = () => {
@@ -116,51 +107,61 @@
     return panel;
   }
 
-  function toggle(key, on, makerFn){
+  function switchBaseMap(key, makerFn) {
     try {
-      if (on) {
-        if (!state.layers[key]) {
-          console.log(`Creating overlay: ${key}`);
-          state.layers[key] = makerFn();
-        }
-        state.group.addLayer(state.layers[key]);
-        console.log(`✓ Enabled: ${key}`);
-      } else {
-        if (state.layers[key]) {
-          state.group.removeLayer(state.layers[key]);
-          console.log(`✓ Disabled: ${key}`);
-        }
+      console.log(`Switching to base map: ${key}`);
+      
+      // Remove current base layer
+      if (state.baseLayers[state.currentBase]) {
+        state.map.removeLayer(state.baseLayers[state.currentBase]);
       }
+      
+      // Create new layer if needed
+      if (!state.baseLayers[key]) {
+        state.baseLayers[key] = makerFn();
+      }
+      
+      // Add new base layer (at the back, so markers show on top)
+      state.baseLayers[key].addTo(state.map);
+      state.baseLayers[key].bringToBack();
+      
+      state.currentBase = key;
+      console.log(`✓ Switched to: ${key}`);
+      
     } catch (err) {
-      console.error(`Failed to toggle ${key}:`, err);
+      console.error(`Failed to switch base map to ${key}:`, err);
     }
-  }
-
-  function clearAllLayers() {
-    Object.keys(state.layers).forEach(key => {
-      if (state.layers[key]) {
-        state.group.removeLayer(state.layers[key]);
-      }
-    });
-    state.layers = {};
   }
 
   window.KampTrailAdvanced = {
     init(map, cfg = {}) {
       try {
         state.map = map;
-        state.group = L.layerGroup().addTo(map);
         state.controls = {};
-        state.layers = {};
+        state.baseLayers = {};
         
+        // Remove default OSM layer that Leaflet adds
+        map.eachLayer(layer => {
+          if (layer instanceof L.TileLayer) {
+            map.removeLayer(layer);
+          }
+        });
+        
+        // Add initial OSM layer
+        state.baseLayers.osm = osmLayer();
+        state.baseLayers.osm.addTo(map);
+        state.currentBase = 'osm';
+        
+        // Create panel
         const panel = buildPanel();
         map._container.appendChild(panel);
         L.DomEvent.disableClickPropagation(panel);
         
+        // Add toggle button
         const toggleBtn = document.createElement('button');
         toggleBtn.id = 'layers-toggle';
         toggleBtn.className = 'btn';
-        toggleBtn.innerHTML = '🗺️ Layers';
+        toggleBtn.innerHTML = '🗺️ Map Style';
         toggleBtn.onclick = () => {
           const isVisible = panel.style.display !== 'none';
           panel.style.display = isVisible ? 'none' : 'block';
@@ -173,34 +174,21 @@
           document.querySelector('header .actions')?.appendChild(toggleBtn);
         }
         
-        console.log('✓ Overlays initialized successfully');
+        console.log('✓ Map style switcher ready');
         
         if (cfg.onInit) cfg.onInit();
         
       } catch (err) {
-        console.error('Failed to initialize overlays:', err);
+        console.error('Failed to initialize map styles:', err);
       }
     },
 
-    toggleLayer(key, enabled) {
+    switchTo(key) {
       const control = state.controls[key];
       if (control) {
-        control.checkbox.checked = enabled;
-        toggle(key, enabled, control.maker);
+        control.input.checked = true;
+        switchBaseMap(key, control.maker);
       }
-    },
-
-    getActiveLayers() {
-      return Object.keys(state.layers).filter(key => 
-        state.group.hasLayer(state.layers[key])
-      );
-    },
-
-    clearAll() {
-      clearAllLayers();
-      Object.values(state.controls).forEach(ctrl => {
-        ctrl.checkbox.checked = false;
-      });
     },
 
     togglePanel(visible) {
