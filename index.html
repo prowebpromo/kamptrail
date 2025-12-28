@@ -79,6 +79,7 @@
   <div id="app">
     <header>
       <h1>🏕️ KampTrail</h1>
+      <input id="search" type="search" placeholder="Search campsites..." aria-label="Search campsites" style="flex:1;max-width:300px;padding:6px 12px;border:1px solid var(--c-border);background:#0b141b;color:var(--c-text);border-radius:10px;font-size:13px;">
       <div class="actions">
         <button id="filters" class="btn" aria-label="Open filters">
           🔍 Filters
@@ -181,6 +182,8 @@
           L.circle([latitude,longitude],{
             radius:5000,color:'#86b7ff',fillColor:'#86b7ff',fillOpacity:.1
           }).addTo(map);
+          // Store user location for distance calculations
+          if(window.KampTrailData) window.KampTrailData.setUserLocation(latitude,longitude);
           setLoading(false);
           showToast('📍 Zoomed to your location','success');
         },
