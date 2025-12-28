@@ -1,6 +1,6 @@
 // service-worker.js — KampTrail SW (safe with 3rd-party tiles)
 // BUMP VERSION to force a fresh install whenever you change shell files.
-const VERSION = 'kt-v12';
+const VERSION = 'kt-v13';
 
 const SHELL = [
   'index.html',
