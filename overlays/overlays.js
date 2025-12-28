@@ -69,12 +69,15 @@
       let poiAdded = false;
       function addPoisOnce(features) {
         if (poiAdded) return;
+        const esc = window.escapeHtml || ((t) => t);
         features.slice(0, cfg.maxPoiCount).forEach(f => {
           const [lng, lat] = f.geometry.coordinates;
           const type = (f.properties.type || '').toLowerCase();
           const label = f.properties.name || type.toUpperCase();
-          const m = L.marker([lat, lng], { icon: poiIcon[type] || icon('#0984e3','•'), title: label });
-          m.bindPopup(`<strong>${label}</strong><br>${type}`);
+          const safeLabel = esc(label);
+          const safeType = esc(type);
+          const m = L.marker([lat, lng], { icon: poiIcon[type] || icon('#0984e3','•'), title: safeLabel });
+          m.bindPopup(`<strong>${safeLabel}</strong><br>${safeType}`);
           poiCluster.addLayer(m);
         });
         map.addLayer(poiCluster);
@@ -91,12 +94,15 @@
         placesCluster.clearLayers();
         const b = map.getBounds();
         const subset = placesAll.features.filter(f => withinBounds(f, b));
+        const esc = window.escapeHtml || ((t) => t);
         subset.forEach((f) => {
           const [lng, lat] = f.geometry.coordinates;
           const name = f.properties.name || 'Campsite';
           const type = f.properties.type || 'Free';
-          const m = L.marker([lat, lng], { title: name });
-          m.bindPopup(`<strong>${name}</strong><br>Type: ${type}`);
+          const safeName = esc(name);
+          const safeType = esc(type);
+          const m = L.marker([lat, lng], { title: safeName });
+          m.bindPopup(`<strong>${safeName}</strong><br>Type: ${safeType}`);
           placesCluster.addLayer(m);
         });
         if (!map.hasLayer(placesCluster)) map.addLayer(placesCluster);

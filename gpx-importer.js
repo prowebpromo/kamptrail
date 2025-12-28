@@ -27,6 +27,12 @@
       const lat = parseFloat(wpt.getAttribute('lat'));
       const lon = parseFloat(wpt.getAttribute('lon'));
 
+      // Validate coordinates
+      if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+        console.warn(`Invalid waypoint coordinates: lat=${lat}, lon=${lon}`);
+        continue;
+      }
+
       const name = wpt.getElementsByTagName('name')[0]?.textContent || `Waypoint ${i + 1}`;
       const desc = wpt.getElementsByTagName('desc')[0]?.textContent || '';
       const type = wpt.getElementsByTagName('type')[0]?.textContent || 'waypoint';
@@ -46,6 +52,13 @@
         const pt = trkpts[j];
         const lat = parseFloat(pt.getAttribute('lat'));
         const lon = parseFloat(pt.getAttribute('lon'));
+
+        // Validate coordinates
+        if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+          console.warn(`Invalid track point coordinates: lat=${lat}, lon=${lon}`);
+          continue;
+        }
+
         points.push([lat, lon]);
       }
 
@@ -66,6 +79,13 @@
         const pt = rtepts[j];
         const lat = parseFloat(pt.getAttribute('lat'));
         const lon = parseFloat(pt.getAttribute('lon'));
+
+        // Validate coordinates
+        if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+          console.warn(`Invalid route point coordinates: lat=${lat}, lon=${lon}`);
+          continue;
+        }
+
         points.push([lat, lon]);
       }
 
@@ -87,12 +107,17 @@
 
     const marker = L.marker([waypoint.lat, waypoint.lon], { icon });
 
+    const esc = window.escapeHtml || ((t) => t);
+    const safeName = esc(waypoint.name);
+    const safeDesc = esc(waypoint.desc);
+    const safeType = esc(waypoint.type);
+
     const popupContent = `
       <div style="min-width:200px;">
-        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">📍 ${waypoint.name}</h3>
-        ${waypoint.desc ? `<p style="margin:4px 0;font-size:12px;color:#666;">${waypoint.desc}</p>` : ''}
+        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">📍 ${safeName}</h3>
+        ${safeDesc ? `<p style="margin:4px 0;font-size:12px;color:#666;">${safeDesc}</p>` : ''}
         <div style="font-size:11px;color:#888;margin:8px 0;">
-          GPX Waypoint • ${waypoint.type}
+          GPX Waypoint • ${safeType}
         </div>
         <div style="display:flex;gap:8px;margin-top:8px;">
           <button onclick="KampTrailGPX.findNearestCampsite(${waypoint.lat}, ${waypoint.lon})"
@@ -128,6 +153,7 @@
     });
 
     // Add tracks and routes
+    const esc = window.escapeHtml || ((t) => t);
     gpxData.tracks.forEach(track => {
       const polyline = L.polyline(track.points, {
         color: '#ff6b6b',
@@ -136,9 +162,10 @@
         dashArray: '5, 10'
       });
 
+      const safeTrackName = esc(track.name);
       polyline.bindPopup(`
         <div style="min-width:150px;">
-          <h3 style="margin:0;font-size:14px;font-weight:bold;">🛤️ ${track.name}</h3>
+          <h3 style="margin:0;font-size:14px;font-weight:bold;">🛤️ ${safeTrackName}</h3>
           <div style="font-size:11px;color:#888;margin-top:4px;">
             ${track.points.length} points
           </div>
@@ -243,7 +270,9 @@
 
         // Find and open the campsite popup
         setTimeout(() => {
-          const msg = `Found nearest campsite: ${nearest.properties.name} (${minDistance.toFixed(2)} km away)`;
+          const esc = window.escapeHtml || ((t) => t);
+          const siteName = esc(nearest.properties.name || 'Unknown');
+          const msg = `Found nearest campsite: ${siteName} (${minDistance.toFixed(2)} km away)`;
           window.showToast && window.showToast(msg, 'success', 5000);
         }, 500);
       }

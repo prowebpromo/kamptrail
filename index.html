@@ -115,7 +115,7 @@
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js').then(reg => {
           function promptUpdate(sw){
-            showToast('New version available — <a href="#" id="upd">update now</a>', 'success', 0);
+            showToast('New version available — <a href="#" id="upd">update now</a>', 'success', 0, true);
             document.getElementById('upd').onclick = (e) => {
               e.preventDefault(); sw.postMessage('SKIP_WAITING'); location.reload();
             };
@@ -132,8 +132,17 @@
     }
 
     // Helpers
-    function showToast(msg, type='info', ms=5000){
-      const t=document.getElementById('toast'); t.innerHTML=msg; t.className='toast show '+type;
+    window.escapeHtml = function(text){
+      if(!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    };
+    function showToast(msg, type='info', ms=5000, isHtml=false){
+      const t=document.getElementById('toast');
+      if(isHtml) t.innerHTML=msg;
+      else t.textContent=msg;
+      t.className='toast show '+type;
       if(ms>0) setTimeout(()=>t.classList.remove('show'), ms);
     }
     function setLoading(on){document.getElementById('loading').classList.toggle('show', !!on)}

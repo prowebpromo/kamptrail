@@ -11,19 +11,21 @@
     // Update header badge
     const badge = document.getElementById('trip-count');
     if(badge) badge.textContent = `(${st.stops.length})`;
-    
+
     const list = st.el.querySelector('#kt-trip-list');
     if(!st.stops.length){
       list.innerHTML='<div style="opacity:.7;text-align:center;padding:20px">No stops yet</div>';
       return;
     }
+    const esc = window.escapeHtml || ((t) => t);
     list.innerHTML = st.stops.map((id,i)=>{
       const s=getSite(id); if(!s) return '';
-      const [lng,lat]=s.geometry.coordinates, n=s.properties.name||'Campsite';
+      const [lng,lat]=s.geometry.coordinates;
+      const safeName = esc(s.properties.name||'Campsite');
       return `<div style="display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;border:1px solid #284356;border-radius:8px;padding:8px;background:#0b141b;">
         <div style="background:#86b7ff;color:#001;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-weight:700">${i+1}</div>
         <div style="min-width:0">
-          <div style="font-weight:600;color:#cfe3f2">${n}</div>
+          <div style="font-weight:600;color:#cfe3f2">${safeName}</div>
           <div style="opacity:.7;font-size:12px">${lat.toFixed(4)}, ${lng.toFixed(4)}</div>
         </div>
         <div style="display:flex;gap:6px">
@@ -67,10 +69,18 @@
   function close(){ st.open=false; st.el.style.right='-360px'; }
 
   function exportGPX(){
+    function escapeXml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+    }
     const wpts = st.stops.map((id,i)=>{
       const s=getSite(id); if(!s) return '';
       const [lng,lat]=s.geometry.coordinates;
-      const name=(s.properties.name||`Stop ${i+1}`).replace(/[<&>"]/g,'');
+      const name=escapeXml(s.properties.name||`Stop ${i+1}`);
       return `  <wpt lat="${lat}" lon="${lng}"><name>${i+1}: ${name}</name></wpt>`;
     }).join('\n');
     const gpx = `<?xml version="1.0" encoding="UTF-8"?>

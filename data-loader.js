@@ -194,28 +194,34 @@
 
   function createPopup(site) {
     const p = site.properties;
+    const esc = window.escapeHtml || ((t) => t); // Fallback if not available
     const costText = p.cost === 0 || p.cost === null ? 'FREE' : `$${p.cost}/night`;
     const rating = p.rating ? '⭐'.repeat(Math.round(p.rating)) : 'No ratings';
-    
+    const safeName = esc(p.name || 'Unnamed Site');
+    const safeType = esc(p.type || 'Unknown');
+    const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
+    const safeAmenities = p.amenities && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
+    const safeId = esc(p.id || '');
+
     return `
       <div style="min-width:200px;">
-        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${p.name || 'Unnamed Site'}</h3>
+        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${safeName}</h3>
         <div style="font-size:12px;color:#666;margin-bottom:8px;">
           <div><strong>Cost:</strong> ${costText}</div>
-          <div><strong>Type:</strong> ${p.type || 'Unknown'}</div>
-          ${p.road_difficulty ? `<div><strong>Road:</strong> ${p.road_difficulty}</div>` : ''}
+          <div><strong>Type:</strong> ${safeType}</div>
+          ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
           <div><strong>Rating:</strong> ${rating}</div>
         </div>
-        ${p.amenities && p.amenities.length ? `
+        ${safeAmenities ? `
           <div style="font-size:11px;color:#888;margin-bottom:8px;">
-            ${p.amenities.join(' • ')}
+            ${safeAmenities}
           </div>
         ` : ''}
         <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailData.addToTrip('${p.id}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Add to Trip
           </button>
-          <button onclick="KampTrailCompare.addToCompare('${p.id}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Compare
           </button>
           <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
