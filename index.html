@@ -198,9 +198,16 @@
 
   <!-- Feature modules -->
   <script src="overlays/overlays-advanced.js"></script>
+  <script src="weather.js"></script>
+  <script src="elevation.js"></script>
+  <script src="notes.js"></script>
+  <script src="pois-enhanced.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
-  <script src="trip-planner.js"></script>
+  <script src="route-planner.js"></script>
+  <script src="trip-manager.js"></script>
+  <script src="offline-maps.js"></script>
+  <script src="features-extended.js"></script>
 
   <!-- Initialize features -->
   <script>
@@ -238,6 +245,21 @@
 
         // 4) Trip planner
         if (window.KampTrailTrip) KampTrailTrip.init(map);
+
+        // 5) Offline maps
+        if (window.KampTrailOffline) KampTrailOffline.init(map);
+
+        // 6) Enhanced POIs
+        if (window.KampTrailPOI) KampTrailPOI.init(map);
+
+        // 7) Route planner
+        if (window.KampTrailRoute) KampTrailRoute.init(map);
+
+        // 8) Notes
+        if (window.KampTrailNotes) KampTrailNotes.init();
+
+        // 9) Extended features
+        if (window.KampTrailExtended) KampTrailExtended.init(map);
 
         // Welcome message
         if (!localStorage.getItem('kt_welcomed')) {

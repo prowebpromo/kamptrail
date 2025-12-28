@@ -196,9 +196,9 @@
     const p = site.properties;
     const costText = p.cost === 0 || p.cost === null ? 'FREE' : `$${p.cost}/night`;
     const rating = p.rating ? '⭐'.repeat(Math.round(p.rating)) : 'No ratings';
-    
+
     return `
-      <div style="min-width:200px;">
+      <div style="min-width:200px;" id="popup-${p.id}">
         <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${p.name || 'Unnamed Site'}</h3>
         <div style="font-size:12px;color:#666;margin-bottom:8px;">
           <div><strong>Cost:</strong> ${costText}</div>
@@ -219,6 +219,7 @@
             Navigate
           </button>
         </div>
+        <div id="weather-${p.id}"></div>
       </div>
     `;
   }
@@ -236,8 +237,33 @@
       const marker = L.marker([lat, lng], {
         icon: createMarkerIcon(site)
       });
-      
+
       marker.bindPopup(createPopup(site));
+
+      // Load weather, elevation, and notes when popup opens
+      marker.on('popupopen', async () => {
+        const popupId = `popup-${site.properties.id}`;
+        const popupElement = document.getElementById(popupId);
+
+        // Load elevation
+        if (window.KampTrailElevation) {
+          await window.KampTrailElevation.addElevationToPopup(lat, lng, popupId);
+        }
+
+        // Load notes
+        if (window.KampTrailNotes && popupElement) {
+          window.KampTrailNotes.addNotesToPopup(site.properties.id, popupElement);
+        }
+
+        // Load weather
+        const weatherDiv = document.getElementById(`weather-${site.properties.id}`);
+        if (weatherDiv && window.KampTrailWeather) {
+          weatherDiv.innerHTML = '<div style="padding:8px;text-align:center;color:#999;font-size:12px">Loading weather...</div>';
+          const weatherHTML = await window.KampTrailWeather.getWeatherHTML(lat, lng);
+          weatherDiv.innerHTML = weatherHTML;
+        }
+      });
+
       state.clusterGroup.addLayer(marker);
     });
 
