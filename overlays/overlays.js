@@ -58,11 +58,19 @@
       const cellToggle = controls.querySelector('#kt-toggle-cell');
       const poiToggle = controls.querySelector('#kt-toggle-poi');
       landsToggle.addEventListener('change', () => {
-        if (!publicLands) { alert('Configure publicLandsUrl in KampTrailOverlays.init'); landsToggle.checked = false; return; }
+        if (!publicLands) {
+          window.showToast && window.showToast('Public lands overlay not configured', 'error', 3000);
+          landsToggle.checked = false;
+          return;
+        }
         landsToggle.checked ? publicLands.addTo(map) : publicLands.remove();
       });
       cellToggle.addEventListener('change', () => {
-        if (!cellCoverage) { alert('Configure cellCoverageUrl in KampTrailOverlays.init'); cellToggle.checked = false; return; }
+        if (!cellCoverage) {
+          window.showToast && window.showToast('Cell coverage overlay requires paid API - not configured', 'error', 3000);
+          cellToggle.checked = false;
+          return;
+        }
         cellToggle.checked ? cellCoverage.addTo(map) : cellCoverage.remove();
       });
       const poiCluster = L.markerClusterGroup({ chunkedLoading: true, spiderfyOnMaxZoom: false });

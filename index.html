@@ -224,9 +224,10 @@
           KampTrailAdvanced.init(map, {});
         }
 
-        // 1b) Overlays - POI layers
+        // 1b) Overlays - POI layers and public lands
         if (window.KampTrailOverlays) {
           KampTrailOverlays.init(map, {
+            publicLandsUrl: 'https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas/MapServer/tile/{z}/{y}/{x}',
             poiUrl: '/data/poi_dump_water_propane.geojson',
             placesUrl: '/data/sample_places.geojson'
           });
