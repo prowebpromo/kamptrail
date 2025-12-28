@@ -286,11 +286,14 @@
 
       // Get visible states
       let initialStates = getVisibleStates(map);
-      
-      // FALLBACK: If no states detected, force load popular camping states
+
+      // FALLBACK: If no states detected, use a diverse set of popular camping states
+      // across different regions (West, Southwest, Mountain West, Pacific NW, Rocky Mountains)
       if (initialStates.length === 0) {
-        console.warn('⚠️ No states detected in viewport, loading popular states as fallback...');
-        initialStates = ['CA', 'CO', 'UT', 'AZ', 'WA', 'OR', 'MT', 'WY'];
+        console.warn('⚠️ No states detected in viewport, loading popular camping states across all regions...');
+        // Diversified list: West Coast (CA, WA, OR), Southwest (AZ, NM),
+        // Rocky Mountains (CO, MT, WY), Southeast (NC, TN)
+        initialStates = ['CA', 'CO', 'UT', 'AZ', 'WA', 'OR', 'MT', 'WY', 'NC', 'TN', 'NM', 'ID'];
       }
       
       console.log('🚀 Loading initial states:', initialStates.join(', '));
