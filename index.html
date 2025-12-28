@@ -41,6 +41,7 @@
 
   <!-- Overlays UI styles -->
   <link rel="stylesheet" href="overlays/overlays-advanced.css">
+  <link rel="stylesheet" href="overlays/overlays.css">
 
   <style>
     :root{--c-bg:#0b141b;--c-panel:#0f1b24;--c-border:#22313f;--c-accent:#86b7ff;--c-text:#e8f0f7;--c-sub:#9fd0ff;}
@@ -198,17 +199,28 @@
 
   <!-- Feature modules -->
   <script src="overlays/overlays-advanced.js"></script>
+  <script src="overlays/overlays.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
   <script src="trip-planner.js"></script>
+  <script src="gpx-importer.js"></script>
+  <script src="campsite-compare.js"></script>
 
   <!-- Initialize features -->
   <script>
     (async () => {
       try {
-        // 1) Overlays
+        // 1) Overlays - Advanced (base map switcher)
         if (window.KampTrailAdvanced) {
           KampTrailAdvanced.init(map, {});
+        }
+
+        // 1b) Overlays - POI layers
+        if (window.KampTrailOverlays) {
+          KampTrailOverlays.init(map, {
+            poiUrl: '/data/poi_dump_water_propane.geojson',
+            placesUrl: '/data/sample_places.geojson'
+          });
         }
 
         // 2) Campsite data loader
@@ -238,6 +250,12 @@
 
         // 4) Trip planner
         if (window.KampTrailTrip) KampTrailTrip.init(map);
+
+        // 5) GPX Importer
+        if (window.KampTrailGPX) KampTrailGPX.init(map);
+
+        // 6) Campsite Comparison
+        if (window.KampTrailCompare) KampTrailCompare.init(map);
 
         // Welcome message
         if (!localStorage.getItem('kt_welcomed')) {

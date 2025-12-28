@@ -215,6 +215,9 @@
           <button onclick="KampTrailData.addToTrip('${p.id}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Add to Trip
           </button>
+          <button onclick="KampTrailCompare.addToCompare('${p.id}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+            Compare
+          </button>
           <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>
