@@ -30,7 +30,6 @@
     init(map, config) {
       const cfg = Object.assign({
         publicLandsUrl: '',
-        cellCoverageUrl: '',
         openCelliDKey: '',
         poiUrl: '/data/poi_dump_water_propane.geojson',
         placesUrl: '/data/sample_places.geojson',
@@ -40,7 +39,6 @@
       const controls = L.DomUtil.create('div', 'kt-controls');
       controls.innerHTML = `
         <label><input id="kt-toggle-lands" type="checkbox"> Public lands <span class="kt-badge">overlay</span></label>
-        <label><input id="kt-toggle-cell" type="checkbox"> Cell coverage <span class="kt-badge">overlay</span></label>
         <label><input id="kt-toggle-towers" type="checkbox"> Cell towers <span class="kt-badge">OpenCelliD</span></label>
         <label><input id="kt-toggle-poi" type="checkbox" checked> Dump/Water/Propane <span class="kt-badge">POIs</span></label>
       `;
@@ -62,9 +60,7 @@
       map._container.appendChild(legend);
       L.DomEvent.disableClickPropagation(legend);
       const publicLands = tileLayerOrNull(cfg.publicLandsUrl, { opacity: 0.45 });
-      const cellCoverage = tileLayerOrNull(cfg.cellCoverageUrl, { opacity: 0.40 });
       const landsToggle = controls.querySelector('#kt-toggle-lands');
-      const cellToggle = controls.querySelector('#kt-toggle-cell');
       const towersToggle = controls.querySelector('#kt-toggle-towers');
       const poiToggle = controls.querySelector('#kt-toggle-poi');
       const towerLegend = document.getElementById('kt-tower-legend');
@@ -75,14 +71,6 @@
           return;
         }
         landsToggle.checked ? publicLands.addTo(map) : publicLands.remove();
-      });
-      cellToggle.addEventListener('change', () => {
-        if (!cellCoverage) {
-          window.showToast && window.showToast('Cell coverage overlay requires paid API - not configured', 'error', 3000);
-          cellToggle.checked = false;
-          return;
-        }
-        cellToggle.checked ? cellCoverage.addTo(map) : cellCoverage.remove();
       });
 
       // Cell Tower Overlay (OpenCelliD)
