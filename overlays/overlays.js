@@ -31,14 +31,17 @@
       const cfg = Object.assign({
         publicLandsUrl: '',
         cellCoverageUrl: '',
+        openCelliDKey: '',
         poiUrl: '/data/poi_dump_water_propane.geojson',
         placesUrl: '/data/sample_places.geojson',
-        maxPoiCount: 2000
+        maxPoiCount: 2000,
+        maxTowerCount: 500
       }, config || {});
       const controls = L.DomUtil.create('div', 'kt-controls');
       controls.innerHTML = `
         <label><input id="kt-toggle-lands" type="checkbox"> Public lands <span class="kt-badge">overlay</span></label>
         <label><input id="kt-toggle-cell" type="checkbox"> Cell coverage <span class="kt-badge">overlay</span></label>
+        <label><input id="kt-toggle-towers" type="checkbox"> Cell towers <span class="kt-badge">OpenCelliD</span></label>
         <label><input id="kt-toggle-poi" type="checkbox" checked> Dump/Water/Propane <span class="kt-badge">POIs</span></label>
       `;
       map._container.appendChild(controls);
@@ -48,7 +51,13 @@
         <strong>Legend</strong><br>
         <span class="kt-badge">D</span> Dump&nbsp;&nbsp;
         <span class="kt-badge">W</span> Water&nbsp;&nbsp;
-        <span class="kt-badge">P</span> Propane
+        <span class="kt-badge">P</span> Propane<br>
+        <div style="margin-top:4px;font-size:11px;" id="kt-tower-legend" hidden>
+          <span style="color:#e74c3c;">●</span> GSM&nbsp;
+          <span style="color:#3498db;">●</span> UMTS&nbsp;
+          <span style="color:#2ecc71;">●</span> LTE&nbsp;
+          <span style="color:#9b59b6;">●</span> 5G
+        </div>
       `;
       map._container.appendChild(legend);
       L.DomEvent.disableClickPropagation(legend);
@@ -56,7 +65,9 @@
       const cellCoverage = tileLayerOrNull(cfg.cellCoverageUrl, { opacity: 0.40 });
       const landsToggle = controls.querySelector('#kt-toggle-lands');
       const cellToggle = controls.querySelector('#kt-toggle-cell');
+      const towersToggle = controls.querySelector('#kt-toggle-towers');
       const poiToggle = controls.querySelector('#kt-toggle-poi');
+      const towerLegend = document.getElementById('kt-tower-legend');
       landsToggle.addEventListener('change', () => {
         if (!publicLands) {
           window.showToast && window.showToast('Public lands overlay not configured', 'error', 3000);
@@ -72,6 +83,124 @@
           return;
         }
         cellToggle.checked ? cellCoverage.addTo(map) : cellCoverage.remove();
+      });
+
+      // Cell Tower Overlay (OpenCelliD)
+      const towerColors = {
+        'GSM': '#e74c3c',
+        'UMTS': '#3498db',
+        'LTE': '#2ecc71',
+        'NR': '#9b59b6',  // 5G
+        'CDMA': '#e67e22'
+      };
+      function towerIcon(radio) {
+        const color = towerColors[radio] || '#95a5a6';
+        return L.divIcon({
+          className: 'kt-tower',
+          html: `<div style="background:${color};border:2px solid #fff;border-radius:50%;width:10px;height:10px;box-shadow:0 0 4px rgba(0,0,0,0.3);"></div>`,
+          iconSize: [10, 10],
+          iconAnchor: [5, 5]
+        });
+      }
+      const towerCluster = L.markerClusterGroup({
+        chunkedLoading: true,
+        spiderfyOnMaxZoom: true,
+        maxClusterRadius: 40
+      });
+      const towerCache = new Map();
+      let towersEnabled = false;
+
+      function fetchCellTowers() {
+        if (!towersEnabled || !cfg.openCelliDKey) return;
+        const zoom = map.getZoom();
+        if (zoom < 8) {
+          if (towerCluster.getLayers().length === 0) {
+            window.showToast && window.showToast('Zoom in closer to view cell towers', 'info', 3000);
+          }
+          return;
+        }
+        const bounds = map.getBounds();
+        const sw = bounds.getSouthWest();
+        const ne = bounds.getNorthEast();
+        const bbox = `${sw.lat},${sw.lng},${ne.lat},${ne.lng}`;
+        const cacheKey = `${Math.floor(sw.lat*100)}_${Math.floor(sw.lng*100)}_${Math.floor(ne.lat*100)}_${Math.floor(ne.lng*100)}`;
+
+        if (towerCache.has(cacheKey)) {
+          return;
+        }
+
+        const url = `https://www.opencellid.org/cell/getInArea?key=${encodeURIComponent(cfg.openCelliDKey)}&BBOX=${bbox}&format=json&limit=${cfg.maxTowerCount}`;
+
+        fetch(url)
+          .then(r => {
+            if (!r.ok) throw new Error(`API error: ${r.status}`);
+            return r.json();
+          })
+          .then(data => {
+            if (!data || !data.cells || data.cells.length === 0) {
+              return;
+            }
+            towerCache.set(cacheKey, true);
+            const esc = window.escapeHtml || ((t) => t);
+            data.cells.forEach(cell => {
+              const lat = parseFloat(cell.lat);
+              const lon = parseFloat(cell.lon);
+              if (isNaN(lat) || isNaN(lon)) return;
+
+              const radio = cell.radio || 'Unknown';
+              const mcc = cell.mcc || '?';
+              const mnc = cell.mnc || '?';
+              const range = cell.range ? Math.round(cell.range) + 'm' : 'Unknown';
+              const samples = cell.samples || 0;
+
+              const m = L.marker([lat, lon], {
+                icon: towerIcon(radio),
+                title: `${radio} Tower`
+              });
+
+              const popup = `
+                <div style="min-width:150px;">
+                  <strong>${esc(radio)} Cell Tower</strong><br>
+                  <small>
+                    MCC/MNC: ${esc(String(mcc))}/${esc(String(mnc))}<br>
+                    Range: ${esc(range)}<br>
+                    Samples: ${esc(String(samples))}
+                  </small>
+                </div>
+              `;
+              m.bindPopup(popup);
+              towerCluster.addLayer(m);
+            });
+
+            if (data.cells.length >= cfg.maxTowerCount) {
+              window.showToast && window.showToast(`Showing ${cfg.maxTowerCount} nearest towers. Zoom in for more detail.`, 'info', 4000);
+            }
+          })
+          .catch(err => {
+            console.error('OpenCelliD error:', err);
+            if (err.message.includes('403')) {
+              window.showToast && window.showToast('OpenCelliD API key invalid or not authorized', 'error', 5000);
+            } else {
+              window.showToast && window.showToast('Failed to load cell towers', 'error', 3000);
+            }
+          });
+      }
+
+      towersToggle.addEventListener('change', () => {
+        if (!cfg.openCelliDKey) {
+          window.showToast && window.showToast('OpenCelliD API key required. Get free key at opencellid.org', 'error', 5000);
+          towersToggle.checked = false;
+          return;
+        }
+        towersEnabled = towersToggle.checked;
+        if (towersEnabled) {
+          map.addLayer(towerCluster);
+          towerLegend.hidden = false;
+          fetchCellTowers();
+        } else {
+          map.removeLayer(towerCluster);
+          towerLegend.hidden = true;
+        }
       });
       const poiCluster = L.markerClusterGroup({ chunkedLoading: true, spiderfyOnMaxZoom: false });
       let poiAdded = false;
@@ -116,7 +245,12 @@
         if (!map.hasLayer(placesCluster)) map.addLayer(placesCluster);
       }
       loadGeoJSON(cfg.placesUrl).then(gj => { placesAll = gj; refreshPlaces(); }).catch(()=>{});
-      map.on('moveend', () => { clearTimeout(map._ktPlaceTimer); map._ktPlaceTimer = setTimeout(refreshPlaces, 200); });
+      map.on('moveend', () => {
+        clearTimeout(map._ktPlaceTimer);
+        map._ktPlaceTimer = setTimeout(refreshPlaces, 200);
+        clearTimeout(map._ktTowerTimer);
+        map._ktTowerTimer = setTimeout(fetchCellTowers, 300);
+      });
     }
   };
 })();
