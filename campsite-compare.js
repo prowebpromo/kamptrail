@@ -98,14 +98,16 @@
     if (!amenities || amenities.length === 0) {
       return '<span style="color:#999;">None listed</span>';
     }
-    return amenities.map(a => `<span class="kt-badge">${a}</span>`).join(' ');
+    const esc = window.escapeHtml || ((t) => t);
+    return amenities.map(a => `<span class="kt-badge">${esc(a)}</span>`).join(' ');
   }
 
   function formatRigFriendly(rigFriendly) {
     if (!rigFriendly || rigFriendly.length === 0) {
       return '<span style="color:#999;">Not specified</span>';
     }
-    return rigFriendly.map(r => `<span class="kt-badge">${r}</span>`).join(' ');
+    const esc = window.escapeHtml || ((t) => t);
+    return rigFriendly.map(r => `<span class="kt-badge">${esc(r)}</span>`).join(' ');
   }
 
   function renderComparisonPanel() {
@@ -130,6 +132,8 @@
       `;
       return;
     }
+
+    const esc = window.escapeHtml || ((t) => t);
 
     // Build comparison table
     let html = `
@@ -162,7 +166,7 @@
     // Name row
     html += `<tr style="border-bottom:1px solid var(--c-border);"><td style="padding:10px;font-weight:bold;">Name</td>`;
     campsites.forEach(site => {
-      html += `<td style="padding:10px;">${site.properties.name || 'Unnamed'}</td>`;
+      html += `<td style="padding:10px;">${esc(site.properties.name || 'Unnamed')}</td>`;
     });
     html += `</tr>`;
 
@@ -176,7 +180,7 @@
     // Type row
     html += `<tr style="border-bottom:1px solid var(--c-border);"><td style="padding:10px;font-weight:bold;">Type</td>`;
     campsites.forEach(site => {
-      html += `<td style="padding:10px;">${site.properties.type || 'Unknown'}</td>`;
+      html += `<td style="padding:10px;">${esc(site.properties.type || 'Unknown')}</td>`;
     });
     html += `</tr>`;
 
@@ -190,7 +194,7 @@
     // Road difficulty row
     html += `<tr style="border-bottom:1px solid var(--c-border);"><td style="padding:10px;font-weight:bold;">Road</td>`;
     campsites.forEach(site => {
-      const road = site.properties.road_difficulty || 'Not specified';
+      const road = esc(site.properties.road_difficulty || 'Not specified');
       html += `<td style="padding:10px;">${road}</td>`;
     });
     html += `</tr>`;
@@ -212,7 +216,7 @@
     // State row
     html += `<tr style="border-bottom:1px solid var(--c-border);"><td style="padding:10px;font-weight:bold;">State</td>`;
     campsites.forEach(site => {
-      html += `<td style="padding:10px;">${site.properties.state || 'Unknown'}</td>`;
+      html += `<td style="padding:10px;">${esc(site.properties.state || 'Unknown')}</td>`;
     });
     html += `</tr>`;
 
@@ -220,12 +224,13 @@
     html += `<tr><td style="padding:10px;font-weight:bold;">Actions</td>`;
     campsites.forEach(site => {
       const [lon, lat] = site.geometry.coordinates;
+      const safeId = esc(site.properties.id || '');
       html += `
         <td style="padding:10px;">
           <div style="display:flex;flex-direction:column;gap:6px;">
             <button onclick="KampTrailCompare.zoomTo(${lat}, ${lon})" class="btn" style="font-size:11px;padding:4px 8px;">📍 View on Map</button>
-            <button onclick="KampTrailData.addToTrip('${site.properties.id}')" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
-            <button onclick="KampTrailCompare.remove('${site.properties.id}')" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
+            <button onclick="KampTrailData.addToTrip('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
+            <button onclick="KampTrailCompare.remove('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
           </div>
         </td>
       `;

@@ -1,6 +1,6 @@
 // service-worker.js — KampTrail SW (safe with 3rd-party tiles)
 // BUMP VERSION to force a fresh install whenever you change shell files.
-const VERSION = 'kt-v9';
+const VERSION = 'kt-v10';
 
 const SHELL = [
   'index.html',
@@ -10,9 +10,13 @@ const SHELL = [
   'og.png',
   'overlays/overlays-advanced.css',
   'overlays/overlays-advanced.js',
+  'overlays/overlays.css',
+  'overlays/overlays.js',
   'data-loader.js',
   'filters.js',
-  'trip-planner.js'
+  'trip-planner.js',
+  'gpx-importer.js',
+  'campsite-compare.js'
 ];
 
 // ------- Install: cache app shell -------
