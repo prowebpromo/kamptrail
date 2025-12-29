@@ -196,12 +196,24 @@
     const p = site.properties;
     const esc = window.escapeHtml || ((t) => t); // Fallback if not available
     const costText = p.cost === 0 || p.cost === null ? 'FREE' : `$${p.cost}/night`;
-    const rating = p.rating ? '⭐'.repeat(Math.round(p.rating)) : 'No ratings';
+
+    // Enhanced rating with review count
+    let ratingText = 'No ratings';
+    if (p.rating) {
+      const stars = '⭐'.repeat(Math.round(parseFloat(p.rating)));
+      const reviewCount = p.reviews_count || 0;
+      ratingText = reviewCount > 0 ? `${stars} (${reviewCount} reviews)` : stars;
+    }
+
     const safeName = esc(p.name || 'Unnamed Site');
     const safeType = esc(p.type || 'Unknown');
     const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
     const safeAmenities = p.amenities && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
     const safeId = esc(p.id || '');
+
+    // Rig-friendly info
+    const rigFriendly = p.rig_friendly && p.rig_friendly.length ? p.rig_friendly : [];
+    const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
 
     return `
       <div style="min-width:200px;">
@@ -210,7 +222,8 @@
           <div><strong>Cost:</strong> ${costText}</div>
           <div><strong>Type:</strong> ${safeType}</div>
           ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
-          <div><strong>Rating:</strong> ${rating}</div>
+          ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
+          <div><strong>Rating:</strong> ${ratingText}</div>
         </div>
         ${safeAmenities ? `
           <div style="font-size:11px;color:#888;margin-bottom:8px;">
