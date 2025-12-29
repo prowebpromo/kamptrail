@@ -2,6 +2,41 @@
 
 This directory contains scripts to fetch real campsite data from various sources and convert them to KampTrail's GeoJSON format.
 
+---
+
+## 🚀 **RECOMMENDED: Browser Automation (New!)**
+
+**→ [See detailed documentation](README_BROWSER_AUTOMATION.md)**
+
+The **new browser automation scripts** provide the best user experience:
+
+✅ **Works around proxy restrictions** - No API key issues
+✅ **Multiple data sources** - Recreation.gov + Campendium reviews
+✅ **Intelligent merging** - Deduplicates and combines data
+✅ **One command** - Fully automated data fetching
+
+**Quick start:**
+```bash
+# Install dependencies
+npm install
+
+# Fetch data for California
+./scripts/fetch_all_campsite_data.sh CA
+
+# Or fetch multiple states
+./scripts/fetch_all_campsite_data.sh "CA CO UT AZ OR WA"
+```
+
+**What you get:**
+- Real campground names (not "California Campground 5")
+- User ratings and review counts from Campendium
+- Comprehensive amenity data
+- GPS coordinates and facility details
+
+---
+
+## Alternative: Recreation.gov API (Original Method)
+
 ## Recreation.gov Data Fetcher
 
 The `fetch_recreation_gov_data.py` script fetches campground data from the official Recreation.gov RIDB (Recreation Information Database) API.
