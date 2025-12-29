@@ -2,6 +2,65 @@
 
 This directory contains scripts to fetch real campsite data from various sources and convert them to KampTrail's GeoJSON format.
 
+## Campflare Data Fetcher (Recommended)
+
+The `fetch_campflare_data.py` script fetches campground data from the Campflare API - a comprehensive database of campgrounds with availability tracking.
+
+### Features
+
+- ✅ **Real campground names** from public and private campgrounds
+- ✅ **Comprehensive coverage** (more sites than Recreation.gov alone)
+- ✅ **Accurate GPS coordinates**
+- ✅ **Facility details** (amenities, cost, type)
+- ✅ **Free API** for individuals and non-profits
+- ✅ **Simple authentication** (just one header)
+
+### Getting Started
+
+#### 1. Get Your Free API Key
+
+1. Visit https://campflare.com/api
+2. Sign up for a free developer account
+3. Copy your API key from the dashboard
+
+#### 2. Install Dependencies
+
+```bash
+pip3 install requests
+```
+
+#### 3. Fetch Data
+
+**Test connection:**
+```bash
+python3 scripts/fetch_campflare_data.py --api-key YOUR_API_KEY --state CA
+```
+
+**Fetch multiple states:**
+```bash
+for state in CA CO UT AZ OR WA MT WY; do
+  python3 scripts/fetch_campflare_data.py --api-key YOUR_API_KEY --state $state
+  sleep 2
+done
+```
+
+### Options
+
+```
+--api-key YOUR_KEY    Campflare API key (required)
+--state CA            Specific state code (optional, fetches all if omitted)
+--output-dir PATH     Output directory (default: data/campsites)
+```
+
+### Why Campflare?
+
+- **Broader Coverage**: Includes federal, state, and private campgrounds
+- **Simpler API**: Easier to use than Recreation.gov's RIDB
+- **Free Forever**: Free for individuals, non-profits, and small businesses
+- **Active Development**: API being actively expanded
+
+---
+
 ## Recreation.gov Data Fetcher
 
 The `fetch_recreation_gov_data.py` script fetches campground data from the official Recreation.gov RIDB (Recreation Information Database) API.
