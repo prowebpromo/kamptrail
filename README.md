@@ -7,7 +7,7 @@ KampTrail is a minimalist Progressive Web App (PWA) for discovering camping loca
 ## 🚀 Features
 
 - 🌍 Interactive Leaflet map with OpenStreetMap tiles
-- 📍 Preloaded dummy campsite markers
+- 📍 Campsite markers (includes sample data - see below to add real data)
 - 🗺️ Public lands overlay (national parks, forests, BLM land)
 - 📡 Cell tower locations (OpenCelliD integration)
 - 🚰 POI markers (dump stations, water, propane)
@@ -67,5 +67,36 @@ To enable the cell tower overlay:
    - Limited to 500 towers per view to respect API limits
 
 **Note:** OpenCelliD has a 5,000 requests/day limit for free accounts. The app caches results to minimize API calls.
+
+### Fetch Real Campsite Data
+
+The app includes sample/placeholder campsite data. To populate it with **real campground names and details**:
+
+1. **Get a free Recreation.gov API key:**
+   - Visit https://ridb.recreation.gov/docs
+   - Sign up for a free account
+   - Enable developer access to get your API key
+
+2. **Fetch data for your desired states:**
+   ```bash
+   # Install dependencies
+   pip3 install requests
+
+   # Fetch California campgrounds
+   python3 scripts/fetch_recreation_gov_data.py --api-key YOUR_API_KEY --state CA --limit 100
+
+   # Or fetch multiple states
+   for state in CA CO UT AZ OR WA; do
+     python3 scripts/fetch_recreation_gov_data.py --api-key YOUR_API_KEY --state $state --limit 100
+     sleep 5
+   done
+   ```
+
+3. **Refresh the app** to see real campground names like:
+   - "Yosemite Valley Campground" instead of "California Campground 5"
+   - "Joshua Tree Jumbo Rocks" instead of "California Established 12"
+   - Real amenities, costs, and facility details
+
+📚 **See [scripts/README_DATA_FETCHING.md](scripts/README_DATA_FETCHING.md) for complete instructions**
 
 ---
