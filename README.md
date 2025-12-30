@@ -70,7 +70,33 @@ To enable the cell tower overlay:
 
 ### Fetch Real Campsite Data
 
-The app includes sample/placeholder campsite data. To populate it with **real campground names and details**:
+The app includes sample/placeholder campsite data. To populate it with **real campground names, ratings, and GPS coordinates**:
+
+#### 🤖 **RECOMMENDED: Fully Automated (Zero Effort!)**
+
+**Just click a button** - no installation, no command line, runs in GitHub's cloud:
+
+1. **Enable GitHub Actions** (one-time, 30 seconds):
+   - Go to **Settings** → **Actions** → **General**
+   - Enable **"Read and write permissions"**
+   - Save
+
+2. **Click to fetch data** (5-10 minutes):
+   - Go to **Actions** tab → **"🎯 Quick Fetch (Single State)"**
+   - Click **"Run workflow"** → Select state (e.g., California)
+   - Wait for green checkmark ✅
+   - Data automatically committed!
+
+3. **Done!** Real campsite data with zero technical skills required.
+
+📖 **[Full Guide: Automated Fetching →](docs/AUTOMATED_FETCHING.md)**
+
+---
+
+#### 🛠️ Alternative Methods (For Technical Users):
+
+<details>
+<summary><b>Manual fetch with Recreation.gov API</b></summary>
 
 1. **Get a free Recreation.gov API key:**
    - Visit https://ridb.recreation.gov/docs
@@ -97,6 +123,42 @@ The app includes sample/placeholder campsite data. To populate it with **real ca
    - "Joshua Tree Jumbo Rocks" instead of "California Established 12"
    - Real amenities, costs, and facility details
 
-📚 **See [scripts/README_DATA_FETCHING.md](scripts/README_DATA_FETCHING.md) for complete instructions**
+</details>
+
+<details>
+<summary><b>Browser automation (Playwright scripts)</b></summary>
+
+For users who want to run scripts locally with browser automation:
+
+```bash
+# Install dependencies
+npm install
+npx playwright install chromium
+
+# Fetch data for California
+./scripts/fetch_all_campsite_data.sh CA
+
+# Or multiple states
+./scripts/fetch_all_campsite_data.sh "CA CO UT AZ OR WA"
+```
+
+📚 **[Full Guide: Browser Automation →](scripts/README_BROWSER_AUTOMATION.md)**
+
+</details>
+
+<details>
+<summary><b>No-code option (Axiom.ai)</b></summary>
+
+For visual, no-code scraping:
+
+1. Install [Axiom.ai](https://axiom.ai) browser extension
+2. Build visual scraper (click, don't code)
+3. Download CSV data
+4. Use web converter: `axiom-converter.html`
+5. Upload to repository
+
+📚 **[Full Guide: Axiom.ai →](scripts/README_AXIOM.md)**
+
+</details>
 
 ---
