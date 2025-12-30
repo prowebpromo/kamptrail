@@ -1,0 +1,233 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.6147,
+          44.0507
+        ]
+      },
+      "properties": {
+        "id": "ME-001",
+        "name": "Maine Backcountry 1",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "3.7",
+        "reviews_count": 51,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.6611,
+          46.278
+        ]
+      },
+      "properties": {
+        "id": "ME-002",
+        "name": "Maine Campground 2",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.1",
+        "reviews_count": 39,
+        "amenities": [
+          "water",
+          "picnic_tables",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.0145,
+          44.4617
+        ]
+      },
+      "properties": {
+        "id": "ME-003",
+        "name": "Maine Backcountry 3",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.5",
+        "reviews_count": 35,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.0992,
+          46.9691
+        ]
+      },
+      "properties": {
+        "id": "ME-004",
+        "name": "Maine Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.4518,
+          46.3469
+        ]
+      },
+      "properties": {
+        "id": "ME-005",
+        "name": "Maine Campground 5",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.0",
+        "reviews_count": 29,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.4534,
+          44.8087
+        ]
+      },
+      "properties": {
+        "id": "ME-006",
+        "name": "Maine Dispersed 6",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.9948,
+          46.683
+        ]
+      },
+      "properties": {
+        "id": "ME-007",
+        "name": "Maine Campground 7",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.0",
+        "reviews_count": 16,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.4117,
+          45.8318
+        ]
+      },
+      "properties": {
+        "id": "ME-008",
+        "name": "Maine Dispersed 8",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "ME",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    }
+  ]
+}

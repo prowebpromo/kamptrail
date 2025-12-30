@@ -1,0 +1,122 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.3407,
+          40.1735
+        ]
+      },
+      "properties": {
+        "id": "IN-001",
+        "name": "Indiana Campground 1",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.6",
+        "reviews_count": 48,
+        "amenities": [
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "IN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.4484,
+          40.5327
+        ]
+      },
+      "properties": {
+        "id": "IN-002",
+        "name": "Indiana Campground 2",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.6",
+        "reviews_count": 13,
+        "amenities": [
+          "water",
+          "toilets",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "IN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.1103,
+          40.2452
+        ]
+      },
+      "properties": {
+        "id": "IN-003",
+        "name": "Indiana Campground 3",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.3",
+        "reviews_count": 52,
+        "amenities": [
+          "picnic_tables",
+          "fire_rings",
+          "trash",
+          "showers",
+          "electricity"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "IN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.1458,
+          38.7145
+        ]
+      },
+      "properties": {
+        "id": "IN-004",
+        "name": "Indiana Campground 4",
+        "type": "established",
+        "cost": 30,
+        "rating": "3.8",
+        "reviews_count": 41,
+        "amenities": [
+          "water",
+          "trash",
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "IN",
+        "source": "generated"
+      }
+    }
+  ]
+}

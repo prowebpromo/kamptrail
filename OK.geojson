@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.5646,
+          36.4049
+        ]
+      },
+      "properties": {
+        "id": "OK-001",
+        "name": "Oklahoma Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.2",
+        "reviews_count": 42,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "toilets",
+          "picnic_tables",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OK",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.4471,
+          36.6376
+        ]
+      },
+      "properties": {
+        "id": "OK-002",
+        "name": "Oklahoma Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "OK",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.0516,
+          36.155
+        ]
+      },
+      "properties": {
+        "id": "OK-003",
+        "name": "Oklahoma Backcountry 3",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.7",
+        "reviews_count": 10,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OK",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.1477,
+          35.4711
+        ]
+      },
+      "properties": {
+        "id": "OK-004",
+        "name": "Oklahoma Campground 4",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.7",
+        "reviews_count": 27,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "OK",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.2629,
+          36.8074
+        ]
+      },
+      "properties": {
+        "id": "OK-005",
+        "name": "Oklahoma Campground 5",
+        "type": "established",
+        "cost": 25,
+        "rating": "3.7",
+        "reviews_count": 51,
+        "amenities": [
+          "fire_rings",
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "OK",
+        "source": "generated"
+      }
+    }
+  ]
+}

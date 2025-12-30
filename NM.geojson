@@ -1,0 +1,277 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.8219,
+          33.0789
+        ]
+      },
+      "properties": {
+        "id": "NM-001",
+        "name": "New Mexico Backcountry 1",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.3",
+        "reviews_count": 29,
+        "amenities": [
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6387,
+          35.6698
+        ]
+      },
+      "properties": {
+        "id": "NM-002",
+        "name": "New Mexico Campground 2",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.1",
+        "reviews_count": 32,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.2146,
+          34.1992
+        ]
+      },
+      "properties": {
+        "id": "NM-003",
+        "name": "New Mexico Campground 3",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.2",
+        "reviews_count": 37,
+        "amenities": [
+          "trash",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.972,
+          35.2266
+        ]
+      },
+      "properties": {
+        "id": "NM-004",
+        "name": "New Mexico Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0058,
+          34.6597
+        ]
+      },
+      "properties": {
+        "id": "NM-005",
+        "name": "New Mexico Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "electricity"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.3188,
+          34.9149
+        ]
+      },
+      "properties": {
+        "id": "NM-006",
+        "name": "New Mexico Dispersed 6",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.1532,
+          34.0535
+        ]
+      },
+      "properties": {
+        "id": "NM-007",
+        "name": "New Mexico Campground 7",
+        "type": "established",
+        "cost": 30,
+        "rating": "3.6",
+        "reviews_count": 16,
+        "amenities": [
+          "toilets",
+          "trash",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.1507,
+          33.2238
+        ]
+      },
+      "properties": {
+        "id": "NM-008",
+        "name": "New Mexico Campground 8",
+        "type": "established",
+        "cost": 15,
+        "rating": "4.5",
+        "reviews_count": 37,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.462,
+          33.9423
+        ]
+      },
+      "properties": {
+        "id": "NM-009",
+        "name": "New Mexico Dispersed 9",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.1298,
+          35.7032
+        ]
+      },
+      "properties": {
+        "id": "NM-010",
+        "name": "New Mexico Campground 10",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.9",
+        "reviews_count": 53,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NM",
+        "source": "generated"
+      }
+    }
+  ]
+}

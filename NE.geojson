@@ -1,0 +1,107 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.284,
+          41.1493
+        ]
+      },
+      "properties": {
+        "id": "NE-001",
+        "name": "Nebraska Dispersed 1",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3754,
+          42.9125
+        ]
+      },
+      "properties": {
+        "id": "NE-002",
+        "name": "Nebraska Campground 2",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.7",
+        "reviews_count": 25,
+        "amenities": [
+          "picnic_tables",
+          "toilets",
+          "fire_rings",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.7677,
+          40.5573
+        ]
+      },
+      "properties": {
+        "id": "NE-003",
+        "name": "Nebraska Backcountry 3",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "3.9",
+        "reviews_count": 13,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.9932,
+          41.5187
+        ]
+      },
+      "properties": {
+        "id": "NE-004",
+        "name": "Nebraska Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "generated"
+      }
+    }
+  ]
+}
