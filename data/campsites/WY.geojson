@@ -6,22 +6,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.2175,
-          43.7289
+          -109.53995,
+          44.94074
         ]
       },
       "properties": {
         "id": "WY-001",
-        "name": "Wyoming Backcountry 1",
-        "type": "backcountry",
+        "name": "Island Lake Campground",
+        "type": "established",
         "cost": 0,
-        "rating": "4.4",
-        "reviews_count": 48,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "240400",
+        "description": "<p>This beautiful high mountain lake campground has\u00a021 newly remodeled sites.\u00a0There is always plenty to do at this campground; hiking, fishing, wildlife viewing, and beautiful wildflowers galore.</p><"
       }
     },
     {
@@ -29,22 +36,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.9055,
-          42.0906
+          -106.682818062,
+          40.105560832
         ]
       },
       "properties": {
         "id": "WY-002",
-        "name": "Wyoming Dispersed 2",
-        "type": "dispersed",
+        "name": "Lynx Pass Campground",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "dirt",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "252205",
+        "description": "<p><strong>DESCRIPTION:</strong>\u00a0Located in the Gore Pass area on the\u00a0Routt National Forest. Lynx Pass campground is a small campground hosting 11 sites and\u00a0can be found\u00a0on Forest Service Road 270\u00a0bet"
       }
     },
     {
@@ -52,22 +71,24 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.0445,
-          42.5218
+          -106.723,
+          44.342
         ]
       },
       "properties": {
         "id": "WY-003",
-        "name": "Wyoming Dispersed 3",
-        "type": "dispersed",
+        "name": "Buffalo, WY",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "243098",
+        "description": "<p>Powder River Ranger District</p>"
       }
     },
     {
@@ -75,22 +96,86 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -108.0872,
-          42.7743
+          -111.07291,
+          43.17134
         ]
       },
       "properties": {
         "id": "WY-004",
-        "name": "Wyoming Dispersed 4",
-        "type": "dispersed",
+        "name": "Blowout Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "238999",
+        "description": "<p>Blowout Campground is located on Highwy 26, approxiametly 58 miles southeast of Idaho Falls, ID.\u00a0\u00a0Aspens and tall lodgepole pines partially shade the campground.\u00a0 Blowout Boat Ramp is located down "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.79685,
+          41.18348
+        ]
+      },
+      "properties": {
+        "id": "WY-005",
+        "name": "Encampment River Campground",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "202228",
+        "description": "The Encampment River Campground is a great location near the Encampment River for fishing, floating and hiking the Encampment River Trail. <br><br> The campground has 8 campsites, vault toilet, day us"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7612,
+          43.4844
+        ]
+      },
+      "properties": {
+        "id": "WY-006",
+        "name": "Jackson Ranger District",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "264323",
+        "description": "<p>The Jackson Ranger District offers an incredible abundance of recreation areas and activities to choose from for all visitors.\u00a0 From internationally recognized\u00a0skiing to world-famous fishing to wil"
       }
     },
     {
@@ -98,27 +183,33 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.749,
-          41.8168
+          -107.4775,
+          44.7777778
         ]
       },
       "properties": {
-        "id": "WY-005",
-        "name": "Wyoming Campground 5",
+        "id": "WY-007",
+        "name": "PINE ISLAND GROUP AREA",
         "type": "established",
-        "cost": 0,
-        "rating": "4.0",
-        "reviews_count": 35,
+        "cost": 65,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets",
           "water",
+          "fire_rings",
           "picnic_tables",
           "trash"
         ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "233838",
+        "description": "<h2>Overview</h2>\nPine Island Group Area is located along the Bighorn Scenic Byway (U.S. Highway 14) near the Burgess Junction at an elevation of 8,400 feet. The Bighorn National Forest offers a wide "
       }
     },
     {
@@ -126,14 +217,158 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -108.0059,
-          43.7525
+          -110.8163889,
+          42.6383333
         ]
       },
       "properties": {
-        "id": "WY-006",
-        "name": "Wyoming Dispersed 6",
-        "type": "dispersed",
+        "id": "WY-008",
+        "name": "COTTONWOOD GROUP PICNIC SITE",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "234518",
+        "description": "<h2>Overview</h2>\nCottonwood Group Picnic Site is located next to scenic Cottonwood Lake on the Salt River Mountains, surrounded by the forests of western Wyoming.<h2>Recreation</h2>\nThe lake offers g"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7919444,
+          42.9463889
+        ]
+      },
+      "properties": {
+        "id": "WY-009",
+        "name": "FREMONT LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231912",
+        "description": "<h2>Overview</h2>\nFremont Lake Campground is located on the east shore of pristine Fremont Lake at an elevation of 7,400 feet, just 7 miles northeast of Pinedale, Wyoming, the nearest full-service com"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.05435,
+          41.86053
+        ]
+      },
+      "properties": {
+        "id": "WY-010",
+        "name": "Dugway Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "202231",
+        "description": "Besides the sound of the river meandering north, this is a very peaceful campground. There is flyfishing for trout here. There is also a take out for the North Platte River, for canoers or kayakers. A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.54,
+          41.792
+        ]
+      },
+      "properties": {
+        "id": "WY-011",
+        "name": "Kemmerer Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264324",
+        "description": "<p><strong>WINTER CONDITIONS:</strong> <a href=\"http://www.fs.usda.gov/alerts/btnf/alerts-notices\" rel=\"nofollow\">Winter Wildlife Closure dates and Winter Closure Area Maps\u00a0</a></p><p>Kemmerer Ranger "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.933,
+          42.725
+        ]
+      },
+      "properties": {
+        "id": "WY-012",
+        "name": "Greys River Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264322",
+        "description": "<ul><li><a href=\"http://www.fs.usda.gov/alerts/btnf/alerts-notices\" rel=\"nofollow\"><u>Greys River Ranger District\u00a0 Current Conditions page</u></a></li><li>Alpine Area Trails Project funded by Wyoming "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.829319,
+          40.911892
+        ]
+      },
+      "properties": {
+        "id": "WY-013",
+        "name": "East Fork Bear River Campground",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
@@ -141,9 +376,11 @@
           "picnic_tables"
         ],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "247367",
+        "description": "<p>This campground has picnic tables. Local popular recreation activities include hiking, fishing, backpacking, and mountain biking.</p>"
       }
     },
     {
@@ -151,21 +388,2157 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -108.7594,
-          43.7828
+          -107.1400947,
+          43.5772786
         ]
       },
       "properties": {
-        "id": "WY-007",
-        "name": "Wyoming Campground 7",
+        "id": "WY-014",
+        "name": "Middle Fork of the Powder River Campground",
         "type": "established",
-        "cost": 20,
-        "rating": "3.9",
-        "reviews_count": 44,
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets",
           "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14723",
+        "description": "Astride a blue-ribbon trout stream, this remote and picturesque campground features five camping sites with fire rings, restroom and drinking water. Use of the area is free with a 14-day limit on camp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.1003,
+          43.1849
+        ]
+      },
+      "properties": {
+        "id": "WY-015",
+        "name": "McCoy Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "239049",
+        "description": "<p>The McCoy Creek Campground is located on the\u00a0south end of the Palisades Reservoir. From Alpine, WY, take\u00a0Highway\u00a089 south to Salt River - McCoy\u00a0Road #087\u00a0 go west approximately 6 miles the campgrou"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.48568,
+          42.2558
+        ]
+      },
+      "properties": {
+        "id": "WY-016",
+        "name": "Laramie Peak Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252123",
+        "description": "<p>The Laramie Peak area is located in east central Wyoming, stretching from southeast of Casper to west of Wheatland.\u00a0 This portion of the Medicine Bow National Forest is part of the Laramie Range an"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.654081,
+          41.662097
+        ]
+      },
+      "properties": {
+        "id": "WY-017",
+        "name": "Spring Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "246945",
+        "description": "<p>This campground is located up Left Hand Fork of Blacksmith Fork Canyon and there is no water available.</p><p>\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.8991667,
+          41.1708333
+        ]
+      },
+      "properties": {
+        "id": "WY-018",
+        "name": "BOTTLE CREEK GROUP PICNIC SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
           "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "234198",
+        "description": "<h2>Overview</h2>\n<p><strong>Bottle Creek Group Picnic Site offers a large area for groups of up to 75 people to gather and enjoy the outdoors allow for up to 10 cars any more are subject to a $5 day "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.6994444,
+          42.5194444
+        ]
+      },
+      "properties": {
+        "id": "WY-019",
+        "name": "LA BARGE GUARD STATION",
+        "type": "established",
+        "cost": 60,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "234582",
+        "description": "<h2>Overview</h2>\nHistoric La Barge Guard Station is located 87 miles north of Kemmerer, Wyoming in the Hams Fork Area of Bridger-Teton National Forest. The cabin is situated in beautiful La Barge Mea"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.654881,
+          41.773639
+        ]
+      },
+      "properties": {
+        "id": "WY-020",
+        "name": "Wood Camp Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247012",
+        "description": "<p>This campground is located off Logan Canyon Scenic Byway.</p><p>\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.927,
+          44.804
+        ]
+      },
+      "properties": {
+        "id": "WY-021",
+        "name": "Sheridan, WY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "243117",
+        "description": "<p>Tongue Ranger District\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.03378983,
+          40.51664181
+        ]
+      },
+      "properties": {
+        "id": "WY-022",
+        "name": "Aspen Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "235696",
+        "description": "<p>Aspen Campground is a 7-unit facility located near Gould, CO.\u00a0 It is approximately 22 miles southeast of Walden and is adjacent to the South Fork of the Michigan River.\u00a0 The elevation here is 9,200"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8555871,
+          42.60643138
+        ]
+      },
+      "properties": {
+        "id": "WY-023",
+        "name": "New Fork Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14721",
+        "description": "The New Fork Campground at 6,800 feet is located adjacent to the beautiful New Fork River. This site provides a put in-takeout point for river float trips. There are 2 camping sites, a vault toilet, 2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.9491667,
+          44.3016667
+        ]
+      },
+      "properties": {
+        "id": "WY-024",
+        "name": "MIDDLE FORK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231832",
+        "description": "<h2>Overview</h2>\nMiddle Fork Campground is located 14 miles west of Buffalo, Wyoming, adjacent to the Cloud Peak Skyway (scenic byway), near the Cloud Peak Wilderness Area. The Bighorn National Fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.794683,
+          41.182508
+        ]
+      },
+      "properties": {
+        "id": "WY-025",
+        "name": "Encampment River Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14705",
+        "description": "The Encampment River Campground is a great location near the Encampment River for fishing, floating and hiking the Encampment River Trail. The campground has 8 campsites, vault toilet, day use parking"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.549,
+          43.302
+        ]
+      },
+      "properties": {
+        "id": "WY-026",
+        "name": "Hoback River Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "266213",
+        "description": "<p>Within the Hoback River Area lies an abundance of recreational opportunity and amazing scenery waiting for you to enjoy.\u00a0 Driving south of Jackson 15 miles and heading east on Highway 191, you will"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.685475,
+          42.57946
+        ]
+      },
+      "properties": {
+        "id": "WY-027",
+        "name": "Pete's Draw Campground",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "254056",
+        "description": "Pete's Draw has both a day-use and overnight camping area to enjoy hiking, wildlife viewing, picnicking, fishing, boating and camping. <br><br> There's a parking area, vault toilet, seven overnight ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6683333,
+          44.4622222
+        ]
+      },
+      "properties": {
+        "id": "WY-028",
+        "name": "CLEARWATER CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "233292",
+        "description": "<h2>Overview</h2>\nClearwater Campground is located along the Buffalo Bill Scenic Byway, about 32 miles west of Cody, in northwestern Wyoming. It is 20 miles east of the east entrance to Yellowstone Na"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3528,
+          43.8242
+        ]
+      },
+      "properties": {
+        "id": "WY-029",
+        "name": "Blackrock Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "270850",
+        "description": "<p>The Blackrock Ranger District is comprised mostly of the Teton Wilderness. It borders Grand Teton and Yellowstone National Parks. It is home to the headwaters of the Yellowstone River and the Conti"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6236111,
+          44.4661111
+        ]
+      },
+      "properties": {
+        "id": "WY-030",
+        "name": "WAPITI CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "234606",
+        "description": "<h2>Overview</h2>\nWapiti Campground is located is located along the Buffalo Bill Scenic Byway about 30 miles west of Cody, in northwestern Wyoming. It is 22 miles east of the east entrance to Yellowst"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.988,
+          44.073
+        ]
+      },
+      "properties": {
+        "id": "WY-031",
+        "name": "DOYLE CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 9,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "250028",
+        "description": "<h2>Overview</h2>\nDoyle Creek Campground is located 30 miles west of Buffalo, Wyoming, on the east side of scenic Cloud Peak Skyway, near the Cloud Peak Wilderness area. Located in the Bighorn Nationa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.612,
+          43.775
+        ]
+      },
+      "properties": {
+        "id": "WY-032",
+        "name": "Southern Hills - Custer",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253841",
+        "description": "<p>The Hell Canyon Ranger District is located in the southern third of the Black Hills National Forest, with\u00a0offices in both Newcastle, WY and Custer, SD.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.2372222,
+          44.2052778
+        ]
+      },
+      "properties": {
+        "id": "WY-033",
+        "name": "ISLAND PARK CAMPGROUND",
+        "type": "established",
+        "cost": 9,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "250042",
+        "description": "<h2>Overview</h2>\nIsland Park Campground is located in pine and spruce forest on West Tensleep Creek near West Tensleep Lake and the Cloud Peak Wilderness. Located 21 miles northeast of Ten Sleep, Wyo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.0618875,
+          42.56177151
+        ]
+      },
+      "properties": {
+        "id": "WY-034",
+        "name": "Sweetwater Guard Station Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "272295",
+        "description": "<p>The Sweetwater Guard Station Campground has 3 walk-in campsites and 8 pull-in sites featuring picnic tables and fire rings at each. The Campground is nestled at the base of the Wind River Mountains"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9188889,
+          43.7566667
+        ]
+      },
+      "properties": {
+        "id": "WY-035",
+        "name": "TETON CANYON",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231928",
+        "description": "<h2>Overview</h2>\nTeton Canyon Campground is located in beautiful Teton Canyon at an elevation of approximately 6,500 feet. Driggs, Idaho is just 11 miles away. Hiking, backpacking and horseback ridin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.654881,
+          41.773639
+        ]
+      },
+      "properties": {
+        "id": "WY-036",
+        "name": "Preston Valley Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247316",
+        "description": "<p>This campground has firewood available to purchase.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.853735,
+          40.830388
+        ]
+      },
+      "properties": {
+        "id": "WY-037",
+        "name": "Hayden Fork Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247042",
+        "description": "<p>this campground is equipped with picnic tables. Recreation activities within 5 miles from the campground include hiking, fishing, backpacking, and mountain biking.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.2053835,
+          43.57278356
+        ]
+      },
+      "properties": {
+        "id": "WY-038",
+        "name": "Pine Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "239072",
+        "description": "<p>The Pine Creek Campground has 10 single units and restrooms</p><p>No Host; No Services; Dispersed Camping allowed in off season</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.562713,
+          42.818212
+        ]
+      },
+      "properties": {
+        "id": "WY-039",
+        "name": "Large Vehicle Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "10007101",
+        "description": "The Large Vehicle Campground located within Scab Creek Recreation Area provides 7 campsites for those wishing to camp with packs stock, trailers, large RV's or campers. There are corrals provided in t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.9427778,
+          44.2830556
+        ]
+      },
+      "properties": {
+        "id": "WY-040",
+        "name": "TIE HACK",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "233871",
+        "description": "<h2>Overview</h2>\nTie Hack Campground is located close to Tie Hack Reservoir, just 15 miles west of Buffalo, Wyoming on the east side of scenic Cloud Peak Skyway, near the Cloud Peak Wilderness Area. "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.851762,
+          42.241381
+        ]
+      },
+      "properties": {
+        "id": "WY-041",
+        "name": "Oregon Buttes WSA",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "273318",
+        "description": "The Oregon Buttes WSA encompasses 5,700 acres of BLM-administered land with no private or state inholdings. The buttes are a prominent landmark, rising out of the northwestern portion of the Red Deser"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.118261,
+          43.01763
+        ]
+      },
+      "properties": {
+        "id": "WY-042",
+        "name": "Warren Bridge Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14720",
+        "description": "The Warren Bridge Campground is a fee campground located off of US 191 adjacent to the famous Green River in Sublette County. The campground at 7,600 feet in elevation is surrounded by rolling sagebru"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8565,
+          42.8672
+        ]
+      },
+      "properties": {
+        "id": "WY-043",
+        "name": "Pinedale Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264325",
+        "description": "<ul><li>Bridger Wilderness Area Information</li><li>Pinedale Ranger District Outfitter & Guides</li><li><a href=\"https://fs.usda.gov/wps/PA_WIDContribution/simplegetfile?dDocName=STELPRD3843809&url=/I"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.965556,
+          43.083056
+        ]
+      },
+      "properties": {
+        "id": "WY-044",
+        "name": "New Fork Lake Group Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231913",
+        "description": "<h2>Overview</h2>\nLocated just 24 miles north of Pinedale, New Fork Group Campground includes large picnic tables, BBQ stands, a fire ring, and a double vault toilet for your large party needs.  Just "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.4686111,
+          44.7688889
+        ]
+      },
+      "properties": {
+        "id": "WY-045",
+        "name": "PRUNE CREEK",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "232346",
+        "description": "<h2>Overview</h2>\nPrune Creek Campground is located along the Bighorn Scenic Byway (U.S. Highway 14) near the Burgess Junction at an elevation of 7,700 feet. The Bighorn National Forest offers a wide "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.2161111,
+          44.1775
+        ]
+      },
+      "properties": {
+        "id": "WY-046",
+        "name": "LAKEVIEW BIGHORN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "232129",
+        "description": "<h2>Overview</h2>\nLakeview Campground is located on Meadowlark Lake about 50 miles east of Worland, Wyoming on the west side of scenic Cloud Peak Skyway, near the Cloud Peak Wilderness Area. The Bigho"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9511111,
+          44.4961111
+        ]
+      },
+      "properties": {
+        "id": "WY-047",
+        "name": "THREEMILE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "233293",
+        "description": "<h2>Overview</h2>\nThreemile Campground is located just three miles from the east entrance of Yellowstone National Park, and 50 miles from the full service gateway community of Cody, in northwestern Wy"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.52,
+          41.34
+        ]
+      },
+      "properties": {
+        "id": "WY-048",
+        "name": "BRUSH CREEK WORK CENTER BARRACK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "233948",
+        "description": "<h2>Overview</h2>\nThe cabin offers an ideal winter playground, with a snowy landscape perfect for recreation. Snowmobiling, skiing and snowshoeing are popular activities. The Brush Creek Cross-Country"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.9452778,
+          44.28
+        ]
+      },
+      "properties": {
+        "id": "WY-049",
+        "name": "SOUTH FORK (WYOMING)",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231833",
+        "description": "<h2>Overview</h2>\nSouth Fork Campground is located 15 miles west of Buffalo, Wyoming on the east side of scenic Cloud Peak Skyway, near the Cloud Peak Wilderness Area.   \nThe surrounding Bighorn Natio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.25496307,
+          44.00598155
+        ]
+      },
+      "properties": {
+        "id": "WY-050",
+        "name": "Central Hills - Rapid City",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253867",
+        "description": "<p>The Mystic Ranger District is located in the central portion of the Black Hills National Forest and has an office south of\u00a0Rapid City, SD.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.538415,
+          40.884468
+        ]
+      },
+      "properties": {
+        "id": "WY-051",
+        "name": "East Fork Blacks Fork Trailhead",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247369",
+        "description": "<p>This timbered trailhead is popular for local fishing, stream and hiking. It provides wilderness access.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4865593,
+          44.29279814
+        ]
+      },
+      "properties": {
+        "id": "WY-052",
+        "name": "Bobcat-Houlihan Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14707",
+        "description": "The Bobcat-Houlihan Campground  is at the trailhead of the Bobcat-Houlihan Trail. It features interpretive kiosks, horse trailer parking, horse hitching rails, food storage boxes and toilet facilities"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.227947,
+          43.461523
+        ]
+      },
+      "properties": {
+        "id": "WY-053",
+        "name": "Grave Springs Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "274353",
+        "description": "Visitors to the Grave Springs Campground can camp, hunt, picnic, and it offers excellent small stream fishing and wildlife viewing. The site has twelve camping sites with RV parking and tent pads, two"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.858197,
+          43.312133
+        ]
+      },
+      "properties": {
+        "id": "WY-054",
+        "name": "Green River Lake Lodge",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264411",
+        "description": "<h2>Overview</h2>\n<p>The Green River Lakes Lodge is located 50 miles north of Pinedale, Wyoming.  The lodge is available as a rental for day use events such as weddings, family reunions, or meetings f"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.141634,
+          42.56183
+        ]
+      },
+      "properties": {
+        "id": "WY-055",
+        "name": "Blucher Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "272281",
+        "description": "The Blucher Creek Campground is 74 miles from Rock Springs and 70 miles from Lander. It's an ADA accessible site and features a safety structure, accessible picnic tables, fire rings and an accessible"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9513889,
+          43.7575
+        ]
+      },
+      "properties": {
+        "id": "WY-056",
+        "name": "REUNION FLAT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231927",
+        "description": "<h2>Overview</h2>\nReunion Flat Campground is located in beautiful Teton Canyon in the Caribou-Targhee National Forest. Hiking, backpacking and horseback riding are popular activities in this scenic re"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8169444,
+          42.6411111
+        ]
+      },
+      "properties": {
+        "id": "WY-057",
+        "name": "COTTONWOOD GROUP CAMPSITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "234519",
+        "description": "<h2>Overview</h2>\nCottonwood Group Campsite is located near the scenic Cottonwood Lake below Salt River Pass in the forest of western Wyoming.<h2>Recreation</h2>\nThe lake offers great canoeing and boa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0561,
+          44.4752
+        ]
+      },
+      "properties": {
+        "id": "WY-058",
+        "name": "Greybull, WY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "243148",
+        "description": "<p>Medicine Wheel Ranger District</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.25858,
+          42.680857
+        ]
+      },
+      "properties": {
+        "id": "WY-059",
+        "name": "Rim Campground",
+        "type": "established",
+        "cost": 7,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "274354",
+        "description": "Nestled under the pine trees of Muddy Mountain and overlooking the valley below, Rim Campground provides 8 camping sites that include level tent pads and fire rings, with a few pull-through sites for "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.733631,
+          41.748231
+        ]
+      },
+      "properties": {
+        "id": "WY-060",
+        "name": "Bridger Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "10150488",
+        "description": "<p>This campground has firewood available to purchase.</p><p>\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.732795,
+          42.344438
+        ]
+      },
+      "properties": {
+        "id": "WY-061",
+        "name": "Green Mountain",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "254060",
+        "description": "Green Mountain is located in southcentral Wyoming about ten miles south of Jeffrey City and about 50 miles northwest of Rawlins (as the crow flies). It contains the <a href=\"https://www.blm.gov/visit/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.91171486,
+          40.15343435
+        ]
+      },
+      "properties": {
+        "id": "WY-062",
+        "name": "Yampa Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252213",
+        "description": "<p>The Yampa Ranger District is the southern-most district of the Medicine Bow-Routt National Forests &\u00a0Thunder Basin National Grassland administrative unit. The District manages\u00a0Routt National Forest"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.9736111,
+          44.3341667
+        ]
+      },
+      "properties": {
+        "id": "WY-063",
+        "name": "Hunter Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "232323",
+        "description": "<h2>Overview</h2>\nHunter Trailhead is a campground constructed with the equestrian camper in mind, but available for all users.  The campground is located in Johnson Country, Wyoming, just two miles o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4461444,
+          41.3497222
+        ]
+      },
+      "properties": {
+        "id": "WY-064",
+        "name": "FIREHOLE CANYON CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231904",
+        "description": "<h2>Overview</h2>\nFirehole Canyon Campground is located on the far northeastern shore of Flaming Gorge Reservoir within the Flaming Gorge Recreation Area on the Ashley National Forest. Rock Springs, W"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.97032,
+          44.80565
+        ]
+      },
+      "properties": {
+        "id": "WY-065",
+        "name": "Five Springs Falls Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "202216",
+        "description": "<p>Five Springs Falls Campground provides an excellent opportunity for camping, hiking, picnicking, and sightseeing. The elevation ranges from 6,520 feet at the campground to 7,240 feet at the forest "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.366206,
+          41.033706
+        ]
+      },
+      "properties": {
+        "id": "WY-066",
+        "name": "Deadhorse Trailhead",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247341",
+        "description": "<p>The trailhead has 4 campsite units</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.0454441,
+          41.98270675
+        ]
+      },
+      "properties": {
+        "id": "WY-067",
+        "name": "Slate Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14716",
+        "description": "The Slate Creek campground is just south of the shores of Fontenelle Reservoir, on the Green River, and just north of Seedskadee National Wildlife Refuge. The area is a mecca for birdwatching and fish"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.0,
+          43.16
+        ]
+      },
+      "properties": {
+        "id": "WY-068",
+        "name": "Greys River Corridor",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264390",
+        "description": "<p>The Greys River Corridor encompasses the area surrounding the Greys River itself and the Greys River Road, and offers numerous opportunities for fishing, kayaking, camping, hiking, OHV riding and h"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.0150756,
+          44.12922313
+        ]
+      },
+      "properties": {
+        "id": "WY-069",
+        "name": "Cave Falls Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "239007",
+        "description": "<p>This campgrond is situated on the banks of Fall River in Wyoming along the south border of Yellowstone National Park.\u00a0 Cave Falls Campground has 23 single site units and a terrific area for fishing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.0391667,
+          43.54
+        ]
+      },
+      "properties": {
+        "id": "WY-070",
+        "name": "TRAIL CREEK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "233844",
+        "description": "<h2>Overview</h2>\nTrail Creek Campground is located along Trail Creek on scenic Teton Pass, just 7 miles from Victor, Idaho at an elevation of 6,600 feet. Visitors enjoy fishing, exploring local trail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.1116667,
+          41.27
+        ]
+      },
+      "properties": {
+        "id": "WY-071",
+        "name": "JACK CREEK CREW QUARTERS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "233944",
+        "description": "<h2>Overview</h2>\n<p>The Jack Creek Crew Quarters is a large modern facility available for $225 per night from mid-June through late October. This two-story log facility has a fully equipped double ki"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.716005,
+          42.819213
+        ]
+      },
+      "properties": {
+        "id": "WY-072",
+        "name": "Stokes Crossing",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "261702",
+        "description": "<p>Stokes Crossing Campground is located along Boulder Creek within the Boulder Lake Special Recreation Management Area. The campground has two sites and has one vault toilet, two picnic tables, and t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8333333,
+          43.2044444
+        ]
+      },
+      "properties": {
+        "id": "WY-073",
+        "name": "STATION CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "232382",
+        "description": "<h2>Overview</h2>\nStation Creek Campground is located in beautiful Snake River Canyon, just 27 miles southwest of Jackson, in western Wyoming. It sits at an elevation of 5,800 feet. Visitors enjoy fis"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.35274896,
+          42.74035943
+        ]
+      },
+      "properties": {
+        "id": "WY-074",
+        "name": "Douglas Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252054",
+        "description": "<p>The Douglas Ranger District of the Medicine Bow-Routt National Forests & Thunder Basin National Grassland includes both the Thunder Basin National Grassland and the Laramie Peak Mountains, two very"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.76,
+          42.9364833
+        ]
+      },
+      "properties": {
+        "id": "WY-075",
+        "name": "HALF MOON LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "234785",
+        "description": "<h2>Overview</h2>\nHalf Moon Lake campground is situated just off the northeast shore of Half Moon Lake at an elevation of 7,600 feet in the Bridger-Teton National Forest, Wyoming.<h2>Recreation</h2>\nT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.5862491,
+          42.24194038
+        ]
+      },
+      "properties": {
+        "id": "WY-076",
+        "name": "Prior Flat Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14713",
+        "description": "The Prior Flat Campground has 15 campsites and a vault toilet on about 9 acres. It has one pull-through, picnic tables, fire rings/grills and parking spurs. Visitors will enjoy the aspen, limber pine,"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.92999,
+          42.69902
+        ]
+      },
+      "properties": {
+        "id": "WY-077",
+        "name": "Worthen Meadow Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "240434",
+        "description": "<p>Worthen Meadow Campground has 28 campsites on the shores of Worthen Meadow Resevoir.\u00a0Trailheads at the campground accesses the Popo Agie Wilderness. No trailers over 24 feet. Amenities include pota"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.615406,
+          40.702305
+        ]
+      },
+      "properties": {
+        "id": "WY-078",
+        "name": "Kaler Hollow Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "236577",
+        "description": "<p>There are 4 tent sites at the north end of the Taylor Mountain Plateau. The Old Carter Military Trail passes by the campground. Consult the forest map for details about specific hikes. OHV use is p"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.6675,
+          42.6775
+        ]
+      },
+      "properties": {
+        "id": "WY-079",
+        "name": "CAZIER CABIN",
+        "type": "established",
+        "cost": 50,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "234523",
+        "description": "<h2>Overview</h2>\n<p>Cazier Cabin is a historic Forest Service guard station built by the Civilian Conservation Corps in 1933. Located near the Greys River about 46 miles from Alpine, Wyoming, the cab"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6296145,
+          41.30853986
+        ]
+      },
+      "properties": {
+        "id": "WY-080",
+        "name": "Laramie Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252135",
+        "description": "<p>The Laramie Ranger District consists of about 400,000 acres in the Snowy Range and the Medicine Bow mountains in southeast Wyoming. Recreation opportunities abound. The Ranger District office is in"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.86075642,
+          44.50102949
+        ]
+      },
+      "properties": {
+        "id": "WY-081",
+        "name": "Northern Hills-Spearfish",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253870",
+        "description": "<p>The Northern Hills Ranger District covers\u00a0the northern portion of the Black Hills on the South Dakota side. Spearfish has nearby access to over 300 miles of snowmobile trails, groomed and ungroomed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.38752825,
+          44.40056349
+        ]
+      },
+      "properties": {
+        "id": "WY-082",
+        "name": "Medicine Lodge Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "243108",
+        "description": "<p>Medicine Lodge Lake Campground is located in a remote setting on the shores of Upper Medicine Lodge Lake. Nearby trailheads offer access to the Cloud Peak Wilderness.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.53995,
+          44.94074
+        ]
+      },
+      "properties": {
+        "id": "WY-083",
+        "name": "Island Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "240400",
+        "description": "<p>This beautiful high mountain lake campground has\u00a021 newly remodeled sites.\u00a0There is always plenty to do at this campground; hiking, fishing, wildlife viewing, and beautiful wildflowers galore.</p><"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.75963,
+          44.45333
+        ]
+      },
+      "properties": {
+        "id": "WY-084",
+        "name": "Newton Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
           "fire_rings"
         ],
         "rig_friendly": [
@@ -175,7 +2548,9 @@
         ],
         "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "240420",
+        "description": "<p>This campground hosts 31 sites near the Shoshone River. Nearby points of interest include Mummy Cave and a memorial to firefighters who died in the 1937 Blackwater Fire. There are two trails, one l"
       }
     },
     {
@@ -183,28 +2558,292 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -108.7137,
-          43.2146
+          -108.92999,
+          42.69902
         ]
       },
       "properties": {
-        "id": "WY-008",
-        "name": "Wyoming Campground 8",
+        "id": "WY-085",
+        "name": "Worthen Meadow Campground",
         "type": "established",
         "cost": 0,
-        "rating": "4.8",
-        "reviews_count": 25,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "picnic_tables",
           "toilets",
           "water",
-          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "240434",
+        "description": "<p>Worthen Meadow Campground has 28 campsites on the shores of Worthen Meadow Resevoir.\u00a0Trailheads at the campground accesses the Popo Agie Wilderness. No trailers over 24 feet. Amenities include pota"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.723,
+          44.342
+        ]
+      },
+      "properties": {
+        "id": "WY-086",
+        "name": "Buffalo, WY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "243098",
+        "description": "<p>Powder River Ranger District</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.38752825,
+          44.40056349
+        ]
+      },
+      "properties": {
+        "id": "WY-087",
+        "name": "Medicine Lodge Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "243108",
+        "description": "<p>Medicine Lodge Lake Campground is located in a remote setting on the shores of Upper Medicine Lodge Lake. Nearby trailheads offer access to the Cloud Peak Wilderness.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.927,
+          44.804
+        ]
+      },
+      "properties": {
+        "id": "WY-088",
+        "name": "Sheridan, WY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "243117",
+        "description": "<p>Tongue Ranger District\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0561,
+          44.4752
+        ]
+      },
+      "properties": {
+        "id": "WY-089",
+        "name": "Greybull, WY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "243148",
+        "description": "<p>Medicine Wheel Ranger District</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.402,
+          44.5503
+        ]
+      },
+      "properties": {
+        "id": "WY-090",
+        "name": "Lake Yellowstone Hotel and Cabins",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "246887",
+        "description": "<p>The Lake Yellowstone Hotel & Cabins, built in 1891 and a member of Historic Hotels of America\u00ae since 2012 was designated a National Historic Landmark in 2015. </p><p>Historic Hotels of America is t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.654081,
+          41.662097
+        ]
+      },
+      "properties": {
+        "id": "WY-091",
+        "name": "Spring Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "246945",
+        "description": "<p>This campground is located up Left Hand Fork of Blacksmith Fork Canyon and there is no water available.</p><p>\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.814763,
+          40.846399
+        ]
+      },
+      "properties": {
+        "id": "WY-092",
+        "name": "Wolverine ATV Trailhead/Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247011",
+        "description": "<p>This timbered trailhead is popular for hiking. Dry camp at ATV trailhead. This campground has not water available</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.654881,
+          41.773639
+        ]
+      },
+      "properties": {
+        "id": "WY-093",
+        "name": "Wood Camp Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247012",
+        "description": "<p>This campground is located off Logan Canyon Scenic Byway.</p><p>\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.853735,
+          40.830388
+        ]
+      },
+      "properties": {
+        "id": "WY-094",
+        "name": "Hayden Fork Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247042",
+        "description": "<p>this campground is equipped with picnic tables. Recreation activities within 5 miles from the campground include hiking, fishing, backpacking, and mountain biking.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.112264,
+          40.922234
+        ]
+      },
+      "properties": {
+        "id": "WY-095",
+        "name": "Hoop Lake Trailhead",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
           "fire_rings"
         ],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "247058",
+        "description": "<p>No fire restrictions are in place at this time.</p>"
       }
     },
     {
@@ -212,53 +2851,555 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.8285,
-          43.2602
+          -110.6135419,
+          40.93464078
         ]
       },
       "properties": {
-        "id": "WY-009",
-        "name": "Wyoming Backcountry 9",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "3.9",
-        "reviews_count": 7,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "WY",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.6438,
-          42.7981
-        ]
-      },
-      "properties": {
-        "id": "WY-010",
-        "name": "Wyoming Campground 10",
+        "id": "WY-096",
+        "name": "Lyman Lake",
         "type": "established",
-        "cost": 30,
-        "rating": "4.7",
-        "reviews_count": 40,
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets",
           "water",
-          "showers"
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247125",
+        "description": "<p>This is a dispersed camping site, no picnic tables, water, firerings or restroom facilities.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.583369,
+          41.005205
+        ]
+      },
+      "properties": {
+        "id": "WY-097",
+        "name": "Meeks Cabin Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247142",
+        "description": "<p>Popular recreation activities within 5 miles of the campground include fishing and mountain biking.\u00a0 This campground is located outside the Mirror Lake Area.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.830017,
+          40.910075
+        ]
+      },
+      "properties": {
+        "id": "WY-098",
+        "name": "Bear River Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247184",
+        "description": "<p>This campground is equipped with picnic tables. Recreation activities within 5 miles from the campground include hiking, fishing, backpacking, and mountain biking.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.654881,
+          41.773639
+        ]
+      },
+      "properties": {
+        "id": "WY-099",
+        "name": "Preston Valley Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247316",
+        "description": "<p>This campground has firewood available to purchase.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.366206,
+          41.033706
+        ]
+      },
+      "properties": {
+        "id": "WY-100",
+        "name": "Deadhorse Trailhead",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247341",
+        "description": "<p>The trailhead has 4 campsite units</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.829319,
+          40.911892
+        ]
+      },
+      "properties": {
+        "id": "WY-101",
+        "name": "East Fork Bear River Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247367",
+        "description": "<p>This campground has picnic tables. Local popular recreation activities include hiking, fishing, backpacking, and mountain biking.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.538415,
+          40.884468
+        ]
+      },
+      "properties": {
+        "id": "WY-102",
+        "name": "East Fork Blacks Fork Trailhead",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "247369",
+        "description": "<p>This timbered trailhead is popular for local fishing, stream and hiking. It provides wilderness access.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.313792,
+          40.911781
+        ]
+      },
+      "properties": {
+        "id": "WY-103",
+        "name": "Green River Camps",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "248861",
+        "description": "<p></p><p>Take a step back in time and traverse the same waters that explorers such as John Wesley Powell and William Ashley once explored. Navigate the waters and cast a rod in an adventure the whole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.988,
+          44.073
+        ]
+      },
+      "properties": {
+        "id": "WY-104",
+        "name": "DOYLE CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 9,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "250028",
+        "description": "<h2>Overview</h2>\nDoyle Creek Campground is located 30 miles west of Buffalo, Wyoming, on the east side of scenic Cloud Peak Skyway, near the Cloud Peak Wilderness area. Located in the Bighorn Nationa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.9422222,
+          44.1938889
+        ]
+      },
+      "properties": {
+        "id": "WY-105",
+        "name": "POLE CREEK CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "250041",
+        "description": "<h2>Overview</h2>\nPole Creek Cabin is unique in not only its quiet end-of-the-road location, but that it is also located along both a winter snowmobile trail and within the Pole Creek Cross Country Sk"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.2372222,
+          44.2052778
+        ]
+      },
+      "properties": {
+        "id": "WY-106",
+        "name": "ISLAND PARK CAMPGROUND",
+        "type": "established",
+        "cost": 9,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "250042",
+        "description": "<h2>Overview</h2>\nIsland Park Campground is located in pine and spruce forest on West Tensleep Creek near West Tensleep Lake and the Cloud Peak Wilderness. Located 21 miles northeast of Ten Sleep, Wyo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.3135972,
+          44.0808833
+        ]
+      },
+      "properties": {
+        "id": "WY-107",
+        "name": "LEIGH CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 9,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "250046",
+        "description": "<h2>Overview</h2>\nLeigh Creek Campground is located about 35 miles east of Worland, Wyoming, on the west side of scenic Cloud Peak Skyway, near the Cloud Peak Wilderness area.  Located in the Bighorn "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.35274896,
+          42.74035943
+        ]
+      },
+      "properties": {
+        "id": "WY-108",
+        "name": "Douglas Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252054",
+        "description": "<p>The Douglas Ranger District of the Medicine Bow-Routt National Forests & Thunder Basin National Grassland includes both the Thunder Basin National Grassland and the Laramie Peak Mountains, two very"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.282595231,
+          40.736584593
+        ]
+      },
+      "properties": {
+        "id": "WY-109",
+        "name": "Parks Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252098",
+        "description": "<p>The Parks Ranger District is nestled into the Northwest Central Mountains of Colorado, bordered on the\u00a0north by\u00a0Wyoming,\u00a0the Medicine Bow Mountains and the Rawah Wilderness on the east, the Zirkel "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.48568,
+          42.2558
+        ]
+      },
+      "properties": {
+        "id": "WY-110",
+        "name": "Laramie Peak Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252123",
+        "description": "<p>The Laramie Peak area is located in east central Wyoming, stretching from southeast of Casper to west of Wheatland.\u00a0 This portion of the Medicine Bow National Forest is part of the Laramie Range an"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6296145,
+          41.30853986
+        ]
+      },
+      "properties": {
+        "id": "WY-111",
+        "name": "Laramie Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252135",
+        "description": "<p>The Laramie Ranger District consists of about 400,000 acres in the Snowy Range and the Medicine Bow mountains in southeast Wyoming. Recreation opportunities abound. The Ranger District office is in"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.119431455,
+          40.030868655
+        ]
+      },
+      "properties": {
+        "id": "WY-112",
+        "name": "Cold Springs Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252159",
+        "description": "<p><strong>ABOUT:</strong> Cold Springs Campground is located approximately 16.5 miles outside of\u00a0Yampa, Colorado with views of the Flat Tops Wilderness. This is a small, very popular campground with "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.80375407,
+          41.43783319
+        ]
+      },
+      "properties": {
+        "id": "WY-113",
+        "name": "Brush Creek/Hayden Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252161",
+        "description": "<p>The Brush Creek/Hayden\u00a0Ranger District office\u00a0outside Saratoga, Wyoming\u00a0oversees the\u00a0Sierra Madre\u00a0Range and west side of the Snowy Range.\u00a0Maps, passes and Forest product permits are available for p"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.682818062,
+          40.105560832
+        ]
+      },
+      "properties": {
+        "id": "WY-114",
+        "name": "Lynx Pass Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
         ],
         "rig_friendly": [
           "tent",
           "RV",
           "trailer"
         ],
-        "road_difficulty": "gravel",
+        "road_difficulty": "dirt",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "252205",
+        "description": "<p><strong>DESCRIPTION:</strong>\u00a0Located in the Gore Pass area on the\u00a0Routt National Forest. Lynx Pass campground is a small campground hosting 11 sites and\u00a0can be found\u00a0on Forest Service Road 270\u00a0bet"
       }
     },
     {
@@ -266,14 +3407,69 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.737,
-          43.5465
+          -106.91171486,
+          40.15343435
         ]
       },
       "properties": {
-        "id": "WY-011",
-        "name": "Wyoming Dispersed 11",
-        "type": "dispersed",
+        "id": "WY-115",
+        "name": "Yampa Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252213",
+        "description": "<p>The Yampa Ranger District is the southern-most district of the Medicine Bow-Routt National Forests &\u00a0Thunder Basin National Grassland administrative unit. The District manages\u00a0Routt National Forest"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.81686043,
+          40.44753798
+        ]
+      },
+      "properties": {
+        "id": "WY-116",
+        "name": "Hahns Peak/Bears Ears Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "252243",
+        "description": "<p>The Hahns Peak/Bears Ears Ranger District includes about 500,000 acres of the Routt National Forest, and terrain ranges from sagebrush flats to forested mountains. There are\u00a0a wide variety of year-"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8456029,
+          44.1448048
+        ]
+      },
+      "properties": {
+        "id": "WY-117",
+        "name": "Black Fox Campground",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
@@ -281,9 +3477,11 @@
           "toilets"
         ],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": "paved",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "253807",
+        "description": "<p>The Black Fox Campground has nine camp sites.\u00a0 Restroom facilities are available. The campground is in\u00a0a remote\u00a0location within a spruce forest on South Fork Rapid Creek.\u00a0 The Black Fox Botanical A"
       }
     },
     {
@@ -291,24 +3489,1061 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.5529,
-          41.6185
+          -103.515,
+          43.776
         ]
       },
       "properties": {
-        "id": "WY-012",
-        "name": "Wyoming Backcountry 12",
-        "type": "backcountry",
+        "id": "WY-118",
+        "name": "Bismarck Lake",
+        "type": "established",
         "cost": 0,
-        "rating": "4.3",
-        "reviews_count": 28,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253831",
+        "description": "<p>Bismarck Lake</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.612,
+          43.775
+        ]
+      },
+      "properties": {
+        "id": "WY-119",
+        "name": "Southern Hills - Custer",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253841",
+        "description": "<p>The Hell Canyon Ranger District is located in the southern third of the Black Hills National Forest, with\u00a0offices in both Newcastle, WY and Custer, SD.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.35709162,
+          44.41216587
+        ]
+      },
+      "properties": {
+        "id": "WY-120",
+        "name": "Northwestern Hills - Sundance",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253842",
+        "description": "<p>Bearlodge Ranger District (Northwestern Hills) encompasses the northern portion of the Black Hills on the Wyoming side.In the immediate vicinity is trout fishing, access to over 300 miles of snowmo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.25496307,
+          44.00598155
+        ]
+      },
+      "properties": {
+        "id": "WY-121",
+        "name": "Central Hills - Rapid City",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253867",
+        "description": "<p>The Mystic Ranger District is located in the central portion of the Black Hills National Forest and has an office south of\u00a0Rapid City, SD.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.86075642,
+          44.50102949
+        ]
+      },
+      "properties": {
+        "id": "WY-122",
+        "name": "Northern Hills-Spearfish",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "253870",
+        "description": "<p>The Northern Hills Ranger District covers\u00a0the northern portion of the Black Hills on the South Dakota side. Spearfish has nearby access to over 300 miles of snowmobile trails, groomed and ungroomed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.605891,
+          42.63036457
+        ]
+      },
+      "properties": {
+        "id": "WY-123",
+        "name": "Bolton Creek",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "toilets"
+          "picnic_tables"
         ],
         "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "254052",
+        "description": "Bolton Creek is a popular fishing, picnicking and primitive dispersed camping site. It has an access road and small parking area.  There are no developed facilities here other than roads."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.685475,
+          42.57946
+        ]
+      },
+      "properties": {
+        "id": "WY-124",
+        "name": "Pete's Draw Campground",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "254056",
+        "description": "Pete's Draw has both a day-use and overnight camping area to enjoy hiking, wildlife viewing, picnicking, fishing, boating and camping. <br><br> There's a parking area, vault toilet, seven overnight ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.632346,
+          42.664599
+        ]
+      },
+      "properties": {
+        "id": "WY-125",
+        "name": "Golden Currant Campground",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "254057",
+        "description": "Golden Currant Campground is the perfect place to go if you want to picnic, bank fish or tent camp. There is a parking area, vault toilet, four overnight tent camping sites, a short pedestrian trail, "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.6236434,
+          42.67568691
+        ]
+      },
+      "properties": {
+        "id": "WY-126",
+        "name": "Chalk Bluffs Campground",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "254058",
+        "description": "Chalk Bluffs has an access road and parking area, vault toilet, eleven overnight camping sites with tent pads, picnic tables, fire rings, RV parking, boat ramp and a parking area large enough for vehi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.732795,
+          42.344438
+        ]
+      },
+      "properties": {
+        "id": "WY-127",
+        "name": "Green Mountain",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "254060",
+        "description": "Green Mountain is located in southcentral Wyoming about ten miles south of Jeffrey City and about 50 miles northwest of Rawlins (as the crow flies). It contains the <a href=\"https://www.blm.gov/visit/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.716005,
+          42.819213
+        ]
+      },
+      "properties": {
+        "id": "WY-128",
+        "name": "Stokes Crossing",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "261702",
+        "description": "<p>Stokes Crossing Campground is located along Boulder Creek within the Boulder Lake Special Recreation Management Area. The campground has two sites and has one vault toilet, two picnic tables, and t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.701817,
+          42.841713
+        ]
+      },
+      "properties": {
+        "id": "WY-129",
+        "name": "North Boulder Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "261703",
+        "description": "The North Boulder Lake Campground is located on the northwest end of Boulder Lake. The campground has five sites with one double vault toilet, five fire rings, and five picnic tables."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.26626,
+          42.604855
+        ]
+      },
+      "properties": {
+        "id": "WY-130",
+        "name": "Dutch Joe Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "262640",
+        "description": "This is an undeveloped camping area with a low water crossing across Dutch Joe Creek that provides access to the U.S. Forest Service managed Bridger Wilderness. This is a fee-free site."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.0374,
+          41.940763
+        ]
+      },
+      "properties": {
+        "id": "WY-131",
+        "name": "North Table Rock Camping Area",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "262649",
+        "description": "This camping area used by large recreation vehicles to serve as a base camp for OHV use in the Killpecker Sand Dunes Open Play Area.   Because it is typically used by self-contained vehicles, no facil"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.86,
+          42.45
+        ]
+      },
+      "properties": {
+        "id": "WY-132",
+        "name": "Pine Creek Camping Area",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "262654",
+        "description": "This is a small primitive camping area within the Pine Creek Exclosure."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.112,
+          42.54
+        ]
+      },
+      "properties": {
+        "id": "WY-133",
+        "name": "Big Piney Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264320",
+        "description": "<p>The Big Piney Ranger District hosts a wide variety of cultural and natural history, recreational opportunities, timber, range, mineral reserves, and wildlife. \u00a0It contains 449,000 acres of snow-cap"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.933,
+          42.725
+        ]
+      },
+      "properties": {
+        "id": "WY-134",
+        "name": "Greys River Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264322",
+        "description": "<ul><li><a href=\"http://www.fs.usda.gov/alerts/btnf/alerts-notices\" rel=\"nofollow\"><u>Greys River Ranger District\u00a0 Current Conditions page</u></a></li><li>Alpine Area Trails Project funded by Wyoming "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7612,
+          43.4844
+        ]
+      },
+      "properties": {
+        "id": "WY-135",
+        "name": "Jackson Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264323",
+        "description": "<p>The Jackson Ranger District offers an incredible abundance of recreation areas and activities to choose from for all visitors.\u00a0 From internationally recognized\u00a0skiing to world-famous fishing to wil"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.54,
+          41.792
+        ]
+      },
+      "properties": {
+        "id": "WY-136",
+        "name": "Kemmerer Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264324",
+        "description": "<p><strong>WINTER CONDITIONS:</strong> <a href=\"http://www.fs.usda.gov/alerts/btnf/alerts-notices\" rel=\"nofollow\">Winter Wildlife Closure dates and Winter Closure Area Maps\u00a0</a></p><p>Kemmerer Ranger "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8565,
+          42.8672
+        ]
+      },
+      "properties": {
+        "id": "WY-137",
+        "name": "Pinedale Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264325",
+        "description": "<ul><li>Bridger Wilderness Area Information</li><li>Pinedale Ranger District Outfitter & Guides</li><li><a href=\"https://fs.usda.gov/wps/PA_WIDContribution/simplegetfile?dDocName=STELPRD3843809&url=/I"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.348,
+          43.82
+        ]
+      },
+      "properties": {
+        "id": "WY-138",
+        "name": "Hatchet/Flagstaff Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264381",
+        "description": "<p>Stay tuned...more information to come.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.0,
+          43.16
+        ]
+      },
+      "properties": {
+        "id": "WY-139",
+        "name": "Greys River Corridor",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264390",
+        "description": "<p>The Greys River Corridor encompasses the area surrounding the Greys River itself and the Greys River Road, and offers numerous opportunities for fishing, kayaking, camping, hiking, OHV riding and h"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.73,
+          42.25
+        ]
+      },
+      "properties": {
+        "id": "WY-140",
+        "name": "Hams Fork Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264399",
+        "description": "<p>Known for its river and great fishing opportunities, the Hams Fork area is a marvelous place to enjoy some of Wyoming\u2019s great landscape.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.858197,
+          43.312133
+        ]
+      },
+      "properties": {
+        "id": "WY-141",
+        "name": "Green River Lake Lodge",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "264411",
+        "description": "<h2>Overview</h2>\n<p>The Green River Lakes Lodge is located 50 miles north of Pinedale, Wyoming.  The lodge is available as a rental for day use events such as weddings, family reunions, or meetings f"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.748,
+          43.467
+        ]
+      },
+      "properties": {
+        "id": "WY-142",
+        "name": "Cache Creek and Greater Snow King Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "266208",
+        "description": "<ul><li><a href=\"http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd500400.pdf\" rel=\"nofollow\">Cache and Game Creek Trails Map 2016</a></li></ul><p>The Cache Creek and Greater Snow King area encompas"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.549,
+          43.302
+        ]
+      },
+      "properties": {
+        "id": "WY-143",
+        "name": "Hoback River Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "266213",
+        "description": "<p>Within the Hoback River Area lies an abundance of recreational opportunity and amazing scenery waiting for you to enjoy.\u00a0 Driving south of Jackson 15 miles and heading east on Highway 191, you will"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.99631,
+          43.75418
+        ]
+      },
+      "properties": {
+        "id": "WY-144",
+        "name": "Pinnacles Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "270777",
+        "description": "<p>This campground\u00a0hosts 21 campsites with dramatic views\u00a0near Brooks Lake. Angling and flyfishing opportunities are nearby, with a boat ramp at Brooks Lake. Fantastic geologic formations at Pinnacle "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3528,
+          43.8242
+        ]
+      },
+      "properties": {
+        "id": "WY-145",
+        "name": "Blackrock Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "270850",
+        "description": "<p>The Blackrock Ranger District is comprised mostly of the Teton Wilderness. It borders Grand Teton and Yellowstone National Parks. It is home to the headwaters of the Yellowstone River and the Conti"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.263585,
+          42.677378
+        ]
+      },
+      "properties": {
+        "id": "WY-146",
+        "name": "Lodgepole Campground",
+        "type": "established",
+        "cost": 7,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "272188",
+        "description": "Nestled under the pine trees of Muddy Mountain, Lodgepole Campground provides 15 camping sites that include level tent pads and fire rings, with a few pull-through sites for large trailers/RVs.  Two d"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.141634,
+          42.56183
+        ]
+      },
+      "properties": {
+        "id": "WY-147",
+        "name": "Blucher Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "272281",
+        "description": "The Blucher Creek Campground is 74 miles from Rock Springs and 70 miles from Lander. It's an ADA accessible site and features a safety structure, accessible picnic tables, fire rings and an accessible"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.0618875,
+          42.56177151
+        ]
+      },
+      "properties": {
+        "id": "WY-148",
+        "name": "Sweetwater Guard Station Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "dirt",
         "state": "WY",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "272295",
+        "description": "<p>The Sweetwater Guard Station Campground has 3 walk-in campsites and 8 pull-in sites featuring picnic tables and fire rings at each. The Campground is nestled at the base of the Wind River Mountains"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.663244,
+          42.242526
+        ]
+      },
+      "properties": {
+        "id": "WY-149",
+        "name": "Honeycomb Buttes WSA",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "273316",
+        "description": "The Honeycomb Buttes WSA encompasses 39,908 acres of BLM-administered land, 640 acres of split estate and 640 acres of state land. This WSA is one of the best examples of badlands topography in Wyomin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.851762,
+          42.241381
+        ]
+      },
+      "properties": {
+        "id": "WY-150",
+        "name": "Oregon Buttes WSA",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "273318",
+        "description": "The Oregon Buttes WSA encompasses 5,700 acres of BLM-administered land with no private or state inholdings. The buttes are a prominent landmark, rising out of the northwestern portion of the Red Deser"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.697275,
+          41.196366
+        ]
+      },
+      "properties": {
+        "id": "WY-151",
+        "name": "Twin Buttes WSA",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "273324",
+        "description": "The Twin Buttes WSAs encompass 8164 acres. The WSA is characterized by highly eroded badlands with scattered patches of sagebrush, grass and juniper. The Twin Buttes are prominent topographic features"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.2219296,
+          43.43854184
+        ]
+      },
+      "properties": {
+        "id": "WY-152",
+        "name": "Buffalo Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "274351",
+        "description": "The Buffalo Creek Campground is located off of the scenic South Bighorn/Red Wall Back Country Byway. It has four camping sites, a vault toilet and fire rings. It is partially accessible. <br><br> The "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.227947,
+          43.461523
+        ]
+      },
+      "properties": {
+        "id": "WY-153",
+        "name": "Grave Springs Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "274353",
+        "description": "Visitors to the Grave Springs Campground can camp, hunt, picnic, and it offers excellent small stream fishing and wildlife viewing. The site has twelve camping sites with RV parking and tent pads, two"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.25858,
+          42.680857
+        ]
+      },
+      "properties": {
+        "id": "WY-154",
+        "name": "Rim Campground",
+        "type": "established",
+        "cost": 7,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "274354",
+        "description": "Nestled under the pine trees of Muddy Mountain and overlooking the valley below, Rim Campground provides 8 camping sites that include level tent pads and fire rings, with a few pull-through sites for "
       }
     }
   ]
