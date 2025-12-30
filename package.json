@@ -1,0 +1,26 @@
+{
+  "name": "kamptrail",
+  "version": "2.0.0",
+  "description": "KampTrail - Find dispersed camping, boondocking, and established campgrounds across the US",
+  "scripts": {
+    "fetch-data": "bash scripts/fetch_all_campsite_data.sh",
+    "fetch-state": "bash scripts/fetch_all_campsite_data.sh",
+    "scrape:recreation": "node scripts/scrape_recreation_gov.js",
+    "scrape:campendium": "node scripts/scrape_campendium.js",
+    "merge": "node scripts/merge_campsite_data.js"
+  },
+  "keywords": [
+    "camping",
+    "campgrounds",
+    "boondocking",
+    "dispersed-camping",
+    "recreation",
+    "outdoors"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.56.1"
+  },
+  "devDependencies": {}
+}

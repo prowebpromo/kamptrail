@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axiom CSV → KampTrail GeoJSON Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .drop-zone {
+            border: 3px dashed #667eea;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+            margin-bottom: 20px;
+        }
+
+        .drop-zone.dragover {
+            background: #e8ebff;
+            border-color: #764ba2;
+            transform: scale(1.02);
+        }
+
+        .drop-zone h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .drop-zone p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .config {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 12px;
+        }
+
+        .config.visible {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .results {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 12px;
+            border: 2px solid #4caf50;
+        }
+
+        .results.visible {
+            display: block;
+        }
+
+        .results h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .error {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #ffebee;
+            border-radius: 12px;
+            border: 2px solid #f44336;
+            color: #c62828;
+        }
+
+        .error.visible {
+            display: block;
+        }
+
+        .preview {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow: auto;
+        }
+
+        .preview pre {
+            font-size: 12px;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏕️ Axiom → KampTrail Converter</h1>
+        <p class="subtitle">Convert your Axiom CSV data to KampTrail GeoJSON format</p>
+
+        <div class="drop-zone" id="dropZone">
+            <div class="icon">📁</div>
+            <h2>Drop CSV File Here</h2>
+            <p>or click to browse</p>
+            <button class="btn" onclick="document.getElementById('fileInput').click()">Choose File</button>
+            <input type="file" id="fileInput" class="file-input" accept=".csv,.json">
+        </div>
+
+        <div class="config" id="config">
+            <h3>📋 Configuration</h3>
+            <p style="color: #666; font-size: 14px; margin-bottom: 15px;">File loaded! Configure your conversion:</p>
+
+            <div class="input-group">
+                <label for="stateCode">State Code (2 letters)</label>
+                <select id="stateCode">
+                    <option value="CA">California (CA)</option>
+                    <option value="CO">Colorado (CO)</option>
+                    <option value="UT">Utah (UT)</option>
+                    <option value="AZ">Arizona (AZ)</option>
+                    <option value="OR">Oregon (OR)</option>
+                    <option value="WA">Washington (WA)</option>
+                    <option value="MT">Montana (MT)</option>
+                    <option value="WY">Wyoming (WY)</option>
+                    <option value="NV">Nevada (NV)</option>
+                    <option value="ID">Idaho (ID)</option>
+                    <option value="NM">New Mexico (NM)</option>
+                    <option value="TX">Texas (TX)</option>
+                    <option value="FL">Florida (FL)</option>
+                    <option value="NC">North Carolina (NC)</option>
+                    <option value="VA">Virginia (VA)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="source">Data Source</label>
+                <select id="source">
+                    <option value="recreation.gov">Recreation.gov</option>
+                    <option value="campendium">Campendium</option>
+                    <option value="ioverlander">iOverlander</option>
+                    <option value="axiom">Axiom (generic)</option>
+                </select>
+            </div>
+
+            <div class="actions">
+                <button class="btn" onclick="convert()">✨ Convert to GeoJSON</button>
+                <button class="btn" onclick="reset()">🔄 Start Over</button>
+            </div>
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <div class="results" id="results">
+            <h3>✅ Conversion Complete!</h3>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCampsites">0</div>
+                    <div class="stat-label">Total Campsites</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="withRatings">0</div>
+                    <div class="stat-label">With Ratings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="withCoords">0</div>
+                    <div class="stat-label">Valid GPS</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn" onclick="downloadGeoJSON()">⬇️ Download GeoJSON</button>
+                <button class="btn" onclick="viewPreview()">👁️ Preview Data</button>
+            </div>
+
+            <div class="preview" id="preview" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        let csvData = null;
+        let geojsonData = null;
+        let fileName = '';
+
+        // Drag and drop handlers
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            handleFile(file);
+        });
+
+        dropZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            handleFile(file);
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+
+            fileName = file.name.replace(/\.(csv|json)$/i, '');
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const content = e.target.result;
+
+                if (file.name.endsWith('.json')) {
+                    try {
+                        csvData = JSON.parse(content);
+                        if (!Array.isArray(csvData)) {
+                            csvData = csvData.data || csvData.results || [csvData];
+                        }
+                    } catch (err) {
+                        showError('Invalid JSON file: ' + err.message);
+                        return;
+                    }
+                } else {
+                    csvData = parseCSV(content);
+                }
+
+                showConfig();
+            };
+            reader.readAsText(file);
+        }
+
+        function parseCSV(content) {
+            const lines = content.split('\n').filter(line => line.trim());
+            const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = parseCSVLine(lines[i]);
+                const row = {};
+                headers.forEach((header, idx) => {
+                    row[header] = values[idx] || '';
+                });
+                data.push(row);
+            }
+
+            return data;
+        }
+
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current.trim().replace(/^"|"$/g, ''));
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current.trim().replace(/^"|"$/g, ''));
+
+            return values;
+        }
+
+        function extractCoordinates(text) {
+            if (!text) return null;
+
+            const patterns = [
+                /(-?\d+\.\d+)[,\s]+(-?\d+\.\d+)/,
+                /lat[itude]*[:\s]+(-?\d+\.\d+).*lon[gitude]*[:\s]+(-?\d+\.\d+)/i,
+            ];
+
+            for (const pattern of patterns) {
+                const match = text.match(pattern);
+                if (match) {
+                    let lat = parseFloat(match[1]);
+                    let lon = parseFloat(match[2]);
+
+                    // Ensure proper sign for US
+                    if (Math.abs(lat) < Math.abs(lon)) {
+                        [lat, lon] = [lon, lat];
+                    }
+                    if (lon > 0) lon = -lon;
+
+                    // Validate US coordinates
+                    if (lat >= 24 && lat <= 50 && lon >= -125 && lon <= -65) {
+                        return { lat, lon };
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        function extractPrice(text) {
+            if (!text) return 0;
+            const match = text.match(/\$(\d+)/);
+            return match ? parseInt(match[1]) : 0;
+        }
+
+        function extractRating(text) {
+            if (!text) return null;
+            const match = text.match(/(\d+\.?\d*)/);
+            return match ? parseFloat(match[1]) : null;
+        }
+
+        function extractReviewCount(text) {
+            if (!text) return 0;
+            const match = text.match(/(\d+)/);
+            return match ? parseInt(match[1]) : 0;
+        }
+
+        function parseAmenities(text) {
+            if (!text) return [];
+
+            const amenities = [];
+            const amenityMap = {
+                'toilet': 'toilets',
+                'restroom': 'toilets',
+                'water': 'water',
+                'shower': 'showers',
+                'electric': 'electricity',
+                'dump': 'dump_station',
+                'wifi': 'wifi',
+                'fire': 'fire_rings',
+                'picnic': 'picnic_tables',
+                'trash': 'trash'
+            };
+
+            const lowerText = text.toLowerCase();
+            for (const [keyword, amenity] of Object.entries(amenityMap)) {
+                if (lowerText.includes(keyword) && !amenities.includes(amenity)) {
+                    amenities.push(amenity);
+                }
+            }
+
+            return amenities;
+        }
+
+        function convert() {
+            const stateCode = document.getElementById('stateCode').value;
+            const source = document.getElementById('source').value;
+
+            try {
+                const features = [];
+                let siteCounter = 1;
+                let skipped = 0;
+
+                for (const row of csvData) {
+                    // Try to find coordinates
+                    let coords = null;
+                    const coordFields = ['coordinates', 'location', 'gps', 'latlon', 'latitude', 'description', 'address'];
+
+                    for (const field of coordFields) {
+                        const fieldLower = Object.keys(row).find(k => k.toLowerCase().includes(field));
+                        if (fieldLower && row[fieldLower]) {
+                            coords = extractCoordinates(row[fieldLower]);
+                            if (coords) break;
+                        }
+                    }
+
+                    if (!coords) {
+                        skipped++;
+                        continue;
+                    }
+
+                    // Extract data
+                    const getName = (r) => {
+                        return r.name || r.Name || r.title || r.Title ||
+                               r.campground || r.Campground || `${stateCode} Campground ${siteCounter}`;
+                    };
+
+                    const getField = (r, ...fields) => {
+                        for (const field of fields) {
+                            const key = Object.keys(r).find(k =>
+                                k.toLowerCase() === field.toLowerCase()
+                            );
+                            if (key && r[key]) return r[key];
+                        }
+                        return '';
+                    };
+
+                    const feature = {
+                        type: 'Feature',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [coords.lon, coords.lat]
+                        },
+                        properties: {
+                            id: `${stateCode}-AXIOM-${String(siteCounter).padStart(3, '0')}`,
+                            name: getName(row),
+                            type: 'established',
+                            cost: extractPrice(getField(row, 'price', 'cost', 'fee')),
+                            rating: extractRating(getField(row, 'rating', 'stars', 'score')),
+                            reviews_count: extractReviewCount(getField(row, 'reviews', 'review count', 'review_count')),
+                            amenities: parseAmenities(getField(row, 'amenities', 'features', 'description')),
+                            rig_friendly: [],
+                            road_difficulty: 'paved',
+                            state: stateCode,
+                            source: source,
+                            description: (getField(row, 'description', 'details', 'overview') || '').substring(0, 200)
+                        }
+                    };
+
+                    features.push(feature);
+                    siteCounter++;
+                }
+
+                geojsonData = {
+                    type: 'FeatureCollection',
+                    features: features
+                };
+
+                showResults(skipped);
+
+            } catch (err) {
+                showError('Conversion error: ' + err.message);
+            }
+        }
+
+        function showConfig() {
+            document.getElementById('config').classList.add('visible');
+            document.getElementById('error').classList.remove('visible');
+            document.getElementById('results').classList.remove('visible');
+        }
+
+        function showResults(skipped) {
+            const total = geojsonData.features.length;
+            const withRatings = geojsonData.features.filter(f => f.properties.rating).length;
+            const withCoords = total;
+
+            document.getElementById('totalCampsites').textContent = total;
+            document.getElementById('withRatings').textContent = withRatings;
+            document.getElementById('withCoords').textContent = withCoords;
+
+            if (skipped > 0) {
+                showError(`Note: ${skipped} entries skipped (no valid GPS coordinates found)`);
+            }
+
+            document.getElementById('results').classList.add('visible');
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = '❌ ' + message;
+            errorDiv.classList.add('visible');
+        }
+
+        function downloadGeoJSON() {
+            const stateCode = document.getElementById('stateCode').value;
+            const source = document.getElementById('source').value;
+
+            const suffix = source !== 'axiom' ? `_${source.replace(/[^a-z]/gi, '')}` : '';
+            const filename = `${stateCode}${suffix}.geojson`;
+
+            const blob = new Blob([JSON.stringify(geojsonData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function viewPreview() {
+            const preview = document.getElementById('preview');
+
+            if (preview.style.display === 'none') {
+                const sample = geojsonData.features.slice(0, 2);
+                preview.innerHTML = '<pre>' + JSON.stringify(sample, null, 2) + '</pre>';
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+
+        function reset() {
+            csvData = null;
+            geojsonData = null;
+            document.getElementById('config').classList.remove('visible');
+            document.getElementById('results').classList.remove('visible');
+            document.getElementById('error').classList.remove('visible');
+            document.getElementById('fileInput').value = '';
+        }
+    </script>
+</body>
+</html>

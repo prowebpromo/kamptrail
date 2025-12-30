@@ -1,0 +1,216 @@
+name: 🏕️ Fetch Campsite Data (Automated)
+
+on:
+  # Manual trigger - click "Run workflow" button on GitHub
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'States to fetch (space-separated, e.g., "CA CO UT")'
+        required: true
+        default: 'CA CO UT AZ OR WA MT WY'
+        type: string
+      limit:
+        description: 'Max campsites per state'
+        required: false
+        default: '50'
+        type: string
+
+  # Automatic schedule - runs weekly on Sundays at 3 AM
+  schedule:
+    - cron: '0 3 * * 0'
+
+  # Can also be triggered by other workflows
+  repository_dispatch:
+    types: [fetch-campsite-data]
+
+jobs:
+  fetch-data:
+    name: Fetch & Convert Campsite Data
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: |
+          npm install
+          npx playwright install chromium --with-deps
+
+      - name: 🏕️ Fetch Recreation.gov data
+        id: fetch
+        run: |
+          STATES="${{ github.event.inputs.states || 'CA CO UT AZ OR WA MT WY' }}"
+          LIMIT="${{ github.event.inputs.limit || '50' }}"
+
+          echo "🌟 Starting data fetch for states: $STATES"
+          echo "📊 Limit per state: $LIMIT"
+
+          success_count=0
+          total_campsites=0
+
+          for state in $STATES; do
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "🗺️  Processing: $state"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            # Recreation.gov scraper
+            echo "📍 [1/3] Fetching Recreation.gov data..."
+            if node scripts/scrape_recreation_gov.js --state="$state" --limit="$LIMIT"; then
+              echo "✅ Recreation.gov data fetched"
+            else
+              echo "⚠️  Recreation.gov fetch failed, continuing..."
+            fi
+
+            # Campendium scraper
+            echo ""
+            echo "⭐ [2/3] Fetching Campendium reviews..."
+            campendium_limit=$((LIMIT / 2))
+            if node scripts/scrape_campendium.js --state="$state" --limit="$campendium_limit"; then
+              echo "✅ Campendium data fetched"
+            else
+              echo "⚠️  Campendium fetch failed, continuing..."
+            fi
+
+            # Merge data
+            echo ""
+            echo "🔄 [3/3] Merging data sources..."
+            if node scripts/merge_campsite_data.js --state="$state"; then
+              echo "✅ Data merged successfully"
+
+              # Copy merged file to main state file
+              if [ -f "data/campsites/${state}_merged.geojson" ]; then
+                cp "data/campsites/${state}_merged.geojson" "data/campsites/${state}.geojson"
+
+                # Count campsites
+                count=$(grep -c '"type": "Feature"' "data/campsites/${state}.geojson" || echo "0")
+                echo "✅ ${state}: $count campsites"
+
+                success_count=$((success_count + 1))
+                total_campsites=$((total_campsites + count))
+              fi
+            else
+              echo "⚠️  Merge failed for $state"
+            fi
+
+            # Rate limiting between states
+            echo ""
+            echo "⏳ Waiting 10 seconds before next state..."
+            sleep 10
+          done
+
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ FETCH COMPLETE!"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📊 States processed: $success_count"
+          echo "🏕️  Total campsites: $total_campsites"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+          # Set outputs for summary
+          echo "states_processed=$success_count" >> $GITHUB_OUTPUT
+          echo "total_campsites=$total_campsites" >> $GITHUB_OUTPUT
+
+      - name: 📊 Update index.json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          const dataDir = 'data/campsites';
+          const files = fs.readdirSync(dataDir).filter(f => f.match(/^[A-Z]{2}\.geojson$/));
+
+          let totalSites = 0;
+          const states = [];
+
+          files.forEach(file => {
+            const stateCode = file.replace('.geojson', '');
+            const content = fs.readFileSync(path.join(dataDir, file), 'utf8');
+            const geojson = JSON.parse(content);
+            const count = geojson.features.length;
+
+            totalSites += count;
+            states.push({ state: stateCode, count });
+          });
+
+          const index = {
+            generated: new Date().toISOString(),
+            total_sites: totalSites,
+            states: states.sort((a, b) => a.state.localeCompare(b.state)),
+            source: 'automated-fetch',
+            version: '3.0'
+          };
+
+          fs.writeFileSync(
+            path.join(dataDir, 'index.json'),
+            JSON.stringify(index, null, 2) + '\n'
+          );
+
+          console.log('✅ Updated index.json');
+          console.log('📊 Total sites across all states:', totalSites);
+          "
+
+      - name: 🎨 Generate summary report
+        run: |
+          echo "# 🏕️ Campsite Data Fetch Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run Date:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **States Processed:** ${{ steps.fetch.outputs.states_processed }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total Campsites:** ${{ steps.fetch.outputs.total_campsites }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Data Sources:** Recreation.gov + Campendium" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📁 Updated Files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          ls -lh data/campsites/*.geojson | awk '{print $9, "-", $5}' >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: 💾 Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions Bot"
+
+          git add data/campsites/
+
+          # Check if there are changes
+          if git diff --staged --quiet; then
+            echo "ℹ️  No changes to commit"
+          else
+            git commit -m "🏕️ Update campsite data (automated fetch)
+
+            - States: ${{ github.event.inputs.states || 'CA CO UT AZ OR WA MT WY' }}
+            - Total campsites: ${{ steps.fetch.outputs.total_campsites }}
+            - Processed: ${{ steps.fetch.outputs.states_processed }} states
+            - Sources: Recreation.gov + Campendium
+            - Generated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+            "
+
+            git push
+            echo "✅ Changes committed and pushed!"
+          fi
+
+      - name: 📧 Create success notification
+        if: success()
+        run: |
+          echo "✅ Workflow completed successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The campsite data has been updated and pushed to the repository." >> $GITHUB_STEP_SUMMARY
+          echo "You can view the changes in the \`data/campsites/\` directory." >> $GITHUB_STEP_SUMMARY
+
+      - name: ⚠️ Create failure notification
+        if: failure()
+        run: |
+          echo "❌ Workflow failed!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Please check the logs above for error details." >> $GITHUB_STEP_SUMMARY
