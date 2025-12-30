@@ -1,0 +1,107 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.6581,
+          33.9473
+        ]
+      },
+      "properties": {
+        "id": "MS-001",
+        "name": "Mississippi Campground 1",
+        "type": "established",
+        "cost": 20,
+        "rating": "3.9",
+        "reviews_count": 43,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "toilets",
+          "trash",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MS",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.2784,
+          31.7136
+        ]
+      },
+      "properties": {
+        "id": "MS-002",
+        "name": "Mississippi Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MS",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.6687,
+          31.3186
+        ]
+      },
+      "properties": {
+        "id": "MS-003",
+        "name": "Mississippi Backcountry 3",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.0",
+        "reviews_count": 40,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MS",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5809,
+          32.4308
+        ]
+      },
+      "properties": {
+        "id": "MS-004",
+        "name": "Mississippi Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MS",
+        "source": "generated"
+      }
+    }
+  ]
+}

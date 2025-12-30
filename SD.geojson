@@ -1,0 +1,174 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.8516,
+          45.9819
+        ]
+      },
+      "properties": {
+        "id": "SD-001",
+        "name": "South Dakota Campground 1",
+        "type": "established",
+        "cost": 15,
+        "rating": "4.4",
+        "reviews_count": 18,
+        "amenities": [
+          "water",
+          "picnic_tables",
+          "toilets",
+          "fire_rings",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "SD",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.7873,
+          43.5869
+        ]
+      },
+      "properties": {
+        "id": "SD-002",
+        "name": "South Dakota Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "SD",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.1714,
+          43.1041
+        ]
+      },
+      "properties": {
+        "id": "SD-003",
+        "name": "South Dakota Campground 3",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.9",
+        "reviews_count": 17,
+        "amenities": [
+          "picnic_tables",
+          "water",
+          "fire_rings",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "SD",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.053,
+          44.4976
+        ]
+      },
+      "properties": {
+        "id": "SD-004",
+        "name": "South Dakota Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "SD",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.5137,
+          45.9128
+        ]
+      },
+      "properties": {
+        "id": "SD-005",
+        "name": "South Dakota Campground 5",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.4",
+        "reviews_count": 24,
+        "amenities": [
+          "water",
+          "toilets",
+          "fire_rings",
+          "trash",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.7511,
+          45.5378
+        ]
+      },
+      "properties": {
+        "id": "SD-006",
+        "name": "South Dakota Campground 6",
+        "type": "established",
+        "cost": 30,
+        "rating": "4.9",
+        "reviews_count": 33,
+        "amenities": [
+          "electricity",
+          "water",
+          "fire_rings",
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "SD",
+        "source": "generated"
+      }
+    }
+  ]
+}

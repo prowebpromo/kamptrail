@@ -1,0 +1,64 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.3011,
+          41.7495
+        ]
+      },
+      "properties": {
+        "id": "RI-001",
+        "name": "Rhode Island Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.4",
+        "reviews_count": 29,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "RI",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.1043,
+          42.6156
+        ]
+      },
+      "properties": {
+        "id": "RI-002",
+        "name": "Rhode Island Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "RI",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    }
+  ]
+}
