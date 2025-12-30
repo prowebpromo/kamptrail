@@ -8,26 +8,56 @@ on:
         required: true
         type: choice
         options:
+          - AL
+          - AK
+          - AZ
+          - AR
           - CA
           - CO
-          - UT
-          - AZ
-          - OR
-          - WA
-          - MT
-          - WY
-          - NV
-          - ID
-          - NM
-          - TX
+          - CT
+          - DE
           - FL
-          - NC
-          - VA
           - GA
-          - TN
+          - HI
+          - ID
+          - IL
+          - IN
+          - IA
+          - KS
+          - KY
+          - LA
+          - ME
+          - MD
+          - MA
+          - MI
+          - MN
+          - MS
+          - MO
+          - MT
+          - NE
+          - NV
+          - NH
+          - NJ
+          - NM
+          - NY
+          - NC
+          - ND
+          - OH
+          - OK
+          - OR
+          - PA
+          - RI
           - SC
-          - AL
-          - AR
+          - SD
+          - TN
+          - TX
+          - UT
+          - VT
+          - VA
+          - WA
+          - WV
+          - WI
+          - WY
       limit:
         description: 'Max campsites'
         required: false
