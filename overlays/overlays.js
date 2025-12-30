@@ -31,8 +31,8 @@
       const cfg = Object.assign({
         publicLandsUrl: '',
         openCelliDKey: '',
-        poiUrl: '/data/poi_dump_water_propane.geojson',
-        placesUrl: '/data/sample_places.geojson',
+        poiUrl: 'data/poi_dump_water_propane.geojson',
+        placesUrl: 'data/sample_places.geojson',
         maxPoiCount: 2000,
         maxTowerCount: 500
       }, config || {});
