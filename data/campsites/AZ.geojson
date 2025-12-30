@@ -6,44 +6,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.643,
-          32.8461
+          -112.5591667,
+          34.59
         ]
       },
       "properties": {
         "id": "AZ-001",
-        "name": "Arizona Dispersed 1",
-        "type": "dispersed",
+        "name": "ALTO PIT OHV CAMPGROUND",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.0834,
-          35.3948
-        ]
-      },
-      "properties": {
-        "id": "AZ-002",
-        "name": "Arizona Campground 2",
-        "type": "established",
-        "cost": 30,
-        "rating": "4.2",
-        "reviews_count": 42,
         "amenities": [
-          "water",
+          "toilets",
           "fire_rings",
-          "toilets"
+          "picnic_tables",
+          "trash"
         ],
         "rig_friendly": [
           "tent",
@@ -52,7 +30,9 @@
         ],
         "road_difficulty": "gravel",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "251846",
+        "description": "<h2>Overview</h2>\n<p>Alto Pit OHV Campground is located at the foot of Granite Mountain Wilderness Area, at an elevation of 6,200 feet. The off-highway trail system within the recreation area draws en"
       }
     },
     {
@@ -60,26 +40,65 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.8322,
-          35.7578
+          -109.162348894,
+          31.898555546
+        ]
+      },
+      "properties": {
+        "id": "AZ-002",
+        "name": "PORTAL BUNKHOUSE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "250019",
+        "description": "<h2>Overview</h2>\nThe Portal Bunkhouse is a two-room cabin located one mile west of Portal, Arizona. Constructed in 1933 by the Civilian Conservation Corps, the Bunkhouse is listed on the National Reg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.136724,
+          34.300454
         ]
       },
       "properties": {
         "id": "AZ-003",
-        "name": "Arizona Campground 3",
+        "name": "Lake Havasu Shoreline Sites",
         "type": "established",
-        "cost": 0,
-        "rating": "4.8",
-        "reviews_count": 33,
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "fire_rings",
           "toilets",
-          "water"
+          "picnic_tables",
+          "trash"
         ],
-        "rig_friendly": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "261843",
+        "description": "The Lake Havasu Field Offices manages 73 boat access campsites over 20 miles along the Arizona shore of Lake Havasu. These campsites offer a picnic table, barbecue grill, and trash receptacle and a ma"
       }
     },
     {
@@ -87,28 +106,32 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.6599,
-          34.4624
+          -109.8711111,
+          32.6636111
         ]
       },
       "properties": {
         "id": "AZ-004",
-        "name": "Arizona Campground 4",
+        "name": "TREASURE PARK - NORTH",
         "type": "established",
         "cost": 25,
-        "rating": "4.3",
-        "reviews_count": 42,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets",
-          "picnic_tables",
           "water",
           "fire_rings",
-          "trash"
+          "picnic_tables"
         ],
-        "rig_friendly": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "233234",
+        "description": "<h2>Overview</h2>\n<p>Treasure Park North sits along the scenic Swift Trail in southern Arizona. The picturesque mountain meadow setting provides an escape from the desert heat and opportunities for vi"
       }
     },
     {
@@ -116,22 +139,32 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.5277,
-          33.3488
+          -110.715138053,
+          32.409923715
         ]
       },
       "properties": {
         "id": "AZ-005",
-        "name": "Arizona Backcountry 5",
-        "type": "backcountry",
+        "name": "PALISADES RANGER RESIDENCE CABIN",
+        "type": "established",
         "cost": 0,
-        "rating": "4.8",
-        "reviews_count": 31,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "250033",
+        "description": "<h2>Overview</h2>\n<p>The Palisades Ranger Residence Cabin is located within the Palisades Administrative Site in the Santa Catalina Mountains, 20 miles northeast of Tucson, Arizona. The cabin is reach"
       }
     },
     {
@@ -139,14 +172,393 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.4156,
-          33.5613
+          -112.46902,
+          34.53658
         ]
       },
       "properties": {
         "id": "AZ-006",
-        "name": "Arizona Dispersed 6",
-        "type": "dispersed",
+        "name": "Bradshaw Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237912",
+        "description": "<p>The Bradshaw Mountains, located south of Prescott, have long been known for being one of the most mineralized mountain ranges in the world. As early as the mid-1800's, mining first brought settlers"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.829,
+          33.3350556
+        ]
+      },
+      "properties": {
+        "id": "AZ-007",
+        "name": "KELLNER GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "272095",
+        "description": "<h2>Overview</h2>\nKellner Group Site is nestled at the base of the beautiful Pinal Mountains south of Globe, Arizona. Several picnic areas are separeted from the larger group area creating a semi-secl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7319444,
+          32.4119444
+        ]
+      },
+      "properties": {
+        "id": "AZ-008",
+        "name": "WHITETAIL CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234564",
+        "description": "<h2>Overview</h2>\nWhitetail Campground offers group campsites in the foothills of the Catalina Mountains of southeastern Arizona, 5 miles south of the town of Summerhaven and the top of Mt. Lemmon. Gr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.5386944,
+          34.6024722
+        ]
+      },
+      "properties": {
+        "id": "AZ-009",
+        "name": "YAVAPAI CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "251964",
+        "description": "<h2>Overview</h2>\n<p>Yavapai Campground is within the Granite Basin Recreation Area, at an elevation of 5,600 feet.  The campground is located seven miles northwest of downtown Prescott.  Main attract"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9363889,
+          34.3319444
+        ]
+      },
+      "properties": {
+        "id": "AZ-010",
+        "name": "SPILLWAY (AZ)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232203",
+        "description": "<h2>Overview</h2>\nSpillway Campground is on the shores of popular Woods Canyon Lake near the town of Heber in north central Arizona. Situated in a pine forest with plenty of shade, the campground has "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.4413889,
+          34.465
+        ]
+      },
+      "properties": {
+        "id": "AZ-011",
+        "name": "GROOM CREEK HORSE CAMP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234759",
+        "description": "<h2>Overview</h2>\n<p>Equestrian campers will find Groom Creek Horse Camp seven miles south of Prescott, Arizona at an elevation of 6,398 feet.  The ponderosa pine setting, nearby trails and limited eq"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.52343,
+          33.58997
+        ]
+      },
+      "properties": {
+        "id": "AZ-012",
+        "name": "Ehrenberg Sandbowl",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "227765",
+        "description": "<p>The hilly, sandy terrain of the Ehrenberg Sandbowl makes this site a popular place for off-highway vehicle use. The area is a starting point for visitors to explore a variety of designated roads an"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7205556,
+          32.4083333
+        ]
+      },
+      "properties": {
+        "id": "AZ-013",
+        "name": "SHOWERS POINT GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232285",
+        "description": "<h2>Overview</h2>\nThe cool shade of tall ponderosa pines and an overlook of Palisade Canyon from the campgrounds edge make Showers Point Group Site a popular place for groups to spend a weekend or an "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.4994,
+          34.4951
+        ]
+      },
+      "properties": {
+        "id": "AZ-014",
+        "name": "Prescott to Wickenberg via White Spar Road",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237996",
+        "description": "<p>Heading south out of Prescott, White Spar Road (Hwy 89) is a winding, scenic drive ending in Wickenberg. \u00a0Various recreational opportunities can be reached via White Spar Road including: hiking, mo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.2925,
+          34.1613889
+        ]
+      },
+      "properties": {
+        "id": "AZ-015",
+        "name": "HORSETHIEF CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234077",
+        "description": "<h2>Overview</h2>\n<p>Horsethief Cabin is situated in a clearing of Ponderosa pines at an elevation of over 6,000 feet in the Bradshaw Mountains of the Prescott National Forest. <br><br><br><br>The ori"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.6911111,
+          32.395
+        ]
+      },
+      "properties": {
+        "id": "AZ-016",
+        "name": "ROSE CANYON",
+        "type": "established",
+        "cost": 95,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232284",
+        "description": "<h2>Overview</h2>\nRose Canyon Campground is just 17 miles northeast of Tucson, Arizona, off the Catalina Highway Scenic Drive near the summit of Mt. Lemmon. This area is popular for day use as well as"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.6958333,
+          32.335
+        ]
+      },
+      "properties": {
+        "id": "AZ-017",
+        "name": "MOLINO",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233223",
+        "description": "<h2>Overview</h2>\nVisitors are drawn to Molino Campground for its group camping area, scenic mountain surroundings and hiking and mountain biking opportunities. While most other campgrounds in the Cat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.100134,
+          34.231407
+        ]
+      },
+      "properties": {
+        "id": "AZ-018",
+        "name": "Badger Springs Trailhead",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
@@ -154,9 +566,11 @@
           "toilets"
         ],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "262765",
+        "description": "<p>Badger Springs offers a short trail for non-motorized users within the <a href=\"/node/100599\" title=\"Agua Fria National Monument\" rel=\"nofollow\">Agua Fria National Monument</a>. The trail leads dow"
       }
     },
     {
@@ -164,24 +578,90 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.7157,
-          34.2387
+          -113.553394,
+          34.234382
         ]
       },
       "properties": {
-        "id": "AZ-007",
-        "name": "Arizona Dispersed 7",
-        "type": "dispersed",
+        "id": "AZ-019",
+        "name": "Alamo State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "247799",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=463&agencyCode=130\" rel=\"nofollow\">Alamo Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2905556,
+          31.4291667
+        ]
+      },
+      "properties": {
+        "id": "AZ-020",
+        "name": "REEF TOWNSITE GROUP AREA",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233224",
+        "description": "<h2>Overview</h2>\nThis high-mountain group campground and day use area is located on a site that was once occupied by the old mining town of Reef. Many relics of Reef's mining history, including the r"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.307,
+          32.966
+        ]
+      },
+      "properties": {
+        "id": "AZ-021",
+        "name": "Owl Creek Campground",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "water"
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
         ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "202267",
+        "description": "<div><p>Located in the <a href=\"/node/10032\" rel=\"nofollow\">Gila Box Riparian National Conservation Area</a> in Arizona, Owl Creek Campground has seven campsites, picnic tables, grills, ramadas, trash"
       }
     },
     {
@@ -189,24 +669,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.7875,
-          35.4224
+          -109.961709093,
+          31.931233885
         ]
       },
       "properties": {
-        "id": "AZ-008",
-        "name": "Arizona Dispersed 8",
-        "type": "dispersed",
+        "id": "AZ-022",
+        "name": "SHAW HOUSE",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "water"
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
         ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "233178",
+        "description": "<h2>Overview</h2>\n<p><a href=\"https://usda-fs.wistia.com/medias/khx019cn0k\" rel=\"nofollow\">Is a cabin rental the right fit for your group?</a> Shaw House is a stone masonry cabin located in East Cochi"
       }
     },
     {
@@ -214,24 +704,3503 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.6176,
-          33.6499
+          -110.872841704,
+          31.717940889
         ]
       },
       "properties": {
-        "id": "AZ-009",
-        "name": "Arizona Backcountry 9",
-        "type": "backcountry",
+        "id": "AZ-023",
+        "name": "KENT SPRINGS CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233402",
+        "description": "<h2>Overview</h2>\nKent Springs Cabin is located in the Madera Canyon Recreation Area, 15 miles southeast of Green Valley, Arizona in the Coronado National Forest. Located in an area boasting unique na"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.5866667,
+          35.2733333
+        ]
+      },
+      "properties": {
+        "id": "AZ-024",
+        "name": "LITTLE ELDEN SPRINGS HORSECAMP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232289",
+        "description": "<h2>Overview</h2>\nLittle Elden Springs Horse Camp is a campground that was created for those who love horses and enjoy riding in a beautiful landscape. Located in the Coconino National Forest of north"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.01216,
+          33.650217
+        ]
+      },
+      "properties": {
+        "id": "AZ-025",
+        "name": "Schoolhouse Campground (AZ)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "249291",
+        "description": "<h2>Overview</h2>\n<p>Schoolhouse Campground is located in close proximity to the eastern shores of Roosevelt Lake with an elevation of 2,100 feet. Roosevelt is Arizona's largest lake offering a number"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.711844,
+          33.387648
+        ]
+      },
+      "properties": {
+        "id": "AZ-026",
+        "name": "Oxbow Recreation and Wildlife Area",
+        "type": "established",
         "cost": 10,
-        "rating": "4.6",
-        "reviews_count": 19,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "201887",
+        "description": "<article><div><div><div><div><div><div><h2>Warning: Navigational Hazard</h2><p>The Oxbow Bridge was destroyed in a fire and is currently impassable. Do not travel north from the boat ramp.</p><p>Debri"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.581991,
+          33.125734
+        ]
+      },
+      "properties": {
+        "id": "AZ-027",
+        "name": "Margies Cove West Trailhead",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "274335",
+        "description": "<div><p>Margies Cove Trail is a near level, 9-mile route through the heart of the 63,200-acre\u202f<a href=\"https://www.blm.gov/visit/search-details/253996/1\" rel=\"nofollow\">North Maricopa Mountains Wilder"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.358,
+          33.791
+        ]
+      },
+      "properties": {
+        "id": "AZ-028",
+        "name": "Buffalo Crossing Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241582",
+        "description": "<p>At the southern end of the East Fork canyon is Buffalo Crossing Campground, an old Civilian Conservation Corp (CCC) era site which actually boasts the largest campsites along the river.</p><p>The E"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9774722,
+          33.8723056
+        ]
+      },
+      "properties": {
+        "id": "AZ-029",
+        "name": "REYNOLDS CREEK GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "251764",
+        "description": "<h2>Overview</h2>\nThe Reynolds Creek Group Campground is a rustic and secluded, creek side camp located on the Pleasant Valley Ranger District in the Tonto National Forest. The primitive group camping"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4183333,
+          33.8722222
+        ]
+      },
+      "properties": {
+        "id": "AZ-030",
+        "name": "CUTTHROAT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232195",
+        "description": "<h2>Overview</h2>\nCutthroat Campground lies at an elevation of 9,000 feet in the White Mountains of eastern Arizona. It sits on the shoreline of Big Lake and affords visitors many recreational opportu"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.5330556,
+          35.3616667
+        ]
+      },
+      "properties": {
+        "id": "AZ-031",
+        "name": "OLEARY GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233928",
+        "description": "<h2>Overview</h2>\nO'Leary Group Campground was constructed in 2001 and is named for O'Leary Peak, which overlooks this site. The campground is designed to accommodate the special needs of large groups"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.72265,
+          33.060375
+        ]
+      },
+      "properties": {
+        "id": "AZ-032",
+        "name": "Christmas Recreation Site",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "262592",
+        "description": "<p>The Christmas Recreation Site is along the Gila River approximately 6\u00bd miles upstream from the Town of Winkelman, and 3\u00bd miles upstream from the <a href=\"https://www.blm.gov/visit/shores\" rel=\"nofo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.122077,
+          35.988962
+        ]
+      },
+      "properties": {
+        "id": "AZ-033",
+        "name": "Tusayan Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "238013",
+        "description": "<p>The Tusayan Ranger District is on the northern portion of the Coconino Plateau.\u00a0It is bordered on the north by Grand Canyon National Park, on the east by the Navajo Indian Reservation, on the south"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.3872222,
+          34.5102778
+        ]
+      },
+      "properties": {
+        "id": "AZ-034",
+        "name": "EAGLE RIDGE GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233306",
+        "description": "<h2>Overview</h2>\n<p>Eagle Ridge Group Campground sits within a tall ponderosa pine forest of Prescott National Forest. The site lies in the Bradshaw Mountains along Lynx Lake and is convenient to the"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7587106,
+          33.9933802
+        ]
+      },
+      "properties": {
+        "id": "AZ-035",
+        "name": "Davis Dam Camp",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "200028",
+        "description": "Davis Dam Camp is located just below <a href=\"http://www.usbr.gov/projects/Facility.jsp?fac_Name=Davis+Dam\" rel=\"nofollow\">Davis Dam</a> on the Arizona side of the Colorado River.  This is a picturesq"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.109911,
+          31.436203
+        ]
+      },
+      "properties": {
+        "id": "AZ-036",
+        "name": "Hereford Trailhead",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "274415",
+        "description": "<p>The Hereford Trailhead provides access to the San Pedro Trail to the <a href=\"https://www.blm.gov/visit/san-pedro-house\" rel=\"nofollow\">San Pedro House</a> along Highway 90 to the north, approximat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.160087,
+          35.435956
+        ]
+      },
+      "properties": {
+        "id": "AZ-037",
+        "name": "Windy Point Campground",
+        "type": "established",
+        "cost": 8,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "10000309",
+        "description": "<p>Located on the crest of the Cerbat Mountains, Windy Point Campground provides visitors scenic views of the surrounding valley and distant mountain ranges. Enjoy camping in a pinyon pine and juniper"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.6208,
+          35.3586
+        ]
+      },
+      "properties": {
+        "id": "AZ-038",
+        "name": "Lockett Meadow Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "264749",
+        "description": "<p>This primitive campground offers a scenic view of the San Francisco Peaks and dry camping in the cool aspen trees that surround Lockett Meadow. This is a terrific campground for those who cherish a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4586111,
+          34.0433333
+        ]
+      },
+      "properties": {
+        "id": "AZ-039",
+        "name": "HOYER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232197",
+        "description": "<h2>Overview</h2>\nHoyer Campground is situated among the ponderosa pine forests of eastern Arizona, and is one of the most popular campgrounds in the area for families and seniors. Is is less than a m"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7163889,
+          32.5383333
+        ]
+      },
+      "properties": {
+        "id": "AZ-040",
+        "name": "PEPPERSAUCE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233222",
+        "description": "<h2>Overview</h2>\nWith its picturesque vegetation and dramatic setting at the foot of 9,157' Mt. Lemmon in southeastern Arizona, Peppersauce Campground is an outstanding area for enjoying an afternoon"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.298183,
+          33.050897
+        ]
+      },
+      "properties": {
+        "id": "AZ-041",
+        "name": "Clifton Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241549",
+        "description": "<p>Clifton Ranger District</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.3983448,
+          32.9252994
+        ]
+      },
+      "properties": {
+        "id": "AZ-042",
+        "name": "South Maricopa Mountains Wilderness Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "253995",
+        "description": "<p>The 60,100-acre South Maricopa Mountains Wilderness is located in southwestern Maricopa County, Arizona. It is 16 miles east of Gila Bend and 30 miles southwest of Phoenix. It is within the <a href"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.943983,
+          34.333655
+        ]
+      },
+      "properties": {
+        "id": "AZ-043",
+        "name": "Woods Canyon Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "250775",
+        "description": "<p>Woods Canyon Lake is a beautiful, canyon bound, deep lake, with plenty of trout fishing opportunities. At an elevation of 7,510 feet, Woods Canyon offers 55 surface acres, and a maximum depth of 40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4038889,
+          33.8763889
+        ]
+      },
+      "properties": {
+        "id": "AZ-044",
+        "name": "RAINBOW (AZ)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232200",
+        "description": "<h2>Overview</h2>\nRainbow is the largest campground in the Big Lake Recreation Area in eastern Arizona. Because of its proximity to the lake, size and the many amenities it offers, Rainbow is a favori"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1204694,
+          36.0497222
+        ]
+      },
+      "properties": {
+        "id": "AZ-045",
+        "name": "MATHER CAMPGROUND",
+        "type": "established",
+        "cost": 6,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232490",
+        "description": "<h2>Overview</h2>\n<p><strong>Due to high demand, Mather Campground recommends reservations during peak season: March 1- November 30. You may book reservations up to 6 months in advance.  </strong><br>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.7639,
+          34.8696
+        ]
+      },
+      "properties": {
+        "id": "AZ-046",
+        "name": "Red Rock Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "264716",
+        "description": "<p>The colorful collection of buttes, pinnacles, mesas and canyons surrounding Sedona is famous the world around for its red rock vistas. Over the years, this area has served as the setting of many we"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9463889,
+          35.9680556
+        ]
+      },
+      "properties": {
+        "id": "AZ-047",
+        "name": "HULL CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233242",
+        "description": "<h2>Overview</h2>\n<p>Located just steps away from the world-famous Grand Canyon National Park, Hull Cabin is the oldest historic structure in the area. It provides a variety of amenities, as well as a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.983675,
+          34.37996111
+        ]
+      },
+      "properties": {
+        "id": "AZ-048",
+        "name": "Promontory Pit Road Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241560",
+        "description": "<p>Dispersed Camping Area</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.5286386,
+          33.1030141
+        ]
+      },
+      "properties": {
+        "id": "AZ-049",
+        "name": "North Maricopa Mountains Wilderness Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "253996",
+        "description": "<p>The 63,200-acre North Maricopa Mountains Wilderness Area lies in the <a href=\"/node/100280\" rel=\"nofollow\">Sonoran Desert National Monument</a> in southwestern Maricopa County, about 12 miles east "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.536951,
+          35.089992
+        ]
+      },
+      "properties": {
+        "id": "AZ-050",
+        "name": "Lake Mary Recreation Corridor",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "264781",
+        "description": "<p>The lakes are open year-round. In the warmer months (early May through early October), a fee is required to use the day-use areas, which are managed by a concessionaire. Vist individual sites for d"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.0613278,
+          34.27309167
+        ]
+      },
+      "properties": {
+        "id": "AZ-051",
+        "name": "Fool Hollow Lake Recreation Area Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241578",
+        "description": "<p>Recent development of Fool Hollow Lake Recreation Area has created a top of the line experience. Campsites are located in several loops that wind amongst ponderosa pine. Many campsites have a view "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.0819444,
+          33.8352778
+        ]
+      },
+      "properties": {
+        "id": "AZ-052",
+        "name": "LUNA LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "231884",
+        "description": "<h2>Overview</h2>\nLuna Lake Campground is a pleasant vacation site with open forest, lush meadows, a lake with great fishing, first rate mountain scenery and additional recreation facilities located w"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8497222,
+          35.0163889
+        ]
+      },
+      "properties": {
+        "id": "AZ-053",
+        "name": "FERNOW CABIN",
+        "type": "established",
+        "cost": 75,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234459",
+        "description": "<h2>Overview</h2>\nFernow Cabin offers a quaint, forested retreat near Flagstaff and Sedona, in central Arizona. The rustic, three-bedroom log cabin is a retired U.S. Forest Service guard station const"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.0519444,
+          31.385
+        ]
+      },
+      "properties": {
+        "id": "AZ-054",
+        "name": "CALABASAS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233221",
+        "description": "<h2>Overview</h2>\nCalabasas Group Campground is a place for groups of up to 250 people to enjoy scenery and privacy in a remote, natural setting. Weddings, family reunions and other social gatherings "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.160856021,
+          31.900872603
+        ]
+      },
+      "properties": {
+        "id": "AZ-055",
+        "name": "PORTAL CCC HOUSE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "250027",
+        "description": "<h2>Overview</h2>\nThe Portal CCC House is a five-room cabin located just west of Portal, Arizona. The fieldstone masonry cabin has been determined eligible for the National Register of Historic Places"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8711111,
+          32.6636111
+        ]
+      },
+      "properties": {
+        "id": "AZ-056",
+        "name": "TREASURE PARK - EAST",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233233",
+        "description": "<h2>Overview</h2>\n<p>Treasure Park East sits along the scenic Swift Trail in the deserts of southern Arizona. The picturesque mountain meadow setting offers visitors an escape from the desert heat and"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8161111,
+          32.3188889
+        ]
+      },
+      "properties": {
+        "id": "AZ-057",
+        "name": "SABINO CANYON RECREATION AREA CACTUS RAMADA 2",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233219",
+        "description": "<h2>Overview</h2>\nCactus Ramada 2 is a reservable group picnic site within the extremely popular Sabino Canyon Recreation Area at the edge of Tucson, Arizona. The facility is accessible and can accomm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.5469444,
+          36.585
+        ]
+      },
+      "properties": {
+        "id": "AZ-058",
+        "name": "JUMPUP CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "251825",
+        "description": "<h2>Overview</h2>\nSince the 1900s, Jumpup cabin has been used by ranchers as well as the Forest Service, and is listed on the National Register of Historic Places. The site consists of a historic two-"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4486111,
+          34.0441667
+        ]
+      },
+      "properties": {
+        "id": "AZ-059",
+        "name": "BENNY CREEK GROUP AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232191",
+        "description": "<h2>Overview</h2>\nBenny Creek Campground offers group camping in the remote and scenic White Mountains of Arizona. A perfect outdoor retreat for small to medium group gatherings, the campground is sit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9416667,
+          34.3163889
+        ]
+      },
+      "properties": {
+        "id": "AZ-060",
+        "name": "CROOK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233953",
+        "description": "<h2>Overview</h2>\nThis group campground is situated in a tall ponderosa pine forest, just down the road from the popular Woods Canyon Lake in north central Arizona. The shaded campground is a nice hid"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.662,
+          35.172
+        ]
+      },
+      "properties": {
+        "id": "AZ-061",
+        "name": "Flagstaff Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "264714",
+        "description": "<p>The Flagstaff Ranger District encompasses nearly 850,000 acres of National Forest lands around the Flagstaff area, from Mormon Lake and Anderson Mesa to north of the San Francisco Peaks. At 12,643 "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1361111,
+          34.6983333
+        ]
+      },
+      "properties": {
+        "id": "AZ-062",
+        "name": "PLAYGROUND GROUP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232206",
+        "description": "<h2>Overview</h2>\n<p>Close to historic western towns and centrally located in Arizona, Playground Group Campground is a great place for groups of up to 75 people to enjoy a secluded mountain getaway.<"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.741566513,
+          31.744338649
+        ]
+      },
+      "properties": {
+        "id": "AZ-063",
+        "name": "KENTUCKY CAMP CABIN AND HEADQUARTERS BUILDING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233169",
+        "description": "<h2>Overview</h2>\n<p>Kentucky Camp Cabin and Headquarters is located in the Santa Rita Mountains near Sonoita, Arizona in the Coronado National Forest. The five adobe buildings originally served as he"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.0172222,
+          35.1152778
+        ]
+      },
+      "properties": {
+        "id": "AZ-064",
+        "name": "WHITE HORSE LAKE Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233955",
+        "description": "<h2>Overview</h2>\n<p>White Horse Lake is an extremely popular fishing lake, 19 miles southeast of Williams, in northern Arizona. The lake's campground is conveniently located an hour from Grand Canyon"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.47995,
+          32.88752
+        ]
+      },
+      "properties": {
+        "id": "AZ-065",
+        "name": "Riverview Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "202060",
+        "description": "<div><p>Riverview Campground offers a fantastic camping experience in the <a href=\"https://www.blm.gov/national-conservation-lands/arizona/gilabox\" title=\"Gila Box Riparian National Conservation Area\""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1613889,
+          34.00388889
+        ]
+      },
+      "properties": {
+        "id": "AZ-066",
+        "name": "Little Pan Staging Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "275045",
+        "description": "<p>The Little Pan Staging Area provides a staging and rest area for the Table Mesa Recreation Area. The staging area features two OHV training areas.</p><p>Primitive camping is available and includes "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8055556,
+          34.8291667
+        ]
+      },
+      "properties": {
+        "id": "AZ-067",
+        "name": "Crescent Moon Ramada",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232299",
+        "description": "<h2>Overview</h2>\n<p>Crescent Moon sits beneath the stunning Cathedral Rock, one of the most photographed scenes in the American Southwest. Historical buildings and towering Arizona Sycamore trees dec"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9583333,
+          35.3569444
+        ]
+      },
+      "properties": {
+        "id": "AZ-068",
+        "name": "Spring Valley Cabin & Bunkhouse",
+        "type": "established",
+        "cost": 165,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234439",
+        "description": "<h2>Overview</h2>\n<p>The Spring Valley Cabin and Bunkhouse offer a peaceful retreat with spectacular views of the San Francisco Peaks, quiet solitude, wildlife viewing opportunities, and access to nea"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.38518,
+          34.519234
+        ]
+      },
+      "properties": {
+        "id": "AZ-069",
+        "name": "Lynx Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237968",
+        "description": "<p>Located in the cool pines just outside of Prescott, AZ, Lynx Lake Recreation Area offers a wide variety of recreational opportunities including: hiking, mountain biking, camping, fishing, boating, "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8744444,
+          32.6669444
+        ]
+      },
+      "properties": {
+        "id": "AZ-070",
+        "name": "UPPER HOSPITAL FLAT GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233398",
+        "description": "<h2>Overview</h2>\n<p>Upper Hospital Flat is a great place for groups to escape the summer heat of surrounding deserts and retreat to a scenic meadow in the Pinale\u00f1o Mountains of southeastern Arizona. "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.087959,
+          33.666696
+        ]
+      },
+      "properties": {
+        "id": "AZ-071",
+        "name": "Windy Hill Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "249308",
+        "description": "<h2>Overview</h2>\n<p>Located on central Arizona's largest lake, Windy Hill offers great water recreation opportunities to the public.  Because of its close proximity to the Lake, Windy Hill allows fis"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.7763889,
+          34.8436111
+        ]
+      },
+      "properties": {
+        "id": "AZ-072",
+        "name": "CHAVEZ CROSSING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232143",
+        "description": "<h2>Overview</h2>\nChavez Crossing Group Campground is in the picturesque Red Rock district of Arizona, with famous red rock formations and breathtaking painted sunsets. Placed beside a creek and surro"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.4633333,
+          35.03
+        ]
+      },
+      "properties": {
+        "id": "AZ-073",
+        "name": "PINEGROVE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232147",
+        "description": "<h2>Overview</h2>\nPinegrove Campground sits in the lush Coconino National Forest of northern Arizona, offering visitors countless recreation opportunities set in a stunning landscape.<h2>Recreation</h"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.75063,
+          32.23948
+        ]
+      },
+      "properties": {
+        "id": "AZ-074",
+        "name": "Gunsight Wash",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "261712",
+        "description": "<p>Dispersed camping is available at Gunsight Wash near Why, Arizona in the Sonoran Desert. Camping on public lands away from developed recreation facilities is referred to as\u00a0dispersed camping.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.86918,
+          35.0613
+        ]
+      },
+      "properties": {
+        "id": "AZ-075",
+        "name": "Wild Cow Springs Campground",
+        "type": "established",
+        "cost": 8,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "10000330",
+        "description": "Wild Cow Springs Campground is situated in a grove of oak and large ponderosa pines within the Hualapai Mountains, at an elevation of 6,200 ft.  This site becomes especially attractive during the summ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.78965,
+          34.18596667
+        ]
+      },
+      "properties": {
+        "id": "AZ-076",
+        "name": "Brown Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241552",
+        "description": "Dispersed Camping Area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8266667,
+          34.3233333
+        ]
+      },
+      "properties": {
+        "id": "AZ-077",
+        "name": "CANYON POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232193",
+        "description": "<h2>Overview</h2>\nLocated in the scenic Apache-Sitgreaves National Forest in north central Arizona near the town of Heber, Canyon Point has a range of individual and group campsites to suit many visit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8186111,
+          32.6494444
+        ]
+      },
+      "properties": {
+        "id": "AZ-078",
+        "name": "UPPER ARCADIA",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233400",
+        "description": "<h2>Overview</h2>\n<p>Upper Arcadia sits along Swift Trail in southeastern Arizona, providing an escape from desert heat and a pleasant place to take in the high desert scenery in spring and fall. Visi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.480975,
+          33.47531667
+        ]
+      },
+      "properties": {
+        "id": "AZ-079",
+        "name": "Honeymoon Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241562",
+        "description": "<p>Located next to Eagle Creek, the area is ideal for camping, picnicking, fishing and wildlife viewing. It is a quiet, remote site with lots of shade provided by sycamore and cottonwood trees along w"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9458333,
+          34.3266667
+        ]
+      },
+      "properties": {
+        "id": "AZ-080",
+        "name": "ASPEN (AZ)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232190",
+        "description": "<h2>Overview</h2>\nAspen Campground is a scenic hideaway for anglers, boaters, families and photographers, located in north central Arizona near Heber and Payson. It sits in a dense pine and aspen area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8161111,
+          32.3188889
+        ]
+      },
+      "properties": {
+        "id": "AZ-081",
+        "name": "SABINO CANYON RECREATION AREA CACTUS RAMADA 1",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233220",
+        "description": "<h2>Overview</h2>\nCactus Ramada 1 is a reservable group picnic site within the extremely popular Sabino Canyon Recreation Area at the edge of Tucson, Arizona. The facility is accessible and can accomm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.285,
+          34.1738889
+        ]
+      },
+      "properties": {
+        "id": "AZ-082",
+        "name": "TURNEY GULCH GROUP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232208",
+        "description": "<h2>Overview</h2>\n<p>Turney Gulch is a remote, scenic location for groups of up to 100 people to rest under the stars and towering pines of Prescott National Forest. Site accomodates 30 vehicles or le"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.3691667,
+          33.7463889
+        ]
+      },
+      "properties": {
+        "id": "AZ-083",
+        "name": "CALDWELL CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234515",
+        "description": "<h2>Overview</h2>\nCaldwell Cabin allows up to six visitors to step back in time to a more rustic and historical era in eastern Arizona. Originally constructed in the 1920s, it was a one-room homestead"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.48,
+          34.9583333
+        ]
+      },
+      "properties": {
+        "id": "AZ-084",
+        "name": "DAIRY SPRINGS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232144",
+        "description": "<h2>Overview</h2>\nDairy Springs is a comfortable campground tucked away in a scenic area of northern Arizona. Its main attraction is the seasonal Mormon Lake which, when filled with water, draws visit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.477136,
+          32.902916
+        ]
+      },
+      "properties": {
+        "id": "AZ-085",
+        "name": "T.K. Jones Campground and Boat Launch",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "201883",
+        "description": "<p>T.K. Jones Campground and Boat Launch is located on the backwaters of the Colorado River directly above Imperial Dam. The site contains approximately 125 RV sites and numerous dispersed tent campin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1569444,
+          35.2811111
+        ]
+      },
+      "properties": {
+        "id": "AZ-086",
+        "name": "KAIBAB LAKE SITES AND GROUP AREAS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233957",
+        "description": "<h2>Overview</h2>\nKaibab Lake sits among the diverse landscape of Kaibab National Forest of northern Arizona. The lake is a popular spot for fishing and picnicking, as well as for RV and motorhome cam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.3826083,
+          34.5080167
+        ]
+      },
+      "properties": {
+        "id": "AZ-087",
+        "name": "Hilltop Campground (AZ)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "273335",
+        "description": "<h2>Overview</h2>\n<p>Hilltop Campground is located in the Prescott Basin at 5,712 feet in elevation and just over three miles south of Hwy 69 and east of Walker Road.  Campers will appreciate the mild"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.3580556,
+          31.7536111
+        ]
+      },
+      "properties": {
+        "id": "AZ-088",
+        "name": "CAMP RUCKER GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233227",
+        "description": "<h2>Overview</h2>\n<p><strong>The Camp Rucker Group Site is not available for reservations at this time </strong>for site re-design and facility improvements<strong>. </strong></p>\n<ul>\n<li><strong>The"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.217617,
+          35.237347
+        ]
+      },
+      "properties": {
+        "id": "AZ-089",
+        "name": "Williams Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "238003",
+        "description": "<p>The Williams Ranger District\u00a0is on the Coconino Plateau and encircles the City of Williams, Arizona. It is one of\u00a0three districts within the Kaibab National Forest.</p><p>The Williams Ranger Distri"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9702778,
+          34.3519444
+        ]
+      },
+      "properties": {
+        "id": "AZ-090",
+        "name": "SYCAMORE CABIN",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233887",
+        "description": "<h2>Overview</h2>\n<p>Sycamore Cabin provides a unique recreation opportunity and lodging experience for visitors to Prescott National Forest. In 1938, the Civilian Conservation Corps constructed the c"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8258333,
+          32.6444444
+        ]
+      },
+      "properties": {
+        "id": "AZ-091",
+        "name": "UPPER TWILIGHT GROUP SITE",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234627",
+        "description": "<h2>Overview</h2>\n<p>At an elevation of 7,400 feet, Upper Twilight Group Site offers groups a secluded camping escape from the summer desert heat. The scenic mountain setting is a great base for hikin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.203326,
+          33.627381
+        ]
+      },
+      "properties": {
+        "id": "AZ-092",
+        "name": "Burnt Corral Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "249254",
+        "description": "<h2>Overview</h2>\n<p>Burnt Corral Campground and Recreation Area (elevation 1914') is about 5.8 miles south of Roosevelt Dam along the Apache Trail (AZ Hwy 88)  along the shoreline of Apache Lake.  It"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.582145,
+          33.126417
+        ]
+      },
+      "properties": {
+        "id": "AZ-093",
+        "name": "Margies Cove West Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "261714",
+        "description": "<p>Margies Cove West Campground includes day-use parking for ten vehicles, three primitive campsites with picnic tables and steel fire rings, a vault toilet, and informational signage.</p><p><strong>T"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.17,
+          35.4522
+        ]
+      },
+      "properties": {
+        "id": "AZ-094",
+        "name": "Packsaddle Recreation Site ",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "202052",
+        "description": "<p>Packsaddle Recreation Site is located along the crest of the Cerbat Mountains, high above the old mining town of Chloride, Arizona.</p><p>This site features dispersed campsites, a vault toilet, and"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.5213889,
+          34.5522222
+        ]
+      },
+      "properties": {
+        "id": "AZ-095",
+        "name": "THUMB BUTTE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232207",
+        "description": "<h2>Overview</h2>\n<p>Thumb Butte Group Picnic Area is a convenient place for groups of up to 100 people to enjoy a day outdoors. The site is located under the towering pines of Prescott National Fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.411619,
+          33.874589
+        ]
+      },
+      "properties": {
+        "id": "AZ-096",
+        "name": "Big Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "271988",
+        "description": "<p><span>If getting completely away from it all and experiencing the outdoors for all it has to offer is your camping ideal then plan your camping vacation in the Big Lake Recreation Area. Big Lake it"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.4597463,
+          34.45457872
+        ]
+      },
+      "properties": {
+        "id": "AZ-097",
+        "name": "Lower Wolf Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237915",
+        "description": "<div><p>\u00a0</p></div><div id=\"slider\"><img alt=\"Entrance sign to Lower Wolf Creek Campground\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprd3841376.jpg\" title=\"Entrance sign to Lower Wolf Creek "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.0465472,
+          33.6437917
+        ]
+      },
+      "properties": {
+        "id": "AZ-098",
+        "name": "GRAPEVINE GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 75,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "266136",
+        "description": "<h2>Overview</h2>\nGroups are drawn to Grapevine Campground's unique setting and expansive facilities. The site's location near Roosevelt Lake's shoreline and nestled in the Saguaro cactus-studded Sono"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.093646,
+          34.426216
+        ]
+      },
+      "properties": {
+        "id": "AZ-099",
+        "name": "Knoll Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "264724",
+        "description": "<p><a href=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5301075.jpg\" rel=\"nofollow\"><img align=\"left\" alt=\"[photo] Knoll Lake - Click for Larger view\" height=\"108\" id=\"Image2\" src=\"http://www.fs"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1537222,
+          34.7093861
+        ]
+      },
+      "properties": {
+        "id": "AZ-100",
+        "name": "POTATO PATCH CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "270420",
+        "description": "<h2>Overview</h2>\n<p>Campers looking for some peace and quiet will find this relaxing campground offers cool summertime temperatures and easy access from scenic Hwy 89A in central Arizona.  The campgr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.04328,
+          34.58853
+        ]
+      },
+      "properties": {
+        "id": "AZ-101",
+        "name": "Cherry Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237997",
+        "description": "<p>Recreational opportunities in the Cherry area include: camping, hiking, mountain biking, horse riding, scenic driving, and OHV riding. Trail markers will be added to the map as time allows. \u00a0For no"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8258333,
+          32.6444444
+        ]
+      },
+      "properties": {
+        "id": "AZ-102",
+        "name": "LOWER TWILIGHT GROUP SITE",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234626",
+        "description": "<h2>Overview</h2>\n<p>Lower Twilight Group Site offers groups a secluded camping escape from the summer desert heat. The scenic mountain setting is a great base for hiking, wildlife viewing and picnick"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.2966667,
+          33.72944444
+        ]
+      },
+      "properties": {
+        "id": "AZ-103",
+        "name": "Harquahala Byway Staging Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "275056",
+        "description": "<p>The Harquahala Byway Staging Area serves as the gateway to the 10.5-mile <a href=\"https://www.blm.gov/visit/harquahala-mountain-backcountry-byway\" rel=\"nofollow\"><strong>Harquahala Mountain Backcou"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.135947,
+          34.691158
+        ]
+      },
+      "properties": {
+        "id": "AZ-104",
+        "name": "Mingus Mountain",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237976",
+        "description": "<p>Located in the cool pines of central Arizona, Mingus Mountain offers a wide range of recreational opportunities including: picnicking, hiking, horseback riding, mountain biking, camping, fishing, h"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9391667,
+          34.3286111
+        ]
+      },
+      "properties": {
+        "id": "AZ-105",
+        "name": "Woods Canyon Lake Group",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232205",
+        "description": "<h2>Overview</h2>\n<p>Woods Canyon Lake Group Area is located in north central Arizona near the community of Forest Lakes. The camp is adjacent to popular Woods Canyon Lake and situated in thick pine f"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5718528,
+          33.6881333
+        ]
+      },
+      "properties": {
+        "id": "AZ-106",
+        "name": "TIMBER CAMP RECREATION AREA and GROUP CAMPGROUNDS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "272097",
+        "description": "<h2>Overview</h2>\nTimber Camp Recreation Area has one of the most popular family and group campgrounds in the Tonto National Forest offering both day-use sites and over-night areas.<h2>Recreation</h2>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.203798,
+          33.73151
+        ]
+      },
+      "properties": {
+        "id": "AZ-107",
+        "name": "Cholla Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "249312",
+        "description": "<h2>Overview</h2>\n<p>Cholla Campground at Roosevelt Lake, is one of several campgrounds on the shores of the largest lake/reservoir located entirely in the State of Arizona.  It is situated  within a "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.3361,
+          34.2106
+        ]
+      },
+      "properties": {
+        "id": "AZ-108",
+        "name": "Crown King Area (Horsethief Basin)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237979",
+        "description": "<p><strong>Horsethief Basin Recreation Area</strong>\u00a0offers a variety of recreational opportunities including: hiking,\u00a0mountain biking, horseback riding, camping, fishing, and OHV riding. \u00a0Castle Cree"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.7416667,
+          34.9416667
+        ]
+      },
+      "properties": {
+        "id": "AZ-109",
+        "name": "MANZANITA.",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234287",
+        "description": "<h2>Overview</h2>\nManzanita Campground is a small, year-round, tent-only facility with  campsites that fill up very quickly. Visitors enjoy the campground for its fishing and swimming holes along Oak "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.21505,
+          34.2108778
+        ]
+      },
+      "properties": {
+        "id": "AZ-110",
+        "name": "CROSSROADS CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "274288",
+        "description": "<h2>Overview</h2>\nCrossroads Campground is located on the riverfront of the beautiful Lower Colorado River. This campground is popular with winter visitors looking to enjoy the warm winter temperature"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.548838,
+          34.614208
+        ]
+      },
+      "properties": {
+        "id": "AZ-111",
+        "name": "Granite Basin Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237904",
+        "description": "<p>Nestled among pines and boulders of Prescott's iconic Granite Mountain, Granite Basin Recreation Area offers a variety of recreational opportunities year-round including: hiking, backpacking, horse"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.4352778,
+          34.4708333
+        ]
+      },
+      "properties": {
+        "id": "AZ-112",
+        "name": "GROOM CREEK SCHOOLHOUSE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234550",
+        "description": "<h2>Overview</h2>\n<p>Built in 1902, this historic schoolhouse and adjacent picnic area in Arizona's Prescott National Forest may be reserved for day use for groups of up to 60 people. The facility off"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.497011,
+          32.907378
+        ]
+      },
+      "properties": {
+        "id": "AZ-113",
+        "name": "Senator Wash North Shore",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "262678",
+        "description": "<p>The Senator Wash North Shore recreational area is approximately 60 acres in size.\u00a0</p><p>There are many trees of various types and several secluded camping areas both on the water and further inlan"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.45188,
+          34.53605
+        ]
+      },
+      "properties": {
+        "id": "AZ-114",
+        "name": "Burro Creek Campground ",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "10000305",
+        "description": "<h2>Overview</h2>\n<p>The Burro Creek Campground (1,960\u2019 elevation) is situated along the 57 mile Burro Creek in a transition zone between the upper reaches of the scenic Sonoran Desert and lower reach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8494444,
+          32.5916667
+        ]
+      },
+      "properties": {
+        "id": "AZ-115",
+        "name": "STOCKTON PASS",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233399",
+        "description": "<h2>Overview</h2>\n<p>Named after \"Old Man Stockton,\" a rancher who settled in this area in the 1870s, Stockton Campground lies off the beaten path in the high desert of the Pinale\u00f1o Mountains in south"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4130556,
+          33.8755556
+        ]
+      },
+      "properties": {
+        "id": "AZ-116",
+        "name": "BROOKCHAR",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232192",
+        "description": "<h2>Overview</h2>\nBrookchar Campground is tucked on the banks of Big Lake in the White Mountains of eastern Arizona. The campground is a small, tent-only facility comprised entirely of walk-in sites. "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2402778,
+          34.2861111
+        ]
+      },
+      "properties": {
+        "id": "AZ-117",
+        "name": "LEWIS CANYON",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "231885",
+        "description": "<h2>Overview</h2>\n<p>Lewis Canyon is a large single-group campsite located in the scenic White Mountains region of eastern Arizona. With several amenities and activities, including hiking and horsesho"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.4527778,
+          31.4338889
+        ]
+      },
+      "properties": {
+        "id": "AZ-118",
+        "name": "ROCK BLUFF GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233226",
+        "description": "<h2>Overview</h2>\nRock Bluff Group Site is just a short distance from Parker Canyon Lake in a remote and scenic region of the Coronado National Forest in southeastern Arizona. The site is open to grou"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.04543,
+          33.02437
+        ]
+      },
+      "properties": {
+        "id": "AZ-119",
+        "name": "Painted Rock Petroglyph Site and Campground",
+        "type": "established",
+        "cost": 2,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "202059",
+        "description": "<p>The Painted Rock Petroglyph Site and Campground are located approximately 90 miles southwest of Phoenix, Arizona. The petroglyph site provides visitors the opportunity to view an ancient archaeolog"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4130556,
+          33.8730556
+        ]
+      },
+      "properties": {
+        "id": "AZ-120",
+        "name": "GRAYLING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232196",
+        "description": "<h2>Overview</h2>\nGrayling Campground offers perhaps the most secluded sites in the Big Lake Recreation Area in eastern Arizona. It sits on the shoreline of the lake in a mixed conifer and aspen fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.7380556,
+          35.0125
+        ]
+      },
+      "properties": {
+        "id": "AZ-121",
+        "name": "PINE FLAT CAMPGROUND WEST",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232320",
+        "description": "<h2>Overview</h2>\nPine Flat Campground is a popular camping spot in scenic Oak Creek Canyon in Arizona's Coconino National Forest. \n<br/><br/>\nThe campground is nestled in a forested canyon near the w"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.972778,
+          34.1544
+        ]
+      },
+      "properties": {
+        "id": "AZ-122",
+        "name": "Lakeside Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241551",
+        "description": "<p>Lakeside Ranger District</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.0605556,
+          36.2102778
+        ]
+      },
+      "properties": {
+        "id": "AZ-123",
+        "name": "North Rim Campground (AZ)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232489",
+        "description": "<h2>Overview</h2>\n<p>The North Rim Campground is located on the remote and rustic North Rim of Grand Canyon National Park in northern Arizona, approximately 210 miles (338 km) from Grand Canyon Villag"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.4533333,
+          34.4552778
+        ]
+      },
+      "properties": {
+        "id": "AZ-124",
+        "name": "UPPER WOLF CREEK GROUP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232209",
+        "description": "<h2>Overview</h2>\n<p>Upper Wolf Creek Group Campground provides a quiet forest setting for groups of up to 100 people to camp and enjoy the outdoors. The historic town of Prescott, Arizona is just 8 m"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.493621,
+          34.382867
+        ]
+      },
+      "properties": {
+        "id": "AZ-125",
+        "name": "Black Mesa Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "241548",
+        "description": "<p>Black Mesa Ranger District is the westernmost ranger district on the Apache-Sitgreaves National Forests. Located only 2 1/2 hours from the Phoenix Metro area, the district is a popular destination "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8658111,
+          33.97525
+        ]
+      },
+      "properties": {
+        "id": "AZ-126",
+        "name": "CAVE CREEK GROUP SITE",
+        "type": "established",
+        "cost": 75,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "267559",
+        "description": "<h2>Overview</h2>\nCave Creek Group Site is located 20 miles north of Cave Creek and Carefree, Arizona. It is a historic campground constructed in the 1930s by the Civilian Conservation Corps (CCC). Th"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1238333,
+          35.2111667
+        ]
+      },
+      "properties": {
+        "id": "AZ-127",
+        "name": "DOGTOWN LAKE CAMPGROUND AND GROUP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233956",
+        "description": "<h2>Overview</h2>\nDogtown Lake offers a scenic setting convenient to Grand Canyon National Park and the cities of Williams and Flagstaff, Arizona. The campground is situated in a pine forest along the"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.1285556,
+          33.6668056
+        ]
+      },
+      "properties": {
+        "id": "AZ-128",
+        "name": "FRAZIER GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 75,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "266135",
+        "description": "<h2>Overview</h2>\nThe campground overlooks Roosevelt Lake and is nestled in the saguaro cactus-studded Sonoran Desert.<h2>Recreation</h2>\nIn addition to camping, horseback riders, hikers, and mountain"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9553866,
+          31.94635473
+        ]
+      },
+      "properties": {
+        "id": "AZ-129",
+        "name": "HALF MOON RANCH",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "233177",
+        "description": "<h2>Overview</h2>\nHalf Moon Ranch is a ranch style house located in East Cochise Stronghold in the Dragoon Mountains of the Coronado National Forest, approximately 1-1/2 hours east of Tucson. The hous"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.47322,
+          32.67819
+        ]
+      },
+      "properties": {
+        "id": "AZ-130",
+        "name": "Kofa Wilderness",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "12812",
+        "description": "<p><br>The Kofa Wilderness now contains a total of 547,719 acres and is managed by the Fish & Wildlife Service's <a href=\"http://www.fws.gov/refuge/kofa/\" rel=\"nofollow\">Kofa National Wildlife Refuge<"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.358,
+          33.791
+        ]
+      },
+      "properties": {
+        "id": "AZ-131",
+        "name": "East Fork Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "10074565",
+        "description": "<p>The East Fork Black River Recreation Area stretches 8 miles along the East Fork Black River, from Diamond Rock Campground south to Buffalo Crossing Campground.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1230556,
+          35.9369444
+        ]
+      },
+      "properties": {
+        "id": "AZ-132",
+        "name": "Tusayan - Montane",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234488",
+        "description": "<h2>Overview</h2>\n<p><strong>COMMERCIAL TOUR GROUPS ARE NOT ALLOWED AT TUSAYAN-MONTANE CAMPGROUND</strong></p><p>Commercial operators MUST obtain a special use permit to operate on National Forest Sys"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.231,
+          33.737
+        ]
+      },
+      "properties": {
+        "id": "AZ-133",
+        "name": "Alpine Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "fire_rings"
         ],
         "rig_friendly": [],
         "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "241547",
+        "description": "<p><b><strong>*NOTICE*</strong></b></p><p>Many trails and dispersed camping areas across the Alpine Ranger District have been affected by the Wallow Fire of June 2011. Most areas are currently open to"
       }
     },
     {
@@ -239,28 +4208,32 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.6624,
-          35.5164
+          -113.86918,
+          35.0613
         ]
       },
       "properties": {
-        "id": "AZ-010",
-        "name": "Arizona Campground 10",
+        "id": "AZ-134",
+        "name": "Wild Cow Springs Campground",
         "type": "established",
         "cost": 0,
-        "rating": "4.0",
-        "reviews_count": 25,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "water",
           "toilets",
-          "showers",
           "fire_rings",
-          "electricity"
+          "picnic_tables",
+          "trash"
         ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "2046",
+        "description": "<p>Wild Cow Springs Campground is situated in a grove of oak and large ponderosa pines within the Hualapai Mountains, at an elevation of 6,200 feet. This site becomes especially attractive during the "
       }
     },
     {
@@ -268,22 +4241,216 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -111.0679,
-          35.2137
+          -109.4166667,
+          33.8689333
         ]
       },
       "properties": {
-        "id": "AZ-011",
-        "name": "Arizona Dispersed 11",
-        "type": "dispersed",
+        "id": "AZ-135",
+        "name": "APACHE TROUT CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234708",
+        "description": "<h2>Overview</h2>\nApache Trout Campground is one of five campgrounds at the Big Lake Recreation Area in Apache-Sitgreaves National Forest, and is especially popular for group camping. \n<br/><br/>\nWith"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.7391667,
+          34.9963889
+        ]
+      },
+      "properties": {
+        "id": "AZ-136",
+        "name": "CAVE SPRING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232194",
+        "description": "<h2>Overview</h2>\nCave Springs sits in the scenic Oak Creek Canyon and is one of Coconino National Forest's most popular campgrounds. \n<br/><br/>\nThe campground is nestled in a forested canyon near th"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.3902778,
+          34.5175
+        ]
+      },
+      "properties": {
+        "id": "AZ-137",
+        "name": "LYNX CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "234762",
+        "description": "<h2>Overview</h2>\n<p>Lynx Campground is located in the Lynx Lake Recreation Area at 5,600 feet in elevation.  Within 1/4 mile of the popular Lynx Lake, the campground is situated along the lake's west"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.847472,
+          34.549514
+        ]
+      },
+      "properties": {
+        "id": "AZ-138",
+        "name": "Verde Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "237913",
+        "description": "<p>Located near the geographic center of Arizona, the Verde Ranger District is accessible to visitors from all over the state. Drop a fishing line into the Verde River at one of eight day-use access p"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.525663,
+          36.942483
+        ]
+      },
+      "properties": {
+        "id": "AZ-139",
+        "name": "North Kaibab Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "238017",
+        "description": "<p>Welcome to the North Kaibab Ranger District!\u00a0The district office is located in Fredonia, Arizona, 7 miles south of Kanab, Utah. The district encompasses most of<br/>the Kaibab Plateau, with the\u00a0sou"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4841667,
+          33.9652778
+        ]
+      },
+      "properties": {
+        "id": "AZ-140",
+        "name": "WINN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "232204",
+        "description": "<h2>Overview</h2>\nWinn Campground is situated near the Mt. Baldy trailheads and the East and West Forks of the Little Colorado River, making it an excellent choice for anglers and hikers. The facility"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.3152,
+          34.5503
+        ]
+      },
+      "properties": {
+        "id": "AZ-141",
+        "name": "Mogollon Rim Ranger District",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "264715",
+        "description": "<p>The Mogollon Rim is a rugged escarpment that forms the southern limit of the Colorado Plateau. It extends across the entire forest and provides excellent views within Plateau Country and Desert Can"
       }
     },
     {
@@ -291,27 +4458,97 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -111.9379,
-          34.5207
+          -112.4776806,
+          34.5061694
         ]
       },
       "properties": {
-        "id": "AZ-012",
-        "name": "Arizona Campground 12",
+        "id": "AZ-142",
+        "name": "WHITE SPAR CAMPGROUND",
         "type": "established",
         "cost": 0,
-        "rating": "4.7",
-        "reviews_count": 32,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets",
-          "trash",
+          "water",
           "fire_rings",
-          "water"
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "256933",
+        "description": "<h2>Overview</h2>\n<p>White Spar Campground at 5,641 feet in elevation is a short drive of 2.7 miles south of downtown Prescott and east of Hwy 89. Campers will appreciate the mild weather and the cool"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.739111,
+          33.021947
+        ]
+      },
+      "properties": {
+        "id": "AZ-143",
+        "name": "Shores Recreation Site",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
         ],
         "rig_friendly": [],
         "road_difficulty": "gravel",
         "state": "AZ",
-        "source": "generated"
+        "source": "recreation.gov",
+        "facility_id": "262591",
+        "description": "<p>The Shores Recreation Site is along the <a href=\"/node/100892\" title=\"Gila River Recreation Area\" rel=\"nofollow\">Gila River</a> approximately 3\u00bd miles upstream from the Town of Winkelman, and 3\u00bd mi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.34513,
+          32.82925
+        ]
+      },
+      "properties": {
+        "id": "AZ-144",
+        "name": "Fourmile Canyon Campground",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "202054",
+        "description": "<div><p>Located among large mesquite trees and desert grasses, the Fourmile Canyon Campground offers a developed setting for an overnight or extended camping trip. Fourmile Canyon Campground is within"
       }
     }
   ]
