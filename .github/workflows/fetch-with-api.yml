@@ -1,0 +1,87 @@
+name: 🏕️ Fetch with Recreation.gov API
+
+on:
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'States (space-separated, e.g., "NH ME VT")'
+        required: true
+        default: 'NH ME VT MA CT RI'
+        type: string
+      api_key:
+        description: 'Recreation.gov API Key'
+        required: true
+        type: string
+
+jobs:
+  fetch-api:
+    name: Fetch via Recreation.gov API
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Python dependencies
+        run: pip3 install requests
+
+      - name: 🏕️ Fetch campsite data
+        run: |
+          STATES="${{ github.event.inputs.states }}"
+          API_KEY="${{ github.event.inputs.api_key }}"
+
+          echo "🌟 Fetching data for: $STATES"
+
+          for state in $STATES; do
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "🗺️  Processing: $state"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            python3 scripts/fetch_recreation_gov_data.py \
+              --api-key "$API_KEY" \
+              --state "$state" \
+              --limit 100
+
+            echo "✅ $state complete"
+            sleep 3
+          done
+
+      - name: 📊 Summary
+        run: |
+          echo "# 🏕️ Data Fetch Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          for file in data/campsites/*.geojson; do
+            if [ -f "$file" ]; then
+              count=$(grep -c '"type": "Feature"' "$file" || echo "0")
+              state=$(basename "$file" .geojson)
+              echo "- **$state**: $count campsites" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+      - name: 💾 Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions Bot"
+
+          git add data/campsites/
+
+          if ! git diff --staged --quiet; then
+            git commit -m "🏕️ Update campsite data from Recreation.gov API
+
+States: ${{ github.event.inputs.states }}
+Source: Recreation.gov RIDB API
+Generated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+            git push
+            echo "✅ Data pushed successfully!"
+          else
+            echo "ℹ️  No changes to commit"
+          fi
