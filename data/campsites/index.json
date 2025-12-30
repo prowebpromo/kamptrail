@@ -1,10 +1,46 @@
 {
-  "generated": "2025-12-30T18:49:04Z",
-  "total_sites": 308,
+  "generated": "2025-12-30T19:47:02.605741Z",
+  "total_sites": 2648,
   "states": [
+    {
+      "state": "AZ",
+      "count": 144
+    },
+    {
+      "state": "CA",
+      "count": 634
+    },
+    {
+      "state": "CO",
+      "count": 212
+    },
     {
       "state": "ID",
       "count": 308
+    },
+    {
+      "state": "MT",
+      "count": 317
+    },
+    {
+      "state": "NV",
+      "count": 38
+    },
+    {
+      "state": "OR",
+      "count": 333
+    },
+    {
+      "state": "UT",
+      "count": 319
+    },
+    {
+      "state": "WA",
+      "count": 189
+    },
+    {
+      "state": "WY",
+      "count": 154
     }
   ],
   "source": "recreation.gov",
