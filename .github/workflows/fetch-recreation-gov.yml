@@ -1,0 +1,113 @@
+name: 🏕️ Fetch Recreation.gov (Simple)
+
+on:
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'States (space-separated, e.g., "NH ME VT")'
+        required: true
+        default: 'NH ME VT MA CT RI'
+        type: string
+      limit:
+        description: 'Max campsites per state'
+        required: false
+        default: '100'
+        type: string
+
+jobs:
+  fetch-data:
+    name: Fetch Campsite Data
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: pip3 install requests
+
+      - name: 🏕️ Fetch campsite data
+        env:
+          RECREATION_API_KEY: ${{ secrets.RECREATION_GOV_API_KEY }}
+        run: |
+          # Use secret API key if available, otherwise use default
+          API_KEY="${RECREATION_API_KEY:-9276246f-055a-4601-bbe7-a5ec1b45d654}"
+          STATES="${{ github.event.inputs.states }}"
+          LIMIT="${{ github.event.inputs.limit }}"
+
+          echo "🌟 Fetching data for states: $STATES"
+          echo "📊 Limit per state: $LIMIT"
+          echo ""
+
+          total_sites=0
+
+          for state in $STATES; do
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "🗺️  Processing: $state"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            if python3 scripts/fetch_recreation_gov_data.py \
+              --api-key "$API_KEY" \
+              --state "$state" \
+              --limit "$LIMIT"; then
+
+              # Count campsites
+              if [ -f "data/campsites/${state}.geojson" ]; then
+                count=$(grep -c '"type": "Feature"' "data/campsites/${state}.geojson" || echo "0")
+                echo "✅ $state: $count campsites"
+                total_sites=$((total_sites + count))
+              fi
+            else
+              echo "⚠️  $state: fetch failed"
+            fi
+
+            echo ""
+            sleep 3
+          done
+
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Total campsites fetched: $total_sites"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+      - name: 📊 Generate summary
+        run: |
+          echo "# 🏕️ Campsite Data Fetch Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**States:** ${{ github.event.inputs.states }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          for state in ${{ github.event.inputs.states }}; do
+            if [ -f "data/campsites/${state}.geojson" ]; then
+              count=$(grep -c '"type": "Feature"' "data/campsites/${state}.geojson" || echo "0")
+              echo "- **$state**: $count campsites" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+      - name: 💾 Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions Bot"
+
+          git add data/campsites/
+
+          if ! git diff --staged --quiet; then
+            git commit -m "🏕️ Update campsite data from Recreation.gov
+
+States: ${{ github.event.inputs.states }}
+Limit: ${{ github.event.inputs.limit }} per state
+Source: Recreation.gov RIDB API
+Generated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+            git push
+            echo "✅ Data committed and pushed!"
+          else
+            echo "ℹ️  No changes to commit"
+          fi
