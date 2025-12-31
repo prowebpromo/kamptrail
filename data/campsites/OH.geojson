@@ -1,0 +1,970 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.83001928,
+          38.72070553
+        ]
+      },
+      "properties": {
+        "id": "OH-001",
+        "name": "Eagle Creek",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248296",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=316&agencyCode=130\" rel=\"nofollow\">Ohio River - Meldahl Pool</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.3527778,
+          39.2444444
+        ]
+      },
+      "properties": {
+        "id": "OH-002",
+        "name": "PAINT CREEK DAM SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "233904",
+        "description": "<h2>Overview</h2>\nPaint Creek Dam Site Area, located on Paint Creek Lake, offers great opportunities for outdoor recreation in the Scioto area of southwestern Ohio. Visitors enjoy boating, fishing, ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0769444,
+          39.9952778
+        ]
+      },
+      "properties": {
+        "id": "OH-003",
+        "name": "Dillon Lake Group Picnic Shelter",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "250818",
+        "description": "<h2>Overview</h2>\nDillon Lake is approximately six miles northwest of Zanesville, Ohio, and twenty miles east of Newark, Ohio. Access to the lake is provided by State Route 146 via State Routes 16 and"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9961111,
+          41.01
+        ]
+      },
+      "properties": {
+        "id": "OH-004",
+        "name": "MILL CREEK DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "234119",
+        "description": "<h2>Overview</h2>\n<p>Mill Creek Day-Use Park is located on Berlin Lake in northeastern Ohio, where visitors enjoy boating, fishing, hunting, picnicking and camping. The Day Use Area is open year round"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0691667,
+          40.3586111
+        ]
+      },
+      "properties": {
+        "id": "OH-005",
+        "name": "DELAWARE LAKE DAMSITE SHELTERS",
+        "type": "established",
+        "cost": 40,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "234231",
+        "description": "<h2>Overview</h2>\nBoth picnic shelters at Dam Site Recreation Area make for a pleasant getaway at Delaware Lake.  <br/><br/>Shady Ridge Shelter is nestled under elms atop a grassy ridge, providing pri"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1512,
+          39.4457056
+        ]
+      },
+      "properties": {
+        "id": "OH-006",
+        "name": "LEITH RUN",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "232389",
+        "description": "<h2>Overview</h2>\n<p>Leith Run Campground provides a beautiful location on the Ohio River, where grassy campsites and picnic areas make for a comfortable getaway in the Wayne National Forest. The camp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.71899,
+          39.956118
+        ]
+      },
+      "properties": {
+        "id": "OH-007",
+        "name": "Merritt Site",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248287",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=360&agencyCode=130\" rel=\"nofollow\">Clarence J. Brown Dam and Reservoir</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.354656,
+          39.243087
+        ]
+      },
+      "properties": {
+        "id": "OH-008",
+        "name": "State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248297",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=329&agencyCode=130\" rel=\"nofollow\">Paint Creek Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.957177,
+          38.789882
+        ]
+      },
+      "properties": {
+        "id": "OH-009",
+        "name": "White Oak Creek",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248295",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=316&agencyCode=130\" rel=\"nofollow\">Ohio River - Meldahl Pool</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9980556,
+          41.0069444
+        ]
+      },
+      "properties": {
+        "id": "OH-010",
+        "name": "Mill Creek Camping (Berlin Lake)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "233553",
+        "description": "<h2>Overview</h2>\nMill Creek Recreation Area is an ideal family campground located on Berlin Lake in northeastern Ohio. Visitors enjoy boating, fishing, hunting, picnicking and camping.<h2>Recreation<"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.738852,
+          41.389698
+        ]
+      },
+      "properties": {
+        "id": "OH-011",
+        "name": "Mosquito State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248293",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=401&agencyCode=130\" rel=\"nofollow\">Mosquito Creek Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.0661111,
+          39.4827778
+        ]
+      },
+      "properties": {
+        "id": "OH-012",
+        "name": "Caesar Creek Lake",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "250852",
+        "description": "<h2>Overview</h2>\nCaesar Creek Lake is located in southwest Ohio, centered between Dayton, Cincinnati and Columbus. Visitors flock to Caesar Creek Lake for its great fishing, boating, Visitor Center a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3943328,
+          39.3706322
+        ]
+      },
+      "properties": {
+        "id": "OH-013",
+        "name": "Athens Ranger District - Marietta Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "261312",
+        "description": "<p>Located in Marrietta, OH, the Marietta Unit\u00a0serves the southeastern parts of Ohio's Wayne National Forest.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.515389,
+          39.258237
+        ]
+      },
+      "properties": {
+        "id": "OH-014",
+        "name": "Winton Woods",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248298",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=378&agencyCode=130\" rel=\"nofollow\">West Fork of Mill Creek Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.9566667,
+          40.1772222
+        ]
+      },
+      "properties": {
+        "id": "OH-015",
+        "name": "ALUM CREEK BELOW DAM AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "233897",
+        "description": "<h2>Overview</h2>\n<p>Alum Creek Lake is located in Delaware County, Ohio, just minutes north of Columbus. The lake provides an ideal location for boating, fishing, camping, hiking and hunting. A speci"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1037534,
+          41.13631393
+        ]
+      },
+      "properties": {
+        "id": "OH-016",
+        "name": "West Branch State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248291",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=410&agencyCode=130\" rel=\"nofollow\">Michael J Kirwan Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.0955505,
+          39.03871306
+        ]
+      },
+      "properties": {
+        "id": "OH-017",
+        "name": "Greenbrier",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248299",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=361&agencyCode=130\" rel=\"nofollow\">William H. Harsha Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.630433,
+          38.605288
+        ]
+      },
+      "properties": {
+        "id": "OH-018",
+        "name": "LAKE VESUVIUS RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "232062",
+        "description": "<h2>Overview</h2>\nLake Vesuvius Recreation Area, named for the old Vesuvius iron furnace, is the Wayne National Forest's premier developed recreation site. The 143-acre lake and 1,200-acre complex pro"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.9637235,
+          40.242475
+        ]
+      },
+      "properties": {
+        "id": "OH-019",
+        "name": "Alum Creek State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248282",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=308&agencyCode=130\" rel=\"nofollow\">Alum Creek Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.16722222,
+          39.40305556
+        ]
+      },
+      "properties": {
+        "id": "OH-020",
+        "name": "Athens Ranger District - Athens Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "258504",
+        "description": "<p>Located 70 miles southeast of Columbus, Ohio, the Athens Unit of the Athens Ranger District is home to the Wayne National Forest Welcome Center. From here you can learn about all\u00a0that the\u00a0Wayne Nat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.633459,
+          38.618992
+        ]
+      },
+      "properties": {
+        "id": "OH-021",
+        "name": "OAK HILL - LAKE VESUVIUS",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "232904",
+        "description": "<h2>Overview</h2>\nOak Hill Campground is one of two camping areas within Lake Vesuvius Recreation Area. It has recently renovated and upgraded with modern conveniences like electric hookups and flush "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.615067,
+          38.610754
+        ]
+      },
+      "properties": {
+        "id": "OH-022",
+        "name": "IRON RIDGE - LAKE VESUVIUS",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "232903",
+        "description": "<h2>Overview</h2>\nIron Ridge is one of two campgrounds in the Vesuvius Recreation Area in southeastern Ohio's Wayne National Forest. Iron Ridge offers a great location for outdoor recreation, with act"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.109612,
+          40.009792
+        ]
+      },
+      "properties": {
+        "id": "OH-023",
+        "name": "Dillon State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248290",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=320&agencyCode=130\" rel=\"nofollow\">Dillon Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.7477778,
+          39.9569444
+        ]
+      },
+      "properties": {
+        "id": "OH-024",
+        "name": "CJ BROWN DAM AND RESERVOIR - DAM SITE (OH)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "251350",
+        "description": "<h2>Overview</h2>\nC.J. Brown Reservoir is located in west-central Ohio, two miles northeast of Springfield; thirty-five miles northeast of Dayton, and forty-five miles west of Columbus.<h2>Recreation<"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5166667,
+          41.2205556
+        ]
+      },
+      "properties": {
+        "id": "OH-025",
+        "name": "CUYAHOGA VALLEY NATIONAL PARK PICNIC SHELTERS",
+        "type": "established",
+        "cost": 80,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "233367",
+        "description": "<h2>Overview</h2>\n<p>Cuyahoga Valley National Park is a destination for millions of visitors each year who enjoy hiking, riding the <a href=\"https://www.nps.gov/cuva/getinvolved/cuyahoga-valley-scenic"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.2158333,
+          39.6191667
+        ]
+      },
+      "properties": {
+        "id": "OH-026",
+        "name": "DEER CREEK LAKE DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "233905",
+        "description": "<h2>Overview</h2>\nDeer Creek Lake Day Use Area is located just below the dam at Deer Creek Lake, 35 miles southwest of Columbus, Ohio. The lake provides an ideal location for boating, fishing, camping"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3588,
+          39.4358
+        ]
+      },
+      "properties": {
+        "id": "OH-027",
+        "name": "Lane Farm Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "10072881",
+        "description": "<p>Formerly the Lane family farm, this small campground is approximately 5 miles north of Marietta along the National Forest Covered Bridge Scenic Byway. The site has four campsites on the Little Musk"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1224,
+          39.6082
+        ]
+      },
+      "properties": {
+        "id": "OH-028",
+        "name": "Ring Mill Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "10076892",
+        "description": "<p>This was once the site of a mill and farmstead. The mill is now gone, but the stone house of its original owner, built in 1846, is still located at the site. The house is on the National Register o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.98049168,
+          39.53465609
+        ]
+      },
+      "properties": {
+        "id": "OH-029",
+        "name": "Mound Ridge",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248284",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=355&agencyCode=130\" rel=\"nofollow\">Caesar Creek Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.57785017,
+          40.50275431
+        ]
+      },
+      "properties": {
+        "id": "OH-030",
+        "name": "North Branch Kokosing River Lake - Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248294",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=327&agencyCode=130\" rel=\"nofollow\">North Branch Kokosing River Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.083159,
+          40.35083601
+        ]
+      },
+      "properties": {
+        "id": "OH-031",
+        "name": "Mohawk Dam Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248292",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=339&agencyCode=130\" rel=\"nofollow\">Mohawk Dam</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.06097376,
+          40.39433624
+        ]
+      },
+      "properties": {
+        "id": "OH-032",
+        "name": "Delaware State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248289",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=318&agencyCode=130\" rel=\"nofollow\">Delaware Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.22333,
+          39.619306
+        ]
+      },
+      "properties": {
+        "id": "OH-033",
+        "name": "State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "248288",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=317&agencyCode=130\" rel=\"nofollow\">Deer Creek Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.64777778,
+          38.60916667
+        ]
+      },
+      "properties": {
+        "id": "OH-034",
+        "name": "Ironton Ranger District - Ironton Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "recreation.gov",
+        "facility_id": "258502",
+        "description": "<p>The Ironton Ranger District is located in Lawrence, Scioto, Gallia, and Jackson counties.\u00a0 Total acreage is 107,090 acres. Visitor information can be obtained from the Ironton Ranger Station locate"
+      }
+    }
+  ]
+}

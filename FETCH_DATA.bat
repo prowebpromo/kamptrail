@@ -35,13 +35,10 @@ REM Define your API key (you can change this)
 set API_KEY=9276246f-055a-4601-bbe7-a5ec1b45d654
 
 REM Define states to fetch (edit this line to change states!)
-REM Popular camping states:
-set STATES=CA CO UT AZ OR WA MT WY NV ID
+REM Fetching 40 NEW states (already have: CA CO UT AZ OR WA MT WY NV ID)
+set STATES=AL AK AR CT DE FL GA HI IL IN IA KS KY LA ME MD MA MI MN MS MO NE NH NJ NM NY NC ND OH OK PA RI SC SD TN TX VT VA WV WI
 
-REM OR use New England states:
-REM set STATES=NH ME VT MA CT RI
-
-REM OR all 50 states (takes 2-3 hours):
+REM OR all 50 states if you want to re-fetch everything (takes 2-3 hours):
 REM set STATES=AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY
 
 echo [2/3] Fetching campsite data...
@@ -77,12 +74,12 @@ echo.
 echo Your data is in: data\campsites\
 echo.
 echo NEXT STEPS:
-echo 1. Open GitHub.com in your browser
-echo 2. Go to: github.com/prowebpromo/kamptrail
-echo 3. Click "Add file" - "Upload files"
-echo 4. Drag all files from data/campsites/ folder
-echo 5. Click "Commit changes"
-echo 6. Refresh your KampTrail app!
+echo 1. Open GitHub Desktop
+echo 2. You'll see all the new state files
+echo 3. Write commit message: "Add 40 more states with real data"
+echo 4. Click "Commit to main"
+echo 5. Click "Push origin"
+echo 6. Wait 1-2 minutes for site to rebuild
 echo.
 echo ========================================================
 echo.

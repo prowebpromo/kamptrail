@@ -1,0 +1,2609 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6453806,
+          46.4835
+        ]
+      },
+      "properties": {
+        "id": "MI-001",
+        "name": "Little Duck Campsite on Grand Island",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "10068183",
+        "description": "<p>Grand Island, a Congressionally designated National Recreation Area (NRA), boasts massive 300-foot wave-cut sandstone cliffs; 13,500 acres of lush forest; beaches of fine sand; winter ice caves; an"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.7649222,
+          46.0768
+        ]
+      },
+      "properties": {
+        "id": "MI-002",
+        "name": "LAKE OTTAWA PAVILION",
+        "type": "established",
+        "cost": 100,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273784",
+        "description": "<h2>Overview</h2>\n<p><strong>Planning a trip to the Lake Ottawa Pavilion?  Watch for Alerts at the top of the page for any Alerts regarding this facility. </strong>\u00a0</p>\n<p>The Lake Ottawa Pavilion, l"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4375,
+          46.2216667
+        ]
+      },
+      "properties": {
+        "id": "MI-003",
+        "name": "COLWELL LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 4,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "232319",
+        "description": "<h2>Overview</h2>\nColwell Lake Campground is situated on Colwell Lake in the center of Michigan's Hiawatha National Forest. Guests of all ages can enjoy nature and the outdoors in this picturesque set"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.449444,
+          46.161944
+        ]
+      },
+      "properties": {
+        "id": "MI-004",
+        "name": "Little Bass Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273349",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.597,
+          46.2281889
+        ]
+      },
+      "properties": {
+        "id": "MI-005",
+        "name": "Pete\u2019s Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233174",
+        "description": "<h2>Overview</h2>\nPetes Lake Campground, located in the center of Michigan's Hiawatha National Forest, is surrounded by several lakes and offers excellent hiking, biking, fishing, boating and more. <b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.620847,
+          46.470889
+        ]
+      },
+      "properties": {
+        "id": "MI-006",
+        "name": "Whitefish Bay National Forest Scenic Byway",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238211",
+        "description": "<p>Located along the shore of Lake Superior on the Hiawatha's Sault Ste. Marie Ranger District, the Whitefish Bay Scenic Byway offers many opportunities for visitors to connect with the natural beauty"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.649116,
+          46.409211
+        ]
+      },
+      "properties": {
+        "id": "MI-007",
+        "name": "Munising Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238172",
+        "description": "<p>Munising Ranger District is located on the northern part of the west side of the Hiawatha National Forest.\u00a0Stop by for up-to-date information and suggestions for your trip.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.7961111,
+          44.4869444
+        ]
+      },
+      "properties": {
+        "id": "MI-008",
+        "name": "SOUTH BRANCH TRAIL CAMP GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234679",
+        "description": "<h2>Overview</h2>\nSouth Branch Trail Campground Group Site is ideal for equestrian camping. The group area impresses with its beautiful scenery and convenient access to horseback riding and hiking alo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.0947,
+          45.0124639
+        ]
+      },
+      "properties": {
+        "id": "MI-009",
+        "name": "South Manitou Group Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "232456",
+        "description": "<h2>Overview</h2>\n<p>South Manitou Group Campground is a tent-only backcountry facility on South Manitou Island in Sleeping Bear Dunes National Lakeshore on Lake Michigan. Campers must take a 1.5-hour"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.479444,
+          46.144722
+        ]
+      },
+      "properties": {
+        "id": "MI-010",
+        "name": "Minerva Lake Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273353",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.721,
+          46.395
+        ]
+      },
+      "properties": {
+        "id": "MI-011",
+        "name": "Bessemer Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238257",
+        "description": "<p>Bessemer Ranger District has a variety of traditional lands, fisheries, and timber programs with new challenges in wildlife partnerships, in recreation (Region 9's only Harbor) and with management "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.446389,
+          46.169167
+        ]
+      },
+      "properties": {
+        "id": "MI-012",
+        "name": "Bass Lake Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273340",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.523056,
+          46.080278
+        ]
+      },
+      "properties": {
+        "id": "MI-013",
+        "name": "Jackpine Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273347",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3122,
+          46.8576
+        ]
+      },
+      "properties": {
+        "id": "MI-014",
+        "name": "Ontonagon Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238256",
+        "description": "<p><span>Ontonagon Ranger District is on the shores of Lake Superior, largest of the Great Lakes, and the mouth of the Ontonagon River. There are numerous outdoor recreational opportunities. Hunting, "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.94,
+          43.889444
+        ]
+      },
+      "properties": {
+        "id": "MI-015",
+        "name": "Bowman Lake Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "244320",
+        "description": "<p>This area not only has the Pere Marquette River running through it, but also contains a portion of the North Country National Scenic Trail and habitat for the federally endangered Karner blue butte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.9025,
+          43.7230556
+        ]
+      },
+      "properties": {
+        "id": "MI-016",
+        "name": "NICHOLS LAKE SOUTH CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "251845",
+        "description": "<h2>Overview</h2>\nLocated on the south side of Nichols Lake, the campground and surrounding area offer excellent opportunities for fishing, swimming, picnicking, hiking, camping, or just relaxing.<h2>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.598333,
+          46.04
+        ]
+      },
+      "properties": {
+        "id": "MI-017",
+        "name": "Chicago Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273334",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.508973,
+          46.077228
+        ]
+      },
+      "properties": {
+        "id": "MI-018",
+        "name": "Carr Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "10076131",
+        "description": "<p>Campers will typically find seclusion and privacy at this small, 16 acre lake. The campsite is fairly roomy (70 ft. by 40 ft), grassy, and suitable for 2 families. Access to the lake is by carry-in"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.664628,
+          46.44485
+        ]
+      },
+      "properties": {
+        "id": "MI-019",
+        "name": "Grand Island National Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238169",
+        "description": "<p>Bring the family and check out Grand Island National Recreation Area!</p><p>Grand Island is located in Lake Superior, about one-half mile from the mainland community of Munising, Michigan. Munising"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.842778,
+          44.032222
+        ]
+      },
+      "properties": {
+        "id": "MI-020",
+        "name": "M-37: White Cloud to Baldwin",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "244403",
+        "description": "<p>This area covers all recreation areas along M-37 between White Cloud and Baldwin.\u00a0 This does not include trailheads for the North Country National Scenic Trail or Hungerford Recreation Area.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.951992,
+          45.926276
+        ]
+      },
+      "properties": {
+        "id": "MI-021",
+        "name": "Rapid River/ Manistique Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "270656",
+        "description": "<p>Rapid River Ranger district is located on the lower half of the west side of  the forest.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.431667,
+          46.216667
+        ]
+      },
+      "properties": {
+        "id": "MI-022",
+        "name": "Crooked Lake Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273338",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.837975,
+          44.655249
+        ]
+      },
+      "properties": {
+        "id": "MI-023",
+        "name": "Hoist/Reid Lake Areas",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "271385",
+        "description": "<p>Recreation areas located near Hoist and Reid Lakes, north of the Au Sable River in the northeast corner of the Huron National Forest.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6852778,
+          46.4866667
+        ]
+      },
+      "properties": {
+        "id": "MI-024",
+        "name": "GRAND ISLAND CABINS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234790",
+        "description": "<h2>Overview</h2>\nGrand Island Cabins are remotely located on forested Grand Island, surrounded by Lake Superior, 1/2 mile off the mainland community of Munising, Michigan.  The cabins are placed in i"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.7736111,
+          44.4594444
+        ]
+      },
+      "properties": {
+        "id": "MI-025",
+        "name": "ROLLWAYS CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233255",
+        "description": "<h2>Overview</h2>\nRollways Campground is located 7 miles from Hale, Michigan along the beautiful AuSable River. The site was built in 1909 as one of the first campgrounds established in Huron National"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.8915,
+          46.4861
+        ]
+      },
+      "properties": {
+        "id": "MI-026",
+        "name": "Kenton  Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238236",
+        "description": "<p>The Kenton Ranger District is the largest and oldest district on the Ottawa, dating back to 1931, when the forest had only one district. The recreation program includes a wide variety of dispersed "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.581389,
+          46.039167
+        ]
+      },
+      "properties": {
+        "id": "MI-027",
+        "name": "Camp Cook Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273350",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.1570389,
+          44.5526222
+        ]
+      },
+      "properties": {
+        "id": "MI-028",
+        "name": "CHIMNEY LOOP CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "265539",
+        "description": "<h2>Overview</h2>\nChimney Loop Campground is located on the shores of Wagner Lake.  Wagner Lake is a shallow sandy bottom lake that is entirely surrounded by National Forest.  The lake has excellent b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.672941,
+          46.35924
+        ]
+      },
+      "properties": {
+        "id": "MI-029",
+        "name": "Bobcat Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238258",
+        "description": "<p>Located in Gogebic County just\u00a03 miles southeast of Marenisco, Mi., on the Bessemer Ranger District in the southern half of the Ottawa National Forest. Bobcat Lake campground features one loop with"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.9294444,
+          44.1680556
+        ]
+      },
+      "properties": {
+        "id": "MI-030",
+        "name": "SAND LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233715",
+        "description": "<h2>Overview</h2>\nSand Lake Campground is situated on the scenic shores of Sand Lake and provides a selection of sites shaded by a mixed hardwood forest. Just beyond the trees is a well-loved, sandy s"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.577222,
+          46.145278
+        ]
+      },
+      "properties": {
+        "id": "MI-031",
+        "name": "Mowe Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273339",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.544444,
+          46.0625
+        ]
+      },
+      "properties": {
+        "id": "MI-032",
+        "name": "Gooseneck Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273333",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.9422222,
+          43.8883333
+        ]
+      },
+      "properties": {
+        "id": "MI-033",
+        "name": "BOWMAN BRIDGE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233717",
+        "description": "<h2>Overview</h2>\nBowman Bridge Campground is perfect for true nature immersion. Campers come here for easy access to the Pere Marquette National Scenic River and for the delightful views of the great"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4972,
+          46.1664
+        ]
+      },
+      "properties": {
+        "id": "MI-034",
+        "name": "Triangle Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273342",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.5497222,
+          46.0577778
+        ]
+      },
+      "properties": {
+        "id": "MI-035",
+        "name": "CAMP SEVEN LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "232318",
+        "description": "<h2>Overview</h2>\nCamp Seven Lake Campground neighbors the 60-acre Camp Seven Lake, which offers visitors a place to swim, boat and fish. The excellent location, beautiful setting and many available a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.2177639,
+          46.639146
+        ]
+      },
+      "properties": {
+        "id": "MI-036",
+        "name": "Twelvemile Beach Campground and Cabin",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "247602",
+        "description": "<h2>Overview</h2>\n<p>Twelvemile Beach Campground is a beautiful campground along Lake Superior located within the Pictured Rocks National Lakeshore, just 15 miles (24 km) west of Grand Marais. There a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7070889,
+          45.9374667
+        ]
+      },
+      "properties": {
+        "id": "MI-037",
+        "name": "FLOWING WELL CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "232001",
+        "description": "<h2>Overview</h2>\nFlowing Well Campground is situated along the western banks of the Sturgeon River, among large trees and a variety of wildflowers. Camping, fishing, picnicking and canoeing can be en"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.572778,
+          46.1625
+        ]
+      },
+      "properties": {
+        "id": "MI-038",
+        "name": "Swan Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273361",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.8091667,
+          44.3577778
+        ]
+      },
+      "properties": {
+        "id": "MI-039",
+        "name": "SEATON CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "250045",
+        "description": "<h2>Overview</h2>\nSeaton Creek Campground adjoins Seaton Creek and is at the upper end of the backwater of Hodenpyl Dam Pond on the Big Manistee River.  The forest surrounding the campground is mostly"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.1194444,
+          43.5277778
+        ]
+      },
+      "properties": {
+        "id": "MI-040",
+        "name": "Pines Point Campground (MI)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233849",
+        "description": "<h2>Overview</h2>\nPines Point Campground is located on the banks of the White River with several campsites overlooking the river. The family campground includes a loop designed for groups containing f"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9741,
+          46.0151
+        ]
+      },
+      "properties": {
+        "id": "MI-041",
+        "name": "West Zone",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238168",
+        "description": "<p>The West Unit is located in the central of the Upper Peninsula, bordering two of the Great Lakes - Lake Superior and Lake Michigan. The western portion of the Hiawatha extends from the towns of Rap"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.449685,
+          46.164031
+        ]
+      },
+      "properties": {
+        "id": "MI-042",
+        "name": "Little Bass Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238177",
+        "description": "<p>Little Bass Lake, which is an 84 acre lake, offers camping, fishing, and boating in a serene wooded setting. <a href=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5107723.jpg\" rel=\"nofollow\">L"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.0427778,
+          44.8916667
+        ]
+      },
+      "properties": {
+        "id": "MI-043",
+        "name": "D.H. Day Group Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "232457",
+        "description": "<h2>Overview</h2>\n<p>D.H. Day Group Campground is a tent-only facility located in the heart of Sleeping Bear Dunes National Lakeshore, about one mile (1.6 km) north of the Dune Climb, where visitors c"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.509175,
+          44.633085
+        ]
+      },
+      "properties": {
+        "id": "MI-044",
+        "name": "Wakeley Lake Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "244404",
+        "description": "<p>Recreation areas near the Wakeley Lake Area.\u00a0 This is the section of the Huron National Forest furthest west, and most sites are located along or north of M-72.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.544167,
+          46.171667
+        ]
+      },
+      "properties": {
+        "id": "MI-045",
+        "name": "Lake Nineteen Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273344",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7083333,
+          46.4383333
+        ]
+      },
+      "properties": {
+        "id": "MI-046",
+        "name": "BAY FURNACE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233173",
+        "description": "<h2>Overview</h2>\nBay Furnace Campground is located on the south shores of Lake Superior, near Pictured Rocks National Lakeshore. Favorite to many, the campground is centered to various waterfalls, as"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6513889,
+          46.2708333
+        ]
+      },
+      "properties": {
+        "id": "MI-047",
+        "name": "ISLAND LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "251536",
+        "description": "<h2>Overview</h2>\nIsland Lake Campground is a small and quiet campground nestled in a mostly pine forest. Island Lake offers great fishing for anglers with small boats or canoes.<h2>Recreation</h2>\nIs"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.507778,
+          46.077778
+        ]
+      },
+      "properties": {
+        "id": "MI-048",
+        "name": "Carr Lake Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273356",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.413333,
+          46.178611
+        ]
+      },
+      "properties": {
+        "id": "MI-049",
+        "name": "East Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273346",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.7961111,
+          44.2041667
+        ]
+      },
+      "properties": {
+        "id": "MI-050",
+        "name": "PETERSON BRIDGE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233342",
+        "description": "<h2>Overview</h2>\nPeterson Bridge Campground is located on the Pine River in Michigan\u2019s Manistee National Forest. The location on the river makes it ideal for canoeists and those looking to experience"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3105556,
+          46.2447222
+        ]
+      },
+      "properties": {
+        "id": "MI-051",
+        "name": "SYLVANIA WILDERNESS BACKCOUNTRY CAMPING",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234526",
+        "description": "<h2>Overview</h2>\n<p><strong>Planning a trip to the Sylvania Wilderness? Watch for Alerts at the top of the page for any Alerts regarding this facility. </strong>\u00a0</p>\n<p>The Sylvania Wilderness encom"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.831519,
+          45.877577
+        ]
+      },
+      "properties": {
+        "id": "MI-052",
+        "name": "East Zone",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238167",
+        "description": "<p>The East Unit is located in the east side of the Upper Peninsula, bordering three of the Great Lakes - Lake Superior, Lake Michigan and Lake Huron. The eastern portion stretches north from the town"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.0497194,
+          46.6702806
+        ]
+      },
+      "properties": {
+        "id": "MI-053",
+        "name": "BLACK RIVER HARBOR CAMPGROUND",
+        "type": "established",
+        "cost": 22,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273343",
+        "description": "<h2>Overview</h2>\n<p><strong>Planning a trip to the Black River Harbor Campground? Watch for Alerts at the top of the page for any Alerts regarding this facility.</strong>\u00a0\u00a0</p>\n\n<p>Black River Campgr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.647175,
+          46.2416333
+        ]
+      },
+      "properties": {
+        "id": "MI-054",
+        "name": "Council Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233210",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4825,
+          46.128889
+        ]
+      },
+      "properties": {
+        "id": "MI-055",
+        "name": "Leg Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273355",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.9788889,
+          46.3191667
+        ]
+      },
+      "properties": {
+        "id": "MI-056",
+        "name": "THREE LAKES",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234620",
+        "description": "<h2>Overview</h2>\nThree Lakes Campground is a peaceful facility tucked away from the busy highway. It is nestled between Whitmarsh, Brown and Walker Lakes, giving visitors ample opportunity to enjoy a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.9202778,
+          43.8711111
+        ]
+      },
+      "properties": {
+        "id": "MI-057",
+        "name": "GLEASONS LANDING ",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233769",
+        "description": "<h2>Overview</h2>\nGleasons Landing is a very popular campground on the banks of the Pere Marquette River. With a selection of shaded and secluded spots, the campground is perfect for peaceful nature i"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3105556,
+          46.2447222
+        ]
+      },
+      "properties": {
+        "id": "MI-058",
+        "name": "CLARK LAKE PAVILION",
+        "type": "established",
+        "cost": 100,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273345",
+        "description": "<h2>Overview</h2>\n<p><strong>Planning a visit to the Clark Lake Pavilion? Watch for Alerts at the top of the page for any Alerts regarding this facility. </strong> The Clark Lake Pavilion, located wit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.530556,
+          46.069722
+        ]
+      },
+      "properties": {
+        "id": "MI-059",
+        "name": "Lyman Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273358",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.5887389,
+          46.2178806
+        ]
+      },
+      "properties": {
+        "id": "MI-060",
+        "name": "Ewing Point Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233212",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4275,
+          44.1191667
+        ]
+      },
+      "properties": {
+        "id": "MI-061",
+        "name": "LAKE MICHIGAN AT MANISTEE",
+        "type": "established",
+        "cost": 55,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233714",
+        "description": "<h2>Overview</h2>\nLake Michigan Campground is perched on the shores of Lake Michigan, 15 miles south of Manistee. The area creates an incredible setting with a scenic overlook of the lake and a sandy "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.413889,
+          46.244722
+        ]
+      },
+      "properties": {
+        "id": "MI-062",
+        "name": "Clear Lake Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273363",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.099444,
+          44.651111
+        ]
+      },
+      "properties": {
+        "id": "MI-063",
+        "name": "AUSABLE RIVER CAMPING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234130",
+        "description": "<h2>Overview</h2>\nAuSable River Dispersed Camping is a unique series of 102 individually designated single-family campsites on a 55-mile stretch of the lovely AuSable River. All campsites are within A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.147089,
+          44.553715
+        ]
+      },
+      "properties": {
+        "id": "MI-064",
+        "name": "Wagner Lake Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "244451",
+        "description": "<p>This section contains information on the sites located in the southern section of the Huron National Forest.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.492941,
+          46.272173
+        ]
+      },
+      "properties": {
+        "id": "MI-065",
+        "name": "Langford Lake Boat Launch",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238262",
+        "description": "<p>This launch is located 11 miles to the southeast of Marenisco, Mi., on the Bessemer Ranger District.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.428611,
+          46.2
+        ]
+      },
+      "properties": {
+        "id": "MI-066",
+        "name": "Steuben Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273357",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.548333,
+          46.171389
+        ]
+      },
+      "properties": {
+        "id": "MI-067",
+        "name": "Ironjaw Lake Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273351",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.698681,
+          46.288597
+        ]
+      },
+      "properties": {
+        "id": "MI-068",
+        "name": "Hovey Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238200",
+        "description": "<p>This isolated, quiet, family type camping area is located on the east side of Hovey Lake. It is a good place for canoeing, bird watching, or just enjoying nature\u00bfs surroundings. There are 4 campsit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.6644444,
+          44.3427778
+        ]
+      },
+      "properties": {
+        "id": "MI-069",
+        "name": "ROUND LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234763",
+        "description": "<h2>Overview</h2>\nRound Lake Campground offers a scenic, rustic, wooded camping area offering a wide variety of recreation opportunities in the Huron-Manistee National Forest in Michigan.<h2>Recreatio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.698634,
+          46.618118
+        ]
+      },
+      "properties": {
+        "id": "MI-070",
+        "name": "Sturgeon River Gorge Wilderness",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238242",
+        "description": "<p>The Wild and Scenic Sturgeon River rushes out of the northern portion of this wilderness, over the 20 foot volcanic outcroppings of Sturgeon Falls, and through a gorge that reaches 350 feet in dept"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.6183333,
+          44.4336111
+        ]
+      },
+      "properties": {
+        "id": "MI-071",
+        "name": "MONUMENT CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233253",
+        "description": "<h2>Overview</h2>\nMonument Campground was established in 1909 as one of the first campgrounds built in the Huron National Forest. The campground is a fully accessible camping area within a red pine pl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.900061,
+          43.757958
+        ]
+      },
+      "properties": {
+        "id": "MI-072",
+        "name": "Condon Lakes West",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "244321",
+        "description": "<p>This area is very popular for mushroom and berry picking, as well as hunting, fishing and camping.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.0497222,
+          46.6702778
+        ]
+      },
+      "properties": {
+        "id": "MI-073",
+        "name": "BLACK RIVER HARBOR PAVILION",
+        "type": "established",
+        "cost": 100,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233163",
+        "description": "<h2>Overview</h2>\n<p><strong>Planning a visit to the Black River Harbor Pavilion?  Watch for Alerts at the top of the page for any Alerts regarding this facility.</strong>  The Black River Harbor Pavi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.020564,
+          44.897278
+        ]
+      },
+      "properties": {
+        "id": "MI-074",
+        "name": "D.H. Day Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "259242",
+        "description": "<h2>Overview</h2>\n<p>D.H. Day Campground is located in the northern district of Sleeping Bear Dunes National Lakeshore, on the lower peninsula of Michigan.\u00a0</p>\n<p>This rustic campground is one of the"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9830556,
+          45.8416667
+        ]
+      },
+      "properties": {
+        "id": "MI-075",
+        "name": "Little Bay de Noc",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "232002",
+        "description": "<h2>Overview</h2>\nLittle Bay Campground provides a quiet respite from more developed campgrounds in the area. It has long been a favorite for visitors seeking solitude. Beautiful sunsets can be seen o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.5615139,
+          46.1955972
+        ]
+      },
+      "properties": {
+        "id": "MI-076",
+        "name": "Cookson Lake Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233211",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.6244444,
+          43.7166667
+        ]
+      },
+      "properties": {
+        "id": "MI-077",
+        "name": "HUNGERFORD EQUESTRIAN GROUP CAMPSITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234678",
+        "description": "<h2>Overview</h2>\nThe Hungerford Recreation Area offers access to over 50 miles of trails for horseback riding, hiking and mountain biking. <br/><br/>\nThe horse trails connect to the group campsite. T"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.831519,
+          45.877577
+        ]
+      },
+      "properties": {
+        "id": "MI-078",
+        "name": "Sault Sainte Marie Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238173",
+        "description": "<p>Sault Ste Marie Ranger district is located on the upper half of the east side of the forest.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8380556,
+          46.3916667
+        ]
+      },
+      "properties": {
+        "id": "MI-079",
+        "name": "Au Train Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "233172",
+        "description": "<h2>Overview</h2>\nLocated at the south end of AuTrain Lake, this campground is favored by anglers and outdoor enthusiasts. \n<br/><br/>\nThe quiet setting is great for family trips, and visitors can enj"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.1751,
+          46.262
+        ]
+      },
+      "properties": {
+        "id": "MI-080",
+        "name": "Iron River Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238235",
+        "description": "<p>Iron River is located in Iron County, in the western portion of Michigan's Upper Peninsula, just seven miles from the Wisconsin border. The border is shared with the Nicolet National forest. The Ir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.1177778,
+          44.7127778
+        ]
+      },
+      "properties": {
+        "id": "MI-081",
+        "name": "PLATTE RIVER CAMPGROUND",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "232458",
+        "description": "<h2>Overview</h2>\n<p>Platte River Campground is located in the southern district of Sleeping Bear Dunes National Lakeshore, on the lower peninsula of Michigan. <br>This year-round facility is one of t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.831519,
+          45.877577
+        ]
+      },
+      "properties": {
+        "id": "MI-082",
+        "name": "St. Ignace Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "238174",
+        "description": "<p>St. Ignace Ranger district is located on the lower half of the east side of the forest.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.498333,
+          46.070556
+        ]
+      },
+      "properties": {
+        "id": "MI-083",
+        "name": "Bear Lake Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "273341",
+        "description": "<h2>Overview</h2>\n<p>The Munising and Rapid River/Manistique Ranger Districts of the Hiawatha National Forest offer a variety of camping experiences. Many are located on inland lakes in a rustic fores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6283333,
+          46.2194444
+        ]
+      },
+      "properties": {
+        "id": "MI-084",
+        "name": "WIDEWATERS CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "recreation.gov",
+        "facility_id": "234662",
+        "description": "<h2>Overview</h2>\nWidewaters Campground is remotely located on Michigan's upper peninsula in the Hiawatha National Forest. \n<br/><br/>\nIt sits on a stretch of heavily forested land between Lake Superi"
+      }
+    }
+  ]
+}
