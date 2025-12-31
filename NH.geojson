@@ -1,0 +1,162 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0627,
+          44.9696
+        ]
+      },
+      "properties": {
+        "id": "NH-001",
+        "name": "New Hampshire Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.8",
+        "reviews_count": 28,
+        "amenities": [
+          "fire_rings",
+          "toilets",
+          "picnic_tables",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NH",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7475,
+          44.0748
+        ]
+      },
+      "properties": {
+        "id": "NH-002",
+        "name": "New Hampshire Campground 2",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.5",
+        "reviews_count": 15,
+        "amenities": [
+          "fire_rings",
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NH",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1155,
+          43.9363
+        ]
+      },
+      "properties": {
+        "id": "NH-003",
+        "name": "New Hampshire Dispersed 3",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NH",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.5107,
+          43.1975
+        ]
+      },
+      "properties": {
+        "id": "NH-004",
+        "name": "New Hampshire Campground 4",
+        "type": "established",
+        "cost": 0,
+        "rating": "3.9",
+        "reviews_count": 8,
+        "amenities": [
+          "picnic_tables",
+          "showers",
+          "trash",
+          "fire_rings",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NH",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.5585,
+          43.1946
+        ]
+      },
+      "properties": {
+        "id": "NH-005",
+        "name": "New Hampshire Backcountry 5",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "3.5",
+        "reviews_count": 22,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "NH",
+        "source": "generated",
+        "sources": [
+          "generated"
+        ]
+      }
+    }
+  ]
+}

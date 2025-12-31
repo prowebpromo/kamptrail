@@ -1,0 +1,249 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.7948,
+          45.475
+        ]
+      },
+      "properties": {
+        "id": "MI-001",
+        "name": "Michigan Campground 1",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.4",
+        "reviews_count": 17,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "trash",
+          "picnic_tables",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.4202,
+          45.7885
+        ]
+      },
+      "properties": {
+        "id": "MI-002",
+        "name": "Michigan Campground 2",
+        "type": "established",
+        "cost": 30,
+        "rating": "4.5",
+        "reviews_count": 18,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "toilets",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.3171,
+          45.6208
+        ]
+      },
+      "properties": {
+        "id": "MI-003",
+        "name": "Michigan Backcountry 3",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.8",
+        "reviews_count": 36,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.2273,
+          44.2405
+        ]
+      },
+      "properties": {
+        "id": "MI-004",
+        "name": "Michigan Backcountry 4",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "3.6",
+        "reviews_count": 32,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.2274,
+          45.4643
+        ]
+      },
+      "properties": {
+        "id": "MI-005",
+        "name": "Michigan Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.5781,
+          45.3564
+        ]
+      },
+      "properties": {
+        "id": "MI-006",
+        "name": "Michigan Dispersed 6",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.3718,
+          44.7638
+        ]
+      },
+      "properties": {
+        "id": "MI-007",
+        "name": "Michigan Campground 7",
+        "type": "established",
+        "cost": 30,
+        "rating": "4.2",
+        "reviews_count": 14,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0626,
+          43.5231
+        ]
+      },
+      "properties": {
+        "id": "MI-008",
+        "name": "Michigan Backcountry 8",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "3.8",
+        "reviews_count": 10,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0692,
+          43.2673
+        ]
+      },
+      "properties": {
+        "id": "MI-009",
+        "name": "Michigan Campground 9",
+        "type": "established",
+        "cost": 20,
+        "rating": "3.6",
+        "reviews_count": 46,
+        "amenities": [
+          "water",
+          "trash",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MI",
+        "source": "generated"
+      }
+    }
+  ]
+}

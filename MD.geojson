@@ -1,0 +1,85 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.6306,
+          38.8454
+        ]
+      },
+      "properties": {
+        "id": "MD-001",
+        "name": "Maryland Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.3",
+        "reviews_count": 37,
+        "amenities": [
+          "showers",
+          "toilets",
+          "picnic_tables",
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.3827,
+          38.7528
+        ]
+      },
+      "properties": {
+        "id": "MD-002",
+        "name": "Maryland Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MD",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.6676,
+          40.409
+        ]
+      },
+      "properties": {
+        "id": "MD-003",
+        "name": "Maryland Campground 3",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.8",
+        "reviews_count": 36,
+        "amenities": [
+          "toilets",
+          "picnic_tables",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MD",
+        "source": "generated"
+      }
+    }
+  ]
+}

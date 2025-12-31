@@ -1,0 +1,115 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.2046,
+          39.7576
+        ]
+      },
+      "properties": {
+        "id": "IL-001",
+        "name": "Illinois Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.2",
+        "reviews_count": 24,
+        "amenities": [
+          "fire_rings",
+          "water",
+          "picnic_tables",
+          "toilets"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "dirt",
+        "state": "IL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4329,
+          40.1133
+        ]
+      },
+      "properties": {
+        "id": "IL-002",
+        "name": "Illinois Backcountry 2",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.8",
+        "reviews_count": 46,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "IL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.5593,
+          39.9494
+        ]
+      },
+      "properties": {
+        "id": "IL-003",
+        "name": "Illinois Backcountry 3",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "3.7",
+        "reviews_count": 11,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "IL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.5757,
+          39.9681
+        ]
+      },
+      "properties": {
+        "id": "IL-004",
+        "name": "Illinois Campground 4",
+        "type": "established",
+        "cost": 25,
+        "rating": "4.2",
+        "reviews_count": 10,
+        "amenities": [
+          "electricity",
+          "picnic_tables",
+          "water",
+          "fire_rings",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "IL",
+        "source": "generated"
+      }
+    }
+  ]
+}
