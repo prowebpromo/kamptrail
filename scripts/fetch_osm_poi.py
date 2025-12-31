@@ -33,43 +33,41 @@ def fetch_overpass_data(query, description):
     print(f"✗ Failed to fetch {description}")
     return []
 
-def get_us_bounds_query():
-    """Return bounding box for continental US + Alaska + Hawaii"""
-    # Continental US, Alaska, and Hawaii combined
-    return "(24.0,-125.0,50.0,-66.0)"  # Approximate US bounds
-
 def fetch_dump_stations():
-    """Fetch RV dump stations from OSM"""
-    bounds = get_us_bounds_query()
-
-    # Combined query for better coverage
-    query = f"""
-    [out:json][timeout:120][bbox:{bounds}];
+    """
+    Fetch RV dump stations from OSM
+    Includes:
+    - Standalone dump stations (amenity=sanitary_dump_station)
+    - Campgrounds with dump access (tourism=camp_site/caravan_site + sanitary_dump_station=yes/customers)
+    """
+    # US bounding box: south,west,north,east (includes Alaska)
+    # Continental US + Alaska coverage
+    query = """
+    [out:json][timeout:180];
     (
-      node["amenity"="sanitary_dump_station"];
-      way["amenity"="sanitary_dump_station"];
-      relation["amenity"="sanitary_dump_station"];
-      node["sanitary_dump_station"="yes"];
-      way["sanitary_dump_station"="yes"];
+      node["amenity"="sanitary_dump_station"](24.0,-125.0,72.0,-66.0);
+      way["amenity"="sanitary_dump_station"](24.0,-125.0,72.0,-66.0);
+      relation["amenity"="sanitary_dump_station"](24.0,-125.0,72.0,-66.0);
+      node["tourism"="camp_site"]["sanitary_dump_station"~"yes|customers"](24.0,-125.0,72.0,-66.0);
+      way["tourism"="camp_site"]["sanitary_dump_station"~"yes|customers"](24.0,-125.0,72.0,-66.0);
+      node["tourism"="caravan_site"]["sanitary_dump_station"~"yes|customers"](24.0,-125.0,72.0,-66.0);
+      way["tourism"="caravan_site"]["sanitary_dump_station"~"yes|customers"](24.0,-125.0,72.0,-66.0);
     );
-    out center;
+    out body center;
     """
 
     return fetch_overpass_data(query, "dump stations")
 
 def fetch_propane_stations():
     """Fetch propane fill stations from OSM"""
-    bounds = get_us_bounds_query()
-
-    query = f"""
-    [out:json][timeout:120][bbox:{bounds}];
+    query = """
+    [out:json][timeout:120];
     (
-      node["fuel"="lpg"];
-      node["fuel:lpg"="yes"];
-      node["shop"="gas"]["fuel:lpg"="yes"];
-      way["fuel"="lpg"];
+      node["fuel"="lpg"](24.0,-125.0,72.0,-66.0);
+      node["fuel:lpg"="yes"](24.0,-125.0,72.0,-66.0);
+      way["fuel"="lpg"](24.0,-125.0,72.0,-66.0);
     );
-    out center;
+    out body center;
     """
 
     return fetch_overpass_data(query, "propane stations")
@@ -115,7 +113,7 @@ def extract_water_stations():
     return water_features
 
 def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
-    """Convert OSM element to GeoJSON feature"""
+    """Convert OSM element to GeoJSON feature with proper access labeling"""
     # Get coordinates
     if element.get('type') == 'node':
         coords = [element.get('lon'), element.get('lat')]
@@ -124,12 +122,56 @@ def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
     else:
         return None
 
-    # Get name
+    # Get tags
     tags = element.get('tags', {})
-    name = tags.get('name', tags.get('operator', f'OSM {poi_type.title()}'))
+
+    # Determine name
+    name = tags.get('name', tags.get('operator', ''))
+    if not name:
+        # For campgrounds with dump stations, identify them clearly
+        tourism = tags.get('tourism')
+        if tourism in ['camp_site', 'caravan_site']:
+            name = f"Campground with Dump Station"
+        else:
+            name = f'Dump Station'
 
     # Determine state from OSM tags (if available)
-    state = tags.get('addr:state', 'Unknown')
+    state = tags.get('addr:state', '')
+
+    # Access labeling (following OSM data rules)
+    access_label = None
+    dump_access = tags.get('sanitary_dump_station', '')
+    access_tag = tags.get('access', '')
+
+    if dump_access == 'customers':
+        access_label = 'Customers only'
+    elif access_tag == 'private':
+        access_label = 'Private'
+
+    # Fee labeling
+    fee_label = None
+    fee = tags.get('fee', '')
+    if fee == 'yes':
+        fee_label = 'Fee may apply'
+
+    properties = {
+        'name': name,
+        'type': poi_type,
+        'state': state,
+        'source': source,
+        'osm_id': element.get('id')
+    }
+
+    # Add optional fields only if they exist
+    if access_label:
+        properties['access'] = access_label
+    if fee_label:
+        properties['fee'] = fee_label
+
+    # Add operator if available
+    operator = tags.get('operator')
+    if operator:
+        properties['operator'] = operator
 
     return {
         'type': 'Feature',
@@ -137,13 +179,7 @@ def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
             'type': 'Point',
             'coordinates': coords
         },
-        'properties': {
-            'name': name,
-            'type': poi_type,
-            'state': state,
-            'source': source,
-            'osm_id': element.get('id')
-        }
+        'properties': properties
     }
 
 def main():
