@@ -71,12 +71,40 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -110.0494,
+          42.0209
+        ]
+      },
+      "properties": {
+        "id": "WY-003",
+        "name": "Weeping Rock Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "14718",
+        "description": "<p>Weeping Rock Campground is a popular spot for fishers, campers and picnickers and offers fishing and boat access to the Green River. It has 10 campsites with picnic tables, barbecue grills, and a v"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -106.723,
           44.342
         ]
       },
       "properties": {
-        "id": "WY-003",
+        "id": "WY-004",
         "name": "Buffalo, WY",
         "type": "established",
         "cost": 0,
@@ -101,7 +129,7 @@
         ]
       },
       "properties": {
-        "id": "WY-004",
+        "id": "WY-005",
         "name": "Blowout Campground",
         "type": "established",
         "cost": 0,
@@ -119,38 +147,6 @@
         "source": "recreation.gov",
         "facility_id": "238999",
         "description": "<p>Blowout Campground is located on Highwy 26, approxiametly 58 miles southeast of Idaho Falls, ID.\u00a0\u00a0Aspens and tall lodgepole pines partially shade the campground.\u00a0 Blowout Boat Ramp is located down "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.79685,
-          41.18348
-        ]
-      },
-      "properties": {
-        "id": "WY-005",
-        "name": "Encampment River Campground",
-        "type": "established",
-        "cost": 10,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent"
-        ],
-        "road_difficulty": "paved",
-        "state": "WY",
-        "source": "recreation.gov",
-        "facility_id": "202228",
-        "description": "The Encampment River Campground is a great location near the Encampment River for fishing, floating and hiking the Encampment River Trail. <br><br> The campground has 8 campsites, vault toilet, day us"
       }
     },
     {
@@ -711,43 +707,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.794683,
-          41.182508
-        ]
-      },
-      "properties": {
-        "id": "WY-025",
-        "name": "Encampment River Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent"
-        ],
-        "road_difficulty": "paved",
-        "state": "WY",
-        "source": "recreation.gov",
-        "facility_id": "14705",
-        "description": "The Encampment River Campground is a great location near the Encampment River for fishing, floating and hiking the Encampment River Trail. The campground has 8 campsites, vault toilet, day use parking"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -110.549,
           43.302
         ]
       },
       "properties": {
-        "id": "WY-026",
+        "id": "WY-025",
         "name": "Hoback River Area",
         "type": "established",
         "cost": 0,
@@ -774,7 +739,7 @@
         ]
       },
       "properties": {
-        "id": "WY-027",
+        "id": "WY-026",
         "name": "Pete's Draw Campground",
         "type": "established",
         "cost": 10,
@@ -809,7 +774,7 @@
         ]
       },
       "properties": {
-        "id": "WY-028",
+        "id": "WY-027",
         "name": "CLEARWATER CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -843,7 +808,7 @@
         ]
       },
       "properties": {
-        "id": "WY-029",
+        "id": "WY-028",
         "name": "Blackrock Ranger District",
         "type": "established",
         "cost": 0,
@@ -870,7 +835,7 @@
         ]
       },
       "properties": {
-        "id": "WY-030",
+        "id": "WY-029",
         "name": "WAPITI CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -904,7 +869,7 @@
         ]
       },
       "properties": {
-        "id": "WY-031",
+        "id": "WY-030",
         "name": "DOYLE CREEK CAMPGROUND",
         "type": "established",
         "cost": 9,
@@ -938,7 +903,7 @@
         ]
       },
       "properties": {
-        "id": "WY-032",
+        "id": "WY-031",
         "name": "Southern Hills - Custer",
         "type": "established",
         "cost": 0,
@@ -963,7 +928,7 @@
         ]
       },
       "properties": {
-        "id": "WY-033",
+        "id": "WY-032",
         "name": "ISLAND PARK CAMPGROUND",
         "type": "established",
         "cost": 9,
@@ -997,7 +962,7 @@
         ]
       },
       "properties": {
-        "id": "WY-034",
+        "id": "WY-033",
         "name": "Sweetwater Guard Station Campground",
         "type": "established",
         "cost": 15,
@@ -1031,7 +996,7 @@
         ]
       },
       "properties": {
-        "id": "WY-035",
+        "id": "WY-034",
         "name": "TETON CANYON",
         "type": "established",
         "cost": 0,
@@ -1065,7 +1030,7 @@
         ]
       },
       "properties": {
-        "id": "WY-036",
+        "id": "WY-035",
         "name": "Preston Valley Campground",
         "type": "established",
         "cost": 0,
@@ -1092,7 +1057,7 @@
         ]
       },
       "properties": {
-        "id": "WY-037",
+        "id": "WY-036",
         "name": "Hayden Fork Campground",
         "type": "established",
         "cost": 0,
@@ -1119,7 +1084,7 @@
         ]
       },
       "properties": {
-        "id": "WY-038",
+        "id": "WY-037",
         "name": "Pine Creek Campground",
         "type": "established",
         "cost": 0,
@@ -1149,7 +1114,7 @@
         ]
       },
       "properties": {
-        "id": "WY-039",
+        "id": "WY-038",
         "name": "Large Vehicle Campground",
         "type": "established",
         "cost": 15,
@@ -1181,7 +1146,7 @@
         ]
       },
       "properties": {
-        "id": "WY-040",
+        "id": "WY-039",
         "name": "TIE HACK",
         "type": "established",
         "cost": 10,
@@ -1215,7 +1180,7 @@
         ]
       },
       "properties": {
-        "id": "WY-041",
+        "id": "WY-040",
         "name": "Oregon Buttes WSA",
         "type": "established",
         "cost": 15,
@@ -1243,7 +1208,7 @@
         ]
       },
       "properties": {
-        "id": "WY-042",
+        "id": "WY-041",
         "name": "Warren Bridge Campground",
         "type": "established",
         "cost": 0,
@@ -1264,7 +1229,7 @@
         "state": "WY",
         "source": "recreation.gov",
         "facility_id": "14720",
-        "description": "The Warren Bridge Campground is a fee campground located off of US 191 adjacent to the famous Green River in Sublette County. The campground at 7,600 feet in elevation is surrounded by rolling sagebru"
+        "description": "<p>The Warren Bridge Campground is a fee campground located off of US 191 adjacent to the famous Green River in Sublette County. The campground at 7,600 feet in elevation is surrounded by rolling sage"
       }
     },
     {
@@ -1277,7 +1242,7 @@
         ]
       },
       "properties": {
-        "id": "WY-043",
+        "id": "WY-042",
         "name": "Pinedale Ranger District",
         "type": "established",
         "cost": 0,
@@ -1309,7 +1274,7 @@
         ]
       },
       "properties": {
-        "id": "WY-044",
+        "id": "WY-043",
         "name": "New Fork Lake Group Campground",
         "type": "established",
         "cost": 0,
@@ -1343,7 +1308,7 @@
         ]
       },
       "properties": {
-        "id": "WY-045",
+        "id": "WY-044",
         "name": "PRUNE CREEK",
         "type": "established",
         "cost": 10,
@@ -1377,7 +1342,7 @@
         ]
       },
       "properties": {
-        "id": "WY-046",
+        "id": "WY-045",
         "name": "LAKEVIEW BIGHORN",
         "type": "established",
         "cost": 0,
@@ -1411,7 +1376,7 @@
         ]
       },
       "properties": {
-        "id": "WY-047",
+        "id": "WY-046",
         "name": "THREEMILE CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -1445,7 +1410,7 @@
         ]
       },
       "properties": {
-        "id": "WY-048",
+        "id": "WY-047",
         "name": "BRUSH CREEK WORK CENTER BARRACK",
         "type": "established",
         "cost": 0,
@@ -1477,7 +1442,7 @@
         ]
       },
       "properties": {
-        "id": "WY-049",
+        "id": "WY-048",
         "name": "SOUTH FORK (WYOMING)",
         "type": "established",
         "cost": 10,
@@ -1511,7 +1476,7 @@
         ]
       },
       "properties": {
-        "id": "WY-050",
+        "id": "WY-049",
         "name": "Central Hills - Rapid City",
         "type": "established",
         "cost": 0,
@@ -1536,7 +1501,7 @@
         ]
       },
       "properties": {
-        "id": "WY-051",
+        "id": "WY-050",
         "name": "East Fork Blacks Fork Trailhead",
         "type": "established",
         "cost": 0,
@@ -1561,7 +1526,7 @@
         ]
       },
       "properties": {
-        "id": "WY-052",
+        "id": "WY-051",
         "name": "Bobcat-Houlihan Campground",
         "type": "established",
         "cost": 0,
@@ -1591,7 +1556,7 @@
         ]
       },
       "properties": {
-        "id": "WY-053",
+        "id": "WY-052",
         "name": "Grave Springs Campground",
         "type": "established",
         "cost": 0,
@@ -1625,7 +1590,7 @@
         ]
       },
       "properties": {
-        "id": "WY-054",
+        "id": "WY-053",
         "name": "Green River Lake Lodge",
         "type": "established",
         "cost": 0,
@@ -1659,7 +1624,7 @@
         ]
       },
       "properties": {
-        "id": "WY-055",
+        "id": "WY-054",
         "name": "Blucher Creek Campground",
         "type": "established",
         "cost": 0,
@@ -1688,7 +1653,7 @@
         ]
       },
       "properties": {
-        "id": "WY-056",
+        "id": "WY-055",
         "name": "REUNION FLAT",
         "type": "established",
         "cost": 0,
@@ -1722,7 +1687,7 @@
         ]
       },
       "properties": {
-        "id": "WY-057",
+        "id": "WY-056",
         "name": "COTTONWOOD GROUP CAMPSITE",
         "type": "established",
         "cost": 0,
@@ -1754,7 +1719,7 @@
         ]
       },
       "properties": {
-        "id": "WY-058",
+        "id": "WY-057",
         "name": "Greybull, WY",
         "type": "established",
         "cost": 0,
@@ -1779,7 +1744,7 @@
         ]
       },
       "properties": {
-        "id": "WY-059",
+        "id": "WY-058",
         "name": "Rim Campground",
         "type": "established",
         "cost": 7,
@@ -1813,7 +1778,7 @@
         ]
       },
       "properties": {
-        "id": "WY-060",
+        "id": "WY-059",
         "name": "Bridger Campground",
         "type": "established",
         "cost": 0,
@@ -1840,7 +1805,7 @@
         ]
       },
       "properties": {
-        "id": "WY-061",
+        "id": "WY-060",
         "name": "Green Mountain",
         "type": "established",
         "cost": 0,
@@ -1865,7 +1830,7 @@
         ]
       },
       "properties": {
-        "id": "WY-062",
+        "id": "WY-061",
         "name": "Yampa Ranger District",
         "type": "established",
         "cost": 0,
@@ -1895,7 +1860,7 @@
         ]
       },
       "properties": {
-        "id": "WY-063",
+        "id": "WY-062",
         "name": "Hunter Campground",
         "type": "established",
         "cost": 0,
@@ -1927,7 +1892,7 @@
         ]
       },
       "properties": {
-        "id": "WY-064",
+        "id": "WY-063",
         "name": "FIREHOLE CANYON CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -1962,7 +1927,7 @@
         ]
       },
       "properties": {
-        "id": "WY-065",
+        "id": "WY-064",
         "name": "Five Springs Falls Campground",
         "type": "established",
         "cost": 15,
@@ -1996,7 +1961,7 @@
         ]
       },
       "properties": {
-        "id": "WY-066",
+        "id": "WY-065",
         "name": "Deadhorse Trailhead",
         "type": "established",
         "cost": 0,
@@ -2021,7 +1986,7 @@
         ]
       },
       "properties": {
-        "id": "WY-067",
+        "id": "WY-066",
         "name": "Slate Creek Campground",
         "type": "established",
         "cost": 0,
@@ -2039,7 +2004,7 @@
         "state": "WY",
         "source": "recreation.gov",
         "facility_id": "14716",
-        "description": "The Slate Creek campground is just south of the shores of Fontenelle Reservoir, on the Green River, and just north of Seedskadee National Wildlife Refuge. The area is a mecca for birdwatching and fish"
+        "description": "<p>The Slate Creek campground is just south of the shores of Fontenelle Reservoir, on the Green River, and just north of <a href=\"https://www.fws.gov/refuge/seedskadee\" rel=\"nofollow\">Seedskadee Natio"
       }
     },
     {
@@ -2052,7 +2017,7 @@
         ]
       },
       "properties": {
-        "id": "WY-068",
+        "id": "WY-067",
         "name": "Greys River Corridor",
         "type": "established",
         "cost": 0,
@@ -2083,7 +2048,7 @@
         ]
       },
       "properties": {
-        "id": "WY-069",
+        "id": "WY-068",
         "name": "Cave Falls Campground",
         "type": "established",
         "cost": 0,
@@ -2113,7 +2078,7 @@
         ]
       },
       "properties": {
-        "id": "WY-070",
+        "id": "WY-069",
         "name": "TRAIL CREEK",
         "type": "established",
         "cost": 0,
@@ -2147,7 +2112,7 @@
         ]
       },
       "properties": {
-        "id": "WY-071",
+        "id": "WY-070",
         "name": "JACK CREEK CREW QUARTERS",
         "type": "established",
         "cost": 0,
@@ -2182,7 +2147,7 @@
         ]
       },
       "properties": {
-        "id": "WY-072",
+        "id": "WY-071",
         "name": "Stokes Crossing",
         "type": "established",
         "cost": 0,
@@ -2211,7 +2176,7 @@
         ]
       },
       "properties": {
-        "id": "WY-073",
+        "id": "WY-072",
         "name": "STATION CREEK CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -2244,7 +2209,7 @@
         ]
       },
       "properties": {
-        "id": "WY-074",
+        "id": "WY-073",
         "name": "Douglas Ranger District",
         "type": "established",
         "cost": 0,
@@ -2269,7 +2234,7 @@
         ]
       },
       "properties": {
-        "id": "WY-075",
+        "id": "WY-074",
         "name": "HALF MOON LAKE CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -2302,7 +2267,7 @@
         ]
       },
       "properties": {
-        "id": "WY-076",
+        "id": "WY-075",
         "name": "Prior Flat Campground",
         "type": "established",
         "cost": 0,
@@ -2318,7 +2283,7 @@
         "state": "WY",
         "source": "recreation.gov",
         "facility_id": "14713",
-        "description": "The Prior Flat Campground has 15 campsites and a vault toilet on about 9 acres. It has one pull-through, picnic tables, fire rings/grills and parking spurs. Visitors will enjoy the aspen, limber pine,"
+        "description": "<p>The Prior Flat Campground has 15 campsites and a vault toilet on about 9 acres. It has one pull-through, picnic tables, fire rings/grills and parking spurs.\u00a0</p><p>Typical use season is from June 1"
       }
     },
     {
@@ -2331,7 +2296,7 @@
         ]
       },
       "properties": {
-        "id": "WY-077",
+        "id": "WY-076",
         "name": "Worthen Meadow Campground",
         "type": "established",
         "cost": 0,
@@ -2363,7 +2328,7 @@
         ]
       },
       "properties": {
-        "id": "WY-078",
+        "id": "WY-077",
         "name": "Kaler Hollow Campground",
         "type": "established",
         "cost": 0,
@@ -2392,7 +2357,7 @@
         ]
       },
       "properties": {
-        "id": "WY-079",
+        "id": "WY-078",
         "name": "CAZIER CABIN",
         "type": "established",
         "cost": 50,
@@ -2426,7 +2391,7 @@
         ]
       },
       "properties": {
-        "id": "WY-080",
+        "id": "WY-079",
         "name": "Laramie Ranger District",
         "type": "established",
         "cost": 0,
@@ -2451,7 +2416,7 @@
         ]
       },
       "properties": {
-        "id": "WY-081",
+        "id": "WY-080",
         "name": "Northern Hills-Spearfish",
         "type": "established",
         "cost": 0,
@@ -2476,7 +2441,7 @@
         ]
       },
       "properties": {
-        "id": "WY-082",
+        "id": "WY-081",
         "name": "Medicine Lodge Lake Campground",
         "type": "established",
         "cost": 0,
@@ -2496,20 +2461,18 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -109.53995,
-          44.94074
+          -110.112,
+          42.54
         ]
       },
       "properties": {
-        "id": "WY-083",
-        "name": "Island Lake Campground",
+        "id": "WY-082",
+        "name": "Big Piney Ranger District",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
+        "amenities": [],
         "rig_friendly": [
           "RV",
           "trailer"
@@ -2517,8 +2480,8 @@
         "road_difficulty": "paved",
         "state": "WY",
         "source": "recreation.gov",
-        "facility_id": "240400",
-        "description": "<p>This beautiful high mountain lake campground has\u00a021 newly remodeled sites.\u00a0There is always plenty to do at this campground; hiking, fishing, wildlife viewing, and beautiful wildflowers galore.</p><"
+        "facility_id": "264320",
+        "description": "<p>The Big Piney Ranger District hosts a wide variety of cultural and natural history, recreational opportunities, timber, range, mineral reserves, and wildlife. \u00a0It contains 449,000 acres of snow-cap"
       }
     },
     {
@@ -2531,7 +2494,7 @@
         ]
       },
       "properties": {
-        "id": "WY-084",
+        "id": "WY-083",
         "name": "Newton Creek Campground",
         "type": "established",
         "cost": 0,
@@ -2563,7 +2526,7 @@
         ]
       },
       "properties": {
-        "id": "WY-085",
+        "id": "WY-084",
         "name": "Worthen Meadow Campground",
         "type": "established",
         "cost": 0,
@@ -2595,7 +2558,7 @@
         ]
       },
       "properties": {
-        "id": "WY-086",
+        "id": "WY-085",
         "name": "Buffalo, WY",
         "type": "established",
         "cost": 0,
@@ -2620,7 +2583,7 @@
         ]
       },
       "properties": {
-        "id": "WY-087",
+        "id": "WY-086",
         "name": "Medicine Lodge Lake Campground",
         "type": "established",
         "cost": 0,
@@ -2645,7 +2608,7 @@
         ]
       },
       "properties": {
-        "id": "WY-088",
+        "id": "WY-087",
         "name": "Sheridan, WY",
         "type": "established",
         "cost": 0,
@@ -2670,7 +2633,7 @@
         ]
       },
       "properties": {
-        "id": "WY-089",
+        "id": "WY-088",
         "name": "Greybull, WY",
         "type": "established",
         "cost": 0,
@@ -2695,7 +2658,7 @@
         ]
       },
       "properties": {
-        "id": "WY-090",
+        "id": "WY-089",
         "name": "Lake Yellowstone Hotel and Cabins",
         "type": "established",
         "cost": 0,
@@ -2723,7 +2686,7 @@
         ]
       },
       "properties": {
-        "id": "WY-091",
+        "id": "WY-090",
         "name": "Spring Campground",
         "type": "established",
         "cost": 0,
@@ -2750,7 +2713,7 @@
         ]
       },
       "properties": {
-        "id": "WY-092",
+        "id": "WY-091",
         "name": "Wolverine ATV Trailhead/Campground",
         "type": "established",
         "cost": 0,
@@ -2777,7 +2740,7 @@
         ]
       },
       "properties": {
-        "id": "WY-093",
+        "id": "WY-092",
         "name": "Wood Camp Campground",
         "type": "established",
         "cost": 0,
@@ -2802,7 +2765,7 @@
         ]
       },
       "properties": {
-        "id": "WY-094",
+        "id": "WY-093",
         "name": "Hayden Fork Campground",
         "type": "established",
         "cost": 0,
@@ -2829,7 +2792,7 @@
         ]
       },
       "properties": {
-        "id": "WY-095",
+        "id": "WY-094",
         "name": "Hoop Lake Trailhead",
         "type": "established",
         "cost": 0,
@@ -2856,7 +2819,7 @@
         ]
       },
       "properties": {
-        "id": "WY-096",
+        "id": "WY-095",
         "name": "Lyman Lake",
         "type": "established",
         "cost": 0,
@@ -2886,7 +2849,7 @@
         ]
       },
       "properties": {
-        "id": "WY-097",
+        "id": "WY-096",
         "name": "Meeks Cabin Campground",
         "type": "established",
         "cost": 0,
@@ -2911,7 +2874,7 @@
         ]
       },
       "properties": {
-        "id": "WY-098",
+        "id": "WY-097",
         "name": "Bear River Campground",
         "type": "established",
         "cost": 0,
@@ -2938,7 +2901,7 @@
         ]
       },
       "properties": {
-        "id": "WY-099",
+        "id": "WY-098",
         "name": "Preston Valley Campground",
         "type": "established",
         "cost": 0,
@@ -2965,7 +2928,7 @@
         ]
       },
       "properties": {
-        "id": "WY-100",
+        "id": "WY-099",
         "name": "Deadhorse Trailhead",
         "type": "established",
         "cost": 0,
@@ -2990,7 +2953,7 @@
         ]
       },
       "properties": {
-        "id": "WY-101",
+        "id": "WY-100",
         "name": "East Fork Bear River Campground",
         "type": "established",
         "cost": 0,
@@ -3017,7 +2980,7 @@
         ]
       },
       "properties": {
-        "id": "WY-102",
+        "id": "WY-101",
         "name": "East Fork Blacks Fork Trailhead",
         "type": "established",
         "cost": 0,
@@ -3042,7 +3005,7 @@
         ]
       },
       "properties": {
-        "id": "WY-103",
+        "id": "WY-102",
         "name": "Green River Camps",
         "type": "established",
         "cost": 0,
@@ -3072,7 +3035,7 @@
         ]
       },
       "properties": {
-        "id": "WY-104",
+        "id": "WY-103",
         "name": "DOYLE CREEK CAMPGROUND",
         "type": "established",
         "cost": 9,
@@ -3106,7 +3069,7 @@
         ]
       },
       "properties": {
-        "id": "WY-105",
+        "id": "WY-104",
         "name": "POLE CREEK CABIN",
         "type": "established",
         "cost": 0,
@@ -3140,7 +3103,7 @@
         ]
       },
       "properties": {
-        "id": "WY-106",
+        "id": "WY-105",
         "name": "ISLAND PARK CAMPGROUND",
         "type": "established",
         "cost": 9,
@@ -3174,7 +3137,7 @@
         ]
       },
       "properties": {
-        "id": "WY-107",
+        "id": "WY-106",
         "name": "LEIGH CREEK CAMPGROUND",
         "type": "established",
         "cost": 9,
@@ -3208,7 +3171,7 @@
         ]
       },
       "properties": {
-        "id": "WY-108",
+        "id": "WY-107",
         "name": "Douglas Ranger District",
         "type": "established",
         "cost": 0,
@@ -3233,7 +3196,7 @@
         ]
       },
       "properties": {
-        "id": "WY-109",
+        "id": "WY-108",
         "name": "Parks Ranger District",
         "type": "established",
         "cost": 0,
@@ -3261,7 +3224,7 @@
         ]
       },
       "properties": {
-        "id": "WY-110",
+        "id": "WY-109",
         "name": "Laramie Peak Area",
         "type": "established",
         "cost": 0,
@@ -3293,7 +3256,7 @@
         ]
       },
       "properties": {
-        "id": "WY-111",
+        "id": "WY-110",
         "name": "Laramie Ranger District",
         "type": "established",
         "cost": 0,
@@ -3318,7 +3281,7 @@
         ]
       },
       "properties": {
-        "id": "WY-112",
+        "id": "WY-111",
         "name": "Cold Springs Campground",
         "type": "established",
         "cost": 0,
@@ -3352,7 +3315,7 @@
         ]
       },
       "properties": {
-        "id": "WY-113",
+        "id": "WY-112",
         "name": "Brush Creek/Hayden Ranger District",
         "type": "established",
         "cost": 0,
@@ -3377,7 +3340,7 @@
         ]
       },
       "properties": {
-        "id": "WY-114",
+        "id": "WY-113",
         "name": "Lynx Pass Campground",
         "type": "established",
         "cost": 0,
@@ -3412,7 +3375,7 @@
         ]
       },
       "properties": {
-        "id": "WY-115",
+        "id": "WY-114",
         "name": "Yampa Ranger District",
         "type": "established",
         "cost": 0,
@@ -3442,7 +3405,7 @@
         ]
       },
       "properties": {
-        "id": "WY-116",
+        "id": "WY-115",
         "name": "Hahns Peak/Bears Ears Ranger District",
         "type": "established",
         "cost": 0,
@@ -3467,7 +3430,7 @@
         ]
       },
       "properties": {
-        "id": "WY-117",
+        "id": "WY-116",
         "name": "Black Fox Campground",
         "type": "established",
         "cost": 0,
@@ -3494,7 +3457,7 @@
         ]
       },
       "properties": {
-        "id": "WY-118",
+        "id": "WY-117",
         "name": "Bismarck Lake",
         "type": "established",
         "cost": 0,
@@ -3519,7 +3482,7 @@
         ]
       },
       "properties": {
-        "id": "WY-119",
+        "id": "WY-118",
         "name": "Southern Hills - Custer",
         "type": "established",
         "cost": 0,
@@ -3544,7 +3507,7 @@
         ]
       },
       "properties": {
-        "id": "WY-120",
+        "id": "WY-119",
         "name": "Northwestern Hills - Sundance",
         "type": "established",
         "cost": 0,
@@ -3572,7 +3535,7 @@
         ]
       },
       "properties": {
-        "id": "WY-121",
+        "id": "WY-120",
         "name": "Central Hills - Rapid City",
         "type": "established",
         "cost": 0,
@@ -3597,7 +3560,7 @@
         ]
       },
       "properties": {
-        "id": "WY-122",
+        "id": "WY-121",
         "name": "Northern Hills-Spearfish",
         "type": "established",
         "cost": 0,
@@ -3622,7 +3585,7 @@
         ]
       },
       "properties": {
-        "id": "WY-123",
+        "id": "WY-122",
         "name": "Bolton Creek",
         "type": "established",
         "cost": 0,
@@ -3649,7 +3612,7 @@
         ]
       },
       "properties": {
-        "id": "WY-124",
+        "id": "WY-123",
         "name": "Pete's Draw Campground",
         "type": "established",
         "cost": 10,
@@ -3684,7 +3647,7 @@
         ]
       },
       "properties": {
-        "id": "WY-125",
+        "id": "WY-124",
         "name": "Golden Currant Campground",
         "type": "established",
         "cost": 10,
@@ -3718,7 +3681,7 @@
         ]
       },
       "properties": {
-        "id": "WY-126",
+        "id": "WY-125",
         "name": "Chalk Bluffs Campground",
         "type": "established",
         "cost": 10,
@@ -3752,7 +3715,7 @@
         ]
       },
       "properties": {
-        "id": "WY-127",
+        "id": "WY-126",
         "name": "Green Mountain",
         "type": "established",
         "cost": 0,
@@ -3777,7 +3740,7 @@
         ]
       },
       "properties": {
-        "id": "WY-128",
+        "id": "WY-127",
         "name": "Stokes Crossing",
         "type": "established",
         "cost": 0,
@@ -3806,7 +3769,7 @@
         ]
       },
       "properties": {
-        "id": "WY-129",
+        "id": "WY-128",
         "name": "North Boulder Lake Campground",
         "type": "established",
         "cost": 0,
@@ -3835,7 +3798,7 @@
         ]
       },
       "properties": {
-        "id": "WY-130",
+        "id": "WY-129",
         "name": "Dutch Joe Campground",
         "type": "established",
         "cost": 0,
@@ -3865,7 +3828,7 @@
         ]
       },
       "properties": {
-        "id": "WY-131",
+        "id": "WY-130",
         "name": "North Table Rock Camping Area",
         "type": "established",
         "cost": 15,
@@ -3893,7 +3856,7 @@
         ]
       },
       "properties": {
-        "id": "WY-132",
+        "id": "WY-131",
         "name": "Pine Creek Camping Area",
         "type": "established",
         "cost": 15,
@@ -3918,7 +3881,7 @@
         ]
       },
       "properties": {
-        "id": "WY-133",
+        "id": "WY-132",
         "name": "Big Piney Ranger District",
         "type": "established",
         "cost": 0,
@@ -3946,7 +3909,7 @@
         ]
       },
       "properties": {
-        "id": "WY-134",
+        "id": "WY-133",
         "name": "Greys River Ranger District",
         "type": "established",
         "cost": 0,
@@ -3971,7 +3934,7 @@
         ]
       },
       "properties": {
-        "id": "WY-135",
+        "id": "WY-134",
         "name": "Jackson Ranger District",
         "type": "established",
         "cost": 0,
@@ -3996,7 +3959,7 @@
         ]
       },
       "properties": {
-        "id": "WY-136",
+        "id": "WY-135",
         "name": "Kemmerer Ranger District",
         "type": "established",
         "cost": 0,
@@ -4021,7 +3984,7 @@
         ]
       },
       "properties": {
-        "id": "WY-137",
+        "id": "WY-136",
         "name": "Pinedale Ranger District",
         "type": "established",
         "cost": 0,
@@ -4053,7 +4016,7 @@
         ]
       },
       "properties": {
-        "id": "WY-138",
+        "id": "WY-137",
         "name": "Hatchet/Flagstaff Area",
         "type": "established",
         "cost": 0,
@@ -4078,7 +4041,7 @@
         ]
       },
       "properties": {
-        "id": "WY-139",
+        "id": "WY-138",
         "name": "Greys River Corridor",
         "type": "established",
         "cost": 0,
@@ -4109,7 +4072,7 @@
         ]
       },
       "properties": {
-        "id": "WY-140",
+        "id": "WY-139",
         "name": "Hams Fork Area",
         "type": "established",
         "cost": 0,
@@ -4137,7 +4100,7 @@
         ]
       },
       "properties": {
-        "id": "WY-141",
+        "id": "WY-140",
         "name": "Green River Lake Lodge",
         "type": "established",
         "cost": 0,
@@ -4171,7 +4134,7 @@
         ]
       },
       "properties": {
-        "id": "WY-142",
+        "id": "WY-141",
         "name": "Cache Creek and Greater Snow King Area",
         "type": "established",
         "cost": 0,
@@ -4198,7 +4161,7 @@
         ]
       },
       "properties": {
-        "id": "WY-143",
+        "id": "WY-142",
         "name": "Hoback River Area",
         "type": "established",
         "cost": 0,
@@ -4225,7 +4188,7 @@
         ]
       },
       "properties": {
-        "id": "WY-144",
+        "id": "WY-143",
         "name": "Pinnacles Campground",
         "type": "established",
         "cost": 0,
@@ -4254,7 +4217,7 @@
         ]
       },
       "properties": {
-        "id": "WY-145",
+        "id": "WY-144",
         "name": "Blackrock Ranger District",
         "type": "established",
         "cost": 0,
@@ -4281,7 +4244,7 @@
         ]
       },
       "properties": {
-        "id": "WY-146",
+        "id": "WY-145",
         "name": "Lodgepole Campground",
         "type": "established",
         "cost": 7,
@@ -4315,7 +4278,7 @@
         ]
       },
       "properties": {
-        "id": "WY-147",
+        "id": "WY-146",
         "name": "Blucher Creek Campground",
         "type": "established",
         "cost": 0,
@@ -4344,7 +4307,7 @@
         ]
       },
       "properties": {
-        "id": "WY-148",
+        "id": "WY-147",
         "name": "Sweetwater Guard Station Campground",
         "type": "established",
         "cost": 15,
@@ -4378,7 +4341,7 @@
         ]
       },
       "properties": {
-        "id": "WY-149",
+        "id": "WY-148",
         "name": "Honeycomb Buttes WSA",
         "type": "established",
         "cost": 15,
@@ -4403,7 +4366,7 @@
         ]
       },
       "properties": {
-        "id": "WY-150",
+        "id": "WY-149",
         "name": "Oregon Buttes WSA",
         "type": "established",
         "cost": 15,
@@ -4431,7 +4394,7 @@
         ]
       },
       "properties": {
-        "id": "WY-151",
+        "id": "WY-150",
         "name": "Twin Buttes WSA",
         "type": "established",
         "cost": 15,
@@ -4456,7 +4419,7 @@
         ]
       },
       "properties": {
-        "id": "WY-152",
+        "id": "WY-151",
         "name": "Buffalo Creek Campground",
         "type": "established",
         "cost": 0,
@@ -4488,7 +4451,7 @@
         ]
       },
       "properties": {
-        "id": "WY-153",
+        "id": "WY-152",
         "name": "Grave Springs Campground",
         "type": "established",
         "cost": 0,
@@ -4522,7 +4485,7 @@
         ]
       },
       "properties": {
-        "id": "WY-154",
+        "id": "WY-153",
         "name": "Rim Campground",
         "type": "established",
         "cost": 7,

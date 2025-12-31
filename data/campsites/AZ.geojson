@@ -391,12 +391,41 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -112.441669,
+          33.844268
+        ]
+      },
+      "properties": {
+        "id": "AZ-013",
+        "name": "Boulders OHV Staging Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "262775",
+        "description": "<p>A popular staging area for the Lake Pleasant/Hieroglyphic Mountain Off-Highway Vehicle (OHV) recreation area which showcases a motorized off-highway route system in the scenic Upper Sonoran Desert "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -110.7205556,
           32.4083333
         ]
       },
       "properties": {
-        "id": "AZ-013",
+        "id": "AZ-014",
         "name": "SHOWERS POINT GROUP SITE",
         "type": "established",
         "cost": 0,
@@ -430,7 +459,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-014",
+        "id": "AZ-015",
         "name": "Prescott to Wickenberg via White Spar Road",
         "type": "established",
         "cost": 0,
@@ -457,7 +486,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-015",
+        "id": "AZ-016",
         "name": "HORSETHIEF CABIN",
         "type": "established",
         "cost": 0,
@@ -492,7 +521,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-016",
+        "id": "AZ-017",
         "name": "ROSE CANYON",
         "type": "established",
         "cost": 95,
@@ -524,7 +553,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-017",
+        "id": "AZ-018",
         "name": "MOLINO",
         "type": "established",
         "cost": 0,
@@ -556,7 +585,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-018",
+        "id": "AZ-019",
         "name": "Badger Springs Trailhead",
         "type": "established",
         "cost": 0,
@@ -583,7 +612,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-019",
+        "id": "AZ-020",
         "name": "Alamo State Park",
         "type": "established",
         "cost": 0,
@@ -608,7 +637,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-020",
+        "id": "AZ-021",
         "name": "REEF TOWNSITE GROUP AREA",
         "type": "established",
         "cost": 15,
@@ -641,7 +670,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-021",
+        "id": "AZ-022",
         "name": "Owl Creek Campground",
         "type": "established",
         "cost": 0,
@@ -674,7 +703,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-022",
+        "id": "AZ-023",
         "name": "SHAW HOUSE",
         "type": "established",
         "cost": 0,
@@ -709,7 +738,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-023",
+        "id": "AZ-024",
         "name": "KENT SPRINGS CABIN",
         "type": "established",
         "cost": 0,
@@ -742,7 +771,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-024",
+        "id": "AZ-025",
         "name": "LITTLE ELDEN SPRINGS HORSECAMP",
         "type": "established",
         "cost": 0,
@@ -772,7 +801,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-025",
+        "id": "AZ-026",
         "name": "Schoolhouse Campground (AZ)",
         "type": "established",
         "cost": 0,
@@ -805,7 +834,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-026",
+        "id": "AZ-027",
         "name": "Oxbow Recreation and Wildlife Area",
         "type": "established",
         "cost": 10,
@@ -837,7 +866,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-027",
+        "id": "AZ-028",
         "name": "Margies Cove West Trailhead",
         "type": "established",
         "cost": 0,
@@ -871,7 +900,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-028",
+        "id": "AZ-029",
         "name": "Buffalo Crossing Campground",
         "type": "established",
         "cost": 0,
@@ -899,7 +928,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-029",
+        "id": "AZ-030",
         "name": "REYNOLDS CREEK GROUP CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -932,7 +961,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-030",
+        "id": "AZ-031",
         "name": "CUTTHROAT",
         "type": "established",
         "cost": 0,
@@ -965,7 +994,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-031",
+        "id": "AZ-032",
         "name": "OLEARY GROUP SITE",
         "type": "established",
         "cost": 0,
@@ -998,7 +1027,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-032",
+        "id": "AZ-033",
         "name": "Christmas Recreation Site",
         "type": "established",
         "cost": 15,
@@ -1026,7 +1055,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-033",
+        "id": "AZ-034",
         "name": "Tusayan Ranger District",
         "type": "established",
         "cost": 0,
@@ -1057,7 +1086,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-034",
+        "id": "AZ-035",
         "name": "EAGLE RIDGE GROUP CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -1088,7 +1117,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-035",
+        "id": "AZ-036",
         "name": "Davis Dam Camp",
         "type": "established",
         "cost": 0,
@@ -1121,7 +1150,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-036",
+        "id": "AZ-037",
         "name": "Hereford Trailhead",
         "type": "established",
         "cost": 0,
@@ -1134,13 +1163,15 @@
           "picnic_tables"
         ],
         "rig_friendly": [
-          "tent"
+          "tent",
+          "RV",
+          "trailer"
         ],
         "road_difficulty": "paved",
         "state": "AZ",
         "source": "recreation.gov",
         "facility_id": "274415",
-        "description": "<p>The Hereford Trailhead provides access to the San Pedro Trail to the <a href=\"https://www.blm.gov/visit/san-pedro-house\" rel=\"nofollow\">San Pedro House</a> along Highway 90 to the north, approximat"
+        "description": "<p>The Hereford Trailhead is a gateway to the southern part of the San Pedro Riparian National Conservation Area (SPRNCA) in Arizona.</p><p>The Hereford Trailhead provides access to one of the lushest"
       }
     },
     {
@@ -1153,7 +1184,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-037",
+        "id": "AZ-038",
         "name": "Windy Point Campground",
         "type": "established",
         "cost": 8,
@@ -1186,7 +1217,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-038",
+        "id": "AZ-039",
         "name": "Lockett Meadow Campground",
         "type": "established",
         "cost": 0,
@@ -1213,7 +1244,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-039",
+        "id": "AZ-040",
         "name": "HOYER",
         "type": "established",
         "cost": 0,
@@ -1244,7 +1275,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-040",
+        "id": "AZ-041",
         "name": "PEPPERSAUCE",
         "type": "established",
         "cost": 0,
@@ -1276,7 +1307,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-041",
+        "id": "AZ-042",
         "name": "Clifton Ranger District",
         "type": "established",
         "cost": 0,
@@ -1301,7 +1332,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-042",
+        "id": "AZ-043",
         "name": "South Maricopa Mountains Wilderness Area",
         "type": "established",
         "cost": 0,
@@ -1326,12 +1357,44 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -114.495689,
+          32.901475
+        ]
+      },
+      "properties": {
+        "id": "AZ-044",
+        "name": "Senator Wash South Shore",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "262681",
+        "description": "<p>The Senator Wash South Shore recreational area is approximately 50 acres in size, flat, open with large gravel beaches providing access to the reservoir.\u00a0</p><p>Two restrooms with flush toilets, ou"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -110.943983,
           34.333655
         ]
       },
       "properties": {
-        "id": "AZ-043",
+        "id": "AZ-045",
         "name": "Woods Canyon Lake Recreation Area",
         "type": "established",
         "cost": 0,
@@ -1363,7 +1426,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-044",
+        "id": "AZ-046",
         "name": "RAINBOW (AZ)",
         "type": "established",
         "cost": 0,
@@ -1393,7 +1456,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-045",
+        "id": "AZ-047",
         "name": "MATHER CAMPGROUND",
         "type": "established",
         "cost": 6,
@@ -1427,7 +1490,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-046",
+        "id": "AZ-048",
         "name": "Red Rock Ranger District",
         "type": "established",
         "cost": 0,
@@ -1458,7 +1521,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-047",
+        "id": "AZ-049",
         "name": "HULL CABIN",
         "type": "established",
         "cost": 0,
@@ -1493,7 +1556,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-048",
+        "id": "AZ-050",
         "name": "Promontory Pit Road Campground",
         "type": "established",
         "cost": 0,
@@ -1518,7 +1581,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-049",
+        "id": "AZ-051",
         "name": "North Maricopa Mountains Wilderness Area",
         "type": "established",
         "cost": 0,
@@ -1546,7 +1609,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-050",
+        "id": "AZ-052",
         "name": "Lake Mary Recreation Corridor",
         "type": "established",
         "cost": 0,
@@ -1577,7 +1640,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-051",
+        "id": "AZ-053",
         "name": "Fool Hollow Lake Recreation Area Campground",
         "type": "established",
         "cost": 0,
@@ -1604,7 +1667,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-052",
+        "id": "AZ-054",
         "name": "LUNA LAKE",
         "type": "established",
         "cost": 0,
@@ -1636,7 +1699,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-053",
+        "id": "AZ-055",
         "name": "FERNOW CABIN",
         "type": "established",
         "cost": 75,
@@ -1671,7 +1734,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-054",
+        "id": "AZ-056",
         "name": "CALABASAS",
         "type": "established",
         "cost": 0,
@@ -1704,7 +1767,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-055",
+        "id": "AZ-057",
         "name": "PORTAL CCC HOUSE",
         "type": "established",
         "cost": 0,
@@ -1738,7 +1801,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-056",
+        "id": "AZ-058",
         "name": "TREASURE PARK - EAST",
         "type": "established",
         "cost": 25,
@@ -1771,7 +1834,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-057",
+        "id": "AZ-059",
         "name": "SABINO CANYON RECREATION AREA CACTUS RAMADA 2",
         "type": "established",
         "cost": 0,
@@ -1803,7 +1866,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-058",
+        "id": "AZ-060",
         "name": "JUMPUP CABIN",
         "type": "established",
         "cost": 0,
@@ -1836,7 +1899,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-059",
+        "id": "AZ-061",
         "name": "BENNY CREEK GROUP AREA",
         "type": "established",
         "cost": 0,
@@ -1867,7 +1930,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-060",
+        "id": "AZ-062",
         "name": "CROOK CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -1899,7 +1962,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-061",
+        "id": "AZ-063",
         "name": "Flagstaff Ranger District",
         "type": "established",
         "cost": 0,
@@ -1929,7 +1992,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-062",
+        "id": "AZ-064",
         "name": "PLAYGROUND GROUP",
         "type": "established",
         "cost": 0,
@@ -1962,7 +2025,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-063",
+        "id": "AZ-065",
         "name": "KENTUCKY CAMP CABIN AND HEADQUARTERS BUILDING",
         "type": "established",
         "cost": 0,
@@ -1997,7 +2060,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-064",
+        "id": "AZ-066",
         "name": "WHITE HORSE LAKE Campground",
         "type": "established",
         "cost": 0,
@@ -2032,7 +2095,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-065",
+        "id": "AZ-067",
         "name": "Riverview Campground",
         "type": "established",
         "cost": 0,
@@ -2065,7 +2128,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-066",
+        "id": "AZ-068",
         "name": "Little Pan Staging Area",
         "type": "established",
         "cost": 0,
@@ -2093,7 +2156,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-067",
+        "id": "AZ-069",
         "name": "Crescent Moon Ramada",
         "type": "established",
         "cost": 0,
@@ -2124,7 +2187,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-068",
+        "id": "AZ-070",
         "name": "Spring Valley Cabin & Bunkhouse",
         "type": "established",
         "cost": 165,
@@ -2159,7 +2222,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-069",
+        "id": "AZ-071",
         "name": "Lynx Lake Recreation Area",
         "type": "established",
         "cost": 0,
@@ -2186,7 +2249,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-070",
+        "id": "AZ-072",
         "name": "UPPER HOSPITAL FLAT GROUP SITE",
         "type": "established",
         "cost": 0,
@@ -2218,7 +2281,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-071",
+        "id": "AZ-073",
         "name": "Windy Hill Campground",
         "type": "established",
         "cost": 0,
@@ -2252,7 +2315,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-072",
+        "id": "AZ-074",
         "name": "CHAVEZ CROSSING",
         "type": "established",
         "cost": 0,
@@ -2283,7 +2346,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-073",
+        "id": "AZ-075",
         "name": "PINEGROVE",
         "type": "established",
         "cost": 0,
@@ -2317,7 +2380,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-074",
+        "id": "AZ-076",
         "name": "Gunsight Wash",
         "type": "established",
         "cost": 0,
@@ -2342,7 +2405,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-075",
+        "id": "AZ-077",
         "name": "Wild Cow Springs Campground",
         "type": "established",
         "cost": 8,
@@ -2375,7 +2438,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-076",
+        "id": "AZ-078",
         "name": "Brown Creek Campground",
         "type": "established",
         "cost": 0,
@@ -2400,7 +2463,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-077",
+        "id": "AZ-079",
         "name": "CANYON POINT",
         "type": "established",
         "cost": 0,
@@ -2434,7 +2497,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-078",
+        "id": "AZ-080",
         "name": "UPPER ARCADIA",
         "type": "established",
         "cost": 25,
@@ -2468,7 +2531,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-079",
+        "id": "AZ-081",
         "name": "Honeymoon Campground",
         "type": "established",
         "cost": 0,
@@ -2495,7 +2558,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-080",
+        "id": "AZ-082",
         "name": "ASPEN (AZ)",
         "type": "established",
         "cost": 0,
@@ -2527,7 +2590,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-081",
+        "id": "AZ-083",
         "name": "SABINO CANYON RECREATION AREA CACTUS RAMADA 1",
         "type": "established",
         "cost": 0,
@@ -2560,7 +2623,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-082",
+        "id": "AZ-084",
         "name": "TURNEY GULCH GROUP",
         "type": "established",
         "cost": 0,
@@ -2594,7 +2657,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-083",
+        "id": "AZ-085",
         "name": "CALDWELL CABIN",
         "type": "established",
         "cost": 0,
@@ -2628,7 +2691,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-084",
+        "id": "AZ-086",
         "name": "DAIRY SPRINGS",
         "type": "established",
         "cost": 0,
@@ -2660,7 +2723,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-085",
+        "id": "AZ-087",
         "name": "T.K. Jones Campground and Boat Launch",
         "type": "established",
         "cost": 10,
@@ -2695,7 +2758,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-086",
+        "id": "AZ-088",
         "name": "KAIBAB LAKE SITES AND GROUP AREAS",
         "type": "established",
         "cost": 0,
@@ -2730,7 +2793,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-087",
+        "id": "AZ-089",
         "name": "Hilltop Campground (AZ)",
         "type": "established",
         "cost": 0,
@@ -2765,7 +2828,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-088",
+        "id": "AZ-090",
         "name": "CAMP RUCKER GROUP SITE",
         "type": "established",
         "cost": 0,
@@ -2799,7 +2862,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-089",
+        "id": "AZ-091",
         "name": "Williams Ranger District",
         "type": "established",
         "cost": 0,
@@ -2826,7 +2889,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-090",
+        "id": "AZ-092",
         "name": "SYCAMORE CABIN",
         "type": "established",
         "cost": 25,
@@ -2861,7 +2924,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-091",
+        "id": "AZ-093",
         "name": "UPPER TWILIGHT GROUP SITE",
         "type": "established",
         "cost": 25,
@@ -2894,7 +2957,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-092",
+        "id": "AZ-094",
         "name": "Burnt Corral Campground",
         "type": "established",
         "cost": 0,
@@ -2927,7 +2990,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-093",
+        "id": "AZ-095",
         "name": "Margies Cove West Campground",
         "type": "established",
         "cost": 15,
@@ -2957,7 +3020,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-094",
+        "id": "AZ-096",
         "name": "Packsaddle Recreation Site ",
         "type": "established",
         "cost": 0,
@@ -2985,7 +3048,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-095",
+        "id": "AZ-097",
         "name": "THUMB BUTTE",
         "type": "established",
         "cost": 0,
@@ -3019,7 +3082,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-096",
+        "id": "AZ-098",
         "name": "Big Lake Recreation Area",
         "type": "established",
         "cost": 0,
@@ -3050,7 +3113,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-097",
+        "id": "AZ-099",
         "name": "Lower Wolf Creek Campground",
         "type": "established",
         "cost": 0,
@@ -3084,7 +3147,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-098",
+        "id": "AZ-100",
         "name": "GRAPEVINE GROUP CAMPGROUND",
         "type": "established",
         "cost": 75,
@@ -3118,7 +3181,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-099",
+        "id": "AZ-101",
         "name": "Knoll Lake Campground",
         "type": "established",
         "cost": 0,
@@ -3145,7 +3208,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-100",
+        "id": "AZ-102",
         "name": "POTATO PATCH CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -3180,7 +3243,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-101",
+        "id": "AZ-103",
         "name": "Cherry Area",
         "type": "established",
         "cost": 0,
@@ -3205,7 +3268,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-102",
+        "id": "AZ-104",
         "name": "LOWER TWILIGHT GROUP SITE",
         "type": "established",
         "cost": 25,
@@ -3238,7 +3301,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-103",
+        "id": "AZ-105",
         "name": "Harquahala Byway Staging Area",
         "type": "established",
         "cost": 0,
@@ -3271,7 +3334,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-104",
+        "id": "AZ-106",
         "name": "Mingus Mountain",
         "type": "established",
         "cost": 0,
@@ -3299,7 +3362,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-105",
+        "id": "AZ-107",
         "name": "Woods Canyon Lake Group",
         "type": "established",
         "cost": 0,
@@ -3330,7 +3393,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-106",
+        "id": "AZ-108",
         "name": "TIMBER CAMP RECREATION AREA and GROUP CAMPGROUNDS",
         "type": "established",
         "cost": 0,
@@ -3363,7 +3426,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-107",
+        "id": "AZ-109",
         "name": "Cholla Campground",
         "type": "established",
         "cost": 0,
@@ -3397,7 +3460,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-108",
+        "id": "AZ-110",
         "name": "Crown King Area (Horsethief Basin)",
         "type": "established",
         "cost": 0,
@@ -3425,7 +3488,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-109",
+        "id": "AZ-111",
         "name": "MANZANITA.",
         "type": "established",
         "cost": 0,
@@ -3458,7 +3521,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-110",
+        "id": "AZ-112",
         "name": "CROSSROADS CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -3490,7 +3553,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-111",
+        "id": "AZ-113",
         "name": "Granite Basin Recreation Area",
         "type": "established",
         "cost": 0,
@@ -3518,7 +3581,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-112",
+        "id": "AZ-114",
         "name": "GROOM CREEK SCHOOLHOUSE",
         "type": "established",
         "cost": 0,
@@ -3550,7 +3613,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-113",
+        "id": "AZ-115",
         "name": "Senator Wash North Shore",
         "type": "established",
         "cost": 10,
@@ -3580,7 +3643,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-114",
+        "id": "AZ-116",
         "name": "Burro Creek Campground ",
         "type": "established",
         "cost": 15,
@@ -3613,7 +3676,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-115",
+        "id": "AZ-117",
         "name": "STOCKTON PASS",
         "type": "established",
         "cost": 25,
@@ -3646,7 +3709,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-116",
+        "id": "AZ-118",
         "name": "BROOKCHAR",
         "type": "established",
         "cost": 0,
@@ -3680,7 +3743,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-117",
+        "id": "AZ-119",
         "name": "LEWIS CANYON",
         "type": "established",
         "cost": 0,
@@ -3712,7 +3775,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-118",
+        "id": "AZ-120",
         "name": "ROCK BLUFF GROUP SITE",
         "type": "established",
         "cost": 0,
@@ -3746,7 +3809,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-119",
+        "id": "AZ-121",
         "name": "Painted Rock Petroglyph Site and Campground",
         "type": "established",
         "cost": 2,
@@ -3779,7 +3842,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-120",
+        "id": "AZ-122",
         "name": "GRAYLING",
         "type": "established",
         "cost": 0,
@@ -3812,7 +3875,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-121",
+        "id": "AZ-123",
         "name": "PINE FLAT CAMPGROUND WEST",
         "type": "established",
         "cost": 0,
@@ -3846,7 +3909,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-122",
+        "id": "AZ-124",
         "name": "Lakeside Ranger District",
         "type": "established",
         "cost": 0,
@@ -3871,7 +3934,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-123",
+        "id": "AZ-125",
         "name": "North Rim Campground (AZ)",
         "type": "established",
         "cost": 0,
@@ -3906,7 +3969,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-124",
+        "id": "AZ-126",
         "name": "UPPER WOLF CREEK GROUP",
         "type": "established",
         "cost": 0,
@@ -3938,7 +4001,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-125",
+        "id": "AZ-127",
         "name": "Black Mesa Ranger District",
         "type": "established",
         "cost": 0,
@@ -3966,7 +4029,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-126",
+        "id": "AZ-128",
         "name": "CAVE CREEK GROUP SITE",
         "type": "established",
         "cost": 75,
@@ -4000,7 +4063,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-127",
+        "id": "AZ-129",
         "name": "DOGTOWN LAKE CAMPGROUND AND GROUP",
         "type": "established",
         "cost": 0,
@@ -4032,7 +4095,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-128",
+        "id": "AZ-130",
         "name": "FRAZIER GROUP CAMPGROUND",
         "type": "established",
         "cost": 75,
@@ -4065,7 +4128,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-129",
+        "id": "AZ-131",
         "name": "HALF MOON RANCH",
         "type": "established",
         "cost": 0,
@@ -4099,7 +4162,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-130",
+        "id": "AZ-132",
         "name": "Kofa Wilderness",
         "type": "established",
         "cost": 0,
@@ -4127,7 +4190,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-131",
+        "id": "AZ-133",
         "name": "East Fork Recreation Area",
         "type": "established",
         "cost": 0,
@@ -4152,7 +4215,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-132",
+        "id": "AZ-134",
         "name": "Tusayan - Montane",
         "type": "established",
         "cost": 5,
@@ -4186,7 +4249,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-133",
+        "id": "AZ-135",
         "name": "Alpine Ranger District",
         "type": "established",
         "cost": 0,
@@ -4213,7 +4276,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-134",
+        "id": "AZ-136",
         "name": "Wild Cow Springs Campground",
         "type": "established",
         "cost": 0,
@@ -4246,7 +4309,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-135",
+        "id": "AZ-137",
         "name": "APACHE TROUT CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -4278,7 +4341,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-136",
+        "id": "AZ-138",
         "name": "CAVE SPRING",
         "type": "established",
         "cost": 0,
@@ -4313,7 +4376,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-137",
+        "id": "AZ-139",
         "name": "LYNX CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -4348,7 +4411,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-138",
+        "id": "AZ-140",
         "name": "Verde Ranger District",
         "type": "established",
         "cost": 0,
@@ -4378,7 +4441,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-139",
+        "id": "AZ-141",
         "name": "North Kaibab Ranger District",
         "type": "established",
         "cost": 0,
@@ -4406,7 +4469,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-140",
+        "id": "AZ-142",
         "name": "WINN",
         "type": "established",
         "cost": 0,
@@ -4438,7 +4501,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-141",
+        "id": "AZ-143",
         "name": "Mogollon Rim Ranger District",
         "type": "established",
         "cost": 0,
@@ -4463,7 +4526,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-142",
+        "id": "AZ-144",
         "name": "WHITE SPAR CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -4498,7 +4561,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-143",
+        "id": "AZ-145",
         "name": "Shores Recreation Site",
         "type": "established",
         "cost": 15,
@@ -4527,7 +4590,7 @@
         ]
       },
       "properties": {
-        "id": "AZ-144",
+        "id": "AZ-146",
         "name": "Fourmile Canyon Campground",
         "type": "established",
         "cost": 5,
