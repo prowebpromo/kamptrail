@@ -1,0 +1,151 @@
+==============================================================================
+URGENT: POI FIX MAY ALREADY BE LIVE
+==============================================================================
+
+IMPORTANT DISCOVERY:
+
+Your live site ALREADY has the raw.githubusercontent.com URL deployed!
+(From an earlier push you made from Windows)
+
+Current live site configuration:
+✅ .nojekyll file exists (bypasses Jekyll)
+✅ poiUrl uses: raw.githubusercontent.com/prowebpromo/kamptrail/main/data/...
+✅ That URL serves the full 2.43 MB file (verified: 2,431,077 bytes)
+
+==============================================================================
+ACTION REQUIRED: TEST THE LIVE SITE NOW
+==============================================================================
+
+1. Go to: https://prowebpromo.github.io/kamptrail/
+
+2. Hard refresh: Ctrl+Shift+R (clears cache)
+
+3. Open browser console: Press F12, click "Console" tab
+
+4. Look for POI loading messages - do you see any 403 errors?
+
+5. Toggle "Dump/Water/Propane" overlay ON (checkbox in controls)
+
+6. Zoom to a populated area:
+   - California (Los Angeles, San Francisco)
+   - Texas (Austin, Dallas)
+   - Colorado (Denver)
+
+7. Look for markers:
+   - W (water - green circles)
+   - D (dump - purple circles)
+   - P (propane - orange circles)
+
+==============================================================================
+EXPECTED RESULTS
+==============================================================================
+
+✅ IF IT WORKS:
+   - You see D and P markers in addition to W markers
+   - Browser console shows successful POI data load
+   - No 403 errors
+   - Markers cluster when zoomed out
+   - YOU'RE DONE! No further action needed!
+
+❌ IF IT DOESN'T WORK:
+   - Only see W markers (water only)
+   - Browser console shows 403 error for POI file
+   - D and P markers missing
+   - Continue to next section below
+
+==============================================================================
+IF IT DOESN'T WORK: NEXT STEPS
+==============================================================================
+
+Option 1: Try jsDelivr CDN (may fix GitHub Pages caching issues)
+-----------------------------------------------------------------
+
+Edit: C:\Users\chuck\OneDrive\Documents\GitHub\kamptrail\index.html
+
+Line 232, change FROM:
+poiUrl: 'https://raw.githubusercontent.com/prowebpromo/kamptrail/main/data/poi_dump_water_propane.geojson',
+
+TO:
+poiUrl: 'https://cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main/data/poi_dump_water_propane.geojson',
+
+Then: GitHub Desktop → Commit → Push
+
+NOTE: jsDelivr returned 403 in the container environment, but that might be
+container-specific. jsDelivr is a widely-used CDN and should work on the
+live site. Worth trying.
+
+
+Option 2: Check Browser Console for Specific Error
+---------------------------------------------------
+
+Open browser console (F12) and look for:
+- CORS errors?
+- 403 Forbidden errors?
+- Network timeout errors?
+- JavaScript errors preventing POI load?
+
+Share the exact error message.
+
+
+Option 3: Check Network Tab
+----------------------------
+
+F12 → Network tab → Reload page → Filter by "poi"
+
+Look for: poi_dump_water_propane.geojson
+
+What's the:
+- Status code? (200, 403, 404, etc.)
+- Size? (Should be 2.43 MB)
+- Response headers?
+
+Share this info.
+
+==============================================================================
+VERIFICATION URLS TO TEST IN BROWSER
+==============================================================================
+
+Test these URLs directly in your browser to verify they work:
+
+1. raw.githubusercontent.com (currently deployed):
+   https://raw.githubusercontent.com/prowebpromo/kamptrail/main/data/poi_dump_water_propane.geojson
+   Should: Download 2.43 MB JSON file
+
+2. GitHub Pages direct (known broken):
+   https://prowebpromo.github.io/kamptrail/data/poi_dump_water_propane.geojson
+   Might: Return 403 Forbidden or small error file
+
+3. jsDelivr CDN (alternative):
+   https://cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main/data/poi_dump_water_propane.geojson
+   Should: Download 2.43 MB JSON file (if not blocked)
+
+==============================================================================
+SUMMARY
+==============================================================================
+
+Container environment status:
+- ❌ Can't push due to 403 authentication errors
+- ✅ jsDelivr CDN fix prepared locally (commit cdc4357)
+- ⚠️ jsDelivr returns 403 in container (might be container-specific block)
+
+Remote GitHub status:
+- ✅ .nojekyll file exists
+- ✅ poiUrl uses raw.githubusercontent.com
+- ✅ raw.githubusercontent.com verified working (serves full 2.43 MB)
+- ❓ Need to verify if live site actually loads the markers
+
+YOUR STATUS:
+- ❓ UNKNOWN - Need you to test the live site
+- If it works: You're done!
+- If it doesn't: Try jsDelivr CDN or share console errors
+
+==============================================================================
+NEXT ACTION: TEST THE LIVE SITE AND REPORT BACK
+==============================================================================
+
+Please test now and let me know:
+1. Do you see D (dump) and P (propane) markers?
+2. Any errors in browser console?
+3. What does the Network tab show for POI file?
+
+==============================================================================
