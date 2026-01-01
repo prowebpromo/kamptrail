@@ -38,7 +38,7 @@
       }, config || {});
       const controls = L.DomUtil.create('div', 'kt-controls');
       controls.innerHTML = `
-        <label><input id="kt-toggle-lands" type="checkbox"> Public lands <span class="kt-badge">overlay</span></label>
+        <label><input id="kt-toggle-lands" type="checkbox" checked> Public lands <span class="kt-badge">overlay</span></label>
         <label><input id="kt-toggle-towers" type="checkbox"> Cell towers <span class="kt-badge">OpenCelliD</span></label>
         <label><input id="kt-toggle-poi" type="checkbox" checked> Dump/Water/Propane <span class="kt-badge">POIs</span></label>
       `;
@@ -72,6 +72,10 @@
         }
         landsToggle.checked ? publicLands.addTo(map) : publicLands.remove();
       });
+      // Initialize public lands if checkbox is checked on page load
+      if (landsToggle.checked && publicLands) {
+        publicLands.addTo(map);
+      }
 
       // Cell Tower Overlay (OpenCelliD)
       const towerColors = {
