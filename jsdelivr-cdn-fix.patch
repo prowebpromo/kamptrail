@@ -1,0 +1,29 @@
+From cdc4357f4ad0d94cef90b2cdeafce236638e157f Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 1 Jan 2026 13:59:18 +0000
+Subject: [PATCH] Use jsDelivr CDN for POI data
+
+- Changed from raw.githubusercontent.com to cdn.jsdelivr.net
+- jsDelivr is a proper CDN, faster and more reliable
+- Automatically caches and serves GitHub files
+- No more GitHub Pages 403 errors
+---
+ index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/index.html b/index.html
+index 8689bc7..622152c 100644
+--- a/index.html
++++ b/index.html
+@@ -229,7 +229,7 @@
+           KampTrailOverlays.init(map, {
+             publicLandsUrl: 'https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas/MapServer/tile/{z}/{y}/{x}',
+             openCelliDKey: 'pk.40042dae6a477f5db33fb6c59b3ae06b',
+-            poiUrl: 'https://raw.githubusercontent.com/prowebpromo/kamptrail/main/data/poi_dump_water_propane.geojson',
++            poiUrl: 'https://cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main/data/poi_dump_water_propane.geojson',
+             placesUrl: 'data/sample_places.geojson'
+           });
+         }
+-- 
+2.43.0
+

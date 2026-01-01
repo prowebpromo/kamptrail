@@ -33,7 +33,7 @@
         openCelliDKey: '',
         poiUrl: 'data/poi_dump_water_propane.geojson',
         placesUrl: 'data/sample_places.geojson',
-        maxPoiCount: 2000,
+        maxPoiCount: 10000,
         maxTowerCount: 500
       }, config || {});
       const controls = L.DomUtil.create('div', 'kt-controls');

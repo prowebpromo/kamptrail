@@ -1,0 +1,108 @@
+==============================================================================
+KAMPTRAIL POI FIX - DEPLOY FROM WINDOWS
+==============================================================================
+
+PROBLEM: Only water markers show on live site. Missing dump & propane markers.
+
+SOLUTION: Change POI URL from raw.githubusercontent.com to jsDelivr CDN
+
+==============================================================================
+SIMPLE MANUAL FIX (Recommended - 2 minutes)
+==============================================================================
+
+1. Open this file in Notepad:
+   C:\Users\chuck\OneDrive\Documents\GitHub\kamptrail\index.html
+
+2. Find line 232 (press Ctrl+G in Notepad++, or Ctrl+F and search for "poiUrl")
+
+3. CHANGE THIS LINE:
+   poiUrl: 'https://raw.githubusercontent.com/prowebpromo/kamptrail/main/data/poi_dump_water_propane.geojson',
+
+4. TO THIS:
+   poiUrl: 'https://cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main/data/poi_dump_water_propane.geojson',
+
+   (Just replace "raw.githubusercontent.com/prowebpromo/kamptrail/main"
+    with "cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main")
+
+5. Save the file (Ctrl+S)
+
+6. Open GitHub Desktop
+
+7. You should see "1 changed file: index.html"
+
+8. Commit message: "Use jsDelivr CDN for POI data"
+
+9. Click "Commit to main"
+
+10. Click "Push origin" (top right)
+
+11. Wait 2-3 minutes for GitHub Pages to rebuild
+
+12. Go to https://prowebpromo.github.io/kamptrail/
+
+13. Hard refresh: Ctrl+Shift+R
+
+14. Zoom to California or Texas
+
+15. Toggle "Dump/Water/Propane" overlay ON
+
+16. YOU SHOULD NOW SEE:
+    - W markers (water - green) - 2,798 total
+    - D markers (dump - purple) - 3,494 total
+    - P markers (propane - orange) - 702 total
+    = 6,994 total POI markers
+
+==============================================================================
+ALTERNATIVE: APPLY PATCH FILE (If you know git)
+==============================================================================
+
+On Windows in PowerShell or Git Bash:
+
+cd C:\Users\chuck\OneDrive\Documents\GitHub\kamptrail
+git apply jsdelivr-cdn-fix.patch
+git add index.html
+git commit -m "Use jsDelivr CDN for POI data"
+git push origin main
+
+==============================================================================
+WHY THIS FIXES IT
+==============================================================================
+
+- GitHub Pages was serving the POI file as 403 Forbidden (16 bytes)
+- The actual file on GitHub is 2.43 MB (2,431,077 bytes) with all 6,994 POIs
+- raw.githubusercontent.com works but is slower and not a proper CDN
+- jsDelivr is a production CDN specifically designed for serving GitHub files
+- It caches the file globally for fast loading
+- No more 403 errors
+
+==============================================================================
+VERIFICATION
+==============================================================================
+
+After pushing, check these URLs:
+
+1. jsDelivr CDN (should work):
+   https://cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main/data/poi_dump_water_propane.geojson
+   Should return: 2,431,077 bytes (2.43 MB)
+
+2. Your live site:
+   https://prowebpromo.github.io/kamptrail/
+   - Open browser console (F12)
+   - Look for POI loading messages
+   - Should NOT see any 403 errors
+   - Should see markers loading
+
+3. Browser Network tab (F12 → Network):
+   - Filter by "poi"
+   - Should see: poi_dump_water_propane.geojson - Status 200 - Size 2.43 MB
+
+==============================================================================
+ROLLBACK PLAN (If something goes wrong)
+==============================================================================
+
+Revert index.html line 232 back to:
+poiUrl: 'data/poi_dump_water_propane.geojson',
+
+Then commit and push again. This uses the local GitHub Pages path.
+
+==============================================================================
