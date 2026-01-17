@@ -9,12 +9,33 @@
   };
 
   function parseGPX(xmlText) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlText, 'text/xml');
+    if (!xmlText || typeof xmlText !== 'string') {
+      throw new Error('GPX content must be a non-empty string');
+    }
+
+    if (xmlText.trim() === '') {
+      throw new Error('GPX file is empty');
+    }
+
+    let parser, doc;
+    try {
+      parser = new DOMParser();
+      doc = parser.parseFromString(xmlText, 'text/xml');
+    } catch (parseErr) {
+      throw new Error(`Failed to parse GPX XML: ${parseErr.message}`);
+    }
 
     // Check for parsing errors
-    if (doc.getElementsByTagName('parsererror').length > 0) {
-      throw new Error('Invalid GPX file format');
+    const parserErrors = doc.getElementsByTagName('parsererror');
+    if (parserErrors.length > 0) {
+      const errorText = parserErrors[0].textContent || 'Unknown XML parsing error';
+      throw new Error(`Invalid GPX file format: ${errorText.substring(0, 100)}`);
+    }
+
+    // Verify it's a GPX file
+    const gpxRoot = doc.getElementsByTagName('gpx');
+    if (gpxRoot.length === 0) {
+      throw new Error('Not a valid GPX file: missing <gpx> root element');
     }
 
     const waypoints = [];
@@ -137,60 +158,150 @@
   }
 
   function displayGPXData(map, gpxData) {
-    // Clear previous GPX layer
-    if (state.gpxLayer) {
-      map.removeLayer(state.gpxLayer);
-    }
+    try {
+      if (!map || typeof map.addLayer !== 'function') {
+        throw new Error('Invalid map object');
+      }
 
-    state.gpxLayer = L.featureGroup();
-    state.importedWaypoints = gpxData.waypoints;
-    state.importedTracks = gpxData.tracks;
+      if (!gpxData || typeof gpxData !== 'object') {
+        throw new Error('Invalid GPX data');
+      }
 
-    // Add waypoints
-    gpxData.waypoints.forEach(wpt => {
-      const marker = createWaypointMarker(wpt);
-      state.gpxLayer.addLayer(marker);
-    });
+      // Clear previous GPX layer
+      if (state.gpxLayer) {
+        try {
+          map.removeLayer(state.gpxLayer);
+        } catch (removeErr) {
+          console.warn('⚠️ Could not remove previous GPX layer:', removeErr.message);
+        }
+      }
 
-    // Add tracks and routes
-    const esc = window.escapeHtml || ((t) => t);
-    gpxData.tracks.forEach(track => {
-      const polyline = L.polyline(track.points, {
-        color: '#ff6b6b',
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 10'
+      state.gpxLayer = L.featureGroup();
+      state.importedWaypoints = Array.isArray(gpxData.waypoints) ? gpxData.waypoints : [];
+      state.importedTracks = Array.isArray(gpxData.tracks) ? gpxData.tracks : [];
+
+      // Add waypoints with error handling
+      let waypointCount = 0;
+      state.importedWaypoints.forEach((wpt, idx) => {
+        try {
+          if (!wpt || typeof wpt !== 'object') {
+            console.warn(`⚠️ Invalid waypoint at index ${idx}`);
+            return;
+          }
+
+          const marker = createWaypointMarker(wpt);
+          if (marker) {
+            state.gpxLayer.addLayer(marker);
+            waypointCount++;
+          }
+        } catch (wptErr) {
+          console.warn(`⚠️ Error adding waypoint ${idx}:`, wptErr.message);
+        }
       });
 
-      const safeTrackName = esc(track.name);
-      polyline.bindPopup(`
-        <div style="min-width:150px;">
-          <h3 style="margin:0;font-size:14px;font-weight:bold;">🛤️ ${safeTrackName}</h3>
-          <div style="font-size:11px;color:#888;margin-top:4px;">
-            ${track.points.length} points
-          </div>
-        </div>
-      `);
+      // Add tracks and routes with error handling
+      const esc = window.escapeHtml || ((t) => String(t || ''));
+      let trackCount = 0;
+      state.importedTracks.forEach((track, idx) => {
+        try {
+          if (!track || !Array.isArray(track.points) || track.points.length === 0) {
+            console.warn(`⚠️ Invalid track at index ${idx}`);
+            return;
+          }
 
-      state.gpxLayer.addLayer(polyline);
-    });
+          // Validate track points
+          const validPoints = track.points.filter(pt => {
+            return Array.isArray(pt) && pt.length >= 2 &&
+                   typeof pt[0] === 'number' && typeof pt[1] === 'number' &&
+                   !isNaN(pt[0]) && !isNaN(pt[1]);
+          });
 
-    state.gpxLayer.addTo(map);
+          if (validPoints.length === 0) {
+            console.warn(`⚠️ Track ${idx} has no valid points`);
+            return;
+          }
 
-    // Fit map to GPX bounds
-    if (state.gpxLayer.getLayers().length > 0) {
-      map.fitBounds(state.gpxLayer.getBounds(), { padding: [50, 50] });
+          const polyline = L.polyline(validPoints, {
+            color: '#ff6b6b',
+            weight: 3,
+            opacity: 0.7,
+            dashArray: '5, 10'
+          });
+
+          const safeTrackName = esc(track.name || `Track ${idx + 1}`);
+          polyline.bindPopup(`
+            <div style="min-width:150px;">
+              <h3 style="margin:0;font-size:14px;font-weight:bold;">🛤️ ${safeTrackName}</h3>
+              <div style="font-size:11px;color:#888;margin-top:4px;">
+                ${validPoints.length} points
+              </div>
+            </div>
+          `);
+
+          state.gpxLayer.addLayer(polyline);
+          trackCount++;
+        } catch (trackErr) {
+          console.warn(`⚠️ Error adding track ${idx}:`, trackErr.message);
+        }
+      });
+
+      state.gpxLayer.addTo(map);
+
+      // Fit map to GPX bounds with validation
+      if (state.gpxLayer.getLayers().length > 0) {
+        try {
+          const bounds = state.gpxLayer.getBounds();
+          if (bounds && bounds.isValid()) {
+            map.fitBounds(bounds, { padding: [50, 50] });
+          } else {
+            console.warn('⚠️ Invalid bounds for GPX data, skipping fitBounds');
+          }
+        } catch (boundsErr) {
+          console.warn('⚠️ Error fitting map to GPX bounds:', boundsErr.message);
+        }
+      }
+
+      return {
+        waypointCount,
+        trackCount
+      };
+    } catch (err) {
+      console.error('⚠️ Error displaying GPX data:', err.message);
+      throw err;
     }
-
-    return {
-      waypointCount: gpxData.waypoints.length,
-      trackCount: gpxData.tracks.length
-    };
   }
 
   function handleFileSelect(map, file) {
-    if (!file.name.toLowerCase().endsWith('.gpx')) {
-      window.showToast && window.showToast('Please select a valid GPX file', 'error');
+    if (!file) {
+      console.error('⚠️ No file provided to handleFileSelect');
+      window.showToast && window.showToast('No file selected', 'error');
+      return;
+    }
+
+    // Validate file type
+    if (!file.name || !file.name.toLowerCase().endsWith('.gpx')) {
+      window.showToast && window.showToast('Please select a valid GPX file (*.gpx)', 'error');
+      console.warn('⚠️ Invalid file type:', file.name);
+      return;
+    }
+
+    // Check file size (limit to 10MB)
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+    if (file.size > MAX_FILE_SIZE) {
+      window.showToast && window.showToast(`File too large. Maximum size is ${MAX_FILE_SIZE / 1024 / 1024}MB`, 'error');
+      console.warn(`⚠️ File too large: ${file.size} bytes`);
+      return;
+    }
+
+    if (file.size === 0) {
+      window.showToast && window.showToast('File is empty', 'error');
+      console.warn('⚠️ Empty file');
+      return;
+    }
+
+    if (!map || typeof map.fitBounds !== 'function') {
+      console.error('⚠️ Invalid map object in handleFileSelect');
+      window.showToast && window.showToast('Map not initialized', 'error');
       return;
     }
 
@@ -200,7 +311,23 @@
 
     reader.onload = (e) => {
       try {
+        if (!e.target || !e.target.result) {
+          throw new Error('Failed to read file content');
+        }
+
         const gpxData = parseGPX(e.target.result);
+
+        if (!gpxData.waypoints && !gpxData.tracks) {
+          throw new Error('No valid GPX data found in file');
+        }
+
+        if (gpxData.waypoints.length === 0 && gpxData.tracks.length === 0) {
+          window.setLoading && window.setLoading(false);
+          window.showToast && window.showToast('GPX file contains no waypoints or tracks', 'info');
+          console.warn('⚠️ Empty GPX file (no data)');
+          return;
+        }
+
         const stats = displayGPXData(map, gpxData);
 
         window.setLoading && window.setLoading(false);
@@ -208,74 +335,136 @@
         const msg = `✅ Loaded ${stats.waypointCount} waypoint(s) and ${stats.trackCount} track(s)`;
         window.showToast && window.showToast(msg, 'success', 5000);
 
-        console.log('📥 GPX Import:', gpxData);
+        console.log('📥 GPX Import successful:', {
+          waypoints: stats.waypointCount,
+          tracks: stats.trackCount,
+          fileName: file.name
+        });
       } catch (err) {
         window.setLoading && window.setLoading(false);
-        window.showToast && window.showToast('Error parsing GPX: ' + err.message, 'error');
-        console.error('GPX Parse Error:', err);
+        const errorMsg = err.message || 'Unknown error parsing GPX file';
+        window.showToast && window.showToast(`Error parsing GPX: ${errorMsg}`, 'error', 8000);
+        console.error('⚠️ GPX Parse Error:', err);
       }
     };
 
-    reader.onerror = () => {
+    reader.onerror = (err) => {
       window.setLoading && window.setLoading(false);
-      window.showToast && window.showToast('Error reading file', 'error');
+      const errorMsg = err.target && err.target.error ? err.target.error.message : 'Unknown file read error';
+      window.showToast && window.showToast(`Error reading file: ${errorMsg}`, 'error');
+      console.error('⚠️ FileReader Error:', err);
     };
 
-    reader.readAsText(file);
+    try {
+      reader.readAsText(file);
+    } catch (readErr) {
+      window.setLoading && window.setLoading(false);
+      window.showToast && window.showToast('Failed to read file', 'error');
+      console.error('⚠️ Failed to initiate file read:', readErr);
+    }
   }
 
   function findNearestCampsite(lat, lon) {
-    if (!window.KampTrailData) {
-      window.showToast && window.showToast('Data loader not available', 'error');
-      return;
-    }
-
-    const campsites = window.KampTrailData.getAllCampsites();
-    if (campsites.length === 0) {
-      window.showToast && window.showToast('No campsites loaded yet', 'error');
-      return;
-    }
-
-    // Calculate distance using Haversine formula
-    function getDistance(lat1, lon1, lat2, lon2) {
-      const R = 6371; // Earth radius in km
-      const dLat = (lat2 - lat1) * Math.PI / 180;
-      const dLon = (lon2 - lon1) * Math.PI / 180;
-      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                Math.sin(dLon/2) * Math.sin(dLon/2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-      return R * c;
-    }
-
-    let nearest = null;
-    let minDistance = Infinity;
-
-    campsites.forEach(site => {
-      const [sLon, sLat] = site.geometry.coordinates;
-      const distance = getDistance(lat, lon, sLat, sLon);
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        nearest = site;
+    try {
+      // Validate input coordinates
+      if (typeof lat !== 'number' || typeof lon !== 'number') {
+        console.error('⚠️ Invalid coordinates provided to findNearestCampsite');
+        window.showToast && window.showToast('Invalid coordinates', 'error');
+        return;
       }
-    });
 
-    if (nearest) {
+      if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+        console.error(`⚠️ Coordinates out of range: lat=${lat}, lon=${lon}`);
+        window.showToast && window.showToast('Coordinates out of valid range', 'error');
+        return;
+      }
+
+      if (!window.KampTrailData || typeof window.KampTrailData.getAllCampsites !== 'function') {
+        console.error('⚠️ Data loader not available');
+        window.showToast && window.showToast('Campsite data not loaded', 'error');
+        return;
+      }
+
+      const campsites = window.KampTrailData.getAllCampsites();
+      if (!Array.isArray(campsites) || campsites.length === 0) {
+        console.warn('⚠️ No campsites available');
+        window.showToast && window.showToast('No campsites loaded. Pan the map to load campsite data.', 'info', 5000);
+        return;
+      }
+
+      // Calculate distance using Haversine formula
+      function getDistance(lat1, lon1, lat2, lon2) {
+        if (typeof lat1 !== 'number' || typeof lon1 !== 'number' ||
+            typeof lat2 !== 'number' || typeof lon2 !== 'number') {
+          return Infinity;
+        }
+
+        const R = 6371; // Earth radius in km
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+      }
+
+      let nearest = null;
+      let minDistance = Infinity;
+
+      campsites.forEach(site => {
+        try {
+          if (!site || !site.geometry || !Array.isArray(site.geometry.coordinates)) {
+            return;
+          }
+
+          const [sLon, sLat] = site.geometry.coordinates;
+
+          if (typeof sLat !== 'number' || typeof sLon !== 'number' ||
+              isNaN(sLat) || isNaN(sLon)) {
+            return;
+          }
+
+          const distance = getDistance(lat, lon, sLat, sLon);
+
+          if (distance < minDistance && distance !== Infinity) {
+            minDistance = distance;
+            nearest = site;
+          }
+        } catch (siteErr) {
+          console.warn('⚠️ Error processing site in findNearestCampsite:', siteErr.message);
+        }
+      });
+
+      if (!nearest) {
+        console.warn('⚠️ No valid nearest campsite found');
+        window.showToast && window.showToast('Could not find nearby campsite', 'error');
+        return;
+      }
+
       const [nLon, nLat] = nearest.geometry.coordinates;
       const map = window.kamptrailMap;
 
-      if (map) {
-        map.setView([nLat, nLon], 14);
-
-        // Find and open the campsite popup
-        setTimeout(() => {
-          const esc = window.escapeHtml || ((t) => t);
-          const siteName = esc(nearest.properties.name || 'Unknown');
-          const msg = `Found nearest campsite: ${siteName} (${minDistance.toFixed(2)} km away)`;
-          window.showToast && window.showToast(msg, 'success', 5000);
-        }, 500);
+      if (!map || typeof map.setView !== 'function') {
+        console.error('⚠️ Map not available');
+        window.showToast && window.showToast('Map not initialized', 'error');
+        return;
       }
+
+      map.setView([nLat, nLon], 14);
+
+      // Show success message
+      setTimeout(() => {
+        const esc = window.escapeHtml || ((t) => String(t || ''));
+        const siteName = nearest.properties && nearest.properties.name
+          ? esc(nearest.properties.name)
+          : 'Unknown';
+        const msg = `Found nearest campsite: ${siteName} (${minDistance.toFixed(2)} km away)`;
+        window.showToast && window.showToast(msg, 'success', 5000);
+      }, 500);
+    } catch (err) {
+      console.error('⚠️ Error in findNearestCampsite:', err.message);
+      window.showToast && window.showToast('Error finding nearest campsite', 'error');
     }
   }
 

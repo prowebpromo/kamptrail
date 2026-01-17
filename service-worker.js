@@ -77,43 +77,121 @@ async function networkFirstHTML(request) {
   try {
     const net = await fetch(request, { signal: controller.signal });
     clearTimeout(t);
+
+    if (!net.ok) {
+      throw new Error(`HTTP ${net.status}: ${net.statusText}`);
+    }
+
     const cache = await caches.open(VERSION);
-    cache.put('index.html', net.clone()); // keep index fresh
+    // Clone before caching to avoid issues
+    try {
+      await cache.put('index.html', net.clone());
+    } catch (cacheErr) {
+      console.warn('[SW] Failed to cache index.html:', cacheErr.message);
+    }
     return net;
-  } catch {
+  } catch (err) {
     clearTimeout(t);
-    const cache = await caches.open(VERSION);
-    return (await cache.match('index.html')) || Response.error();
+
+    // Log specific error types for debugging
+    if (err.name === 'AbortError') {
+      console.warn('[SW] Network request timed out after 4s, using cache');
+    } else if (err.message && err.message.includes('fetch')) {
+      console.warn('[SW] Network fetch failed:', err.message);
+    } else {
+      console.warn('[SW] Request failed, using cache:', err.message);
+    }
+
+    try {
+      const cache = await caches.open(VERSION);
+      const cached = await cache.match('index.html');
+      if (cached) {
+        return cached;
+      }
+    } catch (cacheErr) {
+      console.error('[SW] Failed to retrieve from cache:', cacheErr.message);
+    }
+
+    return Response.error();
   }
 }
 
 async function cacheFirstTiles(request) {
-  const cache = await caches.open('kt-tiles');
-  const hit = await cache.match(request, { ignoreSearch: true });
-  if (hit) return hit;
+  try {
+    const cache = await caches.open('kt-tiles');
+    const hit = await cache.match(request, { ignoreSearch: true });
+    if (hit) return hit;
 
-  const res = await fetch(request, { mode: 'cors' });
-  // For cross-origin tiles, the response may be opaque; just cache the entry without reading.
-  if (res && res.ok) {
-    try { await cache.put(request, res.clone()); } catch {}
-    // Trim oldest
-    const keys = await cache.keys();
-    const LIMIT = 400; // ~a few metro areas worth
-    if (keys.length > LIMIT) await cache.delete(keys[0]);
+    let res;
+    try {
+      res = await fetch(request, { mode: 'cors' });
+    } catch (fetchErr) {
+      console.warn('[SW] Tile fetch failed:', fetchErr.message);
+      // Return a placeholder or error response for failed tile
+      return new Response('', { status: 503, statusText: 'Tile unavailable' });
+    }
+
+    // For cross-origin tiles, the response may be opaque; cache if valid
+    if (res && (res.ok || res.type === 'opaque')) {
+      try {
+        await cache.put(request, res.clone());
+
+        // Trim oldest entries to maintain cache size
+        const keys = await cache.keys();
+        const LIMIT = 400; // ~a few metro areas worth
+        if (keys.length > LIMIT) {
+          try {
+            await cache.delete(keys[0]);
+          } catch (delErr) {
+            console.warn('[SW] Failed to delete old tile:', delErr.message);
+          }
+        }
+      } catch (cacheErr) {
+        console.warn('[SW] Failed to cache tile:', cacheErr.message);
+      }
+    } else if (!res) {
+      console.error('[SW] Tile response is null');
+      return new Response('', { status: 503, statusText: 'Tile unavailable' });
+    }
+
+    return res;
+  } catch (err) {
+    console.error('[SW] Error in cacheFirstTiles:', err.message);
+    return new Response('', { status: 500, statusText: 'Service Worker error' });
   }
-  return res;
 }
 
 async function staleWhileRevalidate(request) {
-  const cache = await caches.open('kt-static');
-  const cached = await cache.match(request, { ignoreSearch: true });
+  try {
+    const cache = await caches.open('kt-static');
+    const cached = await cache.match(request, { ignoreSearch: true });
 
-  const fetching = fetch(request).then((res) => {
-    if (res && res.ok) cache.put(request, res.clone());
-    return res;
-  }).catch(() => cached);
+    const fetching = fetch(request).then((res) => {
+      if (res && res.ok) {
+        try {
+          cache.put(request, res.clone());
+        } catch (cacheErr) {
+          console.warn('[SW] Failed to cache static asset:', cacheErr.message);
+        }
+      } else if (res && !res.ok) {
+        console.warn(`[SW] Static asset fetch returned ${res.status} for ${request.url}`);
+      }
+      return res;
+    }).catch((fetchErr) => {
+      console.warn('[SW] Static asset fetch failed:', fetchErr.message);
+      return cached;
+    });
 
-  return cached || fetching;
+    return cached || fetching;
+  } catch (err) {
+    console.error('[SW] Error in staleWhileRevalidate:', err.message);
+    // Try to fetch directly as fallback
+    try {
+      return await fetch(request);
+    } catch (fetchErr) {
+      return Response.error();
+    }
+  }
 }
 
 // Allow page to force an update (index shows a toast)

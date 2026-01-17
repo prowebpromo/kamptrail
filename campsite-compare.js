@@ -11,17 +11,40 @@
   function loadCompareList() {
     try {
       const stored = localStorage.getItem('kt_compare_list');
-      return stored ? JSON.parse(stored) : [];
-    } catch {
+      if (!stored) {
+        return [];
+      }
+
+      const parsed = JSON.parse(stored);
+      if (!Array.isArray(parsed)) {
+        console.warn('⚠️ Compare list in localStorage is not an array, resetting');
+        return [];
+      }
+
+      return parsed;
+    } catch (err) {
+      console.error('⚠️ Failed to load compare list from localStorage:', err.message);
       return [];
     }
   }
 
   function saveCompareList() {
     try {
+      if (!Array.isArray(state.compareList)) {
+        console.error('⚠️ Compare list is not an array, cannot save');
+        return;
+      }
+
       localStorage.setItem('kt_compare_list', JSON.stringify(state.compareList));
     } catch (err) {
-      console.warn('Failed to save compare list:', err);
+      console.error('⚠️ Failed to save compare list:', err.message);
+
+      // Check if it's a quota exceeded error
+      if (err.name === 'QuotaExceededError') {
+        window.showToast && window.showToast('Storage quota exceeded. Could not save comparison.', 'error');
+      } else {
+        window.showToast && window.showToast('Failed to save comparison list', 'error');
+      }
     }
   }
 
@@ -111,11 +134,38 @@
   }
 
   function renderComparisonPanel() {
-    if (!state.drawer) return;
+    if (!state.drawer) {
+      console.warn('⚠️ Drawer not initialized in renderComparisonPanel');
+      return;
+    }
 
-    const campsites = state.compareList
-      .map(id => window.KampTrailData && window.KampTrailData.getCampsiteById(id))
-      .filter(Boolean);
+    try {
+      if (!window.KampTrailData || typeof window.KampTrailData.getCampsiteById !== 'function') {
+        console.error('⚠️ KampTrailData not available');
+        state.drawer.innerHTML = `
+          <div style="padding:20px;text-align:center;">
+            <h2 style="margin:0 0 16px 0;font-size:18px;color:var(--c-text);">🔍 Campsite Comparison</h2>
+            <p style="color:#999;font-size:14px;margin:16px 0;">
+              Data loader not available. Please refresh the page.
+            </p>
+            <div style="margin-top:24px;">
+              <button onclick="KampTrailCompare.close()" class="btn">Close</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const campsites = state.compareList
+        .map(id => {
+          try {
+            return window.KampTrailData.getCampsiteById(id);
+          } catch (err) {
+            console.warn(`⚠️ Error getting campsite ${id}:`, err.message);
+            return null;
+          }
+        })
+        .filter(Boolean);
 
     if (campsites.length === 0) {
       state.drawer.innerHTML = `
@@ -223,17 +273,39 @@
     // Actions row
     html += `<tr><td style="padding:10px;font-weight:bold;">Actions</td>`;
     campsites.forEach(site => {
-      const [lon, lat] = site.geometry.coordinates;
-      const safeId = esc(site.properties.id || '');
-      html += `
-        <td style="padding:10px;">
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <button onclick="KampTrailCompare.zoomTo(${lat}, ${lon})" class="btn" style="font-size:11px;padding:4px 8px;">📍 View on Map</button>
-            <button onclick="KampTrailData.addToTrip('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
-            <button onclick="KampTrailCompare.remove('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
-          </div>
-        </td>
-      `;
+      try {
+        if (!site.geometry || !Array.isArray(site.geometry.coordinates) ||
+            site.geometry.coordinates.length < 2) {
+          console.warn('⚠️ Invalid geometry for campsite in comparison');
+          html += `<td style="padding:10px;"><div style="color:#999;">Invalid location</div></td>`;
+          return;
+        }
+
+        const [lon, lat] = site.geometry.coordinates;
+
+        // Validate coordinates
+        if (typeof lat !== 'number' || typeof lon !== 'number' ||
+            isNaN(lat) || isNaN(lon) ||
+            lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+          console.warn(`⚠️ Invalid coordinates in comparison: [${lon}, ${lat}]`);
+          html += `<td style="padding:10px;"><div style="color:#999;">Invalid coordinates</div></td>`;
+          return;
+        }
+
+        const safeId = esc(site.properties.id || '');
+        html += `
+          <td style="padding:10px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <button onclick="KampTrailCompare.zoomTo(${lat}, ${lon})" class="btn" style="font-size:11px;padding:4px 8px;">📍 View on Map</button>
+              <button onclick="KampTrailData.addToTrip('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
+              <button onclick="KampTrailCompare.remove('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
+            </div>
+          </td>
+        `;
+      } catch (siteErr) {
+        console.error('⚠️ Error rendering actions for campsite:', siteErr.message);
+        html += `<td style="padding:10px;"><div style="color:#999;">Error</div></td>`;
+      }
     });
     html += `</tr>`;
 
@@ -244,7 +316,22 @@
       </div>
     `;
 
-    state.drawer.innerHTML = html;
+      state.drawer.innerHTML = html;
+    } catch (err) {
+      console.error('⚠️ Error rendering comparison panel:', err.message);
+      state.drawer.innerHTML = `
+        <div style="padding:20px;text-align:center;">
+          <h2 style="margin:0 0 16px 0;font-size:18px;color:var(--c-text);">🔍 Campsite Comparison</h2>
+          <p style="color:#ff6b6b;font-size:14px;margin:16px 0;">
+            Error loading comparison panel: ${err.message || 'Unknown error'}
+          </p>
+          <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;">
+            <button onclick="KampTrailCompare.clearAll()" class="btn">Clear All</button>
+            <button onclick="KampTrailCompare.close()" class="btn">Close</button>
+          </div>
+        </div>
+      `;
+    }
   }
 
   function toggleDrawer() {
@@ -267,9 +354,31 @@
   }
 
   function zoomTo(lat, lon) {
-    if (state.map) {
+    try {
+      // Validate coordinates
+      if (typeof lat !== 'number' || typeof lon !== 'number') {
+        console.error('⚠️ Invalid coordinate types in zoomTo');
+        window.showToast && window.showToast('Invalid coordinates', 'error');
+        return;
+      }
+
+      if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+        console.error(`⚠️ Coordinates out of range in zoomTo: lat=${lat}, lon=${lon}`);
+        window.showToast && window.showToast('Coordinates out of valid range', 'error');
+        return;
+      }
+
+      if (!state.map || typeof state.map.setView !== 'function') {
+        console.error('⚠️ Map not available in zoomTo');
+        window.showToast && window.showToast('Map not initialized', 'error');
+        return;
+      }
+
       state.map.setView([lat, lon], 14);
       closeDrawer();
+    } catch (err) {
+      console.error('⚠️ Error in zoomTo:', err.message);
+      window.showToast && window.showToast('Error zooming to location', 'error');
     }
   }
 

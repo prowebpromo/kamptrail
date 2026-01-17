@@ -106,19 +106,46 @@
   async function loadIndex() {
     try {
       const response = await fetch('data/campsites/index.json');
-      if (!response.ok) throw new Error('Index not found');
-      state.index = await response.json();
-      console.log('📊 Loaded campsite index:', state.index.total_sites, 'sites');
+      if (!response.ok) {
+        throw new Error(`Failed to load index: HTTP ${response.status} ${response.statusText}`);
+      }
+
+      const text = await response.text();
+      if (!text || text.trim() === '') {
+        throw new Error('Index file is empty');
+      }
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (parseErr) {
+        throw new Error(`Invalid JSON in index file: ${parseErr.message}`);
+      }
+
+      if (!data || typeof data !== 'object') {
+        throw new Error('Index data is not a valid object');
+      }
+
+      state.index = data;
+      console.log('📊 Loaded campsite index:', data.total_sites || 'unknown', 'sites');
       return state.index;
     } catch (err) {
-      console.warn('⚠️ Could not load campsite index:', err.message);
+      console.error('⚠️ Could not load campsite index:', err.message);
       return null;
     }
   }
 
-  async function loadStateData(stateCode) {
+  async function loadStateData(stateCode, retryCount = 0) {
+    const MAX_RETRIES = 3;
+    const RETRY_DELAY = 1000; // 1 second
+
+    if (!stateCode || typeof stateCode !== 'string') {
+      console.error('⚠️ Invalid state code:', stateCode);
+      return [];
+    }
+
     if (state.loadedStates.has(stateCode) || state.loading.has(stateCode)) {
-      return;
+      return [];
     }
 
     state.loading.add(stateCode);
@@ -126,19 +153,90 @@
 
     try {
       const response = await fetch(`data/campsites/${stateCode}.geojson`);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      
-      const geojson = await response.json();
-      const newSites = geojson.features || [];
-      
-      state.allCampsites.push(...newSites);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error(`No campsite data available for ${stateCode}`);
+        }
+        throw new Error(`HTTP ${response.status} ${response.statusText}`);
+      }
+
+      const text = await response.text();
+      if (!text || text.trim() === '') {
+        throw new Error(`Empty GeoJSON file for ${stateCode}`);
+      }
+
+      let geojson;
+      try {
+        geojson = JSON.parse(text);
+      } catch (parseErr) {
+        throw new Error(`Invalid JSON for ${stateCode}: ${parseErr.message}`);
+      }
+
+      if (!geojson || typeof geojson !== 'object') {
+        throw new Error(`Invalid GeoJSON structure for ${stateCode}`);
+      }
+
+      const features = geojson.features;
+      if (!Array.isArray(features)) {
+        console.warn(`⚠️ No features array in ${stateCode} GeoJSON, using empty array`);
+        state.loadedStates.add(stateCode);
+        return [];
+      }
+
+      // Validate and filter sites with proper coordinates
+      const validSites = features.filter((site, idx) => {
+        if (!site || typeof site !== 'object') {
+          console.warn(`⚠️ Invalid site object at index ${idx} in ${stateCode}`);
+          return false;
+        }
+
+        if (!site.geometry || !Array.isArray(site.geometry.coordinates)) {
+          console.warn(`⚠️ Missing or invalid coordinates at index ${idx} in ${stateCode}`);
+          return false;
+        }
+
+        const [lng, lat] = site.geometry.coordinates;
+        if (typeof lat !== 'number' || typeof lng !== 'number' ||
+            isNaN(lat) || isNaN(lng) ||
+            lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+          console.warn(`⚠️ Invalid coordinates [${lng}, ${lat}] at index ${idx} in ${stateCode}`);
+          return false;
+        }
+
+        if (!site.properties || typeof site.properties !== 'object') {
+          console.warn(`⚠️ Missing properties at index ${idx} in ${stateCode}`);
+          return false;
+        }
+
+        return true;
+      });
+
+      const invalidCount = features.length - validSites.length;
+      if (invalidCount > 0) {
+        console.warn(`⚠️ Filtered out ${invalidCount} invalid sites from ${stateCode}`);
+      }
+
+      state.allCampsites.push(...validSites);
       state.loadedStates.add(stateCode);
-      
-      console.log(`✅ Loaded ${newSites.length} sites from ${stateCode} (Total: ${state.allCampsites.length})`);
-      
-      return newSites;
+
+      console.log(`✅ Loaded ${validSites.length} sites from ${stateCode} (Total: ${state.allCampsites.length})`);
+
+      return validSites;
     } catch (err) {
-      console.warn(`⚠️ Could not load ${stateCode}:`, err.message);
+      console.error(`⚠️ Could not load ${stateCode}:`, err.message);
+
+      // Retry on network errors
+      if (retryCount < MAX_RETRIES && (
+          err.message.includes('fetch') ||
+          err.message.includes('network') ||
+          err.message.includes('HTTP 5')
+      )) {
+        console.log(`🔄 Retrying ${stateCode} (attempt ${retryCount + 1}/${MAX_RETRIES})...`);
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (retryCount + 1)));
+        return loadStateData(stateCode, retryCount + 1);
+      }
+
       return [];
     } finally {
       state.loading.delete(stateCode);
@@ -146,37 +244,78 @@
   }
 
   function applyFilters(sites, filters) {
-    if (!filters) return sites;
-    
-    return sites.filter(site => {
-      const p = site.properties;
-      if (!p) return false;
+    if (!Array.isArray(sites)) {
+      console.error('⚠️ applyFilters: sites parameter must be an array');
+      return [];
+    }
 
-      if (filters.cost === 'free' && (p.cost === null || p.cost > 0)) return false;
-      if (filters.cost === 'paid' && (p.cost === null || p.cost === 0)) return false;
+    if (!filters || typeof filters !== 'object') {
+      return sites;
+    }
 
-      if (filters.type !== 'all' && p.type !== filters.type) return false;
+    try {
+      return sites.filter(site => {
+        if (!site || typeof site !== 'object') {
+          return false;
+        }
 
-      if (filters.rigSize !== 'all') {
-        const rigFriendly = p.rig_friendly || [];
-        if (!rigFriendly.includes(filters.rigSize)) return false;
-      }
+        const p = site.properties;
+        if (!p || typeof p !== 'object') {
+          return false;
+        }
 
-      if (filters.roadDifficulty !== 'all' && p.road_difficulty !== filters.roadDifficulty) return false;
+        // Cost filter with validation
+        if (filters.cost === 'free') {
+          const cost = typeof p.cost === 'number' ? p.cost : null;
+          if (cost === null || cost > 0) return false;
+        }
+        if (filters.cost === 'paid') {
+          const cost = typeof p.cost === 'number' ? p.cost : null;
+          if (cost === null || cost === 0) return false;
+        }
 
-      if (filters.amenities && filters.amenities.length > 0) {
-        const siteAmenities = p.amenities || [];
-        const hasAll = filters.amenities.every(a => siteAmenities.includes(a));
-        if (!hasAll) return false;
-      }
+        // Type filter
+        if (filters.type && filters.type !== 'all' && p.type !== filters.type) {
+          return false;
+        }
 
-      if (filters.minRating && filters.minRating > 0) {
-        const rating = p.rating || 0;
-        if (rating < filters.minRating) return false;
-      }
+        // Rig size filter with array validation
+        if (filters.rigSize && filters.rigSize !== 'all') {
+          const rigFriendly = Array.isArray(p.rig_friendly) ? p.rig_friendly : [];
+          if (!rigFriendly.includes(filters.rigSize)) {
+            return false;
+          }
+        }
 
-      return true;
-    });
+        // Road difficulty filter
+        if (filters.roadDifficulty && filters.roadDifficulty !== 'all' &&
+            p.road_difficulty !== filters.roadDifficulty) {
+          return false;
+        }
+
+        // Amenities filter with array validation
+        if (filters.amenities && Array.isArray(filters.amenities) && filters.amenities.length > 0) {
+          const siteAmenities = Array.isArray(p.amenities) ? p.amenities : [];
+          const hasAll = filters.amenities.every(a => siteAmenities.includes(a));
+          if (!hasAll) {
+            return false;
+          }
+        }
+
+        // Rating filter with number validation
+        if (filters.minRating && typeof filters.minRating === 'number' && filters.minRating > 0) {
+          const rating = typeof p.rating === 'number' ? p.rating : 0;
+          if (rating < filters.minRating) {
+            return false;
+          }
+        }
+
+        return true;
+      });
+    } catch (err) {
+      console.error('⚠️ Error applying filters:', err.message);
+      return sites;
+    }
   }
 
   function createMarkerIcon(site) {
@@ -193,89 +332,191 @@
   }
 
   function createPopup(site) {
-    const p = site.properties;
-    const esc = window.escapeHtml || ((t) => t); // Fallback if not available
-    const costText = p.cost === 0 || p.cost === null ? 'FREE' : `$${p.cost}/night`;
+    try {
+      if (!site || typeof site !== 'object') {
+        console.error('⚠️ Invalid site object in createPopup');
+        return '<div>Error: Invalid campsite data</div>';
+      }
 
-    // Enhanced rating with review count
-    let ratingText = 'No ratings';
-    if (p.rating) {
-      const stars = '⭐'.repeat(Math.round(parseFloat(p.rating)));
-      const reviewCount = p.reviews_count || 0;
-      ratingText = reviewCount > 0 ? `${stars} (${reviewCount} reviews)` : stars;
-    }
+      const p = site.properties;
+      if (!p || typeof p !== 'object') {
+        console.error('⚠️ Missing properties in createPopup');
+        return '<div>Error: Missing campsite properties</div>';
+      }
 
-    const safeName = esc(p.name || 'Unnamed Site');
-    const safeType = esc(p.type || 'Unknown');
-    const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
-    const safeAmenities = p.amenities && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
-    const safeId = esc(p.id || '');
+      // Validate coordinates
+      if (!site.geometry || !Array.isArray(site.geometry.coordinates) ||
+          site.geometry.coordinates.length < 2) {
+        console.error('⚠️ Invalid coordinates in createPopup');
+      }
 
-    // Rig-friendly info
-    const rigFriendly = p.rig_friendly && p.rig_friendly.length ? p.rig_friendly : [];
-    const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
+      const [lng, lat] = site.geometry.coordinates || [0, 0];
+      if (typeof lat !== 'number' || typeof lng !== 'number' ||
+          isNaN(lat) || isNaN(lng) ||
+          lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+        console.warn('⚠️ Invalid coordinate values in popup:', lat, lng);
+      }
 
-    return `
-      <div style="min-width:200px;">
-        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${safeName}</h3>
-        <div style="font-size:12px;color:#666;margin-bottom:8px;">
-          <div><strong>Cost:</strong> ${costText}</div>
-          <div><strong>Type:</strong> ${safeType}</div>
-          ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
-          ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
-          <div><strong>Rating:</strong> ${ratingText}</div>
-        </div>
-        ${safeAmenities ? `
-          <div style="font-size:11px;color:#888;margin-bottom:8px;">
-            ${safeAmenities}
+      const esc = window.escapeHtml || ((t) => String(t || '')); // Fallback with safety
+
+      // Safely format cost
+      const cost = typeof p.cost === 'number' ? p.cost : null;
+      const costText = cost === 0 || cost === null ? 'FREE' : `$${cost}/night`;
+
+      // Enhanced rating with review count
+      let ratingText = 'No ratings';
+      if (p.rating && typeof p.rating === 'number') {
+        const ratingVal = Math.max(0, Math.min(5, Math.round(p.rating))); // Clamp to 0-5
+        const stars = '⭐'.repeat(ratingVal);
+        const reviewCount = typeof p.reviews_count === 'number' ? p.reviews_count : 0;
+        ratingText = reviewCount > 0 ? `${stars} (${reviewCount} reviews)` : stars;
+      }
+
+      const safeName = esc(p.name || 'Unnamed Site');
+      const safeType = esc(p.type || 'Unknown');
+      const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
+      const safeAmenities = Array.isArray(p.amenities) && p.amenities.length > 0
+        ? p.amenities.map(a => esc(String(a))).join(' • ')
+        : '';
+      const safeId = esc(String(p.id || ''));
+
+      // Rig-friendly info
+      const rigFriendly = Array.isArray(p.rig_friendly) ? p.rig_friendly : [];
+      const rigText = rigFriendly.length > 0
+        ? rigFriendly.map(r => esc(String(r))).join(', ')
+        : '';
+
+      return `
+        <div style="min-width:200px;">
+          <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${safeName}</h3>
+          <div style="font-size:12px;color:#666;margin-bottom:8px;">
+            <div><strong>Cost:</strong> ${costText}</div>
+            <div><strong>Type:</strong> ${safeType}</div>
+            ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
+            ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
+            <div><strong>Rating:</strong> ${ratingText}</div>
           </div>
-        ` : ''}
-        <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Add to Trip
-          </button>
-          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Compare
-          </button>
-          <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Navigate
-          </button>
+          ${safeAmenities ? `
+            <div style="font-size:11px;color:#888;margin-bottom:8px;">
+              ${safeAmenities}
+            </div>
+          ` : ''}
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+              Add to Trip
+            </button>
+            <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+              Compare
+            </button>
+            <button onclick="window.open('https://maps.google.com/?q=${lat},${lng}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+              Navigate
+            </button>
+          </div>
         </div>
-      </div>
-    `;
+      `;
+    } catch (err) {
+      console.error('⚠️ Error creating popup:', err.message);
+      return '<div>Error loading campsite details</div>';
+    }
   }
 
   function updateMarkers(map, filters, config) {
-    if (!state.clusterGroup) return;
+    if (!state.clusterGroup) {
+      console.warn('⚠️ Cluster group not initialized');
+      return;
+    }
 
-    const filtered = applyFilters(state.allCampsites, filters);
-    console.log(`🔍 Filtered: ${filtered.length} of ${state.allCampsites.length} sites`);
+    try {
+      const filtered = applyFilters(state.allCampsites, filters);
+      console.log(`🔍 Filtered: ${filtered.length} of ${state.allCampsites.length} sites`);
 
-    state.clusterGroup.clearLayers();
+      state.clusterGroup.clearLayers();
 
-    filtered.forEach(site => {
-      const [lng, lat] = site.geometry.coordinates;
-      const marker = L.marker([lat, lng], {
-        icon: createMarkerIcon(site)
+      let addedCount = 0;
+      let skippedCount = 0;
+
+      filtered.forEach((site, idx) => {
+        try {
+          // Validate site structure
+          if (!site || !site.geometry || !Array.isArray(site.geometry.coordinates)) {
+            console.warn(`⚠️ Skipping site at index ${idx}: invalid geometry`);
+            skippedCount++;
+            return;
+          }
+
+          const [lng, lat] = site.geometry.coordinates;
+
+          // Validate coordinates
+          if (typeof lat !== 'number' || typeof lng !== 'number' ||
+              isNaN(lat) || isNaN(lng) ||
+              lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+            console.warn(`⚠️ Skipping site at index ${idx}: invalid coordinates [${lng}, ${lat}]`);
+            skippedCount++;
+            return;
+          }
+
+          const marker = L.marker([lat, lng], {
+            icon: createMarkerIcon(site)
+          });
+
+          marker.bindPopup(createPopup(site));
+          state.clusterGroup.addLayer(marker);
+          addedCount++;
+        } catch (markerErr) {
+          console.error(`⚠️ Error creating marker for site ${idx}:`, markerErr.message);
+          skippedCount++;
+        }
       });
-      
-      marker.bindPopup(createPopup(site));
-      state.clusterGroup.addLayer(marker);
-    });
 
-    if (config.onFilterUpdate) {
-      config.onFilterUpdate(filtered.length, state.allCampsites.length);
+      if (skippedCount > 0) {
+        console.warn(`⚠️ Skipped ${skippedCount} invalid markers`);
+      }
+
+      if (config && typeof config.onFilterUpdate === 'function') {
+        try {
+          config.onFilterUpdate(addedCount, state.allCampsites.length);
+        } catch (callbackErr) {
+          console.error('⚠️ Error in onFilterUpdate callback:', callbackErr.message);
+        }
+      }
+    } catch (err) {
+      console.error('⚠️ Error updating markers:', err.message);
     }
   }
 
   async function refreshData(map, filters, config) {
-    const visibleStates = getVisibleStates(map);
-    const newStates = visibleStates.filter(s => !state.loadedStates.has(s) && !state.loading.has(s));
-    
-    if (newStates.length > 0) {
-      console.log('🔄 Loading new states:', newStates.join(', '));
-      await Promise.all(newStates.map(s => loadStateData(s)));
-      updateMarkers(map, filters, config);
+    try {
+      if (!map || typeof map.getBounds !== 'function') {
+        console.error('⚠️ Invalid map object in refreshData');
+        return;
+      }
+
+      const visibleStates = getVisibleStates(map);
+      const newStates = visibleStates.filter(s => !state.loadedStates.has(s) && !state.loading.has(s));
+
+      if (newStates.length > 0) {
+        console.log('🔄 Loading new states:', newStates.join(', '));
+
+        try {
+          // Load all states in parallel, handle failures gracefully
+          const results = await Promise.allSettled(newStates.map(s => loadStateData(s)));
+
+          const fulfilled = results.filter(r => r.status === 'fulfilled').length;
+          const rejected = results.filter(r => r.status === 'rejected').length;
+
+          if (rejected > 0) {
+            console.warn(`⚠️ Failed to load ${rejected} of ${newStates.length} states`);
+          }
+
+          if (fulfilled > 0) {
+            updateMarkers(map, filters, config);
+          }
+        } catch (loadErr) {
+          console.error('⚠️ Error loading state data:', loadErr.message);
+        }
+      }
+    } catch (err) {
+      console.error('⚠️ Error in refreshData:', err.message);
     }
   }
 
