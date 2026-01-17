@@ -56,10 +56,14 @@
         <div style="font-weight:700;color:#cfe3f2;flex:1">My Trip</div>
         <button id="kt-trip-close" style="background:transparent;border:none;color:#9fd0ff;font-size:18px;cursor:pointer">✕</button>
       </div>
-      <div id="kt-trip-list" style="padding:12px;display:grid;gap:8px;overflow:auto;height:calc(100% - 120px)"></div>
-      <div style="padding:12px;border-top:1px solid #284356;display:flex;gap:8px">
-        <button id="kt-trip-export" style="flex:1;padding:8px;border:1px solid #284356;background:#173243;color:#9fd0ff;border-radius:8px;cursor:pointer">💾 Export GPX</button>
-        <button id="kt-trip-clear" style="flex:1;padding:8px;border:1px solid #284356;background:#173243;color:#ff6b6b;border-radius:8px;cursor:pointer">Clear</button>
+      <div id="kt-trip-list" style="padding:12px;display:grid;gap:8px;overflow:auto;height:calc(100% - 160px)"></div>
+      <div style="padding:12px;border-top:1px solid #284356;display:grid;gap:8px">
+        <div style="display:flex;gap:8px">
+          <button id="kt-trip-export-gpx" style="flex:1;padding:8px;border:1px solid #284356;background:#173243;color:#9fd0ff;border-radius:8px;cursor:pointer;font-size:11px">GPX</button>
+          <button id="kt-trip-export-csv" style="flex:1;padding:8px;border:1px solid #284356;background:#173243;color:#9fd0ff;border-radius:8px;cursor:pointer;font-size:11px">CSV</button>
+          <button id="kt-trip-export-kml" style="flex:1;padding:8px;border:1px solid #284356;background:#173243;color:#9fd0ff;border-radius:8px;cursor:pointer;font-size:11px">KML</button>
+        </div>
+        <button id="kt-trip-clear" style="padding:8px;border:1px solid #284356;background:#173243;color:#ff6b6b;border-radius:8px;cursor:pointer">Clear All</button>
       </div>`;
     document.body.appendChild(d);
     return d;
@@ -68,15 +72,24 @@
   function open(){ st.open=true; st.el.style.right='0'; }
   function close(){ st.open=false; st.el.style.right='-360px'; }
 
-  function exportGPX(){
-    function escapeXml(str) {
-      if (!str) return '';
-      return str.replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&apos;');
+  function escapeXml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&apos;');
+  }
+
+  function escapeCsv(str) {
+    if (!str) return '';
+    if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+      return `"${str.replace(/"/g, '""')}"`;
     }
+    return str;
+  }
+
+  function exportGPX(){
     const wpts = st.stops.map((id,i)=>{
       const s=getSite(id); if(!s) return '';
       const [lng,lat]=s.geometry.coordinates;
@@ -93,6 +106,55 @@ ${wpts}
     URL.revokeObjectURL(url);
   }
 
+  function exportCSV(){
+    const rows = [['Stop','Name','Latitude','Longitude','Cost','Type','State','Rating']];
+    st.stops.forEach((id,i)=>{
+      const s=getSite(id); if(!s) return;
+      const [lng,lat]=s.geometry.coordinates;
+      const p=s.properties;
+      rows.push([
+        i+1,
+        escapeCsv(p.name||''),
+        lat,
+        lng,
+        p.cost === null ? '' : p.cost,
+        escapeCsv(p.type||''),
+        escapeCsv(p.state||''),
+        p.rating || ''
+      ]);
+    });
+    const csv = rows.map(row => row.join(',')).join('\n');
+    const blob=new Blob([csv],{type:'text/csv'});
+    const url=URL.createObjectURL(blob); const a=document.createElement('a');
+    a.href=url; a.download=`KampTrail_Trip_${Date.now()}.csv`; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function exportKML(){
+    const placemarks = st.stops.map((id,i)=>{
+      const s=getSite(id); if(!s) return '';
+      const [lng,lat]=s.geometry.coordinates;
+      const name=escapeXml(s.properties.name||`Stop ${i+1}`);
+      const desc=escapeXml(`Cost: ${s.properties.cost === null ? 'FREE' : '$'+s.properties.cost}, Type: ${s.properties.type||'N/A'}`);
+      return `  <Placemark>
+    <name>${i+1}: ${name}</name>
+    <description>${desc}</description>
+    <Point><coordinates>${lng},${lat},0</coordinates></Point>
+  </Placemark>`;
+    }).join('\n');
+    const kml = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>KampTrail Trip</name>
+${placemarks}
+</Document>
+</kml>`;
+    const blob=new Blob([kml],{type:'application/vnd.google-earth.kml+xml'});
+    const url=URL.createObjectURL(blob); const a=document.createElement('a');
+    a.href=url; a.download=`KampTrail_Trip_${Date.now()}.kml`; a.click();
+    URL.revokeObjectURL(url);
+  }
+
   window.KampTrailTrip = {
     init(map){
       st.map = map; load();
@@ -102,7 +164,9 @@ ${wpts}
       st.el.querySelector('#kt-trip-clear').onclick = ()=>{
         if(confirm('Clear trip?')){ st.stops=[]; save(); render(); }
       };
-      st.el.querySelector('#kt-trip-export').onclick = exportGPX;
+      st.el.querySelector('#kt-trip-export-gpx').onclick = exportGPX;
+      st.el.querySelector('#kt-trip-export-csv').onclick = exportCSV;
+      st.el.querySelector('#kt-trip-export-kml').onclick = exportKML;
       console.log('✓ Trip planner ready');
     },
     addStop(id){

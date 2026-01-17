@@ -145,12 +145,64 @@
     }
   }
 
+  function sortSites(sites, sortBy) {
+    if (!sortBy || sortBy === 'default') return sites;
+
+    const sorted = [...sites];
+
+    switch(sortBy) {
+      case 'cost-low':
+        sorted.sort((a, b) => {
+          const costA = a.properties.cost === null ? 0 : a.properties.cost;
+          const costB = b.properties.cost === null ? 0 : b.properties.cost;
+          return costA - costB;
+        });
+        break;
+      case 'cost-high':
+        sorted.sort((a, b) => {
+          const costA = a.properties.cost === null ? 0 : a.properties.cost;
+          const costB = b.properties.cost === null ? 0 : b.properties.cost;
+          return costB - costA;
+        });
+        break;
+      case 'rating-high':
+        sorted.sort((a, b) => {
+          const ratingA = a.properties.rating || 0;
+          const ratingB = b.properties.rating || 0;
+          return ratingB - ratingA;
+        });
+        break;
+      case 'name-asc':
+        sorted.sort((a, b) => {
+          const nameA = (a.properties.name || '').toLowerCase();
+          const nameB = (b.properties.name || '').toLowerCase();
+          return nameA.localeCompare(nameB);
+        });
+        break;
+    }
+
+    return sorted;
+  }
+
   function applyFilters(sites, filters) {
     if (!filters) return sites;
-    
+
     return sites.filter(site => {
       const p = site.properties;
       if (!p) return false;
+
+      // Search text filter
+      if (filters.searchText && filters.searchText.trim()) {
+        const searchLower = filters.searchText.toLowerCase();
+        const nameLower = (p.name || '').toLowerCase();
+        if (!nameLower.includes(searchLower)) return false;
+      }
+
+      // State filter
+      if (filters.states && filters.states.length > 0) {
+        const siteState = p.state || '';
+        if (!filters.states.includes(siteState)) return false;
+      }
 
       if (filters.cost === 'free' && (p.cost === null || p.cost > 0)) return false;
       if (filters.cost === 'paid' && (p.cost === null || p.cost === 0)) return false;
@@ -230,15 +282,18 @@
             ${safeAmenities}
           </div>
         ` : ''}
-        <div style="display:flex;gap:8px;margin-top:8px;">
+        <div style="display:flex;gap:6px;margin-top:8px;">
+          <button onclick="if(window.KampTrailFavorites) KampTrailFavorites.toggle('${safeId}')" style="padding:4px 8px;background:#FFD700;color:#000;border:none;border-radius:4px;cursor:pointer;font-size:11px;font-weight:bold;">
+            ⭐
+          </button>
           <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Add to Trip
+            Trip
           </button>
           <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Compare
           </button>
           <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Navigate
+            Nav
           </button>
         </div>
       </div>
@@ -248,8 +303,9 @@
   function updateMarkers(map, filters, config) {
     if (!state.clusterGroup) return;
 
-    const filtered = applyFilters(state.allCampsites, filters);
-    console.log(`🔍 Filtered: ${filtered.length} of ${state.allCampsites.length} sites`);
+    let filtered = applyFilters(state.allCampsites, filters);
+    filtered = sortSites(filtered, filters.sortBy);
+    console.log(`🔍 Filtered: ${filtered.length} of ${state.allCampsites.length} sites (sorted by: ${filters.sortBy || 'default'})`);
 
     state.clusterGroup.clearLayers();
 

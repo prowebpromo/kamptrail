@@ -3,7 +3,7 @@
   'use strict';
   const st = {
     map:null,
-    filters:{ cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0 }
+    filters:{ cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0, states:[], searchText:'', sortBy:'default' }
   };
 
   function badgeCount(){
@@ -15,6 +15,8 @@
     if(f.roadDifficulty!=='all') c++;
     if(f.amenities.length) c++;
     if((+f.minRating||0)>0) c++;
+    if(f.states && f.states.length) c++;
+    if(f.searchText && f.searchText.trim()) c++;
     return c;
   }
 
@@ -42,6 +44,18 @@
         <button id="kt-f-reset" style="background:#173243;border:1px solid #284356;color:#9fd0ff;padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;">Reset</button>
       </div>
       <div style="padding:12px;max-height:60vh;overflow:auto;font-size:13px;color:#cfe3f2;">
+        <label>Search by name</label>
+        <input id="f-search" type="text" placeholder="Enter campsite name..." style="width:100%;background:#0b141b;border:1px solid #284356;color:#cfe3f2;border-radius:6px;padding:6px;margin:6px 0 12px;">
+
+        <label>Sort by</label>
+        <select id="f-sort" style="width:100%;background:#0b141b;border:1px solid #284356;color:#cfe3f2;border-radius:6px;padding:6px;margin:6px 0 12px;">
+          <option value="default">Default</option>
+          <option value="cost-low">Cost (Low to High)</option>
+          <option value="cost-high">Cost (High to Low)</option>
+          <option value="rating-high">Rating (High to Low)</option>
+          <option value="name-asc">Name (A-Z)</option>
+        </select>
+
         <label>Cost</label>
         <div style="display:flex;gap:8px;margin:6px 0 12px;">
           <label><input type="radio" name="f-cost" value="all" checked> All</label>
@@ -79,6 +93,12 @@
         </select>
 
         <div style="height:10px"></div>
+        <label>States (select one or more)</label>
+        <div id="f-states" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0 12px;max-height:120px;overflow-y:auto;border:1px solid #284356;border-radius:6px;padding:8px;background:#0b141b;">
+          ${['AZ','CA','CO','FL','GA','IA','ID','IL','MT','NV','OR','UT','WA','WY'].map(s=>`
+            <label style="font-size:11px;"><input type="checkbox" value="${s}"> ${s}</label>`).join('')}
+        </div>
+
         <label>Amenities (must include all)</label>
         <div id="f-amen" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:6px;">
           ${['toilet','water','dump','fire_ring','picnic_table','shade'].map(a=>`
@@ -108,21 +128,32 @@
 
       // Reset
       p.querySelector('#kt-f-reset').addEventListener('click', ()=>{
-        st.filters = { cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0 };
+        st.filters = { cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0, states:[], searchText:'', sortBy:'default' };
+        p.querySelector('#f-search').value = '';
+        p.querySelector('#f-sort').value = 'default';
         p.querySelector('input[name="f-cost"][value="all"]').checked = true;
         p.querySelector('#f-type').value='all';
         p.querySelector('#f-rig').value='all';
         p.querySelector('#f-road').value='all';
+        p.querySelectorAll('#f-states input[type="checkbox"]').forEach(c=> c.checked=false);
         p.querySelectorAll('#f-amen input[type="checkbox"]').forEach(c=> c.checked=false);
         const r=p.querySelector('#f-rate'); r.value=0; p.querySelector('#f-rate-val').textContent='Any';
         apply();
       });
 
       // Inputs
+      p.querySelector('#f-search').addEventListener('input', e=>{ st.filters.searchText=e.target.value; apply(); });
+      p.querySelector('#f-sort').addEventListener('change', e=>{ st.filters.sortBy=e.target.value; apply(); });
       p.querySelectorAll('input[name="f-cost"]').forEach(r=>r.addEventListener('change', e=>{ st.filters.cost=e.target.value; apply(); }));
       p.querySelector('#f-type').addEventListener('change', e=>{ st.filters.type=e.target.value; apply(); });
       p.querySelector('#f-rig').addEventListener('change', e=>{ st.filters.rigSize=e.target.value; apply(); });
       p.querySelector('#f-road').addEventListener('change', e=>{ st.filters.roadDifficulty=e.target.value; apply(); });
+      p.querySelectorAll('#f-states input').forEach(c=> c.addEventListener('change', e=>{
+        const v=e.target.value; const on=e.target.checked;
+        const arr=st.filters.states;
+        if(on && !arr.includes(v)) arr.push(v); else if(!on) st.filters.states = arr.filter(x=>x!==v);
+        apply();
+      }));
       p.querySelectorAll('#f-amen input').forEach(c=> c.addEventListener('change', e=>{
         const v=e.target.value; const on=e.target.checked;
         const arr=st.filters.amenities;

@@ -85,6 +85,7 @@
           🔍 Filters
           <span id="filter-badge" style="display:none;background:#ff6b6b;color:#fff;border-radius:999px;padding:2px 6px;font-size:10px;margin-left:4px;"></span>
         </button>
+        <button id="favorites" class="btn" aria-label="View favorites">⭐ Favorites <span id="fav-count">(0)</span></button>
         <button id="trip" class="btn" aria-label="Open trip planner">🧭 My Trip <span id="trip-count">(0)</span></button>
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">📍 Near me</button>
       </div>
@@ -211,6 +212,7 @@
   <script src="overlays/overlays.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
+  <script src="favorites.js"></script>
   <script src="trip-planner.js"></script>
   <script src="gpx-importer.js"></script>
   <script src="campsite-compare.js"></script>
@@ -259,13 +261,16 @@
         // 3) Filters
         if (window.KampTrailFilters) KampTrailFilters.init(map);
 
-        // 4) Trip planner
+        // 4) Favorites
+        if (window.KampTrailFavorites) KampTrailFavorites.init(map);
+
+        // 5) Trip planner
         if (window.KampTrailTrip) KampTrailTrip.init(map);
 
-        // 5) GPX Importer
+        // 6) GPX Importer
         if (window.KampTrailGPX) KampTrailGPX.init(map);
 
-        // 6) Campsite Comparison
+        // 7) Campsite Comparison
         if (window.KampTrailCompare) KampTrailCompare.init(map);
 
         // Welcome message
