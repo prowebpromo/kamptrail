@@ -7,15 +7,29 @@ KampTrail is a minimalist Progressive Web App (PWA) for discovering camping loca
 ## 🚀 Features
 
 - 🌍 Interactive Leaflet map with OpenStreetMap tiles
-- 📍 Campsite markers (includes sample data - see below to add real data)
+- 📍 **2,600+ campsite markers** across 14 western US states (see Data Coverage below)
+- 🔍 **Search & filter** by name, cost, type, amenities, rating, and state
+- ↕️ **Sort campsites** by cost, rating, or name
+- ⭐ **Favorites system** to save your preferred campsites
+- 📥 **Export trips** in GPX, CSV, or KML formats
 - 🗺️ Public lands overlay (national parks, forests, BLM land)
 - 📡 Cell tower locations (OpenCelliD integration)
 - 🚰 POI markers (dump stations, water, propane)
-- 📥 GPX import/export for route planning
-- 🔄 Campsite comparison tool
+- 🔄 Campsite comparison tool (compare up to 4 sites)
 - 💾 Offline support via Service Worker
 - 🧭 Fully installable PWA (Android/iOS/Desktop)
 - ⚡ Fast, modern design with minimal dependencies
+
+## 📊 Data Coverage
+
+**Strong Coverage (100+ campsites):**
+- 🟢 California (634) • Oregon (333) • Utah (319) • Montana (317) • Idaho (308)
+- 🟢 Colorado (212) • Washington (189) • Wyoming (154) • Arizona (144)
+
+**Limited Coverage (<100 campsites):**
+- 🟡 Nevada (38) • Florida (10) • Georgia (7) • Illinois (4) • Iowa (3)
+
+> **Note:** Data primarily covers western US states. Eastern states have minimal coverage currently. See [below](#fetch-real-campsite-data) to add more data for your region.
 
 ---
 

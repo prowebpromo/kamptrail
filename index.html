@@ -96,7 +96,8 @@
     <footer>
       <div>
         Map © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors ·
-        Data: PAD-US / BLM / USFS / community datasets
+        Data: PAD-US / BLM / USFS / community datasets ·
+        <span style="opacity:0.8" title="Best coverage in CA, OR, UT, MT, ID, CO, WA, WY, AZ">2,600+ sites in 14 western states</span>
       </div>
       <div>
         <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">Open Source</a> ·
@@ -276,7 +277,7 @@
         // Welcome message
         if (!localStorage.getItem('kt_welcomed')) {
           setTimeout(()=>{
-            showToast('👋 Welcome! Use Filters to refine sites and My Trip to plan your route.', 'success', 7000);
+            showToast('👋 Welcome to KampTrail! 2,600+ campsites across 14 western US states. Use Filters to search & sort.', 'success', 8000);
             localStorage.setItem('kt_welcomed','1');
           }, 800);
         }

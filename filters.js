@@ -94,9 +94,21 @@
 
         <div style="height:10px"></div>
         <label>States (select one or more)</label>
-        <div id="f-states" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0 12px;max-height:120px;overflow-y:auto;border:1px solid #284356;border-radius:6px;padding:8px;background:#0b141b;">
-          ${['AZ','CA','CO','FL','GA','IA','ID','IL','MT','NV','OR','UT','WA','WY'].map(s=>`
-            <label style="font-size:11px;"><input type="checkbox" value="${s}"> ${s}</label>`).join('')}
+        <div style="font-size:10px;opacity:0.7;margin:4px 0 6px;line-height:1.4;">
+          🟢 Strong data (100+) • 🟡 Limited (<100) • 🔴 Very limited (<10)
+        </div>
+        <div id="f-states" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:6px 0 12px;max-height:140px;overflow-y:auto;border:1px solid #284356;border-radius:6px;padding:8px;background:#0b141b;">
+          ${[
+            {s:'CA',c:634},{s:'OR',c:333},{s:'UT',c:319},{s:'MT',c:317},{s:'ID',c:308},
+            {s:'CO',c:212},{s:'WA',c:189},{s:'WY',c:154},{s:'AZ',c:144},{s:'NV',c:38},
+            {s:'FL',c:10},{s:'GA',c:7},{s:'IL',c:4},{s:'IA',c:3}
+          ].map(({s,c})=>{
+            const color = c >= 100 ? '🟢' : c >= 10 ? '🟡' : '🔴';
+            return `<label style="font-size:11px;display:flex;align-items:center;gap:4px;">
+              <input type="checkbox" value="${s}">
+              ${color} ${s} <span style="opacity:0.5;font-size:9px;">(${c})</span>
+            </label>`;
+          }).join('')}
         </div>
 
         <label>Amenities (must include all)</label>
