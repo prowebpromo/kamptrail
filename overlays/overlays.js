@@ -41,6 +41,7 @@
         <label><input id="kt-toggle-lands" type="checkbox" checked> Public lands <span class="kt-badge">overlay</span></label>
         <label><input id="kt-toggle-towers" type="checkbox"> Cell towers <span class="kt-badge">OpenCelliD</span></label>
         <label><input id="kt-toggle-poi" type="checkbox" checked> Dump/Water/Propane <span class="kt-badge">POIs</span></label>
+        <label><input id="kt-toggle-ocm" type="checkbox"> OpenCampingMap <span class="kt-badge">community</span></label>
       `;
       map._container.appendChild(controls);
       L.DomEvent.disableClickPropagation(controls);
@@ -63,6 +64,7 @@
       const landsToggle = controls.querySelector('#kt-toggle-lands');
       const towersToggle = controls.querySelector('#kt-toggle-towers');
       const poiToggle = controls.querySelector('#kt-toggle-poi');
+      const ocmToggle = controls.querySelector('#kt-toggle-ocm');
       const towerLegend = document.getElementById('kt-tower-legend');
       landsToggle.addEventListener('change', () => {
         if (!publicLands) {
@@ -218,6 +220,28 @@
       });
       let placesAll = null;
       const placesCluster = L.markerClusterGroup({ chunkedLoading: true, spiderfyOnMaxZoom:false });
+      const ocmCluster = L.markerClusterGroup({ chunkedLoading: true, spiderfyOnMaxZoom: false });
+      let ocmAdded = false;
+      function addOcmOnce(features) {
+        if (ocmAdded) return;
+        const esc = window.escapeHtml || ((t) => t);
+        features.forEach(f => {
+          const [lng, lat] = f.geometry.coordinates;
+          const name = f.properties.name || 'Campsite';
+          const safeName = esc(name);
+          const m = L.marker([lat, lng], { title: safeName });
+          m.on('click', () => {
+            KampTrailPanel.setContent(`<h2>${safeName}</h2><p>From OpenCampingMap</p>`);
+            KampTrailPanel.show();
+          });
+          ocmCluster.addLayer(m);
+        });
+        ocmAdded = true;
+      }
+      loadGeoJSON('data/opencampingmap.geojson').then(gj => addOcmOnce(gj.features)).catch(console.error);
+      ocmToggle.addEventListener('change', () => {
+        if (ocmToggle.checked) map.addLayer(ocmCluster); else map.removeLayer(ocmCluster);
+      });
       function refreshPlaces() {
         if (!placesAll) return;
         placesCluster.clearLayers();

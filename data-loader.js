@@ -122,23 +122,71 @@
     }
 
     state.loading.add(stateCode);
-    console.log(`📥 Loading ${stateCode} campsites...`);
+    console.log(`📥 Loading ${stateCode} campsites from all sources...`);
 
     try {
-      const response = await fetch(`data/campsites/${stateCode}.geojson`);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const sources = [
+        `data/campsites/${stateCode}.geojson`,
+        `data/opencampingmap/${stateCode}.geojson`
+      ];
+
+      const results = await Promise.allSettled(
+        sources.map(url => fetch(url).then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+          return res.json();
+        }))
+      );
+
+      let allNewSites = [];
+
+      // Process recreation.gov data (source 1)
+      if (results[0].status === 'fulfilled' && results[0].value.features) {
+        const sites = results[0].value.features.map(f => {
+          f.properties.source = 'recreation.gov';
+          return f;
+        });
+        allNewSites.push(...sites);
+        console.log(`✅ Loaded ${sites.length} sites from recreation.gov for ${stateCode}`);
+      } else if (results[0].status === 'rejected') {
+        console.warn(`⚠️ Could not load recreation.gov data for ${stateCode}:`, results[0].reason.message);
+      }
+
+      // Process OpenCampingMap data (source 2)
+      if (results[1].status === 'fulfilled' && results[1].value.features) {
+        const osmSites = results[1].value.features.map(f => {
+          // Normalize OSM data to match our app's expected format
+          const p = f.properties;
+          f.properties = {
+            id: `osm-${p.osm_id}`,
+            name: p.name || 'Unnamed Site (OSM)',
+            type: p.camp_site_type || 'Unknown',
+            cost: (p.fee === 'no' || p.fee === '0') ? 0 : null, // Heuristic for cost
+            amenities: p.amenities ? p.amenities.split(';') : [],
+            source: 'osm'
+            // Other fields like rating, road_difficulty are not available in OSM
+          };
+          return f;
+        });
+        allNewSites.push(...osmSites);
+        console.log(`✅ Loaded ${osmSites.length} sites from OpenCampingMap for ${stateCode}`);
+      } else if (results[1].status === 'rejected') {
+         console.warn(`⚠️ Could not load OpenCampingMap data for ${stateCode}:`, results[1].reason.message);
+      }
       
-      const geojson = await response.json();
-      const newSites = geojson.features || [];
-      
-      state.allCampsites.push(...newSites);
-      state.loadedStates.add(stateCode);
-      
-      console.log(`✅ Loaded ${newSites.length} sites from ${stateCode} (Total: ${state.allCampsites.length})`);
-      
-      return newSites;
+      if (allNewSites.length > 0) {
+        state.allCampsites.push(...allNewSites);
+        state.loadedStates.add(stateCode);
+        console.log(`✅ Added ${allNewSites.length} new sites for ${stateCode} (Total: ${state.allCampsites.length})`);
+      } else {
+        // If both failed, we still mark as "loaded" to not retry constantly
+        state.loadedStates.add(stateCode);
+        console.log(`🤷 No new data found for ${stateCode}.`);
+      }
+
+      return allNewSites;
+
     } catch (err) {
-      console.warn(`⚠️ Could not load ${stateCode}:`, err.message);
+      console.error(`💥 Unexpected error loading data for ${stateCode}:`, err);
       return [];
     } finally {
       state.loading.delete(stateCode);
