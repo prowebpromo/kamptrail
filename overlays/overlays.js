@@ -7,12 +7,6 @@
   function loadGeoJSON(url) {
     return fetch(url).then(r => { if (!r.ok) throw new Error('Load failed: ' + url); return r.json(); });
   }
-  function withinBounds(feature, bounds) {
-    const [lng, lat] = feature.geometry.type === 'Point'
-      ? feature.geometry.coordinates
-      : [feature.geometry.coordinates[0][0][0], feature.geometry.coordinates[0][0][1]];
-    return bounds.contains([lat, lng]);
-  }
   function icon(color, glyph) {
     return L.divIcon({
       className: 'kt-poi',
@@ -32,7 +26,6 @@
         publicLandsUrl: '',
         openCelliDKey: '',
         poiUrl: 'data/poi_dump_water_propane.geojson',
-        placesUrl: 'data/sample_places.geojson',
         maxPoiCount: 10000,
         maxTowerCount: 500
       }, config || {});
@@ -72,7 +65,6 @@
         }
         landsToggle.checked ? publicLands.addTo(map) : publicLands.remove();
       });
-      // Initialize public lands if checkbox is checked on page load
       if (landsToggle.checked && publicLands) {
         publicLands.addTo(map);
       }
@@ -216,30 +208,7 @@
       poiToggle.addEventListener('change', () => {
         if (poiToggle.checked) map.addLayer(poiCluster); else map.removeLayer(poiCluster);
       });
-      let placesAll = null;
-      const placesCluster = L.markerClusterGroup({ chunkedLoading: true, spiderfyOnMaxZoom:false });
-      function refreshPlaces() {
-        if (!placesAll) return;
-        placesCluster.clearLayers();
-        const b = map.getBounds();
-        const subset = placesAll.features.filter(f => withinBounds(f, b));
-        const esc = window.escapeHtml || ((t) => t);
-        subset.forEach((f) => {
-          const [lng, lat] = f.geometry.coordinates;
-          const name = f.properties.name || 'Campsite';
-          const type = f.properties.type || 'Free';
-          const safeName = esc(name);
-          const safeType = esc(type);
-          const m = L.marker([lat, lng], { title: safeName });
-          m.bindPopup(`<strong>${safeName}</strong><br>Type: ${safeType}`);
-          placesCluster.addLayer(m);
-        });
-        if (!map.hasLayer(placesCluster)) map.addLayer(placesCluster);
-      }
-      loadGeoJSON(cfg.placesUrl).then(gj => { placesAll = gj; refreshPlaces(); }).catch(()=>{});
       map.on('moveend', () => {
-        clearTimeout(map._ktPlaceTimer);
-        map._ktPlaceTimer = setTimeout(refreshPlaces, 200);
         clearTimeout(map._ktTowerTimer);
         map._ktTowerTimer = setTimeout(fetchCellTowers, 300);
       });

@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/26333928",
+        "name": "Mather Campground",
+        "type": "established",
+        "cost": 30,
+        "amenities": ["toilet", "water", "dump", "fire_ring", "picnic_table"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-112.122, 36.059]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/2578593693",
+        "name": "Ten X Campground",
+        "type": "established",
+        "cost": 10,
+        "amenities": ["toilet", "picnic_table"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-112.13, 35.98]
+      }
+    }
+  ]
+}
