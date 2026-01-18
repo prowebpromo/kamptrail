@@ -1,0 +1,1211 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.767199,
+          39.15203
+        ]
+      },
+      "properties": {
+        "id": "NV-001",
+        "name": "Carson Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243872",
+        "description": "<p>The Carson Ranger District extends along the eastern front of the Sierra Nevada Mountains, straddling the Nevada and California border with a land base of approximately 368,600 square miles. The Di",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6825,
+          36.3091667
+        ]
+      },
+      "properties": {
+        "id": "NV-002",
+        "name": "MCWILLIAMS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "232168",
+        "description": "<h2>Overview</h2>\nMcWilliams Campground is located in the Spring Mountains National Recreation Area, just 50 miles from downtown Las Vegas. Visitors enjoy hiking, mountain biking and scenic driving in",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.7848667,
+          38.7479389
+        ]
+      },
+      "properties": {
+        "id": "NV-003",
+        "name": "INDIAN CREEK CAMPGROUND (CA)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "272246",
+        "description": "<h2>Overview</h2>\n<p>Due to the extensive damage sustained in the 2021 Tamarack Fire, Indian Creek Campground is <strong>CLOSED</strong> at this time and will remain closed until the area can be made ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.6530556,
+          39.4633333
+        ]
+      },
+      "properties": {
+        "id": "NV-004",
+        "name": "Bird Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "234209",
+        "description": "<h2>Overview</h2>\n<p>Bird Creek Recreation Area is located in the Duck Creek Basin, high on the Schell Creek Range. It sits at an elevation of 8,200 feet, approximately 25 miles from the small city of",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.872365,
+          39.255005
+        ]
+      },
+      "properties": {
+        "id": "NV-005",
+        "name": "Ely Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243880",
+        "description": "<p>The Ely Ranger District makes up approximately 1.1 million acres of the Humboldt-Toiyabe National Forest and extends over three Nevada counties: Nye, White Pine and Lincoln. Ely, Nevada, located in",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.96,
+          39.1063
+        ]
+      },
+      "properties": {
+        "id": "NV-006",
+        "name": "Lake Tahoe - East Shore",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "239692",
+        "description": "<p>The east shore of Lake Tahoe is located on the Nevada side along the west slope of the Carson Range. Access to this mostly undeveloped side of the lake is via Highways 50 and 28. Recreational oppor",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.4492,
+          38.2999
+        ]
+      },
+      "properties": {
+        "id": "NV-007",
+        "name": "Obsidian Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243903",
+        "description": "<p>Obsidian Campground offers opportunity to get away from crowds amidst shade of aspens and pines. Campground is close to Molybdenite Creek and Little Walker River. The river is stocked with trout. A",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.2261,
+          38.0676
+        ]
+      },
+      "properties": {
+        "id": "NV-008",
+        "name": "Lower Virginia Creek Primitive Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243885",
+        "description": "<p>Rustic campsites with fire rings in Jeffrey Pine Forest. There is no trash service please pack out your trash.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.8471501,
+          41.6012624
+        ]
+      },
+      "properties": {
+        "id": "NV-009",
+        "name": "Salmon/Scott River Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "234991",
+        "description": "<p>Water activities, boating, floating and swimming abound on the two Wild and Scenic Rivers of the Salmon and the Scott.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.977029,
+          41.11137
+        ]
+      },
+      "properties": {
+        "id": "NV-010",
+        "name": "Ruby Mountains Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243878",
+        "description": "<p>The Jarbidge Ranger District of the Humboldt-Toiyabe National Forest offers approximately 243,907 acres of relatively undiscovered recreation opportunities. Elevations range from 6,000 feet to the ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.1537,
+          41.5033
+        ]
+      },
+      "properties": {
+        "id": "NV-011",
+        "name": "Slide Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "248581",
+        "description": "<p>Slide Creek Campground is located at the trailhead for Slide Creek which accesses the Jarbidge Wilderness(hiking, horse trips, hunting, backpacking), has one single restroom, horse corrals (no hors",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6075,
+          36.2625
+        ]
+      },
+      "properties": {
+        "id": "NV-012",
+        "name": "KYLE CANYON PICNIC AREA DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "232166",
+        "description": "<h2>Overview</h2>\nKyle Canyon Picnic Area is set in the beautiful Spring Mountains National Recreation Area, just 23 miles from Las Vegas. Visitors enjoy hiking, horseback riding and scenic driving in",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.017,
+          38.4811
+        ]
+      },
+      "properties": {
+        "id": "NV-013",
+        "name": "(LAKE ALPINE)  SILVER TIP CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "274410",
+        "description": "<h2>Overview</h2>\n<p>Silvertip Campground is less than a mile west of Lake Alpine, with a trail leading from the campground down to the lake.</p>\n<p>Campground may open earlier and close later on a fi",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.3838889,
+          36.1313889
+        ]
+      },
+      "properties": {
+        "id": "NV-014",
+        "name": "Red Rock Canyon Campground",
+        "type": "established",
+        "cost": 34,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "250877",
+        "description": "<h2>Overview</h2>\n<p>Red Rock Canyon's standard, RV, and group campsites are located in the stunning Red Rock Canyon National Conservation Area, an approximate 20 mile drive from \"The Las Vegas Strip.",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6144444,
+          36.2633333
+        ]
+      },
+      "properties": {
+        "id": "NV-015",
+        "name": "FLETCHER VIEW",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "234005",
+        "description": "<h2>Overview</h2>\nFletcher View Campground is set in the beautiful Spring Mountains National Recreation Area, just 24 miles from Las Vegas. Visitors enjoy hiking, horseback riding and scenic driving i",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.281055,
+          38.267929
+        ]
+      },
+      "properties": {
+        "id": "NV-016",
+        "name": "Bridgeport Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243873",
+        "description": "<p>Sustaining the health, diversity, and productivity of the Nation's forests and grasslands to meet the needs of present and future generations...from the peaks of the eastern Sierra to the Great Bas",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.6275,
+          39.4
+        ]
+      },
+      "properties": {
+        "id": "NV-017",
+        "name": "TIMBER CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "234208",
+        "description": "<h2>Overview</h2>\nTimber Creek Campground is located in Duck Creek Basin, high on the Schell Creek Range, in eastern Nevada. It sits at an elevation of 8,500 feet, approximately 25 miles from the smal",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.9675889,
+          39.2124528
+        ]
+      },
+      "properties": {
+        "id": "NV-018",
+        "name": "WARD MTN. CAMPGROUND (MURRAY SUMMIT)",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "234207",
+        "description": "<h2>Overview</h2>\nWard Mountain Recreation Area and Campground sits in the shadow of its namesake, just 10 miles southwest from the city of Ely, in eastern Nevada. It sits at an elevation of 7,400 fee",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.227849,
+          38.06571
+        ]
+      },
+      "properties": {
+        "id": "NV-019",
+        "name": "Tonopah Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243875",
+        "description": "<p>Located off U.S. Highway 95, approximately halfway between Reno and Las Vegas (a little over 200 miles from each) is the largest ranger district in the lower 48 states: Tonopah Ranger District. The",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.2753,
+          41.2396
+        ]
+      },
+      "properties": {
+        "id": "NV-020",
+        "name": "Hotelling Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "234994",
+        "description": "<p>Hotelling campground has 4 campsites right on the South Fork of the Salmon River. Easy access makes it a popular destination all summer long with the locals.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6438889,
+          36.2566667
+        ]
+      },
+      "properties": {
+        "id": "NV-021",
+        "name": "CATHEDRAL ROCK PICNIC AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "232163",
+        "description": "<h2>Overview</h2>\nCathedral Rock Group Picnic Area is located at the top of beautiful Kyle Canyon in the Spring Mountains National Recreation Area, just 30 miles from Las Vegas. Visitors enjoy hiking,",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.934797,
+          41.068191
+        ]
+      },
+      "properties": {
+        "id": "NV-022",
+        "name": "Big Flat Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "234992",
+        "description": "<p>Big Flat campground has 9 campsites, and access to many trails in the Trinity Alps Wilderness, including the Caribou Lakes. There is no potable water or garbage service provided, but there are vaul",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.1808,
+          39.1088
+        ]
+      },
+      "properties": {
+        "id": "NV-023",
+        "name": "Lake Tahoe - West Shore",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "239736",
+        "description": "The west shore of Lake Tahoe is located on the California side of the lake.  Highway 89 stretches along this side of the lake with access via Highway 50 to the south and Interstate 80 to the north.  R",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6161111,
+          36.3119444
+        ]
+      },
+      "properties": {
+        "id": "NV-024",
+        "name": "MAHOGANY GROVE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "232167",
+        "description": "<h2>Overview</h2>\nMahogany Grove Campground is set in the beautiful Spring Mountains National Recreation Area, just 40 miles from downtown Las Vegas. Visitors enjoy hiking, horseback riding and scenic",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.985,
+          38.4802
+        ]
+      },
+      "properties": {
+        "id": "NV-025",
+        "name": "(LAKE ALPINE) SILVER VALLEY CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "274314",
+        "description": "<h2>Overview</h2>\n<p>Silver Valley Campground is located in the Calveras Ranger District, at the east end of Lake Alpine Recreation Area in a timbered setting near several trailheads.</p>\n<p>Campgroun",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.739296,
+          40.835436
+        ]
+      },
+      "properties": {
+        "id": "NV-026",
+        "name": "Mountain City Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243877",
+        "description": "<p>The Mountain City Ranger District comprises approximately 450,000 acres of the Humboldt-Toiyabe National Forest. The district lies approximately 84 miles North of Elko, Nevada on State Highway 225 ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.717736,
+          40.975968
+        ]
+      },
+      "properties": {
+        "id": "NV-027",
+        "name": "Santa Rosa Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243884",
+        "description": "<p>The Santa Rosa Ranger District makes up approximately 280,000 acres of the Humboldt-Toiyabe National Forest, 40 miles north of Winnemucca, Nevada. It can be reached by traveling north on State High",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6694444,
+          36.3086111
+        ]
+      },
+      "properties": {
+        "id": "NV-028",
+        "name": "FOXTAIL GRP PICNIC AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "232165",
+        "description": "<h2>Overview</h2>\nFoxtail Group Picnic Area is located in the Spring Mountains National Recreation Area, just 47 miles from downtown Las Vegas. Visitors enjoy hiking, mountain biking, scenic driving, ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.61291439,
+          37.68277068
+        ]
+      },
+      "properties": {
+        "id": "NV-029",
+        "name": "Clayton Valley Sand Dunes",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "262737",
+        "description": "Clayton Valley Sand Dunes was designated as a SRMA in the Tonopah RMP and ROD. The site is closed to competitive recreational events. OHV use is limited to existing roads and trails. OHV use on un-veg",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.2262,
+          37.4963
+        ]
+      },
+      "properties": {
+        "id": "NV-030",
+        "name": "Mathews Canyon Dam",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "274376",
+        "description": "This site is an Army Corps of Engineers flood control dam for the railroad. The site contains two shade structures, picnic tables, grills, fire pits, garbage cans, and vault toilets.",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.723082,
+          38.631372
+        ]
+      },
+      "properties": {
+        "id": "NV-031",
+        "name": "Centerville Flat Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243975",
+        "description": "<p>.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.6066639,
+          36.3098639
+        ]
+      },
+      "properties": {
+        "id": "NV-032",
+        "name": "HILLTOP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "232276",
+        "description": "<h2>Overview</h2>\n<p>Hilltop Campground is set in the beautiful Spring Mountains National Recreation Area, just 40 miles from downtown Las Vegas. Visitors enjoy hiking, horseback riding and scenic dri",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.234035,
+          36.245401
+        ]
+      },
+      "properties": {
+        "id": "NV-033",
+        "name": "Spring Mountains National Recreation Area Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243876",
+        "description": "<p>The Spring Mountains National Recreation Area (SMNRA) is part of the Humboldt-Toiyabe National Forest. Better known to locals as Mount Charleston, it is located just 30 minutes from downtown Las Ve",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.005,
+          38.9139
+        ]
+      },
+      "properties": {
+        "id": "NV-034",
+        "name": "Lake Tahoe - South Shore",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "239708",
+        "description": "<p>The south shore of Lake Tahoe is located on the California side of the lake with the main access via Highways 50 and 89.  The south shore boasts a spectrum of commercial development intermixed with",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.089309,
+          39.50153
+        ]
+      },
+      "properties": {
+        "id": "NV-035",
+        "name": "Austin Ranger District Office",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "243874",
+        "description": "<p>The Austin Ranger District is located 170 miles east of Reno in north-central Nevada. The District’s over 1 million acres are located near what has been dubbed the loneliest highway in America, U.S",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.55858,
+          39.96254
+        ]
+      },
+      "properties": {
+        "id": "NV-037",
+        "name": "Lovelock Cave Historic Site",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "10346491",
+        "description": "<h2>Overview:</h2>\n\n<p>Lovelock Cave Historic Site is at the end of a designated backcountry byway along unpaved roads. The site features a cave with historic significance, an information kiosk, a sel",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.5853333,
+          36.2722222
+        ]
+      },
+      "properties": {
+        "id": "NV-038",
+        "name": "SPRING MOUNTAINS VISITOR GATEWAY GROUP PICNIC SITES",
+        "type": "established",
+        "cost": 70,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NV",
+        "source": "recreation.gov",
+        "facility_id": "251966",
+        "description": "<h2>Overview</h2>\nThe Spring Mountains Visitor Gateway (SMVG) complex includes a visitor center, an education and research building, two amphitheaters, two picnic sites and over 40 miles of adjoining ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

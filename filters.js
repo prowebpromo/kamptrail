@@ -3,20 +3,8 @@
   'use strict';
   const st = {
     map:null,
-    filters:{ cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0, searchText:'' }
+    filters:{ cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0 }
   };
-
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
 
   function badgeCount(){
     let c=0;
@@ -118,25 +106,15 @@
       const btn = document.getElementById('filters');
       btn.addEventListener('click', ()=>{ p.style.display = (p.style.display==='none'?'block':'none'); });
 
-      // Wire search input
-      const searchInput = document.getElementById('search');
-      if (searchInput) {
-        searchInput.addEventListener('input', debounce((e) => {
-          st.filters.searchText = e.target.value;
-          apply();
-        }, 300));
-      }
-
       // Reset
       p.querySelector('#kt-f-reset').addEventListener('click', ()=>{
-        st.filters = { cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0, searchText:'' };
+        st.filters = { cost:'all', type:'all', rigSize:'all', roadDifficulty:'all', amenities:[], minRating:0 };
         p.querySelector('input[name="f-cost"][value="all"]').checked = true;
         p.querySelector('#f-type').value='all';
         p.querySelector('#f-rig').value='all';
         p.querySelector('#f-road').value='all';
         p.querySelectorAll('#f-amen input[type="checkbox"]').forEach(c=> c.checked=false);
         const r=p.querySelector('#f-rate'); r.value=0; p.querySelector('#f-rate-val').textContent='Any';
-        if (searchInput) searchInput.value = '';
         apply();
       });
 

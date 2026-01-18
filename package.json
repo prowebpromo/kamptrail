@@ -7,7 +7,8 @@
     "fetch-state": "bash scripts/fetch_all_campsite_data.sh",
     "scrape:recreation": "node scripts/scrape_recreation_gov.js",
     "scrape:campendium": "node scripts/scrape_campendium.js",
-    "merge": "node scripts/merge_campsite_data.js"
+    "merge": "node scripts/merge_campsite_data.js",
+    "build:data": "node scripts/combine_states.js"
   },
   "keywords": [
     "camping",

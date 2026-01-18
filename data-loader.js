@@ -1,33 +1,223 @@
-/* data-loader.js - Simplified for OpenCampingMap */
+/* data-loader.js - FIXED VERSION - Forces initial data load */
 
 (function() {
   'use strict';
 
   const state = {
     allCampsites: [],
+    loadedStates: new Set(),
+    loadedCampsiteIds: new Set(),
+    loading: new Set(),
+    index: null,
     clusterGroup: null,
-    config: {},
-    userLocation: null
+    config: {}
   };
 
-  function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 3958.8; // Earth's radius in miles
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-              Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c; // Distance in miles
+  const STATE_BOUNDS = {
+    'AL': { s: 30.2, w: -88.5, n: 35.0, e: -84.9 },
+    'AK': { s: 51.2, w: -179.1, n: 71.4, e: -129.9 },
+    'AZ': { s: 31.3, w: -114.8, n: 37.0, e: -109.0 },
+    'AR': { s: 33.0, w: -94.6, n: 36.5, e: -89.6 },
+    'CA': { s: 32.5, w: -124.4, n: 42.0, e: -114.1 },
+    'CO': { s: 37.0, w: -109.1, n: 41.0, e: -102.0 },
+    'CT': { s: 41.0, w: -73.7, n: 42.1, e: -71.8 },
+    'DE': { s: 38.5, w: -75.8, n: 39.8, e: -75.0 },
+    'FL': { s: 24.5, w: -87.6, n: 31.0, e: -79.9 },
+    'GA': { s: 30.4, w: -85.6, n: 35.0, e: -80.8 },
+    'HI': { s: 18.9, w: -160.2, n: 22.2, e: -154.8 },
+    'ID': { s: 42.0, w: -117.2, n: 49.0, e: -111.0 },
+    'IL': { s: 37.0, w: -91.5, n: 42.5, e: -87.5 },
+    'IN': { s: 37.8, w: -88.1, n: 41.8, e: -84.8 },
+    'IA': { s: 40.4, w: -96.6, n: 43.5, e: -90.1 },
+    'KS': { s: 37.0, w: -102.1, n: 40.0, e: -94.6 },
+    'KY': { s: 36.5, w: -89.6, n: 39.1, e: -81.9 },
+    'LA': { s: 29.0, w: -94.0, n: 33.0, e: -89.0 },
+    'ME': { s: 43.1, w: -71.1, n: 47.5, e: -66.9 },
+    'MD': { s: 37.9, w: -79.5, n: 39.7, e: -75.0 },
+    'MA': { s: 41.2, w: -73.5, n: 42.9, e: -69.9 },
+    'MI': { s: 41.7, w: -90.4, n: 48.3, e: -82.4 },
+    'MN': { s: 43.5, w: -97.2, n: 49.4, e: -89.5 },
+    'MS': { s: 30.2, w: -91.7, n: 35.0, e: -88.1 },
+    'MO': { s: 36.0, w: -95.8, n: 40.6, e: -89.1 },
+    'MT': { s: 45.0, w: -116.1, n: 49.0, e: -104.0 },
+    'NE': { s: 40.0, w: -104.1, n: 43.0, e: -95.3 },
+    'NV': { s: 35.0, w: -120.0, n: 42.0, e: -114.0 },
+    'NH': { s: 42.7, w: -72.6, n: 45.3, e: -70.6 },
+    'NJ': { s: 38.9, w: -75.6, n: 41.4, e: -73.9 },
+    'NM': { s: 31.3, w: -109.1, n: 37.0, e: -103.0 },
+    'NY': { s: 40.5, w: -79.8, n: 45.0, e: -71.9 },
+    'NC': { s: 33.8, w: -84.3, n: 36.6, e: -75.5 },
+    'ND': { s: 45.9, w: -104.1, n: 49.0, e: -96.6 },
+    'OH': { s: 38.4, w: -84.8, n: 42.3, e: -80.5 },
+    'OK': { s: 33.6, w: -103.0, n: 37.0, e: -94.4 },
+    'OR': { s: 42.0, w: -124.6, n: 46.3, e: -116.5 },
+    'PA': { s: 39.7, w: -80.5, n: 42.3, e: -74.7 },
+    'RI': { s: 41.1, w: -71.9, n: 42.0, e: -71.1 },
+    'SC': { s: 32.0, w: -83.4, n: 35.2, e: -78.5 },
+    'SD': { s: 42.5, w: -104.1, n: 45.9, e: -96.4 },
+    'TN': { s: 35.0, w: -90.3, n: 36.7, e: -81.6 },
+    'TX': { s: 25.8, w: -106.6, n: 36.5, e: -93.5 },
+    'UT': { s: 37.0, w: -114.1, n: 42.0, e: -109.0 },
+    'VT': { s: 42.7, w: -73.4, n: 45.0, e: -71.5 },
+    'VA': { s: 36.5, w: -83.7, n: 39.5, e: -75.2 },
+    'WA': { s: 45.5, w: -124.8, n: 49.0, e: -116.9 },
+    'WV': { s: 37.2, w: -82.6, n: 40.6, e: -77.7 },
+    'WI': { s: 42.5, w: -92.9, n: 47.1, e: -86.2 },
+    'WY': { s: 41.0, w: -111.1, n: 45.0, e: -104.1 }
+  };
+
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
   }
 
-  function formatDistance(miles) {
-    if (miles < 1) {
-      return `${(miles * 5280).toFixed(0)} ft`;
-    } else if (miles < 10) {
-      return `${miles.toFixed(1)} mi`;
-    } else {
-      return `${miles.toFixed(0)} mi`;
+  function boundsIntersect(b1, b2) {
+    return !(b1.e < b2.w || b1.w > b2.e || b1.n < b2.s || b1.s > b2.n);
+  }
+
+  function getVisibleStates(map) {
+    const bounds = map.getBounds();
+    const viewport = {
+      s: bounds.getSouth(),
+      w: bounds.getWest(),
+      n: bounds.getNorth(),
+      e: bounds.getEast()
+    };
+
+    const visible = [];
+    for (const [stateCode, bbox] of Object.entries(STATE_BOUNDS)) {
+      if (boundsIntersect(viewport, bbox)) {
+        visible.push(stateCode);
+      }
+    }
+
+    console.log(`🗺️ Viewport: lat ${viewport.s.toFixed(2)} to ${viewport.n.toFixed(2)}, lng ${viewport.w.toFixed(2)} to ${viewport.e.toFixed(2)}`);
+    console.log(`🗺️ Visible states detected: ${visible.join(', ') || 'NONE'}`);
+
+    return visible;
+  }
+
+  /*
+   * Proximity-based deduplication logic
+   * Adapted from scripts/merge_campsite_data.js
+   */
+  const DISTANCE_THRESHOLD_METERS = 500;
+
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371e3;
+    const φ1 = (lat1 * Math.PI) / 180;
+    const φ2 = (lat2 * Math.PI) / 180;
+    const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+    const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  function levenshteinDistance(s1, s2) {
+    const costs = [];
+    for (let i = 0; i <= s1.length; i++) {
+      let lastValue = i;
+      for (let j = 0; j <= s2.length; j++) {
+        if (i === 0) costs[j] = j;
+        else if (j > 0) {
+          let newValue = costs[j - 1];
+          if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+          }
+          costs[j - 1] = lastValue;
+          lastValue = newValue;
+        }
+      }
+      if (i > 0) costs[s2.length] = lastValue;
+    }
+    return costs[s2.length];
+  }
+
+  function stringSimilarity(str1, str2) {
+    const s1 = (str1 || '').toLowerCase().trim();
+    const s2 = (str2 || '').toLowerCase().trim();
+    if (s1 === s2) return 1.0;
+    const longer = s1.length > s2.length ? s1 : s2;
+    const shorter = s1.length > s2.length ? s2 : s1;
+    if (longer.length === 0) return 1.0;
+    const editDistance = levenshteinDistance(longer, shorter);
+    return (longer.length - editDistance) / longer.length;
+  }
+
+  function areDuplicates(site1, site2) {
+    const [lon1, lat1] = site1.geometry.coordinates;
+    const [lon2, lat2] = site2.geometry.coordinates;
+    const distance = calculateDistance(lat1, lon1, lat2, lon2);
+    if (distance < DISTANCE_THRESHOLD_METERS) {
+      const nameSimilarity = stringSimilarity(site1.properties.name, site2.properties.name);
+      if (distance < 100 || nameSimilarity > 0.6) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  async function loadIndex() {
+    try {
+      const response = await fetch('data/campsites/index.json');
+      if (!response.ok) throw new Error('Index not found');
+      state.index = await response.json();
+      console.log('📊 Loaded campsite index:', state.index.total_sites, 'sites');
+      return state.index;
+    } catch (err) {
+      console.warn('⚠️ Could not load campsite index:', err.message);
+      return null;
+    }
+  }
+
+  async function loadStateData(stateCode) {
+    if (state.loadedStates.has(stateCode) || state.loading.has(stateCode)) {
+      return;
+    }
+
+    state.loading.add(stateCode);
+    console.log(`📥 Loading ${stateCode} campsites...`);
+
+    try {
+      const response = await fetch(`data/campsites/${stateCode}.geojson`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const geojson = await response.json();
+      const newSites = (geojson.features || []).filter(site => {
+        const id = site.properties.id;
+        if (state.loadedCampsiteIds.has(id)) {
+          return false;
+        }
+        // Proximity check
+        for (const existingSite of state.allCampsites) {
+          if (areDuplicates(existingSite, site)) {
+            console.log(`Duplicate found: ${site.properties.name} is a duplicate of ${existingSite.properties.name}`);
+            return false;
+          }
+        }
+        state.loadedCampsiteIds.add(id);
+        return true;
+      });
+
+      state.allCampsites.push(...newSites);
+      state.loadedStates.add(stateCode);
+
+      console.log(`✅ Loaded ${newSites.length} sites from ${stateCode} (Total: ${state.allCampsites.length})`);
+
+      return newSites;
+    } catch (err) {
+      console.warn(`⚠️ Could not load ${stateCode}:`, err.message);
+      return [];
+    } finally {
+      state.loading.delete(stateCode);
     }
   }
 
@@ -38,16 +228,28 @@
       const p = site.properties;
       if (!p) return false;
 
-      // Search text filter
-      if (filters.searchText && filters.searchText.trim()) {
-        const searchLower = filters.searchText.toLowerCase();
-        const name = (p.name || '').toLowerCase();
-        if (!name.includes(searchLower)) return false;
-      }
-
       if (filters.cost === 'free' && (p.cost === null || p.cost > 0)) return false;
       if (filters.cost === 'paid' && (p.cost === null || p.cost === 0)) return false;
+
       if (filters.type !== 'all' && p.type !== filters.type) return false;
+
+      if (filters.rigSize !== 'all') {
+        const rigFriendly = p.rig_friendly || [];
+        if (!rigFriendly.includes(filters.rigSize)) return false;
+      }
+
+      if (filters.roadDifficulty !== 'all' && p.road_difficulty !== filters.roadDifficulty) return false;
+
+      if (filters.amenities && filters.amenities.length > 0) {
+        const siteAmenities = p.amenities || [];
+        const hasAll = filters.amenities.every(a => siteAmenities.includes(a));
+        if (!hasAll) return false;
+      }
+
+      if (filters.minRating && filters.minRating > 0) {
+        const rating = p.rating || 0;
+        if (rating < filters.minRating) return false;
+      }
 
       return true;
     });
@@ -68,34 +270,48 @@
 
   function createPopup(site) {
     const p = site.properties;
+    const esc = window.escapeHtml || ((t) => t); // Fallback if not available
     const costText = p.cost === 0 || p.cost === null ? 'FREE' : `$${p.cost}/night`;
 
-    let distanceHtml = '';
-    if (state.userLocation) {
-      const [lng, lat] = site.geometry.coordinates;
-      const distance = calculateDistance(state.userLocation.lat, state.userLocation.lng, lat, lng);
-      distanceHtml = `<div><strong>Distance:</strong> ${formatDistance(distance)}</div>`;
+    // Enhanced rating with review count
+    let ratingText = 'No ratings';
+    if (p.rating) {
+      const stars = '⭐'.repeat(Math.round(parseFloat(p.rating)));
+      const reviewCount = p.reviews_count || 0;
+      ratingText = reviewCount > 0 ? `${stars} (${reviewCount} reviews)` : stars;
     }
+
+    const safeName = esc(p.name || 'Unnamed Site');
+    const safeType = esc(p.type || 'Unknown');
+    const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
+    const safeAmenities = p.amenities && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
+    const safeId = esc(p.id || '');
+
+    // Rig-friendly info
+    const rigFriendly = p.rig_friendly && p.rig_friendly.length ? p.rig_friendly : [];
+    const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
 
     return `
       <div style="min-width:200px;">
-        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${p.name || 'Unnamed Site'}</h3>
+        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${safeName}</h3>
         <div style="font-size:12px;color:#666;margin-bottom:8px;">
-          ${distanceHtml}
           <div><strong>Cost:</strong> ${costText}</div>
-          <div><strong>Type:</strong> ${p.type || 'Unknown'}</div>
+          <div><strong>Type:</strong> ${safeType}</div>
+          ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
+          ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
+          <div><strong>Rating:</strong> ${ratingText}</div>
         </div>
-        ${p.amenities && p.amenities.length ? `
+        ${safeAmenities ? `
           <div style="font-size:11px;color:#888;margin-bottom:8px;">
-            ${p.amenities.join(' • ')}
+            ${safeAmenities}
           </div>
         ` : ''}
         <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailData.addToTrip('${p.id}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Add to Trip
           </button>
-          <button onclick="KampTrailData.shareCampsite('${p.id}')" style="flex:1;padding:4px 8px;background:#9b59b6;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Share
+          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+            Compare
           </button>
           <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
@@ -122,12 +338,26 @@
       marker.bindPopup(createPopup(site));
       state.clusterGroup.addLayer(marker);
     });
+
+    if (config.onFilterUpdate) {
+      config.onFilterUpdate(filtered.length, state.allCampsites.length);
+    }
+  }
+
+  async function refreshData(map, filters, config) {
+    const visibleStates = getVisibleStates(map);
+    const newStates = visibleStates.filter(s => !state.loadedStates.has(s) && !state.loading.has(s));
+
+    if (newStates.length > 0) {
+      console.log('🔄 Loading new states:', newStates.join(', '));
+      await Promise.all(newStates.map(s => loadStateData(s)));
+      updateMarkers(map, filters, config);
+    }
   }
 
   window.KampTrailData = {
     async init(map, config = {}) {
       state.config = config;
-      state.config._map = map;
       console.log('🚀 Initializing KampTrail Data Loader...');
 
       state.clusterGroup = L.markerClusterGroup({
@@ -135,28 +365,61 @@
         spiderfyOnMaxZoom: true,
         showCoverageOnHover: false,
         zoomToBoundsOnClick: true,
+        iconCreateFunction: function(cluster) {
+          const count = cluster.getChildCount();
+          let size = 'small';
+          if (count > 50) size = 'large';
+          else if (count > 10) size = 'medium';
+
+          return L.divIcon({
+            html: `<div style="background:#FF6B6B;color:#fff;border-radius:50%;width:40px;height:40px;display:grid;place-items:center;font-weight:bold;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);">${count}</div>`,
+            className: `kt-cluster kt-cluster-${size}`,
+            iconSize: [40, 40]
+          });
+        }
       });
       map.addLayer(state.clusterGroup);
 
-      try {
-        const response = await fetch('data/opencampingmap.geojson');
-        if (!response.ok) throw new Error('Failed to load campsite data');
-        const geojson = await response.json();
-        state.allCampsites = geojson.features || [];
-        console.log(`✅ Loaded ${state.allCampsites.length} campsites`);
-      } catch (err) {
-        console.error('Data loading error:', err);
-        return;
+      await loadIndex();
+
+      // Get visible states
+      let initialStates = getVisibleStates(map);
+
+      // FALLBACK: If no states detected, force load popular camping states
+      if (initialStates.length === 0) {
+        console.warn('⚠️ No states detected in viewport, loading popular states as fallback...');
+        initialStates = ['CA', 'CO', 'UT', 'AZ', 'WA', 'OR', 'MT', 'WY'];
       }
 
+      console.log('🚀 Loading initial states:', initialStates.join(', '));
+
+      // Load states one at a time with progress logging
+      for (const stateCode of initialStates) {
+        await loadStateData(stateCode);
+      }
+
+      console.log(`✅ Initial load complete: ${state.allCampsites.length} total sites`);
+
       updateMarkers(map, this.getDefaultFilters(), state.config);
+
+      map.on('moveend', debounce(() => {
+        refreshData(map, this.getCurrentFilters(), state.config);
+      }, 500));
+
+      // Also trigger on first zoom
+      map.on('zoomend', debounce(() => {
+        refreshData(map, this.getCurrentFilters(), state.config);
+      }, 500));
     },
 
     getDefaultFilters() {
       return {
         cost: 'all',
         type: 'all',
-        searchText: ''
+        rigSize: 'all',
+        roadDifficulty: 'all',
+        amenities: [],
+        minRating: 0
       };
     },
 
@@ -169,8 +432,16 @@
       updateMarkers(map, filters, state.config);
     },
 
+    getAllCampsites() {
+      return state.allCampsites;
+    },
+
     getCampsiteById(id) {
       return state.allCampsites.find(s => s.properties.id === id);
+    },
+
+    getLoadedStates() {
+      return Array.from(state.loadedStates);
     },
 
     addToTrip(id) {
@@ -178,23 +449,9 @@
       if (state.config.onTripAdd) state.config.onTripAdd(id);
     },
 
-    setUserLocation(lat, lng) {
-      state.userLocation = { lat, lng };
-      console.log(`📍 User location set: ${lat.toFixed(4)}, ${lng.toFixed(4)}`);
-      updateMarkers(state.config._map || window.map, this.getCurrentFilters(), state.config);
-    },
-
-    async shareCampsite(id) {
-        const site = this.getCampsiteById(id);
-        if (!site) return;
-        const p = site.properties;
-        const [lng, lat] = site.geometry.coordinates;
-        const text = `Check out this campsite: ${p.name || 'Unnamed'}`;
-        try {
-            await navigator.share({ title: p.name, text, url: window.location.href });
-        } catch (err) {
-            console.error('Share failed:', err);
-        }
+    toggleFavorite(id) {
+      console.log('Toggling favorite:', id);
+      if (state.config.onFavoriteToggle) state.config.onFavoriteToggle(id);
     }
   };
 })();

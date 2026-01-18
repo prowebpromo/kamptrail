@@ -1,0 +1,2305 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.6787088,
+          35.0311071
+        ]
+      },
+      "properties": {
+        "id": "NM-001",
+        "name": "Juniper Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "248174",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=489&agencyCode=130\" rel=\"nofollow\">Santa Rosa Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6627,
+          32.8363
+        ]
+      },
+      "properties": {
+        "id": "NM-002",
+        "name": "Sacramento RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "240793",
+        "description": "<p>The Sacramento Ranger District offers many different recreation opportunities for all seasons.</p><p><strong>Scenic Viewing</strong></p><p><strong>Winter Sports</strong></p><div><p><strong>Picnicki",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.154953,
+          33.03076
+        ]
+      },
+      "properties": {
+        "id": "NM-003",
+        "name": "Lake Roberts",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257340",
+        "description": "<p>Lake Roberts is located in the Wilderness Ranger District along NM 35. It can be accessed via NM 35 or NM 15. NM 15 is a narrow paved, winding road that may not be suitable for trucks with trailers",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.8333333,
+          35.8416667
+        ]
+      },
+      "properties": {
+        "id": "NM-004",
+        "name": "Black Canyon Campground (Santa Fe National Forest, NM)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "231894",
+        "description": "<h2>Overview</h2>\n<p>At 8475 feet in elevation, Black Canyon Campground is in a great location to experience some of the finest mountain scenery the Southwest has to offer. The facility is newly renov",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.803618,
+          32.909735
+        ]
+      },
+      "properties": {
+        "id": "NM-005",
+        "name": "Iron Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257351",
+        "description": "<p>Iron Creek Campground is easily accessible for campers and provides good facilities<br/><br/>Located in the Black Range Mountains off NM State Highway 152, starting at San Lorenzo and ending in Hil",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.8075,
+          35.9966667
+        ]
+      },
+      "properties": {
+        "id": "NM-006",
+        "name": "RIO DE LAS VACAS CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "251437",
+        "description": "<h2>Overview</h2>\n<p>Less than two hours from the city of Albuquerque, Rio de las Vacas Campground offers a cool oasis from the New Mexico heat. Visitors delight in the hiking and fishing opportunitie",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.6897999,
+          35.0368687
+        ]
+      },
+      "properties": {
+        "id": "NM-007",
+        "name": "Rocky Point Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "248175",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=489&agencyCode=130\" rel=\"nofollow\">Santa Rosa Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.4804,
+          36.3701
+        ]
+      },
+      "properties": {
+        "id": "NM-008",
+        "name": "La Sombra Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241360",
+        "description": "<p>Popular Taos Canyon site near Capulin Campground and Shady Brook. No Drinking Water.  No Garbage Service.   Adjacent to Rio Fernando for Fishing.   </p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.5214,
+          36.382
+        ]
+      },
+      "properties": {
+        "id": "NM-009",
+        "name": "Las Petacas Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241361",
+        "description": "<p>Set in a beautiful canyon quite close to Taos, there is good access to Rio Fernando de Taos for fishing.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.8202778,
+          32.7897222
+        ]
+      },
+      "properties": {
+        "id": "NM-010",
+        "name": "SLIDE GROUP AREA",
+        "type": "established",
+        "cost": 123,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "231890",
+        "description": "<h2>Overview</h2>\nJust two miles from the village of Cloudcroft is this idyllic campground accommodating groups up to 90 visitors. Take advantage of the views of the Tularosa Basin or bask in the sun ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.1126,
+          36.7774
+        ]
+      },
+      "properties": {
+        "id": "NM-011",
+        "name": "McCrystal Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241367",
+        "description": "<p>These 55 sites in Valle Vidal elk/bear country are a great hunting, hiking, fishing destination.</p><p>From the town of Cimarron, drive 5 miles northeast on Highway 64 to Cerrososo Canyon. Follow t",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6847222,
+          33.3613889
+        ]
+      },
+      "properties": {
+        "id": "NM-012",
+        "name": "CEDAR CREEK (Sam Tobias)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "234460",
+        "description": "<h2>Overview</h2>\nLocated on the outskirts of Ruidoso, Cedar Creek provides a wonderful space for groups visiting for the day or staying overnight. With a picnic shelter and three group campsites, the",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.858093,
+          34.154286
+        ]
+      },
+      "properties": {
+        "id": "NM-013",
+        "name": "Datil Well Recreation Area Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "1838",
+        "description": "Datil Well Recreation Area Campground includes one of 15 water wells along the old Magdalena Livestock Driveway. The old cattle trail was established in the 1800s and stretched 120 miles from Springer",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.8125,
+          35.9858333
+        ]
+      },
+      "properties": {
+        "id": "NM-014",
+        "name": "CLEAR CREEK CAMPGROUND (NM)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "251358",
+        "description": "<h2>Overview</h2>\n<p>Less than two hours from the city of Albuquerque, Clear Creek Campground is nestled away in the Jemez Mountains. This cool oasis offers refuge from the New Mexico heat. Visitors d",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.188,
+          36.35
+        ]
+      },
+      "properties": {
+        "id": "NM-015",
+        "name": "El Rito RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241342",
+        "description": "El Rito RD",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.6063889,
+          35.8163889
+        ]
+      },
+      "properties": {
+        "id": "NM-016",
+        "name": "JEMEZ FALLS CAMPGROUND",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "274315",
+        "description": "<h2>Overview</h2>\nJemez Falls Picnic Area is great place to spend the day, especially when planning a day hike to nearby Jemez Falls on the Jemez District of the Santa Fe National Forest. The lands ar",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.325,
+          35.6416667
+        ]
+      },
+      "properties": {
+        "id": "NM-017",
+        "name": "Cochiti Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "233461",
+        "description": "<h2>Overview</h2>\nCochiti Recreation Area is located in Sandoval County, New Mexico, within the boundaries of the Pueblo de Cochiti Indian Reservation.\n  \nThe lake offers two public recreation areas: ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.24735,
+          34.40316
+        ]
+      },
+      "properties": {
+        "id": "NM-018",
+        "name": "New Canyon Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253563",
+        "description": "<p>West of the community of Manzano.  </p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.261307,
+          34.521769
+        ]
+      },
+      "properties": {
+        "id": "NM-019",
+        "name": "Mountainair RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253639",
+        "description": "<p>The Mountainair Ranger District is located southeast of Albuquerque, New Mexico. The District is comprised of two divisions: The Gallinas and the Manzanos.</p><p>The District has many recreational ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0339584,
+          33.18415
+        ]
+      },
+      "properties": {
+        "id": "NM-020",
+        "name": "Black Canyon Campground - Lower",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257404",
+        "description": "<p><em>Black Canyon Campground offers a great remote camping experience.</em></p><p>Located in a remote area of the forest approximately 30 miles from the Wilderness Ranger District office. This campg",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.381616,
+          34.791955
+        ]
+      },
+      "properties": {
+        "id": "NM-021",
+        "name": "Fourth of July Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253557",
+        "description": "<p>Campground and Picnic Area  </p><p>This site is open for day use or overnight camping.  No water available.  <strong>PLEASE NOTE: Recreational Vehicles (RV's) longer than 22 feet are not allowed in",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.1834882,
+          35.3933612
+        ]
+      },
+      "properties": {
+        "id": "NM-022",
+        "name": "North Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "248169",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=486&agencyCode=130\" rel=\"nofollow\">Conchas Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.97,
+          36.71
+        ]
+      },
+      "properties": {
+        "id": "NM-023",
+        "name": "Jicarilla RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241343",
+        "description": "<p> </p><p> </p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6931111,
+          35.6866944
+        ]
+      },
+      "properties": {
+        "id": "NM-024",
+        "name": "FIELD TRACT CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "273758",
+        "description": "<h2>Overview</h2>\n<p>Please note that Field Tract Campground is <strong>currently closed until further notice</strong> due to necessary repairs on the shelters. We appreciate your understanding and pa",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.491175,
+          34.134222
+        ]
+      },
+      "properties": {
+        "id": "NM-025",
+        "name": "Quemado Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257353",
+        "description": "<p>Quemado Lake is located 16 miles south of Quemado, NM.  From Quemado, take NM 32 south 14.2 miles to the Quemado Lake/NM 103 sign. At sign turn left onto NM 103 and go 4 miles to where Forest Road ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.1923905,
+          35.3774267
+        ]
+      },
+      "properties": {
+        "id": "NM-026",
+        "name": "South Area Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "248170",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=486&agencyCode=130\" rel=\"nofollow\">Conchas Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.1936498,
+          35.4259814
+        ]
+      },
+      "properties": {
+        "id": "NM-027",
+        "name": "Bell Pointe Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "248172",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=486&agencyCode=130\" rel=\"nofollow\">Conchas Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.864714,
+          35.212192
+        ]
+      },
+      "properties": {
+        "id": "NM-028",
+        "name": "East Bluff #1 Campground - Lake McClellan",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253635",
+        "description": "<p>East Bluff #1 Campground offers picnicking, fishing and camping opportunities at Lake McClellan.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.469463,
+          35.70378448
+        ]
+      },
+      "properties": {
+        "id": "NM-029",
+        "name": "Johnson Mesa Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "271519",
+        "description": "<p>Johnson's Mesa is a dispersed camping area located east of Las Vegas on NM 65 and FR 153.  Facilities: vaulted toilets, tables and grills.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.403,
+          36.496
+        ]
+      },
+      "properties": {
+        "id": "NM-030",
+        "name": "Canjilon RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241341",
+        "description": "<p><img src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/fseprd602492.jpg\"/></p><p>The Canjilon Ranger District is located in the beautiful mountains of Northern New Mexico.  The elevation ranges from a",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.4105556,
+          35.2347222
+        ]
+      },
+      "properties": {
+        "id": "NM-031",
+        "name": "LAS HUERTAS PICNIC SITE",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "234497",
+        "description": "<h2>Overview</h2>\n<p>Las Huertas was built by the Civilian Conservation Corps. It is located at the northeast end of the Sandia Ranger District. It is, understandably, a favorite place for many. Las H",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.971,
+          36.6469
+        ]
+      },
+      "properties": {
+        "id": "NM-032",
+        "name": "Tres Piedras RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241345",
+        "description": "<p>The Tres Piedras Ranger District is managed for many multi-use purposes; hunting, fishing, hiking, biking, skiing, snowmobiling, camping and personal firewood cutting are among the activities.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.469777,
+          34.138036
+        ]
+      },
+      "properties": {
+        "id": "NM-033",
+        "name": "El Caso I-IV Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "271991",
+        "description": "<p><em>This are  partially developed, shady campgrounds within hiking distance of the lake.</em></p><p>The El Caso Campgounds are partially developed campgrounds located at the east end of Quemado Lak",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.4357,
+          36.7084
+        ]
+      },
+      "properties": {
+        "id": "NM-034",
+        "name": "Junebug Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241366",
+        "description": "<p>Recently refurbished roadside campground sits near historic Red River mining area and downhill ski resort. Can be very crowded during summer weekends. As an alternative, try BLM's Wild Rivers Recre",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3044444,
+          35.6472222
+        ]
+      },
+      "properties": {
+        "id": "NM-035",
+        "name": "TETILLA PEAK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "233649",
+        "description": "<h2>Overview</h2>\nTetilla Peak Recreation Area is located in Sandoval County, New Mexico, within the boundaries of the Pueblo de Cochiti Indian Reservation.\n  \nThe lake offers two public recreation ar",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6555556,
+          35.8416667
+        ]
+      },
+      "properties": {
+        "id": "NM-036",
+        "name": "JACKS CREEK GROUP AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "231893",
+        "description": "<h2>Overview</h2>\n<p>Jack's Creek Group Area is a picturesque, high-elevation campground situated just 50 miles from Santa Fe. Set at an altitude of approximately 8,000 feet within the Santa Fe Nation",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.6980957,
+          36.18578527
+        ]
+      },
+      "properties": {
+        "id": "NM-037",
+        "name": "Coyote Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "249120",
+        "description": "<p>The <a href=\"http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5369639.pdf\" rel=\"nofollow\">Coyote Ranger District</a> Office is located along NM State Highway 96 approximately 21 miles from the",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.714289,
+          35.745169
+        ]
+      },
+      "properties": {
+        "id": "NM-038",
+        "name": "Black Kettle Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253589",
+        "description": "<p>Campground is located at an elevation of 2,100 feet and has 12 camping units.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6613534,
+          35.75669708
+        ]
+      },
+      "properties": {
+        "id": "NM-039",
+        "name": "Links Tract Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "249174",
+        "description": "<p>Primitive dispersed camping, 16 miles north of Pecos on NM 63, then 1 mile on FR 646.  <strong>Uses:</strong>  Camping.  <strong>Facilities:</strong>  Pit toilet, tables, and few fire pits.  No wat",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.866569,
+          35.214589
+        ]
+      },
+      "properties": {
+        "id": "NM-040",
+        "name": "McDowell Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253578",
+        "description": "<p>Campground has pullouts for campers.  Opportunities include day use and overnight camping.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.32,
+          34.9988889
+        ]
+      },
+      "properties": {
+        "id": "NM-041",
+        "name": "Oak Yucca and Locust Group Picnic Sites",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "234500",
+        "description": "<h2>Overview</h2>\n<p>The Oak Flat Group picnic site includes a combination of three different picnic sites and a trailhead, that border four communal playing fields suitable for all sorts of outdoor g",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.5423,
+          33.5694
+        ]
+      },
+      "properties": {
+        "id": "NM-042",
+        "name": "Smokey Bear RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "240810",
+        "description": "<p>The Smokey Bear Ranger District offers many different recreation opportunities for all seasons.</p><div><p><strong>Winter Sports</strong></p><p><strong>Scenic Viewing</strong></p><div><p><strong>Pi",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.403846,
+          34.762704
+        ]
+      },
+      "properties": {
+        "id": "NM-043",
+        "name": "Bosque Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253603",
+        "description": "<p>Bosque Campground</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.7188889,
+          32.9669444
+        ]
+      },
+      "properties": {
+        "id": "NM-044",
+        "name": "LOWER FIR GROUP AREA",
+        "type": "established",
+        "cost": 123,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "232918",
+        "description": "<h2>Overview</h2>\nLower Fir Group Area is a high-energy and highly popular group campground in the Sacramento Mountain area.  The site is set away from public roads, so that outside noise is non-exist",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.4794,
+          36.6998
+        ]
+      },
+      "properties": {
+        "id": "NM-045",
+        "name": "La Bobita Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241375",
+        "description": "<p>Overflow Campground.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.483553,
+          34.138103
+        ]
+      },
+      "properties": {
+        "id": "NM-047",
+        "name": "Piñon Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257361",
+        "description": "<p><em>This is a nice, quiet and clean campground nestled among piñon and juniper trees.</em></p><p>The camp sites are nestled among mature piñon and juniper trees. It is tranquil and undiscovered wit",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.4333333,
+          36.2333333
+        ]
+      },
+      "properties": {
+        "id": "NM-048",
+        "name": "RIANA - ABIQUIU LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "233598",
+        "description": "<h2>Overview</h2>\nRiana Campground is located on a 150 ft. bluff overlooking the scenic Abiquiu Lake in northern New Mexico, just one hour northwest of charming Santa Fe.  The lake sits at an elevatio",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.699657,
+          34.176237
+        ]
+      },
+      "properties": {
+        "id": "NM-049",
+        "name": "Red Cloud Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253634",
+        "description": "<p>Small (5 sites) quiet and primitive camp in a Ponderosa forest at 7600´elevation. Located near an old mining district, the campground gets heavy use in fall hunting seasons, less at other times.</p",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.43222,
+          32.08861
+        ]
+      },
+      "properties": {
+        "id": "NM-050",
+        "name": "Chosa Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "10278188",
+        "description": "<p>Chosa Campground consists of a 3.5-acre, pipe-rail fenced pad that offers a trash container and a safe parking space for your Recreational Vehicle plus a protected area to set tents, whatever your ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.8,
+          33.0344444
+        ]
+      },
+      "properties": {
+        "id": "NM-051",
+        "name": "Aspen Group Area (Lincoln National Forest, NM)",
+        "type": "established",
+        "cost": 123,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "231887",
+        "description": "<h2>Overview</h2>\nAt an elevation of almost 9,000 ft., campers at the Aspen Group Area can expect cool, crisp, mountain breezes coming off the steep Sacramento Mountains - perfect for an escape from t",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.7013889,
+          35.2341667
+        ]
+      },
+      "properties": {
+        "id": "NM-052",
+        "name": "COAL MINE",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "231886",
+        "description": "<h2>Overview</h2>\n<p>Coal Mine Campground is situated in the upper portion of the Cibola National Forest in west-central New Mexico. Visitors can enjoy hiking the Lobo Canyon Trail, as well as picnick",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.9583333,
+          36.0277778
+        ]
+      },
+      "properties": {
+        "id": "NM-053",
+        "name": "GALLO CAMPGROUND",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "250009",
+        "description": "<h2>Overview</h2>\n<p>Gallo Campground is located within Chaco Culture National Historical Park. Tucked among the fallen boulders and cliffs of Gallo Wash, the campground offers camping in a rugged env",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.2791667,
+          35.7961111
+        ]
+      },
+      "properties": {
+        "id": "NM-054",
+        "name": "Juniper Campground (NM)",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "233395",
+        "description": "<h2>Overview</h2>\n<p>Juniper Family Campground is the ideal place to camp on the Pajarito Plateau. Located just inside the main park entrance, the campground is a short drive from the Bandelier Visito",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.52272,
+          35.37072
+        ]
+      },
+      "properties": {
+        "id": "NM-055",
+        "name": "McGaffey Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253529",
+        "description": "<p>This campground is situated in what was once the historic railroad logging and sawmill town of McGaffey.  McGaffey Campground was built in 1937 and lies west of the Continental Divide in the Zuni M",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.671494,
+          35.613937
+        ]
+      },
+      "properties": {
+        "id": "NM-056",
+        "name": "Black Kettle NG RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253588",
+        "description": "<p>The Black Kettle and McClellan Creek National Grasslands contains over 31,000 acres in both Texas and Oklahoma.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.820996,
+          35.172506
+        ]
+      },
+      "properties": {
+        "id": "NM-057",
+        "name": "Mount Taylor RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253673",
+        "description": "<p>Each season on the Mt. Taylor Ranger District provides different opportunities for the forest visitor.  In late spring, summer and early fall, hikers and backpackers can enjoy the beautiful vistas ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.237415,
+          34.119084
+        ]
+      },
+      "properties": {
+        "id": "NM-059",
+        "name": "Magdalena RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253594",
+        "description": "Magdalena RD",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.7416667,
+          32.9208333
+        ]
+      },
+      "properties": {
+        "id": "NM-060",
+        "name": "BLACK BEAR GROUP AREA",
+        "type": "established",
+        "cost": 123,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "231888",
+        "description": "<h2>Overview</h2>\nBlack Bear is perched atop the scenic Sacramento Mountains of south-central New Mexico, near Alamogordo and Cloudcroft. The site is surrounded by the aromatic pine trees and aspen gr",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.627974,
+          33.828528
+        ]
+      },
+      "properties": {
+        "id": "NM-061",
+        "name": "Apache Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "10078442",
+        "description": "<p><em>This is a nice quiet undeveloped campground amongst ponderosa pines and abundant wildlife.</em></p><p>Apache Creek Campground is in the northwest region of the forest. There are plenty of trees",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3569444,
+          35.8327778
+        ]
+      },
+      "properties": {
+        "id": "NM-062",
+        "name": "Ponderosa Group Campground (NM)",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "233394",
+        "description": "<h2>Overview</h2>\n<p><strong>***Ponderosa Group Campground will tentatively be closed starting October 8, 2025 while the park works to complete a major water line replacement/improvement project. The ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.132365,
+          34.025466
+        ]
+      },
+      "properties": {
+        "id": "NM-063",
+        "name": "Water Canyon Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253623",
+        "description": "<p>This campground is located at an elevation of 6,800 feet in the Magdalena Mountains.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.4227778,
+          35.2141667
+        ]
+      },
+      "properties": {
+        "id": "NM-064",
+        "name": "NINE MILE PICNIC SITE",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "234492",
+        "description": "<h2>Overview</h2>\n<p>Situated along the Sandia Crest Scenic Byway 536, at a cool 9,200 ft of elevation, is the large and often shaded Nine Mile Picnic Ground. Newly renovated to address maintenance ne",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.839506,
+          35.772781
+        ]
+      },
+      "properties": {
+        "id": "NM-065",
+        "name": "Spring Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253592",
+        "description": "<p>This campground has 5 camping units located at an elevation of  2,300 feet.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.6461111,
+          35.8866667
+        ]
+      },
+      "properties": {
+        "id": "NM-066",
+        "name": "SAN ANTONIO CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "233390",
+        "description": "<h2>Overview</h2>\nSan Antonio Campground is adjacent to the San Antonio River, tucked into a forest of ponderosa pine at 7,600 feet above sea level. This popular campground is open from May through Oc",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.5567608,
+          32.36666667
+        ]
+      },
+      "properties": {
+        "id": "NM-067",
+        "name": "Aguirre Spring Recreation Area and Campground",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "210613",
+        "description": "<p>The high wall, needle-like spires of the Organ Mountains curve dramatically around a semicircle of Chihuahuan Desert habitat at the Aguirre Spring Campground. The campground, nestled at the base of",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.206422,
+          33.183483
+        ]
+      },
+      "properties": {
+        "id": "NM-068",
+        "name": "Forks Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257396",
+        "description": "<p><em>This campground features beautiful cliffs along the West Fork of the Gila River.</em></p><p>This campground is a great place to stop on the way to the Gila Cliff Dwellings National Monument (15",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.349431,
+          36.071833
+        ]
+      },
+      "properties": {
+        "id": "NM-069",
+        "name": "Mills Canyon Rim Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "253552",
+        "description": "<p>Elevation of this campground is 5,760 feet and offers 6 camping units. </p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.0668155,
+          36.0143489
+        ]
+      },
+      "properties": {
+        "id": "NM-070",
+        "name": "Espanola Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "249134",
+        "description": "<p> Recreation opportunities within the <a href=\"http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5369642.pdf\" rel=\"nofollow\">Espanola Ranger District</a> range from the high alpine trails in the",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6828,
+          36.173
+        ]
+      },
+      "properties": {
+        "id": "NM-071",
+        "name": "Camino Real RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241344",
+        "description": "<p>The Camino Real Ranger District is managed for many multi-use purposes; hunting, fishing, hiking, biking, skiing, snowmobiling, camping and personal firewood cutting are among the activities. The D",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.7330556,
+          32.9583333
+        ]
+      },
+      "properties": {
+        "id": "NM-072",
+        "name": "UPPER FIR GROUP AREA",
+        "type": "established",
+        "cost": 123,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "231889",
+        "description": "<h2>Overview</h2>\nUpper Fir Group Area is one of the most popular campsites in the Sacramento Mountain area.  Unique to its neighboring campgrounds, it's set far back from public roads, allowing for t",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.70117,
+          32.918485
+        ]
+      },
+      "properties": {
+        "id": "NM-073",
+        "name": "Kingston Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257416",
+        "description": "<p>Small campground located along the north side of New Mexico Highway 152, near mile marker 40, near Middle Percha Creek, on the eastern edge of the small town of Kingston, NM.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.568,
+          36.7032
+        ]
+      },
+      "properties": {
+        "id": "NM-074",
+        "name": "Questa RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "241346",
+        "description": "<p>The Questa Ranger District is managed for many multi-use purposes; hunting, fishing, hiking, biking, skiing, snowmobiling, camping and personal firewood cutting are among the activities.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.49594,
+          33.421391
+        ]
+      },
+      "properties": {
+        "id": "NM-075",
+        "name": "Snow Lake",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NM",
+        "source": "recreation.gov",
+        "facility_id": "257382",
+        "description": "<p>Snow Lake is a small reservoir located in the Reserve Ranger District approximatley 30 miles from the town of Reserve. Snow Lake is most easily accessed via FR 142.</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}
