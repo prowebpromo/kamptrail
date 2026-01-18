@@ -7,6 +7,7 @@
     allCampsites: [],
     loadedStates: new Set(),
     loading: new Set(),
+    loadedCampsiteIds: new Set(),  // Track loaded campsite IDs to prevent duplicates
     index: null,
     clusterGroup: null,
     config: {}
@@ -172,11 +173,33 @@
       } else if (results[1].status === 'rejected') {
          console.warn(`⚠️ Could not load OpenCampingMap data for ${stateCode}:`, results[1].reason.message);
       }
-      
+
       if (allNewSites.length > 0) {
-        state.allCampsites.push(...allNewSites);
+        // Filter out duplicates by checking if ID already exists
+        const uniqueSites = allNewSites.filter(site => {
+          const siteId = site.properties.id;
+          if (!siteId) return true; // Keep sites without IDs (edge case)
+          if (state.loadedCampsiteIds.has(siteId)) {
+            return false; // Skip duplicate
+          }
+          return true; // Keep unique site
+        });
+
+        // Add unique sites to the map and track their IDs
+        uniqueSites.forEach(site => {
+          const siteId = site.properties.id;
+          if (siteId) {
+            state.loadedCampsiteIds.add(siteId);
+          }
+        });
+        state.allCampsites.push(...uniqueSites);
         state.loadedStates.add(stateCode);
-        console.log(`✅ Added ${allNewSites.length} new sites for ${stateCode} (Total: ${state.allCampsites.length})`);
+
+        const duplicateCount = allNewSites.length - uniqueSites.length;
+        if (duplicateCount > 0) {
+          console.log(`🔍 Filtered out ${duplicateCount} duplicate(s) for ${stateCode}`);
+        }
+        console.log(`✅ Added ${uniqueSites.length} new sites for ${stateCode} (Total: ${state.allCampsites.length})`);
       } else {
         // If both failed, we still mark as "loaded" to not retry constantly
         state.loadedStates.add(stateCode);
