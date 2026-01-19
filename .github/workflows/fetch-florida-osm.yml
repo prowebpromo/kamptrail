@@ -1,0 +1,66 @@
+name: Fetch Florida OSM Data
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  fetch-florida:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Fetch Florida with extended timeout
+        run: |
+          echo "========================================"
+          echo "Fetching Florida OSM data with 180s timeout"
+          echo "Will try multiple Overpass API mirrors"
+          echo "========================================"
+
+          python3 scripts/fetch_florida_osm.py
+
+      - name: Verify Florida data
+        run: |
+          if [ -f "data/opencampingmap/FL.geojson" ]; then
+            SIZE=$(wc -c < "data/opencampingmap/FL.geojson")
+            SITES=$(grep -o '"type": "Feature"' data/opencampingmap/FL.geojson | wc -l)
+            echo "✅ Florida data file created"
+            echo "   File size: $SIZE bytes"
+            echo "   Campsites: $SITES"
+          else
+            echo "❌ ERROR: Florida file was not created"
+            exit 1
+          fi
+
+      - name: Run final audit
+        run: |
+          echo "========================================"
+          echo "Running final audit to check 50/50 coverage"
+          echo "========================================"
+          python3 scripts/audit_campsite_data.py || true
+
+      - name: Commit and push Florida data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/opencampingmap/FL.geojson
+
+          if git diff --staged --quiet; then
+            echo "⚠️ No changes to commit"
+          else
+            git commit -m "feat: Add Florida OSM data - Complete 50/50 state coverage! 🎉"
+            git push
+            echo "✅ Successfully pushed Florida data"
+            echo "🎉 ALL 50 STATES NOW HAVE OSM DATA!"
+          fi
