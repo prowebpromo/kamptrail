@@ -1,0 +1,82 @@
+name: Fetch Remaining 7 States
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  fetch-remaining-states:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120  # 2 hour timeout
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Fetch remaining OSM states (FL, KS, KY, NJ, OH, SC, SD)
+        run: |
+          # These are the only states still missing OSM data as of 2026-01-19
+          MISSING_STATES="FL KS KY NJ OH SC SD"
+
+          for state in $MISSING_STATES; do
+            echo "========================================"
+            echo "Fetching OSM data for $state..."
+            echo "========================================"
+
+            # Try to fetch the state
+            if python3 scripts/fetch_osm_data.py --state "$state"; then
+              echo "✅ Successfully fetched $state"
+            else
+              echo "⚠️ Failed to fetch $state - will retry on next run"
+            fi
+
+            # Check if file was created
+            if [ -f "data/opencampingmap/${state}.geojson" ]; then
+              echo "✅ Verified: data/opencampingmap/${state}.geojson exists"
+              SIZE=$(wc -c < "data/opencampingmap/${state}.geojson")
+              echo "   File size: $SIZE bytes"
+            else
+              echo "❌ ERROR: File was not created for $state"
+            fi
+
+            echo ""
+            echo "Waiting 15 seconds before next state..."
+            sleep 15  # Extra time to respect Overpass API limits
+          done
+
+      - name: Run audit to verify completion
+        run: |
+          echo "========================================"
+          echo "Running final audit..."
+          echo "========================================"
+          python3 scripts/audit_campsite_data.py || true
+
+      - name: Check what changed
+        run: |
+          echo "========================================"
+          echo "Files changed:"
+          echo "========================================"
+          git status
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/opencampingmap/
+
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "⚠️ No new data files to commit"
+          else
+            git commit -m "feat: Add OSM data for remaining 7 states (FL, KS, KY, NJ, OH, SC, SD)"
+            git push
+            echo "✅ Successfully committed and pushed new data"
+          fi
