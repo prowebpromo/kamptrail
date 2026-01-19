@@ -1,0 +1,1066 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1040711,
+          38.6262233
+        ]
+      },
+      "properties": {
+        "name": "Massey Landing",
+        "rating": null,
+        "reviews_count": 0,
+        "cost": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "type": "established",
+        "sources": [
+          "unknown"
+        ],
+        "tourism": "camp_site",
+        "osm_id": 749452747
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2820946,
+          39.5446726
+        ]
+      },
+      "properties": {
+        "name": "Adventure Bound Tall Pines",
+        "phone": "+1-856-451-7479",
+        "tourism": "camp_site",
+        "website": "https://www.abcamping.com/tallpines/family_fun.php",
+        "osm_id": 1193607220,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7028826,
+          39.5675045
+        ]
+      },
+      "properties": {
+        "fee": "yes",
+        "name": "Lums Pond Youth Camping",
+        "tourism": "camp_site",
+        "osm_id": 5282791516,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1387546,
+          38.6326504
+        ]
+      },
+      "properties": {
+        "name": "Lighthouse Beach RV Resort",
+        "tourism": "caravan_site",
+        "website": "https://www.lighthousebeachde.com/",
+        "osm_id": 6968088869,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2335066,
+          38.7401942
+        ]
+      },
+      "properties": {
+        "name": "Tall Pines Campground",
+        "tourism": "camp_site",
+        "website": "https://www.tallpines-del.com/",
+        "osm_id": 6968103642,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1306622,
+          38.7395985
+        ]
+      },
+      "properties": {
+        "name": "Big Oaks Campground",
+        "tourism": "camp_site",
+        "website": "https://bigoakscamping.com/index.html",
+        "osm_id": 6968112329,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.4138829,
+          38.7392291
+        ]
+      },
+      "properties": {
+        "tourism": "camp_site",
+        "osm_id": 8356227080,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7585635,
+          38.5332976
+        ]
+      },
+      "properties": {
+        "name": "Lone hawk Outpost (12)",
+        "tourism": "camp_site",
+        "osm_id": 8902431636,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7590154,
+          38.5349628
+        ]
+      },
+      "properties": {
+        "name": "Patty Cannon Outpost (13)",
+        "tourism": "camp_site",
+        "osm_id": 8902431637,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7567494,
+          38.5360434
+        ]
+      },
+      "properties": {
+        "name": "Three Councils Outpost (11)",
+        "tourism": "camp_site",
+        "osm_id": 8902431638,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7567285,
+          38.5393152
+        ]
+      },
+      "properties": {
+        "name": "Ababco Outpost (10)",
+        "tourism": "camp_site",
+        "osm_id": 8902433349,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7573571,
+          38.5419393
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "fixme": "Need ground survey",
+        "name": "Tamahawk Outpost (9)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860193,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7446198,
+          38.5460454
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "fixme": "Need ground survey",
+        "name": "Crazy Woman Outpost (3)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860194,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7419031,
+          38.5489128
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "fixme": "Need ground survey",
+        "name": "Hidden Field Outpost (2)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860195,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7386929,
+          38.5486547
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "fixme": "Need ground survey",
+        "name": "Kuskarawa Outpost (1)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860196,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7481943,
+          38.550582
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "fixme": "Need ground survey",
+        "name": "Old Bucket Outpost (4)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860197,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7504032,
+          38.5525069
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "fixme": "Need ground survey",
+        "name": "Dan Beard Outpost (7)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860198,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7426518,
+          38.5567739
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Lost Mill Outpost (5)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860199,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7412519,
+          38.5595466
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Boundary Outpost (8)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860210,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7520757,
+          38.5577587
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Medicine Stick Outpost (8)",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 8911860211,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.059466,
+          39.5991056
+        ]
+      },
+      "properties": {
+        "name": "Operation Safe Haven",
+        "tourism": "camp_site",
+        "osm_id": 40399753,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.4373217,
+          39.7569842
+        ]
+      },
+      "properties": {
+        "source": "NJ2002LULC",
+        "tourism": "caravan_site",
+        "osm_id": 40407056,
+        "sources": [
+          "NJ2002LULC"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0661121,
+          38.6051399
+        ]
+      },
+      "properties": {
+        "name": "South Inlet Campground",
+        "source": "Bing Aerial Imagery, local knowledge",
+        "tourism": "camp_site",
+        "osm_id": 86177632,
+        "sources": [
+          "Bing Aerial Imagery, local knowledge"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0862337,
+          39.7295161
+        ]
+      },
+      "properties": {
+        "name": "Lake Kandle",
+        "tourism": "caravan_site",
+        "osm_id": 106463509,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.096946,
+          38.7759331
+        ]
+      },
+      "properties": {
+        "addr:city": "Lewes",
+        "addr:housenumber": "15411",
+        "addr:postcode": "19958",
+        "addr:state": "DE",
+        "addr:street": "Campground Road",
+        "name": "Cape Henlopen State Park Campground",
+        "operator": "Delaware State Parks",
+        "operator:wikidata": "Q5253364",
+        "tourism": "camp_site",
+        "osm_id": 196122181,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.066199,
+          38.6100452
+        ]
+      },
+      "properties": {
+        "name": "North Inlet Campground",
+        "tourism": "caravan_site",
+        "osm_id": 225521725,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7495347,
+          38.5484665
+        ]
+      },
+      "properties": {
+        "addr:city": "Rhodesdale",
+        "addr:housenumber": "5700",
+        "addr:postcode": "21659",
+        "addr:state": "MD",
+        "addr:street": "Nanticoke Road",
+        "alt_name": "Camp Nanticoke",
+        "boundary": "protected_area",
+        "cabins": "yes",
+        "caravans": "no",
+        "drinking_water": "yes",
+        "email": "hsr@dmvc.org",
+        "group_only": "yes",
+        "internet_access": "wlan",
+        "leisure": "nature_reserve",
+        "name": "Henson Scout Reservation",
+        "official_name": "DNR Held Conservation Easement",
+        "openfire": "yes",
+        "operator": "Del-Mar-Va Council, Boy Scouts of America",
+        "phone": "+1-410-202-0053",
+        "picnic_table": "yes",
+        "protect_class": "5",
+        "protection_title": "Conservancy Easement Department of Natural Resources",
+        "reservation": "required",
+        "scout": "yes",
+        "start_date": "1965",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.delmarvacouncil.org/henson-scout-reservation",
+        "osm_id": 314929989,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7176678,
+          39.5508026
+        ]
+      },
+      "properties": {
+        "name": "Lums Pond State Park Campground",
+        "tourism": "camp_site",
+        "osm_id": 372327900,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5337364,
+          38.9784442
+        ]
+      },
+      "properties": {
+        "cabins": "yes",
+        "caravans": "yes",
+        "drinking_water": "yes",
+        "name": "Killens Pond Campground",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 428657876,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2419433,
+          38.797878
+        ]
+      },
+      "properties": {
+        "name": "Steamboat Landing Campground",
+        "tourism": "camp_site",
+        "website": "https://sblrvpark.com/",
+        "osm_id": 471846959,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2118655,
+          38.6660759
+        ]
+      },
+      "properties": {
+        "name": "Holly Lake Campground",
+        "tourism": "camp_site",
+        "osm_id": 476445314,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1982864,
+          38.6603321
+        ]
+      },
+      "properties": {
+        "name": "Holly Lake Campground",
+        "tourism": "camp_site",
+        "osm_id": 476445316,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2230132,
+          38.5560471
+        ]
+      },
+      "properties": {
+        "addr:city": "Dagsboro",
+        "addr:housenumber": "30738",
+        "addr:postcode": "19939",
+        "addr:state": "DE",
+        "addr:street": "Gulls Way Drive",
+        "fee": "yes",
+        "internet_access": "wlan",
+        "name": "Gulls Way Campground",
+        "tourism": "camp_site",
+        "osm_id": 547314300,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0843035,
+          38.5613407
+        ]
+      },
+      "properties": {
+        "name": "Pine Tree Campground",
+        "tourism": "camp_site",
+        "osm_id": 548442004,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3045646,
+          38.7295039
+        ]
+      },
+      "properties": {
+        "addr:city": "Georgetown",
+        "addr:housenumber": "25167",
+        "addr:postcode": "19947",
+        "addr:state": "DE",
+        "addr:street": "Prettyman Road",
+        "name": "Homestead Campground",
+        "tourism": "camp_site",
+        "website": "https://www.homesteadde.com/",
+        "osm_id": 553100850,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3587549,
+          38.8727021
+        ]
+      },
+      "properties": {
+        "addr:city": "Lincoln",
+        "addr:housenumber": "8295",
+        "addr:postcode": "19960",
+        "addr:state": "DE",
+        "addr:street": "Brick Granary Road",
+        "name": "Jellystone Park",
+        "tourism": "camp_site",
+        "osm_id": 560486181,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.4572214,
+          39.1135694
+        ]
+      },
+      "properties": {
+        "name": "Fam Camp",
+        "operator": "Dover Air Force Base",
+        "tourism": "camp_site",
+        "osm_id": 588540706,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3717379,
+          39.7985837
+        ]
+      },
+      "properties": {
+        "name": "RV Parking",
+        "tourism": "caravan_site",
+        "osm_id": 598339069,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5421469,
+          39.1264344
+        ]
+      },
+      "properties": {
+        "access": "private",
+        "addr:city": "Dover",
+        "addr:housenumber": "1910",
+        "addr:postcode": "19904",
+        "addr:state": "DE",
+        "addr:street": "Baden Powell Way",
+        "fixme": "rough boundaries based upon parcel boundaries, campsites unmapped",
+        "name": "Akridge Scout Reservation",
+        "operator": "Del-Mar-Va Council, Boy Scouts of America",
+        "scout": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.delmarvacouncil.org/akridge-scout-reservation/35361",
+        "wikidata": "Q5252842",
+        "wikipedia": "en:Del-Mar-Va Council",
+        "osm_id": 649327872,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2733003,
+          38.7940048
+        ]
+      },
+      "properties": {
+        "name": "Smiths Landing",
+        "tourism": "camp_site",
+        "osm_id": 672328547,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2840286,
+          38.806939
+        ]
+      },
+      "properties": {
+        "name": "Deep Branch Family Campground",
+        "old_name": "Eagle’s Nest Family Campground",
+        "tourism": "camp_site",
+        "website": "https://www.deepbranchcampground.com/",
+        "osm_id": 672375041,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2743125,
+          39.6208266
+        ]
+      },
+      "properties": {
+        "name": "Four Seasons Family Campground",
+        "source": "https://fourseasonscamping.com/sitemap.html",
+        "tourism": "camp_site",
+        "website": "https://fourseasonscamping.com/",
+        "osm_id": 714956283,
+        "sources": [
+          "https://fourseasonscamping.com/sitemap.html"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7691538,
+          39.0158936
+        ]
+      },
+      "properties": {
+        "addr:city": "Greensboro",
+        "addr:housenumber": "14620",
+        "addr:postcode": "21639",
+        "addr:state": "MD",
+        "addr:street": "Drapers Mill Road",
+        "caravans": "yes",
+        "fee": "yes",
+        "name": "Holiday Park Campground",
+        "openfire": "yes",
+        "phone": "+1-410-482-6797",
+        "picnic_table": "yes",
+        "power_supply": "yes",
+        "reservation": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "water_tap": "yes",
+        "website": "https://holidaypark.com/",
+        "osm_id": 732468456,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7770785,
+          38.5714354
+        ]
+      },
+      "properties": {
+        "addr:city": "Rhodesdale",
+        "addr:housenumber": "5425",
+        "addr:postcode": "21659",
+        "addr:state": "MD",
+        "addr:street": "Sharptown Road",
+        "name": "Camp ESPA",
+        "operator": "Eastern Shore Police Association",
+        "phone": "+1-410-883-3500",
+        "power_supply": "yes",
+        "shower": "yes",
+        "toilets": "yes",
+        "tourism": "camp_site",
+        "website": "http://campespa.org/",
+        "osm_id": 743382290,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5345857,
+          38.9118742
+        ]
+      },
+      "properties": {
+        "addr:city": "Houston",
+        "addr:housenumber": "4075",
+        "addr:postcode": "19954",
+        "addr:state": "DE",
+        "addr:street": "Gun and Rod Club Road",
+        "cabins": "yes",
+        "caravans": "yes",
+        "email": "owner@gnrcampground.com",
+        "name": "G&R Campground",
+        "phone": "+1-302-398-8108",
+        "power_supply": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "website": "https://gnrcampground.com/",
+        "osm_id": 744201023,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.4761529,
+          38.5287718
+        ]
+      },
+      "properties": {
+        "cabins": "yes",
+        "caravans": "yes",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "name": "Trap Pond State Park Campground",
+        "power_supply": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 744208484,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0884263,
+          38.7684574
+        ]
+      },
+      "properties": {
+        "name": "Primitive Youth Campground",
+        "openfire": "yes",
+        "picnic_table": "yes",
+        "shower": "no",
+        "tents": "only",
+        "toilets": "yes",
+        "tourism": "camp_site",
+        "osm_id": 744518071,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.12115,
+          38.5868284
+        ]
+      },
+      "properties": {
+        "tourism": "caravan_site",
+        "osm_id": 1091502131,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7295072,
+          39.3323764
+        ]
+      },
+      "properties": {
+        "access": "permit",
+        "name": "Peters Scout Camp",
+        "operator": "Delaware Forest Service",
+        "tourism": "camp_site",
+        "osm_id": 1132533036,
+        "sources": [
+          "unknown"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0947067,
+          38.5030861
+        ]
+      },
+      "properties": {
+        "name": "Camp Barnes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 6362828,
+        "sources": [
+          "unknown"
+        ]
+      }
+    }
+  ]
+}
