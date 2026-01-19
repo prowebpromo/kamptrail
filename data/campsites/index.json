@@ -1,7 +1,41 @@
 {
-  "generated": "2025-01-01T00:00:00Z",
-  "total_sites": 3,
-  "states": [{ "state": "CA", "count": 3 }],
-  "source": "sample",
-  "version": "1.0"
+  "generated": "2026-01-19T01:36:07.023Z",
+  "total_sites": 47,
+  "states": [
+    {
+      "state": "CA",
+      "count": 10
+    },
+    {
+      "state": "CO",
+      "count": 7
+    },
+    {
+      "state": "UT",
+      "count": 7
+    },
+    {
+      "state": "AZ",
+      "count": 5
+    },
+    {
+      "state": "WA",
+      "count": 5
+    },
+    {
+      "state": "OR",
+      "count": 5
+    },
+    {
+      "state": "MT",
+      "count": 4
+    },
+    {
+      "state": "WY",
+      "count": 4
+    }
+  ],
+  "source": "curated",
+  "version": "2.0",
+  "note": "Curated dataset of real campgrounds with actual names and coordinates"
 }

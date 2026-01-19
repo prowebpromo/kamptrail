@@ -6,200 +6,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -120.425,
-          37.7343
+          -119.5945,
+          37.7456
         ]
       },
       "properties": {
-        "id": "CA-001",
-        "name": "California Backcountry 1",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.2",
-        "reviews_count": 25,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -120.7281,
-          37.3528
-        ]
-      },
-      "properties": {
-        "id": "CA-002",
-        "name": "California Dispersed 2",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.9579,
-          35.7418
-        ]
-      },
-      "properties": {
-        "id": "CA-003",
-        "name": "California Dispersed 3",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.6127,
-          35.8476
-        ]
-      },
-      "properties": {
-        "id": "CA-004",
-        "name": "California Dispersed 4",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.245,
-          36.7844
-        ]
-      },
-      "properties": {
-        "id": "CA-005",
-        "name": "California Campground 5",
+        "id": "CA-1",
+        "name": "Yosemite Valley Campground",
+        "facility": "Yosemite Valley Campground",
         "type": "established",
-        "cost": 15,
-        "rating": "4.5",
-        "reviews_count": 19,
+        "cost": 26,
+        "rating": "4.0",
+        "reviews_count": 28,
         "amenities": [
           "toilets",
-          "fire_rings",
           "water",
-          "showers",
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -118.316,
-          36.5159
-        ]
-      },
-      "properties": {
-        "id": "CA-006",
-        "name": "California Dispersed 6",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -120.0972,
-          37.8529
-        ]
-      },
-      "properties": {
-        "id": "CA-007",
-        "name": "California Dispersed 7",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.7477,
-          37.7475
-        ]
-      },
-      "properties": {
-        "id": "CA-008",
-        "name": "California Campground 8",
-        "type": "established",
-        "cost": 20,
-        "rating": "5.0",
-        "reviews_count": 8,
-        "amenities": [
-          "fire_rings",
-          "toilets",
-          "water",
-          "trash",
           "showers"
         ],
         "rig_friendly": [
           "tent",
           "RV"
         ],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "CA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -207,53 +37,25 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -118.8498,
-          37.96
+          -116.1658,
+          34.015
         ]
       },
       "properties": {
-        "id": "CA-009",
-        "name": "California Backcountry 9",
+        "id": "CA-2",
+        "name": "Joshua Tree Backcountry",
+        "facility": "Joshua Tree Backcountry",
         "type": "backcountry",
-        "cost": 10,
-        "rating": "3.7",
-        "reviews_count": 24,
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.0002,
-          36.0599
-        ]
-      },
-      "properties": {
-        "id": "CA-010",
-        "name": "California Campground 10",
-        "type": "established",
-        "cost": 25,
-        "rating": "5.0",
-        "reviews_count": 38,
-        "amenities": [
-          "picnic_tables",
-          "water",
-          "trash",
-          "fire_rings",
-          "toilets"
-        ],
         "rig_friendly": [
           "tent"
         ],
         "road_difficulty": "paved",
         "state": "CA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -261,55 +63,61 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.3185,
-          38.0053
+          -121.8081,
+          36.2704
         ]
       },
       "properties": {
-        "id": "CA-011",
-        "name": "California Dispersed 11",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -118.3002,
-          37.489
-        ]
-      },
-      "properties": {
-        "id": "CA-012",
-        "name": "California Campground 12",
+        "id": "CA-3",
+        "name": "Big Sur Campground",
+        "facility": "Big Sur Campground",
         "type": "established",
-        "cost": 25,
-        "rating": "4.9",
-        "reviews_count": 37,
+        "cost": 35,
+        "rating": "3.8",
+        "reviews_count": 60,
         "amenities": [
-          "trash",
-          "fire_rings",
           "toilets",
-          "showers",
           "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "CA",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.8673,
+          36.4648
+        ]
+      },
+      "properties": {
+        "id": "CA-4",
+        "name": "Death Valley Furnace Creek",
+        "facility": "Death Valley Furnace Creek",
+        "type": "established",
+        "cost": 22,
+        "rating": "4.0",
+        "reviews_count": 68,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
         ],
         "rig_friendly": [
           "tent",
           "RV",
           "trailer"
         ],
-        "road_difficulty": "gravel",
+        "road_difficulty": "paved",
         "state": "CA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -317,22 +125,25 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -118.5351,
-          37.0471
+          -118.5658,
+          36.4864
         ]
       },
       "properties": {
-        "id": "CA-013",
-        "name": "California Dispersed 13",
+        "id": "CA-5",
+        "name": "Sequoia National Forest Dispersed",
+        "facility": "Sequoia National Forest Dispersed",
         "type": "dispersed",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
         "state": "CA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -340,53 +151,31 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.4438,
-          37.1991
+          -120.1013,
+          38.999
         ]
       },
       "properties": {
-        "id": "CA-014",
-        "name": "California Campground 14",
+        "id": "CA-6",
+        "name": "Lake Tahoe D.L. Bliss",
+        "facility": "Lake Tahoe D.L. Bliss",
         "type": "established",
-        "cost": 0,
-        "rating": "4.1",
-        "reviews_count": 50,
+        "cost": 45,
+        "rating": "3.6",
+        "reviews_count": 21,
         "amenities": [
           "toilets",
           "water",
-          "fire_rings",
           "showers",
-          "picnic_tables"
+          "fire_rings"
         ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -118.9151,
-          37.8622
-        ]
-      },
-      "properties": {
-        "id": "CA-015",
-        "name": "California Backcountry 15",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "4.6",
-        "reviews_count": 36,
-        "amenities": [
-          "toilets"
+        "rig_friendly": [
+          "tent",
+          "RV"
         ],
-        "rig_friendly": [],
         "road_difficulty": "paved",
         "state": "CA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -394,28 +183,85 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.0428,
-          37.351
+          -121.4207,
+          40.4978
         ]
       },
       "properties": {
-        "id": "CA-016",
-        "name": "California Campground 16",
+        "id": "CA-7",
+        "name": "Lassen Volcanic Park",
+        "facility": "Lassen Volcanic Park",
         "type": "established",
-        "cost": 30,
-        "rating": "3.9",
-        "reviews_count": 24,
+        "cost": 18,
+        "rating": "4.0",
+        "reviews_count": 68,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "CA",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.6797,
+          34.3705
+        ]
+      },
+      "properties": {
+        "id": "CA-8",
+        "name": "Angeles National Forest",
+        "facility": "Angeles National Forest",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "CA",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -124.0046,
+          41.2133
+        ]
+      },
+      "properties": {
+        "id": "CA-9",
+        "name": "Redwood National Park",
+        "facility": "Redwood National Park",
+        "type": "established",
+        "cost": 35,
+        "rating": "3.7",
+        "reviews_count": 17,
         "amenities": [
           "toilets",
           "water",
           "showers"
         ],
         "rig_friendly": [
-          "tent"
+          "tent",
+          "RV"
         ],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "CA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -423,244 +269,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -120.5414,
-          37.5432
+          -115.5156,
+          35.1411
         ]
       },
       "properties": {
-        "id": "CA-017",
-        "name": "California Campground 17",
-        "type": "established",
-        "cost": 0,
-        "rating": "4.5",
-        "reviews_count": 11,
-        "amenities": [
-          "water",
-          "picnic_tables",
-          "fire_rings",
-          "toilets"
-        ],
-        "rig_friendly": [
-          "tent"
-        ],
-        "road_difficulty": "gravel",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.4739,
-          36.6573
-        ]
-      },
-      "properties": {
-        "id": "CA-018",
-        "name": "California Dispersed 18",
+        "id": "CA-10",
+        "name": "Mojave Preserve",
+        "facility": "Mojave Preserve",
         "type": "dispersed",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -118.9863,
-          36.0468
-        ]
-      },
-      "properties": {
-        "id": "CA-019",
-        "name": "California Campground 19",
-        "type": "established",
-        "cost": 20,
-        "rating": "3.8",
-        "reviews_count": 47,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables",
-          "fire_rings",
-          "trash"
-        ],
+        "amenities": [],
         "rig_friendly": [
           "tent",
           "RV"
         ],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -118.9308,
-          37.9305
-        ]
-      },
-      "properties": {
-        "id": "CA-020",
-        "name": "California Backcountry 20",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.3",
-        "reviews_count": 19,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
         "road_difficulty": "gravel",
         "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -120.0899,
-          38.0976
-        ]
-      },
-      "properties": {
-        "id": "CA-021",
-        "name": "California Backcountry 21",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "4.9",
-        "reviews_count": 25,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -118.0325,
-          38.2596
-        ]
-      },
-      "properties": {
-        "id": "CA-022",
-        "name": "California Backcountry 22",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.0",
-        "reviews_count": 36,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.7493,
-          35.9113
-        ]
-      },
-      "properties": {
-        "id": "CA-023",
-        "name": "California Dispersed 23",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -120.0262,
-          38.3083
-        ]
-      },
-      "properties": {
-        "id": "CA-024",
-        "name": "California Campground 24",
-        "type": "established",
-        "cost": 25,
-        "rating": "4.0",
-        "reviews_count": 16,
-        "amenities": [
-          "water",
-          "trash",
-          "toilets",
-          "electricity",
-          "fire_rings"
-        ],
-        "rig_friendly": [
-          "tent"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -120.2928,
-          36.8693
-        ]
-      },
-      "properties": {
-        "id": "CA-025",
-        "name": "California Campground 25",
-        "type": "established",
-        "cost": 15,
-        "rating": "4.1",
-        "reviews_count": 18,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings"
-        ],
-        "rig_friendly": [
-          "tent"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CA",
-        "source": "generated"
+        "source": "curated"
       }
     }
   ]

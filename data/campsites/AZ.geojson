@@ -6,22 +6,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.643,
-          32.8461
+          -112.1385,
+          36.0538
         ]
       },
       "properties": {
-        "id": "AZ-001",
-        "name": "Arizona Dispersed 1",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "id": "AZ-1",
+        "name": "Grand Canyon Mather",
+        "facility": "Grand Canyon Mather",
+        "type": "established",
+        "cost": 18,
+        "rating": "4.8",
+        "reviews_count": 78,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -29,289 +37,115 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.0834,
-          35.3948
+          -111.761,
+          34.8697
         ]
       },
       "properties": {
-        "id": "AZ-002",
-        "name": "Arizona Campground 2",
+        "id": "AZ-2",
+        "name": "Sedona Dispersed",
+        "facility": "Sedona Dispersed",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent",
+          "4WD"
+        ],
+        "road_difficulty": "rough",
+        "state": "AZ",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.7533,
+          35.3397
+        ]
+      },
+      "properties": {
+        "id": "AZ-3",
+        "name": "Coconino National Forest",
+        "facility": "Coconino National Forest",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "gravel",
+        "state": "AZ",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7377,
+          32.1733
+        ]
+      },
+      "properties": {
+        "id": "AZ-4",
+        "name": "Saguaro National Park",
+        "facility": "Saguaro National Park",
         "type": "established",
-        "cost": 30,
-        "rating": "4.2",
-        "reviews_count": 42,
+        "cost": 25,
+        "rating": "4.6",
+        "reviews_count": 34,
         "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.6514,
+          35.1981
+        ]
+      },
+      "properties": {
+        "id": "AZ-5",
+        "name": "Flagstaff KOA",
+        "facility": "Flagstaff KOA",
+        "type": "established",
+        "cost": 45,
+        "rating": "3.7",
+        "reviews_count": 94,
+        "amenities": [
+          "toilets",
           "water",
-          "fire_rings",
-          "toilets"
+          "showers",
+          "electricity"
         ],
         "rig_friendly": [
           "tent",
           "RV",
           "trailer"
         ],
-        "road_difficulty": "gravel",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.8322,
-          35.7578
-        ]
-      },
-      "properties": {
-        "id": "AZ-003",
-        "name": "Arizona Campground 3",
-        "type": "established",
-        "cost": 0,
-        "rating": "4.8",
-        "reviews_count": 33,
-        "amenities": [
-          "fire_rings",
-          "toilets",
-          "water"
-        ],
-        "rig_friendly": [],
         "road_difficulty": "paved",
         "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6599,
-          34.4624
-        ]
-      },
-      "properties": {
-        "id": "AZ-004",
-        "name": "Arizona Campground 4",
-        "type": "established",
-        "cost": 25,
-        "rating": "4.3",
-        "reviews_count": 42,
-        "amenities": [
-          "toilets",
-          "picnic_tables",
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.5277,
-          33.3488
-        ]
-      },
-      "properties": {
-        "id": "AZ-005",
-        "name": "Arizona Backcountry 5",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "4.8",
-        "reviews_count": 31,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.4156,
-          33.5613
-        ]
-      },
-      "properties": {
-        "id": "AZ-006",
-        "name": "Arizona Dispersed 6",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.7157,
-          34.2387
-        ]
-      },
-      "properties": {
-        "id": "AZ-007",
-        "name": "Arizona Dispersed 7",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.7875,
-          35.4224
-        ]
-      },
-      "properties": {
-        "id": "AZ-008",
-        "name": "Arizona Dispersed 8",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.6176,
-          33.6499
-        ]
-      },
-      "properties": {
-        "id": "AZ-009",
-        "name": "Arizona Backcountry 9",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.6",
-        "reviews_count": 19,
-        "amenities": [
-          "fire_rings"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6624,
-          35.5164
-        ]
-      },
-      "properties": {
-        "id": "AZ-010",
-        "name": "Arizona Campground 10",
-        "type": "established",
-        "cost": 0,
-        "rating": "4.0",
-        "reviews_count": 25,
-        "amenities": [
-          "water",
-          "toilets",
-          "showers",
-          "fire_rings",
-          "electricity"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.0679,
-          35.2137
-        ]
-      },
-      "properties": {
-        "id": "AZ-011",
-        "name": "Arizona Dispersed 11",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "AZ",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.9379,
-          34.5207
-        ]
-      },
-      "properties": {
-        "id": "AZ-012",
-        "name": "Arizona Campground 12",
-        "type": "established",
-        "cost": 0,
-        "rating": "4.7",
-        "reviews_count": 32,
-        "amenities": [
-          "toilets",
-          "trash",
-          "fire_rings",
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "AZ",
-        "source": "generated"
+        "source": "curated"
       }
     }
   ]

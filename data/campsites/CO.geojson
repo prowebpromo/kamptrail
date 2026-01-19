@@ -6,321 +6,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -104.3311,
-          39.4408
+          -105.6836,
+          40.3428
         ]
       },
       "properties": {
-        "id": "CO-001",
-        "name": "Colorado Dispersed 1",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.0439,
-          39.1777
-        ]
-      },
-      "properties": {
-        "id": "CO-002",
-        "name": "Colorado Campground 2",
+        "id": "CO-1",
+        "name": "Rocky Mountain National Park",
+        "facility": "Rocky Mountain National Park",
         "type": "established",
-        "cost": 0,
-        "rating": "4.2",
-        "reviews_count": 10,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.4514,
-          39.9535
-        ]
-      },
-      "properties": {
-        "id": "CO-003",
-        "name": "Colorado Backcountry 3",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.0",
-        "reviews_count": 17,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -104.5415,
-          38.9677
-        ]
-      },
-      "properties": {
-        "id": "CO-004",
-        "name": "Colorado Campground 4",
-        "type": "established",
-        "cost": 20,
-        "rating": "4.6",
-        "reviews_count": 27,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "toilets"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.2994,
-          38.8099
-        ]
-      },
-      "properties": {
-        "id": "CO-005",
-        "name": "Colorado Campground 5",
-        "type": "established",
-        "cost": 15,
-        "rating": "3.7",
-        "reviews_count": 46,
-        "amenities": [
-          "fire_rings",
-          "toilets",
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.2431,
-          37.6853
-        ]
-      },
-      "properties": {
-        "id": "CO-006",
-        "name": "Colorado Backcountry 6",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.7",
-        "reviews_count": 48,
-        "amenities": [
-          "fire_rings"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.007,
-          37.9183
-        ]
-      },
-      "properties": {
-        "id": "CO-007",
-        "name": "Colorado Campground 7",
-        "type": "established",
-        "cost": 20,
-        "rating": "3.6",
+        "cost": 26,
+        "rating": "4.4",
         "reviews_count": 20,
         "amenities": [
-          "picnic_tables",
-          "showers",
-          "fire_rings"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.2528,
-          39.1554
-        ]
-      },
-      "properties": {
-        "id": "CO-008",
-        "name": "Colorado Backcountry 8",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.5",
-        "reviews_count": 41,
-        "amenities": [
-          "electricity"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -104.2634,
-          40.387
-        ]
-      },
-      "properties": {
-        "id": "CO-009",
-        "name": "Colorado Campground 9",
-        "type": "established",
-        "cost": 20,
-        "rating": "3.9",
-        "reviews_count": 30,
-        "amenities": [
-          "picnic_tables",
           "toilets",
-          "fire_rings",
           "water"
         ],
         "rig_friendly": [
           "tent",
           "RV"
         ],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.1659,
-          37.9829
-        ]
-      },
-      "properties": {
-        "id": "CO-010",
-        "name": "Colorado Campground 10",
-        "type": "established",
-        "cost": 0,
-        "rating": "3.5",
-        "reviews_count": 25,
-        "amenities": [
-          "showers",
-          "electricity",
-          "fire_rings"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.0759,
-          39.4138
-        ]
-      },
-      "properties": {
-        "id": "CO-011",
-        "name": "Colorado Campground 11",
-        "type": "established",
-        "cost": 15,
-        "rating": "5.0",
-        "reviews_count": 10,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.8106,
-          39.8613
-        ]
-      },
-      "properties": {
-        "id": "CO-012",
-        "name": "Colorado Campground 12",
-        "type": "established",
-        "cost": 0,
-        "rating": "3.6",
-        "reviews_count": 53,
-        "amenities": [
-          "fire_rings",
-          "water",
-          "toilets"
-        ],
-        "rig_friendly": [],
         "road_difficulty": "paved",
         "state": "CO",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -328,45 +36,25 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.8337,
-          37.5677
+          -106.939,
+          39.0971
         ]
       },
       "properties": {
-        "id": "CO-013",
-        "name": "Colorado Dispersed 13",
+        "id": "CO-2",
+        "name": "Maroon Bells Dispersed",
+        "facility": "Maroon Bells Dispersed",
         "type": "dispersed",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -104.2119,
-          39.5528
-        ]
-      },
-      "properties": {
-        "id": "CO-014",
-        "name": "Colorado Backcountry 14",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "4.6",
-        "reviews_count": 8,
-        "amenities": [],
-        "rig_friendly": [],
+        "rig_friendly": [
+          "tent"
+        ],
         "road_difficulty": "gravel",
         "state": "CO",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -374,55 +62,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -105.6995,
-          39.6842
+          -105.5943,
+          37.7296
         ]
       },
       "properties": {
-        "id": "CO-015",
-        "name": "Colorado Backcountry 15",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "5.0",
-        "reviews_count": 43,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.8725,
-          40.1185
-        ]
-      },
-      "properties": {
-        "id": "CO-016",
-        "name": "Colorado Campground 16",
+        "id": "CO-3",
+        "name": "Great Sand Dunes",
+        "facility": "Great Sand Dunes",
         "type": "established",
-        "cost": 15,
-        "rating": "4.8",
-        "reviews_count": 44,
+        "cost": 20,
+        "rating": "4.5",
+        "reviews_count": 51,
         "amenities": [
-          "water",
           "toilets",
-          "picnic_tables",
-          "fire_rings",
+          "water",
           "showers"
         ],
         "rig_friendly": [
           "tent",
-          "RV",
-          "trailer"
+          "RV"
         ],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "CO",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -430,22 +93,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.3064,
-          38.1806
+          -107.8123,
+          37.4757
         ]
       },
       "properties": {
-        "id": "CO-017",
-        "name": "Colorado Backcountry 17",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "3.9",
-        "reviews_count": 11,
+        "id": "CO-4",
+        "name": "San Juan National Forest",
+        "facility": "San Juan National Forest",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "rig_friendly": [
+          "tent",
+          "4WD"
+        ],
+        "road_difficulty": "rough",
         "state": "CO",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -453,24 +120,87 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.858,
-          40.1653
+          -108.4618,
+          37.2309
         ]
       },
       "properties": {
-        "id": "CO-018",
-        "name": "Colorado Backcountry 18",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "4.9",
-        "reviews_count": 9,
+        "id": "CO-5",
+        "name": "Mesa Verde",
+        "facility": "Mesa Verde",
+        "type": "established",
+        "cost": 31,
+        "rating": "3.6",
+        "reviews_count": 95,
         "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.7416,
+          38.5754
+        ]
+      },
+      "properties": {
+        "id": "CO-6",
+        "name": "Black Canyon Gunnison",
+        "facility": "Black Canyon Gunnison",
+        "type": "established",
+        "cost": 20,
+        "rating": "4.6",
+        "reviews_count": 52,
+        "amenities": [
+          "toilets",
           "water"
         ],
-        "rig_friendly": [],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.2167,
+          39.0081
+        ]
+      },
+      "properties": {
+        "id": "CO-7",
+        "name": "Pike National Forest",
+        "facility": "Pike National Forest",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
         "road_difficulty": "gravel",
         "state": "CO",
-        "source": "generated"
+        "source": "curated"
       }
     }
   ]

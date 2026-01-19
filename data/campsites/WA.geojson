@@ -6,242 +6,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -120.3076,
-          48.4789
+          -123.6044,
+          47.8021
         ]
       },
       "properties": {
-        "id": "WA-001",
-        "name": "Washington Dispersed 1",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -121.3822,
-          47.6995
-        ]
-      },
-      "properties": {
-        "id": "WA-002",
-        "name": "Washington Backcountry 2",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "3.8",
-        "reviews_count": 21,
-        "amenities": [
-          "fire_rings"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.3745,
-          48.3358
-        ]
-      },
-      "properties": {
-        "id": "WA-003",
-        "name": "Washington Campground 3",
+        "id": "WA-1",
+        "name": "Olympic National Park",
+        "facility": "Olympic National Park",
         "type": "established",
-        "cost": 0,
-        "rating": "5.0",
-        "reviews_count": 43,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.0065,
-          48.6638
-        ]
-      },
-      "properties": {
-        "id": "WA-004",
-        "name": "Washington Backcountry 4",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "4.6",
-        "reviews_count": 19,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -121.3971,
-          48.6532
-        ]
-      },
-      "properties": {
-        "id": "WA-005",
-        "name": "Washington Campground 5",
-        "type": "established",
-        "cost": 0,
-        "rating": "4.2",
-        "reviews_count": 15,
-        "amenities": [
-          "water",
-          "toilets",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -121.1048,
-          47.527
-        ]
-      },
-      "properties": {
-        "id": "WA-006",
-        "name": "Washington Backcountry 6",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "4.9",
-        "reviews_count": 24,
-        "amenities": [
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.8108,
-          47.6713
-        ]
-      },
-      "properties": {
-        "id": "WA-007",
-        "name": "Washington Campground 7",
-        "type": "established",
-        "cost": 20,
-        "rating": "4.3",
-        "reviews_count": 31,
-        "amenities": [
-          "water",
-          "toilets",
-          "picnic_tables",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.2008,
-          47.6286
-        ]
-      },
-      "properties": {
-        "id": "WA-008",
-        "name": "Washington Backcountry 8",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "3.6",
-        "reviews_count": 22,
-        "amenities": [
-          "showers"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.8005,
-          46.5705
-        ]
-      },
-      "properties": {
-        "id": "WA-009",
-        "name": "Washington Campground 9",
-        "type": "established",
-        "cost": 0,
+        "cost": 25,
         "rating": "3.7",
-        "reviews_count": 12,
+        "reviews_count": 18,
         "amenities": [
-          "water",
-          "fire_rings",
           "toilets",
-          "picnic_tables",
-          "showers"
+          "water"
         ],
         "rig_friendly": [
           "tent",
           "RV"
         ],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "WA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -249,22 +36,86 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.9191,
-          47.4733
+          -121.8082,
+          46.7697
         ]
       },
       "properties": {
-        "id": "WA-010",
-        "name": "Washington Dispersed 10",
+        "id": "WA-2",
+        "name": "Mount Rainier Cougar Rock",
+        "facility": "Mount Rainier Cougar Rock",
+        "type": "established",
+        "cost": 20,
+        "rating": "5.0",
+        "reviews_count": 90,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "WA",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.2985,
+          48.7718
+        ]
+      },
+      "properties": {
+        "id": "WA-3",
+        "name": "North Cascades",
+        "facility": "North Cascades",
+        "type": "established",
+        "cost": 16,
+        "rating": "4.4",
+        "reviews_count": 27,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "paved",
+        "state": "WA",
+        "source": "curated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9578,
+          46.2894
+        ]
+      },
+      "properties": {
+        "id": "WA-4",
+        "name": "Gifford Pinchot Dispersed",
+        "facility": "Gifford Pinchot Dispersed",
         "type": "dispersed",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "rig_friendly": [
+          "tent",
+          "4WD"
+        ],
+        "road_difficulty": "rough",
         "state": "WA",
-        "source": "generated"
+        "source": "curated"
       }
     },
     {
@@ -272,53 +123,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -120.3849,
-          48.9924
+          -123.0038,
+          48.545
         ]
       },
       "properties": {
-        "id": "WA-011",
-        "name": "Washington Campground 11",
+        "id": "WA-5",
+        "name": "San Juan Islands",
+        "facility": "San Juan Islands",
         "type": "established",
-        "cost": 30,
-        "rating": "4.7",
-        "reviews_count": 21,
+        "cost": 50,
+        "rating": "3.7",
+        "reviews_count": 92,
         "amenities": [
           "toilets",
-          "fire_rings",
-          "showers",
           "water",
-          "picnic_tables"
+          "showers"
         ],
-        "rig_friendly": [],
+        "rig_friendly": [
+          "tent"
+        ],
         "road_difficulty": "paved",
         "state": "WA",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.3982,
-          48.3257
-        ]
-      },
-      "properties": {
-        "id": "WA-012",
-        "name": "Washington Dispersed 12",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "WA",
-        "source": "generated"
+        "source": "curated"
       }
     }
   ]
