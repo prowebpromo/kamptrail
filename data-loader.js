@@ -126,52 +126,34 @@
     console.log(`📥 Loading ${stateCode} campsites from all sources...`);
 
     try {
-      const sources = [
-        `data/campsites/${stateCode}.geojson`,
-        `data/opencampingmap/${stateCode}.geojson`
-      ];
+      // Load the merged, deduplicated file that combines Recreation.gov + OSM data
+      const url = `data/campsites/${stateCode}_merged.geojson`;
 
-      const results = await Promise.allSettled(
-        sources.map(url => fetch(url).then(res => {
-          if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-          return res.json();
-        }))
-      );
-
-      let allNewSites = [];
-
-      // Process recreation.gov data (source 1)
-      if (results[0].status === 'fulfilled' && results[0].value.features) {
-        const sites = results[0].value.features.map(f => {
-          f.properties.source = 'recreation.gov';
-          return f;
-        });
-        allNewSites.push(...sites);
-        console.log(`✅ Loaded ${sites.length} sites from recreation.gov for ${stateCode}`);
-      } else if (results[0].status === 'rejected') {
-        console.warn(`⚠️ Could not load recreation.gov data for ${stateCode}:`, results[0].reason.message);
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} for ${url}`);
       }
 
-      // Process OpenCampingMap data (source 2)
-      if (results[1].status === 'fulfilled' && results[1].value.features) {
-        const osmSites = results[1].value.features.map(f => {
-          // Normalize OSM data to match our app's expected format
-          const p = f.properties;
-          f.properties = {
-            id: `osm-${p.osm_id}`,
-            name: p.name || 'Unnamed Site (OSM)',
-            type: p.camp_site_type || 'Unknown',
-            cost: (p.fee === 'no' || p.fee === '0') ? 0 : null, // Heuristic for cost
-            amenities: p.amenities ? p.amenities.split(';') : [],
-            source: 'osm'
-            // Other fields like rating, road_difficulty are not available in OSM
-          };
-          return f;
+      const data = await response.json();
+      let allNewSites = [];
+
+      // Process merged data
+      if (data && data.features) {
+        allNewSites = data.features;
+        const sourceCount = {};
+        allNewSites.forEach(f => {
+          const sources = f.properties.sources || [f.properties.source || 'unknown'];
+          sources.forEach(src => {
+            sourceCount[src] = (sourceCount[src] || 0) + 1;
+          });
         });
-        allNewSites.push(...osmSites);
-        console.log(`✅ Loaded ${osmSites.length} sites from OpenCampingMap for ${stateCode}`);
-      } else if (results[1].status === 'rejected') {
-         console.warn(`⚠️ Could not load OpenCampingMap data for ${stateCode}:`, results[1].reason.message);
+
+        const sourceInfo = Object.entries(sourceCount)
+          .map(([src, count]) => `${src}: ${count}`)
+          .join(', ');
+        console.log(`✅ Loaded ${allNewSites.length} deduplicated sites for ${stateCode} (${sourceInfo})`);
+      } else {
+        console.warn(`⚠️ No features found in merged data for ${stateCode}`);
       }
 
       if (allNewSites.length > 0) {
@@ -209,7 +191,9 @@
       return allNewSites;
 
     } catch (err) {
-      console.error(`💥 Unexpected error loading data for ${stateCode}:`, err);
+      console.error(`💥 Error loading merged data for ${stateCode}:`, err.message);
+      // Mark as loaded even if failed to prevent constant retry
+      state.loadedStates.add(stateCode);
       return [];
     } finally {
       state.loading.delete(stateCode);
