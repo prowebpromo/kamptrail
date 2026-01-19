@@ -6,78 +6,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.9536,
-          34.0215
+          -82.9601488,
+          34.7162104
         ]
       },
       "properties": {
-        "id": "SC-001",
-        "name": "South Carolina Campground 1",
+        "id": "SC-OSM-154326740",
+        "name": "South Cove",
+        "facility": "South Cove",
         "type": "established",
-        "cost": 0,
-        "rating": "3.8",
-        "reviews_count": 19,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "SC",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -79.9464,
-          33.5466
-        ]
-      },
-      "properties": {
-        "id": "SC-002",
-        "name": "South Carolina Campground 2",
-        "type": "established",
-        "cost": 15,
-        "rating": "3.9",
-        "reviews_count": 29,
-        "amenities": [
-          "fire_rings",
-          "toilets",
-          "water",
-          "picnic_tables",
-          "showers"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "SC",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.6542,
-          33.6233
-        ]
-      },
-      "properties": {
-        "id": "SC-003",
-        "name": "South Carolina Backcountry 3",
-        "type": "backcountry",
-        "cost": 0,
-        "rating": "3.7",
-        "reviews_count": 54,
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "SC",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 154326740,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -85,24 +34,4241 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.2713,
-          32.9692
+          -79.6905864,
+          33.0610831
         ]
       },
       "properties": {
-        "id": "SC-004",
-        "name": "South Carolina Backcountry 4",
+        "id": "SC-OSM-1195798996",
+        "name": "Halfway Creek Trail Camp",
+        "facility": "Halfway Creek Trail Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1195798996,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0634319,
+          33.5064765
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1217824312",
+        "name": "Huntington Beach State Park Campground",
+        "facility": "Huntington Beach State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1217824312,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0425903,
+          35.0235898
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1254048526",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1254048526,
+        "osm_type": "node",
+        "website": "https://www.yorkcountygov.com/212/Ebenezer-Park",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9093419,
+          34.0860276
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1300146287",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1300146287,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4367957,
+          33.5659852
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1309361083",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1309361083,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9271641,
+          34.5643469
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1309667536",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1309667536,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9928499,
+          32.7366132
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1334581741",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1334581741,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.043403,
+          35.0234738
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1409254996",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1409254996,
+        "osm_type": "node",
+        "website": "https://www.yorkcountygov.com/212/Ebenezer-Park",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0430623,
+          35.022369
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1409255033",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1409255033,
+        "osm_type": "node",
+        "website": "https://www.yorkcountygov.com/212/Ebenezer-Park",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0438563,
+          35.0225052
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1409255045",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1409255045,
+        "osm_type": "node",
+        "website": "https://www.yorkcountygov.com/212/Ebenezer-Park",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0425742,
+          35.0228215
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1409255053",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1409255053,
+        "osm_type": "node",
+        "website": "https://www.yorkcountygov.com/212/Ebenezer-Park",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2045435,
+          32.4855272
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1471390771",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1471390771,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.910382,
+          34.0870009
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1636957553",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1636957553,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9118153,
+          34.0881832
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1636957995",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1636957995,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3872623,
+          33.0304106
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1645662090",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1645662090,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.6153785,
+          33.0642341
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1646067301",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1646067301,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7605426,
+          32.1595711
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2546408823",
+        "name": "HHIMR Welcome Center",
+        "facility": "HHIMR Welcome Center",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2546408823,
+        "osm_type": "node",
+        "website": "http://www.hiltonheadmotorcoachresort.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9420358,
+          35.0346469
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2594360727",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2594360727,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9421736,
+          35.034117
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2594360728",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2594360728,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9398529,
+          35.0349604
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2594360730",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2594360730,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9414464,
+          35.034825
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2594360731",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2594360731,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.941879,
+          35.0348081
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2594360732",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2594360732,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.7104816,
+          33.9823148
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2692160166",
+        "name": "Willow Tree RV Resort",
+        "facility": "Willow Tree RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2692160166,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.897437,
+          33.6840296
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2732305264",
+        "name": "Kampgrounds of America Myrtle Beach",
+        "facility": "Kampgrounds of America Myrtle Beach",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2732305264,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1982407,
+          33.6687347
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-2886232422",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 2886232422,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4230397,
+          33.5107996
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-3122981642",
+        "name": "Polly's Landing Campground",
+        "facility": "Polly's Landing Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 3122981642,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4307015,
+          33.5161169
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-3122981645",
+        "name": "Santee Lakes Campground",
+        "facility": "Santee Lakes Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 3122981645,
+        "osm_type": "node",
+        "website": "https://koa.com/campgrounds/santee/",
+        "phone": "+1 803 478 2262"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9095725,
+          34.0861359
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-3163904361",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 3163904361,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1812151,
+          34.8235128
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-3841772587",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 3841772587,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.6931583,
+          33.900597
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-4346507444",
+        "name": "Lee Ches's Beach House",
+        "facility": "Lee Ches's Beach House",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 4346507444,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.6070996,
+          33.8392323
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-4346735889",
+        "name": "Nice walk up beach",
+        "facility": "Nice walk up beach",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 4346735889,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9219437,
+          35.0093661
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-4357186692",
+        "name": "Sign Language",
+        "facility": "Sign Language",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 4357186692,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2763686,
+          34.1172876
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-5331951469",
+        "name": "Woodmen of the World Park",
+        "facility": "Woodmen of the World Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 5331951469,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1-803-732-2963"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7047307,
+          34.4509718
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6077801621",
+        "name": "Brick House Camp Ground",
+        "facility": "Brick House Camp Ground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6077801621,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1464717,
+          32.776632
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6216642286",
+        "name": "Lake Aire RV Park",
+        "facility": "Lake Aire RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6216642286,
+        "osm_type": "node",
+        "website": "https://www.lakeairerv.com/",
+        "phone": "+1-843-571-1271"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.4031607,
+          35.1213522
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6293774882",
+        "name": "Garner Creek Backcountry Campsite",
+        "facility": "Garner Creek Backcountry Campsite",
         "type": "backcountry",
         "cost": 0,
-        "rating": "3.7",
-        "reviews_count": 48,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6293774882,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3663359,
+          34.4475
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6418599704",
+        "name": "Bass Lake Campground",
+        "facility": "Bass Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6418599704,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9902699,
+          33.9902405
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6534452050",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6534452050,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9915118,
+          33.9614867
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6534511080",
+        "name": "Faulkner Mountain Campground",
+        "facility": "Faulkner Mountain Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6534511080,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8590025,
+          34.3540471
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6558308896",
+        "name": "Camp Longridge",
+        "facility": "Camp Longridge",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6558308896,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.9191694,
+          35.0456635
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6784383817",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6784383817,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.9214982,
+          35.0450239
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6784383818",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6784383818,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5277046,
+          34.8770324
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6848806254",
+        "name": "Double Triangle Ranch",
+        "facility": "Double Triangle Ranch",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6848806254,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+18648120924"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8930396,
+          35.0314782
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6993018065",
+        "name": "Laurel Fork Campsite",
+        "facility": "Laurel Fork Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6993018065,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.769377,
+          35.0515554
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6993018066",
+        "name": "Cantrell Campsite",
+        "facility": "Cantrell Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6993018066,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8513398,
+          35.0415623
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-6993018067",
+        "name": "Virginia Hawkins Campsite",
+        "facility": "Virginia Hawkins Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 6993018067,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9157616,
+          33.9983186
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-7333662198",
+        "name": "Boggy Campground",
+        "facility": "Boggy Campground",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 7333662198,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9151591,
+          33.994203
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-7333662207",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 7333662207,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9150196,
+          33.9936693
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-7333662208",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 7333662208,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5230557,
+          33.7380564
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-7501966180",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 7501966180,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5402963,
+          33.8085777
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-7501966181",
+        "name": "Poinsett State Park Campground",
+        "facility": "Poinsett State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 7501966181,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5231287,
+          33.7377209
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-7501997712",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 7501997712,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.4372941,
+          34.019953
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-7820660020",
+        "name": "Adams Towne White Oak RV & Boat Park",
+        "facility": "Adams Towne White Oak RV & Boat Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 7820660020,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1207756,
+          34.9421524
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-8421919308",
+        "name": "Sandy Beach Campsite",
+        "facility": "Sandy Beach Campsite",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 8421919308,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1187579,
+          34.9431666
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-8421919309",
+        "name": "Simms Field",
+        "facility": "Simms Field",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 8421919309,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0486744,
+          35.1078449
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-8497773662",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 8497773662,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.046374,
+          35.1051293
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-8497807096",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 8497807096,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1306648,
+          34.9299791
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-8613643607",
+        "name": "Licklog Falls Campsite",
+        "facility": "Licklog Falls Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 8613643607,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.9488523,
+          34.9845892
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-8813200884",
+        "name": "Devils Fork State Park Boat-In Campsite",
+        "facility": "Devils Fork State Park Boat-In Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 8813200884,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.7113023,
+          34.5619518
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9012986493",
+        "name": "Anderson Area Day Camp",
+        "facility": "Anderson Area Day Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9012986493,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9632885,
+          33.6278154
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9014971018",
+        "name": "Ocean Lakes RV Center",
+        "facility": "Ocean Lakes RV Center",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9014971018,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0593563,
+          34.9918727
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9057954025",
+        "name": "Fish Hatchery Camp",
+        "facility": "Fish Hatchery Camp",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9057954025,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4155088,
+          35.1008832
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9199347497",
+        "name": "Look Up Lodge",
+        "facility": "Look Up Lodge",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9199347497,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.5388467,
+          33.9555875
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9673442906",
+        "name": "Hester's Bottoms Family Campground",
+        "facility": "Hester's Bottoms Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9673442906,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5851078,
+          32.3638473
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9706261117",
+        "name": "Tuck In The Wood Campground",
+        "facility": "Tuck In The Wood Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9706261117,
+        "osm_type": "node",
+        "website": "https://www.tuckinthewood.com/",
+        "phone": "+1-843-838-2267"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3265282,
+          33.1809617
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9728658690",
+        "name": "Tanager Woods RV Campground",
+        "facility": "Tanager Woods RV Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9728658690,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3076422,
+          33.334229
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9740330921",
+        "name": "Barnwell State Park Campground",
+        "facility": "Barnwell State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9740330921,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9799602,
+          34.2680215
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938124768",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938124768,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8166977,
+          34.3810362
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938161832",
+        "name": "Crescent Group Campground",
+        "facility": "Crescent Group Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938161832,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8163713,
+          34.3944619
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938161937",
+        "name": "Big Water Campground",
+        "facility": "Big Water Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938161937,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9925215,
+          34.3125611
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938180444",
+        "name": "Liberty Springs RV Park",
+        "facility": "Liberty Springs RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938180444,
+        "osm_type": "node",
+        "website": "https://libertyspringsrvpark.com/",
+        "phone": "+1-864-808-2887"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0833712,
+          34.3300812
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938201148",
+        "name": "Four Seasons Resort",
+        "facility": "Four Seasons Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938201148,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.6076846,
+          34.2679053
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938229422",
+        "name": "Camp Arrowhead",
+        "facility": "Camp Arrowhead",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938229422,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3746625,
+          34.9250301
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938231125",
+        "name": "Paris Mountain State Park Campground",
+        "facility": "Paris Mountain State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938231125,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7072765,
+          34.4481676
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938231356",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938231356,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9713591,
+          34.2414127
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9938237767",
+        "name": "Lighthouse RV Park",
+        "facility": "Lighthouse RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9938237767,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9634875,
+          32.8302185
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9966705126",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9966705126,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1433351,
+          33.3421661
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9968771325",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9968771325,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9882532,
+          33.2574803
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9968837033",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9968837033,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1461073,
+          33.3299486
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-9968850917",
+        "name": "S & S Camp Ground",
+        "facility": "S & S Camp Ground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 9968850917,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1509335,
+          32.7791772
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-10159696420",
+        "name": "Bon Aire RV Park & Campground",
+        "facility": "Bon Aire RV Park & Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 10159696420,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.6168357,
+          33.0596302
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-10247947508",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 10247947508,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3183865,
+          34.2437314
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-10838066395",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 10838066395,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3956487,
+          34.2679324
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11060304306",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11060304306,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3419554,
+          34.2518565
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11060304307",
+        "name": "River Road Family Campground",
+        "facility": "River Road Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11060304307,
+        "osm_type": "node",
+        "website": "https://www.riverroadfamilycampgroundllc.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7353301,
+          34.8731785
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11275778627",
+        "name": "Bubba's RV Park",
+        "facility": "Bubba's RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11275778627,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.168384,
+          32.6279445
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11751908515",
+        "name": "Camp Ho Non Wah",
+        "facility": "Camp Ho Non Wah",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11751908515,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3958713,
+          34.9497469
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11788489041",
+        "name": "Monadnock",
+        "facility": "Monadnock",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11788489041,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3946059,
+          34.9520366
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11788489042",
+        "name": "Bullfrog",
+        "facility": "Bullfrog",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11788489042,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3975147,
+          34.9496526
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11788489048",
+        "name": "Ground Cedar",
+        "facility": "Ground Cedar",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11788489048,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3917443,
+          34.9520138
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11788489049",
+        "name": "Pond Hawk",
+        "facility": "Pond Hawk",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11788489049,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3920136,
+          34.9506014
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11788489050",
+        "name": "Rhododendron",
+        "facility": "Rhododendron",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11788489050,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.9928631,
+          35.0257969
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-11806046066",
+        "name": "Whitewater Campsite",
+        "facility": "Whitewater Campsite",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 11806046066,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4197926,
+          34.8067101
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-12069250369",
+        "name": "Welcome Creek Mobile Home",
+        "facility": "Welcome Creek Mobile Home",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 12069250369,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1-864-360-4738"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1075916,
+          34.3623511
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-12301573950",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 12301573950,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0151028,
+          34.5389555
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-12329752262",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 12329752262,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8743547,
+          34.157775
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-12337678885",
+        "name": "Swamp Fox Campground",
+        "facility": "Swamp Fox Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 12337678885,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5657615,
+          33.7328518
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-12348883321",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 12348883321,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1089619,
+          32.8076142
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-12950555384",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 12950555384,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8820359,
+          35.0327162
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-13112975902",
+        "name": "Laurel forks camp site",
+        "facility": "Laurel forks camp site",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 13112975902,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8404442,
+          35.0507903
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-13112976101",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 13112976101,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8829005,
+          35.0323076
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-13113067001",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 13113067001,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8273051,
+          34.0079411
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-13174343857",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 13174343857,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0770317,
+          34.9218473
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-13308618222",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 13308618222,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3555214,
+          32.9097575
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-122519566",
+        "name": "Smyrna Farm Campground",
+        "facility": "Smyrna Farm Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 122519566,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9118031,
+          34.2949219
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-161135343",
+        "name": "Pearson Blvd RV Parking",
+        "facility": "Pearson Blvd RV Parking",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 161135343,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9095293,
+          34.2898561
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-161135344",
+        "name": "Petty Blvd RV Parking",
+        "facility": "Petty Blvd RV Parking",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 161135344,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9021793,
+          34.2939656
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-161217502",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 161217502,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9086939,
+          34.2963133
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-161217505",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 161217505,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9088529,
+          34.2954742
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-161217509",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 161217509,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9059936,
+          34.299702
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-161270453",
+        "name": "Park Place RV Parking",
+        "facility": "Park Place RV Parking",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 161270453,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9058098,
+          34.2953548
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-161270454",
+        "name": "Gecko RV Park",
+        "facility": "Gecko RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 161270454,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9899003,
+          32.7387891
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-226023955",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 226023955,
+        "osm_type": "way",
+        "website": "https://www.ccprc.com/index.aspx?NID=1434",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9914184,
+          32.7370124
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-226023956",
+        "name": "Camping at James Island County Park",
+        "facility": "Camping at James Island County Park",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 226023956,
+        "osm_type": "way",
+        "website": "https://www.ccprc.com/index.aspx?NID=1434",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3489235,
+          35.1498589
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-304527100",
+        "name": "Kings Mountain State Park Camping Area",
+        "facility": "Kings Mountain State Park Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 304527100,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3050158,
+          34.497109
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-308736487",
+        "name": "Pedro's Campground",
+        "facility": "Pedro's Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 308736487,
+        "osm_type": "way",
+        "website": "https://www.sobpedro.com/accommodations/camp-pedro-rv-park-campground-i95-sc",
+        "phone": "+1 843 774 2411"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4983868,
+          33.5504478
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-320196594",
+        "name": "Cypress View Campground",
+        "facility": "Cypress View Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 320196594,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.5585243,
+          35.0477289
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-409062773",
+        "name": "Sakanaga",
+        "facility": "Sakanaga",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 409062773,
+        "osm_type": "way",
+        "website": "https://www.sakanaga.com",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8822651,
+          32.6246024
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-423639439",
+        "name": "Point South / Yemassee Kampgrounds of America",
+        "facility": "Point South / Yemassee Kampgrounds of America",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 423639439,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9593723,
+          33.6251026
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-447687437",
+        "name": "Ocean Lakes Campground",
+        "facility": "Ocean Lakes Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 447687437,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9509659,
+          33.6337111
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-447687438",
+        "name": "Lakewood Family Campground",
+        "facility": "Lakewood Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 447687438,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.944739,
+          33.6385203
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-447687439",
+        "name": "Pirateland Family Campground",
+        "facility": "Pirateland Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 447687439,
+        "osm_type": "way",
+        "website": "https://www.pirateland.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.8994202,
+          33.6846308
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-447687442",
+        "name": "Myrtle Beach K.O.A.",
+        "facility": "Myrtle Beach K.O.A.",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 447687442,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.7696244,
+          33.7755017
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-449565721",
+        "name": "Myrtle Beach Travel Park",
+        "facility": "Myrtle Beach Travel Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 449565721,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0009898,
+          33.6872612
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-450593761",
+        "name": "Cypress Camping Resort",
+        "facility": "Cypress Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 450593761,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.6439475,
+          35.0630262
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-456086193",
+        "name": "Palmetto Cove RV Park",
+        "facility": "Palmetto Cove RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 456086193,
+        "osm_type": "way",
+        "website": "https://palmettocove.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.5633821,
+          33.0376167
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-463345418",
+        "name": "Buckhall Campground",
+        "facility": "Buckhall Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 463345418,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4714881,
+          33.1984269
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-463356658",
+        "name": "Elmwood Campground",
+        "facility": "Elmwood Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 463356658,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4822827,
+          33.2051414
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-475866366",
+        "name": "Saint Paul Campground",
+        "facility": "Saint Paul Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 475866366,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7510422,
+          33.3221889
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-479879138",
+        "name": "Cattle Creek Campground",
+        "facility": "Cattle Creek Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 479879138,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2734642,
+          33.1036359
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-512590710",
+        "name": "Cypress Methodist Campground",
+        "facility": "Cypress Methodist Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 512590710,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9682172,
+          35.0641256
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-544260755",
+        "name": "Charlotte / Fort Mill KOA",
+        "facility": "Charlotte / Fort Mill KOA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 544260755,
+        "osm_type": "way",
+        "website": "https://koa.com/campgrounds/charlotte/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9039344,
+          35.0589836
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-545133129",
+        "name": "Crown Cove RV Park",
+        "facility": "Crown Cove RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 545133129,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9512069,
+          34.4901332
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-550010357",
+        "name": "Camp Welfare",
+        "facility": "Camp Welfare",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 550010357,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2041824,
+          33.8588754
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-552831160",
+        "name": "Edmund RV Park",
+        "facility": "Edmund RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 552831160,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3583115,
+          33.9754983
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-563249493",
+        "name": "Mr. Z's RV Park",
+        "facility": "Mr. Z's RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 563249493,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1583459,
+          33.9771846
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-564462394",
+        "name": "Barnyard RV Park",
+        "facility": "Barnyard RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 564462394,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4336091,
+          32.3878037
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-572484672",
+        "name": "Hunting Island State Park Campground",
+        "facility": "Hunting Island State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 572484672,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.7850809,
+          33.7663711
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-605077048",
+        "name": "Apache Campground",
+        "facility": "Apache Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 605077048,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.131244,
+          34.880788
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-685247884",
+        "name": "Camp Chatuga",
+        "facility": "Camp Chatuga",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 685247884,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8270644,
+          33.8357065
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-693959554",
+        "name": "Longleaf Campground",
+        "facility": "Longleaf Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 693959554,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0399253,
+          32.3228386
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-694939640",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 694939640,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3207365,
+          34.9171435
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-711987538",
+        "name": "Rainbow R.V. Park",
+        "facility": "Rainbow R.V. Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 711987538,
+        "osm_type": "way",
+        "website": "http://www.rainbowrvpark.com",
+        "phone": "+1 864 244 1271"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5147099,
+          33.1797949
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-755371365",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 755371365,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1666035,
+          34.9185783
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-755742128",
+        "name": "GSP RV Park",
+        "facility": "GSP RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 755742128,
+        "osm_type": "way",
+        "website": "https://gsp-rvpark.com/",
+        "phone": "+1 864 655 4399"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.8432173,
+          33.8429015
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-757085511",
+        "name": "Sun Outdoors Myrtle Beach",
+        "facility": "Sun Outdoors Myrtle Beach",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 757085511,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.6872027,
+          33.5982901
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-759301968",
+        "name": "Pine Acres Campground",
+        "facility": "Pine Acres Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 759301968,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4403193,
+          35.0400727
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-760930611",
+        "name": "Sugar Lake RV Park",
+        "facility": "Sugar Lake RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 760930611,
+        "osm_type": "way",
+        "website": "https://www.sugarlakervpark.com/",
+        "phone": "+1-864-834-0776"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0421575,
+          34.9859621
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-767696729",
+        "name": "Cunningham RV Park",
+        "facility": "Cunningham RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 767696729,
+        "osm_type": "way",
+        "website": "http://www.cunninghamrvpark.com/",
+        "phone": "+1-864-576-1973"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7591876,
+          32.1609551
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-812556561",
+        "name": "Hilton Head Motorcoach Resort",
+        "facility": "Hilton Head Motorcoach Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets"
         ],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": null,
         "state": "SC",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 812556561,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -110,28 +4276,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.928,
-          33.9223
+          -82.163742,
+          34.9361126
         ]
       },
       "properties": {
-        "id": "SC-005",
-        "name": "South Carolina Campground 5",
+        "id": "SC-OSM-845402978",
+        "name": "290 RV PARK",
+        "facility": "290 RV PARK",
         "type": "established",
-        "cost": 0,
-        "rating": "3.8",
-        "reviews_count": 54,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "toilets",
-          "picnic_tables",
-          "trash"
-        ],
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "SC",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 845402978,
+        "osm_type": "way",
+        "website": "https://www.290rvpark.com/",
+        "phone": "+1-864-303-1575"
       }
     },
     {
@@ -139,31 +4304,1778 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.107,
-          33.4566
+          -81.6826222,
+          33.400812
         ]
       },
       "properties": {
-        "id": "SC-006",
-        "name": "South Carolina Campground 6",
+        "id": "SC-OSM-881841526",
+        "name": "Pine View Mobile Home Park",
+        "facility": "Pine View Mobile Home Park",
         "type": "established",
-        "cost": 25,
-        "rating": "3.8",
-        "reviews_count": 25,
-        "amenities": [
-          "water",
-          "picnic_tables",
-          "fire_rings",
-          "toilets",
-          "showers"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV"
-        ],
-        "road_difficulty": "dirt",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "SC",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 881841526,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1-803-295-7932"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.955528,
+          33.6378704
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-974860262",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 974860262,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.2983775,
+          34.9902103
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-996222397",
+        "name": "Rock's RV Park",
+        "facility": "Rock's RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 996222397,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3270723,
+          35.0089375
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1001215614",
+        "name": "Turkey Trail RV Park",
+        "facility": "Turkey Trail RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1001215614,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3189513,
+          34.9437929
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1001219201",
+        "name": "Flowermill RV Park",
+        "facility": "Flowermill RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1001219201,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1980528,
+          34.9469121
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1016024020",
+        "name": "Creekside RV Park",
+        "facility": "Creekside RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1016024020,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.423598,
+          35.0626247
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1017012402",
+        "name": "KOA Holiday",
+        "facility": "KOA Holiday",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1017012402,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.7538493,
+          33.8680299
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1018609637",
+        "name": "Crossroads Coach Resort at The ROB",
+        "facility": "Crossroads Coach Resort at The ROB",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1018609637,
+        "osm_type": "way",
+        "website": "https://www.lakecityrv.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0257623,
+          34.7542136
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1050909818",
+        "name": "Keowee Falls RV Park",
+        "facility": "Keowee Falls RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1050909818,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9185262,
+          33.6239667
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1057824580",
+        "name": "Twin Magnolia RV Park",
+        "facility": "Twin Magnolia RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1057824580,
+        "osm_type": "way",
+        "website": "https://twinmagnoliarvpark.biz",
+        "phone": "+1 803 646 9592"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7548525,
+          34.4428147
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1076469701",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1076469701,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.6681945,
+          33.8463529
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1078914697",
+        "name": "North Myrtle Beach RV Resort",
+        "facility": "North Myrtle Beach RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1078914697,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.212891,
+          34.2166225
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1079342631",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1079342631,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.7766229,
+          32.8654414
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1080369989",
+        "name": "KOA Kampground",
+        "facility": "KOA Kampground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1080369989,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9432385,
+          34.8478452
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1084515503",
+        "name": "Pine Ridge Campground",
+        "facility": "Pine Ridge Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1084515503,
+        "osm_type": "way",
+        "website": "https://www.pineridgecampground.com/",
+        "phone": "+1-864-576-0302"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0765875,
+          34.7735206
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1084516485",
+        "name": "Fireside RV Park",
+        "facility": "Fireside RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1084516485,
+        "osm_type": "way",
+        "website": "https://firesidervpark.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7375152,
+          34.6310841
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1084516562",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1084516562,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.754074,
+          34.4336807
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1084522853",
+        "name": "Newberry KOA Journey",
+        "facility": "Newberry KOA Journey",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1084522853,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0122921,
+          34.2587818
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1084523538",
+        "name": "Lake Greenwood Motorcoach Resort",
+        "facility": "Lake Greenwood Motorcoach Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1084523538,
+        "osm_type": "way",
+        "website": "https://lakegreenwoodmotorcoachresort.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7790088,
+          34.5965011
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1087399823",
+        "name": "Mount Carmel Church Camp",
+        "facility": "Mount Carmel Church Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1087399823,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0933955,
+          33.3826829
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1087800778",
+        "name": "Angel's Landing Campground",
+        "facility": "Angel's Landing Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1087800778,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1174099,
+          33.3493273
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1087800965",
+        "name": "Blacks Camp",
+        "facility": "Blacks Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1087800965,
+        "osm_type": "way",
+        "website": "https://www.blackscamp.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1399766,
+          33.3824635
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1087801125",
+        "name": "Hill's Landing & RV Park",
+        "facility": "Hill's Landing & RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1087801125,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7826015,
+          35.1295019
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1089346811",
+        "name": "Cowpens Battlefield RV Park",
+        "facility": "Cowpens Battlefield RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1089346811,
+        "osm_type": "way",
+        "website": "https://www.cowpensrvpark.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7402065,
+          35.0707094
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1089764532",
+        "name": "Camp Sparrow RV Resort",
+        "facility": "Camp Sparrow RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1089764532,
+        "osm_type": "way",
+        "website": "https://campsparrowrvresort.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7293089,
+          35.1246184
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1089767361",
+        "name": "Water Wheel RV Park",
+        "facility": "Water Wheel RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1089767361,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.786152,
+          34.6215059
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1089786496",
+        "name": "Clemson RV Park",
+        "facility": "Clemson RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1089786496,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1190145,
+          34.968343
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1089973991",
+        "name": "Burrells Ford Campground",
+        "facility": "Burrells Ford Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1089973991,
+        "osm_type": "way",
+        "website": "https://www.fs.usda.gov/recarea/scnfs/recarea/?recid=47065",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0695484,
+          33.4996145
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1098678816",
+        "name": "Huntington Beach State Park South Campground",
+        "facility": "Huntington Beach State Park South Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1098678816,
+        "osm_type": "way",
+        "website": "https://southcarolinaparks.com/huntington-beach",
+        "phone": "+1 843 237 4440"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1719669,
+          34.6635574
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1102737363",
+        "name": "Shibby RV Living",
+        "facility": "Shibby RV Living",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1102737363,
+        "osm_type": "way",
+        "website": "https://www.shibbyrv.com/",
+        "phone": "+1-864-733-9956"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.7277486,
+          33.8045076
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1103538230",
+        "name": "Barefoot RV Resort",
+        "facility": "Barefoot RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1103538230,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0909449,
+          32.9857127
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1106185995",
+        "name": "KOA",
+        "facility": "KOA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1106185995,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1653309,
+          33.7908265
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1107005698",
+        "name": "Big Cypress Lake RV Park",
+        "facility": "Big Cypress Lake RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1107005698,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3001285,
+          34.9939853
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1107539690",
+        "name": "Lake Robinson RV Park",
+        "facility": "Lake Robinson RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1107539690,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1-864-895-2500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3019441,
+          34.9945909
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1107540137",
+        "name": "Lake Robinson RV Park",
+        "facility": "Lake Robinson RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1107540137,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1-864-895-2500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7709519,
+          32.2223723
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1108632846",
+        "name": "Hilton Head Harbor RV Resort",
+        "facility": "Hilton Head Harbor RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1108632846,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3202727,
+          33.3540288
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1125948855",
+        "name": "Hidden Marina & Campground",
+        "facility": "Hidden Marina & Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1125948855,
+        "osm_type": "way",
+        "website": "https://hiddenmarinacampground.com/",
+        "phone": "+1-843-545-8633"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1069196,
+          34.861911
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1138400236",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1138400236,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4835555,
+          35.0965143
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1162329697",
+        "name": "Camp Spearhead",
+        "facility": "Camp Spearhead",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1162329697,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0740462,
+          32.2567462
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1172674874",
+        "name": "Savannah Lakes RV Resort",
+        "facility": "Savannah Lakes RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1172674874,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5002267,
+          35.1201639
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1174687507",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1174687507,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.4982433,
+          35.1251611
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1174687508",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1174687508,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8153286,
+          33.832066
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1178788556",
+        "name": "Bluff Campground",
+        "facility": "Bluff Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1178788556,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0795897,
+          33.8900791
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1182129419",
+        "name": "Big Rig Friendly RV Resort",
+        "facility": "Big Rig Friendly RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1182129419,
+        "osm_type": "way",
+        "website": "https://bigrigfriendly.com/",
+        "phone": "+1-803-708-5122"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.869761,
+          34.4345057
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1225450903",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1225450903,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8632282,
+          34.4374891
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1225451574",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1225451574,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9793888,
+          34.2526519
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1235008039",
+        "name": "Freedom Park Family Campground",
+        "facility": "Freedom Park Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1235008039,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8410774,
+          34.8622499
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1293138106",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1293138106,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.7499661,
+          33.797418
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1308050775",
+        "name": "Briarcliffe RV Resort",
+        "facility": "Briarcliffe RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1308050775,
+        "osm_type": "way",
+        "website": "https://briarcliffervresort.com/Home.aspx",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0132587,
+          33.9758977
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1308849925",
+        "name": "Cruisers Roost RV Park",
+        "facility": "Cruisers Roost RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1308849925,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2026408,
+          33.5254021
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1322702572",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1322702572,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2131227,
+          33.5422216
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1322704748",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1322704748,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.213106,
+          33.5485149
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1322705636",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1322705636,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2644777,
+          33.5336535
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1322708732",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1322708732,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.419315,
+          33.5383688
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1322937737",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1322937737,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7785022,
+          34.4367957
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1325473771",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1325473771,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0520926,
+          32.9995654
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1331520455",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1331520455,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4444911,
+          35.0898193
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1357561746",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1357561746,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1467617,
+          34.9139641
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1385069526",
+        "name": "Beckon Ridge RV Park",
+        "facility": "Beckon Ridge RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1385069526,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0228317,
+          33.7706446
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1385803442",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1385803442,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.464802,
+          34.3205038
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1387882139",
+        "name": "Midpoint I95 RV Park",
+        "facility": "Midpoint I95 RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1387882139,
+        "osm_type": "way",
+        "website": "https://midpointi95rvpark.com/",
+        "phone": "+1 843 845 2321"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8051608,
+          34.8452537
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1389238484",
+        "name": "Campsite near SC",
+        "facility": "Campsite near SC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1389238484,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0279154,
+          32.9076619
+        ]
+      },
+      "properties": {
+        "id": "SC-OSM-1430328030",
+        "name": "Fain's RV Park",
+        "facility": "Fain's RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SC",
+        "source": "OpenStreetMap",
+        "osm_id": 1430328030,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
       }
     }
   ]

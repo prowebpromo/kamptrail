@@ -6,24 +6,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.7393,
-          41.2988
+          -72.1056318,
+          41.8200981
         ]
       },
       "properties": {
-        "id": "CT-001",
-        "name": "Connecticut Dispersed 1",
-        "type": "dispersed",
-        "cost": 0,
+        "id": "CT-OSM-359278503",
+        "name": "Nickerson Park",
+        "facility": "Nickerson Park",
+        "type": "established",
+        "cost": null,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "trash"
-        ],
+        "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "CT",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 359278503,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -31,31 +34,2115 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.9949,
-          42.5554
+          -73.3852494,
+          41.3377405
         ]
       },
       "properties": {
-        "id": "CT-002",
-        "name": "Connecticut Campground 2",
+        "id": "CT-OSM-2369594493",
+        "name": "Youth Camp I",
+        "facility": "Youth Camp I",
         "type": "established",
-        "cost": 25,
-        "rating": "4.3",
-        "reviews_count": 51,
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 2369594493,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3846013,
+          41.3358354
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-2369594502",
+        "name": "Youth Camp II",
+        "facility": "Youth Camp II",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 2369594502,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3831963,
+          41.3362856
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-2369594509",
+        "name": "Youth Camp III",
+        "facility": "Youth Camp III",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 2369594509,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2629871,
+          41.7152705
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-3545198705",
+        "name": "Cozy Hill Campground",
+        "facility": "Cozy Hill Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 3545198705,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1003698,
+          41.653849
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-3645292999",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 3645292999,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9521358,
+          41.7256777
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-3756079280",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 3756079280,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.652081,
+          41.4808554
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4046028289",
+        "name": "Camp Farnam",
+        "facility": "Camp Farnam",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4046028289,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3251851,
+          41.6138597
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4128171745",
+        "name": "SR1",
+        "facility": "SR1",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4128171745,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.327528,
+          41.6133197
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4128171746",
+        "name": "SR2",
+        "facility": "SR2",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4128171746,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.333367,
+          41.4779671
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4128278395",
+        "name": "Youth Site 1",
+        "facility": "Youth Site 1",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4128278395,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.334967,
+          41.6049941
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4137480108",
+        "name": "SR3",
+        "facility": "SR3",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4137480108,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3373099,
+          41.6093712
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4137480109",
+        "name": "SR4",
+        "facility": "SR4",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4137480109,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5950804,
+          41.3434908
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4169935879",
+        "name": "Boy Scout Camp",
+        "facility": "Boy Scout Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4169935879,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9302512,
+          41.9543969
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4224657735",
+        "name": "Roaring Brook Camp Area",
+        "facility": "Roaring Brook Camp Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4224657735,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9632825,
+          41.8453098
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4353950901",
+        "name": "DEEP campsite",
+        "facility": "DEEP campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4353950901,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9400429,
+          41.4581461
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4411463105",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4411463105,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.491154,
+          41.781483
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4426316891",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4426316891,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8451562,
+          41.4249565
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-4968149921",
+        "name": "Mystic KOA Holiday",
+        "facility": "Mystic KOA Holiday",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 4968149921,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.574461,
+          41.788127
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-5153893164",
+        "name": "Beech Grove 5",
+        "facility": "Beech Grove 5",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 5153893164,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8657262,
+          41.6058307
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-5316305634",
+        "name": "Frog Hollow Horse Camp",
+        "facility": "Frog Hollow Horse Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 5316305634,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3896144,
+          41.8154
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-5693935052",
+        "name": "Silver Hill Campsite",
+        "facility": "Silver Hill Campsite",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 5693935052,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7389807,
+          41.9731256
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-5757179152",
+        "name": "Primitve Camping Area",
+        "facility": "Primitve Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 5757179152,
+        "osm_type": "node",
+        "website": "https://newenglandtrail.org/overnight-sites/windsor-locks-scouts-primitive-tentsite/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3945152,
+          41.9105206
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-5873318066",
+        "name": "Sharon Mountain Campsite",
+        "facility": "Sharon Mountain Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 5873318066,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.333227,
+          41.4770968
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-6022140078",
+        "name": "Youth Site 2",
+        "facility": "Youth Site 2",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 6022140078,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4438259,
+          41.4395535
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-6133822952",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 6133822952,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.4525755,
+          42.0202546
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-6842491961",
+        "name": "Ball Brook Group Camping Area",
+        "facility": "Ball Brook Group Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 6842491961,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.4523722,
+          42.015486
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-7573515526",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 7573515526,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0381311,
+          41.9397088
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-7840493773",
+        "name": "White Pines Campsites",
+        "facility": "White Pines Campsites",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 7840493773,
+        "osm_type": "node",
+        "website": "https://www.whitepinescampsites.com/",
+        "phone": "+1-860-379-0124"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9929817,
+          41.9311723
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-7940315111",
+        "name": "James Stocking Youth Group Camping Area",
+        "facility": "James Stocking Youth Group Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 7940315111,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0102202,
+          41.9399805
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-8603057987",
+        "name": "Camp White Youth Group Camping Area",
+        "facility": "Camp White Youth Group Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 8603057987,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.379665,
+          41.8382044
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-8952995994",
+        "name": "Housatonic Meadows State Park Campground",
+        "facility": "Housatonic Meadows State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 8952995994,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1134786,
+          42.0183576
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9012092507",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9012092507,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2020278,
+          41.8665556
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9012794965",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9012794965,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1631111,
+          41.9130222
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9012795053",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9012795053,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0799322,
+          41.8274668
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9012892682",
+        "name": "Silvermine Horse Camp",
+        "facility": "Silvermine Horse Camp",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "water",
           "toilets",
-          "picnic_tables",
-          "showers"
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9012892682,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0840441,
+          41.7747928
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9015274714",
+        "name": "Youth Group Camping Area",
+        "facility": "Youth Group Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9015274714,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5057127,
+          41.6993744
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9133609404",
+        "name": "4",
+        "facility": "4",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9133609404,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5057731,
+          41.6996437
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9133609405",
+        "name": "3",
+        "facility": "3",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9133609405,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5058375,
+          41.699807
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9133657223",
+        "name": "2",
+        "facility": "2",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9133657223,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5057999,
+          41.7000408
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9133657228",
+        "name": "1",
+        "facility": "1",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9133657228,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3634368,
+          41.9268164
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9342250905",
+        "name": "Belter's Campsites",
+        "facility": "Belter's Campsites",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9342250905,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4373445,
+          41.7928889
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-9567624721",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 9567624721,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4182741,
+          41.408592
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-11206775000",
+        "name": "Cedars Camp Area",
+        "facility": "Cedars Camp Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 11206775000,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4155316,
+          41.3941832
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-11206844706",
+        "name": "Quarry Knob Camp Area",
+        "facility": "Quarry Knob Camp Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 11206844706,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4194898,
+          41.3995604
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-11206844731",
+        "name": "Springledge Camp Area",
+        "facility": "Springledge Camp Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 11206844731,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4203622,
+          41.4042959
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-11206844732",
+        "name": "Hogback Camp Area",
+        "facility": "Hogback Camp Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 11206844732,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.3479444,
+          41.9205278
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-12245133039",
+        "name": "Dean's Ravine Campsite",
+        "facility": "Dean's Ravine Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 12245133039,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1586182,
+          41.5570987
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-12791039600",
+        "name": "Odetah Camping Resort",
+        "facility": "Odetah Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 12791039600,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.6728243,
+          41.4202572
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-12832808937",
+        "name": "Group Campsite",
+        "facility": "Group Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 12832808937,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.6735044,
+          41.4205175
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-12832808938",
+        "name": "Group Campsite",
+        "facility": "Group Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 12832808938,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.333502,
+          41.2134473
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43398010",
+        "name": "Girl Scout Camp",
+        "facility": "Girl Scout Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43398010,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.8989646,
+          41.9894419
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43435806",
+        "name": "Camp Alice Merritt",
+        "facility": "Camp Alice Merritt",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43435806,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4036957,
+          41.9102934
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43435969",
+        "name": "Del-Aire Compground",
+        "facility": "Del-Aire Compground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43435969,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2673149,
+          41.3182616
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43436059",
+        "name": "Lakewood Ymca (Camp Tepee)",
+        "facility": "Lakewood Ymca (Camp Tepee)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43436059,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.879296,
+          41.9978262
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43436243",
+        "name": "Camp Mary Dean Vreeland (Girl Scouts)",
+        "facility": "Camp Mary Dean Vreeland (Girl Scouts)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43436243,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.4660567,
+          41.5133472
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43436497",
+        "name": "Southwestern Ct. Girl Scouts Council-Camp Topside",
+        "facility": "Southwestern Ct. Girl Scouts Council-Camp Topside",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43436497,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5030433,
+          41.7929156
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43436682",
+        "name": "Laurel Trails Council Girl Scouts (Camp Seeley)",
+        "facility": "Laurel Trails Council Girl Scouts (Camp Seeley)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43436682,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.827141,
+          41.3280154
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43437899",
+        "name": "Girl Scout Camp",
+        "facility": "Girl Scout Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43437899,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1514422,
+          42.01444
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43438499",
+        "name": "Camp Pomeraug",
+        "facility": "Camp Pomeraug",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43438499,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5922166,
+          41.3450147
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43438745",
+        "name": "Deer Lake Camp",
+        "facility": "Deer Lake Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43438745,
+        "osm_type": "way",
+        "website": "https://www.deerlakecamp.org/dcadl.php",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2890467,
+          42.0042307
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43438750",
+        "name": "Mineral Springs Campground",
+        "facility": "Mineral Springs Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43438750,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.428274,
+          41.7792439
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43438968",
+        "name": "John and Frederica Johnson Memorial Camp",
+        "facility": "John and Frederica Johnson Memorial Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43438968,
+        "osm_type": "way",
+        "website": "http://www.campjohnson.org",
+        "phone": "+1 860 643 0755"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0419218,
+          41.6278593
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43438991",
+        "name": "Camp Mattatuck",
+        "facility": "Camp Mattatuck",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43438991,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5268568,
+          41.4690246
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43439223",
+        "name": "Boy Scouts of America Troop 44",
+        "facility": "Boy Scouts of America Troop 44",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43439223,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1807479,
+          41.8420236
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43439597",
+        "name": "Nw Ctgirl Scout Council (Camp Maria Pratt)",
+        "facility": "Nw Ctgirl Scout Council (Camp Maria Pratt)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43439597,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5681133,
+          41.5796294
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43439614",
+        "name": "Shepherd's Nine",
+        "facility": "Shepherd's Nine",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43439614,
+        "osm_type": "way",
+        "website": "https://www.noyesrhythm.org",
+        "phone": "+1 860 342 0328"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.4607142,
+          41.9430165
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43439641",
+        "name": "Ymca Camp Slone (Indian Mountain Road)",
+        "facility": "Ymca Camp Slone (Indian Mountain Road)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43439641,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2411709,
+          41.9671622
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43439824",
+        "name": "Roaring Brook Campground",
+        "facility": "Roaring Brook Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43439824,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3675731,
+          41.9856551
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43440098",
+        "name": "Stafford Wood West Campground",
+        "facility": "Stafford Wood West Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43440098,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1757281,
+          42.0063894
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43440247",
+        "name": "Long Rivers Council (Boy Scouts Of America)",
+        "facility": "Long Rivers Council (Boy Scouts Of America)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43440247,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8400226,
+          41.4248077
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43440566",
+        "name": "Mystic KOA Holiday",
+        "facility": "Mystic KOA Holiday",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43440566,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1787275,
+          41.8517765
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43440632",
+        "name": "Nw Ctgirl Scout Council (Camp Maria Pratt)",
+        "facility": "Nw Ctgirl Scout Council (Camp Maria Pratt)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43440632,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5930367,
+          41.5746674
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43441037",
+        "name": "YMCA Camp Ingersoll",
+        "facility": "YMCA Camp Ingersoll",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43441037,
+        "osm_type": "way",
+        "website": "https://www.campingersoll.org/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3146889,
+          41.4959929
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43441513",
+        "name": "Salem Farms Campground",
+        "facility": "Salem Farms Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43441513,
+        "osm_type": "way",
+        "website": "https://www.salemfarmscampground.com",
+        "phone": "+1 860 859 2320"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2972999,
+          41.4959617
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43441524",
+        "name": "Witch Meadow Lake Campground",
+        "facility": "Witch Meadow Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
         ],
         "rig_friendly": [
-          "tent",
           "RV",
-          "trailer"
+          "trailer",
+          "tent"
         ],
-        "road_difficulty": "gravel",
+        "road_difficulty": null,
         "state": "CT",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 43441524,
+        "osm_type": "way",
+        "website": "http://www.witchmeadowcampground.com/",
+        "phone": "+1-860-859-1542"
       }
     },
     {
@@ -63,24 +2150,2478 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.326,
-          40.302
+          -72.1523195,
+          41.5574384
         ]
       },
       "properties": {
-        "id": "CT-003",
-        "name": "Connecticut Dispersed 3",
-        "type": "dispersed",
-        "cost": 0,
+        "id": "CT-OSM-43441634",
+        "name": "Odetah Camping Resort",
+        "facility": "Odetah Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43441634,
+        "osm_type": "way",
+        "website": "https://odetah.com",
+        "phone": "+1 800 448 1193"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2193374,
+          41.5273986
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43441652",
+        "name": "Acorn Acres Campground",
+        "facility": "Acorn Acres Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43441652,
+        "osm_type": "way",
+        "website": "https://acornacrescampsites.com",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2362827,
+          41.5092391
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43441694",
+        "name": "Indian Field Campground",
+        "facility": "Indian Field Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43441694,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2183424,
+          41.5147331
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43441722",
+        "name": "Laurel Lock Campground",
+        "facility": "Laurel Lock Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43441722,
+        "osm_type": "way",
+        "website": "http://www.laurellock.com",
+        "phone": "+1 860 859 1424"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2346444,
+          41.5131023
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43441727",
+        "name": "Arrowhead Cove",
+        "facility": "Arrowhead Cove",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43441727,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.9745162,
+          41.5113884
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43442042",
+        "name": "Amos Lake Campground",
+        "facility": "Amos Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43442042,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1633733,
+          41.8882524
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43442293",
+        "name": "Camp Ouleout (Ymca)",
+        "facility": "Camp Ouleout (Ymca)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43442293,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3639918,
+          41.9795793
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43442385",
+        "name": "Sun Valley Beach Club",
+        "facility": "Sun Valley Beach Club",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43442385,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.8364227,
+          41.5897743
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-43442411",
+        "name": "YMCA Camp Sloper",
+        "facility": "YMCA Camp Sloper",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 43442411,
+        "osm_type": "way",
+        "website": "https://www.ymcacampsloper.org",
+        "phone": "+1 860 621 8194"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3543739,
+          41.3816782
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-249095708",
+        "name": "Camp Claire",
+        "facility": "Camp Claire",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 249095708,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.6261218,
+          41.3545894
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-255488870",
+        "name": "Camp Laurelwood",
+        "facility": "Camp Laurelwood",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 255488870,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2652883,
+          42.0057022
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-469273274",
+        "name": "Lone Oak Campsites",
+        "facility": "Lone Oak Campsites",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 469273274,
+        "osm_type": "way",
+        "website": "https://www.loneoakcampsites.com/",
+        "phone": "+1-860-824-7051"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2408537,
+          41.3111155
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-470090511",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 470090511,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3595808,
+          41.7793178
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-551335818",
+        "name": "Creaser Park",
+        "facility": "Creaser Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 551335818,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4709258,
+          41.4542706
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-665564989",
+        "name": "Camp Bethel",
+        "facility": "Camp Bethel",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 665564989,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2511712,
+          41.3166665
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-744210709",
+        "name": "Niantic KOA Journey",
+        "facility": "Niantic KOA Journey",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 744210709,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1254838,
+          41.2523712
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-760859838",
+        "name": "Boy Scout camp",
+        "facility": "Boy Scout camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 760859838,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9125656,
+          41.6453092
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-779415725",
+        "name": "Bear Creek Campground",
+        "facility": "Bear Creek Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 779415725,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.4947465,
+          41.7752834
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-782714379",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 782714379,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9481191,
+          41.4521822
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-795646952",
+        "name": "YMCA Camp Mountain Laurel",
+        "facility": "YMCA Camp Mountain Laurel",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 795646952,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 203 535 2569"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.4949974,
+          41.7763946
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-808253667",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 808253667,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.4873027,
+          41.783077
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-808253731",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 808253731,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4281973,
+          41.4507094
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-869901107",
+        "name": "Wolf's Den Family Campground",
+        "facility": "Wolf's Den Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 869901107,
+        "osm_type": "way",
+        "website": "https://wolfsdencampground.com",
+        "phone": "+1 860 873 9681"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2830503,
+          41.6987338
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-871515488",
+        "name": "Camp Chinqueka",
+        "facility": "Camp Chinqueka",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 871515488,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0571848,
+          41.9715529
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-879297607",
+        "name": "Chamberlain Lake Campground",
+        "facility": "Chamberlain Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 879297607,
+        "osm_type": "way",
+        "website": "http://www.chamberlainlakecampground.net",
+        "phone": "+1 860 974 0567"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0394879,
+          41.6343193
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186814",
+        "name": "WPW",
+        "facility": "WPW",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186814,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0390321,
+          41.6343568
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186815",
+        "name": "Tamarack",
+        "facility": "Tamarack",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186815,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0388449,
+          41.6347046
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186816",
+        "name": "49er's",
+        "facility": "49er's",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186816,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.038213,
+          41.6337527
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186819",
+        "name": "Hawthorne",
+        "facility": "Hawthorne",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186819,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0374312,
+          41.6344354
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186820",
+        "name": "Cedar",
+        "facility": "Cedar",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186820,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0372978,
+          41.6334857
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186821",
+        "name": "Arrow North",
+        "facility": "Arrow North",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186821,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0388246,
+          41.6354551
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186822",
+        "name": "Maple",
+        "facility": "Maple",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186822,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0387269,
+          41.6334616
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186823",
+        "name": "Scoutcraft Area",
+        "facility": "Scoutcraft Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186823,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0374837,
+          41.6350423
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186824",
+        "name": "Mohawk",
+        "facility": "Mohawk",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186824,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0379827,
+          41.6360131
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186825",
+        "name": "Cougar",
+        "facility": "Cougar",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186825,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0381387,
+          41.6367214
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186826",
+        "name": "Polaris",
+        "facility": "Polaris",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186826,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0379085,
+          41.6328759
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882186827",
+        "name": "Arrow South",
+        "facility": "Arrow South",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882186827,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0421977,
+          41.6316747
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882567913",
+        "name": "Topside",
+        "facility": "Topside",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882567913,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0445316,
+          41.6350757
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882567937",
+        "name": "Hickory",
+        "facility": "Hickory",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882567937,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0389449,
+          41.6363042
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-882567947",
+        "name": "Trapper (DISUSED)",
+        "facility": "Trapper (DISUSED)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 882567947,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.886944,
+          41.5632692
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-911886938",
+        "name": "Countryside RV Park",
+        "facility": "Countryside RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 911886938,
+        "osm_type": "way",
+        "website": "https://www.countrysidervcamp.com",
+        "phone": "+1 860 376 0029"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.9007842,
+          41.5488881
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-912115985",
+        "name": "Pachaug Marina and Campground",
+        "facility": "Pachaug Marina and Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 912115985,
+        "osm_type": "way",
+        "website": "http://www.pachaugmarina.net",
+        "phone": "+1 860 207 4017"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2155007,
+          41.506185
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-917175886",
+        "name": "Pequot Ledge Campground",
+        "facility": "Pequot Ledge Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 917175886,
+        "osm_type": "way",
+        "website": "http://www.pequotledge.com",
+        "phone": "+1 860 859 0682"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.9847658,
+          41.6214496
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-946183267",
+        "name": "Ross Hill Park Family Campground",
+        "facility": "Ross Hill Park Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 946183267,
+        "osm_type": "way",
+        "website": "https://www.rosshillpark.com/",
+        "phone": "+1 860 376 9606"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0754003,
+          41.6788815
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-946194139",
+        "name": "Highland Campground",
+        "facility": "Highland Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 946194139,
+        "osm_type": "way",
+        "website": "http://www.highlandcampground.com",
+        "phone": "+1 860 423 5684"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5016437,
+          41.7438735
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-951327603",
+        "name": "Camp Merrie-Wood",
+        "facility": "Camp Merrie-Wood",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 951327603,
+        "osm_type": "way",
+        "website": "https://www.gsofct.org/en/camp/summer-camps/day-camp/merrie_wood.html",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.541768,
+          41.695713
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-951860171",
+        "name": "Camp Neipsic",
+        "facility": "Camp Neipsic",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 951860171,
+        "osm_type": "way",
+        "website": "https://friendsofcampneipsic.org",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0307565,
+          41.8755731
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-952493658",
+        "name": "Windham County 4H Camp",
+        "facility": "Windham County 4H Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 952493658,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8079605,
+          41.6891211
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-952825549",
+        "name": "River's Edge Campground",
+        "facility": "River's Edge Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 952825549,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8142678,
+          41.8533126
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-966070560",
+        "name": "Hide-Away-Cove Family Campground",
+        "facility": "Hide-Away-Cove Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 966070560,
+        "osm_type": "way",
+        "website": "https://hide-away-cove.squarespace.com",
+        "phone": "+1 860 774 1128"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.27811,
+          41.9210109
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-973204170",
+        "name": "Wilderness Lake Campground",
+        "facility": "Wilderness Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 973204170,
+        "osm_type": "way",
+        "website": "https://wildernesslakect.com/",
+        "phone": "+1 860 684 6352"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1940818,
+          41.7008311
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-975708277",
+        "name": "Willimantic Camp Meeting Association",
+        "facility": "Willimantic Camp Meeting Association",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 975708277,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1715835,
+          41.6699448
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-980733235",
+        "name": "Horizons Inc",
+        "facility": "Horizons Inc",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 980733235,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.9674605,
+          41.8498659
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-992023108",
+        "name": "Wolf Den Campground",
+        "facility": "Wolf Den Campground",
+        "type": "established",
+        "cost": null,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "toilets"
+          "toilets",
+          "water"
         ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
         "state": "CT",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 992023108,
+        "osm_type": "way",
+        "website": "https://portal.ct.gov/DEEP/State-Parks/Parks/Mashamoquet-Brook-State-Park/Camping",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3617524,
+          41.6033197
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1001203497",
+        "name": "Camp Connecticut",
+        "facility": "Camp Connecticut",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1001203497,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8692427,
+          41.5930154
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1009528134",
+        "name": "Mount Misery Campground",
+        "facility": "Mount Misery Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1009528134,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.249771,
+          41.8526595
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1009618671",
+        "name": "Algonquin",
+        "facility": "Algonquin",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1009618671,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2519601,
+          41.8519445
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1009618674",
+        "name": "Mohawk",
+        "facility": "Mohawk",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1009618674,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2524293,
+          41.8511826
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1009618675",
+        "name": "Pootatuck",
+        "facility": "Pootatuck",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1009618675,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2513333,
+          41.8528332
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1009618676",
+        "name": "Chesapeake",
+        "facility": "Chesapeake",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1009618676,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2515522,
+          41.8543298
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1009618677",
+        "name": "Paugassett",
+        "facility": "Paugassett",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1009618677,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2478057,
+          41.853413
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1009618678",
+        "name": "Campsite near CT",
+        "facility": "Campsite near CT",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1009618678,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1752414,
+          41.8896801
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1021536473",
+        "name": "Brialee Family Campground",
+        "facility": "Brialee Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1021536473,
+        "osm_type": "way",
+        "website": "https://www.brialee.com",
+        "phone": "+1 860 429 8359"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8698614,
+          41.509109
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1025033388",
+        "name": "Camp Wightman",
+        "facility": "Camp Wightman",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1025033388,
+        "osm_type": "way",
+        "website": "https://www.campwightman.org",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2036922,
+          41.7749427
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1054896883",
+        "name": "Holiday Hill Day Camp and Recreation Center",
+        "facility": "Holiday Hill Day Camp and Recreation Center",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1054896883,
+        "osm_type": "way",
+        "website": "https://holidayrecreation.com",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3157795,
+          41.9246188
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1059901684",
+        "name": "Camp Yankee Trails",
+        "facility": "Camp Yankee Trails",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1059901684,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7902356,
+          41.5705882
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1070106944",
+        "name": "Cuno Camp",
+        "facility": "Cuno Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1070106944,
+        "osm_type": "way",
+        "website": "https://www.bgcmeriden.org/cuno-camp-information",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0550566,
+          42.0206809
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1095773776",
+        "name": "Solair Recreation League",
+        "facility": "Solair Recreation League",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1095773776,
+        "osm_type": "way",
+        "website": "https://www.solairrl.com",
+        "phone": "+1 860 928 9174"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.7970535,
+          41.7451529
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1095773777",
+        "name": "Sun Ridge Resort",
+        "facility": "Sun Ridge Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1095773777,
+        "osm_type": "way",
+        "website": "https://sunridgeresortct.com",
+        "phone": "+1 860 779 1512"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0913841,
+          41.8642844
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1159196384",
+        "name": "Charlie Brown Campground",
+        "facility": "Charlie Brown Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1159196384,
+        "osm_type": "way",
+        "website": "https://charliebrowncampground.com/",
+        "phone": "+1-860-974-0142"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1104811,
+          41.3058548
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1165399417",
+        "name": "Camp Harkness",
+        "facility": "Camp Harkness",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1165399417,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1084023,
+          41.3089242
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1165399421",
+        "name": "Green Cabins",
+        "facility": "Green Cabins",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1165399421,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1076019,
+          41.3063867
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1165399422",
+        "name": "Blue Cabins",
+        "facility": "Blue Cabins",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1165399422,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1081539,
+          41.305725
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1165399423",
+        "name": "Yellow Cabins",
+        "facility": "Yellow Cabins",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1165399423,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.223339,
+          41.4046485
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1210572861",
+        "name": "Aces High RV Park",
+        "facility": "Aces High RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1210572861,
+        "osm_type": "way",
+        "website": "https://aceshighrvpark.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0265753,
+          41.5924366
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1236153984",
+        "name": "Sunfox Campground",
+        "facility": "Sunfox Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1236153984,
+        "osm_type": "way",
+        "website": "https://sunfoxcampground.com/",
+        "phone": "+1 860 376 1081"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.933021,
+          41.6058976
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1245729061",
+        "name": "Camper's World at Hopeville Pond",
+        "facility": "Camper's World at Hopeville Pond",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1245729061,
+        "osm_type": "way",
+        "website": "https://www.campersworldcampground.com/",
+        "phone": "+1 860 245 1882"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3392759,
+          41.4847204
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1282055610",
+        "name": "Devil's Hopyard State Park Campground",
+        "facility": "Devil's Hopyard State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1282055610,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7167763,
+          41.9048352
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1312623573",
+        "name": "Camp Shalom",
+        "facility": "Camp Shalom",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1312623573,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.003042,
+          41.9349305
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1323299502",
+        "name": "Austin F. Hawes Memorial Campground",
+        "facility": "Austin F. Hawes Memorial Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1323299502,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2098351,
+          41.8637463
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1346685998",
+        "name": "Camp CONNRI",
+        "facility": "Camp CONNRI",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1346685998,
+        "osm_type": "way",
+        "website": "https://easternusa.salvationarmy.org/southern-new-england/camp-connri/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.398938,
+          41.7007489
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1349082317",
+        "name": "Camp Hi Hoti",
+        "facility": "Camp Hi Hoti",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1349082317,
+        "osm_type": "way",
+        "website": "https://www.hnci.org",
+        "phone": "+1 860 251 6517"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.9605921,
+          41.4006062
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1372976714",
+        "name": "Seaport Campground",
+        "facility": "Seaport Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1372976714,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4642556,
+          41.5557422
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1374694631",
+        "name": "Markham Meadows Campground",
+        "facility": "Markham Meadows Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1374694631,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4687799,
+          41.4906213
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1378184975",
+        "name": "Camp Chomeish of New England",
+        "facility": "Camp Chomeish of New England",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1378184975,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.4551708,
+          41.5147424
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1378184980",
+        "name": "Grandview Camping & Cottages",
+        "facility": "Grandview Camping & Cottages",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1378184980,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3081697,
+          41.6315136
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1380579263",
+        "name": "Lake Williams Campground",
+        "facility": "Lake Williams Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1380579263,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2828642,
+          41.6497915
+        ]
+      },
+      "properties": {
+        "id": "CT-OSM-1381855640",
+        "name": "Girl Scouts of Connecticut Camp Laurel",
+        "facility": "Girl Scouts of Connecticut Camp Laurel",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "OpenStreetMap",
+        "osm_id": 1381855640,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
       }
     }
   ]

@@ -6,47 +6,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -156.0948,
-          19.6522
+          -156.237662,
+          20.7685116
         ]
       },
       "properties": {
-        "id": "HI-001",
-        "name": "Hawaii Dispersed 1",
-        "type": "dispersed",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
-        "state": "HI",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -157.3792,
-          19.6104
-        ]
-      },
-      "properties": {
-        "id": "HI-002",
-        "name": "Hawaii Dispersed 2",
-        "type": "dispersed",
-        "cost": 0,
+        "id": "HI-OSM-571276260",
+        "name": "Hosmer Grove",
+        "facility": "Hosmer Grove",
+        "type": "established",
+        "cost": null,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "HI",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 571276260,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -54,24 +34,791 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -155.1404,
-          19.9604
+          -155.15026,
+          19.3739378
         ]
       },
       "properties": {
-        "id": "HI-003",
-        "name": "Hawaii Backcountry 3",
+        "id": "HI-OSM-1314859809",
+        "name": "Nāpau Crater Camp Site",
+        "facility": "Nāpau Crater Camp Site",
         "type": "backcountry",
-        "cost": 10,
-        "rating": "4.4",
-        "reviews_count": 44,
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 1314859809,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.6157589,
+          20.8097669
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-1457211763",
+        "name": "Camp Olowalu",
+        "facility": "Camp Olowalu",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 1457211763,
+        "osm_type": "node",
+        "website": "https://www.campolowalu.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.5544685,
+          20.5924064
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-2128329480",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 2128329480,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6542428,
+          22.1317329
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-2143980092",
+        "name": "Kokee campground",
+        "facility": "Kokee campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 2143980092,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.4966686,
+          22.2136194
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-2143994109",
+        "name": "Hanalai Black Pot Beach County Park",
+        "facility": "Hanalai Black Pot Beach County Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 2143994109,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6204939,
+          22.1905814
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-2145424745",
+        "name": "Hanakoa Camping",
+        "facility": "Hanakoa Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 2145424745,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.607318,
+          21.9003176
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-2378611821",
+        "name": "Salt Pond Beach Park",
+        "facility": "Salt Pond Beach Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 2378611821,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6421936,
+          22.0629987
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-2610385423",
+        "name": "Wiliwili Camp",
+        "facility": "Wiliwili Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 2610385423,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.5656596,
+          22.2200402
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-3840268772",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 3840268772,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.9349987,
+          19.8500227
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-3954397557",
+        "name": "Malama Kiholo",
+        "facility": "Malama Kiholo",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 3954397557,
+        "osm_type": "node",
+        "website": "https://camping.ehawaii.gov/camping/all,details,57781.html",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6569112,
+          22.1732672
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-4198386057",
+        "name": "Kalalau Camping",
+        "facility": "Kalalau Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 4198386057,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -158.182511,
+          21.5805621
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-4234911890",
+        "name": "Camp Mokuleia",
+        "facility": "Camp Mokuleia",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 4234911890,
+        "osm_type": "node",
+        "website": "www.campmokuleia.com",
+        "phone": "+1-808-637-6241"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -158.2296982,
+          21.4856254
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-4686101189",
+        "name": "Kea'au Beach Park",
+        "facility": "Kea'au Beach Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 4686101189,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -157.938348,
+          21.6699821
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-4879595721",
+        "name": "Malaekahana Beach Campground",
+        "facility": "Malaekahana Beach Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 4879595721,
+        "osm_type": "node",
+        "website": "https://malaekahana.net/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.4497116,
+          22.2246551
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5281231922",
+        "name": "Anini Beach Camping",
+        "facility": "Anini Beach Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5281231922,
+        "osm_type": "node",
+        "website": "https://www.kauai.gov/camping",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.3006124,
+          22.1456146
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5281231923",
+        "name": "Anahola Beach Park Camping",
+        "facility": "Anahola Beach Park Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5281231923,
+        "osm_type": "node",
+        "website": "https://www.kauai.gov/camping",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6655012,
+          21.9534032
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5281238521",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5281238521,
+        "osm_type": "node",
+        "website": "https://www.kauai.gov/camping",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.3351519,
+          22.0413173
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5281238522",
+        "name": "Lydgate Beach Park Camping",
+        "facility": "Lydgate Beach Park Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5281238522,
+        "osm_type": "node",
+        "website": "https://www.kauai.gov/camping",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.521091,
+          20.0673085
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5460612833",
+        "name": "Boy Scout Camp Honokaia",
+        "facility": "Boy Scout Camp Honokaia",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5460612833,
+        "osm_type": "node",
+        "website": "https://www.scoutinghawaii.org/camp-hawaii",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.3053783,
+          22.1465869
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5538916160",
+        "name": "Kumu camp",
+        "facility": "Kumu camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5538916160,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.553352,
+          22.2238641
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5541678427",
+        "name": "Camp Naue",
+        "facility": "Camp Naue",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5541678427,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -157.8756222,
+          21.5565604
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5570858904",
+        "name": "Kahana campground",
+        "facility": "Kahana campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5570858904,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.329909,
+          20.677402
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5570858905",
+        "name": "Polipoli Springs State Recreation Area",
+        "facility": "Polipoli Springs State Recreation Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5570858905,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.8979425,
+          19.3797253
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5570858907",
+        "name": "Ho'okena beach park",
+        "facility": "Ho'okena beach park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5570858907,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.5228557,
+          20.7781085
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5585735222",
+        "name": "maybe camping",
+        "facility": "maybe camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5585735222,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.5852014,
+          21.0161144
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5589068122",
+        "name": "camping",
+        "facility": "camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5589068122,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6505744,
+          22.1237653
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5648654631",
+        "name": "YWCA Camp Sloggett",
+        "facility": "YWCA Camp Sloggett",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5648654631,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6216907,
+          22.1312932
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5648684022",
+        "name": "Sugi Grove",
+        "facility": "Sugi Grove",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets"
         ],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "HI",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 5648684022,
+        "osm_type": "node",
+        "website": "https://camping.ehawaii.gov/camping/",
+        "phone": null
       }
     },
     {
@@ -79,55 +826,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -156.3266,
-          19.2008
+          -159.6228848,
+          22.1249361
         ]
       },
       "properties": {
-        "id": "HI-004",
-        "name": "Hawaii Campground 4",
+        "id": "HI-OSM-5648685323",
+        "name": "Waiakoali",
+        "facility": "Waiakoali",
         "type": "established",
-        "cost": 0,
-        "rating": "4.9",
-        "reviews_count": 46,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "toilets",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "HI",
-        "source": "generated"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -157.1853,
-          19.036
-        ]
-      },
-      "properties": {
-        "id": "HI-005",
-        "name": "Hawaii Dispersed 5",
-        "type": "dispersed",
-        "cost": 0,
+        "cost": null,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": null,
         "state": "HI",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 5648685323,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -135,32 +854,1253 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -156.7771,
-          20.834
+          -158.0580094,
+          21.301255
         ]
       },
       "properties": {
-        "id": "HI-006",
-        "name": "Hawaii Campground 6",
+        "id": "HI-OSM-5648959222",
+        "name": "Kalaeloa Beach Park",
+        "facility": "Kalaeloa Beach Park",
         "type": "established",
-        "cost": 30,
-        "rating": "3.7",
-        "reviews_count": 29,
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5648959222,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -157.6944731,
+          21.3314112
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5648977521",
+        "name": "Waimanalo beach park",
+        "facility": "Waimanalo beach park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5648977521,
+        "osm_type": "node",
+        "website": "https://web1.hnl.info/camping/campsites/64b8436845102ee1dbbee674",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6214366,
+          22.0926725
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5653297237",
+        "name": "End trail",
+        "facility": "End trail",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5653297237,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6452653,
+          22.0708211
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5653297238",
+        "name": "Kaluahaulu",
+        "facility": "Kaluahaulu",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5653297238,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6401056,
+          22.0805724
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5653297239",
+        "name": "Hipalau",
+        "facility": "Hipalau",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5653297239,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.5857792,
+          22.082792
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5653321242",
+        "name": "Waialae",
+        "facility": "Waialae",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5653321242,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6233634,
+          22.089619
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5653321526",
+        "name": "Lonomea",
+        "facility": "Lonomea",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5653321526,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -157.0030263,
+          21.1732493
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-5709023324",
+        "name": "Camping",
+        "facility": "Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 5709023324,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6816552,
+          22.1010684
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-6160091493",
+        "name": "Camp Hale Koa",
+        "facility": "Camp Hale Koa",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 6160091493,
+        "osm_type": "node",
+        "website": "http://camphalekoa.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6794876,
+          22.1063811
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-6328371291",
+        "name": "Camp Alan Faye",
+        "facility": "Camp Alan Faye",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 6328371291,
+        "osm_type": "node",
+        "website": "https://www.scoutinghawaii.org/camp-alan-faye-summer-camp",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.8249551,
+          19.109148
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-7107922561",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 7107922561,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.5053791,
+          19.1338795
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-7134393485",
+        "name": "Black Sand Beach Park Camp",
+        "facility": "Black Sand Beach Park Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 7134393485,
+        "osm_type": "node",
+        "website": "https://hawaiicounty.ehawaii.gov/camping/all,details,57790.html",
+        "phone": "+1 808-961-8311"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.5508933,
+          19.0851992
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-7134393585",
+        "name": "Whittington Beach Park",
+        "facility": "Whittington Beach Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 7134393585,
+        "osm_type": "node",
+        "website": "https://www.parks.hawaiicounty.gov/Home/Components/FacilityDirectory/FacilityDirectory/653/1912",
+        "phone": "+1 808-961-8311"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.6222205,
+          22.1317112
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-7831200295",
+        "name": "Kawaikoi",
+        "facility": "Kawaikoi",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "water",
-          "fire_rings",
-          "toilets",
-          "picnic_tables",
-          "showers"
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 7831200295,
+        "osm_type": "node",
+        "website": "https://camping.ehawaii.gov/camping/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.613547,
+          18.9711427
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-8702271653",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 8702271653,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.3116497,
+          20.6838773
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-9253849081",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 9253849081,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.30072,
+          19.2609258
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10566510082",
+        "name": "Ka'aha",
+        "facility": "Ka'aha",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10566510082,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.1949765,
+          19.2587278
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10566510241",
+        "name": "’Apua Point",
+        "facility": "’Apua Point",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10566510241,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.2543193,
+          19.2705225
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10566531605",
+        "name": "Halapē",
+        "facility": "Halapē",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10566531605,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.3752411,
+          19.8494083
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10596845704",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10596845704,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.612147,
+          18.9718046
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605348265",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605348265,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.6122514,
+          18.9709026
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605348267",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605348267,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.6115931,
+          18.9690885
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605348271",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605348271,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.6115966,
+          18.9700842
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605348272",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605348272,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.6107348,
+          18.9677012
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605348283",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605348283,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.6001172,
+          18.9704942
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605351207",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605351207,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.5990431,
+          18.9752653
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605351235",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605351235,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.6171016,
+          18.970611
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-10605351243",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 10605351243,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.2601576,
+          19.2713807
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-12452291578",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 12452291578,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.2599363,
+          19.2713999
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-12452291579",
+        "name": "Campsite near HI",
+        "facility": "Campsite near HI",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 12452291579,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.0441776,
+          20.6597769
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-44996414",
+        "name": "Kīpahulu Campground",
+        "facility": "Kīpahulu Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 44996414,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.2951152,
+          19.4258716
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-45757871",
+        "name": "Namakani Paio",
+        "facility": "Namakani Paio",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 45757871,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.0010474,
+          20.7865519
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-232208128",
+        "name": "Waiʻānapanapa State Park",
+        "facility": "Waiʻānapanapa State Park",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 232208128,
+        "osm_type": "way",
+        "website": "https://dlnr.hawaii.gov/dsp/parks/maui/waianapanapa-state-park/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -157.8940441,
+          21.3317673
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-468253439",
+        "name": "Ke'ehi Lagoon Memorial",
+        "facility": "Ke'ehi Lagoon Memorial",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 468253439,
+        "osm_type": "way",
+        "website": "https://klmemorial.org/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -158.2251706,
+          21.57797
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-508712156",
+        "name": "YMCA Camp Erdman - Summer Camp",
+        "facility": "YMCA Camp Erdman - Summer Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 508712156,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.2741353,
+          19.3438305
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-599121113",
+        "name": "Kulanaokuaiki Campground",
+        "facility": "Kulanaokuaiki Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 599121113,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.3541252,
+          19.5844243
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-807317307",
+        "name": "Waiakea Camp Site",
+        "facility": "Waiakea Camp Site",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 807317307,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.0512231,
+          19.7306835
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-868612394",
+        "name": "Trailer Parking",
+        "facility": "Trailer Parking",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 868612394,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.2341949,
+          19.2669305
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-1346283600",
+        "name": "Keauhou Campsite",
+        "facility": "Keauhou Campsite",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
         ],
         "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
+          "tent"
         ],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "HI",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 1346283600,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.2540573,
+          19.2702853
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-1346284944",
+        "name": "Halapē Campsite",
+        "facility": "Halapē Campsite",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 1346284944,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.0035985,
+          20.7874568
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-1346347784",
+        "name": "Waiʻānapanapa State Park Campground",
+        "facility": "Waiʻānapanapa State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 1346347784,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.5681258,
+          20.7929555
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-1346360490",
+        "name": "Papalaua Wayside Park",
+        "facility": "Papalaua Wayside Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 1346360490,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.1425469,
+          20.717976
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-1346402551",
+        "name": "Palikū Campground",
+        "facility": "Palikū Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 1346402551,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.2186519,
+          20.7397143
+        ]
+      },
+      "properties": {
+        "id": "HI-OSM-1346407996",
+        "name": "Hōlua Campground",
+        "facility": "Hōlua Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "HI",
+        "source": "OpenStreetMap",
+        "osm_id": 1346407996,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
       }
     }
   ]

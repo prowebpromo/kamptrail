@@ -6,26 +6,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.9699,
-          40.0006
+          -74.7602963,
+          39.7450152
         ]
       },
       "properties": {
-        "id": "NJ-001",
-        "name": "New Jersey Campground 1",
-        "type": "established",
-        "cost": 20,
-        "rating": "3.8",
-        "reviews_count": 37,
-        "amenities": [
-          "fire_rings",
-          "water",
-          "toilets"
+        "id": "NJ-OSM-357722524",
+        "name": "Goshen Pond Campground",
+        "facility": "Goshen Pond Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
         ],
-        "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "NJ",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 357722524,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -33,22 +36,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -74.91,
-          40.3084
+          -75.2820946,
+          39.5446726
         ]
       },
       "properties": {
-        "id": "NJ-002",
-        "name": "New Jersey Backcountry 2",
-        "type": "backcountry",
-        "cost": 10,
-        "rating": "3.6",
-        "reviews_count": 38,
+        "id": "NJ-OSM-1193607220",
+        "name": "Adventure Bound Tall Pines",
+        "facility": "Adventure Bound Tall Pines",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "NJ",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 1193607220,
+        "osm_type": "node",
+        "website": "https://www.abcamping.com/tallpines/family_fun.php",
+        "phone": "+1-856-451-7479"
       }
     },
     {
@@ -56,31 +64,4427 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.6516,
-          41.1197
+          -74.9880626,
+          41.0891175
         ]
       },
       "properties": {
-        "id": "NJ-003",
-        "name": "New Jersey Campground 3",
+        "id": "NJ-OSM-1314697310",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
         "type": "established",
-        "cost": 25,
-        "rating": "3.9",
-        "reviews_count": 17,
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1314697310,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.987097,
+          41.0892711
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1314697311",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1314697311,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9893608,
+          41.0893844
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1314697312",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1314697312,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9903049,
+          41.0898048
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1314697313",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1314697313,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9907233,
+          41.0904436
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1314697314",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1314697314,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8104091,
+          39.5535657
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1697028141",
+        "name": "Indian Branch Park Campground",
+        "facility": "Indian Branch Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1697028141,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.53218,
+          41.0732491
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1730893035",
+        "name": "Rock Lodge Club",
+        "facility": "Rock Lodge Club",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1730893035,
+        "osm_type": "node",
+        "website": "https://rocklodge.com",
+        "phone": "+1 973 697 9721"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6322204,
+          39.7814431
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-3545900993",
+        "name": "Batona Camp",
+        "facility": "Batona Camp",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 3545900993,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5233515,
+          39.6546561
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-3545900994",
+        "name": "Bodine Field Campground",
+        "facility": "Bodine Field Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 3545900994,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6174742,
+          39.6288959
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-3545900996",
+        "name": "Buttonwood Hill Camp",
+        "facility": "Buttonwood Hill Camp",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 3545900996,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.672963,
+          39.7259395
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-3545901000",
+        "name": "Lower Forge Campground",
+        "facility": "Lower Forge Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 3545901000,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5642584,
+          39.7115292
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-4242257345",
+        "name": "Hawkin Bridge Campground",
+        "facility": "Hawkin Bridge Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 4242257345,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5501096,
+          39.6879678
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-4242257361",
+        "name": "Godfrey Bridge Campground",
+        "facility": "Godfrey Bridge Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 4242257361,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6749747,
+          39.6904362
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-4337891583",
+        "name": "Mullica River Campground",
+        "facility": "Mullica River Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 4337891583,
+        "osm_type": "node",
+        "website": "https://www.state.nj.us/dep/parksandforests/parks/wharton.html",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0899867,
+          40.9996113
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-5445752023",
+        "name": "Backpacker Campsite 2",
+        "facility": "Backpacker Campsite 2",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 5445752023,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7110132,
+          39.2427508
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-5802974649",
+        "name": "Frontier Campground",
+        "facility": "Frontier Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 5802974649,
+        "osm_type": "node",
+        "website": "https://frontiercampground.com/",
+        "phone": "+1-609-390-3649"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4698424,
+          40.98265
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-6372681066",
+        "name": "Camp Lewis",
+        "facility": "Camp Lewis",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 6372681066,
+        "osm_type": "node",
+        "website": "https://www.nnjbsa.org/OpenRosters/View_Homepage.aspx?orgkey=956",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8667373,
+          39.2447547
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-6504327728",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 6504327728,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8672722,
+          39.2443808
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-6504327729",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 6504327729,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9628241,
+          41.0554877
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-6647097285",
+        "name": "Forest campsite",
+        "facility": "Forest campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 6647097285,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7330105,
+          39.4147737
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-6682373843",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 6682373843,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8969682,
+          40.6843009
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-8486090852",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 8486090852,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8368911,
+          39.417472
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-9580391400",
+        "name": "Spacious Skies Campgrounds - Country Oaks",
+        "facility": "Spacious Skies Campgrounds - Country Oaks",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 9580391400,
+        "osm_type": "node",
+        "website": "https://campatcountryoaks.com",
+        "phone": "+1 609-476-2143"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3916698,
+          40.2647827
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-9890701269",
+        "name": "Quail Hill Scout Reservation",
+        "facility": "Quail Hill Scout Reservation",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 9890701269,
+        "osm_type": "node",
+        "website": "https://www.monmouthbsa.org/qhsr",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4454736,
+          39.6265981
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-10676113115",
+        "name": "Pilgrim Lake Camp Grounds",
+        "facility": "Pilgrim Lake Camp Grounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 10676113115,
+        "osm_type": "node",
+        "website": "https://pilgrimlakecampgroundsnj.com",
+        "phone": "+1-609-296-4725"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8544041,
+          41.0691765
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-10879592740",
+        "name": "Camp Lou Henry Hoover",
+        "facility": "Camp Lou Henry Hoover",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 10879592740,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1986048,
+          40.2033522
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-10965796321",
+        "name": "Camp Sacajawea",
+        "facility": "Camp Sacajawea",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 10965796321,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.522449,
+          39.8720704
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11117248994",
+        "name": "Brendan T. Byrne State Forest Campground",
+        "facility": "Brendan T. Byrne State Forest Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
           "toilets",
           "water",
-          "trash",
-          "fire_rings"
+          "showers"
         ],
         "rig_friendly": [
-          "tent",
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11117248994,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5193995,
+          39.8716715
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11117265026",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11117265026,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7604228,
+          39.7459614
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11118090496",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11118090496,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5637683,
+          39.7125925
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11120038908",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11120038908,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5235269,
+          39.653578
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11120038931",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11120038931,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6324083,
+          39.7818539
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11120039038",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11120039038,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9167977,
+          41.0792445
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11446650808",
+        "name": "Upper Wakegan Unit",
+        "facility": "Upper Wakegan Unit",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11446650808,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9169403,
+          41.0789958
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-11446650809",
+        "name": "Lower Wakegan Unit",
+        "facility": "Lower Wakegan Unit",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 11446650809,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8580713,
+          40.3144187
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-12357186684",
+        "name": "Washington Crossing State Park Group Campground",
+        "facility": "Washington Crossing State Park Group Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 12357186684,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7300096,
+          39.687604
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-12661179798",
+        "name": "Paradise Lakes Campground",
+        "facility": "Paradise Lakes Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 12661179798,
+        "osm_type": "node",
+        "website": "https://www.millerfarmsllc.com/paradise-lakes",
+        "phone": "+1 609-561-2436"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4203621,
+          41.1848562
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-12748220923",
+        "name": "Wawayanda Group Campground",
+        "facility": "Wawayanda Group Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 12748220923,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4812113,
+          39.6292154
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-28376218",
+        "name": "Timberline Lake Campground",
+        "facility": "Timberline Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 28376218,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4729751,
+          39.626406
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-28376229",
+        "name": "Buttonwood Campground",
+        "facility": "Buttonwood Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 28376229,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5669644,
+          39.3764061
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-28764064",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 28764064,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9649413,
+          39.7913116
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-30756784",
+        "name": "Pine Hill Reservation — BSA",
+        "facility": "Pine Hill Reservation — BSA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 30756784,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4087524,
+          39.6117291
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-34227847",
+        "name": "Atlantic Shore Pines Campground",
+        "facility": "Atlantic Shore Pines Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 34227847,
+        "osm_type": "way",
+        "website": "https://atlanticshorepines.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2833082,
+          40.7500795
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-39680065",
+        "name": "Girl Scout Camp",
+        "facility": "Girl Scout Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 39680065,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.301576,
+          40.53733
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-39681062",
+        "name": "Fords Park",
+        "facility": "Fords Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 39681062,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7335221,
+          40.9653063
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-39849011",
+        "name": "Panther Lake Camping Resort",
+        "facility": "Panther Lake Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 39849011,
+        "osm_type": "way",
+        "website": "https://www.njcamping.com/panther/index.htm",
+        "phone": "+1 973-347-4440"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2678654,
+          40.4330379
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40139197",
+        "name": "Cheesequake State Park Group Campground",
+        "facility": "Cheesequake State Park Group Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40139197,
+        "osm_type": "way",
+        "website": "https://nj.gov/dep/parksandforests/parks/cheesequakestatepark.html",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3063439,
+          40.1987935
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40161155",
+        "name": "Family Campground",
+        "facility": "Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40161155,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1429588,
+          40.1665304
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40162034",
+        "name": "Allaire State Park Campground",
+        "facility": "Allaire State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40162034,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7550279,
+          41.3273497
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40181963",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40181963,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8221566,
+          41.0762605
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40206096",
+        "name": "Swartswood Day Use Area",
+        "facility": "Swartswood Day Use Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40206096,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.787046,
+          41.2130928
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40206573",
+        "name": "Haskin's Group Camping Area",
+        "facility": "Haskin's Group Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40206573,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7950177,
+          41.2017314
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40206578",
+        "name": "Shotwell Camping Area",
+        "facility": "Shotwell Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40206578,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.776539,
+          40.9935671
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40211671",
+        "name": "The Great Divide Campground, LLC",
+        "facility": "The Great Divide Campground, LLC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40211671,
+        "osm_type": "way",
+        "website": "https://www.campthegreatdivide.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9284839,
+          40.6535094
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40216154",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40216154,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0633232,
+          40.8870177
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40217021",
+        "name": "Delaware River Family Campground",
+        "facility": "Delaware River Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40217021,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2712272,
+          40.0996794
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40254673",
+        "name": "Tip Tam Camping Resort",
+        "facility": "Tip Tam Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40254673,
+        "osm_type": "way",
+        "website": "https://tiptam.com",
+        "phone": "+1 732-363-4036"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1301988,
+          40.1585443
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40254769",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40254769,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4946985,
+          39.5376757
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40276276",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40276276,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3007583,
+          39.777322
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40290283",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40290283,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7353814,
+          39.1979712
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40320726",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40320726,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8094597,
+          39.5575537
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40336577",
+        "name": "Roamers Beach RV Resort",
+        "facility": "Roamers Beach RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40336577,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7106857,
+          40.8885194
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40369476",
+        "name": "Fla-Net Park Campground",
+        "facility": "Fla-Net Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40369476,
+        "osm_type": "way",
+        "website": "https://flanetpark.com",
+        "phone": "+1-973-347-4467"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5872964,
+          40.6521555
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40375912",
+        "name": "Sky Farm",
+        "facility": "Sky Farm",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40375912,
+        "osm_type": "way",
+        "website": "https://skyfarm.com/main",
+        "phone": "+19084195443"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9107872,
+          38.9835906
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40378381",
+        "name": "Seashore Campsites RV Park & Campground",
+        "facility": "Seashore Campsites RV Park & Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "NJ",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 40378381,
+        "osm_type": "way",
+        "website": "http://www.seashorecampsites.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7994218,
+          39.3058919
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40378835",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40378835,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9160477,
+          39.5146158
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40394238",
+        "name": "Buena Vista Camping Park",
+        "facility": "Buena Vista Camping Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40394238,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.059466,
+          39.5991056
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40399753",
+        "name": "Operation Safe Haven",
+        "facility": "Operation Safe Haven",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40399753,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8830254,
+          39.0975672
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40403008",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40403008,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8886283,
+          39.099131
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40403075",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40403075,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8798494,
+          39.1078358
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40403355",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40403355,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.4373217,
+          39.7569842
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40407056",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40407056,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8536992,
+          39.2486156
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40408798",
+        "name": "North Shore Camping Area",
+        "facility": "North Shore Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40408798,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8883057,
+          39.0004781
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40412240",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40412240,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5438572,
+          39.688078
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40453233",
+        "name": "Wading Pines Camping Resort",
+        "facility": "Wading Pines Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40453233,
+        "osm_type": "way",
+        "website": "https://www.wadingpines.com/",
+        "phone": "+1 609-726-1313"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5952635,
+          39.6217057
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40453769",
+        "name": "Belhaven Lake RV Resort",
+        "facility": "Belhaven Lake RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40453769,
+        "osm_type": "way",
+        "website": "https://www.belhavencampground.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7437775,
+          39.7450468
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40507740",
+        "name": "Atsion Family Campground",
+        "facility": "Atsion Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40507740,
+        "osm_type": "way",
+        "website": "https://www.state.nj.us/dep/parksandforests/parks/wharton.html",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4148483,
+          40.1011295
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40514875",
+        "name": "Indian Rock Campground",
+        "facility": "Indian Rock Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40514875,
+        "osm_type": "way",
+        "website": "https://indianrockrvpark.com",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4580463,
+          40.1205626
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40515300",
+        "name": "Timberland Lake Campground",
+        "facility": "Timberland Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40515300,
+        "osm_type": "way",
+        "website": "https://www.timberlandlakecampground.com",
+        "phone": "+1 732 928-0500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1707488,
+          39.8743998
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40535898",
+        "name": "Cedar Creek Family Campground",
+        "facility": "Cedar Creek Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40535898,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 732 269 1413;+1 908 783 9884"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4191891,
+          39.6265782
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40536698",
+        "name": "Group Campground",
+        "facility": "Group Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40536698,
+        "osm_type": "way",
+        "website": "https://www.state.nj.us/dep/parksandforests/parks/bass.html",
+        "phone": "+1 609 296 1114"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5086432,
+          39.529746
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40541506",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40541506,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6091461,
+          39.5578743
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40542067",
+        "name": "Egg Harbor Lake Campground",
+        "facility": "Egg Harbor Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40542067,
+        "osm_type": "way",
+        "website": "https://eggharborlake.com/",
+        "phone": "+1 609-965-0330"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5827927,
+          39.4730205
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40578477",
+        "name": "Pomona RV Park",
+        "facility": "Pomona RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40578477,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3143931,
+          39.7608268
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40582367",
+        "name": "Scrabble Pines Campground",
+        "facility": "Scrabble Pines Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40582367,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5075341,
+          39.4619624
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40582460",
+        "name": "Shady Pines",
+        "facility": "Shady Pines",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40582460,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2285427,
+          41.0858948
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-40720419",
+        "name": "Camp Yaw Paw",
+        "facility": "Camp Yaw Paw",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 40720419,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8910251,
+          41.1470081
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-41775663",
+        "name": "Bear Creek Campgrounds",
+        "facility": "Bear Creek Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 41775663,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 973-948-4384"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9082619,
+          41.099547
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-41775824",
+        "name": "Camp Ken-Etiwa-Pec",
+        "facility": "Camp Ken-Etiwa-Pec",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 41775824,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9653035,
+          41.0969654
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-41776308",
+        "name": "River Bend Group Campsite",
+        "facility": "River Bend Group Campsite",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 41776308,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.845888,
+          41.1700505
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-41776731",
+        "name": "Lindley G. Cook 4-H Camp",
+        "facility": "Lindley G. Cook 4-H Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 41776731,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9277845,
+          41.017258
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-41776787",
+        "name": "Happiness Is Camping",
+        "facility": "Happiness Is Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 41776787,
+        "osm_type": "way",
+        "website": "https://www.happinessiscamping.org/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0233777,
+          41.0138343
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-41777043",
+        "name": "Yards Creek Boy Scout Camp",
+        "facility": "Yards Creek Boy Scout Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 41777043,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8106931,
+          40.6556866
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-42061945",
+        "name": "Babtist Camp and Conference Center",
+        "facility": "Babtist Camp and Conference Center",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 42061945,
+        "osm_type": "way",
+        "website": "http://www.camplebanon.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.853273,
+          39.369711
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-48666166",
+        "name": "Lazy River Campground",
+        "facility": "Lazy River Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 48666166,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5129245,
+          39.5046131
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-76887771",
+        "name": "Swan Lake Resort",
+        "facility": "Swan Lake Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 76887771,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4975493,
+          39.6341697
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79443028",
+        "name": "Chips Folly Campground",
+        "facility": "Chips Folly Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79443028,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7697567,
+          39.4917398
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79788330",
+        "name": "Winding River Campground",
+        "facility": "Winding River Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79788330,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.743167,
+          39.4304554
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79788407",
+        "name": "Pleasant Valley Campground",
+        "facility": "Pleasant Valley Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79788407,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7988812,
+          39.4180017
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79788680",
+        "name": "Yogi Bear's Jellystone Camp",
+        "facility": "Yogi Bear's Jellystone Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79788680,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7150558,
+          39.4141908
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79789299",
+        "name": "River Beach RV Resort and Marina",
+        "facility": "River Beach RV Resort and Marina",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79789299,
+        "osm_type": "way",
+        "website": "https://www.riverbeachrv.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6837778,
+          39.3577068
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79789939",
+        "name": "Colonial Meadows Campground",
+        "facility": "Colonial Meadows Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79789939,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6976313,
+          39.355936
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79790867",
+        "name": "Egg Harbor River Campgrounds",
+        "facility": "Egg Harbor River Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79790867,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6401758,
+          39.3481059
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79791469",
+        "name": "Sleepy Hollow Campgrounds",
+        "facility": "Sleepy Hollow Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79791469,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7634327,
+          39.34965
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79792216",
+        "name": "Holiday Haven Campgrounds",
+        "facility": "Holiday Haven Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79792216,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8353666,
+          39.4168502
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-79792592",
+        "name": "Country Oaks Campgrounds",
+        "facility": "Country Oaks Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 79792592,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0862337,
+          39.7295161
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-106463509",
+        "name": "Lake Kandle",
+        "facility": "Lake Kandle",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 106463509,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6701906,
+          39.2482353
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-109485211",
+        "name": "Whippoorwill Campground",
+        "facility": "Whippoorwill Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 109485211,
+        "osm_type": "way",
+        "website": "https://wwcgnj.com",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.710765,
+          40.7826475
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-149184991",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 149184991,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9426415,
+          41.0635355
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-231284222",
+        "name": "Camp No-Be-Bo-Sco",
+        "facility": "Camp No-Be-Bo-Sco",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 231284222,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9977229,
+          41.0384385
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-260995984",
+        "name": "AMC Mohican Outdoor Center",
+        "facility": "AMC Mohican Outdoor Center",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 260995984,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2400758,
+          41.0652998
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-262106279",
+        "name": "Camp Glen Gray",
+        "facility": "Camp Glen Gray",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 262106279,
+        "osm_type": "way",
+        "website": "https://www.co.bergen.nj.us/parks-recreation-areas/camp-glen-gray",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3626365,
+          41.0227957
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-262934075",
+        "name": "Camp Vacamas",
+        "facility": "Camp Vacamas",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 262934075,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7103407,
+          40.8604533
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-265349067",
+        "name": "Camp Deeny Riback",
+        "facility": "Camp Deeny Riback",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 265349067,
+        "osm_type": "way",
+        "website": "https://jccmetrowest.org/venue/camp-deeny-riback/",
+        "phone": "+1 973-530-3400"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3487486,
+          41.0200058
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-276639547",
+        "name": "Salvation Army Star Lake Camp",
+        "facility": "Salvation Army Star Lake Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 276639547,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0443758,
+          40.7124611
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-354408901",
+        "name": "Liberty Harbor RV",
+        "facility": "Liberty Harbor RV",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 354408901,
+        "osm_type": "way",
+        "website": "https://www.libertyharborrv.com/",
+        "phone": "+1 201 516 7500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8451216,
+          39.0740501
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-362631422",
+        "name": "Adventure Bound Camping Resort",
+        "facility": "Adventure Bound Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 362631422,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8469121,
+          39.0705122
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-362631423",
+        "name": "Shellbay Campground",
+        "facility": "Shellbay Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 362631423,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8940408,
+          39.0779237
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-362669233",
+        "name": "King Nummy Trail Camoground",
+        "facility": "King Nummy Trail Camoground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 362669233,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4333913,
+          39.6240881
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-393070918",
+        "name": "South Shore Campground",
+        "facility": "South Shore Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 393070918,
+        "osm_type": "way",
+        "website": "https://www.state.nj.us/dep/parksandforests/parks/bass.html",
+        "phone": "+1 609 296 1114"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4253474,
+          39.6304755
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-393080177",
+        "name": "North Shore Campground",
+        "facility": "North Shore Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 393080177,
+        "osm_type": "way",
+        "website": "https://www.state.nj.us/dep/parksandforests/parks/bass.html",
+        "phone": "+1 609 296 1114"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.640484,
+          41.2742301
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-414840620",
+        "name": "Pleasant Acres Farm Campground",
+        "facility": "Pleasant Acres Farm Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 414840620,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3375944,
+          40.4414258
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-467545082",
+        "name": "Capik Scout Camp",
+        "facility": "Capik Scout Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 467545082,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.549639,
+          40.001061
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-482321338",
+        "name": "Range 14",
+        "facility": "Range 14",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 482321338,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3717379,
+          39.7985837
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-598339069",
+        "name": "RV Parking",
+        "facility": "RV Parking",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 598339069,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8572458,
+          39.2425308
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-692876184",
+        "name": "CCC Camping Area",
+        "facility": "CCC Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 692876184,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8546601,
+          39.2434706
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-692876185",
+        "name": "Meisle Camping Area",
+        "facility": "Meisle Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 692876185,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.022417,
+          40.9122807
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-714786003",
+        "name": "TripleBrook Camping Resort",
+        "facility": "TripleBrook Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 714786003,
+        "osm_type": "way",
+        "website": "https://triplebrook.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2743125,
+          39.6208266
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-714956283",
+        "name": "Four Seasons Family Campground",
+        "facility": "Four Seasons Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 714956283,
+        "osm_type": "way",
+        "website": "https://fourseasonscamping.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6104778,
+          40.0105595
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-757109722",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 757109722,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6119856,
+          40.0115432
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-757209983",
+        "name": "Camp Dix",
+        "facility": "Camp Dix",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 757209983,
+        "osm_type": "way",
+        "website": "https://gomdl.com/activities/outdoor-recreation/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7858007,
+          39.1318323
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-839518016",
+        "name": "Ponderosa Campground",
+        "facility": "Ponderosa Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 839518016,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4476145,
+          40.9917162
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-922863632",
+        "name": "Camp Winnebago",
+        "facility": "Camp Winnebago",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 922863632,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8976874,
+          38.9786304
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-931616392",
+        "name": "Sun Outdoors Cape May",
+        "facility": "Sun Outdoors Cape May",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 931616392,
+        "osm_type": "way",
+        "website": "https://www.sunrvresorts.com/resorts/mid-atlantic/new-jersey/sun-outdoors-cape-may",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9332076,
+          38.9449975
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1014647652",
+        "name": "The Depot Travel Park",
+        "facility": "The Depot Travel Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1014647652,
+        "osm_type": "way",
+        "website": "https://thedepottravelpark.com/",
+        "phone": "+1-609-844-2533"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9314614,
+          38.944498
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1014656221",
+        "name": "Main Office",
+        "facility": "Main Office",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1014656221,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7361712,
+          41.2403163
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1105407939",
+        "name": "Steam Mill Camping Area",
+        "facility": "Steam Mill Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1105407939,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7130776,
+          41.1328025
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1107619649",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1107619649,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1209245,
+          40.1372059
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1110273118",
+        "name": "Allaire State Park Group Campground",
+        "facility": "Allaire State Park Group Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1110273118,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.3193764,
+          39.8175445
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1111630519",
+        "name": "Bridgeport Speedway Campground",
+        "facility": "Bridgeport Speedway Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1111630519,
+        "osm_type": "way",
+        "website": "https://www.bpspeedway.com/fan-guide/",
+        "phone": "+1 856 467 4407"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9232901,
+          39.8114217
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1124313553",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1124313553,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4683252,
+          39.5415194
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1127560183",
+        "name": "Chestnut Lake RV Resort",
+        "facility": "Chestnut Lake RV Resort",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1127560183,
+        "osm_type": "way",
+        "website": "https://thousandtrails.com/new-jersey/chestnut-lake-rv-campground/",
+        "phone": "+1 609-568-6337"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7101869,
+          39.2192226
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1143937794",
+        "name": "Ocean Isle Camping Resort",
+        "facility": "Ocean Isle Camping Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1143937794,
+        "osm_type": "way",
+        "website": "https://www.oceanislenj.com/",
+        "phone": "+1 609-390-0431"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2530549,
+          40.4403929
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1268402851",
+        "name": "Cheesequake State Park Campground",
+        "facility": "Cheesequake State Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1268402851,
+        "osm_type": "way",
+        "website": "https://nj.gov/dep/parksandforests/parks/cheesequakestatepark.html",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9958537,
+          40.4500719
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1268405937",
+        "name": "Camp Gateway - Sandy Hook",
+        "facility": "Camp Gateway - Sandy Hook",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1268405937,
+        "osm_type": "way",
+        "website": "https://www.nps.gov/gate/planyourvisit/camping-at-gateway.htm",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6609007,
+          39.1929644
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1290278542",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1290278542,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5262839,
+          40.9577592
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1333097786",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1333097786,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9075639,
+          38.9839436
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1344485848",
+        "name": "Campsite near NJ",
+        "facility": "Campsite near NJ",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1344485848,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3473223,
+          41.0743741
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1377588493",
+        "name": "Camp Wyanokie",
+        "facility": "Camp Wyanokie",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1377588493,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6877856,
+          41.2956571
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1377921506",
+        "name": "Sawmill Lake Camping Area",
+        "facility": "Sawmill Lake Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1377921506,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.621391,
+          40.2629552
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1382054420",
+        "name": "Campgrounds",
+        "facility": "Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1382054420,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.782525,
+          39.8475804
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1388152810",
+        "name": "YMCA of the Pines",
+        "facility": "YMCA of the Pines",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1388152810,
+        "osm_type": "way",
+        "website": "https://ycamp.org/",
+        "phone": "+1-609-654-8225"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7640319,
+          41.227502
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1421863325",
+        "name": "Lake Ocquittunk Camping Area",
+        "facility": "Lake Ocquittunk Camping Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1421863325,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.7689883,
+          39.1475311
+        ]
+      },
+      "properties": {
+        "id": "NJ-OSM-1467326837",
+        "name": "Avalon Campground",
+        "facility": "Avalon Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "NJ",
+        "source": "OpenStreetMap",
+        "osm_id": 1467326837,
+        "osm_type": "way",
+        "website": "https://www.avaloncampground.com/",
+        "phone": null
       }
     }
   ]

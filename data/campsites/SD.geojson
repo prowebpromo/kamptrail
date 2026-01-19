@@ -6,28 +6,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -100.8516,
-          45.9819
+          -103.8260216,
+          44.4715367
         ]
       },
       "properties": {
-        "id": "SD-001",
-        "name": "South Dakota Campground 1",
+        "id": "SD-OSM-582170104",
+        "name": "Mountain View Campground",
+        "facility": "Mountain View Campground",
         "type": "established",
-        "cost": 15,
-        "rating": "4.4",
-        "reviews_count": 18,
-        "amenities": [
-          "water",
-          "picnic_tables",
-          "toilets",
-          "fire_rings",
-          "showers"
-        ],
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": null,
         "state": "SD",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 582170104,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -35,22 +34,1791 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -100.7873,
-          43.5869
+          -103.8264066,
+          44.4707084
         ]
       },
       "properties": {
-        "id": "SD-002",
-        "name": "South Dakota Dispersed 2",
-        "type": "dispersed",
+        "id": "SD-OSM-582170109",
+        "name": "Chris' Campground",
+        "facility": "Chris' Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 582170109,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.4140415,
+          43.8940435
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-849811434",
+        "name": "Sage Creek Campground",
+        "facility": "Sage Creek Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 849811434,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8030589,
+          44.0126636
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1076554438",
+        "name": "Whitetail Campground",
+        "facility": "Whitetail Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1076554438,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.841585,
+          43.9599438
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1076554446",
+        "name": "Ditch Creek Campground",
+        "facility": "Ditch Creek Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1076554446,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8515251,
+          44.274826
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1076554455",
+        "name": "Hanna Campground",
+        "facility": "Hanna Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1076554455,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5233085,
+          43.764365
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1166096780",
+        "name": "Stockade Lake Campground South",
+        "facility": "Stockade Lake Campground South",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1166096780,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.465908,
+          43.763122
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1166096875",
+        "name": "Legion Lake Campground",
+        "facility": "Legion Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1166096875,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.511065,
+          43.7749774
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1166097823",
+        "name": "Bismark Lake Campground",
+        "facility": "Bismark Lake Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1166097823,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-574-4402"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5352185,
+          44.1975813
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1176536311",
+        "name": "Boxelder Forks Campground",
+        "facility": "Boxelder Forks Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1176536311,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4756318,
+          44.230029
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1176559248",
+        "name": "Dalton Lake Campground",
+        "facility": "Dalton Lake Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1176559248,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3077547,
+          43.9739218
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1257001182",
+        "name": "Mystery Mountain Resort",
+        "facility": "Mystery Mountain Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1257001182,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.6507479,
+          43.6113468
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1345443280",
+        "name": "Yogi Bear's Camp Jellystone",
+        "facility": "Yogi Bear's Camp Jellystone",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1345443280,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.9789141,
+          43.7286679
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1392553956",
+        "name": "Badlands Interior Campground",
+        "facility": "Badlands Interior Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1392553956,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.0227224,
+          43.6619706
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1417334191",
+        "name": "French Creek Campground",
+        "facility": "French Creek Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1417334191,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.1917553,
+          45.8775474
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1496868044",
+        "name": "Hecla Day Use Area",
+        "facility": "Hecla Day Use Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1496868044,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.8054393,
+          44.3177108
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1505843783",
+        "name": "Sexauer City Park",
+        "facility": "Sexauer City Park",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1505843783,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-692-2708"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.7272065,
+          44.0803071
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1518957525",
+        "name": "Castle Peak Campground",
+        "facility": "Castle Peak Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1518957525,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4209753,
+          43.8072056
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1722493270",
+        "name": "Center Lake Campground Upper Loop",
+        "facility": "Center Lake Campground Upper Loop",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1722493270,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4682331,
+          44.3751268
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1843430740",
+        "name": "Alkali Creek Campground",
+        "facility": "Alkali Creek Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1843430740,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4550388,
+          43.714515
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1911811607",
+        "name": "FRENCH CREEK HORSE CG",
+        "facility": "FRENCH CREEK HORSE CG",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1911811607,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.514228,
+          43.6907468
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2471646177",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2471646177,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.513823,
+          43.6898178
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2471646301",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2471646301,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.1689263,
+          44.9329018
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2513459108",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2513459108,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.1699885,
+          44.9310828
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2513459155",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2513459155,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2404096,
+          44.8938052
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2515768810",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2515768810,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2401376,
+          44.894165
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2515778176",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2515778176,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2445268,
+          44.9177607
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2515843927",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2515843927,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2192568,
+          44.9095594
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2519517597",
+        "name": "The Prop Stoney Point",
+        "facility": "The Prop Stoney Point",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2519517597,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2427331,
+          44.9181074
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2519566584",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2519566584,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2392945,
+          44.9202764
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2519566591",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2519566591,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2408663,
+          44.9193382
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2519566600",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2519566600,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.237374,
+          44.9205499
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2519566602",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2519566602,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.0098461,
+          43.6938703
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2527650890",
+        "name": "R&R RV Park Campground",
+        "facility": "R&R RV Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2527650890,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.4784004,
+          45.4457006
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2569151046",
+        "name": "Melgaard Park Campground",
+        "facility": "Melgaard Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2569151046,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.4783147,
+          45.4452095
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2569151063",
+        "name": "Melgaard Park Campground",
+        "facility": "Melgaard Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2569151063,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.6215734,
+          45.5344175
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2573981347",
+        "name": "Group Area",
+        "facility": "Group Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2573981347,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.620879,
+          45.5335512
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2573981348",
+        "name": "Campground",
+        "facility": "Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2573981348,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.6212435,
+          45.5346373
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2573981457",
+        "name": "Group Area",
+        "facility": "Group Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2573981457,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.613263,
+          45.5407113
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2575432966",
+        "name": "Group Area Camping",
+        "facility": "Group Area Camping",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2575432966,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.0974983,
+          45.4537399
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2578899974",
+        "name": "Groton City Park",
+        "facility": "Groton City Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2578899974,
+        "osm_type": "node",
+        "website": "https://city.grotonsd.gov/park.html",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3291161,
+          43.8183661
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2588639683",
+        "name": "American Creek Campground",
+        "facility": "American Creek Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2588639683,
+        "osm_type": "node",
+        "website": "http://www.americancreekcampground.net/",
+        "phone": "+1-605-234-5151"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3459757,
+          43.8259438
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2591275096",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2591275096,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3445059,
+          43.8274647
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2591275157",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2591275157,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2948564,
+          44.0570192
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2619319279",
+        "name": "Canyon Lake Cottages",
+        "facility": "Canyon Lake Cottages",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2619319279,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2946659,
+          44.0576244
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2619319300",
+        "name": "Lake Park Campground",
+        "facility": "Lake Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2619319300,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2945372,
+          44.0581487
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-2619319315",
+        "name": "Canyon Lake Cottages",
+        "facility": "Canyon Lake Cottages",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 2619319315,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3772411,
+          43.8353098
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-3012506320",
+        "name": "Spokane Creek Cabins & Campground",
+        "facility": "Spokane Creek Cabins & Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 3012506320,
+        "osm_type": "node",
+        "website": "https://www.spokanecreek.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3269122,
+          43.9748988
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-4137772713",
+        "name": "Shadows of Rushmore",
+        "facility": "Shadows of Rushmore",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 4137772713,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4154936,
+          43.7777114
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-4919945016",
+        "name": "Shady Rest Youth Area",
+        "facility": "Shady Rest Youth Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 4919945016,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.8099757,
+          43.9788259
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5264885903",
+        "name": "Colman Campgrounds",
+        "facility": "Colman Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5264885903,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-534-3121"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.8366895,
+          43.929979
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5713959426",
+        "name": "Byre Lake Recreation Area",
+        "facility": "Byre Lake Recreation Area",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5713959426,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.201796,
+          44.65365
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5866996083",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5866996083,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2016187,
+          44.6536568
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5866996084",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5866996084,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2014081,
+          44.6536676
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5866998585",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5866998585,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2012156,
+          44.653677
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5866998586",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5866998586,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2010231,
+          44.6536858
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5866998587",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5866998587,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2008174,
+          44.6536851
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5866998588",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5866998588,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5928042,
+          43.8914234
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-5894006486",
+        "name": "Rafter J Bar Ranch",
+        "facility": "Rafter J Bar Ranch",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 5894006486,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4215169,
+          43.8048774
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-6537191886",
+        "name": "Center Lake Campground Lower Loop",
+        "facility": "Center Lake Campground Lower Loop",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 6537191886,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.1664084,
+          44.0702151
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-6548340585",
+        "name": "Rapid City - Black Hills KOA",
+        "facility": "Rapid City - Black Hills KOA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 6548340585,
+        "osm_type": "node",
+        "website": "https://koa.com/campgrounds/rapid-city/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6790419,
+          44.2965763
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-6604097385",
+        "name": "Creekside",
+        "facility": "Creekside",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 6604097385,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.5681882,
+          44.0559324
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7142076455",
+        "name": "Flandreau Municipal Park Campground",
+        "facility": "Flandreau Municipal Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7142076455,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-573-2056"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2978568,
+          45.3412221
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7161429887",
+        "name": "Waubay City Campground",
+        "facility": "Waubay City Campground",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "dirt",
+        "road_difficulty": null,
         "state": "SD",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 7161429887,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -58,29 +1826,531 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -101.1714,
-          43.1041
+          -96.489572,
+          45.3370418
         ]
       },
       "properties": {
-        "id": "SD-003",
-        "name": "South Dakota Campground 3",
+        "id": "SD-OSM-7489794568",
+        "name": "Big Stone Rearing Pond",
+        "facility": "Big Stone Rearing Pond",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7489794568,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.4770966,
+          44.4802779
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859596",
+        "name": "Lake Hendricks LUA_GFP",
+        "facility": "Lake Hendricks LUA_GFP",
         "type": "established",
         "cost": 0,
-        "rating": "4.9",
-        "reviews_count": 17,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859596,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1-605-627-5441"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.1345364,
+          44.3651161
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859597",
+        "name": "Maxwell Park Campground",
+        "facility": "Maxwell Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859597,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605 983-5251"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.1295549,
+          44.3611922
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859598",
+        "name": "Northland Park Campground",
+        "facility": "Northland Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "picnic_tables",
-          "water",
-          "fire_rings",
-          "toilets"
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859598,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-983-5251"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.5597611,
+          44.3859666
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859599",
+        "name": "Washington Park",
+        "facility": "Washington Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859599,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-854-3731"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.5409169,
+          44.3667119
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859600",
+        "name": "Ingalls Homestead Museum",
+        "facility": "Ingalls Homestead Museum",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859600,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1-800-776-3594"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.1925526,
+          44.3689684
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859601",
+        "name": "Memorial Park County Park Campground",
+        "facility": "Memorial Park County Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859601,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.2775062,
+          44.0572455
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859602",
+        "name": "Lake Prior City Park",
+        "facility": "Lake Prior City Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859602,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-796-4112"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.5724411,
+          44.0756141
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859603",
+        "name": "Wessington Springs City Park",
+        "facility": "Wessington Springs City Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859603,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-539-1691"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.4783659,
+          44.0670857
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859604",
+        "name": "North Shore -COE",
+        "facility": "North Shore -COE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859604,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-245-2255"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.4481923,
+          44.0604109
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859605",
+        "name": "Old Fort Thompson - COE",
+        "facility": "Old Fort Thompson - COE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859605,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-245-2255"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.4392474,
+          44.0362521
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859606",
+        "name": "Right Tailrace - COE",
+        "facility": "Right Tailrace - COE",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859606,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.4254282,
+          43.7807786
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7633859607",
+        "name": "Dude Rach DFG",
+        "facility": "Dude Rach DFG",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7633859607,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.6024312,
+          43.2990628
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7635617700",
+        "name": "West Ball Park Campground",
+        "facility": "West Ball Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7635617700,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-987-2881"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2685565,
+          44.1487182
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7636925878",
+        "name": "Little Jon Park",
+        "facility": "Little Jon Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7636925878,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-787-4410"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4401686,
+          43.8766299
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7636925880",
+        "name": "Grizzly Creek - USFS",
+        "facility": "Grizzly Creek - USFS",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7636925880,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4694548,
+          43.8877244
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7636925881",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7636925881,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.7811944,
+          44.0227644
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7636925882",
+        "name": "Dutchman - USFS",
+        "facility": "Dutchman - USFS",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
         ],
         "rig_friendly": [
           "tent"
         ],
-        "road_difficulty": "gravel",
+        "road_difficulty": null,
         "state": "SD",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 7636925882,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -88,14 +2358,47 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -99.053,
-          44.4976
+          -103.7988966,
+          44.0253014
         ]
       },
       "properties": {
-        "id": "SD-004",
-        "name": "South Dakota Dispersed 4",
-        "type": "dispersed",
+        "id": "SD-OSM-7636925883",
+        "name": "Custer Trail - USFS",
+        "facility": "Custer Trail - USFS",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7636925883,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2651027,
+          43.4263858
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7638845505",
+        "name": "Hieb Memorial Park Campground",
+        "facility": "Hieb Memorial Park Campground",
+        "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
@@ -103,9 +2406,13 @@
           "showers"
         ],
         "rig_friendly": [],
-        "road_difficulty": "gravel",
+        "road_difficulty": null,
         "state": "SD",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 7638845505,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
       }
     },
     {
@@ -113,30 +2420,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -99.5137,
-          45.9128
+          -97.4309892,
+          43.3561217
         ]
       },
       "properties": {
-        "id": "SD-005",
-        "name": "South Dakota Campground 5",
+        "id": "SD-OSM-7638845506",
+        "name": "Freeman City Park Campground",
+        "facility": "Freeman City Park Campground",
         "type": "established",
-        "cost": 25,
-        "rating": "4.4",
-        "reviews_count": 24,
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "water",
-          "toilets",
-          "fire_rings",
-          "trash",
-          "picnic_tables"
+          "showers"
         ],
-        "rig_friendly": [
-          "tent"
-        ],
-        "road_difficulty": "paved",
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "SD",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 7638845506,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-925-7127"
       }
     },
     {
@@ -144,30 +2450,4009 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -100.7511,
-          45.5378
+          -97.6088037,
+          43.2625861
         ]
       },
       "properties": {
-        "id": "SD-006",
-        "name": "South Dakota Campground 6",
+        "id": "SD-OSM-7638845507",
+        "name": "Menno Lake Rec Area",
+        "facility": "Menno Lake Rec Area",
         "type": "established",
-        "cost": 30,
-        "rating": "4.9",
-        "reviews_count": 33,
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7638845507,
+        "osm_type": "node",
+        "website": null,
+        "phone": "+1 605-387-2427"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8454387,
+          44.1448497
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7638845512",
+        "name": "Black Fox Campground",
+        "facility": "Black Fox Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7638845512,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6623129,
+          44.1991825
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7638845514",
+        "name": "Roubaix Lake Campground",
+        "facility": "Roubaix Lake Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7638845514,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4695391,
+          44.157522
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7638845515",
+        "name": "Steamboat Rock Picnic & Tent Camping Area",
+        "facility": "Steamboat Rock Picnic & Tent Camping Area",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7638845515,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6914829,
+          44.3108851
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7638845516",
+        "name": "Strawberry Picnic & Tent Camping Area",
+        "facility": "Strawberry Picnic & Tent Camping Area",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
         "amenities": [
-          "electricity",
-          "water",
-          "fire_rings",
-          "toilets",
-          "picnic_tables"
+          "toilets"
         ],
         "rig_friendly": [
           "tent"
         ],
-        "road_difficulty": "gravel",
+        "road_difficulty": null,
         "state": "SD",
-        "source": "generated"
+        "source": "OpenStreetMap",
+        "osm_id": 7638845516,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.0504141,
+          44.0753712
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-7638845520",
+        "name": "Beaver Creek Campground",
+        "facility": "Beaver Creek Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 7638845520,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.4839695,
+          43.5291985
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-8402367595",
+        "name": "Ĉhankú Wasté Ranch",
+        "facility": "Ĉhankú Wasté Ranch",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 8402367595,
+        "osm_type": "node",
+        "website": "https://www.chankuwaste.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6762816,
+          44.3068892
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-8707449863",
+        "name": "Wild Bills Campground",
+        "facility": "Wild Bills Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 8707449863,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.4503858,
+          44.0688398
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-8849453820",
+        "name": "24 Express Camp Ground",
+        "facility": "24 Express Camp Ground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 8849453820,
+        "osm_type": "node",
+        "website": "https://24-express-wasta.edan.io/",
+        "phone": "+1 605 993 3007"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.444675,
+          44.0710025
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-8849763055",
+        "name": "Sunrise Campground & RV Park",
+        "facility": "Sunrise Campground & RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 8849763055,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5200188,
+          43.7666057
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-9815906912",
+        "name": "Group Campground",
+        "facility": "Group Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 9815906912,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.5212291,
+          43.8371263
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-11195011211",
+        "name": "Kodako Kampground",
+        "facility": "Kodako Kampground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 11195011211,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6778253,
+          44.3017771
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-11360990464",
+        "name": "Fish n Fry Campground",
+        "facility": "Fish n Fry Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 11360990464,
+        "osm_type": "node",
+        "website": "https://stay.fishnfrycampground.com/",
+        "phone": "+1 605-578-2150"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.7413578,
+          43.5645192
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-11608758050",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 11608758050,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.6471509,
+          45.2266781
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-11792828019",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 11792828019,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8787321,
+          44.2363906
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12036804107",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12036804107,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.4199613,
+          43.2219177
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12326228695",
+        "name": "Ace RV Park",
+        "facility": "Ace RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12326228695,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4455249,
+          43.3251304
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12376288552",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12376288552,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.614149,
+          43.7777191
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12376880656",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12376880656,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4463385,
+          43.9014291
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12376949592",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12376949592,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4453585,
+          44.3465939
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12450670258",
+        "name": "Kickstands Campground",
+        "facility": "Kickstands Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12450670258,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.318722,
+          44.1739424
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12450670291",
+        "name": "Three Flags RV Park",
+        "facility": "Three Flags RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12450670291,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2008714,
+          43.8408475
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-12771329992",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 12771329992,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.9273796,
+          43.6917401
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-13064814905",
+        "name": "127",
+        "facility": "127",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 13064814905,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3726926,
+          43.7560369
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-13427656780",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 13427656780,
+        "osm_type": "node",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4923963,
+          43.5662733
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-232171432",
+        "name": "Elk Mountain Campground",
+        "facility": "Elk Mountain Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 232171432,
+        "osm_type": "way",
+        "website": "https://www.nps.gov/wica/planyourvisit/campgrounds.htm",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6617117,
+          44.1999395
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-241878514",
+        "name": "Robaix Lake Campground",
+        "facility": "Robaix Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 241878514,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.9882365,
+          44.3280689
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-247087232",
+        "name": "Timon Campground",
+        "facility": "Timon Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 247087232,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.4845379,
+          43.7097478
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-253538085",
+        "name": "Chuck's Trailer Park",
+        "facility": "Chuck's Trailer Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 253538085,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.3597399,
+          42.8760328
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-271867526",
+        "name": "KOA Holiday",
+        "facility": "KOA Holiday",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 271867526,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8475033,
+          44.6728966
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-292341567",
+        "name": "Riverside Campground",
+        "facility": "Riverside Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 292341567,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 605-892-6446"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8448573,
+          44.670909
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-292345678",
+        "name": "The Playground Campground",
+        "facility": "The Playground Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 292345678,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.9379777,
+          42.7862401
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-301869425",
+        "name": "Lion's Park Campground",
+        "facility": "Lion's Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 301869425,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1-605-677-7082"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4857732,
+          45.8754617
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-321246474",
+        "name": "Picnic Spring Campground",
+        "facility": "Picnic Spring Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 321246474,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.9638342,
+          44.3386674
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-321404505",
+        "name": "Rod and Gun Campground",
+        "facility": "Rod and Gun Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 321404505,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.119209,
+          43.3887598
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-385038056",
+        "name": "Snake Creek Recreation Area",
+        "facility": "Snake Creek Recreation Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 385038056,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1117321,
+          43.3856849
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-385039004",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 385039004,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3750395,
+          43.7611086
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-389689883",
+        "name": "Game Lodge Campground",
+        "facility": "Game Lodge Campground",
+        "type": "backcountry",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 389689883,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.0521187,
+          43.903646
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-426742914",
+        "name": "New Frontier Campground",
+        "facility": "New Frontier Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 426742914,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2011224,
+          44.8561886
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-486424738",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 486424738,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5381309,
+          43.8958552
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-505704896",
+        "name": "Willow Creek Horse Camp",
+        "facility": "Willow Creek Horse Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 505704896,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5112747,
+          44.4185018
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-506518855",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 506518855,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.2751002,
+          43.0567033
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-556876076",
+        "name": "Broom Tree Youth and Family Camp",
+        "facility": "Broom Tree Youth and Family Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 556876076,
+        "osm_type": "way",
+        "website": "http://www.broom-tree.org/Content.aspx?id=17&office=broomtree",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.034583,
+          44.718071
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-566456092",
+        "name": "Castlewood Campground",
+        "facility": "Castlewood Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 566456092,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7530175,
+          45.4869754
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-566497613",
+        "name": "Camp Iyataka",
+        "facility": "Camp Iyataka",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 566497613,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.1780074,
+          45.7742844
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-649745184",
+        "name": "Lewellyn Johns",
+        "facility": "Lewellyn Johns",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 649745184,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.2411688,
+          45.7383987
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-649745185",
+        "name": "Hugh Glass Campeground",
+        "facility": "Hugh Glass Campeground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 649745185,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5794346,
+          43.7149316
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-693425802",
+        "name": "Broken Arrow RV Park",
+        "facility": "Broken Arrow RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 693425802,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2680142,
+          43.9899769
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-713455168",
+        "name": "Happy Holidays RV Resort",
+        "facility": "Happy Holidays RV Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 713455168,
+        "osm_type": "way",
+        "website": "https://happyholidayrvresort.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.8045499,
+          43.4453527
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-761769800",
+        "name": "Red Barn RV Park",
+        "facility": "Red Barn RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 761769800,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7066236,
+          43.6069009
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-808867362",
+        "name": "Sioux Falls KOA Journey",
+        "facility": "Sioux Falls KOA Journey",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 808867362,
+        "osm_type": "way",
+        "website": "https://koa.com/campgrounds/sioux-falls/",
+        "phone": "+1-605-332-9987"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4259518,
+          44.432728
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-818474182",
+        "name": "Ride N Rest Campground",
+        "facility": "Ride N Rest Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 818474182,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4252753,
+          44.4366376
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-818487750",
+        "name": "Iron Horse Campground",
+        "facility": "Iron Horse Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 818487750,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5928163,
+          43.9030263
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-821999369",
+        "name": "Creekside Mountain Resort",
+        "facility": "Creekside Mountain Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 821999369,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.6473688,
+          43.6111265
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-836494244",
+        "name": "Camp Jellystone",
+        "facility": "Camp Jellystone",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 836494244,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.0123612,
+          43.6955069
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-836614700",
+        "name": "Rondees Campground",
+        "facility": "Rondees Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 836614700,
+        "osm_type": "way",
+        "website": "http://rondeescampground.com/index.htm",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.0497175,
+          43.6881825
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-836614702",
+        "name": "Dakota Campgrounds",
+        "facility": "Dakota Campgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 836614702,
+        "osm_type": "way",
+        "website": "https://www.dakotacampground.net/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.027959,
+          43.7346864
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-836614703",
+        "name": "Lake Mitchell Campground",
+        "facility": "Lake Mitchell Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 836614703,
+        "osm_type": "way",
+        "website": "https://www.cityofmitchell.org/448/Lake-Mitchell-Campground",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.1483322,
+          43.8906248
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-847583054",
+        "name": "Belvidere East / Exit 170 KOA",
+        "facility": "Belvidere East / Exit 170 KOA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 847583054,
+        "osm_type": "way",
+        "website": "https://koa.com/campgrounds/belvidere",
+        "phone": "+1 605 344 2247"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5137737,
+          43.9523246
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-928731813",
+        "name": "Three Forks Campground",
+        "facility": "Three Forks Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 928731813,
+        "osm_type": "way",
+        "website": "https://www.threeforkscampgroundsd.com/",
+        "phone": "+1 605-574-4546"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3954293,
+          43.4081614
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-966347379",
+        "name": "KOA Holiday",
+        "facility": "KOA Holiday",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 966347379,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.782596,
+          43.5420036
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1043114206",
+        "name": "Tower Campground",
+        "facility": "Tower Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1043114206,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.9843251,
+          44.4450172
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1076973853",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1076973853,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.4563036,
+          45.5616721
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1078670604",
+        "name": "Country Cabins RV Park",
+        "facility": "Country Cabins RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1078670604,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.4468377,
+          45.562185
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1078670605",
+        "name": "Bethel Bible Camp",
+        "facility": "Bethel Bible Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1078670605,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4514376,
+          44.4589173
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1078834356",
+        "name": "Bear Butte Campground",
+        "facility": "Bear Butte Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1078834356,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.2309194,
+          44.3606873
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1079047185",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1079047185,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6133426,
+          43.7585426
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1080852287",
+        "name": "Buffalo Ridge Camp Resort",
+        "facility": "Buffalo Ridge Camp Resort",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1080852287,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5435705,
+          43.7656594
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1080854206",
+        "name": "Custer's Gulch RV Park and Campground",
+        "facility": "Custer's Gulch RV Park and Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1080854206,
+        "osm_type": "way",
+        "website": "https://custersgulch.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2553384,
+          44.0026034
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1082217852",
+        "name": "Rapid City South RV Park",
+        "facility": "Rapid City South RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1082217852,
+        "osm_type": "way",
+        "website": "https://rcrvsouth.com/",
+        "phone": "+1-605-343-6319"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2432687,
+          44.0436004
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1082601699",
+        "name": "Rapid City RV Park & Campground",
+        "facility": "Rapid City RV Park & Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1082601699,
+        "osm_type": "way",
+        "website": "https://rcrvpark.com/",
+        "phone": "+1-605-342-2751"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.713001,
+          43.1502765
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1084353659",
+        "name": "Scotland Campground",
+        "facility": "Scotland Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1084353659,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 605-464-0238"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.2754457,
+          44.3428428
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1085020265",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1085020265,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.2632811,
+          44.343712
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1085021355",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1085021355,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.4082979,
+          44.1477093
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1134933877",
+        "name": "Pierre National Grassland",
+        "facility": "Pierre National Grassland",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1134933877,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.9498353,
+          43.7433755
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1134933878",
+        "name": "Cedar Pass Campground",
+        "facility": "Cedar Pass Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1134933878,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 605-433-5361"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6111703,
+          43.8779528
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1134933890",
+        "name": "Oreville Campground",
+        "facility": "Oreville Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1134933890,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5565963,
+          43.8395934
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1134933899",
+        "name": "Sylvan Lake Campground",
+        "facility": "Sylvan Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1134933899,
+        "osm_type": "way",
+        "website": "https://www.gfp.sd.gov/state-parks/directory/custer/campgrounds/sylvan-lake/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5860979,
+          43.783433
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1134933906",
+        "name": "Fort Welikit Family Campground",
+        "facility": "Fort Welikit Family Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1134933906,
+        "osm_type": "way",
+        "website": "https://www.blackhillsrv.com/",
+        "phone": "+1 605-673-3600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4015885,
+          43.7768834
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1134933907",
+        "name": "Grace Coolidge Campground",
+        "facility": "Grace Coolidge Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1134933907,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.483962,
+          43.8955584
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1134933908",
+        "name": "Horse Thief Lake Campground",
+        "facility": "Horse Thief Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1134933908,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4730122,
+          43.8269012
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1186895079",
+        "name": "Iron Creek Horse Camp",
+        "facility": "Iron Creek Horse Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1186895079,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4815275,
+          43.7188943
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1219109135",
+        "name": "Blue Bell Campground",
+        "facility": "Blue Bell Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1219109135,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.4871658,
+          42.5338605
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1235349928",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1235349928,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4816703,
+          43.449045
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1241448107",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1241448107,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5227484,
+          43.7713959
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1250876956",
+        "name": "Stockade Lake North Campground",
+        "facility": "Stockade Lake North Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1250876956,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5393056,
+          43.7710977
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1250876987",
+        "name": "Gold Valley Camp",
+        "facility": "Gold Valley Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1250876987,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.1660924,
+          44.069356
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1290318697",
+        "name": "KOA Kampground",
+        "facility": "KOA Kampground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1290318697,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.1925504,
+          44.0777204
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1291785369",
+        "name": "Central States Fairgrounds",
+        "facility": "Central States Fairgrounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1291785369,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 605-355-3861"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7977386,
+          43.543394
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1298993323",
+        "name": "Westwick Motel and Campground",
+        "facility": "Westwick Motel and Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1298993323,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.3552485,
+          44.8851614
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1299085316",
+        "name": "Fisher Grove State Park",
+        "facility": "Fisher Grove State Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1299085316,
+        "osm_type": "way",
+        "website": "https://gfp.sd.gov/parks/detail/fisher-grove-state-park/",
+        "phone": "+1-605-626-3488"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.2301627,
+          43.9013288
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1299398879",
+        "name": "Buffalo Gap National Grassland",
+        "facility": "Buffalo Gap National Grassland",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1299398879,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5714402,
+          43.4396149
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1307470371",
+        "name": "Cottonwood Springs Campground",
+        "facility": "Cottonwood Springs Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1307470371,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.4590328,
+          42.87404
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1308303705",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1308303705,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8541332,
+          44.680611
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1309989683",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1309989683,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5355926,
+          44.4212372
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1312089305",
+        "name": "Days End Campground",
+        "facility": "Days End Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1312089305,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4675818,
+          44.3637769
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1312115222",
+        "name": "No Name City Luxury Cabins & RV, LLC",
+        "facility": "No Name City Luxury Cabins & RV, LLC",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1312115222,
+        "osm_type": "way",
+        "website": "https://nonamecity.com/",
+        "phone": "+1-605-347-8891"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.7534328,
+          44.3941985
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1312123644",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1312123644,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.7605284,
+          44.3872556
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1312123646",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1312123646,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.7639541,
+          44.3851127
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1312123647",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1312123647,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.6030057,
+          42.8688944
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1314714748",
+        "name": "Crazy Horse",
+        "facility": "Crazy Horse",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1314714748,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.245697,
+          43.9920578
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1317681059",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1317681059,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8219178,
+          44.6205896
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1317926132",
+        "name": "Best Black Hills Camprounds",
+        "facility": "Best Black Hills Camprounds",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1317926132,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 605-892-0600"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.243316,
+          43.9964493
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1317974074",
+        "name": "Sleepy Hollow Campground & RV Park",
+        "facility": "Sleepy Hollow Campground & RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1317974074,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.9294812,
+          43.6918943
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1319709874",
+        "name": "Badlands/White River KOA",
+        "facility": "Badlands/White River KOA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1319709874,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.0504351,
+          44.0753583
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1319940391",
+        "name": "Beaver Creek Campground",
+        "facility": "Beaver Creek Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1319940391,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.2351848,
+          43.138166
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1332705101",
+        "name": "Captain Zippy's Campground",
+        "facility": "Captain Zippy's Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1332705101,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.7096389,
+          43.8851211
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1333247026",
+        "name": "American Inn & RV Park",
+        "facility": "American Inn & RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1333247026,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.5601441,
+          43.0846756
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1337272149",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1337272149,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.5376155,
+          43.068017
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1337272150",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1337272150,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4110777,
+          43.3192349
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1337802619",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1337802619,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4144002,
+          43.3396214
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1337803666",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1337803666,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4006531,
+          43.3018657
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1337807354",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1337807354,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4544006,
+          43.2970658
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1337993199",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1337993199,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4727794,
+          43.4506955
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338003971",
+        "name": "Sunrise Ridge Campground",
+        "facility": "Sunrise Ridge Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338003971,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4921831,
+          43.4623206
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338004564",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338004564,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6097743,
+          43.7358455
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338016317",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338016317,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6439977,
+          43.7501324
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338017692",
+        "name": "Big Pine Campground",
+        "facility": "Big Pine Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338017692,
+        "osm_type": "way",
+        "website": "http://bigpinecampiground.com",
+        "phone": "+1 605-673-4054"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6546915,
+          43.7406717
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338017955",
+        "name": "KOA",
+        "facility": "KOA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338017955,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6563087,
+          43.7386408
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338017956",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338017956,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.7356403,
+          43.7428148
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338021864",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338021864,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.7130449,
+          43.7341696
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338022294",
+        "name": "Comanche Park Campground",
+        "facility": "Comanche Park Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer",
+          "tent"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338022294,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1 605-574-4402"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6121081,
+          43.777301
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338061367",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338061367,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.600331,
+          43.764583
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338064279",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338064279,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.6738117,
+          43.7322374
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338073164",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338073164,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.5619399,
+          43.9329992
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1338076440",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1338076440,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3875486,
+          43.801625
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1342449531",
+        "name": "Oasis Campground",
+        "facility": "Oasis Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1342449531,
+        "osm_type": "way",
+        "website": null,
+        "phone": "+1-605-234-6959"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.8671797,
+          43.9015188
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1342948672",
+        "name": "KOA Kampground",
+        "facility": "KOA Kampground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1342948672,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.7193181,
+          43.7169838
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1370423046",
+        "name": "White Lake Lodge and RV Campground",
+        "facility": "White Lake Lodge and RV Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1370423046,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1065926,
+          43.3948742
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1382782099",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1382782099,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.5248933,
+          45.4938366
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1386144735",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1386144735,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.5240465,
+          45.4895187
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1386144736",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1386144736,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.3883663,
+          44.4239704
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1390211293",
+        "name": "Campground 3",
+        "facility": "Campground 3",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1390211293,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.3912221,
+          44.434501
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1390211296",
+        "name": "Campground 1",
+        "facility": "Campground 1",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1390211296,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.3887844,
+          44.4318493
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1390211297",
+        "name": "Campground 2",
+        "facility": "Campground 2",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1390211297,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.5259956,
+          42.5746084
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1414344988",
+        "name": "Campsite near SD",
+        "facility": "Campsite near SD",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1414344988,
+        "osm_type": "way",
+        "website": "https://parkjeffcampground.com/",
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.308421,
+          43.768012
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1429831889",
+        "name": "Happy Campers Campground",
+        "facility": "Happy Campers Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1429831889,
+        "osm_type": "way",
+        "website": "http://www.happycamperscampground.com/",
+        "phone": "+1-605-734-4050"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.1764524,
+          45.5275469
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1436495757",
+        "name": "Reva Gap Campground",
+        "facility": "Reva Gap Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1436495757,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.8977082,
+          43.8333517
+        ]
+      },
+      "properties": {
+        "id": "SD-OSM-1463570156",
+        "name": "Circle 10 Campground & RV Park",
+        "facility": "Circle 10 Campground & RV Park",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "SD",
+        "source": "OpenStreetMap",
+        "osm_id": 1463570156,
+        "osm_type": "way",
+        "website": null,
+        "phone": null
       }
     }
   ]
