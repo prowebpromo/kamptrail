@@ -104,67 +104,6 @@
     return visible;
   }
 
-  /*
-   * Proximity-based deduplication logic
-   * Adapted from scripts/merge_campsite_data.js
-   */
-  const DISTANCE_THRESHOLD_METERS = 500;
-
-  function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371e3;
-    const φ1 = (lat1 * Math.PI) / 180;
-    const φ2 = (lat2 * Math.PI) / 180;
-    const Δφ = ((lat2 - lat1) * Math.PI) / 180;
-    const Δλ = ((lon2 - lon1) * Math.PI) / 180;
-    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  }
-
-  function levenshteinDistance(s1, s2) {
-    const costs = [];
-    for (let i = 0; i <= s1.length; i++) {
-      let lastValue = i;
-      for (let j = 0; j <= s2.length; j++) {
-        if (i === 0) costs[j] = j;
-        else if (j > 0) {
-          let newValue = costs[j - 1];
-          if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
-            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
-          }
-          costs[j - 1] = lastValue;
-          lastValue = newValue;
-        }
-      }
-      if (i > 0) costs[s2.length] = lastValue;
-    }
-    return costs[s2.length];
-  }
-
-  function stringSimilarity(str1, str2) {
-    const s1 = (str1 || '').toLowerCase().trim();
-    const s2 = (str2 || '').toLowerCase().trim();
-    if (s1 === s2) return 1.0;
-    const longer = s1.length > s2.length ? s1 : s2;
-    const shorter = s1.length > s2.length ? s2 : s1;
-    if (longer.length === 0) return 1.0;
-    const editDistance = levenshteinDistance(longer, shorter);
-    return (longer.length - editDistance) / longer.length;
-  }
-
-  function areDuplicates(site1, site2) {
-    const [lon1, lat1] = site1.geometry.coordinates;
-    const [lon2, lat2] = site2.geometry.coordinates;
-    const distance = calculateDistance(lat1, lon1, lat2, lon2);
-    if (distance < DISTANCE_THRESHOLD_METERS) {
-      const nameSimilarity = stringSimilarity(site1.properties.name, site2.properties.name);
-      if (distance < 100 || nameSimilarity > 0.6) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   async function loadIndex() {
     try {
       const response = await fetch('data/campsites/index.json');
@@ -195,13 +134,6 @@
         const id = site.properties.id;
         if (state.loadedCampsiteIds.has(id)) {
           return false;
-        }
-        // Proximity check
-        for (const existingSite of state.allCampsites) {
-          if (areDuplicates(existingSite, site)) {
-            console.log(`Duplicate found: ${site.properties.name} is a duplicate of ${existingSite.properties.name}`);
-            return false;
-          }
         }
         state.loadedCampsiteIds.add(id);
         return true;

@@ -6,13 +6,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.682818062,
-          40.105560832
+          -111.249677,
+          39.522732
         ]
       },
       "properties": {
         "id": "CO-001",
-        "name": "Lynx Pass Campground",
+        "name": "Miller Flat Reservoir Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -29,11 +29,11 @@
           "RV",
           "trailer"
         ],
-        "road_difficulty": "dirt",
+        "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "252205",
-        "description": "<p><strong>DESCRIPTION:</strong>\u00a0Located in the Gore Pass area on the\u00a0Routt National Forest. Lynx Pass campground is a small campground hosting 11 sites and\u00a0can be found\u00a0on Forest Service Road 270\u00a0bet"
+        "facility_id": "10048852",
+        "description": "<p>Miller Flat Reservoir Campground is located in a high mountain valley near Miller Flat Reservoir, at an elevation of 8,500 feet. Visitors enjoy fishing, canoeing, horseback riding and exploring the"
       }
     },
     {
@@ -41,24 +41,33 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.525253,
-          39.573013
+          -107.7751,
+          37.8056
         ]
       },
       "properties": {
         "id": "CO-002",
-        "name": "SW/Central Flat Tops Area",
+        "name": "South Mineral Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "259437",
-        "description": "<p>Southwest and central Flat Tops area.\u00a0 Access often from New Castle.</p>"
+        "facility_id": "10074140",
+        "description": "<p>South Mineral Campground, located\u00a0along South Mineral Creek, is one of the most popular campgrounds in the San Juan National Forest. The campground has 26 sites,<em> all of which are first-come, fi"
       }
     },
     {
@@ -66,27 +75,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -108.184,
-          37.4973
+          -105.582368,
+          40.574373
         ]
       },
       "properties": {
         "id": "CO-003",
-        "name": "Jersey Jim Lookout",
+        "name": "Tom Bennett Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "water",
-          "fire_rings"
+          "fire_rings",
+          "picnic_tables"
         ],
-        "rig_friendly": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "235772",
-        "description": "<p>Live a little bit of history and enjoy an incredible view in Southwestern Colorado with an\u00a0one-\u00a0or two-night stay at the <a href=\"https://jerseyjimfoundation.org/\" rel=\"nofollow\">Jersey Jim Fire Lo"
+        "facility_id": "10076130",
+        "description": "<p>Located near Pingree Park, this campground is situated adjacent to the South Fork Cache la Poudre River in a lodgepole pine forest setting. This campground provides a primitive camping experience i"
       }
     },
     {
@@ -94,33 +106,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.4147222,
-          38.9919444
+          -106.6588889,
+          39.49194444
         ]
       },
       "properties": {
         "id": "CO-004",
-        "name": "CRESCENT MINING CAMP",
+        "name": "Fulford Cave Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
+          "picnic_tables"
         ],
         "rig_friendly": [
-          "tent",
           "RV",
           "trailer"
         ],
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "234129",
-        "description": "<h2>Overview</h2>\nCabin campers can escape the city - and escape modern day amenities - by staying at the fully rustic, historic Crescent Mining Camp cabins. The cabins offer a true old fashioned tast"
+        "facility_id": "10078445",
+        "description": "<p><strong>**FOOD STORAGE ORDER\u00a0is in effect at\u00a0all developed campgrounds\u00a0on the Eagle/Holy Cross Ranger District, and the Piney Guard Station, Tigiwon Lodge, Mount of the Holy Cross Overlook, Homesta"
       }
     },
     {
@@ -128,24 +136,31 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.920833,
-          40.051067
+          -106.2730556,
+          37.0725
         ]
       },
       "properties": {
         "id": "CO-005",
-        "name": "Meeker Trails",
+        "name": "Aspen Glade (Rio Grande National Forest, CO)",
         "type": "established",
-        "cost": 15,
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "261782",
-        "description": "The town of Meeker is largely an agricultural community, located in the wide fertile valley of the White River in northwestern Colorado. Relatively isolated from other communities, it sits near the in"
+        "facility_id": "231849",
+        "description": "<h2>Overview</h2>\nAspen Glade Campground sits on the Conejos River in southern Colorado, providing a premium setting for fly fishing and peaceful nature watching. \n<h2>Recreation</h2>\nForest Road 250 "
       }
     },
     {
@@ -153,203 +168,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -104.5692054,
-          37.1439753
+          -106.4666667,
+          37.2997222
         ]
       },
       "properties": {
         "id": "CO-006",
-        "name": "Carpios Ridge",
+        "name": "LAKE FORK(RIO GRANDE NATL FORE",
         "type": "established",
         "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "247883",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=490&agencyCode=130\" rel=\"nofollow\">Trinidad Lake</a>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.54,
-          37.3902778
-        ]
-      },
-      "properties": {
-        "id": "CO-007",
-        "name": "GRAHAM CREEK CAMPGROUND",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "233246",
-        "description": "<h2>Overview</h2>\nGraham Creek Campground is situated above Vallecito Lake, in the scenic San Juan National Forest of southwestern Colorado. Visitors enjoy the area for its beautiful scenery and wide "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -104.969038,
-          38.97894
-        ]
-      },
-      "properties": {
-        "id": "CO-008",
-        "name": "Rampart Reservoir Recreation Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "245015",
-        "description": "<p>The area is located 4.2 miles east of Woodland Park on Rampart Range Road, FDR 300.\u00a0<br/><br/>**Be advised that the road is a rough, rutted, washboard, native surface road and the posted speed limi"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.3497222,
-          39.2663889
-        ]
-      },
-      "properties": {
-        "id": "CO-009",
-        "name": "MOLLY BROWN",
-        "type": "established",
-        "cost": 10,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232073",
-        "description": "<h2>Overview</h2>\n<p>Named after the \"unsinkable\" Molly Brown on the Titanic, Molly Brown Campground, on the eastern shore of Turquoise Lake, sits in a shaded lodgepole pine forest. The campground off"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -104.9847222,
-          38.9775
-        ]
-      },
-      "properties": {
-        "id": "CO-010",
-        "name": "MEADOW RIDGE",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "231871",
-        "description": "<h2>Overview</h2>\nLocated about 10 miles from the town of Woodland Park, Colorado, Meadow Ridge Campground is pleasantly situated on a ridge above the Rampart Reservoir. Here, campers have access to p"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.0977778,
-          39.0522222
-        ]
-      },
-      "properties": {
-        "id": "CO-011",
-        "name": "Moose Manor Cabin",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "233213",
-        "description": "<h2>Overview</h2>\nMoose Manor at Mesa Lakes Recreation Area offers guests the opportunity to stay overnight in a traditional Forest Service ranger station. The original cabin was constructed in the 19"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.2575,
-          37.7233333
-        ]
-      },
-      "properties": {
-        "id": "CO-012",
-        "name": "THIRTY MILE",
-        "type": "established",
-        "cost": 29,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -361,270 +188,11 @@
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "gravel",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "232338",
-        "description": "<h2>Overview</h2>\nThirty Mile Campground is nestled on the banks of the Rio Grande River, just a short mile from the Rio Grande Reservoir. The location is perfect for anyone who loves to spend time fi"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.6736111,
-          38.6505556
-        ]
-      },
-      "properties": {
-        "id": "CO-013",
-        "name": "OAK CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "fire_rings"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "234666",
-        "description": "<h2>Overview</h2>\nOak Cabin attracts outdoor enthusiasts ranging from mountain bikers to hunters to those who love riding off-road. The somewhat remote, semi-rustic cabin provides an ideal resting spo"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.7109803,
-          39.59495567
-        ]
-      },
-      "properties": {
-        "id": "CO-014",
-        "name": "Guanella Pass Scenic Byway",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "244972",
-        "description": "<p>The <a href=\"https://www.codot.gov/travel/scenic-byways/north-central/guanella-pass\" rel=\"nofollow\">Guanella Pass Scenic Byway</a>, can be accessed from either Grant or Georgetown.</p><p>The south "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.536726,
-          39.811673
-        ]
-      },
-      "properties": {
-        "id": "CO-015",
-        "name": "Meadow Ridge Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259401",
-        "description": "<p>Meadow Ridge Campground is located 35 miles north of New Castle via the Buford-New Castle Road (County/Forest Road 245). The campground offers 20 campsites, all of which are available on a first-co"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.0575,
-          37.9827778
-        ]
-      },
-      "properties": {
-        "id": "CO-016",
-        "name": "SOUTHSIDE CAMPGROUND - LAKE ISABEL",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232101",
-        "description": "<h2>Overview</h2>\nSouthside Campground is a small RV facility situated in the Wet Mountains by Lake Isabel. The popular recreation area offers a selection of hiking trails and great fishing and paddle"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.0922222,
-          39.0647222
-        ]
-      },
-      "properties": {
-        "id": "CO-017",
-        "name": "PIKE COMMUNITY",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "231872",
-        "description": "<h2>Overview</h2>\n<p>Pike Community is a group campground located about 6 miles north of Woodland Park in central Colorado. It is a popular choice for of all ages, complete with a baseball field, sand"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.4561111,
-          38.1388889
-        ]
-      },
-      "properties": {
-        "id": "CO-018",
-        "name": "UPPER CROSSING GUARD STATION",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "234660",
-        "description": "<h2>Overview</h2>\nUpper Crossing Guard Station is located at an elevation of 8,400 feet, along a scenic byway near the Continental Divide, offering visitors a comfortable lodging experience in a remot"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.1758333,
-          38.4677778
-        ]
-      },
-      "properties": {
-        "id": "CO-019",
-        "name": "ELK CREEK CAMPGROUND",
-        "type": "established",
-        "cost": 6,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "234053",
-        "description": "<h2>Overview</h2>\n<p>Elk Creek Campground is on the north shore of Blue Mesa Reservoir. The lake is Colorado's largest body of water with 96 miles of shoreline and the largest Kokanee Salmon fishery i"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.7591667,
-          38.7272222
-        ]
-      },
-      "properties": {
-        "id": "CO-020",
-        "name": "ONE MILE",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232156",
-        "description": "<h2>Overview</h2>\n<p>One Mile Campground is located 18 miles from Gunnison, CO in the Taylor River Canyon. Visitors enjoy the area for its rafting, fishing and trail opportunities.</p>\n<h2>Recreation<"
+        "facility_id": "231850",
+        "description": "<h2>Overview</h2>\nLake Fork Campground sits in the Rio Grande Forest, 40 miles northwest of Antonito, Colorado. The campground is a true getaway from any city, and requires an 18-mile drive on a grave"
       }
     },
     {
@@ -637,7 +205,7 @@
         ]
       },
       "properties": {
-        "id": "CO-021",
+        "id": "CO-007",
         "name": "MOGOTE",
         "type": "established",
         "cost": 0,
@@ -667,1223 +235,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -105.227033,
-          39.254908
-        ]
-      },
-      "properties": {
-        "id": "CO-022",
-        "name": "South Platte River Corridor",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "272191",
-        "description": "<p>The South Platte River Corridor near Deckers, CO has been a popular fishing\u00a0location for decades. In the 1890's, Stephen Decker built a general store and later a saloon in this area. The South Plat"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.772733,
-          40.682541
-        ]
-      },
-      "properties": {
-        "id": "CO-023",
-        "name": "Sleeping Elephant Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "241130",
-        "description": "<p>This campground is located adjacent to Highway 14 in an open ponderosa pine setting near its namesake, Sleeping Elephant Mountain. The mountain and the inherent sleeping elephant is visible from th"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.5633333,
-          38.0788889
-        ]
-      },
-      "properties": {
-        "id": "CO-024",
-        "name": "ALVARADO CAMPGROUND",
-        "type": "established",
-        "cost": 8,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "234105",
-        "description": "<h2>Overview</h2>\nAlvarado Campground, located at an elevation of 9,000 ft., is a prime location for accessing easy to challenging hikes in the Sangre de Cristo Wilderness. The variety of trails lead "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.48568,
-          42.2558
-        ]
-      },
-      "properties": {
-        "id": "CO-025",
-        "name": "Laramie Peak Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "252123",
-        "description": "<p>The Laramie Peak area is located in east central Wyoming, stretching from southeast of Casper to west of Wheatland.\u00a0 This portion of the Medicine Bow National Forest is part of the Laramie Range an"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.6611111,
-          38.7611111
-        ]
-      },
-      "properties": {
-        "id": "CO-026",
-        "name": "Lodgepole (Taylor River Canyon near Gunnison, COLORADO)",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232155",
-        "description": "<h2>Overview</h2>\n<p>Lodgepole Campground is located 22 miles from Gunnison, COLORADO in the Taylor River Canyon. Visitors enjoy the area for its rafting, fishing and trail opportunities.</p>\n<h2>Recr"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.223129,
-          39.739666
-        ]
-      },
-      "properties": {
-        "id": "CO-027",
-        "name": "SE Flat Tops Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259467",
-        "description": "<p>The SE Flat Tops Area is north of Dotsero and I-70, and is primarily accessed by Forest Service Roads heading northwest off of the Colorado River Road between Dotsero and Burns. This area is part o"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.38515,
-          38.22608
-        ]
-      },
-      "properties": {
-        "id": "CO-028",
-        "name": "ALPINE RANGER STATION",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "273783",
-        "description": "<h2>Overview</h2>\nThe Alpine Ranger Station is situated on the Alpine Plateau at 9,600 feet, in a beautiful alpine valley surrounded by aspen, spruce and fir forest. With inspiring views and multiple "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.98665,
-          39.03966
-        ]
-      },
-      "properties": {
-        "id": "CO-029",
-        "name": "Grand Mesa",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "253434",
-        "description": "<p>Largest flat top mountain in the world.</p><p>Fish Your National Forests: This site can be accessed by Passenger Car; Fish available include: Trout; Types of fishing available include: Wade, Motori"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.5232444,
-          38.2133333
-        ]
-      },
-      "properties": {
-        "id": "CO-030",
-        "name": "JACKSON GUARD STATION",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "233289",
-        "description": "<h2>Overview</h2>\n<p>Jackson Guard Station is a great destination for anything from a weekend getaway to a week-long hunting trip. The cabin was originally used as a guard station that housed Forest S"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.6663889,
-          37.45
-        ]
-      },
-      "properties": {
-        "id": "CO-031",
-        "name": "FLORIDA CAMPGROUND (CO)",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232214",
-        "description": "<h2>Overview</h2>\nFlorida Campground is located near the north end of Lemon Reservoir, in southwestern Colorado. Visitors enjoy the area for its fishing, trail opportunities and scenic natural setting"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.2266972,
-          37.4951972
-        ]
-      },
-      "properties": {
-        "id": "CO-032",
-        "name": "WILLIAMS CREEK CAMPGROUND",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "251844",
-        "description": "<h2>Overview</h2>\nThis popular campground, 23 miles north of Pagosa Springs, Colorado, offers both shaded and sunny campsites with some located creek-side. Visitors enjoy the area for its fishing, all"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.1252778,
-          38.3327778
-        ]
-      },
-      "properties": {
-        "id": "CO-033",
-        "name": "SILESCA CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "234667",
-        "description": "<h2>Overview</h2>\n<p>The historic Silesca Cabin, once used as a Ranger Station, is a semi-rustic dwelling with comfortable modern conveniences like electricity and refrigerator. Located 40 minutes wes"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.89249,
-          38.59579
-        ]
-      },
-      "properties": {
-        "id": "CO-034",
-        "name": "Peach Valley OHV Staging Area",
-        "type": "established",
-        "cost": 3,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "262606",
-        "description": "<p>The Flat Top-Peach Valley OHV Recreation Area (9,700 acres) is managed by the Bureau of Land Management for responsible motorized recreation.\u00a0 The area offers 2,500+ acres of designated open play a"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.24,
-          38.4852778
-        ]
-      },
-      "properties": {
-        "id": "CO-035",
-        "name": "RED CREEK GROUP SITE",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "234056",
-        "description": "<h2>Overview</h2>\nIn the heart of southwest Colorado is a group camp getaway for nature lovers and outdoor sports-enthusiasts. The Red Creek Group Site is located in the Curecanti Recreation Area, jus"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.64876,
-          39.8566
-        ]
-      },
-      "properties": {
-        "id": "CO-036",
-        "name": "Windy Point Site",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "261839",
-        "description": "This site provides four campsites with picnic tables and BBQ stands or fire rings and an ADA-Accessible Vault Toilet.   Access by boat or narrow dirt road (trailers not recommended) south of State Bri"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.329625,
-          39.3415944
-        ]
-      },
-      "properties": {
-        "id": "CO-037",
-        "name": "BUFFALO CAMPGROUND",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "231875",
-        "description": "<h2>Overview</h2>\n<p>Buffalo Campground is one of two facilities within the Buffalo Creek Recreation Area, about an hour's drive southwest of Denver, Colorado. Visitors enjoy a variety of recreational"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.0594444,
-          37.9844444
-        ]
-      },
-      "properties": {
-        "id": "CO-038",
-        "name": "LA VISTA CAMPGROUND - LAKE ISABEL",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232066",
-        "description": "<h2>Overview</h2>\nLa Vista Campground is situated in a meadow overlooking the west side of the 40-acre Lake Isabel. It is set along the Frontier Pathways and Historic Byway in the Wet Mountains along "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.582368,
-          40.574373
-        ]
-      },
-      "properties": {
-        "id": "CO-039",
-        "name": "Tom Bennett Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "10076130",
-        "description": "<p>Located near Pingree Park, this campground is situated adjacent to the South Fork Cache la Poudre River in a lodgepole pine forest setting. This campground provides a primitive camping experience i"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.03378983,
-          40.51664181
-        ]
-      },
-      "properties": {
-        "id": "CO-040",
-        "name": "Aspen Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "235696",
-        "description": "<p>Aspen Campground is a 7-unit facility located near Gould, CO.\u00a0 It is approximately 22 miles southeast of Walden and is adjacent to the South Fork of the Michigan River.\u00a0 The elevation here is 9,200"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.435277,
-          39.404702
-        ]
-      },
-      "properties": {
-        "id": "CO-041",
-        "name": "Gold Park Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259417",
-        "description": "<p><strong>**Bear activity has been increasing.\u00a0 For this reason a food storage order\u00a0is in effect at\u00a0all developed campgrounds\u00a0on the Eagle/Holy Cross Ranger District, and the Piney Guard Station, Ti"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.0105556,
-          39.0319444
-        ]
-      },
-      "properties": {
-        "id": "CO-042",
-        "name": "ISLAND LAKE CAMPGROUND",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "233387",
-        "description": "<h2>Overview</h2>\nIsland Lake Campground is located at an elevation of 10,000 feet on Colorado's Grand Mesa, which is home to more than 300 fishing lakes, near the cities of Cedaredge and Delta. Visit"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.38077,
-          38.02767
-        ]
-      },
-      "properties": {
-        "id": "CO-043",
-        "name": "Caddis Flats",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "262611",
-        "description": "This campground and boat launch is located between the Unaweep/Tabeguache Scenic and Historic Byway (CO145) and the San Miguel River. The canyon in this area makes the transition from forest to high d"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.7751,
-          37.8056
-        ]
-      },
-      "properties": {
-        "id": "CO-044",
-        "name": "South Mineral Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "10074140",
-        "description": "<p>South Mineral Campground, located\u00a0along South Mineral Creek, is one of the most popular campgrounds in the San Juan National Forest. The campground has 26 sites,<em> all of which are first-come, fi"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.0655556,
-          37.9811111
-        ]
-      },
-      "properties": {
-        "id": "CO-045",
-        "name": "ST CHARLES CAMPGROUND - LAKE ISABEL",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232093",
-        "description": "<h2>Overview</h2>\nNestled among aspen and tall Douglas fir trees, St. Charles Campground is in a quiet part of the Lake Isabel Recreation Area. Located on the banks of St. Charles Creek, the campgroun"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.236862,
-          40.00658
-        ]
-      },
-      "properties": {
-        "id": "CO-046",
-        "name": "Flat Tops NW",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259457",
-        "description": "<p>Flat Tops NW covers the southeastern part of the Blanco Ranger District (including most of the Flat Tops Wilderness) from Ripple Creek Pass to Rio Blanco County Road 10.</p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.824402,
-          37.801257
-        ]
-      },
-      "properties": {
-        "id": "CO-047",
-        "name": "Box Elder",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "261731",
-        "description": "BLM's Box Elder Campground is located within the Dolores River Canyon 6 miles NE of Dove Creek. The campground has 11 campsites with fire rings and picnic tables along with two vault toilets. Towering"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.4322222,
-          39.2786111
-        ]
-      },
-      "properties": {
-        "id": "CO-048",
-        "name": "MAY QUEEN",
-        "type": "established",
-        "cost": 10,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232385",
-        "description": "<h2>Overview</h2>\nMay Queen Campground is located at the far western end of Turquoise Lake in a shaded lodgepole pine forest. Conveniently perched near the Charles Boustead Memorial Tunnel,  May Queen"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.2341667,
-          39.2516667
-        ]
-      },
-      "properties": {
-        "id": "CO-049",
-        "name": "LONE ROCK CAMPGROUND (CO)",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "231877",
-        "description": "<h2>Overview</h2>\nLone Rock Campground, located along the South Platte River, boasts spectacular views and top-notch fly fishing waters. Hikers thoroughly enjoy the nearby Gill Trail and kayakers are "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.23197,
-          37.730004
-        ]
-      },
-      "properties": {
-        "id": "CO-050",
-        "name": "RIVER HILL",
-        "type": "established",
-        "cost": 20,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "233811",
-        "description": "<h2>Overview</h2>\nRiver Hill is a popular campground on the banks of the Rio Grande River. Situated in a meadow surrounded by willows, campers come here to fish for trout, hunt and take in the beautif"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.9310619,
-          40.0768455
-        ]
-      },
-      "properties": {
-        "id": "CO-051",
-        "name": "Sulphur Ranger District, near Winter Park & Granby",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "241237",
-        "description": "<p>Recreational opportunities abound in this haven located high up in the Rocky Mountains. The Sulphur Ranger District is over 442,000 acres in Grand County, Colorado. Being surrounded by mountain pea"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -101.7941457,
-          37.139418
-        ]
-      },
-      "properties": {
-        "id": "CO-052",
-        "name": "Cimarron National Grassland",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "244703",
-        "description": "<p>Welcome to the Cimarron National Grassland, one of twenty National Grasslands administered by the U.S. Department of Agriculture, Forest Service. Located within Morton and Stevens Counties in south"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.1088889,
-          39.3916667
-        ]
-      },
-      "properties": {
-        "id": "CO-053",
-        "name": "INDIAN CREEK EQUESTRIAN CAMPGROUND",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "233883",
-        "description": "<h2>Overview</h2>\n<p>Please Note: Must be in possession of a horse in order to camp in the equestrian campground.</p>\n\n<p>The Indian Creek Equestrian Campground is an ideal camping site for avid horse"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.6055556,
-          40.5847222
-        ]
-      },
-      "properties": {
-        "id": "CO-054",
-        "name": "TEAL LAKE GROUP CAMPSITE",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232425",
-        "description": "<h2>Overview</h2>\n<p>Teal Lake Group Site and Campground is set along a small yet scenic lake in north central Colorado in the heart of the Rocky Mountains. Located in the Routt National Forest at an "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.189441,
-          39.072478
-        ]
-      },
-      "properties": {
-        "id": "CO-055",
-        "name": "Marble Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259477",
-        "description": "<br/>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.877262,
-          40.146212
-        ]
-      },
-      "properties": {
-        "id": "CO-056",
-        "name": "Sunset Point Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "241282",
-        "description": "<p>The Sunset Point Campground is a first-come, first-served campground located within the <a href=\"http://www.fs.usda.gov/recarea/arp/recarea/?recid=81813\" rel=\"nofollow\">Arapaho National Recreation "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.2441667,
-          38.7105556
-        ]
-      },
-      "properties": {
-        "id": "CO-057",
-        "name": "CASCADE (COLORADO)",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "231866",
-        "description": "<h2>Overview</h2>\n<p>Cascade Campground is located in beautiful Chaffee County,\u00a0Colorado. This popular facility sits near Cascade Falls and is within 5 miles of a private hot springs resort, making it"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.4241667,
-          37.9883333
-        ]
-      },
-      "properties": {
-        "id": "CO-058",
-        "name": "CARNERO GUARD STATION",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "234483",
-        "description": "<h2>Overview</h2>\nCarnero Guard Station is situated in a high open meadow surrounded by forest at an elevation of 9,840 feet. The high-elevation cabin is located in the north-central area of the San L"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.3241667,
-          38.5155556
-        ]
-      },
-      "properties": {
-        "id": "CO-059",
-        "name": "MONARCH PARK",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232350",
-        "description": "<h2>Overview</h2>\n<p>This Campground is Closed for the 2024 Season for renovation.  Will reopen in 2025.</p>\n<p>Monarch Park is nestled at the base of Monarch Ridge, a short drive north of Monarch Pas"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.038837,
-          39.4847
-        ]
-      },
-      "properties": {
-        "id": "CO-060",
-        "name": "Breckenridge Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259370",
-        "description": "<br/>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -106.9897222,
           40.8394444
         ]
       },
       "properties": {
-        "id": "CO-061",
+        "id": "CO-008",
         "name": "Hahns Peak Lake Campground - Medicine-Bow Routt NF (CO)",
         "type": "established",
         "cost": 0,
@@ -1906,24 +263,18 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -108.0936111,
-          39.0530556
+          -106.6116667,
+          40.9363889
         ]
       },
       "properties": {
-        "id": "CO-062",
-        "name": "JUMBO CAMPGROUND",
+        "id": "CO-009",
+        "name": "BIG CREEK LAKES CAMPGROUND",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
+        "amenities": [],
         "rig_friendly": [
           "RV",
           "trailer"
@@ -1931,40 +282,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "233189",
-        "description": "<h2>Overview</h2>\nJumbo Campground is located on the northern slope of Colorado's Grand Mesa, in the Mesa Lakes area, which is home to over 300 lakes. Visitors enjoy the area for its great fishing, ca"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.0980556,
-          39.0883333
-        ]
-      },
-      "properties": {
-        "id": "CO-063",
-        "name": "MANITOU LAKE PAVILION",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "233188",
-        "description": "<h2>Overview</h2>\nManitou Lake Picnic Area, is located 7 miles north of Woodland Park, Colorado,. The Manitou Lake Pavilion is located inside the picnic area and is a wonderful group day use picnic ar"
+        "facility_id": "231864",
+        "description": "<h2>Overview</h2>\n<p>The popular Big Creek Lakes Campground offers a peaceful, scenic setting in the heart of the Rocky Mountains of northern Colorado. The campground is located in Routt National Fore"
       }
     },
     {
@@ -1977,7 +296,7 @@
         ]
       },
       "properties": {
-        "id": "CO-064",
+        "id": "CO-010",
         "name": "ANGEL OF SHAVANO GROUP",
         "type": "established",
         "cost": 15,
@@ -2007,13 +326,246 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -106.2441667,
+          38.7105556
+        ]
+      },
+      "properties": {
+        "id": "CO-011",
+        "name": "CASCADE (COLORADO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231866",
+        "description": "<h2>Overview</h2>\n<p>Cascade Campground is located in beautiful Chaffee County,\u00a0Colorado. This popular facility sits near Cascade Falls and is within 5 miles of a private hot springs resort, making it"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.2338889,
+          38.7127778
+        ]
+      },
+      "properties": {
+        "id": "CO-012",
+        "name": "CHALK LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231867",
+        "description": "<h2>Overview</h2>\n<p>Chalk Lake\u00a0Campground is located in beautiful Chaffee County, Colorado. This popular facility sits near Chalk Lake and is within 4 miles of a private hot springs resort, making it"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3152778,
+          38.8130556
+        ]
+      },
+      "properties": {
+        "id": "CO-013",
+        "name": "COLLEGIATE PEAKS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231868",
+        "description": "<h2>Overview</h2>\n<p>Collegiate Peaks Campground is located 11 miles west of Buena Vista, Colorado, along Middle Cottonwood Creek near the top of Cottonwood Pass. The campground offers well-spaced cam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.1430556,
+          38.4277778
+        ]
+      },
+      "properties": {
+        "id": "CO-014",
+        "name": "OHAVER LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231870",
+        "description": "<h2>Overview</h2>\n<p><strong>The Forest Service wants your opinion on reserving sites at O\u2019Haver Lake Campground. Please take a moment to fill out a brief survey at:</strong> <a href=\"https://forms.of"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.9847222,
+          38.9775
+        ]
+      },
+      "properties": {
+        "id": "CO-015",
+        "name": "MEADOW RIDGE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231871",
+        "description": "<h2>Overview</h2>\nLocated about 10 miles from the town of Woodland Park, Colorado, Meadow Ridge Campground is pleasantly situated on a ridge above the Rampart Reservoir. Here, campers have access to p"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -105.0922222,
           39.0647222
         ]
       },
       "properties": {
-        "id": "CO-065",
-        "name": "South Meadows - Pike San Isabel NF (CO)",
+        "id": "CO-016",
+        "name": "PIKE COMMUNITY",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231872",
+        "description": "<h2>Overview</h2>\n<p>Pike Community is a group campground located about 6 miles north of Woodland Park in central Colorado. It is a popular choice for of all ages, complete with a baseball field, sand"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0797222,
+          39.0441667
+        ]
+      },
+      "properties": {
+        "id": "CO-017",
+        "name": "RED ROCKS GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231873",
+        "description": "<h2>Overview</h2>\nRed Rocks Group Campground is located 4 miles north of the town of Woodland Park, Colorado. Visitors enjoy the area for hiking, biking and visiting the nearby 5-acre Manitou Lake.<h2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.9830556,
+          38.9766667
+        ]
+      },
+      "properties": {
+        "id": "CO-018",
+        "name": "THUNDER RIDGE",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2031,8 +583,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "232339",
-        "description": "<h2>Overview</h2>\nSouth Meadows Campground, located 5 miles north of Woodland Park, provides a scenic spot for campers to rest and enjoy the many recreational offerings of the area. The campground att"
+        "facility_id": "231874",
+        "description": "<h2>Overview</h2>\nThunder Ridge Campground, located above the Rampart Reservoir, is one of two campgrounds within the Rampart Reservoir Recreation Area. The campground overlooks the reservoir, which i"
       }
     },
     {
@@ -2040,33 +592,32 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.5280556,
-          37.3527778
+          -105.329625,
+          39.3415944
         ]
       },
       "properties": {
-        "id": "CO-066",
-        "name": "PLATORO CABIN 2",
+        "id": "CO-019",
+        "name": "BUFFALO CAMPGROUND",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "water",
-          "showers",
-          "picnic_tables",
-          "trash"
+          "fire_rings",
+          "picnic_tables"
         ],
         "rig_friendly": [
+          "tent",
           "RV",
           "trailer"
         ],
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "234706",
-        "description": "<h2>Overview</h2>\nPlatoro Cabin 2 is located downtown in the small mining town of Platoro, Colorado, at an elevation of 10,000 feet in the Rio Grande National Forest.<br/><br/> \n\nThe cabin was built i"
+        "facility_id": "231875",
+        "description": "<h2>Overview</h2>\n<p>Buffalo Campground is one of two facilities within the Buffalo Creek Recreation Area, about an hour's drive southwest of Denver, Colorado. Visitors enjoy a variety of recreational"
       }
     },
     {
@@ -2074,13 +625,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.6809,
-          37.4624
+          -105.2666667,
+          39.3163889
         ]
       },
       "properties": {
-        "id": "CO-067",
-        "name": "Transfer Park Campground",
+        "id": "CO-020",
+        "name": "KELSEY CAMPGROUND",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2100,8 +651,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "235761",
-        "description": "<p>Transfer Park Campground is only 1 mile past Florida Campground, with 11 shaded acres above the Florida River. Two loops have 25 sites with shade and sun, and large, open play areas. The upper loop"
+        "facility_id": "231876",
+        "description": "<h2>Overview</h2>\nKelsey is one of two campgrounds within the Buffalo Creek Recreation Area, about an hour's drive southwest of Denver, Colorado. Visitors enjoy a variety of recreational opportunities"
       }
     },
     {
@@ -2109,13 +660,80 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.535,
-          37.4002778
+          -105.2341667,
+          39.2516667
         ]
       },
       "properties": {
-        "id": "CO-068",
-        "name": "Pine Point (Vallecito Reservoir, CO)",
+        "id": "CO-021",
+        "name": "LONE ROCK CAMPGROUND (CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231877",
+        "description": "<h2>Overview</h2>\nLone Rock Campground, located along the South Platte River, boasts spectacular views and top-notch fly fishing waters. Hikers thoroughly enjoy the nearby Gill Trail and kayakers are "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.3166667,
+          39.3319444
+        ]
+      },
+      "properties": {
+        "id": "CO-022",
+        "name": "MEADOWS GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "231878",
+        "description": "<h2>Overview</h2>\nMeadows Group Campground offers a wonderful opportunity for groups to enjoy the great outdoors. Located just 45 miles south of Denver near the town of Buffalo Creek, Colorado, the ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.8,
+          37.5163889
+        ]
+      },
+      "properties": {
+        "id": "CO-023",
+        "name": "CHRIS PARK",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2133,8 +751,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "233281",
-        "description": "<h2>Overview</h2>\nPine Point Campground is situated next to Vallecito Reservoir in southwestern Colorado. Visitors enjoy the area for its beautiful scenery and wide range of recreational activities, i"
+        "facility_id": "231879",
+        "description": "<h2>Overview</h2>\nChris Park is located near Haviland Lake in southwestern Colorado, 18 miles north of Durango. Visitors enjoy the area for its hiking, canoeing and fishing opportunities.<h2>Recreatio"
       }
     },
     {
@@ -2142,13 +760,214 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -105.4927778,
-          39.6788889
+          -106.3505556,
+          39.2697222
         ]
       },
       "properties": {
-        "id": "CO-069",
-        "name": "Mestaa\u2019\u0117hehe Mountain Fire Lookout",
+        "id": "CO-024",
+        "name": "BABY DOE",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232017",
+        "description": "<h2>Overview</h2>\n<p>Baby Doe Campground is situated on the eastern shore of Turquoise Lake in the shade of a lodgepole pine and subalpine fir forest. This family-friendly campground is a popular summ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3486861,
+          39.2735611
+        ]
+      },
+      "properties": {
+        "id": "CO-025",
+        "name": "FATHER DYER",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232044",
+        "description": "<h2>Overview</h2>\nFather Dyer Campground is situated on the eastern shore of Turquoise Lake in the shade of a lodgepole pine and subalpine fir forest. The family-friendly campground is a popular summe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0594444,
+          37.9844444
+        ]
+      },
+      "properties": {
+        "id": "CO-026",
+        "name": "LA VISTA CAMPGROUND - LAKE ISABEL",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232066",
+        "description": "<h2>Overview</h2>\nLa Vista Campground is situated in a meadow overlooking the west side of the 40-acre Lake Isabel. It is set along the Frontier Pathways and Historic Byway in the Wet Mountains along "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3611111,
+          39.0997222
+        ]
+      },
+      "properties": {
+        "id": "CO-027",
+        "name": "LAKEVIEW CAMPGROUND",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232067",
+        "description": "<h2>Overview</h2>\n<p>Lakeview Campground, with wonderful views of the Twin Lakes Reservoir,  is located about 20 miles south of Leadville, Colorado. The campground attracts many hikers looking to expl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3497222,
+          39.2663889
+        ]
+      },
+      "properties": {
+        "id": "CO-028",
+        "name": "MOLLY BROWN",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232073",
+        "description": "<h2>Overview</h2>\n<p>Named after the \"unsinkable\" Molly Brown on the Titanic, Molly Brown Campground, on the eastern shore of Turquoise Lake, sits in a shaded lodgepole pine forest. The campground off"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3466667,
+          39.2694444
+        ]
+      },
+      "properties": {
+        "id": "CO-029",
+        "name": "PRINTER BOY",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232086",
+        "description": "<h2>Overview</h2>\nPrinter Boy Group Campground is located near Turquoise Lake, in an area with plenty of recreational opportunities, including boating, fishing and hiking.<h2>Recreation</h2>\nHikers en"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0655556,
+          37.9811111
+        ]
+      },
+      "properties": {
+        "id": "CO-030",
+        "name": "ST CHARLES CAMPGROUND - LAKE ISABEL",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2168,8 +987,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "234792",
-        "description": "<h2>Overview</h2>\n<p>The Mestaa\u2019\u0117hehe (pronounced mess-taw-HAY) Mountain Fire Lookout is located directly off of Colorado Highway 103 west of Bergen Park and sits at the summit of Mestaa\u2019\u0117hehe Mountai"
+        "facility_id": "232093",
+        "description": "<h2>Overview</h2>\nNestled among aspen and tall Douglas fir trees, St. Charles Campground is in a quiet part of the Lake Isabel Recreation Area. Located on the banks of St. Charles Creek, the campgroun"
       }
     },
     {
@@ -2177,22 +996,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -105.0697222,
-          38.0555556
+          -105.0575,
+          37.9827778
         ]
       },
       "properties": {
-        "id": "CO-070",
-        "name": "DAVENPORT CAMPGROUND",
+        "id": "CO-031",
+        "name": "SOUTHSIDE CAMPGROUND - LAKE ISABEL",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
+          "water",
           "fire_rings",
-          "picnic_tables",
-          "trash"
+          "picnic_tables"
         ],
         "rig_friendly": [
           "tent",
@@ -2202,8 +1021,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "234684",
-        "description": "<h2>Overview</h2>\nDavenport Campground was one of the first Forest Service campgrounds, and is near the now-abandoned Squirrel Creek Campground, the very first Forest Service campground in the country"
+        "facility_id": "232101",
+        "description": "<h2>Overview</h2>\nSouthside Campground is a small RV facility situated in the Wet Mountains by Lake Isabel. The popular recreation area offers a selection of hiking trails and great fishing and paddle"
       }
     },
     {
@@ -2216,7 +1035,7 @@
         ]
       },
       "properties": {
-        "id": "CO-071",
+        "id": "CO-032",
         "name": "HOUSE CREEK",
         "type": "established",
         "cost": 0,
@@ -2244,20 +1063,56 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -107.33,
-          38.4588889
+          -108.55,
+          37.5
         ]
       },
       "properties": {
-        "id": "CO-072",
-        "name": "LAKE FORK CAMPGROUND",
+        "id": "CO-033",
+        "name": "MCPHEE RECREATION COMPLEX",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232146",
+        "description": "<h2>Overview</h2>\nMcPhee Recreation Complex is located on the south shore of McPhee Reservoir near the town of Dolores in southwestern Colorado. Visitors enjoy the area for its boating, water skiing a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.1069444,
+          38.8811111
+        ]
+      },
+      "properties": {
+        "id": "CO-034",
+        "name": "LAKE IRWIN",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "toilets",
-          "water"
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
         ],
         "rig_friendly": [
           "RV",
@@ -2266,8 +1121,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "234054",
-        "description": "<h2>Overview</h2>\n<p>Lake Fork Campground is on the Blue Mesa Reservoir, near the reservoir's dam. It is a part of the historic Curecanti Recreation Area and is an ideal place to stay for days of boat"
+        "facility_id": "232153",
+        "description": "<h2>Overview</h2>\nLake Irwin Campground is situated on the western banks of its picturesque namesake lake, approximately 9 miles from Crested Butte, Colorado. Visitors enjoy the area for its abundant "
       }
     },
     {
@@ -2275,13 +1130,311 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -105.1091667,
-          37.2525
+          -106.58,
+          38.8175
         ]
       },
       "properties": {
-        "id": "CO-073",
-        "name": "PURGATOIRE CAMPGROUND",
+        "id": "CO-035",
+        "name": "Lakeview Gunnison",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232154",
+        "description": "<h2>Overview</h2>\nLakeview Campground is located on Taylor Park Reservoir, at an elevation of 9,400 feet. Visitors enjoy the area for its fishing and boating, and abundant off-road and biking opportun"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.6611111,
+          38.7611111
+        ]
+      },
+      "properties": {
+        "id": "CO-036",
+        "name": "Lodgepole (Taylor River Canyon near Gunnison, COLORADO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232155",
+        "description": "<h2>Overview</h2>\n<p>Lodgepole Campground is located 22 miles from Gunnison, COLORADO in the Taylor River Canyon. Visitors enjoy the area for its rafting, fishing and trail opportunities.</p>\n<h2>Recr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.7591667,
+          38.7272222
+        ]
+      },
+      "properties": {
+        "id": "CO-037",
+        "name": "ONE MILE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232156",
+        "description": "<h2>Overview</h2>\n<p>One Mile Campground is located 18 miles from Gunnison, CO in the Taylor River Canyon. Visitors enjoy the area for its rafting, fishing and trail opportunities.</p>\n<h2>Recreation<"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.6663889,
+          37.45
+        ]
+      },
+      "properties": {
+        "id": "CO-038",
+        "name": "FLORIDA CAMPGROUND (CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232214",
+        "description": "<h2>Overview</h2>\nFlorida Campground is located near the north end of Lemon Reservoir, in southwestern Colorado. Visitors enjoy the area for its fishing, trail opportunities and scenic natural setting"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.7961111,
+          37.5380556
+        ]
+      },
+      "properties": {
+        "id": "CO-039",
+        "name": "Big Meadows Reservoir Campground (South Central CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232252",
+        "description": "<h2>Overview</h2>\nBig Meadows is located in the San Juan Mountains in south-central Colorado, about 11 miles west of South Fork. The campground is lightly wooded with spruce trees, creating a beautifu"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.6616667,
+          38.0225
+        ]
+      },
+      "properties": {
+        "id": "CO-040",
+        "name": "AMPHITHEATER (CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232275",
+        "description": "<h2>Overview</h2>\nAmphitheater Campground is located near the town of Ouray, Colo., at an elevation of 8,400 feet. Visitors enjoy the area for its beautiful scenery and great hiking and off-road trail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3527778,
+          39.2622222
+        ]
+      },
+      "properties": {
+        "id": "CO-041",
+        "name": "SILVER DOLLAR",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232294",
+        "description": "<h2>Overview</h2>\n<p>Silver Dollar Campground is situated near the eastern shore of Turquoise Lake in the shade of a lodgepole pine and subalpine fir forest. This family-friendly campground is a popul"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.2575,
+          37.7233333
+        ]
+      },
+      "properties": {
+        "id": "CO-042",
+        "name": "THIRTY MILE",
+        "type": "established",
+        "cost": 29,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232338",
+        "description": "<h2>Overview</h2>\nThirty Mile Campground is nestled on the banks of the Rio Grande River, just a short mile from the Rio Grande Reservoir. The location is perfect for anyone who loves to spend time fi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0922222,
+          39.0647222
+        ]
+      },
+      "properties": {
+        "id": "CO-043",
+        "name": "South Meadows - Pike San Isabel NF (CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232339",
+        "description": "<h2>Overview</h2>\nSouth Meadows Campground, located 5 miles north of Woodland Park, provides a scenic spot for campers to rest and enjoy the many recreational offerings of the area. The campground att"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0933333,
+          39.0797222
+        ]
+      },
+      "properties": {
+        "id": "CO-044",
+        "name": "COLORADO CAMPGROUND",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2300,8 +1453,8 @@
         "road_difficulty": "gravel",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "234104",
-        "description": "<h2>Overview</h2>\n<p>Purgatoire Campground is nestled near the headwaters of the Purgatoire River in the beautiful Culebra Range of the Sangre de Cristo Mountains. The primitive campground is laid out"
+        "facility_id": "232340",
+        "description": "<h2>Overview</h2>\nColorado Campground is a favorite family destination near Manitou Lake Picnic Area north of the town of Woodland Park. A short trail leads to the lovely lake, where visitors enjoy fi"
       }
     },
     {
@@ -2309,18 +1462,55 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.6588889,
-          39.49194444
+          -105.1052778,
+          39.0844444
         ]
       },
       "properties": {
-        "id": "CO-074",
-        "name": "Fulford Cave Campground",
+        "id": "CO-045",
+        "name": "PAINTED ROCKS",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232341",
+        "description": "<h2>Overview</h2>\nPainted Rocks Campground is located a short distance from Manitou Lake Picnic Area and the Centennial Bike Trail in central Colorado. The rustic campground is named for the sandstone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3241667,
+          38.5155556
+        ]
+      },
+      "properties": {
+        "id": "CO-046",
+        "name": "MONARCH PARK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
           "picnic_tables"
         ],
         "rig_friendly": [
@@ -2330,8 +1520,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "10078445",
-        "description": "<p><strong>**FOOD STORAGE ORDER\u00a0is in effect at\u00a0all developed campgrounds\u00a0on the Eagle/Holy Cross Ranger District, and the Piney Guard Station, Tigiwon Lodge, Mount of the Holy Cross Overlook, Homesta"
+        "facility_id": "232350",
+        "description": "<h2>Overview</h2>\n<p>This Campground is Closed for the 2024 Season for renovation.  Will reopen in 2025.</p>\n<p>Monarch Park is nestled at the base of Monarch Ridge, a short drive north of Monarch Pas"
       }
     },
     {
@@ -2339,13 +1529,282 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -105.11,
-          38.0930556
+          -106.4322222,
+          39.2786111
         ]
       },
       "properties": {
-        "id": "CO-075",
-        "name": "MINGUS RANCH",
+        "id": "CO-047",
+        "name": "MAY QUEEN",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232385",
+        "description": "<h2>Overview</h2>\nMay Queen Campground is located at the far western end of Turquoise Lake in a shaded lodgepole pine forest. Conveniently perched near the Charles Boustead Memorial Tunnel,  May Queen"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3655556,
+          39.09
+        ]
+      },
+      "properties": {
+        "id": "CO-048",
+        "name": "WHITE STAR",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232387",
+        "description": "<h2>Overview</h2>\nPicturesque White Star Campground lies at the foot of Mt. Elbert, Colorado's highest peak, among fragrant ponderosa pines. The campground provides convenient access to Twin Lakes Res"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.6055556,
+          40.5847222
+        ]
+      },
+      "properties": {
+        "id": "CO-049",
+        "name": "TEAL LAKE GROUP CAMPSITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232425",
+        "description": "<h2>Overview</h2>\n<p>Teal Lake Group Site and Campground is set along a small yet scenic lake in north central Colorado in the heart of the Rocky Mountains. Located in the Routt National Forest at an "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.5933333,
+          40.3291667
+        ]
+      },
+      "properties": {
+        "id": "CO-050",
+        "name": "Rocky Mountain National Park Glacier Basin Campground",
+        "type": "established",
+        "cost": 35,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232462",
+        "description": "<h2>Overview</h2>\n<p>Glacier Basin Campground is open for the 2025 summer camping season! All campsites at Glacier Basin Campground are available by reservation only. Reservations must be made online "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6019444,
+          40.3625
+        ]
+      },
+      "properties": {
+        "id": "CO-051",
+        "name": "Rocky Mountain National Park Moraine Park Campground",
+        "type": "established",
+        "cost": 35,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "232463",
+        "description": "<h2>Overview</h2>\n<p><strong>Moraine Park Campground is open for the Winter Season 2025-2026</strong></p><p>\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Sites are available on a first come, first-served basis.</p><p>\u00b7\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Campers c"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.7566667,
+          39.4130556
+        ]
+      },
+      "properties": {
+        "id": "CO-052",
+        "name": "KENOSHA PASS CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233185",
+        "description": "<h2>Overview</h2>\nKenosha Pass Campground is a small, conveniently-located campground heralded by backpackers on the Colorado Trail and by those looking for a scenic, mountain family getaway. \n<br/><b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6202778,
+          40.4222222
+        ]
+      },
+      "properties": {
+        "id": "CO-053",
+        "name": "Rocky Mountain National Park Aspenglen Campground",
+        "type": "established",
+        "cost": 35,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233187",
+        "description": "<h2>Overview</h2>\n<p>Aspenglen Campground is located on the east side of Rocky Mountain National Park near the Fall River Entrance. All campsites in Aspenglen Campground are available by reservation o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0980556,
+          39.0883333
+        ]
+      },
+      "properties": {
+        "id": "CO-054",
+        "name": "MANITOU LAKE PAVILION",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233188",
+        "description": "<h2>Overview</h2>\nManitou Lake Picnic Area, is located 7 miles north of Woodland Park, Colorado,. The Manitou Lake Pavilion is located inside the picnic area and is a wonderful group day use picnic ar"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0936111,
+          39.0530556
+        ]
+      },
+      "properties": {
+        "id": "CO-055",
+        "name": "JUMBO CAMPGROUND",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2364,8 +1823,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "233932",
-        "description": "<h2>Overview</h2>\nMingus Ranch is a cabin where guests can step back in time and feel like they're staying on an early 20th century homestead. The cabin was built in 1908 and was operated by the same "
+        "facility_id": "233189",
+        "description": "<h2>Overview</h2>\nJumbo Campground is located on the northern slope of Colorado's Grand Mesa, in the Mesa Lakes area, which is home to over 300 lakes. Visitors enjoy the area for its great fishing, ca"
       }
     },
     {
@@ -2373,21 +1832,56 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -105.9530556,
-          40.1425
+          -108.0977778,
+          39.0522222
         ]
       },
       "properties": {
-        "id": "CO-076",
-        "name": "WILLOW CREEK GROUP",
+        "id": "CO-056",
+        "name": "Moose Manor Cabin",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
+          "water",
+          "showers",
           "fire_rings",
-          "picnic_tables"
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233213",
+        "description": "<h2>Overview</h2>\nMoose Manor at Mesa Lakes Recreation Area offers guests the opportunity to stay overnight in a traditional Forest Service ranger station. The original cabin was constructed in the 19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0811111,
+          39.0522222
+        ]
+      },
+      "properties": {
+        "id": "CO-057",
+        "name": "Black Bear Cabin at Mesa Lakes (CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
         ],
         "rig_friendly": [
           "tent",
@@ -2397,8 +1891,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "233941",
-        "description": "<h2>Overview</h2>\nWillow Creek Group Campground is located on Lake Granby, six miles north of Granby, in north central Colorado. Visitors enjoy the area for its great canoeing, kayaking, fishing and h"
+        "facility_id": "233216",
+        "description": "<h2>Overview</h2>\nBlack Bear Cabin at Mesa Lakes offers guests the opportunity to experience an overnight stay in a traditional Forest Service Ranger Station. The original Black Bear Cabin was constru"
       }
     },
     {
@@ -2406,88 +1900,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -109.03,
-          39.136
+          -106.6813889,
+          38.0191667
         ]
       },
       "properties": {
-        "id": "CO-077",
-        "name": "Knowles Overlook Campground",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "262607",
-        "description": "<p>CONSTRUCTION AT KNOWLES OVERLOOK CAMPGROUND BEGINS NOVEMBER 15, 2021 AND WILL CONTINUE THROUGH THE WINTER. THE CAMPGROUND WILL BE CLOSED DURING CONSTRUCTION.</p>\n"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.099434,
-          39.575395
-        ]
-      },
-      "properties": {
-        "id": "CO-078",
-        "name": "Frisco Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259476",
-        "description": "<br/>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.954895,
-          39.60463
-        ]
-      },
-      "properties": {
-        "id": "CO-079",
-        "name": "Keystone Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "259464",
-        "description": "<br/>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.757321,
-          39.832501
-        ]
-      },
-      "properties": {
-        "id": "CO-080",
-        "name": "Robbers Roost Campground",
+        "id": "CO-058",
+        "name": "STONE CELLAR GUARD STATION",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2500,15 +1919,145 @@
           "trash"
         ],
         "rig_friendly": [
-          "tent",
           "RV",
           "trailer"
         ],
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "241269",
-        "description": "<p>The Robbers Roost Campground is located next to Hwy 40 and the Fraser River near Winter Park.</p><p><strong>Facilities:</strong> There are 11 non-electric sites that will accommodate tents, trailer"
+        "facility_id": "233232",
+        "description": "<h2>Overview</h2>\nStone Cellar Guard Station is a remote cabin located at an elevation of 9,500 feet, just outside the boundary of La Garita Wilderness in Saguache Park in the Rio Grande National Fore"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.54,
+          37.3902778
+        ]
+      },
+      "properties": {
+        "id": "CO-059",
+        "name": "GRAHAM CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233246",
+        "description": "<h2>Overview</h2>\nGraham Creek Campground is situated above Vallecito Lake, in the scenic San Juan National Forest of southwestern Colorado. Visitors enjoy the area for its beautiful scenery and wide "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.9772222,
+          37.7713889
+        ]
+      },
+      "properties": {
+        "id": "CO-060",
+        "name": "CAYTON CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233250",
+        "description": "<h2>Overview</h2>\nCayton Campground is located along the San Juan Skyway (Colorado Highway 145) and the Dolores River. Visitors enjoy the area for its great fishing, hiking and scenic driving opportun"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.2761111,
+          37.6597222
+        ]
+      },
+      "properties": {
+        "id": "CO-061",
+        "name": "WEST DOLORES CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233251",
+        "description": "<h2>Overview</h2>\nWest Dolores Campground is located on the West Dolores Road (Forest Road 535), which branches north from Colorado Highway 145 about 20 miles northeast of Dolores. It is a great place"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.8058333,
+          37.5347222
+        ]
+      },
+      "properties": {
+        "id": "CO-062",
+        "name": "HAVILAND LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233254",
+        "description": "<h2>Overview</h2>\nHaviland Lake Campground is situated on its beautiful namesake within the San Juan National Forest, 18 miles north of Durango. Visitors enjoy the area for its canoeing, fishing and h"
       }
     },
     {
@@ -2521,7 +2070,7 @@
         ]
       },
       "properties": {
-        "id": "CO-081",
+        "id": "CO-063",
         "name": "NORTH CANYON CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -2549,12 +2098,471 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -106.9030556,
+          37.4447222
+        ]
+      },
+      "properties": {
+        "id": "CO-064",
+        "name": "WEST FORK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233268",
+        "description": "<h2>Overview</h2>\nWest Fork Campground sits near the West Fork San Juan River in a secluded 10-acre area, just over a mile from Highway 160. Visitors enjoy the area for its hiking opportunities and pl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.8866667,
+          37.3741667
+        ]
+      },
+      "properties": {
+        "id": "CO-065",
+        "name": "East Fork Campground (San Juan NF - CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233269",
+        "description": "<h2>Overview</h2>\nEast Fork Campground is located 11 miles northeast of Pagosa Springs, just off U.S. Highway 160, along the East Fork Road. Visitors enjoy the area for its fishing, hiking and scenic "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.535,
+          37.4002778
+        ]
+      },
+      "properties": {
+        "id": "CO-066",
+        "name": "Pine Point (Vallecito Reservoir, CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233281",
+        "description": "<h2>Overview</h2>\nPine Point Campground is situated next to Vallecito Reservoir in southwestern Colorado. Visitors enjoy the area for its beautiful scenery and wide range of recreational activities, i"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.5232444,
+          38.2133333
+        ]
+      },
+      "properties": {
+        "id": "CO-067",
+        "name": "JACKSON GUARD STATION",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233289",
+        "description": "<h2>Overview</h2>\n<p>Jackson Guard Station is a great destination for anything from a weekend getaway to a week-long hunting trip. The cabin was originally used as a guard station that housed Forest S"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.8830556,
+          37.1452778
+        ]
+      },
+      "properties": {
+        "id": "CO-068",
+        "name": "BLANCO RIVER GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233318",
+        "description": "<h2>Overview</h2>\nBlanco River Group Campground is located four miles off U.S. Highway 84, on Forest Road 656. It is about 15 miles southeast of Pagosa Springs, on the Blanco River. The campground is "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.1966667,
+          37.5463889
+        ]
+      },
+      "properties": {
+        "id": "CO-069",
+        "name": "PALISADES HORSE CAMP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233335",
+        "description": "<h2>Overview</h2>\nPalisades Horse Camp is located 30 miles north of Pagosa Springs, high in the San Juan National Forest. This beautiful area has excellent horseback riding and hiking trails and an ab"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.18798,
+          37.34095
+        ]
+      },
+      "properties": {
+        "id": "CO-070",
+        "name": "TARGET TREE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233350",
+        "description": "<h2>Overview</h2>\nTarget Tree Campground is located 7 miles east of Mancos on the north side of Highway 160 at an elevation of 7,643 feet. It is the ideal camping spot for day trips to Mancos, Durango"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.0105556,
+          39.0319444
+        ]
+      },
+      "properties": {
+        "id": "CO-071",
+        "name": "ISLAND LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233387",
+        "description": "<h2>Overview</h2>\nIsland Lake Campground is located at an elevation of 10,000 feet on Colorado's Grand Mesa, which is home to more than 300 fishing lakes, near the cities of Cedaredge and Delta. Visit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.905,
+          40.7938889
+        ]
+      },
+      "properties": {
+        "id": "CO-072",
+        "name": "STUB CREEK CABIN",
+        "type": "established",
+        "cost": 125,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233731",
+        "description": "<h2>Overview</h2>\nStub Creek Cabin is located on the north end of the Laramie River Valley in north-central Colorado. It is a well-equipped cabin that provides guests with a comfortable stay and many "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0672222,
+          37.9677778
+        ]
+      },
+      "properties": {
+        "id": "CO-073",
+        "name": "PONDEROSA GROUP - LAKE ISABEL",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233804",
+        "description": "<h2>Overview</h2>\nPonderosa Group Campground, located near the sparkling 40-acre Lake Isabel, beckons large groups for picnicking and camping in the Lake Isabel Recreation Area. \n<br/><br/>\nThe campgr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0672222,
+          37.9677778
+        ]
+      },
+      "properties": {
+        "id": "CO-074",
+        "name": "SPRUCE GROUP - LAKE ISABEL",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233805",
+        "description": "<h2>Overview</h2>\nSpruce Group Campground, located in the Lake Isabel Recreation Area, is a great place to bring groups for picnicking and camping on the scenic Lake Isabel. The campground accommodate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.9316667,
+          39.34
+        ]
+      },
+      "properties": {
+        "id": "CO-075",
+        "name": "ROBERTS CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233808",
+        "description": "<h2>Overview</h2>\nRoberts Cabin is one of the recognized historic cabins in Pike & San Isabel National Forests. The primitive cabin dates back to the mining and railroad era of the 1880s, and is eligi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.9858333,
+          37.7888889
+        ]
+      },
+      "properties": {
+        "id": "CO-076",
+        "name": "MARSHALL PARK",
+        "type": "established",
+        "cost": 17,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233810",
+        "description": "<h2>Overview</h2>\nMarshall Park Campground is situated in an open meadow on the Rio Grande River with views of Bristol Head Peak and the La Garita Mountains. Campers enjoy trout fishing, boating and t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.23197,
+          37.730004
+        ]
+      },
+      "properties": {
+        "id": "CO-077",
+        "name": "RIVER HILL",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233811",
+        "description": "<h2>Overview</h2>\nRiver Hill is a popular campground on the banks of the Rio Grande River. Situated in a meadow surrounded by willows, campers come here to fish for trout, hunt and take in the beautif"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -105.0502778,
           37.9811111
         ]
       },
       "properties": {
-        "id": "CO-082",
+        "id": "CO-078",
         "name": "LAKE ISABEL CABIN",
         "type": "established",
         "cost": 0,
@@ -2583,19 +2591,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.2338889,
-          38.7127778
+          -105.7619444,
+          39.4319444
         ]
       },
       "properties": {
-        "id": "CO-083",
-        "name": "CHALK LAKE",
+        "id": "CO-079",
+        "name": "TIMBERLINE CAMPGROUND",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
+          "water",
           "fire_rings",
           "picnic_tables"
         ],
@@ -2603,11 +2612,11 @@
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "dirt",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "231867",
-        "description": "<h2>Overview</h2>\n<p>Chalk Lake\u00a0Campground is located in beautiful Chaffee County, Colorado. This popular facility sits near Chalk Lake and is within 4 miles of a private hot springs resort, making it"
+        "facility_id": "233859",
+        "description": "<h2>Overview</h2>\nThe Timberline Campground, near Kenosha Pass, is about 7 miles southwest of the small town of Grant. The abundance of aspens at the site creates impressive fall scenery along the for"
       }
     },
     {
@@ -2620,7 +2629,7 @@
         ]
       },
       "properties": {
-        "id": "CO-084",
+        "id": "CO-080",
         "name": "BASSAM GUARD STATION",
         "type": "established",
         "cost": 0,
@@ -2651,13 +2660,43 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.3684111,
-          37.125125
+          -105.1088889,
+          39.3916667
         ]
       },
       "properties": {
-        "id": "CO-085",
-        "name": "ELK CREEK CAMPGROUND (RIO GRANDE NF)",
+        "id": "CO-081",
+        "name": "INDIAN CREEK EQUESTRIAN CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233883",
+        "description": "<h2>Overview</h2>\n<p>Please Note: Must be in possession of a horse in order to camp in the equestrian campground.</p>\n\n<p>The Indian Creek Equestrian Campground is an ideal camping site for avid horse"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.8811111,
+          37.8447222
+        ]
+      },
+      "properties": {
+        "id": "CO-082",
+        "name": "MATTERHORN",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2665,8 +2704,10 @@
         "amenities": [
           "toilets",
           "water",
+          "showers",
           "fire_rings",
-          "picnic_tables"
+          "picnic_tables",
+          "trash"
         ],
         "rig_friendly": [
           "tent",
@@ -2676,8 +2717,8 @@
         "road_difficulty": "paved",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "273348",
-        "description": "<h2>Overview</h2>\nElk Creek Campground is located in Conejos County, approximately 23 miles west of Antonito, Colorado. Located in the lower portion of the Conejos Canyon a short distance from Highway"
+        "facility_id": "233902",
+        "description": "<h2>Overview</h2>\nMatterhorn Campground is located along the San Juan Skyway (Colorado Highway 145), near the quaint town of Telluride, at an elevation of 8,500 feet. Visitors enjoy the area for its b"
       }
     },
     {
@@ -2685,47 +2726,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -108.55,
-          37.5
+          -106.5605556,
+          39.7575
         ]
       },
       "properties": {
-        "id": "CO-086",
-        "name": "MCPHEE RECREATION COMPLEX",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "CO",
-        "source": "recreation.gov",
-        "facility_id": "232146",
-        "description": "<h2>Overview</h2>\nMcPhee Recreation Complex is located on the south shore of McPhee Reservoir near the town of Dolores in southwestern Colorado. Visitors enjoy the area for its boating, water skiing a"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.7566667,
-          39.4130556
-        ]
-      },
-      "properties": {
-        "id": "CO-087",
-        "name": "KENOSHA PASS CAMPGROUND",
+        "id": "CO-083",
+        "name": "PINEY GUARD STATION",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -2741,11 +2748,565 @@
           "RV",
           "trailer"
         ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233927",
+        "description": "<h2>Overview</h2>\nPiney Guard Station is a rustic cabin that was constructed in the 1930s as a work station for Forest Service crews. This 14 by 22-ft. structure has a single room and is built from lo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.11,
+          38.0930556
+        ]
+      },
+      "properties": {
+        "id": "CO-084",
+        "name": "MINGUS RANCH",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233932",
+        "description": "<h2>Overview</h2>\nMingus Ranch is a cabin where guests can step back in time and feel like they're staying on an early 20th century homestead. The cabin was built in 1908 and was operated by the same "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.9830556,
+          39.0413889
+        ]
+      },
+      "properties": {
+        "id": "CO-085",
+        "name": "COBBETT LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233936",
+        "description": "<h2>Overview</h2>\nCobbett Lake Campground is located on Colorado's Grand Mesa, in the Land O' Lakes area, which is home to more than 300 lakes. Visitors enjoy the area for its great fishing, canoeing "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.9530556,
+          40.1425
+        ]
+      },
+      "properties": {
+        "id": "CO-086",
+        "name": "WILLOW CREEK GROUP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233941",
+        "description": "<h2>Overview</h2>\nWillow Creek Group Campground is located on Lake Granby, six miles north of Granby, in north central Colorado. Visitors enjoy the area for its great canoeing, kayaking, fishing and h"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.5872222,
+          40.5569444
+        ]
+      },
+      "properties": {
+        "id": "CO-087",
+        "name": "GRIZZLY CREEK GUARD STATION",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "233979",
+        "description": "<h2>Overview</h2>\nAt an elevation of 8,500 feet, Grizzly Creek Guard Station is located between Walden and Steamboat Springs, Colorado, offering guests an unique lodging opportunity in \nthe Routt Nati"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.1758333,
+          38.4677778
+        ]
+      },
+      "properties": {
+        "id": "CO-088",
+        "name": "ELK CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 6,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234053",
+        "description": "<h2>Overview</h2>\n<p>Elk Creek Campground is on the north shore of Blue Mesa Reservoir. The lake is Colorado's largest body of water with 96 miles of shoreline and the largest Kokanee Salmon fishery i"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.33,
+          38.4588889
+        ]
+      },
+      "properties": {
+        "id": "CO-089",
+        "name": "LAKE FORK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234054",
+        "description": "<h2>Overview</h2>\n<p>Lake Fork Campground is on the Blue Mesa Reservoir, near the reservoir's dam. It is a part of the historic Curecanti Recreation Area and is an ideal place to stay for days of boat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.0969444,
+          38.4911111
+        ]
+      },
+      "properties": {
+        "id": "CO-090",
+        "name": "STEVENS CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234055",
+        "description": "<h2>Overview</h2>\n<p><br>Stevens Creek Campground lies on the north shore at the eastern end of Blue Mesa Reservoir. This is the closest campground to the town of Gunnison, CO. Popular with boaters, S"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.24,
+          38.4852778
+        ]
+      },
+      "properties": {
+        "id": "CO-091",
+        "name": "RED CREEK GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234056",
+        "description": "<h2>Overview</h2>\nIn the heart of southwest Colorado is a group camp getaway for nature lovers and outdoor sports-enthusiasts. The Red Creek Group Site is located in the Curecanti Recreation Area, jus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.1722222,
+          38.4855556
+        ]
+      },
+      "properties": {
+        "id": "CO-092",
+        "name": "EAST ELK CREEK GROUP CAMPSITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234057",
+        "description": "<h2>Overview</h2>\nInvite family and friends to East Elk for an active group camping experience surrounded by rugged and stark mountains. The campground is perched on the tranquil East Elk Creek, which"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.1091667,
+          37.2525
+        ]
+      },
+      "properties": {
+        "id": "CO-093",
+        "name": "PURGATOIRE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234104",
+        "description": "<h2>Overview</h2>\n<p>Purgatoire Campground is nestled near the headwaters of the Purgatoire River in the beautiful Culebra Range of the Sangre de Cristo Mountains. The primitive campground is laid out"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.5633333,
+          38.0788889
+        ]
+      },
+      "properties": {
+        "id": "CO-094",
+        "name": "ALVARADO CAMPGROUND",
+        "type": "established",
+        "cost": 8,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "dirt",
         "state": "CO",
         "source": "recreation.gov",
-        "facility_id": "233185",
-        "description": "<h2>Overview</h2>\nKenosha Pass Campground is a small, conveniently-located campground heralded by backpackers on the Colorado Trail and by those looking for a scenic, mountain family getaway. \n<br/><b"
+        "facility_id": "234105",
+        "description": "<h2>Overview</h2>\nAlvarado Campground, located at an elevation of 9,000 ft., is a prime location for accessing easy to challenging hikes in the Sangre de Cristo Wilderness. The variety of trails lead "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.7283333,
+          39.5272222
+        ]
+      },
+      "properties": {
+        "id": "CO-095",
+        "name": "GENEVA PARK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234118",
+        "description": "<h2>Overview</h2>\nAt an elevation of 9,813 feet, Geneva Park Campground offers cooler temperatures during the hottest of summer months. Along the Guanella Pass Scenic Byway, this campground is near pr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.4147222,
+          38.9919444
+        ]
+      },
+      "properties": {
+        "id": "CO-096",
+        "name": "CRESCENT MINING CAMP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234129",
+        "description": "<h2>Overview</h2>\nCabin campers can escape the city - and escape modern day amenities - by staying at the fully rustic, historic Crescent Mining Camp cabins. The cabins offer a true old fashioned tast"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.7341667,
+          40.7736111
+        ]
+      },
+      "properties": {
+        "id": "CO-097",
+        "name": "Seedhouse Group Site - Medicine-Bow Routt NF (CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234197",
+        "description": "<h2>Overview</h2>\n<p>Seedhouse Group Site provides a private setting for group gatherings of up to 100 guests. Located near the Elk River, just miles from Steamboat Springs, Colorado, Seedhouse is a r"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.0306278,
+          39.7940528
+        ]
+      },
+      "properties": {
+        "id": "CO-098",
+        "name": "South Fork Group Site - Arapaho NF (CO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234211",
+        "description": "<h2>Overview</h2>\nSouth Fork Group Campground is located in north central Colorado in the Williams Fork Valley next to South Fork Creek. Many mountain streams and creeks nearby offer good fishing oppo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.7724111,
+          40.7751222
+        ]
+      },
+      "properties": {
+        "id": "CO-099",
+        "name": "SEEDHOUSE GUARD STATION",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234246",
+        "description": "<h2>Overview</h2>\n<p>Seedhouse Guard Station is located approximately 26 miles north of Steamboat Springs, Colorado. It was constructed in 1933 and offers a unique lodging opportunity for guests seeki"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.915,
+          37.3361111
+        ]
+      },
+      "properties": {
+        "id": "CO-100",
+        "name": "JUNCTION CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CO",
+        "source": "recreation.gov",
+        "facility_id": "234475",
+        "description": "<h2>Overview</h2>\nJunction Creek Campground is located close to Durango, Colo., near the beginning of the Colorado Trail. Visitors enjoy the area for its excellent hiking and biking opportunities in a"
       }
     },
     {
@@ -2758,7 +3319,7 @@
         ]
       },
       "properties": {
-        "id": "CO-088",
+        "id": "CO-101",
         "name": "CARNERO GUARD STATION",
         "type": "established",
         "cost": 0,
@@ -2792,7 +3353,7 @@
         ]
       },
       "properties": {
-        "id": "CO-089",
+        "id": "CO-102",
         "name": "BREWERY CREEK GUARD STATION",
         "type": "established",
         "cost": 0,
@@ -2826,7 +3387,7 @@
         ]
       },
       "properties": {
-        "id": "CO-090",
+        "id": "CO-103",
         "name": "DUMONT CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -2857,7 +3418,7 @@
         ]
       },
       "properties": {
-        "id": "CO-091",
+        "id": "CO-104",
         "name": "SEEDHOUSE CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -2889,7 +3450,7 @@
         ]
       },
       "properties": {
-        "id": "CO-092",
+        "id": "CO-105",
         "name": "VALLECITO CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -2922,7 +3483,7 @@
         ]
       },
       "properties": {
-        "id": "CO-093",
+        "id": "CO-106",
         "name": "MAVREESO CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -2955,7 +3516,7 @@
         ]
       },
       "properties": {
-        "id": "CO-094",
+        "id": "CO-107",
         "name": "UPPER CROSSING GUARD STATION",
         "type": "established",
         "cost": 0,
@@ -2989,7 +3550,7 @@
         ]
       },
       "properties": {
-        "id": "CO-095",
+        "id": "CO-108",
         "name": "Aspen Leaf Cabin (Uncompahgre National Forest, Co)",
         "type": "established",
         "cost": 0,
@@ -3023,7 +3584,7 @@
         ]
       },
       "properties": {
-        "id": "CO-096",
+        "id": "CO-109",
         "name": "OAK CABIN",
         "type": "established",
         "cost": 0,
@@ -3057,7 +3618,7 @@
         ]
       },
       "properties": {
-        "id": "CO-097",
+        "id": "CO-110",
         "name": "SILESCA CABIN",
         "type": "established",
         "cost": 0,
@@ -3090,7 +3651,7 @@
         ]
       },
       "properties": {
-        "id": "CO-098",
+        "id": "CO-111",
         "name": "DAWSON CABIN",
         "type": "established",
         "cost": 0,
@@ -3121,7 +3682,7 @@
         ]
       },
       "properties": {
-        "id": "CO-099",
+        "id": "CO-112",
         "name": "DAVENPORT CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -3155,7 +3716,7 @@
         ]
       },
       "properties": {
-        "id": "CO-100",
+        "id": "CO-113",
         "name": "Pinon Flats Campground",
         "type": "established",
         "cost": 25,
@@ -3186,7 +3747,7 @@
         ]
       },
       "properties": {
-        "id": "CO-101",
+        "id": "CO-114",
         "name": "PLATORO CABIN 2",
         "type": "established",
         "cost": 0,
@@ -3220,7 +3781,7 @@
         ]
       },
       "properties": {
-        "id": "CO-102",
+        "id": "CO-115",
         "name": "PLATORO CABIN 1",
         "type": "established",
         "cost": 0,
@@ -3254,7 +3815,7 @@
         ]
       },
       "properties": {
-        "id": "CO-103",
+        "id": "CO-116",
         "name": "BUCKEYE RECREATION AREA (CO) ",
         "type": "established",
         "cost": 0,
@@ -3286,7 +3847,7 @@
         ]
       },
       "properties": {
-        "id": "CO-104",
+        "id": "CO-117",
         "name": "BURNING BEAR CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -3319,7 +3880,7 @@
         ]
       },
       "properties": {
-        "id": "CO-105",
+        "id": "CO-118",
         "name": "SADDLEHORN CAMPGROUND",
         "type": "established",
         "cost": 22,
@@ -3352,7 +3913,7 @@
         ]
       },
       "properties": {
-        "id": "CO-106",
+        "id": "CO-119",
         "name": "Transfer Campground",
         "type": "established",
         "cost": 0,
@@ -3383,7 +3944,7 @@
         ]
       },
       "properties": {
-        "id": "CO-107",
+        "id": "CO-120",
         "name": "Mestaa\u2019\u0117hehe Mountain Fire Lookout",
         "type": "established",
         "cost": 0,
@@ -3418,7 +3979,7 @@
         ]
       },
       "properties": {
-        "id": "CO-108",
+        "id": "CO-121",
         "name": "Aspen Campground",
         "type": "established",
         "cost": 0,
@@ -3443,7 +4004,7 @@
         ]
       },
       "properties": {
-        "id": "CO-109",
+        "id": "CO-122",
         "name": "Transfer Park Campground",
         "type": "established",
         "cost": 0,
@@ -3478,7 +4039,7 @@
         ]
       },
       "properties": {
-        "id": "CO-110",
+        "id": "CO-123",
         "name": "Jersey Jim Lookout",
         "type": "established",
         "cost": 0,
@@ -3506,7 +4067,7 @@
         ]
       },
       "properties": {
-        "id": "CO-111",
+        "id": "CO-124",
         "name": "Grandview Campground",
         "type": "established",
         "cost": 0,
@@ -3538,7 +4099,7 @@
         ]
       },
       "properties": {
-        "id": "CO-112",
+        "id": "CO-125",
         "name": "Kelly Flats Campground",
         "type": "established",
         "cost": 0,
@@ -3570,7 +4131,7 @@
         ]
       },
       "properties": {
-        "id": "CO-113",
+        "id": "CO-126",
         "name": "Long Draw Campground",
         "type": "established",
         "cost": 0,
@@ -3601,7 +4162,7 @@
         ]
       },
       "properties": {
-        "id": "CO-114",
+        "id": "CO-127",
         "name": "North Fork Poudre Campground",
         "type": "established",
         "cost": 0,
@@ -3633,7 +4194,7 @@
         ]
       },
       "properties": {
-        "id": "CO-115",
+        "id": "CO-128",
         "name": "Sleeping Elephant Campground",
         "type": "established",
         "cost": 0,
@@ -3664,7 +4225,7 @@
         ]
       },
       "properties": {
-        "id": "CO-116",
+        "id": "CO-129",
         "name": "Crow Valley Recreation Area",
         "type": "established",
         "cost": 0,
@@ -3689,7 +4250,7 @@
         ]
       },
       "properties": {
-        "id": "CO-117",
+        "id": "CO-130",
         "name": "Meeker Park Overflow Campground",
         "type": "established",
         "cost": 0,
@@ -3724,7 +4285,7 @@
         ]
       },
       "properties": {
-        "id": "CO-118",
+        "id": "CO-131",
         "name": "Rainbow Lakes Campground",
         "type": "established",
         "cost": 0,
@@ -3760,7 +4321,7 @@
         ]
       },
       "properties": {
-        "id": "CO-119",
+        "id": "CO-132",
         "name": "Sulphur Ranger District, near Winter Park & Granby",
         "type": "established",
         "cost": 0,
@@ -3787,7 +4348,7 @@
         ]
       },
       "properties": {
-        "id": "CO-120",
+        "id": "CO-133",
         "name": "Idlewild Campground",
         "type": "established",
         "cost": 0,
@@ -3822,7 +4383,7 @@
         ]
       },
       "properties": {
-        "id": "CO-121",
+        "id": "CO-134",
         "name": "Robbers Roost Campground",
         "type": "established",
         "cost": 0,
@@ -3857,7 +4418,7 @@
         ]
       },
       "properties": {
-        "id": "CO-122",
+        "id": "CO-135",
         "name": "Sunset Point Campground",
         "type": "established",
         "cost": 0,
@@ -3892,7 +4453,7 @@
         ]
       },
       "properties": {
-        "id": "CO-123",
+        "id": "CO-136",
         "name": "Cimarron National Grassland",
         "type": "established",
         "cost": 0,
@@ -3920,7 +4481,7 @@
         ]
       },
       "properties": {
-        "id": "CO-124",
+        "id": "CO-137",
         "name": "South Park Ranger District",
         "type": "established",
         "cost": 0,
@@ -3945,7 +4506,7 @@
         ]
       },
       "properties": {
-        "id": "CO-125",
+        "id": "CO-138",
         "name": "Cimarron Recreation Area",
         "type": "established",
         "cost": 0,
@@ -3972,7 +4533,7 @@
         ]
       },
       "properties": {
-        "id": "CO-126",
+        "id": "CO-139",
         "name": "Belle of Colorado Campground",
         "type": "established",
         "cost": 0,
@@ -4006,7 +4567,7 @@
         ]
       },
       "properties": {
-        "id": "CO-127",
+        "id": "CO-140",
         "name": "Halfmoon East Campground",
         "type": "established",
         "cost": 0,
@@ -4038,7 +4599,7 @@
         ]
       },
       "properties": {
-        "id": "CO-128",
+        "id": "CO-141",
         "name": "Matchless Campground",
         "type": "established",
         "cost": 0,
@@ -4071,7 +4632,7 @@
         ]
       },
       "properties": {
-        "id": "CO-129",
+        "id": "CO-142",
         "name": "Parry Peak Campground",
         "type": "established",
         "cost": 0,
@@ -4102,7 +4663,7 @@
         ]
       },
       "properties": {
-        "id": "CO-130",
+        "id": "CO-143",
         "name": "Twin Peaks Campground",
         "type": "established",
         "cost": 0,
@@ -4133,7 +4694,7 @@
         ]
       },
       "properties": {
-        "id": "CO-131",
+        "id": "CO-144",
         "name": "Chalk Creek Canyon",
         "type": "established",
         "cost": 0,
@@ -4158,7 +4719,7 @@
         ]
       },
       "properties": {
-        "id": "CO-132",
+        "id": "CO-145",
         "name": "Coaldale Campground",
         "type": "established",
         "cost": 0,
@@ -4187,7 +4748,7 @@
         ]
       },
       "properties": {
-        "id": "CO-133",
+        "id": "CO-146",
         "name": "North Fork Campground",
         "type": "established",
         "cost": 0,
@@ -4217,7 +4778,7 @@
         ]
       },
       "properties": {
-        "id": "CO-134",
+        "id": "CO-147",
         "name": "Guanella Pass Scenic Byway",
         "type": "established",
         "cost": 0,
@@ -4242,7 +4803,7 @@
         ]
       },
       "properties": {
-        "id": "CO-135",
+        "id": "CO-148",
         "name": "Hall Valley Campground",
         "type": "established",
         "cost": 0,
@@ -4276,7 +4837,7 @@
         ]
       },
       "properties": {
-        "id": "CO-136",
+        "id": "CO-149",
         "name": "Buffalo Creek Recreation Area",
         "type": "established",
         "cost": 0,
@@ -4304,7 +4865,7 @@
         ]
       },
       "properties": {
-        "id": "CO-137",
+        "id": "CO-150",
         "name": "Rampart Reservoir Recreation Area",
         "type": "established",
         "cost": 0,
@@ -4332,7 +4893,7 @@
         ]
       },
       "properties": {
-        "id": "CO-138",
+        "id": "CO-151",
         "name": "OFF COW CAMP CABIN",
         "type": "established",
         "cost": 0,
@@ -4365,7 +4926,7 @@
         ]
       },
       "properties": {
-        "id": "CO-139",
+        "id": "CO-152",
         "name": "FITTON GUARD STATION CABIN",
         "type": "established",
         "cost": 0,
@@ -4397,7 +4958,7 @@
         ]
       },
       "properties": {
-        "id": "CO-140",
+        "id": "CO-153",
         "name": "Rampart Range Recreation Area",
         "type": "established",
         "cost": 0,
@@ -4422,7 +4983,7 @@
         ]
       },
       "properties": {
-        "id": "CO-141",
+        "id": "CO-154",
         "name": "Bear Creek Lake  City Park",
         "type": "established",
         "cost": 0,
@@ -4447,7 +5008,7 @@
         ]
       },
       "properties": {
-        "id": "CO-142",
+        "id": "CO-155",
         "name": "Chatfield State Park",
         "type": "established",
         "cost": 0,
@@ -4472,7 +5033,7 @@
         ]
       },
       "properties": {
-        "id": "CO-143",
+        "id": "CO-156",
         "name": "Cherry Creek State Park",
         "type": "established",
         "cost": 0,
@@ -4497,7 +5058,7 @@
         ]
       },
       "properties": {
-        "id": "CO-144",
+        "id": "CO-157",
         "name": "Lake Hasty",
         "type": "established",
         "cost": 0,
@@ -4525,7 +5086,7 @@
         ]
       },
       "properties": {
-        "id": "CO-145",
+        "id": "CO-158",
         "name": "Carpios Ridge",
         "type": "established",
         "cost": 0,
@@ -4550,7 +5111,7 @@
         ]
       },
       "properties": {
-        "id": "CO-146",
+        "id": "CO-159",
         "name": "Bristol Head Campground",
         "type": "established",
         "cost": 0,
@@ -4577,7 +5138,7 @@
         ]
       },
       "properties": {
-        "id": "CO-147",
+        "id": "CO-160",
         "name": "Antonito, CO",
         "type": "established",
         "cost": 0,
@@ -4602,7 +5163,7 @@
         ]
       },
       "properties": {
-        "id": "CO-148",
+        "id": "CO-161",
         "name": "Blanca, CO",
         "type": "established",
         "cost": 0,
@@ -4627,7 +5188,7 @@
         ]
       },
       "properties": {
-        "id": "CO-149",
+        "id": "CO-162",
         "name": "LOTTIS CREEK CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -4658,7 +5219,7 @@
         ]
       },
       "properties": {
-        "id": "CO-150",
+        "id": "CO-163",
         "name": "WILLIAMS CREEK CAMPGROUND",
         "type": "established",
         "cost": 0,
@@ -4691,7 +5252,7 @@
         ]
       },
       "properties": {
-        "id": "CO-151",
+        "id": "CO-164",
         "name": "Douglas Ranger District",
         "type": "established",
         "cost": 0,
@@ -4716,7 +5277,7 @@
         ]
       },
       "properties": {
-        "id": "CO-152",
+        "id": "CO-165",
         "name": "Parks Ranger District",
         "type": "established",
         "cost": 0,
@@ -4744,7 +5305,7 @@
         ]
       },
       "properties": {
-        "id": "CO-153",
+        "id": "CO-166",
         "name": "Laramie Peak Area",
         "type": "established",
         "cost": 0,
@@ -4776,7 +5337,7 @@
         ]
       },
       "properties": {
-        "id": "CO-154",
+        "id": "CO-167",
         "name": "Laramie Ranger District",
         "type": "established",
         "cost": 0,
@@ -4801,7 +5362,7 @@
         ]
       },
       "properties": {
-        "id": "CO-155",
+        "id": "CO-168",
         "name": "Cold Springs Campground",
         "type": "established",
         "cost": 0,
@@ -4835,7 +5396,7 @@
         ]
       },
       "properties": {
-        "id": "CO-156",
+        "id": "CO-169",
         "name": "Brush Creek/Hayden Ranger District",
         "type": "established",
         "cost": 0,
@@ -4860,7 +5421,7 @@
         ]
       },
       "properties": {
-        "id": "CO-157",
+        "id": "CO-170",
         "name": "Lynx Pass Campground",
         "type": "established",
         "cost": 0,
@@ -4895,7 +5456,7 @@
         ]
       },
       "properties": {
-        "id": "CO-158",
+        "id": "CO-171",
         "name": "Yampa Ranger District",
         "type": "established",
         "cost": 0,
@@ -4925,7 +5486,7 @@
         ]
       },
       "properties": {
-        "id": "CO-159",
+        "id": "CO-172",
         "name": "Hahns Peak/Bears Ears Ranger District",
         "type": "established",
         "cost": 0,
@@ -4950,7 +5511,7 @@
         ]
       },
       "properties": {
-        "id": "CO-160",
+        "id": "CO-173",
         "name": "Arapaho National Recreation Area",
         "type": "established",
         "cost": 0,
@@ -4980,7 +5541,7 @@
         ]
       },
       "properties": {
-        "id": "CO-161",
+        "id": "CO-174",
         "name": "Huntington Canyon Recreation Area",
         "type": "established",
         "cost": 0,
@@ -5008,7 +5569,7 @@
         ]
       },
       "properties": {
-        "id": "CO-162",
+        "id": "CO-175",
         "name": "La Sal Loop - Moab Front Recreation Area",
         "type": "established",
         "cost": 0,
@@ -5033,7 +5594,7 @@
         ]
       },
       "properties": {
-        "id": "CO-163",
+        "id": "CO-176",
         "name": "Grand Mesa",
         "type": "established",
         "cost": 0,
@@ -5058,7 +5619,7 @@
         ]
       },
       "properties": {
-        "id": "CO-164",
+        "id": "CO-177",
         "name": "Soap Creek",
         "type": "established",
         "cost": 0,
@@ -5083,7 +5644,7 @@
         ]
       },
       "properties": {
-        "id": "CO-165",
+        "id": "CO-178",
         "name": "BEAR LAKE CAMPGROUND (CO)",
         "type": "established",
         "cost": 10,
@@ -5116,7 +5677,7 @@
         ]
       },
       "properties": {
-        "id": "CO-166",
+        "id": "CO-179",
         "name": "Blue Lake Campground - San Isabel NF (CO)",
         "type": "established",
         "cost": 0,
@@ -5149,7 +5710,7 @@
         ]
       },
       "properties": {
-        "id": "CO-167",
+        "id": "CO-180",
         "name": "Breckenridge Area",
         "type": "established",
         "cost": 0,
@@ -5174,7 +5735,7 @@
         ]
       },
       "properties": {
-        "id": "CO-168",
+        "id": "CO-181",
         "name": "Green Mountain/Heeney Area",
         "type": "established",
         "cost": 0,
@@ -5199,7 +5760,7 @@
         ]
       },
       "properties": {
-        "id": "CO-169",
+        "id": "CO-182",
         "name": "Vail Area",
         "type": "established",
         "cost": 0,
@@ -5224,7 +5785,7 @@
         ]
       },
       "properties": {
-        "id": "CO-170",
+        "id": "CO-183",
         "name": "Silverthorne Area",
         "type": "established",
         "cost": 0,
@@ -5249,7 +5810,7 @@
         ]
       },
       "properties": {
-        "id": "CO-171",
+        "id": "CO-184",
         "name": "Basalt Area",
         "type": "established",
         "cost": 0,
@@ -5274,7 +5835,7 @@
         ]
       },
       "properties": {
-        "id": "CO-172",
+        "id": "CO-185",
         "name": "Meadow Ridge Campground",
         "type": "established",
         "cost": 0,
@@ -5308,7 +5869,7 @@
         ]
       },
       "properties": {
-        "id": "CO-173",
+        "id": "CO-186",
         "name": "Gold Park Campground",
         "type": "established",
         "cost": 0,
@@ -5338,7 +5899,7 @@
         ]
       },
       "properties": {
-        "id": "CO-174",
+        "id": "CO-187",
         "name": "Eagle Area",
         "type": "established",
         "cost": 0,
@@ -5363,7 +5924,7 @@
         ]
       },
       "properties": {
-        "id": "CO-175",
+        "id": "CO-188",
         "name": "Snowmass Area",
         "type": "established",
         "cost": 0,
@@ -5388,7 +5949,7 @@
         ]
       },
       "properties": {
-        "id": "CO-176",
+        "id": "CO-189",
         "name": "SW/Central Flat Tops Area",
         "type": "established",
         "cost": 0,
@@ -5413,7 +5974,7 @@
         ]
       },
       "properties": {
-        "id": "CO-177",
+        "id": "CO-190",
         "name": "Meadow Lake Campground",
         "type": "established",
         "cost": 0,
@@ -5447,7 +6008,7 @@
         ]
       },
       "properties": {
-        "id": "CO-178",
+        "id": "CO-191",
         "name": "Flat Tops NW",
         "type": "established",
         "cost": 0,
@@ -5472,7 +6033,7 @@
         ]
       },
       "properties": {
-        "id": "CO-179",
+        "id": "CO-192",
         "name": "Keystone Area",
         "type": "established",
         "cost": 0,
@@ -5497,7 +6058,7 @@
         ]
       },
       "properties": {
-        "id": "CO-180",
+        "id": "CO-193",
         "name": "SE Flat Tops Area",
         "type": "established",
         "cost": 0,
@@ -5525,7 +6086,7 @@
         ]
       },
       "properties": {
-        "id": "CO-181",
+        "id": "CO-194",
         "name": "Frisco Area",
         "type": "established",
         "cost": 0,
@@ -5550,7 +6111,7 @@
         ]
       },
       "properties": {
-        "id": "CO-182",
+        "id": "CO-195",
         "name": "Marble Area",
         "type": "established",
         "cost": 0,
@@ -5575,7 +6136,7 @@
         ]
       },
       "properties": {
-        "id": "CO-183",
+        "id": "CO-196",
         "name": "Carbondale Area",
         "type": "established",
         "cost": 0,
@@ -5600,7 +6161,7 @@
         ]
       },
       "properties": {
-        "id": "CO-184",
+        "id": "CO-197",
         "name": "Aspen-Sopris Ranger District",
         "type": "established",
         "cost": 0,
@@ -5627,7 +6188,7 @@
         ]
       },
       "properties": {
-        "id": "CO-185",
+        "id": "CO-198",
         "name": "Oh Be Joyful Recreation Area",
         "type": "established",
         "cost": 5,
@@ -5661,7 +6222,7 @@
         ]
       },
       "properties": {
-        "id": "CO-186",
+        "id": "CO-199",
         "name": "Bradfield Recreation Site",
         "type": "established",
         "cost": 0,
@@ -5694,7 +6255,7 @@
         ]
       },
       "properties": {
-        "id": "CO-187",
+        "id": "CO-200",
         "name": "Box Elder",
         "type": "established",
         "cost": 15,
@@ -5726,7 +6287,7 @@
         ]
       },
       "properties": {
-        "id": "CO-188",
+        "id": "CO-201",
         "name": "Gypsum Campground",
         "type": "established",
         "cost": 10,
@@ -5756,7 +6317,7 @@
         ]
       },
       "properties": {
-        "id": "CO-189",
+        "id": "CO-202",
         "name": "Cochetopa Creek Rec Site",
         "type": "established",
         "cost": 15,
@@ -5783,7 +6344,7 @@
         ]
       },
       "properties": {
-        "id": "CO-190",
+        "id": "CO-203",
         "name": "Wolcott Campground",
         "type": "established",
         "cost": 10,
@@ -5811,7 +6372,7 @@
         ]
       },
       "properties": {
-        "id": "CO-191",
+        "id": "CO-204",
         "name": "Penrose Common Rec Site",
         "type": "established",
         "cost": 15,
@@ -5842,7 +6403,7 @@
         ]
       },
       "properties": {
-        "id": "CO-192",
+        "id": "CO-205",
         "name": "Meeker Trails",
         "type": "established",
         "cost": 15,
@@ -5867,7 +6428,7 @@
         ]
       },
       "properties": {
-        "id": "CO-193",
+        "id": "CO-206",
         "name": "King Creek Trailhead",
         "type": "established",
         "cost": 15,
@@ -5892,7 +6453,7 @@
         ]
       },
       "properties": {
-        "id": "CO-194",
+        "id": "CO-207",
         "name": "Catamount Bridge Boat Launch",
         "type": "established",
         "cost": 15,
@@ -5919,7 +6480,7 @@
         ]
       },
       "properties": {
-        "id": "CO-195",
+        "id": "CO-208",
         "name": "Cottonwood Site",
         "type": "established",
         "cost": 15,
@@ -5947,7 +6508,7 @@
         ]
       },
       "properties": {
-        "id": "CO-196",
+        "id": "CO-209",
         "name": "Lyons Gulch Boat Launch",
         "type": "established",
         "cost": 15,
@@ -5974,7 +6535,7 @@
         ]
       },
       "properties": {
-        "id": "CO-197",
+        "id": "CO-210",
         "name": "Windy Point Site",
         "type": "established",
         "cost": 15,
@@ -6006,7 +6567,7 @@
         ]
       },
       "properties": {
-        "id": "CO-198",
+        "id": "CO-211",
         "name": "Thompson Creek Campground",
         "type": "established",
         "cost": 15,
@@ -6035,7 +6596,7 @@
         ]
       },
       "properties": {
-        "id": "CO-199",
+        "id": "CO-212",
         "name": "Deep Creek Day Use Area",
         "type": "established",
         "cost": 15,
@@ -6065,7 +6626,7 @@
         ]
       },
       "properties": {
-        "id": "CO-200",
+        "id": "CO-213",
         "name": "Peach Valley OHV Staging Area",
         "type": "established",
         "cost": 3,
@@ -6096,7 +6657,7 @@
         ]
       },
       "properties": {
-        "id": "CO-201",
+        "id": "CO-214",
         "name": "Knowles Overlook Campground",
         "type": "established",
         "cost": 15,
@@ -6121,7 +6682,7 @@
         ]
       },
       "properties": {
-        "id": "CO-202",
+        "id": "CO-215",
         "name": "Caddis Flats",
         "type": "established",
         "cost": 15,
@@ -6152,7 +6713,7 @@
         ]
       },
       "properties": {
-        "id": "CO-203",
+        "id": "CO-216",
         "name": "Ledges Cottonwood Area",
         "type": "established",
         "cost": 5,
@@ -6186,7 +6747,7 @@
         ]
       },
       "properties": {
-        "id": "CO-204",
+        "id": "CO-217",
         "name": "Ledges Rockhouse Area",
         "type": "established",
         "cost": 5,
@@ -6218,7 +6779,7 @@
         ]
       },
       "properties": {
-        "id": "CO-205",
+        "id": "CO-218",
         "name": "Lower Beaver Rec. Site",
         "type": "established",
         "cost": 0,
@@ -6250,7 +6811,7 @@
         ]
       },
       "properties": {
-        "id": "CO-206",
+        "id": "CO-219",
         "name": "Jouflas Campground",
         "type": "established",
         "cost": 15,
@@ -6283,7 +6844,7 @@
         ]
       },
       "properties": {
-        "id": "CO-207",
+        "id": "CO-220",
         "name": "Bedrock Recreation Site",
         "type": "established",
         "cost": 0,
@@ -6314,7 +6875,7 @@
         ]
       },
       "properties": {
-        "id": "CO-208",
+        "id": "CO-221",
         "name": "Sage Campground",
         "type": "established",
         "cost": 15,
@@ -6347,7 +6908,7 @@
         ]
       },
       "properties": {
-        "id": "CO-209",
+        "id": "CO-222",
         "name": "Meeker Area",
         "type": "established",
         "cost": 0,
@@ -6372,7 +6933,7 @@
         ]
       },
       "properties": {
-        "id": "CO-210",
+        "id": "CO-223",
         "name": "South Platte River Corridor",
         "type": "established",
         "cost": 0,
@@ -6402,7 +6963,7 @@
         ]
       },
       "properties": {
-        "id": "CO-211",
+        "id": "CO-224",
         "name": "ELK CREEK CAMPGROUND (RIO GRANDE NF)",
         "type": "established",
         "cost": 0,
@@ -6436,7 +6997,7 @@
         ]
       },
       "properties": {
-        "id": "CO-212",
+        "id": "CO-225",
         "name": "ALPINE RANGER STATION",
         "type": "established",
         "cost": 0,

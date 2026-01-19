@@ -1,0 +1,919 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.57765,
+          34.42018
+        ]
+      },
+      "properties": {
+        "id": "SC-001",
+        "name": "Enoree Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243804",
+        "description": "<p>The Enoree is well-known for its recreation opportunities on the Enoree, Tyger and Broad rivers, as well as a challenging Off-Highway Vehicle (OHV) trail. It also offers outstanding hiking, boating"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1888889,
+          33.6725
+        ]
+      },
+      "properties": {
+        "id": "SC-002",
+        "name": "CLARKS HILL",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "232551",
+        "description": "<h2>Overview</h2>\nClarks Hill is a popular park on J. Strom Thurmond Lake, just off Georgia State Highway 221 near the dam. The 70,000 acre lake and its 1,000+ miles of shoreline provide excellent boa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.40241536,
+          33.85624469
+        ]
+      },
+      "properties": {
+        "id": "SC-003",
+        "name": "Elijah Clark State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248343",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.12806,
+          34.81006
+        ]
+      },
+      "properties": {
+        "id": "SC-004",
+        "name": "Andrew Pickens Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243748",
+        "description": "<p>The Andrew Pickens Ranger District is home to the Wild and Scenic Chattooga River, a popular angling and whitewater destination. The Ellicott Rock Wilderness offers opportunities for solitude and p"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.2091667,
+          33.6583333
+        ]
+      },
+      "properties": {
+        "id": "SC-005",
+        "name": "BELOW DAM SOUTH CAROLINA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "234562",
+        "description": "<h2>Overview</h2>\nBelow Dam South Carolina Recreation Area is a popular park just below J. Strom Thurmond Lake Dam along the Savannah River. The park is located on Power Plant Road just off South Caro"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.5944444,
+          33.9416667
+        ]
+      },
+      "properties": {
+        "id": "SC-006",
+        "name": "GILL POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "232592",
+        "description": "<h2>Overview</h2>\nGill Point Recreation Area is a rural park on the northern end of J. Strom Thurmond Lake, off Georgia State Highway 79. The 70,000 acre lake and its 1,000+ miles of shoreline provide"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.5627778,
+          33.0375
+        ]
+      },
+      "properties": {
+        "id": "SC-007",
+        "name": "BUCK HALL RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "234128",
+        "description": "<h2>Overview</h2>\nBuck Hall Recreation Area offers a premier location to enjoy the outdoors. It is situated along the Intracoastal Waterway and provides great access to Cape Romain National Wildlife R"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.93069,
+          33.80324
+        ]
+      },
+      "properties": {
+        "id": "SC-008",
+        "name": "Long Cane Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243787",
+        "description": "<p>The Long Cane is home to the Forks Area Trail System, an internationally known biking trail network. Both piedmont districts offer outstanding hiking, boating, hunting, target shooting and equestri"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.69517,
+          33.14481
+        ]
+      },
+      "properties": {
+        "id": "SC-009",
+        "name": "Francis Marion National Forest",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243747",
+        "description": "<h3>Status of Recreation sites after government shutdown:</h3><p>All sites are open with the exception of the following:</p><ul><li>Buck Hall Campground - closed while work is still underway on the wa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.358134,
+          33.884237
+        ]
+      },
+      "properties": {
+        "id": "SC-010",
+        "name": "Baker Creek State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248340",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.2251861,
+          34.8647667
+        ]
+      },
+      "properties": {
+        "id": "SC-011",
+        "name": "WHETSTONE HORSE CAMP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "234479",
+        "description": "<h2>Overview</h2>\nWhetstone Horse Camp is located in the Andrew Pickens Ranger District in Oconee County in the western corner of South Carolina, about 13 miles northwest of Walhalla. The Chattooga Ri"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1867,
+          34.89833
+        ]
+      },
+      "properties": {
+        "id": "SC-012",
+        "name": "Long Bottom Ford",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243761",
+        "description": "<p>Primitive campsite.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.703,
+          33.149
+        ]
+      },
+      "properties": {
+        "id": "SC-013",
+        "name": "Francis Marion Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243822",
+        "description": "<h3>Please note:</h3><div><p>FMRD Recreation Sites closing Sept 11, 4:30PM due to Hurricane</p><p>Due to Hurricane Florence, all recreation sites on the Francis Marion Ranger District, including the o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3386111,
+          33.8361111
+        ]
+      },
+      "properties": {
+        "id": "SC-014",
+        "name": "HAWE CREEK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "232596",
+        "description": "<h2>Overview</h2>\n<p>Hawe Creek Campground is located on J. Strom Thurmond Lake, one mile from the Dorn Sportfishing Facility, one of the largest in the southeast.\u00a0</p>\n<p>Camping at Hawe Creek is rip"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.58837023,
+          33.97829278
+        ]
+      },
+      "properties": {
+        "id": "SC-015",
+        "name": "Bobby Brown State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248342",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.387146,
+          33.656485
+        ]
+      },
+      "properties": {
+        "id": "SC-016",
+        "name": "Mistletoe State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248348",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.21231272,
+          33.7528581
+        ]
+      },
+      "properties": {
+        "id": "SC-017",
+        "name": "Hamilton Branch State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248347",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.28129484,
+          33.64762117
+        ]
+      },
+      "properties": {
+        "id": "SC-018",
+        "name": "Wildwood Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248350",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1805,
+          34.82299
+        ]
+      },
+      "properties": {
+        "id": "SC-019",
+        "name": "Grapevine",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243758",
+        "description": "<p>Primitive campsite.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1181,
+          34.969
+        ]
+      },
+      "properties": {
+        "id": "SC-020",
+        "name": "Burrells Ford",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243750",
+        "description": "<p>Burrells Ford campground is open year round with no charge. A pit toilet and picnic tables are available. Walk .25 miles to camp on the Chattooga River.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4203,
+          33.98959
+        ]
+      },
+      "properties": {
+        "id": "SC-021",
+        "name": "Morrow Bridge and Midway Seasonal Camps",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "10049041",
+        "description": "<p>Morrow Bridge and Midway seasonal camps, located in the western and northern portions of the Long Cane Ranger District, offer primitive facilities in a setting ideal for hunting.The surrounding for"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.43068208,
+          33.87890868
+        ]
+      },
+      "properties": {
+        "id": "SC-022",
+        "name": "Hickory Knob State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248344",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.2358333,
+          34.7891667
+        ]
+      },
+      "properties": {
+        "id": "SC-023",
+        "name": "CASSIDY BRIDGE PRIMITIVE CAMP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "234450",
+        "description": "<h2>Overview</h2>\n<p>Cassidy Bridge Primitive Camp is situated in the Andrew Pickens Ranger District in Oconee County in the western corner South Carolina. The camp sits on the Chauga River, with the "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.2241667,
+          33.7191667
+        ]
+      },
+      "properties": {
+        "id": "SC-024",
+        "name": "MODOC",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "232645",
+        "description": "<h2>Overview</h2>\n<p>Modoc Campground is located on J. Strom Thurmond Lake, only five miles away from the Lake Thurmond Visitor Center and Dam.\u00a0</p>\n<p>Camping at Modoc is ripe with many different opp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.42244073,
+          33.82919522
+        ]
+      },
+      "properties": {
+        "id": "SC-025",
+        "name": "Soap Creek Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248354",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4419538,
+          33.66591507
+        ]
+      },
+      "properties": {
+        "id": "SC-026",
+        "name": "Clay Hill",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248341",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.32640692,
+          33.68162275
+        ]
+      },
+      "properties": {
+        "id": "SC-027",
+        "name": "Fort Gordon Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248353",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4713669,
+          33.6365858
+        ]
+      },
+      "properties": {
+        "id": "SC-028",
+        "name": "Raysville Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "248345",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.245,
+          33.7938889
+        ]
+      },
+      "properties": {
+        "id": "SC-029",
+        "name": "PARKSVILLE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "232664",
+        "description": "<h2>Overview</h2>\nParksville Recreation Area is a rural park in McCormick County, South Carolina on J. Strom Thurmond Lake. It is located along South Carolina State Highway 28/221 and features 70,000 "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.30382,
+          34.71823
+        ]
+      },
+      "properties": {
+        "id": "SC-030",
+        "name": "Brasstown Falls",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "243858",
+        "description": "<p>Primitive campsite.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.63074376,
+          33.97609078
+        ]
+      },
+      "properties": {
+        "id": "SC-031",
+        "name": "Broad River",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "251512",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0875,
+          34.9416667
+        ]
+      },
+      "properties": {
+        "id": "SC-032",
+        "name": "CHERRY HILL CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "233343",
+        "description": "<h2>Overview</h2>\n<p>Open April 1 - October 31. <br><br><br>Cherry Hill is near the Chattooga Wild and Scenic River and many miles of hiking trails.  Site amenities include centrally-located drinking "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.53497281,
+          33.93494058
+        ]
+      },
+      "properties": {
+        "id": "SC-033",
+        "name": "Hesters Ferry",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SC",
+        "source": "recreation.gov",
+        "facility_id": "251513",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=453&agencyCode=130\" rel=\"nofollow\">J. Strom Thurmond Lake</a>"
+      }
+    }
+  ]
+}

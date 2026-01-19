@@ -1,0 +1,935 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.2744444,
+          38.7333333
+        ]
+      },
+      "properties": {
+        "id": "IL-001",
+        "name": "KEYESPORT REC. AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233528",
+        "description": "<h2>Overview</h2>\nKeyesport Recreation Area is situated on the western shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the pe",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.2336111,
+          38.6947222
+        ]
+      },
+      "properties": {
+        "id": "IL-002",
+        "name": "Boulder Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233433",
+        "description": "<h2>Overview</h2>\n<p>Boulder Campground is situated on the eastern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the peacef",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.7402778,
+          39.4522222
+        ]
+      },
+      "properties": {
+        "id": "IL-003",
+        "name": "LONE POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233541",
+        "description": "<h2>Overview</h2>\n<p>Lone Point is a secluded campground that sits on the western shore of Lake Shelbyville in the heart of central Illinois. </p><p>This facility has a variety of campsites that can a",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.89278,
+          37.42074
+        ]
+      },
+      "properties": {
+        "id": "IL-004",
+        "name": "Hidden Springs Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "244061",
+        "description": "<p>East side of the Shawnee National Forest</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.2663889,
+          38.6580556
+        ]
+      },
+      "properties": {
+        "id": "IL-005",
+        "name": "COLES CREEK DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233783",
+        "description": "<h2>Overview</h2>\nColes Creek Day Use Area is situated on the eastern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the pea",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.32924474,
+          38.65504605
+        ]
+      },
+      "properties": {
+        "id": "IL-006",
+        "name": "Idnr Hazlet State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "247939",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1686&agencyCode=130\" rel=\"nofollow\">Carlyle Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.9485589,
+          38.0884059
+        ]
+      },
+      "properties": {
+        "id": "IL-007",
+        "name": "Wayne Fitzgerald State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "247954",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1690&agencyCode=130\" rel=\"nofollow\">Rend Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3583333,
+          38.6083333
+        ]
+      },
+      "properties": {
+        "id": "IL-008",
+        "name": "DAM WEST SPILLWAY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233484",
+        "description": "<h2>Overview</h2>\n<p>Dam West Spillway is situated on the southern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the peacef",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3708333,
+          38.6363889
+        ]
+      },
+      "properties": {
+        "id": "IL-009",
+        "name": "DAM WEST DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233785",
+        "description": "<h2>Overview</h2>\nDam West Day Use Area is situated on the southern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the peace",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.325,
+          38.6083333
+        ]
+      },
+      "properties": {
+        "id": "IL-010",
+        "name": "Dam East - McNair Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233786",
+        "description": "<h2>Overview</h2>\n<p>Dam East-McNair Campground is situated on the southern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers t",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.2582222,
+          38.6635444
+        ]
+      },
+      "properties": {
+        "id": "IL-011",
+        "name": "LOTUS GROUP AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233780",
+        "description": "<h2>Overview</h2>\nThe Lotus Group Area is on the eastern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the peaceful retreat",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.7625,
+          39.4513889
+        ]
+      },
+      "properties": {
+        "id": "IL-012",
+        "name": "COON CREEK (IL)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233465",
+        "description": "<h2>Overview</h2>\n<p>Coon Creek is a large campground that sits on the western shore of Lake Shelbyville in the heart of central Illinois. Families enjoy the playground, swimming area and shaded camps",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.76,
+          39.4344444
+        ]
+      },
+      "properties": {
+        "id": "IL-013",
+        "name": "LITHIA SPRINGS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233539",
+        "description": "<h2>Overview</h2>\n<p>Lithia Springs Campground sits on the eastern shore of Lake Shelbyville in the heart of central Illinois. This facility has a variety of amenities and offers outdoor activities fo",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.678764,
+          39.492203
+        ]
+      },
+      "properties": {
+        "id": "IL-014",
+        "name": "Wolf Creek State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "247942",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1691&agencyCode=130\" rel=\"nofollow\">Lake Shelbyville</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3583333,
+          38.6277778
+        ]
+      },
+      "properties": {
+        "id": "IL-015",
+        "name": "Dam West Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233483",
+        "description": "<h2>Overview</h2>\n<p>Dam West Campground is a recreation area situated on the southern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the ar",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.2322222,
+          38.6961111
+        ]
+      },
+      "properties": {
+        "id": "IL-016",
+        "name": "BOULDER DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233784",
+        "description": "<h2>Overview</h2>\nBoulder Day Use Area is situated on the eastern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the peacefu",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3083333,
+          38.6083333
+        ]
+      },
+      "properties": {
+        "id": "IL-017",
+        "name": "DAM EAST REC. AREA (DAY USE)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233477",
+        "description": "<h2>Overview</h2>\nDam East Recreation Area is situated on the southern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the pe",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.6222222,
+          39.5513889
+        ]
+      },
+      "properties": {
+        "id": "IL-018",
+        "name": "FORREST W. BO WOOD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233496",
+        "description": "<h2>Overview</h2>\n<p>Forrest W. ''Bo'' Wood Recreation Area has a large campground on the northern shore of Lake Shelbyville in the heart of central Illinois. The lake and surrounding land offer outdo",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.6068059,
+          39.53829422
+        ]
+      },
+      "properties": {
+        "id": "IL-019",
+        "name": "Sullivan Marina and Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "247943",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1691&agencyCode=130\" rel=\"nofollow\">Lake Shelbyville</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.2602778,
+          38.6569444
+        ]
+      },
+      "properties": {
+        "id": "IL-020",
+        "name": "Coles Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233463",
+        "description": "<h2>Overview</h2>\n<p>Coles Creek Campground is situated on the eastern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis and a few miles from th",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.1108333,
+          41.9516667
+        ]
+      },
+      "properties": {
+        "id": "IL-021",
+        "name": "THOMSON CAUSEWAY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233651",
+        "description": "<h2>Overview</h2>\nThomson Causeway provides the unique experience of island camping on the great Mississippi River and it's well worth a try! <br/><br/>\nThe western edge of the recreation area offers ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.24416,
+          37.578335
+        ]
+      },
+      "properties": {
+        "id": "IL-022",
+        "name": "Camp Cadiz Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "244060",
+        "description": "<p>This campground is the site of an old Civilian Conservation Corps (CCC) work camp. Somewhat off the beaten path Camp Cadiz is usually quiet and rarely do the campsites fill up; with the exception o",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.7033333,
+          39.5755556
+        ]
+      },
+      "properties": {
+        "id": "IL-023",
+        "name": "WILBORN CREEK (GROUP CAMP)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233753",
+        "description": "<h2>Overview</h2>\n<p>Wilborn Creek Group Camp sits on the northern shore of Lake Shelbyville in the heart of central Illinois. </p><p>The lake and surrounding land offer outdoor activities for people ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.7725,
+          39.4455556
+        ]
+      },
+      "properties": {
+        "id": "IL-024",
+        "name": "OPOSSUM CREEK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233567",
+        "description": "<h2>Overview</h2>\n<p>Opossum Creek Recreation Area has a quiet campground that sits on the western shore of Lake Shelbyville in the heart of central Illinois. The lake and surrounding land offer outdo",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.71414791,
+          39.49860044
+        ]
+      },
+      "properties": {
+        "id": "IL-025",
+        "name": "Eagle Creek State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "247941",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1691&agencyCode=130\" rel=\"nofollow\">Lake Shelbyville</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.8874957,
+          38.1886838
+        ]
+      },
+      "properties": {
+        "id": "IL-026",
+        "name": "Kaskaskia River Lock & Dam - Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "247944",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1689&agencyCode=130\" rel=\"nofollow\">Mississippi River - Kaskaskia River</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.26946,
+          37.45783
+        ]
+      },
+      "properties": {
+        "id": "IL-027",
+        "name": "Mississippi Bluffs Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "244053",
+        "description": "<p>West side of the Shawnee National Forest</p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.3497222,
+          38.5997222
+        ]
+      },
+      "properties": {
+        "id": "IL-028",
+        "name": "DAM EAST SPILLWAY (DAY USE)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IL",
+        "source": "recreation.gov",
+        "facility_id": "233478",
+        "description": "<h2>Overview</h2>\nDam East Spillway Day Use Area is situated on the southern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

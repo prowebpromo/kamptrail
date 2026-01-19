@@ -1,0 +1,2477 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8216667,
+          34.4463889
+        ]
+      },
+      "properties": {
+        "id": "GA-001",
+        "name": "SPRINGFIELD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232711",
+        "description": "<h2>Overview</h2>\n  \nSpringfield Campground is one of Hartwell’s most popular camping destinations consisting of 60 acres of primarily Virginia pine and some mixed hardwoods. The area presently offers",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.4813,
+          34.7557667
+        ]
+      },
+      "properties": {
+        "id": "GA-002",
+        "name": "LAKE RABUN BEACH RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "273352",
+        "description": "<h2>Overview</h2>\nCradled in the hills of the North Georgia Mountains overlooking beautiful Lake Rabun, this developed recreation area offers camping and hiking.  Across the road, the lake offers plen",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.0641667,
+          31.6744444
+        ]
+      },
+      "properties": {
+        "id": "GA-003",
+        "name": "COTTON HILL",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232559",
+        "description": "<h2>Overview</h2>\nCotton Hill Campground is situated on the shores of Walter F. George Lake on the Georgia and Alabama border. The lake is a great place to get away for a week, a weekend or just an af",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.25,
+          34.875
+        ]
+      },
+      "properties": {
+        "id": "GA-004",
+        "name": "MORGANTON POINT",
+        "type": "established",
+        "cost": 39,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "234590",
+        "description": "<h2>Overview</h2>\nThe Morganton Point Recreation Area is located in the Blue Ridge Ranger District, within the beautiful northeast Georgia mountains. Pristine water and scenic views draw visitors from",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.03466864,
+          34.20592578
+        ]
+      },
+      "properties": {
+        "id": "GA-005",
+        "name": "Shady Grove",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247921",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=442&agencyCode=130\" rel=\"nofollow\">Lake Sidney Lanier</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.6194444,
+          34.1513889
+        ]
+      },
+      "properties": {
+        "id": "GA-006",
+        "name": "VICTORIA CAMPGROUND",
+        "type": "established",
+        "cost": 28,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232730",
+        "description": "<h2>Overview</h2>\nVictoria Campground sits on the banks of Allatoona Lake, providing visitors with a variety of water activities in the green rolling hills of Georgia.<h2>Recreation</h2>\nAllatoona Lak",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.6448194,
+          34.1311278
+        ]
+      },
+      "properties": {
+        "id": "GA-007",
+        "name": "GALT'S FERRY DAY USE AREA (GA)",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251868",
+        "description": "<h2>Overview</h2>\nGalt's Ferry Day Use Area is situated on Allatoona Lake on the Etowah River, a tributary of the Coosa River. The serene lake and peaceful surroundings offer a relaxing getaway from t",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.72025119,
+          34.17147912
+        ]
+      },
+      "properties": {
+        "id": "GA-008",
+        "name": "Bartow County - Gatewood Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247901",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=440&agencyCode=130\" rel=\"nofollow\">Allatoona Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.6945333,
+          34.6034667
+        ]
+      },
+      "properties": {
+        "id": "GA-009",
+        "name": "REREG DAM DAY USE AREA SHELTER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "272302",
+        "description": "<h2>Overview</h2>\nReregulation Dam Day Use Area is actually two day use areas situated on the North and South Sides of the Coosawattee River.  Both areas provide picnic sites, fishing piers and water ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.710911,
+          34.107889
+        ]
+      },
+      "properties": {
+        "id": "GA-010",
+        "name": "PS Marina 3 - Allatoona Landing",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "231775",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=440&agencyCode=130\" rel=\"nofollow\">Allatoona Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.653925,
+          34.6029361
+        ]
+      },
+      "properties": {
+        "id": "GA-011",
+        "name": "DAMSITE DAY USE AREA SHELTER",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "272304",
+        "description": "<h2>Overview</h2>\n<p>Damsite Day Use Area is located on Carters Lake in the North Georgia Mountains about 70 miles north of Atlanta.  The sparkling waters and rugged shoreline provide a beautiful surr",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.0615167,
+          34.1524861
+        ]
+      },
+      "properties": {
+        "id": "GA-012",
+        "name": "BUFORD DAM PARK SHELTERS (GA)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251923",
+        "description": "<h2>Overview</h2>\n Buford Dam Park lies just north of Buford Dam on Lake Sidney Lanier.  The site features beautiful views of the lake as well as excellent access to swimming, picnicking and boating. ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5497222,
+          30.7203611
+        ]
+      },
+      "properties": {
+        "id": "GA-013",
+        "name": "Cumberland Island National Seashore Camping Permits",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "253730",
+        "description": "<h2>Overview</h2>\n<p>Whether you are looking to spend a night with family and friends around a campfire under the moss covered branches of the live oak trees, or looking for the rugged challenges and ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.5791667,
+          34.1208333
+        ]
+      },
+      "properties": {
+        "id": "GA-014",
+        "name": "PAYNE CAMPGROUND-ALLATOONA LAKE",
+        "type": "established",
+        "cost": 22,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232665",
+        "description": "<h2>Overview</h2>\nPayne Campground sits on the banks of Allatoona Lake, providing visitors with a variety of water activities in the green rolling hills of Georgia.<h2>Recreation</h2>\nAllatoona Lake i",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.626111,
+          34.832222
+        ]
+      },
+      "properties": {
+        "id": "GA-015",
+        "name": "Wildcat Creek Campground #2 Upper",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "10070265",
+        "description": "<p><strong>CLOSURE DUE TO WINTER WEATHER--JANUARY 14, 2022 storms have damaged the West Wildcat Road to not allow safe vehicle access to the campgrounds.</strong></p><p><strong>Wildcat 2 Campground is",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.520124,
+          34.863417
+        ]
+      },
+      "properties": {
+        "id": "GA-016",
+        "name": "Jacks River Fields Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "240193",
+        "description": "<p>This quaint, secluded campground is situated on the bank of the south fork of the Jacks River.  Surrounded by the yellow poplar, oak, hickory, and white pine forests of north Georgia, these 7 camps",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.91118688,
+          34.37687227
+        ]
+      },
+      "properties": {
+        "id": "GA-017",
+        "name": "Hart State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247910",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=454&agencyCode=130\" rel=\"nofollow\">Hartwell Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.2292972,
+          33.665925
+        ]
+      },
+      "properties": {
+        "id": "GA-018",
+        "name": "LAKE SPRINGS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232617",
+        "description": "<h2>Overview</h2>\n<p>Lake Springs Recreation Area is one of the most popular parks on J. Strom Thurmond Lake. The park is located on Georgia State Highway 221 within twenty minutes of Augusta, Georgia",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.6398722,
+          34.6175361
+        ]
+      },
+      "properties": {
+        "id": "GA-019",
+        "name": "WOODRING DAY USE AREA SHELTER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "272301",
+        "description": "<h2>Overview</h2>\nWoodring Day Use Area is located in the North Georgia Mountains about 70 miles north of Atlanta on Carters Lake.  The sparkling waters and rugged shoreline provide a beautiful surrou",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.904533,
+          34.288295
+        ]
+      },
+      "properties": {
+        "id": "GA-020",
+        "name": "River Forks",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247915",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=442&agencyCode=130\" rel=\"nofollow\">Lake Sidney Lanier</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4719444,
+          33.6461111
+        ]
+      },
+      "properties": {
+        "id": "GA-021",
+        "name": "AMITY RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232514",
+        "description": "<h2>Overview</h2>\nAmity Recreation Area is one of the most popular parks on J. Strom Thurmond Lake. The large, 70,000-acre lake and its 1,000 miles of shoreline provide excellent boating, water skiing",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.08668501,
+          33.20901972
+        ]
+      },
+      "properties": {
+        "id": "GA-022",
+        "name": "Brush Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247929",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=450&agencyCode=130\" rel=\"nofollow\">West Point Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.396583,
+          34.752706
+        ]
+      },
+      "properties": {
+        "id": "GA-023",
+        "name": "Chattooga River District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "240213",
+        "description": "<p>The Chattooga River Ranger District covers 261,035 acres in the northeast part of Georgia. Terrain ranges from the Piedmont in the southern part of the district to Georgia's second highest mountain",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.20478803,
+          32.94730746
+        ]
+      },
+      "properties": {
+        "id": "GA-024",
+        "name": "Southern Harbor",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247932",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=450&agencyCode=130\" rel=\"nofollow\">West Point Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8413889,
+          34.3438889
+        ]
+      },
+      "properties": {
+        "id": "GA-025",
+        "name": "WATSADLER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232735",
+        "description": "<h2>Overview</h2>\n  \nWatsadler Campground is a 36 acre site consisting of a relatively dense cover of pine and mixed hardwoods.    The area is open year-round and is one of Hartwell’s most popular cam",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9905556,
+          34.1844444
+        ]
+      },
+      "properties": {
+        "id": "GA-026",
+        "name": "Van Pugh South Day Use Facility",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "234670",
+        "description": "<h2>Overview</h2>\n<p>Van Pugh South Day Use Facility lies on the banks of Lake Sidney Lanier in the foothills of the Blue Ridge Mountains of Northern Georgia.   <br>The popular lake boasts nearly 700 ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9511444,
+          34.337925
+        ]
+      },
+      "properties": {
+        "id": "GA-027",
+        "name": "BOLDING MILL",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232531",
+        "description": "<h2>Overview</h2>\n Bolding Mill Park lies approximately 30 miles north of Buford Dam on Lake Sidney Lanier.  The site features beautiful views of the lake as well as excellent access to swimming, picn",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1997222,
+          33.6608333
+        ]
+      },
+      "properties": {
+        "id": "GA-028",
+        "name": "WEST DAM",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232739",
+        "description": "<h2>Overview</h2>\nWest Dam Recreation Area is one of the most popular parks on J. Strom Thurmond Lake. With 70,000 acres of surface-area and 1,000+ miles of shoreline, J. Strom Thurmond Lake provides ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8283333,
+          34.5147222
+        ]
+      },
+      "properties": {
+        "id": "GA-029",
+        "name": "BROYLES",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232533",
+        "description": "<h2>Overview</h2>\nBroyles Recreation Area consists of 24 acres with a gentle to moderate slope and vegetation consisting primarily of pine. The site presently offers day use and boat launching facilit",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8655556,
+          34.6280556
+        ]
+      },
+      "properties": {
+        "id": "GA-030",
+        "name": "TWIN LAKES (SC)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232727",
+        "description": "<h2>Overview</h2>\n  \nTwin Lakes Recreation Area is a 152-acre site consisting  of a dense overstory of pines and mixed hardwoods. The site presently offers  camping and a separate day use and boat lau",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.73631343,
+          34.16516225
+        ]
+      },
+      "properties": {
+        "id": "GA-031",
+        "name": "Richard B. Russell State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247923",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=455&agencyCode=130\" rel=\"nofollow\">Richard B. Russell Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.6625,
+          34.6077917
+        ]
+      },
+      "properties": {
+        "id": "GA-032",
+        "name": "NORTHBANK DAY USE AREA SHELTER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "272303",
+        "description": "<h2>Overview</h2>\nNorthbank Day Use Area is located in the North Georgia Mountains about 70 miles north of Atlanta on Carters Lake. The sparkling waters and rugged shoreline provide a beautiful surrou",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.0135382,
+          34.16472287
+        ]
+      },
+      "properties": {
+        "id": "GA-033",
+        "name": "Shoal Creek",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247919",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=442&agencyCode=130\" rel=\"nofollow\">Lake Sidney Lanier</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.8511111,
+          30.7180556
+        ]
+      },
+      "properties": {
+        "id": "GA-034",
+        "name": "EASTBANK",
+        "type": "established",
+        "cost": 28,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232580",
+        "description": "<h2>Overview</h2>\nEastbank Campground is located on Lake Seminole on the Georgia-Florida state line. <br/><br/>\nThe lake and surrounding area provide a variety of outdoor recreational opportunities fo",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.702523,
+          34.096975
+        ]
+      },
+      "properties": {
+        "id": "GA-035",
+        "name": "Leon E. Williams - Holiday Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "231774",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=440&agencyCode=130\" rel=\"nofollow\">Allatoona Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.078754,
+          34.17626
+        ]
+      },
+      "properties": {
+        "id": "GA-036",
+        "name": "SAWNEE",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232700",
+        "description": "<h2>Overview</h2>\nSawnee Campground lies just north of the Buford Dam on Lake Sidney Lanier. The campground features beautiful views of the lake as well as excellent access to boating and swimming. \nT",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.14966327,
+          33.02688893
+        ]
+      },
+      "properties": {
+        "id": "GA-037",
+        "name": "Pyne Road Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247930",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=450&agencyCode=130\" rel=\"nofollow\">West Point Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.105975,
+          33.059957
+        ]
+      },
+      "properties": {
+        "id": "GA-038",
+        "name": "Highland Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247931",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=450&agencyCode=130\" rel=\"nofollow\">West Point Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.638828,
+          34.980596
+        ]
+      },
+      "properties": {
+        "id": "GA-039",
+        "name": "Cottonwood Patch Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "240192",
+        "description": "<p>This hidden gem of a campground is located on the bank of the Conasauga River near the Tennessee/Georgia border.  Iron Mountain trail is accessed directly from the campground.  This simple campgrou",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.7125972,
+          34.4455194
+        ]
+      },
+      "properties": {
+        "id": "GA-040",
+        "name": "SINGING PINES",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232706",
+        "description": "<h2>Overview</h2>\n Singing Pines Recreation Area consists of 42 acres.  The site presently offers day-use and boat-launching facilities consisting of 1 gatehouse/entrance, 57 picnic sites, 2 standard ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.1061111,
+          34.7808333
+        ]
+      },
+      "properties": {
+        "id": "GA-041",
+        "name": "TWIN LAKES DAY USE AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "234571",
+        "description": "<h2>Overview</h2>\n  \nTwin Lakes Recreation Area is a 152-acre site consisting  of a dense overstory of pines and mixed hardwoods. Day Use facilities presently include a new gatehouse/entrance installe",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9810833,
+          34.1872056
+        ]
+      },
+      "properties": {
+        "id": "GA-042",
+        "name": "VAN PUGH NORTH PARK SHELTER (GA)",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251924",
+        "description": "<h2>Overview</h2>\n Van Pugh North Park lies approximately 15 miles north of Buford Dam on Lake Sidney Lanier.  The site features beautiful views of the lake as well as excellent access to swimming, pi",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.0202278,
+          34.3520917
+        ]
+      },
+      "properties": {
+        "id": "GA-043",
+        "name": "THOMPSON CREEK PARK SHELTER (GA)",
+        "type": "established",
+        "cost": 45,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251920",
+        "description": "<h2>Overview</h2>\n Thompson Creek Park lies approximately 30 miles north of Buford Dam on Lake Sidney Lanier.  The site features beautiful views of the lake as well as excellent access to swimming, pi",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.72312845,
+          34.0925429
+        ]
+      },
+      "properties": {
+        "id": "GA-044",
+        "name": "US Naval Air Station",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247899",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=440&agencyCode=130\" rel=\"nofollow\">Allatoona Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.0556833,
+          34.15365
+        ]
+      },
+      "properties": {
+        "id": "GA-045",
+        "name": "LANIER PARK SHELTER (GA)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251926",
+        "description": "<h2>Overview</h2>\n Lanier Park lies just north of Buford Dam on Lake Sidney Lanier.  The site features beautiful views of the lake as well as excellent access to swimming, picnicking and boating. \n Th",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.7419459,
+          34.3895525
+        ]
+      },
+      "properties": {
+        "id": "GA-046",
+        "name": "Don Carter State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247922",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=442&agencyCode=130\" rel=\"nofollow\">Lake Sidney Lanier</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.892,
+          34.7403333
+        ]
+      },
+      "properties": {
+        "id": "GA-047",
+        "name": "Lake Winfield Scott Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "234469",
+        "description": "<h2>Overview</h2>\nLake Winfield Scott Recreation Area offers visitors year-round recreation opportunities including camping, picnicking, boating, swimming and hiking, all centered around beautiful Lak",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.61950859,
+          34.10064421
+        ]
+      },
+      "properties": {
+        "id": "GA-048",
+        "name": "Calhoun Falls State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247924",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=455&agencyCode=130\" rel=\"nofollow\">Richard B. Russell Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.73465,
+          34.17174
+        ]
+      },
+      "properties": {
+        "id": "GA-049",
+        "name": "COOPER BRANCH No 2 DAY USE AREA (GA)",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251870",
+        "description": "<h2>Overview</h2>\nCooper Branch #2 Day Use Area is situated on Allatoona Lake on a portion of the Etowah River, which is a tributary of the Coosa River.  The serene lake and peaceful surroundings offe",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.06610215,
+          34.49532263
+        ]
+      },
+      "properties": {
+        "id": "GA-050",
+        "name": "Tugaloo State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247912",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=454&agencyCode=130\" rel=\"nofollow\">Hartwell Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8327778,
+          34.3402778
+        ]
+      },
+      "properties": {
+        "id": "GA-051",
+        "name": "BIG OAKS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232527",
+        "description": "<h2>Overview</h2>\nBig Oaks Recreation Area is a 12 acre gently sloping site with good grass cover  and scattered pine and hardwood trees throughout.. . . The area experiences high levels of intense pu",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.70659991,
+          34.1412614
+        ]
+      },
+      "properties": {
+        "id": "GA-052",
+        "name": "Georgia Department of Natural Resources - Red Top Mountain",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247897",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=440&agencyCode=130\" rel=\"nofollow\">Allatoona Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.7357083,
+          34.1641556
+        ]
+      },
+      "properties": {
+        "id": "GA-054",
+        "name": "COOPER'S FURNACE DAY USE AREA (GA)",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251866",
+        "description": "<h2>Overview</h2>\nCooper's Furnace Day Use Area is situated on the Etowah River, a tributary of the Coosa River.  This Day Use Area is downstream of the dam which impounds Allatoona Lake.  The river a",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.931668,
+          34.307061
+        ]
+      },
+      "properties": {
+        "id": "GA-055",
+        "name": "DUCKETT MILL",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232578",
+        "description": "<h2>Overview</h2>\nDuckett Mill Campground is located on Lake Sidney Lanier.  With over 692 miles of shoreline, the lake is well known for its aqua-blue water, spectacular scenery and variety of recrea",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.84259,
+          34.78326
+        ]
+      },
+      "properties": {
+        "id": "GA-056",
+        "name": "Conasauga Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "240189",
+        "description": "<p>The Conasauga Ranger District covers the western third of the Chattahoochee National Forest. A diverse set of landscapes make up the Conasauga district, from the ridges and valleys west of Intersta",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.987918,
+          34.18287
+        ]
+      },
+      "properties": {
+        "id": "GA-057",
+        "name": "Van Pugh South",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247914",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=442&agencyCode=130\" rel=\"nofollow\">Lake Sidney Lanier</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.7417,
+          34.1609528
+        ]
+      },
+      "properties": {
+        "id": "GA-058",
+        "name": "RIVERSIDE PARK DAY USE AREA (GA)",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251867",
+        "description": "<h2>Overview</h2>\nRiverside Park Day Use Area is situated along the Etowah River, a tributary of the Coosa River.  This Day Use Area is downstream of the dam which impounds Allatoona Lake.  The river ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9444417,
+          34.3139806
+        ]
+      },
+      "properties": {
+        "id": "GA-059",
+        "name": "LITTLE HALL SHELTER (GA)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251925",
+        "description": "<h2>Overview</h2>\n Little Hall Park lies approximately 30 miles north of Buford Dam on Lake Sidney Lanier.  The site features beautiful views of the lake as well as excellent access to swimming, picni",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.5788889,
+          34.1944444
+        ]
+      },
+      "properties": {
+        "id": "GA-060",
+        "name": "Sweetwater Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232715",
+        "description": "<h2>Overview</h2>\nSweetwater Campground sits on the banks of Allatoona Lake, providing visitors with a variety of water activities in the green rolling hills of Georgia.<h2>Recreation</h2>\nAllatoona L",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9867778,
+          34.3949444
+        ]
+      },
+      "properties": {
+        "id": "GA-061",
+        "name": "Toto Creek Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "255286",
+        "description": "<h2>Overview</h2>\nToto Creek Campground lies approximately 30 miles north of Buford Dam on Lake Sidney Lanier. The site features beautiful views of the lake as well as excellent access to picnicking a",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.82599321,
+          34.42576721
+        ]
+      },
+      "properties": {
+        "id": "GA-062",
+        "name": "Sadlers Creek St. Pk",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "247907",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=454&agencyCode=130\" rel=\"nofollow\">Hartwell Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.1916667,
+          33.0222222
+        ]
+      },
+      "properties": {
+        "id": "GA-063",
+        "name": "WHITETAIL RIDGE",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232742",
+        "description": "<h2>Overview</h2>\nWhitetail Ridge Campground is a waterfront facility on the western shore of West Point Lake, which spans parts of Alabama and Georgia. \n<br/><br/>\nThis man-made lake has 525 miles of",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.0729194,
+          34.1676278
+        ]
+      },
+      "properties": {
+        "id": "GA-064",
+        "name": "WEST BANK PARK SHELTERS (GA)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251919",
+        "description": "<h2>Overview</h2>\n West Bank Park lies just north of Buford Dam on Lake Sidney Lanier.  The site features beautiful views of the lake as well as excellent access to swimming, picnicking and boating. \n",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.5756833,
+          34.1983
+        ]
+      },
+      "properties": {
+        "id": "GA-065",
+        "name": "SWEETWATER DAY USE AREA (GA)",
+        "type": "established",
+        "cost": 10,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "251871",
+        "description": "<h2>Overview</h2>\nSweetwater Day Use Area is situated on Allatoona Lake on the Etowah River, a tributary of the Coosa River.  The serene lake and peaceful surroundings offer a relaxing getaway from th",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.087303,
+          34.208861
+        ]
+      },
+      "properties": {
+        "id": "GA-066",
+        "name": "BALD RIDGE CREEK",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232519",
+        "description": "<h2>Overview</h2>\nBald Ridge Creek Campground is on Lake Sidney Lanier, popular for its aqua-blue waters and spectacular scenery.   \nEach year, over 11 million visitors travel to Lake Sidney Lanier fo",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8163889,
+          34.3811111
+        ]
+      },
+      "properties": {
+        "id": "GA-067",
+        "name": "CRESCENT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232561",
+        "description": "<h2>Overview</h2>\n<p>MUST BE RESERVED A MINIMUM OF TWO DAYS IN ADVANCE OF ARRIVAL DATE.  Crescent Group Campground  is a 41 acre site located on a narrow peninsula with gentle slopes and a scattered t",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0877778,
+          34.5205556
+        ]
+      },
+      "properties": {
+        "id": "GA-068",
+        "name": "POPLAR SPRINGS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232678",
+        "description": "<h2>Overview</h2>\n Poplar Springs Recreation Area is a 24 acre site with moderate slopes with relatively dense stands of pines and mixed hardwoods. The site presently offers day use and boat launching",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.990472,
+          34.865911
+        ]
+      },
+      "properties": {
+        "id": "GA-069",
+        "name": "Blue Ridge Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "240239",
+        "description": "<p>The Blue Ridge Ranger District is the central part of the Chattahoochee National Forest. The district office is on the north side of US Highway 76, 1.5 miles west of the intersection of US 76 and U",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.6134028,
+          34.6098278
+        ]
+      },
+      "properties": {
+        "id": "GA-070",
+        "name": "DOLL MOUNTAIN DAY USE AREA SHELTER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "272305",
+        "description": "<h2>Overview</h2>\n<p>Doll Mountain Day Use is located in the North Georgia Mountains about 70 miles north of Atlanta on Carters Lake. The sparkling waters and rugged shoreline provide a beautiful surr",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.37207,
+          33.41306
+        ]
+      },
+      "properties": {
+        "id": "GA-071",
+        "name": "Oconee Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "240258",
+        "description": "<p>Approximately 60 miles southeast of Atlanta, the Oconee National Forest is an easy drive and has much to offer those in the heart of the state.  Boasting group campsites, the largest lake in the st",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8569444,
+          34.3625
+        ]
+      },
+      "properties": {
+        "id": "GA-072",
+        "name": "ELROD FERRY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232584",
+        "description": "<h2>Overview</h2>\n  \nElrod Ferry Recreation Area is a 39 acre site situated on a gently sloping point that overlooks the lake near Hartwell Dam.  The site presently offers day use and boat launching f",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8972222,
+          34.5911111
+        ]
+      },
+      "properties": {
+        "id": "GA-073",
+        "name": "CONEROSS PARK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232555",
+        "description": "<h2>Overview</h2>\n  \nConeross Campground is a moderately sloping, heavily wooded 136 acre site of mixed hardwoods and pines. The site presently offers camping and boat launching facilities to include:",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.949444,
+          34.222222
+        ]
+      },
+      "properties": {
+        "id": "GA-074",
+        "name": "OLD FEDERAL",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232657",
+        "description": "<h2>Overview</h2>\nOld Federal Campground lies on the eastern banks of Lake Sidney Lanier in Northern Georgia. \nPopular for its aqua-blue waters and spectacular scenery, Lake Sidney Lanier hosts over 1",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8708333,
+          34.6016667
+        ]
+      },
+      "properties": {
+        "id": "GA-075",
+        "name": "OCONEE POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "232655",
+        "description": "<h2>Overview</h2>\n  \nOconee Point Campground consists of 70 acres of gently sloping area with a relatively dense cover of  pines and mixed hardwoods. . \nThe  site presently offers camping and boat-lau",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.2225,
+          34.8994444
+        ]
+      },
+      "properties": {
+        "id": "GA-076",
+        "name": "WILLIS KNOB HORSE CAMP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "GA",
+        "source": "recreation.gov",
+        "facility_id": "234374",
+        "description": "<h2>Overview</h2>\nLocated in the northern Georgia mountains, far from civilization, Willis Knob Horse Campground is one of the Chattahoochee-Oconee National Forests most beloved horse-lover hideaways.",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

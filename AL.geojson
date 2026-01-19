@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7914,
+          32.6007
+        ]
+      },
+      "properties": {
+        "id": "AL-001",
+        "name": "Alabama Backcountry 1",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.2",
+        "reviews_count": 38,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "AL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.2128,
+          31.8872
+        ]
+      },
+      "properties": {
+        "id": "AL-002",
+        "name": "Alabama Campground 2",
+        "type": "established",
+        "cost": 30,
+        "rating": "3.9",
+        "reviews_count": 49,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "AL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8759,
+          33.1566
+        ]
+      },
+      "properties": {
+        "id": "AL-003",
+        "name": "Alabama Campground 3",
+        "type": "established",
+        "cost": 15,
+        "rating": "3.7",
+        "reviews_count": 7,
+        "amenities": [
+          "fire_rings",
+          "toilets",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "AL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.2228,
+          33.4082
+        ]
+      },
+      "properties": {
+        "id": "AL-004",
+        "name": "Alabama Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "AL",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6985,
+          33.0387
+        ]
+      },
+      "properties": {
+        "id": "AL-005",
+        "name": "Alabama Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "AL",
+        "source": "generated"
+      }
+    }
+  ]
+}

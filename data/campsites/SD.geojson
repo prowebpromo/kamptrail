@@ -1,0 +1,618 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.2691,
+          41.9029
+        ]
+      },
+      "properties": {
+        "id": "SD-001",
+        "name": "Nebraska National Forest at Halsey",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "243154",
+        "description": "<p>There are two distinct areas of the Nebraska National Forest.\u00a0One section is situated in the northwest panhandle south and <a href=\"http://www.fs.usda.gov/recarea/nebraska/recreation/recarea/?recid"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.790042,
+          46.744758
+        ]
+      },
+      "properties": {
+        "id": "SD-002",
+        "name": "General Sibley Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248361",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=292&agencyCode=130\" rel=\"nofollow\">Lake Oahe</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.4849676,
+          45.570264
+        ]
+      },
+      "properties": {
+        "id": "SD-003",
+        "name": "Indian Memorial",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248366",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=292&agencyCode=130\" rel=\"nofollow\">Lake Oahe</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.57652121,
+          42.83493343
+        ]
+      },
+      "properties": {
+        "id": "SD-004",
+        "name": "Weigand",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248369",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=291&agencyCode=130\" rel=\"nofollow\">Lewis and Clark Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.71129239,
+          46.64451707
+        ]
+      },
+      "properties": {
+        "id": "SD-005",
+        "name": "Graner Bottom",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248362",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=292&agencyCode=130\" rel=\"nofollow\">Lake Oahe</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.524722,
+          46.913333
+        ]
+      },
+      "properties": {
+        "id": "SD-006",
+        "name": "Little Missouri National Grassland",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "246793",
+        "description": "<p>Little Missouri National Grassland is located in western North Dakota, USA. At 1,033,271 acres (418,150 ha), it is the largest grassland in the country.[1] Enclaved within its borders is Theodore R"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.612,
+          43.775
+        ]
+      },
+      "properties": {
+        "id": "SD-007",
+        "name": "Southern Hills - Custer",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "253841",
+        "description": "<p>The Hell Canyon Ranger District is located in the southern third of the Black Hills National Forest, with\u00a0offices in both Newcastle, WY and Custer, SD.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.7952,
+          43.7101
+        ]
+      },
+      "properties": {
+        "id": "SD-008",
+        "name": "Buffalo Gap National Grassland",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "243185",
+        "description": "<p>This area is divided into two areas located in southern South Dakota.\u00a0 One area is south and northeast of Hot Springs and the other is south and west of Wall.\u00a0 There are few developed recreation si"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.25496307,
+          44.00598155
+        ]
+      },
+      "properties": {
+        "id": "SD-009",
+        "name": "Central Hills - Rapid City",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "253867",
+        "description": "<p>The Mystic Ranger District is located in the central portion of the Black Hills National Forest and has an office south of\u00a0Rapid City, SD.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.38812912,
+          44.43020603
+        ]
+      },
+      "properties": {
+        "id": "SD-010",
+        "name": "Downstream Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248365",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=292&agencyCode=130\" rel=\"nofollow\">Lake Oahe</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.0004,
+          42.8275
+        ]
+      },
+      "properties": {
+        "id": "SD-011",
+        "name": "Nebraska National Forest at Chadron",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "243164",
+        "description": "<p>There are two distinct areas of the Nebraska National Forest.\u00a0This area encompasses\u00a0the west end of the Nebraska National Forest near Chadron and Crawford and is managed by the <strong>Pine Ridge R"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.86075642,
+          44.50102949
+        ]
+      },
+      "properties": {
+        "id": "SD-012",
+        "name": "Northern Hills-Spearfish",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "253870",
+        "description": "<p>The Northern Hills Ranger District covers\u00a0the northern portion of the Black Hills on the South Dakota side. Spearfish has nearby access to over 300 miles of snowmobile trails, groomed and ungroomed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.0248,
+          42.719
+        ]
+      },
+      "properties": {
+        "id": "SD-013",
+        "name": "Samuel R. McKelvie National Forest",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "243150",
+        "description": "<p>Located south of Nenzel in Cherry County, this\u00a0116,000-acre national forest is a fantastic representation of the unique Nebraska Sandhills prairie ecosystem.\u00a0Popular uses of the forest include hunt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.35709162,
+          44.41216587
+        ]
+      },
+      "properties": {
+        "id": "SD-014",
+        "name": "Northwestern Hills - Sundance",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "253842",
+        "description": "<p>Bearlodge Ranger District (Northwestern Hills) encompasses the northern portion of the Black Hills on the Wyoming side.In the immediate vicinity is trout fishing, access to over 300 miles of snowmo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.55328339,
+          43.05295924
+        ]
+      },
+      "properties": {
+        "id": "SD-015",
+        "name": "Randall Creek Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248357",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=289&agencyCode=130\" rel=\"nofollow\">Lake Francis Case</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.8456029,
+          44.1448048
+        ]
+      },
+      "properties": {
+        "id": "SD-016",
+        "name": "Black Fox Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "253807",
+        "description": "<p>The Black Fox Campground has nine camp sites.\u00a0 Restroom facilities are available. The campground is in\u00a0a remote\u00a0location within a spruce forest on South Fork Rapid Creek.\u00a0 The Black Fox Botanical A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.57973326,
+          46.26615973
+        ]
+      },
+      "properties": {
+        "id": "SD-017",
+        "name": "Prairie Knights Marina (Walker Bottom)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248363",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=292&agencyCode=130\" rel=\"nofollow\">Lake Oahe</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.48373287,
+          42.87486836
+        ]
+      },
+      "properties": {
+        "id": "SD-018",
+        "name": "Pierson Ranch Camp",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248372",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=291&agencyCode=130\" rel=\"nofollow\">Lewis and Clark Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.322,
+          46.4416
+        ]
+      },
+      "properties": {
+        "id": "SD-019",
+        "name": "Sheyenne National Grassland",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "246801",
+        "description": "<p>Sheyenne National Grassland is located in southeastern North Dakota, comprising 70,180 acres (28,400 ha) of public land amid 64,769 acres (26,211 ha) of privately owned land.\u00a0 It is characterized b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.599093,
+          42.917873
+        ]
+      },
+      "properties": {
+        "id": "SD-020",
+        "name": "Oglala National Grasslands",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "243151",
+        "description": "<p>Located in the most northwestern corner of Nebraska, north of Crawford, you'll find the expansive landscape of the Oglala National Grasslands. This unique area consists of native mixed-grass prairi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.0525,
+          43.8541667
+        ]
+      },
+      "properties": {
+        "id": "SD-021",
+        "name": "SUMMIT RIDGE LOOKOUT CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "234273",
+        "description": "<h2>Overview</h2>\n<p>Summit Ridge Cabin is located near the border of Wyoming in Southwestern South Dakota on the Black Hills National Forest, providing a perfect setting for guests seeking recreation"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.515,
+          43.776
+        ]
+      },
+      "properties": {
+        "id": "SD-022",
+        "name": "Bismarck Lake",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "253831",
+        "description": "<p>Bismarck Lake</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.43869847,
+          44.0407286
+        ]
+      },
+      "properties": {
+        "id": "SD-023",
+        "name": "Tailrace Left",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "SD",
+        "source": "recreation.gov",
+        "facility_id": "248368",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=282&agencyCode=130\" rel=\"nofollow\">Lake Sharpe</a>"
+      }
+    }
+  ]
+}

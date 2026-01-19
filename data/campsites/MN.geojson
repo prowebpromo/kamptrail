@@ -1,0 +1,1321 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.1058333,
+          47.5141667
+        ]
+      },
+      "properties": {
+        "id": "MN-001",
+        "name": "DEER LAKE",
+        "type": "established",
+        "cost": 16,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "231997",
+        "description": "<h2>Overview</h2>\n<p>Deer Lake campground is located on the west shore of Cut Foot Sioux Lake, next to Lake Winnibigoshish, and is split into two separate loops. North Deer Lake campground has 17 site"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.0438889,
+          47.5119444
+        ]
+      },
+      "properties": {
+        "id": "MN-002",
+        "name": "ONEGUME",
+        "type": "established",
+        "cost": 23,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "231998",
+        "description": "<h2>Overview</h2>\n<p>One of the Chippewa National Forest's most popular campgrounds, Onegume is located on Little Cut Foot Sioux Lake. It is near MN State Highway 46, also known as Avenue of the Pines"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.4566667,
+          47.1358333
+        ]
+      },
+      "properties": {
+        "id": "MN-003",
+        "name": "STONY POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "231999",
+        "description": "<h2>Overview</h2>\nReservations to all Chippewa National Forest Campgrounds can be made six months in advance. \nStony Point is located on beautiful Leech Lake, in the heart of Minnesota's Chippewa Nati"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.4911111,
+          48.1705556
+        ]
+      },
+      "properties": {
+        "id": "MN-004",
+        "name": "ECHO LAKE (MINN)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232000",
+        "description": "<h2>Overview</h2>\nEcho Lake is located on the west end of the Echo Trail, a remote country road that traverses through the heart of the Western Superior National Forest. This quiet campground, where t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.2958333,
+          48.1322222
+        ]
+      },
+      "properties": {
+        "id": "MN-005",
+        "name": "JEANETTE LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232133",
+        "description": "<h2>Overview</h2>\nJeanette Lake Campground is a small, single-loop campground on a peninsula reaching out onto the glacier-carved Lake Jeanette in Superior National Forest. Originally built by the Civ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.4722222,
+          47.7530556
+        ]
+      },
+      "properties": {
+        "id": "MN-006",
+        "name": "PFEIFFER LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232134",
+        "description": "<h2>Overview</h2>\nPfeiffer Lake Campground, located adjacent to it's namesake lake, is a small, peaceful and scenic facility in the Superior National Forest of Minnesota. The lake's healthy population"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5769444,
+          47.6097222
+        ]
+      },
+      "properties": {
+        "id": "MN-007",
+        "name": "CLUBHOUSE LAKE",
+        "type": "established",
+        "cost": 16,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232149",
+        "description": "<h2>Overview</h2>\n<p>Clubhouse Lake Campground is located on its peaceful namesake in the beautiful Chippewa National Forest. Visitors enjoy the area for its fishing and canoeing opportunities in a sc"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.508506,
+          47.38243
+        ]
+      },
+      "properties": {
+        "id": "MN-008",
+        "name": "CHIPPEWA LOOP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232150",
+        "description": "<h2>Overview</h2>\nChippewa Loop is part of the Norway Beach Recreation Area, on the southern shores of beautiful Cass Lake in north central Minnesota. The campground is a perfect location for family c"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.5213889,
+          47.3786111
+        ]
+      },
+      "properties": {
+        "id": "MN-009",
+        "name": "NORWAY BEACH LOOP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232151",
+        "description": "<h2>Overview</h2>\nNorway Beach Loop is part of the Norway Beach Recreation Area on the southern shores of beautiful Cass Lake in north central Minnesota. Visitors enjoy the area for its excellent boat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.1438889,
+          47.3327778
+        ]
+      },
+      "properties": {
+        "id": "MN-010",
+        "name": "WHITEFACE RESERVOIR",
+        "type": "established",
+        "cost": 22,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232188",
+        "description": "<h2>Overview</h2>\n<p>Whiteface Reservoir Campground offers an ideal getaway for anglers, boaters and families. The provided swim beach, playground and five picnic areas offer hours of entertainment, a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.9163889,
+          47.3805556
+        ]
+      },
+      "properties": {
+        "id": "MN-011",
+        "name": "CADOTTE LAKE",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232189",
+        "description": "<h2>Overview</h2>\nCadotte Lake Campground lines the western shore of Cadotte Lake in Superior National Forest. A boat ramp and fishing dock make the campground convenient for anglers, and the sandy sw"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.7163889,
+          47.9525
+        ]
+      },
+      "properties": {
+        "id": "MN-012",
+        "name": "FALL LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232283",
+        "description": "<h2>Overview</h2>\nFall Lake Campground is located on the shores of Fall Lake and provides direct access into the Boundary Waters Canoe Area Wilderness (BWCAW). The campground opens in early May in tim"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4083333,
+          48.0525
+        ]
+      },
+      "properties": {
+        "id": "MN-013",
+        "name": "FLOUR LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "232429",
+        "description": "<h2>Overview</h2>\n<p>Flour Lake Campground provides a convenient home base for exploring the Boundary Waters Canoe Area Wilderness (BWCAW). Its scenery, amenities and access to outdoor recreation area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.5211111,
+          47.3791667
+        ]
+      },
+      "properties": {
+        "id": "MN-014",
+        "name": "NORWAY BEACH PICNIC SHELTER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233124",
+        "description": "<h2>Overview</h2>\nNorway Beach Picnic Shelter is part of the Norway Beach Recreation Area on the southern shores of beautiful Cass Lake in north central Minnesota. The shelter and adjacent beach are a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.5797056,
+          47.3288417
+        ]
+      },
+      "properties": {
+        "id": "MN-015",
+        "name": "SOUTH PIKE BAY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233134",
+        "description": "<h2>Overview</h2>\nSouth Pike Bay Campground is located on the south shore of beautiful Pike Bay, on Cass Lake in north central Minnesota. Visitors enjoy the area for its excellent boating, canoeing an"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.6016667,
+          47.3822222
+        ]
+      },
+      "properties": {
+        "id": "MN-016",
+        "name": "CASS LAKE LOOP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233140",
+        "description": "<h2>Overview</h2>\nCass Lake Loop is part of the Norway Beach Recreation Area on beautiful Cass Lake in north central Minnesota. Visitors enjoy the area for its excellent boating and fishing opportunit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.5213889,
+          47.3786111
+        ]
+      },
+      "properties": {
+        "id": "MN-017",
+        "name": "WANAKI LOOP",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233141",
+        "description": "<h2>Overview</h2>\nWanaki Loop is part of the Norway Beach Recreation Area, at the southern shores of beautiful Cass Lake in north central Minnesota. The campground is a perfect location for family cam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.3163889,
+          47.425
+        ]
+      },
+      "properties": {
+        "id": "MN-018",
+        "name": "Winnie Campground - USFS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233144",
+        "description": "<h2>Overview</h2>\nWinnie Campground is remotely located on the west side of Lake Winnibigoshish in the heart of the Chippewa National Forest. Visitors come to the area to enjoy boating, trophy muskie "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.4833333,
+          47.4511111
+        ]
+      },
+      "properties": {
+        "id": "MN-019",
+        "name": "Bimijiwan Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233145",
+        "description": "<h2>Overview</h2>\nKnutson Dam Campground is located on the northeastern shores of Cass Lake and the Mississippi River. <h2>Recreation</h2>\nCass Lake offers many recreational activities, including boat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.7731444,
+          47.8367556
+        ]
+      },
+      "properties": {
+        "id": "MN-020",
+        "name": "CRESCENT LAKE (MN)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233146",
+        "description": "<h2>Overview</h2>\nCrescent Lake is an undeveloped lake surrounded entirely by the remote Superior National Forest. This quiet campground has waterfront campsites with easy access to fishing, exploring"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8852778,
+          47.8630556
+        ]
+      },
+      "properties": {
+        "id": "MN-021",
+        "name": "Sawbill Lake Campground - Superior National Forest",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233147",
+        "description": "<h2>Overview</h2>\nSawbill Lake Campground has immediate access to the Boundary Waters Canoe Area Wilderness, a beautiful, peaceful and wild natural feature of Minnesota's Superior National Forest. The"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.3938889,
+          48.0369444
+        ]
+      },
+      "properties": {
+        "id": "MN-022",
+        "name": "EAST BEARSKIN LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233165",
+        "description": "<h2>Overview</h2>\nEast Bearskin Lake Campground is located on its namesake lake, at the edge of the Boundary Waters Canoe Area Wilderness in Northern Minnesota. It is a perfect spot for visitors who w"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.1083333,
+          46.6697222
+        ]
+      },
+      "properties": {
+        "id": "MN-023",
+        "name": "Cross Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233472",
+        "description": "<h2>Overview</h2>\n<p>In Central Minnesota's popular lakes area, the Cross Lake Recreation Area is best known for its picturesque sunsets, beautiful beaches and well-maintained campsites. The campgroun"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.0491667,
+          47.43
+        ]
+      },
+      "properties": {
+        "id": "MN-024",
+        "name": "Winnie Dam Campground - USACE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233533",
+        "description": "<h2>Overview</h2>\n<p><strong>USACE Winnie Dam Campground & Recreation Area.</strong> This is a Corps of Engineers Campground, located just walking distance from the Mississippi River. Activities inclu"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.2308333,
+          47.2447222
+        ]
+      },
+      "properties": {
+        "id": "MN-025",
+        "name": "LEECH LAKE REC AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233535",
+        "description": "<h2>Overview</h2>\nLeech Lake Recreation Area is located in the heart of the Chippewa National Forest in Federal Dam, Minnesota on the Leech Lake River. \n  \nThe area is best known for its fishing and b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5833333,
+          47.25
+        ]
+      },
+      "properties": {
+        "id": "MN-026",
+        "name": "POKEGAMA DAM CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233588",
+        "description": "<h2>Overview</h2>\n<p>Pokegama Dam Campground (USACE) is situated in the heart of northern Minnesota's lake country next to the Mississippi River. Popular activities include boating, fishing, picnickin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.1083333,
+          46.6697222
+        ]
+      },
+      "properties": {
+        "id": "MN-027",
+        "name": "CROSS LAKE DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233592",
+        "description": "<h2>Overview</h2>\nIn Central Minnesota's popular lakes area, the Cross Lake Day Use has tremendous appeal for families and friends, with an array of activities and facilities perfect for a day outdoor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.3513889,
+          46.4108333
+        ]
+      },
+      "properties": {
+        "id": "MN-028",
+        "name": "GULL LAKE RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233648",
+        "description": "<h2>Overview</h2>\n<p>Gull Lake Recreation Area offers something for everyone with boating, hiking, fishing and swimming at Minnesota's famous Gull Lake, the largest of the 10 lakes on the Gull Chain o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.0663889,
+          47.5583333
+        ]
+      },
+      "properties": {
+        "id": "MN-029",
+        "name": "CUT FOOT HORSE CAMPGROUND",
+        "type": "established",
+        "cost": 16,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233827",
+        "description": "<h2>Overview</h2>\n<p>Cut Foot Sioux Horse Camp is located northeast of Lake Winnibigoshish. Over 120 miles of forest roads and recreation trails surround this scenic campground, making it a favorite l"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.9138889,
+          47.9952778
+        ]
+      },
+      "properties": {
+        "id": "MN-030",
+        "name": "FENSKE LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233840",
+        "description": "<h2>Overview</h2>\n<p>Fenske Lake Campground offers visitors an escape to a small, remote campground with large, majestic pine trees and easy access to water. It is a popular base camp for exploring, f"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.7836111,
+          47.7569444
+        ]
+      },
+      "properties": {
+        "id": "MN-031",
+        "name": "BIRCH LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233841",
+        "description": "<h2>Overview</h2>\nBirch Lake Campground is located in Superior National Forest near the Boundary Waters Canoe Area Wilderness, about 13 miles from Ely, Minnesota. It is an ideal place to relax while e"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.7313889,
+          47.8155556
+        ]
+      },
+      "properties": {
+        "id": "MN-032",
+        "name": "SOUTH KAWISHIWI RIVER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233843",
+        "description": "<h2>Overview</h2>\nSouth Kawishiwi River Campground is located in Superior National Forest near the Boundary Waters Canoe Area Wilderness, about 10 miles from Ely, Minnesota. It offers fishing, boating"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.0480556,
+          47.5183333
+        ]
+      },
+      "properties": {
+        "id": "MN-033",
+        "name": "MOSOMO POINT",
+        "type": "established",
+        "cost": 16,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233848",
+        "description": "<h2>Overview</h2>\n<p>Mosomo Point Campground is located between Little and Big Cut Foot Sioux Lakes, in the heart of the Chippewa National Forest. Visitors enjoy the area for canoeing, trophy muskie f"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.0636111,
+          47.5033333
+        ]
+      },
+      "properties": {
+        "id": "MN-034",
+        "name": "WILLIAMS NARROWS",
+        "type": "established",
+        "cost": 16,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "233850",
+        "description": "<h2>Overview</h2>\n<p>Williams Narrows Campground is located on Cut Foot Sioux Lake in the heart of the Chippewa National Forest. Visitors come to the area for boating, trophy muskie fishing and beauti"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.444446,
+          47.88005
+        ]
+      },
+      "properties": {
+        "id": "MN-035",
+        "name": "Two Island Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "240995",
+        "description": "<p>Two Island Lake Campground is near Grand Marais, but off the beaten path.\u00a0 It offers the services of a fee campground with water, toilets, and trash containers, plus a boat ramp on a lake filled wi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.454,
+          47.136
+        ]
+      },
+      "properties": {
+        "id": "MN-036",
+        "name": "Walker Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "249512",
+        "description": "Walker Area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.652,
+          47.606
+        ]
+      },
+      "properties": {
+        "id": "MN-037",
+        "name": "Marcell Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "249515",
+        "description": "Marcell Area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.121,
+          47.444
+        ]
+      },
+      "properties": {
+        "id": "MN-038",
+        "name": "Tamarack Point Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "249536",
+        "description": "<p>Tamarack Point campground is\u00a013 miles north of Deer River on Highway 46. Turn west off 46 onto County Road 9.\u00a0 Travel south on County 9 for six miles before turning west onto Forest Road 2163.\u00a0 The"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.048,
+          47.516
+        ]
+      },
+      "properties": {
+        "id": "MN-039",
+        "name": "Deer River Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "249543",
+        "description": "Deer River Area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.529,
+          47.38
+        ]
+      },
+      "properties": {
+        "id": "MN-040",
+        "name": "Cass Lake Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "249554",
+        "description": "Cass Lake Area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.230962,
+          47.528139
+        ]
+      },
+      "properties": {
+        "id": "MN-041",
+        "name": "Laurentian Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "recreation.gov",
+        "facility_id": "271447",
+        "description": "<p>Welcome to the Laurentian Ranger District. This district is the southern portion of the Superior National Forest stretching from McCarthy State Park north of Hibbing, MN to near the north shore of "
+      }
+    }
+  ]
+}

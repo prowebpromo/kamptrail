@@ -1,0 +1,277 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.368788,
+          43.594068
+        ]
+      },
+      "properties": {
+        "id": "VT-001",
+        "name": "NORTH HARTLAND LAKE BEACH (VT)",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "251044",
+        "description": "<h2>Overview</h2>\nNorth Hartland Lake is a US Army Corps of Engineers day use facility located on the Ottauquechee River in North Hartland, VT. Close to the towns of Lebanon, New Hampshire, and Hartfo",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0271,
+          43.919
+        ]
+      },
+      "properties": {
+        "id": "VT-002",
+        "name": "MOOSALAMOO CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "256347",
+        "description": "<p>The Moosalamoo National Recreation Area, encompassing 15,857 acres, is a premier recreation destination that includes hiking trails, mountain bike trails, cross country ski trails, snowmobile trail",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.256136,
+          43.790768
+        ]
+      },
+      "properties": {
+        "id": "VT-003",
+        "name": "UNION VILLAGE DAM PICNIC AREA (VT)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "251045",
+        "description": "<h2>Overview</h2>\nUnion Village Dam is a US Army Corps of Engineers facility located on the Ompompanoosuc River in Thetford, VT. Close to the towns of Hanover, New Hampshire, and Norwich, Vermont, Uni",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.8922222,
+          43.2533333
+        ]
+      },
+      "properties": {
+        "id": "VT-004",
+        "name": "HAPGOOD POND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "232393",
+        "description": "<h2>Overview</h2>\nHapgood Pond Recreation Area and Campground is situated next to its scenic namesake pond, 13 miles east of Manchester, Vermont. Visitors enjoy camping, canoeing, kayaking, fishing, s",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9088889,
+          43.8244444
+        ]
+      },
+      "properties": {
+        "id": "VT-005",
+        "name": "CHITTENDEN BROOK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "251609",
+        "description": "<h2>Overview</h2>\n<p>Chittenden Brook Campground is situated in a beautiful northern hardwoods forest, approximately seven miles from Rochester, VT.  It is a small and semi-remote campground, perfect ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5011111,
+          43.3811111
+        ]
+      },
+      "properties": {
+        "id": "VT-006",
+        "name": "Stoughton Pond Rec Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "249983",
+        "description": "<h2>Overview</h2>\nStoughton Pond Recreation Area is a day use area located to the north of North Springfield Lake. Stoughton Pond is located off State Route 106 on Stoughton Pond Road in Perkinsville,",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9137,
+          43.875356
+        ]
+      },
+      "properties": {
+        "id": "VT-007",
+        "name": "Bingo",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "246536",
+        "description": "<p><a href=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5318739.pdf\" rel=\"nofollow\">General Forest Camping Recreational Opportunity Guide</a></p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.870133,
+          42.486388
+        ]
+      },
+      "properties": {
+        "id": "VT-008",
+        "name": "Finger Lakes - Hector District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "VT",
+        "source": "recreation.gov",
+        "facility_id": "249967",
+        "description": "<p>The Finger Lakes National Forest, positioned along the ridges between Cayuga Lake and Seneca Lake, offers scenic beauty and unlimited recreational opportunities any season of the year. Whether you ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4818611,
+          39.6604167
+        ]
+      },
+      "properties": {
+        "id": "MD-001",
+        "name": "OWENS CREEK CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "247762",
+        "description": "<h2>Overview</h2>\n<p>Owens Creek Campground offers families and individuals enjoyable primitive tent camping. Located just five miles (8 km) from Thurmont, Maryland, in the rolling hills of Catoctin M"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.48606697,
+          39.64435358
+        ]
+      },
+      "properties": {
+        "id": "MD-002",
+        "name": "Adirondack Shelters",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "233321",
+        "description": "<h2>Overview</h2>\n<p>The Adirondack Shelters, located near the northern most point of Catoctin Mountain Park, provide a destination for true nature immersion and an alternative to drive-up camping. A "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0291667,
+          38.7108333
+        ]
+      },
+      "properties": {
+        "id": "MD-003",
+        "name": "Fort Washington Park Day Use Facilities",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "233354",
+        "description": "<h2>Overview</h2>\n<p>Fort Washington is located 15 miles (24 km) south of Washington, D.C., along the Potomac River. It is a local favorite for picnicking, recreation and historic interest. Built to d"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4462972,
+          39.6396444
+        ]
+      },
+      "properties": {
+        "id": "MD-004",
+        "name": "CAMP ROUND MEADOW",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "251264",
+        "description": "<h2>Overview</h2>\nCamp Round Meadow, a four-season camp, includes four dormitories, dining hall, commercial kitchen, gymnasium and conference room. The facility accommodates a maximum of 120 people. \n"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.8933333,
+          38.9838889
+        ]
+      },
+      "properties": {
+        "id": "MD-005",
+        "name": "GREENBELT PARK PICNIC AREAS",
+        "type": "established",
+        "cost": 100,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "251624",
+        "description": "<h2>Overview</h2>\n<p><strong>You may book a picnic areas up to six months ahead. </strong>Greenbelt Park is an urban oasis just 10 miles (16 km) from Washington, D.C. This beautiful, wooded park is kn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2,
+          38.0833333
+        ]
+      },
+      "properties": {
+        "id": "MD-006",
+        "name": "ASSATEAGUE ISLAND NATIONAL SEASHORE CAMPGROUND",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "232507",
+        "description": "<h2>Overview</h2>\n<p>Assateague Island National Seashore is a 37-mile long barrier island on the Atlantic Coast of Maryland and Virginia.  Famed for its wild horses, this barrier island is a constantl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4462972,
+          39.6396444
+        ]
+      },
+      "properties": {
+        "id": "MD-007",
+        "name": "CAMP MISTY MOUNT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "233241",
+        "description": "<h2>Overview</h2>\n<p>This historic cabin camp was completed in 1937 by the Works Progress Administration. The camp is surrounded by hardwood forests on the slopes of Catoctin Mountain Park. Learn more"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.7444444,
+          39.4741667
+        ]
+      },
+      "properties": {
+        "id": "MD-008",
+        "name": "Rohrbach Group Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "251263",
+        "description": "<h2>Overview</h2>\n<p><strong>THIS IS NOT A PUBLIC CAMPGROUND. ONLY SCOUTS AND CIVIC ORGANIZATIONS MAY USE ROHRBACH CAMPGROUND.</strong></p><p>Antietam National Battlefield is the site of the bloodiest"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4669444,
+          39.6538889
+        ]
+      },
+      "properties": {
+        "id": "MD-009",
+        "name": "POPLAR GROVE YOUTH GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MD",
+        "source": "recreation.gov",
+        "facility_id": "232503",
+        "description": "<h2>Overview</h2>\n<p>Poplar Grove offers youth groups and organizations enjoyable year-round primitive tent camping. Located just steps away from the Catoctin Mountain Park portion of the <a href=\"htt"
+      }
+    }
+  ]
+}

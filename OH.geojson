@@ -1,0 +1,145 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0748,
+          41.5527
+        ]
+      },
+      "properties": {
+        "id": "OH-001",
+        "name": "Ohio Campground 1",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.9",
+        "reviews_count": 46,
+        "amenities": [
+          "trash",
+          "picnic_tables",
+          "fire_rings",
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent"
+        ],
+        "road_difficulty": "dirt",
+        "state": "OH",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0806,
+          41.8883
+        ]
+      },
+      "properties": {
+        "id": "OH-002",
+        "name": "Ohio Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "OH",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.7154,
+          38.9969
+        ]
+      },
+      "properties": {
+        "id": "OH-003",
+        "name": "Ohio Backcountry 3",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.8",
+        "reviews_count": 54,
+        "amenities": [
+          "fire_rings"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "OH",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.1628,
+          41.5354
+        ]
+      },
+      "properties": {
+        "id": "OH-004",
+        "name": "Ohio Campground 4",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.4",
+        "reviews_count": 6,
+        "amenities": [
+          "trash",
+          "toilets",
+          "picnic_tables",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "OH",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.9911,
+          41.1139
+        ]
+      },
+      "properties": {
+        "id": "OH-005",
+        "name": "Ohio Campground 5",
+        "type": "established",
+        "cost": 25,
+        "rating": "5.0",
+        "reviews_count": 9,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "OH",
+        "source": "generated"
+      }
+    }
+  ]
+}

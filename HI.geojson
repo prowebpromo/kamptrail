@@ -1,0 +1,167 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.0948,
+          19.6522
+        ]
+      },
+      "properties": {
+        "id": "HI-001",
+        "name": "Hawaii Dispersed 1",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "HI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -157.3792,
+          19.6104
+        ]
+      },
+      "properties": {
+        "id": "HI-002",
+        "name": "Hawaii Dispersed 2",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "HI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.1404,
+          19.9604
+        ]
+      },
+      "properties": {
+        "id": "HI-003",
+        "name": "Hawaii Backcountry 3",
+        "type": "backcountry",
+        "cost": 10,
+        "rating": "4.4",
+        "reviews_count": 44,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "HI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.3266,
+          19.2008
+        ]
+      },
+      "properties": {
+        "id": "HI-004",
+        "name": "Hawaii Campground 4",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.9",
+        "reviews_count": 46,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "toilets",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "HI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -157.1853,
+          19.036
+        ]
+      },
+      "properties": {
+        "id": "HI-005",
+        "name": "Hawaii Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "HI",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.7771,
+          20.834
+        ]
+      },
+      "properties": {
+        "id": "HI-006",
+        "name": "Hawaii Campground 6",
+        "type": "established",
+        "cost": 30,
+        "rating": "3.7",
+        "reviews_count": 29,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "toilets",
+          "picnic_tables",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "HI",
+        "source": "generated"
+      }
+    }
+  ]
+}

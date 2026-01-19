@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.1644444,
+          20.7097222
+        ]
+      },
+      "properties": {
+        "id": "HI-001",
+        "name": "Haleakalā National Park (Cabin Permits)",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "HI",
+        "source": "recreation.gov",
+        "facility_id": "234783",
+        "description": "<h2>Overview</h2>\n<p>Located on the island of Maui, Haleakalā National Park maintains three wilderness cabins for visitor use-- Hōlua, Palikū, and Kapalaoa. All cabins are accessible only by trail fro",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

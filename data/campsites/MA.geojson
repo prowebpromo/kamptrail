@@ -1,0 +1,191 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0627778,
+          42.0727778
+        ]
+      },
+      "properties": {
+        "id": "MA-001",
+        "name": "WESTVILLE RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "249997",
+        "description": "<h2>Overview</h2>\nWestville Lake is situated on the Quinebaug River in the towns of Southbridge and Sturbridge, Massachusetts. Westville offers a variety of hiking opportunities, group picnic shelters"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.8494444,
+          42.3419444
+        ]
+      },
+      "properties": {
+        "id": "MA-002",
+        "name": "INDIAN HOLLOW",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "233519",
+        "description": "<h2>Overview</h2>\nWith abundant wildlife, lush scenery and waterfront views, Indian Hollow Group Campground, located at the Knightville Dam and Reservoir, offers groups and clubs a recreational oasis."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2163889,
+          42.6441194
+        ]
+      },
+      "properties": {
+        "id": "MA-003",
+        "name": "TULLY LAKE RECREATION AREA (MA)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "251564",
+        "description": "<h2>Overview</h2>\nThe U.S. Army Corps of Engineers invites you to come relax at Tully Lake.  There are a variety of outdoor recreation activities for you and you family.  Although the dam was built pr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.908591,
+          42.121893
+        ]
+      },
+      "properties": {
+        "id": "MA-004",
+        "name": "BUFFUMVILLE LAKE (GROUP SHELTERS)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "234411",
+        "description": "<h2>Overview</h2>\nIn 1958 the U.S. Army Corps of Engineers built Buffumville Dam in Charlton, Massachusetts to provide flood risk management for downstream communities. Flood waters due to large amoun"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.6033333,
+          42.1119444
+        ]
+      },
+      "properties": {
+        "id": "MA-005",
+        "name": "WEST HILL PARK",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "233291",
+        "description": "<h2>Overview</h2>\nOn a quiet back road and across an old fieldstone bridge lies West Hill Park, where the West River widens to form a large, natural pool. \n<br/><br/>\nThe park and its many services an"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.505148,
+          41.777929
+        ]
+      },
+      "properties": {
+        "id": "MA-006",
+        "name": "Scusset Beach State Reservation",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "248072",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=200&agencyCode=130\" rel=\"nofollow\">Cape Cod Canal</a>"
+      }
+    }
+  ]
+}

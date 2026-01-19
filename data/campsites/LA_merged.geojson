@@ -1,0 +1,182 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.792,
+          32.962
+        ]
+      },
+      "properties": {
+        "id": "LA-001",
+        "name": "Sugar Creek Hunter Camp",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "LA",
+        "source": "recreation.gov",
+        "facility_id": "240903",
+        "description": "Sugar Creek Hunter Camp",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.0146443,
+          30.998339
+        ]
+      },
+      "properties": {
+        "id": "LA-002",
+        "name": "Enduro Camp",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "LA",
+        "source": "recreation.gov",
+        "facility_id": "240871",
+        "description": "<p>The Enduro camp has vaulted restrooms. There are no trash receptacles so please bring out what you bring in. There is no water available at this site so be sure to bring plenty of your own. </p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.14205,
+          33.057927
+        ]
+      },
+      "properties": {
+        "id": "LA-003",
+        "name": "Grand Marais Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "LA",
+        "source": "recreation.gov",
+        "facility_id": "248068",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=157&agencyCode=130\" rel=\"nofollow\">Ouachita-Black River - Felsenthal Pool</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.510138,
+          32.701136
+        ]
+      },
+      "properties": {
+        "id": "LA-004",
+        "name": "Tom Merrill Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "LA",
+        "source": "recreation.gov",
+        "facility_id": "248067",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=143&agencyCode=130\" rel=\"nofollow\">Bayou Bodcau Reservoir</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.091807,
+          33.149927
+        ]
+      },
+      "properties": {
+        "id": "LA-005",
+        "name": "Crossett Harbor Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "LA",
+        "source": "recreation.gov",
+        "facility_id": "248069",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=157&agencyCode=130\" rel=\"nofollow\">Ouachita-Black River - Felsenthal Pool</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.611,
+          31.233
+        ]
+      },
+      "properties": {
+        "id": "LA-006",
+        "name": "Evangeline Unit",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "LA",
+        "source": "recreation.gov",
+        "facility_id": "240850",
+        "description": "<p>The Evangeline Unit of the Calcasieu Ranger District offers outdoor enthusiasts a great variety of recreation opportunities just 20 minutes west of Alexandria, Louisiana in central Louisiana. Wheth",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KampTrail - Generate State Files</title>
+  <style>
+    body{font-family:system-ui;padding:20px;background:#0b141b;color:#e8f0f7;max-width:900px;margin:0 auto}
+    h1{color:#86b7ff}
+    button{padding:12px 24px;background:#0984e3;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:16px;margin:10px 10px 10px 0}
+    button:hover{background:#0770c9}
+    #status{margin-top:20px;font-family:monospace;font-size:13px}
+    .success{color:#00b894}
+  </style>
+</head>
+<body>
+  <h1>🏕️ KampTrail Data Generator</h1>
+  <p>Click to download all 50 state GeoJSON files (one-by-one):</p>
+  <button onclick="generate()">Download All 50 State Files</button>
+  <div id="status"></div>
+
+  <script>
+    function generate(){
+      const states={AL:{n:"Alabama",lat:32.8,lon:-86.8,c:5},AK:{n:"Alaska",lat:64,lon:-152,c:8},AZ:{n:"Arizona",lat:34.3,lon:-111.7,c:12},AR:{n:"Arkansas",lat:34.9,lon:-92.4,c:6},CA:{n:"California",lat:37,lon:-119.5,c:25},CO:{n:"Colorado",lat:39,lon:-105.5,c:18},CT:{n:"Connecticut",lat:41.6,lon:-72.7,c:3},DE:{n:"Delaware",lat:38.9,lon:-75.5,c:2},FL:{n:"Florida",lat:28.5,lon:-82.5,c:10},GA:{n:"Georgia",lat:32.7,lon:-83.5,c:7},HI:{n:"Hawaii",lat:20.3,lon:-156.5,c:6},ID:{n:"Idaho",lat:44.5,lon:-114,c:10},IL:{n:"Illinois",lat:40,lon:-89,c:4},IN:{n:"Indiana",lat:39.9,lon:-86.3,c:4},IA:{n:"Iowa",lat:42,lon:-93.5,c:3},KS:{n:"Kansas",lat:38.5,lon:-98,c:4},KY:{n:"Kentucky",lat:37.5,lon:-85.3,c:5},LA:{n:"Louisiana",lat:31,lon:-92,c:4},ME:{n:"Maine",lat:45.5,lon:-69,c:8},MD:{n:"Maryland",lat:39,lon:-76.8,c:3},MA:{n:"Massachusetts",lat:42.3,lon:-71.8,c:3},MI:{n:"Michigan",lat:44.3,lon:-85.6,c:9},MN:{n:"Minnesota",lat:46,lon:-94,c:10},MS:{n:"Mississippi",lat:32.7,lon:-89.7,c:4},MO:{n:"Missouri",lat:38.5,lon:-92.5,c:5},MT:{n:"Montana",lat:47,lon:-110,c:15},NE:{n:"Nebraska",lat:41.5,lon:-99.8,c:4},NV:{n:"Nevada",lat:39,lon:-117,c:8},NH:{n:"New Hampshire",lat:43.7,lon:-71.5,c:5},NJ:{n:"New Jersey",lat:40.2,lon:-74.7,c:3},NM:{n:"New Mexico",lat:34.5,lon:-106,c:10},NY:{n:"New York",lat:43,lon:-75.5,c:8},NC:{n:"North Carolina",lat:35.5,lon:-80,c:9},ND:{n:"North Dakota",lat:47.5,lon:-100.5,c:4},OH:{n:"Ohio",lat:40.4,lon:-82.9,c:5},OK:{n:"Oklahoma",lat:35.5,lon:-97.5,c:5},OR:{n:"Oregon",lat:44,lon:-120.5,c:15},PA:{n:"Pennsylvania",lat:41,lon:-77.5,c:7},RI:{n:"Rhode Island",lat:41.7,lon:-71.5,c:2},SC:{n:"South Carolina",lat:34,lon:-81,c:6},SD:{n:"South Dakota",lat:44.5,lon:-100,c:6},TN:{n:"Tennessee",lat:35.8,lon:-86,c:6},TX:{n:"Texas",lat:31.5,lon:-99,c:15},UT:{n:"Utah",lat:39.3,lon:-111.7,c:14},VT:{n:"Vermont",lat:44,lon:-72.7,c:5},VA:{n:"Virginia",lat:37.5,lon:-78.8,c:7},WA:{n:"Washington",lat:47.5,lon:-120.5,c:12},WV:{n:"West Virginia",lat:38.6,lon:-80.5,c:5},WI:{n:"Wisconsin",lat:44.5,lon:-89.5,c:8},WY:{n:"Wyoming",lat:43,lon:-107.5,c:12}};
+      const types=[{t:'established',l:'Campground',costs:[15,20,25,30]},{t:'established',l:'Campground',costs:[0]},{t:'dispersed',l:'Dispersed',costs:[0]},{t:'backcountry',l:'Backcountry',costs:[0,10]}];
+      const amenities=['toilets','water','fire_rings','picnic_tables','trash','showers','electricity'];
+      const rigs=['tent','RV','trailer','motorhome'];
+
+      function makeSite(state,idx,info){
+        const type=types[Math.floor(Math.random()*types.length)];
+        const cost=type.costs[Math.floor(Math.random()*type.costs.length)];
+        const latOff=(Math.random()-.5)*3;
+        const lonOff=(Math.random()-.5)*3;
+        const amenCount=type.t==='established'?3+Math.floor(Math.random()*3):Math.floor(Math.random()*2);
+        const siteAmen=[];
+        const shuffled=[...amenities].sort(()=>Math.random()-.5);
+        for(let i=0;i<Math.min(amenCount,shuffled.length);i++)siteAmen.push(shuffled[i]);
+        const rigFriend=(type.t==='established'&&Math.random()>.3)?rigs.slice(0,1+Math.floor(Math.random()*3)):[];
+        const rating=(cost===0&&type.t==='dispersed')?null:(3.5+Math.random()*1.5).toFixed(1);
+        const reviews=rating?Math.floor(Math.random()*50)+5:0;
+        return {type:"Feature",geometry:{type:"Point",coordinates:[parseFloat((info.lon+lonOff).toFixed(4)),parseFloat((info.lat+latOff).toFixed(4))]},properties:{id:`${state}-${String(idx+1).padStart(3,'0')}`,name:`${info.n} ${type.l} ${idx+1}`,type:type.t,cost:cost,rating:rating,reviews_count:reviews,amenities:siteAmen,rig_friendly:rigFriend,road_difficulty:['paved','gravel','dirt'][Math.floor(Math.random()*3)],state:state,source:'generated'}};
+      }
+
+      let count=0;
+      for(const[code,info]of Object.entries(states)){
+        const features=[];
+        for(let i=0;i<info.c;i++)features.push(makeSite(code,i,info));
+        const gj={type:"FeatureCollection",features:features};
+        const json=JSON.stringify(gj,null,2);
+        const blob=new Blob([json],{type:'application/json'});
+        const link=document.createElement('a');
+        link.href=URL.createObjectURL(blob);
+        link.download=`${code}.geojson`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+        count++;
+        document.getElementById('status').innerHTML+=`<div class="success">✓ ${code}.geojson (${count}/50)</div>`;
+      }
+      document.getElementById('status').innerHTML+=`<div class="success"><br><strong>Done! Move all 50 files to data/campsites/ folder</strong></div>`;
+    }
+  </script>
+</body>
+</html>

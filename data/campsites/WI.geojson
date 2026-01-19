@@ -1,0 +1,1186 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.5627778,
+          45.8769444
+        ]
+      },
+      "properties": {
+        "id": "WI-001",
+        "name": "LOST LAKE CABINS",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "234167",
+        "description": "<h2>Overview</h2>\nLost Lake Cabins offers (11) cabins available for rent in the remote forested area situated on the shores of Lost Lake. These cabins are located in a group setting and provide an exc"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.2688889,
+          45.8469444
+        ]
+      },
+      "properties": {
+        "id": "WI-002",
+        "name": "SAILOR LAKE PAVILION",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233924",
+        "description": "<h2>Overview</h2>\nSailor Lake Pavilion is located near Sailor Lake Campground, both adjacent to scenic Sailor Lake. Its secluded setting makes it a popular location for family and group events.  \n \nTh"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.918406,
+          44.32623
+        ]
+      },
+      "properties": {
+        "id": "WI-003",
+        "name": "Pool 4, Riecks Lake Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "248076",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=168&agencyCode=130\" rel=\"nofollow\">Mississippi River - Pool 4</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4438889,
+          45.3308333
+        ]
+      },
+      "properties": {
+        "id": "WI-004",
+        "name": "EASTWOOD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233763",
+        "description": "<h2>Overview</h2>\nThe Eastwood Campground is a family-friendly campground with access to a beautiful northern Wisconsin recreation area, complete with hiking trails and a scenic lake.<h2>Recreation</h"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.2444444,
+          44.8594444
+        ]
+      },
+      "properties": {
+        "id": "WI-005",
+        "name": "MAIN DAY USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233548",
+        "description": "<h2>Overview</h2>\nMain Day Use Are at Eau Galle Lake offers many family-friendly outdoor activities including fishing, boating and hiking, in the lush Wisconsin woodlands.  <h2>Recreation</h2>\nIn summ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.714333,
+          46.037944
+        ]
+      },
+      "properties": {
+        "id": "WI-006",
+        "name": "STOCKFARM BRIDGE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249579",
+        "description": "<h2>Overview</h2>\n<p>Stockfarm Bridge Campground is located in a red pine forest on the East Fork of the Chippewa River, a candidate wild and scenic river.</p>\n<h2>Recreation</h2>\n<p>Located on the ed"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.9344444,
+          45.9836111
+        ]
+      },
+      "properties": {
+        "id": "WI-007",
+        "name": "BLACK LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233758",
+        "description": "<h2>Overview</h2>\nBlack Lake is highly ranked as a family-favorite campground. It is spread out along the eastern shores of its namesake, Black Lake. The calm waters beckon to adventurers, offering fi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8783333,
+          46.3008333
+        ]
+      },
+      "properties": {
+        "id": "WI-008",
+        "name": "Beaver Lake (Chequamegon-Nicolet NF, WI)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233757",
+        "description": "<h2>Overview</h2>\nBeaver Lake Campground is a small, secluded, family-friendly campground located on the shores of its namesake lake. The waterfront sites provide spectacular scenic views of the area "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.2697,
+          46.4044
+        ]
+      },
+      "properties": {
+        "id": "WI-009",
+        "name": "Perch Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249604",
+        "description": "<div><p>This quaint campground is a family favorite. Located approximately 5.5 miles north of Drummond on Forest Road 223 (Delta Drummond Road), there are 16 campsites. Each site includes a defined pa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8583333,
+          46.3183333
+        ]
+      },
+      "properties": {
+        "id": "WI-010",
+        "name": "LAKE THREE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "234095",
+        "description": "<h2>Overview</h2>\nWe apologize, this campground is currently closed.\n<h2>Recreation</h2>\nThe lake is home to musky, bass and pan fish and offers an ideal spot to kayak, canoe, swim or enjoy a leisurel"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.1841,
+          46.6422
+        ]
+      },
+      "properties": {
+        "id": "WI-011",
+        "name": "Horseshoe Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "10074567",
+        "description": "<p>If you looking for an equestrian style base camp to explore area trails or a destination campground with plenty of room for your family, try the Horseshoe Lake Recreations Area located north of Ino"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.9760861,
+          45.9912083
+        ]
+      },
+      "properties": {
+        "id": "WI-012",
+        "name": "Kentuck Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "255124",
+        "description": "<h2>Overview</h2>\nEarly settlers from Kentucky gave the name to Kentuck Lake.  Kentuck Lake Campground is located on the east lake shore of Kentuck Lake in a stand of maple.  The 955-acre lake is popu"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5898,
+          46.14419
+        ]
+      },
+      "properties": {
+        "id": "WI-013",
+        "name": "Great Divide District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249593",
+        "description": "<p>The Great Divide Ranger District offers a variety of different activities to those seeking recreational opportunities. Many different campgrounds, lakes, rivers, and hiking trails are available and"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.1738889,
+          45.9105556
+        ]
+      },
+      "properties": {
+        "id": "WI-014",
+        "name": "SMITH RAPIDS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233773",
+        "description": "<h2>Overview</h2>\n<p>Smith Rapids Campground is located on the South Fork of the Flambeau River. It is an ideal location for hiking, river fishing and canoeing.</p>\n<h2>Recreation</h2>\n<p>The fast-flo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.5408333,
+          45.7727778
+        ]
+      },
+      "properties": {
+        "id": "WI-015",
+        "name": "MORGAN LAKE CAMPGROUND AND GROUP SITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "234169",
+        "description": "<h2>Overview</h2>\nThe Morgan Lake Campground and Group Site is a great place for families or a large gathering of people to camp in northern Wisconsin's Chequamegon-Nicolet National Forest. The campgr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4469444,
+          45.3277778
+        ]
+      },
+      "properties": {
+        "id": "WI-016",
+        "name": "SPEARHEAD POINT SHELTER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233923",
+        "description": "<h2>Overview</h2>\nSpearhead Point Shelter is a day-use picnic site for large groups. It is located in one of the most popular areas surrounding Mondeaux Flowage in northern Wisconsin. Nearby, visitors"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.9091667,
+          46.1763889
+        ]
+      },
+      "properties": {
+        "id": "WI-017",
+        "name": "DAY LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233761",
+        "description": "<h2>Overview</h2>\nDay Lake Campground is situated in northwestern Wisconsin, not far from the shores of Lake Superior. The spacious and peaceful Day Lake offers a family-friendly campground with swimm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.1099194,
+          45.8163306
+        ]
+      },
+      "properties": {
+        "id": "WI-018",
+        "name": "LAUREL LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "255123",
+        "description": "<h2>Overview</h2>\nLaurel Lake is part of the 28 lake Three Lakes and Eagle River Chain of Lakes giving the visitor water access to nearly 11,500 acres of water and 174 miles of shoreline.  The campgro"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4358333,
+          45.3055556
+        ]
+      },
+      "properties": {
+        "id": "WI-019",
+        "name": "PICNIC POINT (WI)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233765",
+        "description": "<h2>Overview</h2>\nPicnic Point Campground is a quaint campground, where a large group can enjoy a peaceful escape in northern Wisconsin. The rustic nature of the campground draws campers in for a resp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8283333,
+          46.2902778
+        ]
+      },
+      "properties": {
+        "id": "WI-020",
+        "name": "MINERAL LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "234093",
+        "description": "<h2>Overview</h2>\n We apologize, this campground is currently closed. <h2>Recreation</h2>\nBoating, swimming and fishing are popular activities among visitors. A boat ramp to the lake is provided off o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4518,
+          45.92008
+        ]
+      },
+      "properties": {
+        "id": "WI-021",
+        "name": "Medford - Park Falls District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249595",
+        "description": "<p>The Medford - Park Falls Ranger District offers a variety of different activities to those seeking recreational opportunities. With many campgrounds, lakes, rivers, and hiking trails to choose from"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.2295,
+          45.91514
+        ]
+      },
+      "properties": {
+        "id": "WI-022",
+        "name": "Eagle River - Florence District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249610",
+        "description": "<p>The Eagle River-Florence Ranger District offers a variety of different activities to those seeking recreational opportunities. With many campgrounds, lakes, rivers, and hiking trails, the Eagle Riv"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.7187649,
+          44.1319065
+        ]
+      },
+      "properties": {
+        "id": "WI-023",
+        "name": "Pool 8, Wildcat Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "248541",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=171&agencyCode=130\" rel=\"nofollow\">Mississippi River - Pool 8</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4438,
+          45.2811
+        ]
+      },
+      "properties": {
+        "id": "WI-024",
+        "name": "North Twin Lake Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249587",
+        "description": "<p>The North Twin Campground\u00a0will remain\u00a0closed for the 2019\u00a0camping season. This closure only impacts the campground the boat landing remains open. <strong><a href=\"http://www.fs.usda.gov/recarea/cnn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.6791,
+          45.56009
+        ]
+      },
+      "properties": {
+        "id": "WI-025",
+        "name": "Lakewood - Laona District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249589",
+        "description": "<p>Come visit the Lakewood - Laona District and enjoy our many campgrounds, trails, lake and rivers!\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.5622944,
+          45.8852472
+        ]
+      },
+      "properties": {
+        "id": "WI-026",
+        "name": "Lost Lake Campground (WI)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "255122",
+        "description": "<h2>Overview</h2>\n<p><strong>Please note, this is Lost Lake Campground located in northern Wisconsin on the Chequamegon-Nicolet National Forest.</strong></p>\n\n<p>Lost Lake Campground is located in nor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4469444,
+          45.3280556
+        ]
+      },
+      "properties": {
+        "id": "WI-027",
+        "name": "SPEARHEAD POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233766",
+        "description": "<h2>Overview</h2>\nSpearhead Point Campground is one of the most popular campgrounds on the scenic Mondeaux Flowage. Unique family-oriented campsites and access to panoramic views of the lake are unpre"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.1738889,
+          45.9102778
+        ]
+      },
+      "properties": {
+        "id": "WI-028",
+        "name": "SMITH RAPIDS PAVILION",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233922",
+        "description": "<h2>Overview</h2>\nSmith Rapids Pavilion is day-use picnicking area contained within Smith Rapids Campground. Both accommodate equestrians and are situated near a variety of scenic spots in the Chequam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.0109167,
+          46.0113917
+        ]
+      },
+      "properties": {
+        "id": "WI-029",
+        "name": "Spectacle Lake Campground (Wisconsin)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "255120",
+        "description": "<h2>Overview</h2>\nWith a 500-foot swim beach and the crystal clear lake, Spectacle Lake Campground is a family favorite. Come fish for a variety of gamefish species or hike the trail to Kentuck Lake C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.223912,
+          43.462153
+        ]
+      },
+      "properties": {
+        "id": "WI-030",
+        "name": "BLACKHAWK PARK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233697",
+        "description": "<h2>Overview</h2>\nBlackhawk Park is located on a forested bend of the main channel of the Mississippi River. The campground is the largest public use facility in Mississippi's Pool 9, offering a wide "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.7052778,
+          45.2225
+        ]
+      },
+      "properties": {
+        "id": "WI-031",
+        "name": "CHIPPEWA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233781",
+        "description": "<h2>Overview</h2>\n<p>Chippewa Campground sits on the eastern shores of the Chequamegon Waters Flowage, where the bass fishing is spectacular. Its location provides visitors of any age with access to a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.0722222,
+          45.9547222
+        ]
+      },
+      "properties": {
+        "id": "WI-032",
+        "name": "TWIN LAKES (WI)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233764",
+        "description": "<h2>Overview</h2>\nTucked in a forest of pines, evergreens and hardwoods, Twin Lakes campground overlooks the sparkling blue Twin Lake, offering a secluded oasis for both tent and RV campers.<h2>Recrea"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.0202778,
+          46.0161111
+        ]
+      },
+      "properties": {
+        "id": "WI-033",
+        "name": "MOOSE LAKE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233756",
+        "description": "<h2>Overview</h2>\nMoose Lake Campground sits along its namesake lake in the Chequamegon National Forest of northern Wisconsin. The serene lake and surrounding forest offer a spectacular location for f"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.86,
+          46.1919444
+        ]
+      },
+      "properties": {
+        "id": "WI-034",
+        "name": "EAST TWIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233759",
+        "description": "<h2>Overview</h2>\nLocated on a sparkling 110-acre lake, the East Twin Campground is a known family favorite. The area provides access to a beautiful portion of the Chequamegon National Forest in north"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8896,
+          46.67456
+        ]
+      },
+      "properties": {
+        "id": "WI-035",
+        "name": "Washburn Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "249592",
+        "description": "<p>The Washburn Ranger District offers a variety of different activities to those seeking recreational opportunities. Great Horseback riding trails, OHV trails and Fishing can be found on the district"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.9236111,
+          46.3502778
+        ]
+      },
+      "properties": {
+        "id": "WI-036",
+        "name": "NAMEKAGON",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "233760",
+        "description": "<h2>Overview</h2>\nNamekagon campground is a family-friendly campground that runs alongside its namesake lake, at the headwaters of the Namekagon River. It is the perfect spot to kayak, canoe, jet ski,"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.9574778,
+          45.8892417
+        ]
+      },
+      "properties": {
+        "id": "WI-037",
+        "name": "LUNA WHITE DEER CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "WI",
+        "source": "recreation.gov",
+        "facility_id": "255121",
+        "description": "<h2>Overview</h2>\nNestled between two deep clear lakes, Luna-White Deer Campground provides a north woods experience where you can hear the call of the loons at night and see lots of wildlife by day. "
+      }
+    }
+  ]
+}

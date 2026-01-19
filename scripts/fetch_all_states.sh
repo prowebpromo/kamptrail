@@ -8,8 +8,8 @@ echo "🏕 Fetching real campsite data from Recreation.gov..."
 echo "This will take 5-10 minutes for all states"
 echo ""
 
-# Popular camping states
-STATES="CA CO UT AZ OR WA MT WY NV ID NM"
+# All 50 US states
+STATES="AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY"
 
 for state in $STATES; do
   echo "Fetching $state..."

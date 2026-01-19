@@ -1,0 +1,327 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.948725,
+          39.503092
+        ]
+      },
+      "properties": {
+        "id": "IN-001",
+        "name": "Quakertown Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247955",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=353&agencyCode=130\" rel=\"nofollow\">Brookville Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.9886111,
+          39.4388889
+        ]
+      },
+      "properties": {
+        "id": "IN-002",
+        "name": "OVERLOOK SHELTER (BROOKVILLE LAKE)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "273756",
+        "description": "<h2>Overview</h2>\nThe Overlook Shelter is located near the Brookville Lake Dam and the Visitor Center. Visitors enjoy this site for the breathtaking view of Brookville Lake and the Dam. Visitors also ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.0013889,
+          39.4365556
+        ]
+      },
+      "properties": {
+        "id": "IN-003",
+        "name": "TAILWATER SHELTER 1 (BROOKVILLE LAKE)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "273760",
+        "description": "<h2>Overview</h2>\n<p>The Tailwater #2 Shelter is located at the base of Brookville Lake Dam.<strong>9136 SR101 Brookville, Indiana 47012</strong> Visitors enjoy the accessibility to cold water trout f",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.45897,
+          39.017874
+        ]
+      },
+      "properties": {
+        "id": "IN-005",
+        "name": "Hardin Ridge",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247961",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=369&agencyCode=130\" rel=\"nofollow\">Monroe Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.6335656,
+          40.77138698
+        ]
+      },
+      "properties": {
+        "id": "IN-006",
+        "name": "Lost Bridge West",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247963",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=374&agencyCode=130\" rel=\"nofollow\">Salamonie Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.43613899,
+          39.0817972
+        ]
+      },
+      "properties": {
+        "id": "IN-007",
+        "name": "Paynetown",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247960",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=369&agencyCode=130\" rel=\"nofollow\">Monroe Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.07454559,
+          39.73528071
+        ]
+      },
+      "properties": {
+        "id": "IN-008",
+        "name": "Raccoon State Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247957",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=365&agencyCode=130\" rel=\"nofollow\">Cecil M. Harden Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.9632397,
+          39.4916635
+        ]
+      },
+      "properties": {
+        "id": "IN-009",
+        "name": "Mounds Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247956",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=353&agencyCode=130\" rel=\"nofollow\">Brookville Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.436726,
+          40.845172
+        ]
+      },
+      "properties": {
+        "id": "IN-010",
+        "name": "Kilsoquah Camp",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247958",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=363&agencyCode=130\" rel=\"nofollow\">J. Edward Roush Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.94369935,
+          40.69704008
+        ]
+      },
+      "properties": {
+        "id": "IN-011",
+        "name": "Miami",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247959",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=368&agencyCode=130\" rel=\"nofollow\">Mississinewa Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.65404745,
+          38.40289781
+        ]
+      },
+      "properties": {
+        "id": "IN-012",
+        "name": "Newton-Stewart",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "IN",
+        "source": "recreation.gov",
+        "facility_id": "247962",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=372&agencyCode=130\" rel=\"nofollow\">Patoka Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5638,
+          46.5231
+        ]
+      },
+      "properties": {
+        "id": "MN-001",
+        "name": "Minnesota Dispersed 1",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.6838,
+          45.9658
+        ]
+      },
+      "properties": {
+        "id": "MN-002",
+        "name": "Minnesota Campground 2",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.0",
+        "reviews_count": 53,
+        "amenities": [
+          "water",
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.3153,
+          46.3423
+        ]
+      },
+      "properties": {
+        "id": "MN-003",
+        "name": "Minnesota Dispersed 3",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.1563,
+          45.7582
+        ]
+      },
+      "properties": {
+        "id": "MN-004",
+        "name": "Minnesota Dispersed 4",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.0088,
+          45.3474
+        ]
+      },
+      "properties": {
+        "id": "MN-005",
+        "name": "Minnesota Dispersed 5",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.9496,
+          45.9733
+        ]
+      },
+      "properties": {
+        "id": "MN-006",
+        "name": "Minnesota Campground 6",
+        "type": "established",
+        "cost": 0,
+        "rating": "4.2",
+        "reviews_count": 51,
+        "amenities": [
+          "water",
+          "toilets",
+          "trash",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.3636,
+          47.2643
+        ]
+      },
+      "properties": {
+        "id": "MN-007",
+        "name": "Minnesota Dispersed 7",
+        "type": "dispersed",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.0386,
+          46.338
+        ]
+      },
+      "properties": {
+        "id": "MN-008",
+        "name": "Minnesota Backcountry 8",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "3.6",
+        "reviews_count": 9,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.6422,
+          45.6136
+        ]
+      },
+      "properties": {
+        "id": "MN-009",
+        "name": "Minnesota Campground 9",
+        "type": "established",
+        "cost": 20,
+        "rating": "3.8",
+        "reviews_count": 13,
+        "amenities": [
+          "picnic_tables",
+          "fire_rings",
+          "toilets",
+          "water"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MN",
+        "source": "generated"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.1441,
+          46.5849
+        ]
+      },
+      "properties": {
+        "id": "MN-010",
+        "name": "Minnesota Backcountry 10",
+        "type": "backcountry",
+        "cost": 0,
+        "rating": "4.1",
+        "reviews_count": 17,
+        "amenities": [
+          "trash"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "dirt",
+        "state": "MN",
+        "source": "generated"
+      }
+    }
+  ]
+}

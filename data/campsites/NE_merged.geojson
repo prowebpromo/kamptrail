@@ -1,0 +1,508 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.039264,
+          41.349133
+        ]
+      },
+      "properties": {
+        "id": "NE-001",
+        "name": "Cunningham Lake Dam Site 11 Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248167",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=307&agencyCode=130\" rel=\"nofollow\">Zorinsky Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.866861,
+          40.847993
+        ]
+      },
+      "properties": {
+        "id": "NE-002",
+        "name": "Pawnee Dam-Site 14 Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248164",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=302&agencyCode=130\" rel=\"nofollow\">Pawnee Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.2277,
+          40.0830556
+        ]
+      },
+      "properties": {
+        "id": "NE-003",
+        "name": "HUNTER COVE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "233517",
+        "description": "<h2>Overview</h2>\nHunter Cove Park is located on the eastern end of Harlan County Lake near Republican City, Nebraska. \n<br/><br/>\nThe 13,000-acre Harlan County Lake is the second largest lake in Nebr",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3155556,
+          40.0869444
+        ]
+      },
+      "properties": {
+        "id": "NE-004",
+        "name": "METHODIST COVE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "233551",
+        "description": "<h2>Overview</h2>\nMethodist Cove Park is located on the west side of Harlan County Lake by Alma, Nebraska. \n<br/><br/>\nThe 13,000-acre Harlan County Lake is the second largest lake in the state. The l",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.2691,
+          41.9029
+        ]
+      },
+      "properties": {
+        "id": "NE-005",
+        "name": "Nebraska National Forest at Halsey",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "243154",
+        "description": "<p>There are two distinct areas of the Nebraska National Forest. One section is situated in the northwest panhandle south and <a href=\"http://www.fs.usda.gov/recarea/nebraska/recreation/recarea/?recid",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.576249,
+          40.625475
+        ]
+      },
+      "properties": {
+        "id": "NE-006",
+        "name": "Wagon Train Dam-Site 8 Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248166",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=297&agencyCode=130\" rel=\"nofollow\">Wagontrain Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.217773,
+          40.0844034
+        ]
+      },
+      "properties": {
+        "id": "NE-007",
+        "name": "North Shore Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248159",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=264&agencyCode=130\" rel=\"nofollow\">Harlan County Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.859866,
+          40.961017
+        ]
+      },
+      "properties": {
+        "id": "NE-008",
+        "name": "Branched Oak Dam-Site 18 Liebers Point",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248156",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=304&agencyCode=130\" rel=\"nofollow\">Branched Oak Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.7952,
+          43.7101
+        ]
+      },
+      "properties": {
+        "id": "NE-009",
+        "name": "Buffalo Gap National Grassland",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "243185",
+        "description": "<p>This area is divided into two areas located in southern South Dakota.  One area is south and northeast of Hot Springs and the other is south and west of Wall.  There are few developed recreation si",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.0004,
+          42.8275
+        ]
+      },
+      "properties": {
+        "id": "NE-010",
+        "name": "Nebraska National Forest at Chadron",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "243164",
+        "description": "<p>There are two distinct areas of the Nebraska National Forest. This area encompasses the west end of the Nebraska National Forest near Chadron and Crawford and is managed by the <strong>Pine Ridge R",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.2314493,
+          40.0412971
+        ]
+      },
+      "properties": {
+        "id": "NE-011",
+        "name": "Patterson Harbor Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248158",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=264&agencyCode=130\" rel=\"nofollow\">Harlan County Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.64379742,
+          40.60371436
+        ]
+      },
+      "properties": {
+        "id": "NE-012",
+        "name": "Stagecoach Dam-Site 9 Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248165",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=298&agencyCode=130\" rel=\"nofollow\">Stagecoach Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.0248,
+          42.719
+        ]
+      },
+      "properties": {
+        "id": "NE-013",
+        "name": "Samuel R. McKelvie National Forest",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "243150",
+        "description": "<p>Located south of Nenzel in Cherry County, this 116,000-acre national forest is a fantastic representation of the unique Nebraska Sandhills prairie ecosystem. Popular uses of the forest include hunt",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.85108927,
+          40.77099519
+        ]
+      },
+      "properties": {
+        "id": "NE-014",
+        "name": "Conestoga Dam-Site 12 Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248157",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=300&agencyCode=130\" rel=\"nofollow\">Conestoga Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.36033016,
+          40.09578719
+        ]
+      },
+      "properties": {
+        "id": "NE-015",
+        "name": "Alma City Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248162",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=264&agencyCode=130\" rel=\"nofollow\">Harlan County Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.599093,
+          42.917873
+        ]
+      },
+      "properties": {
+        "id": "NE-016",
+        "name": "Oglala National Grasslands",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "243151",
+        "description": "<p>Located in the most northwestern corner of Nebraska, north of Crawford, you'll find the expansive landscape of the Oglala National Grasslands. This unique area consists of native mixed-grass prairi",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.21429997,
+          40.08519083
+        ]
+      },
+      "properties": {
+        "id": "NE-017",
+        "name": "Gremlin Cove",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NE",
+        "source": "recreation.gov",
+        "facility_id": "248161",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=264&agencyCode=130\" rel=\"nofollow\">Harlan County Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

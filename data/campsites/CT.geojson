@@ -1,0 +1,101 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0666667,
+          41.5133333
+        ]
+      },
+      "properties": {
+        "id": "CT-001",
+        "name": "HOP BROOK LAKE RECREATION AREA",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "233330",
+        "description": "<h2>Overview</h2>\nHop Brook Lake Recreation Area is located within the towns of Middlebury, Naugatuck and Waterbury, Connecticut. Its 536 acres provide excellent recreation opportunities and a chance "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0916667,
+          41.6875
+        ]
+      },
+      "properties": {
+        "id": "CT-002",
+        "name": "NORTHFIELD BROOK LAKE GROUP SHELTERS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "234142",
+        "description": "<h2>Overview</h2>\nNorthfield Brook Lake Group Shelters are located along a small scenic lake in the Naugatuck Valley of west-central Connecticut.\n<br/><br/>\nNaugatuck Valley boasts picturesque small t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.899092,
+          41.955623
+        ]
+      },
+      "properties": {
+        "id": "CT-003",
+        "name": "West Thompson Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "233476",
+        "description": "<h2>Overview</h2>\nWest Thompson Lake Campground is located near the wooded shoreline of its namesake lake in northeastern Connecticut. The natural setting surrounding West Thompson Lake can be enjoyed"
+      }
+    }
+  ]
+}

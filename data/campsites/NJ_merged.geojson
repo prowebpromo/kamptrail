@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.995096,
+          40.450082
+        ]
+      },
+      "properties": {
+        "id": "NJ-001",
+        "name": "CAMP GATEWAY - SANDY HOOK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NJ",
+        "source": "recreation.gov",
+        "facility_id": "234714",
+        "description": "<h2>Overview</h2>\nWelcome to Gateway National Recreation Area, Sandy Hook Unit! There are a variety of cultural and recreational opportunities available at the park including history tours, living his",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

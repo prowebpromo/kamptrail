@@ -1,0 +1,247 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.9137,
+          43.875356
+        ]
+      },
+      "properties": {
+        "id": "NY-001",
+        "name": "Bingo",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "246536",
+        "description": "<p><a href=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5318739.pdf\" rel=\"nofollow\">General Forest Camping Recreational Opportunity Guide</a></p>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.22337292,
+          42.3283949
+        ]
+      },
+      "properties": {
+        "id": "NY-002",
+        "name": "East Sidney Dam Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "248177",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=186&agencyCode=130\" rel=\"nofollow\">East Sidney Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.055443,
+          40.599926
+        ]
+      },
+      "properties": {
+        "id": "NY-003",
+        "name": "CAMP GATEWAY - STATEN ISLAND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "234715",
+        "description": "<h2>Overview</h2>\n<p>This campground boasts a spectacular view of the Verrazzano-Narrows Bridge, the longest vehicle suspension span in the United States. When it opened in 1964, it was the longest sp",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.884165,
+          40.594889
+        ]
+      },
+      "properties": {
+        "id": "NY-004",
+        "name": "CAMP GATEWAY- BROOKLYN NY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "233309",
+        "description": "<h2>Overview</h2>\nThere's no other campground in the world where a family can sleep under the stars, tour the Statue of Liberty, watch a Broadway musical and kayak in one of the world's premier bird m",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.870133,
+          42.486388
+        ]
+      },
+      "properties": {
+        "id": "NY-005",
+        "name": "Finger Lakes - Hector District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "249967",
+        "description": "<p>The Finger Lakes National Forest, positioned along the ridges between Cayuga Lake and Seneca Lake, offers scenic beauty and unlimited recreational opportunities any season of the year. Whether you ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.02723,
+          43.91884
+        ]
+      },
+      "properties": {
+        "id": "NY-006",
+        "name": "Moosalamoo National Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "246517",
+        "description": "<p>The Moosalamoo National Recreation Area, encompassing 15,857 acres, is a premier recreation destination that includes hiking trails, mountain bike trails, cross country ski trails, snowmobile trail",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.787968,
+          42.492039
+        ]
+      },
+      "properties": {
+        "id": "NY-007",
+        "name": "POTOMAC GROUP CAMPGROUND",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "234476",
+        "description": "<h2>Overview</h2>\n<p>Potomac Group Campground and Day Use Area provides a primitive camping experience for groups of 8-40 people. It is an excellent site for family events and youth group activities. ",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.712355,
+          42.350908
+        ]
+      },
+      "properties": {
+        "id": "NY-008",
+        "name": "Kanakadea Recreation Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "NY",
+        "source": "recreation.gov",
+        "facility_id": "248176",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=181&agencyCode=130\" rel=\"nofollow\">Almond Lake</a>",
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    }
+  ]
+}

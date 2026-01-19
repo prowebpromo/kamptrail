@@ -1,0 +1,2792 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.4697222,
+          38.2761111
+        ]
+      },
+      "properties": {
+        "id": "MO-001",
+        "name": "Long Shoal",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233542",
+        "description": "<h2>Overview</h2>\nLongshoal Park sits on the shores of Harry S. Truman Lake in the hills of western Missouri. \n<br/><br/>\nVisitors enjoy fishing, hunting, swimming and boating.\n<br/> <br/>\n<a href=\"ht"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.79061092,
+          37.68184488
+        ]
+      },
+      "properties": {
+        "id": "MO-002",
+        "name": "Stockton State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248126",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=276&agencyCode=130\" rel=\"nofollow\">Stockton Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.325349,
+          39.010771
+        ]
+      },
+      "properties": {
+        "id": "MO-003",
+        "name": "Dam Recreation",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248101",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=280&agencyCode=130\" rel=\"nofollow\">Blue Springs Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.7838889,
+          36.9191667
+        ]
+      },
+      "properties": {
+        "id": "MO-004",
+        "name": "PINEWOODS LAKE REC AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232420",
+        "description": "<h2>Overview</h2>\nPinewoods Lake Recreation Area sits next to Pinewoods Lake in southeastern Missouri. It is an ideal location to enjoy lake fishing and scenic trails.<h2>Recreation</h2>\nA 1.3-mile wa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.338063,
+          36.999593
+        ]
+      },
+      "properties": {
+        "id": "MO-005",
+        "name": "Lost Creek Lodge Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248133",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1692&agencyCode=130\" rel=\"nofollow\">Wappapello Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.526453,
+          39.769453
+        ]
+      },
+      "properties": {
+        "id": "MO-006",
+        "name": "Bloomington",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248110",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=268&agencyCode=130\" rel=\"nofollow\">Long Branch Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.5711111,
+          39.5716667
+        ]
+      },
+      "properties": {
+        "id": "MO-007",
+        "name": "BLUFFVIEW (MARK TWAIN LAKE)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233452",
+        "description": "<h2>Overview</h2>\nBluffview is an excellent location for boating and fishing near Mark Twain Lake. Here, visitors can relax on the Salt River and imagine what life was like when the beloved author exp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3194444,
+          36.5594444
+        ]
+      },
+      "properties": {
+        "id": "MO-008",
+        "name": "OLD HIGHWAY 86",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232656",
+        "description": "<h2>Overview</h2>\nOld Highway 86 is a spacious and sunny campground that sits along the White River Arm of Table Rock Lake in the rolling Missouri countryside.<h2>Recreation</h2>\nWhether on water or l"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.52471438,
+          39.39270746
+        ]
+      },
+      "properties": {
+        "id": "MO-009",
+        "name": "Crows Creek",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248121",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=275&agencyCode=130\" rel=\"nofollow\">Smithville Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.3599739,
+          36.9730618
+        ]
+      },
+      "properties": {
+        "id": "MO-010",
+        "name": "Chaonia Landing Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248134",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1692&agencyCode=130\" rel=\"nofollow\">Wappapello Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3291667,
+          37.9027778
+        ]
+      },
+      "properties": {
+        "id": "MO-011",
+        "name": "OUTLET PARK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233575",
+        "description": "<h2>Overview</h2>\n<p><strong>Attention Campers! We are looking for volunteers to help us maintain campgrounds. For more information and volunteer applications, call 417-745-6411 and ask for park range"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.4597222,
+          36.6736111
+        ]
+      },
+      "properties": {
+        "id": "MO-012",
+        "name": "AUNTS CREEK",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232516",
+        "description": "<h2>Overview</h2>\nAunts Creek campground is located on the James River Arm of Table Rock Lake. With easy access to the highly productive waters of the James River Arm, fishermen and campers looking to"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4218008,
+          37.035593
+        ]
+      },
+      "properties": {
+        "id": "MO-013",
+        "name": "Holliday Landing Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248135",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1692&agencyCode=130\" rel=\"nofollow\">Wappapello Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.6055556,
+          38.26
+        ]
+      },
+      "properties": {
+        "id": "MO-014",
+        "name": "BUCKSAW",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233441",
+        "description": "<h2>Overview</h2>\nBucksaw Campground sits on the Grand River Arm of the Harry S. Truman Lake in the hills of western Missouri.  \n<br/><br/>\nThe campground is an excellent destination for all types of "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.0966833,
+          36.908475
+        ]
+      },
+      "properties": {
+        "id": "MO-015",
+        "name": "NOBLETT LAKE ",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233935",
+        "description": "<h2>Overview</h2>\nNoblett Lake Picnic Pavilion provides a sheltered place among forests, streams and wildlife, for groups to picnic near Noblett Lake. It is a great location for birding, canoeing and "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.30291969,
+          37.88350023
+        ]
+      },
+      "properties": {
+        "id": "MO-016",
+        "name": "Hermitage State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248116",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=272&agencyCode=130\" rel=\"nofollow\">Pomme De Terre Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.56944,
+          37.38306
+        ]
+      },
+      "properties": {
+        "id": "MO-017",
+        "name": "AKERS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234442",
+        "description": "<h2>Overview</h2>\n<p>Two of America's clearest spring-fed rivers combine to create the Ozark National Scenic Riverways in the rolling, forested landscape of Akers. <br><br>Visitors to the campground e"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7811111,
+          37.6063889
+        ]
+      },
+      "properties": {
+        "id": "MO-018",
+        "name": "HAWKER POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233505",
+        "description": "<h2>Overview</h2>\nHawker Point Campground is a shady campground located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless recr"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3933306,
+          38.1905611
+        ]
+      },
+      "properties": {
+        "id": "MO-019",
+        "name": "OSAGE BLUFF",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233571",
+        "description": "<h2>Overview</h2>\n<p>Osage Bluff Park sits on the shores of Harry S. Truman Lake in the hills of western Missouri. <br><br><br><br>Visitors enjoy fishing, hunting, swimming and boating.<br><br> <br> <"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7937922,
+          37.6703952
+        ]
+      },
+      "properties": {
+        "id": "MO-020",
+        "name": "Orleans Trail Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248124",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=276&agencyCode=130\" rel=\"nofollow\">Stockton Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.261667,
+          37.836429
+        ]
+      },
+      "properties": {
+        "id": "MO-021",
+        "name": "Pittsburg State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248117",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=272&agencyCode=130\" rel=\"nofollow\">Pomme De Terre Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.6813889,
+          37.5755556
+        ]
+      },
+      "properties": {
+        "id": "MO-022",
+        "name": "CEDAR RIDGE (MO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233453",
+        "description": "<h2>Overview</h2>\nCedar Ridge is located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless recreational opportunities along ne"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.6016667,
+          36.9733333
+        ]
+      },
+      "properties": {
+        "id": "MO-023",
+        "name": "MARKHAM SPRINGS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234490",
+        "description": "<h2>Overview</h2>\nMarkham Springs Campground is set on the Black River in a scenic and historic recreation area in the southwestern corner of Missouri's Mark Twain National Forest. The area provides a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3744444,
+          37.8755556
+        ]
+      },
+      "properties": {
+        "id": "MO-024",
+        "name": "WHEATLAND PARK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233672",
+        "description": "<h2>Overview</h2>\n<p><strong>Attention Campers! We are looking for volunteers to help us maintain campgrounds. For more information and volunteer applications, call 417-745-6411 and ask for park range"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8713889,
+          36.6647222
+        ]
+      },
+      "properties": {
+        "id": "MO-025",
+        "name": "FLOAT CAMP PICNIC AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232418",
+        "description": "<h2>Overview</h2>\nFloat Camp Picnic Area is located only 150 feet from the cool waters of the crystal clear Current River. Visitors enjoy floating the river, fishing and hiking.  A campground is only "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.7894444,
+          37.1819444
+        ]
+      },
+      "properties": {
+        "id": "MO-026",
+        "name": "BLUFF VIEW(CLEARWATER LAKE)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232530",
+        "description": "<h2>Overview</h2>\nBluff View Campground on Clearwater Lake greets visitors with excellent camping, fishing, swimming, boating and picnicking opportunities. \n<br/><br/>\nLocal wildlife includes wetland "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.5222916,
+          39.4104449
+        ]
+      },
+      "properties": {
+        "id": "MO-027",
+        "name": "Camp Branch Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248122",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=275&agencyCode=130\" rel=\"nofollow\">Smithville Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.04116137,
+          39.46148975
+        ]
+      },
+      "properties": {
+        "id": "MO-028",
+        "name": "Two Rivers Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248115",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1688&agencyCode=130\" rel=\"nofollow\">Mississippi River - Upper</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.6630556,
+          39.5158333
+        ]
+      },
+      "properties": {
+        "id": "MO-029",
+        "name": "RAY BEHRENS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233597",
+        "description": "<h2>Overview</h2>\nRay Behrens is a scenic campground and recreation area, conveniently located on the southeastern shores of Mark Twain Lake. Here, visitors can enjoy the perks of the campground, go b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.27,
+          37.38
+        ]
+      },
+      "properties": {
+        "id": "MO-030",
+        "name": "LOGGERS LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "251547",
+        "description": "<h2>Overview</h2>\nLocated deep in the interior forests of Shannon County, Logger's Lake Campground is situated along the southeast shore of Logger's Lake. Constructed in 1942, this spring-fed lake is "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.4219444,
+          38.2588889
+        ]
+      },
+      "properties": {
+        "id": "MO-031",
+        "name": "SHAWNEE BEND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233625",
+        "description": "<h2>Overview</h2>\nShawnee Bend Park sits on the shores of Harry S. Truman Lake in the hills of western Missouri. \n<br/><br/>\nVisitors enjoy fishing, hunting, swimming and boating.\n<br/> <br/>\n<a href="
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3613889,
+          37.8261111
+        ]
+      },
+      "properties": {
+        "id": "MO-032",
+        "name": "LIGHTFOOT LANDING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233538",
+        "description": "<h2>Overview</h2>\n<p><strong>Attention Campers! We are looking for volunteers to help us maintain campgrounds. For more information and volunteer applications, call 417-745-6411 and ask for park range"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.4830556,
+          37.3344444
+        ]
+      },
+      "properties": {
+        "id": "MO-033",
+        "name": "PULLTITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234357",
+        "description": "<h2>Overview</h2>\nIn the rolling, forested landscapes around Pulltite, two of America's most beautiful spring-fed rivers combine to make up the Ozark National Scenic Riverways.<br/><br/>\nAs the first "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.0186111,
+          37.0019444
+        ]
+      },
+      "properties": {
+        "id": "MO-034",
+        "name": "WATERCRESS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233983",
+        "description": "<h2>Overview</h2>\n***Watercress sustained substantial damage to the pavilions during the 2017 flood, they are not reservable at this time, however the boat ramp is still open for public use.*** \n\nWate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.8094444,
+          37.5258333
+        ]
+      },
+      "properties": {
+        "id": "MO-035",
+        "name": "RUARK BLUFF WEST",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233699",
+        "description": "<h2>Overview</h2>\nRuark Bluff West is a shady campground located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless recreationa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.7669444,
+          37.1336111
+        ]
+      },
+      "properties": {
+        "id": "MO-036",
+        "name": "RIVER ROAD PARK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232691",
+        "description": "<h2>Overview</h2>\nSet on the banks of a calming river, just below the entertaining Clearwater Lake lies River Road Park, known as a jolly ol' place to camp. \n<br/><br/>\nThe beautiful area is enhanced "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.6766667,
+          36.5577778
+        ]
+      },
+      "properties": {
+        "id": "MO-037",
+        "name": "BIG M",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232526",
+        "description": "<h2>Overview</h2>\nBig M is a spacious and grassy campground that sits along the White River Arm of Table Rock Lake in the Missouri countryside.<br/><br/>\nBig M provides plenty of sites with a panorami"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.55805961,
+          39.39499584
+        ]
+      },
+      "properties": {
+        "id": "MO-038",
+        "name": "Smith's Fork",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248120",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=275&agencyCode=130\" rel=\"nofollow\">Smithville Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.6588889,
+          39.5541667
+        ]
+      },
+      "properties": {
+        "id": "MO-039",
+        "name": "JOHN SPALDING REC AR",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233524",
+        "description": "<h2>Overview</h2>\nVisitors at John Spalding are in the perfect location for recreation on Mark Twain Lake. The day-use area is the only facility within reach of the sandy public beach. It's also direc"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.683825,
+          37.6037833
+        ]
+      },
+      "properties": {
+        "id": "MO-040",
+        "name": "Masters (MO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "256368",
+        "description": "<h2>Overview</h2>\nMasters is located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless recreational opportunities along nearly"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.6475,
+          39.5355556
+        ]
+      },
+      "properties": {
+        "id": "MO-041",
+        "name": "FRANK RUSSELL",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233501",
+        "description": "<h2>Overview</h2>\nFrank Russell Campground, set near the picturesque Mark Twain Lake, has a location near the dam, providing campers with easy access to the lake, river and surrounding attractions.  T"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.6458333,
+          39.5188889
+        ]
+      },
+      "properties": {
+        "id": "MO-042",
+        "name": "JOHN C. BRISCOE GROUP USE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233557",
+        "description": "<h2>Overview</h2>\nThe scenic John C. \"Jack\" Briscoe Group area, previously named the M.W. Boudreaux Group Area, is an ideal place for families and groups to explore and enjoy Mark Twain Lake. \n<br/><b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.80923166,
+          37.14906229
+        ]
+      },
+      "properties": {
+        "id": "MO-043",
+        "name": "Webb Creek",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248104",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=532&agencyCode=130\" rel=\"nofollow\">Clearwater Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.0069444,
+          37.4763889
+        ]
+      },
+      "properties": {
+        "id": "MO-044",
+        "name": "SUTTON BLUFF RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232419",
+        "description": "<h2>Overview</h2>\nRoomy campsites surrounded by open lawn and natural shading, cool breezes, abundant songbirds and scenic views all await visitors at the Sutton Bluff Recreation Area. The campground "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.6033333,
+          36.9780556
+        ]
+      },
+      "properties": {
+        "id": "MO-045",
+        "name": "FUCHS HOUSE",
+        "type": "established",
+        "cost": 125,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "273841",
+        "description": "<h2>Overview</h2>\nIn the late 1930s, Rudolph Fuchs built a five bedroom concrete and native stone house for his family, and also built the present wheel house to produce electricity for his needs. Pow"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.7666667,
+          37.3241667
+        ]
+      },
+      "properties": {
+        "id": "MO-046",
+        "name": "HIGHWAY K",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232604",
+        "description": "<h2>Overview</h2>\nCampers looking to enjoy a scenic stay on the clear waters of the Black River, will enjoy the calming riverside atmosphere at Highway K Park. <h2>Recreation</h2>\nFishing and canoeing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.2827778,
+          37.1938889
+        ]
+      },
+      "properties": {
+        "id": "MO-047",
+        "name": "TWO RIVERS",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234441",
+        "description": "<h2>Overview</h2>\n<p>In the rolling, forested landscape of Two Rivers, two of America's most beautiful spring-fed rivers combine to make up the Ozark National Scenic Riverways.<br><br>As the first nat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7530556,
+          37.6697222
+        ]
+      },
+      "properties": {
+        "id": "MO-048",
+        "name": "CRABTREE COVE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233471",
+        "description": "<h2>Overview</h2>\nCrabtree Cove is a shady campground located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless recreational o"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.342596,
+          36.955319
+        ]
+      },
+      "properties": {
+        "id": "MO-049",
+        "name": "Wappapello State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248132",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=1692&agencyCode=130\" rel=\"nofollow\">Wappapello Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.7961111,
+          36.4944444
+        ]
+      },
+      "properties": {
+        "id": "MO-050",
+        "name": "BUCK CREEK (MO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232535",
+        "description": "<h2>Overview</h2>\nRelax in the shaded campsites at Buck Creek, on the Arkansas side of the massive Bull Shoals Lake. Here, there's plenty of opportunities for water sports, hiking and picnicking. \n<br"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.8361111,
+          37.7930556
+        ]
+      },
+      "properties": {
+        "id": "MO-051",
+        "name": "LANE SPRING RECREATION AREA",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232421",
+        "description": "<h2>Overview</h2>\nLane Spring Recreation Area provides a peaceful setting along Little Piney Creek and a scenic patio overlooking beautiful Lane Spring. A large, accessible picnic area with two pavili"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4558333,
+          37.1003722
+        ]
+      },
+      "properties": {
+        "id": "MO-052",
+        "name": "GREENVILLE RECREATION AREA",
+        "type": "established",
+        "cost": 28,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233688",
+        "description": "<h2>Overview</h2>\n<p>Greenville Recreation Area is located on the northen end of Wappapello Lake Project, nestled on the banks of the St. Francis River.  The spacious campground is built on the origin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.31,
+          36.6077778
+        ]
+      },
+      "properties": {
+        "id": "MO-053",
+        "name": "MOONSHINE BEACH REC. AREA",
+        "type": "established",
+        "cost": 5,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234371",
+        "description": "<h2>Overview</h2>\nMoonshine Beach Recreation Area is a very popular sandy swimming beach along the shores of Table Rock Lake.<br/><br/>Unlike the smaller swimming areas at the campgrounds surrounding "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.7330556,
+          39.5391667
+        ]
+      },
+      "properties": {
+        "id": "MO-054",
+        "name": "INDIAN CREEK (MO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233518",
+        "description": "<h2>Overview</h2>\nIndian Creek lies on the northern banks of Mark Twain Lake. It is the largest campground on the lake with 215 standard campsites, plus additional non-electric and tent-only sites.\n<b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.36970347,
+          38.29786766
+        ]
+      },
+      "properties": {
+        "id": "MO-055",
+        "name": "Sterett Creek Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248107",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=267&agencyCode=130\" rel=\"nofollow\">Harry S. Truman Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.73,
+          36.5272222
+        ]
+      },
+      "properties": {
+        "id": "MO-056",
+        "name": "EAGLE ROCK",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232581",
+        "description": "<h2>Overview</h2>\n<p>Eagle Rock is a spacious and grassy campground located on the White River Arm of Table Rock Lake in the Missouri countryside.<br><br>Eagle Rock is conveniently located right off H"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.4083333,
+          37.2830556
+        ]
+      },
+      "properties": {
+        "id": "MO-057",
+        "name": "ROUND SPRING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234045",
+        "description": "<h2>Overview</h2>\nIn the rolling, forested landscape of Round Spring, two of America's most beautiful spring-fed rivers combine to make up the Ozark National Scenic Riverways.<br/><br/>\nAs the first n"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3963889,
+          38.2963889
+        ]
+      },
+      "properties": {
+        "id": "MO-058",
+        "name": "THIBAUT POINT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233680",
+        "description": "<h2>Overview</h2>\nThibaut Point Park sits on the shores of Harry S. Truman Lake in the hills of western Missouri. \n<br/><br/>\nVisitors enjoy fishing, hunting, swimming and boating.\n<br/> <br/>\n<a href"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3977778,
+          38.2619444
+        ]
+      },
+      "properties": {
+        "id": "MO-059",
+        "name": "BLEDSOE FERRY",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233428",
+        "description": "<h2>Overview</h2>\n<p>Bledsoe Ferry Park sits below Harry S. Truman Dam in the hills of western Missouri. <br><br><br><br>Visitors enjoy fishing, hunting, swimming and boating. <br><br> <br><a href=\"ht"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.78137042,
+          36.64579908
+        ]
+      },
+      "properties": {
+        "id": "MO-060",
+        "name": "Eleven Point/Doniphan Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "264489",
+        "description": "<p>The Eleven Point Ranger District takes its name from the Eleven Point River, designated a National Wild and Scenic River in 1968.</p><p>Some unique features of the Eleven Point Ranger District incl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.2752528,
+          36.9464417
+        ]
+      },
+      "properties": {
+        "id": "MO-061",
+        "name": "PEOPLES CREEK",
+        "type": "established",
+        "cost": 28,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233689",
+        "description": "<h2>Overview</h2>\n<p>People's Creek Recreation Area, located in the southeastern Ozark foothills of Missouri, is a great launchpad for boating, fishing, swimming, hiking or simply exploring the Wappap"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.3329487,
+          36.792796
+        ]
+      },
+      "properties": {
+        "id": "MO-062",
+        "name": "Eleven Point National Wild and Scenic River",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "264493",
+        "description": "<p>The Eleven Point National Wild and Scenic River was established in 1968 as a 44-mile scenic river, free of impoundments with a largely undeveloped shoreline and watershed. This portion of the river"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7830556,
+          37.6594444
+        ]
+      },
+      "properties": {
+        "id": "MO-063",
+        "name": "ORLEANS TRAIL",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233569",
+        "description": "<h2>Overview</h2>\nOrleans Trail Campground is a shady campground located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless rec"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.328186,
+          37.893787
+        ]
+      },
+      "properties": {
+        "id": "MO-064",
+        "name": "Quarry Point Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248118",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=272&agencyCode=130\" rel=\"nofollow\">Pomme De Terre Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.44972,
+          37.14722
+        ]
+      },
+      "properties": {
+        "id": "MO-065",
+        "name": "ALLEY SPRING",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234046",
+        "description": "<h2>Overview</h2>\nThe rolling, forested landscape around Alley Spring is where two of America's most beautiful spring-fed rivers combine to make up the Ozark National Scenic Riverways. <br/><br/>\nAs t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.8052778,
+          37.5222222
+        ]
+      },
+      "properties": {
+        "id": "MO-066",
+        "name": "RUARK BLUFF EAST",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233609",
+        "description": "<h2>Overview</h2>\nRuark Bluff East Campground is a shady campground located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.9416667,
+          37.7083333
+        ]
+      },
+      "properties": {
+        "id": "MO-067",
+        "name": "COUNCIL BLUFF RECREATION AREA",
+        "type": "established",
+        "cost": 50,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232325",
+        "description": "<h2>Overview</h2>\nThe Council Bluff Recreation Area is perfect for anyone looking to enjoy the outdoors. The Wild Boar Campground and sheltered picnic area, available for individual families or large "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3077778,
+          37.9047222
+        ]
+      },
+      "properties": {
+        "id": "MO-068",
+        "name": "DAMSITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233485",
+        "description": "<h2>Overview</h2>\n<p><strong>Attention Campers! We are looking for volunteers to help us maintain campgrounds. For more information and volunteer applications, call 417-745-6411 and ask for park range"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5316667,
+          36.7225
+        ]
+      },
+      "properties": {
+        "id": "MO-069",
+        "name": "CAPE FAIR",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232542",
+        "description": "<h2>Overview</h2>\nCape Fair is a spacious and shady campground that sits along the James River Arm of Table Rock Lake.<br/><br/>Perfect for water and nature lovers alike, Cape Fair campground provides"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.0458333,
+          36.6397222
+        ]
+      },
+      "properties": {
+        "id": "MO-070",
+        "name": "BEAVER CREEK (MO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232521",
+        "description": "<h2>Overview</h2>\nEscape from the hustle and bustle of city-life at Beaver Creek, a small, quiet campground tucked between a forested area and the lower shores of Bull Shoals Lake. The lake, in the be"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.1663889,
+          37.8163889
+        ]
+      },
+      "properties": {
+        "id": "MO-071",
+        "name": "RED BLUFF CAMPGROUND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232391",
+        "description": "<h2>Overview</h2>\n<p>Red Bluff Campground is named for towering red bluffs along Huzzah Creek, carved by the elements over the past 10,000 years. The area used to be home to timber mills, but now prov"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5947222,
+          36.5616667
+        ]
+      },
+      "properties": {
+        "id": "MO-072",
+        "name": "VIOLA",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232732",
+        "description": "<h2>Overview</h2>\nViola sits along the Kings River Arm of Table Rock Lake in the Missouri countryside. Boaters and water sports enthusiasts are particularly drawn to Viola for its easy access to the c"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4372222,
+          37.5527778
+        ]
+      },
+      "properties": {
+        "id": "MO-073",
+        "name": "SILVER MINES",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232392",
+        "description": "<h2>Overview</h2>\nSilver Mines Campground is located on the St. Francis River in the Mark Twain National Forest. It offers a variety of recreational opportunities and abundant historic and geological "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.3472222,
+          36.6311111
+        ]
+      },
+      "properties": {
+        "id": "MO-074",
+        "name": "INDIAN POINT",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232610",
+        "description": "<h2>Overview</h2>\nIndian Point is a green and spacious campground on the White River Arm of Table Rock Lake in the mountainous Missouri countryside. <br/><br/>\nA wooded campground with plenty of shade"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.602965,
+          38.262955
+        ]
+      },
+      "properties": {
+        "id": "MO-075",
+        "name": "Bucksaw Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248105",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=267&agencyCode=130\" rel=\"nofollow\">Harry S. Truman Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.7702778,
+          37.1425
+        ]
+      },
+      "properties": {
+        "id": "MO-076",
+        "name": "PIEDMONT PARK",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232670",
+        "description": "<h2>Overview</h2>\nPiedmont Park is a spacious, activity-dense recreation area on the shores of Missouri's Clearwater Lake. Water sport enthusiasts love the lakes diverse offerings, from boating to jet"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7263889,
+          38.2963889
+        ]
+      },
+      "properties": {
+        "id": "MO-077",
+        "name": "SPARROWFOOT",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233635",
+        "description": "<h2>Overview</h2>\n<p>Sparrowfoot Campground is situated on the Grand River Arm of the Harry S. Truman Lake in the hills of western Missouri. <br><br><br><br>Visitors enjoy fishing, hunting and boating"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.9830556,
+          36.9625
+        ]
+      },
+      "properties": {
+        "id": "MO-078",
+        "name": "BIG SPRING",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234044",
+        "description": "<h2>Overview</h2>\nIn the rolling, forested landscape of Big Spring, two of America's most beautiful spring-fed rivers combine to make up the Ozark National Scenic Riverways.<br/><br/>\nAs the first nat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.44485897,
+          38.27709764
+        ]
+      },
+      "properties": {
+        "id": "MO-079",
+        "name": "Missouri Deptartment of Natural Resources",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248108",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=267&agencyCode=130\" rel=\"nofollow\">Harry S. Truman Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.66217,
+          36.939414
+        ]
+      },
+      "properties": {
+        "id": "MO-080",
+        "name": "Ava/Cassville/Willow Springs Ranger District",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "264515",
+        "description": "<p>Visitors to Ava/Cassville/Willow Springs District will find different landscapes from oak-hickory forests , shortleaf pine forests, and glades. Glades are open areas of native tall prairie grasses "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.51,
+          38.1997222
+        ]
+      },
+      "properties": {
+        "id": "MO-081",
+        "name": "BERRY BEND",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "showers"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233425",
+        "description": "<h2>Overview</h2>\n<p>Berry Bend Campground sits on the shores of Harry S. Truman Lake in the hills of western Missouri. <br><br><br><br>Visitors enjoy fishing, hunting, and boating.<a href=\"http://www"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.2772778,
+          36.9346056
+        ]
+      },
+      "properties": {
+        "id": "MO-082",
+        "name": "EAGLE POINT RECREATION AREA",
+        "type": "established",
+        "cost": 50,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233686",
+        "description": "<h2>Overview</h2>\nEagle Point day-use area provides a beautiful and grassy setting near the dam on Wappapello Lake. The park offers an accessible picnic shelter accommodating up to 80 guests, making i"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7783262,
+          37.5407507
+        ]
+      },
+      "properties": {
+        "id": "MO-083",
+        "name": "Mutton Creek Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248125",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=276&agencyCode=130\" rel=\"nofollow\">Stockton Lake</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8081556,
+          37.1493861
+        ]
+      },
+      "properties": {
+        "id": "MO-084",
+        "name": "Webb Creek Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "254084",
+        "description": "<h2>Overview</h2>\nWebb Creek Campground on Clearwater Lake greets visitors with excellent camping, fishing, swimming, boating and picnicking opportunities.  Water sport enthusiasts love the lakes dive"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.2830556,
+          36.9260944
+        ]
+      },
+      "properties": {
+        "id": "MO-085",
+        "name": "SPILLWAY RECREATION AREA",
+        "type": "established",
+        "cost": 50,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "233691",
+        "description": "<h2>Overview</h2>\n<p>The Spillway Recreation Area's iconic outllet structure has delighted visitors to Wappapello Lake since 1937.  Feeding the St. Francis River, the spillway banks are a favorite loc"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5958333,
+          36.6130556
+        ]
+      },
+      "properties": {
+        "id": "MO-086",
+        "name": "SHELL KNOB REC SITE PAVILION",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "234602",
+        "description": "<h2>Overview</h2>\nShell Knob Recreation Site is situated along a bluff overlooking the White River arm of beautiful Table Rock Lake, in an unincorporated portion of Shell Knob. It is a great location "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.4411111,
+          36.5936111
+        ]
+      },
+      "properties": {
+        "id": "MO-087",
+        "name": "MILL CREEK (MISSOURI)",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232643",
+        "description": "<h2>Overview</h2>\nMill Creek is a spacious and sunny campground on the White River Arm of Table Rock Lake in the Missouri countryside.<br/><br/>\nMany campsites within this park are located adjacent to"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5502778,
+          36.5958333
+        ]
+      },
+      "properties": {
+        "id": "MO-088",
+        "name": "CAMPBELL POINT",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232540",
+        "description": "<h2>Overview</h2>\nCampbell Point is a spacious and shady campground that sits along the White River Arm of Table Rock Lake. <br/><br/>Plenty of soft, grassy areas are available for picnicking and runn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7888611,
+          37.6845306
+        ]
+      },
+      "properties": {
+        "id": "MO-089",
+        "name": "Stockton Park (MO)",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "256369",
+        "description": "<h2>Overview</h2>\nStockton Park is located on Stockton Lake in the scenic Ozark Mountains of southwestern Missouri. The lake and surrounding landscape offer countless recreational opportunities along "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.5013889,
+          36.5669444
+        ]
+      },
+      "properties": {
+        "id": "MO-090",
+        "name": "BAXTER",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "showers",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "232520",
+        "description": "<h2>Overview</h2>\nBaxter is a spacious and sunny campground that sits along the White River Arm of  Table Rock Lake.<br/><br/>\nThe highly productive fishing waters of the White River Arm will appeal t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.44884643,
+          38.89494619
+        ]
+      },
+      "properties": {
+        "id": "MO-091",
+        "name": "Longview Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MO",
+        "source": "recreation.gov",
+        "facility_id": "248100",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=280&agencyCode=130\" rel=\"nofollow\">Blue Springs Lake</a>"
+      }
+    }
+  ]
+}

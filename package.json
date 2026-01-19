@@ -7,8 +7,7 @@
     "fetch-state": "bash scripts/fetch_all_campsite_data.sh",
     "scrape:recreation": "node scripts/scrape_recreation_gov.js",
     "scrape:campendium": "node scripts/scrape_campendium.js",
-    "merge": "node scripts/merge_campsite_data.js",
-    "build:data": "node scripts/combine_states.js"
+    "merge": "node scripts/merge_campsite_data.js"
   },
   "keywords": [
     "camping",
@@ -21,7 +20,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@playwright/test": "^1.57.0",
     "playwright": "^1.56.1"
-  }
+  },
+  "devDependencies": {}
 }

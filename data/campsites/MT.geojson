@@ -6148,33 +6148,28 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -111.705266,
-          46.6547505
+          -115.5306667,
+          48.10094444
         ]
       },
       "properties": {
         "id": "MT-194",
-        "name": "Chinamen's Campground",
+        "name": "Howard Lake Campground",
         "type": "established",
-        "cost": 15,
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "water",
           "fire_rings",
-          "picnic_tables",
-          "trash"
+          "picnic_tables"
         ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
+        "rig_friendly": [],
         "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "10003362",
-        "description": "<h2>Overview</h2>\n<ul>\n<li>Review campsite details -- RV's larger than 20 feet long maybe be to large for many of the campsites.\u00a0\u00a0</li>\n</ul>\n<p>This Campground is located at the very northern end of "
+        "facility_id": "237176",
+        "description": "<p>Howard Lake campground is located south of Libby on road 4779. The campground has 10 sites (3 pull thru's) including one host site with tables and fire rings.\u00a0 Camground roads and parking spurs are"
       }
     },
     {
@@ -6182,33 +6177,31 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.7380611,
-          45.8525
+          -115.74806,
+          47.88194
         ]
       },
       "properties": {
         "id": "MT-195",
-        "name": "FLEECER STATION",
+        "name": "Marten Creek Campground",
         "type": "established",
-        "cost": 40,
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "water",
-          "showers",
-          "picnic_tables",
-          "trash"
+          "fire_rings",
+          "picnic_tables"
         ],
         "rig_friendly": [
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234398",
-        "description": "<h2>Overview</h2>\n<p>Fleecer Cabin is popular for hunters, hikers and winter activities during the fall, winter and spring months. It is not far from Butte, giving locals a respite from everyday life;"
+        "facility_id": "237178",
+        "description": "<p>The Marten Creek Campground is located approximately 9 miles north of Trout Creek. The campground has\u00a06 developed sites (4 with shelters) tables and fire rings, and able to accomodate up to a 32' r"
       }
     },
     {
@@ -6216,13 +6209,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -115.9074722,
-          47.913775
+          -115.4908333,
+          48.03908333
         ]
       },
       "properties": {
         "id": "MT-196",
-        "name": "GEM PEAK LOOKOUT RENTAL",
+        "name": "Lake Creek Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -6231,19 +6224,18 @@
           "toilets",
           "water",
           "fire_rings",
-          "picnic_tables",
-          "trash"
+          "picnic_tables"
         ],
         "rig_friendly": [
           "tent",
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234434",
-        "description": "<h2>Overview</h2>\nThe gem peak lookout is located in the Cabinet Ranger District, situated above the Clark Fork River Area at the southern end of the Cabinet Mountain Wilderness. The original Gem Peak"
+        "facility_id": "237180",
+        "description": "<p>The Lake Creek Campground is located approximately\u00a032 miles southwest of Libby off the West Fisher road. The campground has 4 sites all with tent pads, tables and fire rings and able to accomodate "
       }
     },
     {
@@ -6251,20 +6243,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -114.8123667,
-          48.7068611
+          -115.92463,
+          48.06611
         ]
       },
       "properties": {
         "id": "MT-197",
-        "name": "SOUTH DICKEY LAKE",
+        "name": "Big Eddy Campground",
         "type": "established",
-        "cost": 50,
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "water",
           "fire_rings",
           "picnic_tables"
         ],
@@ -6275,8 +6266,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234464",
-        "description": "<h2>Overview</h2>\n<p>South Dickey Lake is a popular day use group picnic area on the shores of beautiful Dickey Lake. It provides access to a grassy swimming beach. There are 5 day use sites, but only"
+        "facility_id": "237182",
+        "description": "<p>The Big Eddy Campground is located approximately 6 miles of east of the Idaho border in Montana on Hwy 200. The campground has\u00a05 sites with table and fire rings and will accomodate a 30' RV. Amenit"
       }
     },
     {
@@ -6284,947 +6275,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -111.8890306,
-          44.8038889
+          -115.31083,
+          47.87083
         ]
       },
       "properties": {
         "id": "MT-198",
-        "name": "WEST FORK CABIN (S OF ENNIS)",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234372",
-        "description": "<h2>Overview</h2>\n<p>West Fork Cabin is a small, secluded cabin in the mountains of southwestern Montana, located high in the Gravelly Range.  The cabin was built in 1928 as an intermediate station fo"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.7210566,
-          47.40715283
-        ]
-      },
-      "properties": {
-        "id": "MT-199",
-        "name": "Lindbergh Lake Campground",
+        "name": "Willow Creek Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239314",
-        "description": "<p>Lindbergh Lake Campground has 11 designated campsites. Restrooms, fire rings, and food storage boxes are available. Drinking water is not provided; please bring your own source of water. This campg"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.3,
-          48.4833333
-        ]
-      },
-      "properties": {
-        "id": "MT-200",
-        "name": "McGillivray Campground (MT)",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234465",
-        "description": "<h2>Overview</h2>\n<p>McGillivray Campground has 33 total campsites and provides reservation opportunities for two group sites within the campground loops and a large group shelter located within the f"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.7019444,
-          46.4105556
-        ]
-      },
-      "properties": {
-        "id": "MT-201",
-        "name": "HOGBACK HOMESTEAD",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "233337",
-        "description": "<h2>Overview</h2>\nThe Hogback Homestead is a fully furnished log cabin that sits on approximately five acres along Hogback Creek in western Montana. It provides access to a variety of recreational act"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.5663889,
-          47.45
-        ]
-      },
-      "properties": {
-        "id": "MT-202",
-        "name": "OWL CREEK CABIN",
-        "type": "established",
-        "cost": 50,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234379",
-        "description": "<h2>Overview</h2>\nOwl Creek Cabin is a rustic, single-room dwelling that can accommodate up to four guests. Horse campers enjoy the Owl Creek experience because a corral is available for use just 200 "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.308559,
-          45.171504
-        ]
-      },
-      "properties": {
-        "id": "MT-203",
-        "name": "Palisades Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239846",
-        "description": "<p>Palisades Campground is a free campground, located at the end of Palisades Road #2010 near Red Lodge, just below Red Lodge Mountain Ski Resort and the palisades geological formation. The <a href=\"h"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.645533,
-          45.275863
-        ]
-      },
-      "properties": {
-        "id": "MT-204",
-        "name": "Pine Grove Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239848",
-        "description": "<p>Pine Grove Campground is located in the West Rosebud drainage. It is in the trees, along the banks of West Rosebud Creek. <a href=\"https://www.fs.usda.gov/recarea/custergallatin/recreation/hiking/r"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.737718,
-          45.861263
-        ]
-      },
-      "properties": {
-        "id": "MT-205",
-        "name": "Paradise Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "241873",
-        "description": "<p>Paradise Campground is located near the Paradise Boating Site which is one of the most popular launching sites on the Selway River. The campground consists of 11 sites complete with picnic tables, "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.9761111,
-          45.6402778
-        ]
-      },
-      "properties": {
-        "id": "MT-206",
-        "name": "WHITETAIL CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234359",
-        "description": "<h2>Overview</h2>\nWhitetail Cabin sits at an altitude of 4,048 feet in the north end of the Custer National Forest approximately 20 miles from Ashland, Montana. The cabin was built in \nthe 1930s by th"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -103.4841667,
-          45.87361111
-        ]
-      },
-      "properties": {
-        "id": "MT-207",
-        "name": "Picnic Spring Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239840",
-        "description": "<p>A campground with 8 sites located in the North Cave Hills Unit, Sioux Ranger District near Ludlow, SD.</p><p>\u00a0</p><p><b>Camp sites:</b> 8</p><p><b>Accessible Facilities:</b><br/>Toilet</p><p>\u00a0</p><"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.683576,
-          46.644627
-        ]
-      },
-      "properties": {
-        "id": "MT-208",
-        "name": "Jo Bonner  Campground ",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "10003401",
-        "description": "<h2>Overview</h2>\n<p>Jo Bonner Campground is located at the Northeastern end of Canyon Ferry Reservoir; 30 miles east of Helena, Montana and  offers year-round access to a wide range of recreational o"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.16465,
-          48.9970333
-        ]
-      },
-      "properties": {
-        "id": "MT-209",
-        "name": "Gateway Boat Camp",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237148",
-        "description": "<p>The Gateway Boat Camp is located approximately 8.5 air miles from Eureka,\u00a0and 0.18 miles from the Canadian Border. The campground has 5 sites with tables and fire rings. Amenities include a\u00a0pit toi"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.3019444,
-          45.6238889
-        ]
-      },
-      "properties": {
-        "id": "MT-210",
-        "name": "ALTA CAMPGROUND",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234614",
-        "description": "<h2>Overview</h2>\nAlta Campground is located in a scenic forest in the heart of Montana's Bitterroot National Forest. The West Fork of the Bitterroot River flows nearby, giving visitors access to some"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -103.159559,
-          45.520614
-        ]
-      },
-      "properties": {
-        "id": "MT-211",
-        "name": "Slim Buttes Land Unit",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "270862",
-        "description": "<p>One of the larger eight land units on the Sioux Ranger District, near Buffalo, SD</p><p>Designated recreational sites include:\u00a0 Reva Gap Campground, The Castles, Rabbit Creek Dam Fishing Pond and S"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.7813889,
-          48.1097222
-        ]
-      },
-      "properties": {
-        "id": "MT-212",
-        "name": "BULL RIVER GUARD STATION",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234402",
-        "description": "<h2>Overview</h2>\nThe Bull River Guard Station was built in 1908 as the Ranger's house and office. This structure was a primary ranger station from 1908 to 1920, surviving the legendary 1910 fires tha"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.954952,
-          45.403817
-        ]
-      },
-      "properties": {
-        "id": "MT-213",
-        "name": "Initial Creek Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239852",
-        "description": "<p>This free campground is located on the West Fork Stillwater Road and is near the West Fork Stillwater Trail (#90). The campground is maintained from Memorial Day to Labor Day, but is opened the res"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -116.912149,
-          48.579308
-        ]
-      },
-      "properties": {
-        "id": "MT-214",
-        "name": "Priest Lake Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "265489",
-        "description": "<p><img align=\"left\" alt=\"Photo of scenic Priest Lake with Selkirk Mountains in the background\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5072928\" title=\"Photo of scenic Priest Lake\" widt"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.81778,
-          48.2725
-        ]
-      },
-      "properties": {
-        "id": "MT-215",
-        "name": "RIVERSIDE CAMPGROUND (MT)",
-        "type": "established",
-        "cost": 5,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "250044",
-        "description": "<h2>Overview</h2>\n<p>Riverside Campground is located on the Hungry Horse Reservoir, high in the Rocky Mountains, less than 30 miles from the Continental Divide, surrounded by towering mountain peaks. "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.0383611,
-          48.3544167
-        ]
-      },
-      "properties": {
-        "id": "MT-216",
-        "name": "FAIRVIEW RANGER STATION",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234793",
-        "description": "<h2>Overview</h2>\nThis remote cabin was built in 1908 and served as an administration building for the Wolf Creek District of the Blackfeet National Forest. The Blackfeet NF was dissolved in 1935 beco"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.885731,
-          48.644822
-        ]
-      },
-      "properties": {
-        "id": "MT-217",
-        "name": "Yaak Falls Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237171",
-        "description": "<p>Yaak Falls Campground is located 16 miles northwest of Troy on Yaak Hwy 508. The campground has 7 sites with tables and fire rings. Amentities include a vault toilet.</p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.50555556,
-          47.92305556
-        ]
-      },
-      "properties": {
-        "id": "MT-218",
-        "name": "Camp Creek Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "262760",
-        "description": "<p>Camp Creek Recreation Area, located in the scenic Little Rockies, consists of Camp Creek Campground, Horse Corral Campground, and Buffington Day Use Area.  A system of trails leads from the main ca"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.3077778,
-          45.5475
-        ]
-      },
-      "properties": {
-        "id": "MT-219",
-        "name": "WEST BOULDER CABIN",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234410",
-        "description": "<h2>Overview</h2>\n<p>West Boulder Cabin is open year-round, offering a variety of recreational opportunities as well as relaxation. Guests can drive to the cabin in warmer weather but should be prepar"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.084671,
-          45.612596
-        ]
-      },
-      "properties": {
-        "id": "MT-220",
-        "name": "Ashland RD",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239887",
-        "description": "<p>The Ashland Ranger District is located in south-central Montana. The present day Ashland Ranger District was originally known as the Otter Forest Reserve, and later became the original site of the "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.3916667,
-          45.1625
-        ]
-      },
-      "properties": {
-        "id": "MT-221",
-        "name": "BASIN MONTANA CAMPGROUND",
-        "type": "established",
-        "cost": 10,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "232770",
-        "description": "<h2>Overview</h2>\n<p>Basin Campground is located 7 miles west of Red Lodge, Montana, along Forest Road 2071, which is paved all the way to the campground. The area is a popular location for hiking, ba"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.0983333,
-          46.9977778
-        ]
-      },
-      "properties": {
-        "id": "MT-222",
-        "name": "MONUMENT PEAK LOOKOUT",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234428",
-        "description": "<h2>Overview</h2>\nMonument Peak Lookout offers guests an impressive yet rustic room with a view. The lookout, built in 1936 by the Civilian Conservation Corps, is perched atop Monument Peak, boasting "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.4980556,
-          47.0163889
-        ]
-      },
-      "properties": {
-        "id": "MT-223",
-        "name": "DRY WOLF CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234425",
-        "description": "<h2>Overview</h2>\nDry Wolf Cabin is located about 20 miles southwest of Stanford, Montana, in the Little Belt Mountains. The rustic cabin is conveniently located along Dry Wolf Creek, providing a plea"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.77031,
-          45.54429
-        ]
-      },
-      "properties": {
-        "id": "MT-224",
-        "name": "Revenue Flats",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "261800",
-        "description": "Located between the communities of Norris and McAllister, Revenue Flats is in Madison County, approximately 36 miles southwest of Bozeman and 18 miles north of Ennis. This recreation area provides opp"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.9004276,
-          45.212808
-        ]
-      },
-      "properties": {
-        "id": "MT-225",
-        "name": "Carbella Rec Site",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "261814",
-        "description": "<h2>Closure Notice:</h2>\n\n<p>Due to flooding along the Yellowstone River, the BLM's Carbella Recreation Site has been temporarily closed. The Campground will remain closed until the river drops to saf"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.990513,
-          46.995022
-        ]
-      },
-      "properties": {
-        "id": "MT-226",
-        "name": "Holter Lake Campground",
-        "type": "established",
-        "cost": 25,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "261696",
-        "description": "<h2>Overview</h2>\n<p>Holter Lake Campground is situated on the picturesque Holter Lake in west central Montana. The site is located approximately 45 miles north of Helena, Montana, along the Missouri "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.2805556,
-          45.765
-        ]
-      },
-      "properties": {
-        "id": "MT-227",
-        "name": "ROMBO",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
           "fire_rings",
           "picnic_tables"
         ],
@@ -7236,159 +6299,8 @@
         "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234618",
-        "description": "<h2>Overview</h2>\nRombo Campground is located in a scenic area along the West Fork Bitterroot River in the mountains of southwestern Montana. The area is home to a variety of big game and wildlife, an"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.9194444,
-          45.5411111
-        ]
-      },
-      "properties": {
-        "id": "MT-228",
-        "name": "MYSTIC LAKE CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234332",
-        "description": "<h2>Overview</h2>\nMystic Lake Cabin was built in 1930 and is currently open year-round. It provides access to a variety of recreational activities, including fishing, hunting and exploration of numero"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.81865,
-          46.6917
-        ]
-      },
-      "properties": {
-        "id": "MT-229",
-        "name": "Clark's Bay Day Use Area Shelter (MT)",
-        "type": "established",
-        "cost": 5,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "273359",
-        "description": "<h2>Overview</h2>\n<p>Clark's Bay Day Use Area is situated on the picturesque \"Devil's Elbow\" and Clark's Bay of Hauser Lake. Just a short drive from Helena, this area offers stunning views of the Big "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.542,
-          47.323671
-        ]
-      },
-      "properties": {
-        "id": "MT-230",
-        "name": "Snowy Mountain Range",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "242526",
-        "description": "<p><img src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/fseprd499859.jpg\"/></p><p>The Snowies is the farthest east geographic area and is primarily in Fergus County with smaller portions in Golden Vall"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.958536,
-          45.819404
-        ]
-      },
-      "properties": {
-        "id": "MT-231",
-        "name": "Sula RD",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "241786",
-        "description": "<p>The many miles of trails on the Sula Ranger District provide opportunities ranging from short day-trips to extended back-country trips.</p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.8333333,
-          48.7192778
-        ]
-      },
-      "properties": {
-        "id": "MT-232",
-        "name": "NORTH DICKEY LAKE",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "233778",
-        "description": "<h2>Overview</h2>\n<p>North Dickey Lake Campground is a beautiful campground next to scenic Dickey Lake and several hiking and mountain biking trails. It's conveniently located off the main highway and"
+        "facility_id": "237184",
+        "description": "<p>The Willow Creek Campground is appoximately 19 miles northeast of Trout Creek on\u00a0road 154. The campground has 6 sites all with tent pads, tables and fire rings and able to accomodate up to a 40' rv"
       }
     },
     {
@@ -7401,7 +6313,7 @@
         ]
       },
       "properties": {
-        "id": "MT-233",
+        "id": "MT-199",
         "name": "Grave Creek Campground",
         "type": "established",
         "cost": 0,
@@ -7428,15 +6340,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -109.4127778,
-          45.0561111
+          -115.889317,
+          48.943439
         ]
       },
       "properties": {
-        "id": "MT-234",
-        "name": "GREENOUGH LAKE",
+        "id": "MT-200",
+        "name": "Little Therriault Lake",
         "type": "established",
-        "cost": 10,
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -7452,290 +6364,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "232771",
-        "description": "<h2>Overview</h2>\n<p>Greenough Lake Campground is within walking distance of its namesake, 12 miles south of Red Lodge, in southern Montana. It is located just off the scenic Beartooth Highway. The ar"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.0441667,
-          45.48
-        ]
-      },
-      "properties": {
-        "id": "MT-235",
-        "name": "FOX CREEK CABIN (MT)",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234335",
-        "description": "<h2>Overview</h2>\nFox Creek Cabin is a former ranger station located in a remote area. It is very small and offers only basic amenities. Guests will need to bring most of the gear and supplies they ne"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.5116667,
-          48.8777778
-        ]
-      },
-      "properties": {
-        "id": "MT-236",
-        "name": "HORNET LOOKOUT",
-        "type": "established",
-        "cost": 40,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234341",
-        "description": "<h2>Overview</h2>\nHornet Lookout provides guests with astounding 360-degree views of the surrounding terrain, including Glacier National Park and Kintla Lake on clear days. On some nights, the Norther"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.3830556,
-          47.7444444
-        ]
-      },
-      "properties": {
-        "id": "MT-237",
-        "name": "COUGAR PEAK LOOKOUT",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234423",
-        "description": "<h2>Overview</h2>\nThe Cougar Peak Lookout offers guests an opportunity to experience an old-time Forest Service lookout. The tower commands an impressive view of the river valley, the surrounding Cabi"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.8713889,
-          45.2405556
-        ]
-      },
-      "properties": {
-        "id": "MT-238",
-        "name": "Axolotl Cabin",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "251354",
-        "description": "<h2>Overview</h2>\n<p><strong>The Dillon Field Office is unable to make reservations for you. Please call Recreation.gov (877-444-6777) to book a reservation or book online. </strong></p>\n\n<p>Axolotl C"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.918169,
-          48.760969
-        ]
-      },
-      "properties": {
-        "id": "MT-239",
-        "name": "Red Top Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237150",
-        "description": "<p>Red Top Campground is located northwest of Troy on Highway 508. The campground has 3 sites with tables and fire rings. Amenties include a vault toilet.</p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -116.396312,
-          47.675444
-        ]
-      },
-      "properties": {
-        "id": "MT-240",
-        "name": "Coeur d'Alene River Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "265508",
-        "description": "<p><img alt=\"Photo of Fern Falls along the Shadow Falls Trail\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5072929\" title=\"Photo of Fern Falls along the Shadow Falls Trail\" width=\"188\"/>Rec"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.91425,
-          45.78462
-        ]
-      },
-      "properties": {
-        "id": "MT-241",
-        "name": "Jerry Creek Br Fish Access",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "261817",
-        "description": "<p>A series of small recreation sites are located along a 73-mile stretch of the Big Hole River between Wisdom and Melrose. The river offers blue ribbon trout fishing and excellent float boating. Nine"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.6091667,
-          47.4395944
-        ]
-      },
-      "properties": {
-        "id": "MT-242",
-        "name": "OWL CREEK CORRAL",
-        "type": "established",
-        "cost": 20,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "251710",
-        "description": "<h2>Overview</h2>\nThe Owl Creek Corral is located at the Owl Creek Packer Camp Trailhead.  It is available to reserve for up to seven days.  The maximum capacity is 12 head of stock.  Metal hay bunks "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.9494444,
-          48.3325
-        ]
-      },
-      "properties": {
-        "id": "MT-243",
-        "name": "EMERY BAY CAMPGROUND",
-        "type": "established",
-        "cost": 22,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234484",
-        "description": "<h2>Overview</h2>\n<p>Emery Bay Campground is located on the Hungry Horse Reservoir, high in the Rocky Mountains, less than 30 miles from the Continental Divide, surrounded by towering mountain peaks. "
+        "facility_id": "237187",
+        "description": "<p>The Little Therriault Lake campground is located 12.5 air miles from Fortine. The campground has 6 sites with tables and fire rings and able to accomodate up to a 32' rv. Amenities include potable "
       }
     },
     {
@@ -7748,7 +6378,7 @@
         ]
       },
       "properties": {
-        "id": "MT-244",
+        "id": "MT-201",
         "name": "North Shore Campground",
         "type": "established",
         "cost": 0,
@@ -7776,26 +6406,28 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -113.570316,
-          47.143222
+          -115.27904,
+          47.915953
         ]
       },
       "properties": {
-        "id": "MT-245",
-        "name": "Hidden Lake Campground",
+        "id": "MT-202",
+        "name": "Sylvan Lake Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "water"
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
         ],
         "rig_friendly": [],
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "10134446",
-        "description": "<p>Hidden Lake Campground is a 5-site campground southwest of Seeley Lake, Montana. The lake is a 33-acre kettle lake on the west edge of the Clearwater Valley, and is stocked with westslope cuthroat "
+        "facility_id": "237189",
+        "description": "<p>The Sylvan Lake Campground is located southeast of Libby on road 154. The campground has 5 sites with tables and fire rings.\u00a0 Campground roads and parking spurs are of native soil. Amenities includ"
       }
     },
     {
@@ -7803,40 +6435,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.49737548,
-          47.99489876
+          -115.307697,
+          48.7245111
         ]
       },
       "properties": {
-        "id": "MT-246",
-        "name": "West End Campground",
+        "id": "MT-203",
+        "name": "Peck Gulch Campground",
         "type": "established",
         "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "248148",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=288&agencyCode=130\" rel=\"nofollow\">Fort Peck Project</a>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.58556,
-          48.41361
-        ]
-      },
-      "properties": {
-        "id": "MT-247",
-        "name": "TALLY LAKE CAMPGROUND",
-        "type": "established",
-        "cost": 22,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -7853,8 +6460,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234472",
-        "description": "<h2>Overview</h2>\n<p>Tally Lake Campground is located on the northern shores of its namesake lake, west of Whitefish, Montana. The campground is popular with locals and tourists visiting the Flathead "
+        "facility_id": "237190",
+        "description": "<p>The Peck Gulch Campground is located 21 miles southwest of Eureka off Hwy 37. The campground has 22 campsites including one host site, with tables, fire rings and some with tent pads and able to ac"
       }
     },
     {
@@ -7862,20 +6469,290 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.9233333,
-          45.3077778
+          -115.194631,
+          48.835156
         ]
       },
       "properties": {
-        "id": "MT-248",
-        "name": "BIG CREEK CABIN",
+        "id": "MT-204",
+        "name": "Camp 32",
         "type": "established",
-        "cost": 15,
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
           "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "237191",
+        "description": "<p>The Camp 32 campground is located\u00a015 miles southwest of Eureka off\u00a0Pinkham Creek road 7182. The campground 8 sites with tables, fire rings. Accomodating up to a 20' rv. Amenities include potable wa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.823753,
+          48.140538
+        ]
+      },
+      "properties": {
+        "id": "MT-205",
+        "name": "Handkerchief Lake",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239256",
+        "description": "<p>Handkerchief\u00a0 Lake\u00a0is\u00a0a\u00a0primitive campground that features 3\u00a0walk-in campsites with picnic tables and one vault toilet.\u00a0\u00a0The lake offers a good fishing opportunity- float tubes are the only recomme"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.69612,
+          48.11054
+        ]
+      },
+      "properties": {
+        "id": "MT-206",
+        "name": "Devil's Corkscrew Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239284",
+        "description": "<p>Located on the east side of the Hungry Horse Reservoir, 37 miles from Martin City, Mt. There are 4 campsites.</p><p><a href=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5428478.jpg\" rel=\"nofo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.81786,
+          48.27253
+        ]
+      },
+      "properties": {
+        "id": "MT-207",
+        "name": "Riverside Boating Site",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239293",
+        "description": "<p>The Riverside camping sites and boat launch were renovated in 2014. \u00a0There are 2 double campsites and 1 single site. \u00a0The boat launch provides early and late season access to water.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.7210566,
+          47.40715283
+        ]
+      },
+      "properties": {
+        "id": "MT-208",
+        "name": "Lindbergh Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239314",
+        "description": "<p>Lindbergh Lake Campground has 11 designated campsites. Restrooms, fire rings, and food storage boxes are available. Drinking water is not provided; please bring your own source of water. This campg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.56897,
+          48.21221
+        ]
+      },
+      "properties": {
+        "id": "MT-209",
+        "name": "Ashley Lake South Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239321",
+        "description": "<p>This is a very small campground with 2 sites, a vault toilet, picnic tables and fire rings. There is a walk down boat launching site for kayaks and canoes. Access road has sharp hairpin corner so R"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.8181569,
+          48.34479776
+        ]
+      },
+      "properties": {
+        "id": "MT-210",
+        "name": "Sylvia Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239326",
+        "description": "Sylvia Lake Campground has 3 designated campsites.  Each site has a picnic table, firering and a vault toilet in the campground.  There is a small boat ramp for fishing boats, canoes and kakaks.  The "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.539871,
+          45.12732
+        ]
+      },
+      "properties": {
+        "id": "MT-211",
+        "name": "Beartooth RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239833",
+        "description": "<p>The Beartooth Ranger District is located in south central Montana and encompasses the Beartooth and Pryor Mountain Ranges. The district office is located in Red Lodge, MT, 65 miles southwest of Mon"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.055634,
+          45.581367
+        ]
+      },
+      "properties": {
+        "id": "MT-212",
+        "name": "Sioux RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239834",
+        "description": "<p>The 163,000 acre Sioux Ranger District is located in the southeast corner of Montana and the northwest corner of South Dakota. The District is composed of eight separate Land Units and has often be"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.071388,
+          45.580277
+        ]
+      },
+      "properties": {
+        "id": "MT-213",
+        "name": "Wickham Gulch Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
           "fire_rings",
           "picnic_tables",
           "trash"
@@ -7887,8 +6764,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234299",
-        "description": "<h2>Overview</h2>\nThe original Big Creek Cabin was built in 1907 and it still stands on this site. The current cabin, a former guard station, was completed in 1925 and sits right next to the\noriginal."
+        "facility_id": "239836",
+        "description": "<p>A small campground with only\u00a0two\u00a0sites, and day use picnic area, located on the Long Pines Unit, Sioux Ranger District.</p><p>\u00a0</p><p><b>Camp sites:</b> 2</p><p><b>Accessible Facilities:</b><br/>To"
       }
     },
     {
@@ -7896,27 +6773,64 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.6467776,
-          45.97216925
+          -104.176666,
+          45.632222
         ]
       },
       "properties": {
-        "id": "MT-249",
-        "name": "Butte-Jefferson Ranger Districts",
+        "id": "MT-214",
+        "name": "Lantis Spring Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "water",
-          "picnic_tables"
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
         ],
-        "rig_friendly": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234863",
-        "description": "<p>Located at the Headwaters of the Columbia\u00a0River Basin, the continental divide surrounds Butte offering a variety of outdoor recreation opportunities for motorized and non-motorized enthusiasts.</p>"
+        "facility_id": "239837",
+        "description": "<p>A campground with five camp sites, and three day use picnic sites, located in the Long Pines Unit, Sioux Ranger District</p><p>\u00a0</p><p><b>Camp sites:</b> 5</p><p><b>Accessible Facilities:</b><br/>T"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.1719444,
+          45.52638889
+        ]
+      },
+      "properties": {
+        "id": "MT-215",
+        "name": "Reva Gap Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239838",
+        "description": "<p>A campground with 8 sites located in the Slim Buttes Unit near the Castles National Natural Landmark, one of two on the Sioux Ranger District.\u00a0 The campground is within commuting distance to Buffal"
       }
     },
     {
@@ -7929,7 +6843,7 @@
         ]
       },
       "properties": {
-        "id": "MT-250",
+        "id": "MT-216",
         "name": "Ekalaka Park Campground",
         "type": "established",
         "cost": 0,
@@ -7957,13 +6871,270 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -114.068814,
-          45.811603
+          -103.4841667,
+          45.87361111
         ]
       },
       "properties": {
-        "id": "MT-251",
-        "name": "Crazy Creek Campground",
+        "id": "MT-217",
+        "name": "Picnic Spring Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239840",
+        "description": "<p>A campground with 8 sites located in the North Cave Hills Unit, Sioux Ranger District near Ludlow, SD.</p><p>\u00a0</p><p><b>Camp sites:</b> 8</p><p><b>Accessible Facilities:</b><br/>Toilet</p><p>\u00a0</p><"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.9741667,
+          45.63861111
+        ]
+      },
+      "properties": {
+        "id": "MT-218",
+        "name": "Holiday Spring Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239842",
+        "description": "<p>A campground on the Ashland Ranger District.</p><p>\u00a0</p><p><b>Camp sites:</b> 3</p><p>\u00a0</p><p><b>Trash Pickup:</b> No</p><p><b>Firewood:</b> No</p><p>No Reservations: This campground does not use a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.1477778,
+          45.5725
+        ]
+      },
+      "properties": {
+        "id": "MT-219",
+        "name": "Red Shale Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239843",
+        "description": "<p>A campground on the Ashland Ranger District.</p><p>\u00a0</p><p><b>Camp sites:</b> 14</p><p>\u00a0</p><p><b>Trash Pickup:</b> No</p><p><b>Firewood:</b> No</p><p>No Reservations: This campground does not use "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.2469444,
+          45.30916667
+        ]
+      },
+      "properties": {
+        "id": "MT-220",
+        "name": "Cow Creek Campground And Picnic Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239844",
+        "description": "<p>A campground on the Ashland Ranger District.</p><p>\u00a0</p><p><b>Camp sites:</b> 4</p><p><strong>Picnic Site:</strong>\u00a0 1</p><p><b>Accessible Facilities:</b><br/>Toilet</p><p>\u00a0</p><p><b>Trash Pickup:<"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.429744,
+          45.038032
+        ]
+      },
+      "properties": {
+        "id": "MT-221",
+        "name": "M-K Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239845",
+        "description": "<p>M-K is a free campground located 2.6 miles up the Main Fork Rock Creek Road #2421, not far from the Beartooth Highway. \u00a0<a href=\"http://prdp2fs.ess.usda.gov/recarea/gallatin/recarea/?recid=60977\" r"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.308559,
+          45.171504
+        ]
+      },
+      "properties": {
+        "id": "MT-222",
+        "name": "Palisades Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239846",
+        "description": "<p>Palisades Campground is a free campground, located at the end of Palisades Road #2010 near Red Lodge, just below Red Lodge Mountain Ski Resort and the palisades geological formation. The <a href=\"h"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.700292,
+          45.253398
+        ]
+      },
+      "properties": {
+        "id": "MT-223",
+        "name": "Emerald Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239847",
+        "description": "<p>Emerald Lake is in the West Rosebud drainage and is nestled in the trees between Emerald Lake and West Rosebud Lake.\u00a0 <a href=\"https://www.fs.usda.gov/recarea/custergallatin/recreation/hiking/recar"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.645533,
+          45.275863
+        ]
+      },
+      "properties": {
+        "id": "MT-224",
+        "name": "Pine Grove Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239848",
+        "description": "<p>Pine Grove Campground is located in the West Rosebud drainage. It is in the trees, along the banks of West Rosebud Creek. <a href=\"https://www.fs.usda.gov/recarea/custergallatin/recreation/hiking/r"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.634267,
+          45.199442
+        ]
+      },
+      "properties": {
+        "id": "MT-225",
+        "name": "East Rosebud Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -7982,8 +7153,302 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "241839",
-        "description": "<p>Crazy Creek Campground hosts 7 sites with picnic tables, fire rings, vault toilet and a well with hand pump for water. There is no garbage service so Pack it in/Pack it out. Campground can accommod"
+        "facility_id": "239849",
+        "description": "<p>East Rosebud Campground is nestled in the trees, not far from East Rosebud Lake. East Rosebud is considered one of the more scenic drainages in the Beartooths and the campground is a short distance"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.602893,
+          45.231418
+        ]
+      },
+      "properties": {
+        "id": "MT-226",
+        "name": "Jimmy Joe Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239850",
+        "description": "<p>Jimmy Joe Campground is a free campground on the banks of East Rosebud Creek in the East Rosebud drainage. \u00a0East Rosebud is considered one of the more scenic drainages in the Beartooths . <a href=\""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.554629,
+          45.213877
+        ]
+      },
+      "properties": {
+        "id": "MT-227",
+        "name": "Sage Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239851",
+        "description": "<p>Sage Creek Campground is the only campground in the Pryor Mountains. It is located along the banks of Sage Creek.\u00a0<a href=\"https://www.fs.usda.gov/recarea/custergallatin/recarea/?recid=60887\" rel=\""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.954952,
+          45.403817
+        ]
+      },
+      "properties": {
+        "id": "MT-228",
+        "name": "Initial Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239852",
+        "description": "<p>This free campground is located on the West Fork Stillwater Road and is near the West Fork Stillwater Trail (#90). The campground is maintained from Memorial Day to Labor Day, but is opened the res"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.28625,
+          45.34916667
+        ]
+      },
+      "properties": {
+        "id": "MT-229",
+        "name": "Blacks Pond Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239886",
+        "description": "<p>A campground on the Ashland Ranger District.</p><p>\u00a0</p><p><b>Camp sites:</b> 2</p><p><b>Accessible Facilities:</b><br/>Toilet</p><p>\u00a0</p><p><b>Trash Pickup:</b> No</p><p><b>Firewood:</b> No</p><p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.084671,
+          45.612596
+        ]
+      },
+      "properties": {
+        "id": "MT-230",
+        "name": "Ashland RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "239887",
+        "description": "<p>The Ashland Ranger District is located in south-central Montana. The present day Ashland Ranger District was originally known as the Otter Forest Reserve, and later became the original site of the "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.177692,
+          46.023522
+        ]
+      },
+      "properties": {
+        "id": "MT-231",
+        "name": "Darby RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241784",
+        "description": "<p>The many miles of trails on the Darby Ranger District provide opportunities ranging from short day-trips to extended back-country trips.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.091779,
+          46.513193
+        ]
+      },
+      "properties": {
+        "id": "MT-232",
+        "name": "Stevensville RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241785",
+        "description": "<p>\u00a0</p><p>The many miles of trails on the Stevensville Ranger District provide opportunities ranging from short day-trips to extended back-country trips.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.958536,
+          45.819404
+        ]
+      },
+      "properties": {
+        "id": "MT-233",
+        "name": "Sula RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241786",
+        "description": "<p>The many miles of trails on the Sula Ranger District provide opportunities ranging from short day-trips to extended back-country trips.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.259347,
+          45.815253
+        ]
+      },
+      "properties": {
+        "id": "MT-234",
+        "name": "West Fork RD",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241787",
+        "description": "<p>\u00a0</p><p>The many miles of trails on the West Fork Ranger District provide opportunities ranging from short day-trips to extended back-country trips.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.235762,
+          46.068186
+        ]
+      },
+      "properties": {
+        "id": "MT-235",
+        "name": "Lake Como Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241802",
+        "description": "<p>The campground, a.k.a. Lower Como, is a single loop through a stand of mixed pine and fir trees and one of three campgrounds in the Lake Como Recreation Area. \u00a0It is located below Lake Como. The un"
       }
     },
     {
@@ -7996,7 +7461,7 @@
         ]
       },
       "properties": {
-        "id": "MT-252",
+        "id": "MT-236",
         "name": "Three Frogs Campground",
         "type": "established",
         "cost": 0,
@@ -8026,13 +7491,106 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.4802778,
-          46.4297222
+          -114.244263,
+          46.269922
         ]
       },
       "properties": {
-        "id": "MT-253",
-        "name": "KADING CABIN",
+        "id": "MT-237",
+        "name": "Blodgett Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241823",
+        "description": "<p>Blodgett Campground consists of 5 campsites, 1 walk-in site, plus 1 host site, complete with picnic tables, fire rings, and a vault toilet. There are two accessible campsites. \u00a0The campground rests"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.140839,
+          46.575266
+        ]
+      },
+      "properties": {
+        "id": "MT-238",
+        "name": "Charles Waters Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241826",
+        "description": "<p>The Charles Waters campground is paved asphalt with 26 campsites plus one double site, including 4 pull-through, one bicycle site, and one horse site; there is also one accessible site with electri"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.902316,
+          46.397422
+        ]
+      },
+      "properties": {
+        "id": "MT-239",
+        "name": "Gold Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241830",
+        "description": "<p>4 campsites with extensive hiking, biking, motorcycle and horseback riding opportunities.</p><p>Trails from the campground and from near the campground access the Skalkaho Wildlife Preserve, Gold C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.068814,
+          45.811603
+        ]
+      },
+      "properties": {
+        "id": "MT-240",
+        "name": "Crazy Creek Campground",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -8051,8 +7609,436 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234449",
-        "description": "<h2>Overview</h2>\nKading Cabin is located 16 miles south of Elliston, Montana in Helena National Forest. This site has served the Forest Service since the early 1900s when the agency \nwas forming. It "
+        "facility_id": "241839",
+        "description": "<p>Crazy Creek Campground hosts 7 sites with picnic tables, fire rings, vault toilet and a well with hand pump for water. There is no garbage service so Pack it in/Pack it out. Campground can accommod"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.040115,
+          45.842015
+        ]
+      },
+      "properties": {
+        "id": "MT-241",
+        "name": "Warm Springs Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241851",
+        "description": "<p>Warm Springs Campground is nestled in a wooded area along Crazy Creek. It hosts 14 sites with picnic tables, fire rings, and vault toilets. There is no garbage service so Pack it in/Pack it out. Ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.737718,
+          45.861263
+        ]
+      },
+      "properties": {
+        "id": "MT-242",
+        "name": "Paradise Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241873",
+        "description": "<p>Paradise Campground is located near the Paradise Boating Site which is one of the most popular launching sites on the Selway River. The campground consists of 11 sites complete with picnic tables, "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.2561111,
+          46.52611111
+        ]
+      },
+      "properties": {
+        "id": "MT-243",
+        "name": "Moose Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "241893",
+        "description": "<p>Moose Creek Campground is located southwest of Helena, Montana.\u00a0 Travel west of Helena on Highway 12 (about 8 miles) and turn south on Rimini Road #695.\u00a0 This\u00a09 unit campground is located near othe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1128723,
+          47.4917873
+        ]
+      },
+      "properties": {
+        "id": "MT-244",
+        "name": "Rocky Mountain Range",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242525",
+        "description": "<p><img alt=\"Rocky Mountain Range\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/fseprd499846.jpg\"/></p><p>The Rocky Mountain Range \u00a0is located in portions of Teton, Pondera, Glacier, and Lewis and C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.542,
+          47.323671
+        ]
+      },
+      "properties": {
+        "id": "MT-245",
+        "name": "Snowy Mountain Range",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242526",
+        "description": "<p><img src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/fseprd499859.jpg\"/></p><p>The Snowies is the farthest east geographic area and is primarily in Fergus County with smaller portions in Golden Vall"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5420633,
+          46.323671
+        ]
+      },
+      "properties": {
+        "id": "MT-246",
+        "name": "Castle Mountain Range",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242528",
+        "description": "<p>The Castle Mountains are located east of White Sulphur Springs, Montana. The highest peak is Elk Peak reaching a height of 8,589 feet. The Castles are a prime hunting location in the fall, and they"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4852212,
+          46.72546576
+        ]
+      },
+      "properties": {
+        "id": "MT-247",
+        "name": "Timber Creek Dispersed Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242536",
+        "description": "<p>Dispersed Campground</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</st"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.7571903,
+          47.85993557
+        ]
+      },
+      "properties": {
+        "id": "MT-248",
+        "name": "Green Gulch Dispersed Camp Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242538",
+        "description": "<p>Dispersed Campground.</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</s"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.7218713,
+          47.40712692
+        ]
+      },
+      "properties": {
+        "id": "MT-249",
+        "name": "Double Falls Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242539",
+        "description": "<p>Campground</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</strong></p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7847222,
+          46.76388889
+        ]
+      },
+      "properties": {
+        "id": "MT-250",
+        "name": "Jumping Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242553",
+        "description": "<p>Jumping Creek Campground sits at an elevation of 5800 feet along US Highway 89 in the Little Belt Mountains 22 miles north of White Sulphur Springs. The 10 campsites are along Sheep Creek, which of"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.7269444,
+          47.89138889
+        ]
+      },
+      "properties": {
+        "id": "MT-251",
+        "name": "Cave Mountain Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242563",
+        "description": "<p>18 sites located 18 miles west of Choteau, Montana. Fishing and hiking access.\u00a0</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.05524,
+          46.66568
+        ]
+      },
+      "properties": {
+        "id": "MT-252",
+        "name": "Jellison Place Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242569",
+        "description": "<p>Campground</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</strong></p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3547222,
+          46.62277778
+        ]
+      },
+      "properties": {
+        "id": "MT-253",
+        "name": "Daisy Dean Camp Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "242570",
+        "description": "<p>Campground</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</strong></p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.886162,
+          47.615625
+        ]
+      },
+      "properties": {
+        "id": "MT-254",
+        "name": "Hell Creek State Park",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "248141",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=288&agencyCode=130\" rel=\"nofollow\">Fort Peck Project</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.247538,
+          47.726047
+        ]
+      },
+      "properties": {
+        "id": "MT-255",
+        "name": "Rock Creek Marina",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "248142",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=288&agencyCode=130\" rel=\"nofollow\">Fort Peck Project</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.49737548,
+          47.99489876
+        ]
+      },
+      "properties": {
+        "id": "MT-256",
+        "name": "West End Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "248148",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=288&agencyCode=130\" rel=\"nofollow\">Fort Peck Project</a>"
       }
     },
     {
@@ -8065,7 +8051,7 @@
         ]
       },
       "properties": {
-        "id": "MT-254",
+        "id": "MT-257",
         "name": "White Earth Campground",
         "type": "established",
         "cost": 15,
@@ -8093,13 +8079,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -115.6444167,
-          47.7230361
+          -111.702225,
+          46.6474333
         ]
       },
       "properties": {
-        "id": "MT-255",
-        "name": "SEX PEAK. LOOKOUT RENTAL",
+        "id": "MT-258",
+        "name": "CAVE POINT GROUP USE AREA",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -8107,7 +8093,103 @@
         "amenities": [
           "toilets",
           "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "249996",
+        "description": "<h2>Overview</h2>\n<p>Cave Point Group Use Shelter is located at the very north end of Canyon Ferry Reservoir, 30 miles east of Helena, Montana, along Highway 284. Cave Point offers year-round access t"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.5286111,
+          46.332825
+        ]
+      },
+      "properties": {
+        "id": "MT-259",
+        "name": "INDIAN ROAD GROUP USE SHELTER",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "249998",
+        "description": "<h2>Overview</h2>\n<p>Indian Road Group Use Shelter is located at the southern end of Canyon Ferry Reservoir, just north of Townsend. It can accommodate up to 75 people and is attached to Indian Road c"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.6401278,
+          46.6176556
+        ]
+      },
+      "properties": {
+        "id": "MT-260",
+        "name": "Hellgate Campground",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
           "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "249999",
+        "description": "<h2>Overview</h2>\n<p>Hellgate Campground is located 30 miles east of Helena, Montana, along Montana Highway 284.\u00a0 In July of 1805 the Lewis and Clark Expedition traveled through the Canyon Ferry area "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.7077167,
+          46.6579361
+        ]
+      },
+      "properties": {
+        "id": "MT-261",
+        "name": "COURT SHERIFF CAMPGROUND",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
           "picnic_tables",
           "trash"
         ],
@@ -8118,8 +8200,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234433",
-        "description": "<h2>Overview</h2>\nSex Peak Lookout is situated in the Rocky Mountains at an elevation of 5,772 feet in the Kootenai National Forest. The original lookout was \nconstructed in the early 1920s and replac"
+        "facility_id": "250001",
+        "description": "<h2>Overview</h2>\nCourt Sheriff Campground is located at the very north end of Canyon Ferry Reservoir, 30 miles east of Helena, Montana, along Montana Highway 284. Court Sheriff Campground offers year"
       }
     },
     {
@@ -8127,18 +8209,23 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -113.902316,
-          46.397422
+          -111.7348194,
+          46.6563583
         ]
       },
       "properties": {
-        "id": "MT-256",
-        "name": "Gold Creek Campground",
+        "id": "MT-262",
+        "name": "Riverside Campground",
         "type": "established",
-        "cost": 0,
+        "cost": 15,
         "rating": null,
         "reviews_count": 0,
-        "amenities": [],
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
         "rig_friendly": [
           "RV",
           "trailer"
@@ -8146,8 +8233,41 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "241830",
-        "description": "<p>4 campsites with extensive hiking, biking, motorcycle and horseback riding opportunities.</p><p>Trails from the campground and from near the campground access the Skalkaho Wildlife Preserve, Gold C"
+        "facility_id": "250002",
+        "description": "<h2>Overview</h2>\n<p>Riverside Campground is located 30 miles east of Helena, Montana, below the dam at the northern end of Canyon Ferry Reservoir. Riverside Campground provides space for campers, day"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.5108583,
+          46.7965333
+        ]
+      },
+      "properties": {
+        "id": "MT-263",
+        "name": "CRYSTAL LAKE GROUP CAMPSITE",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "250004",
+        "description": "<h2>Overview</h2>\nThe Crystal Lake Group Campground is located in the beautiful Big Snowies south of Lewistown, Montana, at 5,700 feet. Home to the Crystal Lake recreation area, visitors enjoy hiking "
       }
     },
     {
@@ -8160,7 +8280,7 @@
         ]
       },
       "properties": {
-        "id": "MT-257",
+        "id": "MT-264",
         "name": "MINTON PEAK LOOKOUT",
         "type": "established",
         "cost": 0,
@@ -8189,256 +8309,33 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.4647667,
-          46.8630167
-        ]
-      },
-      "properties": {
-        "id": "MT-258",
-        "name": "GRANITE BUTTE LOOKOUT",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "253491",
-        "description": "<h2>Overview</h2>\nThe Granite Butte Lookout is located at 7,587 feet above sea level atop the Continental Divide of North America.  The 15' by 15' lookout cabin sits atop a 20' tall wooden tower that "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.7071306,
-          45.0111306
-        ]
-      },
-      "properties": {
-        "id": "MT-259",
-        "name": "WALL CREEK CABIN",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234322",
-        "description": "<h2>Overview</h2>\n<p>Located at the east base of the Gravelly Range, Wall Creek Cabin is a small dwelling that gives guests access to prime elk and deer viewing, as access is through a state Wildlife "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.8275,
-          45.6272222
-        ]
-      },
-      "properties": {
-        "id": "MT-260",
-        "name": "WEST BRIDGER CABIN",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234413",
-        "description": "<h2>Overview</h2>\nWest Bridger Cabin is open-year round for the enjoyment of outdoor enthusiasts. Guests have access to a variety of recreational activities in a beautiful,\npeaceful mountain setting. "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.5306667,
-          48.10094444
-        ]
-      },
-      "properties": {
-        "id": "MT-261",
-        "name": "Howard Lake Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237176",
-        "description": "<p>Howard Lake campground is located south of Libby on road 4779. The campground has 10 sites (3 pull thru's) including one host site with tables and fire rings.\u00a0 Camground roads and parking spurs are"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.85418,
-          48.26762
-        ]
-      },
-      "properties": {
-        "id": "MT-262",
-        "name": "Dorr Skeels Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237167",
-        "description": "<p>Dorr Skeels Campground is located 13 miles south of Troy on Hwy 56. The Dorr Skeels Campground\u00a0has 8\u00a0overnight campsites, including one host site,\u00a0with tables and fire rings,\u00a05 sites are in the ten"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.429744,
-          45.038032
-        ]
-      },
-      "properties": {
-        "id": "MT-263",
-        "name": "M-K Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239845",
-        "description": "<p>M-K is a free campground located 2.6 miles up the Main Fork Rock Creek Road #2421, not far from the Beartooth Highway. \u00a0<a href=\"http://prdp2fs.ess.usda.gov/recarea/gallatin/recarea/?recid=60977\" r"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.905233,
-          47.326428
-        ]
-      },
-      "properties": {
-        "id": "MT-264",
-        "name": "Peninsula Dispersed Campground and Recreation Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "10134449",
-        "description": "<p>12 dispersed\u00a0camping sites with fire rings\u00a0along the Clark Fork\u00a0River near fishing, rafting, and swimming opportunities. No water or trash receptacles are available - Pack it in/Pack it out.</p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.593156,
-          47.33634
+          -113.8150694,
+          48.2659611
         ]
       },
       "properties": {
         "id": "MT-265",
-        "name": "Rainy Lake Campground",
+        "name": "MURRAY BAY CAMPGROUND (MT)",
         "type": "established",
-        "cost": 0,
+        "cost": 5,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "water"
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
         ],
         "rig_friendly": [
+          "tent",
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "10134445",
-        "description": "<p>This is a small 6-site campground on Rainy Lake north of Seeley Lake. Sites 2-6 are walk-in only, and site 1 is an accessible RV site. Vehicles must\u00a0stay on roads, and all sites are first come, fir"
+        "facility_id": "250035",
+        "description": "<h2>Overview</h2>\n<p>Murray Bay Campground is located on the Hungry Horse Reservoir, high in the Rocky Mountains, less than 30 miles from the Continental Divide, surrounded by towering mountain peaks."
       }
     },
     {
@@ -8446,80 +8343,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -115.525,
-          48.4888889
+          -113.81778,
+          48.2725
         ]
       },
       "properties": {
         "id": "MT-266",
-        "name": "TIMBERLANE CAMPGROUND",
+        "name": "RIVERSIDE CAMPGROUND (MT)",
         "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234466",
-        "description": "<h2>Overview</h2>\nTimberlane Campground group site is located along a forest creek and in an area thick with towering trees. Several hiking trails exist in the area. The group pavilion accommodates up"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.7348194,
-          46.6563583
-        ]
-      },
-      "properties": {
-        "id": "MT-267",
-        "name": "Riverside Campground",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "250002",
-        "description": "<h2>Overview</h2>\n<p>Riverside Campground is located 30 miles east of Helena, Montana, below the dam at the northern end of Canyon Ferry Reservoir. Riverside Campground provides space for campers, day"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.5539,
-          45.1562194
-        ]
-      },
-      "properties": {
-        "id": "MT-268",
-        "name": "Bear Creek Bunkhouse (Beaverhead-Deerlodge National Forest, MT)",
-        "type": "established",
-        "cost": 15,
+        "cost": 5,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -8530,14 +8362,15 @@
           "trash"
         ],
         "rig_friendly": [
+          "tent",
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234319",
-        "description": "<h2>Overview</h2>\n<p>The Bear Creek Bunkhouse allows visitors to experience southwestern Montana's vast wilderness areas, including wide open hills and the Lee Metcalf Widerness in the Madison mountai"
+        "facility_id": "250044",
+        "description": "<h2>Overview</h2>\n<p>Riverside Campground is located on the Hungry Horse Reservoir, high in the Rocky Mountains, less than 30 miles from the Continental Divide, surrounded by towering mountain peaks. "
       }
     },
     {
@@ -8545,19 +8378,139 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -113.415,
-          48.2622222
+          -115.290964,
+          48.041956
+        ]
+      },
+      "properties": {
+        "id": "MT-267",
+        "name": "Pleasant Valley Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "251011",
+        "description": "<p>The\u00a0Pleasant Valley\u00a0Campground is located approximately\u00a032 miles southwest of Libby on Highway 2. The campground has\u00a07 sites tables and fire rings and able to accommodate up to a 32' rv. There is a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.176211,
+          45.366523
+        ]
+      },
+      "properties": {
+        "id": "MT-268",
+        "name": "Gallatin Canyon, Hwy 191 & Big Sky",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "251049",
+        "description": "<p>Recreation sites in Gallatin Canyon and further south along the Gallatin River and Highway 191.\u00a0 Big Sky recreational areas are also included in this travel corridor.</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.7902778,
+          45.0763889
         ]
       },
       "properties": {
         "id": "MT-269",
-        "name": "ZIPS PLACE CABIN",
+        "name": "Henneberry House",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "251352",
+        "description": "<h2>Overview</h2>\n<p><strong>The Dillon Field Office is unable to make reservations for you. Please call Recreation.gov (877-444-6777) to book a reservation or book online. </strong></p>\n\n<p>This hist"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8713889,
+          45.2405556
+        ]
+      },
+      "properties": {
+        "id": "MT-270",
+        "name": "Axolotl Cabin",
         "type": "established",
         "cost": 15,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
-          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "251354",
+        "description": "<h2>Overview</h2>\n<p><strong>The Dillon Field Office is unable to make reservations for you. Please call Recreation.gov (877-444-6777) to book a reservation or book online. </strong></p>\n\n<p>Axolotl C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.6091667,
+          47.4395944
+        ]
+      },
+      "properties": {
+        "id": "MT-271",
+        "name": "OWL CREEK CORRAL",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
           "water"
         ],
         "rig_friendly": [
@@ -8567,479 +8520,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234338",
-        "description": "<h2>Overview</h2>\n<p>Zip's Place Cabin is located 48 miles east of Hungry Horse, in northwestern Montana. It provides a beautiful setting on property that was originally a homestead granted in 1937. I"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.1011111,
-          45.5022222
-        ]
-      },
-      "properties": {
-        "id": "MT-270",
-        "name": "LUPINE SHELTER",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234354",
-        "description": "<h2>Overview</h2>\nLupine Shelter is a picnicking facility open year-round, however it is most heavily visited during the winter, when it is used by snowmobilers as a warming hut. It is an excellent lo"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.3547222,
-          46.62277778
-        ]
-      },
-      "properties": {
-        "id": "MT-271",
-        "name": "Daisy Dean Camp Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "242570",
-        "description": "<p>Campground</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</strong></p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.126513004,
-          46.586046013
-        ]
-      },
-      "properties": {
-        "id": "MT-272",
-        "name": "LARRY CREEK GROUP CAMP",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234291",
-        "description": "<h2>Overview</h2>\nLarry Creek Group Campground is located in western Montana's Bitterroot National Forest. It is a great location for an extended family or group getaway, providing access to many fish"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.74806,
-          47.88194
-        ]
-      },
-      "properties": {
-        "id": "MT-273",
-        "name": "Marten Creek Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237178",
-        "description": "<p>The Marten Creek Campground is located approximately 9 miles north of Trout Creek. The campground has\u00a06 developed sites (4 with shelters) tables and fire rings, and able to accomodate up to a 32' r"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.1477778,
-          45.5725
-        ]
-      },
-      "properties": {
-        "id": "MT-274",
-        "name": "Red Shale Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239843",
-        "description": "<p>A campground on the Ashland Ranger District.</p><p>\u00a0</p><p><b>Camp sites:</b> 14</p><p>\u00a0</p><p><b>Trash Pickup:</b> No</p><p><b>Firewood:</b> No</p><p>No Reservations: This campground does not use "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.71213,
-          45.42107
-        ]
-      },
-      "properties": {
-        "id": "MT-275",
-        "name": "Clute's Landing",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "261796",
-        "description": "Clute\u2019s Landing is the only public boat launch on the west Shore of Ennis Lake and has two camping spots. Camping is limited to 14 days."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.4052778,
-          46.1855556
-        ]
-      },
-      "properties": {
-        "id": "MT-276",
-        "name": "CRANDALL CREEK CABIN",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "dirt",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234659",
-        "description": "<h2>Overview</h2>\nA historic cabin known as Bennett Creek Cabin was located over a mile from this site, but it was recently replaced with the current Crandall Creek Cabin, a traditional\nlog structure."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.539871,
-          45.12732
-        ]
-      },
-      "properties": {
-        "id": "MT-277",
-        "name": "Beartooth RD",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239833",
-        "description": "<p>The Beartooth Ranger District is located in south central Montana and encompasses the Beartooth and Pryor Mountain Ranges. The district office is located in Red Lodge, MT, 65 miles southwest of Mon"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.0441667,
-          45.7577778
-        ]
-      },
-      "properties": {
-        "id": "MT-278",
-        "name": "TWOGOOD CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234295",
-        "description": "<h2>Overview</h2>\n<p>Twogood Cabin offers guests a unique opportunity to camp in the forest of western Montana, in a rustic, old-time setting. It is available between the end of May through the middle"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.515771,
-          48.282119
-        ]
-      },
-      "properties": {
-        "id": "MT-279",
-        "name": "Libby Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "picnic_tables"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237152",
-        "description": "<p>The Libby Area has the Kootenai River from Libby Dam to Troy running through the heart of it.\u00a0 The Kootenai River is identified as a \u201cblue ribbon trout stream\u201d.\u00a0 The Purcell Range is located north "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.4163889,
-          45.1847222
-        ]
-      },
-      "properties": {
-        "id": "MT-280",
-        "name": "YELLOW MULE CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234326",
-        "description": "<h2>Overview</h2>\nYellow Mule Cabin was built in 1920 and was once used as a ranger station. This cabin is unique because it was constructed according to the builder's preference instead of being buil"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.6859694,
-          45.40985
-        ]
-      },
-      "properties": {
-        "id": "MT-281",
-        "name": "TWIN LAKES CABIN (MT)",
-        "type": "established",
-        "cost": 15,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234350",
-        "description": "<h2>Overview</h2>\nTwin Lakes Cabin is located in a scenic evergreen forest in the Beaverhead Mountains of western Montana. It was built in the 1920s to provide housing for trail crews, smoke chasers, "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.810233,
-          48.127111
-        ]
-      },
-      "properties": {
-        "id": "MT-282",
-        "name": "Graves Creek",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "265424",
-        "description": "<p>Graves Creek (also known as Graves Bay) Campground is located on the west shore of the Hungry Horse Reservoir off of Road 895. \u00a0There are 3 campsites, a vault toilet, and fishing access.\u00a0</p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.52626,
-          46.98027
-        ]
-      },
-      "properties": {
-        "id": "MT-283",
-        "name": "Aspen Grove Group Use Area (Helena-Lewis and Clark NF, MT)",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234452",
-        "description": "<h2>Overview</h2>\n<p>Aspen Grove Group Use\u00a0Campground sits in forested mountain terrain on the banks of the Blackfoot River in the Helena-Lewis and Clark\u00a0National Forest. At an elevation of 4,800 feet"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.140839,
-          46.575266
-        ]
-      },
-      "properties": {
-        "id": "MT-284",
-        "name": "Charles Waters Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "241826",
-        "description": "<p>The Charles Waters campground is paved asphalt with 26 campsites plus one double site, including 4 pull-through, one bicycle site, and one horse site; there is also one accessible site with electri"
+        "facility_id": "251710",
+        "description": "<h2>Overview</h2>\nThe Owl Creek Corral is located at the Owl Creek Packer Camp Trailhead.  It is available to reserve for up to seven days.  The maximum capacity is 12 head of stock.  Metal hay bunks "
       }
     },
     {
@@ -9052,7 +8534,7 @@
         ]
       },
       "properties": {
-        "id": "MT-285",
+        "id": "MT-272",
         "name": "WHITETAIL YURT",
         "type": "established",
         "cost": 0,
@@ -9082,259 +8564,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.4947222,
-          46.9791667
-        ]
-      },
-      "properties": {
-        "id": "MT-286",
-        "name": "CUMMINGS CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234453",
-        "description": "<h2>Overview</h2>\nLocated 8.5 miles east of Lincoln, Montana, Cummings Cabin is a historic structure, representative of the old mining cabins that dotted the countryside in the greater \nLincoln area a"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.7218713,
-          47.40712692
-        ]
-      },
-      "properties": {
-        "id": "MT-287",
-        "name": "Double Falls Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "242539",
-        "description": "<p>Campground</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</strong></p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.06253,
-          45.12938
-        ]
-      },
-      "properties": {
-        "id": "MT-288",
-        "name": "Tom Miner Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "236111",
-        "description": "<p>A campground in the Gallatin Mountains\u00a0on the Gardiner District.</p><p><br/>\u00a0</p><p><b>Camp sites:</b> 16<br/>+ 2 Group</p><p><img alt=\"\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5108"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.20265,
-          48.6834667
-        ]
-      },
-      "properties": {
-        "id": "MT-289",
-        "name": "MCGUIRE MTN. LOOKOUT RENTAL",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234383",
-        "description": "<h2>Overview</h2>\nMcGuire Mountain Lookout was originally constructed in 1923 and was actively used as an observation point for detecting forest fires for over 20 years before it was abandoned around "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.7571903,
-          47.85993557
-        ]
-      },
-      "properties": {
-        "id": "MT-290",
-        "name": "Green Gulch Dispersed Camp Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "242538",
-        "description": "<p>Dispersed Campground.</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from area after eating. Mandatory food storage is required.</s"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.973773,
-          46.839293
-        ]
-      },
-      "properties": {
-        "id": "MT-291",
-        "name": "CALF CREEK CABIN",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234409",
-        "description": "<h2>Overview</h2>\n<p>Calf Creek Cabin sits in the Helena-Lewis and Clark National Forest. The cabin offers a prime location for fishing, hiking and horseback riding and OHVing.  Running water is not i"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.7902778,
-          45.0763889
-        ]
-      },
-      "properties": {
-        "id": "MT-292",
-        "name": "Henneberry House",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "251352",
-        "description": "<h2>Overview</h2>\n<p><strong>The Dillon Field Office is unable to make reservations for you. Please call Recreation.gov (877-444-6777) to book a reservation or book online. </strong></p>\n\n<p>This hist"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.0230556,
-          45.8586111
-        ]
-      },
-      "properties": {
-        "id": "MT-293",
-        "name": "SPRING GULCH",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "232327",
-        "description": "<h2>Overview</h2>\nSpring Gulch Campground is a well-maintained campground located about 50 feet from the highway, on the banks of the scenic Bitterroot River. Visitors enjoy a variety of recreational "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -113.7909889,
           48.1685278
         ]
       },
       "properties": {
-        "id": "MT-294",
+        "id": "MT-273",
         "name": "ANNA CREEK CABIN",
         "type": "established",
         "cost": 0,
@@ -9361,46 +8596,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -106.2469444,
-          45.30916667
+          -112.4647667,
+          46.8630167
         ]
       },
       "properties": {
-        "id": "MT-295",
-        "name": "Cow Creek Campground And Picnic Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239844",
-        "description": "<p>A campground on the Ashland Ranger District.</p><p>\u00a0</p><p><b>Camp sites:</b> 4</p><p><strong>Picnic Site:</strong>\u00a0 1</p><p><b>Accessible Facilities:</b><br/>Toilet</p><p>\u00a0</p><p><b>Trash Pickup:<"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.972975,
-          48.55905
-        ]
-      },
-      "properties": {
-        "id": "MT-296",
-        "name": "Yaak River Campground (MT)",
+        "id": "MT-274",
+        "name": "GRANITE BUTTE LOOKOUT",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -9419,8 +8621,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234463",
-        "description": "<h2>Overview</h2>\n<p>Yaak River Campground is located approximately 8 miles west of Troy, Montana and 6.5 miles east of the Idaho border on Highway 2 . This campground is located at the confluence of "
+        "facility_id": "253491",
+        "description": "<h2>Overview</h2>\nThe Granite Butte Lookout is located at 7,587 feet above sea level atop the Continental Divide of North America.  The 15' by 15' lookout cabin sits atop a 20' tall wooden tower that "
       }
     },
     {
@@ -9428,51 +8630,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -114.56897,
-          48.21221
+          -111.3888556,
+          46.6084167
         ]
       },
       "properties": {
-        "id": "MT-297",
-        "name": "Ashley Lake South Campground",
+        "id": "MT-275",
+        "name": "MILLER CABIN",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239321",
-        "description": "<p>This is a very small campground with 2 sites, a vault toilet, picnic tables and fire rings. There is a walk down boat launching site for kayaks and canoes. Access road has sharp hairpin corner so R"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.92453,
-          46.166033
-        ]
-      },
-      "properties": {
-        "id": "MT-298",
-        "name": "Black Bear Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
+          "water",
           "fire_rings",
           "picnic_tables",
           "trash"
@@ -9484,8 +8655,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "10071730",
-        "description": "<p>Located on the banks of Skalkaho Creek, Black Bear Campground hosts 6 sites with picnic tables, fire rings, and a vault toilet. There is no garbage service so Pack it in/Pack it out. Campground can"
+        "facility_id": "253500",
+        "description": "<h2>Overview</h2>\n<p>The Miller Creek Cabin is located in the Townsend Ranger District and rests at the intersection of the Confederate Gulch Road (FS Road 287) and the Blacktail Road (FS Road 4171), "
       }
     },
     {
@@ -9493,110 +8664,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -115.31083,
-          47.87083
+          -111.990513,
+          46.995022
         ]
       },
       "properties": {
-        "id": "MT-299",
-        "name": "Willow Creek Campground",
+        "id": "MT-276",
+        "name": "Holter Lake Campground",
         "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "gravel",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237184",
-        "description": "<p>The Willow Creek Campground is appoximately 19 miles northeast of Trout Creek on\u00a0road 154. The campground has 6 sites all with tent pads, tables and fire rings and able to accomodate up to a 40' rv"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.702225,
-          46.6474333
-        ]
-      },
-      "properties": {
-        "id": "MT-300",
-        "name": "CAVE POINT GROUP USE AREA",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "249996",
-        "description": "<h2>Overview</h2>\n<p>Cave Point Group Use Shelter is located at the very north end of Canyon Ferry Reservoir, 30 miles east of Helena, Montana, along Highway 284. Cave Point offers year-round access t"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.890582,
-          48.352065
-        ]
-      },
-      "properties": {
-        "id": "MT-301",
-        "name": "Bull Lake Area",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "237149",
-        "description": "<p>Recreational opportunities abound in the Bull Lake area from camping and boating on Bull Lake to Wilderness hikes in the Cabinet Mountains.\u00a0 There are several fully developed campgrounds with full "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.1220306,
-          46.5018
-        ]
-      },
-      "properties": {
-        "id": "MT-302",
-        "name": "DOUGLAS CREEK CABIN",
-        "type": "established",
-        "cost": 45,
+        "cost": 25,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -9610,11 +8686,11 @@
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234375",
-        "description": "<h2>Overview</h2>\n<p>Douglas Creek Cabin offers a great way to access the various seasonal activities available in the Beaverhead-Deerlodge National Forest in western Montana. While hunting enthusiast"
+        "facility_id": "261696",
+        "description": "<h2>Overview</h2>\n<p>Holter Lake Campground is situated on the picturesque Holter Lake in west central Montana. The site is located approximately 45 miles north of Helena, Montana, along the Missouri "
       }
     },
     {
@@ -9622,13 +8698,198 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -115.415957,
-          47.158576
+          -112.24282,
+          45.91098
         ]
       },
       "properties": {
-        "id": "MT-303",
-        "name": "Conrad Crossing Campground",
+        "id": "MT-277",
+        "name": "Pipestone Off-Highway Vehicle Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261718",
+        "description": "This 30,000-acre travel management area is located approximately 15 miles east of Butte and just north of I-90. It is a popular area for motorcycle and ATV riding enthusiasts. Mountain bikers also use"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.87003,
+          48.17251
+        ]
+      },
+      "properties": {
+        "id": "MT-278",
+        "name": "Paulo Reservoir",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261753",
+        "description": "<p>Located approximately 12 miles southwest of Glasgow, Montana, Paulo Reservoir offers a quiet, remote setting for largemouth bass fishing and family outings. A windmill aeration system helps keep fi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.87498,
+          45.05822
+        ]
+      },
+      "properties": {
+        "id": "MT-279",
+        "name": "Moorhead Recreation Site",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261759",
+        "description": "Located next to the Powder River, this site contains a semi-developed, yet primitive, campground popular for fall hunting camps, but beautiful to camp in year round.  BLM managed lands are nearby prov"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1188,
+          45.2263
+        ]
+      },
+      "properties": {
+        "id": "MT-280",
+        "name": "Ruby Reservoir",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261770",
+        "description": "<p>Located on the eastern shore of Ruby Reservoir, this recreation site provides access to fishing, boating, and camping. The reservoir was developed to supply irrigation water for agriculture and is "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.65743,
+          44.98837
+        ]
+      },
+      "properties": {
+        "id": "MT-281",
+        "name": "Palisades Day Use",
+        "type": "established",
+        "cost": 8,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261794",
+        "description": "<p>The Palisades Recreation Area is located on the Upper Madison River, 5 river miles upstream of Ruby Creek Recreation Area and 25 miles south of Ennis. The campground has 10 camping sites with 2 acc"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.71213,
+          45.42107
+        ]
+      },
+      "properties": {
+        "id": "MT-282",
+        "name": "Clute's Landing",
+        "type": "established",
+        "cost": 15,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261796",
+        "description": "Clute\u2019s Landing is the only public boat launch on the west Shore of Ennis Lake and has two camping spots. Camping is limited to 14 days."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.77031,
+          45.54429
+        ]
+      },
+      "properties": {
+        "id": "MT-283",
+        "name": "Revenue Flats",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261800",
+        "description": "Located between the communities of Norris and McAllister, Revenue Flats is in Madison County, approximately 36 miles southwest of Bozeman and 18 miles north of Ennis. This recreation area provides opp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.568147,
+          45.606848
+        ]
+      },
+      "properties": {
+        "id": "MT-284",
+        "name": "Trapper Springs (MT)",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -9636,6 +8897,7 @@
         "amenities": [
           "toilets",
           "water",
+          "fire_rings",
           "picnic_tables"
         ],
         "rig_friendly": [
@@ -9645,8 +8907,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "10078697",
-        "description": "<p><img align=\"left\" alt=\"Photo of a streamside campsite at Conrad Crossing Campground\" height=\"162\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5076333\" title=\"Photo of a streamside campsi"
+        "facility_id": "261802",
+        "description": "<h2>Overview</h2>\n<p><strong>The Dillon Field Office is unable to make reservations for you. Please call Recreation.gov (877-444-6777) to book a reservation or book online. </strong>\u00a0</p>\n<p><strong>C"
       }
     },
     {
@@ -9654,23 +8916,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -115.5456056,
-          48.6351417
+          -111.569723,
+          45.609394
         ]
       },
       "properties": {
-        "id": "MT-304",
-        "name": "BIG CREEK BALDY. LOOKOUT RENTAL",
+        "id": "MT-285",
+        "name": "Red Mountain (MT)",
         "type": "established",
-        "cost": 0,
+        "cost": 12,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
           "water",
           "fire_rings",
-          "picnic_tables",
-          "trash"
+          "picnic_tables"
         ],
         "rig_friendly": [
           "RV",
@@ -9679,8 +8940,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234399",
-        "description": "<h2>Overview</h2>\nBig Creek Baldy Lookout sits atop its namesake mountain at an elevation of 5,780 feet in the Kootenai National Forest. The lookout has been used as an observation point for spotting "
+        "facility_id": "261804",
+        "description": "<h2>Overview</h2>\n<p><strong>The Dillon Field Office is unable to make reservations for you. Please call Recreation.gov (877-444-6777) to book a reservation or book online. </strong></p>\n\n<p><strong>C"
       }
     },
     {
@@ -9688,13 +8949,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -114.040115,
-          45.842015
+          -112.00789012,
+          47.51241663
         ]
       },
       "properties": {
-        "id": "MT-305",
-        "name": "Warm Springs Campground",
+        "id": "MT-286",
+        "name": "Lowry Bridge",
         "type": "established",
         "cost": 0,
         "rating": null,
@@ -9702,39 +8963,7 @@
         "amenities": [
           "toilets",
           "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "241851",
-        "description": "<p>Warm Springs Campground is nestled in a wooded area along Crazy Creek. It hosts 14 sites with picnic tables, fire rings, and vault toilets. There is no garbage service so Pack it in/Pack it out. Ca"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.3766667,
-          48.8736111
-        ]
-      },
-      "properties": {
-        "id": "MT-306",
-        "name": "FORD CABIN",
-        "type": "established",
-        "cost": 50,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water"
+          "picnic_tables"
         ],
         "rig_friendly": [
           "RV",
@@ -9743,8 +8972,8 @@
         "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234337",
-        "description": "<h2>Overview</h2>\n<p>Ford Cabin offers a cozy, rustic getaway along the appropriately named Wild and Scenic North Fork of the Flathead River. It is about 45 miles north of Columbia Falls, in northwest"
+        "facility_id": "261808",
+        "description": "<p>This pack-in/pack-out BLM recreation site is located along the Sun River and provides river access for rafting and fishing. Five campsites are available on a first come first served basis with fire"
       }
     },
     {
@@ -9752,57 +8981,27 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.2905556,
-          46.8483333
+          -110.9004276,
+          45.212808
         ]
       },
       "properties": {
-        "id": "MT-307",
-        "name": "JUDITH GUARD STATION",
+        "id": "MT-287",
+        "name": "Carbella Rec Site",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "water",
-          "picnic_tables",
-          "trash"
+          "picnic_tables"
         ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234427",
-        "description": "<h2>Overview</h2>\nJudith Guard Station is a historic Ranger Station dating back to the early 1900s. Designated as a National Historic Site, the cabin is decorated with historically accurate furnishing"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.7269444,
-          47.89138889
-        ]
-      },
-      "properties": {
-        "id": "MT-308",
-        "name": "Cave Mountain Campground",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
         "rig_friendly": [],
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "242563",
-        "description": "<p>18 sites located 18 miles west of Choteau, Montana. Fishing and hiking access.\u00a0</p><p><strong>Bears may frequent the area; keep all food out of sight in approved containers and remove all food from"
+        "facility_id": "261814",
+        "description": "<h2>Closure Notice:</h2>\n\n<p>Due to flooding along the Yellowstone River, the BLM's Carbella Recreation Site has been temporarily closed. The Campground will remain closed until the river drops to saf"
       }
     },
     {
@@ -9810,45 +9009,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -110.259565,
-          45.73632
+          -112.91425,
+          45.78462
         ]
       },
       "properties": {
-        "id": "MT-309",
-        "name": "Yellowstone District",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "236070",
-        "description": "<p>The Yellowstone\u00a0district includes a portion of the Crazy Mountains and covers the northeast section of the Custer Gallatin National Forest south of Big Timber and east of the Yellowstone river.\u00a0 It"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -115.815261,
-          48.827794
-        ]
-      },
-      "properties": {
-        "id": "MT-310",
-        "name": "Whitetail Campground",
+        "id": "MT-288",
+        "name": "Jerry Creek Br Fish Access",
         "type": "established",
         "cost": 0,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
           "toilets",
-          "water",
           "fire_rings",
           "picnic_tables"
         ],
@@ -9856,8 +9029,8 @@
         "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "237151",
-        "description": "<p>The Whitetail Campground is located north of Troy on Yaak Hwy 508. The campground has 12 sites, including one host site, with tables and fire rings. Campground roads and parking spurs are gravel. A"
+        "facility_id": "261817",
+        "description": "<p>A series of small recreation sites are located along a 73-mile stretch of the Big Hole River between Wisdom and Melrose. The river offers blue ribbon trout fishing and excellent float boating. Nine"
       }
     },
     {
@@ -9865,15 +9038,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -114.877833,
-          48.936747
+          -112.7108,
+          45.8141
         ]
       },
       "properties": {
-        "id": "MT-311",
-        "name": "Big Therriault Lake Campground",
+        "id": "MT-289",
+        "name": "Divide Bridge Campground",
         "type": "established",
-        "cost": 0,
+        "cost": 10,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -9882,15 +9055,12 @@
           "fire_rings",
           "picnic_tables"
         ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
+        "rig_friendly": [],
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "237161",
-        "description": "<p>The Big Therriault Lake campground is located 12.5 air miles from Fortine. The campground has 10 campsite, including one host site, with tables, fire rings and able to accomodate up to a 32' rv. Am"
+        "facility_id": "261818",
+        "description": "<p>A series of small recreation sites are located along a 73-mile stretch of the Big Hole River between Wisdom and Melrose. The river offers blue ribbon trout fishing and excellent float boating. Nine"
       }
     },
     {
@@ -9898,15 +9068,44 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -111.6794444,
-          46.8222222
+          -113.08137718,
+          45.85841608
         ]
       },
       "properties": {
-        "id": "MT-312",
-        "name": "INDIAN FLATS CABIN",
+        "id": "MT-290",
+        "name": "East Bank Rec Site",
         "type": "established",
         "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "gravel",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "261819",
+        "description": "<p>A series of small recreation sites are located along a 73-mile stretch of the Big Hole River between Wisdom and Melrose. The river offers blue ribbon trout fishing and excellent float boating. Nine"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.88876,
+          46.74094
+        ]
+      },
+      "properties": {
+        "id": "MT-291",
+        "name": "White Sandy Campground",
+        "type": "established",
+        "cost": 25,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -9917,14 +9116,15 @@
           "trash"
         ],
         "rig_friendly": [
+          "tent",
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "gravel",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234451",
-        "description": "<h2>Overview</h2>\nIndian Flats Cabin is nestled in a hollow of old-growth trees in the shadow of Hogback Mountain, offering a remote lodging experience in the Big Belt Mountains in \nwest-central Monta"
+        "facility_id": "261822",
+        "description": "<h2>Overview</h2>\n<p>White Sandy is located on the west side of Hauser Lake at the confluence of Prickly Pear creek. White Sandy faces Eldorado Bar and the beautiful Big Belt mountains. It is in an id"
       }
     },
     {
@@ -9932,98 +9132,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -113.8730556,
-          47.8941667
+          -111.940277,
+          46.956566
         ]
       },
       "properties": {
-        "id": "MT-313",
-        "name": "MISSION LOOKOUT",
-        "type": "established",
-        "cost": 45,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "234360",
-        "description": "<h2>Overview</h2>\n<p>Mission Lookout towers above the forest canopy, providing guests with unrivaled 360-degree views of the beautiful Swan Range, Mission Mountains and Swan Lake. The site served for "
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.81786,
-          48.27253
-        ]
-      },
-      "properties": {
-        "id": "MT-314",
-        "name": "Riverside Boating Site",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "239293",
-        "description": "<p>The Riverside camping sites and boat launch were renovated in 2014. \u00a0There are 2 double campsites and 1 single site. \u00a0The boat launch provides early and late season access to water.</p>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -106.247538,
-          47.726047
-        ]
-      },
-      "properties": {
-        "id": "MT-315",
-        "name": "Rock Creek Marina",
-        "type": "established",
-        "cost": 0,
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "road_difficulty": "paved",
-        "state": "MT",
-        "source": "recreation.gov",
-        "facility_id": "248142",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=288&agencyCode=130\" rel=\"nofollow\">Fort Peck Project</a>"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.8980556,
-          45.6013889
-        ]
-      },
-      "properties": {
-        "id": "MT-316",
-        "name": "DEER CREEK CABIN (MT)",
+        "id": "MT-292",
+        "name": "Departure Point",
         "type": "established",
         "cost": 15,
         "rating": null,
@@ -10031,6 +9146,173 @@
         "amenities": [
           "toilets",
           "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "262603",
+        "description": "<p>Departure Point Recreation Area is available for public day use and camping on a first-come, first-served basis. Office hours are Monday through Friday, from 9 a.m. through 6 p.m. Camp hosts or sta"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.6895968,
+          47.6277676
+        ]
+      },
+      "properties": {
+        "id": "MT-293",
+        "name": "James Kipp Campground",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "262717",
+        "description": "<p>James Kipp Recreation Area is situated along the Upper Missouri River and is open from April 1 to December 1, annually. This is a popular site for launching watercraft, as well as camping, picnicki"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.23682,
+          48.03222
+        ]
+      },
+      "properties": {
+        "id": "MT-294",
+        "name": "Coal Banks Landing",
+        "type": "established",
+        "cost": 20,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "262732",
+        "description": "Coal Banks Landing Campground, situated along the Upper Missouri River, is open from April 1 to December 1, annually. This is a popular site for launching watercraft, as well as camping, picnicking an"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.50555556,
+          47.92305556
+        ]
+      },
+      "properties": {
+        "id": "MT-295",
+        "name": "Camp Creek Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "262760",
+        "description": "<p>Camp Creek Recreation Area, located in the scenic Little Rockies, consists of Camp Creek Campground, Horse Corral Campground, and Buffington Day Use Area.  A system of trails leads from the main ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.62777778,
+          47.89694444
+        ]
+      },
+      "properties": {
+        "id": "MT-296",
+        "name": "Montana Gulch",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "262761",
+        "description": "<p>Located in the scenic Little Rockies near the small town of Landusky, the Montana Gulch Campground offers a quiet, stream-side setting with lots of shade. It lies within a 30-minute drive of the Ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.47297,
+          44.3725
+        ]
+      },
+      "properties": {
+        "id": "MT-297",
+        "name": "Ft. Meade Horse Camp",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
           "fire_rings",
           "picnic_tables"
         ],
@@ -10041,8 +9323,8 @@
         "road_difficulty": "paved",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234415",
-        "description": "<h2>Overview</h2>\n<p>The Todd Family began building Deer Creek Cabin in 1953 and finished it in 1960. They used it as a retreat while they grazed cattle on federal lands in the summer and hunted in th"
+        "facility_id": "262772",
+        "description": "<p>Alkali Creek Horsecamp (11 acres) contains six fee camping units, restrooms, water, picnic tables, fire rings, grills, and horse tie lines.</p>  <p>Alkali Creek Horsecamp is open from May 15 to Sep"
       }
     },
     {
@@ -10050,15 +9332,365 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -114.0377778,
-          46.8269444
+          -113.810233,
+          48.127111
         ]
       },
       "properties": {
-        "id": "MT-317",
-        "name": "PATTEE CANYON PICNIC AREA",
+        "id": "MT-298",
+        "name": "Graves Creek",
         "type": "established",
         "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "265424",
+        "description": "<p>Graves Creek (also known as Graves Bay) Campground is located on the west shore of the Hungry Horse Reservoir off of Road 895. \u00a0There are 3 campsites, a vault toilet, and fishing access.\u00a0</p>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.912149,
+          48.579308
+        ]
+      },
+      "properties": {
+        "id": "MT-299",
+        "name": "Priest Lake Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "265489",
+        "description": "<p><img align=\"left\" alt=\"Photo of scenic Priest Lake with Selkirk Mountains in the background\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5072928\" title=\"Photo of scenic Priest Lake\" widt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.511827,
+          48.206967
+        ]
+      },
+      "properties": {
+        "id": "MT-300",
+        "name": "Pend Oreille Lake Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "265497",
+        "description": "<p>The Kalispel, Kutenai and other native peoples were the first inhabitants of this area. They lived along the waterways and utilized the area's abundant natural resources for survival. The Pend Orei"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.383106,
+          48.784706
+        ]
+      },
+      "properties": {
+        "id": "MT-301",
+        "name": "Lower Kootenai River Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "water",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "265501",
+        "description": "<p><img align=\"left\" alt=\"Photo of Snyder Guard Station - a rental suitable for groups.\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5076697\" title=\"Photo of Snyder Guard Station - a rental"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.396312,
+          47.675444
+        ]
+      },
+      "properties": {
+        "id": "MT-302",
+        "name": "Coeur d'Alene River Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "265508",
+        "description": "<p><img alt=\"Photo of Fern Falls along the Shadow Falls Trail\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5072929\" title=\"Photo of Fern Falls along the Shadow Falls Trail\" width=\"188\"/>Rec"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.013295,
+          47.160145
+        ]
+      },
+      "properties": {
+        "id": "MT-303",
+        "name": "St. Joe River Area",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "265516",
+        "description": "<p>The St. Joe River area of the Idaho Panhandle National Forests includes most of what was originally established as the St. Joe National Forest and is now our St. Joe Ranger District.</p><p>This is "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.888144,
+          48.596379
+        ]
+      },
+      "properties": {
+        "id": "MT-304",
+        "name": "Kilbrennan Lake Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "270682",
+        "description": "<p>Kilbrennen Lake Campground is located northwest of Troy on Kilbrennen Lake road 2394. The Campground 7 sites with tables and fire rings. Campground roads and parking spurs are of native soil. Ameni"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.64611,
+          47.68556
+        ]
+      },
+      "properties": {
+        "id": "MT-305",
+        "name": "Jackpine Flats Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "fire_rings",
+          "picnic_tables"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "270819",
+        "description": "<p>The Jackpine Flats campground is located 20 miles south of Trout Creek\u00a0on Beaver Creek road 152. The campground has\u00a01 site with table and fire ring. This campsite\u00a0is best suited for tents or a pop "
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.159559,
+          45.520614
+        ]
+      },
+      "properties": {
+        "id": "MT-306",
+        "name": "Slim Buttes Land Unit",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "270862",
+        "description": "<p>One of the larger eight land units on the Sioux Ranger District, near Buffalo, SD</p><p>Designated recreational sites include:\u00a0 Reva Gap Campground, The Castles, Rabbit Creek Dam Fishing Pond and S"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.8663889,
+          47.47555556
+        ]
+      },
+      "properties": {
+        "id": "MT-307",
+        "name": "Van Deriet Campground",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "271985",
+        "description": "<p>Located 30 miles west of Augusta, Van Deriet offers 6 sites with a variety of amenities close to the airport. \u00a0There is no vehicle access and is not handicapped accessible. \u00a0This site is mainted wi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9152778,
+          46.4755556
+        ]
+      },
+      "properties": {
+        "id": "MT-308",
+        "name": "STRAWBERRY CABIN",
+        "type": "established",
+        "cost": 0,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "272173",
+        "description": "<h2>Overview</h2>\nExplore a magnificent recreation and wildlife resource at the doorstep of Montana's Capital City. From prairie to alpine, mayflies to mountain goats, and scenic driving to expert cli"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8094944,
+          46.7015917
+        ]
+      },
+      "properties": {
+        "id": "MT-309",
+        "name": "Devil's Elbow Campground",
+        "type": "established",
+        "cost": 25,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [
+          "toilets",
+          "water",
+          "fire_rings",
+          "picnic_tables",
+          "trash"
+        ],
+        "rig_friendly": [
+          "tent",
+          "RV",
+          "trailer"
+        ],
+        "road_difficulty": "dirt",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "272276",
+        "description": "<h2>Overview</h2>\nDevil's Elbow Recreation Area is situated on the picturesque \"Devil's Elbow\" of Hauser Lake. Just a short drive from Helena, the area offers stunning views of the Big Belt and Elkhor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.81865,
+          46.6917
+        ]
+      },
+      "properties": {
+        "id": "MT-310",
+        "name": "Clark's Bay Day Use Area Shelter (MT)",
+        "type": "established",
+        "cost": 5,
         "rating": null,
         "reviews_count": 0,
         "amenities": [
@@ -10071,11 +9703,11 @@
           "RV",
           "trailer"
         ],
-        "road_difficulty": "paved",
+        "road_difficulty": "dirt",
         "state": "MT",
         "source": "recreation.gov",
-        "facility_id": "234481",
-        "description": "<h2>Overview</h2>\nThe Pattee Canyon Picnic Area offers family picnic sites available for free, along with three group picnic sites available by reservation.  The picnic area is open July 1 through Lab"
+        "facility_id": "273359",
+        "description": "<h2>Overview</h2>\n<p>Clark's Bay Day Use Area is situated on the picturesque \"Devil's Elbow\" and Clark's Bay of Hauser Lake. Just a short drive from Helena, this area offers stunning views of the Big "
       }
     }
   ]
