@@ -250,7 +250,7 @@
   function createPopup(site) {
     const p = site.properties;
     const esc = window.escapeHtml || ((t) => t); // Fallback if not available
-    const costText = p.cost === 0 || p.cost === null ? 'FREE' : `$${p.cost}/night`;
+    const costText = p.cost === 0 || p.cost === null || p.cost === undefined ? 'FREE' : `$${p.cost}/night`;
 
     // Enhanced rating with review count
     let ratingText = 'No ratings';
