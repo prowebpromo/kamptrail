@@ -9,12 +9,20 @@ import json
 import glob
 import os
 
-# Placeholder names to remove
-PLACEHOLDER_NAMES = [
-    'Staff Row',
-    'Commie Row',
-    'Armstrong McDonald',
-    'Staff Showerhouse'
+# Placeholder keywords to detect (case-insensitive)
+PLACEHOLDER_KEYWORDS = [
+    'staff row',
+    'commie row',
+    'armstrong mcdonald',
+    'staff showerhouse',
+    'sample campsite',
+    'sample meadow',
+    'test site',
+    'whitestar campground',  # Known test entry
+    'placeholder',
+    'example',
+    'dummy',
+    'fake'
 ]
 
 # Coordinates of known placeholder sites
@@ -27,11 +35,11 @@ PLACEHOLDER_COORDS = [
 
 def is_placeholder(feature):
     """Check if a feature is placeholder data."""
-    name = feature.get('properties', {}).get('name', '')
+    name = str(feature.get('properties', {}).get('name', '')).lower()
     coords = feature.get('geometry', {}).get('coordinates', [])
 
-    # Check by name
-    if any(placeholder in str(name) for placeholder in PLACEHOLDER_NAMES):
+    # Check by name (case-insensitive)
+    if any(keyword in name for keyword in PLACEHOLDER_KEYWORDS):
         return True
 
     # Check by coordinates
@@ -70,20 +78,21 @@ def clean_file(filepath):
 
 def main():
     print('=' * 70)
-    print('CLEANING PLACEHOLDER DATA FROM OSM FILES')
+    print('CLEANING PLACEHOLDER DATA FROM ALL GEOJSON FILES')
     print('=' * 70)
     print()
 
     files_cleaned = []
     total_removed = 0
 
-    for filepath in glob.glob('data/opencampingmap/*.geojson'):
+    # Scan all geojson files recursively
+    for filepath in glob.glob('data/**/*.geojson', recursive=True):
         result = clean_file(filepath)
         if result:
             filename, count = result
-            files_cleaned.append((filename, count))
+            files_cleaned.append((filepath, count))
             total_removed += count
-            print(f'✓ {filename}: Removed {count} placeholder entries')
+            print(f'✓ {filepath}: Removed {count} placeholder entries')
 
     print()
     print('=' * 70)
@@ -95,12 +104,16 @@ def main():
     if files_cleaned:
         print()
         print('Cleaned files:')
-        for filename, count in files_cleaned:
-            print(f'  - {filename} ({count} removed)')
+        for filepath, count in files_cleaned:
+            print(f'  - {filepath} ({count} removed)')
 
     print('=' * 70)
     print()
-    print('✅ Cleanup complete!')
+
+    if total_removed > 0:
+        print('✅ Cleanup complete!')
+    else:
+        print('✅ No placeholders found - database is clean!')
 
 if __name__ == '__main__':
     main()
