@@ -1,0 +1,74 @@
+name: Fetch All Missing State Data
+
+on:
+  workflow_dispatch:  # Manual trigger
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly on Sunday at 2 AM UTC
+
+jobs:
+  fetch-complete-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Fetch missing Recreation.gov states
+        run: |
+          # Missing states: DE, RI
+          for state in DE RI; do
+            echo "Fetching Recreation.gov data for $state..."
+            python3 scripts/fetch_recreation_gov_data.py \
+              --api-key "${{ secrets.RIDB_API_KEY }}" \
+              --state "$state" \
+              --limit 100 || echo "Failed to fetch $state"
+            sleep 5
+          done
+
+      - name: Fetch missing OpenStreetMap states (Batch 1 - High Priority)
+        run: |
+          # High priority camping states: CA, WA, OR, MT, WY, UT, TX, FL
+          for state in CA WA OR MT WY UT TX FL; do
+            echo "Fetching OSM data for $state..."
+            python3 scripts/fetch_osm_data.py --state "$state" || echo "Failed to fetch $state"
+            sleep 10  # Respect Overpass API rate limits
+          done
+
+      - name: Fetch missing OpenStreetMap states (Batch 2 - Medium Priority)
+        run: |
+          # Medium priority states: PA, VA, NC, TN, OH, MI
+          for state in PA VA NC TN OH; do
+            echo "Fetching OSM data for $state..."
+            python3 scripts/fetch_osm_data.py --state "$state" || echo "Failed to fetch $state"
+            sleep 10
+          done
+
+      - name: Fetch missing OpenStreetMap states (Batch 3 - Remaining)
+        run: |
+          # Remaining states
+          for state in AR KS KY MD MN MS ND NJ OK RI SC SD VT WI WV; do
+            echo "Fetching OSM data for $state..."
+            python3 scripts/fetch_osm_data.py --state "$state" || echo "Failed to fetch $state"
+            sleep 10
+          done
+
+      - name: Run audit
+        run: |
+          python3 scripts/audit_campsite_data.py || true
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git commit -m "🏕️ Complete state coverage - Add all missing states" || echo "No changes to commit"
+          git push
