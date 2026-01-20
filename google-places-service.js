@@ -177,13 +177,17 @@
    * @returns {Promise<Object>} A promise that resolves with the processed data.
    */
   async function processPhotos(data) {
+    console.log('[Google Places] processPhotos called with', data.photos?.length || 0, 'photos');
     if (data.photos && data.photos.length > 0) {
+      console.log('[Google Places] Fetching blob URLs for photos...');
       const photoPromises = data.photos.map(photo => fetchPhotoAsBlobUrl(photo.name));
       const photoUrls = await Promise.all(photoPromises);
+      console.log('[Google Places] Blob URLs fetched:', photoUrls.filter(u => u).length, 'successful');
       data.photos = data.photos.map((photo, index) => ({
         ...photo,
         url: photoUrls[index]
       })).filter(photo => photo.url); // Filter out any photos that failed to load
+      console.log('[Google Places] Final photo count after filtering:', data.photos.length);
     }
     return data;
   }
@@ -196,11 +200,18 @@
   async function fetchPhotoAsBlobUrl(photoName) {
     if (!state.apiKey) return null;
     const url = `https://places.googleapis.com/v1/${photoName}/media?key=${state.apiKey}&maxWidthPx=400`;
+    console.log('[Google Places] Fetching photo:', photoName);
     try {
       const response = await fetch(url, { mode: 'cors' });
-      if (!response.ok) return null;
+      console.log('[Google Places] Photo fetch response:', response.status, response.statusText);
+      if (!response.ok) {
+        console.warn('[Google Places] Photo fetch failed:', response.status, response.statusText);
+        return null;
+      }
       const blob = await response.blob();
-      return URL.createObjectURL(blob);
+      const blobUrl = URL.createObjectURL(blob);
+      console.log('[Google Places] Created blob URL:', blobUrl.substring(0, 50) + '...');
+      return blobUrl;
     } catch (error) {
       console.error('[Google Places] Error fetching photo:', error);
       return null;
@@ -240,16 +251,25 @@
      * @returns {Promise<Object|null>} Place details or null.
      */
     getPlaceDetails: async (campsiteName, lat, lng) => {
+      console.log(`[Google Places] getPlaceDetails called for "${campsiteName}" at ${lat},${lng}`);
       if (!state.apiKey) {
         console.warn('[Google Places] API key not set. Cannot fetch details.');
         return { error: 'API_KEY_MISSING' };
       }
       try {
+        console.log('[Google Places] Finding place ID...');
         const placeId = await findPlaceId(campsiteName, lat, lng);
+        console.log('[Google Places] Place ID result:', placeId);
         if (placeId && placeId.error) return placeId; // Propagate quota error
-        if (!placeId) return null;
+        if (!placeId) {
+          console.warn('[Google Places] No place ID found');
+          return null;
+        }
 
-        return await fetchPlaceDetails(placeId);
+        console.log('[Google Places] Fetching place details for ID:', placeId);
+        const details = await fetchPlaceDetails(placeId);
+        console.log('[Google Places] Place details result:', details);
+        return details;
       } catch (error) {
         console.error(`[Google Places] Failed to get details for ${campsiteName}:`, error);
         return null;
