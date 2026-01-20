@@ -270,34 +270,54 @@
     const rigFriendly = p.rig_friendly && p.rig_friendly.length ? p.rig_friendly : [];
     const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
 
-    return `
-      <div style="min-width:200px;">
-        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${safeName}</h3>
-        <div style="font-size:12px;color:#666;margin-bottom:8px;">
-          <div><strong>Cost:</strong> ${costText}</div>
-          <div><strong>Type:</strong> ${safeType}</div>
-          ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
-          ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
-          <div><strong>Rating:</strong> ${ratingText}</div>
-        </div>
-        ${safeAmenities ? `
-          <div style="font-size:11px;color:#888;margin-bottom:8px;">
-            ${safeAmenities}
-          </div>
-        ` : ''}
-        <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Add to Trip
-          </button>
-          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Compare
-          </button>
-          <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Navigate
-          </button>
-        </div>
+    const container = document.createElement('div');
+    container.style.minWidth = '200px';
+
+    container.innerHTML = `
+      <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${safeName}</h3>
+      <div style="font-size:12px;color:#666;margin-bottom:8px;">
+        <div><strong>Cost:</strong> ${costText}</div>
+        <div><strong>Type:</strong> ${safeType}</div>
+        ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
+        ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
+        <div><strong>Rating:</strong> ${ratingText}</div>
       </div>
+      ${safeAmenities ? `
+        <div style="font-size:11px;color:#888;margin-bottom:8px;">
+          ${safeAmenities}
+        </div>
+      ` : ''}
     `;
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.gap = '8px';
+    buttonContainer.style.marginTop = '8px';
+
+    const addToTripButton = document.createElement('button');
+    addToTripButton.textContent = 'Add to Trip';
+    addToTripButton.style.cssText = 'flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;';
+    addToTripButton.dataset.testid = 'add-to-trip';
+    addToTripButton.addEventListener('click', () => KampTrailData.addToTrip(safeId));
+    buttonContainer.appendChild(addToTripButton);
+
+    const compareButton = document.createElement('button');
+    compareButton.textContent = 'Compare';
+    compareButton.style.cssText = 'flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;';
+    compareButton.dataset.testid = 'compare';
+    compareButton.addEventListener('click', () => KampTrailCompare.addToCompare(safeId));
+    buttonContainer.appendChild(compareButton);
+
+    const navigateButton = document.createElement('button');
+    navigateButton.textContent = 'Navigate';
+    navigateButton.style.cssText = 'flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;';
+    navigateButton.dataset.testid = 'navigate';
+    navigateButton.addEventListener('click', () => window.open(`https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}`));
+    buttonContainer.appendChild(navigateButton);
+
+    container.appendChild(buttonContainer);
+
+    return container;
   }
 
   function updateMarkers(map, filters, config) {

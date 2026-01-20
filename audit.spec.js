@@ -25,7 +25,7 @@ test.describe('Feature Audit', () => {
     await page.locator('.leaflet-marker-icon').first().click();
     await page.waitForSelector('.leaflet-popup-content');
 
-    await page.click('button:has-text("Add to Trip")');
+    await page.click('[data-testid="add-to-trip"]');
     await expect(tripCount).toHaveText('(1)');
   });
 

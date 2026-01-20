@@ -91,7 +91,7 @@
         const color = towerColors[radio] || '#95a5a6';
         return L.divIcon({
           className: 'kt-tower',
-          html: `<div style="background:${color};border:2px solid #fff;border-radius:50%;width:10px;height:10px;box-shadow:0 0 4px rgba(0,0,0,0.3);"></div>`,
+          html: `<div style="background:${color};border:2px solid #fff;border-radius:50%;width:10px;height:10px;box-shadow:0 0 4px rgba(0,0,0,0.3);z-index:1000;"></div>`,
           iconSize: [10, 10],
           iconAnchor: [5, 5]
         });
@@ -229,7 +229,7 @@
           const [lng, lat] = f.geometry.coordinates;
           const name = f.properties.name || 'Campsite';
           const safeName = esc(name);
-          const m = L.marker([lat, lng], { title: safeName });
+          const m = L.marker([lat, lng], { title: safeName, zIndexOffset: 1000 });
           m.on('click', () => {
             KampTrailPanel.setContent(`<h2>${safeName}</h2><p>From OpenCampingMap</p>`);
             KampTrailPanel.show();
