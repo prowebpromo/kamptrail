@@ -261,6 +261,7 @@
     }
 
     const safeName = esc(p.name || 'Unnamed Site');
+    const safeJsName = JSON.stringify(p.name || 'Campsite');
     const safeType = esc(p.type || 'Unknown');
     const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
     const safeAmenities = p.amenities && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
@@ -295,6 +296,11 @@
           <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>
+        </div>
+        <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
+            <button onclick="KampTrailData.loadGoogleData('${safeId}', ${safeJsName}, ${site.geometry.coordinates[1]}, ${site.geometry.coordinates[0]})" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
+                📷 Show Google Photos & Rating
+            </button>
         </div>
       </div>
     `;
@@ -431,6 +437,52 @@
     toggleFavorite(id) {
       console.log('Toggling favorite:', id);
       if (state.config.onFavoriteToggle) state.config.onFavoriteToggle(id);
+    },
+
+    async loadGoogleData(siteId, name, lat, lng) {
+        if (!window.KampTrailGoogle) {
+            console.error('Google Places Service not available.');
+            return;
+        }
+        const container = document.getElementById(`google-places-container-${siteId}`);
+        if (!container) return;
+
+        container.innerHTML = '<em>Loading Google data...</em>';
+
+        const data = await window.KampTrailGoogle.getPlaceDetails(name, lat, lng);
+
+        if (!data) {
+            container.innerHTML = '<em>No Google data found for this location.</em>';
+            return;
+        }
+        if (data.error === 'QUOTA_EXCEEDED') {
+            container.style.display = 'none'; // Hide if quota is hit
+            return;
+        }
+
+        let photosHtml = '';
+        if (data.photos && data.photos.length > 0) {
+            photosHtml = `
+                <div style="display:flex; overflow-x:auto; gap: 5px; padding-bottom: 5px;">
+                    ${data.photos.slice(0, 5).map(photo => `<img src="${photo.url}" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`).join('')}
+                </div>
+            `;
+        }
+
+        const ratingHtml = data.rating ? `
+            <div style="font-size: 12px; margin-top: 5px;">
+                <strong>Google Rating:</strong> ${data.rating.toFixed(1)} ⭐ (${data.userRatingCount} reviews)
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}" target="_blank" rel="noopener">Read reviews</a>
+            </div>
+        ` : '';
+
+        container.innerHTML = `
+            ${photosHtml}
+            ${ratingHtml}
+            <div style="font-size: 10px; text-align: right; color: #888; margin-top: 5px;">
+                Powered by Google
+            </div>
+        `;
     }
   };
 })();
