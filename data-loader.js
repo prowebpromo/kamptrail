@@ -298,7 +298,7 @@
           </button>
         </div>
         <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button onclick="KampTrailData.loadGoogleData('${safeId}', ${safeJsName}, ${site.geometry.coordinates[1]}, ${site.geometry.coordinates[0]})" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
+            <button onclick='KampTrailData.loadGoogleData("${safeId}", ${safeJsName}, ${site.geometry.coordinates[1]}, ${site.geometry.coordinates[0]})' style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
                 📷 Show Google Photos & Rating
             </button>
         </div>
@@ -440,8 +440,11 @@
     },
 
     async loadGoogleData(siteId, name, lat, lng) {
-        if (!window.KampTrailGoogle) {
-            console.error('Google Places Service not available.');
+        if (!window.KampTrailGoogle || !window.KampTrailGoogle.isInitialized()) {
+            const container = document.getElementById(`google-places-container-${siteId}`);
+            if (container) {
+                container.innerHTML = `<div style="font-size:12px;color:#888;padding:10px 0;">Google Places API key not configured. See README for setup instructions.</div>`;
+            }
             return;
         }
         const container = document.getElementById(`google-places-container-${siteId}`);

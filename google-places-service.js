@@ -189,6 +189,14 @@
     },
 
     /**
+     * Checks if the Google Places service has been initialized with a valid API key.
+     * @returns {boolean}
+     */
+    isInitialized: () => {
+      return !!state.apiKey;
+    },
+
+    /**
      * The main public method to get Google Places data for a campsite.
      * It orchestrates finding the place ID and then fetching the details.
      *
@@ -198,6 +206,10 @@
      * @returns {Promise<Object|null>} Place details or null.
      */
     getPlaceDetails: async (campsiteName, lat, lng) => {
+      if (!state.apiKey) {
+        console.warn('[Google Places] API key not set. Cannot fetch details.');
+        return { error: 'API_KEY_MISSING' };
+      }
       try {
         const placeId = await findPlaceId(campsiteName, lat, lng);
         if (placeId && placeId.error) return placeId; // Propagate quota error
