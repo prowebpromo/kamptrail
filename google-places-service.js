@@ -80,7 +80,9 @@
     try {
       const response = await fetch(url, {
         method: 'GET',
+        mode: 'cors',
         headers: {
+          'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,
         }
       });
@@ -131,6 +133,7 @@
     try {
       const response = await fetch(url, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,
@@ -194,7 +197,7 @@
     if (!state.apiKey) return null;
     const url = `https://places.googleapis.com/v1/${photoName}/media?key=${state.apiKey}&maxWidthPx=400`;
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { mode: 'cors' });
       if (!response.ok) return null;
       const blob = await response.blob();
       return URL.createObjectURL(blob);

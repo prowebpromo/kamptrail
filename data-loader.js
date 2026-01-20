@@ -264,12 +264,15 @@
     const safeJsName = JSON.stringify(p.name || 'Campsite');
     const safeType = esc(p.type || 'Unknown');
     const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
-    const safeAmenities = p.amenities && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
+    const safeAmenities = Array.isArray(p.amenities) && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
     const safeId = esc(p.id || '');
 
     // Rig-friendly info
-    const rigFriendly = p.rig_friendly && p.rig_friendly.length ? p.rig_friendly : [];
+    const rigFriendly = Array.isArray(p.rig_friendly) && p.rig_friendly.length ? p.rig_friendly : [];
     const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
+
+    const lat = site.geometry.coordinates[1];
+    const lng = site.geometry.coordinates[0];
 
     return `
       <div style="min-width:200px;">
@@ -293,12 +296,12 @@
           <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Compare
           </button>
-          <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button onclick="window.open('https://maps.google.com/?q=${lat},${lng}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>
         </div>
         <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button onclick='KampTrailData.loadGoogleData("${safeId}", ${safeJsName}, ${site.geometry.coordinates[1]}, ${site.geometry.coordinates[0]})' style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
+            <button onclick='KampTrailData.loadGoogleData("${safeId}", ${safeJsName}, ${lat}, ${lng})' style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
                 📷 Show Google Photos & Rating
             </button>
         </div>
