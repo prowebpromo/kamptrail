@@ -69,7 +69,7 @@
     const cachedData = cache.get(placeId);
     if (cachedData) {
       console.log(`[Google Places] Cache HIT for Place ID: ${placeId}`);
-      return cachedData;
+      return processPhotos(cachedData);
     }
     console.log(`[Google Places] Cache MISS for Place ID: ${placeId}. Fetching from API...`);
 
@@ -81,7 +81,6 @@
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,
         }
       });
@@ -96,21 +95,14 @@
 
       const data = await response.json();
 
-      // Fetch photos as blob URLs to get around CORS issues
-      if (data.photos && data.photos.length > 0) {
-        const photoPromises = data.photos.map(photo => fetchPhotoAsBlobUrl(photo.name));
-        const photoUrls = await Promise.all(photoPromises);
-        data.photos = data.photos.map((photo, index) => ({
-          ...photo,
-          url: photoUrls[index]
-        })).filter(photo => photo.url); // Filter out any photos that failed to load
-      }
-
+      // Cache the raw data *before* processing photos
       cache.set(placeId, data);
-      return data;
+
+      // Now process the photos and return the result with blob URLs
+      return processPhotos(data);
 
     } catch (error) {
-      console.error('[Google Places] Error fetching place details:', error);
+      console.error(`[Google Places] Critical error in fetchPlaceDetails for placeId ${placeId}:`, error);
       return null;
     }
   }
@@ -170,9 +162,27 @@
       return null;
 
     } catch (error) {
-      console.error('[Google Places] Error searching for place:', error);
+      console.error(`[Google Places] Critical error in findPlaceId for query "${campsiteName}":`, error);
       return null;
     }
+  }
+
+  /**
+   * Processes the photo data from a place details object, fetching each photo
+   * as a blob and returning a new data object with local blob URLs.
+   * @param {Object} data - The raw place details data from the API.
+   * @returns {Promise<Object>} A promise that resolves with the processed data.
+   */
+  async function processPhotos(data) {
+    if (data.photos && data.photos.length > 0) {
+      const photoPromises = data.photos.map(photo => fetchPhotoAsBlobUrl(photo.name));
+      const photoUrls = await Promise.all(photoPromises);
+      data.photos = data.photos.map((photo, index) => ({
+        ...photo,
+        url: photoUrls[index]
+      })).filter(photo => photo.url); // Filter out any photos that failed to load
+    }
+    return data;
   }
 
   /**
