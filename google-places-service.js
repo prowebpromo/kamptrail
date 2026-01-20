@@ -69,7 +69,7 @@
     const cachedData = cache.get(placeId);
     if (cachedData) {
       console.log(`[Google Places] Cache HIT for Place ID: ${placeId}`);
-      return cachedData;
+      return processPhotos(cachedData);
     }
     console.log(`[Google Places] Cache MISS for Place ID: ${placeId}. Fetching from API...`);
 
@@ -97,19 +97,14 @@
 
       const data = await response.json();
 
-      // Remap photos to full URLs for easier use on the frontend
-      if (data.photos && data.photos.length > 0) {
-        data.photos = data.photos.map(photo => ({
-          ...photo,
-          url: `https://places.googleapis.com/v1/${photo.name}/media?key=${state.apiKey}&maxWidthPx=400`
-        }));
-      }
-
+      // Cache the raw data *before* processing photos
       cache.set(placeId, data);
-      return data;
+
+      // Now process the photos and return the result with blob URLs
+      return processPhotos(data);
 
     } catch (error) {
-      console.error('[Google Places] Error fetching place details:', error);
+      console.error(`[Google Places] Critical error in fetchPlaceDetails for placeId ${placeId}:`, error);
       return null;
     }
   }
@@ -170,7 +165,44 @@
       return null;
 
     } catch (error) {
-      console.error('[Google Places] Error searching for place:', error);
+      console.error(`[Google Places] Critical error in findPlaceId for query "${campsiteName}":`, error);
+      return null;
+    }
+  }
+
+  /**
+   * Processes the photo data from a place details object, fetching each photo
+   * as a blob and returning a new data object with local blob URLs.
+   * @param {Object} data - The raw place details data from the API.
+   * @returns {Promise<Object>} A promise that resolves with the processed data.
+   */
+  async function processPhotos(data) {
+    if (data.photos && data.photos.length > 0) {
+      const photoPromises = data.photos.map(photo => fetchPhotoAsBlobUrl(photo.name));
+      const photoUrls = await Promise.all(photoPromises);
+      data.photos = data.photos.map((photo, index) => ({
+        ...photo,
+        url: photoUrls[index]
+      })).filter(photo => photo.url); // Filter out any photos that failed to load
+    }
+    return data;
+  }
+
+  /**
+   * Fetches a photo from the Google Places API and returns a local blob URL.
+   * @param {string} photoName - The name identifier of the photo.
+   * @returns {Promise<string|null>} A promise that resolves with a blob URL or null.
+   */
+  async function fetchPhotoAsBlobUrl(photoName) {
+    if (!state.apiKey) return null;
+    const url = `https://places.googleapis.com/v1/${photoName}/media?key=${state.apiKey}&maxWidthPx=400`;
+    try {
+      const response = await fetch(url, { mode: 'cors' });
+      if (!response.ok) return null;
+      const blob = await response.blob();
+      return URL.createObjectURL(blob);
+    } catch (error) {
+      console.error('[Google Places] Error fetching photo:', error);
       return null;
     }
   }
@@ -191,6 +223,14 @@
     },
 
     /**
+     * Checks if the Google Places service has been initialized with a valid API key.
+     * @returns {boolean}
+     */
+    isInitialized: () => {
+      return !!state.apiKey;
+    },
+
+    /**
      * The main public method to get Google Places data for a campsite.
      * It orchestrates finding the place ID and then fetching the details.
      *
@@ -200,6 +240,10 @@
      * @returns {Promise<Object|null>} Place details or null.
      */
     getPlaceDetails: async (campsiteName, lat, lng) => {
+      if (!state.apiKey) {
+        console.warn('[Google Places] API key not set. Cannot fetch details.');
+        return { error: 'API_KEY_MISSING' };
+      }
       try {
         const placeId = await findPlaceId(campsiteName, lat, lng);
         if (placeId && placeId.error) return placeId; // Propagate quota error
