@@ -220,6 +220,15 @@
   <script src="gpx-importer.js"></script>
   <script src="campsite-compare.js"></script>
   <script src="config.js"></script>
+  <script>
+    // Dynamically load the Google Maps JavaScript API
+    if (window.GOOGLE_API_KEY && window.GOOGLE_API_KEY !== 'YOUR_API_KEY_HERE') {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${window.GOOGLE_API_KEY}&libraries=places`;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  </script>
   <script src="google-places-service.js"></script>
 
   <!-- Initialize features -->
@@ -227,9 +236,7 @@
     (async () => {
       try {
         // 0) Initialize Google Places Service
-        if(window.KampTrailGoogle && window.GOOGLE_API_KEY && window.GOOGLE_API_KEY !== 'YOUR_API_KEY_HERE') {
-          window.KampTrailGoogle.init(window.GOOGLE_API_KEY);
-        }
+        // The service is loaded and will be used on-demand by the data-loader.
 
         // 1) Overlays - Advanced (base map switcher)
         if (window.KampTrailAdvanced) {

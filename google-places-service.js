@@ -1,21 +1,19 @@
 /*
  * KampTrail Google Places Service
  *
- * This service handles all interactions with the Google Places API (New),
- * including searching for campsites, fetching details, and caching results
- * to minimize API costs and stay within the free tier.
+ * This service handles all interactions with the Google Maps JavaScript API's
+ * Places Service. It finds places, fetches details (photos, ratings), and
+ * caches results to minimize API costs.
  */
 (function() {
   'use strict';
 
-  const state = {
-    apiKey: null,
-    // Base URL for the new Places API
-    apiUrl: 'https://places.googleapis.com/v1/places'
-  };
+  // This will hold the google.maps.places.PlacesService instance.
+  // It's initialized on the first request to ensure the Maps API is loaded.
+  let placesService;
 
   /**
-   * Simple in-memory cache and localStorage cache with a 24-hour expiration.
+   * Simple localStorage cache with a 24-hour expiration.
    */
   const cache = {
     _getLocalStorageKey: (key) => `kt_google_cache_${key}`,
@@ -28,8 +26,7 @@
         const item = JSON.parse(itemStr);
         const now = new Date().getTime();
 
-        // Check if item is older than 24 hours (24 * 60 * 60 * 1000 ms)
-        if (now - item.timestamp > 86400000) {
+        if (now - item.timestamp > 86400000) { // 24 hours
           localStorage.removeItem(cache._getLocalStorageKey(key));
           return null;
         }
@@ -53,201 +50,144 @@
     }
   };
 
+  /**
+   * Initializes the PlacesService. We need a map element to instantiate it,
+   * so we'll temporarily create a hidden one.
+   */
+  function initService() {
+    if (placesService) return;
+    // The PlacesService constructor needs a map or an HTMLDivElement.
+    // It doesn't need to be visible or attached to the DOM.
+    const mapDiv = document.createElement('div');
+    placesService = new google.maps.places.PlacesService(mapDiv);
+  }
 
   /**
-   * Fetches details for a specific Place ID from the Google Places API.
-   * Uses a field mask to request only the necessary data to control costs.
+   * Uses the textSearch method to find the Place ID for a given campsite.
    *
-   * @param {string} placeId - The Google Place ID.
-   * @returns {Promise<Object|null>} A promise that resolves with the place details or null on error.
+   * @param {string} campsiteName
+   * @param {number} lat
+   * @param {number} lng
+   * @returns {Promise<string|null>} Resolves with the Place ID or null.
    */
-  async function fetchPlaceDetails(placeId) {
-    if (!state.apiKey) throw new Error('Google Places API key is not set.');
-    if (!placeId) return null;
+  function findPlaceId(campsiteName, lat, lng) {
+    return new Promise((resolve, reject) => {
+      const cacheKey = `placeid_${campsiteName}_${lat}_${lng}`;
+      const cachedId = cache.get(cacheKey);
+      if (cachedId) {
+        console.log(`[Google Places] Cache HIT for Place ID search: ${campsiteName}`);
+        return resolve(cachedId);
+      }
 
-    // Check cache first
-    const cachedData = cache.get(placeId);
-    if (cachedData) {
-      console.log(`[Google Places] Cache HIT for Place ID: ${placeId}`);
-      return processPhotos(cachedData);
-    }
-    console.log(`[Google Places] Cache MISS for Place ID: ${placeId}. Fetching from API...`);
+      const request = {
+        query: campsiteName,
+        location: new google.maps.LatLng(lat, lng),
+        rankBy: google.maps.places.RankBy.DISTANCE // Prioritize closest results
+      };
 
-    // Field mask to control costs - this is crucial.
-    const fields = 'id,displayName,rating,userRatingCount,photos';
-    const url = `${state.apiUrl}/${placeId}?fields=${fields}`;
-
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'X-Goog-Api-Key': state.apiKey,
+      placesService.textSearch(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+          const placeId = results[0].place_id;
+          cache.set(cacheKey, placeId);
+          resolve(placeId);
+        } else if (status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+          resolve(null);
+        } else if (status === google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
+          console.warn('[Google Places] API quota exceeded.');
+          reject({ error: 'QUOTA_EXCEEDED' });
+        }
+        else {
+          console.error(`[Google Places] textSearch failed with status: ${status}`);
+          reject(new Error(`PlacesService textSearch error: ${status}`));
         }
       });
-
-      if (response.status === 429 || response.status === 403) {
-        console.warn('[Google Places] API quota exceeded or key issue. Gracefully disabling for now.');
-        return { error: 'QUOTA_EXCEEDED' };
-      }
-      if (!response.ok) {
-        throw new Error(`API returned status ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      // Cache the raw data *before* processing photos
-      cache.set(placeId, data);
-
-      // Now process the photos and return the result with blob URLs
-      return processPhotos(data);
-
-    } catch (error) {
-      console.error(`[Google Places] Critical error in fetchPlaceDetails for placeId ${placeId}:`, error);
-      return null;
-    }
+    });
   }
 
   /**
-   * Uses the searchText endpoint to find the Place ID for a given campsite.
+   * Fetches details for a specific Place ID.
+   * Uses a field mask to request only the necessary data.
    *
-   * @param {string} campsiteName - The name of the campsite.
-   * @param {number} lat - The latitude of the campsite.
-   * @param {number} lng - The longitude of the campsite.
-   * @returns {Promise<string|null>} A promise that resolves with the Place ID or null if not found.
+   * @param {string} placeId
+   * @returns {Promise<Object|null>} Resolves with place details or null.
    */
-  async function findPlaceId(campsiteName, lat, lng) {
-     if (!state.apiKey) throw new Error('Google Places API key is not set.');
+  function fetchPlaceDetails(placeId) {
+    return new Promise((resolve, reject) => {
+        const cachedData = cache.get(placeId);
+        if (cachedData) {
+            console.log(`[Google Places] Cache HIT for Place ID: ${placeId}`);
+            // The cached data already has photo URLs processed.
+            return resolve(cachedData);
+        }
+        console.log(`[Google Places] Cache MISS for Place ID: ${placeId}. Fetching from API...`);
 
-     const cacheKey = `placeid_${campsiteName}_${lat}_${lng}`;
-     const cachedId = cache.get(cacheKey);
-     if(cachedId) {
-       console.log(`[Google Places] Cache HIT for Place ID search: ${campsiteName}`);
-       return cachedId;
-     }
+      const request = {
+        placeId: placeId,
+        // Crucial field mask to control costs
+        fields: ['name', 'rating', 'user_ratings_total', 'photos', 'place_id', 'url']
+      };
 
-    const url = `${state.apiUrl}:searchText`;
-    const query = `${campsiteName}`;
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Goog-Api-Key': state.apiKey,
-        },
-        body: JSON.stringify({
-          textQuery: query,
-          locationBias: {
-            circle: {
-              center: { latitude: lat, longitude: lng },
-              radius: 5000.0 // 5km radius bias
+      placesService.getDetails(request, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            // Process photo URLs before caching and returning
+            const processedPlace = { ...place };
+            if (processedPlace.photos && processedPlace.photos.length > 0) {
+                processedPlace.photos = processedPlace.photos.slice(0, 5).map(p => ({
+                    // Get a URL for a reasonable size
+                    url: p.getUrl({ maxWidth: 400, maxHeight: 400 }),
+                    // The attribution is required by Google's ToS
+                    attribution: p.html_attributions[0]
+                }));
             }
-          }
-        })
+          cache.set(placeId, processedPlace);
+          resolve(processedPlace);
+        } else if (status === google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
+            console.warn('[Google Places] API quota exceeded.');
+            reject({ error: 'QUOTA_EXCEEDED' });
+        } else {
+            console.error(`[Google Places] getDetails failed with status: ${status}`);
+            reject(new Error(`PlacesService getDetails error: ${status}`));
+        }
       });
-
-      if (response.status === 429 || response.status === 403) {
-        console.warn('[Google Places] API quota exceeded or key issue.');
-        return { error: 'QUOTA_EXCEEDED' };
-      }
-      if (!response.ok) throw new Error(`API returned status ${response.status}`);
-
-      const data = await response.json();
-
-      if (data.places && data.places.length > 0) {
-        const placeId = data.places[0].id;
-        cache.set(cacheKey, placeId);
-        return placeId;
-      }
-      return null;
-
-    } catch (error) {
-      console.error(`[Google Places] Critical error in findPlaceId for query "${campsiteName}":`, error);
-      return null;
-    }
-  }
-
-  /**
-   * Processes the photo data from a place details object, fetching each photo
-   * as a blob and returning a new data object with local blob URLs.
-   * @param {Object} data - The raw place details data from the API.
-   * @returns {Promise<Object>} A promise that resolves with the processed data.
-   */
-  async function processPhotos(data) {
-    if (data.photos && data.photos.length > 0) {
-      const photoPromises = data.photos.map(photo => fetchPhotoAsBlobUrl(photo.name));
-      const photoUrls = await Promise.all(photoPromises);
-      data.photos = data.photos.map((photo, index) => ({
-        ...photo,
-        url: photoUrls[index]
-      })).filter(photo => photo.url); // Filter out any photos that failed to load
-    }
-    return data;
-  }
-
-  /**
-   * Fetches a photo from the Google Places API and returns a local blob URL.
-   * @param {string} photoName - The name identifier of the photo.
-   * @returns {Promise<string|null>} A promise that resolves with a blob URL or null.
-   */
-  async function fetchPhotoAsBlobUrl(photoName) {
-    if (!state.apiKey) return null;
-    const url = `https://places.googleapis.com/v1/${photoName}/media?key=${state.apiKey}&maxWidthPx=400`;
-    try {
-      const response = await fetch(url);
-      if (!response.ok) return null;
-      const blob = await response.blob();
-      return URL.createObjectURL(blob);
-    } catch (error) {
-      console.error('[Google Places] Error fetching photo:', error);
-      return null;
-    }
+    });
   }
 
 
   window.KampTrailGoogle = {
     /**
-     * Initializes the service with the Google Places API key.
-     * @param {string} apiKey
-     */
-    init: (apiKey) => {
-      if (!apiKey) {
-        console.warn('[Google Places] API key is missing. Google Places integration is disabled.');
-        return;
-      }
-      state.apiKey = apiKey;
-      console.log('[Google Places] Service initialized.');
-    },
-
-    /**
-     * Checks if the Google Places service has been initialized with a valid API key.
+     * Checks if the Google Maps JavaScript API with the 'places' library is available.
      * @returns {boolean}
      */
     isInitialized: () => {
-      return !!state.apiKey;
+      return typeof google !== 'undefined' && google.maps && google.maps.places;
     },
 
     /**
-     * The main public method to get Google Places data for a campsite.
-     * It orchestrates finding the place ID and then fetching the details.
+     * Main public method to get Google Places data for a campsite.
      *
-     * @param {string} campsiteName - The name of the campsite.
-     * @param {number} lat - The latitude.
-     * @param {number} lng - The longitude.
+     * @param {string} campsiteName
+     * @param {number} lat
+     * @param {number} lng
      * @returns {Promise<Object|null>} Place details or null.
      */
     getPlaceDetails: async (campsiteName, lat, lng) => {
-      if (!state.apiKey) {
-        console.warn('[Google Places] API key not set. Cannot fetch details.');
-        return { error: 'API_KEY_MISSING' };
+      if (!KampTrailGoogle.isInitialized()) {
+        console.warn('[Google Places] Google Maps API not loaded. Cannot fetch details.');
+        return { error: 'API_NOT_LOADED' };
       }
+
+      // Initialize the service on the first call
+      initService();
+
       try {
         const placeId = await findPlaceId(campsiteName, lat, lng);
-        if (placeId && placeId.error) return placeId; // Propagate quota error
         if (!placeId) return null;
 
         return await fetchPlaceDetails(placeId);
       } catch (error) {
+        if (error.error === 'QUOTA_EXCEEDED') {
+            return { error: 'QUOTA_EXCEEDED' };
+        }
         console.error(`[Google Places] Failed to get details for ${campsiteName}:`, error);
         return null;
       }
