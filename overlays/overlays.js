@@ -230,10 +230,7 @@
           const name = f.properties.name || 'Campsite';
           const safeName = esc(name);
           const m = L.marker([lat, lng], { title: safeName });
-          m.on('click', () => {
-            KampTrailPanel.setContent(`<h2>${safeName}</h2><p>From OpenCampingMap</p>`);
-            KampTrailPanel.show();
-          });
+          m.bindPopup(`<strong>${safeName}</strong><br><small>From OpenCampingMap</small>`);
           ocmCluster.addLayer(m);
         });
         ocmAdded = true;
