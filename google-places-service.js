@@ -80,6 +80,7 @@
     try {
       const response = await fetch(url, {
         method: 'GET',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,
@@ -137,6 +138,7 @@
     try {
       const response = await fetch(url, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,

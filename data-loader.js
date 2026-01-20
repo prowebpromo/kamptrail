@@ -730,7 +730,7 @@
               .slice(0, 5)
               .map(
                 (photo) =>
-                  `<img src="${photo.url}" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`
+                  `<img src="${photo.url}" crossorigin="anonymous" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`
               )
               .join("")}
           </div>
