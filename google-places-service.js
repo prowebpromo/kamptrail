@@ -96,12 +96,14 @@
 
       const data = await response.json();
 
-      // Remap photos to full URLs for easier use on the frontend
+      // Fetch photos as blob URLs to get around CORS issues
       if (data.photos && data.photos.length > 0) {
-        data.photos = data.photos.map(photo => ({
+        const photoPromises = data.photos.map(photo => fetchPhotoAsBlobUrl(photo.name));
+        const photoUrls = await Promise.all(photoPromises);
+        data.photos = data.photos.map((photo, index) => ({
           ...photo,
-          url: `https://places.googleapis.com/v1/${photo.name}/media?key=${state.apiKey}&maxWidthPx=400`
-        }));
+          url: photoUrls[index]
+        })).filter(photo => photo.url); // Filter out any photos that failed to load
       }
 
       cache.set(placeId, data);
@@ -169,6 +171,25 @@
 
     } catch (error) {
       console.error('[Google Places] Error searching for place:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Fetches a photo from the Google Places API and returns a local blob URL.
+   * @param {string} photoName - The name identifier of the photo.
+   * @returns {Promise<string|null>} A promise that resolves with a blob URL or null.
+   */
+  async function fetchPhotoAsBlobUrl(photoName) {
+    if (!state.apiKey) return null;
+    const url = `https://places.googleapis.com/v1/${photoName}/media?key=${state.apiKey}&maxWidthPx=400`;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) return null;
+      const blob = await response.blob();
+      return URL.createObjectURL(blob);
+    } catch (error) {
+      console.error('[Google Places] Error fetching photo:', error);
       return null;
     }
   }
