@@ -219,11 +219,18 @@
   <script src="trip-planner.js"></script>
   <script src="gpx-importer.js"></script>
   <script src="campsite-compare.js"></script>
+  <script src="config.js"></script>
+  <script src="google-places-service.js"></script>
 
   <!-- Initialize features -->
   <script>
     (async () => {
       try {
+        // 0) Initialize Google Places Service
+        if(window.KampTrailGoogle && window.GOOGLE_API_KEY && window.GOOGLE_API_KEY !== 'YOUR_API_KEY_HERE') {
+          window.KampTrailGoogle.init(window.GOOGLE_API_KEY);
+        }
+
         // 1) Overlays - Advanced (base map switcher)
         if (window.KampTrailAdvanced) {
           KampTrailAdvanced.init(map, {});

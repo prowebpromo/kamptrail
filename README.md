@@ -42,6 +42,31 @@ python3 -m http.server 8000
 
 ## ⚙️ Configuration
 
+### Google Places Photos & Ratings
+
+To enable the Google Places integration for campsite photos and ratings:
+
+1.  **Get a free Google Places API key:**
+    *   Go to the [Google Cloud Console](https://console.cloud.google.com/).
+    *   Create a new project.
+    *   Enable the "**Places API (New)**".
+    *   Go to "Credentials" and create a new API key.
+    *   **Important:** Restrict your API key to your domain to prevent unauthorized use.
+
+2.  **Create `config.js` file:**
+    *   In the root of the project, create a new file named `config.js`.
+    *   Add the following content to the file, replacing `YOUR_API_KEY_HERE` with your actual key:
+        ```javascript
+        // config.js
+        window.GOOGLE_API_KEY = 'YOUR_API_KEY_HERE';
+        ```
+    *   The `config.js` file is ignored by Git, so your key will not be committed.
+
+3.  **How it works:**
+    *   When you click on a campsite, a button will appear to "Show Google Photos & Rating".
+    *   Clicking this button will fetch data from the Google Places API.
+    *   The results are cached for 24 hours to minimize API calls and costs.
+
 ### Cell Tower Overlay (OpenCelliD)
 
 To enable the cell tower overlay:
