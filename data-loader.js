@@ -443,6 +443,10 @@
     },
 
     async loadGoogleData(siteId, name, lat, lng) {
+        console.log('[Google Places] loadGoogleData called:', { siteId, name, lat, lng });
+        console.log('[Google Places] KampTrailGoogle available?', !!window.KampTrailGoogle);
+        console.log('[Google Places] isInitialized?', window.KampTrailGoogle?.isInitialized());
+
         if (!window.KampTrailGoogle || !window.KampTrailGoogle.isInitialized()) {
             const container = document.getElementById(`google-places-container-${siteId}`);
             if (container) {
@@ -456,23 +460,30 @@
         container.innerHTML = '<em>Loading Google data...</em>';
 
         const data = await window.KampTrailGoogle.getPlaceDetails(name, lat, lng);
+        console.log('[Google Places] getPlaceDetails returned:', data);
 
         if (!data) {
+            console.warn('[Google Places] No data returned');
             container.innerHTML = '<em>No Google data found for this location.</em>';
             return;
         }
         if (data.error === 'QUOTA_EXCEEDED') {
+            console.warn('[Google Places] Quota exceeded');
             container.style.display = 'none'; // Hide if quota is hit
             return;
         }
 
         let photosHtml = '';
         if (data.photos && data.photos.length > 0) {
+            console.log('[Google Places] Processing photos:', data.photos.length);
+            console.log('[Google Places] First photo URL:', data.photos[0]?.url);
             photosHtml = `
                 <div style="display:flex; overflow-x:auto; gap: 5px; padding-bottom: 5px;">
                     ${data.photos.slice(0, 5).map(photo => `<img src="${photo.url}" crossorigin="anonymous" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`).join('')}
                 </div>
             `;
+        } else {
+            console.log('[Google Places] No photos in data');
         }
 
         const ratingHtml = data.rating ? `
