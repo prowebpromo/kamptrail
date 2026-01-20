@@ -470,7 +470,7 @@
         if (data.photos && data.photos.length > 0) {
             photosHtml = `
                 <div style="display:flex; overflow-x:auto; gap: 5px; padding-bottom: 5px;">
-                    ${data.photos.slice(0, 5).map(photo => `<img src="${photo.url}" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`).join('')}
+                    ${data.photos.slice(0, 5).map(photo => `<img src="${photo.url}" crossorigin="anonymous" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`).join('')}
                 </div>
             `;
         }
