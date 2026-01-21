@@ -201,4 +201,23 @@ async function cacheFirstTiles(request) {
 
 // Stale-while-revalidate for same-origin static assets
 async function staleWhileRevalidate(request) {
-  const cache = await caches.ope
+  const cache = await caches.open(STATIC_CACHE);
+
+  const cached = await cache.match(request);
+
+  const fetching = fetch(request)
+    .then((res) => {
+      if (res && res.ok) {
+        cache.put(request, res.clone()).catch(() => {});
+      }
+      return res;
+    })
+    .catch(() => cached || new Response("", { status: 504, statusText: "Fetch failed" }));
+
+  return cached || fetching;
+}
+
+// Allow page to force an update (index shows a toast)
+self.addEventListener("message", (e) => {
+  if (e.data === "SKIP_WAITING") self.skipWaiting();
+});
