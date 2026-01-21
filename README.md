@@ -42,30 +42,67 @@ python3 -m http.server 8000
 
 ## ⚙️ Configuration
 
-### Google Places Photos & Ratings
+### Google Places Photos & Ratings (Optional)
 
-To enable the Google Places integration for campsite photos and ratings:
+KampTrail can display Google Photos and ratings for campsites. This is **optional** - the app works great without it!
 
-1.  **Get a free Google Places API key:**
-    *   Go to the [Google Cloud Console](https://console.cloud.google.com/).
-    *   Create a new project.
-    *   Enable the "**Places API (New)**".
-    *   Go to "Credentials" and create a new API key.
-    *   **Important:** Restrict your API key to your domain to prevent unauthorized use.
+#### 1. Get a Free Google Places API Key
 
-2.  **Create `config.js` file:**
-    *   In the root of the project, create a new file named `config.js`.
-    *   Add the following content to the file, replacing `YOUR_API_KEY_HERE` with your actual key:
-        ```javascript
-        // config.js
-        window.GOOGLE_API_KEY = 'YOUR_API_KEY_HERE';
-        ```
-    *   The `config.js` file is ignored by Git, so your key will not be committed.
+Go to the [Google Cloud Console](https://console.cloud.google.com/):
 
-3.  **How it works:**
-    *   When you click on a campsite, a button will appear to "Show Google Photos & Rating".
-    *   Clicking this button will fetch data from the Google Places API.
-    *   The results are cached for 24 hours to minimize API calls and costs.
+1. **Create a new project** (or select an existing one)
+2. **Enable billing** (required even for free tier - you won't be charged unless you exceed $200/month free credit)
+3. **Enable the API:**
+   - Go to **APIs & Services** → **Library**
+   - Search for **"Places API (New)"** ⚠️ Must be the NEW version, not the old "Places API"
+   - Click **Enable**
+   - **Wait 2-5 minutes** for the API to fully activate
+4. **Create an API key:**
+   - Go to **APIs & Services** → **Credentials**
+   - Click **Create Credentials** → **API Key**
+   - Copy your new API key
+
+#### 2. Configure Your API Key
+
+**Option A: For local development (testing):**
+- Under **Application restrictions**: Set to **"None"**
+- Under **API restrictions**: Select **"Restrict key"** → Check only **"Places API (New)"**
+
+**Option B: For production (recommended):**
+- Under **Application restrictions**: Select **"HTTP referrers"**
+- Add your domain: `https://yourdomain.com/*`
+- Under **API restrictions**: Select **"Restrict key"** → Check only **"Places API (New)"**
+
+#### 3. Create `config.js` File
+
+In the root of the project, create a file named `config.js`:
+
+```javascript
+// config.js
+window.GOOGLE_API_KEY = 'AIzaSy...your-actual-key-here';
+```
+
+⚠️ **Important:** The `config.js` file is in `.gitignore` - your key will NOT be committed to Git.
+
+#### 4. Usage
+
+- Click any campsite marker on the map
+- Click the **"📷 Show Google Photos & Rating"** button
+- Photos and ratings load from Google Places
+- Results are cached for 24 hours to minimize API costs
+
+#### Troubleshooting
+
+**"403 Forbidden" error?**
+- Make sure you enabled **"Places API (New)"** (not the old one)
+- Verify billing is enabled in Google Cloud Console
+- Wait a few minutes after enabling the API
+- Check that your API key restrictions allow localhost (for testing)
+
+**Cost concerns?**
+- Free tier: $200/month credit = ~28,000 photo requests
+- Results are cached for 24 hours
+- For personal use, you'll stay well within free tier
 
 ### Cell Tower Overlay (OpenCelliD)
 
