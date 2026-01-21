@@ -1,6 +1,7 @@
-// service-worker.js — KampTrail SW (safe with 3rd-party tiles)
-// BUMP VERSION to force a fresh install whenever you change shell files.
-const VERSION = 'kt-v16';
+// service-worker.js — KampTrail SW (SAFE MODE)
+// Goal: never break map tiles or cross-origin requests.
+// Bump VERSION any time you change cached files.
+const VERSION = 'kt-v17-safe';
 
 const SHELL = [
   'index.html',
@@ -21,104 +22,85 @@ const SHELL = [
   'google-places-service.js'
 ];
 
-// ------- Install: cache app shell -------
+// --- INSTALL: cache app shell ---
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(VERSION).then((c) => c.addAll(SHELL))
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(VERSION);
+    await cache.addAll(SHELL);
+    await self.skipWaiting();
+  })());
 });
 
-// ------- Activate: clean old caches -------
+// --- ACTIVATE: remove old caches ---
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k)))
-    )
-  );
-  self.clients.claim();
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map((k) => (k !== VERSION ? caches.delete(k) : null)));
+    await self.clients.claim();
+  })());
 });
 
-// Helper: is OSM base tile (we allow caching these only)
-const isOsmTile = (url) =>
-  url.origin === 'https://tile.openstreetmap.org';
-
-// ------- Fetch strategy matrix -------
+// --- FETCH: SAFE ROUTING ---
+// Key rule: Never intercept cross-origin requests (OSM tiles, Mapbox, Google, etc.)
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
+  const request = event.request;
   const url = new URL(request.url);
 
-  // 1) HTML navigation: Network First (4s timeout) with cached fallback
+  const isSameOrigin = url.origin === self.location.origin;
+
+  // 1) HTML navigation: network-first with cache fallback
   if (request.mode === 'navigate') {
     event.respondWith(networkFirstHTML(request));
     return;
   }
 
-  // 2) OSM base tiles ONLY: Cache First with small cap
-  if (isOsmTile(url)) {
-    event.respondWith(cacheFirstTiles(request));
-    return;
+  // 2) Never touch cross-origin requests
+  if (!isSameOrigin) {
+    return; // browser handles it (prevents ORB, tile failures, etc.)
   }
 
-  // 3) Same-origin static assets (JS/CSS/PNG/SVG/WEBP/JPG/ICO): Stale-While-Revalidate
-  //    IMPORTANT: skip cross-origin assets to avoid OpaqueResponseBlocking
-  const isStatic = /\.(?:js|css|png|svg|webp|jpg|jpeg|ico)$/.test(url.pathname);
-  const isSameOrigin = url.origin === self.location.origin;
-
-  if (isStatic && isSameOrigin) {
+  // 3) Same-origin static assets: stale-while-revalidate
+  const isStatic = /\.(?:js|css|png|svg|webp|jpg|jpeg|ico|json|geojson)$/.test(url.pathname);
+  if (isStatic) {
     event.respondWith(staleWhileRevalidate(request));
     return;
   }
 
-  // Otherwise: do nothing — let the browser handle it (prevents ORB on 3rd-party tiles)
+  // 4) Everything else same-origin: just pass through
+  // (No respondWith = no chance to break anything)
 });
 
-// ------- Strategies -------
+// --- Strategies ---
 async function networkFirstHTML(request) {
-  const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), 4000);
+  const cache = await caches.open(VERSION);
+
   try {
-    const net = await fetch(request, { signal: controller.signal });
-    clearTimeout(t);
-    const cache = await caches.open(VERSION);
-    cache.put('index.html', net.clone()); // keep index fresh
+    const net = await fetch(request);
+    if (net && net.ok) {
+      cache.put('index.html', net.clone());
+    }
     return net;
-  } catch {
-    clearTimeout(t);
-    const cache = await caches.open(VERSION);
-    return (await cache.match('index.html')) || Response.error();
+  } catch (err) {
+    const cached = await cache.match('index.html');
+    return cached || new Response('Offline', { status: 503, statusText: 'Offline' });
   }
-}
-
-async function cacheFirstTiles(request) {
-  const cache = await caches.open('kt-tiles');
-  const hit = await cache.match(request, { ignoreSearch: true });
-  if (hit) return hit;
-
-  const res = await fetch(request, { mode: 'cors' });
-  // For cross-origin tiles, the response may be opaque; just cache the entry without reading.
-  if (res && res.ok) {
-    try { await cache.put(request, res.clone()); } catch {}
-    // Trim oldest
-    const keys = await cache.keys();
-    const LIMIT = 400; // ~a few metro areas worth
-    if (keys.length > LIMIT) await cache.delete(keys[0]);
-  }
-  return res;
 }
 
 async function staleWhileRevalidate(request) {
-  const cache = await caches.open('kt-static');
+  const cache = await caches.open(VERSION);
   const cached = await cache.match(request, { ignoreSearch: true });
 
-  const fetching = fetch(request).then((res) => {
-    if (res && res.ok) cache.put(request, res.clone());
-    return res;
-  }).catch(() => cached);
+  const fetchPromise = fetch(request)
+    .then((res) => {
+      if (res && res.ok) cache.put(request, res.clone());
+      return res;
+    })
+    .catch(() => cached);
 
-  return cached || fetching;
+  return cached || fetchPromise;
 }
 
-// Allow page to force an update (index shows a toast)
+// Allow page to force SW update
 self.addEventListener('message', (e) => {
   if (e.data === 'SKIP_WAITING') self.skipWaiting();
 });
