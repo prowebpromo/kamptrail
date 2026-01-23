@@ -290,13 +290,13 @@
           </div>
         ` : ''}
         <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button class="add-to-trip-btn" data-site-id="${safeId}" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Add to Trip
           </button>
-          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button class="compare-btn" data-site-id="${safeId}" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Compare
           </button>
-          <button onclick="window.open('https://maps.google.com/?q=${lat},${lng}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button class="navigate-btn" data-lat="${lat}" data-lng="${lng}" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>
         </div>
@@ -348,14 +348,33 @@
       state.config = config;
       console.log('🚀 Initializing KampTrail Data Loader...');
 
-      // Set up event delegation for Google Places buttons
+      // Set up event delegation for all popup buttons
       document.addEventListener('click', function(e) {
+        // Google Places button
         if (e.target && e.target.classList.contains('load-google-btn')) {
           const siteId = e.target.dataset.siteId;
           const name = e.target.dataset.name;
           const lat = parseFloat(e.target.dataset.lat);
           const lng = parseFloat(e.target.dataset.lng);
           window.KampTrailData.loadGoogleData(siteId, name, lat, lng);
+        }
+        // Add to Trip button
+        else if (e.target && e.target.classList.contains('add-to-trip-btn')) {
+          const siteId = e.target.dataset.siteId;
+          window.KampTrailData.addToTrip(siteId);
+        }
+        // Compare button
+        else if (e.target && e.target.classList.contains('compare-btn')) {
+          const siteId = e.target.dataset.siteId;
+          if (window.KampTrailCompare) {
+            window.KampTrailCompare.addToCompare(siteId);
+          }
+        }
+        // Navigate button
+        else if (e.target && e.target.classList.contains('navigate-btn')) {
+          const lat = e.target.dataset.lat;
+          const lng = e.target.dataset.lng;
+          window.open(`https://maps.google.com/?q=${lat},${lng}`);
         }
       });
 
