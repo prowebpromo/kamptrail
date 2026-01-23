@@ -301,7 +301,7 @@
           </button>
         </div>
         <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button onclick='KampTrailData.loadGoogleData("${safeId}", ${safeJsName}, ${lat}, ${lng})' style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
+            <button class="load-google-btn" data-site-id="${safeId}" data-name="${safeName.replace(/"/g, '&quot;')}" data-lat="${lat}" data-lng="${lng}" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
                 📷 Show Google Photos & Rating
             </button>
         </div>
@@ -347,6 +347,17 @@
     async init(map, config = {}) {
       state.config = config;
       console.log('🚀 Initializing KampTrail Data Loader...');
+
+      // Set up event delegation for Google Places buttons
+      document.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('load-google-btn')) {
+          const siteId = e.target.dataset.siteId;
+          const name = e.target.dataset.name;
+          const lat = parseFloat(e.target.dataset.lat);
+          const lng = parseFloat(e.target.dataset.lng);
+          window.KampTrailData.loadGoogleData(siteId, name, lat, lng);
+        }
+      });
 
       state.clusterGroup = L.markerClusterGroup({
         maxClusterRadius: 50,
