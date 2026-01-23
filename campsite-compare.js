@@ -142,7 +142,7 @@
           <h2 style="margin:0;font-size:18px;color:var(--c-text);">🔍 Compare Campsites</h2>
           <div style="display:flex;gap:8px;">
             <button class="compare-clearall-btn btn" style="font-size:12px;padding:4px 10px;">Clear All</button>
-            <button onclick="KampTrailCompare.close()" class="btn" style="font-size:12px;padding:4px 10px;">Close</button>
+            <button class="compare-close-btn btn" style="font-size:12px;padding:4px 10px;">Close</button>
           </div>
         </div>
 
