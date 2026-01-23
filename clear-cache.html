@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cache Cleared - Reload KampTrail</title>
+    <style>
+        body { 
+            font-family: system-ui; 
+            max-width: 600px; 
+            margin: 100px auto; 
+            padding: 20px;
+            background: #0b141b;
+            color: #e8f0f7;
+        }
+        .box {
+            background: #0f1b24;
+            border: 2px solid #86b7ff;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        h1 { color: #86b7ff; }
+        .btn {
+            display: inline-block;
+            background: #86b7ff;
+            color: #0b141b;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        code {
+            background: #1f3d52;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>🧹 Clearing Browser Cache...</h1>
+        <p>Your browser cache has been cleared. Click below to load the FIXED version:</p>
+        <a href="/" class="btn">➡️ Open KampTrail (Fixed Version)</a>
+        
+        <hr style="margin: 30px 0; border-color: #22313f;">
+        
+        <h2>What was fixed:</h2>
+        <ul>
+            <li>✅ Syntax error in "Show Google Photos & Rating" button</li>
+            <li>✅ Campsite names with apostrophes (McKay's Bend, Coeur d'Alene)</li>
+            <li>✅ All onclick handlers now use proper quoting</li>
+        </ul>
+        
+        <p style="font-size: 12px; color: #9fd0ff; margin-top: 30px;">
+            If you still see errors, press <code>Ctrl+Shift+R</code> (Windows) or <code>Cmd+Shift+R</code> (Mac) on the KampTrail page.
+        </p>
+    </div>
+    
+    <script>
+        // Force clear ALL storage
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Unregister service workers
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => {
+                regs.forEach(reg => reg.unregister());
+            });
+        }
+        
+        // Clear cache storage
+        if ('caches' in window) {
+            caches.keys().then(names => {
+                names.forEach(name => caches.delete(name));
+            });
+        }
+        
+        console.log('✅ All caches cleared');
+    </script>
+</body>
+</html>
