@@ -126,7 +126,7 @@
             Add campsites from the map to compare them side-by-side.
           </p>
           <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;">
-            <button onclick="KampTrailCompare.close()" class="btn">Close</button>
+            <button class="compare-close-btn btn">Close</button>
           </div>
         </div>
       `;
@@ -141,7 +141,7 @@
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
           <h2 style="margin:0;font-size:18px;color:var(--c-text);">🔍 Compare Campsites</h2>
           <div style="display:flex;gap:8px;">
-            <button onclick="KampTrailCompare.clearAll()" class="btn" style="font-size:12px;padding:4px 10px;">Clear All</button>
+            <button class="compare-clearall-btn btn" style="font-size:12px;padding:4px 10px;">Clear All</button>
             <button onclick="KampTrailCompare.close()" class="btn" style="font-size:12px;padding:4px 10px;">Close</button>
           </div>
         </div>
@@ -228,9 +228,9 @@
       html += `
         <td style="padding:10px;">
           <div style="display:flex;flex-direction:column;gap:6px;">
-            <button onclick="KampTrailCompare.zoomTo(${lat}, ${lon})" class="btn" style="font-size:11px;padding:4px 8px;">📍 View on Map</button>
-            <button onclick="KampTrailData.addToTrip('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
-            <button onclick="KampTrailCompare.remove('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
+            <button class="compare-zoom-btn" data-lat="${lat}" data-lon="${lon}" class="btn" style="font-size:11px;padding:4px 8px;">📍 View on Map</button>
+            <button class="compare-addtrip-btn" data-site-id="${safeId}" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
+            <button class="compare-remove-btn" data-site-id="${safeId}" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
           </div>
         </td>
       `;
@@ -279,6 +279,27 @@
 
       state.map = map;
       state.compareList = loadCompareList();
+
+      // Set up event delegation for comparison buttons
+      document.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('compare-zoom-btn')) {
+          const lat = parseFloat(e.target.dataset.lat);
+          const lon = parseFloat(e.target.dataset.lon);
+          window.KampTrailCompare.zoomTo(lat, lon);
+        } else if (e.target && e.target.classList.contains('compare-addtrip-btn')) {
+          const siteId = e.target.dataset.siteId;
+          if (window.KampTrailData) {
+            window.KampTrailData.addToTrip(siteId);
+          }
+        } else if (e.target && e.target.classList.contains('compare-remove-btn')) {
+          const siteId = e.target.dataset.siteId;
+          window.KampTrailCompare.remove(siteId);
+        } else if (e.target && e.target.classList.contains('compare-close-btn')) {
+          window.KampTrailCompare.close();
+        } else if (e.target && e.target.classList.contains('compare-clearall-btn')) {
+          window.KampTrailCompare.clearAll();
+        }
+      });
 
       // Create comparison button in header
       const compareBtn = document.createElement('button');

@@ -120,11 +120,11 @@
           GPX Waypoint • ${safeType}
         </div>
         <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailGPX.findNearestCampsite(${waypoint.lat}, ${waypoint.lon})"
+          <button class="gpx-find-nearest-btn" data-lat="${waypoint.lat}" data-lon="${waypoint.lon}"
                   style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Find Nearest Campsite
           </button>
-          <button onclick="window.open('https://maps.google.com/?q=${waypoint.lat},${waypoint.lon}')"
+          <button class="gpx-navigate-btn" data-lat="${waypoint.lat}" data-lon="${waypoint.lon}"
                   style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>
@@ -295,6 +295,19 @@
 
       // Store map reference globally for findNearestCampsite
       window.kamptrailMap = map;
+
+      // Set up event delegation for GPX waypoint buttons
+      document.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('gpx-find-nearest-btn')) {
+          const lat = parseFloat(e.target.dataset.lat);
+          const lon = parseFloat(e.target.dataset.lon);
+          window.KampTrailGPX.findNearestCampsite(lat, lon);
+        } else if (e.target && e.target.classList.contains('gpx-navigate-btn')) {
+          const lat = e.target.dataset.lat;
+          const lon = e.target.dataset.lon;
+          window.open(`https://maps.google.com/?q=${lat},${lon}`);
+        }
+      });
 
       // Create file input (hidden)
       const fileInput = document.createElement('input');
