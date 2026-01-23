@@ -111,6 +111,8 @@
     const safeName = esc(waypoint.name);
     const safeDesc = esc(waypoint.desc);
     const safeType = esc(waypoint.type);
+    const safeLat = waypoint.lat || 0;
+    const safeLon = waypoint.lon || 0;
 
     const popupContent = `
       <div style="min-width:200px;">
@@ -120,11 +122,11 @@
           GPX Waypoint • ${safeType}
         </div>
         <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailGPX.findNearestCampsite(${waypoint.lat}, ${waypoint.lon})"
+          <button onclick="KampTrailGPX.findNearestCampsite(${safeLat}, ${safeLon})"
                   style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Find Nearest Campsite
           </button>
-          <button onclick="window.open('https://maps.google.com/?q=${waypoint.lat},${waypoint.lon}')"
+          <button onclick="window.open('https://maps.google.com/?q=${safeLat},${safeLon}')"
                   style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>

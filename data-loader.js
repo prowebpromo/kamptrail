@@ -301,7 +301,7 @@
           </button>
         </div>
         <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button onclick='KampTrailData.loadGoogleData("${safeId}", ${safeJsName}, ${lat}, ${lng})' style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
+            <button onclick="KampTrailData.loadGoogleData(&quot;${safeId}&quot;, ${safeJsName}, ${lat}, ${lng})" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
                 📷 Show Google Photos & Rating
             </button>
         </div>

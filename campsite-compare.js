@@ -223,7 +223,9 @@
     // Actions row
     html += `<tr><td style="padding:10px;font-weight:bold;">Actions</td>`;
     campsites.forEach(site => {
-      const [lon, lat] = site.geometry.coordinates;
+      const coords = (site.geometry && site.geometry.coordinates) || [0, 0];
+      const lon = coords[0] || 0;
+      const lat = coords[1] || 0;
       const safeId = esc(site.properties.id || '');
       html += `
         <td style="padding:10px;">
