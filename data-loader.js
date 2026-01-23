@@ -271,8 +271,8 @@
     const rigFriendly = Array.isArray(p.rig_friendly) && p.rig_friendly.length ? p.rig_friendly : [];
     const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
 
-    const lat = site.geometry.coordinates[1];
-    const lng = site.geometry.coordinates[0];
+    const lat = (site.geometry && site.geometry.coordinates && site.geometry.coordinates[1]) || 0;
+    const lng = (site.geometry && site.geometry.coordinates && site.geometry.coordinates[0]) || 0;
 
     return `
       <div style="min-width:200px;">
