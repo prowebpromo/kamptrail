@@ -261,7 +261,7 @@
     }
 
     const safeName = esc(p.name || 'Unnamed Site');
-    const safeJsName = JSON.stringify(p.name || 'Campsite');
+    const safeJsName = JSON.stringify(p.name || 'Campsite').replace(/"/g, '&quot;');
     const safeType = esc(p.type || 'Unknown');
     const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
     const safeAmenities = Array.isArray(p.amenities) && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
