@@ -261,7 +261,7 @@
     }
 
     const safeName = esc(p.name || 'Unnamed Site');
-    const safeJsName = JSON.stringify(p.name || 'Campsite').replace(/"/g, '&quot;');
+    const safeCampName = esc(p.name || 'Campsite');
     const safeType = esc(p.type || 'Unknown');
     const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
     const safeAmenities = Array.isArray(p.amenities) && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
@@ -301,7 +301,7 @@
           </button>
         </div>
         <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button onclick="KampTrailData.loadGoogleData(&quot;${safeId}&quot;, ${safeJsName}, ${lat}, ${lng})" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
+            <button class="kt-google-btn" data-siteid="${safeId}" data-name="${safeCampName}" data-lat="${lat}" data-lng="${lng}" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
                 📷 Show Google Photos & Rating
             </button>
         </div>
@@ -492,3 +492,32 @@
     }
   };
 })();
+
+// Global click handler for Google Photos & Rating buttons (avoids inline onclick escaping issues)
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.kt-google-btn');
+  if (!btn) return;
+
+  e.preventDefault();
+
+  const siteId = btn.dataset.siteid || '';
+  const name = btn.dataset.name || '';
+  const lat = parseFloat(btn.dataset.lat) || 0;
+  const lng = parseFloat(btn.dataset.lng) || 0;
+
+  if (!siteId) {
+    console.warn('No siteId on Google button', btn);
+    return;
+  }
+
+  if (!window.KampTrailData || !window.KampTrailData.loadGoogleData) {
+    console.warn('KampTrailData.loadGoogleData not available');
+    return;
+  }
+
+  try {
+    await window.KampTrailData.loadGoogleData(siteId, name, lat, lng);
+  } catch (err) {
+    console.error('Google photos/rating error:', err);
+  }
+});
