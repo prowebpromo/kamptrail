@@ -6,7 +6,8 @@
   <title>KampTrail — Free Campsite Map</title>
   <meta name="description" content="Find free and low-cost campsites across the US with advanced filters, overlays, and trip planning.">
   <meta name="theme-color" content="#0b141b">
-
+  <!-- Optional favicon to stop 404 spam (safe even if missing) -->
+  <link rel="icon" href="favicon.ico">
   <!-- PWA / A2HS -->
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -15,7 +16,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light dark">
-
   <!-- Social -->
   <meta property="og:title" content="KampTrail — Free Campsite Map">
   <meta property="og:type" content="website">
@@ -23,26 +23,20 @@
   <meta property="og:description" content="Fast, offline-first campsite map with overlays, filters, and trip planning.">
   <meta property="og:url" content="https://prowebpromo.github.io/kamptrail/">
   <meta name="twitter:card" content="summary_large_image">
-
   <!-- Networking hint -->
   <link rel="preconnect" href="https://tile.openstreetmap.org">
-
   <!-- Leaflet core -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <!-- MarkerCluster -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css">
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-
   <!-- Esri Leaflet (for PAD-US/BLM/USFS services used by overlays-advanced.js) -->
   <script src="https://unpkg.com/esri-leaflet@3/dist/esri-leaflet.js"></script>
-
   <!-- Overlays UI styles -->
   <link rel="stylesheet" href="overlays/overlays-advanced.css">
   <link rel="stylesheet" href="overlays/overlays.css">
-
   <style>
     .kt-controls label:last-child {
       border-top: 1px solid #22313f;
@@ -62,7 +56,6 @@
     footer{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--c-panel);border-top:1px solid var(--c-border);font-size:12px;color:#b7c7d6}
     footer a{color:var(--c-sub);text-decoration:none}
     footer a:hover{text-decoration:underline}
-
     /* Toast & loading */
     .toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);display:none;z-index:2000;background:#173243;border:1px solid #284356;border-radius:12px;padding:12px 16px;max-width:90vw;box-shadow:0 4px 12px rgba(0,0,0,.3)}
     .toast.show{display:block}
@@ -72,12 +65,10 @@
     .loading.show{display:grid}
     .spinner{border:3px solid #284356;border-top:3px solid var(--c-accent);border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
-
     /* Map perf guards */
     html,body,#app,#map{zoom:1!important;transform:none!important}
     .leaflet-container{background:var(--c-bg);will-change:transform}
     .leaflet-pane,.leaflet-map-pane,.leaflet-tile-pane,.leaflet-marker-pane{transform:translateZ(0)}
-
     @media (max-width:768px){header{flex-wrap:wrap}.actions{width:100%;justify-content:flex-end}}
   </style>
 </head>
@@ -94,9 +85,7 @@
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">📍 Near me</button>
       </div>
     </header>
-
     <div id="map" role="region" aria-label="Campsite map" tabindex="0"></div>
-
     <footer>
       <div>
         Map © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors ·
@@ -115,27 +104,14 @@
   <div id="loading" class="loading"><div class="spinner"></div></div>
 
   <script>
-    // Service Worker
+    // Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js').then(reg => {
-          function promptUpdate(sw){
-            showToast('New version available — <a href="#" id="upd">update now</a>', 'success', 0, true);
-            document.getElementById('upd').onclick = (e) => {
-              e.preventDefault(); sw.postMessage('SKIP_WAITING'); location.reload();
-            };
-          }
-          if (reg.waiting) promptUpdate(reg.waiting);
-          reg.addEventListener('updatefound', () => {
-            const sw = reg.installing;
-            sw && sw.addEventListener('statechange', () => {
-              if (sw.state === 'installed' && navigator.serviceWorker.controller) promptUpdate(sw);
-            });
-          });
-        }).catch(console.error);
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('✅ Service worker registered', reg))
+          .catch(err => console.error('💥 Service worker registration failed', err));
       });
     }
-
     // Helpers
     window.escapeHtml = function(text){
       if(!text) return '';
@@ -166,7 +142,9 @@
     if(saved){map.setView([saved.lat,saved.lng],saved.zoom)}else{map.setView([39.8283,-98.5795],5)}
     map.on('moveend',()=>{
       const c=map.getCenter();
-      try{localStorage.setItem('kt_last_position',JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()}))}catch{}
+      try{
+        localStorage.setItem('kt_last_position',JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()}))
+      }catch{}
     });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom:19,detectRetina:true,attribution:'&copy; OpenStreetMap contributors'
@@ -209,109 +187,159 @@
     });
 
     // Filters and Trip buttons handled by their respective modules
+
+    map.on("popupopen", (e) => {
+      const popupEl = e.popup.getElement();
+      if (!popupEl) return;
+
+      const btn = popupEl.querySelector(".google-btn");
+      if (!btn) return;
+
+      // Prevent duplicate listeners
+      if (btn.dataset.handlerAttached) return;
+      btn.dataset.handlerAttached = "true";
+
+      btn.addEventListener("click", async () => {
+        const campsiteName = btn.dataset.campsiteName;
+        const lat = parseFloat(btn.dataset.lat);
+        const lng = parseFloat(btn.dataset.lng);
+        const resultsContainer = popupEl.querySelector(".google-results-container");
+
+        if (!campsiteName || !lat || !lng || !resultsContainer) return;
+
+        btn.textContent = "Loading...";
+        btn.disabled = true;
+
+        try {
+          const place = await window.GooglePlacesService.findPlace(campsiteName, lat, lng);
+
+          if (place && place.error === 'QUOTA_EXCEEDED') {
+            resultsContainer.innerHTML = '<p style="font-size: 12px; color: #888;">Google Places daily quota reached. Please try again tomorrow.</p>';
+            btn.style.display = 'none'; // Hide button after quota error
+            return;
+          }
+
+          if (place) {
+            let photosHtml = '<p style="font-size: 12px; color: #888;">No photos available.</p>';
+            if (place.photos && place.photos.length > 0) {
+              photosHtml = place.photos.slice(0, 5).map(photo =>
+                `<a href="${GooglePlacesService.getPhotoUrl(photo.name, 1024)}" target="_blank" rel="noopener noreferrer">
+                   <img src="${GooglePlacesService.getPhotoUrl(photo.name, 400)}" alt="${place.displayName.text}" style="width: 100%; height: auto; margin-bottom: 5px; border-radius: 4px;">
+                 </a>`
+              ).join('');
+            }
+
+            const ratingHtml = `
+              <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
+                <p style="margin: 0; font-size: 14px; font-weight: bold;">
+                  <a href="${place.googleMapsUri}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                    ${place.rating || 'N/A'} ⭐ (${place.userRatingCount || 0} reviews on Google)
+                  </a>
+                </p>
+                <img src="powered_by_google_on_white.png" alt="Powered by Google" style="margin-top: 8px; max-width: 144px;">
+              </div>
+            `;
+
+            resultsContainer.innerHTML = photosHtml + ratingHtml;
+          } else {
+            resultsContainer.innerHTML = '<p style="font-size: 12px; color: #888;">No details found on Google.</p>';
+          }
+        } catch (error) {
+          console.error("Error fetching Google Places data:", error);
+          resultsContainer.innerHTML = '<p style="font-size: 12px; color: #cc0000;">Could not fetch Google data.</p>';
+        } finally {
+          btn.style.display = 'none'; // Hide button after click
+        }
+      });
+    });
   </script>
 
   <!-- Feature modules -->
   <script src="overlays/overlays-advanced.js"></script>
   <script src="overlays/overlays.js"></script>
+  <script src="data-quality.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
   <script src="trip-planner.js"></script>
   <script src="gpx-importer.js"></script>
   <script src="campsite-compare.js"></script>
+
+  <!-- IMPORTANT: config.js BEFORE google-places-service.js -->
   <script src="config.js"></script>
   <script src="google-places-service.js"></script>
 
   <!-- Initialize features -->
   <script>
-    // This function contains the application's main initialization logic.
-    // It will be called either by the Google Maps script callback or directly.
-    async function initApp() {
-      try {
-        // 0) Google Places Service is now loaded and will be ready if the API key is valid.
-
-        // 1) Overlays - Advanced (base map switcher)
-        if (window.KampTrailAdvanced) {
-          KampTrailAdvanced.init(map, {});
-        }
-
-        // 1b) Overlays - POI layers and public lands
-        if (window.KampTrailOverlays) {
-          KampTrailOverlays.init(map, {
-            publicLandsUrl: 'https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas/MapServer/tile/{z}/{y}/{x}',
-            openCelliDKey: 'pk.40042dae6a477f5db33fb6c59b3ae06b',
-            poiUrl: 'https://cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main/data/poi_dump_water_propane.geojson',
-            placesUrl: 'data/sample_places.geojson'
-          });
-        }
-
-        // 2) Campsite data loader
-        if (window.KampTrailData) {
-          setLoading(true);
-          await KampTrailData.init(map, {
-            maxMarkers: 5000,
-            isFavorite: (id) => {
-              try { return (JSON.parse(localStorage.getItem('kt_favorites')||'[]')).includes(id); }
-              catch { return false; }
-            },
-            onTripAdd: (id) => window.KampTrailTrip && KampTrailTrip.addStop(id),
-            onFavoriteToggle: (id) => {
-              try{
-                const favs = JSON.parse(localStorage.getItem('kt_favorites')||'[]');
-                const i=favs.indexOf(id);
-                i>-1?favs.splice(i,1):favs.push(id);
-                localStorage.setItem('kt_favorites',JSON.stringify(favs));
-              }catch{}
-            }
-          });
-          setLoading(false);
-        }
-
-        // 3) Filters
-        if (window.KampTrailFilters) KampTrailFilters.init(map);
-
-        // 4) Trip planner
-        if (window.KampTrailTrip) KampTrailTrip.init(map);
-
-        // 5) GPX Importer
-        if (window.KampTrailGPX) KampTrailGPX.init(map);
-
-        // 6) Campsite Comparison
-        if (window.KampTrailCompare) KampTrailCompare.init(map);
-
-        // Welcome message
-        if (!localStorage.getItem('kt_welcomed')) {
-          setTimeout(()=>{
-            showToast('👋 Welcome! Use Filters to refine sites and My Trip to plan your route.', 'success', 7000);
-            localStorage.setItem('kt_welcomed','1');
-          }, 800);
-        }
-      } catch (e) {
-        console.error(e);
-        setLoading(false);
-        showToast('Error loading features. Check console.', 'error', 0);
+  (async () => {
+    try {
+      // 0) Initialize Google Places Service
+      if(window.KampTrailGoogle && window.GOOGLE_API_KEY && window.GOOGLE_API_KEY !== 'YOUR_API_KEY_HERE') {
+        window.KampTrailGoogle.init(window.GOOGLE_API_KEY);
       }
-    }
 
-    // Global error handler for the Maps script
-    function onGoogleMapsScriptError() {
-      console.error('Google Maps script failed to load. Check API key and network.');
-      showToast('Could not load Google Maps integration.', 'error');
-      // Still call initApp so the rest of the site works.
-      initApp();
-    }
+      // 1) Overlays - Advanced (base map switcher)
+      if (window.KampTrailAdvanced) {
+        KampTrailAdvanced.init(map, {});
+      }
 
-    // Load Google Maps API and then initialize the app, or initialize directly if no API key.
-    if (window.GOOGLE_API_KEY && window.GOOGLE_API_KEY !== 'YOUR_API_KEY_HERE') {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${window.GOOGLE_API_KEY}&libraries=places&callback=initApp`;
-      script.async = true;
-      script.onerror = onGoogleMapsScriptError;
-      document.head.appendChild(script);
-    } else {
-      // If no key, initialize the app immediately.
-      initApp();
+      // 1b) Overlays - POI layers and public lands
+      if (window.KampTrailOverlays) {
+        KampTrailOverlays.init(map, {
+          publicLandsUrl: 'https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas/MapServer/tile/{z}/{y}/{x}',
+          openCelliDKey: 'pk.40042dae6a477f5db33fb6c59b3ae06b',
+          poiUrl: 'https://cdn.jsdelivr.net/gh/prowebpromo/kamptrail@main/data/poi_dump_water_propane.geojson',
+          placesUrl: 'data/sample_places.geojson'
+        });
+      }
+
+      // 2) Campsite data loader
+      if (window.KampTrailData) {
+        setLoading(true);
+        await KampTrailData.init(map, {
+          maxMarkers: 5000,
+          isFavorite: (id) => {
+            try { return (JSON.parse(localStorage.getItem('kt_favorites')||'[]')).includes(id); }
+            catch { return false; }
+          },
+          onTripAdd: (id) => window.KampTrailTrip && KampTrailTrip.addStop(id),
+          onFavoriteToggle: (id) => {
+            try{
+              const favs = JSON.parse(localStorage.getItem('kt_favorites')||'[]');
+              const i=favs.indexOf(id);
+              i>-1?favs.splice(i,1):favs.push(id);
+              localStorage.setItem('kt_favorites',JSON.stringify(favs));
+            }catch{}
+          }
+        });
+        setLoading(false);
+      }
+
+      // 3) Filters
+      if (window.KampTrailFilters) KampTrailFilters.init(map);
+
+      // 4) Trip planner
+      if (window.KampTrailTrip) KampTrailTrip.init(map);
+
+      // 5) GPX Importer
+      if (window.KampTrailGPX) KampTrailGPX.init(map);
+
+      // 6) Campsite Comparison
+      if (window.KampTrailCompare) KampTrailCompare.init(map);
+
+      // Welcome message
+      if (!localStorage.getItem('kt_welcomed')) {
+        setTimeout(()=>{
+          showToast('👋 Welcome! Use Filters to refine sites and My Trip to plan your route.', 'success', 7000);
+          localStorage.setItem('kt_welcomed','1');
+        }, 800);
+      }
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+      showToast('Error loading features. Check console.', 'error', 0);
     }
+  })();
   </script>
+
 </body>
 </html>

@@ -249,27 +249,35 @@
 
   function createPopup(site) {
     const p = site.properties;
-    const esc = window.escapeHtml || ((t) => t); // Fallback if not available
+    const esc = window.escapeHtml || ((t) => t);
     const costText = p.cost === 0 || p.cost === null || p.cost === undefined ? 'FREE' : `$${p.cost}/night`;
-
-    // Enhanced rating with review count
     let ratingText = 'No ratings';
     if (p.rating) {
       const stars = '⭐'.repeat(Math.round(parseFloat(p.rating)));
       const reviewCount = p.reviews_count || 0;
       ratingText = reviewCount > 0 ? `${stars} (${reviewCount} reviews)` : stars;
     }
-
     const safeName = esc(p.name || 'Unnamed Site');
-    const safeJsName = JSON.stringify(p.name || 'Campsite');
     const safeType = esc(p.type || 'Unknown');
     const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
     const safeAmenities = p.amenities && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
     const safeId = esc(p.id || '');
+    const rigFriendly = p.rig_friendly && p.rig_friendly.length ? p.rig_friendly.map(r => esc(r)).join(', ') : '';
 
-    // Rig-friendly info
-    const rigFriendly = p.rig_friendly && p.rig_friendly.length ? p.rig_friendly : [];
-    const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
+    const googleButtonHtml = `
+        <div style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
+            <button
+              type="button"
+              class="google-btn"
+              data-campsite-name="${safeName}"
+              data-lat="${site.geometry.coordinates[1]}"
+              data-lng="${site.geometry.coordinates[0]}"
+              style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;"
+            >
+              Show Google Photos & Rating
+            </button>
+            <div class="google-results-container" style="margin-top: 8px;"></div>
+        </div>`;
 
     return `
       <div style="min-width:200px;">
@@ -278,30 +286,16 @@
           <div><strong>Cost:</strong> ${costText}</div>
           <div><strong>Type:</strong> ${safeType}</div>
           ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
-          ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
+          ${rigFriendly ? `<div><strong>Suitable for:</strong> ${rigFriendly}</div>` : ''}
           <div><strong>Rating:</strong> ${ratingText}</div>
         </div>
-        ${safeAmenities ? `
-          <div style="font-size:11px;color:#888;margin-bottom:8px;">
-            ${safeAmenities}
-          </div>
-        ` : ''}
+        ${safeAmenities ? `<div style="font-size:11px;color:#888;margin-bottom:8px;">${safeAmenities}</div>` : ''}
         <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Add to Trip
-          </button>
-          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Compare
-          </button>
-          <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Navigate
-          </button>
+          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">Add to Trip</button>
+          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">Compare</button>
+          <button onclick="window.open('https://maps.google.com/?q=${site.geometry.coordinates[1]},${site.geometry.coordinates[0]}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">Navigate</button>
         </div>
-        <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button onclick='KampTrailData.loadGoogleData("${safeId}", ${safeJsName}, ${site.geometry.coordinates[1]}, ${site.geometry.coordinates[0]})' style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
-                📷 Show Google Photos & Rating
-            </button>
-        </div>
+        ${googleButtonHtml}
       </div>
     `;
   }
@@ -437,55 +431,6 @@
     toggleFavorite(id) {
       console.log('Toggling favorite:', id);
       if (state.config.onFavoriteToggle) state.config.onFavoriteToggle(id);
-    },
-
-    async loadGoogleData(siteId, name, lat, lng) {
-        if (!window.KampTrailGoogle || !window.KampTrailGoogle.isInitialized()) {
-            const container = document.getElementById(`google-places-container-${siteId}`);
-            if (container) {
-                container.innerHTML = `<div style="font-size:12px;color:#888;padding:10px 0;">Google Places API key not configured. See README for setup instructions.</div>`;
-            }
-            return;
-        }
-        const container = document.getElementById(`google-places-container-${siteId}`);
-        if (!container) return;
-
-        container.innerHTML = '<em>Loading Google data...</em>';
-
-        const data = await window.KampTrailGoogle.getPlaceDetails(name, lat, lng);
-
-        if (!data) {
-            container.innerHTML = '<em>No Google data found for this location.</em>';
-            return;
-        }
-        if (data.error === 'QUOTA_EXCEEDED') {
-            container.style.display = 'none'; // Hide if quota is hit
-            return;
-        }
-
-        let photosHtml = '';
-        if (data.photos && data.photos.length > 0) {
-            photosHtml = `
-                <div style="display:flex; overflow-x:auto; gap: 5px; padding-bottom: 5px;">
-                    ${data.photos.slice(0, 5).map(photo => `<img src="${photo.url}" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`).join('')}
-                </div>
-            `;
-        }
-
-        const ratingHtml = data.rating ? `
-            <div style="font-size: 12px; margin-top: 5px;">
-                <strong>Google Rating:</strong> ${data.rating.toFixed(1)} ⭐ (${data.userRatingCount} reviews)
-                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}" target="_blank" rel="noopener">Read reviews</a>
-            </div>
-        ` : '';
-
-        container.innerHTML = `
-            ${photosHtml}
-            ${ratingHtml}
-            <div style="font-size: 10px; text-align: right; color: #888; margin-top: 5px;">
-                Powered by Google
-            </div>
-        `;
     }
   };
 })();
