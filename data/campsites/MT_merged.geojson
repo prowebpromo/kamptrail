@@ -4192,10 +4192,12 @@
         ]
       },
       "properties": {
+        "id": "MT-122",
         "name": "Coal Banks Landing",
+        "type": "established",
+        "cost": 20,
         "rating": null,
         "reviews_count": 0,
-        "cost": 20,
         "amenities": [
           "toilets",
           "water",
@@ -4207,12 +4209,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "MT",
+        "source": "recreation.gov",
+        "facility_id": "262732",
+        "description": "Coal Banks Landing Campground, situated along the Upper Missouri River, is open from April 1 to December 1, annually. This is a popular site for launching watercraft, as well as camping, picnicking an",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 19958924
+        ]
       }
     },
     {
@@ -10795,295 +10799,6 @@
         "description": "<h2>Overview</h2>\nThe Pattee Canyon Picnic Area offers family picnic sites available for free, along with three group picnic sites available by reservation.  The picnic area is open July 1 through Lab",
         "sources": [
           "recreation.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.7676849,
-          47.0779043
-        ]
-      },
-      "properties": {
-        "caravans": "yes",
-        "fee": "yes",
-        "internet_access": "no",
-        "name": "Quartz Flat",
-        "operator": "Lolo National Forest",
-        "phone": "+1 406-822-4233",
-        "sanitary_dump_station": "yes",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/lolo/recarea/?recid=10331",
-        "osm_id": 6586611,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.4060047,
-          45.0608982
-        ]
-      },
-      "properties": {
-        "capacity": "28",
-        "fee": "yes",
-        "name": "Parkside Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/custer/recreation/camping-cabins/recarea/?recid=60829&actid=29",
-        "osm_id": 10420863,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.2527592,
-          45.3918201
-        ]
-      },
-      "properties": {
-        "name": "Spring Creek Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 15922390,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.1150655,
-          48.1717713
-        ]
-      },
-      "properties": {
-        "addr:city": "Big Sandy",
-        "addr:country": "US",
-        "addr:housenumber": "266",
-        "addr:postcode": "59520",
-        "addr:state": "MT",
-        "addr:street": "Judith Landing Road",
-        "amenity": "parking",
-        "name": "Big Sandy RV Park",
-        "power_supply": "yes",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "wheelchair": "yes",
-        "osm_id": 16836875,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6628725,
-          47.8286696
-        ]
-      },
-      "properties": {
-        "addr:city": "Fort Benton",
-        "addr:country": "US",
-        "addr:housenumber": "2410",
-        "addr:postcode": "59442",
-        "addr:state": "MT",
-        "addr:street": "Chouteau Street",
-        "cabins": "no",
-        "caravans": "yes",
-        "dog": "yes",
-        "drinking_water": "yes",
-        "dryer": "yes",
-        "name": "Benton RV Park",
-        "naturism": "no",
-        "payment:cash": "yes",
-        "payment:girocard": "no",
-        "payment:mastercard": "no",
-        "payment:visa": "no",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "sauna": "no",
-        "scout": "no",
-        "shower": "yes",
-        "smoking": "yes",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "washing_machine": "yes",
-        "wheelchair": "yes",
-        "osm_id": 17590992,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6806584,
-          47.8052024
-        ]
-      },
-      "properties": {
-        "addr:city": "Fort Benton",
-        "addr:country": "US",
-        "addr:housenumber": "205",
-        "addr:postcode": "59442",
-        "addr:state": "MT",
-        "addr:street": "Fairgrounds Loop",
-        "cabins": "no",
-        "caravans": "yes",
-        "charge": "15-35 USD/night",
-        "dog": "leashed",
-        "fee": "yes",
-        "fire_pit": "yes",
-        "firewood": "yes",
-        "internet_access": "yes",
-        "internet_access:fee": "yes",
-        "name": "Chouteau County Canoe Launch Campground",
-        "opening_hours": "Apr 1-Oct 31",
-        "opening_hours:conditional": "weather_permissive @ (Apr 1-Oct 31)",
-        "operator": "Chouteau County Fairgrounds",
-        "payment:cash": "yes",
-        "payment:credit_card": "yes",
-        "phone": "+1 406 622 5505",
-        "power_supply": "yes",
-        "ref": "Chouteau County Canoe Launch Campground",
-        "reservation": "no",
-        "sanitary_dump_station": "yes",
-        "tents": "yes",
-        "toilets": "yes",
-        "toilets:wheelchair": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "waste_disposal": "yes",
-        "website": "https://www.chocofair.com/",
-        "wheelchair": "limited",
-        "osm_id": 17960616,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6812186,
-          47.8084401
-        ]
-      },
-      "properties": {
-        "name": "Willows RV Park",
-        "rating": null,
-        "reviews_count": 0,
-        "cost": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": "multipolygon",
-        "sources": [
-          "unknown"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 18195166
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.2992018,
-          47.7932553
-        ]
-      },
-      "properties": {
-        "name": "Wild Horse RV Resort",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "website": "https://www.wildhorservresort.com/",
-        "osm_id": 18980395,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.6279385,
-          47.7404339
-        ]
-      },
-      "properties": {
-        "addr:state": "MT",
-        "charge": "20 USD/night",
-        "fee": "yes",
-        "name": "Judith Landing",
-        "operator": "Bureau of Land Management",
-        "payment:cash": "yes",
-        "ref": "Judith Landing Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 19919480,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -108.6831253,
-          47.6265063
-        ]
-      },
-      "properties": {
-        "addr:city": "Winifred",
-        "addr:postcode": "59489",
-        "addr:state": "MT",
-        "caravans": "yes",
-        "charge": "20 USD/night",
-        "fee": "yes",
-        "name": "James Kipp Campground",
-        "operator": "Burea of Land Management",
-        "sanitary_dump_station": "yes",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "wheelchair": "limited",
-        "osm_id": 19959118,
-        "sources": [
-          "unknown"
         ]
       }
     }

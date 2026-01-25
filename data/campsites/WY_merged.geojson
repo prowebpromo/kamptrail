@@ -1098,10 +1098,12 @@
         ]
       },
       "properties": {
+        "id": "WY-034",
         "name": "TETON CANYON",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -1113,12 +1115,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "gravel",
+        "state": "WY",
+        "source": "recreation.gov",
+        "facility_id": "231928",
+        "description": "<h2>Overview</h2>\nTeton Canyon Campground is located in beautiful Teton Canyon at an elevation of approximately 6,500 feet. Driggs, Idaho is just 11 miles away. Hiking, backpacking and horseback ridin",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 16053333
+        ]
       }
     },
     {
@@ -3645,192 +3649,6 @@
         "description": "The Buffalo Creek Campground is located off of the scenic South Bighorn/Red Wall Back Country Byway. It has four camping sites, a vault toilet and fire rings. It is partially accessible. <br><br> The ",
         "sources": [
           "recreation.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.8745086,
-          43.6592596
-        ]
-      },
-      "properties": {
-        "access": "permit",
-        "backcountry": "yes",
-        "boundary": "administrative",
-        "caravans": "no",
-        "fee": "yes",
-        "name": "Death Canyon Camping Zone",
-        "reservation": "recommended",
-        "static_caravans": "no",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "boundary",
-        "osm_id": 3988672,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.8930699,
-          43.6650541
-        ]
-      },
-      "properties": {
-        "access": "permit",
-        "backcountry": "yes",
-        "boundary": "administrative",
-        "caravans": "no",
-        "fee": "yes",
-        "name": "Death Canyon Shelf Camping Zone",
-        "reservation": "recommended",
-        "static_caravans": "no",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "boundary",
-        "osm_id": 3988673,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6437342,
-          43.9117108
-        ]
-      },
-      "properties": {
-        "caravans": "yes",
-        "charge": "45 USD",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "name": "Colter Bay Campground",
-        "reservation": "recommended",
-        "shower": "yes",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.nps.gov/grte/planyourvisit/colterbaycg.htm",
-        "osm_id": 14305440,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6891101,
-          44.0033589
-        ]
-      },
-      "properties": {
-        "charge": "41 USD",
-        "fee": "yes",
-        "name": "Lizard Creek Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.nps.gov/grte/planyourvisit/lizardcreekcg.htm",
-        "wikidata": "Q63676190",
-        "osm_id": 14305441,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -105.2497501,
-          41.1797684
-        ]
-      },
-      "properties": {
-        "capacity": "12",
-        "caravans": "yes",
-        "name": "Aspen Grove Campground",
-        "reservation": "yes",
-        "sanitary_dump_station": "no",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16018316,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.9526301,
-          43.7570737
-        ]
-      },
-      "properties": {
-        "name": "Reunion Flat Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16054077,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -107.2663249,
-          41.786023
-        ]
-      },
-      "properties": {
-        "name": "Western Hills Campground",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 17301208,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.7701685,
-          42.9723812
-        ]
-      },
-      "properties": {
-        "name": "Moose Flat Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 18092899,
-        "sources": [
-          "unknown"
         ]
       }
     }

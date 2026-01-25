@@ -877,10 +877,12 @@
         ]
       },
       "properties": {
+        "id": "AZ-026",
         "name": "Schoolhouse Campground (AZ)",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -891,12 +893,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "249291",
+        "description": "<h2>Overview</h2>\n<p>Schoolhouse Campground is located in close proximity to the eastern shores of Roosevelt Lake with an elevation of 2,100 feet. Roosevelt is Arizona's largest lake offering a number",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 11729289
+        ]
       }
     },
     {
@@ -3125,10 +3129,12 @@
         ]
       },
       "properties": {
+        "id": "AZ-094",
         "name": "Burnt Corral Campground",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -3139,12 +3145,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "AZ",
+        "source": "recreation.gov",
+        "facility_id": "249254",
+        "description": "<h2>Overview</h2>\n<p>Burnt Corral Campground and Recreation Area (elevation 1914') is about 5.8 miles south of Roosevelt Dam along the Apache Trail (AZ Hwy 88)  along the shoreline of Apache Lake.  It",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 11727080
+        ]
       }
     },
     {
@@ -4801,239 +4809,6 @@
         "description": "<div><p>Located among large mesquite trees and desert grasses, the Fourmile Canyon Campground offers a developed setting for an overnight or extended camping trip. Fourmile Canyon Campground is within",
         "sources": [
           "recreation.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.7480133,
-          33.4209073
-        ]
-      },
-      "properties": {
-        "access": "private",
-        "ele": "396",
-        "gnis:feature_id": "36975",
-        "landuse": "residential",
-        "name": "Fiesta RV Resort",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 9699170,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.0879304,
-          33.6605939
-        ]
-      },
-      "properties": {
-        "caravans": "yes",
-        "fee": "yes",
-        "internet_access": "no",
-        "name": "Windy Hill Campground",
-        "nudism": "no",
-        "operator": "USFS",
-        "reservation": "recommended",
-        "sanitary_dump_station": "no",
-        "shower": "yes",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 11727109,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -114.5047809,
-          32.5473129
-        ]
-      },
-      "properties": {
-        "access": "no",
-        "name": "Auxiliary Airfield 2 Bivouac",
-        "operator": "United States Marine Corp",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14707216,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.1542445,
-          35.2827869
-        ]
-      },
-      "properties": {
-        "name": "Kaibab Lake Campground",
-        "operator": "USFS",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130603",
-        "osm_id": 14988819,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.0956728,
-          36.1011241
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "caravans": "no",
-        "drinking_water": "yes",
-        "group_only": "no",
-        "internet_access": "no",
-        "leisure": "park",
-        "name": "Bright Angel Campground",
-        "nudism": "no",
-        "operator": "National Park Service",
-        "operator:short": "NPS",
-        "operator:type": "public",
-        "operator:wikidata": "Q308439",
-        "operator:wikipedia": "en:National Park Service",
-        "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.nps.gov/grca/planyourvisit/campsite-information.htm",
-        "osm_id": 15973307,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.1291269,
-          36.0769229
-        ]
-      },
-      "properties": {
-        "alt_name": "Indian Garden Campground",
-        "backcountry": "yes",
-        "caravans": "no",
-        "drinking_water": "yes",
-        "group_only": "no",
-        "internet_access": "no",
-        "leisure": "park",
-        "name": "Havasupai Gardens Campground",
-        "nudism": "no",
-        "operator": "National Park Service",
-        "operator:short": "NPS",
-        "operator:type": "public",
-        "operator:wikidata": "Q308439",
-        "operator:wikipedia": "en:National Park Service",
-        "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.nps.gov/grca/planyourvisit/campsite-information.htm",
-        "osm_id": 15976432,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.4817349,
-          33.4554445
-        ]
-      },
-      "properties": {
-        "access": "customers",
-        "name": "Lost Dutchman Campground",
-        "operator": "Arizona State Parks",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 19040795,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.3650741,
-          31.5619359
-        ]
-      },
-      "properties": {
-        "capacity": "50",
-        "fee": "yes",
-        "name": "Apache Flats RV Resort",
-        "source": "yahoo_wms",
-        "tents": "no",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 20050310,
-        "sources": [
-          "yahoo_wms"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.5786569,
-          33.3709601
-        ]
-      },
-      "properties": {
-        "name": "Parkside Trailer Court",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 20071858,
-        "sources": [
-          "unknown"
         ]
       }
     }

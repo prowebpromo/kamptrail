@@ -7446,10 +7446,12 @@
         ]
       },
       "properties": {
+        "id": "OR-290",
         "name": "Fish Lake Campground",
+        "type": "established",
+        "cost": 16,
         "rating": null,
         "reviews_count": 0,
-        "cost": 16,
         "amenities": [
           "toilets",
           "water",
@@ -7461,12 +7463,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "OR",
+        "source": "recreation.gov",
+        "facility_id": "262776",
+        "description": "<h2>Overview:</h2>Fish Lake Campground is located on the flanks of Steens Mountain, within the Steens Mountain Cooperative Management and Protective Area (CMPA).  This area encompasses an extraordinar",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 9817255
+        ]
       }
     },
     {
@@ -8549,247 +8553,6 @@
         "description": "<h2>Overview</h2>\n<p>The refreshing location with its lush, forest setting, coupled with comforts normally associated with an urban park, blend seamlessly at this popular day-use site. Here, one can i",
         "sources": [
           "recreation.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.8306898,
-          43.5848104
-        ]
-      },
-      "properties": {
-        "name": "Loon Lake Lodge and RV Park",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 6578359,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.3601922,
-          43.1932305
-        ]
-      },
-      "properties": {
-        "name": "Fairgrounds RV Park",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 10749685,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -120.3356351,
-          44.4348868
-        ]
-      },
-      "properties": {
-        "caravans": "yes",
-        "fee": "yes",
-        "name": "Walton Lake Campground",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/ochoco/recarea/?recid=38766",
-        "osm_id": 12797522,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.4307609,
-          43.669639
-        ]
-      },
-      "properties": {
-        "capacity": "37",
-        "name": "Packard Campground",
-        "operator": "US Forest Service",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/willamette/recarea/?recid=4506",
-        "osm_id": 14113790,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.6913229,
-          42.5007387
-        ]
-      },
-      "properties": {
-        "fee": "no",
-        "internet_access": "no",
-        "name": "Hart Mountain Hot Springs Campground",
-        "operator": "US Fish and Wildlife Service",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14337446,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -121.7597017,
-          45.9408957
-        ]
-      },
-      "properties": {
-        "name": "Goose Lake Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31764",
-        "osm_id": 15522535,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -117.2129383,
-          45.2813001
-        ]
-      },
-      "properties": {
-        "name": "Wallowa Lake Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17744599,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.4767813,
-          46.2545425
-        ]
-      },
-      "properties": {
-        "name": "The Beaches RV Park",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 18733713,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.461725,
-          46.2702494
-        ]
-      },
-      "properties": {
-        "camp_site": "serviced",
-        "caravans": "yes",
-        "email": "info@wahport2.org",
-        "fee": "yes",
-        "name": "Skamokawa Vista Park Campground",
-        "phone": "+1-360-795-8605",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://wahport2.org/",
-        "osm_id": 19153788,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.4950215,
-          45.8049151
-        ]
-      },
-      "properties": {
-        "name": "Battle Ground Lake State Park Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 19292835,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.9052965,
-          44.8002306
-        ]
-      },
-      "properties": {
-        "addr:city": "Siletz",
-        "addr:full": "17519 Siletz Highway",
-        "addr:housenumber": "17519",
-        "addr:postcode": "97380",
-        "addr:state": "OR",
-        "addr:street": "Siletz Highway",
-        "ele": "16",
-        "gnis:feature_id": "1153452",
-        "name": "A.W. Jack Morgan Park",
-        "operator": "Lincoln County",
-        "operator:type": "government",
-        "reservation": "recommended",
-        "reservation:website": "https://app.fireflyreservations.com/Reserve/Property/AWJackMorganPark",
-        "short_name": "Jack Morgan Park",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.co.lincoln.or.us/1065/AW-Jack-Morgan-Park",
-        "osm_id": 19776062,
-        "sources": [
-          "unknown"
         ]
       }
     }

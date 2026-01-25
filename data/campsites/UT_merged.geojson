@@ -397,10 +397,12 @@
         ]
       },
       "properties": {
+        "id": "UT-013",
         "name": "SPRUCES CAMPGROUND (DIXIE NF)",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -412,13 +414,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "273759",
+        "description": "<h2>Overview</h2>\n<p>Spruces Campground sits on the south shore of Navajo Lake, on the Dixie National Forest, it provides a spectacular setting for boating, canoeing, camping, fishing, wildlife viewin",
         "sources": [
-          "recreation.gov",
-          "www.fs.usda.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 15694537
+          "recreation.gov"
+        ]
       }
     },
     {
@@ -821,10 +824,12 @@
         ]
       },
       "properties": {
+        "id": "UT-025",
         "name": "ELKHORN CAMPGROUND",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -835,14 +840,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "234265",
+        "description": "<h2>Overview</h2>\n<p>Elkhorn Campground is located 20 miles northeast of Loa, Utah, on the scenic Thousand Lake Mountain at an elevation of approximately 9300 feet. Visitors enjoy exploring local trai",
         "sources": [
-          "recreation.gov",
-          "www.fs.usda.gov"
-        ],
-        "description": "Facilities include single and group camping and cooking areas, trailer parking, forest scenery and hiking. Campground will remain open until closed by snow. Water will be turned off with threat of first frost.",
-        "tourism": "camp_site",
-        "osm_id": 17391825
+          "recreation.gov"
+        ]
       }
     },
     {
@@ -855,10 +860,12 @@
         ]
       },
       "properties": {
+        "id": "UT-026",
         "name": "NAVAJO LAKE CAMPGROUND",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -870,13 +877,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "dirt",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "273822",
+        "description": "<h2>Overview</h2>\nNavajo Lake Campground, located on the south shore of Navajo Lake, it provides a spectacular setting for boating, camping, fishing, hiking, biking and photography.  Boat rentals, lau",
         "sources": [
-          "recreation.gov",
-          "www.fs.usda.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 15694611
+          "recreation.gov"
+        ]
       }
     },
     {
@@ -2573,10 +2581,12 @@
         ]
       },
       "properties": {
+        "id": "UT-079",
         "name": "ROSEBUD ATV",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets"
         ],
@@ -2584,12 +2594,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "233148",
+        "description": "<h2>Overview</h2>\n<p>Rosebud ATV Campground is located high on the Colorado Plateau at an elevation of 8300 feet. Torrey, Utah is just 17 miles northwest. Visitors enjoy exploring miles of local ATV t",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 19230682
+        ]
       }
     },
     {
@@ -2864,10 +2876,12 @@
         ]
       },
       "properties": {
+        "id": "UT-088",
         "name": "LOWER BOWNS",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water"
@@ -2876,13 +2890,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "233149",
+        "description": "<h2>Overview</h2>\n<p>Lower Bowns Campground is located on the east side of Boulder Mountain on the shore of Lower Bowns Reservoir at an elevation of 7,000 feet. Visitors enjoy boating, fishing and exp",
         "sources": [
-          "recreation.gov",
-          "www.fs.usda.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 19230648
+          "recreation.gov"
+        ]
       }
     },
     {
@@ -3185,10 +3200,12 @@
         ]
       },
       "properties": {
+        "id": "UT-101",
         "name": "SUNGLOW CAMPGROUND",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water"
@@ -3197,13 +3214,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "gravel",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "234308",
+        "description": "<h2>Overview</h2>\n<p>Sunglow Campground is located in a scenic red rock box canyon just 2 miles from Bicknell, Utah. Visitors enjoy exploring local trails and day-tripping to Capitol Reef National Par",
         "sources": [
-          "recreation.gov",
-          "www.fs.usda.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 19096381
+          "recreation.gov"
+        ]
       }
     },
     {
@@ -4816,10 +4834,12 @@
         ]
       },
       "properties": {
+        "id": "UT-183",
         "name": "Lone Mesa Group Sites",
+        "type": "established",
+        "cost": 150,
         "rating": null,
         "reviews_count": 0,
-        "cost": 150,
         "amenities": [
           "toilets",
           "water",
@@ -4830,12 +4850,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "251837",
+        "description": "<h2>Overview</h2>\nLone Mesa Group Sites are ideal for large gatherings such as school groups or family reunions. Within close proximity to national parks and open space, outdoor enthusiasts will enjoy",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 19390142
+        ]
       }
     },
     {
@@ -5465,21 +5487,25 @@
         ]
       },
       "properties": {
+        "id": "UT-214",
         "name": "Equestrian Campground",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [],
         "rig_friendly": [
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "256945",
+        "description": "Located just a few hundred yards downstream of the San Rafael campground, this was built by equestrians for equestrians.  Six campsites with pullouts to accommodate vehicle and horsetrailer surround a",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 14503069
+        ]
       }
     },
     {
@@ -6033,10 +6059,12 @@
         ]
       },
       "properties": {
+        "id": "UT-239",
         "name": "Temple Moutain Campground West",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "fire_rings",
@@ -6046,12 +6074,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "257030",
+        "description": "\"The Temple Mountain west Campground is located at the intersection of Temple Mountain and Behind the Reef road.   This campground has multiple parking areas for large recreational vehicles, fire ring",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 14635252
+        ]
       }
     },
     {
@@ -6749,10 +6779,12 @@
         ]
       },
       "properties": {
+        "id": "UT-277",
         "name": "Starr Spring Campground",
+        "type": "established",
+        "cost": 10,
         "rating": null,
         "reviews_count": 0,
-        "cost": 10,
         "amenities": [
           "toilets",
           "water",
@@ -6760,12 +6792,14 @@
           "picnic_tables"
         ],
         "rig_friendly": [],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "257158",
+        "description": "Starr Springs Campground sits on the southeast end of Mount Hillers. It is a favorite among geology enthusiasts, rock hounds, and late season hunters. Starr Springs offers twelve individual camp sites",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 18313941
+        ]
       }
     },
     {
@@ -7221,10 +7255,12 @@
         ]
       },
       "properties": {
+        "id": "UT-305",
         "name": "San Rafael CG North ",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -7237,12 +7273,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "257246",
+        "description": "Camping facilities are provided at the San Rafael Bridge Recreation Site, adjacent to the San Rafael River.  This recreation site is bordered by the lofty escarpment to the north and large buttes to t",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 14503070
+        ]
       }
     },
     {
@@ -7255,10 +7293,12 @@
         ]
       },
       "properties": {
+        "id": "UT-306",
         "name": "Swinging Bridge",
+        "type": "established",
+        "cost": 0,
         "rating": null,
         "reviews_count": 0,
-        "cost": 0,
         "amenities": [
           "toilets",
           "water",
@@ -7271,12 +7311,14 @@
           "RV",
           "trailer"
         ],
-        "type": "established",
+        "road_difficulty": "paved",
+        "state": "UT",
+        "source": "recreation.gov",
+        "facility_id": "257247",
+        "description": "Camping facilities are provided at this Recreation Area in three distinct locations. This recreation site is bordered by the lofty escarpment to the north and large buttes to the east and west.  The N",
         "sources": [
           "recreation.gov"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 14503068
+        ]
       }
     },
     {
@@ -7583,1919 +7625,6 @@
         "sources": [
           "recreation.gov"
         ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.5411006,
-          40.6002178
-        ]
-      },
-      "properties": {
-        "access": "private",
-        "admin_level": "8",
-        "boundary": "protected_area",
-        "fixme": "Approximate boundaries.  Needs more accuracy.",
-        "name": "Camp Cloud Rim",
-        "note": "Approximate boundaries based Bonanza Flat Master Plan map: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/viewer.html?pdfurl=https%3A%2F%2Flegistarweb-production.s3.amazonaws.com%2Fuploads%2Fattachment%2Fpdf%2F503010%2FBFAMS_1-6-20.pdf&clen=19795269&",
-        "operator": "Girl Scouts of Utah",
-        "tourism": "camp_site",
-        "type": "boundary",
-        "website": "https://www.gsutah.org/en/camp/camp-rental.html",
-        "osm_id": 987537555,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.9158219,
-          41.3852769
-        ]
-      },
-      "properties": {
-        "name": "Cutler Flats Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 1118769603,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.9931484,
-          37.5304261
-        ]
-      },
-      "properties": {
-        "bbq": "yes",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "name": "Basin Campground",
-        "operator": "Utah State Parks",
-        "picnic_table": "yes",
-        "reservation": "yes",
-        "shower": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 1456801585,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.3961624,
-          40.9537306
-        ]
-      },
-      "properties": {
-        "name": "Marsh Lake Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 7423877,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.2147981,
-          37.0068646
-        ]
-      },
-      "properties": {
-        "name": "Gouldings Campground",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.gouldings.com/campground",
-        "osm_id": 9648245,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.8337829,
-          40.8690758
-        ]
-      },
-      "properties": {
-        "name": "Stillwater Campground",
-        "rating": null,
-        "reviews_count": 0,
-        "cost": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": "multipolygon",
-        "sources": [
-          "unknown"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 13473048
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.8326523,
-          40.8716337
-        ]
-      },
-      "properties": {
-        "name": "Group Site D",
-        "rating": null,
-        "reviews_count": 0,
-        "cost": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": "multipolygon",
-        "sources": [
-          "unknown"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 13473047
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6116097,
-          40.5761326
-        ]
-      },
-      "properties": {
-        "access": "permit",
-        "camp_site": "standard",
-        "campers": "yes",
-        "caravans": "yes",
-        "charge": "21.00 USD",
-        "drinking_water": "yes",
-        "ele": "9450'",
-        "fee": "yes",
-        "internet_access": "no",
-        "motor_vehicle": "yes",
-        "name": "Albion Basin Campground",
-        "operator": "US Forest Service",
-        "payment:cash": "yes",
-        "phone": "+1-801-466-6411",
-        "power_supply": "no",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=34142",
-        "osm_id": 13989810,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6460059,
-          40.4472592
-        ]
-      },
-      "properties": {
-        "access": "private",
-        "name": "Mutual Dell Camp",
-        "operator": "LDS Church",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14219470,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.5940811,
-          39.3513519
-        ]
-      },
-      "properties": {
-        "addr:city": "Delta",
-        "addr:country": "US",
-        "addr:housenumber": "776 W",
-        "addr:postcode": "84624",
-        "addr:state": "UT",
-        "addr:street": "Main Street",
-        "cabins": "yes",
-        "capacity:caravans": "110",
-        "caravans": "yes",
-        "email": "info@antelopevalleyrvpark.com",
-        "fee": "yes",
-        "internet_access": "wlan",
-        "internet_access:fee": "customers",
-        "internet_access:ssid": "Antelope;Antelope West",
-        "name": "Antelope Valley RV Park",
-        "permanent_camping": "yes",
-        "phone": "+1 435-864-1813",
-        "power_supply": "nema_5_20;nema_tt_30;nema_14_50",
-        "reservation": "recommended",
-        "sanitary_dump_station": "yes",
-        "static_caravans": "no",
-        "tents": "yes",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "osm_id": 14295504,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6129156,
-          40.3355241
-        ]
-      },
-      "properties": {
-        "name": "Nunn's Park Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14412207,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.8771048,
-          37.2741198
-        ]
-      },
-      "properties": {
-        "access": "customers",
-        "addr:city": "Orderville",
-        "addr:postcode": "84758",
-        "addr:state": "UT",
-        "addr:street": "Twin Knolls Road",
-        "caravans": "yes",
-        "email": "resort@zionponderosa.com",
-        "internet_access": "wlan",
-        "internet_access:fee": "no",
-        "name": "Zion Ponderosa Ranch Resort",
-        "phone": "+1 435-648-2700",
-        "start_date": "1995-01-01",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.zionponderosa.com",
-        "osm_id": 14420265,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6943806,
-          37.9357036
-        ]
-      },
-      "properties": {
-        "fee": "yes",
-        "name": "Posey Lake Campground",
-        "operator": "United States Forest Service",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/dixie/recarea/?recid=24984",
-        "osm_id": 14632456,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.3880767,
-          39.6392617
-        ]
-      },
-      "properties": {
-        "access": "permit",
-        "charge": "18 USD",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "name": "Sand Mountain Campground",
-        "operator": "Bureau of Land Management",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14713840,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.3630912,
-          40.0805524
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "fee": "no",
-        "name": "Dry Canyon Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14911134,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.5180294,
-          40.3200653
-        ]
-      },
-      "properties": {
-        "access": "private",
-        "name": "Trefoil Ranch Girl Scout Camp",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14919202,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.604169,
-          40.4041591
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Theater In The Pines Group Campsite",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 14936736,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.7354592,
-          40.2405078
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "addr:city": "Provo",
-        "addr:housenumber": "4400",
-        "addr:postcode": "84601",
-        "addr:state": "UT",
-        "addr:street": "West Center Street",
-        "caravans": "yes",
-        "fee": "yes",
-        "name": "Utah Lake State Park Campground",
-        "operator": "Utah State Parks",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://stateparks.utah.gov/parks/utah-lake",
-        "osm_id": 15035581,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.9844572,
-          37.6093765
-        ]
-      },
-      "properties": {
-        "fee": "yes",
-        "name": "Natural Bridges Campground",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.nps.gov/nabr/planyourvisit/eatingsleeping.htm",
-        "osm_id": 15259789,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6523573,
-          37.9734019
-        ]
-      },
-      "properties": {
-        "name": "Blue Spruce Campground",
-        "operator": "United States Forest Service",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130614",
-        "website": "https://www.fs.usda.gov/recarea/dixie/recarea/?recid=24988",
-        "osm_id": 15339161,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6768057,
-          40.4483054
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Group Site 1",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 15524670,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6726804,
-          40.4493222
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "campers": "yes",
-        "capacity": "36",
-        "caravans": "yes",
-        "description": "See web site for specific opening dates each season.",
-        "drinking_water": "no",
-        "fee": "yes",
-        "internet_access": "no",
-        "name": "Little Mill Campground",
-        "openfire": "yes",
-        "opening_hours": "May-Oct 00:00-24:00; Nov-Apr off",
-        "operator": "US Forest Service",
-        "payment:cash": "yes",
-        "phone": "+1-801-785-3563",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
-        "shower": "yes",
-        "source": "USDA website;Recreation.gov",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9902",
-        "wheelchair": "yes",
-        "osm_id": 15524671,
-        "sources": [
-          "USDA website;Recreation.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.587444,
-          38.7733905
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Site 47 - Juniper Basin Group Campsite",
-        "reservation": "required",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 15554581,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.5884366,
-          38.7767637
-        ]
-      },
-      "properties": {
-        "backcountry": "no",
-        "capacity": "53",
-        "caravans": "yes",
-        "drinking_water": "yes",
-        "group_only": "no",
-        "internet_access": "no",
-        "name": "Devils Garden Campground",
-        "nudism": "no",
-        "operator": "National Park Service",
-        "reservation": "Mar-Oct yes; no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.nps.gov/arch/planyourvisit/camping.htm",
-        "osm_id": 15554582,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.5896073,
-          38.776906
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Canyon Wren Group Campsite",
-        "reservation": "required",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 15554583,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.8900611,
-          37.0800917
-        ]
-      },
-      "properties": {
-        "caravans": "yes",
-        "name": "White House Campground",
-        "operator": "Bureau of Land Management",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 15953785,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.4047772,
-          40.9237596
-        ]
-      },
-      "properties": {
-        "name": "China Meadows Trailhead Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16075263,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.4039293,
-          40.9311214
-        ]
-      },
-      "properties": {
-        "name": "China Meadows Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16075265,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6528127,
-          40.4880009
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "campers": "yes",
-        "capacity": "55",
-        "caravans": "yes",
-        "description": "Reservations must be made 5 days in advance. Seven-day stay limit.",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "motor_vehicle": "yes",
-        "name": "Granite Flat Campground",
-        "openfire": "yes",
-        "opening_hours": "Jun-Oct 00:00-24:00; Nov-May off",
-        "operator": "US Forest Service",
-        "payment:cash": "yes",
-        "phone": "+1-801-785-3563",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recreation/hiking/recarea/?recid=9901&actid=29",
-        "osm_id": 16164510,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.9876446,
-          37.1963985
-        ]
-      },
-      "properties": {
-        "capacity": "178",
-        "caravans": "yes",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "name": "Watchman Campground",
-        "operator": "National Park Service",
-        "operator:wikipedia": "en:National Park Service",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.nps.gov/zion/planyourvisit/watchman-campground.htm",
-        "wheelchair": "yes",
-        "osm_id": 16219625,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.303485,
-          38.5430647
-        ]
-      },
-      "properties": {
-        "name": "Mason Draw Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/mantilasal/recreation/camping-cabins/recarea/?recid=73176&actid=29",
-        "osm_id": 16251684,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6334024,
-          37.789205
-        ]
-      },
-      "properties": {
-        "dog": "yes",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "name": "Wide Hollow Campground",
-        "operator": "Utah State Parks",
-        "reservation": "recommended",
-        "sanitary_dump_station": "customers",
-        "shower": "hot",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://utahstateparks.reserveamerica.com/camping/escalante-petrified-forest-state-park/r/campgroundDetails.do?contractCode=UT&parkId=345221",
-        "osm_id": 16323115,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.6782396,
-          38.6558662
-        ]
-      },
-      "properties": {
-        "fee": "yes",
-        "name": "Seven Mile Parking & Tent Camping Area",
-        "parking": "surface",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16430939,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.6814804,
-          38.6571831
-        ]
-      },
-      "properties": {
-        "access": "customers",
-        "caravans": "yes",
-        "fee": "yes",
-        "name": "Seven Mile RV Park",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16431142,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.723236,
-          39.7805151
-        ]
-      },
-      "properties": {
-        "name": "Cottonwood Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16497205,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.7143335,
-          39.7684254
-        ]
-      },
-      "properties": {
-        "name": "Ponderosa Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16497238,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.7028972,
-          41.5159467
-        ]
-      },
-      "properties": {
-        "access": "private",
-        "name": "Cinnamon Creek Campground",
-        "operator": "The Church of Jesus Christ of Latter-Day Saints",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 16661447,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.8147799,
-          40.8599612
-        ]
-      },
-      "properties": {
-        "name": "Browne Lake Campground",
-        "operator": "USFS",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130614",
-        "osm_id": 17038936,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.9139714,
-          40.6662886
-        ]
-      },
-      "properties": {
-        "name": "Paradise Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17061373,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.8681667,
-          40.721168
-        ]
-      },
-      "properties": {
-        "fee": "yes",
-        "name": "Butterfly Lake Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17066312,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.0450267,
-          40.5755871
-        ]
-      },
-      "properties": {
-        "name": "YMCA Camp Roger",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17072079,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.3845096,
-          40.9825902
-        ]
-      },
-      "properties": {
-        "name": "Stateline Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17171198,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.3875545,
-          40.9646589
-        ]
-      },
-      "properties": {
-        "internet_access": "no",
-        "internet_access:fee": "no",
-        "name": "Bridger Lake Campground",
-        "smoking": "no",
-        "stars": "5",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "wheelchair": "yes",
-        "osm_id": 17171517,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.5047773,
-          40.5678762
-        ]
-      },
-      "properties": {
-        "name": "Moon Lake Group B Campground",
-        "rating": null,
-        "reviews_count": 0,
-        "cost": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": "multipolygon",
-        "sources": [
-          "unknown"
-        ],
-        "tourism": "camp_site",
-        "osm_id": 17177503
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.638368,
-          40.5369276
-        ]
-      },
-      "properties": {
-        "name": "Yellowpine Campground",
-        "operator": "USFS",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130614",
-        "osm_id": 17179335,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6232227,
-          40.5341237
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Miners Gulch Group Campground",
-        "operator": "USFS",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130614",
-        "osm_id": 17179336,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.6129196,
-          40.5292447
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Rock Creek Group Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17179337,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.801376,
-          38.1461248
-        ]
-      },
-      "properties": {
-        "caravans": "yes",
-        "internet_access": "no",
-        "name": "The Needles Campground",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17353731,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.1030797,
-          39.0880573
-        ]
-      },
-      "properties": {
-        "name": "Westwater Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17470693,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.1045072,
-          39.0888348
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Group Camp Site",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17470695,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.3557432,
-          37.8559611
-        ]
-      },
-      "properties": {
-        "capacity": "6",
-        "fee": "yes",
-        "name": "Deer Creek Campground",
-        "operator": "BLM",
-        "source": "Bing",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17574263,
-        "sources": [
-          "Bing"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.81331,
-          38.5834839
-        ]
-      },
-      "properties": {
-        "name": "Horsethief Campground",
-        "operator": "Bureau of Land Management",
-        "operator:website": "https://www.blm.gov/visit/horsethief-campground",
-        "static_caravans": "no",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.recreation.gov/camping/campgrounds/251838",
-        "osm_id": 17579544,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.9913444,
-          37.1928087
-        ]
-      },
-      "properties": {
-        "addr:city": "Springdale",
-        "addr:housenumber": "479",
-        "addr:postcode": "84767",
-        "addr:state": "UT",
-        "addr:street": "Zion Park Boulevard",
-        "check_date": "2024-06-06",
-        "name": "Zion Canyon Campground and RV Resort",
-        "operator": "Ferber Resorts",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17590735,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6122798,
-          37.7738473
-        ]
-      },
-      "properties": {
-        "access": "customers",
-        "name": "Escalante Cabins and RV Park",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17597717,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.7846516,
-          38.1477572
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Wooden Shoe Group Campsite",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17668905,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.3524157,
-          39.6892828
-        ]
-      },
-      "properties": {
-        "access": "permit",
-        "capacity": "115",
-        "charge": "18 USD",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "name": "Oasis Campground",
-        "operator": "Bureau of Land Management",
-        "sanitary_dump_station": "yes",
-        "shower": "no",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17681207,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.1816665,
-          40.7755293
-        ]
-      },
-      "properties": {
-        "name": "Weber River Recreation Camp",
-        "operator": "LDS Church",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17808482,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.1372053,
-          40.6192916
-        ]
-      },
-      "properties": {
-        "name": "Taylors Fork Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 17955080,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.4007037,
-          40.1977072
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "addr:state": "UT",
-        "addr:street": "Right Fork Hobble Road",
-        "camp_site": "basic",
-        "campers": "yes",
-        "capacity": "26",
-        "caravans": "yes",
-        "description": "16-day stay limit. Check webiste for exact opening dates each season.",
-        "drinking_water": "yes",
-        "fee": "yes",
-        "motor_vehicle": "yes",
-        "name": "Balsam Campground",
-        "openfire": "yes",
-        "opening_hours": "May-Sep 00:00-24:00; Oct-Apr off",
-        "operator": "US Forest Service",
-        "phone": "+1-801-798-3571",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9845",
-        "wheelchair": "yes",
-        "osm_id": 18153249,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6250094,
-          39.8922689
-        ]
-      },
-      "properties": {
-        "capacity": "46",
-        "fee": "yes",
-        "name": "Blackhawk Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9847",
-        "osm_id": 18170939,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6425419,
-          39.93397
-        ]
-      },
-      "properties": {
-        "capacity": "111",
-        "fee": "yes",
-        "name": "Payson Lakes Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9844",
-        "osm_id": 18171011,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.9993243,
-          40.5931078
-        ]
-      },
-      "properties": {
-        "camp_site": "basic",
-        "name": "Duchesne Tunnel Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 18184959,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.1713961,
-          40.1758783
-        ]
-      },
-      "properties": {
-        "name": "Strawberry Bay Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 18213751,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.340795,
-          40.1412347
-        ]
-      },
-      "properties": {
-        "capacity:caravans": "3",
-        "capacity:persons": "3",
-        "fee": "no",
-        "name": "Sawmill Hollow",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 18252347,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.4874407,
-          40.4812107
-        ]
-      },
-      "properties": {
-        "name": "Soldier Hollow Campground - Chalet Loop",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 18273556,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.638336,
-          40.4327108
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "addr:country": "US",
-        "addr:state": "UT",
-        "area": "yes",
-        "campers": "yes",
-        "caravans": "yes",
-        "description": "Maximum RV length: 30 feet. Open only June to October. See web site for specific opening dates each year.",
-        "drinking_water": "yes",
-        "horse": "yes",
-        "maxlength": "30'",
-        "name": "Timpooneke Campground",
-        "openfire": "yes",
-        "opening_hours": "Jun-Oct 00:00-24:00; Nov-May off",
-        "operator": "US Forest Service",
-        "payment:cash": "yes",
-        "phone": "+1-801-785-3563",
-        "sanitary_dump_station": "no",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recreation/camping-cabins/recarea/?recid=9906&actid=29",
-        "wheelchair": "yes",
-        "osm_id": 18461860,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.7304545,
-          39.7871659
-        ]
-      },
-      "properties": {
-        "name": "Bear Canyon Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 18992914,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.6962727,
-          39.9705304
-        ]
-      },
-      "properties": {
-        "name": "Camp Maple Dell (BSA)",
-        "scout": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 19059012,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.9104437,
-          37.5740297
-        ]
-      },
-      "properties": {
-        "name": "Deer Haven Campground",
-        "operator": "United States Forest Service",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130614",
-        "website": "https://www.fs.usda.gov/recarea/dixie/recarea/?recid=24900",
-        "osm_id": 19160092,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.5535876,
-          40.7836034
-        ]
-      },
-      "properties": {
-        "name": "East Park Campground",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 19269620,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.5915255,
-          40.4921775
-        ]
-      },
-      "properties": {
-        "access": "permissive",
-        "camp_site": "basic",
-        "campers": "yes",
-        "capacity": "3",
-        "caravans": "no",
-        "charge": "16 USD",
-        "description": "Stay limit is 7 days. Pets must be on a leash. Fee $16 confirmed May 2021. Three single sites. Oddly shaped polygon because one site is across the street.",
-        "drinking_water": "no",
-        "ele": "2085",
-        "fee": "yes",
-        "internet_access": "no",
-        "name": "Lower Narrows Campground",
-        "operator": "US Forest Service",
-        "payment:cash": "yes",
-        "phone": "+1-801-733-2660",
-        "power_supply": "no",
-        "reservation": "yes",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9461",
-        "osm_id": 19325196,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.4334792,
-          37.8740618
-        ]
-      },
-      "properties": {
-        "name": "Dalton Springs Campground",
-        "operator": "USFS",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130614",
-        "osm_id": 19383168,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -113.0982809,
-          37.6127743
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "addr:city": "Cedar City",
-        "addr:state": "UT",
-        "addr:street": "Shirts Canyon Road",
-        "camp_site": "basic",
-        "capacity:caravans": "25",
-        "capacity:tents": "25",
-        "caravans": "yes",
-        "drinking_water": "no",
-        "fee": "yes",
-        "informal": "no",
-        "internet_access": "no",
-        "large_vehicles": "ys",
-        "laundry": "no",
-        "maxlength": "9.2",
-        "mobile_reception": "unknown",
-        "name": "Pyramid Ridge Campground",
-        "phone": "unknown",
-        "power_supply": "no",
-        "reservation": "yes",
-        "shower": "no",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "water_point": "no",
-        "website": "https://www.recreation.gov/camping/campgrounds/10168044",
-        "osm_id": 19426788,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.6076311,
-          38.4937226
-        ]
-      },
-      "properties": {
-        "name": "Ledge A Campground",
-        "operator": "BLM",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "osm_id": 19463164,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -109.4687742,
-          40.8086167
-        ]
-      },
-      "properties": {
-        "name": "Red Springs Campground",
-        "operator": "US Forest Service",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://www.fs.usda.gov/recarea/ashley/recreation/hunting/recarea/?recid=72145&actid=71",
-        "osm_id": 19521945,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.2866438,
-          39.3065557
-        ]
-      },
-      "properties": {
-        "group_only": "yes",
-        "name": "Joes Valley Pavilion Group Campground",
-        "operator": "USFS",
-        "source": "www.fs.usda.gov",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "uuid": "sonora_20130614",
-        "osm_id": 19618951,
-        "sources": [
-          "www.fs.usda.gov"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.3353238,
-          41.8450237
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "camp_site": "standard",
-        "campers": "yes",
-        "caravans": "yes",
-        "contact:phone": "+1-435-946-3343",
-        "drinking_water": "yes",
-        "fax": "+1-435-946-8847",
-        "fee": "yes",
-        "motor_vehicle": "yes",
-        "name": "Big Creek Campground",
-        "operator": "Utah Department of Natural Resources",
-        "picnic_table": "yes",
-        "power_supply": "yes",
-        "shower": "yes",
-        "tents": "no",
-        "toilets": "yes",
-        "tourism": "caravan_site",
-        "type": "multipolygon",
-        "website": "https://stateparks.utah.gov/parks/bear-lake/",
-        "wheelchair": "yes",
-        "osm_id": 19629592,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.3400716,
-          41.8458145
-        ]
-      },
-      "properties": {
-        "access": "yes",
-        "caravans": "no",
-        "contact:phone": "+1-435-946-3343",
-        "fax": "+1-435-946-8847",
-        "fee": "yes",
-        "motor_vehicle": "yes",
-        "name": "Cottonwood Campground",
-        "operator": "Utah Department of Natural Resources",
-        "shower": "yes",
-        "tents": "yes",
-        "toilets": "yes",
-        "tourism": "camp_site",
-        "type": "multipolygon",
-        "website": "https://stateparks.utah.gov/parks/bear-lake/",
-        "wheelchair": "yes",
-        "osm_id": 19629594,
-        "sources": [
-          "unknown"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.3472795,
-          41.8466636
-        ]
-      },
-      "properties": {
-        "name": "Willow Campground",
-        "rating": null,
-        "reviews_count": 0,
-        "cost": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": "multipolygon",
-        "sources": [
-          "unknown"
-        ],
-        "tourism": "caravan_site",
-        "osm_id": 19629597
       }
     }
   ]
