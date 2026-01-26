@@ -1,162 +1,111 @@
-/* data-loader.js - FIXED VERSION - Forces initial data load */
 
 (function() {
   'use strict';
 
+  // State object to hold all our data and configurations
   const state = {
-    allCampsites: [],
-    loadedStates: new Set(),
-    loading: new Set(),
-    loadedCampsiteIds: new Set(),  // Track loaded campsite IDs to prevent duplicates
-    index: null,
-    clusterGroup: null,
-    config: {}
+    allCampsites: [],       // All campsites currently loaded
+    loadedStates: new Set(),  // Which states' data have we fetched
+    loading: new Set(),         // Which states are currently being fetched
+    stateIndex: null,         // GeoJSON index for state boundaries
+    clusterGroup: null,       // Leaflet MarkerClusterGroup
+    config: {},               // To store init configuration
+    loadedCampsiteIds: new Set() // Set to track IDs of all loaded campsites for deduplication
   };
 
-  const STATE_BOUNDS = {
-    'AL': { s: 30.2, w: -88.5, n: 35.0, e: -84.9 },
-    'AK': { s: 51.2, w: -179.1, n: 71.4, e: -129.9 },
-    'AZ': { s: 31.3, w: -114.8, n: 37.0, e: -109.0 },
-    'AR': { s: 33.0, w: -94.6, n: 36.5, e: -89.6 },
-    'CA': { s: 32.5, w: -124.4, n: 42.0, e: -114.1 },
-    'CO': { s: 37.0, w: -109.1, n: 41.0, e: -102.0 },
-    'CT': { s: 41.0, w: -73.7, n: 42.1, e: -71.8 },
-    'DE': { s: 38.5, w: -75.8, n: 39.8, e: -75.0 },
-    'FL': { s: 24.5, w: -87.6, n: 31.0, e: -79.9 },
-    'GA': { s: 30.4, w: -85.6, n: 35.0, e: -80.8 },
-    'HI': { s: 18.9, w: -160.2, n: 22.2, e: -154.8 },
-    'ID': { s: 42.0, w: -117.2, n: 49.0, e: -111.0 },
-    'IL': { s: 37.0, w: -91.5, n: 42.5, e: -87.5 },
-    'IN': { s: 37.8, w: -88.1, n: 41.8, e: -84.8 },
-    'IA': { s: 40.4, w: -96.6, n: 43.5, e: -90.1 },
-    'KS': { s: 37.0, w: -102.1, n: 40.0, e: -94.6 },
-    'KY': { s: 36.5, w: -89.6, n: 39.1, e: -81.9 },
-    'LA': { s: 29.0, w: -94.0, n: 33.0, e: -89.0 },
-    'ME': { s: 43.1, w: -71.1, n: 47.5, e: -66.9 },
-    'MD': { s: 37.9, w: -79.5, n: 39.7, e: -75.0 },
-    'MA': { s: 41.2, w: -73.5, n: 42.9, e: -69.9 },
-    'MI': { s: 41.7, w: -90.4, n: 48.3, e: -82.4 },
-    'MN': { s: 43.5, w: -97.2, n: 49.4, e: -89.5 },
-    'MS': { s: 30.2, w: -91.7, n: 35.0, e: -88.1 },
-    'MO': { s: 36.0, w: -95.8, n: 40.6, e: -89.1 },
-    'MT': { s: 45.0, w: -116.1, n: 49.0, e: -104.0 },
-    'NE': { s: 40.0, w: -104.1, n: 43.0, e: -95.3 },
-    'NV': { s: 35.0, w: -120.0, n: 42.0, e: -114.0 },
-    'NH': { s: 42.7, w: -72.6, n: 45.3, e: -70.6 },
-    'NJ': { s: 38.9, w: -75.6, n: 41.4, e: -73.9 },
-    'NM': { s: 31.3, w: -109.1, n: 37.0, e: -103.0 },
-    'NY': { s: 40.5, w: -79.8, n: 45.0, e: -71.9 },
-    'NC': { s: 33.8, w: -84.3, n: 36.6, e: -75.5 },
-    'ND': { s: 45.9, w: -104.1, n: 49.0, e: -96.6 },
-    'OH': { s: 38.4, w: -84.8, n: 42.3, e: -80.5 },
-    'OK': { s: 33.6, w: -103.0, n: 37.0, e: -94.4 },
-    'OR': { s: 42.0, w: -124.6, n: 46.3, e: -116.5 },
-    'PA': { s: 39.7, w: -80.5, n: 42.3, e: -74.7 },
-    'RI': { s: 41.1, w: -71.9, n: 42.0, e: -71.1 },
-    'SC': { s: 32.0, w: -83.4, n: 35.2, e: -78.5 },
-    'SD': { s: 42.5, w: -104.1, n: 45.9, e: -96.4 },
-    'TN': { s: 35.0, w: -90.3, n: 36.7, e: -81.6 },
-    'TX': { s: 25.8, w: -106.6, n: 36.5, e: -93.5 },
-    'UT': { s: 37.0, w: -114.1, n: 42.0, e: -109.0 },
-    'VT': { s: 42.7, w: -73.4, n: 45.0, e: -71.5 },
-    'VA': { s: 36.5, w: -83.7, n: 39.5, e: -75.2 },
-    'WA': { s: 45.5, w: -124.8, n: 49.0, e: -116.9 },
-    'WV': { s: 37.2, w: -82.6, n: 40.6, e: -77.7 },
-    'WI': { s: 42.5, w: -92.9, n: 47.1, e: -86.2 },
-    'WY': { s: 41.0, w: -111.1, n: 45.0, e: -104.1 }
-  };
-
+  // Debounce utility
   function debounce(func, wait) {
     let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
+    return function(...args) {
       clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
+      timeout = setTimeout(() => func.apply(this, args), wait);
     };
   }
 
-  function boundsIntersect(b1, b2) {
-    return !(b1.e < b2.w || b1.w > b2.e || b1.n < b2.s || b1.s > b2.n);
+  // Load state boundaries index
+  async function loadIndex() {
+    try {
+      const resp = await fetch('data/states_index.geojson');
+      if (!resp.ok) throw new Error(`HTTP error! status: ${resp.status}`);
+      state.stateIndex = await resp.json();
+      console.log('✅ State index loaded successfully');
+    } catch (e) {
+      console.error('💥 Failed to load state index:', e.message);
+      // Optional: Show a user-facing error
+    }
   }
 
+  // Find which states are visible in the current map view
   function getVisibleStates(map) {
-    const bounds = map.getBounds();
-    const viewport = {
-      s: bounds.getSouth(),
-      w: bounds.getWest(),
-      n: bounds.getNorth(),
-      e: bounds.getEast()
-    };
+    if (!state.stateIndex) return [];
 
-    const visible = [];
-    for (const [stateCode, bbox] of Object.entries(STATE_BOUNDS)) {
-      if (boundsIntersect(viewport, bbox)) {
-        visible.push(stateCode);
+    const bounds = map.getBounds();
+    const visible = new Set();
+
+    // Simple bounding box check
+    for (const feature of state.stateIndex.features) {
+      const stateBounds = L.geoJSON(feature).getBounds();
+      if (bounds.intersects(stateBounds)) {
+        visible.add(feature.properties.STATE_ABBR);
       }
     }
     
-    console.log(`🗺️ Viewport: lat ${viewport.s.toFixed(2)} to ${viewport.n.toFixed(2)}, lng ${viewport.w.toFixed(2)} to ${viewport.e.toFixed(2)}`);
-    console.log(`🗺️ Visible states detected: ${visible.join(', ') || 'NONE'}`);
-    
-    return visible;
+    return Array.from(visible);
   }
 
-  async function loadIndex() {
-    try {
-      const response = await fetch('data/campsites/index.json');
-      if (!response.ok) throw new Error('Index not found');
-      state.index = await response.json();
-      console.log('📊 Loaded campsite index:', state.index.total_sites, 'sites');
-      return state.index;
-    } catch (err) {
-      console.warn('⚠️ Could not load campsite index:', err.message);
-      return null;
-    }
-  }
-
+  // Load GeoJSON data for a specific state
   async function loadStateData(stateCode) {
-    if (state.loadedStates.has(stateCode) || state.loading.has(stateCode)) {
+    if (state.loading.has(stateCode) || state.loadedStates.has(stateCode)) {
       return;
     }
 
     state.loading.add(stateCode);
-    console.log(`📥 Loading ${stateCode} campsites from all sources...`);
 
     try {
-      // Load the merged, deduplicated file that combines Recreation.gov + OSM data
-      const url = `data/campsites/${stateCode}_merged.geojson`;
+      const compressedUrl = `data/merged/${stateCode}_merged.geojson.gz`;
+      const uncompressedUrl = `data/merged/${stateCode}_merged.geojson`;
 
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status} for ${url}`);
-      }
-
-      const data = await response.json();
       let allNewSites = [];
+      let loadedFrom = '';
 
-      // Process merged data
-      if (data && data.features) {
-        allNewSites = data.features;
-        const sourceCount = {};
-        allNewSites.forEach(f => {
-          const sources = f.properties.sources || [f.properties.source || 'unknown'];
-          sources.forEach(src => {
-            sourceCount[src] = (sourceCount[src] || 0) + 1;
-          });
-        });
+      // Try fetching compressed data first
+      try {
+        const response = await fetch(compressedUrl);
+        if (!response.ok) throw new Error('Compressed file not found, trying uncompressed.');
 
-        const sourceInfo = Object.entries(sourceCount)
-          .map(([src, count]) => `${src}: ${count}`)
-          .join(', ');
-        console.log(`✅ Loaded ${allNewSites.length} deduplicated sites for ${stateCode} (${sourceInfo})`);
-      } else {
-        console.warn(`⚠️ No features found in merged data for ${stateCode}`);
+        // Check for pako library
+        if (typeof pako === 'undefined') {
+          console.error('Error: pako.js is not loaded. Cannot decompress gzipped file.');
+          throw new Error('pako.js not available.');
+        }
+
+        const compressedData = await response.arrayBuffer();
+        const decompressedData = pako.inflate(compressedData, { to: 'string' });
+        const geojson = JSON.parse(decompressedData);
+        allNewSites = geojson.features;
+        loadedFrom = 'gzipped';
+
+      } catch (e) {
+        console.warn(`Could not load gzipped data for ${stateCode}: ${e.message}. Trying uncompressed...`);
+
+        // Fallback to uncompressed GeoJSON
+        try {
+          const response = await fetch(uncompressedUrl);
+          if (!response.ok) throw new Error(`Uncompressed file for ${stateCode} also not found.`);
+          const geojson = await response.json();
+          allNewSites = geojson.features;
+          loadedFrom = 'json';
+
+        } catch (uncompressedError) {
+          console.error(`💥 Failed to load any data for ${stateCode}:`, uncompressedError.message);
+          state.loadedStates.add(stateCode); // Mark as loaded to prevent retries
+          return [];
+        }
       }
 
       if (allNewSites.length > 0) {
+        console.log(`📥 Loaded ${allNewSites.length} sites for ${stateCode} from ${loadedFrom}`);
+
         // Filter out duplicates by checking if ID already exists
         const uniqueSites = allNewSites.filter(site => {
           const siteId = site.properties.id;

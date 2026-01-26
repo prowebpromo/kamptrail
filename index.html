@@ -104,14 +104,29 @@
   <div id="loading" class="loading"><div class="spinner"></div></div>
 
   <script>
-    // Service Worker Registration
+    // Service Worker (Temporarily disabled for debugging)
+    /*
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => console.log('✅ Service worker registered', reg))
-          .catch(err => console.error('💥 Service worker registration failed', err));
+        navigator.serviceWorker.register('service-worker.js').then(reg => {
+          function promptUpdate(sw){
+            showToast('New version available — <a href="#" id="upd">update now</a>', 'success', 0, true);
+            document.getElementById('upd').onclick = (e) => {
+              e.preventDefault(); sw.postMessage('SKIP_WAITING'); location.reload();
+            };
+          }
+          if (reg.waiting) promptUpdate(reg.waiting);
+          reg.addEventListener('updatefound', () => {
+            const sw = reg.installing;
+            sw && sw.addEventListener('statechange', () => {
+              if (sw.state === 'installed' && navigator.serviceWorker.controller) promptUpdate(sw);
+            });
+          });
+        }).catch(console.error);
       });
     }
+    */
+
     // Helpers
     window.escapeHtml = function(text){
       if(!text) return '';
@@ -137,14 +152,13 @@
     updateOnline();
 
     // Map init
-    const map = L.map('map',{zoomControl:true,preferCanvas:true});
+    window.map = L.map('map',{zoomControl:true,preferCanvas:true});
+    const map = window.map;
     const saved = (()=>{try{return JSON.parse(localStorage.getItem('kt_last_position'))}catch{return null}})();
     if(saved){map.setView([saved.lat,saved.lng],saved.zoom)}else{map.setView([39.8283,-98.5795],5)}
     map.on('moveend',()=>{
       const c=map.getCenter();
-      try{
-        localStorage.setItem('kt_last_position',JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()}))
-      }catch{}
+      try{localStorage.setItem('kt_last_position',JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()}))}catch{}
     });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom:19,detectRetina:true,attribution:'&copy; OpenStreetMap contributors'
@@ -253,6 +267,9 @@
       });
     });
   </script>
+
+  <!-- Pako - for Gzip decompression -->
+  <script src="https://cdn.jsdelivr.net/npm/pako@2.0.4/dist/pako.min.js"></script>
 
   <!-- Feature modules -->
   <script src="overlays/overlays-advanced.js"></script>
