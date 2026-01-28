@@ -2,10 +2,29 @@
 
 Complete guide to deploying AnythingLLM with Docker, configuring OpenRouter, and replacing Expertise.ai.
 
+---
+
+## Hosting Options
+
+### Option A: Oracle Cloud Free Tier (Recommended - FREE)
+
+Deploy on Oracle's always-free tier VM. See **[ORACLE-CLOUD-SETUP.md](ORACLE-CLOUD-SETUP.md)** for complete instructions.
+
+**What you get FREE:**
+- 1 OCPU, 1-6GB RAM VM (forever free)
+- 50GB storage
+- 10TB/month bandwidth
+
+### Option B: Your Own VPS/Server
+
+Use this guide if you already have a server with Docker.
+
+---
+
 ## Prerequisites Checklist
 
 - [ ] Server with Docker installed (Ubuntu 20.04+ recommended)
-- [ ] At least 2GB RAM available
+- [ ] At least 2GB RAM available (1GB works with swap)
 - [ ] At least 10GB disk space
 - [ ] Domain name (optional, for HTTPS)
 - [ ] OpenRouter account with API key
