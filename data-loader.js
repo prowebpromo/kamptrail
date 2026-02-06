@@ -350,30 +350,34 @@
 
       // Set up event delegation for all popup buttons
       document.addEventListener('click', function(e) {
+        // Find the actual button element (in case user clicks on text/emoji inside button)
+        const target = e.target.closest('button');
+        if (!target) return;
+
         // Google Places button
-        if (e.target && e.target.classList.contains('load-google-btn')) {
-          const siteId = e.target.dataset.siteId;
-          const name = e.target.dataset.name;
-          const lat = parseFloat(e.target.dataset.lat);
-          const lng = parseFloat(e.target.dataset.lng);
+        if (target.classList.contains('load-google-btn')) {
+          const siteId = target.dataset.siteId;
+          const name = target.dataset.name;
+          const lat = parseFloat(target.dataset.lat);
+          const lng = parseFloat(target.dataset.lng);
           window.KampTrailData.loadGoogleData(siteId, name, lat, lng);
         }
         // Add to Trip button
-        else if (e.target && e.target.classList.contains('add-to-trip-btn')) {
-          const siteId = e.target.dataset.siteId;
+        else if (target.classList.contains('add-to-trip-btn')) {
+          const siteId = target.dataset.siteId;
           window.KampTrailData.addToTrip(siteId);
         }
         // Compare button
-        else if (e.target && e.target.classList.contains('compare-btn')) {
-          const siteId = e.target.dataset.siteId;
+        else if (target.classList.contains('compare-btn')) {
+          const siteId = target.dataset.siteId;
           if (window.KampTrailCompare) {
             window.KampTrailCompare.addToCompare(siteId);
           }
         }
         // Navigate button
-        else if (e.target && e.target.classList.contains('navigate-btn')) {
-          const lat = e.target.dataset.lat;
-          const lng = e.target.dataset.lng;
+        else if (target.classList.contains('navigate-btn')) {
+          const lat = target.dataset.lat;
+          const lng = target.dataset.lng;
           window.open(`https://maps.google.com/?q=${lat},${lng}`);
         }
       });

@@ -282,21 +282,24 @@
 
       // Set up event delegation for comparison buttons
       document.addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('compare-zoom-btn')) {
-          const lat = parseFloat(e.target.dataset.lat);
-          const lon = parseFloat(e.target.dataset.lon);
+        const target = e.target.closest('button');
+        if (!target) return;
+
+        if (target.classList.contains('compare-zoom-btn')) {
+          const lat = parseFloat(target.dataset.lat);
+          const lon = parseFloat(target.dataset.lon);
           window.KampTrailCompare.zoomTo(lat, lon);
-        } else if (e.target && e.target.classList.contains('compare-addtrip-btn')) {
-          const siteId = e.target.dataset.siteId;
+        } else if (target.classList.contains('compare-addtrip-btn')) {
+          const siteId = target.dataset.siteId;
           if (window.KampTrailData) {
             window.KampTrailData.addToTrip(siteId);
           }
-        } else if (e.target && e.target.classList.contains('compare-remove-btn')) {
-          const siteId = e.target.dataset.siteId;
+        } else if (target.classList.contains('compare-remove-btn')) {
+          const siteId = target.dataset.siteId;
           window.KampTrailCompare.remove(siteId);
-        } else if (e.target && e.target.classList.contains('compare-close-btn')) {
+        } else if (target.classList.contains('compare-close-btn')) {
           window.KampTrailCompare.close();
-        } else if (e.target && e.target.classList.contains('compare-clearall-btn')) {
+        } else if (target.classList.contains('compare-clearall-btn')) {
           window.KampTrailCompare.clearAll();
         }
       });

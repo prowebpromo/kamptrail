@@ -298,13 +298,16 @@
 
       // Set up event delegation for GPX waypoint buttons
       document.addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('gpx-find-nearest-btn')) {
-          const lat = parseFloat(e.target.dataset.lat);
-          const lon = parseFloat(e.target.dataset.lon);
+        const target = e.target.closest('button');
+        if (!target) return;
+
+        if (target.classList.contains('gpx-find-nearest-btn')) {
+          const lat = parseFloat(target.dataset.lat);
+          const lon = parseFloat(target.dataset.lon);
           window.KampTrailGPX.findNearestCampsite(lat, lon);
-        } else if (e.target && e.target.classList.contains('gpx-navigate-btn')) {
-          const lat = e.target.dataset.lat;
-          const lon = e.target.dataset.lon;
+        } else if (target.classList.contains('gpx-navigate-btn')) {
+          const lat = target.dataset.lat;
+          const lon = target.dataset.lon;
           window.open(`https://maps.google.com/?q=${lat},${lon}`);
         }
       });
