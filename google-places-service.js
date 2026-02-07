@@ -138,7 +138,7 @@
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,
-          'X-Goog-FieldMask': 'places.id,places.displayName'
+          'X-Goog-FieldMask': '*'
         },
         body: JSON.stringify({
           textQuery: query,
