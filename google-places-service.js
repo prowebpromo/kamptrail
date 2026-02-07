@@ -75,7 +75,7 @@
 
     // Field mask to control costs - this is crucial.
     const fields = 'id,displayName,rating,userRatingCount,photos';
-    const url = `${state.apiUrl}/${placeId}?fields=${fields}`;
+    const url = `${state.apiUrl}/${placeId}`;
 
     try {
       const response = await fetch(url, {
@@ -84,6 +84,7 @@
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,
+          'X-Goog-FieldMask': fields
         }
       });
 
@@ -137,6 +138,7 @@
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': state.apiKey,
+          'X-Goog-FieldMask': 'places.id,places.displayName'
         },
         body: JSON.stringify({
           textQuery: query,
