@@ -155,7 +155,11 @@
         console.warn('[Google Places] API quota exceeded or key issue.');
         return { error: 'QUOTA_EXCEEDED' };
       }
-      if (!response.ok) throw new Error(`API returned status ${response.status}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`[Google Places] API Error ${response.status}:`, errorText);
+        throw new Error(`API returned status ${response.status}: ${errorText}`);
+      }
 
       const data = await response.json();
 
