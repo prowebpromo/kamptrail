@@ -16,13 +16,20 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light dark">
 
+  <!-- Canonical -->
+  <link rel="canonical" href="https://prowebpromo.github.io/kamptrail/">
+
   <!-- Social -->
+  <meta property="og:site_name" content="KampTrail">
   <meta property="og:title" content="KampTrail — Free Campsite Map">
   <meta property="og:type" content="website">
   <meta property="og:image" content="og.png">
   <meta property="og:description" content="Fast, offline-first campsite map with overlays, filters, and trip planning.">
   <meta property="og:url" content="https://prowebpromo.github.io/kamptrail/">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KampTrail — Free Campsite Map">
+  <meta name="twitter:description" content="Find free and low-cost campsites across the US with advanced filters, overlays, and trip planning.">
+  <meta name="twitter:image" content="https://prowebpromo.github.io/kamptrail/og.png">
 
   <!-- Networking hint -->
   <link rel="preconnect" href="https://tile.openstreetmap.org">
@@ -161,9 +168,11 @@
     updateOnline();
 
     // Map init
-    const map = L.map('map',{zoomControl:true,preferCanvas:true});
+    const map = L.map('map',{zoomControl:true,preferCanvas:true,minZoom:3});
     const saved = (()=>{try{return JSON.parse(localStorage.getItem('kt_last_position'))}catch{return null}})();
-    if(saved){map.setView([saved.lat,saved.lng],saved.zoom)}else{map.setView([39.8283,-98.5795],5)}
+    const isValidPos = s => s && isFinite(s.lat) && isFinite(s.lng) && isFinite(s.zoom)
+      && s.lat >= -90 && s.lat <= 90 && s.lng >= -180 && s.lng <= 180;
+    if(isValidPos(saved)){map.setView([saved.lat,saved.lng],saved.zoom)}else{map.setView([39.8283,-98.5795],5)}
     map.on('moveend',()=>{
       const c=map.getCenter();
       try{localStorage.setItem('kt_last_position',JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()}))}catch{}
@@ -204,7 +213,7 @@
           showToast('Location error: '+err.message,'error');
           this.classList.remove('active');
         },
-        {enableHighAccuracy:true,timeout:8000}
+        {enableHighAccuracy:true,timeout:8000,maximumAge:0}
       );
     });
 
