@@ -1,7 +1,7 @@
 // service-worker.js — KampTrail SW (SAFE MODE)
 // Goal: never break map tiles or cross-origin requests.
 // Bump VERSION any time you change cached files.
-const VERSION = 'kt-v17-safe';
+const VERSION = 'kt-v18-safe';
 
 const SHELL = [
   'index.html',
@@ -19,7 +19,7 @@ const SHELL = [
   'trip-planner.js',
   'gpx-importer.js',
   'campsite-compare.js',
-  'google-places-service.js'
+  'wikimedia-photos-service.js'
 ];
 
 // --- INSTALL: cache app shell ---

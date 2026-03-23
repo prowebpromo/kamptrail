@@ -296,13 +296,13 @@
           <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Compare
           </button>
-          <button onclick="window.open('https://maps.google.com/?q=${lat},${lng}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          <button onclick="window.open('https://www.openstreetmap.org/directions?from=&to=${lat},${lng}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>
         </div>
-        <div id="google-places-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button class="kt-google-btn" data-siteid="${safeId}" data-name="${safeCampName}" data-lat="${lat}" data-lng="${lng}" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
-                📷 Show Google Photos & Rating
+        <div id="photos-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
+            <button class="kt-photos-btn" data-siteid="${safeId}" data-lat="${lat}" data-lng="${lng}" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
+                📷 Show Nearby Photos
             </button>
         </div>
       </div>
@@ -442,82 +442,57 @@
       if (state.config.onFavoriteToggle) state.config.onFavoriteToggle(id);
     },
 
-    async loadGoogleData(siteId, name, lat, lng) {
-        if (!window.KampTrailGoogle || !window.KampTrailGoogle.isInitialized()) {
-            const container = document.getElementById(`google-places-container-${siteId}`);
-            if (container) {
-                container.innerHTML = `<div style="font-size:12px;color:#888;padding:10px 0;">Google Places API key not configured. See README for setup instructions.</div>`;
-            }
-            return;
-        }
-        const container = document.getElementById(`google-places-container-${siteId}`);
+    async loadNearbyPhotos(siteId, lat, lng) {
+        const container = document.getElementById(`photos-container-${siteId}`);
         if (!container) return;
 
-        container.innerHTML = '<em>Loading Google data...</em>';
+        container.innerHTML = '<em>Loading nearby photos...</em>';
 
-        const data = await window.KampTrailGoogle.getPlaceDetails(name, lat, lng);
-
-        if (!data) {
-            container.innerHTML = '<em>No Google data found for this location.</em>';
-            return;
-        }
-        if (data.error === 'QUOTA_EXCEEDED') {
-            container.style.display = 'none'; // Hide if quota is hit
+        if (!window.KampTrailPhotos) {
+            container.innerHTML = '<em>Photos service unavailable.</em>';
             return;
         }
 
-        let photosHtml = '';
-        if (data.photos && data.photos.length > 0) {
-            photosHtml = `
-                <div style="display:flex; overflow-x:auto; gap: 5px; padding-bottom: 5px;">
-                    ${data.photos.slice(0, 5).map(photo => `<img src="${photo.url}" crossorigin="anonymous" style="height: 80px; border-radius: 4px;" alt="Campsite photo">`).join('')}
-                </div>
-            `;
+        const photos = await window.KampTrailPhotos.getNearbyPhotos(lat, lng);
+
+        if (!photos || photos.length === 0) {
+            container.innerHTML = '<div style="font-size:12px;color:#888;padding:4px 0;">No nearby photos found on Wikimedia Commons.</div>';
+            return;
         }
 
-        const ratingHtml = data.rating ? `
-            <div style="font-size: 12px; margin-top: 5px;">
-                <strong>Google Rating:</strong> ${data.rating.toFixed(1)} ⭐ (${data.userRatingCount} reviews)
-                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}" target="_blank" rel="noopener">Read reviews</a>
+        const photosHtml = `
+            <div style="display:flex; overflow-x:auto; gap: 5px; padding-bottom: 5px;">
+                ${photos.map(photo => `<a href="${photo.pageUrl || '#'}" target="_blank" rel="noopener" title="${photo.title}"><img src="${photo.url}" style="height: 80px; border-radius: 4px;" alt="${photo.title}" loading="lazy"></a>`).join('')}
             </div>
-        ` : '';
-
-        container.innerHTML = `
-            ${photosHtml}
-            ${ratingHtml}
-            <div style="font-size: 10px; text-align: right; color: #888; margin-top: 5px;">
-                Powered by Google
+            <div style="font-size:10px;text-align:right;color:#888;margin-top:3px;">
+                Photos from <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC licensed, within ~2km)
             </div>
         `;
-    }
+        container.innerHTML = photosHtml;
+    },
+
   };
 })();
 
-// Global click handler for Google Photos & Rating buttons (avoids inline onclick escaping issues)
+// Global click handler for Nearby Photos buttons
 document.addEventListener('click', async (e) => {
-  const btn = e.target.closest('.kt-google-btn');
+  const btn = e.target.closest('.kt-photos-btn');
   if (!btn) return;
 
   e.preventDefault();
+  btn.disabled = true;
 
   const siteId = btn.dataset.siteid || '';
-  const name = btn.dataset.name || '';
   const lat = parseFloat(btn.dataset.lat) || 0;
   const lng = parseFloat(btn.dataset.lng) || 0;
 
-  if (!siteId) {
-    console.warn('No siteId on Google button', btn);
-    return;
-  }
+  if (!siteId) return;
 
-  if (!window.KampTrailData || !window.KampTrailData.loadGoogleData) {
-    console.warn('KampTrailData.loadGoogleData not available');
-    return;
-  }
+  if (!window.KampTrailData || !window.KampTrailData.loadNearbyPhotos) return;
 
   try {
-    await window.KampTrailData.loadGoogleData(siteId, name, lat, lng);
+    await window.KampTrailData.loadNearbyPhotos(siteId, lat, lng);
   } catch (err) {
-    console.error('Google photos/rating error:', err);
+    console.error('Nearby photos error:', err);
   }
 });

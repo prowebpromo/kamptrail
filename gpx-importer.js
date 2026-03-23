@@ -126,7 +126,7 @@
                   style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Find Nearest Campsite
           </button>
-          <button onclick="window.open('https://maps.google.com/?q=${safeLat},${safeLon}')"
+          <button onclick="window.open('https://www.openstreetmap.org/directions?from=&to=${safeLat},${safeLon}')"
                   style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
             Navigate
           </button>
