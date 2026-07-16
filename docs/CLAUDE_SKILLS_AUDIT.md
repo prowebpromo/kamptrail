@@ -4,7 +4,7 @@ Audit of the 16 custom claude.ai skills on this account (built-in Anthropic skil
 
 **Scope note:** this session can read each skill's *description* (the frontmatter text that controls when the skill triggers) via the skill registry, but not the SKILL.md bodies, which are hosted on claude.ai and not mounted in this environment. The description layer is where routing bugs live, so that is what was audited.
 
-**How to apply the fixes:** run the skills-manager tool in [`tools/skills-manager/`](../tools/skills-manager/) — `python skills_manager.py apply-audit` updates all 9 skills through the Anthropic Skills API (the fixes ship in its `audit_fixes.json`). The copy-paste texts below remain the fallback for applying by hand in claude.ai → Settings → Capabilities → Skills.
+**How to apply the fixes:** this audit and its tooling now live in the dedicated [prowebpromo/claude-skills](https://github.com/prowebpromo/claude-skills) repo — run `python skills_manager.py apply-audit` from its `tools/skills-manager/` directory to update all 9 skills through the Anthropic Skills API. The copy-paste texts below remain the fallback for applying by hand in claude.ai → Settings → Capabilities → Skills.
 
 ## Scorecard
 
@@ -135,4 +135,4 @@ Replace the description field of each skill below with the text in its block. Ch
 - **SKILL.md bodies and bundled reference files** (e.g., sitebulb-sow-builder's `reference/v6_title_meta_generator.md`, scored-eval's rubrics). To audit these, run skill-creator in a claude.ai chat, or keep skill sources in a Git repo and add it to a session.
 - **Trigger accuracy in practice.** skill-creator can run description-triggering evals; the ambiguous prompts worth testing first are: "audit this page" (legal vs. non-legal), "build me a work plan from this GSC data" (retained vs. recovery), and "build me a landing page" (WP build vs. legal content).
 
-**Recommendation:** keep the skill sources in a dedicated GitHub repo (e.g., `prowebpromo/claude-skills`) so future audits can cover the full SKILL.md bodies, diff changes, and version them alongside the deliverable templates they generate.
+**Recommendation (implemented):** skill sources and tooling now live in [prowebpromo/claude-skills](https://github.com/prowebpromo/claude-skills). Export the SKILL.md bodies into its `skills/` directory with `skills_manager.py pull` so future audits can cover them, diff changes, and version them alongside the deliverable templates they generate.
