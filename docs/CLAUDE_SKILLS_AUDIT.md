@@ -2,7 +2,9 @@
 
 Audit of the 16 custom claude.ai skills on this account (built-in Anthropic skills — docx, xlsx, pptx, pdf, skill-creator — were excluded; they are maintained by Anthropic).
 
-**Scope note:** this session can read each skill's *description* (the frontmatter text that controls when the skill triggers) via the skill registry, but not the SKILL.md bodies, which are hosted on claude.ai and not mounted in this environment. The description layer is where routing bugs live, so that is what was audited. Fixes below are copy-paste-ready replacement descriptions; apply them in claude.ai → Settings → Capabilities → Skills (edit the skill's description field), or re-upload via skill-creator.
+**Scope note:** this session can read each skill's *description* (the frontmatter text that controls when the skill triggers) via the skill registry, but not the SKILL.md bodies, which are hosted on claude.ai and not mounted in this environment. The description layer is where routing bugs live, so that is what was audited.
+
+**How to apply the fixes:** run the skills-manager tool in [`tools/skills-manager/`](../tools/skills-manager/) — `python skills_manager.py apply-audit` updates all 9 skills through the Anthropic Skills API (the fixes ship in its `audit_fixes.json`). The copy-paste texts below remain the fallback for applying by hand in claude.ai → Settings → Capabilities → Skills.
 
 ## Scorecard
 
