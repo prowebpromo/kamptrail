@@ -1,7 +1,9 @@
 const {test,expect}=require('@playwright/test');
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
 async function ready(page,path='/'){
-  await page.goto(path,{waitUntil:'domcontentloaded'});
+  // Listings load from zoom 7. Start tests in a detail view unless a test sets its own position.
+  await page.addInitScript(()=>{if(!localStorage.getItem('kt_last_position'))localStorage.setItem('kt_last_position',JSON.stringify({lat:42.65,lng:-73.75,zoom:8}));});
+    await page.goto(path,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
 }
 test.beforeEach(async({context})=>{
@@ -20,8 +22,8 @@ test('MVP has only working core tools and city search updates the map and list',
   await page.getByRole('button',{name:'Albany, NY · City',exact:true}).click();
   await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(42.65258,1);
   await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBeGreaterThan(0);
-  const count=await page.evaluate(()=>KampTrailData.getVisibleCampsites().length);
-  await expect(page.locator('#result-summary')).toContainText(`${count} in this view`);
+  await page.waitForFunction(()=>!KampTrailData.getLoadStatus().loading);
+  await expect.poll(async()=>{const n=await page.evaluate(()=>KampTrailData.getVisibleCampsites().length.toLocaleString('en-US'));return (await page.locator('#result-summary').textContent()).includes(`${n} in this view`);}).toBe(true);
   expect(errors).toEqual([]);
 });
 test('national campground search works outside loaded states, shows GPS and directions, and saves across reloads',async({page})=>{
@@ -102,14 +104,14 @@ test('location permission denial recovers, and coordinates remain a complete alt
 test('GitHub Pages subpath resolves core scripts and national search catalogue',async({page})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await ready(page,'/kamptrail/');
   await page.locator('#destination').fill('Albany, NY');await page.locator('#search-form button').click();await expect(page.locator('#search-results')).toContainText('Albany, NY');
-  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.4.0');expect(errors).toEqual([]);
+  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.4.1');expect(errors).toEqual([]);
 });
 
 test('data information uses the real catalogue and supports keyboard dismissal on mobile',async({page})=>{
   await page.setViewportSize({width:390,height:844});
   await ready(page);
   await expect(page.locator('.app-intro')).toContainText('Long-press the map to check any spot.');
-  const count=await page.evaluate(async()=>(await (await fetch('data/campsites/search-index.json')).json()).sites.length);
+  const count=await page.evaluate(()=>Object.values(KampTrailData.getStateTotals()).reduce((a,b)=>a+b,0));
   await page.locator('#about-data').click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.locator('#catalogue-summary')).toContainText(count.toLocaleString('en-US'));
