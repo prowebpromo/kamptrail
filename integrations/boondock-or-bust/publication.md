@@ -1,14 +1,25 @@
 # Boondock or Bust integration
 
-Prepared October 28, 2026. Publishing and inspection in WordPress are pending authenticated access. No live BoB content has been changed.
+Published October 28, 2026 at https://boondockorbust.com/resources/kamptrail-campsite-map/ (WordPress page 73633). The Resources submenu entry **KampTrail Map** was verified in the live page DOM. The existing RV Park & Campground Finder remains separate.
 
-## Dedicated page
+## Publication record
 
-Use `kamptrail-page.html` in the Classic Editor Text tab. Set the page title to **KampTrail Campsite Map** and use the Resources parent with slug `kamptrail-campsite-map`. The fragment assumes WordPress renders the H1; do not add a second one. Preview at desktop and phone sizes before publication and verify that WordPress retains the iframe. Add **KampTrail Map** to the Resources submenu after publication. Keep the existing RV Park & Campground Finder separate.
+- Published **KampTrail Campsite Map** under Resources with the embedded app and full-page link. `kamptrail-page.html` contains the page markup; WordPress supplies the page H1.
+- Updated the apps article (post 58434): https://boondockorbust.com/boondocking-guide/the-best-apps-for-finding-free-campsites/. Corrected all KampTrail-related claims in its main section, comparison table, callout, BLM paragraph, alternatives paragraph, decision table, and FreeRoam FAQ. Removed the obsolete screenshot, old campsite/water-station counts, federal-only/verified assertions, and water/tower promises. KampTrail links now point to the new BoB page. Other app sections were preserved.
+- Added a contextual KampTrail link after the existing native-finder call to action in the free/cheap campsite guide (post 68009): https://boondockorbust.com/boondocking-guide/a-35-year-rvers-guide-to-finding-free-cheap-campsites/.
+- Added a KampTrail paragraph after the existing native-finder call to action on Useful Links (page 35): https://boondockorbust.com/resources/useful-links/.
+- Added **KampTrail Map** to the Resources submenu. The legacy `/camp-finder-free-or-cheap-campsites/` redirect was not changed.
 
-## Replacement for the apps article KampTrail section
+## Verified in the published desktop embed
 
-Destination article: https://boondockorbust.com/boondocking-guide/the-best-apps-for-finding-free-campsites/
+- The iframe retained the interactive app and returned campsite listings for Albany, NY.
+- Saving **North-South Lake Campground** persisted across a page reload.
+- The directions link used the campsite coordinates **42.2005732, -74.0450907**.
+- The new Resources submenu entry was present in the live DOM.
+
+WordPress mobile rendering and Near me permission behavior have not been verified. The app's automated mobile checks do not establish mobile behavior within the WordPress theme. Real-RVer usability sessions have not been performed; the session protocol remains in `docs/USABILITY_TASKS.md`.
+
+## Current KampTrail copy for future maintenance
 
 ### KampTrail: Find Campsites and Save Stops Without an Account
 
@@ -18,18 +29,10 @@ Its campsite records come from Recreation.gov and OpenStreetMap contributors. Co
 
 Saved stops stay in this browser on this device. Previously loaded listings may remain available offline after an online visit, but map imagery and directions need internet. The current MVP does not include water-station or cell-coverage layers, GPX tools, reviews, or public-land overlays.
 
-Link the phrase **Explore the KampTrail campsite map** to the new page after publication. Until then use https://prowebpromo.github.io/kamptrail/.
+Link **Explore the KampTrail campsite map** to https://boondockorbust.com/resources/kamptrail-campsite-map/. Keep catalogue counts in the app's live data panel rather than hardcoding them into the article. Do not imply a public-land pin establishes permission to camp.
 
-## Other KampTrail references in the same article
+## Future editing checks
 
-Review every KampTrail mention before saving. Replace any claim of “verified federal campsites only” with **Campsite listings from Recreation.gov and OpenStreetMap; incomplete coverage**. Remove the old 4,400 campsite / 2,700 water-station counts and water/tower promises. Revise the comparison, BLM discussion, alternatives, decision table, and FreeRoam FAQ wherever they repeat those claims. Do not imply a public-land pin establishes legal camping access. Preserve the other apps’ sections.
+Use the Classic Editor Text tab for `kamptrail-page.html`. Preserve the theme-provided H1, Resources parent, slug `kamptrail-campsite-map`, iframe title, geolocation delegation, and full-page link. Inspect the saved preview after editing because WordPress may filter markup.
 
-## Internal links after the page is live
-
-- In https://boondockorbust.com/boondocking-guide/a-35-year-rvers-guide-to-finding-free-cheap-campsites/ add: **Use our free KampTrail campsite map to search a destination, check reported fees, and save stops. Confirm current access with the operator before you go.** Link “KampTrail campsite map” to the published page.
-- In https://boondockorbust.com/resources/useful-links/ under camping tools add: **KampTrail campsite map — Search campsites and save stops without an account. Coverage varies; check the source before traveling.** Link the tool name to the published page.
-- Preserve the existing redirect from `/camp-finder-free-or-cheap-campsites/` to the 35+ year guide.
-
-## Final verification in WordPress
-
-Inspect the saved page, not just the editor: one H1, working map and full-page link, no horizontal overflow, readable text, saved-stop behavior, directions links, and Near me permission handling. Confirm new navigation and internal links resolve. Review the saved apps article for remaining outdated KampTrail claims.
+For follow-up verification, check the page at phone widths, horizontal overflow, full-page link, and Near me permission handling. Continue to preserve the separate RV Park & Campground Finder and the legacy campsite-guide redirect.
