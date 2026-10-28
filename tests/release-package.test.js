@@ -24,7 +24,9 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.match(html,/<link rel="canonical" href="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:url" content="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:image" content="https:\/\/kamptrail\.com\/og.png">/);
-  assert.equal(fs.readFileSync(path.join(out,'.htaccess'),'utf8'),'DirectoryIndex index.html\n');
+  const htaccess=fs.readFileSync(path.join(out,'.htaccess'),'utf8');
+  assert.match(htaccess,/^DirectoryIndex index.html\n/);
+  assert.ok(htaccess.includes('RewriteRule (^|/)\\.(?!well-known/) - [F,L]'),'Git metadata must not be served');
   // Root-relative installation must retain the PWA's local asset paths.
   for(const [,url]of html.matchAll(/(?:src|href)="([^"]+)"/g)){
     if(/^(?:https?:|#)/.test(url)||url.includes('?'))continue;
