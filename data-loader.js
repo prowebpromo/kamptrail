@@ -71,12 +71,16 @@
       const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
       if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
       const relative = target.pathname.slice(scope.pathname.length);
-      if (!relative.endsWith('.geojson') && relative !== 'data/campsites/index.json') return null;
-      return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:relative === 'data/campsites/index.json'};
+      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/services/services.json':'services'};
+      if (!relative.endsWith('.geojson') && !kinds[relative]) return null;
+      return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:kinds[relative]==='index', kind:kinds[relative]||'geojson'};
     } catch { return null; }
   }
   function validDataset(data, target) {
     if (target?.index) return Array.isArray(data?.states) && Number.isFinite(data.total_sites) && data.total_sites >= 0;
+    if (target?.kind === 'agencyIndex') return data?.version === 1 && Array.isArray(data.states);
+    if (target?.kind === 'sites') return data?.version === 1 && !!data.facilities && typeof data.facilities === 'object';
+    if (target?.kind === 'services') return data?.version === 1 && Array.isArray(data.items);
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
   async function fetchJSON(url) {
@@ -115,6 +119,15 @@
   function mergeLoaded(features,stateCode) {
     const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...features]}, {state:stateCode});
     state.allCampsites=cleaned.features;
+    if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
+  }
+  async function loadAgencyIndex() {
+    try{const data=await fetchJSON('data/campsites/agency/index.json');if(Array.isArray(data?.states))state.agencyStates=new Set(data.states);}
+    catch(err){console.warn('Agency campsite index unavailable; Recreation.gov and OSM listings still load.',err.message);}
+  }
+  async function loadSiteDetails() {
+    try{const data=await fetchJSON('data/campsites/ridb-sites.json');if(data&&typeof data.facilities==='object')state.siteDetails=data.facilities;}
+    catch(err){console.warn('Campsite RV details unavailable; listings still load.',err.message);}
   }
   async function loadState(code,{retry=false}={}) {
     if(!STATE_BOUNDS[code])return;
@@ -124,9 +137,11 @@
     if(!retry&&last&&Date.now()-last.at<15000)return;
     const task=(async()=>{
       try{
+        const agency=state.agencyStates?.has(code)?fetchJSON(`data/campsites/agency/${code}.geojson`).catch(err=>{console.warn(`Agency listings for ${code} unavailable: ${err.message}`);return null;}):null;
         const data=await fetchJSON(`data/campsites/${code}_merged.geojson`);
         if(data?.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid campsite data');
-        mergeLoaded(data.features,code);
+        const extra=await agency;
+        mergeLoaded([...data.features,...(extra?.type==='FeatureCollection'&&Array.isArray(extra.features)?extra.features:[])],code);
         state.loadedStates.add(code);state.failed.delete(code);
       }catch(error){
         const message=error.name==='AbortError'?'Request timed out':error.message;
@@ -139,8 +154,20 @@
   }
   function costText(p) {
     if(p.fee_status==='free')return 'Free (source reported)';
+    if(p.fee_status==='conditional')return 'Free with conditions (see wording)';
     if(p.fee_status==='paid')return p.cost===null?'Paid · amount not verified':`$${p.cost}/night (source reported)`;
     return 'Fee not verified';
+  }
+  function rvText(p) {
+    if(!p.site_count)return '';
+    const parts=[];
+    const rig=+(window.kamptrailFilters?.rigLength||0);
+    if(p.rv_sites)parts.push(`${p.rv_sites} of ${p.site_count} sites allow RVs or trailers`);
+    else parts.push(`${p.site_count} sites listed, none list RV or trailer use`);
+    if(p.rv_max_length)parts.push(`longest reported ${p.rv_max_length} ft`);
+    if(rig>0&&p.rv_max_length)parts.push(`${DataQuality.sitesFitting(p,rig)} list ${rig} ft or more`);
+    const h=p.hookups||{},hk=[['electric','electric'],['water','water'],['sewer','sewer']].filter(([k])=>h[k]>0).map(([k,l])=>`${l} at ${h[k]}`);
+    return `<div><strong>RV sites (Recreation.gov):</strong> ${esc(parts.join(' · '))}</div>${hk.length?`<div><strong>Hookups reported:</strong> ${esc(hk.join(', '))} sites</div>`:''}`;
   }
   function popup(site) {
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
@@ -148,13 +175,20 @@
     const siteId=esc(p.id);
     return `<div class="kt-site-popup" style="min-width:220px;max-width:300px;color:#263443">
       <h3 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h3>
-      <div><strong>Cost:</strong> ${esc(costText(p))}</div>
+      <div><strong>Cost:</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
+      ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||'Source')}${p.fee_checked?`, imported ${esc(p.fee_checked)}`:''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
+      ${p.fee_status==='free'||p.fee_status==='conditional'?'<div class="kt-fine">This is the camping fee only. Entrance fees, passes, permits, or reservation charges may still apply.</div>':''}
+      ${p.fee_conflict?'<div class="kt-fine">Sources disagree on the fee, so it shows as unknown.</div>':''}
+      ${p.open_status&&p.open_status!=='none'?`<div><strong>Status (agency):</strong> ${esc(p.open_status)}${p.season?` · season ${esc(p.season)}`:''}</div>`:''}
+      ${p.restrictions?`<div><strong>Restrictions:</strong> ${esc(p.restrictions.length>180?p.restrictions.slice(0,177)+'…':p.restrictions)}</div>`:''}
+      ${p.stay_limit?`<div><strong>Stay limit:</strong> ${esc(p.stay_limit)}</div>`:''}
       <div><strong>Type:</strong> ${esc(p.type)}</div>
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       <div><strong>Access reported:</strong> ${esc(p.access_label || p.access || 'Not verified')}</div>
       <div><strong>Amenities reported:</strong> ${p.amenities.length?p.amenities.map(esc).join(', '):'Not verified'}</div>
       ${p.road_difficulty?`<div><strong>Road:</strong> ${esc(p.road_difficulty)}</div>`:''}
       ${p.rig_friendly.length?`<div><strong>Rig types reported:</strong> ${p.rig_friendly.map(esc).join(', ')}</div>`:''}
+      ${rvText(p)}
       ${p.rating!==null?`<div><strong>Rating:</strong> ${p.rating}/5${p.reviews_count?` (${p.reviews_count} reviews)`:''}</div>`:''}
       <p style="font-size:11px;line-height:1.4">Confirm current fees, access, and camping rules with the operator before traveling.${p.attributes_unverified?' Legacy inferred fees and amenities are hidden.':''}</p>
       ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">Check source / operator</a></p>`:''}
@@ -182,7 +216,7 @@
       const id=site.properties.id;
       if(state.markers.has(id)){const m=state.markers.get(id);if(!m.isPopupOpen?.())m.setPopupContent(popup(site));continue;}
       const [lng,lat]=site.geometry.coordinates,p=site.properties;
-      const color=p.fee_status==='free'?'#258543':p.fee_status==='paid'?'#2375b9':'#687780';
+      const color=p.fee_status==='free'?'#258543':p.fee_status==='conditional'?'#b07d10':p.fee_status==='paid'?'#2375b9':'#687780';
       const icon=L.divIcon({html:`<span style="display:block;background:${color};width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px #333"></span>`,className:'custom-marker',iconSize:[16,16],iconAnchor:[8,8]});
       const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site));
       marker.kamptrailId=id;state.markers.set(id,marker);additions.push(marker);
@@ -199,14 +233,14 @@
     return api.getLoadStatus();
   }
   const api=window.KampTrailData={
-    version:'2.3.0',
+    version:'2.4.0',
     async init(map,config={}){
       state.map=map;state.config=config;
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});
       map.addLayer(state.clusterGroup);
       let timer;
       map.on('moveend',()=>{clearTimeout(timer);timer=setTimeout(()=>loadBatch(getVisibleStates(),false),250);});
-      await loadIndex();
+      await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex()]);
       await loadBatch(getVisibleStates(),false);
     },
     getDefaultFilters:defaults,
@@ -231,7 +265,21 @@
       if(!marker && typeof window.KampTrailFilters?.reset==='function') {window.KampTrailFilters.reset();marker=state.markers.get(site.properties.id);}
       if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
       const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14);
-      if(state.clusterGroup.zoomToShowLayer)state.clusterGroup.zoomToShowLayer(marker,()=>marker.openPopup());else marker.openPopup();
+      // Chunked cluster loading can lag behind a focus request, so wait until the marker is placed.
+      let tries=0;
+      const attempt=()=>{
+        if(!state.clusterGroup.zoomToShowLayer){marker.openPopup();return;}
+        if(marker.__parent||state.map.hasLayer(marker)){
+          const fallback=()=>{if(!marker.isPopupOpen?.()&&!state.map._popup?.isOpen?.())L.popup({maxWidth:320}).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);};
+          state.clusterGroup.zoomToShowLayer(marker,()=>{if(marker._map)marker.openPopup();else fallback();});
+          // markercluster can drop the callback, or leave the marker inside a cluster. Open the same popup at the point instead.
+          setTimeout(fallback,1500);
+          return;
+        }
+        if(++tries<50){setTimeout(attempt,100);return;}
+        L.popup({maxWidth:320}).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);
+      };
+      attempt();
       return true;
     },
     addToTrip(id){const site=api.getCampsiteById(id);if(site)state.config.onTripAdd?.(site.properties.id);},

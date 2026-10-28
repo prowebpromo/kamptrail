@@ -126,5 +126,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.3.0', init, openSpot, loadServices, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.4.0', init, openSpot, loadServices, showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();

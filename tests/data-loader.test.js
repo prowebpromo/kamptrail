@@ -20,7 +20,7 @@ const response=data=>({ok:true,json:async()=>data});
 test('transient state failure is visible and explicit retry succeeds',async()=>{
   let attempts=0;
   const h=harness(async url=>{
-    if(url.endsWith('index.json'))return response({});
+    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json'))return response({});
     attempts++;
     return attempts===1?{ok:false,status:503}:response({type:'FeatureCollection',features:[feature({id:'NY-1',facility_id:123})]});
   });

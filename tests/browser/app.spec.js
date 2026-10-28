@@ -102,7 +102,7 @@ test('location permission denial recovers, and coordinates remain a complete alt
 test('GitHub Pages subpath resolves core scripts and national search catalogue',async({page})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await ready(page,'/kamptrail/');
   await page.locator('#destination').fill('Albany, NY');await page.locator('#search-form button').click();await expect(page.locator('#search-results')).toContainText('Albany, NY');
-  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.3.0');expect(errors).toEqual([]);
+  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.4.0');expect(errors).toEqual([]);
 });
 
 test('data information uses the real catalogue and supports keyboard dismissal on mobile',async({page})=>{

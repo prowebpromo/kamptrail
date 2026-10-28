@@ -6,6 +6,9 @@ Merge with existing water station data from Recreation.gov campsites
 
 import json
 import requests
+
+# Overpass rejects anonymous default clients with HTTP 406. Identify the app.
+OVERPASS_HEADERS = {'User-Agent': 'KampTrail data refresh (+https://github.com/prowebpromo/kamptrail)', 'Accept': 'application/json'}
 import time
 from pathlib import Path
 from data_integrity import valid_coordinates, save_geojson
@@ -18,7 +21,7 @@ def fetch_overpass_data(query, description):
 
     for attempt in range(3):
         try:
-            response = requests.post(overpass_url, data={'data': query}, timeout=120)
+            response = requests.post(overpass_url, data={'data': query}, headers=OVERPASS_HEADERS, timeout=120)
             response.raise_for_status()
             data = response.json()
             if data.get('remark') or not isinstance(data.get('elements'), list):

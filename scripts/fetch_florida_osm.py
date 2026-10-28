@@ -5,6 +5,9 @@ Florida is a large state and requires more time than the standard 60s timeout.
 """
 
 import requests
+
+# Overpass rejects anonymous default clients with HTTP 406. Identify the app.
+OVERPASS_HEADERS = {'User-Agent': 'KampTrail data refresh (+https://github.com/prowebpromo/kamptrail)', 'Accept': 'application/json'}
 import json
 import os
 from fetch_osm_data import osm_to_geojson
@@ -36,7 +39,7 @@ def fetch_florida_osm():
     for mirror in mirrors:
         print(f"Trying {mirror}...")
         try:
-            response = requests.get(mirror, params={'data': query}, timeout=200)
+            response = requests.post(mirror, data={'data': query}, headers=OVERPASS_HEADERS, timeout=200)
             response.raise_for_status()
             osm_data = response.json()
             if osm_data.get('remark') or not isinstance(osm_data.get('elements'), list):

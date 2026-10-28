@@ -50,10 +50,17 @@ function buildFromDirectory(directory) {
   if (files.length !== 50) {
     throw new Error(`Expected 50 saved state snapshots; found ${files.length}. Search index was not replaced.`);
   }
-  return buildSearchIndex(files.map(name => ({
-    state:name.slice(0,2),
-    geojson:JSON.parse(fs.readFileSync(path.join(directory,name), 'utf8'))
-  })));
+  // Agency records (USFS, BLM) load beside each state snapshot, so search must index them too.
+  return buildSearchIndex(files.map(name => {
+    const state = name.slice(0,2);
+    const geojson = JSON.parse(fs.readFileSync(path.join(directory,name), 'utf8'));
+    const agencyFile = path.join(directory, 'agency', `${state}.geojson`);
+    if (fs.existsSync(agencyFile)) {
+      const agency = JSON.parse(fs.readFileSync(agencyFile, 'utf8'));
+      if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
+    }
+    return {state, geojson};
+  }));
 }
 
 if (require.main === module) {
@@ -65,7 +72,7 @@ if (require.main === module) {
     const temporary = output + '.tmp';
     fs.writeFileSync(temporary, JSON.stringify(result) + '\n');
     fs.renameSync(temporary, output);
-    console.log(`Indexed ${result.sites.length.toLocaleString('en-US')} publishable campsites from 50 state snapshots (${fs.statSync(output).size.toLocaleString('en-US')} bytes).`);
+    console.log(`Indexed ${result.sites.length.toLocaleString('en-US')} publishable campsites from 50 state snapshots and agency records (${fs.statSync(output).size.toLocaleString('en-US')} bytes).`);
   } catch (error) {
     console.error(`Campsite search index build failed: ${error.message}`);
     process.exitCode = 1;

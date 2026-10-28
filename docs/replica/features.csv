@@ -16,8 +16,8 @@ MVUM motor vehicle use map layer,layers,could,yes,no,USFS MVUM ArcGIS service po
 Per-layer opacity,layers,could,yes,no,
 Filter by fee (free/paid),filters,must,yes,yes,Fee status with unknown kept unknown
 Filter by campsite type,filters,must,yes,yes,
-Filter by rig length,filters,should,yes,no,No reliable max-length field in current data
-Filter by amenities / hookups,filters,should,yes,partial,Reported toilet/water/dump/shower. Data sparse
+Filter by rig length,filters,should,yes,yes,"Recreation.gov site lengths (RIDB bulk export), unknowns excluded unless included and labeled"
+Filter by amenities / hookups,filters,should,yes,yes,"Electric, water, sewer from Recreation.gov site records, plus reported amenities"
 Filter by road difficulty,filters,could,yes,no,Engine supports it; data sparse
 Filter by minimum rating,filters,could,yes,no,Needs reviews
 Filter by elevation,filters,could,yes,no,
@@ -40,7 +40,7 @@ Overnight parking places (Walmart truck stops rest areas),amenities,should,yes,p
 Low clearance hazards,amenities,could,yes,no,Needs clearance dataset
 Save places,trips,must,yes,yes,Saved stops on device
 Trip with ordered stops,trips,must,yes,yes,"Reorder, notes, dates"
-Trip distance and time totals,trips,should,yes,partial,Straight-line miles and planned nights. No drive time
+Trip distance and time totals,trips,should,yes,yes,On-demand drive times from the FOSSGIS OSRM router
 Open whole route in maps app,trips,should,yes,yes,Google Maps legs chunked to the 3/9 waypoint limits
 Find places along route,trips,should,yes,no,Original used Mapbox server routing
 Route settings rig height avoid highways,trips,could,yes,no,
@@ -57,7 +57,7 @@ Suggest an edit / report a problem,ugc,should,yes,yes,GitHub issue form prefille
 Overnight allowed voting,ugc,could,yes,no,Needs backend
 Offline: cached data for visited areas,offline,should,yes,yes,Service worker data cache
 Offline: app shell works offline,offline,should,yes,yes,
-Offline map tile download,offline,could,no,no,Not in original either
+Offline map tile download,offline,could,no,yes,USGS Topo areas saved on device
 Install as app (PWA),offline,should,yes,yes,manifest + SW
 Accounts and profiles,social,skip,yes,skip,No-account design is a deliberate choice
 Friends DMs groups forum events,social,skip,yes,skip,Community network cannot be cloned; out of scope
@@ -68,3 +68,4 @@ Leave No Trace / respect the land guidance,other,could,yes,partial,Agency stay-l
 Multi-language (es fr),other,could,yes,no,
 About the data / transparency,other,could,no,yes,Clone-only strength
 Land manager lookup with agency stay-limit guidance,layers,should,no,yes,User research: stay-limit juggling (thin evidence)
+"Fee status with source wording (free, conditional, paid, unknown)",filters,should,no,yes,"USFS and BLM fee descriptions, OSM fee tags, RIDB fee text"

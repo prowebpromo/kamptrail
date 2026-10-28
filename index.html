@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.3.0">
+  <meta name="kamptrail-version" content="2.4.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
@@ -40,7 +40,7 @@
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">Near me</button>
       </nav>
     </header>
-    <div class="app-intro"><p>Find campsites and public land, then plan your stops. Long-press the map to check any spot.</p><button id="about-data" aria-haspopup="dialog">About the data</button></div>
+    <div class="app-intro"><p>Find campsites and public land, then plan your stops. Long-press the map to check any spot. Save Topo maps for offline use.</p><button id="about-data" aria-haspopup="dialog">About the data</button></div>
     <section class="search-bar" aria-label="Find a destination">
       <form id="search-form" role="search">
         <label class="sr-only" for="destination">City, campsite, or coordinates</label>
@@ -63,7 +63,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.3.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.4.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -79,6 +79,8 @@
     <p>The public land layer and land manager lookup use the BLM Surface Management Agency map. Boundaries can be approximate and do not grant permission to camp. Posted signs and local orders take priority.</p>
     <p>Forecasts and elevation come from the National Weather Service and cover US locations only. Topo and satellite basemaps come from the USGS National Map.</p>
     <p>Dump stations and propane come from OpenStreetMap contributors. Hours, fees, and whether a location is open are not verified.</p>
+    <p>RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means at least one site reports it. Drive times use the free FOSSGIS OSRM car router and are not checked for RV height, weight, or length.</p>
+    <p>Offline maps save USGS Topo tiles for an area you choose. The standard map is not saved, because OpenStreetMap's tile policy does not allow bulk downloads.</p>
     <h3>Corrections</h3>
     <p>Use “Suggest a fix” on any campsite, or long-press the map and choose “Suggest a campsite here.” Both open a form on GitHub (free account needed). Reports are reviewed before the data changes.</p>
     <h3>Saved stops and offline use</h3>
@@ -95,6 +97,7 @@
   <script src="filters.js"></script>
   <script src="trip-planner.js"></script>
   <script src="layers.js"></script>
+  <script src="offline-maps.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

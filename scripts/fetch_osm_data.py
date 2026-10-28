@@ -1,5 +1,8 @@
 
 import requests
+
+# Overpass rejects anonymous default clients with HTTP 406. Identify the app.
+OVERPASS_HEADERS = {'User-Agent': 'KampTrail data refresh (+https://github.com/prowebpromo/kamptrail)', 'Accept': 'application/json'}
 import json
 import os
 import argparse
@@ -46,7 +49,7 @@ def fetch_osm_data(state_code):
     url = "https://overpass-api.de/api/interpreter"
     print(f"Fetching data for {state_code.upper()}...")
     try:
-        response = requests.get(url, params={'data': query}, timeout=120)
+        response = requests.post(url, data={'data': query}, headers=OVERPASS_HEADERS, timeout=120)
         response.raise_for_status()
         data = response.json()
         if data.get('remark') or not isinstance(data.get('elements'), list):

@@ -9,6 +9,8 @@ async function mockRemote(context,calls=[]) {
     if(url.includes('gis.blm.gov')&&url.includes('/query'))return route.fulfill({contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({features:[{attributes:{ADMIN_AGENCY_CODE:'BLM',ADMIN_UNIT_NAME:'Bureau of Land Management',ADMIN_UNIT_TYPE:'Bureau of Land Management CA',ADMIN_ST:'CA'}}]})});
     if(url.startsWith('https://api.weather.gov/points/'))return route.fulfill({contentType:'application/geo+json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({properties:{forecast:'https://api.weather.gov/gridpoints/TEST/1,1/forecast',relativeLocation:{properties:{city:'Bishop',state:'CA'}}}})});
     if(url.startsWith('https://api.weather.gov/gridpoints/'))return route.fulfill({contentType:'application/geo+json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({properties:{elevation:{value:1500},updateTime:'2026-10-28T12:00:00Z',periods:[{name:'Tonight',temperature:31,temperatureUnit:'F',windSpeed:'5 mph',windDirection:'NW',shortForecast:'Clear',probabilityOfPrecipitation:{value:0}}]}})});
+    if(url.startsWith('https://routing.openstreetmap.de/'))return route.fulfill({contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({code:'Ok',routes:[{duration:9000,distance:321869,legs:[{duration:5400,distance:160934},{duration:3600,distance:160935}]}]})});
+    if(url.includes('basemap.nationalmap.gov'))return route.fulfill({contentType:'image/jpeg',headers:{'access-control-allow-origin':'*'},body:pixel});
     return route.fulfill({contentType:'image/png',body:pixel});
   });
 }
@@ -136,4 +138,86 @@ test('GPX export escapes names and import adds namespaced waypoints as stops',as
   await expect(page.locator('#kt-trip-list')).toContainText('Forest pullout');
   expect(await page.evaluate(()=>KampTrailTrip.getStops().map(s=>s.note))).toEqual(['','Level spot']);
   expect(await page.evaluate(()=>testMsgs.join(' '))).toContain('1 stop added');
+});
+
+test('rig length and hookup filters use Recreation.gov site details and popups show RV sites',async({page,context})=>{
+  await mockRemote(context);await ready(page);
+  const fit=await page.evaluate(()=>KampTrailData.getAllCampsites().filter(s=>s.properties.rv_max_length>=35).length);
+  expect(fit).toBeGreaterThan(0);
+  await page.locator('#filters').click();
+  await page.locator('#f-length').fill('35');await page.locator('#f-length').dispatchEvent('change');
+  await expect(page.locator('#filter-badge')).toHaveText('1');
+  expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.rv_max_length>=35))).toBe(true);
+  await page.locator('[name="f-hookup"][value="electric"]').check();
+  expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.hookups.electric>0))).toBe(true);
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.locator('#filters').click();await expect(page.locator('#f-length')).toHaveValue('35');
+  const id=await page.evaluate(()=>KampTrailData.getAllCampsites().find(s=>s.properties.rv_max_length>=35&&s.properties.hookups.electric>0).properties.id);
+  await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
+  await expect(page.locator('.leaflet-popup')).toContainText('RV sites (Recreation.gov):');
+  await expect(page.locator('.leaflet-popup')).toContainText('list 35 ft or more');
+});
+
+test('free filter explains thin data and offers the public land layer',async({page,context})=>{
+  await mockRemote(context);
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:42.65,lng:-73.75,zoom:9})));
+  await ready(page);
+  expect(await page.evaluate(()=>KampTrailData.getAllCampsites().filter(s=>s.properties.fee_evidence==='Recreation.gov fee description').length)).toBeGreaterThanOrEqual(0);
+  await page.locator('#filters').click();await page.locator('[name="f-cost"][value="free"]').check();
+  await expect(page.locator('.free-tip')).toContainText('BLM says most of its land allows dispersed camping');
+  await page.locator('.free-tip button').click();
+  await expect(page.locator('.kt-land-legend')).toBeVisible();
+});
+
+test('trip drive times come from one on-demand router request and replace straight-line legs',async({page,context})=>{
+  const calls=[];await mockRemote(context,calls);await ready(page);
+  await page.evaluate(()=>{const mk=(id,n,lng,lat)=>({type:'Feature',geometry:{type:'Point',coordinates:[lng,lat]},properties:{id,name:n}});
+    [mk('t1','One',-105,40),mk('t2','Two',-106,40),mk('t3','Three',-107,40)].forEach(s=>KampTrailTrip.addStop(s.properties.id,s));});
+  await page.getByRole('button',{name:'Drive times'}).click();
+  await expect(page.locator('#kt-trip-summary')).toContainText('2 hr 30 min driving, 200 mi by road');
+  await expect(page.locator('.kt-saved-stop').nth(1)).toContainText('1 hr 30 min, 100 mi from stop 1 by road');
+  await expect(page.locator('#kt-trip-drive-credit')).toContainText('OpenStreetMap contributors');
+  expect(calls.filter(u=>u.startsWith('https://routing.openstreetmap.de/')).length).toBe(1);
+  await page.getByRole('button',{name:'Move Three up'}).click();
+  await expect(page.locator('#kt-trip-summary')).not.toContainText('driving');
+});
+
+test('offline maps save USGS Topo tiles for the view and refuse oversized areas',async({page,context})=>{
+  const calls=[];await mockRemote(context,calls);
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:37.45,lng:-118.4,zoom:15})));
+  test.setTimeout(90000);await ready(page);
+  page.on('dialog',d=>d.accept());
+  await page.getByRole('button',{name:'Offline'}).click();
+  const plan=await page.evaluate(()=>KampTrailOffline.plan(map.getBounds(),map.getZoom()));
+  expect(plan.tooMany).toBe(false);expect(plan.zmin).toBe(15);expect(plan.zmax).toBe(16);
+  await page.getByRole('button',{name:'Save this area'}).click();
+  await expect(page.locator('.kt-off-status')).toContainText('1 saved area',{timeout:30000});
+  const cached=await page.evaluate(async()=>(await (await caches.open(KampTrailOffline.cacheName())).keys()).length);
+  expect(cached).toBe(plan.urls.length);
+  expect(calls.every(u=>!u.startsWith('https://tile.openstreetmap.org/')||!u.includes('/16/'))).toBe(true);
+  await page.evaluate(()=>map.setZoom(5));
+  await page.getByRole('button',{name:'Save this area'}).click();
+  await expect(page.locator('#toast')).toContainText('Zoom in');
+});
+
+test('agency fee evidence powers Free, keeps conditional separate, and explains RV-length exclusions',async({page,context})=>{
+  await mockRemote(context);
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:44.3,lng:-115.5,zoom:7})));
+  await ready(page);
+  const counts=await page.evaluate(()=>{const a=KampTrailData.getAllCampsites();return {free:a.filter(s=>s.properties.fee_status==='free'&&s.properties.fee_text).length,cond:a.filter(s=>s.properties.fee_status==='conditional').length};});
+  expect(counts.free).toBeGreaterThan(5);
+  await page.locator('#filters').click();await page.locator('[name="f-cost"][value="free"]').check();
+  const id=await page.evaluate(()=>KampTrailData.getVisibleCampsites().find(s=>s.properties.fee_text)?.properties.id);
+  expect(id).toBeTruthy();
+  await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
+  await expect(page.locator('.kt-fee-evidence')).toContainText('imported');
+  await expect(page.locator('.leaflet-popup')).toContainText('camping fee only');
+  await page.keyboard.press('Escape');
+  await page.locator('#filters').click();
+  await page.locator('#f-length').fill('30');await page.locator('#f-length').dispatchEvent('change');
+  await expect(page.locator('.free-tip').first()).toContainText('no documented RV length');
+  await page.getByRole('button',{name:'Include them, labeled'}).click();
+  await expect(page.locator('#f-length-unknown')).toBeChecked();
+  await expect(page.locator('.site-card').first()).toContainText('RV length not documented');
 });

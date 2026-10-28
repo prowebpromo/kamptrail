@@ -42,7 +42,7 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.3.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare].some(module=>module?.version!=='2.3.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.4.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline].some(module=>module?.version!=='2.4.0')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
@@ -69,10 +69,11 @@
     try { localStorage.setItem('kt_last_position', JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()})); } catch (_) {}
   });
   KampTrailLayers.init(map);
+  KampTrailOffline.init(map);
   const key=L.control({position:'bottomright'});
   key.onAdd=()=>{
     const el=L.DomUtil.create('div','map-key');
-    el.innerHTML='<span><i style="background:#258543"></i>Reported free</span><span><i style="background:#2375b9"></i>Paid</span><span><i style="background:#687780"></i>Fee unknown</span>';
+    el.innerHTML='<span><i style="background:#258543"></i>Reported free</span><span><i style="background:#b07d10"></i>Free with conditions</span><span><i style="background:#2375b9"></i>Paid</span><span><i style="background:#687780"></i>Fee unknown</span>';
     L.DomEvent.disableClickPropagation(el);return el;
   };key.addTo(map);
   const resize = () => map.invalidateSize();
@@ -153,13 +154,36 @@
       const card = document.createElement('article'); card.className = 'site-card';
       const heading = document.createElement('h3'); heading.textContent = p.name;
       const details = document.createElement('p');
-      const cost = p.fee_status === 'free' ? 'Reported free' : p.fee_status === 'paid' ? (Number.isFinite(p.cost) ? `Reported $${p.cost}` : 'Paid · amount unknown') : 'Fee unknown';
-      details.textContent = `${cost} · ${p.type === 'established' ? 'Campground' : (p.type || 'Type unknown')} · ${p.state || ''}`;
+      const rigLen = +((window.kamptrailFilters || {}).rigLength || 0);
+      const cost = p.fee_status === 'free' ? 'Reported free' : p.fee_status === 'conditional' ? 'Free with conditions' : p.fee_status === 'paid' ? (Number.isFinite(p.cost) ? `Reported $${p.cost}` : 'Paid · amount unknown') : 'Fee unknown';
+      details.textContent = `${cost} · ${p.type === 'established' ? 'Campground' : (p.type || 'Type unknown')} · ${p.state || ''}${rigLen > 0 && !Number.isFinite(p.rv_max_length) ? ' · RV length not documented' : ''}`;
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = 'View on map'; view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
       const trip = document.createElement('button'); trip.textContent = 'Save stop'; trip.onclick = () => KampTrailTrip.addStop(p.id);
       actions.append(view, trip); card.append(heading,details,actions); fragment.append(card);
     });
+    const active = window.kamptrailFilters || {};
+    if (+active.rigLength > 0 && !active.rigIncludeUnknown) {
+      const withUnknown = DataQuality.applyFilters(KampTrailData.getAllCampsites(), {...active, rigIncludeUnknown:true});
+      const b = map.getBounds();
+      const hidden = withUnknown.filter(f => { const [lon,lat] = f.geometry.coordinates; return b.contains([lat,lon]); }).length - sites.length;
+      if (hidden > 0) {
+        const tip = document.createElement('div'); tip.className = 'free-tip';
+        const p1 = document.createElement('p');
+        p1.textContent = `${hidden.toLocaleString('en-US')} more ${hidden === 1 ? 'listing matches' : 'listings match'} your other filters here but ${hidden === 1 ? 'has' : 'have'} no documented RV length. Most free and dispersed sites never publish one.`;
+        const inc = document.createElement('button'); inc.type = 'button'; inc.textContent = 'Include them, labeled';
+        inc.onclick = () => KampTrailFilters.setIncludeUnknownLength(true);
+        tip.append(p1, inc); fragment.append(tip);
+      }
+    }
+    if ((active.cost === 'free' || active.cost === 'conditional') && sites.length < 15) {
+      const tip = document.createElement('div'); tip.className = 'free-tip';
+      const p1 = document.createElement('p');
+      p1.textContent = 'Few listings report free camping. Most free camping is dispersed camping on public land. BLM says most of its land allows dispersed camping unless posted closed. National forests set their own rules.';
+      const show = document.createElement('button'); show.type = 'button'; show.textContent = 'Show public land';
+      show.onclick = () => { KampTrailLayers.showLand(); showToast('Public land is on. Long-press any spot to see who manages it and its stay rules.'); };
+      tip.append(p1, show); fragment.append(tip);
+    }
     if (!sites.length || sites.length > 100) {
       const note = document.createElement('p'); note.className = 'list-empty';
       note.textContent = !sites.length ? (status.loading ? 'Loading listings for this area…' : 'No matching campsite listings in this view. Reset filters, zoom out, or choose another state. Coverage is incomplete.') : 'Showing the nearest 100 matching campsites. Zoom in to narrow this list.';

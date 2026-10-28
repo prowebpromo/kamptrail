@@ -1,26 +1,28 @@
-# KampTrail 2.3.0
+# KampTrail 2.4.0
 
 KampTrail is a free, no-account campsite map at https://prowebpromo.github.io/kamptrail/.
 
 ## Features
 
 - Search US cities, states, coordinates, and all saved campsite listings nationally. Map, list, and counts stay in sync.
-- Filter by reported fee, campsite type, reported rig type (tents, trailers), and reported amenities. Missing data never counts as a match.
+- Fee status from each source's own wording: free, free with conditions, paid, or unknown. Popups show the wording, source, and import date.
+- Filter by fee, campsite type, RV length and hookups (Recreation.gov site records), reported rig type, and reported amenities. Missing data never counts as a match. RV length can optionally include listings with no documented length, labeled.
 - Basemaps: standard (OpenStreetMap), topo and satellite (USGS National Map).
 - Public land layer (BLM Surface Management Agency) with a legend.
 - Long-press (or right-click) anywhere to check a spot: GPS, land manager, the agency's stay-limit guidance, NWS forecast and elevation, save, share, directions, and "Suggest a campsite here."
 - RV services layer: OSM dump stations and propane, plus tagged water fill points once the weekly data refresh runs. Each campsite popup can show the nearest of each.
 - Campsite popups: source/operator link, directions, share link (`#site=`), forecast and elevation, land manager, and "Suggest a fix."
-- Trips: saved stops with reorder, notes, arrive/leave dates, straight-line miles and planned nights, a route line, whole-trip Google Maps directions split into legs within Google's waypoint limits, and GPX export/import.
+- Offline maps: save the USGS Topo map for an area on the device.
+- Trips: on-demand drive times (FOSSGIS OSRM), saved stops with reorder, notes, arrive/leave dates, straight-line miles and planned nights, a route line, whole-trip Google Maps directions split into legs within Google's waypoint limits, and GPX export/import.
 - Offline: the app shell, city search, previously loaded listings, services, and saved stops work after an online visit. Map imagery, forecasts, land lookups, and directions need internet.
 
 Corrections and new campsites go through GitHub issue forms (`.github/ISSUE_TEMPLATE`), prefilled from the app. A free GitHub account is required.
 
-The national catalogue has 1,774 source-supported campsite candidates. Clear offices, picnic/day-use facilities, lodging-only sites, and explicit private/prohibited/closed records are excluded. Missing prices remain unknown. These are source snapshots with uneven coverage, not field verification. Public land boundaries do not grant permission to camp.
+The catalogue combines Recreation.gov, US Forest Service, BLM, and OpenStreetMap records. The About the data panel shows the current count. Clear offices, picnic/day-use facilities, lodging-only sites, and explicit private/prohibited/closed records are excluded. Missing prices remain unknown. These are source snapshots with uneven coverage, not field verification. Public land boundaries do not grant permission to camp.
 
 ## Not included
 
-Accounts, reviews, photos, forums, cell coverage overlays, rig-length filtering, and drive-time routing are not in this release. Reviews and photos need a backend and moderation. Rig length needs a campsite-level data source. See the parity report in [docs/replica](docs/replica/parity.md).
+Accounts, reviews, photos, forums, and cell coverage overlays are not in this release. Reviews and photos need a backend and moderation. See the parity report in [docs/replica](docs/replica/parity.md).
 
 ## Run and test
 
