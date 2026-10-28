@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.0947067,
+          38.5030861
+        ]
+      },
+      "properties": {
+        "name": "Camp Barnes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 6362828,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:6362828:-75.094707,38.503086",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    }
+  ],
+  "duplicatesRemoved": 0,
+  "invalidRemoved": 0
+}

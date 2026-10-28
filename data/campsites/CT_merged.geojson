@@ -1,0 +1,583 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0666667,
+          41.5133333
+        ]
+      },
+      "properties": {
+        "id": "ridb:233330",
+        "name": "HOP BROOK LAKE RECREATION AREA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "233330",
+        "description": "<h2>Overview</h2>\nHop Brook Lake Recreation Area is located within the towns of Middlebury, Naugatuck and Waterbury, Connecticut. Its 536 acres provide excellent recreation opportunities and a chance ",
+        "legacy_inferred": {
+          "cost": 15,
+          "amenities": [
+            "toilets",
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "CT-001"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0916667,
+          41.6875
+        ]
+      },
+      "properties": {
+        "id": "ridb:234142",
+        "name": "NORTHFIELD BROOK LAKE GROUP SHELTERS",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "234142",
+        "description": "<h2>Overview</h2>\nNorthfield Brook Lake Group Shelters are located along a small scenic lake in the Naugatuck Valley of west-central Connecticut.\n<br/><br/>\nNaugatuck Valley boasts picturesque small t",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "CT-002"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.899092,
+          41.955623
+        ]
+      },
+      "properties": {
+        "id": "ridb:233476",
+        "name": "West Thompson Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "233476",
+        "description": "<h2>Overview</h2>\nWest Thompson Lake Campground is located near the wooded shoreline of its namesake lake in northeastern Connecticut. The natural setting surrounding West Thompson Lake can be enjoyed",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "CT-003"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2549801,
+          41.7854579
+        ]
+      },
+      "properties": {
+        "addr:city": "Goshen",
+        "addr:housenumber": "118",
+        "addr:postcode": "06756",
+        "addr:state": "CT",
+        "addr:street": "Hemlock Hill Road",
+        "caravans": "yes",
+        "name": "Hemlock Hill Camp Resort",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "http://www.hemlockhillcamp.com/",
+        "osm_id": 4067819,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:4067819:-73.254980,41.785458",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0924415,
+          41.6377614
+        ]
+      },
+      "properties": {
+        "leisure": "nature_reserve",
+        "name": "Salt Rock State Campground",
+        "operator": "State of Connecticut",
+        "operator:type": "government",
+        "operator:wikidata": "Q779",
+        "operator:wikipedia": "en:Connecticut",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://portal.ct.gov/DEEP/State-Parks/Campgrounds/Salt-Rock-State-Campground",
+        "wikidata": "Q7405939",
+        "wikipedia": "en:Salt Rock State Campground",
+        "osm_id": 12935052,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12935052:-72.092442,41.637761",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0705993,
+          41.9687501
+        ]
+      },
+      "properties": {
+        "addr:city": "Woodstock",
+        "addr:housenumber": "42",
+        "addr:postcode": "06282",
+        "addr:state": "CT",
+        "addr:street": "Camp Road",
+        "name": "YMCA Camp Woodstock",
+        "operator": "YMCA of Greater Hartford",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.campwoodstock.org",
+        "osm_id": 12953644,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12953644:-72.070599,41.968750",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3926496,
+          41.6200613
+        ]
+      },
+      "properties": {
+        "description": "Private, Members Or Owners Only",
+        "leisure": "nature_reserve",
+        "magic:CATEGORY": "General Recreation",
+        "name": "Easter Seals Camp",
+        "operator": "Easter Seals Connecticut, Inc.",
+        "source": "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 13066360,
+        "source_ids": [],
+        "id": "osm:unknown:13066360:-72.392650,41.620061",
+        "sources": [
+          "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.9538459,
+          41.5352645
+        ]
+      },
+      "properties": {
+        "addr:city": "Preston",
+        "addr:housenumber": "42",
+        "addr:postcode": "06365",
+        "addr:state": "CT",
+        "addr:street": "Pierce Road",
+        "description": "Private, Open To Public With Fee",
+        "email": "camp@strawberrypark.net",
+        "magic:CATEGORY": "General Recreation",
+        "name": "Strawberry Park",
+        "phone": "+1 860 886 1944",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "website": "https://www.strawberrypark.net",
+        "wikidata": "Q7622464",
+        "wikipedia": "en:Strawberry Park",
+        "osm_id": 13145088,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:13145088:-71.953846,41.535264",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0182646,
+          41.5535137
+        ]
+      },
+      "properties": {
+        "addr:city": "Preston",
+        "addr:housenumber": "47",
+        "addr:postcode": "06365",
+        "addr:state": "CT",
+        "addr:street": "River Road",
+        "name": "Hidden Acres Family Campground",
+        "phone": "+1-860-887-9633",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "website": "https://www.hiddenacrescamp.com/",
+        "osm_id": 13145089,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:13145089:-72.018265,41.553514",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.164154,
+          41.4769616
+        ]
+      },
+      "properties": {
+        "alt_name": "Camp Oakland",
+        "description": "Municipal, Open To Public Without Fee",
+        "ele": "108",
+        "gnis:feature_id": "1930689",
+        "leisure": "nature_reserve",
+        "magic:CATEGORY": "Existing Preserved Open Space",
+        "name": "Camp Oakdale Recreation Center",
+        "operator": "Town of Montville",
+        "source": "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "wikidata": "Q31815119",
+        "osm_id": 13235439,
+        "source_ids": [],
+        "id": "osm:unknown:13235439:-72.164154,41.476962",
+        "sources": [
+          "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8121145,
+          41.9544076
+        ]
+      },
+      "properties": {
+        "ele": "138",
+        "gnis:feature_id": "210034",
+        "leisure": "nature_reserve",
+        "name": "Quaddick State Park",
+        "operator": "Connecticut Department of Energy and Environmental Protection",
+        "ownership": "state",
+        "park:type": "state_park",
+        "source": "CT Department of Environmental Protection shapefile",
+        "source_ref": "http://www.ct.gov/dep/cwp/view.asp?a=2698&q=322898&depNav_GID=1707",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "wikidata": "Q14715099",
+        "wikipedia": "en:Quaddick State Park",
+        "osm_id": 13333940,
+        "source_ids": [],
+        "id": "osm:unknown:13333940:-71.812115,41.954408",
+        "sources": [
+          "CT Department of Environmental Protection shapefile"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0513612,
+          41.874928
+        ]
+      },
+      "properties": {
+        "addr:city": "New Hartford",
+        "addr:housenumber": "791",
+        "addr:postcode": "06057",
+        "addr:state": "CT",
+        "addr:street": "West Hill Road",
+        "leisure": "nature_reserve",
+        "name": "Camp Sequassen",
+        "operator": "Connecticut Yankee Council",
+        "phone": "+1-860-379-2009",
+        "scout": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "http://www.ctyankee.org/camping/camps/sequassen",
+        "osm_id": 14592734,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:14592734:-73.051361,41.874928",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8490963,
+          41.4694618
+        ]
+      },
+      "properties": {
+        "description": "Private, Members Or Owners Only",
+        "leisure": "nature_reserve",
+        "magic:CATEGORY": "General Recreation",
+        "name": "Tefftweald at Birchenturn",
+        "operator": "Avalonia Land Conservancy",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 16543222,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16543222:-71.849096,41.469462",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1159497,
+          41.8822967
+        ]
+      },
+      "properties": {
+        "addr:city": "Ashford",
+        "addr:housenumber": "565",
+        "addr:postcode": "06278",
+        "addr:state": "CT",
+        "addr:street": "Ashford Center Road",
+        "email": "info@holeinthewallgang.org",
+        "leisure": "nature_reserve",
+        "name": "Hole in the Wall Gang Camp",
+        "phone": "+1 860 429 3444",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.holeinthewallgang.org",
+        "wikidata": "Q5880049",
+        "wikipedia": "en:Hole in the Wall Gang Camp",
+        "osm_id": 16691329,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16691329:-72.115950,41.882297",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0462209,
+          41.8919231
+        ]
+      },
+      "properties": {
+        "addr:city": "New Hartford",
+        "addr:housenumber": "169",
+        "addr:postcode": "06057",
+        "addr:state": "CT",
+        "addr:street": "Camp Workcoeman Road",
+        "leisure": "nature_reserve",
+        "name": "Camp Workcoeman",
+        "operator": "Boy Scouts of America",
+        "phone": "+1-860-379-2207",
+        "scout": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://campworkcoeman.org/",
+        "osm_id": 18321899,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18321899:-73.046221,41.891923",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1063989,
+          42.0268024
+        ]
+      },
+      "properties": {
+        "description": "Private, Members Or Owners Only",
+        "leisure": "nature_reserve",
+        "magic:CATEGORY": "General Recreation",
+        "name": "Camp Jewell",
+        "operator": "YMCA of Metrpolitan Hartford",
+        "source": "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 18364374,
+        "source_ids": [],
+        "id": "osm:unknown:18364374:-73.106399,42.026802",
+        "sources": [
+          "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.1047403,
+          42.0419644
+        ]
+      },
+      "properties": {
+        "addr:city": "Colebrook",
+        "addr:housenumber": "82",
+        "addr:postcode": "06021",
+        "addr:state": "CT",
+        "addr:street": "Fritz Road",
+        "leisure": "nature_reserve",
+        "name": "Bobriwka",
+        "name:uk": "Бобрівка",
+        "operator": "Bobriwka Inc.",
+        "phone": "+1-877-857-2267",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "bobriwka.com",
+        "osm_id": 18365874,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18365874:-73.104740,42.041964",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    }
+  ],
+  "duplicatesRemoved": 0,
+  "invalidRemoved": 0
+}

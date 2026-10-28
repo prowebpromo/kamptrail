@@ -1,0 +1,1924 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4666667,
+          32.3666667
+        ]
+      },
+      "properties": {
+        "id": "ridb:232593",
+        "name": "GUNTER HILL",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232593",
+        "description": "<h2>Overview</h2>\nGunter Hill Campground offers a peaceful scene of trees and nature on the backwaters of the Alabama River. \n<br/><br/>\nThe fishing is excellent, providing challenges for the master a",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-001"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2741667,
+          32.1413889
+        ]
+      },
+      "properties": {
+        "id": "ridb:232548",
+        "name": "CHILATCHEE CREEK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232548",
+        "description": "<h2>Overview</h2>\nChilatchee Creek Campground is located on its namesake at scenic Dannelly Reservoir in Alabama's Black Prairie Belt. The reservoir sits on the Alabama River and covers roughly 27 squ",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-002"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.2766667,
+          33.2263889
+        ]
+      },
+      "properties": {
+        "id": "ridb:232669",
+        "name": "PICKENSVILLE CG (PICKENSVILLE AL)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232669",
+        "description": "<h2>Overview</h2>\nPickensville Campground is located just west of Pickensville, Alabama, on Aliceville Lake on the Tennessee-Tombigbee Waterway. \n<br/><br/>\nThis campground boasts both a campground an",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "fire_rings",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-003"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.3897222,
+          32.1158333
+        ]
+      },
+      "properties": {
+        "id": "ridb:232582",
+        "name": "MILLERS FERRY CAMPGROUND",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232582",
+        "description": "<h2>Overview</h2>\nMillers Ferry Campground, also known as East Bank, is located on scenic Dannelly Reservoir in Alabama's Black Prairie Belt. The reservoir sits on the Alabama River and covers roughly",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-004"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.8392021,
+          33.44328388
+        ]
+      },
+      "properties": {
+        "id": "ridb:270602",
+        "name": "Turnipseed Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "270602",
+        "description": "<p>Enjoy nature at its best especially during the fall when mother nature dazzles you with an array of vibrant colors. This  primitive camp is located near the Cheaha Wilderness Area and offers campin",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-005"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.1541556,
+          31.7761222
+        ]
+      },
+      "properties": {
+        "id": "ridb:232741",
+        "name": "WHITE OAK (CREEK) CAMPGROUND",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232741",
+        "description": "<h2>Overview</h2>\nWhite Oak Creek Campground is situated on the shores of Walter F. George Lake on the Georgia and Alabama border. The lake is a great place to get away for a week, a weekend or just a",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-006"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2980556,
+          34.1244444
+        ]
+      },
+      "properties": {
+        "id": "ridb:231991",
+        "name": "HOUSTON SHELTER",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "231991",
+        "description": "<h2>Overview</h2>\nHouston Shelter is a group picnic site nestled on the shore of Lake Lewis Smith in Bankhead National Forest. This is a popular recreation area offering a variety of activities.\n\nShel",
+        "legacy_inferred": {
+          "cost": 20,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-007"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.1022222,
+          31.6405556
+        ]
+      },
+      "properties": {
+        "id": "ridb:232595",
+        "name": "HARDRIDGE CREEK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232595",
+        "description": "<h2>Overview</h2>\nHardridge Creek Campground is situated on the shores of Walter F. George Lake on the Georgia and Alabama border. The lake is a great place to get away for a week, a weekend or just a",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-008"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0158333,
+          32.3241667
+        ]
+      },
+      "properties": {
+        "id": "ridb:232707",
+        "name": "SIX MILE CREEK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232707",
+        "description": "<h2>Overview</h2>\nSix Mile Creek Campground is located on its namesake at scenic Dannelly Reservoir in Alabama's Black Prairie Belt. The reservoir sits on the Alabama River and covers roughly 27 squar",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-009"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1430556,
+          31.745
+        ]
+      },
+      "properties": {
+        "id": "ridb:232701",
+        "name": "SERVICE",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232701",
+        "description": "<h2>Overview</h2>\nService Campground is situated along the high banks of Coffeeville Lake, the third largest lake on the Black Warrior-Tombigbee Waterway in Alabama. With a surface area of 8,800 acres",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "showers",
+            "fire_rings",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "tent",
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-010"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.372142,
+          33.440037
+        ]
+      },
+      "properties": {
+        "id": "ridb:233946",
+        "name": "BURCHFIELD BRANCH PARK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "233946",
+        "description": "<h2>Overview</h2>\nBurchfield Branch Park is located near Holt Lake on the Black Warrior-Tombigbee Waterway northeast of Tuscaloosa, Alabama. With many amenities, access to the water and opportunities ",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "showers",
+            "picnic_tables",
+            "trash"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-011"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.0133333,
+          32.1797222
+        ]
+      },
+      "properties": {
+        "id": "ridb:232529",
+        "name": "BLUFF CREEK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232529",
+        "description": "<h2>Overview</h2>\nBluff Creek Campground is situated on the shores of Walter F. George Lake on the Georgia and Alabama border. The lake is a great place to get away for a week, a weekend or just an af",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-012"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.8830556,
+          32.6263889
+        ]
+      },
+      "properties": {
+        "id": "ridb:232590",
+        "name": "FORKLAND",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232590",
+        "description": "<h2>Overview</h2>\nForkland Campground is located in a beautiful wooded area on the northern shore of Demopolis Lake, the largest lake on the Black Warrior-Tombigbee Waterway. <br/><br/>\nDemopolis Lake",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-013"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.4302778,
+          33.2594444
+        ]
+      },
+      "properties": {
+        "id": "ridb:232571",
+        "name": "DEERLICK CREEK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232571",
+        "description": "<h2>Overview</h2>\nDeerlick Creek Campground is located on Holt Lake on the Black Warrior-Tombigbee Waterway northeast of Tuscaloosa, Alabama. <br/><br/>\nThe facility is in a beautiful forest along the",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "tent",
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-014"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7694444,
+          32.3375
+        ]
+      },
+      "properties": {
+        "id": "ridb:232679",
+        "name": "PRAIRIE CREEK (AL)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232679",
+        "description": "<h2>Overview</h2>\nPrairie Creek Campground is situated beneath moss-draped oaks on the banks of Woodruff Lake. The lake is part of the scenic Alabama River in the region's Black Prairie Belt. \n<br/>\n<",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "tent",
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-015"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.5502778,
+          31.6222222
+        ]
+      },
+      "properties": {
+        "id": "ridb:232568",
+        "name": "ISAAC CREEK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "232568",
+        "description": "<h2>Overview</h2>\nIsaac Creek Campground is located on Claiborne Lake in Alabama's southwest Hill Country. \n<br/><br/>\nThe lake encompasses more than 60 miles of the Alabama River, and Isaac Creek has",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-016"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.27009193,
+          34.29634641
+        ]
+      },
+      "properties": {
+        "id": "ridb:271750",
+        "name": "Brushy Lake Recreation Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "271750",
+        "description": "<p>Brushy Lake Recreation Area offers everything from camping, picnicking, boating, and fishing to sanitary facilities including a bathhouse.A 33-acre lake, Brushy Lake has 13 campsites that accommoda",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "tent",
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-017"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.25416979,
+          32.50420432
+        ]
+      },
+      "properties": {
+        "id": "ridb:247796",
+        "name": "Ft. Toulouse",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "247796",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=444&agencyCode=130\" rel=\"nofollow\">Alabama River Lakes</a>",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-018"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.35,
+          34.34
+        ]
+      },
+      "properties": {
+        "id": "ridb:243195",
+        "name": "McDougle Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "243195",
+        "description": "McDougle Camp",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-019"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.245975,
+          32.056084
+        ]
+      },
+      "properties": {
+        "id": "ridb:247795",
+        "name": "Roland Cooper",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "247795",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=444&agencyCode=130\" rel=\"nofollow\">Alabama River Lakes</a>",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-020"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.4430685,
+          32.88723384
+        ]
+      },
+      "properties": {
+        "id": "ridb:243213",
+        "name": "Payne Lake Recreation Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "243213",
+        "description": "<p>Payne Lake Recreation Area offers the outdoor enthusiasts solitude, a scenic lake, and picturesque campsites. Payne Lake Recreation Area has two swimming beaches and bathhouses for users of the rec",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "showers",
+            "fire_rings",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "tent",
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-021"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.60182112,
+          33.72521825
+        ]
+      },
+      "properties": {
+        "id": "ridb:243219",
+        "name": "Pine Glen Recreation Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "243219",
+        "description": "<p>Pine Glen Recreation Area offers camping sites for 21 campsites, cooking grills, sanitary facilities, fishing, hiking, and access to the Pinhoti Trail. Use of Pine Glen Recreation Area is on a firs",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-022"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.55961863,
+          33.72127946
+        ]
+      },
+      "properties": {
+        "id": "ridb:243222",
+        "name": "Big Oak Physically Disabled Hunting Camp",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "243222",
+        "description": "<p>Big Oak Hunter Camp is our only physically disabled hunting area in the Talladega National Forest. This camp is a 1700 acre hunting unit for physically disabled hunters possessing the required Stat",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-023"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.5456207,
+          31.09115383
+        ]
+      },
+      "properties": {
+        "id": "ridb:243201",
+        "name": "Open Pond Recreation Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "243201",
+        "description": "<p>Scenic views, well-maintained facilities, and a diversity of recreational opportunities await you at Open Pond Recreation area.  The campground at Open Pond includes primitive sites as well as thos",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-024"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.56203439,
+          33.78408702
+        ]
+      },
+      "properties": {
+        "id": "ridb:243218",
+        "name": "Coleman Lake Recreation Area",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "AL",
+        "source": "recreation.gov",
+        "facility_id": "243218",
+        "description": "<p>The newly renovated Coleman Lake Recreation Area is peacefully nestled into the Talladega mountains. For recreationists who want to get away from the crowds, but want a few modern conveniences, Col",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "AL-025"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.1570348,
+          34.697472
+        ]
+      },
+      "properties": {
+        "addr:city": "Hillsboro",
+        "addr:housenumber": "44",
+        "addr:state": "AL",
+        "addr:street": "County Road 443",
+        "caravans": "yes",
+        "fee": "yes",
+        "name": "Wheeler Lake Campground at Mallard Creek KOA",
+        "old_name": "Mallard Creek Campground",
+        "opening_hours": "Mar-Nov unknown; Dec-Feb closed",
+        "phone": "+1-256-280-4390",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.wheelerlakecampground.com/",
+        "osm_id": 7656986,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:7656986:-87.157035,34.697472",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2678524,
+          34.0202444
+        ]
+      },
+      "properties": {
+        "bbq": "yes",
+        "boundary": "camp_site",
+        "capacity": "102",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "name": "Clear Creek Campground",
+        "power_supply": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.fs.usda.gov/recarea/alabama/recarea/?recid=30085",
+        "osm_id": 7674251,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:7674251:-87.267852,34.020244",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.9281163,
+          32.8543329
+        ]
+      },
+      "properties": {
+        "boundary": "camp_site",
+        "capacity": "586",
+        "caravans": "yes",
+        "dog": "leashed",
+        "fee": "yes",
+        "name": "Wind Creek State Park Campground",
+        "power_supply": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.alapark.com/wind-creek-state-park-campground",
+        "osm_id": 7674282,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:7674282:-85.928116,32.854333",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6394169,
+          30.2641791
+        ]
+      },
+      "properties": {
+        "boundary": "camp_site",
+        "capacity": "507",
+        "caravans": "yes",
+        "contact:email": "gulfstatepark@dcnr.alabama.gov",
+        "contact:phone": "+1-251-948-7275",
+        "dog": "leashed",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "internet_access": "wlan",
+        "name": "Gulf State Park Campground",
+        "power_supply": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.alapark.com/parks/gulf-state-park/rv-and-primitive-campground",
+        "osm_id": 7674299,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:7674299:-87.639417,30.264179",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.239624,
+          34.7765018
+        ]
+      },
+      "properties": {
+        "capacity": "48",
+        "name": "Riverview RV Park",
+        "phone": "+1-256-729-6329",
+        "power_supply": "yes",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "osm_id": 7675156,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:7675156:-87.239624,34.776502",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.2769905,
+          31.2985182
+        ]
+      },
+      "properties": {
+        "boundary": "camp_site",
+        "capacity": "40",
+        "caravans": "yes",
+        "disabled": "yes",
+        "fee": "yes",
+        "internet_access": "wlan",
+        "name": "Frank Jackson State Park Campground",
+        "operator": "Alabama State Park",
+        "power_supply": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.alapark.com/frank-jackson-state-park",
+        "osm_id": 7687149,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:7687149:-86.276990,31.298518",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1962506,
+          34.6183274
+        ]
+      },
+      "properties": {
+        "capacity:caravans": "62",
+        "caravans": "yes",
+        "charge": "22 USD",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "name": "Tishamingo State Park Campground",
+        "power_supply": "yes",
+        "shower": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.mdwfp.com/parks-destinations/state-parks/tishomingo/camping/",
+        "osm_id": 9485657,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:9485657:-88.196251,34.618327",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.979036,
+          30.906187
+        ]
+      },
+      "properties": {
+        "addr:city": "Creola",
+        "addr:housenumber": "2350",
+        "addr:postcode": "36525",
+        "addr:state": "AL",
+        "addr:street": "Dead Lake Marina Road",
+        "capacity": "60",
+        "fee": "yes",
+        "leisure": "park",
+        "name": "River Delta Marina and Campground",
+        "operator": "Mobile County",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "website": "https://www.mobilecountyal.gov/living/parks_river_delta.html",
+        "osm_id": 9685116,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:9685116:-87.979036,30.906187",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4988979,
+          30.4111653
+        ]
+      },
+      "properties": {
+        "cabins": "yes",
+        "leisure": "beach_resort",
+        "name": "Destin Army Recreation Area",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 9963414,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:9963414:-86.498898,30.411165",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0086128,
+          34.6241825
+        ]
+      },
+      "properties": {
+        "addr:city": "Decatur",
+        "addr:housenumber": "1600",
+        "addr:postcode": "35601",
+        "addr:state": "AL",
+        "addr:street": "AL Highway 20",
+        "capacity": "33",
+        "contact:email": "jlmarina@aol.com",
+        "contact:phone": "+1-256-350-4722",
+        "fee": "yes",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Jay Landings RV Park",
+        "power_supply": "yes",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "website": "https://www.jaylandingsrvpark.com/",
+        "osm_id": 11646639,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:11646639:-87.008613,34.624183",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.4367776,
+          33.2573114
+        ]
+      },
+      "properties": {
+        "addr:city": "Tuscaloosa",
+        "addr:state": "AL",
+        "capacity": "46",
+        "capacity:caravans": "40",
+        "capacity:tents": "46",
+        "caravans": "yes",
+        "charge": "30 USD",
+        "fee": "yes",
+        "name": "Deerlick Creek Campground",
+        "opening_hours": "Mar-Nov",
+        "operator": "Corp of Engineers",
+        "phone": "+1-205-759-1591",
+        "power_supply": "yes",
+        "reservation": "yes",
+        "tents": "yes",
+        "toilets": "flush",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.recreation.gov/camping/campgrounds/232571",
+        "osm_id": 12491123,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12491123:-87.436778,33.257311",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.1092532,
+          34.5155656
+        ]
+      },
+      "properties": {
+        "name": "South Sauty Creek Resort",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 14523252,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:14523252:-86.109253,34.515566",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.0960304,
+          34.5235795
+        ]
+      },
+      "properties": {
+        "name": "Northshore Campground",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 14523256,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:14523256:-86.096030,34.523579",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.1821468,
+          33.0199547
+        ]
+      },
+      "properties": {
+        "name": "Whitetail Ridge Campground",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 17737648,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:17737648:-85.182147,33.019955",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.0546147,
+          30.8721655
+        ]
+      },
+      "properties": {
+        "name": "I-65 RV Campground",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "osm_id": 17777757,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:17777757:-88.054615,30.872166",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.2583377,
+          30.3828773
+        ]
+      },
+      "properties": {
+        "alt_name": "Dockside RV Resort & Alabama Gulf Coast Campground",
+        "name": "Dockside RV Resort",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 17874039,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:17874039:-88.258338,30.382877",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.0807219,
+          30.2498672
+        ]
+      },
+      "properties": {
+        "addr:city": "Dauphin Island",
+        "addr:housenumber": "109",
+        "addr:postcode": "36528",
+        "addr:state": "AL",
+        "addr:street": "Bienville Boulevard",
+        "capacity": "151",
+        "caravans": "yes",
+        "fee": "yes",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Dauphin Island Campground",
+        "sanitary_dump_station": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://dauphinisland.org/",
+        "osm_id": 17920102,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:17920102:-88.080722,30.249867",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.637096,
+          30.2826736
+        ]
+      },
+      "properties": {
+        "name": "Pandion Ridge",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "osm_id": 18418861,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18418861:-87.637096,30.282674",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.18961,
+          34.4574196
+        ]
+      },
+      "properties": {
+        "addr:city": "Langston",
+        "addr:housenumber": "1001",
+        "addr:postcode": "35755",
+        "addr:state": "AL",
+        "addr:street": "Murphy Hill Road",
+        "name": "Little Mountain Marina Resort",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "osm_id": 19235718,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:19235718:-86.189610,34.457420",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.1845553,
+          34.465275
+        ]
+      },
+      "properties": {
+        "addr:city": "Langston",
+        "addr:housenumber": "1345",
+        "addr:postcode": "35755",
+        "addr:state": "AL",
+        "addr:street": "Murphy Hill Road",
+        "internet_access": "wlan",
+        "name": "Mountain Lake Resort",
+        "power_supply": "yes",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "website": "https://www.mountainlakesrvpark.com/",
+        "osm_id": 19235719,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:19235719:-86.184555,34.465275",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.2014446,
+          34.4046054
+        ]
+      },
+      "properties": {
+        "capacity": "295",
+        "capacity:note": "295 is the number of improved camp sites",
+        "caravans": "yes",
+        "dog": "leashed",
+        "fee": "yes",
+        "internet_access": "wlan",
+        "name": "Lake Guntersville State Park RV Campground",
+        "note": "can draw details from http://www.alapark.com/parks/pdfs/lakeguntersville/lakeguntersvillestateparkcampground.pdf",
+        "tents": "yes",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "website": "https://www.alapark.com/lake-guntersville-state-park-rv-camping",
+        "osm_id": 19244163,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:19244163:-86.201445,34.404605",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.8300009,
+          30.5473884
+        ]
+      },
+      "properties": {
+        "name": "Fairhope Motorcoach Resort",
+        "tourism": "caravan_site",
+        "type": "multipolygon",
+        "osm_id": 19291483,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:19291483:-87.830001,30.547388",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.3305906,
+          32.32399
+        ]
+      },
+      "properties": {
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "The Wood RV Park",
+        "sanitary_dump_station": "customers",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "osm_id": 19742611,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:19742611:-86.330591,32.323990",
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    }
+  ],
+  "duplicatesRemoved": 0,
+  "invalidRemoved": 0
+}
