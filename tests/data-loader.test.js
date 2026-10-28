@@ -5,7 +5,7 @@ const fs=require('node:fs');
 function harness(fetcher, overrides={}) {
   const events=[], cluster={layers:[],addLayers(items){this.layers.push(...items);},removeLayer(item){this.layers=this.layers.filter(x=>x!==item);}};
   const bounds={getSouth:()=>42.9,getNorth:()=>43.1,getWest:()=>-75.2,getEast:()=>-75,contains:([lat,lng])=>lat>=42.9&&lat<=43.1&&lng>=-75.2&&lng<=-75};
-  const map={getBounds:()=>bounds,addLayer(){},on(){},setView(){}};
+  const map={getBounds:()=>bounds,addLayer(){},removeLayer(){},hasLayer(){return false;},getZoom:()=>10,on(){},setView(){}};
   const context={console:{warn(){},log(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts.detail;}},document:{addEventListener(){}},dispatchEvent:e=>events.push(e),L:{markerClusterGroup:()=>cluster,divIcon:o=>o,marker:(coords,opts)=>({coords,opts,bindPopup(html){this.html=html;return this;},setPopupContent(html){this.html=html;return this;},openPopup(){this.opened=true;return this;}})}};
   Object.assign(context,overrides);
   context.window=context;
@@ -108,4 +108,19 @@ test('focus on a filter-hidden site explains the problem instead of silently pan
   assert.equal(h.api.focusCampsite(id),false);assert.equal(moved,false);assert.ok(messages[0].includes('hidden by your filters'));
   h.context.KampTrailFilters={reset:()=>h.api.updateFilters(h.api.getDefaultFilters())};
   assert.equal(h.api.focusCampsite(id),true);assert.equal(moved,true);
+});
+test('zoomed-out view requests no state listings and reports an overview',async()=>{
+  const urls=[];
+  const h=harness(async url=>{urls.push(url);if(url.endsWith('campsites/index.json'))return response({states:[{state:'NY',count:120},{state:'VT',count:30}],total_sites:150});return response({type:'FeatureCollection',features:[feature({id:'NY-1',facility_id:9})]});},{});
+  h.map.getZoom=()=>4;
+  h.context.L.layerGroup=()=>({layers:[],addLayer(m){this.layers.push(m);}});
+  const marker=h.context.L.marker;h.context.L.marker=(c,o)=>Object.assign(marker(c,o),{on(){}});
+  await h.api.init(h.map);
+  assert.equal(urls.some(u=>/_merged\.geojson/.test(u)),false);
+  const status=h.api.getLoadStatus();
+  assert.equal(status.overview,true);assert.equal(status.catalogueTotal,150);
+  assert.equal(h.api.getVisibleCampsites().length,0);
+  h.map.getZoom=()=>10;
+  await h.api.refresh();
+  assert.ok(urls.some(u=>/NY_merged\.geojson/.test(u)));
 });
