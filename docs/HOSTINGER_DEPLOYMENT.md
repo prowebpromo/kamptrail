@@ -1,7 +1,7 @@
 # KampTrail on Hostinger
 
 Target: `https://kamptrail.com/`, PHP/HTML website on the existing Cloud Startup plan.
-This document records package preparation. It does not assert that an upload or automatic Hostinger deployment has completed.
+This document records the deployment design. Confirm the live state in hPanel before treating the Hostinger connection as complete.
 
 ## Build the custom-domain package
 
@@ -23,11 +23,13 @@ Before changing Boondock or Bust embeds, verify the live version, national state
 
 ## Refresh and deployment are separate
 
-The existing GitHub data refresh updates the repository and GitHub Pages. It does not automatically copy files to Hostinger. A one-time archive upload is a snapshot, not a self-updating Hostinger deployment.
+`Publish Hostinger release` builds the current main branch after code pushes and successful data-refresh runs. The workflow-run triggers cover bot data commits, which do not trigger normal push workflows. It checks Node, Python and browser tests before publishing built files to the `hostinger` branch. It never downloads or executes an upstream run's artifacts. A failed test leaves the previous release in place.
 
-Keep the current primary links until a tested Hostinger release/deployment workflow is in place. That workflow should publish validated application/data output, preserve a previous release for rollback and report upload failures.
+Connect the Hostinger Git integration to `prowebpromo/kamptrail`, branch `hostinger`, in the domain's document root and enable automatic deployment. Do not deploy `main`, which contains source scripts and raw source snapshots. The release branch retains each previous release as its parent. `release.json` identifies the exact source commit. A one-time archive upload remains a snapshot until this Git connection is enabled and tested.
 
-The existing Sunday 03:00 UTC schedule defaults to `CA CO UT AZ OR WA MT WY`. It does not target all 50 states or automatically select the 23 states that previously failed. Use an explicit state list for a retry or change the scheduled selection in a separately reviewed refresh change.
+The Sunday 03:00 UTC schedule covers all 50 states. Manual refreshes retain their explicit selection and the eight-state default in the manual dispatch form. Failed sources keep their previously saved data, and the refresh summary reports failures. This retries previously failing states without deleting the expanded catalogue.
+
+Verify one automatic deployment by matching the live `release.json` to the release branch after a new tested publication. Then switch public links. If publication or deployment fails, inspect the GitHub Actions run and hPanel deployment status. To roll back, deploy the previous release commit. The Git metadata and other dotfiles are denied HTTP access by the packaged `.htaccess`.
 
 ## Saved data during a domain move
 
