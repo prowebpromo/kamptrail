@@ -15,3 +15,14 @@ The code's MIT license does not replace these data or third-party software licen
 | Forecast and elevation | National Weather Service API (api.weather.gov) | US government data. US locations only |
 | Topo and satellite basemaps | USGS The National Map (basemap.nationalmap.gov) | Public domain |
 | Dump stations, water fill points, propane | OpenStreetMap contributors via Overpass, built into `data/services/services.json` | ODbL. Hours, fees, and potability not verified |
+
+## Agency campsites, RV details, routing, offline maps (2.4.0)
+
+| Data | Source | Notes |
+| --- | --- | --- |
+| Forest Service camping records and fee wording | USFS EDW Recreation Opportunities (apps.fs.usda.gov), updated nightly by USFS | `data/sources/usfs.json`, split into `data/campsites/agency/` |
+| BLM camping areas and facilities with fee wording | BLM National Recreation Sites and Facilities (gis.blm.gov), layers 2 and 8 | `data/sources/blm.json` |
+| RV site lengths, hookups, stay limits, some fees | Recreation.gov RIDB full export (no key) | `data/campsites/ridb-sites.json` |
+| Fee classification | `scripts/fee_text.py` | free, conditional, paid, unknown. Wording is kept as evidence |
+| Drive times | FOSSGIS OSRM car router (routing.openstreetmap.de) | On demand, one request per click. Attribution shown. Not RV aware |
+| Offline maps | USGS Topo tiles saved by the visitor | Public domain. OSM standard tiles are never bulk saved |

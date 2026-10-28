@@ -43,3 +43,11 @@ Not yet shippable by the replica rule (one must-have partial). Shippable in prac
 ## Tests
 
 46 Node unit tests, 14 Python tests, 23 Playwright browser tests (7 new for 2.3.0). The new browser suite passed 35 of 35 on a 5x repeat. A live check against the real BLM, NWS, USGS, and OSM endpoints passed at 1440x900 and 390x844 with no page errors or failed requests. That is a point-in-time check, not an uptime guarantee.
+
+## Update: 2.4.0
+
+Feature parity 67.3 to 71.0. Added RV length and hookup filters (Recreation.gov RIDB bulk export, no key), on-demand drive times (FOSSGIS OSRM), and offline USGS Topo map areas. Fee status now comes from each source's own wording: US Forest Service and BLM recreation services, OpenStreetMap fee tags, and Recreation.gov fee text. Listings with free-camping evidence rose from 4 to 1,305 of about 15,700 loaded records in a full-data check on 2026-10-28.
+
+The weekly OSM refresh had been failing with HTTP 406 because Overpass rejects the default Python client. The scripts now identify the app. Confirm on the next workflow run.
+
+Most free sites still have no documented RV length (2 of 1,305). The finder says how many listings an RV length filter hides and offers to include them, labeled.

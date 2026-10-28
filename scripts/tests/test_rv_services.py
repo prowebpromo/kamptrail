@@ -19,6 +19,18 @@ class RVServicesTests(unittest.TestCase):
         self.assertEqual(props['drinking_water'], 'yes')
         self.assertIn('potability unverified', props['service_description'])
 
+    def test_overpass_requests_identify_the_app(self):
+        captured = {}
+        class R:
+            def raise_for_status(self): pass
+            def json(self): return {'elements': []}
+        def fake_post(url, data=None, headers=None, timeout=None):
+            captured['headers'] = headers
+            return R()
+        with patch.object(fetch_osm_poi.requests, 'post', side_effect=fake_post):
+            fetch_osm_poi.fetch_overpass_data('[out:json];', 'test')
+        self.assertIn('KampTrail', captured['headers']['User-Agent'])
+
     def test_failed_water_fetch_raises_before_anything_is_saved(self):
         with patch.object(fetch_osm_poi, 'extract_water_stations', return_value=[]), \
              patch.object(fetch_osm_poi, 'fetch_dump_stations', return_value=[]), \

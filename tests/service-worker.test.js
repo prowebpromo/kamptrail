@@ -44,3 +44,17 @@ test('national name search also updates online and remains available offline',as
   async function request(){let result;w.handlers.fetch({request:new Request(url),respondWith:p=>result=p,waitUntil(){}});return(await result).json();}
   assert.deepEqual(await request(),data);online=false;assert.deepEqual(await request(),data);
 });
+test('saved USGS Topo tiles are served from the offline tile cache without network',async()=>{
+  let fetched=0;const w=worker(async()=>{fetched++;throw new Error('offline');});
+  const url='https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/12/701/1588';
+  const cache=await w.caches.open('kamptrail:https://example.test/kamptrail/:tiles-v1');await cache.put(url,new Response('jpeg',{headers:{'content-type':'image/jpeg'}}));
+  let answer;w.handlers.fetch({request:new Request(url),respondWith:p=>answer=p});
+  assert.equal(await (await answer).text(),'jpeg');assert.equal(fetched,0);
+  let miss;w.handlers.fetch({request:new Request(url.replace('/1588','/1589')),respondWith:p=>miss=p});
+  assert.equal((await miss).status,504);
+});
+test('activation keeps saved offline map tiles',async()=>{
+  const w=worker();await w.caches.open('kamptrail:https://example.test/kamptrail/:tiles-v1');
+  let done;w.handlers.activate({waitUntil:p=>done=p});await done;
+  assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:tiles-v1'),true);
+});

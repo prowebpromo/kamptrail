@@ -2,7 +2,7 @@
    Trip tools: order, notes and dates, straight-line totals, route line, whole-trip directions, GPX. */
 (function () {
   'use strict';
-  const st = {map:null,open:false,stops:[],el:null,previousFocus:null,savedMarker:null,recoveryStates:new Set(),storageAvailable:true,routeLayer:null,gpxLayer:null,showRoute:false};
+  const st = {drive:null,driveKey:'',driveBusy:false,map:null,open:false,stops:[],el:null,previousFocus:null,savedMarker:null,recoveryStates:new Set(),storageAvailable:true,routeLayer:null,gpxLayer:null,showRoute:false};
   const valid = site => site?.geometry?.type === 'Point' && Array.isArray(site.geometry.coordinates)
     && site.geometry.coordinates.length >= 2 && site.geometry.coordinates.slice(0,2).every(Number.isFinite)
     && Math.abs(site.geometry.coordinates[0]) <= 180 && Math.abs(site.geometry.coordinates[1]) <= 90
@@ -95,12 +95,42 @@
     const [item]=st.stops.splice(index,1);st.stops.splice(target,0,item);save();render();drawRoute();
     st.el.querySelectorAll('.kt-saved-stop')[target]?.querySelector(delta<0?'.kt-trip-up':'.kt-trip-down')?.focus();
   }
+  // ---- Drive times: one on-demand request to the FOSSGIS OSRM server (light use, attribution required) ----
+  const ROUTER='https://routing.openstreetmap.de/routed-car/route/v1/driving/';
+  const MAX_ROUTE_STOPS=25;
+  const pointsKey=points=>points.map(pt).join(';');
+  const fmtTime=s=>{const m=Math.round(s/60),h=Math.floor(m/60);return h?`${h} hr ${m%60} min`:`${m} min`;};
+  async function fetchDrive() {
+    const points=st.stops.map(getSite).filter(Boolean).map(latLng);
+    if(points.length<2){notify('Save at least two stops to get drive times.');return;}
+    if(points.length>MAX_ROUTE_STOPS){notify(`Drive times cover up to ${MAX_ROUTE_STOPS} stops at a time. Remove or split stops and try again.`);return;}
+    if(st.driveBusy)return;st.driveBusy=true;
+    const btn=st.el.querySelector('#kt-trip-drive');btn.disabled=true;btn.textContent='Getting drive times…';
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+    try {
+      const coords=points.map(([lat,lng])=>`${+lng.toFixed(5)},${+lat.toFixed(5)}`).join(';');
+      const r=await fetch(`${ROUTER}${coords}?overview=false&steps=false`,{signal:controller.signal});
+      const data=await r.json();
+      if(!r.ok||data.code!=='Ok'||!data.routes?.[0]?.legs)throw new Error(data.message||'No route');
+      const route=data.routes[0];
+      st.drive={legs:route.legs.map(l=>({s:l.duration,m:l.distance/1609.344})),s:route.duration,m:route.distance/1609.344};
+      st.driveKey=pointsKey(points);render();
+    } catch(err) {
+      notify('Drive times are unavailable right now. Use Directions for the whole trip to see times in Google Maps.');
+    } finally {clearTimeout(timer);st.driveBusy=false;btn.disabled=false;btn.textContent='Drive times';}
+  }
+  function currentDrive() {
+    const points=st.stops.map(getSite).filter(Boolean).map(latLng);
+    return st.drive&&st.driveKey===pointsKey(points)?st.drive:null;
+  }
   function summary(sites) {
     const points=sites.filter(Boolean).map(latLng);let total=0;
     for(let i=1;i<points.length;i++)total+=miles(points[i-1],points[i]);
     const planned=st.stops.reduce((n,s)=>n+nights(s.arrive,s.depart),0);
     const parts=[`${st.stops.length} ${st.stops.length===1?'stop':'stops'}`];
     if(points.length>1)parts.push(`about ${Math.round(total).toLocaleString('en-US')} mi straight-line`);
+    const drive=currentDrive();
+    if(drive)parts.push(`${fmtTime(drive.s)} driving, ${Math.round(drive.m).toLocaleString('en-US')} mi by road`);
     if(planned)parts.push(`${planned} ${planned===1?'night':'nights'} planned`);
     return parts.join(' · ');
   }
@@ -146,6 +176,7 @@
     st.el.querySelector('#kt-trip-tools').hidden=!st.stops.length;
     st.el.querySelector('#kt-trip-route').checked=st.showRoute;
     renderSummary();renderLegs();
+    st.el.querySelector('#kt-trip-drive').hidden=st.stops.length<2;st.el.querySelector('#kt-trip-drive-credit').hidden=!currentDrive();
     if(!st.stops.length) {const empty=document.createElement('p');empty.textContent='No saved stops yet. Save a campsite from its listing or map popup, long-press the map to save any spot, or import a GPX file.';list.append(empty);return;}
     st.stops.forEach((stop,index)=>{
       const site=getSite(stop),coords=site?.geometry.coordinates;
@@ -153,7 +184,9 @@
       const title=document.createElement('h3');title.textContent=`${index+1}. ${site?nameOf(site):`Saved stop ${stop.id}`}`;
       const detail=document.createElement('p');
       let text=coords ? `${coords[1].toFixed(4)}, ${coords[0].toFixed(4)}` : 'This older saved stop has no location details. Find and save the campsite again, or remove this entry.';
-      if(coords&&index>0){const prev=getSite(st.stops[index-1]);if(prev)text+=` · ${Math.round(miles(latLng(prev),latLng(site))).toLocaleString('en-US')} mi from stop ${index} (straight-line)`;}
+      const drive=currentDrive();const legIndex=st.stops.slice(0,index).filter(s=>getSite(s)).length-1;
+      if(coords&&index>0&&drive&&drive.legs[legIndex])text+=` · ${fmtTime(drive.legs[legIndex].s)}, ${Math.round(drive.legs[legIndex].m).toLocaleString('en-US')} mi from stop ${index} by road`;
+      else if(coords&&index>0){const prev=getSite(st.stops[index-1]);if(prev)text+=` · ${Math.round(miles(latLng(prev),latLng(site))).toLocaleString('en-US')} mi from stop ${index} (straight-line)`;}
       const n=nights(stop.arrive,stop.depart);if(n)text+=` · ${n} ${n===1?'night':'nights'}`;
       detail.textContent=text;
       const actions=document.createElement('div');actions.className='kt-saved-actions';
@@ -225,7 +258,8 @@
       <p class="kt-saved-note">Saved on this device. Confirm current access before traveling.</p>
       <p id="kt-trip-summary" role="status" aria-live="polite"></p>
       <div id="kt-trip-tools">
-        <button type="button" class="btn" id="kt-trip-directions">Directions for the whole trip</button>
+        <div class="kt-trip-row"><button type="button" class="btn" id="kt-trip-directions">Directions for the whole trip</button><button type="button" class="btn" id="kt-trip-drive">Drive times</button></div>
+        <p class="kt-route-credit" id="kt-trip-drive-credit" hidden>Drive times: car routing by <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener noreferrer">OSRM (FOSSGIS)</a>, map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>, <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">fix the map</a>. Not checked for RV height, weight, or length.</p>
         <label class="kt-route-toggle"><input type="checkbox" id="kt-trip-route"> Show route line on map (straight-line, not roads)</label>
         <div id="kt-trip-legs" hidden></div>
       </div>
@@ -245,6 +279,8 @@
       #kt-trip-summary {font-weight:600;color:#e3f0e5}
       #kt-trip-tools {padding:8px 14px 0;display:grid;gap:8px}
       #kt-trip-tools .kt-route-toggle {font-size:12px;display:flex;gap:6px;align-items:center}
+      #kt-trip-tools .kt-trip-row {display:flex;gap:7px;flex-wrap:wrap}
+      #kt-trip-drawer .kt-route-credit {font-size:11px;line-height:1.45;color:#bed3c4;margin:0}#kt-trip-drawer .kt-route-credit a{color:#e3f0e5}
       #kt-trip-legs {display:grid;gap:6px;font-size:12px}#kt-trip-legs p{margin:0;color:#bed3c4;line-height:1.5}
       #kt-trip-list {padding:12px;display:grid;align-content:start;gap:10px;overflow:auto;flex:1;min-height:0}
       #kt-trip-drawer .kt-saved-stop {padding:12px;border:1px solid #45624b;border-radius:8px;background:#0d2018}
@@ -287,7 +323,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.3.0',
+    version:'2.4.0',
     init(map) {
       if(st.el)return;
       st.map=map;load();st.el=drawer();render();drawRoute();
@@ -296,6 +332,7 @@
       st.el.querySelector('#kt-trip-close').onclick=close;
       st.el.querySelector('#kt-trip-clear').onclick=()=>{if(confirm('Remove all saved stops from this device?')){st.stops=[];save();render();drawRoute();st.el.querySelector('#kt-trip-close').focus();}};
       st.el.querySelector('#kt-trip-directions').onclick=showLegs;
+      st.el.querySelector('#kt-trip-drive').onclick=fetchDrive;
       st.el.querySelector('#kt-trip-route').onchange=e=>{st.showRoute=e.target.checked;try{localStorage.setItem('kt_trip_route',st.showRoute?'1':'0');}catch{}drawRoute();};
       st.el.querySelector('#kt-trip-export').onclick=exportGPX;
       const file=st.el.querySelector('#kt-trip-file');

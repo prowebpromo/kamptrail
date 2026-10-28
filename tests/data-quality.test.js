@@ -122,3 +122,45 @@ test('public MVP cleaner excludes unverified activity listings by default while 
   assert.equal(diagnostic.features.length,2);
   assert.equal(diagnostic.features[1].properties.camping_classification,'unverified_camping_record');
 });
+
+test('RV length and hookup filters use Recreation.gov site summaries and never match unknowns', () => {
+  const DQ = require('../data-quality.js');
+  const mk = (fid) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [-110, 40]}, properties: {id: `ridb:${fid}`, facility_id: fid, amenities: [], rig_friendly: [], rating: null}});
+  const table = {'1': {t: 10, r: 6, L: 40, h: {'25': 2, '40': 4}, e: 3, w: 6}, '2': {t: 5, r: 0, L: 0}};
+  const a = DQ.attachSiteDetails(mk(1), table), b = DQ.attachSiteDetails(mk(2), table), c = DQ.attachSiteDetails(mk(3), table);
+  assert.strictEqual(a.properties.rv_max_length, 40);
+  assert.strictEqual(b.properties.rv_max_length, null);
+  assert.strictEqual(c.properties.rv_max_length, undefined);
+  assert.strictEqual(DQ.sitesFitting(a.properties, 30), 4);
+  assert.deepStrictEqual(DQ.applyFilters([a, b, c], {rigLength: 35}).map(s => s.properties.id), ['ridb:1']);
+  assert.deepStrictEqual(DQ.applyFilters([a, b, c], {rigLength: 45}), []);
+  assert.deepStrictEqual(DQ.applyFilters([a, b, c], {hookups: ['electric', 'water']}).map(s => s.properties.id), ['ridb:1']);
+  assert.deepStrictEqual(DQ.applyFilters([a, b, c], {hookups: ['sewer']}), []);
+});
+
+test('Recreation.gov fee evidence fills only unknown fees', () => {
+  const DQ = require('../data-quality.js');
+  const mk = (fid, extra = {}) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [-110, 40]}, properties: {id: `ridb:${fid}`, facility_id: fid, fee_status: 'unknown', cost: null, amenities: [], rig_friendly: [], ...extra}});
+  const t = {'1': {t: 0, r: 0, L: 0, f: 'free', fe: 'fee_text', sl: '14 days'}, '2': {t: 0, r: 0, L: 0, f: 'paid', fe: 'reservable'}, '3': {t: 0, r: 0, L: 0, f: 'free', fe: 'fee_text'}, '4': {t: 0, r: 0, L: 0, f: 'paid', fe: 'fee_text', c: 22}};
+  const a = DQ.attachSiteDetails(mk(1), t).properties;
+  assert.deepStrictEqual([a.fee_status, a.cost, a.stay_limit], ['free', 0, '14 days']);
+  const b = DQ.attachSiteDetails(mk(2), t).properties;
+  assert.deepStrictEqual([b.fee_status, b.cost, b.fee_evidence], ['paid', null, 'Reservable on Recreation.gov']);
+  const c = DQ.attachSiteDetails(mk(3, {fee_status: 'paid', cost: 15}), t).properties;
+  assert.deepStrictEqual([c.fee_status, c.cost], ['paid', 15]);
+  const d = DQ.attachSiteDetails(mk(4), t).properties;
+  assert.deepStrictEqual([d.fee_status, d.cost], ['paid', 22]);
+});
+
+test('agency records count as camping, keep fee wording, and fill an unknown Recreation.gov fee on merge', () => {
+  const DQ = require('../data-quality.js');
+  const ridb = {type:'Feature',geometry:{type:'Point',coordinates:[-120.0,48.7]},properties:{name:'TIFFANY SPRINGS CAMPGROUND',facility_id:'500',source:'recreation.gov',type:'established'}};
+  const usfs = {type:'Feature',geometry:{type:'Point',coordinates:[-120.002,48.7012]},properties:{id:'usfs:77',name:'Tiffany Springs Campground',camping_activity:'Campground Camping',schema_version:3,field_provenance:{cost:'x'},fee_status:'free',cost:0,fee_text:'No fee.',fee_source:'US Forest Service',fee_checked:'2026-10-28',amenities:[],rig_friendly:[]}};
+  const out = DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[ridb,usfs]}).features;
+  assert.strictEqual(out.length, 1);
+  assert.deepStrictEqual([out[0].properties.fee_status, out[0].properties.fee_text, out[0].properties.fee_source], ['free', 'No fee.', 'US Forest Service']);
+  const lone = DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[{...usfs,properties:{...usfs.properties,name:'Geisinger',fee_status:'conditional',cost:null}}]}).features[0];
+  assert.strictEqual(lone.properties.fee_status, 'conditional');
+  assert.strictEqual(DQ.applyFilters([lone], {rigLength: 30}).length, 0);
+  assert.strictEqual(DQ.applyFilters([lone], {rigLength: 30, rigIncludeUnknown: true}).length, 1);
+});

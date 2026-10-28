@@ -1,31 +1,28 @@
-## Parity: 67.3 / 100
+## Parity: 71.0 / 100
 
-features 67.3  (59 counted, must-haves 12 of 13 done)
+features 71.0  (59 counted, must-haves 12 of 13 done)
 
 Not shippable yet: 1 must-have features are not done.
 
 ## By area, weakest first
 - other                         25.0  (2 features)
 - amenities                     35.7  (4 features)
-- filters                       43.8  (10 features)
 - ugc                           44.4  (6 features)
 - layers                        54.5  (7 features)
-- trips                         64.7  (9 features)
+- filters                       62.5  (10 features)
+- trips                         70.6  (9 features)
 - place                         80.0  (10 features)
 - map                          100.0  (8 features)
 - offline                      100.0  (3 features)
 
 ## Missing, in build order
 - [must] amenities: Dump water propane facility layer, partial  (Dump 3,494 and propane 702 live. OSM water fill points wired into the weekly refresh; 0 until it runs)
-- [should] filters: Filter by rig length, no  (No reliable max-length field in current data)
 - [should] layers: Cell carrier coverage overlay, no  (Original self-hosted tiles; no free keyless national tile source verified)
 - [should] trips: Find places along route, no  (Original used Mapbox server routing)
 - [should] ugc: Reviews with star rating, no  (Needs backend)
 - [should] amenities: Overnight parking places (Walmart truck stops rest areas), partial  (Type filter exists; few records)
-- [should] filters: Filter by amenities / hookups, partial  (Reported toilet/water/dump/shower. Data sparse)
 - [should] place: Place detail: amenities list, partial  (Shown when source reports them)
 - [should] place: Place detail: nearby dump water propane, partial  (Nearest dump and propane, straight-line)
-- [should] trips: Trip distance and time totals, partial  (Straight-line miles and planned nights. No drive time)
 - [could] amenities: Laundry showers groceries gas facilities, no  (Not in current POI data)
 - [could] amenities: Low clearance hazards, no  (Needs clearance dataset)
 - [could] filters: Filter by cell signal, no  (Needs coverage data)
@@ -61,3 +58,4 @@ Not shippable yet: 1 must-have features are not done.
 - Offline map tile download
 - About the data / transparency
 - Land manager lookup with agency stay-limit guidance
+- Fee status with source wording (free, conditional, paid, unknown)
