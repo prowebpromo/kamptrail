@@ -1,0 +1,58 @@
+name: Campsite correction
+description: Report wrong, outdated, or missing details for a campsite listing.
+title: "Correction: "
+labels: ["data-correction"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping keep KampTrail accurate. Report only what you saw yourself or can link to an official source.
+  - type: input
+    id: campsite
+    attributes:
+      label: Campsite
+      description: Name and KampTrail ID (filled in automatically from the app)
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: KampTrail link
+  - type: input
+    id: coordinates
+    attributes:
+      label: Coordinates (lat, lng)
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What is wrong?
+      multiple: true
+      options:
+        - Closed or no longer exists
+        - Camping not allowed here
+        - Fee is wrong
+        - Location is wrong
+        - Amenities are wrong
+        - Road or rig access is wrong
+        - Name is wrong
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What did you see, and when? Include fees, signs, road conditions, or rig limits.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Official page, sign photo link, or "visited on YYYY-MM-DD"
+  - type: checkboxes
+    id: firsthand
+    attributes:
+      label: Confirmation
+      options:
+        - label: This is first-hand or comes from an official source. I did not copy it from another app's listings.
+          required: true

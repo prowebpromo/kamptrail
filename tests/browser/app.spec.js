@@ -13,7 +13,7 @@ test('MVP has only working core tools and city search updates the map and list',
   await ready(page);
   await expect(page.locator('#trip')).toContainText('Saved stops');
   expect(await page.locator('script[src^="https:"]').count()).toBe(0);
-  expect(await page.locator('#compare-btn,#gpx-import,#layers-toggle,#kt-toggle-towers,#kt-toggle-poi').count()).toBe(0);
+  expect(await page.locator('#compare-btn,#kt-toggle-towers').count()).toBe(0);
   expect(await page.evaluate(()=>[typeof window.KampTrailCompare,typeof window.KampTrailGPX,typeof window.KampTrailPhotos,typeof window.KampTrailOverlays])).toEqual(['undefined','undefined','undefined','undefined']);
   await page.locator('#destination').fill('Albany, NY');
   await page.locator('#search-form button').click();
@@ -56,7 +56,7 @@ test('basic filters persist and reset without inventing prices or showing unrela
   await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await page.locator('#filters').click();await expect(page.locator('[name="f-cost"][value="free"]')).toBeChecked();
   await page.locator('#kt-f-reset').click();await expect(page.locator('#filter-badge')).toBeHidden();
-  expect(await page.locator('#f-rig,#f-road,#f-rate').count()).toBe(0);
+  expect(await page.locator('#f-road,#f-rate').count()).toBe(0);
 });
 test.describe('network retry',()=>{
   test.use({serviceWorkers:'block'});
@@ -102,13 +102,13 @@ test('location permission denial recovers, and coordinates remain a complete alt
 test('GitHub Pages subpath resolves core scripts and national search catalogue',async({page})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await ready(page,'/kamptrail/');
   await page.locator('#destination').fill('Albany, NY');await page.locator('#search-form button').click();await expect(page.locator('#search-results')).toContainText('Albany, NY');
-  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.2.1');expect(errors).toEqual([]);
+  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.3.0');expect(errors).toEqual([]);
 });
 
 test('data information uses the real catalogue and supports keyboard dismissal on mobile',async({page})=>{
   await page.setViewportSize({width:390,height:844});
   await ready(page);
-  await expect(page.locator('.app-intro')).toContainText('Find campsites, filter reported fees, and save stops.');
+  await expect(page.locator('.app-intro')).toContainText('Long-press the map to check any spot.');
   const count=await page.evaluate(async()=>(await (await fetch('data/campsites/search-index.json')).json()).sites.length);
   await page.locator('#about-data').click();
   await expect(page.getByRole('dialog')).toBeVisible();

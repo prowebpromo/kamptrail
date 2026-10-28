@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KampTrail | Find and Save Campsites</title>
-  <meta name="description" content="Find US campsite listings by city, state, name, or coordinates. Filter by reported fees, save stops, and open directions.">
+  <title>KampTrail | Free Campsite Map and Trip Planner</title>
+  <meta name="description" content="Free, no-account campsite map for the US. Find campsites, see BLM and Forest Service land, check who manages a spot, find dump stations and propane, and plan trips with GPX export.">
   <meta name="theme-color" content="#10281f">
   <meta name="application-name" content="KampTrail">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.2.1">
+  <meta name="kamptrail-version" content="2.3.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
   <link rel="canonical" href="https://prowebpromo.github.io/kamptrail/">
   <meta property="og:site_name" content="KampTrail">
-  <meta property="og:title" content="KampTrail | Find and Save Campsites">
+  <meta property="og:title" content="KampTrail | Free Campsite Map and Trip Planner">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://prowebpromo.github.io/kamptrail/og.png">
-  <meta property="og:description" content="Find campsite listings, save your stops, and open directions.">
+  <meta property="og:description" content="Find campsites, public land, dump stations and propane. Plan trips and export GPX. Free, no account."> 
   <meta property="og:url" content="https://prowebpromo.github.io/kamptrail/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
@@ -40,7 +40,7 @@
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">Near me</button>
       </nav>
     </header>
-    <div class="app-intro"><p>Find campsites, filter reported fees, and save stops.</p><button id="about-data" aria-haspopup="dialog">About the data</button></div>
+    <div class="app-intro"><p>Find campsites and public land, then plan your stops. Long-press the map to check any spot.</p><button id="about-data" aria-haspopup="dialog">About the data</button></div>
     <section class="search-bar" aria-label="Find a destination">
       <form id="search-form" role="search">
         <label class="sr-only" for="destination">City, campsite, or coordinates</label>
@@ -62,8 +62,8 @@
       <div id="map" role="region" aria-label="Campsite map" tabindex="0"></div>
     </main>
     <footer>
-      <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.2.1</a></span>
+      <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.3.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -75,17 +75,26 @@
     <h3>Coverage and fees</h3>
     <p>Coverage varies by state and is incomplete. A missing campsite does not mean camping is prohibited. A public land location does not establish permission to camp.</p>
     <p>“Reported free” requires source evidence. “Fee unknown” means no reliable fee was supplied; it does not mean free. Confirm fees, access, seasonal closures, and reservations with the operator.</p>
+    <h3>Public land, weather, and services</h3>
+    <p>The public land layer and land manager lookup use the BLM Surface Management Agency map. Boundaries can be approximate and do not grant permission to camp. Posted signs and local orders take priority.</p>
+    <p>Forecasts and elevation come from the National Weather Service and cover US locations only. Topo and satellite basemaps come from the USGS National Map.</p>
+    <p>Dump stations and propane come from OpenStreetMap contributors. Hours, fees, and whether a location is open are not verified.</p>
+    <h3>Corrections</h3>
+    <p>Use “Suggest a fix” on any campsite, or long-press the map and choose “Suggest a campsite here.” Both open a form on GitHub (free account needed). Reports are reviewed before the data changes.</p>
     <h3>Saved stops and offline use</h3>
-    <p>Saved stops stay in this browser on this device. After an online visit, previously loaded listings may be available offline. Map imagery and directions need internet. Clearing browser data removes saved stops.</p>
+    <p>Saved stops, notes, and dates stay in this browser on this device. Export a GPX file to back them up or move them to another device. After an online visit, previously loaded listings may be available offline. Map imagery and directions need internet. Clearing browser data removes saved stops.</p>
     <p>Embedded and full-page versions may keep separate saved stops, depending on your browser. No account is required. Map tiles are requested from OpenStreetMap.</p>
   </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden>Loading…</div>
   <noscript>KampTrail needs JavaScript to display its interactive map.</noscript>
+  <script src="share.js"></script>
+  <script src="spot-info.js"></script>
   <script src="data-quality.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
   <script src="trip-planner.js"></script>
+  <script src="layers.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

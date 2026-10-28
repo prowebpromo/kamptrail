@@ -1,12 +1,13 @@
 const fs=require('node:fs/promises'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','spot-info.js','share.js','layers.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
   for(const file of files)await fs.copyFile(path.join(root,file),path.join(out,file));
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});
   for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
+  await fs.mkdir(path.join(out,'data','services'),{recursive:true});await fs.copyFile(path.join(root,'data','services','services.json'),path.join(out,'data','services','services.json'));
   for(const file of ['places-us.json','places-us.LICENSE.txt'])await fs.copyFile(path.join(root,'data',file),path.join(out,'data',file));
   console.log(`MVP static release built: ${out}`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

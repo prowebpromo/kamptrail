@@ -163,6 +163,6 @@
       return true;
     });
   }
-  global.DataQuality={version:'2.2.1',normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={version:'2.3.0',normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -158,10 +158,18 @@
       ${p.rating!==null?`<div><strong>Rating:</strong> ${p.rating}/5${p.reviews_count?` (${p.reviews_count} reviews)`:''}</div>`:''}
       <p style="font-size:11px;line-height:1.4">Confirm current fees, access, and camping rules with the operator before traveling.${p.attributes_unverified?' Legacy inferred fees and amenities are hidden.':''}</p>
       ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">Check source / operator</a></p>`:''}
-      <div style="display:flex;gap:5px;flex-wrap:wrap">
+      <div class="kt-popup-actions">
         <button type="button" data-kt-action="trip" data-siteid="${siteId}">Save stop</button>
         <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${lat},${lng}" target="_blank" rel="noopener noreferrer">Directions</a>
+        <button type="button" data-kt-action="share" data-siteid="${siteId}">Share</button>
       </div>
+      <div class="kt-popup-actions kt-popup-more">
+        <button type="button" data-kt-action="weather" data-siteid="${siteId}">Forecast + elevation</button>
+        <button type="button" data-kt-action="land" data-siteid="${siteId}">Land manager</button>
+        <button type="button" data-kt-action="nearby" data-siteid="${siteId}">Nearest RV services</button>
+      </div>
+      <div class="kt-popup-extra"></div>
+      ${window.KampTrailShare?`<p class="kt-fine"><a href="${esc(window.KampTrailShare.issueUrl('fix',site))}" target="_blank" rel="noopener noreferrer">Suggest a fix</a> (free GitHub account needed)</p>`:''}
     </div>`;
   }
   function updateMarkers() {
@@ -172,7 +180,7 @@
     const additions=[];
     for(const site of filtered){
       const id=site.properties.id;
-      if(state.markers.has(id)){state.markers.get(id).setPopupContent(popup(site));continue;}
+      if(state.markers.has(id)){const m=state.markers.get(id);if(!m.isPopupOpen?.())m.setPopupContent(popup(site));continue;}
       const [lng,lat]=site.geometry.coordinates,p=site.properties;
       const color=p.fee_status==='free'?'#258543':p.fee_status==='paid'?'#2375b9':'#687780';
       const icon=L.divIcon({html:`<span style="display:block;background:${color};width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px #333"></span>`,className:'custom-marker',iconSize:[16,16],iconAnchor:[8,8]});
@@ -191,7 +199,7 @@
     return api.getLoadStatus();
   }
   const api=window.KampTrailData={
-    version:'2.2.1',
+    version:'2.3.0',
     async init(map,config={}){
       state.map=map;state.config=config;
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});
@@ -228,11 +236,50 @@
     },
     addToTrip(id){const site=api.getCampsiteById(id);if(site)state.config.onTripAdd?.(site.properties.id);},
     toggleFavorite(id){state.config.onFavoriteToggle?.(id);},
+    loadServices(){
+      if(!state.services)state.services=fetchJSON('data/services/services.json').then(d=>Array.isArray(d?.items)?d.items:[]).catch(e=>{state.services=null;throw e;});
+      return state.services;
+    },
+    nearestServices(items,lat,lng){
+      const rad=v=>v*Math.PI/180;
+      const mi=(a,b,c,d)=>{const h=Math.sin(rad(c-a)/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(rad(d-b)/2)**2;return 3958.8*2*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)));};
+      const best={};
+      for(const row of items){const k=row[2];const d=mi(lat,lng,row[1],row[0]);if(!best[k]||d<best[k].miles)best[k]={row,miles:d};}
+      return best;
+    },
+    renderNearbyServices(box,lat,lng){
+      box.textContent='Finding the nearest RV services…';
+      return api.loadServices().then(items=>{
+        const best=api.nearestServices(items,lat,lng);box.replaceChildren();
+        const list=document.createElement('ul');
+        [['d','Dump station'],['w','Water fill'],['p','Propane']].forEach(([k,label])=>{
+          const li=document.createElement('li');const b=best[k];
+          if(!b){li.textContent=`${label}: none in the data`;list.append(li);return;}
+          const [x,y,,name]=b.row;
+          li.textContent=`${label}: ${name||label}, about ${b.miles<10?b.miles.toFixed(1):Math.round(b.miles)} mi straight-line `;
+          const a=document.createElement('a');a.href=`https://www.google.com/maps/dir/?api=1&destination=${y},${x}`;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Directions';li.append(a);list.append(li);
+        });
+        const note=document.createElement('p');note.className='kt-fine';note.textContent='From OpenStreetMap contributors. Coverage is incomplete and hours are not verified. Call ahead.';
+        box.append(list,note);window.KampTrailSpot?.relayout(box);
+      }).catch(()=>{box.textContent='Service locations could not load. Try again when connected.';});
+    },
 
   };
   document.addEventListener('click',event=>{
     const action=event.target.closest('[data-kt-action]');
-    if(action){const id=action.dataset.siteid;if(action.dataset.ktAction==='trip')api.addToTrip(id);return;}
+    if(action){
+      const id=action.dataset.siteid,kind=action.dataset.ktAction;
+      if(kind==='trip'){api.addToTrip(id);return;}
+      const site=api.getCampsiteById(id);if(!site)return;
+      const [lng,lat]=site.geometry.coordinates;
+      if(kind==='share'){window.KampTrailShare?.share({site:site.properties.id},site.properties.name);return;}
+      const extra=action.closest('.kt-site-popup')?.querySelector('.kt-popup-extra');if(!extra)return;
+      const box=document.createElement('div');extra.append(box);action.disabled=true;
+      if(kind==='weather')window.KampTrailSpot?.renderForecast(box,lat,lng);
+      else if(kind==='land')window.KampTrailSpot?.renderLand(box,lat,lng);
+      else if(kind==='nearby')api.renderNearbyServices(box,lat,lng);
+      return;
+    }
 
   });
 })();

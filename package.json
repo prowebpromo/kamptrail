@@ -1,7 +1,7 @@
 {
   "name": "kamptrail",
-  "version": "2.2.1",
-  "description": "KampTrail MVP: find campsites, filter reported fees, save stops and open directions",
+  "version": "2.3.0",
+  "description": "KampTrail: free campsite map with public land, RV services, trip planning and GPX",
   "scripts": {
     "fetch-data": "bash scripts/fetch_all_campsite_data.sh",
     "fetch-state": "bash scripts/fetch_all_campsite_data.sh",
@@ -9,10 +9,10 @@
     "scrape:campendium": "node scripts/scrape_campendium.js",
     "merge": "node scripts/merge_campsite_data.js",
     "start": "node scripts/serve.js",
-    "test": "node --test tests/data-quality.test.js tests/data-loader.test.js scripts/tests/merge-safety.test.js tests/service-worker.test.js tests/search-index.test.js",
+    "test": "node --test tests/data-quality.test.js tests/data-loader.test.js scripts/tests/merge-safety.test.js tests/service-worker.test.js tests/search-index.test.js tests/services.test.js",
     "test:browser": "playwright test",
     "test:python": "python3 -m unittest discover -s scripts/tests -p 'test_*.py'",
-    "build": "node scripts/build-search-index.js && node scripts/build-release.js",
+    "build": "node scripts/build-search-index.js && node scripts/build-services.js && node scripts/build-release.js",
     "build:search": "node scripts/build-search-index.js"
   },
   "keywords": [
