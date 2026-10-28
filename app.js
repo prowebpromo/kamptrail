@@ -42,7 +42,7 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.4.1' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline].some(module=>module?.version!=='2.4.1')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.4.2' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline].some(module=>module?.version!=='2.4.2')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
@@ -159,6 +159,7 @@
       const [x,y] = a.geometry.coordinates, [u,v] = b.geometry.coordinates;
       return map.distance(center,[y,x]) - map.distance(center,[v,u]);
     });
+    const active = window.kamptrailFilters || {};
     sorted.slice(0,100).forEach(site => {
       const p = site.properties;
       const card = document.createElement('article'); card.className = 'site-card';
@@ -166,13 +167,12 @@
       const details = document.createElement('p');
       const rigLen = +((window.kamptrailFilters || {}).rigLength || 0);
       const cost = p.fee_status === 'free' ? 'Reported free' : p.fee_status === 'conditional' ? 'Free with conditions' : p.fee_status === 'paid' ? (Number.isFinite(p.cost) ? `Reported $${p.cost}` : 'Paid · amount unknown') : 'Fee unknown';
-      details.textContent = `${cost} · ${p.type === 'established' ? 'Campground' : (p.type || 'Type unknown')} · ${p.state || ''}${rigLen > 0 && !Number.isFinite(p.rv_max_length) ? ' · RV length not documented' : ''}`;
+      details.textContent = `${cost} · ${p.type === 'established' ? 'Campground' : (p.type || 'Type unknown')} · ${p.state || ''}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? ' · RV fit not documented' : ''}`;
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = 'View on map'; view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
       const trip = document.createElement('button'); trip.textContent = 'Save stop'; trip.onclick = () => KampTrailTrip.addStop(p.id);
       actions.append(view, trip); card.append(heading,details,actions); fragment.append(card);
     });
-    const active = window.kamptrailFilters || {};
     if (+active.rigLength > 0 && !active.rigIncludeUnknown) {
       const withUnknown = DataQuality.applyFilters(KampTrailData.getAllCampsites(), {...active, rigIncludeUnknown:true});
       const b = map.getBounds();

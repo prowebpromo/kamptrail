@@ -62,8 +62,7 @@ def to_feature(row, spec, retrieved, layer):
     if not name or key in (None, ''):
         return None
     status, cost = fee_text.classify(row.get(spec['fee']))
-    if status == 'unknown' and str(row.get('Reservable')).lower() in ('true', '1'):
-        status = 'paid'
+    # Reservability is not camping-fee evidence. It is recorded separately.
     url = row.get(spec['url']) or None
     stay = fee_text.clean(row.get('StayLimit'))
     props = {
@@ -81,6 +80,7 @@ def to_feature(row, spec, retrieved, layer):
         'fee_source': 'Bureau of Land Management',
         'fee_checked': retrieved,
         'stay_limit': stay[:160] or None,
+        'reservable': str(row.get('Reservable')).lower() in ('true', '1') or None,
         'schema_version': 3,
         'field_provenance': {'cost': f"BLM {spec['fee']}"},
         'amenities': [],

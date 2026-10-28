@@ -150,14 +150,14 @@ test('rig length and hookup filters use Recreation.gov site details and popups s
   await expect(page.locator('#filter-badge')).toHaveText('1');
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.rv_max_length>=35))).toBe(true);
   await page.locator('[name="f-hookup"][value="electric"]').check();
-  expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.hookups.electric>0))).toBe(true);
+  expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>DataQuality.matchingSites(s.properties,35,['electric'])>0))).toBe(true);
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await page.locator('#filters').click();await expect(page.locator('#f-length')).toHaveValue('35');
-  const id=await page.evaluate(()=>KampTrailData.getAllCampsites().find(s=>s.properties.rv_max_length>=35&&s.properties.hookups.electric>0).properties.id);
+  const id=await page.evaluate(()=>KampTrailData.getAllCampsites().find(s=>DataQuality.matchingSites(s.properties,35,['electric'])>0).properties.id);
   await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
   await expect(page.locator('.leaflet-popup')).toContainText('RV sites (Recreation.gov):');
-  await expect(page.locator('.leaflet-popup')).toContainText('list 35 ft or more');
+  await expect(page.locator('.leaflet-popup')).toContainText('list 35 ft or more with electric hookups on the same site');
 });
 
 test('free filter explains thin data and offers the public land layer',async({page,context})=>{
@@ -220,5 +220,5 @@ test('agency fee evidence powers Free, keeps conditional separate, and explains 
   await expect(page.locator('.free-tip').first()).toContainText('no documented RV length');
   await page.getByRole('button',{name:'Include them, labeled'}).click();
   await expect(page.locator('#f-length-unknown')).toBeChecked();
-  await expect(page.locator('.site-card').first()).toContainText('RV length not documented');
+  await expect(page.locator('.site-card').first()).toContainText('RV fit not documented');
 });

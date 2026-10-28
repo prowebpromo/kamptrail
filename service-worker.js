@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v25';
+const VERSION = 'kt-v26';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -67,7 +67,7 @@ async function visitedData(request,event) {
     const valid=path.endsWith('.geojson') ? data?.type==='FeatureCollection' && Array.isArray(data.features)
       : path.endsWith('search-index.json') ? data?.version===1 && Array.isArray(data.sites)
       : path.endsWith('agency/index.json') ? data?.version===1 && Array.isArray(data.states)
-      : path.endsWith('ridb-sites.json') ? data?.version===1 && data.facilities && typeof data.facilities==='object'
+      : path.endsWith('ridb-sites.json') ? [1,2].includes(data?.version) && data.facilities && typeof data.facilities==='object'
       : path.endsWith('services.json') ? data?.version===1 && Array.isArray(data.items)
       : Array.isArray(data?.states) && Number.isFinite(data.total_sites);
     if(!valid)throw new Error('Invalid dataset');
