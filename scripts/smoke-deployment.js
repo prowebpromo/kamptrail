@@ -3,7 +3,7 @@ const {chromium}=require('playwright'),fs=require('node:fs/promises'),path=requi
 const version=require('../package.json').version;
 const target=process.env.KT_SMOKE_TARGET || 'https://prowebpromo.github.io/kamptrail/';
 (async()=>{
-  const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),...(process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
+  const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),...(process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{}),args:['--no-sandbox','--disable-dev-shm-usage',...(process.env.HTTPS_PROXY?['--ignore-certificate-errors']:[])]});
   try{
     const context=await browser.newContext({viewport:{width:1440,height:1000},ignoreHTTPSErrors:!!process.env.HTTPS_PROXY});
     const errors=[],failures=[];
