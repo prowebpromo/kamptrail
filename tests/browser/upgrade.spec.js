@@ -10,7 +10,7 @@ test('an existing stale worker upgrades automatically without asking the visitor
       const pathname=new URL(req.url,'http://localhost').pathname;
       if(pathname==='/legacy'){res.setHeader('Content-Type','text/html');res.end('<script>navigator.serviceWorker.register("/service-worker.js")</script>');return;}
       if(pathname==='/service-worker.js'&&legacy){res.setHeader('Content-Type','application/javascript');res.setHeader('Cache-Control','no-store');res.end(oldWorker);return;}
-      if(legacy&&['/data-loader.js','/data-quality.js','/filters.js','/trip-planner.js'].includes(pathname)){res.setHeader('Content-Type','application/javascript');res.end('/* previously cached module */');return;}
+      if(legacy&&['/data-loader.js','/data-quality.js','/filters.js','/trip-planner.js'].includes(pathname)){res.setHeader('Content-Type','application/javascript');res.setHeader('Cache-Control','public, max-age=86400');res.end('/* previously cached module */');return;}
       const file=path.join(root,pathname==='/'?'index.html':pathname);
       const ext=path.extname(file);res.setHeader('Content-Type',ext==='.js'?'application/javascript':ext==='.html'?'text/html':ext==='.css'?'text/css':ext==='.json'||ext==='.geojson'?'application/json':'application/octet-stream');res.setHeader('Cache-Control','no-store');res.end(await fs.readFile(file));
     }catch{res.statusCode=404;res.end();}
