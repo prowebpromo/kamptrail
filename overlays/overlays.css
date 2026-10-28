@@ -15,3 +15,12 @@
 .kt-controls label { display:flex; align-items:center; gap:8px; cursor:pointer; }
 .kt-controls input { accent-color: #86b7ff; }
 .kt-badge { display:inline-block; padding:2px 6px; border-radius: 999px; border: 1px solid #395068; background:#173243; }
+/* Keep the key readable without taking over a phone map. */
+.kt-map-key summary { cursor:pointer; font-weight:700; }
+.kt-key-content { margin-top:7px; max-height:42vh; overflow:auto; }
+.kt-key-content strong { display:block; margin:6px 0 4px; }
+.kt-key-line { display:flex; align-items:center; gap:6px; margin:3px 0; }
+.kt-key-line i { width:10px; height:10px; border-radius:50%; border:1px solid white; display:inline-block; flex:none; }
+.kt-key-line b { width:15px; height:10px; border:1px solid #aab7a4; display:inline-block; flex:none; }
+.kt-key-content small { display:block; line-height:1.35; margin:5px 0; opacity:.9; }
+@media(max-width:760px) { .kt-legend { max-width:190px; padding:6px 8px; } .kt-key-content { max-height:32vh; } }

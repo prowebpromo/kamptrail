@@ -4,6 +4,7 @@ import json
 import os
 import argparse
 import time
+from data_integrity import valid_coordinates, save_geojson
 
 STATE_BOUNDS = {
     'AL': '30.2,-88.5,35.0,-84.9', 'AK': '51.2,-179.1,71.4,-129.9', 'AZ': '31.3,-114.8,37.0,-109.0',
@@ -45,12 +46,15 @@ def fetch_osm_data(state_code):
     url = "https://overpass-api.de/api/interpreter"
     print(f"Fetching data for {state_code.upper()}...")
     try:
-        response = requests.get(url, params={'data': query})
+        response = requests.get(url, params={'data': query}, timeout=120)
         response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
+        data = response.json()
+        if data.get('remark') or not isinstance(data.get('elements'), list):
+            raise ValueError('Incomplete or invalid Overpass response')
+        return data
+    except (requests.exceptions.RequestException, ValueError) as e:
         print(f"Error fetching data for {state_code.upper()}: {e}")
-        return None
+        raise RuntimeError(f"OSM fetch failed for {state_code.upper()}") from e
 
 def osm_to_geojson(osm_data):
     """Converts OSM JSON data to GeoJSON format."""
@@ -68,7 +72,7 @@ def osm_to_geojson(osm_data):
             geom_type = 'Point'
             coords = [element['center'].get('lon', 0), element['center'].get('lat', 0)]
 
-        if not geom_type or not all(coords):
+        if not geom_type or not valid_coordinates(coords):
             continue
 
         feature = {
@@ -77,9 +81,15 @@ def osm_to_geojson(osm_data):
                 'type': geom_type,
                 'coordinates': coords
             },
-            'properties': element.get('tags', {})
+            'properties': dict(element.get('tags', {}))
         }
-        feature['properties']['osm_id'] = element.get('id')
+        feature['properties'].update({
+            'osm_id': element.get('id'), 'osm_type': element['type'],
+            'id': f"osm:{element['type']}:{element.get('id')}",
+            'source': 'openstreetmap', 'schema_version': 3,
+            'source_url': f"https://www.openstreetmap.org/{element['type']}/{element.get('id')}",
+            'source_retrieved_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+        })
         features.append(feature)
 
     return {
@@ -107,8 +117,7 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     output_path = os.path.join(output_dir, f'{state_code}.geojson')
-    with open(output_path, 'w') as f:
-        json.dump(geojson_data, f)
+    save_geojson(output_path, geojson_data)
 
     print(f"✅ Successfully saved {len(geojson_data['features'])} campsites to {output_path}")
 

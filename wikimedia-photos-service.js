@@ -38,7 +38,7 @@
         origin: '*'
       });
 
-      const geoResp = await fetch(`${API_BASE}?${geoParams}`);
+      const geoResp = await fetch(`${API_BASE}?${geoParams}`, {signal:AbortSignal.timeout(12000)});
       if (!geoResp.ok) throw new Error(`Geosearch HTTP ${geoResp.status}`);
       const geoData = await geoResp.json();
 
@@ -60,7 +60,7 @@
         origin: '*'
       });
 
-      const infoResp = await fetch(`${API_BASE}?${infoParams}`);
+      const infoResp = await fetch(`${API_BASE}?${infoParams}`, {signal:AbortSignal.timeout(12000)});
       if (!infoResp.ok) throw new Error(`Imageinfo HTTP ${infoResp.status}`);
       const infoData = await infoResp.json();
 
@@ -75,7 +75,9 @@
           url: info.thumburl,
           title: page.title ? page.title.replace('File:', '') : '',
           pageUrl: info.descriptionurl || null,
-          author
+          author,
+          licenseLabel: meta.LicenseShortName?.value || 'License details',
+          licenseUrl: meta.LicenseUrl?.value || info.descriptionurl || null
         });
       }
 

@@ -1,216 +1,145 @@
-name: 🏕️ Fetch Campsite Data (Automated)
+name: Refresh campsite data
 
 on:
-  # Manual trigger - click "Run workflow" button on GitHub
   workflow_dispatch:
     inputs:
       states:
-        description: 'States to fetch (space-separated, e.g., "CA CO UT")'
+        description: 'State codes separated by spaces'
         required: true
         default: 'CA CO UT AZ OR WA MT WY'
         type: string
-      limit:
-        description: 'Max campsites per state'
-        required: false
-        default: '50'
+      source:
+        description: 'Source to refresh'
+        type: choice
+        default: both
+        options: [both, ridb, osm]
+      page_size:
+        description: 'RIDB page size, 1–50; all pages are fetched'
         type: string
-
-  # Automatic schedule - runs weekly on Sundays at 3 AM
+        default: '50'
+  workflow_call:
+    inputs:
+      states:
+        required: true
+        type: string
+      source:
+        required: false
+        type: string
+        default: both
+      page_size:
+        required: false
+        type: string
+        default: '50'
+    secrets:
+      RECREATION_GOV_API_KEY:
+        required: false
+      RIDB_API_KEY:
+        required: false
+  # This is the only scheduled data writer. All manual workflows call this owner.
   schedule:
     - cron: '0 3 * * 0'
 
-  # Can also be triggered by other workflows
-  repository_dispatch:
-    types: [fetch-campsite-data]
+permissions:
+  contents: write
+
+concurrency:
+  group: kamptrail-data-refresh
+  cancel-in-progress: false
 
 jobs:
   fetch-data:
-    name: Fetch & Convert Campsite Data
     runs-on: ubuntu-latest
-    timeout-minutes: 120
-
+    timeout-minutes: 180
+    env:
+      STATE_INPUT: ${{ inputs.states || 'CA CO UT AZ OR WA MT WY' }}
+      SOURCE_MODE: ${{ inputs.source || 'both' }}
+      PAGE_SIZE: ${{ inputs.page_size || '50' }}
+      RIDB_API_KEY: ${{ secrets.RECREATION_GOV_API_KEY || secrets.RIDB_API_KEY }}
     steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: 🟢 Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: 📦 Install dependencies
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install requests
+      - name: Validate refresh inputs
+        shell: bash
         run: |
-          npm install
-          npx playwright install chromium --with-deps
-
-      - name: 🏕️ Fetch Recreation.gov data
-        id: fetch
-        run: |
-          STATES="${{ github.event.inputs.states || 'CA CO UT AZ OR WA MT WY' }}"
-          LIMIT="${{ github.event.inputs.limit || '50' }}"
-
-          echo "🌟 Starting data fetch for states: $STATES"
-          echo "📊 Limit per state: $LIMIT"
-
-          success_count=0
-          total_campsites=0
-
-          for state in $STATES; do
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "🗺️  Processing: $state"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-            # Recreation.gov scraper
-            echo "📍 [1/3] Fetching Recreation.gov data..."
-            if node scripts/scrape_recreation_gov.js --state="$state" --limit="$LIMIT"; then
-              echo "✅ Recreation.gov data fetched"
-            else
-              echo "⚠️  Recreation.gov fetch failed, continuing..."
-            fi
-
-            # Campendium scraper
-            echo ""
-            echo "⭐ [2/3] Fetching Campendium reviews..."
-            campendium_limit=$((LIMIT / 2))
-            if node scripts/scrape_campendium.js --state="$state" --limit="$campendium_limit"; then
-              echo "✅ Campendium data fetched"
-            else
-              echo "⚠️  Campendium fetch failed, continuing..."
-            fi
-
-            # Merge data
-            echo ""
-            echo "🔄 [3/3] Merging data sources..."
-            if node scripts/merge_campsite_data.js --state="$state"; then
-              echo "✅ Data merged successfully"
-
-              # Copy merged file to main state file
-              if [ -f "data/campsites/${state}_merged.geojson" ]; then
-                cp "data/campsites/${state}_merged.geojson" "data/campsites/${state}.geojson"
-
-                # Count campsites
-                count=$(grep -c '"type": "Feature"' "data/campsites/${state}.geojson" || echo "0")
-                echo "✅ ${state}: $count campsites"
-
-                success_count=$((success_count + 1))
-                total_campsites=$((total_campsites + count))
-              fi
-            else
-              echo "⚠️  Merge failed for $state"
-            fi
-
-            # Rate limiting between states
-            echo ""
-            echo "⏳ Waiting 10 seconds before next state..."
-            sleep 10
-          done
-
-          echo ""
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅ FETCH COMPLETE!"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📊 States processed: $success_count"
-          echo "🏕️  Total campsites: $total_campsites"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-          # Set outputs for summary
-          echo "states_processed=$success_count" >> $GITHUB_OUTPUT
-          echo "total_campsites=$total_campsites" >> $GITHUB_OUTPUT
-
-      - name: 📊 Update index.json
-        run: |
-          node -e "
-          const fs = require('fs');
-          const path = require('path');
-
-          const dataDir = 'data/campsites';
-          const files = fs.readdirSync(dataDir).filter(f => f.match(/^[A-Z]{2}\.geojson$/));
-
-          let totalSites = 0;
-          const states = [];
-
-          files.forEach(file => {
-            const stateCode = file.replace('.geojson', '');
-            const content = fs.readFileSync(path.join(dataDir, file), 'utf8');
-            const geojson = JSON.parse(content);
-            const count = geojson.features.length;
-
-            totalSites += count;
-            states.push({ state: stateCode, count });
-          });
-
-          const index = {
-            generated: new Date().toISOString(),
-            total_sites: totalSites,
-            states: states.sort((a, b) => a.state.localeCompare(b.state)),
-            source: 'automated-fetch',
-            version: '3.0'
-          };
-
-          fs.writeFileSync(
-            path.join(dataDir, 'index.json'),
-            JSON.stringify(index, null, 2) + '\n'
-          );
-
-          console.log('✅ Updated index.json');
-          console.log('📊 Total sites across all states:', totalSites);
-          "
-
-      - name: 🎨 Generate summary report
-        run: |
-          echo "# 🏕️ Campsite Data Fetch Report" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Run Date:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## 📊 Statistics" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **States Processed:** ${{ steps.fetch.outputs.states_processed }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Total Campsites:** ${{ steps.fetch.outputs.total_campsites }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Data Sources:** Recreation.gov + Campendium" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## 📁 Updated Files" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          ls -lh data/campsites/*.geojson | awk '{print $9, "-", $5}' >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-
-      - name: 💾 Commit and push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "GitHub Actions Bot"
-
-          git add data/campsites/
-
-          # Check if there are changes
-          if git diff --staged --quiet; then
-            echo "ℹ️  No changes to commit"
-          else
-            git commit -m "🏕️ Update campsite data (automated fetch)
-
-            - States: ${{ github.event.inputs.states || 'CA CO UT AZ OR WA MT WY' }}
-            - Total campsites: ${{ steps.fetch.outputs.total_campsites }}
-            - Processed: ${{ steps.fetch.outputs.states_processed }} states
-            - Sources: Recreation.gov + Campendium
-            - Generated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
-            "
-
-            git push
-            echo "✅ Changes committed and pushed!"
+          set -euo pipefail
+          case "$SOURCE_MODE" in both|ridb|osm) ;; *) echo 'Invalid source mode'; exit 1 ;; esac
+          [[ "$PAGE_SIZE" =~ ^[0-9]{1,2}$ ]] || { echo 'Invalid RIDB page size'; exit 1; }
+          (( 10#$PAGE_SIZE >= 1 && 10#$PAGE_SIZE <= 50 )) || { echo 'RIDB page size must be 1–50'; exit 1; }
+          python - <<'PY'
+          import os
+          import sys
+          sys.path.insert(0, 'scripts')
+          from fetch_recreation_gov_data import US_STATES
+          states = os.environ['STATE_INPUT'].split()
+          if not states or any(state not in US_STATES for state in states):
+              raise SystemExit('Use valid uppercase US state codes separated by spaces')
+          PY
+          if [[ "$SOURCE_MODE" == ridb && -z "$RIDB_API_KEY" ]]; then
+            echo 'Set RECREATION_GOV_API_KEY or RIDB_API_KEY before a RIDB-only refresh'
+            exit 1
           fi
-
-      - name: 📧 Create success notification
-        if: success()
+      - name: Refresh sources and rebuild visible snapshots
+        shell: bash
         run: |
-          echo "✅ Workflow completed successfully!" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "The campsite data has been updated and pushed to the repository." >> $GITHUB_STEP_SUMMARY
-          echo "You can view the changes in the \`data/campsites/\` directory." >> $GITHUB_STEP_SUMMARY
-
-      - name: ⚠️ Create failure notification
-        if: failure()
+          set -euo pipefail
+          failures=0
+          for state in $STATE_INPUT; do
+            if [[ "$SOURCE_MODE" != osm ]]; then
+              if [[ -n "$RIDB_API_KEY" ]]; then
+                python scripts/fetch_recreation_gov_data.py --api-key "$RIDB_API_KEY" --state "$state" --limit "$PAGE_SIZE" || {
+                  echo "RIDB refresh failed for $state; saved source retained"
+                  failures=$((failures + 1))
+                }
+              else
+                echo 'RIDB secret unavailable; retaining saved RIDB source records'
+              fi
+            fi
+            if [[ "$SOURCE_MODE" != ridb ]]; then
+              python scripts/fetch_osm_data.py --state "$state" || {
+                echo "OSM refresh failed for $state; saved source retained"
+                failures=$((failures + 1))
+              }
+            fi
+            node scripts/merge_campsite_data.js --state="$state"
+            sleep 5
+          done
+          echo "Source refresh failures: $failures. Failed sources retained their saved data." >> "$GITHUB_STEP_SUMMARY"
+          echo 'Merged snapshots rebuilt for the requested states. No merged output copied over raw sources.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Rebuild index from all saved merged snapshots
+        shell: bash
         run: |
-          echo "❌ Workflow failed!" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Please check the logs above for error details." >> $GITHUB_STEP_SUMMARY
+          node <<'JS'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const folder = 'data/campsites';
+          const states = fs.readdirSync(folder)
+            .filter(file => /^[A-Z]{2}_merged\.geojson$/.test(file))
+            .sort()
+            .map(file => {
+              const data = JSON.parse(fs.readFileSync(path.join(folder, file), 'utf8'));
+              if (data.type !== 'FeatureCollection' || !Array.isArray(data.features)) throw new Error(`Invalid snapshot: ${file}`);
+              return { state: file.slice(0, 2), count: data.features.length };
+            });
+          if (!states.length) throw new Error('No saved merged snapshots; index unchanged');
+          const index = { generated: new Date().toISOString(), total_sites: states.reduce((total, state) => total + state.count, 0),
+            states, source: 'saved-merged-snapshots', version: '3.0' };
+          fs.writeFileSync(path.join(folder, 'index.json.tmp'), `${JSON.stringify(index, null, 2)}\n`);
+          fs.renameSync(path.join(folder, 'index.json.tmp'), path.join(folder, 'index.json'));
+          JS
+      - name: Commit successful source and snapshot updates
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/campsites data/opencampingmap
+          if ! git diff --staged --quiet; then
+            git commit -m 'Refresh sourced campsite data and merged snapshots'
+            git push
+          fi

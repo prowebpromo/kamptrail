@@ -12,7 +12,7 @@
 
   // Base map layers that work without CORS issues
   function osmLayer() {
-    return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    return L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap contributors'
     });
@@ -20,8 +20,9 @@
 
   function topoLayer() {
     return L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      attribution: '© OpenTopoMap'
+      maxNativeZoom: 17,
+      maxZoom: 19,
+      attribution: 'Map data © OpenStreetMap contributors, SRTM | Map style © OpenTopoMap (CC-BY-SA)'
     });
   }
 
@@ -33,10 +34,10 @@
   }
 
   function terrainLayer() {
-    return L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg', {
-      subdomains: 'abcd',
-      maxZoom: 16,
-      attribution: '© Stamen Design'
+    return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxNativeZoom: 13,
+      maxZoom: 19,
+      attribution: 'Tiles © Esri, USGS, NOAA'
     });
   }
 
@@ -63,6 +64,7 @@
   function buildPanel(){
     const panel = document.createElement('div');
     panel.id = 'kt2-overlays';
+    panel.style.display = 'none';
     panel.innerHTML = `
       <div class="kt2-header">
         <h2 class="kt2-title">🗺️ Map Styles</h2>
@@ -119,6 +121,13 @@
       // Create new layer if needed
       if (!state.baseLayers[key]) {
         state.baseLayers[key] = makerFn();
+        let reported = false;
+        state.baseLayers[key].on('tileerror', () => {
+          if (!reported) {
+            reported = true;
+            window.showToast?.('Some map tiles could not load. Check your connection or choose another map style.', 'error');
+          }
+        });
       }
       
       // Add new base layer (at the back, so markers show on top)
@@ -156,12 +165,13 @@
         const panel = buildPanel();
         map._container.appendChild(panel);
         L.DomEvent.disableClickPropagation(panel);
+        L.DomEvent.disableScrollPropagation(panel);
         
         // Add toggle button
         const toggleBtn = document.createElement('button');
         toggleBtn.id = 'layers-toggle';
         toggleBtn.className = 'btn';
-        toggleBtn.innerHTML = '🗺️ Map Style';
+        toggleBtn.innerHTML = 'Map Style';
         toggleBtn.onclick = () => {
           const isVisible = panel.style.display !== 'none';
           panel.style.display = isVisible ? 'none' : 'block';

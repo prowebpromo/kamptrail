@@ -9,6 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { validCoordinates, saveGeoJSON } = require('./data-integrity');
 
 function parseCSV(csvContent) {
   const lines = csvContent.split('\n');
@@ -54,8 +55,10 @@ function extractCoordinates(text) {
 }
 
 function extractPrice(text) {
-  const match = text.match(/\$(\d+)/);
-  return match ? parseInt(match[1]) : 0;
+  text = String(text).trim();
+  if (/^(free|no fee)$/i.test(text)) return 0;
+  const match = text.match(/^\$([0-9]+(?:\.[0-9]{1,2})?)\s*(?:\/night|per night|nightly)$/i);
+  return match ? Number(match[1]) : null;
 }
 
 function extractRating(text) {
@@ -85,7 +88,7 @@ function parseAmenities(text) {
 
   const lowerText = text.toLowerCase();
   for (const [keyword, amenity] of Object.entries(amenityMap)) {
-    if (lowerText.includes(keyword)) {
+    if (lowerText.split(/[,;|]+/).map(value => value.trim()).includes(keyword)) {
       amenities.push(amenity);
     }
   }
@@ -110,7 +113,7 @@ function convertToGeoJSON(axiomData, stateCode, source = 'axiom') {
     }
 
     // Skip if no coordinates found
-    if (!coords) {
+    if (!coords || !validCoordinates([coords.lon, coords.lat])) {
       console.log(`⚠️  Skipping "${row.name || row.Name || 'unknown'}" - no coordinates found`);
       continue;
     }
@@ -121,7 +124,7 @@ function convertToGeoJSON(axiomData, stateCode, source = 'axiom') {
     const priceText = row.price || row.Price || row.cost || row.fee || '';
     const ratingText = row.rating || row.Rating || row.stars || '';
     const reviewsText = row.reviews || row.Reviews || row['review count'] || '';
-    const amenitiesText = row.amenities || row.Amenities || description;
+    const amenitiesText = row.amenities || row.Amenities || ''; // Do not infer amenities from prose.
 
     const feature = {
       type: 'Feature',
@@ -130,7 +133,8 @@ function convertToGeoJSON(axiomData, stateCode, source = 'axiom') {
         coordinates: [coords.lon, coords.lat]
       },
       properties: {
-        id: `${stateCode}-AXIOM-${String(siteCounter).padStart(3, '0')}`,
+        id: `axiom:${coords.lon.toFixed(5)}:${coords.lat.toFixed(5)}:${encodeURIComponent(name)}`,
+        schema_version: 3,
         name: name,
         type: 'established',
         cost: extractPrice(priceText),
@@ -138,7 +142,7 @@ function convertToGeoJSON(axiomData, stateCode, source = 'axiom') {
         reviews_count: extractReviewCount(reviewsText),
         amenities: parseAmenities(amenitiesText),
         rig_friendly: [],
-        road_difficulty: 'paved',
+        road_difficulty: null,
         state: stateCode,
         source: source,
         description: description.substring(0, 200)
@@ -205,7 +209,7 @@ async function main() {
   const suffix = source !== 'axiom' ? `_${source.replace(/[^a-z]/gi, '')}` : '';
   const outputFile = path.join(outputDir, `${stateCode}${suffix}.geojson`);
 
-  fs.writeFileSync(outputFile, JSON.stringify(geojson, null, 2));
+  await saveGeoJSON(outputFile, geojson);
 
   console.log(`✅ Success!`);
   console.log(`   Created ${geojson.features.length} valid campsites`);

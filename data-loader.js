@@ -1,18 +1,7 @@
-/* data-loader.js - FIXED VERSION - Forces initial data load */
-
-(function() {
+/* Campsite loading, source normalization, map markers, and recovery. */
+(function () {
   'use strict';
-
-  const state = {
-    allCampsites: [],
-    loadedStates: new Set(),
-    loading: new Set(),
-    loadedCampsiteIds: new Set(),  // Track loaded campsite IDs to prevent duplicates
-    index: null,
-    clusterGroup: null,
-    config: {}
-  };
-
+  const state={allCampsites:[],loadedStates:new Set(),loading:new Map(),failed:new Map(),index:null,clusterGroup:null,config:{},map:null,markers:new Map()};
   const STATE_BOUNDS = {
     'AL': { s: 30.2, w: -88.5, n: 35.0, e: -84.9 },
     'AK': { s: 51.2, w: -179.1, n: 71.4, e: -129.9 },
@@ -64,435 +53,206 @@
     'WV': { s: 37.2, w: -82.6, n: 40.6, e: -77.7 },
     'WI': { s: 42.5, w: -92.9, n: 47.1, e: -86.2 },
     'WY': { s: 41.0, w: -111.1, n: 45.0, e: -104.1 }
-  };
-
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
+  };  const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0});
+  const esc=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const safeUrl=value=>{try{const u=new URL(value);return /^https?:$/.test(u.protocol)?u.href:null;}catch{return null;}};
+  function getVisibleStates(map=state.map) {
+    if(!map)return [];
+    const b=map.getBounds(),s=b.getSouth(),n=b.getNorth(),west=b.getWest(),east=b.getEast();
+    if(east-west>=360)return Object.keys(STATE_BOUNDS).filter(code=>STATE_BOUNDS[code].n>=s&&STATE_BOUNDS[code].s<=n);
+    const ranges=[];
+    const w=((west+180)%360+360)%360-180, width=east-west, e=w+width;
+    if(e>180)ranges.push([w,180],[-180,e-360]);else ranges.push([w,e]);
+    return Object.keys(STATE_BOUNDS).filter(code=>{const a=STATE_BOUNDS[code];return a.n>=s&&a.s<=n&&ranges.some(([left,right])=>a.e>=left&&a.w<=right);});
   }
-
-  function boundsIntersect(b1, b2) {
-    return !(b1.e < b2.w || b1.w > b2.e || b1.n < b2.s || b1.s > b2.n);
+  function datasetCacheTarget(url) {
+    try {
+      if (!window.caches || !window.location?.href) return null;
+      const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
+      if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
+      const relative = target.pathname.slice(scope.pathname.length);
+      if (!relative.endsWith('.geojson') && relative !== 'data/campsites/index.json') return null;
+      return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:relative === 'data/campsites/index.json'};
+    } catch { return null; }
   }
-
-  function getVisibleStates(map) {
-    const bounds = map.getBounds();
-    const viewport = {
-      s: bounds.getSouth(),
-      w: bounds.getWest(),
-      n: bounds.getNorth(),
-      e: bounds.getEast()
-    };
-
-    const visible = [];
-    for (const [stateCode, bbox] of Object.entries(STATE_BOUNDS)) {
-      if (boundsIntersect(viewport, bbox)) {
-        visible.push(stateCode);
+  function validDataset(data, target) {
+    if (target?.index) return Array.isArray(data?.states) && Number.isFinite(data.total_sites) && data.total_sites >= 0;
+    return data?.type === 'FeatureCollection' && Array.isArray(data.features);
+  }
+  async function fetchJSON(url) {
+    const controller=new AbortController(), target=datasetCacheTarget(url);
+    const timer=setTimeout(()=>controller.abort(),12000);
+    try {
+      const response=await fetch(url,{signal:controller.signal});
+      if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      const copy=target && typeof response.clone==='function' ? response.clone() : null;
+      const data=await response.json();
+      if (target && !validDataset(data,target)) throw new Error('Invalid campsite data');
+      // Persist the original, validated response even before a service worker controls this visit.
+      if (target && copy) {
+        try { const cache=await window.caches.open(target.name);await cache.put(target.url,copy); }
+        catch(error) { console.warn('Offline data cache unavailable:',error.message); }
       }
-    }
-    
-    console.log(`🗺️ Viewport: lat ${viewport.s.toFixed(2)} to ${viewport.n.toFixed(2)}, lng ${viewport.w.toFixed(2)} to ${viewport.e.toFixed(2)}`);
-    console.log(`🗺️ Visible states detected: ${visible.join(', ') || 'NONE'}`);
-    
-    return visible;
+      return data;
+    } catch(error) {
+      if (target) {
+        try {
+          const cache=await window.caches.open(target.name), cached=await cache.match(target.url);
+          if (cached?.ok) { const data=await cached.json();if(validDataset(data,target))return data; }
+        } catch(cacheError) { console.warn('Saved data could not be read:',cacheError.message); }
+      }
+      throw error;
+    } finally {clearTimeout(timer);}
   }
 
+  function notify() {
+    const detail=api.getLoadStatus();
+    if(typeof CustomEvent==='function')window.dispatchEvent(new CustomEvent('kamptrail:dataupdated',{detail}));
+  }
   async function loadIndex() {
-    try {
-      const response = await fetch('data/campsites/index.json');
-      if (!response.ok) throw new Error('Index not found');
-      state.index = await response.json();
-      console.log('📊 Loaded campsite index:', state.index.total_sites, 'sites');
-      return state.index;
-    } catch (err) {
-      console.warn('⚠️ Could not load campsite index:', err.message);
-      return null;
-    }
+    try{state.index=await fetchJSON('data/campsites/index.json');}catch(err){console.warn('Campsite index unavailable; state loading is still available.',err.message);}
   }
-
-  async function loadStateData(stateCode) {
-    if (state.loadedStates.has(stateCode) || state.loading.has(stateCode)) {
-      return;
-    }
-
-    state.loading.add(stateCode);
-    console.log(`📥 Loading ${stateCode} campsites from all sources...`);
-
-    try {
-      // Load the merged, deduplicated file that combines Recreation.gov + OSM data
-      const url = `data/campsites/${stateCode}_merged.geojson`;
-
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status} for ${url}`);
-      }
-
-      const data = await response.json();
-      let allNewSites = [];
-
-      // Process merged data
-      if (data && data.features) {
-        allNewSites = data.features;
-        const sourceCount = {};
-        allNewSites.forEach(f => {
-          const sources = f.properties.sources || [f.properties.source || 'unknown'];
-          sources.forEach(src => {
-            sourceCount[src] = (sourceCount[src] || 0) + 1;
-          });
-        });
-
-        const sourceInfo = Object.entries(sourceCount)
-          .map(([src, count]) => `${src}: ${count}`)
-          .join(', ');
-        console.log(`✅ Loaded ${allNewSites.length} deduplicated sites for ${stateCode} (${sourceInfo})`);
-      } else {
-        console.warn(`⚠️ No features found in merged data for ${stateCode}`);
-      }
-
-      if (allNewSites.length > 0) {
-        // Filter out duplicates by checking if ID already exists
-        const uniqueSites = allNewSites.filter(site => {
-          const siteId = site.properties.id;
-          if (!siteId) return true; // Keep sites without IDs (edge case)
-          if (state.loadedCampsiteIds.has(siteId)) {
-            return false; // Skip duplicate
-          }
-          return true; // Keep unique site
-        });
-
-        // Add unique sites to the map and track their IDs
-        uniqueSites.forEach(site => {
-          const siteId = site.properties.id;
-          if (siteId) {
-            state.loadedCampsiteIds.add(siteId);
-          }
-        });
-        state.allCampsites.push(...uniqueSites);
-        state.loadedStates.add(stateCode);
-
-        const duplicateCount = allNewSites.length - uniqueSites.length;
-        if (duplicateCount > 0) {
-          console.log(`🔍 Filtered out ${duplicateCount} duplicate(s) for ${stateCode}`);
-        }
-        console.log(`✅ Added ${uniqueSites.length} new sites for ${stateCode} (Total: ${state.allCampsites.length})`);
-      } else {
-        // If both failed, we still mark as "loaded" to not retry constantly
-        state.loadedStates.add(stateCode);
-        console.log(`🤷 No new data found for ${stateCode}.`);
-      }
-
-      return allNewSites;
-
-    } catch (err) {
-      console.error(`💥 Error loading merged data for ${stateCode}:`, err.message);
-      // Mark as loaded even if failed to prevent constant retry
-      state.loadedStates.add(stateCode);
-      return [];
-    } finally {
-      state.loading.delete(stateCode);
-    }
+  function mergeLoaded(features,stateCode) {
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...features]}, {state:stateCode});
+    state.allCampsites=cleaned.features;
   }
-
-  function applyFilters(sites, filters) {
-    if (!filters) return sites;
-    
-    return sites.filter(site => {
-      const p = site.properties;
-      if (!p) return false;
-
-      if (filters.cost === 'free' && (p.cost === null || p.cost > 0)) return false;
-      if (filters.cost === 'paid' && (p.cost === null || p.cost === 0)) return false;
-
-      if (filters.type !== 'all' && p.type !== filters.type) return false;
-
-      if (filters.rigSize !== 'all') {
-        const rigFriendly = p.rig_friendly || [];
-        if (!rigFriendly.includes(filters.rigSize)) return false;
-      }
-
-      if (filters.roadDifficulty !== 'all' && p.road_difficulty !== filters.roadDifficulty) return false;
-
-      if (filters.amenities && filters.amenities.length > 0) {
-        const siteAmenities = p.amenities || [];
-        const hasAll = filters.amenities.every(a => siteAmenities.includes(a));
-        if (!hasAll) return false;
-      }
-
-      if (filters.minRating && filters.minRating > 0) {
-        const rating = p.rating || 0;
-        if (rating < filters.minRating) return false;
-      }
-
-      return true;
-    });
+  async function loadState(code,{retry=false}={}) {
+    if(!STATE_BOUNDS[code])return;
+    if(state.loadedStates.has(code))return;
+    if(state.loading.has(code))return state.loading.get(code);
+    const last=state.failed.get(code);
+    if(!retry&&last&&Date.now()-last.at<15000)return;
+    const task=(async()=>{
+      try{
+        const data=await fetchJSON(`data/campsites/${code}_merged.geojson`);
+        if(data?.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid campsite data');
+        mergeLoaded(data.features,code);
+        state.loadedStates.add(code);state.failed.delete(code);
+      }catch(error){
+        const message=error.name==='AbortError'?'Request timed out':error.message;
+        state.failed.set(code,{error:message,at:Date.now()});
+        console.warn(`Campsites for ${code} could not load: ${message}`);
+      }finally{state.loading.delete(code);}
+    })();
+    state.loading.set(code,task);notify();
+    await task;
   }
-
-  function createMarkerIcon(site) {
-    const props = site.properties;
-    const isFree = props.cost === 0 || props.cost === null;
-    const color = isFree ? '#4CAF50' : '#2196F3';
-    
-    return L.divIcon({
-      html: `<div style="background:${color};width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>`,
-      className: 'custom-marker',
-      iconSize: [12, 12],
-      iconAnchor: [6, 6]
-    });
+  function costText(p) {
+    if(p.fee_status==='free')return 'Free (source reported)';
+    if(p.fee_status==='paid')return p.cost===null?'Paid · amount not verified':`$${p.cost}/night (source reported)`;
+    return 'Fee not verified';
   }
-
-  function createPopup(site) {
-    const p = site.properties;
-    const esc = window.escapeHtml || ((t) => t); // Fallback if not available
-    const costText = p.cost === 0 || p.cost === null || p.cost === undefined ? 'FREE' : `$${p.cost}/night`;
-
-    // Enhanced rating with review count
-    let ratingText = 'No ratings';
-    if (p.rating) {
-      const stars = '⭐'.repeat(Math.round(parseFloat(p.rating)));
-      const reviewCount = p.reviews_count || 0;
-      ratingText = reviewCount > 0 ? `${stars} (${reviewCount} reviews)` : stars;
-    }
-
-    const safeName = esc(p.name || 'Unnamed Site');
-    const safeCampName = esc(p.name || 'Campsite');
-    const safeType = esc(p.type || 'Unknown');
-    const safeRoadDiff = p.road_difficulty ? esc(p.road_difficulty) : '';
-    const safeAmenities = Array.isArray(p.amenities) && p.amenities.length ? p.amenities.map(a => esc(a)).join(' • ') : '';
-    const safeId = esc(p.id || '');
-
-    // Rig-friendly info
-    const rigFriendly = Array.isArray(p.rig_friendly) && p.rig_friendly.length ? p.rig_friendly : [];
-    const rigText = rigFriendly.length > 0 ? rigFriendly.map(r => esc(r)).join(', ') : '';
-
-    const lat = (site.geometry && site.geometry.coordinates && site.geometry.coordinates[1]) || 0;
-    const lng = (site.geometry && site.geometry.coordinates && site.geometry.coordinates[0]) || 0;
-
-    return `
-      <div style="min-width:200px;">
-        <h3 style="margin:0 0 8px 0;font-size:14px;font-weight:bold;">${safeName}</h3>
-        <div style="font-size:12px;color:#666;margin-bottom:8px;">
-          <div><strong>Cost:</strong> ${costText}</div>
-          <div><strong>Type:</strong> ${safeType}</div>
-          ${safeRoadDiff ? `<div><strong>Road:</strong> ${safeRoadDiff}</div>` : ''}
-          ${rigText ? `<div><strong>Suitable for:</strong> ${rigText}</div>` : ''}
-          <div><strong>Rating:</strong> ${ratingText}</div>
-        </div>
-        ${safeAmenities ? `
-          <div style="font-size:11px;color:#888;margin-bottom:8px;">
-            ${safeAmenities}
-          </div>
-        ` : ''}
-        <div style="display:flex;gap:8px;margin-top:8px;">
-          <button onclick="KampTrailData.addToTrip('${safeId}')" style="flex:1;padding:4px 8px;background:#4CAF50;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Add to Trip
-          </button>
-          <button onclick="KampTrailCompare.addToCompare('${safeId}')" style="flex:1;padding:4px 8px;background:#ff6b6b;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Compare
-          </button>
-          <button onclick="window.open('https://www.openstreetmap.org/directions?from=&to=${lat},${lng}')" style="flex:1;padding:4px 8px;background:#2196F3;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
-            Navigate
-          </button>
-        </div>
-        <div id="photos-container-${safeId}" style="margin-top:10px; border-top: 1px solid #eee; padding-top:10px;">
-            <button class="kt-photos-btn" data-siteid="${safeId}" data-lat="${lat}" data-lng="${lng}" style="width:100%; padding: 6px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor:pointer;">
-                📷 Show Nearby Photos
-            </button>
-        </div>
+  function popup(site) {
+    const p=site.properties,[lng,lat]=site.geometry.coordinates;
+    const sourceURL=safeUrl(p.source_url || p.website || p.url);
+    const siteId=esc(p.id);
+    return `<div class="kt-site-popup" style="min-width:220px;max-width:300px;color:#263443">
+      <h3 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h3>
+      <div><strong>Cost:</strong> ${esc(costText(p))}</div>
+      <div><strong>Type:</strong> ${esc(p.type)}</div>
+      <div><strong>Access reported:</strong> ${esc(p.access || 'Not verified')}</div>
+      <div><strong>Amenities reported:</strong> ${p.amenities.length?p.amenities.map(esc).join(', '):'Not verified'}</div>
+      ${p.road_difficulty?`<div><strong>Road:</strong> ${esc(p.road_difficulty)}</div>`:''}
+      ${p.rig_friendly.length?`<div><strong>Rig types reported:</strong> ${p.rig_friendly.map(esc).join(', ')}</div>`:''}
+      ${p.rating!==null?`<div><strong>Rating:</strong> ${p.rating}/5${p.reviews_count?` (${p.reviews_count} reviews)`:''}</div>`:''}
+      <p style="font-size:11px;line-height:1.4">Confirm current fees, access, and camping rules with the operator before traveling.${p.attributes_unverified?' Legacy inferred fees and amenities are hidden.':''}</p>
+      ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">Check source / operator</a></p>`:''}
+      <div style="display:flex;gap:5px;flex-wrap:wrap">
+        <button type="button" data-kt-action="trip" data-siteid="${siteId}">Add to Trip</button>
+        <button type="button" data-kt-action="compare" data-siteid="${siteId}">Compare</button>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${lat},${lng}" target="_blank" rel="noopener noreferrer">Directions</a>
       </div>
-    `;
+      <div id="photos-container-${siteId}" style="margin-top:10px"><button type="button" class="kt-photos-btn" data-siteid="${siteId}" data-lat="${lat}" data-lng="${lng}">Show nearby photos</button></div>
+    </div>`;
   }
-
-  function updateMarkers(map, filters, config) {
-    if (!state.clusterGroup) return;
-
-    const filtered = applyFilters(state.allCampsites, filters);
-    console.log(`🔍 Filtered: ${filtered.length} of ${state.allCampsites.length} sites`);
-
-    state.clusterGroup.clearLayers();
-
-    filtered.forEach(site => {
-      const [lng, lat] = site.geometry.coordinates;
-      const marker = L.marker([lat, lng], {
-        icon: createMarkerIcon(site)
-      });
-      
-      marker.bindPopup(createPopup(site));
-      state.clusterGroup.addLayer(marker);
-    });
-
-    if (config.onFilterUpdate) {
-      config.onFilterUpdate(filtered.length, state.allCampsites.length);
+  function updateMarkers() {
+    if(!state.map||!state.clusterGroup)return;
+    const filtered=DataQuality.applyFilters(state.allCampsites,api.getCurrentFilters());
+    const activeIds=new Set(filtered.map(f=>f.properties.id));
+    for(const [id,marker] of state.markers){if(!activeIds.has(id)){state.clusterGroup.removeLayer(marker);state.markers.delete(id);}}
+    const additions=[];
+    for(const site of filtered){
+      const id=site.properties.id;
+      if(state.markers.has(id)){state.markers.get(id).setPopupContent(popup(site));continue;}
+      const [lng,lat]=site.geometry.coordinates,p=site.properties;
+      const color=p.fee_status==='free'?'#258543':p.fee_status==='paid'?'#2375b9':'#687780';
+      const icon=L.divIcon({html:`<span style="display:block;background:${color};width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px #333"></span>`,className:'custom-marker',iconSize:[16,16],iconAnchor:[8,8]});
+      const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site));
+      marker.kamptrailId=id;state.markers.set(id,marker);additions.push(marker);
     }
+    if(additions.length)state.clusterGroup.addLayers?state.clusterGroup.addLayers(additions):additions.forEach(m=>state.clusterGroup.addLayer(m));
+    state.config.onFilterUpdate?.(filtered.length,state.allCampsites.length);
+    notify();
   }
-
-  async function refreshData(map, filters, config) {
-    const visibleStates = getVisibleStates(map);
-    const newStates = visibleStates.filter(s => !state.loadedStates.has(s) && !state.loading.has(s));
-    
-    if (newStates.length > 0) {
-      console.log('🔄 Loading new states:', newStates.join(', '));
-      await Promise.all(newStates.map(s => loadStateData(s)));
-      updateMarkers(map, filters, config);
-    }
+  async function loadBatch(codes,retry=false) {
+    const list=[...new Set(codes)].filter(c=>STATE_BOUNDS[c]);let next=0;
+    async function worker(){while(next<list.length){const code=list[next++];await loadState(code,{retry});updateMarkers();}}
+    await Promise.all(Array.from({length:Math.min(4,list.length)},worker));
+    updateMarkers();
+    return api.getLoadStatus();
   }
-
-  window.KampTrailData = {
-    async init(map, config = {}) {
-      state.config = config;
-      console.log('🚀 Initializing KampTrail Data Loader...');
-
-      state.clusterGroup = L.markerClusterGroup({
-        maxClusterRadius: 50,
-        spiderfyOnMaxZoom: true,
-        showCoverageOnHover: false,
-        zoomToBoundsOnClick: true,
-        iconCreateFunction: function(cluster) {
-          const count = cluster.getChildCount();
-          let size = 'small';
-          if (count > 50) size = 'large';
-          else if (count > 10) size = 'medium';
-          
-          return L.divIcon({
-            html: `<div style="background:#FF6B6B;color:#fff;border-radius:50%;width:40px;height:40px;display:grid;place-items:center;font-weight:bold;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);">${count}</div>`,
-            className: `kt-cluster kt-cluster-${size}`,
-            iconSize: [40, 40]
-          });
-        }
-      });
+  const api=window.KampTrailData={
+    async init(map,config={}){
+      state.map=map;state.config=config;
+      state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});
       map.addLayer(state.clusterGroup);
-
+      let timer;
+      map.on('moveend',()=>{clearTimeout(timer);timer=setTimeout(()=>loadBatch(getVisibleStates(),false),250);});
       await loadIndex();
-
-      // Get visible states
-      let initialStates = getVisibleStates(map);
-      
-      // FALLBACK: If no states detected, force load popular camping states
-      if (initialStates.length === 0) {
-        console.warn('⚠️ No states detected in viewport, loading popular states as fallback...');
-        initialStates = ['CA', 'CO', 'UT', 'AZ', 'WA', 'OR', 'MT', 'WY'];
-      }
-      
-      console.log('🚀 Loading initial states:', initialStates.join(', '));
-      
-      // Load states one at a time with progress logging
-      for (const stateCode of initialStates) {
-        await loadStateData(stateCode);
-      }
-      
-      console.log(`✅ Initial load complete: ${state.allCampsites.length} total sites`);
-
-      updateMarkers(map, this.getDefaultFilters(), state.config);
-
-      map.on('moveend', debounce(() => {
-        refreshData(map, this.getCurrentFilters(), state.config);
-      }, 500));
-      
-      // Also trigger on first zoom
-      map.on('zoomend', debounce(() => {
-        refreshData(map, this.getCurrentFilters(), state.config);
-      }, 500));
+      await loadBatch(getVisibleStates(),false);
     },
-
-    getDefaultFilters() {
-      return {
-        cost: 'all',
-        type: 'all',
-        rigSize: 'all',
-        roadDifficulty: 'all',
-        amenities: [],
-        minRating: 0
-      };
+    getDefaultFilters:defaults,
+    getCurrentFilters:()=>window.kamptrailFilters || defaults(),
+    updateFilters(filters){window.kamptrailFilters={...defaults(),...filters};updateMarkers();},
+    getAllCampsites:()=>state.allCampsites,
+    getCampsiteById(id){const key=String(id);return state.allCampsites.find(s=>s.properties.id===key||s.properties.legacy_ids?.includes(key));},
+    getLoadedStates:()=>[...state.loadedStates],
+    getVisibleStates,
+    getStateBounds:()=>STATE_BOUNDS,
+    getVisibleCampsites(){
+      const list=DataQuality.applyFilters(state.allCampsites,api.getCurrentFilters());
+      if(!state.map)return list;
+      const b=state.map.getBounds();return list.filter(f=>{const [lon,lat]=f.geometry.coordinates;return b.contains([lat,lon])||b.contains([lat,lon+360])||b.contains([lat,lon-360]);});
     },
-
-    getCurrentFilters() {
-      return window.kamptrailFilters || this.getDefaultFilters();
+    getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0}),
+    loadStates:codes=>loadBatch(codes,true),
+    refresh:()=>loadBatch(getVisibleStates(),true),
+    focusCampsite(id){
+      const site=api.getCampsiteById(id);if(!site)return false;
+      let marker=state.markers.get(site.properties.id);
+      if(!marker && typeof window.KampTrailFilters?.reset==='function') {window.KampTrailFilters.reset();marker=state.markers.get(site.properties.id);}
+      if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
+      const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14);
+      if(state.clusterGroup.zoomToShowLayer)state.clusterGroup.zoomToShowLayer(marker,()=>marker.openPopup());else marker.openPopup();
+      return true;
     },
-
-    updateFilters(filters, map) {
-      window.kamptrailFilters = filters;
-      updateMarkers(map, filters, state.config);
-    },
-
-    getAllCampsites() {
-      return state.allCampsites;
-    },
-
-    getCampsiteById(id) {
-      return state.allCampsites.find(s => s.properties.id === id);
-    },
-
-    getLoadedStates() {
-      return Array.from(state.loadedStates);
-    },
-
-    addToTrip(id) {
-      console.log('Adding to trip:', id);
-      if (state.config.onTripAdd) state.config.onTripAdd(id);
-    },
-
-    toggleFavorite(id) {
-      console.log('Toggling favorite:', id);
-      if (state.config.onFavoriteToggle) state.config.onFavoriteToggle(id);
-    },
-
-    async loadNearbyPhotos(siteId, lat, lng) {
-        const container = document.getElementById(`photos-container-${siteId}`);
-        if (!container) return;
-
-        container.innerHTML = '<em>Loading nearby photos...</em>';
-
-        if (!window.KampTrailPhotos) {
-            container.innerHTML = '<em>Photos service unavailable.</em>';
-            return;
+    addToTrip(id){const site=api.getCampsiteById(id);if(site)state.config.onTripAdd?.(site.properties.id);},
+    toggleFavorite(id){state.config.onFavoriteToggle?.(id);},
+    async loadNearbyPhotos(id,lat,lng){
+      const container=document.getElementById(`photos-container-${id}`);if(!container)return;
+      container.textContent='Loading nearby photos…';
+      try{
+        if(!window.KampTrailPhotos)throw new Error('Photos unavailable');
+        const photos=await KampTrailPhotos.getNearbyPhotos(lat,lng);
+        container.textContent='';
+        for(const photo of photos||[]){
+          const url=safeUrl(photo.url),page=safeUrl(photo.pageUrl);if(!url||!page)continue;
+          const figure=document.createElement('figure');figure.style.margin='0 0 10px';
+          const a=document.createElement('a');a.href=page;a.target='_blank';a.rel='noopener noreferrer';a.title=String(photo.title||'Nearby photo');
+          const img=document.createElement('img');img.src=url;img.alt=String(photo.title||'Nearby photo');img.style.height='80px';img.loading='lazy';a.appendChild(img);figure.appendChild(a);
+          const caption=document.createElement('figcaption');caption.style.fontSize='11px';
+          const author=document.createElement('span');author.textContent=photo.author ? `By ${String(photo.author)} · ` : 'Author: see source · ';caption.appendChild(author);
+          const license=document.createElement('a');license.href=safeUrl(photo.licenseUrl)||page;license.target='_blank';license.rel='noopener noreferrer';license.textContent=String(photo.licenseLabel||'See source for license');caption.appendChild(license);
+          figure.appendChild(caption);container.appendChild(figure);
         }
-
-        const photos = await window.KampTrailPhotos.getNearbyPhotos(lat, lng);
-
-        if (!photos || photos.length === 0) {
-            container.innerHTML = '<div style="font-size:12px;color:#888;padding:4px 0;">No nearby photos found on Wikimedia Commons.</div>';
-            return;
-        }
-
-        const photosHtml = `
-            <div style="display:flex; overflow-x:auto; gap: 5px; padding-bottom: 5px;">
-                ${photos.map(photo => `<a href="${photo.pageUrl || '#'}" target="_blank" rel="noopener" title="${photo.title}"><img src="${photo.url}" style="height: 80px; border-radius: 4px;" alt="${photo.title}" loading="lazy"></a>`).join('')}
-            </div>
-            <div style="font-size:10px;text-align:right;color:#888;margin-top:3px;">
-                Photos from <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC licensed, within ~2km)
-            </div>
-        `;
-        container.innerHTML = photosHtml;
-    },
-
+        if(!container.children.length)container.textContent='No nearby Wikimedia Commons photos found.';
+      }catch{container.textContent='Nearby photos unavailable. Try again later.';}
+    }
   };
+  document.addEventListener('click',event=>{
+    const action=event.target.closest('[data-kt-action]');
+    if(action){const id=action.dataset.siteid;if(action.dataset.ktAction==='trip')api.addToTrip(id);if(action.dataset.ktAction==='compare')window.KampTrailCompare?.addToCompare(id);return;}
+    const photo=event.target.closest('.kt-photos-btn');
+    if(photo){event.preventDefault();api.loadNearbyPhotos(photo.dataset.siteid,+photo.dataset.lat,+photo.dataset.lng);}
+  });
 })();
-
-// Global click handler for Nearby Photos buttons
-document.addEventListener('click', async (e) => {
-  const btn = e.target.closest('.kt-photos-btn');
-  if (!btn) return;
-
-  e.preventDefault();
-  btn.disabled = true;
-
-  const siteId = btn.dataset.siteid || '';
-  const lat = parseFloat(btn.dataset.lat) || 0;
-  const lng = parseFloat(btn.dataset.lng) || 0;
-
-  if (!siteId) return;
-
-  if (!window.KampTrailData || !window.KampTrailData.loadNearbyPhotos) return;
-
-  try {
-    await window.KampTrailData.loadNearbyPhotos(siteId, lat, lng);
-  } catch (err) {
-    console.error('Nearby photos error:', err);
-  }
-});

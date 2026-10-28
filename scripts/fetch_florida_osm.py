@@ -7,6 +7,8 @@ Florida is a large state and requires more time than the standard 60s timeout.
 import requests
 import json
 import os
+from fetch_osm_data import osm_to_geojson
+from data_integrity import save_geojson
 
 def fetch_florida_osm():
     """Fetches campsite data for Florida with extended timeout."""
@@ -37,50 +39,16 @@ def fetch_florida_osm():
             response = requests.get(mirror, params={'data': query}, timeout=200)
             response.raise_for_status()
             osm_data = response.json()
+            if osm_data.get('remark') or not isinstance(osm_data.get('elements'), list):
+                raise ValueError('Incomplete Overpass response')
             print(f"✅ Successfully fetched data from {mirror}")
             return osm_data
-        except requests.exceptions.RequestException as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             print(f"⚠️ Failed with {mirror}: {e}")
             continue
 
     print("❌ All mirrors failed")
     return None
-
-def osm_to_geojson(osm_data):
-    """Converts OSM JSON data to GeoJSON format."""
-    features = []
-    for element in osm_data.get('elements', []):
-        if 'type' not in element:
-            continue
-
-        geom_type = None
-        coords = []
-
-        if element['type'] == 'node':
-            geom_type = 'Point'
-            coords = [element.get('lon', 0), element.get('lat', 0)]
-        elif element['type'] in ['way', 'relation'] and 'center' in element:
-            geom_type = 'Point'
-            coords = [element['center'].get('lon', 0), element['center'].get('lat', 0)]
-
-        if not geom_type or not all(coords):
-            continue
-
-        feature = {
-            'type': 'Feature',
-            'geometry': {
-                'type': geom_type,
-                'coordinates': coords
-            },
-            'properties': element.get('tags', {})
-        }
-        feature['properties']['osm_id'] = element.get('id')
-        features.append(feature)
-
-    return {
-        'type': 'FeatureCollection',
-        'features': features
-    }
 
 def main():
     print("=" * 60)
@@ -101,8 +69,7 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     output_path = os.path.join(output_dir, 'FL.geojson')
-    with open(output_path, 'w') as f:
-        json.dump(geojson_data, f)
+    save_geojson(output_path, geojson_data)
 
     campsite_count = len(geojson_data['features'])
     print(f"✅ Successfully saved {campsite_count} campsites to {output_path}")

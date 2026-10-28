@@ -1,13 +1,18 @@
 {
   "name": "kamptrail",
-  "version": "2.0.0",
-  "description": "KampTrail - Find dispersed camping, boondocking, and established campgrounds across the US",
+  "version": "2.1.0",
+  "description": "KampTrail campsite listings, public land access maps, and trip planning",
   "scripts": {
     "fetch-data": "bash scripts/fetch_all_campsite_data.sh",
     "fetch-state": "bash scripts/fetch_all_campsite_data.sh",
     "scrape:recreation": "node scripts/scrape_recreation_gov.js",
     "scrape:campendium": "node scripts/scrape_campendium.js",
-    "merge": "node scripts/merge_campsite_data.js"
+    "merge": "node scripts/merge_campsite_data.js",
+    "start": "node scripts/serve.js",
+    "test": "node --test tests/data-quality.test.js tests/data-loader.test.js scripts/tests/merge-safety.test.js tests/service-worker.test.js",
+    "test:browser": "playwright test",
+    "test:python": "python3 -m unittest discover -s scripts/tests -p 'test_*.py'",
+    "build": "node scripts/build-release.js"
   },
   "keywords": [
     "camping",

@@ -84,10 +84,9 @@ for state in $STATES; do
     if node scripts/merge_campsite_data.js --state="$state"; then
         echo -e "  ${GREEN}✓${NC} Data merged successfully"
 
-        # Copy merged file to main state file
+        # Leave raw source data separate from the merged output
         if [ -f "data/campsites/${state}_merged.geojson" ]; then
-            cp "data/campsites/${state}_merged.geojson" "data/campsites/${state}.geojson"
-            echo -e "  ${GREEN}✓${NC} Updated main data file: data/campsites/${state}.geojson"
+            echo -e "  ${GREEN}✓${NC} Updated merged data: data/campsites/${state}_merged.geojson"
             SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
         fi
     else

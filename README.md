@@ -1,189 +1,70 @@
-# 🏕 KampTrail – Lightweight Campsite Mapping PWA
+# KampTrail
 
-KampTrail is a minimalist Progressive Web App (PWA) for discovering camping locations across the U.S. Designed for speed, offline support, and mobile usability, it's the foundation for a future FreeRoam alternative.
+A static camping map with US city search, campsite listings, protected-land access imagery, service locations, comparison, saved trip stops, and GPX import/export.
 
----
+## Run locally
 
-## 🚀 Features
+Node.js 22 or later:
 
-- 🌍 Interactive Leaflet map with OpenStreetMap tiles
-- 📍 Campsite markers (includes sample data - see below to add real data)
-- 🗺️ Public lands overlay (national parks, forests, BLM land)
-- 📡 Cell tower locations (OpenCelliD integration)
-- 🚰 POI markers (dump stations, water, propane)
-- 📥 GPX import/export for route planning
-- 🔄 Campsite comparison tool
-- 💾 Offline support via Service Worker
-- 🧭 Fully installable PWA (Android/iOS/Desktop)
-- ⚡ Fast, modern design with minimal dependencies
-
----
-
-## 🛠 Getting Started (Local Dev)
-
-> This is a static PWA — no Node.js build required.
-
-### 1. Download & Extract
-
-```bash
-wget https://github.com/prowebpromo/kamptrail/archive/refs/heads/main.zip
-unzip main.zip
-cd kamptrail-main
+```sh
+npm ci
+npm start
 ```
 
-### 2. Serve Locally
+Open http://127.0.0.1:8765/. The app also works at http://127.0.0.1:8765/kamptrail/ for testing the GitHub Pages project path.
 
-```bash
+For a static release, serve the extracted folder over HTTP rather than opening `index.html` directly. Python is also sufficient:
+
+```sh
 python3 -m http.server 8000
-# Open http://localhost:8000
 ```
 
----
+On Windows, use `py -m http.server 8000` if Python was installed with the launcher.
 
-## ⚙️ Configuration
+## What works
 
-### Google Places Photos & Ratings
+- Leaflet map and bundled browser dependencies, without a required script CDN.
+- Local search across 7,557 US places, loaded campsite names, states, and latitude/longitude pairs. Smaller places absent from GeoNames cities5000 can still be reached by coordinates or the map.
+- State snapshots, marker clustering, filter vocabulary aligned with source tags, retryable downloads, and map/list result counts.
+- Stable source identifiers, duplicate cleanup, and source links where recoverable.
+- Unknown fees are displayed as unknown. Unsupported legacy price, water, road, and vehicle-access guesses are hidden.
+- Standard, topographic, satellite, and terrain basemaps. The USGS PAD-US 3.0 layer shows protected-land access classes. It is an overview of public and private protected lands, not a camping-permission map.
+- Community campsite snapshots from the actual state files rather than the former empty combined file.
+- Saved trip and comparison snapshots that remain usable when another map region is open.
+- Namespaced GPX import, separate track segments, saved waypoint export, and directions links.
+- Offline app shell, city search, saved trip details, and previously loaded campsite areas after an online visit. Basemap tiles, land imagery, directions, and photos require internet. Browsers can evict cached data, so export important trip stops as GPX.
 
-To enable the Google Places integration for campsite photos and ratings:
+## Data limits
 
-1.  **Get a free Google Places API key:**
-    *   Go to the [Google Cloud Console](https://console.cloud.google.com/).
-    *   Create a new project.
-    *   Enable the "**Places API (New)**".
-    *   Go to "Credentials" and create a new API key.
-    *   **Important:** Restrict your API key to your domain to prevent unauthorized use.
+This is a repaired version of the current KampTrail static app. It does not provide all of FreeRoam's original backend services, community accounts, reviews, or downloadable offline basemaps. FreeRoam's original frontend depends on its separate `back-roads` backend, so the frontend repository alone cannot restore those services.
 
-2.  **Create `config.js` file:**
-    *   In the root of the project, create a new file named `config.js`.
-    *   Add the following content to the file, replacing `YOUR_API_KEY_HERE` with your actual key:
-        ```javascript
-        // config.js
-        window.GOOGLE_API_KEY = 'YOUR_API_KEY_HERE';
-        ```
-    *   The `config.js` file is ignored by Git, so your key will not be committed.
+Source snapshots have incomplete and uneven coverage. Older RIDB camping-activity pulls can include recreation facilities other than overnight campgrounds, and state bounding boxes can include neighboring areas. A listing does not establish legal overnight access, current availability, potable water, rig clearance, or an operating campground. Confirm those details with the operator.
 
-3.  **How it works:**
-    *   When you click on a campsite, a button will appear to "Show Google Photos & Rating".
-    *   Clicking this button will fetch data from the Google Places API.
-    *   The results are cached for 24 hours to minimize API calls and costs.
+The repair preserves historical source files and does not claim to have refreshed or field-verified every listing. Legacy inferred attributes remain available for diagnosis but are not displayed as facts. See [DATA_SOURCES.md](DATA_SOURCES.md) and [scripts/DATA_PROVENANCE.md](scripts/DATA_PROVENANCE.md).
 
-### Cell Tower Overlay (OpenCelliD)
+Cell towers are disabled until an OpenCelliD provider key is configured. A tower location does not predict campsite signal or carrier coverage. Nearby Wikimedia Commons photos link to original file pages and available author/license information. Photos within the search radius may depict another nearby location.
 
-To enable the cell tower overlay:
+## Test and build
 
-1. **Get a free API key:**
-   - Visit https://opencellid.org
-   - Create a free account
-   - Get your API token from the dashboard
-
-2. **Add the key to `index.html`:**
-   - Open `index.html`
-   - Find the `KampTrailOverlays.init` section (around line 229)
-   - Add your API key to the `openCelliDKey` field:
-   ```javascript
-   openCelliDKey: 'your-api-key-here',
-   ```
-
-3. **How it works:**
-   - Toggle "Cell towers" in the map controls
-   - Zoom in to level 8+ to view towers
-   - Color-coded by technology: GSM (red), UMTS (blue), LTE (green), 5G (purple)
-   - Click markers for tower details (range, samples, carrier info)
-   - Limited to 500 towers per view to respect API limits
-
-**Note:** OpenCelliD has a 5,000 requests/day limit for free accounts. The app caches results to minimize API calls.
-
-### Fetch Real Campsite Data
-
-The app includes sample/placeholder campsite data. To populate it with **real campground names, ratings, and GPS coordinates**:
-
-#### 🤖 **RECOMMENDED: Fully Automated (Zero Effort!)**
-
-**Just click a button** - no installation, no command line, runs in GitHub's cloud:
-
-1. **Enable GitHub Actions** (one-time, 30 seconds):
-   - Go to **Settings** → **Actions** → **General**
-   - Enable **"Read and write permissions"**
-   - Save
-
-2. **Click to fetch data** (5-10 minutes):
-   - Go to **Actions** tab → **"🎯 Quick Fetch (Single State)"**
-   - Click **"Run workflow"** → Select state (e.g., California)
-   - Wait for green checkmark ✅
-   - Data automatically committed!
-
-3. **Done!** Real campsite data with zero technical skills required.
-
-📖 **[Full Guide: Automated Fetching →](docs/AUTOMATED_FETCHING.md)**
-
----
-
-#### 🛠️ Alternative Methods (For Technical Users):
-
-<details>
-<summary><b>Manual fetch with Recreation.gov API</b></summary>
-
-1. **Get a free Recreation.gov API key:**
-   - Visit https://ridb.recreation.gov/docs
-   - Sign up for a free account
-   - Enable developer access to get your API key
-
-2. **Fetch data for your desired states:**
-   ```bash
-   # Install dependencies
-   pip3 install requests
-
-   # Fetch California campgrounds
-   python3 scripts/fetch_recreation_gov_data.py --api-key YOUR_API_KEY --state CA --limit 100
-
-   # Or fetch multiple states
-   for state in CA CO UT AZ OR WA; do
-     python3 scripts/fetch_recreation_gov_data.py --api-key YOUR_API_KEY --state $state --limit 100
-     sleep 5
-   done
-   ```
-
-3. **Refresh the app** to see real campground names like:
-   - "Yosemite Valley Campground" instead of "California Campground 5"
-   - "Joshua Tree Jumbo Rocks" instead of "California Established 12"
-   - Real amenities, costs, and facility details
-
-</details>
-
-<details>
-<summary><b>Browser automation (Playwright scripts)</b></summary>
-
-For users who want to run scripts locally with browser automation:
-
-```bash
-# Install dependencies
-npm install
-npx playwright install chromium
-
-# Fetch data for California
-./scripts/fetch_all_campsite_data.sh CA
-
-# Or multiple states
-./scripts/fetch_all_campsite_data.sh "CA CO UT AZ OR WA"
+```sh
+npm test
+python3 -m pip install -r requirements.txt pyyaml
+npm run test:python
+npx playwright install --with-deps chromium
+npm run test:browser
+npm run build
 ```
 
-📚 **[Full Guide: Browser Automation →](scripts/README_BROWSER_AUTOMATION.md)**
+`npm run build` creates `dist/kamptrail/`, containing only the static app assets, necessary snapshot files, and license notices. The optional `CHROMIUM_PATH` environment variable can select an existing Chromium binary for tests.
 
-</details>
+Browser regressions use real committed campsite/city snapshots while isolating optional remote imagery for repeatability. Live provider checks and desktop/mobile screenshots are recorded in [docs/REPAIR_2026-10-27.md](docs/REPAIR_2026-10-27.md). Automated checks run on pull requests and main-branch pushes.
 
-<details>
-<summary><b>No-code option (Axiom.ai)</b></summary>
+## Refresh and deployment
 
-For visual, no-code scraping:
+GitHub Pages serves this repository at https://prowebpromo.github.io/kamptrail/. The static release can also run on another HTTPS host. All asset and dataset paths are relative to the app directory.
 
-1. Install [Axiom.ai](https://axiom.ai) browser extension
-2. Build visual scraper (click, don't code)
-3. Download CSV data
-4. Use web converter: `axiom-converter.html`
-5. Upload to repository
+One reusable workflow owns dataset refreshes and serializes writes. Its existing weekly schedule is Sunday at 03:00 UTC. Manual state/source workflows call the same owner. Failed, partial, invalid, or empty source fetches preserve saved data. Successful fetches rebuild the visible merged snapshots and the aggregate index. RIDB uses the repository secret `RECREATION_GOV_API_KEY` or `RIDB_API_KEY`. No embedded fallback key is used. No data refresh was run during this repair.
 
-📚 **[Full Guide: Axiom.ai →](scripts/README_AXIOM.md)**
+When modifying application files, bump the version in `service-worker.js`. The app automatically reloads once when a previous worker is replaced, so existing installations switch to the new bundled shell. The worker preserves visited data and does not delete caches belonging to neighboring apps.
 
-</details>
-
----
+Code: MIT. Third-party libraries and datasets retain their respective licenses.

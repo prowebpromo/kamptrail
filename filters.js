@@ -47,6 +47,7 @@
           <label><input type="radio" name="f-cost" value="all" checked> All</label>
           <label><input type="radio" name="f-cost" value="free"> Free</label>
           <label><input type="radio" name="f-cost" value="paid"> Paid</label>
+          <label><input type="radio" name="f-cost" value="unknown"> Unknown</label>
         </div>
 
         <label>Type</label>
@@ -55,24 +56,26 @@
           <option value="dispersed">Dispersed</option>
           <option value="established">Established</option>
           <option value="parking">Overnight parking</option>
+          <option value="backcountry">Backcountry</option>
           <option value="other">Other</option>
         </select>
 
         <div style="height:10px"></div>
-        <label>Rig size</label>
+        <label>Reported access</label>
         <select id="f-rig" style="width:100%;background:#0b141b;border:1px solid #284356;color:#cfe3f2;border-radius:6px;padding:6px;">
           <option value="all">Any</option>
-          <option value="van">Van / Small RV</option>
-          <option value="small_trailer">Small trailer</option>
+          <option value="rv">RV / motorhome</option>
           <option value="trailer">Trailer</option>
-          <option value="big_rig">Big rig</option>
           <option value="tent">Tent</option>
         </select>
 
         <div style="height:10px"></div>
-        <label>Road difficulty</label>
+        <label>Reported road</label>
         <select id="f-road" style="width:100%;background:#0b141b;border:1px solid #284356;color:#cfe3f2;border-radius:6px;padding:6px;">
           <option value="all">Any</option>
+          <option value="paved">Paved</option>
+          <option value="gravel">Gravel</option>
+          <option value="dirt">Dirt</option>
           <option value="easy">Easy</option>
           <option value="moderate">Moderate</option>
           <option value="4wd">4WD</option>
@@ -86,6 +89,7 @@
         </div>
 
         <div style="height:12px"></div>
+        <p style="font-size:11px;line-height:1.4;opacity:.8">Filters match reported information only. Missing fees, amenities, road conditions, and vehicle access remain unknown. RV access does not establish a maximum rig length.</p>
         <label>Minimum rating</label>
         <div style="display:flex;align-items:center;gap:10px;">
           <input id="f-rate" type="range" min="0" max="5" step="0.5" value="0" style="flex:1;">
@@ -101,10 +105,14 @@
       const p = ui();
       map._container.appendChild(p);
       L.DomEvent.disableClickPropagation(p);
+      L.DomEvent.disableScrollPropagation(p);
+      p.setAttribute('role','region');
+      p.setAttribute('aria-label','Campsite filters');
 
       // Wire header button
       const btn = document.getElementById('filters');
-      btn.addEventListener('click', ()=>{ p.style.display = (p.style.display==='none'?'block':'none'); });
+      btn.setAttribute('aria-expanded','false');
+      btn.addEventListener('click', ()=>{ const open=p.style.display==='none'; p.style.display=open?'block':'none';btn.setAttribute('aria-expanded',String(open)); });
 
       // Reset
       p.querySelector('#kt-f-reset').addEventListener('click', ()=>{
@@ -138,6 +146,7 @@
       apply();
       console.log('Filters ready');
     },
+    reset(){ document.getElementById('kt-f-reset')?.click(); },
     getFilters(){ return Object.assign({}, st.filters); }
   };
 })();

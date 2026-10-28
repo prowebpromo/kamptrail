@@ -9,92 +9,35 @@
   };
 
   function parseGPX(xmlText) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlText, 'text/xml');
-
-    // Check for parsing errors
-    if (doc.getElementsByTagName('parsererror').length > 0) {
-      throw new Error('Invalid GPX file format');
+    const doc = new DOMParser().parseFromString(xmlText, 'application/xml');
+    if (doc.getElementsByTagName('parsererror').length || doc.documentElement?.localName !== 'gpx') throw new Error('Select a valid GPX document');
+    const elements = (node, name) => Array.from(node.getElementsByTagNameNS('*', name));
+    const text = (node, name, fallback = '') => elements(node, name)[0]?.textContent || fallback;
+    function coordinates(node) {
+      const rawLat = node.getAttribute('lat'), rawLon = node.getAttribute('lon');
+      if (!rawLat?.trim() || !rawLon?.trim()) return null;
+      const lat = Number(rawLat), lon = Number(rawLon);
+      return Number.isFinite(lat) && Number.isFinite(lon) && Math.abs(lat) <= 90 && Math.abs(lon) <= 180 ? [lat, lon] : null;
     }
-
-    const waypoints = [];
+    const waypoints = elements(doc, 'wpt').flatMap((node, index) => {
+      const coords = coordinates(node);
+      return coords ? [{lat:coords[0],lon:coords[1],name:text(node,'name',`Waypoint ${index + 1}`),desc:text(node,'desc'),type:text(node,'type','waypoint')}] : [];
+    });
     const tracks = [];
-
-    // Extract waypoints
-    const wptElements = doc.getElementsByTagName('wpt');
-    for (let i = 0; i < wptElements.length; i++) {
-      const wpt = wptElements[i];
-      const lat = parseFloat(wpt.getAttribute('lat'));
-      const lon = parseFloat(wpt.getAttribute('lon'));
-
-      // Validate coordinates
-      if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
-        console.warn(`Invalid waypoint coordinates: lat=${lat}, lon=${lon}`);
-        continue;
-      }
-
-      const name = wpt.getElementsByTagName('name')[0]?.textContent || `Waypoint ${i + 1}`;
-      const desc = wpt.getElementsByTagName('desc')[0]?.textContent || '';
-      const type = wpt.getElementsByTagName('type')[0]?.textContent || 'waypoint';
-
-      waypoints.push({ lat, lon, name, desc, type });
-    }
-
-    // Extract tracks
-    const trkElements = doc.getElementsByTagName('trk');
-    for (let i = 0; i < trkElements.length; i++) {
-      const trk = trkElements[i];
-      const trackName = trk.getElementsByTagName('name')[0]?.textContent || `Track ${i + 1}`;
-      const points = [];
-
-      const trkpts = trk.getElementsByTagName('trkpt');
-      for (let j = 0; j < trkpts.length; j++) {
-        const pt = trkpts[j];
-        const lat = parseFloat(pt.getAttribute('lat'));
-        const lon = parseFloat(pt.getAttribute('lon'));
-
-        // Validate coordinates
-        if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
-          console.warn(`Invalid track point coordinates: lat=${lat}, lon=${lon}`);
-          continue;
-        }
-
-        points.push([lat, lon]);
-      }
-
-      if (points.length > 0) {
-        tracks.push({ name: trackName, points });
-      }
-    }
-
-    // Extract routes
-    const rteElements = doc.getElementsByTagName('rte');
-    for (let i = 0; i < rteElements.length; i++) {
-      const rte = rteElements[i];
-      const routeName = rte.getElementsByTagName('name')[0]?.textContent || `Route ${i + 1}`;
-      const points = [];
-
-      const rtepts = rte.getElementsByTagName('rtept');
-      for (let j = 0; j < rtepts.length; j++) {
-        const pt = rtepts[j];
-        const lat = parseFloat(pt.getAttribute('lat'));
-        const lon = parseFloat(pt.getAttribute('lon'));
-
-        // Validate coordinates
-        if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
-          console.warn(`Invalid route point coordinates: lat=${lat}, lon=${lon}`);
-          continue;
-        }
-
-        points.push([lat, lon]);
-      }
-
-      if (points.length > 0) {
-        tracks.push({ name: routeName, points });
-      }
-    }
-
-    return { waypoints, tracks };
+    elements(doc, 'trk').forEach((track, index) => {
+      const name = text(track, 'name', `Track ${index + 1}`);
+      const segments = elements(track, 'trkseg');
+      segments.forEach((segment, segmentIndex) => {
+        const points = elements(segment, 'trkpt').map(coordinates).filter(Boolean);
+        if (points.length) tracks.push({name:segments.length > 1 ? `${name} (segment ${segmentIndex + 1})` : name,points});
+      });
+    });
+    elements(doc, 'rte').forEach((route, index) => {
+      const points = elements(route, 'rtept').map(coordinates).filter(Boolean);
+      if (points.length) tracks.push({name:text(route,'name',`Route ${index + 1}`),points});
+    });
+    if (!waypoints.length && !tracks.length) throw new Error('This GPX file has no valid waypoints, tracks or routes');
+    return {waypoints,tracks};
   }
 
   function createWaypointMarker(waypoint) {
@@ -181,7 +124,7 @@
 
     // Fit map to GPX bounds
     if (state.gpxLayer.getLayers().length > 0) {
-      map.fitBounds(state.gpxLayer.getBounds(), { padding: [50, 50] });
+      map.fitBounds(state.gpxLayer.getBounds(), { padding: [50, 50], maxZoom: 15 });
     }
 
     return {
@@ -226,12 +169,17 @@
     reader.readAsText(file);
   }
 
-  function findNearestCampsite(lat, lon) {
+  async function findNearestCampsite(lat, lon) {
     if (!window.KampTrailData) {
       window.showToast && window.showToast('Data loader not available', 'error');
       return;
     }
 
+    const map = window.kamptrailMap;
+    if (map) {
+      map.setView([lat, lon], 10);
+      await window.KampTrailData.loadStates?.(window.KampTrailData.getVisibleStates?.(map) || []);
+    }
     const campsites = window.KampTrailData.getAllCampsites();
     if (campsites.length === 0) {
       window.showToast && window.showToast('No campsites loaded yet', 'error');
@@ -268,13 +216,14 @@
       const map = window.kamptrailMap;
 
       if (map) {
-        map.setView([nLat, nLon], 14);
+        if (window.KampTrailData.focusCampsite) window.KampTrailData.focusCampsite(nearest.properties.id);
+        else map.setView([nLat, nLon], 14);
 
         // Find and open the campsite popup
         setTimeout(() => {
           const esc = window.escapeHtml || ((t) => t);
-          const siteName = esc(nearest.properties.name || 'Unknown');
-          const msg = `Found nearest campsite: ${siteName} (${minDistance.toFixed(2)} km away)`;
+          const siteName = nearest.properties.name || 'Unknown';
+          const msg = `Nearest campsite in the available data: ${siteName} (${minDistance.toFixed(2)} km away)`;
           window.showToast && window.showToast(msg, 'success', 5000);
         }, 500);
       }
@@ -320,7 +269,7 @@
       gpxBtn.id = 'gpx-import';
       gpxBtn.className = 'btn';
       gpxBtn.setAttribute('aria-label', 'Import GPX file');
-      gpxBtn.innerHTML = '📥 Import GPX';
+      gpxBtn.innerHTML = 'Import GPX';
 
       gpxBtn.addEventListener('click', () => {
         fileInput.click();
@@ -332,10 +281,15 @@
         actions.insertBefore(gpxBtn, actions.firstChild);
       }
 
+      const clearBtn = document.createElement('button');
+      clearBtn.id = 'gpx-clear'; clearBtn.className = 'btn'; clearBtn.textContent = 'Clear GPX';
+      clearBtn.onclick = () => clearGPXData(map);
+      if (actions) actions.insertBefore(clearBtn, gpxBtn.nextSibling);
       console.log('✅ GPX Importer ready');
     },
 
     findNearestCampsite,
+    parseGPX,
     clearGPXData,
 
     getImportedData() {

@@ -12,6 +12,9 @@ import requests
 import json
 import argparse
 import time
+import re
+import html
+from data_integrity import valid_coordinates, save_geojson
 from pathlib import Path
 from typing import Dict, List, Any
 
@@ -62,7 +65,9 @@ class RIDBFetcher:
                 response.raise_for_status()
                 data = response.json()
 
-                if 'RECDATA' not in data or not data['RECDATA']:
+                if not isinstance(data, dict) or not isinstance(data.get('RECDATA'), list):
+                    raise ValueError('Invalid RIDB response; refusing partial state data')
+                if not data['RECDATA']:
                     break
 
                 batch = data['RECDATA']
@@ -76,8 +81,8 @@ class RIDBFetcher:
                 time.sleep(self.rate_limit_delay)
 
             except Exception as e:
-                print(f"  Error fetching facilities: {e}")
-                break
+                # Do not publish a partial state when a later page fails.
+                raise RuntimeError(f"Incomplete RIDB fetch for {state_code}") from e
 
         return facilities
 
@@ -87,67 +92,34 @@ class RIDBFetcher:
         site_counter = 1
 
         for facility in facilities:
-            # Skip facilities without coordinates
-            if not facility.get('FacilityLatitude') or not facility.get('FacilityLongitude'):
+            try:
+                coords = [float(facility['FacilityLongitude']), float(facility['FacilityLatitude'])]
+            except (KeyError, TypeError, ValueError):
+                continue
+            if not valid_coordinates(coords) or not all(coords) or not facility.get('FacilityID'):
                 continue
 
-            # Determine cost
-            cost = 0
-            if facility.get('FacilityUseFeeDescription'):
-                # Try to parse cost from description
-                desc = facility['FacilityUseFeeDescription'].lower()
-                if 'free' in desc:
-                    cost = 0
-                elif '$' in desc:
-                    # Try to extract a number
-                    import re
-                    match = re.search(r'\$(\d+)', desc)
-                    if match:
-                        cost = int(match.group(1))
-                    else:
-                        cost = 15  # Default estimate
-                else:
-                    cost = 15  # Default estimate if description exists
-
-            # Determine campsite type
-            facility_type = facility.get('FacilityTypeDescription', '').lower()
-            if 'campground' in facility_type or 'campsite' in facility_type:
-                camp_type = 'established'
-            elif 'dispersed' in facility_type or 'primitive' in facility_type:
+            # A mention of water, roads or RVs in prose is not an amenity or
+            # vehicle-access claim. Preserve the source prose for the reader.
+            fee_description = html.unescape(re.sub(r'<[^>]+>', ' ', facility.get('FacilityUseFeeDescription', '') or ''))
+            fee_description = ' '.join(fee_description.split())
+            cost = None
+            fee_status = 'unknown'
+            if re.fullmatch(r'(?:camping (?:is )?)?(?:free|no (?:camping )?fees?)[.!]?', fee_description, re.I):
+                cost, fee_status = 0, 'free'
+            else:
+                match = re.fullmatch(r'\$([0-9]+(?:\.[0-9]{1,2})?)\s*(?:/\s*night|per night|nightly)[.!]?', fee_description, re.I)
+                if match:
+                    cost, fee_status = float(match.group(1)), 'paid'
+            facility_type = (facility.get('FacilityTypeDescription') or '').lower()
+            if any(word in facility_type for word in ['dispersed', 'primitive']):
                 camp_type = 'dispersed'
             elif 'backcountry' in facility_type:
                 camp_type = 'backcountry'
-            else:
+            elif any(word in facility_type for word in ['campground', 'campsite']):
                 camp_type = 'established'
-
-            # Build amenities list
-            amenities = []
-            desc_lower = facility.get('FacilityDescription', '').lower()
-            if 'toilet' in desc_lower or 'restroom' in desc_lower:
-                amenities.append('toilets')
-            if 'water' in desc_lower or 'potable' in desc_lower:
-                amenities.append('water')
-            if 'shower' in desc_lower:
-                amenities.append('showers')
-            if 'fire' in desc_lower:
-                amenities.append('fire_rings')
-            if 'picnic' in desc_lower or 'table' in desc_lower:
-                amenities.append('picnic_tables')
-            if 'trash' in desc_lower or 'garbage' in desc_lower:
-                amenities.append('trash')
-
-            # Determine rig friendly
-            rig_friendly = []
-            if 'tent' in desc_lower:
-                rig_friendly.append('tent')
-            if 'rv' in desc_lower or 'trailer' in desc_lower:
-                rig_friendly.append('RV')
-                rig_friendly.append('trailer')
-
-            # Road difficulty (estimate)
-            road = 'paved'
-            if 'unpaved' in desc_lower or 'dirt' in desc_lower or 'gravel' in desc_lower:
-                road = 'dirt' if 'dirt' in desc_lower else 'gravel'
+            else:
+                camp_type = 'other'
 
             feature = {
                 "type": "Feature",
@@ -159,19 +131,26 @@ class RIDBFetcher:
                     ]
                 },
                 "properties": {
-                    "id": f"{state_code}-{site_counter:03d}",
+                    "id": f"ridb:{facility['FacilityID']}",
+                    "schema_version": 3,
                     "name": facility.get('FacilityName', f'{US_STATES[state_code]} Site {site_counter}'),
                     "type": camp_type,
                     "cost": cost,
+                    "fee_status": fee_status,
+                    "fee_description": fee_description,
+                    "field_provenance": {"cost": "FacilityUseFeeDescription" if cost is not None else "unknown",
+                                         "amenities": "unknown", "rig_friendly": "unknown", "road_difficulty": "unknown"},
                     "rating": None,  # Would need separate reviews API
                     "reviews_count": 0,
-                    "amenities": amenities,
-                    "rig_friendly": rig_friendly,
-                    "road_difficulty": road,
+                    "amenities": [],
+                    "rig_friendly": [],
+                    "road_difficulty": None,
                     "state": state_code,
                     "source": "recreation.gov",
                     "facility_id": facility.get('FacilityID'),
-                    "description": facility.get('FacilityDescription', '')[:200]  # Truncate
+                    "description": facility.get('FacilityDescription', ''),
+                    "source_url": f"https://www.recreation.gov/camping/campgrounds/{facility['FacilityID']}",
+                    "source_retrieved_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
                 }
             }
 
@@ -188,10 +167,14 @@ def main():
     parser = argparse.ArgumentParser(description='Fetch Recreation.gov campsite data')
     parser.add_argument('--api-key', required=True, help='RIDB API key (get from ridb.recreation.gov)')
     parser.add_argument('--state', help='Specific state code (e.g., CA, CO). If omitted, fetches all states.')
-    parser.add_argument('--limit', type=int, default=50, help='Max sites per state (default: 50)')
+    parser.add_argument('--limit', type=int, default=50, help='API page size, 1–50 (all pages are fetched)')
     parser.add_argument('--output-dir', default='data/campsites', help='Output directory')
 
     args = parser.parse_args()
+
+    if args.limit < 1:
+        parser.error('--limit must be positive')
+    args.limit = min(args.limit, 50)
 
     # Create output directory
     output_dir = Path(args.output_dir)
@@ -231,21 +214,26 @@ def main():
 
         # Save to file
         output_file = output_dir / f"{state_code}.geojson"
-        with open(output_file, 'w') as f:
-            json.dump(geojson, f, indent=2)
+        save_geojson(output_file, geojson)
 
         print(f"  ✅ Saved {site_count} campsites to {output_file}")
         total_sites += site_count
         state_counts.append({"state": state_code, "count": site_count})
 
-    # Update index.json
-    index_data = {
-        "generated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "total_sites": total_sites,
-        "states": state_counts,
-        "source": "recreation.gov",
-        "version": "2.0"
-    }
+    # Rebuild counts from the datasets actually used by the app, preserving
+    # states untouched by this fetch. Never claim a one-state run is the total.
+    state_counts = []
+    for saved_file in sorted(output_dir.glob('*_merged.geojson')):
+        saved_data = json.loads(saved_file.read_text(encoding='utf-8'))
+        state_counts.append({"state": saved_file.stem[:2], "count": len(saved_data.get('features', []))})
+    if not state_counts:
+        for saved_file in sorted(output_dir.glob('[A-Z][A-Z].geojson')):
+            saved_data = json.loads(saved_file.read_text(encoding='utf-8'))
+            state_counts.append({"state": saved_file.stem, "count": len(saved_data.get('features', []))})
+    total_sites = sum(row['count'] for row in state_counts)
+    index_data = {"generated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                  "total_sites": total_sites, "states": state_counts,
+                  "source": "saved-state-files", "version": "3.0"}
 
     index_file = output_dir / "index.json"
     with open(index_file, 'w') as f:

@@ -5,13 +5,15 @@
   const state = {
     compareList: [],
     drawer: null,
-    map: null
+    map: null,
+    snapshots: {}
   };
 
   function loadCompareList() {
     try {
       const stored = localStorage.getItem('kt_compare_list');
-      return stored ? JSON.parse(stored) : [];
+      const parsed = stored ? JSON.parse(stored) : [];
+      return Array.isArray(parsed) ? [...new Set(parsed.filter(id => typeof id === 'string' || typeof id === 'number').map(String))].slice(0, 4) : [];
     } catch {
       return [];
     }
@@ -20,13 +22,18 @@
   function saveCompareList() {
     try {
       localStorage.setItem('kt_compare_list', JSON.stringify(state.compareList));
+      localStorage.setItem('kt_compare_sites', JSON.stringify(state.snapshots));
     } catch (err) {
       console.warn('Failed to save compare list:', err);
     }
   }
 
   function addToCompare(campsiteId) {
-    if (!campsiteId) return;
+    if (campsiteId == null) return;
+    const site = window.KampTrailData?.getCampsiteById(campsiteId);
+    if (!site) return;
+    campsiteId = String(site.properties.id);
+    state.snapshots[campsiteId] = JSON.parse(JSON.stringify(site));
 
     if (state.compareList.includes(campsiteId)) {
       window.showToast && window.showToast('Campsite already in comparison', 'info');
@@ -43,7 +50,7 @@
     updateCompareButton();
     window.showToast && window.showToast('Added to comparison', 'success', 2000);
 
-    console.log('📊 Compare list:', state.compareList);
+    console.log('Compare list:', state.compareList);
   }
 
   function removeFromCompare(campsiteId) {
@@ -58,6 +65,7 @@
 
   function clearCompareList() {
     state.compareList = [];
+    state.snapshots = {};
     saveCompareList();
     updateCompareButton();
     renderComparisonPanel();
@@ -79,23 +87,21 @@
     }
   }
 
-  function formatCost(cost) {
-    if (cost === 0 || cost === null || cost === undefined) {
-      return '<span style="color:#4CAF50;font-weight:bold;">FREE</span>';
+  function formatCost(cost, feeStatus) {
+    if (feeStatus === 'free') return '<span style="color:#4CAF50;font-weight:bold;">Free (confirm current fees)</span>';
+    if (typeof cost === 'number' && Number.isFinite(cost) && cost >= 0) {
+      return cost === 0 ? '<span style="color:#4CAF50;">Free (confirm current fees)</span>' : `<span>$${cost.toFixed(2)} (confirm billing period)</span>`;
     }
-    return `<span style="color:#2196F3;font-weight:bold;">$${cost}/night</span>`;
+    return feeStatus === 'paid' ? 'Fee charged; amount unknown' : 'Fee unknown';
   }
 
   function formatRating(rating) {
-    if (!rating || rating === 0) {
-      return '<span style="color:#999;">No ratings</span>';
-    }
-    const stars = '⭐'.repeat(Math.round(rating));
-    return `<span>${stars} (${rating})</span>`;
+    if (typeof rating !== 'number' || !Number.isFinite(rating) || rating <= 0 || rating > 5) return '<span style="color:#999;">No ratings</span>';
+    return `<span>${'⭐'.repeat(Math.round(rating))} (${rating})</span>`;
   }
 
   function formatAmenities(amenities) {
-    if (!amenities || amenities.length === 0) {
+    if (!Array.isArray(amenities) || amenities.length === 0) {
       return '<span style="color:#999;">None listed</span>';
     }
     const esc = window.escapeHtml || ((t) => t);
@@ -103,7 +109,7 @@
   }
 
   function formatRigFriendly(rigFriendly) {
-    if (!rigFriendly || rigFriendly.length === 0) {
+    if (!Array.isArray(rigFriendly) || rigFriendly.length === 0) {
       return '<span style="color:#999;">Not specified</span>';
     }
     const esc = window.escapeHtml || ((t) => t);
@@ -113,8 +119,16 @@
   function renderComparisonPanel() {
     if (!state.drawer) return;
 
+    const comparisonIds = [];
     const campsites = state.compareList
-      .map(id => window.KampTrailData && window.KampTrailData.getCampsiteById(id))
+      .map(id => {
+        const site = window.KampTrailData?.getCampsiteById(id);
+        if (site) state.snapshots[id] = JSON.parse(JSON.stringify(site));
+        const saved = site || state.snapshots[id];
+        if (saved?.geometry?.type !== 'Point' || !Array.isArray(saved.geometry.coordinates) || !saved.geometry.coordinates.slice(0, 2).every(Number.isFinite) || !saved.properties) return null;
+        comparisonIds.push(id);
+        return saved;
+      })
       .filter(Boolean);
 
     if (campsites.length === 0) {
@@ -122,11 +136,11 @@
         <div style="padding:20px;text-align:center;">
           <h2 style="margin:0 0 16px 0;font-size:18px;color:var(--c-text);">🔍 Campsite Comparison</h2>
           <p style="color:#999;font-size:14px;margin:16px 0;">
-            No campsites selected for comparison.<br>
+            No campsite details have loaded for this comparison.<br>
             Add campsites from the map to compare them side-by-side.
           </p>
           <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;">
-            <button onclick="KampTrailCompare.close()" class="btn">Close</button>
+            <button onclick="KampTrailCompare.clearAll()" class="btn">Clear All</button><button onclick="KampTrailCompare.close()" class="btn">Close</button>
           </div>
         </div>
       `;
@@ -173,7 +187,7 @@
     // Cost row
     html += `<tr style="border-bottom:1px solid var(--c-border);"><td style="padding:10px;font-weight:bold;">Cost</td>`;
     campsites.forEach(site => {
-      html += `<td style="padding:10px;">${formatCost(site.properties.cost)}</td>`;
+      html += `<td style="padding:10px;">${formatCost(site.properties.cost, site.properties.fee_status)}</td>`;
     });
     html += `</tr>`;
 
@@ -222,17 +236,17 @@
 
     // Actions row
     html += `<tr><td style="padding:10px;font-weight:bold;">Actions</td>`;
-    campsites.forEach(site => {
+    campsites.forEach((site, index) => {
       const coords = (site.geometry && site.geometry.coordinates) || [0, 0];
       const lon = coords[0] || 0;
       const lat = coords[1] || 0;
-      const safeId = esc(site.properties.id || '');
+      const selectedIndex = index;
       html += `
         <td style="padding:10px;">
           <div style="display:flex;flex-direction:column;gap:6px;">
-            <button onclick="KampTrailCompare.zoomTo(${lat}, ${lon})" class="btn" style="font-size:11px;padding:4px 8px;">📍 View on Map</button>
-            <button onclick="KampTrailData.addToTrip('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
-            <button onclick="KampTrailCompare.remove('${safeId}')" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
+            <button data-map-index="${selectedIndex}" class="btn" style="font-size:11px;padding:4px 8px;">📍 View on Map</button>
+            <button data-trip-index="${selectedIndex}" class="btn" style="font-size:11px;padding:4px 8px;">➕ Add to Trip</button>
+            <button data-remove-index="${selectedIndex}" class="btn" style="font-size:11px;padding:4px 8px;">❌ Remove</button>
           </div>
         </td>
       `;
@@ -247,6 +261,9 @@
     `;
 
     state.drawer.innerHTML = html;
+    state.drawer.querySelectorAll('[data-trip-index]').forEach(button => button.onclick = () => { const index = Number(button.dataset.tripIndex); window.KampTrailTrip?.addStop(comparisonIds[index], campsites[index]); });
+    state.drawer.querySelectorAll('[data-remove-index]').forEach(button => button.onclick = () => removeFromCompare(comparisonIds[Number(button.dataset.removeIndex)]));
+    state.drawer.querySelectorAll('[data-map-index]').forEach(button => button.onclick = () => { const [lon, lat] = campsites[Number(button.dataset.mapIndex)].geometry.coordinates; zoomTo(lat, lon); });
   }
 
   function toggleDrawer() {
@@ -281,13 +298,25 @@
 
       state.map = map;
       state.compareList = loadCompareList();
+      try {
+        const snapshots = JSON.parse(localStorage.getItem('kt_compare_sites') || '{}');
+        state.snapshots = snapshots && typeof snapshots === 'object' && !Array.isArray(snapshots) ? snapshots : {};
+      } catch { state.snapshots = {}; }
+      window.addEventListener('kamptrail:dataupdated', () => {
+        state.compareList.forEach(id => {
+          const site = window.KampTrailData?.getCampsiteById(id);
+          if (site) state.snapshots[id] = JSON.parse(JSON.stringify(site));
+        });
+        saveCompareList();
+        if (state.drawer?.classList.contains('open')) renderComparisonPanel();
+      });
 
       // Create comparison button in header
       const compareBtn = document.createElement('button');
       compareBtn.id = 'compare-btn';
       compareBtn.className = 'btn';
       compareBtn.setAttribute('aria-label', 'Compare campsites');
-      compareBtn.innerHTML = '⚖️ Compare <span id="compare-count">(0)</span>';
+      compareBtn.innerHTML = 'Compare <span id="compare-count">(0)</span>';
 
       compareBtn.addEventListener('click', toggleDrawer);
 

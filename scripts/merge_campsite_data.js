@@ -11,6 +11,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
+const crypto = require('crypto');
 
 class CampsiteMerger {
   constructor() {
@@ -40,8 +41,9 @@ class CampsiteMerger {
    * Calculate string similarity (0-1) using Levenshtein distance
    */
   stringSimilarity(str1, str2) {
-    const s1 = str1.toLowerCase().trim();
-    const s2 = str2.toLowerCase().trim();
+    if (!str1 || !str2) return 0;
+    const s1 = String(str1).toLowerCase().trim();
+    const s2 = String(str2).toLowerCase().trim();
 
     if (s1 === s2) return 1.0;
 
@@ -78,53 +80,104 @@ class CampsiteMerger {
   /**
    * Check if two campsites are likely the same location
    */
-  areDuplicates(site1, site2) {
-    const [lon1, lat1] = site1.geometry.coordinates;
-    const [lon2, lat2] = site2.geometry.coordinates;
-
-    const distance = this.calculateDistance(lat1, lon1, lat2, lon2);
-
-    // If within threshold distance
-    if (distance < this.DISTANCE_THRESHOLD_METERS) {
-      // Check name similarity for confirmation
-      const nameSimilarity = this.stringSimilarity(
-        site1.properties.name,
-        site2.properties.name
-      );
-
-      // If very close and names are similar, definitely duplicates
-      if (distance < 100 || nameSimilarity > 0.6) {
-        return true;
-      }
-    }
-
-    return false;
+  validFeature(feature) {
+    const coordinates = feature?.geometry?.coordinates;
+    return feature?.type === 'Feature' && feature.geometry.type === 'Point'
+      && Array.isArray(coordinates) && coordinates.length >= 2
+      && coordinates.slice(0, 2).every(value => typeof value === 'number' && Number.isFinite(value))
+      && Math.abs(coordinates[0]) <= 180 && Math.abs(coordinates[1]) <= 90
+      && feature.properties && typeof feature.properties === 'object';
   }
 
-  /**
-   * Merge properties from multiple sources, preferring more complete data
-   */
+  stableId(feature) {
+    const p = feature.properties;
+    if (p.facility_id != null) return `ridb:${p.facility_id}`;
+    if (p.osm_id != null) {
+      const kind = p.osm_type || (['node', 'way', 'relation'].includes(p.type) ? p.type : 'unknown');
+      const suffix = kind === 'unknown' ? ':' + feature.geometry.coordinates.slice(0, 2).map(n => n.toFixed(6)).join(',') : '';
+      return `osm:${kind}:${p.osm_id}${suffix}`;
+    }
+    if (p.id != null && String(p.id).trim()) return String(p.id);
+    const value = JSON.stringify([feature.geometry.coordinates, p.name || p.Name || '', p.source || 'unknown']);
+    return 'site:' + crypto.createHash('sha256').update(value).digest('hex').slice(0, 20);
+  }
+
+  areDuplicates(site1, site2) {
+    if (!this.validFeature(site1) || !this.validFeature(site2)) return false;
+    const [lon1, lat1] = site1.geometry.coordinates;
+    const [lon2, lat2] = site2.geometry.coordinates;
+    const p1 = site1.properties, p2 = site2.properties;
+    if (p1.facility_id != null && String(p1.facility_id) === String(p2.facility_id)) return true;
+    if (p1.osm_id != null && String(p1.osm_id) === String(p2.osm_id)
+      && p1.osm_type && p1.osm_type === p2.osm_type) return true;
+    const distance = this.calculateDistance(lat1, lon1, lat2, lon2);
+    const name1 = p1.name || p1.Name || '';
+    const name2 = p2.name || p2.Name || '';
+    // Nearby campgrounds can have distinct entrances or sites. Distance alone is not identity.
+    return distance < this.DISTANCE_THRESHOLD_METERS
+      && !!name1 && !!name2 && this.stringSimilarity(name1, name2) > 0.85;
+  }
+
+  sanitizeProperties(properties) {
+    const p = { ...properties };
+    const sources = [...(Array.isArray(p.sources) ? p.sources : []), p.source || ''];
+    const legacyRIDB = (p.facility_id != null || sources.some(source => /recreation\.gov|\bridb\b/i.test(String(source))))
+      && !(Number(p.schema_version) >= 3);
+    if (legacyRIDB) {
+      p.legacy_inferred = { ...(p.legacy_inferred || {}), cost: p.cost, amenities: p.amenities,
+        rig_friendly: p.rig_friendly, road_difficulty: p.road_difficulty };
+      p.cost = null;
+      p.fee_status = 'unknown';
+      p.amenities = [];
+      p.rig_friendly = [];
+      p.road_difficulty = null;
+      p.rating = null;
+      p.reviews_count = 0;
+      p.field_provenance = { cost: 'unknown', amenities: 'unknown', rig_friendly: 'unknown', road_difficulty: 'unknown' };
+    }
+    return p;
+  }
+
   mergeProperties(primary, secondary) {
+    primary = this.sanitizeProperties(primary);
+    secondary = this.sanitizeProperties(secondary);
+    const list = value => Array.isArray(value) ? value : [];
+    const number = (value, max = Infinity) => typeof value === 'number'
+      && Number.isFinite(value) && value >= 0 && value <= max ? value : null;
+    const primaryCost = number(primary.cost), secondaryCost = number(secondary.cost);
+    const primaryRating = number(primary.rating, 5), secondaryRating = number(secondary.rating, 5);
+    const conflicts = [...list(primary.data_conflicts), ...list(secondary.data_conflicts)];
+    if (primaryCost !== null && secondaryCost !== null && primaryCost !== secondaryCost) conflicts.push('cost');
     return {
+      ...secondary,
       ...primary,
-      // Prefer non-null/non-zero values from either source
-      rating: primary.rating || secondary.rating || null,
-      reviews_count: Math.max(primary.reviews_count || 0, secondary.reviews_count || 0),
-      cost: primary.cost || secondary.cost || 0,
-      // Merge arrays (unique values)
-      amenities: [...new Set([...(primary.amenities || []), ...(secondary.amenities || [])])],
-      rig_friendly: [...new Set([...(primary.rig_friendly || []), ...(secondary.rig_friendly || [])])],
-      // Prefer more specific type
-      type: primary.type !== 'established' ? primary.type : secondary.type,
-      // Keep track of sources
+      name: primary.name || primary.Name || secondary.name || secondary.Name || 'Unnamed campsite',
+      rating: primaryRating ?? secondaryRating,
+      reviews_count: Math.max(number(primary.reviews_count) ?? 0, number(secondary.reviews_count) ?? 0),
+      cost: primaryCost ?? secondaryCost,
+      amenities: [...new Set([...list(primary.amenities), ...list(secondary.amenities)])],
+      rig_friendly: [...new Set([...list(primary.rig_friendly), ...list(secondary.rig_friendly)])],
+      // Missing classifications remain unknown. Do not infer dispersed camping from geometry type.
+      type: ['established', 'dispersed', 'backcountry', 'rv_park'].includes(primary.type)
+        ? primary.type : (['established', 'dispersed', 'backcountry', 'rv_park'].includes(secondary.type) ? secondary.type : null),
       sources: [...new Set([
-        ...(primary.sources || [primary.source]),
-        ...(secondary.sources || [secondary.source])
-      ])].filter(Boolean),
-      // Prefer longer description
+        ...list(primary.sources), primary.source,
+        ...list(secondary.sources), secondary.source
+      ].filter(Boolean))],
+      source_ids: [...new Set([
+        ...list(primary.source_ids), primary.id,
+        ...list(secondary.source_ids), secondary.id
+      ].filter(Boolean))],
+      data_conflicts: [...new Set(conflicts)],
+      field_provenance: {
+        ...(secondary.field_provenance || {}), ...(primary.field_provenance || {}),
+        cost: primaryCost !== null ? (primary.field_provenance?.cost || 'source-reported')
+          : secondaryCost !== null ? (secondary.field_provenance?.cost || 'source-reported') : 'unknown'
+      },
+      // Legacy RIDB defaults were stripped above. Do not claim a fresh fetch when merging files.
+      schema_version: 3,
       description: (primary.description?.length > secondary.description?.length)
-        ? primary.description
-        : secondary.description
+        ? primary.description : (secondary.description || primary.description || '')
     };
   }
 
@@ -136,6 +189,7 @@ class CampsiteMerger {
 
     let allFeatures = [];
     let duplicatesRemoved = 0;
+    let invalidRemoved = 0;
 
     // Combine all features
     datasets.forEach(dataset => {
@@ -149,10 +203,17 @@ class CampsiteMerger {
     // Deduplicate
     const uniqueFeatures = [];
 
-    for (const feature of allFeatures) {
+    for (const original of allFeatures) {
+      if (!this.validFeature(original)) { invalidRemoved++; continue; }
+      const feature = { ...original, geometry: { ...original.geometry }, properties: this.sanitizeProperties(original.properties) };
+      if (feature.properties.legacy_inferred) feature.properties.schema_version = 3;
+      feature.properties.source_ids = [...new Set([
+        ...(Array.isArray(feature.properties.source_ids) ? feature.properties.source_ids : []),
+        feature.properties.id
+      ].filter(Boolean))];
+      feature.properties.id = this.stableId(feature);
       // Check if this feature is a duplicate of any existing unique feature
       let isDuplicate = false;
-      let mergedFeature = null;
 
       for (let i = 0; i < uniqueFeatures.length; i++) {
         if (this.areDuplicates(feature, uniqueFeatures[i])) {
@@ -186,7 +247,9 @@ class CampsiteMerger {
 
     return {
       type: 'FeatureCollection',
-      features: uniqueFeatures
+      features: uniqueFeatures,
+      duplicatesRemoved,
+      invalidRemoved
     };
   }
 
@@ -196,7 +259,9 @@ class CampsiteMerger {
   async loadGeoJSON(filePath) {
     try {
       const data = await fs.readFile(filePath, 'utf8');
-      return JSON.parse(data);
+      const parsed = JSON.parse(data);
+      if (parsed.type !== 'FeatureCollection' || !Array.isArray(parsed.features)) throw new Error('Invalid FeatureCollection');
+      return parsed;
     } catch (err) {
       console.log(`  ⚠️  Could not load ${path.basename(filePath)}: ${err.message}`);
       return null;
@@ -207,13 +272,14 @@ class CampsiteMerger {
 async function main() {
   const args = process.argv.slice(2);
   const stateArg = args.find(a => a.startsWith('--state='));
+  const stateValue = stateArg ? stateArg.slice(8) : args[args.indexOf('--state') + 1];
 
-  if (!stateArg) {
+  if (!stateValue || !/^[A-Za-z]{2}$/.test(stateValue)) {
     console.error('❌ Usage: node merge_campsite_data.js --state=CA');
     process.exit(1);
   }
 
-  const stateCode = stateArg.split('=')[1].toUpperCase();
+  const stateCode = stateValue.toUpperCase();
   const dataDir = path.join(__dirname, '../data/campsites');
 
   console.log(`\n${'='.repeat(60)}`);
@@ -222,37 +288,15 @@ async function main() {
 
   const merger = new CampsiteMerger();
 
-  // Load all available data sources for this state
-  const sources = [
-    { name: 'Recreation.gov', file: `${stateCode}.geojson` },
-    { name: 'Campendium', file: `${stateCode}_campendium.geojson` },
-    { name: 'iOverlander', file: `${stateCode}_ioverlander.geojson` }
-  ];
-
-  const datasets = [];
-
-  for (const source of sources) {
-    const filePath = path.join(dataDir, source.file);
-    console.log(`\n📂 Loading ${source.name}...`);
-
-    const data = await merger.loadGeoJSON(filePath);
-    if (data && data.features && data.features.length > 0) {
-      console.log(`  ✅ Loaded ${data.features.length} campsites`);
-      datasets.push(data);
-    }
-  }
-
-  if (datasets.length === 0) {
-    console.error('\n❌ No data sources found to merge!');
-    process.exit(1);
-  }
+  const { datasets } = await loadStateSources(stateCode, merger, { campsitesDir: dataDir });
+  if (datasets.length === 0) throw new Error('No valid data sources found; keeping existing merged data');
 
   // Merge datasets
   const merged = await merger.mergeDatasets(datasets);
 
   // Save merged data
   const outputFile = path.join(dataDir, `${stateCode}_merged.geojson`);
-  await fs.writeFile(outputFile, JSON.stringify(merged, null, 2));
+  await saveMergedData(outputFile, merged);
 
   console.log(`\n✅ Merged data saved to: ${outputFile}`);
   console.log(`\n📊 Summary:`);
@@ -287,8 +331,57 @@ async function main() {
   console.log(`${'='.repeat(60)}\n`);
 }
 
-if (require.main === module) {
-  main().catch(console.error);
+async function loadStateSources(stateCode, merger, directories = {}) {
+  const campsitesDir = directories.campsitesDir || path.join(__dirname, '../data/campsites');
+  const osmDir = directories.osmDir || path.join(__dirname, '../data/opencampingmap');
+  const definitions = [
+    { name: 'Recreation.gov', canonical: 'recreation.gov', files: [
+      path.join(campsitesDir, `${stateCode}.geojson`), path.join(campsitesDir, `${stateCode}(1).geojson`)
+    ], matches: p => p.facility_id != null || /recreation|\bridb\b/i.test(sourceText(p)) },
+    { name: 'OpenStreetMap', canonical: 'openstreetmap', files: [path.join(osmDir, `${stateCode}.geojson`)],
+      matches: p => p.osm_id != null || /openstreetmap|opencampingmap|\bosm\b/i.test(sourceText(p)) },
+    { name: 'Campendium', canonical: 'campendium', files: [path.join(campsitesDir, `${stateCode}_campendium.geojson`)],
+      matches: p => /campendium/i.test(sourceText(p)) },
+    { name: 'iOverlander', canonical: 'ioverlander', files: [path.join(campsitesDir, `${stateCode}_ioverlander.geojson`)],
+      matches: p => /ioverlander/i.test(sourceText(p)) }
+  ];
+  function sourceText(properties) {
+    return [...(Array.isArray(properties.sources) ? properties.sources : []), properties.source || ''].join(' ');
+  }
+  const existing = await merger.loadGeoJSON(path.join(campsitesDir, `${stateCode}_merged.geojson`));
+  const datasets = [], counts = {};
+  for (const source of definitions) {
+    let selected = null;
+    for (const file of source.files) {
+      const loaded = await merger.loadGeoJSON(file);
+      if (loaded && loaded.features.some(feature => merger.validFeature(feature))) {
+        selected = loaded;
+        break;
+      }
+    }
+    const previouslyPresent = existing?.features?.some(feature => source.matches(feature.properties || {}));
+    if (!selected && previouslyPresent) {
+      throw new Error(`${stateCode}: previous ${source.name} source is missing, invalid or empty; keeping existing merged data`);
+    }
+    if (!selected) continue;
+    const features = selected.features.map(feature => ({ ...feature, properties: {
+      ...(feature.properties || {}), source: feature.properties?.source || source.canonical
+    } }));
+    datasets.push({ ...selected, features });
+    counts[source.name] = features.length;
+  }
+  return { datasets, counts };
 }
 
-module.exports = { CampsiteMerger };
+async function saveMergedData(outputFile, merged) {
+  if (!merged?.features?.length) throw new Error('No valid records: keeping the existing dataset unchanged');
+  const temporary = `${outputFile}.tmp`;
+  await fs.writeFile(temporary, JSON.stringify(merged, null, 2));
+  await fs.rename(temporary, outputFile);
+}
+
+if (require.main === module) {
+  main().catch(error => { console.error(error); process.exitCode = 1; });
+}
+
+module.exports = { CampsiteMerger, saveMergedData, loadStateSources };
