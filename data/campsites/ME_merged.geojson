@@ -6,6 +6,246 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -71.06459,
+          44.305408
+        ]
+      },
+      "properties": {
+        "id": "ridb:239405",
+        "name": "Wild River Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "ME",
+        "source": "recreation.gov",
+        "facility_id": "239405",
+        "description": "<p>Visitors can enjoy a variety of recreation opportunities around the campground, including fishing in the Wild River, strolling along the easy grade of the Wild River Trail, or exploring the rugged ",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "ME-001"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1336017,
+          43.979797
+        ]
+      },
+      "properties": {
+        "id": "ridb:239336",
+        "name": "Saco Ranger District",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "ME",
+        "source": "recreation.gov",
+        "facility_id": "239336",
+        "description": "<p>Located on the south eastern part of the forest, the District offers a variety of different recreational opportunities. Journey across the Kancamagus Scenic Byway; experience the famous Mt Chocorua",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "ME-002"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.9841667,
+          44.3519444
+        ]
+      },
+      "properties": {
+        "id": "ridb:232176",
+        "name": "HASTINGS CAMPGROUND",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "ME",
+        "source": "recreation.gov",
+        "facility_id": "232176",
+        "description": "<h2>Overview</h2>\nHastings Campground is located on Route 113 near the shore of Evans Brook in western Maine. It is situated in a rustic and remote part of White Mountain National Forest, not far from",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "ME-003"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.19319076,
+          44.3537497
+        ]
+      },
+      "properties": {
+        "id": "ridb:239334",
+        "name": "Androscoggin Ranger District",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "ME",
+        "source": "recreation.gov",
+        "facility_id": "239334",
+        "description": "<p>Located on the northern part of the forest in New Hampshire and western Maine, the District offers a variety of recreational opportunities. Challenge yourself in the Presidential Range including Tu",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "ME-004"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.6531222,
+          44.0281972
+        ]
+      },
+      "properties": {
+        "id": "ridb:264293",
+        "name": "DUCK HARBOR CAMPGROUND",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "ME",
+        "source": "recreation.gov",
+        "facility_id": "264293",
+        "description": "<h2>Overview</h2>\n<p><strong>Duck Harbor campsites are reservable starting on April 1st at 10:00am ET.</strong> Duck Harbor Campground is located on Isle au Haut, a rugged island off the coast of Ston",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "fire_rings",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "tent",
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "gravel"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "ME-005"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -68.3385471,
           44.2304511
         ]
@@ -35,8 +275,11 @@
         "type": "multipolygon",
         "website": "https://www.bassharbor.com/",
         "osm_id": 11746452,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:11746452:-68.338547,44.230451",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -78,8 +321,11 @@
         "type": "multipolygon",
         "website": "https://koa.com/campgrounds/bar-harbor-oceanside/",
         "osm_id": 11746739,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:11746739:-68.366346,44.419391",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -102,6 +348,8 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 13979552,
+        "source_ids": [],
+        "id": "osm:unknown:13979552:-69.588060,47.232636",
         "sources": [
           "NRCan-CanVec-7.0"
         ]
@@ -121,8 +369,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 15081692,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:15081692:-70.067415,43.827911",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -142,6 +393,8 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 15628416,
+        "source_ids": [],
+        "id": "osm:unknown:15628416:-68.850917,46.165555",
         "sources": [
           "https://i1.wp.com/baxterstatepark.org/wp-content/uploads/2017/03/tbf.png?ssl=1"
         ]
@@ -166,8 +419,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 16537155,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16537155:-69.653560,43.812297",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -187,10 +443,15 @@
         "type": "multipolygon",
         "website": "https://bigeddy.chewonki.org/",
         "osm_id": 18435949,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18435949:-69.132242,45.878181",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     }
-  ]
+  ],
+  "duplicatesRemoved": 0,
+  "invalidRemoved": 0
 }

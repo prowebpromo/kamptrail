@@ -15,10 +15,15 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 6362828,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:6362828:-75.094707,38.503086",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     }
-  ]
+  ],
+  "duplicatesRemoved": 0,
+  "invalidRemoved": 0
 }

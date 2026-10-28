@@ -6,6 +6,312 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.0627778,
+          42.0727778
+        ]
+      },
+      "properties": {
+        "id": "ridb:249997",
+        "name": "WESTVILLE RECREATION AREA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "249997",
+        "description": "<h2>Overview</h2>\nWestville Lake is situated on the Quinebaug River in the towns of Southbridge and Sturbridge, Massachusetts. Westville offers a variety of hiking opportunities, group picnic shelters",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "MA-001"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.8494444,
+          42.3419444
+        ]
+      },
+      "properties": {
+        "id": "ridb:233519",
+        "name": "INDIAN HOLLOW",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "233519",
+        "description": "<h2>Overview</h2>\nWith abundant wildlife, lush scenery and waterfront views, Indian Hollow Group Campground, located at the Knightville Dam and Reservoir, offers groups and clubs a recreational oasis.",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "MA-002"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2163889,
+          42.6441194
+        ]
+      },
+      "properties": {
+        "id": "ridb:251564",
+        "name": "TULLY LAKE RECREATION AREA (MA)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "251564",
+        "description": "<h2>Overview</h2>\nThe U.S. Army Corps of Engineers invites you to come relax at Tully Lake.  There are a variety of outdoor recreation activities for you and you family.  Although the dam was built pr",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "tent",
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "gravel"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "MA-003"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.908591,
+          42.121893
+        ]
+      },
+      "properties": {
+        "id": "ridb:234411",
+        "name": "BUFFUMVILLE LAKE (GROUP SHELTERS)",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "234411",
+        "description": "<h2>Overview</h2>\nIn 1958 the U.S. Army Corps of Engineers built Buffumville Dam in Charlton, Massachusetts to provide flood risk management for downstream communities. Flood waters due to large amoun",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "MA-004"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.6033333,
+          42.1119444
+        ]
+      },
+      "properties": {
+        "id": "ridb:233291",
+        "name": "WEST HILL PARK",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "233291",
+        "description": "<h2>Overview</h2>\nOn a quiet back road and across an old fieldstone bridge lies West Hill Park, where the West River widens to form a large, natural pool. \n<br/><br/>\nThe park and its many services an",
+        "legacy_inferred": {
+          "cost": 20,
+          "amenities": [
+            "toilets",
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "MA-005"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.505148,
+          41.777929
+        ]
+      },
+      "properties": {
+        "id": "ridb:248072",
+        "name": "Scusset Beach State Reservation",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "MA",
+        "source": "recreation.gov",
+        "facility_id": "248072",
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=200&agencyCode=130\" rel=\"nofollow\">Cape Cod Canal</a>",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [],
+          "rig_friendly": [],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "MA-006"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -73.2549801,
           41.7854579
         ]
@@ -23,8 +329,11 @@
         "type": "multipolygon",
         "website": "http://www.hemlockhillcamp.com/",
         "osm_id": 4067819,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:4067819:-73.254980,41.785458",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -75,6 +384,8 @@
         "wikidata": "Q5026997",
         "wikipedia": "en:Becket-Chimney Corners YMCA",
         "osm_id": 6438448,
+        "source_ids": [],
+        "id": "osm:unknown:6438448:-73.077266,42.277040",
         "sources": [
           "MassGIS OpenSpace (http://www.mass.gov/mgis/osp.htm)"
         ]
@@ -124,8 +435,11 @@
         "wikidata": "Q5026997",
         "wikipedia": "en:Becket-Chimney Corners YMCA",
         "osm_id": 6439625,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:6439625:-73.082029,42.296689",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -153,8 +467,11 @@
         "type": "multipolygon",
         "wheelchair": "no",
         "osm_id": 10002997,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:10002997:-69.991974,41.883473",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -172,8 +489,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 11871002,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:11871002:-71.490503,41.419218",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -192,8 +512,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 12389301,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12389301:-72.356583,42.626498",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -219,8 +542,11 @@
         "wikidata": "Q7405939",
         "wikipedia": "en:Salt Rock State Campground",
         "osm_id": 12935052,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12935052:-72.092442,41.637761",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -245,8 +571,11 @@
         "type": "multipolygon",
         "website": "https://www.campwoodstock.org",
         "osm_id": 12953644,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12953644:-72.070599,41.968750",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -269,6 +598,8 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 13066360,
+        "source_ids": [],
+        "id": "osm:unknown:13066360:-72.392650,41.620061",
         "sources": [
           "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
         ]
@@ -300,8 +631,11 @@
         "wikidata": "Q7622464",
         "wikipedia": "en:Strawberry Park",
         "osm_id": 13145088,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:13145088:-71.953846,41.535264",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -326,8 +660,11 @@
         "type": "multipolygon",
         "website": "https://www.hiddenacrescamp.com/",
         "osm_id": 13145089,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:13145089:-72.018265,41.553514",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -354,6 +691,8 @@
         "type": "multipolygon",
         "wikidata": "Q31815119",
         "osm_id": 13235439,
+        "source_ids": [],
+        "id": "osm:unknown:13235439:-72.164154,41.476962",
         "sources": [
           "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
         ]
@@ -383,6 +722,8 @@
         "wikidata": "Q14715099",
         "wikipedia": "en:Quaddick State Park",
         "osm_id": 13333940,
+        "source_ids": [],
+        "id": "osm:unknown:13333940:-71.812115,41.954408",
         "sources": [
           "CT Department of Environmental Protection shapefile"
         ]
@@ -412,8 +753,11 @@
         "type": "multipolygon",
         "website": "http://www.ctyankee.org/camping/camps/sequassen",
         "osm_id": 14592734,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:14592734:-73.051361,41.874928",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -433,8 +777,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 16235239,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16235239:-70.010132,41.754796",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -456,8 +803,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 16543222,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16543222:-71.849096,41.469462",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -486,8 +836,11 @@
         "wikidata": "Q5880049",
         "wikipedia": "en:Hole in the Wall Gang Camp",
         "osm_id": 16691329,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16691329:-72.115950,41.882297",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -505,8 +858,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 17625136,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:17625136:-71.696631,41.374677",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -534,8 +890,11 @@
         "type": "multipolygon",
         "website": "https://campworkcoeman.org/",
         "osm_id": 18321899,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18321899:-73.046221,41.891923",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -558,6 +917,8 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 18364374,
+        "source_ids": [],
+        "id": "osm:unknown:18364374:-73.106399,42.026802",
         "sources": [
           "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
         ]
@@ -587,8 +948,11 @@
         "type": "multipolygon",
         "website": "bobriwka.com",
         "osm_id": 18365874,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18365874:-73.104740,42.041964",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -607,10 +971,15 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 19273321,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:19273321:-71.968363,42.771825",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     }
-  ]
+  ],
+  "duplicatesRemoved": 0,
+  "invalidRemoved": 0
 }

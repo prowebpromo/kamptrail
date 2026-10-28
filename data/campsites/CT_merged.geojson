@@ -6,6 +6,162 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -73.0666667,
+          41.5133333
+        ]
+      },
+      "properties": {
+        "id": "ridb:233330",
+        "name": "HOP BROOK LAKE RECREATION AREA",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "233330",
+        "description": "<h2>Overview</h2>\nHop Brook Lake Recreation Area is located within the towns of Middlebury, Naugatuck and Waterbury, Connecticut. Its 536 acres provide excellent recreation opportunities and a chance ",
+        "legacy_inferred": {
+          "cost": 15,
+          "amenities": [
+            "toilets",
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "CT-001"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.0916667,
+          41.6875
+        ]
+      },
+      "properties": {
+        "id": "ridb:234142",
+        "name": "NORTHFIELD BROOK LAKE GROUP SHELTERS",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "234142",
+        "description": "<h2>Overview</h2>\nNorthfield Brook Lake Group Shelters are located along a small scenic lake in the Naugatuck Valley of west-central Connecticut.\n<br/><br/>\nNaugatuck Valley boasts picturesque small t",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "water",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "CT-002"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.899092,
+          41.955623
+        ]
+      },
+      "properties": {
+        "id": "ridb:233476",
+        "name": "West Thompson Lake Campground",
+        "type": "established",
+        "cost": null,
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
+        "state": "CT",
+        "source": "recreation.gov",
+        "facility_id": "233476",
+        "description": "<h2>Overview</h2>\nWest Thompson Lake Campground is located near the wooded shoreline of its namesake lake in northeastern Connecticut. The natural setting surrounding West Thompson Lake can be enjoyed",
+        "legacy_inferred": {
+          "cost": 0,
+          "amenities": [
+            "toilets",
+            "water",
+            "showers",
+            "picnic_tables"
+          ],
+          "rig_friendly": [
+            "RV",
+            "trailer"
+          ],
+          "road_difficulty": "paved"
+        },
+        "fee_status": "unknown",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
+        "schema_version": 3,
+        "source_ids": [
+          "CT-003"
+        ],
+        "sources": [
+          "recreation.gov"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -73.2549801,
           41.7854579
         ]
@@ -23,8 +179,11 @@
         "type": "multipolygon",
         "website": "http://www.hemlockhillcamp.com/",
         "osm_id": 4067819,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:4067819:-73.254980,41.785458",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -50,8 +209,11 @@
         "wikidata": "Q7405939",
         "wikipedia": "en:Salt Rock State Campground",
         "osm_id": 12935052,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12935052:-72.092442,41.637761",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -76,8 +238,11 @@
         "type": "multipolygon",
         "website": "https://www.campwoodstock.org",
         "osm_id": 12953644,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:12953644:-72.070599,41.968750",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -100,6 +265,8 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 13066360,
+        "source_ids": [],
+        "id": "osm:unknown:13066360:-72.392650,41.620061",
         "sources": [
           "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
         ]
@@ -131,8 +298,11 @@
         "wikidata": "Q7622464",
         "wikipedia": "en:Strawberry Park",
         "osm_id": 13145088,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:13145088:-71.953846,41.535264",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -157,8 +327,11 @@
         "type": "multipolygon",
         "website": "https://www.hiddenacrescamp.com/",
         "osm_id": 13145089,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:13145089:-72.018265,41.553514",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -185,6 +358,8 @@
         "type": "multipolygon",
         "wikidata": "Q31815119",
         "osm_id": 13235439,
+        "source_ids": [],
+        "id": "osm:unknown:13235439:-72.164154,41.476962",
         "sources": [
           "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
         ]
@@ -214,6 +389,8 @@
         "wikidata": "Q14715099",
         "wikipedia": "en:Quaddick State Park",
         "osm_id": 13333940,
+        "source_ids": [],
+        "id": "osm:unknown:13333940:-71.812115,41.954408",
         "sources": [
           "CT Department of Environmental Protection shapefile"
         ]
@@ -243,8 +420,11 @@
         "type": "multipolygon",
         "website": "http://www.ctyankee.org/camping/camps/sequassen",
         "osm_id": 14592734,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:14592734:-73.051361,41.874928",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -266,8 +446,11 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 16543222,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16543222:-71.849096,41.469462",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -296,8 +479,11 @@
         "wikidata": "Q5880049",
         "wikipedia": "en:Hole in the Wall Gang Camp",
         "osm_id": 16691329,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:16691329:-72.115950,41.882297",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -325,8 +511,11 @@
         "type": "multipolygon",
         "website": "https://campworkcoeman.org/",
         "osm_id": 18321899,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18321899:-73.046221,41.891923",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     },
@@ -349,6 +538,8 @@
         "tourism": "camp_site",
         "type": "multipolygon",
         "osm_id": 18364374,
+        "source_ids": [],
+        "id": "osm:unknown:18364374:-73.106399,42.026802",
         "sources": [
           "University of Connecticut (http://magic.lib.uconn.edu/connecticut_data.html)"
         ]
@@ -378,10 +569,15 @@
         "type": "multipolygon",
         "website": "bobriwka.com",
         "osm_id": 18365874,
+        "source": "openstreetmap",
+        "source_ids": [],
+        "id": "osm:unknown:18365874:-73.104740,42.041964",
         "sources": [
-          "unknown"
+          "openstreetmap"
         ]
       }
     }
-  ]
+  ],
+  "duplicatesRemoved": 0,
+  "invalidRemoved": 0
 }
