@@ -57,3 +57,7 @@ Most free sites still have no documented RV length (2 of 1,305). The finder says
 The Overpass User-Agent fix worked: zero HTTP 406 errors. Water fill points are live (993), with 3,739 dump stations and 777 propane locations. All 13 must-haves are done. Parity 72.4.
 
 27 of 50 states refreshed OSM campsites. The other 23 got HTTP 502 (Overpass busy) on their single attempt. The campsite fetcher now retries with backoff and falls back to a public mirror.
+
+## Update: 2.4.1 performance, 2026-10-28
+
+The full OSM refresh grew the catalogue to about 58,700 source listings. The national view on 2.4.0 took 35.9 s and 670 MB of memory. 2.4.1 shows per-state totals below zoom 8 and loads listings only from zoom 8. National view: 0.4 s, 10 MB. Denver at zoom 8: 1.1 s, 18 MB on desktop. Splitting long text into detail files is not needed at these numbers.
