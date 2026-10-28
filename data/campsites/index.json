@@ -1,68 +1,208 @@
 {
-  "generated": "2026-10-25T07:57:16.679Z",
-  "total_sites": 2615,
+  "generated": "2026-10-28T18:10:50.021Z",
+  "total_sites": 17122,
   "states": [
     {
       "state": "AK",
-      "count": 219
+      "count": 221
+    },
+    {
+      "state": "AL",
+      "count": 23
+    },
+    {
+      "state": "AR",
+      "count": 2
     },
     {
       "state": "AZ",
-      "count": 139
+      "count": 149
     },
     {
       "state": "CA",
-      "count": 527
+      "count": 5024
     },
     {
       "state": "CO",
-      "count": 168
+      "count": 187
+    },
+    {
+      "state": "CT",
+      "count": 14
+    },
+    {
+      "state": "DE",
+      "count": 1
     },
     {
       "state": "FL",
-      "count": 27
-    },
-    {
-      "state": "GA",
-      "count": 76
-    },
-    {
-      "state": "IA",
-      "count": 33
-    },
-    {
-      "state": "ID",
-      "count": 308
-    },
-    {
-      "state": "IL",
-      "count": 28
-    },
-    {
-      "state": "MT",
-      "count": 310
-    },
-    {
-      "state": "NV",
       "count": 38
     },
     {
+      "state": "GA",
+      "count": 99
+    },
+    {
+      "state": "HI",
+      "count": 0
+    },
+    {
+      "state": "IA",
+      "count": 44
+    },
+    {
+      "state": "ID",
+      "count": 250
+    },
+    {
+      "state": "IL",
+      "count": 42
+    },
+    {
+      "state": "IN",
+      "count": 8
+    },
+    {
+      "state": "KS",
+      "count": 5
+    },
+    {
+      "state": "KY",
+      "count": 27
+    },
+    {
+      "state": "LA",
+      "count": 2
+    },
+    {
+      "state": "MA",
+      "count": 22
+    },
+    {
+      "state": "MD",
+      "count": 33
+    },
+    {
+      "state": "ME",
+      "count": 7
+    },
+    {
+      "state": "MI",
+      "count": 109
+    },
+    {
+      "state": "MN",
+      "count": 69
+    },
+    {
+      "state": "MO",
+      "count": 14
+    },
+    {
+      "state": "MS",
+      "count": 5
+    },
+    {
+      "state": "MT",
+      "count": 1305
+    },
+    {
+      "state": "NC",
+      "count": 66
+    },
+    {
+      "state": "ND",
+      "count": 2
+    },
+    {
+      "state": "NE",
+      "count": 6
+    },
+    {
+      "state": "NH",
+      "count": 12
+    },
+    {
+      "state": "NJ",
+      "count": 6
+    },
+    {
+      "state": "NM",
+      "count": 12
+    },
+    {
+      "state": "NV",
+      "count": 46
+    },
+    {
+      "state": "NY",
+      "count": 68
+    },
+    {
+      "state": "OH",
+      "count": 35
+    },
+    {
+      "state": "OK",
+      "count": 6
+    },
+    {
       "state": "OR",
-      "count": 249
+      "count": 2620
+    },
+    {
+      "state": "PA",
+      "count": 12
+    },
+    {
+      "state": "RI",
+      "count": 4
+    },
+    {
+      "state": "SC",
+      "count": 25
+    },
+    {
+      "state": "SD",
+      "count": 22
+    },
+    {
+      "state": "TN",
+      "count": 34
+    },
+    {
+      "state": "TX",
+      "count": 17
     },
     {
       "state": "UT",
-      "count": 237
+      "count": 2636
+    },
+    {
+      "state": "VA",
+      "count": 44
+    },
+    {
+      "state": "VT",
+      "count": 10
     },
     {
       "state": "WA",
-      "count": 145
+      "count": 2747
+    },
+    {
+      "state": "WI",
+      "count": 114
+    },
+    {
+      "state": "WV",
+      "count": 22
     },
     {
       "state": "WY",
-      "count": 111
+      "count": 856
     }
   ],
-  "source": "automated-fetch",
+  "source": "saved-merged-snapshots",
   "version": "3.0"
 }
