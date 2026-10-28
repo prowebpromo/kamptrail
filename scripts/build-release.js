@@ -23,6 +23,6 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
     await fs.writeFile(page,html);
   }
   // Prefer the app over a hosting provider's default landing page.
-  await fs.writeFile(path.join(out,'.htaccess'),'DirectoryIndex index.html\n');
+  await fs.writeFile(path.join(out,'.htaccess'),'DirectoryIndex index.html\n<IfModule mod_rewrite.c>\nRewriteEngine On\nRewriteRule (^|/)\\.(?!well-known/) - [F,L]\n</IfModule>\n');
   console.log(`MVP static release built: ${out}`);
 })().catch(error=>{console.error(error);process.exitCode=1;});
