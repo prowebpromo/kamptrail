@@ -1,0 +1,59 @@
+name: Publish Hostinger release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # Bot data commits do not trigger push workflows. Completion of every refresh
+  # entry point does, so refreshed data goes through the same validation gate.
+  workflow_run:
+    workflows:
+      - Refresh campsite data
+      - Refresh all states (manual)
+      - Refresh selected OSM states (manual)
+      - Refresh one state (manual)
+      - Refresh Florida OSM (manual)
+      - Refresh Recreation.gov (manual)
+      - Refresh Recreation.gov API (manual)
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kamptrail-hostinger-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: npm ci
+      - run: pip install -r requirements.txt pyyaml
+      - run: npm test
+      - run: npm run test:python
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: npm run build
+        env:
+          KAMPTRAIL_PUBLIC_URL: https://kamptrail.com/
+      - name: Publish tested static files with release history
+        run: node scripts/publish-hostinger.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kamptrail-hostinger
+          path: dist/kamptrail
+          include-hidden-files: true

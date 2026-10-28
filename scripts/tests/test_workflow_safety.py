@@ -1,5 +1,6 @@
 """Guard the single data-refresh owner and prevent shell-expression injection."""
 from pathlib import Path
+import ast
 import re
 import unittest
 
@@ -9,6 +10,26 @@ OWNER = WORKFLOWS / 'fetch-campsite-data.yml'
 
 
 class WorkflowSafetyTests(unittest.TestCase):
+    def test_weekly_refresh_covers_every_state(self):
+        tree = ast.parse((ROOT / 'scripts/fetch_recreation_gov_data.py').read_text())
+        states = next(ast.literal_eval(node.value) for node in tree.body
+                      if isinstance(node, ast.Assign) and any(
+                          isinstance(target, ast.Name) and target.id == 'US_STATES'
+                          for target in node.targets))
+        default = re.search(r"STATE_INPUT:.*?\|\| '([^']+)'", OWNER.read_text()).group(1).split()
+        self.assertEqual(len(default), 50)
+        self.assertEqual(set(default), set(states))
+
+    def test_release_covers_bot_refreshes_and_only_builds_main(self):
+        release = (WORKFLOWS / 'publish-hostinger.yml').read_text()
+        for file in WORKFLOWS.glob('fetch-*.yml'):
+            name = re.search(r'^name: (.+)$', file.read_text(), re.M).group(1)
+            self.assertIn(f'      - {name}\n', release)
+        self.assertIn("github.event.workflow_run.conclusion == 'success'", release)
+        self.assertIn('          ref: main\n', release)
+        self.assertIn('    branches: [main]', release)
+        self.assertNotIn('download-artifact', release)
+
     def test_exactly_one_data_schedule(self):
         scheduled = [file.name for file in WORKFLOWS.glob('fetch-*.yml')
                      if re.search(r'^  schedule:', file.read_text(), re.M)]
