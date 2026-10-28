@@ -51,3 +51,9 @@ Feature parity 67.3 to 71.0. Added RV length and hookup filters (Recreation.gov 
 The weekly OSM refresh had been failing with HTTP 406 because Overpass rejects the default Python client. The scripts now identify the app. Confirm on the next workflow run.
 
 Most free sites still have no documented RV length (2 of 1,305). The finder says how many listings an RV length filter hides and offers to include them, labeled.
+
+## Update: all-states refresh, 2026-10-28
+
+The Overpass User-Agent fix worked: zero HTTP 406 errors. Water fill points are live (993), with 3,739 dump stations and 777 propane locations. All 13 must-haves are done. Parity 72.4.
+
+27 of 50 states refreshed OSM campsites. The other 23 got HTTP 502 (Overpass busy) on their single attempt. The campsite fetcher now retries with backoff and falls back to a public mirror.

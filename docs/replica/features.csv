@@ -34,7 +34,7 @@ Place detail: elevation,place,could,yes,yes,From NWS gridpoint
 Place detail: nearby dump water propane,place,should,yes,partial,"Nearest dump and propane, straight-line"
 Place detail: photos,place,could,yes,no,Needs UGC backend
 Place detail: seasonal sub-scores,place,could,yes,no,Needs reviews
-Dump water propane facility layer,amenities,must,yes,partial,"Dump 3,494 and propane 702 live. OSM water fill points wired into the weekly refresh; 0 until it runs"
+Dump water propane facility layer,amenities,must,yes,yes,"OSM: 3,739 dump, 993 water fill, 777 propane (refresh 2026-10-28)"
 Laundry showers groceries gas facilities,amenities,could,yes,no,Not in current POI data
 Overnight parking places (Walmart truck stops rest areas),amenities,should,yes,partial,Type filter exists; few records
 Low clearance hazards,amenities,could,yes,no,Needs clearance dataset
