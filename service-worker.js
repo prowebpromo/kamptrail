@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and no tile interception.
-const VERSION = 'kt-v20-mvp';
+const VERSION = 'kt-v21-mvp';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
 const DATA_CACHE = `${PREFIX}data-v1`;

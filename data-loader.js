@@ -191,7 +191,7 @@
     return api.getLoadStatus();
   }
   const api=window.KampTrailData={
-    version:'2.2.0',
+    version:'2.2.1',
     async init(map,config={}){
       state.map=map;state.config=config;
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});

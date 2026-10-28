@@ -1,6 +1,6 @@
 {
   "name": "kamptrail",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "KampTrail MVP: find campsites, filter reported fees, save stops and open directions",
   "scripts": {
     "fetch-data": "bash scripts/fetch_all_campsite_data.sh",

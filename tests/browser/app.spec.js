@@ -102,5 +102,24 @@ test('location permission denial recovers, and coordinates remain a complete alt
 test('GitHub Pages subpath resolves core scripts and national search catalogue',async({page})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await ready(page,'/kamptrail/');
   await page.locator('#destination').fill('Albany, NY');await page.locator('#search-form button').click();await expect(page.locator('#search-results')).toContainText('Albany, NY');
-  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.2.0');expect(errors).toEqual([]);
+  expect(await page.locator('meta[name="kamptrail-version"]').getAttribute('content')).toBe('2.2.1');expect(errors).toEqual([]);
+});
+
+test('data information uses the real catalogue and supports keyboard dismissal on mobile',async({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await ready(page);
+  await expect(page.locator('.app-intro')).toContainText('Find campsites, filter reported fees, and save stops.');
+  const count=await page.evaluate(async()=>(await (await fetch('data/campsites/search-index.json')).json()).sites.length);
+  await page.locator('#about-data').click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.locator('#catalogue-summary')).toContainText(count.toLocaleString('en-US'));
+  await expect(page.getByRole('dialog')).toContainText('Snapshot dates are not recorded consistently');
+  await expect(page.getByRole('dialog')).toContainText('it does not mean free');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.locator('#about-data')).toBeFocused();
+  await page.locator('#about-data').click();
+  await page.getByRole('button',{name:'Close data information'}).click();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
 });

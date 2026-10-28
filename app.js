@@ -42,11 +42,17 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if ([window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters].some(module=>module?.version!=='2.2.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.2.1' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters].some(module=>module?.version!=='2.2.1')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
   }
+  const dataDialog = document.getElementById('data-dialog');
+  document.getElementById('about-data').addEventListener('click', () => dataDialog.showModal());
+  dataDialog.addEventListener('click', event => { if (event.target === dataDialog) {
+    const box=dataDialog.getBoundingClientRect();
+    if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dataDialog.close();
+  }});
   if (!window.L || !L.markerClusterGroup) {
     showToast('Map files could not load. Reload the page when connected.', 'error', 0);
     document.getElementById('result-summary').textContent = 'The map could not start.';
@@ -171,7 +177,9 @@
   // No keystrokes or location searches are sent to an external geocoder.
   let places = [], campsiteIndex = [];
   const placeLoad = fetch('data/places-us.json').then(r => {if (!r.ok) throw new Error('Place index unavailable');return r.json();}).then(d => {places = d.places || [];}).catch(() => {});
-  const siteIndexLoad = fetch('data/campsites/search-index.json').then(r=>{if(!r.ok)throw new Error('Campsite search index unavailable');return r.json();}).then(data=>{campsiteIndex=data.sites || [];}).catch(()=>{});
+  const siteIndexLoad = fetch('data/campsites/search-index.json').then(r=>{if(!r.ok)throw new Error('Campsite search index unavailable');return r.json();}).then(data=>{campsiteIndex=data.sites || [];
+    const states = new Set(campsiteIndex.flatMap(site=>site.states));
+    document.getElementById('catalogue-summary').textContent = `${campsiteIndex.length.toLocaleString('en-US')} source-supported campsite listings across ${states.size} states in the current catalogue. Coverage is incomplete.`;}).catch(()=>{document.getElementById('catalogue-summary').textContent='Catalogue count is unavailable. Source coverage is incomplete.';});
   const normalize = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   const searchResults = document.getElementById('search-results');
   function addChoice(label, action) {

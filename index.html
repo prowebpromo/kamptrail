@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.2.0">
+  <meta name="kamptrail-version" content="2.2.1">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
@@ -33,13 +33,14 @@
 <body>
   <div id="app">
     <header>
-      <div class="brand"><h1>KampTrail</h1><span>Find your next stop.</span></div>
+      <div class="brand"><h1>KampTrail</h1><span>Free to use. No account required.</span></div>
       <nav class="actions" aria-label="Map tools">
         <button id="filters" class="btn" aria-label="Open filters" aria-expanded="false">Filters <span id="filter-badge" style="display:none"></span></button>
         <button id="trip" class="btn" aria-label="Open saved stops">Saved stops <span id="trip-count">(0)</span></button>
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">Near me</button>
       </nav>
     </header>
+    <div class="app-intro"><p>Find campsites, filter reported fees, and save stops.</p><button id="about-data" aria-haspopup="dialog">About the data</button></div>
     <section class="search-bar" aria-label="Find a destination">
       <form id="search-form" role="search">
         <label class="sr-only" for="destination">City, campsite, or coordinates</label>
@@ -62,9 +63,22 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.2.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.2.1</a></span>
     </footer>
   </div>
+  <dialog id="data-dialog" aria-labelledby="data-title">
+    <div class="data-dialog-heading"><h2 id="data-title">About the data</h2><form method="dialog"><button class="btn" aria-label="Close data information">Close</button></form></div>
+    <p id="catalogue-summary" role="status">Loading catalogue information…</p>
+    <h3>Sources and dates</h3>
+    <p>Campsite records come from Recreation.gov and OpenStreetMap contributors. City search uses GeoNames. Each listing links to its source when available.</p>
+    <p><strong>Snapshot dates are not recorded consistently in the imported files.</strong> The app’s update date does not mean a campsite was recently checked. Listings have not been field verified.</p>
+    <h3>Coverage and fees</h3>
+    <p>Coverage varies by state and is incomplete. A missing campsite does not mean camping is prohibited. A public land location does not establish permission to camp.</p>
+    <p>“Reported free” requires source evidence. “Fee unknown” means no reliable fee was supplied; it does not mean free. Confirm fees, access, seasonal closures, and reservations with the operator.</p>
+    <h3>Saved stops and offline use</h3>
+    <p>Saved stops stay in this browser on this device. After an online visit, previously loaded listings may be available offline. Map imagery and directions need internet. Clearing browser data removes saved stops.</p>
+    <p>Embedded and full-page versions may keep separate saved stops, depending on your browser. No account is required. Map tiles are requested from OpenStreetMap.</p>
+  </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden>Loading…</div>
   <noscript>KampTrail needs JavaScript to display its interactive map.</noscript>
