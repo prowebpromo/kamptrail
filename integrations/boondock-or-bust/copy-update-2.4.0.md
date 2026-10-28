@@ -1,6 +1,6 @@
-# Boondock or Bust copy updates for KampTrail 2.4.0
+# Boondock or Bust copy updates for KampTrail 2.4.1
 
-Publish these after the 2.4.0 pull request is merged and the live app shows v2.4.0 in its footer. Several current BoB sentences now understate KampTrail, and two are false after 2.3.0 (GPX tools and public-land overlays). Catalogue counts stay out of the copy. The app's About the data panel shows them.
+These updates target the live 2.4.1 app at https://kamptrail.com/. The full-page link and iframe in `kamptrail-page.html` use the custom domain. Keep internal Boondock or Bust links pointed at the map resource page. Several current BoB sentences now understate KampTrail, and two are false after 2.3.0 (GPX tools and public-land overlays). Catalogue counts stay out of the copy. The app's About the data panel shows them.
 
 The RV Park & Campground Finder (/resources/rv-park-campground-finder/) is a separate WordPress tool. It does not embed KampTrail and needs no change for this release.
 
@@ -74,5 +74,6 @@ Replace the KampTrail sentence with:
 
 1. Each edited page shows no em dashes or semicolons in the new copy.
 2. "GPX tools" and "public-land overlays" no longer appear as missing features anywhere on BoB.
-3. The embed on page 73633 loads v2.4.0, and Filters shows "Free with conditions."
+3. The embed on page 73633 loads v2.4.1, and Filters shows "Free with conditions."
 4. Purge LiteSpeed cache for each edited URL, then recheck the live pages.
+5. Existing GitHub Pages saved stops and offline maps belong to that origin. Keep the old app accessible. Export/import stops and save maps again before relying on the new origin offline.
