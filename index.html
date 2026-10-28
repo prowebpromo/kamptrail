@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.4.1">
+  <meta name="kamptrail-version" content="2.4.2">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
@@ -62,30 +62,32 @@
       <div id="map" role="region" aria-label="Campsite map" tabindex="0"></div>
     </main>
     <footer>
-      <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.4.1</a></span>
+      <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.4.2</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
     <div class="data-dialog-heading"><h2 id="data-title">About the data</h2><form method="dialog"><button class="btn" aria-label="Close data information">Close</button></form></div>
     <p id="catalogue-summary" role="status">Loading catalogue information…</p>
     <h3>Sources and dates</h3>
-    <p>Campsite records come from Recreation.gov and OpenStreetMap contributors. City search uses GeoNames. Each listing links to its source when available.</p>
+    <p>Campsite records come from Recreation.gov, the US Forest Service, the Bureau of Land Management, and OpenStreetMap contributors. City search uses GeoNames. Each listing links to its source when available. Forest Service and BLM listings show the date their fee wording was imported.</p>
     <p><strong>Snapshot dates are not recorded consistently in the imported files.</strong> The app’s update date does not mean a campsite was recently checked. Listings have not been field verified.</p>
     <h3>Coverage and fees</h3>
     <p>Coverage varies by state and is incomplete. A missing campsite does not mean camping is prohibited. A public land location does not establish permission to camp.</p>
-    <p>“Reported free” requires source evidence. “Fee unknown” means no reliable fee was supplied; it does not mean free. Confirm fees, access, seasonal closures, and reservations with the operator.</p>
+    <p>“Reported free” means the source says camping has no fee. Free water, showers, parking, or day use do not count. “Free with conditions” means camping is free only in some seasons, for some sites, or with a pass or permit. “Fee unknown” means no reliable camping fee was supplied. It does not mean free. Being reservable on Recreation.gov, or a note to check Recreation.gov, is not treated as fee evidence. Confirm fees, access, seasonal closures, and reservations with the operator.</p>
     <h3>Public land, weather, and services</h3>
     <p>The public land layer and land manager lookup use the BLM Surface Management Agency map. Boundaries can be approximate and do not grant permission to camp. Posted signs and local orders take priority.</p>
     <p>Forecasts and elevation come from the National Weather Service and cover US locations only. Topo and satellite basemaps come from the USGS National Map.</p>
-    <p>Dump stations and propane come from OpenStreetMap contributors. Hours, fees, and whether a location is open are not verified.</p>
-    <p>RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means at least one site reports it. Drive times use the free FOSSGIS OSRM car router and are not checked for RV height, weight, or length.</p>
+    <p>Dump stations, water fill points, and propane come from OpenStreetMap contributors. Hours, fees, water potability, and whether a location is open are not verified.</p>
+    <p>RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means one campsite reports your length and every hookup you chose. Different sites in the same campground are never combined. Drive times use the free FOSSGIS OSRM car router and are not checked for RV height, weight, or length.</p>
     <p>Offline maps save USGS Topo tiles for an area you choose. The standard map is not saved, because OpenStreetMap's tile policy does not allow bulk downloads.</p>
     <h3>Corrections</h3>
     <p>Use “Suggest a fix” on any campsite, or long-press the map and choose “Suggest a campsite here.” Both open a form on GitHub (free account needed). Reports are reviewed before the data changes.</p>
     <h3>Saved stops and offline use</h3>
-    <p>Saved stops, notes, and dates stay in this browser on this device. Export a GPX file to back them up or move them to another device. After an online visit, previously loaded listings may be available offline. Map imagery and directions need internet. Clearing browser data removes saved stops.</p>
-    <p>Embedded and full-page versions may keep separate saved stops, depending on your browser. No account is required. Map tiles are requested from OpenStreetMap.</p>
+    <p>Saved stops, notes, and dates stay in this browser on this device. Export a GPX file to back them up or move them to another device. After an online visit, listings for areas you viewed stay available offline. Map imagery needs internet, except Topo areas you saved with Offline. Campsite name search works offline after one online search. Directions, forecasts, and land lookups need internet. Clearing browser data removes saved stops and saved maps.</p>
+    <p>Embedded and full-page versions may keep separate saved stops, depending on your browser. No account is required. Standard map tiles are requested from OpenStreetMap. Topo and satellite tiles come from the USGS.</p>
+    <h3>Moved from the old address</h3>
+    <p>KampTrail moved to kamptrail.com. Saved stops and offline maps belong to the address where you saved them. On the old address, open Saved stops and choose Export GPX. Here, choose Import GPX. Save offline map areas again on this address before you travel.</p>
   </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden>Loading…</div>

@@ -168,21 +168,31 @@
     p.site_count = int(rec.t);
     p.rv_sites = int(rec.r);
     p.rv_max_length = int(rec.L) > 0 ? int(rec.L) : null;
-    p.rv_lengths = rec.h && typeof rec.h === 'object' ? Object.fromEntries(Object.entries(rec.h).filter(([k, v]) => /^\d{1,3}$/.test(k) && int(v) > 0).map(([k, v]) => [k, int(v)])) : {};
+    // One signature = one kind of RV-capable campsite: [length_ft, hookup bits (electric 1, water 2, sewer 4), site count].
+    p.rv_sigs = Array.isArray(rec.g) ? rec.g.filter(g => Array.isArray(g) && g.length === 3 && g.every(v => Number.isInteger(v) && v >= 0) && g[1] < 8 && g[2] > 0).map(g => [...g]) : [];
     p.hookups = {electric: int(rec.e), water: int(rec.w), sewer: int(rec.s)};
-    // Recreation.gov fee text or reservability fills an unknown fee. It never overrides a known or conflicting fee.
-    if (p.fee_status === 'unknown' && !p.fee_conflict && (rec.f === 'free' || rec.f === 'paid')) {
+    if (rec.rs === 1) p.reservable = true;
+    // Recreation.gov fee wording fills an unknown fee. It never overrides a known or conflicting fee. Reservability is not fee evidence.
+    if (p.fee_status === 'unknown' && !p.fee_conflict && (rec.f === 'free' || rec.f === 'paid' || rec.f === 'conditional')) {
       p.fee_status = rec.f;
       p.cost = rec.f === 'free' ? 0 : (validNumber(rec.c) && rec.c > 0 ? rec.c : null);
-      p.fee_evidence = rec.fe === 'reservable' ? 'Reservable on Recreation.gov' : 'Recreation.gov fee description';
+      p.fee_evidence = 'Recreation.gov fee description';
     }
     if (typeof rec.sl === 'string' && rec.sl.trim()) p.stay_limit = rec.sl.trim().slice(0, 160);
     return feature;
   }
-  function sitesFitting(p, length) {
-    if (!p || !p.rv_lengths || !(length > 0)) return 0;
-    return Object.entries(p.rv_lengths).reduce((n, [k, v]) => n + (+k >= length ? v : 0), 0);
+  const HOOKUP_BITS = {electric: 1, water: 2, sewer: 4};
+  const hookupMask = hookups => (Array.isArray(hookups) ? hookups : []).reduce((m, h) => m | (HOOKUP_BITS[h] || 0), 0);
+  // Count campsites where length and every selected hookup are reported on the same site.
+  function matchingSites(p, length = 0, hookups = [], includeUnknownLength = false) {
+    if (!p || !Array.isArray(p.rv_sigs)) return 0;
+    const mask = hookupMask(hookups);
+    return p.rv_sigs.reduce((n, [len, bits, count]) => {
+      const fits = !(length > 0) || len >= length || (len === 0 && includeUnknownLength);
+      return n + (fits && (bits & mask) === mask ? count : 0);
+    }, 0);
   }
+  function sitesFitting(p, length, hookups = []) { return matchingSites(p, length, hookups, false); }
   function applyFilters(sites, filters = {}) {
     return sites.filter(site => {
       const p=site.properties;
@@ -193,11 +203,15 @@
       if (Array.isArray(filters.amenities) && !filters.amenities.every(a => p.amenities.includes(a))) return false;
       if (+filters.minRating > 0 && (p.rating === null || p.rating < +filters.minRating)) return false;
       // Rig length: a campground matches only if at least one site reports an RV-type length that fits.
-      if (+filters.rigLength > 0 && !(Number.isFinite(p.rv_max_length) ? p.rv_max_length >= +filters.rigLength : !!filters.rigIncludeUnknown)) return false;
-      if (Array.isArray(filters.hookups) && filters.hookups.length && !filters.hookups.every(h => (p.hookups || {})[h] > 0)) return false;
+      // Rig length and hookups must be satisfied by the same campsite, never by different sites in one campground.
+      const rig = +filters.rigLength > 0 ? +filters.rigLength : 0, hooks = Array.isArray(filters.hookups) ? filters.hookups : [];
+      if (rig || hooks.length) {
+        if (p.rv_sigs && p.rv_sigs.length) { if (!matchingSites(p, rig, hooks, !!filters.rigIncludeUnknown)) return false; }
+        else if (hooks.length || !filters.rigIncludeUnknown) return false;
+      }
       return true;
     });
   }
-  global.DataQuality={version:'2.4.1',attachSiteDetails,sitesFitting,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={version:'2.4.2',attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);
