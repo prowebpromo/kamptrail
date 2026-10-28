@@ -122,7 +122,7 @@
     if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
   }
   async function loadAgencyIndex() {
-    try{const data=await fetchJSON('data/campsites/agency/index.json');if(Array.isArray(data?.states))state.agencyStates=new Set(data.states);}
+    try{const data=await fetchJSON('data/campsites/agency/index.json');if(Array.isArray(data?.states)){state.agencyStates=new Set(data.states);state.agencyCounts=data.counts&&typeof data.counts==='object'?data.counts:{};}}
     catch(err){console.warn('Agency campsite index unavailable; Recreation.gov and OSM listings still load.',err.message);}
   }
   async function loadSiteDetails() {
@@ -232,16 +232,56 @@
     updateMarkers();
     return api.getLoadStatus();
   }
+  // ---- Zoom-gated loading: below DETAIL_ZOOM show per-state totals and download nothing. ----
+  const DETAIL_ZOOM=8;
+  const detailVisible=()=>!!state.map&&state.map.getZoom()>=DETAIL_ZOOM;
+  const short=n=>n>=1000?`${(n/1000).toFixed(n>=10000?0:1).replace(/\.0$/,'')}k`:String(n);
+  function stateTotals() {
+    const totals={};
+    for(const s of state.index?.states||[])if(STATE_BOUNDS[s.state]&&Number.isFinite(s.count))totals[s.state]=(totals[s.state]||0)+s.count;
+    for(const [code,n] of Object.entries(state.agencyCounts||{}))if(STATE_BOUNDS[code]&&Number.isFinite(n))totals[code]=(totals[code]||0)+n;
+    return totals;
+  }
+  function buildOverview() {
+    const group=L.layerGroup();
+    for(const [code,n] of Object.entries(stateTotals())){
+      if(!n)continue;const b=STATE_BOUNDS[code];
+      const size=n>=5000?46:n>=1000?40:34;
+      const icon=L.divIcon({className:'kt-state-bubble',html:`<span style="width:${size}px;height:${size}px">${short(n)}</span>`,iconSize:[size,size],iconAnchor:[size/2,size/2]});
+      const m=L.marker([(b.s+b.n)/2,(b.w+b.e)/2],{icon,title:`${code}: about ${n.toLocaleString('en-US')} source listings. Select to zoom in.`,keyboard:true});
+      m.on('click',()=>{state.map.fitBounds([[b.s,b.w],[b.n,b.e]],{maxZoom:9});if(state.map.getZoom()<DETAIL_ZOOM)state.map.setView([(b.s+b.n)/2,(b.w+b.e)/2],DETAIL_ZOOM);});
+      group.addLayer(m);
+    }
+    return group;
+  }
+  function syncMode() {
+    if(!state.map||!state.clusterGroup)return;
+    const detail=detailVisible();
+    if(detail){
+      if(state.overview&&state.map.hasLayer(state.overview))state.map.removeLayer(state.overview);
+      if(!state.map.hasLayer(state.clusterGroup))state.map.addLayer(state.clusterGroup);
+    } else {
+      if(state.map.hasLayer(state.clusterGroup))state.map.removeLayer(state.clusterGroup);
+      if(!state.overview)state.overview=buildOverview();
+      if(!state.map.hasLayer(state.overview))state.map.addLayer(state.overview);
+    }
+  }
+  function onView() {
+    syncMode();
+    if(detailVisible())return loadBatch(getVisibleStates(),false);
+    notify();return Promise.resolve(api.getLoadStatus());
+  }
   const api=window.KampTrailData={
-    version:'2.4.0',
+    version:'2.4.1',
+    DETAIL_ZOOM,
     async init(map,config={}){
       state.map=map;state.config=config;
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});
-      map.addLayer(state.clusterGroup);
       let timer;
-      map.on('moveend',()=>{clearTimeout(timer);timer=setTimeout(()=>loadBatch(getVisibleStates(),false),250);});
+      map.on('moveend',()=>{syncMode();clearTimeout(timer);timer=setTimeout(onView,250);});
       await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex()]);
-      await loadBatch(getVisibleStates(),false);
+      state.overview=null;
+      await onView();
     },
     getDefaultFilters:defaults,
     getCurrentFilters:()=>window.kamptrailFilters || defaults(),
@@ -252,19 +292,21 @@
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,
     getVisibleCampsites(){
+      if(state.map&&!detailVisible())return [];
       const list=DataQuality.applyFilters(state.allCampsites,api.getCurrentFilters());
       if(!state.map)return list;
       const b=state.map.getBounds();return list.filter(f=>{const [lon,lat]=f.geometry.coordinates;return b.contains([lat,lon])||b.contains([lat,lon+360])||b.contains([lat,lon-360]);});
     },
-    getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0}),
+    getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0,overview:!detailVisible(),catalogueTotal:Object.values(stateTotals()).reduce((a,b)=>a+b,0)}),
     loadStates:codes=>loadBatch(codes,true),
-    refresh:()=>loadBatch(getVisibleStates(),true),
+    refresh:()=>detailVisible()?loadBatch(getVisibleStates(),true):Promise.resolve(api.getLoadStatus()),
+    getStateTotals:stateTotals,
     focusCampsite(id){
       const site=api.getCampsiteById(id);if(!site)return false;
       let marker=state.markers.get(site.properties.id);
       if(!marker && typeof window.KampTrailFilters?.reset==='function') {window.KampTrailFilters.reset();marker=state.markers.get(site.properties.id);}
       if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
-      const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14);
+      const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14);syncMode();
       // Chunked cluster loading can lag behind a focus request, so wait until the marker is placed.
       let tries=0;
       const attempt=()=>{

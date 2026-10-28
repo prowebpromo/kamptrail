@@ -15,7 +15,8 @@ async function mockRemote(context,calls=[]) {
   });
 }
 async function ready(page,url='/') {
-  await page.goto(url,{waitUntil:'domcontentloaded'});
+  await page.addInitScript(()=>{if(!localStorage.getItem('kt_last_position'))localStorage.setItem('kt_last_position',JSON.stringify({lat:42.65,lng:-73.75,zoom:8}));});
+    await page.goto(url,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
 }
 
@@ -203,7 +204,7 @@ test('offline maps save USGS Topo tiles for the view and refuse oversized areas'
 
 test('agency fee evidence powers Free, keeps conditional separate, and explains RV-length exclusions',async({page,context})=>{
   await mockRemote(context);
-  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:44.3,lng:-115.5,zoom:7})));
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:44.3,lng:-115.5,zoom:8})));
   await ready(page);
   const counts=await page.evaluate(()=>{const a=KampTrailData.getAllCampsites();return {free:a.filter(s=>s.properties.fee_status==='free'&&s.properties.fee_text).length,cond:a.filter(s=>s.properties.fee_status==='conditional').length};});
   expect(counts.free).toBeGreaterThan(5);

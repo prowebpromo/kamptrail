@@ -42,13 +42,13 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.4.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline].some(module=>module?.version!=='2.4.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.4.1' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline].some(module=>module?.version!=='2.4.1')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
   }
   const dataDialog = document.getElementById('data-dialog');
-  document.getElementById('about-data').addEventListener('click', () => dataDialog.showModal());
+  document.getElementById('about-data').addEventListener('click', () => {updateCatalogueSummary();dataDialog.showModal();});
   dataDialog.addEventListener('click', event => { if (event.target === dataDialog) {
     const box=dataDialog.getBoundingClientRect();
     if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dataDialog.close();
@@ -123,6 +123,8 @@
     const b = KampTrailData.getStateBounds()[code];
     if (!b) return;
     map.fitBounds([[b.s,b.w],[b.n,b.e]], {padding:[16,16],maxZoom:8});
+    // Listings show from the detail zoom. Large states open at their center instead of a view that only shows totals.
+    if (map.getZoom() < KampTrailData.DETAIL_ZOOM) map.setView([(b.s+b.n)/2,(b.w+b.e)/2], KampTrailData.DETAIL_ZOOM);
     KampTrailData.loadStates([code]).catch(() => showToast('Some listings could not load. Use Retry in the campsite list.', 'error'));
     stateSelect.value = code;
     document.getElementById('search-results').hidden = true;
@@ -133,6 +135,14 @@
     const status = KampTrailData.getLoadStatus();
     const sites = KampTrailData.getVisibleCampsites();
     const summary = document.getElementById('result-summary');
+    if (status.overview) {
+      summary.textContent = `Zoomed out · about ${status.catalogueTotal.toLocaleString('en-US')} source listings nationwide`;
+      const note = document.createElement('p'); note.className = 'list-empty';
+      note.textContent = 'Zoom in, search, or select a state bubble to see campsites. Listings load for the area you view, which keeps the map fast on a weak signal.';
+      document.getElementById('data-errors').hidden = true;
+      document.getElementById('result-list').replaceChildren(note);
+      return;
+    }
     summary.textContent = `${sites.length.toLocaleString()} in this view · ${status.totalSites.toLocaleString()} loaded${status.loading ? ' · Loading…' : ''}`;
     const errors = document.getElementById('data-errors');
     errors.replaceChildren(); errors.hidden = !status.failedStates.length;
@@ -198,9 +208,17 @@
   // No keystrokes or location searches are sent to an external geocoder.
   let places = [], campsiteIndex = [];
   const placeLoad = fetch('data/places-us.json').then(r => {if (!r.ok) throw new Error('Place index unavailable');return r.json();}).then(d => {places = d.places || [];}).catch(() => {});
-  const siteIndexLoad = fetch('data/campsites/search-index.json').then(r=>{if(!r.ok)throw new Error('Campsite search index unavailable');return r.json();}).then(data=>{campsiteIndex=data.sites || [];
-    const states = new Set(campsiteIndex.flatMap(site=>site.states));
-    document.getElementById('catalogue-summary').textContent = `${campsiteIndex.length.toLocaleString('en-US')} source-supported campsite listings across ${states.size} states in the current catalogue. Coverage is incomplete.`;}).catch(()=>{document.getElementById('catalogue-summary').textContent='Catalogue count is unavailable. Source coverage is incomplete.';});
+  // The national name index is large, so it loads on first search or shared link, not on page load.
+  let siteIndexPromise = null;
+  const ensureSiteIndex = () => siteIndexPromise || (siteIndexPromise = fetch('data/campsites/search-index.json')
+    .then(r => {if (!r.ok) throw new Error('Campsite search index unavailable');return r.json();})
+    .then(data => {campsiteIndex = data.sites || [];})
+    .catch(() => {siteIndexPromise = null;}));
+  function updateCatalogueSummary() {
+    const totals = KampTrailData.getStateTotals ? KampTrailData.getStateTotals() : {};
+    const n = Object.values(totals).reduce((a,b) => a + b, 0), states = Object.keys(totals).filter(k => totals[k] > 0).length;
+    document.getElementById('catalogue-summary').textContent = n ? `About ${n.toLocaleString('en-US')} source listings across ${states} states in the current catalogue, before duplicates are merged. Coverage is incomplete.` : 'Catalogue count is unavailable. Source coverage is incomplete.';
+  }
   const normalize = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   const searchResults = document.getElementById('search-results');
   function addChoice(label, action) {
@@ -221,7 +239,7 @@
       map.setView([lat,lng],11); searchResults.hidden = true; return;
     }
     searching = true;
-    await Promise.all([placeLoad,siteIndexLoad]);
+    await Promise.all([placeLoad,ensureSiteIndex()]);
     searching = false;
     const key = normalize(query);
     searchResults.replaceChildren();
@@ -262,7 +280,7 @@
     const target = KampTrailShare.parse();
     if (!target) return;
     if (target.spot) { map.setView(target.spot, 13); KampTrailLayers.openSpot(L.latLng(target.spot[0], target.spot[1])); return; }
-    await siteIndexLoad;
+    await ensureSiteIndex();
     const entry = campsiteIndex.find(s => s.id === target.site);
     if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
     if (!KampTrailData.focusCampsite(target.site)) showToast('That shared campsite could not be found. It may have been removed from the catalogue.', 'error');

@@ -323,7 +323,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.4.0',
+    version:'2.4.1',
     init(map) {
       if(st.el)return;
       st.map=map;load();st.el=drawer();render();drawRoute();
