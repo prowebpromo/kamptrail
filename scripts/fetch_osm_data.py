@@ -2,6 +2,8 @@
 import requests
 
 # Overpass rejects anonymous default clients with HTTP 406. Identify the app.
+OVERPASS_ENDPOINTS = ['https://overpass-api.de/api/interpreter', 'https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter', 'https://overpass-api.de/api/interpreter']
+RETRY_WAITS = [15, 30, 45]
 OVERPASS_HEADERS = {'User-Agent': 'KampTrail data refresh (+https://github.com/prowebpromo/kamptrail)', 'Accept': 'application/json'}
 import json
 import os
@@ -37,7 +39,7 @@ def fetch_osm_data(state_code):
 
     bbox = STATE_BOUNDS[state_code.upper()]
     query = f"""
-        [out:json][timeout:60];
+        [out:json][timeout:150];
         (
           node["tourism"~"camp_site|caravan_site"]({bbox});
           way["tourism"~"camp_site|caravan_site"]({bbox});
@@ -46,18 +48,25 @@ def fetch_osm_data(state_code):
         out center;
     """
 
-    url = "https://overpass-api.de/api/interpreter"
     print(f"Fetching data for {state_code.upper()}...")
-    try:
-        response = requests.post(url, data={'data': query}, headers=OVERPASS_HEADERS, timeout=120)
-        response.raise_for_status()
-        data = response.json()
-        if data.get('remark') or not isinstance(data.get('elements'), list):
-            raise ValueError('Incomplete or invalid Overpass response')
-        return data
-    except (requests.exceptions.RequestException, ValueError) as e:
-        print(f"Error fetching data for {state_code.upper()}: {e}")
-        raise RuntimeError(f"OSM fetch failed for {state_code.upper()}") from e
+    last_error = None
+    # Overpass returns 502/504/429 when busy. Back off, then try a public mirror.
+    for attempt, url in enumerate(OVERPASS_ENDPOINTS):
+        if attempt:
+            wait = RETRY_WAITS[min(attempt - 1, len(RETRY_WAITS) - 1)]
+            print(f"  Retrying {state_code.upper()} in {wait}s via {url}")
+            time.sleep(wait)
+        try:
+            response = requests.post(url, data={'data': query}, headers=OVERPASS_HEADERS, timeout=180)
+            response.raise_for_status()
+            data = response.json()
+            if data.get('remark') or not isinstance(data.get('elements'), list):
+                raise ValueError('Incomplete or invalid Overpass response')
+            return data
+        except (requests.exceptions.RequestException, ValueError) as e:
+            last_error = e
+            print(f"Error fetching data for {state_code.upper()}: {e}")
+    raise RuntimeError(f"OSM fetch failed for {state_code.upper()}") from last_error
 
 def osm_to_geojson(osm_data):
     """Converts OSM JSON data to GeoJSON format."""

@@ -1,14 +1,12 @@
-## Parity: 71.0 / 100
+## Parity: 72.4 / 100
 
-features 71.0  (59 counted, must-haves 12 of 13 done)
-
-Not shippable yet: 1 must-have features are not done.
+features 72.4  (59 counted, must-haves 13 of 13 done)
 
 ## By area, weakest first
 - other                         25.0  (2 features)
-- amenities                     35.7  (4 features)
 - ugc                           44.4  (6 features)
 - layers                        54.5  (7 features)
+- amenities                     57.1  (4 features)
 - filters                       62.5  (10 features)
 - trips                         70.6  (9 features)
 - place                         80.0  (10 features)
@@ -16,7 +14,6 @@ Not shippable yet: 1 must-have features are not done.
 - offline                      100.0  (3 features)
 
 ## Missing, in build order
-- [must] amenities: Dump water propane facility layer, partial  (Dump 3,494 and propane 702 live. OSM water fill points wired into the weekly refresh; 0 until it runs)
 - [should] layers: Cell carrier coverage overlay, no  (Original self-hosted tiles; no free keyless national tile source verified)
 - [should] trips: Find places along route, no  (Original used Mapbox server routing)
 - [should] ugc: Reviews with star rating, no  (Needs backend)
