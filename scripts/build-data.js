@@ -43,9 +43,11 @@ function typeFrom(row){
   return 'other';
 }
 function costFrom(row){
-  const d=(row.description||'').toLowerCase();
-  if (d.includes('free')) return 0;
-  const m=(d.match(/\$(\d+)/)||[])[1]; return m?parseInt(m,10):null;
+  // Prices in prose can refer to parking, showers, or historical rates.
+  const value=String(row.cost ?? row.price ?? '').trim();
+  if (/^(free|no fee)$/i.test(value)) return 0;
+  const match=value.match(/^\$([0-9]+(?:\.[0-9]{1,2})?)\s*(?:\/night|per night|nightly)$/i);
+  return match ? Number(match[1]) : null;
 }
 
 function toFeature(row, idx){
@@ -57,7 +59,8 @@ function toFeature(row, idx){
     type:'Feature',
     geometry:{type:'Point', coordinates:[lng,lat]},
     properties:{
-      id:`io_${idx}`,
+      id:`io:${row.id || `${lng.toFixed(5)}:${lat.toFixed(5)}:${encodeURIComponent(row.name || "")}`}`,
+      schema_version:3,
       source:'iOverlander',
       name: row.name || 'Unnamed site',
       type: typeFrom(row),

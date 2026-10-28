@@ -20,210 +20,29 @@ const ALL_STATES = [
   'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
 ];
 
-class CampsiteMerger {
-  constructor() {
-    this.DISTANCE_THRESHOLD_METERS = 500; // 500m threshold
-  }
+const { CampsiteMerger, saveMergedData, loadStateSources } = require('./merge_campsite_data');
 
-  calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371e3;
-    const φ1 = (lat1 * Math.PI) / 180;
-    const φ2 = (lat2 * Math.PI) / 180;
-    const Δφ = ((lat2 - lat1) * Math.PI) / 180;
-    const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+async function mergeState(stateCode, merger, directories = {}) {
+  const campsitesDir = directories.campsitesDir || path.join(__dirname, '../data/campsites');
+  const osmDir = directories.osmDir || path.join(__dirname, '../data/opencampingmap');
 
-    const a =
-      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c;
-  }
-
-  stringSimilarity(str1, str2) {
-    if (!str1 || !str2) return 0;
-    const s1 = str1.toLowerCase().trim();
-    const s2 = str2.toLowerCase().trim();
-
-    if (s1 === s2) return 1.0;
-
-    const longer = s1.length > s2.length ? s1 : s2;
-    const shorter = s1.length > s2.length ? s2 : s1;
-
-    if (longer.length === 0) return 1.0;
-
-    const editDistance = this.levenshteinDistance(longer, shorter);
-    return (longer.length - editDistance) / longer.length;
-  }
-
-  levenshteinDistance(s1, s2) {
-    const costs = [];
-    for (let i = 0; i <= s1.length; i++) {
-      let lastValue = i;
-      for (let j = 0; j <= s2.length; j++) {
-        if (i === 0) {
-          costs[j] = j;
-        } else if (j > 0) {
-          let newValue = costs[j - 1];
-          if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
-            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
-          }
-          costs[j - 1] = lastValue;
-          lastValue = newValue;
-        }
-      }
-      if (i > 0) costs[s2.length] = lastValue;
-    }
-    return costs[s2.length];
-  }
-
-  areDuplicates(site1, site2) {
-    const [lon1, lat1] = site1.geometry.coordinates;
-    const [lon2, lat2] = site2.geometry.coordinates;
-
-    const distance = this.calculateDistance(lat1, lon1, lat2, lon2);
-
-    if (distance < this.DISTANCE_THRESHOLD_METERS) {
-      const name1 = site1.properties.name || site1.properties.Name || '';
-      const name2 = site2.properties.name || site2.properties.Name || '';
-      const nameSimilarity = this.stringSimilarity(name1, name2);
-
-      if (distance < 100 || nameSimilarity > 0.6) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  mergeProperties(primary, secondary) {
-    // Normalize names
-    const name = primary.name || primary.Name || secondary.name || secondary.Name;
-
-    return {
-      name: name,
-      rating: primary.rating || secondary.rating || null,
-      reviews_count: Math.max(primary.reviews_count || 0, secondary.reviews_count || 0),
-      cost: primary.cost || secondary.cost || 0,
-      amenities: [...new Set([...(primary.amenities || []), ...(secondary.amenities || [])])],
-      rig_friendly: [...new Set([...(primary.rig_friendly || []), ...(secondary.rig_friendly || [])])],
-      type: primary.type || secondary.type || 'established',
-      sources: [...new Set([
-        ...(primary.sources || [primary.source]),
-        ...(secondary.sources || [secondary.source])
-      ])].filter(Boolean),
-      description: (primary.description?.length > secondary.description?.length)
-        ? primary.description
-        : secondary.description,
-      // Keep OSM-specific fields
-      ...(secondary.tourism && { tourism: secondary.tourism }),
-      ...(secondary.osm_id && { osm_id: secondary.osm_id })
-    };
-  }
-
-  async mergeDatasets(datasets) {
-    let allFeatures = [];
-    let duplicatesRemoved = 0;
-
-    datasets.forEach(dataset => {
-      if (dataset && dataset.features) {
-        allFeatures = allFeatures.concat(dataset.features);
-      }
-    });
-
-    const uniqueFeatures = [];
-
-    for (const feature of allFeatures) {
-      let isDuplicate = false;
-
-      for (let i = 0; i < uniqueFeatures.length; i++) {
-        if (this.areDuplicates(feature, uniqueFeatures[i])) {
-          isDuplicate = true;
-          duplicatesRemoved++;
-
-          const merged = { ...uniqueFeatures[i] };
-          merged.properties = this.mergeProperties(
-            uniqueFeatures[i].properties,
-            feature.properties
-          );
-
-          uniqueFeatures[i] = merged;
-          break;
-        }
-      }
-
-      if (!isDuplicate) {
-        if (!feature.properties.sources) {
-          feature.properties.sources = [feature.properties.source || 'unknown'].filter(Boolean);
-        }
-        uniqueFeatures.push(feature);
-      }
-    }
-
-    return {
-      duplicatesRemoved,
-      features: uniqueFeatures
-    };
-  }
-
-  async loadGeoJSON(filePath) {
-    try {
-      const data = await fs.readFile(filePath, 'utf8');
-      return JSON.parse(data);
-    } catch (err) {
-      return null;
-    }
-  }
-}
-
-async function mergeState(stateCode, merger) {
-  const campsitesDir = path.join(__dirname, '../data/campsites');
-  const osmDir = path.join(__dirname, '../data/opencampingmap');
-
-  // Load Recreation.gov data
-  const recgovPath = path.join(campsitesDir, `${stateCode}.geojson`);
-  const recgovData = await merger.loadGeoJSON(recgovPath);
-
-  // Load OpenStreetMap data
-  const osmPath = path.join(osmDir, `${stateCode}.geojson`);
-  const osmData = await merger.loadGeoJSON(osmPath);
-
-  if (!recgovData && !osmData) {
-    console.log(`  ⚠️  No data found for ${stateCode}`);
-    return null;
-  }
-
-  const datasets = [];
-  let beforeCount = 0;
-
-  if (recgovData && recgovData.features) {
-    datasets.push(recgovData);
-    beforeCount += recgovData.features.length;
-    console.log(`  ✓ Recreation.gov: ${recgovData.features.length} sites`);
-  }
-
-  if (osmData && osmData.features) {
-    datasets.push(osmData);
-    beforeCount += osmData.features.length;
-    console.log(`  ✓ OpenStreetMap: ${osmData.features.length} sites`);
-  }
-
-  if (datasets.length === 0) {
-    return null;
-  }
+  const { datasets } = await loadStateSources(stateCode, merger, { campsitesDir, osmDir });
+  const beforeCount = datasets.reduce((count, dataset) => count + dataset.features.length, 0);
+  if (!datasets.length) return null;
 
   // Merge and deduplicate
   const result = await merger.mergeDatasets(datasets);
 
   const merged = {
     type: 'FeatureCollection',
-    features: result.features
+    features: result.features,
+    duplicatesRemoved: result.duplicatesRemoved,
+    invalidRemoved: result.invalidRemoved
   };
 
   // Save merged data
   const outputFile = path.join(campsitesDir, `${stateCode}_merged.geojson`);
-  await fs.writeFile(outputFile, JSON.stringify(merged, null, 2));
+  await saveMergedData(outputFile, merged);
 
   return {
     state: stateCode,
@@ -277,7 +96,7 @@ async function main() {
 }
 
 if (require.main === module) {
-  main().catch(console.error);
+  main().catch(error => { console.error(error); process.exitCode = 1; });
 }
 
-module.exports = { CampsiteMerger };
+module.exports = { CampsiteMerger, mergeState };

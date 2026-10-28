@@ -33,3 +33,7 @@ test-results/
 *.log
 logs/
 debug-errors.html
+
+# Python test cache
+__pycache__/
+*.pyc

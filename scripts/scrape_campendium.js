@@ -12,6 +12,7 @@
 const { chromium } = require('playwright');
 const fs = require('fs').promises;
 const path = require('path');
+const { validCoordinates, saveGeoJSON } = require('./data-integrity');
 
 const US_STATES = {
   'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas',
@@ -38,10 +39,7 @@ class CampendiumScraper {
   async init() {
     console.log('🌐 Launching browser...');
 
-    // Use globally installed chromium browser
-    const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ||
-      require('child_process').execSync('which chromium-browser chromium google-chrome 2>/dev/null || echo ""').toString().trim() ||
-      '/root/.cache/ms-playwright/chromium-1194/chrome-linux/chrome';
+    const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined;
 
     this.browser = await chromium.launch({
       headless: true,
@@ -175,7 +173,7 @@ class CampendiumScraper {
             });
 
             // Extract cost
-            let cost = 0;
+            let cost = null;
             const costEl = document.querySelector('[class*="price"], [class*="cost"], [class*="fee"]');
             if (costEl) {
               const costMatch = costEl.textContent.match(/\$(\d+)/);
@@ -240,7 +238,7 @@ class CampendiumScraper {
 
   convertToGeoJSON(campgrounds, stateCode) {
     const features = campgrounds
-      .filter(camp => camp.latitude && camp.longitude)
+      .filter(camp => validCoordinates([camp.longitude, camp.latitude]))
       .map((camp, idx) => ({
         type: 'Feature',
         geometry: {
@@ -248,15 +246,18 @@ class CampendiumScraper {
           coordinates: [camp.longitude, camp.latitude]
         },
         properties: {
-          id: `${stateCode}-CAMP-${String(idx + 1).padStart(3, '0')}`,
+          id: `campendium:${camp.longitude.toFixed(5)}:${camp.latitude.toFixed(5)}:${encodeURIComponent(camp.name)}`,
           name: camp.name,
           type: camp.type || 'established',
-          cost: camp.cost || 0,
+          cost: null, // Generic scraped price text may be day use or per-person, not nightly.
+        schema_version: 3,
+        fee_status: 'unknown',
+        field_provenance: { cost: 'unknown', amenities: 'unknown', rig_friendly: 'unknown', road_difficulty: 'unknown' },
           rating: camp.rating,
           reviews_count: camp.reviewCount || 0,
-          amenities: camp.amenities || [],
-          rig_friendly: camp.rigFriendly || [],
-          road_difficulty: 'paved',
+          amenities: [], // Broad CSS keyword matches cannot establish available amenities.
+          rig_friendly: [],
+          road_difficulty: null,
           state: stateCode,
           source: 'campendium',
           description: ''
@@ -305,15 +306,16 @@ async function main() {
       await fs.mkdir(outputDir, { recursive: true });
 
       const outputFile = path.join(outputDir, `${stateCode}_campendium.geojson`);
-      await fs.writeFile(outputFile, JSON.stringify(geojson, null, 2));
+      await saveGeoJSON(outputFile, geojson);
 
       console.log(`\n✅ Saved ${campgrounds.filter(c => c.latitude && c.longitude).length} campgrounds to ${outputFile}`);
     } else {
-      console.log(`\n⚠️  No campgrounds found for ${stateName}`);
+      throw new Error(`No campgrounds fetched for ${stateName}; saved data unchanged`);
     }
 
   } catch (err) {
     console.error('❌ Fatal error:', err);
+    process.exitCode = 1;
   } finally {
     await scraper.close();
   }

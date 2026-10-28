@@ -1,134 +1,27 @@
-name: 🎯 Quick Fetch (Single State)
+name: Refresh one state (manual)
 
 on:
   workflow_dispatch:
     inputs:
       state:
-        description: 'State code (e.g., CA, CO, UT)'
+        description: 'Uppercase US state code, for example NY'
         required: true
-        type: choice
-        options:
-          - AL
-          - AK
-          - AZ
-          - AR
-          - CA
-          - CO
-          - CT
-          - DE
-          - FL
-          - GA
-          - HI
-          - ID
-          - IL
-          - IN
-          - IA
-          - KS
-          - KY
-          - LA
-          - ME
-          - MD
-          - MA
-          - MI
-          - MN
-          - MS
-          - MO
-          - MT
-          - NE
-          - NV
-          - NH
-          - NJ
-          - NM
-          - NY
-          - NC
-          - ND
-          - OH
-          - OK
-          - OR
-          - PA
-          - RI
-          - SC
-          - SD
-          - TN
-          - TX
-          - UT
-          - VT
-          - VA
-          - WA
-          - WV
-          - WI
-          - WY
-      limit:
-        description: 'Max campsites'
-        required: false
-        default: '50'
         type: string
+        default: NY
+      source:
+        description: 'Source to refresh'
+        type: choice
+        default: both
+        options: [both, ridb, osm]
 
+permissions:
+  contents: write
+
+# The called workflow validates inputs and owns the concurrency lock/data writes.
 jobs:
-  quick-fetch:
-    name: Quick Fetch - ${{ github.event.inputs.state }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v4
-
-      - name: 🟢 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: 📦 Install
-        run: |
-          npm install
-          npx playwright install chromium --with-deps
-
-      - name: 🏕️ Fetch ${{ github.event.inputs.state }}
-        run: |
-          STATE="${{ github.event.inputs.state }}"
-          LIMIT="${{ github.event.inputs.limit }}"
-
-          echo "🗺️  Fetching data for $STATE..."
-
-          # Recreation.gov
-          node scripts/scrape_recreation_gov.js --state="$STATE" --limit="$LIMIT" || echo "⚠️  Recreation.gov failed"
-
-          # Campendium
-          node scripts/scrape_campendium.js --state="$STATE" --limit="$((LIMIT / 2))" || echo "⚠️  Campendium failed"
-
-          # Merge
-          node scripts/merge_campsite_data.js --state="$STATE"
-
-          # Copy merged to main
-          if [ -f "data/campsites/${STATE}_merged.geojson" ]; then
-            cp "data/campsites/${STATE}_merged.geojson" "data/campsites/${STATE}.geojson"
-          fi
-
-          # Count
-          count=$(grep -c '"type": "Feature"' "data/campsites/${STATE}.geojson" || echo "0")
-          echo "✅ Fetched $count campsites for $STATE"
-
-      - name: 💾 Commit
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "GitHub Actions Bot"
-
-          git add data/campsites/
-
-          if ! git diff --staged --quiet; then
-            git commit -m "Update ${{ github.event.inputs.state }} campsite data"
-            git push
-            echo "✅ Pushed!"
-          else
-            echo "ℹ️  No changes"
-          fi
-
-      - name: 📊 Summary
-        run: |
-          echo "# ✅ ${{ github.event.inputs.state }} Data Updated" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          count=$(grep -c '"type": "Feature"' "data/campsites/${{ github.event.inputs.state }}.geojson" || echo "0")
-          echo "**Campsites:** $count" >> $GITHUB_STEP_SUMMARY
-          echo "**File:** \`data/campsites/${{ github.event.inputs.state }}.geojson\`" >> $GITHUB_STEP_SUMMARY
+  refresh:
+    uses: ./.github/workflows/fetch-campsite-data.yml
+    with:
+      states: ${{ inputs.state }}
+      source: ${{ inputs.source }}
+    secrets: inherit

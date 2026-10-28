@@ -1,0 +1,72 @@
+const {test,expect}=require('@playwright/test');
+const path=require('node:path');
+const script=path.resolve(__dirname,'../../trip-planner.js');
+const site={type:'Feature',geometry:{type:'Point',coordinates:[-119.5,36.2]},properties:{id:'ridb:1',name:'Saved Camp',state:'CA',cost:null,fee_status:'unknown'}};
+async function scaffold(page,current=site) {
+  await page.route('https://kamptrail-saved.test/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><html><head></head><body><div id="app"><button id="trip">Saved stops <span id="trip-count">(0)</span></button></div></body></html>'}));
+  await page.goto('https://kamptrail-saved.test/');
+  await page.evaluate(current=>{
+    window.testErrors=[];window.testLoads=[];window.testCurrent=current;
+    window.showToast=message=>testErrors.push(message);
+    window.testMap={setView(coords,zoom){window.testView={coords,zoom};return this;}};
+    window.KampTrailData={getCampsiteById:()=>testCurrent,loadStates:async codes=>testLoads.push(codes),getLoadStatus:()=>({totalSites:0,loadedStates:[],loading:false}),focusCampsite:()=>false};
+    window.L={marker(coords){const marker={coords,addTo(){return this;},bindPopup(popup){window.testPopup=popup;return this;},openPopup(){window.testMarker=this;return this;},remove(){window.testRemoved=true;}};return marker;}};
+  },current);
+}
+async function init(page) {await page.addScriptTag({path:script});await page.evaluate(()=>KampTrailTrip.init(testMap));}
+
+test('saving is deduplicated and retained as a location snapshot after reload',async({page})=>{
+  await scaffold(page);await init(page);
+  await page.evaluate(()=>{KampTrailTrip.addStop('ridb:1');KampTrailTrip.addStop('ridb:1');});
+  await expect(page.locator('#trip-count')).toHaveText('(1)');
+  await expect(page.locator('#kt-trip-list')).toContainText('Saved Camp');
+  expect(await page.locator('#kt-trip-export').count()).toBe(0);
+  await scaffold(page,null);await init(page);await page.locator('#trip').click();
+  await expect(page.locator('#kt-trip-list')).toContainText('Saved Camp');
+  expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].feature.geometry.coordinates)).toEqual([-119.5,36.2]);
+  await expect(page.getByRole('link',{name:'Directions to Saved Camp in Google Maps'})).toHaveAttribute('href','https://www.google.com/maps/dir/?api=1&destination=36.2,-119.5');
+});
+
+test('saved location can be viewed even when its source region is not loaded',async({page})=>{
+  await scaffold(page,null);await page.evaluate(site=>localStorage.setItem('kt_trip',JSON.stringify([{id:site.properties.id,feature:site}])),site);
+  await init(page);await page.locator('#trip').click();await page.getByRole('button',{name:'View on map'}).click();
+  await expect(page.locator('#kt-trip-drawer')).toBeHidden();
+  expect(await page.evaluate(()=>testView)).toEqual({coords:[36.2,-119.5],zoom:12});
+  expect(await page.evaluate(()=>testPopup.textContent)).toContain('Saved Camp');
+  expect(await page.evaluate(()=>document.getElementById('app').inert)).toBe(false);
+});
+
+test('legacy stop recovery waits for the data loader and migrates an alias safely',async({page})=>{
+  await scaffold(page,null);await page.evaluate(()=>localStorage.setItem('kt_trip',JSON.stringify(['CA-001'])));await init(page);
+  expect(await page.evaluate(()=>testLoads)).toEqual([]);
+  await page.evaluate(()=>{KampTrailData.getLoadStatus=()=>({totalSites:1,loadedStates:['NY'],loading:false});window.dispatchEvent(new Event('kamptrail:dataupdated'));});
+  await expect.poll(()=>page.evaluate(()=>testLoads.length)).toBe(1);
+  await page.evaluate(site=>{testCurrent=site;window.dispatchEvent(new Event('kamptrail:dataupdated'));},site);
+  await page.locator('#trip').click();await expect(page.locator('#kt-trip-list')).toContainText('Saved Camp');
+  expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].id)).toBe('ridb:1');
+});
+
+test('mobile dialog closes with Escape, restores focus, and stays above the app',async({page})=>{
+  await page.setViewportSize({width:390,height:844});await scaffold(page);await init(page);
+  await page.locator('#trip').click();
+  await expect(page.locator('#kt-trip-close')).toBeFocused();
+  const rect=await page.locator('#kt-trip-drawer').boundingBox();expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.height).toBeLessThanOrEqual(844);
+  await page.keyboard.press('Shift+Tab');await expect(page.locator('#kt-trip-close')).toBeFocused();
+  await page.keyboard.press('Escape');await expect(page.locator('#kt-trip-drawer')).toBeHidden();await expect(page.locator('#trip')).toBeFocused();
+});
+
+test('storage failure is explicit and an unsafe campsite name renders only as text',async({page})=>{
+  await scaffold(page,{...site,properties:{...site.properties,name:'<img src=x onerror=alert(1)>'}});await init(page);
+  await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new Error('Blocked');};KampTrailTrip.addStop('ridb:1');});
+  expect(await page.evaluate(()=>testErrors.join(' '))).toContain('only while this page stays open');
+  await expect(page.locator('.kt-saved-note')).toContainText('Browser storage is unavailable');
+  await expect(page.locator('#kt-trip-list')).toContainText('<img src=x onerror=alert(1)>');expect(await page.locator('#kt-trip-list img').count()).toBe(0);
+  await page.getByRole('button',{name:'Remove <img src=x onerror=alert(1)>'}).click();await expect(page.locator('#trip-count')).toHaveText('(0)');
+});
+
+test('clear removes all saved stops and hides the empty clear control',async({page})=>{
+  await scaffold(page);await init(page);await page.evaluate(()=>KampTrailTrip.addStop('ridb:1'));
+  page.on('dialog',dialog=>dialog.accept());await page.locator('#kt-trip-clear').click();
+  await expect(page.locator('#trip-count')).toHaveText('(0)');await expect(page.locator('#kt-trip-clear')).toBeHidden();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')))).toEqual([]);
+});

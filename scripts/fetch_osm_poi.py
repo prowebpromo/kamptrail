@@ -8,6 +8,7 @@ import json
 import requests
 import time
 from pathlib import Path
+from data_integrity import valid_coordinates, save_geojson
 
 def fetch_overpass_data(query, description):
     """Fetch data from Overpass API with timeout and retry"""
@@ -20,6 +21,8 @@ def fetch_overpass_data(query, description):
             response = requests.post(overpass_url, data={'data': query}, timeout=120)
             response.raise_for_status()
             data = response.json()
+            if data.get('remark') or not isinstance(data.get('elements'), list):
+                raise ValueError('Incomplete Overpass response')
             print(f"✓ Found {len(data.get('elements', []))} {description}")
             return data.get('elements', [])
         except requests.exceptions.Timeout:
@@ -30,8 +33,7 @@ def fetch_overpass_data(query, description):
             if attempt < 2:
                 time.sleep(5)
 
-    print(f"✗ Failed to fetch {description}")
-    return []
+    raise RuntimeError(f"Failed to fetch {description}; saved POIs unchanged")
 
 def fetch_dump_stations():
     """
@@ -94,7 +96,14 @@ def extract_water_stations():
             amenities = props.get('amenities', [])
             name = props.get('name', 'Unknown')
 
-            if 'water' in amenities:
+            # Legacy RIDB amenities were inferred from prose, including lakes
+            # and 'no water'. Only explicit tagged/source-evidenced potable water
+            # may become a water POI, never an assumed RV fill station.
+            explicit_osm_water = props.get('drinking_water') == 'yes' or props.get('amenity') == 'drinking_water'
+            documented_water = (props.get('schema_version', 0) >= 3
+                                and props.get('field_provenance', {}).get('drinking_water')
+                                and props.get('drinking_water') is True)
+            if valid_coordinates(coords) and (explicit_osm_water or documented_water):
                 water_features.append({
                     'type': 'Feature',
                     'geometry': {
@@ -105,7 +114,12 @@ def extract_water_stations():
                         'name': name,
                         'type': 'water',
                         'state': state_code,
-                        'source': 'recreation.gov'
+                        'source': props.get('source', 'openstreetmap' if explicit_osm_water else 'unknown'),
+                        'schema_version': 3,
+                        'field_provenance': {'drinking_water': 'OSM drinking_water tag' if explicit_osm_water else props['field_provenance']['drinking_water']},
+                        'service_description': 'Reported drinking water amenity; vehicle tank filling unverified',
+                        'access': props.get('access', 'unknown'),
+                        'source_url': props.get('source_url', '')
                     }
                 })
 
@@ -122,6 +136,9 @@ def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
     else:
         return None
 
+    if not valid_coordinates(coords):
+        return None
+
     # Get tags
     tags = element.get('tags', {})
 
@@ -133,7 +150,7 @@ def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
         if tourism in ['camp_site', 'caravan_site']:
             name = f"Campground with Dump Station"
         else:
-            name = f'Dump Station'
+            name = 'LPG fuel location' if poi_type == 'propane' else 'Dump station'
 
     # Determine state from OSM tags (if available)
     state = tags.get('addr:state', '')
@@ -159,7 +176,15 @@ def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
         'type': poi_type,
         'state': state,
         'source': source,
-        'osm_id': element.get('id')
+        'osm_id': element.get('id'),
+        'osm_type': element.get('type'),
+        'schema_version': 3,
+        'id': f"osm:{element.get('type')}:{element.get('id')}:{poi_type}",
+        'source_url': f"https://www.openstreetmap.org/{element.get('type')}/{element.get('id')}",
+        'source_retrieved_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+        'field_provenance': {'service': 'OSM service tag'},
+        'service_description': 'LPG fuel; cylinder refill availability unverified' if poi_type == 'propane' else 'Reported sanitary dump service',
+        'access': tags.get('access', 'unknown')
     }
 
     # Add optional fields only if they exist
@@ -217,8 +242,12 @@ def main():
 
     # 5. Save to file
     output_file = Path('data/poi_dump_water_propane.geojson')
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(output, f, indent=2)
+    # Duplicate state aliases must not duplicate the same service.
+    seen = set()
+    output['features'] = [feature for feature in output['features']
+                          if not ((key := (feature['properties'].get('id'), feature['properties'].get('type'),
+                                           tuple(feature['geometry']['coordinates']))) in seen or seen.add(key))]
+    save_geojson(output_file, output)
 
     # 6. Print summary
     print()
