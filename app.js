@@ -42,6 +42,11 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
+  if ([window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters].some(module=>module?.version!=='2.2.0')) {
+    showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
+    document.getElementById('result-summary').textContent='Updating the saved app…';
+    return;
+  }
   if (!window.L || !L.markerClusterGroup) {
     showToast('Map files could not load. Reload the page when connected.', 'error', 0);
     document.getElementById('result-summary').textContent = 'The map could not start.';
@@ -57,6 +62,16 @@
     const c = map.getCenter().wrap();
     try { localStorage.setItem('kt_last_position', JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()})); } catch (_) {}
   });
+  let tileErrors = 0;
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+  }).on('tileerror',()=>{if(++tileErrors===3 && navigator.onLine)showToast('Map imagery is temporarily unavailable. Campsite search, lists, and saved stops still work.', 'error');}).addTo(map);
+  const key=L.control({position:'bottomright'});
+  key.onAdd=()=>{
+    const el=L.DomUtil.create('div','map-key');
+    el.innerHTML='<span><i style="background:#258543"></i>Reported free</span><span><i style="background:#2375b9"></i>Paid</span><span><i style="background:#687780"></i>Fee unknown</span>';
+    L.DomEvent.disableClickPropagation(el);return el;
+  };key.addTo(map);
   const resize = () => map.invalidateSize();
   addEventListener('resize', resize);
   new ResizeObserver(resize).observe(document.getElementById('map'));
@@ -76,7 +91,7 @@
     navigator.geolocation.getCurrentPosition(pos => {
       const {latitude:lat, longitude:lng, accuracy} = pos.coords;
       locationLayer = L.circle([lat,lng], {radius:Math.min(accuracy || 100,5000),color:'#2a7850',fillOpacity:.15}).addTo(map);
-      map.setView([lat,lng], 10);
+      map.setView([lat,lng], 8);
       near.disabled = false; near.classList.add('active'); near.setAttribute('aria-pressed','true');
       showToast('Showing campsite listings near your location.');
     }, () => {
@@ -139,7 +154,7 @@
       details.textContent = `${cost} · ${p.type === 'established' ? 'Campground' : (p.type || 'Type unknown')} · ${p.state || ''}`;
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = 'View on map'; view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
-      const trip = document.createElement('button'); trip.textContent = 'Add to trip'; trip.onclick = () => KampTrailTrip.addStop(p.id);
+      const trip = document.createElement('button'); trip.textContent = 'Save stop'; trip.onclick = () => KampTrailTrip.addStop(p.id);
       actions.append(view, trip); card.append(heading,details,actions); fragment.append(card);
     });
     if (!sites.length || sites.length > 100) {
@@ -154,13 +169,14 @@
 
   // Search local cities, loaded campsite names, states, and literal coordinates.
   // No keystrokes or location searches are sent to an external geocoder.
-  let places = [];
+  let places = [], campsiteIndex = [];
   const placeLoad = fetch('data/places-us.json').then(r => {if (!r.ok) throw new Error('Place index unavailable');return r.json();}).then(d => {places = d.places || [];}).catch(() => {});
+  const siteIndexLoad = fetch('data/campsites/search-index.json').then(r=>{if(!r.ok)throw new Error('Campsite search index unavailable');return r.json();}).then(data=>{campsiteIndex=data.sites || [];}).catch(()=>{});
   const normalize = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   const searchResults = document.getElementById('search-results');
   function addChoice(label, action) {
     const button = document.createElement('button'); button.type = 'button'; button.textContent = label;
-    button.onclick = () => { action(); searchResults.hidden = true; };
+    button.onclick = async () => {searchResults.hidden=true;try{await action();}catch{showToast('The selected location could not load. Please try again.', 'error');}};
     searchResults.append(button);
   }
   let searching = false;
@@ -176,13 +192,19 @@
       map.setView([lat,lng],11); searchResults.hidden = true; return;
     }
     searching = true;
-    await placeLoad;
+    await Promise.all([placeLoad,siteIndexLoad]);
     searching = false;
     const key = normalize(query);
     searchResults.replaceChildren();
     Object.entries(stateNames).filter(([c,n]) => key === normalize(c) || key === normalize(n)).forEach(([c,n]) => addChoice(`${n} · State`, () => jumpState(c)));
-    const campsiteMatches = KampTrailData.getAllCampsites().filter(s => normalize(s.properties.name).includes(key)).slice(0,8);
-    campsiteMatches.forEach(site => addChoice(`${site.properties.name} · Campsite`, () => KampTrailData.focusCampsite(site.properties.id)));
+    const indexedSites = campsiteIndex.length ? campsiteIndex : KampTrailData.getAllCampsites().map(s=>({id:s.properties.id,name:s.properties.name,states:[],lat:s.geometry.coordinates[1],lng:s.geometry.coordinates[0]}));
+    const campsiteMatches = indexedSites.filter(s=>normalize(s.name).includes(key)).slice(0,8);
+    campsiteMatches.forEach(site=>addChoice(`${site.name} · Campsite`,async()=>{
+      showToast('Opening campsite…');
+      await KampTrailData.loadStates(site.states);
+      if(!KampTrailData.focusCampsite(site.id))showToast('This campsite area could not load. Connect to the internet and retry.', 'error');
+      else {document.getElementById('toast').classList.remove('show');if(innerWidth<761)setList(false);}
+    }));
     const words = key.split(' ');
     const cityMatches = places.filter(p => {
       const city = normalize(p.name), state = normalize(p.state), fullState = normalize(stateNames[p.state] || 'District of Columbia');
@@ -192,10 +214,10 @@
       const exact = p => normalize(p.name) === key || normalize(`${p.name} ${p.state}`) === key;
       return Number(exact(b)) - Number(exact(a)) || b.population - a.population;
     }).slice(0,8);
-    cityMatches.forEach(p => addChoice(`${p.name}, ${p.state} · City`, () => {map.setView([p.lat,p.lng],10);KampTrailData.refresh();}));
+    cityMatches.forEach(p => addChoice(`${p.name}, ${p.state} · City`, () => {map.setView([p.lat,p.lng],8);KampTrailData.refresh();}));
     if (!searchResults.childNodes.length) {
       const note = document.createElement('p');
-      note.textContent = 'No match. Try a city and state (Albany, NY), choose a state, or enter latitude, longitude. Campsite name search covers loaded listings.';
+      note.textContent = 'No match. Try a city and state (Albany, NY), choose a state, or enter latitude, longitude. Try a campground name or a nearby city.';
       searchResults.append(note);
     }
     searchResults.hidden = false;
@@ -204,16 +226,8 @@
   document.addEventListener('click', e => {if (!e.target.closest('.search-bar')) searchResults.hidden = true;});
 
   // Initialize controls before requesting data. Slow sources cannot disable tools.
-  KampTrailAdvanced.init(map);
-  KampTrailOverlays.init(map, {
-    publicLandsUrl:'https://services.arcgis.com/v01gqwM5QqNysAAi/ArcGIS/rest/services/PADUS3_0PublicAccess/MapServer/tile/{z}/{y}/{x}',
-    openCelliDKey:'',
-    poiUrl:'data/poi_dump_water_propane.geojson'
-  });
   KampTrailFilters.init(map);
   KampTrailTrip.init(map);
-  KampTrailGPX.init(map);
-  KampTrailCompare.init(map);
   KampTrailData.init(map, {maxMarkers:5000,onTripAdd:id=>KampTrailTrip.addStop(id)}).then(renderResults).catch(err => {
     console.error(err);setLoading(false);
     showToast('Some campsite listings could not load. Open the campsite list and retry.', 'error');

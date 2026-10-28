@@ -11,6 +11,40 @@
   function isPlaceholder(name) {
     return !String(name || '').trim() || /^(?:sample|test|demo|fake|dummy|placeholder)(?:\s+(?:campsite|campground|site|data|meadow))?\s*\d*$/i.test(String(name).trim()) || /^(?:unknown campsite|unnamed site(?: \(osm\))?|tbd|coming soon|lorem ipsum)$/i.test(String(name).trim());
   }
+  function classifyCampingRecord(raw, name, {osm = false, ridb = false} = {}) {
+    const access = String(raw.access || '').trim().toLowerCase();
+    const accessInfo = {
+      yes: ['allowed', 'Access allowed (source reported)'],
+      public: ['allowed', 'Public access (source reported)'],
+      permissive: ['permissive', 'Permissive access; permission may change'],
+      customers: ['customers', 'Customers only; confirm booking and fees'],
+      permit: ['permit', 'Permit required (source reported)'],
+      destination: ['destination', 'Destination access only (source reported)'],
+      private: ['private', 'Private access; not a public campsite'],
+      no: ['prohibited', 'Public access prohibited (source reported)'],
+      military: ['military', 'Military access only (source reported)']
+    };
+    const [access_status, access_label] = accessInfo[access] || ['unknown', access ? `Access reported: ${access}` : 'Access not verified'];
+    const explicitlyCamping = /^(camp_site|caravan_site)$/.test(String(raw.tourism || '').toLowerCase());
+    const intro = String(raw.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().replace(/^overview\s*/i, '').split(/(?<=[.!?])\s+/)[0].slice(0, 600);
+    const campingIntro = /\b(?:campgrounds?|campsites?|(?:tent|rv|recreational vehicle)\s+camping|camping\s+(?:area|site|facility|grounds))\b/i.test(intro);
+    const campingName = /\b(?:campgrounds?|campsites?|camping|(?:rv|recreational vehicle|trailer)\s+(?:parks?|sites?|camp)|(?:group|horse|equestrian|primitive|tent|backcountry)\s+camp(?:s|\s+sites?)?)\b/i.test(name);
+    let exclusion_reason = null;
+    if (['private', 'no', 'military'].includes(access)) exclusion_reason = `access_${access}`;
+    else if (/^(yes|true|1)$/i.test(String(raw.disused || raw.abandoned || '')) || raw['disused:tourism'] || raw['abandoned:tourism'] || String(raw.camping).toLowerCase() === 'no' || /\b(?:camping (?:is )?(?:not (?:allowed|permitted)|prohibited)|no overnight camping)\b/i.test(intro)) exclusion_reason = 'camping_not_operating_or_prohibited';
+    // An explicit campsite tag is stronger evidence than a facility's ambiguous name.
+    // Do not infer public access from private ownership, a business name, or a fee.
+    else if (!explicitlyCamping && !campingName) {
+      if (/\b(?:ranger\s+(?:district|station)|(?:naval|air\s*force|military)\s+(?:air\s+)?(?:base|station)|(?:district|administrative|forest|ranger|supervisor(?:s)?)\s+office|visitor\s+(?:center|centre)|information\s+(?:center|centre)|contact\s+station|headquarters)\b/i.test(name)) exclusion_reason = 'administrative_facility';
+      else if (/\b(?:day[ -]?use|picnic|pavilions?|shelters?|boat\s+(?:launch|ramp)|launch\s+ramp)\b/i.test(name)) exclusion_reason = 'day_use_facility';
+      else if (/\b(?:cabins?|lodges?|lookouts?|guard\s+stations?|hotels?|motels?|chalets?|yurts?|huts?)\b/i.test(name)) exclusion_reason = 'lodging_or_lookout';
+    }
+    return {
+      access: access || null, access_status, access_label, exclusion_reason,
+      camping_evidence: explicitlyCamping ? 'osm_campsite_tag' : campingName ? 'camping_facility_name' : campingIntro ? 'source_intro_camping' : ridb ? 'ridb_activity_listing' : 'source_listing',
+      camping_classification: explicitlyCamping || campingName || campingIntro ? 'campsite' : 'unverified_camping_record'
+    };
+  }
   function normalizeFeature(feature, options = {}) {
     const ll = getLatLng(feature);
     if (!ll) return null;
@@ -20,8 +54,10 @@
     const sources = [...new Set([...(Array.isArray(raw.sources) ? raw.sources : []), raw.source, raw.provider].filter(Boolean).map(String))];
     const ridb = raw.facility_id != null || sources.some(s => /recreation\.gov|\bridb\b/i.test(s));
     const osm = raw.osm_id != null || raw.tourism === 'camp_site' || raw.tourism === 'caravan_site';
+    const classification = classifyCampingRecord(raw, name, {osm, ridb});
+    if (classification.exclusion_reason) return null;
     const legacyRIDB = ridb && !(Number(raw.schema_version) >= 3) && !raw._kt_normalized;
-    const p = {...raw, name, sources, state: raw.state || raw['addr:state'] || options.state || null};
+    const p = {...raw, ...classification, name, sources, state: raw.state || raw['addr:state'] || options.state || null};
     p.legacy_ids = [...new Set([...(Array.isArray(raw.legacy_ids) ? raw.legacy_ids : []), raw.id].filter(v => v != null && v !== '').map(String))];
     const coordKey = `${ll.lon.toFixed(6)},${ll.lat.toFixed(6)}`;
     if (ridb && raw.facility_id != null) p.id = `ridb:${raw.facility_id}`;
@@ -37,6 +73,7 @@
     if (osm && /^(no|0|false)$/i.test(String(raw.fee))) {p.fee_status = 'free'; p.cost = 0;}
     else if (osm && /^(yes|true)$/i.test(String(raw.fee))) {p.fee_status = 'paid'; if (p.cost === 0) p.cost = null;}
     p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other'].includes(raw.type) ? raw.type : (osm ? 'established' : 'other');
+    if (ridb && !osm && p.camping_classification === 'unverified_camping_record') p.type = 'other';
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
     p.amenity_negatives = Array.isArray(raw.amenity_negatives) ? [...raw.amenity_negatives] : [];
     p.amenities = !legacyRIDB && Array.isArray(raw.amenities) ? [...new Set(raw.amenities.filter(a => typeof a === 'string').map(a => aliases[a] || a))] : [];
@@ -77,6 +114,8 @@
     const p=primary.properties, q=secondary.properties;
     p.legacy_ids = [...new Set([...(p.legacy_ids || []), ...(q.legacy_ids || []), q.id])];
     p.sources = [...new Set([...(p.sources || []), ...(q.sources || [])])];
+    if (p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;}
+    if (p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;if(p.type==='other')p.type=q.type;}
     // Preserve known facts, but do not hide conflicts between sources.
     if (p.fee_status === 'unknown' && q.fee_status !== 'unknown' && !p.fee_conflict) {p.fee_status=q.fee_status; p.cost=q.cost;}
     else if (p.fee_status !== 'unknown' && q.fee_status !== 'unknown' && p.fee_status !== q.fee_status) {p.fee_status='unknown'; p.cost=null; p.fee_conflict=true;}
@@ -108,7 +147,9 @@
       features.push(f);ids.set(p.id,f);
       const key=`${cx},${cy}`;if(!grid.has(key))grid.set(key,[]);grid.get(key).push(f);
     }
-    return {type:'FeatureCollection',features};
+    // The public MVP lists evidence-supported camping locations only. Retain
+    // unverified source records solely when an explicit diagnostic caller asks.
+    return {type:'FeatureCollection',features: options.includeUnverified ? features : features.filter(f => f.properties.camping_classification === 'campsite')};
   }
   function applyFilters(sites, filters = {}) {
     return sites.filter(site => {
@@ -122,6 +163,6 @@
       return true;
     });
   }
-  global.DataQuality={normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng};
+  global.DataQuality={version:'2.2.0',normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -150,7 +150,8 @@
       <h3 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h3>
       <div><strong>Cost:</strong> ${esc(costText(p))}</div>
       <div><strong>Type:</strong> ${esc(p.type)}</div>
-      <div><strong>Access reported:</strong> ${esc(p.access || 'Not verified')}</div>
+      <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
+      <div><strong>Access reported:</strong> ${esc(p.access_label || p.access || 'Not verified')}</div>
       <div><strong>Amenities reported:</strong> ${p.amenities.length?p.amenities.map(esc).join(', '):'Not verified'}</div>
       ${p.road_difficulty?`<div><strong>Road:</strong> ${esc(p.road_difficulty)}</div>`:''}
       ${p.rig_friendly.length?`<div><strong>Rig types reported:</strong> ${p.rig_friendly.map(esc).join(', ')}</div>`:''}
@@ -158,11 +159,9 @@
       <p style="font-size:11px;line-height:1.4">Confirm current fees, access, and camping rules with the operator before traveling.${p.attributes_unverified?' Legacy inferred fees and amenities are hidden.':''}</p>
       ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">Check source / operator</a></p>`:''}
       <div style="display:flex;gap:5px;flex-wrap:wrap">
-        <button type="button" data-kt-action="trip" data-siteid="${siteId}">Add to Trip</button>
-        <button type="button" data-kt-action="compare" data-siteid="${siteId}">Compare</button>
+        <button type="button" data-kt-action="trip" data-siteid="${siteId}">Save stop</button>
         <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${lat},${lng}" target="_blank" rel="noopener noreferrer">Directions</a>
       </div>
-      <div id="photos-container-${siteId}" style="margin-top:10px"><button type="button" class="kt-photos-btn" data-siteid="${siteId}" data-lat="${lat}" data-lng="${lng}">Show nearby photos</button></div>
     </div>`;
   }
   function updateMarkers() {
@@ -192,6 +191,7 @@
     return api.getLoadStatus();
   }
   const api=window.KampTrailData={
+    version:'2.2.0',
     async init(map,config={}){
       state.map=map;state.config=config;
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});
@@ -228,31 +228,11 @@
     },
     addToTrip(id){const site=api.getCampsiteById(id);if(site)state.config.onTripAdd?.(site.properties.id);},
     toggleFavorite(id){state.config.onFavoriteToggle?.(id);},
-    async loadNearbyPhotos(id,lat,lng){
-      const container=document.getElementById(`photos-container-${id}`);if(!container)return;
-      container.textContent='Loading nearby photos…';
-      try{
-        if(!window.KampTrailPhotos)throw new Error('Photos unavailable');
-        const photos=await KampTrailPhotos.getNearbyPhotos(lat,lng);
-        container.textContent='';
-        for(const photo of photos||[]){
-          const url=safeUrl(photo.url),page=safeUrl(photo.pageUrl);if(!url||!page)continue;
-          const figure=document.createElement('figure');figure.style.margin='0 0 10px';
-          const a=document.createElement('a');a.href=page;a.target='_blank';a.rel='noopener noreferrer';a.title=String(photo.title||'Nearby photo');
-          const img=document.createElement('img');img.src=url;img.alt=String(photo.title||'Nearby photo');img.style.height='80px';img.loading='lazy';a.appendChild(img);figure.appendChild(a);
-          const caption=document.createElement('figcaption');caption.style.fontSize='11px';
-          const author=document.createElement('span');author.textContent=photo.author ? `By ${String(photo.author)} · ` : 'Author: see source · ';caption.appendChild(author);
-          const license=document.createElement('a');license.href=safeUrl(photo.licenseUrl)||page;license.target='_blank';license.rel='noopener noreferrer';license.textContent=String(photo.licenseLabel||'See source for license');caption.appendChild(license);
-          figure.appendChild(caption);container.appendChild(figure);
-        }
-        if(!container.children.length)container.textContent='No nearby Wikimedia Commons photos found.';
-      }catch{container.textContent='Nearby photos unavailable. Try again later.';}
-    }
+
   };
   document.addEventListener('click',event=>{
     const action=event.target.closest('[data-kt-action]');
-    if(action){const id=action.dataset.siteid;if(action.dataset.ktAction==='trip')api.addToTrip(id);if(action.dataset.ktAction==='compare')window.KampTrailCompare?.addToCompare(id);return;}
-    const photo=event.target.closest('.kt-photos-btn');
-    if(photo){event.preventDefault();api.loadNearbyPhotos(photo.dataset.siteid,+photo.dataset.lat,+photo.dataset.lng);}
+    if(action){const id=action.dataset.siteid;if(action.dataset.ktAction==='trip')api.addToTrip(id);return;}
+
   });
 })();

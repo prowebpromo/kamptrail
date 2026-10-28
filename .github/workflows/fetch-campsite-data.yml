@@ -132,6 +132,8 @@ jobs:
           fs.writeFileSync(path.join(folder, 'index.json.tmp'), `${JSON.stringify(index, null, 2)}\n`);
           fs.renameSync(path.join(folder, 'index.json.tmp'), path.join(folder, 'index.json'));
           JS
+      - name: Rebuild national campsite-name search
+        run: node scripts/build-search-index.js
       - name: Commit successful source and snapshot updates
         shell: bash
         run: |

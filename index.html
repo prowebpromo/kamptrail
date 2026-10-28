@@ -3,35 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KampTrail | Campsites, Public Lands & Trip Planning</title>
-  <meta name="description" content="Explore US campsite listings, public lands, and camping services. Search cities, compare campsites, and save trip stops for later.">
+  <title>KampTrail | Find and Save Campsites</title>
+  <meta name="description" content="Find US campsite listings by city, state, name, or coordinates. Filter by reported fees, save stops, and open directions.">
   <meta name="theme-color" content="#10281f">
   <meta name="application-name" content="KampTrail">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.1.0">
+  <meta name="kamptrail-version" content="2.2.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
   <link rel="canonical" href="https://prowebpromo.github.io/kamptrail/">
   <meta property="og:site_name" content="KampTrail">
-  <meta property="og:title" content="KampTrail | Campsites & Trip Planning">
+  <meta property="og:title" content="KampTrail | Find and Save Campsites">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://prowebpromo.github.io/kamptrail/og.png">
-  <meta property="og:description" content="Find campsite listings, explore public lands, and save your next camping trip.">
+  <meta property="og:description" content="Find campsite listings, save your stops, and open directions.">
   <meta property="og:url" content="https://prowebpromo.github.io/kamptrail/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.Default.css">
-  <link rel="stylesheet" href="overlays/overlays-advanced.css">
-  <link rel="stylesheet" href="overlays/overlays.css">
   <link rel="stylesheet" href="app.css">
   <script src="vendor/leaflet/leaflet.js"></script>
   <script src="vendor/markercluster/leaflet.markercluster.js"></script>
-  <script src="vendor/esri-leaflet.js"></script>
 </head>
 <body>
   <div id="app">
@@ -39,7 +36,7 @@
       <div class="brand"><h1>KampTrail</h1><span>Find your next stop.</span></div>
       <nav class="actions" aria-label="Map tools">
         <button id="filters" class="btn" aria-label="Open filters" aria-expanded="false">Filters <span id="filter-badge" style="display:none"></span></button>
-        <button id="trip" class="btn" aria-label="Open trip planner">My Trip <span id="trip-count">(0)</span></button>
+        <button id="trip" class="btn" aria-label="Open saved stops">Saved stops <span id="trip-count">(0)</span></button>
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">Near me</button>
       </nav>
     </header>
@@ -57,7 +54,7 @@
     <main>
       <aside id="results" aria-label="Campsites in this map view">
         <div class="results-heading"><h2>Explore campsites</h2><p id="result-summary" role="status" aria-live="polite">Loading campsite listings…</p></div>
-        <div class="data-note">Listings are leads, not permission to camp. Check current fees, access, closures, and amenities with the operator.</div>
+        <div class="data-note">Confirm current fees, camping access, and closures with the operator before you go.</div>
         <div id="data-errors" hidden></div>
         <div id="result-list"></div>
       </aside>
@@ -65,7 +62,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.1.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.2.0</a></span>
     </footer>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -75,11 +72,6 @@
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
   <script src="trip-planner.js"></script>
-  <script src="gpx-importer.js"></script>
-  <script src="campsite-compare.js"></script>
-  <script src="wikimedia-photos-service.js"></script>
-  <script src="overlays/overlays-advanced.js"></script>
-  <script src="overlays/overlays.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

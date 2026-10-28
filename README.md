@@ -1,8 +1,27 @@
-# KampTrail
+# KampTrail MVP 2.2.0
 
-A static camping map with US city search, campsite listings, protected-land access imagery, service locations, comparison, saved trip stops, and GPX import/export.
+KampTrail is a campsite finder at https://prowebpromo.github.io/kamptrail/.
 
-## Run locally
+## Included in the MVP
+
+- Search US cities, states, coordinates, and all saved campsite listings nationally.
+- Browse the same results on a clustered map and a nearby campsite list.
+- Filter by reported fee and campsite type. Filters and map position persist on this device.
+- See campsite coordinates, reported access, and source/operator links.
+- Save named stops on this device, reopen their locations, remove stops, and open Google Maps directions.
+- Use cached city search, previously loaded campsite listings, and saved stops after an online visit. Basemap imagery and external directions need internet.
+
+The initial national catalogue has 1,774 source-supported campsite candidates. The runtime map and national search use the same screening. Clear offices, picnic/day-use facilities, lodging-only sites, and explicit private/prohibited/closed records are excluded. General recreation-activity records without direct campsite evidence are withheld from the MVP. Missing prices remain unknown.
+
+These are source snapshots with uneven coverage, not field verification of current opening status, fees, access, road clearance, or water. A city search is not a promise that listings exist in every locality. The city index contains 7,557 places; smaller destinations can be reached by map or coordinates. Hawaii currently has no saved campsite records.
+
+## Deferred from this release
+
+Comparison, GPX import/export, nearby photos, cell coverage/towers, service POIs, public-land overlays, alternate basemaps, user accounts/reviews, advanced rig/road/rating filters, and route optimization are outside the MVP. Their old code remains recoverable in repository history. The live interface has no setup-dependent controls or placeholder features.
+
+The MVP focuses on campsite discovery and saved locations. It does not claim feature parity with FreeRoam. See [FreeRoam source-review takeaways](docs/FREEROAM_TAKEAWAYS.md).
+
+## Run and test
 
 Node.js 22 or later:
 
@@ -11,40 +30,7 @@ npm ci
 npm start
 ```
 
-Open http://127.0.0.1:8765/. The app also works at http://127.0.0.1:8765/kamptrail/ for testing the GitHub Pages project path.
-
-For a static release, serve the extracted folder over HTTP rather than opening `index.html` directly. Python is also sufficient:
-
-```sh
-python3 -m http.server 8000
-```
-
-On Windows, use `py -m http.server 8000` if Python was installed with the launcher.
-
-## What works
-
-- Leaflet map and bundled browser dependencies, without a required script CDN.
-- Local search across 7,557 US places, loaded campsite names, states, and latitude/longitude pairs. Smaller places absent from GeoNames cities5000 can still be reached by coordinates or the map.
-- State snapshots, marker clustering, filter vocabulary aligned with source tags, retryable downloads, and map/list result counts.
-- Stable source identifiers, duplicate cleanup, and source links where recoverable.
-- Unknown fees are displayed as unknown. Unsupported legacy price, water, road, and vehicle-access guesses are hidden.
-- Standard, topographic, satellite, and terrain basemaps. The USGS PAD-US 3.0 layer shows protected-land access classes. It is an overview of public and private protected lands, not a camping-permission map.
-- Community campsite snapshots from the actual state files rather than the former empty combined file.
-- Saved trip and comparison snapshots that remain usable when another map region is open.
-- Namespaced GPX import, separate track segments, saved waypoint export, and directions links.
-- Offline app shell, city search, saved trip details, and previously loaded campsite areas after an online visit. Basemap tiles, land imagery, directions, and photos require internet. Browsers can evict cached data, so export important trip stops as GPX.
-
-## Data limits
-
-This is a repaired version of the current KampTrail static app. It does not provide all of FreeRoam's original backend services, community accounts, reviews, or downloadable offline basemaps. FreeRoam's original frontend depends on its separate `back-roads` backend, so the frontend repository alone cannot restore those services.
-
-Source snapshots have incomplete and uneven coverage. Older RIDB camping-activity pulls can include recreation facilities other than overnight campgrounds, and state bounding boxes can include neighboring areas. A listing does not establish legal overnight access, current availability, potable water, rig clearance, or an operating campground. Confirm those details with the operator.
-
-The repair preserves historical source files and does not claim to have refreshed or field-verified every listing. Legacy inferred attributes remain available for diagnosis but are not displayed as facts. See [DATA_SOURCES.md](DATA_SOURCES.md) and [scripts/DATA_PROVENANCE.md](scripts/DATA_PROVENANCE.md).
-
-Cell towers are disabled until an OpenCelliD provider key is configured. A tower location does not predict campsite signal or carrier coverage. Nearby Wikimedia Commons photos link to original file pages and available author/license information. Photos within the search radius may depict another nearby location.
-
-## Test and build
+Open http://127.0.0.1:8765/. The local server also supports `/kamptrail/` for GitHub Pages project-path testing.
 
 ```sh
 npm test
@@ -55,16 +41,12 @@ npm run test:browser
 npm run build
 ```
 
-`npm run build` creates `dist/kamptrail/`, containing only the static app assets, necessary snapshot files, and license notices. The optional `CHROMIUM_PATH` environment variable can select an existing Chromium binary for tests.
+The build regenerates the national campsite-name index and creates `dist/kamptrail/` with only active MVP assets and necessary data/license files. Browser regressions isolate remote tiles; deployment verification checks the real live page and imagery.
 
-Browser regressions use real committed campsite/city snapshots while isolating optional remote imagery for repeatability. Live provider checks and desktop/mobile screenshots are recorded in [docs/REPAIR_2026-10-27.md](docs/REPAIR_2026-10-27.md). Automated checks run on pull requests and main-branch pushes.
+## Updates
 
-## Refresh and deployment
+One reusable GitHub workflow refreshes source snapshots, rebuilds merged state files and national search, and serializes writes. Its weekly schedule is Sunday at 03:00 UTC. Failed/partial/empty source pulls preserve existing useful source files. RIDB uses repository secrets; no visitor needs an API key. See [source provenance](scripts/DATA_PROVENANCE.md).
 
-GitHub Pages serves this repository at https://prowebpromo.github.io/kamptrail/. The static release can also run on another HTTPS host. All asset and dataset paths are relative to the app directory.
+The service worker preserves saved data, refreshes source snapshots online, and automatically reloads once when replacing an older cached app. Bump its version for application changes.
 
-One reusable workflow owns dataset refreshes and serializes writes. Its existing weekly schedule is Sunday at 03:00 UTC. Manual state/source workflows call the same owner. Failed, partial, invalid, or empty source fetches preserve saved data. Successful fetches rebuild the visible merged snapshots and the aggregate index. RIDB uses the repository secret `RECREATION_GOV_API_KEY` or `RIDB_API_KEY`. No embedded fallback key is used. No data refresh was run during this repair.
-
-When modifying application files, bump the version in `service-worker.js`. The app automatically reloads once when a previous worker is replaced, so existing installations switch to the new bundled shell. The worker preserves visited data and does not delete caches belonging to neighboring apps.
-
-Code: MIT. Third-party libraries and datasets retain their respective licenses.
+Code: MIT. Data and browser libraries retain their respective licenses. See [data credits](DATA_SOURCES.md).

@@ -1,6 +1,7 @@
 const { defineConfig } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests/browser',
+  testMatch: ['app.spec.js','saved-stops.spec.js','upgrade.spec.js'],
   timeout: 45000,
   expect: { timeout: 15000 },
   fullyParallel: false,

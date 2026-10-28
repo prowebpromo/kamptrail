@@ -109,14 +109,3 @@ test('focus on a filter-hidden site explains the problem instead of silently pan
   h.context.KampTrailFilters={reset:()=>h.api.updateFilters(h.api.getDefaultFilters())};
   assert.equal(h.api.focusCampsite(id),true);assert.equal(moved,true);
 });
-test('nearby photos include safe author and license attribution DOM',async()=>{
-  function element(tag){return {tag,style:{},children:[],appendChild(child){this.children.push(child);},set textContent(value){this.text=value;this.children=[];},get textContent(){return this.text||'';}};}
-  const container=element('div');
-  const h=harness(async()=>response({}),{document:{addEventListener(){},getElementById:()=>container,createElement:element}});
-  h.context.KampTrailPhotos={getNearbyPhotos:async()=>[{url:'https://upload.wikimedia.org/photo.jpg',pageUrl:'https://commons.wikimedia.org/wiki/File:Photo.jpg',title:'Photo',author:'A < B',licenseLabel:'CC BY-SA 4.0',licenseUrl:'javascript:alert(1)'}]};
-  await h.api.loadNearbyPhotos('id',43,-75);
-  const figure=container.children[0],caption=figure.children[1];
-  assert.equal(caption.children[0].textContent,'By A < B · ');
-  assert.equal(caption.children[1].textContent,'CC BY-SA 4.0');
-  assert.equal(caption.children[1].href,'https://commons.wikimedia.org/wiki/File:Photo.jpg');
-});

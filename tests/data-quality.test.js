@@ -65,3 +65,60 @@ test('conflicting water reports do not advertise a verified water amenity',()=>{
   const result=quality.cleanAndDedupeGeoJSON({features:[point({osm_id:1,tourism:'camp_site',drinking_water:'yes'}),point({osm_id:2,tourism:'camp_site',drinking_water:'no'})]});
   assert.ok(!result.features[0].properties.amenities.includes('water'));
 });
+
+test('MVP excludes explicit private/prohibited camping access while retaining commercial customer and permit records',()=>{
+  for(const access of ['private','no','military'])assert.equal(normalize({osm_id:1,tourism:'camp_site',access}),null);
+  const customers=normalize({osm_id:2,tourism:'camp_site',access:'customers',ownership:'private',fee:'yes'});
+  assert.equal(customers.properties.access_status,'customers');
+  assert.match(customers.properties.access_label,/Customers only/);
+  const permit=normalize({osm_id:3,tourism:'camp_site',access:'permit'});
+  assert.equal(permit.properties.access_status,'permit');
+  assert.match(permit.properties.access_label,/Permit required/);
+});
+test('MVP excludes clear noncamping facilities without removing named campgrounds sharing those words',()=>{
+  for(const name of ['Jackson Ranger District','Forest Supervisor Office','Forest Visitor Center','Cottonwood Picnic Site','Big Lake Day Use Area','Pine Boat Ramp','Baranof Lake Cabin','Heybrook Lookout','Teanaway Guard Station','Green River Lodge','US Naval Air Station','Buford Dam Park Shelters (GA)','Alpine Ranger Station']) {
+    assert.equal(normalize({name,facility_id:3,type:'established'}),null,name);
+  }
+  for(const name of ['Sweetwater Guard Station Campground','Meeks Cabin Campground','Medicine Lodge Lake Campground','Cabin Creek RV Park','Picnic Point Campground']) {
+    assert.ok(normalize({name,facility_id:3,type:'established'}),name);
+  }
+});
+test('explicit named OSM campsites survive ambiguous names and missing fees, with access remaining unknown',()=>{
+  const site=normalize({name:'Log Cabin Resort',osm_id:4,tourism:'caravan_site',ownership:'private'});
+  assert.ok(site);assert.equal(site.properties.fee_status,'unknown');
+  assert.equal(site.properties.access_status,'unknown');assert.equal(site.properties.access_label,'Access not verified');
+  assert.equal(site.properties.camping_evidence,'osm_campsite_tag');
+});
+test('explicit closed/disused camping records are omitted and ambiguous RIDB activity records are not called campgrounds',()=>{
+  for(const tags of [{disused:'yes'},{abandoned:'yes'},{'disused:tourism':'camp_site'},{camping:'no'}])assert.equal(normalize({osm_id:4,tourism:'camp_site',...tags}),null);
+  const site=normalize({name:'Lyons Ferry Marina',facility_id:20,type:'established'});
+  assert.ok(site);assert.equal(site.properties.type,'other');
+  assert.equal(site.properties.camping_classification,'unverified_camping_record');
+  const again=quality.normalizeFeature(site);
+  assert.equal(again.properties.type,'other');assert.equal(again.properties.access_status,'unknown');
+});
+
+
+test('direct source intro preserves legitimate short RIDB campground names without trusting later nearby mentions',()=>{
+  const site=normalize({name:'FRENCHMAN',facility_id:232137,type:'established',description:'<h2>Overview</h2><p>Frenchman Campground sits along its namesake lake. Nearby boating is popular.</p>'});
+  assert.equal(site.properties.type,'established');assert.equal(site.properties.camping_evidence,'source_intro_camping');
+  const ambiguous=normalize({name:'Lake Recreation Area',facility_id:99,type:'established',description:'A recreation area on Lake X. A campground is located several miles away.'});
+  assert.equal(ambiguous.properties.type,'other');
+  assert.equal(normalize({name:'Lake Recreation Area',facility_id:99,description:'No overnight camping is permitted here.'}),null);
+});
+test('duplicate records retain explicit permit/customer access when another source lacks access details',()=>{
+  const result=quality.cleanAndDedupeGeoJSON({features:[point({osm_id:1,tourism:'camp_site'}),point({osm_id:2,tourism:'camp_site',access:'permit'})]});
+  assert.equal(result.features.length,1);assert.equal(result.features[0].properties.access_status,'permit');assert.match(result.features[0].properties.access_label,/Permit/);
+});
+
+
+test('public MVP cleaner excludes unverified activity listings by default while diagnostic callers can retain them',()=>{
+  const campground=point({name:'Pine Campground',facility_id:1});
+  const unverified=point({name:'Lake Recreation Area',facility_id:2,description:'A general recreation area near the lake.'},[-74,44]);
+  assert.ok(quality.normalizeFeature(unverified));
+  const publicSites=quality.cleanAndDedupeGeoJSON({features:[campground,unverified]});
+  assert.equal(publicSites.features.length,1);assert.equal(publicSites.features[0].properties.name,'Pine Campground');
+  const diagnostic=quality.cleanAndDedupeGeoJSON({features:[campground,unverified]},{includeUnverified:true});
+  assert.equal(diagnostic.features.length,2);
+  assert.equal(diagnostic.features[1].properties.camping_classification,'unverified_camping_record');
+});
