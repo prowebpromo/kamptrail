@@ -126,7 +126,7 @@ test('public MVP cleaner excludes unverified activity listings by default while 
 test('RV length and hookup filters use Recreation.gov site summaries and never match unknowns', () => {
   const DQ = require('../data-quality.js');
   const mk = (fid) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [-110, 40]}, properties: {id: `ridb:${fid}`, facility_id: fid, amenities: [], rig_friendly: [], rating: null}});
-  const table = {'1': {t: 10, r: 6, L: 40, h: {'25': 2, '40': 4}, e: 3, w: 6}, '2': {t: 5, r: 0, L: 0}};
+  const table = {'1': {t: 10, r: 6, L: 40, g: [[25, 3, 2], [40, 3, 4]], e: 6, w: 6}, '2': {t: 5, r: 0, L: 0}};
   const a = DQ.attachSiteDetails(mk(1), table), b = DQ.attachSiteDetails(mk(2), table), c = DQ.attachSiteDetails(mk(3), table);
   assert.strictEqual(a.properties.rv_max_length, 40);
   assert.strictEqual(b.properties.rv_max_length, null);
@@ -141,11 +141,12 @@ test('RV length and hookup filters use Recreation.gov site summaries and never m
 test('Recreation.gov fee evidence fills only unknown fees', () => {
   const DQ = require('../data-quality.js');
   const mk = (fid, extra = {}) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [-110, 40]}, properties: {id: `ridb:${fid}`, facility_id: fid, fee_status: 'unknown', cost: null, amenities: [], rig_friendly: [], ...extra}});
-  const t = {'1': {t: 0, r: 0, L: 0, f: 'free', fe: 'fee_text', sl: '14 days'}, '2': {t: 0, r: 0, L: 0, f: 'paid', fe: 'reservable'}, '3': {t: 0, r: 0, L: 0, f: 'free', fe: 'fee_text'}, '4': {t: 0, r: 0, L: 0, f: 'paid', fe: 'fee_text', c: 22}};
+  const t = {'1': {t: 0, r: 0, L: 0, f: 'free', fe: 'fee_text', sl: '14 days'}, '2': {t: 0, r: 0, L: 0, rs: 1}, '3': {t: 0, r: 0, L: 0, f: 'free', fe: 'fee_text'}, '4': {t: 0, r: 0, L: 0, f: 'paid', fe: 'fee_text', c: 22}};
   const a = DQ.attachSiteDetails(mk(1), t).properties;
   assert.deepStrictEqual([a.fee_status, a.cost, a.stay_limit], ['free', 0, '14 days']);
   const b = DQ.attachSiteDetails(mk(2), t).properties;
-  assert.deepStrictEqual([b.fee_status, b.cost, b.fee_evidence], ['paid', null, 'Reservable on Recreation.gov']);
+  // Reservable alone stays unknown.
+  assert.deepStrictEqual([b.fee_status, b.cost, b.fee_evidence, b.reservable], ['unknown', null, undefined, true]);
   const c = DQ.attachSiteDetails(mk(3, {fee_status: 'paid', cost: 15}), t).properties;
   assert.deepStrictEqual([c.fee_status, c.cost], ['paid', 15]);
   const d = DQ.attachSiteDetails(mk(4), t).properties;
@@ -163,4 +164,19 @@ test('agency records count as camping, keep fee wording, and fill an unknown Rec
   assert.strictEqual(lone.properties.fee_status, 'conditional');
   assert.strictEqual(DQ.applyFilters([lone], {rigLength: 30}).length, 0);
   assert.strictEqual(DQ.applyFilters([lone], {rigLength: 30, rigIncludeUnknown: true}).length, 1);
+});
+
+test('rig length and hookups must be met by one campsite, not different sites in a campground', () => {
+  const DQ = require('../data-quality.js');
+  const mk = (fid) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [-110, 40]}, properties: {id: `ridb:${fid}`, facility_id: fid, amenities: [], rig_friendly: [], rating: null}});
+  // Campground 1: a 50 ft unpowered site and a 20 ft powered site. Campground 2: one 45 ft powered site. Campground 3: lengths not documented, one powered site.
+  const table = {'1': {t: 2, r: 2, L: 50, g: [[20, 1, 1], [50, 0, 1]], e: 1}, '2': {t: 1, r: 1, L: 45, g: [[45, 1, 1]], e: 1}, '3': {t: 1, r: 1, L: 0, g: [[0, 1, 1]], e: 1}};
+  const sites = ['1', '2', '3'].map(id => DQ.attachSiteDetails(mk(id), table));
+  const ids = f => DQ.applyFilters(sites, f).map(s => s.properties.id);
+  assert.deepStrictEqual(ids({rigLength: 40, hookups: ['electric']}), ['ridb:2']);
+  assert.deepStrictEqual(ids({rigLength: 40}), ['ridb:1', 'ridb:2']);
+  assert.deepStrictEqual(ids({hookups: ['electric']}), ['ridb:1', 'ridb:2', 'ridb:3']);
+  assert.deepStrictEqual(ids({rigLength: 40, hookups: ['electric'], rigIncludeUnknown: true}), ['ridb:2', 'ridb:3']);
+  assert.strictEqual(DQ.matchingSites(sites[0].properties, 40, ['electric']), 0);
+  assert.strictEqual(DQ.matchingSites(sites[1].properties, 40, ['electric']), 1);
 });

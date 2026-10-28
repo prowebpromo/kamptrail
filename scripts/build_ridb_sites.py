@@ -10,10 +10,13 @@ Per facility:
   t  overnight campsites listed
   r  sites that permit an RV-type vehicle (RV, trailer, fifth wheel, camper van, ...)
   L  longest reported RV-type length in feet (0 = not reported)
-  h  {length_ft: site_count} for sites with a reported RV-type length
-  e, w, s  sites reporting electric, water, and sewer hookups
-  f, c     fee evidence from the facility's fee text or reservability: 'free' or 'paid', and a nightly cost when stated
-  fe       which evidence set the fee: 'fee_text' or 'reservable'
+  g  site signatures: [[length_ft, hookup_bits, site_count], ...] for RV-type sites,
+     hookup_bits electric=1, water=2, sewer=4. One signature describes one kind of campsite,
+     so a filter for 40 ft + electric only matches a campsite that has both.
+  e, w, s  sites reporting electric, water, and sewer hookups (display only)
+  f, c     camping fee evidence from the facility's fee text: 'free', 'paid' or 'conditional', and a nightly cost when stated
+  fe       'fee_text' (reservability is never fee evidence)
+  rs       1 when the facility is reservable on Recreation.gov (information only)
   sl       stay limit text as published
 
 Lengths come from PermittedEquipment.MaxLength for RV-type equipment, falling back
@@ -61,26 +64,21 @@ def catalogue_facilities(index_path):
     return {s['id'].split(':', 1)[1] for s in data.get('sites', []) if str(s.get('id', '')).startswith('ridb:')}
 
 
-FREE_ONLY = re.compile(r'^(?:camping\s+)?(?:fees?:?\s*)?(?:no\s+fees?|free|no\s+charge|none)\s*[.!]?$', re.I)
-CAMPING_FREE = re.compile(r'\bcamping\s+fee:?\s*free\b', re.I)
-NIGHTLY = re.compile(r'\$\s?(\d{1,3}(?:\.\d{2})?)\s*(?:/|per|a|each)\s*(?:night|site|campsite)', re.I)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import fee_text  # noqa: E402
 
 
 def fee_from_text(text, reservable):
-    """Conservative fee evidence. Ambiguous text (day-use free, extra vehicles) stays unknown."""
-    t = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', text or '')).strip()
-    if t and '$' not in t and (FREE_ONLY.match(t) or CAMPING_FREE.search(t)):
-        return {'f': 'free', 'fe': 'fee_text'}
-    nightly = NIGHTLY.findall(t)
-    if nightly:
-        amounts = sorted({float(a) for a in nightly})
-        rec = {'f': 'paid', 'fe': 'fee_text'}
-        if len(amounts) == 1 and amounts[0] > 0:
-            rec['c'] = int(amounts[0]) if amounts[0].is_integer() else amounts[0]
-        return rec
+    """Camping fee evidence from the published fee wording only. Reservability is recorded separately."""
+    status, cost = fee_text.classify(text)
+    rec = {}
+    if status != 'unknown':
+        rec = {'f': status, 'fe': 'fee_text'}
+        if status == 'paid' and cost:
+            rec['c'] = cost
     if str(reservable).strip().lower() == 'true':
-        return {'f': 'paid', 'fe': 'reservable'}
-    return {}
+        rec['rs'] = 1
+    return rec
 
 
 def build(source, wanted):
@@ -122,7 +120,7 @@ def build(source, wanted):
             if info:
                 facility_info[fid] = info
     out = {}
-    agg = defaultdict(lambda: {'t': 0, 'r': 0, 'L': 0, 'h': defaultdict(int), 'e': 0, 'w': 0, 's': 0})
+    agg = defaultdict(lambda: {'t': 0, 'r': 0, 'L': 0, 'g': defaultdict(int), 'e': 0, 'w': 0, 's': 0})
     for site in sites.values():
         a = agg[site['f']]
         a['t'] += 1
@@ -130,15 +128,16 @@ def build(source, wanted):
         length = site['len'] or (site['attr_len'] if site['rv'] else 0)
         if site['rv']:
             a['r'] += 1
+            bits = int(site['e']) | int(site['w']) << 1 | int(site['s']) << 2
+            a['g'][(length, bits)] += 1
         if length:
-            a['h'][length] += 1
             a['L'] = max(a['L'], length)
         for k in 'ews':
             a[k] += int(site[k])
     for fid, a in agg.items():
         rec = {'t': a['t'], 'r': a['r'], 'L': a['L']}
-        if a['h']:
-            rec['h'] = {str(k): v for k, v in sorted(a['h'].items())}
+        if a['g']:
+            rec['g'] = [[length, bits, n] for (length, bits), n in sorted(a['g'].items())]
         for k in 'ews':
             if a[k]:
                 rec[k] = a[k]
@@ -167,13 +166,13 @@ def main(argv=None):
     if previous and len(facilities) < previous * 0.7:
         print(f'Refusing to replace {previous} facilities with {len(facilities)}; saved data kept.', file=sys.stderr)
         return 1
-    payload = {'version': 1, 'source': 'Recreation.gov RIDB full export', 'facilities': facilities}
+    payload = {'version': 2, 'source': 'Recreation.gov RIDB full export', 'facilities': facilities}
     tmp = out.with_suffix('.json.tmp')
     tmp.write_text(json.dumps(payload, separators=(',', ':')))
     tmp.replace(out)
     with_len = sum(1 for f in facilities.values() if f['L'])
-    fees = {k: sum(1 for f in facilities.values() if f.get('f') == k) for k in ('free', 'paid')}
-    print(f'ridb-sites.json: {len(facilities)} of {len(wanted)} catalogue campgrounds, {with_len} with a reported RV length, fee evidence free {fees["free"]} paid {fees["paid"]}')
+    fees = {k: sum(1 for f in facilities.values() if f.get('f') == k) for k in ('free', 'conditional', 'paid')}
+    print(f'ridb-sites.json: {len(facilities)} of {len(wanted)} catalogue campgrounds, {with_len} with a reported RV length, fee text evidence {fees}')
     return 0
 
 

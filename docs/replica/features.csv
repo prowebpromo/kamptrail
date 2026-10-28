@@ -14,10 +14,10 @@ Cell carrier coverage overlay,layers,should,yes,no,Original self-hosted tiles; n
 Fire weather and smoke layers,layers,could,yes,no,NOAA smoke/fire tiles possible
 MVUM motor vehicle use map layer,layers,could,yes,no,USFS MVUM ArcGIS service possible
 Per-layer opacity,layers,could,yes,no,
-Filter by fee (free/paid),filters,must,yes,yes,Fee status with unknown kept unknown
+Filter by fee (free/paid),filters,must,yes,yes,"Negation, ancillary free services and reservability fixed in 2.4.2; see fee-fit-2.4.2.md"
 Filter by campsite type,filters,must,yes,yes,
 Filter by rig length,filters,should,yes,yes,"Recreation.gov site lengths (RIDB bulk export), unknowns excluded unless included and labeled"
-Filter by amenities / hookups,filters,should,yes,yes,"Electric, water, sewer from Recreation.gov site records, plus reported amenities"
+Filter by amenities / hookups,filters,should,yes,yes,Length and hookups matched on one campsite (2.4.2)
 Filter by road difficulty,filters,could,yes,no,Engine supports it; data sparse
 Filter by minimum rating,filters,could,yes,no,Needs reviews
 Filter by elevation,filters,could,yes,no,

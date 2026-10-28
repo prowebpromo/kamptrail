@@ -79,7 +79,7 @@
   function validDataset(data, target) {
     if (target?.index) return Array.isArray(data?.states) && Number.isFinite(data.total_sites) && data.total_sites >= 0;
     if (target?.kind === 'agencyIndex') return data?.version === 1 && Array.isArray(data.states);
-    if (target?.kind === 'sites') return data?.version === 1 && !!data.facilities && typeof data.facilities === 'object';
+    if (target?.kind === 'sites') return [1, 2].includes(data?.version) && !!data.facilities && typeof data.facilities === 'object';
     if (target?.kind === 'services') return data?.version === 1 && Array.isArray(data.items);
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
@@ -165,7 +165,8 @@
     if(p.rv_sites)parts.push(`${p.rv_sites} of ${p.site_count} sites allow RVs or trailers`);
     else parts.push(`${p.site_count} sites listed, none list RV or trailer use`);
     if(p.rv_max_length)parts.push(`longest reported ${p.rv_max_length} ft`);
-    if(rig>0&&p.rv_max_length)parts.push(`${DataQuality.sitesFitting(p,rig)} list ${rig} ft or more`);
+    const hooks=(window.kamptrailFilters?.hookups)||[];
+    if(rig>0||hooks.length){const n=DataQuality.matchingSites(p,rig,hooks,false);parts.push(`${n} ${n===1?'site lists':'sites list'} ${[rig>0?`${rig} ft or more`:'',hooks.length?`${hooks.join(' + ')} hookups`:''].filter(Boolean).join(' with ')} on the same site`);}
     const h=p.hookups||{},hk=[['electric','electric'],['water','water'],['sewer','sewer']].filter(([k])=>h[k]>0).map(([k,l])=>`${l} at ${h[k]}`);
     return `<div><strong>RV sites (Recreation.gov):</strong> ${esc(parts.join(' · '))}</div>${hk.length?`<div><strong>Hookups reported:</strong> ${esc(hk.join(', '))} sites</div>`:''}`;
   }
@@ -182,6 +183,7 @@
       ${p.open_status&&p.open_status!=='none'?`<div><strong>Status (agency):</strong> ${esc(p.open_status)}${p.season?` · season ${esc(p.season)}`:''}</div>`:''}
       ${p.restrictions?`<div><strong>Restrictions:</strong> ${esc(p.restrictions.length>180?p.restrictions.slice(0,177)+'…':p.restrictions)}</div>`:''}
       ${p.stay_limit?`<div><strong>Stay limit:</strong> ${esc(p.stay_limit)}</div>`:''}
+      ${p.reservable?'<div class="kt-fine">Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.</div>':''}
       <div><strong>Type:</strong> ${esc(p.type)}</div>
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       <div><strong>Access reported:</strong> ${esc(p.access_label || p.access || 'Not verified')}</div>
@@ -272,7 +274,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.4.1',
+    version:'2.4.2',
     DETAIL_ZOOM,
     async init(map,config={}){
       state.map=map;state.config=config;

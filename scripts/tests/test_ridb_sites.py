@@ -34,7 +34,8 @@ class RIDBSitesTests(unittest.TestCase):
         self.assertEqual(set(out), {'100'})
         f = out['100']
         self.assertEqual((f['t'], f['r'], f['L']), (3, 2, 35))
-        self.assertEqual(f['h'], {'28': 1, '35': 1})  # tent site's 20 ft car pad is not an RV length
+        # One signature per kind of RV site. The tent site's 20 ft car pad is not an RV length.
+        self.assertEqual(f['g'], [[28, 7, 1], [35, 3, 1]])
         self.assertEqual((f['e'], f['w'], f['s']), (2, 2, 1))
         self.assertEqual((f['f'], f['fe'], f['sl']), ('free', 'fee_text', '14 days'))
 
@@ -43,8 +44,12 @@ class RIDBSitesTests(unittest.TestCase):
         self.assertEqual(f('<p>No fees.</p>', 'false'), {'f': 'free', 'fe': 'fee_text'})
         self.assertEqual(f('Camping Fee: Free, Stay Limit: 14 days.', 'false')['f'], 'free')
         self.assertEqual(f('$10 per night for overnight camping. No fee for day use.', 'false'), {'f': 'paid', 'fe': 'fee_text', 'c': 10})
-        self.assertEqual(f('Single Site: First Vehicle Free, Second Vehicle Fee is $5', 'false'), {})
-        self.assertEqual(f('', 'true'), {'f': 'paid', 'fe': 'reservable'})
+        self.assertEqual(f('Single Site: First Vehicle Free, Second Vehicle Fee is $5', 'false')['f'], 'paid')
+        # Reservability is recorded, never treated as a camping fee.
+        self.assertEqual(f('', 'true'), {'rs': 1})
+        self.assertEqual(f('For current fees, please go to Recreation.gov', 'true'), {'rs': 1})
+        self.assertEqual(f('Camping is not free.', 'false'), {'f': 'paid', 'fe': 'fee_text'})
+        self.assertEqual(f('Free drinking water is available.', 'false'), {})
         self.assertEqual(f('Day-use picnicking is free.', 'false'), {})
 
     def test_shrunken_export_keeps_saved_file(self):
