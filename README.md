@@ -1,4 +1,4 @@
-# KampTrail MVP 2.2.0
+# KampTrail MVP 2.2.1
 
 KampTrail is a campsite finder at https://prowebpromo.github.io/kamptrail/.
 
@@ -50,3 +50,9 @@ One reusable GitHub workflow refreshes source snapshots, rebuilds merged state f
 The service worker preserves saved data, refreshes source snapshots online, and automatically reloads once when replacing an older cached app. Bump its version for application changes.
 
 Code: MIT. Data and browser libraries retain their respective licenses. See [data credits](DATA_SOURCES.md).
+
+## Clarity and integration update (2.2.1)
+
+The app explains its core task immediately and includes an accessible About the data dialog with live catalogue counts, sources, missing snapshot dates, fee/access limits, and device/offline behavior. It keeps the MVP tool set unchanged.
+
+Boondock or Bust integration markup and publication instructions are in [`integrations/boondock-or-bust/`](integrations/boondock-or-bust/). This is prepared markup, pending authenticated WordPress publication and theme verification. The real-RVer session protocol is [`docs/USABILITY_TASKS.md`](docs/USABILITY_TASKS.md); human sessions have not yet been conducted.
