@@ -6,3 +6,12 @@
 - **Google Maps:** directions are external links for the selected coordinates. KampTrail does not calculate or optimize routes.
 
 The code's MIT license does not replace these data or third-party software licenses. Browser-library notices are in `vendor/`. No bulk map-tile downloads occur. Basemap imagery requires internet.
+
+## Map layers and lookups (2.3.0)
+
+| Data | Source | Terms |
+| --- | --- | --- |
+| Public land layer and land manager lookup | BLM Surface Management Agency map service (gis.blm.gov) | US federal government data. Boundaries can be approximate. Not permission to camp |
+| Forecast and elevation | National Weather Service API (api.weather.gov) | US government data. US locations only |
+| Topo and satellite basemaps | USGS The National Map (basemap.nationalmap.gov) | Public domain |
+| Dump stations, water fill points, propane | OpenStreetMap contributors via Overpass, built into `data/services/services.json` | ODbL. Hours, fees, and potability not verified |

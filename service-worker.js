@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and no tile interception.
-const VERSION = 'kt-v21-mvp';
+const VERSION = 'kt-v23';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
 const DATA_CACHE = `${PREFIX}data-v1`;
@@ -8,7 +8,7 @@ const SHELL = [
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'data-loader.js','data-quality.js','filters.js','trip-planner.js'
+  'data-loader.js','data-quality.js','filters.js','trip-planner.js','spot-info.js','share.js','layers.js','data/services/services.json'
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);

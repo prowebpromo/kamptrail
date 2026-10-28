@@ -1,25 +1,26 @@
-# KampTrail MVP 2.2.1
+# KampTrail 2.3.0
 
-KampTrail is a campsite finder at https://prowebpromo.github.io/kamptrail/.
+KampTrail is a free, no-account campsite map at https://prowebpromo.github.io/kamptrail/.
 
-## Included in the MVP
+## Features
 
-- Search US cities, states, coordinates, and all saved campsite listings nationally.
-- Browse the same results on a clustered map and a nearby campsite list.
-- Filter by reported fee and campsite type. Filters and map position persist on this device.
-- See campsite coordinates, reported access, and source/operator links.
-- Save named stops on this device, reopen their locations, remove stops, and open Google Maps directions.
-- Use cached city search, previously loaded campsite listings, and saved stops after an online visit. Basemap imagery and external directions need internet.
+- Search US cities, states, coordinates, and all saved campsite listings nationally. Map, list, and counts stay in sync.
+- Filter by reported fee, campsite type, reported rig type (tents, trailers), and reported amenities. Missing data never counts as a match.
+- Basemaps: standard (OpenStreetMap), topo and satellite (USGS National Map).
+- Public land layer (BLM Surface Management Agency) with a legend.
+- Long-press (or right-click) anywhere to check a spot: GPS, land manager, the agency's stay-limit guidance, NWS forecast and elevation, save, share, directions, and "Suggest a campsite here."
+- RV services layer: OSM dump stations and propane, plus tagged water fill points once the weekly data refresh runs. Each campsite popup can show the nearest of each.
+- Campsite popups: source/operator link, directions, share link (`#site=`), forecast and elevation, land manager, and "Suggest a fix."
+- Trips: saved stops with reorder, notes, arrive/leave dates, straight-line miles and planned nights, a route line, whole-trip Google Maps directions split into legs within Google's waypoint limits, and GPX export/import.
+- Offline: the app shell, city search, previously loaded listings, services, and saved stops work after an online visit. Map imagery, forecasts, land lookups, and directions need internet.
 
-The initial national catalogue has 1,774 source-supported campsite candidates. The runtime map and national search use the same screening. Clear offices, picnic/day-use facilities, lodging-only sites, and explicit private/prohibited/closed records are excluded. General recreation-activity records without direct campsite evidence are withheld from the MVP. Missing prices remain unknown.
+Corrections and new campsites go through GitHub issue forms (`.github/ISSUE_TEMPLATE`), prefilled from the app. A free GitHub account is required.
 
-These are source snapshots with uneven coverage, not field verification of current opening status, fees, access, road clearance, or water. A city search is not a promise that listings exist in every locality. The city index contains 7,557 places; smaller destinations can be reached by map or coordinates. Hawaii currently has no saved campsite records.
+The national catalogue has 1,774 source-supported campsite candidates. Clear offices, picnic/day-use facilities, lodging-only sites, and explicit private/prohibited/closed records are excluded. Missing prices remain unknown. These are source snapshots with uneven coverage, not field verification. Public land boundaries do not grant permission to camp.
 
-## Deferred from this release
+## Not included
 
-Comparison, GPX import/export, nearby photos, cell coverage/towers, service POIs, public-land overlays, alternate basemaps, user accounts/reviews, advanced rig/road/rating filters, and route optimization are outside the MVP. Their old code remains recoverable in repository history. The live interface has no setup-dependent controls or placeholder features.
-
-The MVP focuses on campsite discovery and saved locations. It does not claim feature parity with FreeRoam. See [FreeRoam source-review takeaways](docs/FREEROAM_TAKEAWAYS.md).
+Accounts, reviews, photos, forums, cell coverage overlays, rig-length filtering, and drive-time routing are not in this release. Reviews and photos need a backend and moderation. Rig length needs a campsite-level data source. See the parity report in [docs/replica](docs/replica/parity.md).
 
 ## Run and test
 

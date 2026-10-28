@@ -42,7 +42,7 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.2.1' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters].some(module=>module?.version!=='2.2.1')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.3.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare].some(module=>module?.version!=='2.3.0')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
@@ -68,10 +68,7 @@
     const c = map.getCenter().wrap();
     try { localStorage.setItem('kt_last_position', JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()})); } catch (_) {}
   });
-  let tileErrors = 0;
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-  }).on('tileerror',()=>{if(++tileErrors===3 && navigator.onLine)showToast('Map imagery is temporarily unavailable. Campsite search, lists, and saved stops still work.', 'error');}).addTo(map);
+  KampTrailLayers.init(map);
   const key=L.control({position:'bottomright'});
   key.onAdd=()=>{
     const el=L.DomUtil.create('div','map-key');
@@ -236,7 +233,18 @@
   // Initialize controls before requesting data. Slow sources cannot disable tools.
   KampTrailFilters.init(map);
   KampTrailTrip.init(map);
-  KampTrailData.init(map, {maxMarkers:5000,onTripAdd:id=>KampTrailTrip.addStop(id)}).then(renderResults).catch(err => {
+  // Shared links: #site=<id> opens a campsite, #spot=lat,lng opens the spot check.
+  async function openSharedLink() {
+    const target = KampTrailShare.parse();
+    if (!target) return;
+    if (target.spot) { map.setView(target.spot, 13); KampTrailLayers.openSpot(L.latLng(target.spot[0], target.spot[1])); return; }
+    await siteIndexLoad;
+    const entry = campsiteIndex.find(s => s.id === target.site);
+    if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
+    if (!KampTrailData.focusCampsite(target.site)) showToast('That shared campsite could not be found. It may have been removed from the catalogue.', 'error');
+  }
+  addEventListener('hashchange', () => openSharedLink().catch(() => {}));
+  KampTrailData.init(map, {maxMarkers:5000,onTripAdd:id=>KampTrailTrip.addStop(id)}).then(() => { renderResults(); return openSharedLink(); }).catch(err => {
     console.error(err);setLoading(false);
     showToast('Some campsite listings could not load. Open the campsite list and retry.', 'error');
   });

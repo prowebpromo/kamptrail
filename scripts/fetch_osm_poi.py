@@ -74,6 +74,20 @@ def fetch_propane_stations():
 
     return fetch_overpass_data(query, "propane stations")
 
+def fetch_water_points():
+    """Fetch tagged water fill points (amenity=water_point / waterway=water_point).
+    These OSM tags mean a place to fill larger containers or vehicle tanks."""
+    query = """
+    [out:json][timeout:110];
+    (
+      node["amenity"="water_point"](24.0,-125.0,72.0,-66.0);
+      way["amenity"="water_point"](24.0,-125.0,72.0,-66.0);
+      node["waterway"="water_point"](24.0,-125.0,72.0,-66.0);
+    );
+    out center tags;
+    """
+    return fetch_overpass_data(query, "water fill points")
+
 def extract_water_stations():
     """Extract water stations from existing Recreation.gov campsite data"""
     campsites_dir = Path('data/campsites')
@@ -150,7 +164,7 @@ def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
         if tourism in ['camp_site', 'caravan_site']:
             name = f"Campground with Dump Station"
         else:
-            name = 'LPG fuel location' if poi_type == 'propane' else 'Dump station'
+            name = {'propane': 'LPG fuel location', 'water': 'Water fill point'}.get(poi_type, 'Dump station')
 
     # Determine state from OSM tags (if available)
     state = tags.get('addr:state', '')
@@ -183,7 +197,8 @@ def osm_element_to_geojson(element, poi_type, source='openstreetmap'):
         'source_url': f"https://www.openstreetmap.org/{element.get('type')}/{element.get('id')}",
         'source_retrieved_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         'field_provenance': {'service': 'OSM service tag'},
-        'service_description': 'LPG fuel; cylinder refill availability unverified' if poi_type == 'propane' else 'Reported sanitary dump service',
+        'drinking_water': tags.get('drinking_water') if poi_type == 'water' else None,
+        'service_description': {'propane': 'LPG fuel; cylinder refill availability unverified', 'water': 'Tagged water fill point; potability unverified'}.get(poi_type, 'Reported sanitary dump service'),
         'access': tags.get('access', 'unknown')
     }
 
@@ -234,6 +249,12 @@ def main():
         if feature:
             all_features.append(feature)
 
+    # 3b. Fetch tagged water fill points from OSM
+    for element in fetch_water_points():
+        feature = osm_element_to_geojson(element, 'water')
+        if feature:
+            all_features.append(feature)
+
     # 4. Create GeoJSON output
     output = {
         'type': 'FeatureCollection',
@@ -258,7 +279,7 @@ def main():
     dump_count = len([f for f in all_features if f['properties']['type'] == 'dump'])
     propane_count = len([f for f in all_features if f['properties']['type'] == 'propane'])
 
-    print(f"Water stations:   {water_count:5} (Recreation.gov)")
+    print(f"Water points:     {water_count:5} (OpenStreetMap tags)")
     print(f"Dump stations:    {dump_count:5} (OpenStreetMap)")
     print(f"Propane stations: {propane_count:5} (OpenStreetMap)")
     print(f"{'─' * 60}")

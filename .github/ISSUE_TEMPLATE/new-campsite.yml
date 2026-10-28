@@ -1,0 +1,60 @@
+name: Add a campsite
+description: Suggest a campsite or overnight spot that KampTrail is missing.
+title: "New campsite: "
+labels: ["new-campsite"]
+body:
+  - type: markdown
+    attributes:
+      value: Suggest places where camping is allowed. Do not post private land or spots where camping is prohibited.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+  - type: input
+    id: coordinates
+    attributes:
+      label: Coordinates (lat, lng)
+      description: Long-press the KampTrail map and choose "Suggest a campsite here" to fill this in.
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Campground
+        - Dispersed
+        - Backcountry
+        - Overnight parking
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: fee
+    attributes:
+      label: Fee
+      options:
+        - Free
+        - Paid
+        - Not sure
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Land manager, road, rig size, amenities, stay limit, cell signal. Say what you saw and when.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Official page or "visited on YYYY-MM-DD"
+  - type: checkboxes
+    id: firsthand
+    attributes:
+      label: Confirmation
+      options:
+        - label: This is first-hand or comes from an official source. I did not copy it from another app's listings.
+          required: true

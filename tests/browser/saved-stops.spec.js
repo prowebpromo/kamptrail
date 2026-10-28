@@ -20,7 +20,6 @@ test('saving is deduplicated and retained as a location snapshot after reload',a
   await page.evaluate(()=>{KampTrailTrip.addStop('ridb:1');KampTrailTrip.addStop('ridb:1');});
   await expect(page.locator('#trip-count')).toHaveText('(1)');
   await expect(page.locator('#kt-trip-list')).toContainText('Saved Camp');
-  expect(await page.locator('#kt-trip-export').count()).toBe(0);
   await scaffold(page,null);await init(page);await page.locator('#trip').click();
   await expect(page.locator('#kt-trip-list')).toContainText('Saved Camp');
   expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].feature.geometry.coordinates)).toEqual([-119.5,36.2]);
@@ -51,7 +50,8 @@ test('mobile dialog closes with Escape, restores focus, and stays above the app'
   await page.locator('#trip').click();
   await expect(page.locator('#kt-trip-close')).toBeFocused();
   const rect=await page.locator('#kt-trip-drawer').boundingBox();expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.height).toBeLessThanOrEqual(844);
-  await page.keyboard.press('Shift+Tab');await expect(page.locator('#kt-trip-close')).toBeFocused();
+  await page.keyboard.press('Shift+Tab');await expect(page.locator('#kt-trip-import')).toBeFocused();
+  await page.keyboard.press('Tab');await expect(page.locator('#kt-trip-close')).toBeFocused();
   await page.keyboard.press('Escape');await expect(page.locator('#kt-trip-drawer')).toBeHidden();await expect(page.locator('#trip')).toBeFocused();
 });
 

@@ -134,13 +134,21 @@ jobs:
           JS
       - name: Rebuild national campsite-name search
         run: node scripts/build-search-index.js
+      - name: Refresh RV services (dump, water fill, propane) from OpenStreetMap
+        # A failed Overpass request raises before writing, so saved services stay unchanged.
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/fetch_osm_poi.py
+          node scripts/build-services.js
       - name: Commit successful source and snapshot updates
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/campsites data/opencampingmap
+          git add data/campsites data/opencampingmap data/poi_dump_water_propane.geojson data/services
           if ! git diff --staged --quiet; then
             git commit -m 'Refresh sourced campsite data and merged snapshots'
             git push

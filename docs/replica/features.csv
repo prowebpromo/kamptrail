@@ -1,0 +1,70 @@
+feature,area,priority,original,clone,notes
+Map of campgrounds with clustering,map,must,yes,yes,Leaflet + markercluster
+Search by place name or campground name,map,must,yes,yes,Local city index + national campsite index
+Search by coordinates,map,should,yes,yes,
+Near me / locate,map,must,yes,yes,
+Map position and filters persist,map,should,yes,yes,localStorage
+Showing X of Y count and list view,map,must,yes,yes,Nearest 100 list
+Legend for marker meaning,map,should,yes,yes,Fee legend
+Tap map point for coordinate info and elevation,map,could,yes,yes,"Long-press: GPS, land manager, stay-limit guidance, forecast, save"
+Satellite basemap,layers,should,yes,yes,USGS orthoimagery
+Elevation contours / topo basemap,layers,could,yes,yes,USGS Topo
+BLM and USFS public land overlay,layers,must,yes,yes,BLM Surface Management Agency tiles + legend
+Cell carrier coverage overlay,layers,should,yes,no,Original self-hosted tiles; no free keyless national tile source verified
+Fire weather and smoke layers,layers,could,yes,no,NOAA smoke/fire tiles possible
+MVUM motor vehicle use map layer,layers,could,yes,no,USFS MVUM ArcGIS service possible
+Per-layer opacity,layers,could,yes,no,
+Filter by fee (free/paid),filters,must,yes,yes,Fee status with unknown kept unknown
+Filter by campsite type,filters,must,yes,yes,
+Filter by rig length,filters,should,yes,no,No reliable max-length field in current data
+Filter by amenities / hookups,filters,should,yes,partial,Reported toilet/water/dump/shower. Data sparse
+Filter by road difficulty,filters,could,yes,no,Engine supports it; data sparse
+Filter by minimum rating,filters,could,yes,no,Needs reviews
+Filter by elevation,filters,could,yes,no,
+Filter by weather forecast,filters,could,yes,no,
+Filter by cell signal,filters,could,yes,no,Needs coverage data
+Filter by crowds noise shade safety,filters,could,yes,no,Needs reviews
+Place detail: name price type GPS,place,must,yes,yes,Popup
+Place detail: source / operator link,place,must,yes,yes,
+Place detail: directions handoff,place,must,yes,yes,Google Maps
+Place detail: share link to a place,place,should,yes,yes,#site= and #spot= links
+Place detail: amenities list,place,should,yes,partial,Shown when source reports them
+Place detail: weather forecast,place,should,yes,yes,NWS forecast on demand
+Place detail: elevation,place,could,yes,yes,From NWS gridpoint
+Place detail: nearby dump water propane,place,should,yes,partial,"Nearest dump and propane, straight-line"
+Place detail: photos,place,could,yes,no,Needs UGC backend
+Place detail: seasonal sub-scores,place,could,yes,no,Needs reviews
+Dump water propane facility layer,amenities,must,yes,partial,"Dump 3,494 and propane 702 live. OSM water fill points wired into the weekly refresh; 0 until it runs"
+Laundry showers groceries gas facilities,amenities,could,yes,no,Not in current POI data
+Overnight parking places (Walmart truck stops rest areas),amenities,should,yes,partial,Type filter exists; few records
+Low clearance hazards,amenities,could,yes,no,Needs clearance dataset
+Save places,trips,must,yes,yes,Saved stops on device
+Trip with ordered stops,trips,must,yes,yes,"Reorder, notes, dates"
+Trip distance and time totals,trips,should,yes,partial,Straight-line miles and planned nights. No drive time
+Open whole route in maps app,trips,should,yes,yes,Google Maps legs chunked to the 3/9 waypoint limits
+Find places along route,trips,should,yes,no,Original used Mapbox server routing
+Route settings rig height avoid highways,trips,could,yes,no,
+Route elevation chart,trips,could,yes,no,
+Export / import trip (GPX),trips,could,no,yes,"Export waypoints+route, import waypoints and tracks"
+Check-ins with dates and notes,trips,should,yes,yes,"Arrive/leave dates and notes per saved stop, on device"
+Rig profile,trips,could,yes,no,
+Turn-by-turn navigation,trips,skip,yes,skip,Native app only in original; hand off to Google/Apple Maps
+Reviews with star rating,ugc,should,yes,no,Needs backend
+Review sub-scores and cell signal reports,ugc,could,yes,no,Needs backend
+Photo upload,ugc,could,yes,no,Needs backend and moderation
+Add a new campsite,ugc,should,yes,yes,GitHub issue form prefilled from long-press
+Suggest an edit / report a problem,ugc,should,yes,yes,GitHub issue form prefilled from popup
+Overnight allowed voting,ugc,could,yes,no,Needs backend
+Offline: cached data for visited areas,offline,should,yes,yes,Service worker data cache
+Offline: app shell works offline,offline,should,yes,yes,
+Offline map tile download,offline,could,no,no,Not in original either
+Install as app (PWA),offline,should,yes,yes,manifest + SW
+Accounts and profiles,social,skip,yes,skip,No-account design is a deliberate choice
+Friends DMs groups forum events,social,skip,yes,skip,Community network cannot be cloned; out of scope
+Notifications,social,skip,yes,skip,Tied to social features
+Donations and partners,other,skip,yes,skip,Business model item not a user feature
+Product guides and backpack,other,skip,yes,skip,Affiliate content belongs on Boondock or Bust
+Leave No Trace / respect the land guidance,other,could,yes,partial,Agency stay-limit and land rules in spot check
+Multi-language (es fr),other,could,yes,no,
+About the data / transparency,other,could,no,yes,Clone-only strength
+Land manager lookup with agency stay-limit guidance,layers,should,no,yes,User research: stay-limit juggling (thin evidence)
