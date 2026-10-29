@@ -1,14 +1,76 @@
-# FCC carrier coverage — access checkpoint
+# FCC coverage integration: private ingestion checkpoint
 
-Checked 2026-10-28. No carrier layer is shipped yet.
+2026-10-29: owner reports Public Map Data APIs Enabled and a privately saved token.
+Owner reviewed FCC About → License and Attribution: BDC availability data free and
+unrestricted by copyright; CostQuest Fabric subject to separate restrictions.
+This is owner-provided evidence, not a newly inspected page in this session.
 
-The FCC public map's download page returned Access Denied in this browser, including one reload. No attempt was made to evade that restriction. The documented public-data API requires an FCC user account. No FCC account/API credentials were available in this session, and redistribution/usage conditions for the intended mobile datasets have not been verified.
+## Implemented, not deployed
 
-Official sources:
-- https://help.bdc.fcc.gov/hc/en-us/articles/20044640394395-How-to-Create-an-FCC-User-Account
+`scripts/fcc_download.py` is a POSIX/Python 3 private-terminal worker. No third-party
+Python dependencies. `setup` accepts email and token only via hidden interactive
+prompts. It refuses repository/web-root paths, symlinks and insecure permissions.
+Directory mode 700, credential and archive files mode 600. Do not share terminal
+input, credential contents, screenshots or backups containing credentials.
+
+Requests use a fixed HTTPS FCC origin. Redirects are rejected so credentials cannot
+be forwarded to another host. Exceptions are replaced with fixed messages; no
+upstream body/header/request diagnostics, tracebacks, or debug logging. Metadata
+and archives remain private. Maximum archive size 2 GiB, temporary-file validation,
+SHA-256 and atomic replacement. A shared lock reserves requests at least 6.1 seconds
+apart. No automatic retries, credential forwarding or automatic publication.
+
+The initial API route/header assumptions MUST be reconciled with the current
+**official** Public Data API specification before live use. The worker requires
+`--spec-verified` to acknowledge this. Do not set that flag based on third-party
+examples. The official PDF and official Box copies were unavailable to our tools.
+A public copy downloaded by the owner is sufficient; it contains no token.
+
+## Private entry on Hostinger
+
+First confirm Python 3 and SSH access are available on the hosting plan. From an
+SSH terminal you control, using a reviewed repository checkout outside public_html:
+
+```
+python3 scripts/fcc_download.py --private-dir "$HOME/.kamptrail-fcc" setup
+```
+
+Paste the FCC account email and token only at the hidden prompts. Neither value
+belongs in the command line, shell history, environment dump, repository, chat,
+GitHub Actions log, or browser screenshot. No command here reads/prints saved
+credentials. The worker does not modify the existing PHP database configuration.
+
+After the official API specification has been checked, test with:
+
+```
+python3 scripts/fcc_download.py --private-dir "$HOME/.kamptrail-fcc" --spec-verified check
+```
+
+Report only the fixed success/failure message. Authentication is **not tested yet**.
+If the server returns Access Denied, stop and use FCC support. Do not evade it.
+If FCC requires a redirect-based download flow, review its documented mechanism
+before changing the no-redirect rule.
+
+## Remaining to finish the public mobile layer
+
+1. Inspect official API spec and confirm the route/header/response contract.
+2. Private token entry and real successful authentication on the server.
+3. Select current **Mobile Broadband availability** records by provider, technology,
+   state and filing date. Never request Location Fabric or consumer challenges.
+4. Download one provider/state pilot, inspect the actual GeoPackage schema and CRS,
+   validate geometry, then build bounded viewport tiles. Preserve source hash,
+   carrier, technology/speed/environment assumptions, as-of and retrieval dates.
+5. Only publish validated tiles and a sanitized manifest. Tokens and raw response
+   metadata never enter the public build. Add source/license attribution and modeled
+   coverage limitations. Display no claim of measured signal or usable indoor-RV service.
+6. Test carrier/technology switching, dates, viewport limits, missing coverage,
+   offline behavior and mobile accessibility; test real pilot before national rollout.
+7. Add scheduled refresh only after the real transfer/process/publish sequence works.
+
+There is deliberately no decorative toggle or invented coverage geometry. This
+branch changes no public map behavior. RV clearance routing remains a separate task.
+
+Official references:
+- https://help.bdc.fcc.gov/hc/en-us/articles/6789299021723-Key-Reference-Documents
 - https://help.bdc.fcc.gov/hc/en-us/articles/43909220634651-How-to-Download-Mobile-Broadband-Coverage-Data-from-the-FCC-s-National-Broadband-Map-Step-by-Step-Instructions
-- https://www.fcc.gov/sites/default/files/bdc-public-data-api-spec.pdf (not retrievable here)
-
-Resume with authorized FCC download/API access or a user-provided current mobile coverage export plus its usage documentation. Verify mobile-data redistribution separately; do not infer it from Location Fabric licensing. Record provider identifiers, technology, data-as-of date and modeled service assumptions. Simplify/tile on the server or in builds; load viewport tiles only. Keep carrier models distinct from camper-reported signal. Model coverage is not a promise of usable service inside an RV.
-
-Do not add a decorative coverage toggle, substitute an old mirror, invent carrier polygons, or mark parity complete until current licensed data is loaded and tested. This is the only external-access blocker among the four requested packages.
+- https://www.fcc.gov/sites/default/files/bdc-public-data-api-spec.pdf

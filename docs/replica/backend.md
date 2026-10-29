@@ -12,3 +12,21 @@
 - Hostinger backup status and production migration/smoke checks must be recorded at deployment. A host backup restore is not implied by passing API tests.
 
 See `docs/COMMUNITY_REVIEWS.md` for operation, storage and backup details.
+
+## FCC ingestion draft — 2026-10-29
+
+- [x] Hidden private-terminal credential entry, mode 700/600, outside repo/web root.
+- [x] Fixed HTTPS origin, no credential-bearing redirects, fixed error messages.
+- [x] Shared request spacing, bounded downloads, private provenance/hash sidecars.
+- [x] Six isolated security tests pass locally.
+- [ ] Current official API specification reconciled with request/response contract.
+- [ ] Real server authentication and mobile availability download verified.
+- [ ] Actual mobile geometry schema, CRS and filing-date processing validated.
+- [ ] Dated viewport layer, browser tests, refresh, production deployment.
+
+Owner reports enabled Public Map Data APIs and reviewed availability-data terms;
+credentials remain private and unavailable to this session. The local extension
+still reports missing originating browser context. No production coverage toggle
+or fake data was added. Full Python suite could not complete locally because the
+existing fetcher tests require `requests`, absent from this runtime (three imports).
+See `docs/FCC_COVERAGE_ACCESS.md` for private setup and remaining gates.
