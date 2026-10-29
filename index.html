@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.8.1">
+  <meta name="kamptrail-version" content="2.9.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
@@ -63,7 +63,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.8.1</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.9.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -88,7 +88,7 @@
     <h3>USFS road designations</h3>
     <p>The optional USFS motor vehicle roads layer uses the Forest Service MVUM map service. Zoom in and select a road for vehicle and seasonal fields. District coverage is incomplete and unit dates vary. A designation does not establish camping permission, current conditions, clearance, or RV passability. Consult official district maps, closures and posted signs. Recently viewed road data can remain available offline for the same view, labeled with its retrieval date. Topo map saving remains separate.</p>
     <h3>Camper reviews and photos</h3>
-    <p>Open “Reviews and photos” on a campsite to read firsthand experiences or contribute your own. Every review and photo needs moderator approval. Visit dates and rig details provide context. Observations can become outdated and do not establish current fees, access or camping permission.</p>
+    <p>Open “Reviews and photos” on a campsite to read firsthand experiences or contribute your own. Every review and photo needs moderator approval. Visit dates and rig details provide context. Optional dated reports cover approach, noise, shade, crowding, personal comfort and carrier signal. Published community ratings and same-visit observations can filter map and route results. Missing reports stay unknown. Evidence saved on this device can be used offline for up to seven days, labeled with its last check. Observations can become outdated and do not establish current fees, access, safety or camping permission. Carrier observations are not FCC coverage predictions.</p>
     <p>Your public name, review, visit date, rig details and approved photos are public. Photo files are resized and metadata is removed. Submissions and photos are stored in KampTrail’s database hosted by Hostinger. Moderators can inspect pending content. Rate limiting uses a salted hash of your connection address. No account or email is required. Keep your private management code to edit or delete a review on another device. Clearing browser data removes the saved code. Reviews and photos require an internet connection.</p>
     <p><button type="button" class="btn" id="kt-my-reviews">My reviews</button></p>
     <h3>Routing privacy and offline routes</h3>
@@ -104,6 +104,7 @@
   <noscript>KampTrail needs JavaScript to display its interactive map.</noscript>
   <script src="share.js"></script>
   <script src="spot-info.js"></script>
+  <script src="community-discovery.js"></script>
   <script src="data-quality.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>

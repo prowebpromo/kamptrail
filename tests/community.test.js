@@ -18,7 +18,8 @@ async function env(extra='',port=18905){
  const login=await grab(await fetch(base+'/api/admin.php')).text();const csrf=login.match(/name="csrf" value="([a-f0-9]+)"/)[1];
  const admin=async fields=>grab(await fetch(base+'/api/admin.php?community=1',{method:'POST',redirect:'manual',headers:{'Content-Type':'application/x-www-form-urlencoded',Cookie:cookie},body:new URLSearchParams({csrf,...fields})}));
  await admin({do:'login',password:'test moderator password'});await admin({do:'migrate'});
- return {base,p,dir,admin,cookie:()=>cookie,csrf,get:async url=>(await fetch(base+url)).json(),post:(fields,photos=[],token)=>fetch(base+'/api/community.php',{method:'POST',headers:token?{Authorization:'Bearer '+token}:{},body:form(fields,photos)}),close:()=>{p.kill();fs.rmSync(dir,{recursive:true,force:true});}};
+ const sql=code=>execFileSync('php',['-r',`$c=require ${JSON.stringify(file)};$p=new PDO($c['db']['dsn'],$c['db']['user'],$c['db']['pass'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);`+code],{encoding:'utf8'});
+ return {base,p,dir,admin,sql,cookie:()=>cookie,csrf,get:async url=>(await fetch(base+url)).json(),post:(fields,photos=[],token)=>fetch(base+'/api/community.php',{method:'POST',headers:token?{Authorization:'Bearer '+token}:{},body:form(fields,photos)}),close:()=>{p.kill();fs.rmSync(dir,{recursive:true,force:true});}};
 }
 test('reviews and photos: moderation, ownership, re-review, reporting, removal, and quota accounting',{skip:!capable},async()=>{
  const e=await env();try{
@@ -63,5 +64,49 @@ test('storage exhaustion rejects the whole upload but still accepts a text revie
   assert.equal((await e.post(good)).status,429);
   assert.equal((await fetch(e.base+'/api/community.php',{method:'PUT'})).status,405);
   assert.equal((await fetch(e.base+'/api/community.php',{method:'POST',headers:{Origin:'https://other.example'},body:form(good)})).status,403);
+ }finally{e.close();}
+});
+
+test('published observations and rating discovery follow moderation, edit, hide, restore and delete',{skip:!capable},async()=>{
+ const e=await env('',18957);try{
+  const details={access:'moderate',noise:'quiet',shade:'partial',crowding:'sparse',comfort:'comfortable',signals:[{carrier:'verizon',signal:'usable',environment:'inside_rv'}]};
+  const fields={...good,observations:JSON.stringify(details)};
+  const discovery=()=>e.get('/api/community-discovery.php');
+  for(const bad of ['not json',JSON.stringify({noise:'secret'}),JSON.stringify({other:'x'}),JSON.stringify({signals:[{carrier:'verizon',signal:'usable'},{carrier:'verizon',signal:'none'}]})])assert.equal((await e.post({...good,observations:bad})).status,422);
+  const res=await e.post(fields);assert.equal(res.status,201);const {id,token}=await res.json();
+  assert.deepEqual((await discovery()).sites,{});
+  let mine=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();assert.deepEqual(mine.review.observations,details);
+  let queue=await(await fetch(e.base+'/api/admin.php?community=1',{headers:{Cookie:e.cookie()}})).text();assert.match(queue,/approve with review/);assert.match(queue,/inside_rv/);
+  await e.admin({do:'community_review',review_id:id,status:'published'});
+  let data=await discovery(),row=data.sites[good.campsite_id];assert.equal(row.rating_count,1);assert.equal(row.rating_sum,4);assert.equal(row.observations[0].latest_visit,good.visited_on);assert.deepEqual(row.observations[0].values,details);
+  for(const hidden of [token,'owner_hash','display_name',good.body,good.display_name])assert.ok(!JSON.stringify(data).includes(hidden));
+  const revision=data.revision;await e.admin({do:'community_review',review_id:id,status:'hidden'});assert.deepEqual((await discovery()).sites,{});
+  assert.equal((await fetch(e.base+'/api/community-discovery.php?revision='+revision)).status,409);
+  await e.admin({do:'community_review',review_id:id,status:'published'});assert.equal((await discovery()).sites[good.campsite_id].rating_count,1);
+  assert.equal((await e.post({...fields,action:'edit',rating:'5'},[],token)).status,200);assert.deepEqual((await discovery()).sites,{});
+  await e.admin({do:'community_review',review_id:id,status:'published'});assert.equal((await discovery()).sites[good.campsite_id].rating_sum,5);
+  // An older client without observation fields preserves them. A new explicit empty object clears them.
+  assert.equal((await e.post({...good,action:'edit'},[],token)).status,200);mine=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();assert.deepEqual(mine.review.observations,details);
+  assert.equal((await e.post({...fields,action:'edit',observations:'{}'},[],token)).status,200);
+  await e.admin({do:'community_review',review_id:id,status:'published'});assert.deepEqual((await discovery()).sites[good.campsite_id].observations,[]);
+  assert.equal((await e.post({action:'delete'},[],token)).status,200);assert.deepEqual((await discovery()).sites,{});
+  assert.equal((await fetch(e.base+'/api/community-discovery.php',{method:'POST'})).status,405);
+ }finally{e.close();}
+});
+
+test('additive observation migration preserves legacy reviews/photos and paginated discovery is revision-consistent',{skip:!capable},async()=>{
+ const e=await env('',18958);try{
+  const response=await e.post(good,[{}]);const {id}=await response.json();await e.admin({do:'community_review',review_id:id,status:'published'});
+  e.sql("$p->exec('DROP TABLE community_observations');$p->exec('DROP TABLE community_discovery_state');$p->exec(\"DELETE FROM schema_migrations WHERE version='004_observations'\");");
+  const snapshot=()=>e.sql("$r=$p->query('SELECT * FROM community_reviews ORDER BY id')->fetchAll(PDO::FETCH_ASSOC);$s=$p->query('SELECT used_bytes FROM community_storage WHERE id=1')->fetchColumn();$rows=$p->query('SELECT image_data,byte_size,status FROM community_photos ORDER BY id')->fetchAll(PDO::FETCH_ASSOC);foreach($rows as &$row)$row['image_data']=base64_encode($row['image_data']);echo hash('sha256',json_encode([$r,$s,$rows]));");
+  const before=snapshot();assert.equal((await e.get('/api/health.php')).community,'ready');assert.equal((await fetch(e.base+'/api/community-discovery.php')).status,503);
+  await e.admin({do:'migrate'});assert.equal(snapshot(),before);let d=await e.get('/api/community-discovery.php');assert.equal(d.revision,'1');assert.equal(d.sites[good.campsite_id].rating_count,1);assert.deepEqual(d.sites[good.campsite_id].observations,[]);
+  await e.admin({do:'migrate'});assert.equal(snapshot(),before);
+  // Recover safely when DDL succeeded but its migration-version insert was interrupted.
+  e.sql("$p->exec(\"DELETE FROM schema_migrations WHERE version='004_observations'\");");await e.admin({do:'migrate'});assert.equal(snapshot(),before);
+  e.sql(`$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?,?,?,?,4,?,'2026-10-01','','published','2026-10-01','2026-10-01')");for($i=0;$i<102;$i++){$q->execute([hash('sha256','synthetic-'.$i),'qa:'.sprintf('%03d',$i),'Synthetic pagination fixture','Fixture','Disposable review fixture for pagination.']);} $review=$p->query("SELECT id FROM community_reviews WHERE campsite_id='qa:000'")->fetchColumn();$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)')->execute([$review,'{"noise":"quiet"}']);`);
+  e.sql(`$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?, 'qa:000','Synthetic old visit','Fixture',4,'Older disposable visit report','2020-01-01','','published','2020-01-01','2020-01-01')");$q->execute([hash('sha256','older-synthetic-visit')]);$review=$p->lastInsertId();$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)')->execute([$review,'{"noise":"quiet"}']);`);
+  d=await e.get('/api/community-discovery.php');assert.equal(d.sites['qa:000'].observations.length,2);assert.deepEqual(d.sites['qa:000'].observations.map(x=>x.count),[1,1]);assert.equal(Object.keys(d.sites).length,100);assert.ok(d.next_after);const next=await e.get('/api/community-discovery.php?after='+encodeURIComponent(d.next_after)+'&revision='+d.revision);assert.equal(next.next_after,null);assert.equal(Object.keys(next.sites).length,3);assert.equal(new Set([...Object.keys(d.sites),...Object.keys(next.sites)]).size,103);
+  await e.admin({do:'community_review',review_id:id,status:'hidden'});assert.equal((await fetch(e.base+'/api/community-discovery.php?after='+encodeURIComponent(d.next_after)+'&revision='+d.revision)).status,409);
  }finally{e.close();}
 });

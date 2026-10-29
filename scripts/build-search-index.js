@@ -46,10 +46,10 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if(p.road_difficulty)m.d=p.road_difficulty;
     if(p.rating!==null)m.q=p.rating;
     if(p.rv_sigs?.length)m.g=p.rv_sigs;
-    return {id:p.id,name:p.name,states:[...states].sort(),lat,lng,m};
+    return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states:[...states].sort(),lat,lng,m};
   });
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
-  return {version:1, filter_version:1, sites};
+  return {version:1, filter_version:1, community_version:1, sites};
 }
 
 function buildFromDirectory(directory) {
