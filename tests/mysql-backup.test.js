@@ -12,5 +12,5 @@ test('MySQL backup restores reviews, photo bytes, moderation states and storage 
  execFileSync('docker',['exec',container,'mysql','-uroot','-ptest-only','-e','CREATE DATABASE kamptrail_restore CHARACTER SET utf8mb4'],{stdio:'ignore'});
  execFileSync('docker',['exec','-i',container,'mysql','-uroot','-ptest-only','kamptrail_restore'],{input:dump,stdio:['pipe','ignore','ignore']});
  const summary=php(conn+`$result=[];foreach(['kamptrail_test','kamptrail_restore'] as $db){$p->exec('USE '.$db);$tables=$p->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN);sort($tables);$summary=[];foreach($tables as $table){$rows=$p->query('SELECT * FROM '.$table.' ORDER BY 1')->fetchAll(PDO::FETCH_ASSOC);foreach($rows as &$r)if(isset($r['image_data']))$r['image_data']=base64_encode($r['image_data']);unset($r);$summary[$table]=['count'=>count($rows),'hash'=>hash('sha256',json_encode($rows,JSON_THROW_ON_ERROR))];}$result[$db]=$summary;}echo json_encode($result,JSON_THROW_ON_ERROR);`);
- const d=JSON.parse(summary);assert.deepEqual(d.kamptrail_restore,d.kamptrail_test);assert.ok(d.kamptrail_test.community_photos.count>0);
+ const d=JSON.parse(summary);assert.deepEqual(d.kamptrail_restore,d.kamptrail_test);assert.ok(d.kamptrail_test.community_photos.count>0);assert.ok(d.kamptrail_test.community_observations.count>0);
 });

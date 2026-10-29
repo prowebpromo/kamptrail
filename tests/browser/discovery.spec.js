@@ -1,0 +1,34 @@
+const {test,expect}=require('@playwright/test');
+const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
+test('published rating and same-visit conditions filter map results and remain labeled offline',async({page,context})=>{
+ let ids=[];const visited=new Date().toISOString().slice(0,10);
+ await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{[ids[0]]:{rating_count:1,rating_sum:5,latest_visit:visited,observations:[{values:{noise:'quiet',signals:[{carrier:'verizon',signal:'none',environment:'inside_rv'}]},count:1,latest_visit:visited}]},[ids[1]]:{rating_count:3,rating_sum:6,latest_visit:visited,observations:[{values:{noise:'noisy',signals:[{carrier:'verizon',signal:'strong',environment:'outdoors'}]},count:3,latest_visit:visited}]}}})}));
+ await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
+ await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ ids=await page.evaluate(()=>KampTrailData.getVisibleCampsites().slice(0,2).map(s=>s.properties.id));expect(ids).toHaveLength(2);
+ await page.getByRole('button',{name:'Open filters',exact:true}).click();const panel=page.getByRole('region',{name:'Campsite filters'});
+ await panel.getByLabel('Minimum community rating',{exact:true}).selectOption('4');
+ await expect(panel).toContainText('Published camper evidence checked');
+ await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);
+ await expect(page.locator('#result-list')).toContainText('1 published reviews');
+ await panel.getByLabel('Minimum published reviews',{exact:true}).selectOption('3');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBe(0);
+ await panel.getByLabel('Minimum community rating',{exact:true}).selectOption('0');await panel.getByLabel('Minimum published reviews',{exact:true}).selectOption('1');
+ await panel.getByLabel('Reported noise',{exact:true}).selectOption('quiet');await panel.getByLabel('Reported carrier',{exact:true}).selectOption('verizon');await panel.getByLabel('Reported signal',{exact:true}).selectOption('strong');
+ await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBe(0);
+ await panel.getByLabel('Reported noise',{exact:true}).selectOption('noisy');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[1]]);
+ await context.setOffline(true);await panel.getByRole('button',{name:'Refresh camper evidence'}).click();await expect(panel).toContainText('Saved camper evidence');
+ await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[1]]);
+ await context.setOffline(false);await page.reload();await page.getByRole('button',{name:'Open filters',exact:true}).click();await expect(page.getByLabel('Reported noise',{exact:true})).toHaveValue('noisy');
+});
+test('mobile observation fields fit the review dialog and pass a focused accessibility scan',async({page,context})=>{
+ await page.setViewportSize({width:390,height:844});
+ await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('**/api/community.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,count:0,average:null,reviews:[],next_before:null})}));
+ await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
+ await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ await page.evaluate(()=>KampTrailData.focusCampsite(KampTrailData.getVisibleCampsites()[0].properties.id));await page.getByRole('button',{name:'Reviews and photos',exact:true}).click();await page.getByRole('button',{name:'Write a review',exact:true}).click();const d=page.getByRole('dialog',{name:'Write a review'});
+ await expect(d.getByLabel('Verizon signal',{exact:true})).toBeVisible();await expect(d.getByLabel('Approach for your rig',{exact:true})).toBeVisible();
+ expect(await d.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
+ const AxeBuilder=require('@axe-core/playwright').default;expect((await new AxeBuilder({page}).include('#kt-community').analyze()).violations).toEqual([]);
+});

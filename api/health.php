@@ -26,5 +26,6 @@ kt_json($pending ? 503 : 200, [
     'accepting_reports' => in_array('001_contributions', kt_applied_migrations($pdo), true),
     'routing' => in_array('003_routing', kt_applied_migrations($pdo), true) ? 'ready' : 'migrations_pending',
     'community' => in_array('002_community', kt_applied_migrations($pdo), true) ? 'ready' : 'migrations_pending',
+    'observations' => in_array('004_observations', kt_applied_migrations($pdo), true) ? 'ready' : 'migrations_pending',
     'photo_processing' => extension_loaded('gd') && class_exists('finfo') ? 'ready' : 'unavailable',
 ]);

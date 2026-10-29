@@ -37,6 +37,7 @@
         summary.textContent=out.count?`${out.average}/5 from ${out.count} published ${out.count===1?'review':'reviews'}.`:'No published reviews yet. Been here? Share your experience.';
         for(const r of out.reviews){
           const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},`Visited ${r.visited_on}${r.rig?' · '+r.rig:''} · submitted ${String(r.created_at).slice(0,10)}`),el('p',{class:'kt-review-text'},r.body));
+          const observed=window.KampTrailDiscovery?.describe(r.observations);if(observed)article.append(el('p',{class:'kt-observation'},'Reported on '+r.visited_on+' · '+observed));
           if(r.photos.length){const gallery=el('div',{class:'kt-photo-grid'});r.photos.forEach(p=>gallery.append(image(p,r)));article.append(gallery);}
           article.append(button('Report review',()=>report(r.id)));list.append(article);
         }
@@ -56,6 +57,7 @@
     f.append(field('Public name',el('input',{name:'display_name',required:true,maxlength:60,value:review.display_name||'',autocomplete:'nickname'}),'Use a nickname if you prefer. This will be public.'));
     const rating=el('select',{name:'rating',required:true});rating.append(el('option',{value:''},'Choose a rating'));for(let i=1;i<=5;i++)rating.append(el('option',{value:i,selected:+review.rating===i},`${i} of 5`));f.append(field('Overall rating',rating));
     f.append(field('Date visited',el('input',{name:'visited_on',type:'date',required:true,max:new Date().toISOString().slice(0,10),value:review.visited_on||''})),field('Rig or camping setup (optional)',el('input',{name:'rig',maxlength:100,value:review.rig||''}),'For example: 22-foot camper van.'));
+    window.KampTrailDiscovery?.observeFields(f,review,el,field);
     const text=el('textarea',{name:'body',required:true,minlength:20,maxlength:3000,rows:5},review.body||'');f.append(field('Your experience',text,'What helped you decide, and what should the next camper know? Include road access, noise, conditions or carrier reception you observed.'));
     if(token&&review.photos?.length){const set=el('fieldset');set.append(el('legend',{},'Existing photos'));for(const p of review.photos){const l=el('label',{class:'kt-confirm'});l.append(el('input',{name:'remove_photos[]',type:'checkbox',value:p.id}),` Remove photo #${p.id} (${p.status})`);set.append(l);}f.append(set);}
     const files=el('input',{name:'photos[]',type:'file',accept:'image/jpeg,image/png,image/webp',multiple:true});
@@ -64,13 +66,13 @@
     st.dialog.addEventListener('close',()=>urls.splice(0).forEach(URL.revokeObjectURL),{once:true});
     const hp=el('input',{name:'website',tabindex:-1,autocomplete:'off','aria-hidden':true,class:'kt-hp'});f.append(hp);
     const consent=el('label',{class:'kt-confirm'});consent.append(el('input',{type:'checkbox',name:'firsthand',value:1,required:true}),' This is my firsthand experience. I own these photos or have permission to publish them on KampTrail. I have not copied another app’s reviews.');f.append(consent);
-    f.append(el('p',{class:'kt-fine'},'Your name, review, visit date, rig details and approved photos become public. Do not include private contact details, identifiable people without permission, or sensitive locations. Moderators check submissions before publication.'));
+    f.append(el('p',{class:'kt-fine'},'Your name, review, visit date, rig details, optional observations and approved photos become public. Do not include private contact details, identifiable people without permission, or sensitive locations. Moderators check submissions before publication.'));
     if(token)f.append(el('p',{class:'kt-fine'},'Saving edits removes this review and its photos from public view until they are reviewed again.'));
     const msg=message(''),send=el('button',{type:'submit',class:'btn primary'},token?'Save and resubmit':'Send for review');f.append(msg,send);body.append(f,button('My reviews',mine));
     f.onsubmit=async e=>{e.preventDefault();const chosen=[...files.files],remaining=(review.photos||[]).filter(p=>!new FormData(f).getAll('remove_photos[]').includes(String(p.id))).length;
       if(chosen.length+remaining>3||chosen.some(f=>f.size>6291456)){msg.textContent='Use at most 3 photos total, each 6 MB or smaller.';return;}
-      const data=new FormData(f);if(!chosen.length)data.delete('photos[]');data.set('action',token?'edit':'submit');data.set('campsite_id',review.campsite_id);data.set('campsite_name',review.campsite_name);data.set('elapsed_ms',Date.now()-st.opened);send.disabled=true;msg.textContent='Sending…';
-      try{const out=await request(data,token);const code=token||out.token;const stored=remember({token:code,name:review.campsite_name,at:new Date().toISOString()});urls.splice(0).forEach(URL.revokeObjectURL);const done=shell('Review received');done.append(message('Thanks. Your review and photos are waiting for moderation.'),el('p',{class:'kt-fine'},stored?'Your management code is saved on this device.':'This browser could not save the code. Copy it now so you can manage your review.'));codePanel(done,code);done.append(button('My reviews',mine));}
+      const data=new FormData(f);if(!chosen.length)data.delete('photos[]');data.set('action',token?'edit':'submit');data.set('campsite_id',review.campsite_id);data.set('campsite_name',review.campsite_name);data.set('elapsed_ms',Date.now()-st.opened);data.set('observations',JSON.stringify(window.KampTrailDiscovery?.formValues(f)||{}));send.disabled=true;msg.textContent='Sending…';
+      try{const out=await request(data,token);window.dispatchEvent(new CustomEvent('kamptrail:communitychanged'));const code=token||out.token;const stored=remember({token:code,name:review.campsite_name,at:new Date().toISOString()});urls.splice(0).forEach(URL.revokeObjectURL);const done=shell('Review received');done.append(message('Thanks. Your review and photos are waiting for moderation.'),el('p',{class:'kt-fine'},stored?'Your management code is saved on this device.':'This browser could not save the code. Copy it now so you can manage your review.'));codePanel(done,code);done.append(button('My reviews',mine));}
       catch(err){msg.textContent=err.message;msg.classList.add('is-error');}finally{send.disabled=false;}
     };
   }
@@ -80,7 +82,7 @@
       remember({token,name:r.campsite_name,at:r.updated_at});body.replaceChildren(el('h3',{},r.campsite_name),message(`Status: ${r.status}.`));if(r.public_note)body.append(el('p',{},'Moderator note: '+r.public_note));
       if(r.status==='deleted'){body.append(el('p',{},'Your review and photo content have been deleted.'));return;}
       body.append(el('p',{class:'kt-review-text'},r.body),button('Edit review',()=>edit(r,token)));codePanel(body,token);
-      const confirm=el('label',{class:'kt-confirm'}),check=el('input',{type:'checkbox'});confirm.append(check,' Delete my review and photos permanently.');const del=button('Delete my review',async()=>{if(!check.checked){notice.textContent='Check the deletion confirmation first.';return;}del.disabled=true;const data=new FormData();data.set('action','delete');try{await request(data,token);await manage(token);}catch(err){notice.textContent=err.message;del.disabled=false;}}),notice=message('');body.append(confirm,del,notice,button('My reviews',mine));
+      const confirm=el('label',{class:'kt-confirm'}),check=el('input',{type:'checkbox'});confirm.append(check,' Delete my review and photos permanently.');const del=button('Delete my review',async()=>{if(!check.checked){notice.textContent='Check the deletion confirmation first.';return;}del.disabled=true;const data=new FormData();data.set('action','delete');try{await request(data,token);window.dispatchEvent(new CustomEvent('kamptrail:communitychanged'));await manage(token);}catch(err){notice.textContent=err.message;del.disabled=false;}}),notice=message('');body.append(confirm,del,notice,button('My reviews',mine));
     }catch(err){if(view===st.view)body.replaceChildren(message(err.message||'Unable to load your review. Try again online.',true),button('Retry',()=>manage(token)),button('My reviews',mine));}
   }
   function mine(){st.focus=document.activeElement;const body=shell('My reviews');if(legacyAddress(body))return;body.append(el('p',{class:'kt-fine'},'Management codes stay on this device. Copy yours to keep access on another device. No account is needed.'));
@@ -88,5 +90,5 @@
     const f=el('form'),code=el('input',{name:'code',required:true,pattern:'[a-f0-9]{64}',autocomplete:'off',spellcheck:false});f.append(field('Restore a private management code',code),el('button',{type:'submit',class:'btn'},'Open my review'));f.onsubmit=e=>{e.preventDefault();manage(code.value.trim());};body.append(f);
   }
   function report(id,photo){const body=shell(photo?'Report a photo':'Report a review'),f=el('form');const reason=el('textarea',{name:'reason',required:true,minlength:10,maxlength:1000,rows:4});f.append(field('What is the problem?',reason,'Examples: private information, harassment, copied content, or a misleading campsite claim. A moderator will review the report.'));const msg=message(''),send=el('button',{class:'btn',type:'submit'},'Send report');f.append(msg,send);body.append(f);f.onsubmit=async e=>{e.preventDefault();send.disabled=true;const data=new FormData(f);data.set('action','report');data.set('review_id',id);if(photo)data.set('photo_id',photo);try{const out=await request(data);body.replaceChildren(message(out.message),button('Close',()=>st.dialog.close()));}catch(err){msg.textContent=err.message;send.disabled=false;}};}
-  window.KampTrailCommunity={version:'2.8.1',open,mine};
+  window.KampTrailCommunity={version:'2.9.0',open,mine};
 })();

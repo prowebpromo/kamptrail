@@ -120,3 +120,5 @@ function kc_photo_rows(PDO $pdo,int $id,bool $public=true): array {
     $q=$pdo->prepare("SELECT id,width,height,status FROM community_photos WHERE review_id=? AND status ".($public?"= 'published'":"<> 'deleted'").' ORDER BY id');$q->execute([$id]);
     return array_map(function($p){$p['id']=(int)$p['id'];$p['width']=(int)$p['width'];$p['height']=(int)$p['height'];return $p;},$q->fetchAll());
 }
+
+require_once __DIR__ . '/observations.php';

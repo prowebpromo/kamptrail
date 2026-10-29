@@ -77,3 +77,7 @@ test('worker upgrades retain saved Forest Service road views',async()=>{
   let done;w.handlers.activate({waitUntil:p=>done=p});await done;
   assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:mvum-v1'),true);
 });
+
+test('worker upgrades retain only the separate published camper aggregate cache',async()=>{
+ const w=worker();const name='kamptrail:https://example.test/kamptrail/:camper-discovery-v1';await w.caches.open(name);let done;w.handlers.activate({waitUntil:p=>done=p});await done;assert.equal(w.stores.has(name),true);
+});

@@ -11,7 +11,7 @@ function kc_moderate(PDO $pdo,string $moderator): string {
         if (!in_array($to,KT_COMMUNITY_STATES,true)) throw new InvalidArgumentException('status');
         $note=kc_string($_POST['public_note']??'',1000);
         $pdo->prepare('UPDATE community_reviews SET status=?,public_note=?,updated_at=? WHERE id=?')->execute([$to,$note,kt_now(),$id]);
-        kc_audit($pdo,$id,'moderate_review',$r['status'],$to,$moderator);
+        ko_changed($pdo);kc_audit($pdo,$id,'moderate_review',$r['status'],$to,$moderator);
     } elseif ($action==='community_photo') {
         $photo=(int)($_POST['photo_id']??0);$to=kc_string($_POST['status']??'',20);
         if (!in_array($to,KT_COMMUNITY_STATES,true)) throw new InvalidArgumentException('status');
@@ -45,6 +45,7 @@ function kc_admin_body(PDO $pdo,string $csrf,string $self): string {
     $options=fn($state)=>implode('',array_map(fn($s)=>'<option'.($s===$state?' selected':'').'>'.h($s).'</option>',KT_COMMUNITY_STATES));
     foreach ($rows as $r) {
         $body.='<article class="card"><h3>#'.h($r['id']).' '.h($r['campsite_name']).'</h3><p><a href="../#site='.rawurlencode($r['campsite_id']).'" target="_blank" rel="noopener noreferrer">Check listing on map</a> · '.h($r['campsite_id']).'</p><p class="meta">'.h($r['display_name']).' · '.h($r['rating']).'/5 · visited '.h($r['visited_on']).' · '.h($r['rig']).' · '.h($r['status']).'</p><p style="white-space:pre-wrap">'.h($r['body']).'</p>';
+        $observed=ko_read($pdo,(int)$r['id']);if($observed)$body.='<details open><summary>Camper observations (approve with review)</summary><pre style="white-space:pre-wrap">'.h(json_encode($observed,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)).'</pre><p>Self-reported visit conditions, not current access, safety or coverage guarantees.</p></details>';
         $body.='<form method="post" action="'.$base.'&amp;state='.h($filter).'">'.$hidden('community_review',$r).'<label>Review status <select name="status">'.$options($r['status']).'</select></label> <label>Note to author <input name="public_note" maxlength="1000" value="'.h($r['public_note']??'').'"></label> <button>Save review decision</button></form>';
         foreach (kc_photo_rows($pdo,(int)$r['id'],false) as $p) {
             $body.='<div class="card"><img src="photo.php?id='.h($p['id']).'&amp;preview=1" alt="Submitted photo '.h($p['id']).'" style="max-width:100%;max-height:260px"><form method="post" action="'.$base.'&amp;state='.h($filter).'">'.$hidden('community_photo',$r).'<input type="hidden" name="photo_id" value="'.h($p['id']).'"><label>Photo '.h($p['id']).' status <select name="status">'.$options($p['status']).'</select></label> <button>Save photo decision</button></form></div>';
