@@ -94,6 +94,8 @@ jobs:
             if [[ "$SOURCE_MODE" != osm ]]; then
               if [[ -n "$RIDB_API_KEY" ]]; then
                 if python scripts/fetch_recreation_gov_data.py --api-key "$RIDB_API_KEY" --state "$state" --limit "$PAGE_SIZE"; then
+                  # The fresh file replaces the older "(1)" copy, so closed facilities do not linger in the merge.
+                  rm -f "data/campsites/${state}(1).geojson"
                   node scripts/record_health.js record ridb "$state" fresh
                 else
                   echo "RIDB refresh failed for $state; saved source retained"
@@ -185,7 +187,16 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add data/campsites data/opencampingmap data/poi_dump_water_propane.geojson data/services data/sources data/health.json
+          git add -A data/campsites
           if ! git diff --staged --quiet; then
             git commit -m 'Refresh sourced campsite data and merged snapshots'
-            git push
+            # main can move during a long refresh. Data paths are written only by this workflow, so rebase and retry.
+            for attempt in 1 2 3 4 5; do
+              if git push; then exit 0; fi
+              echo "Push rejected (attempt $attempt); rebasing on the latest main"
+              git pull --rebase origin main
+              sleep $((attempt * 5))
+            done
+            echo 'Could not push the refreshed data after 5 attempts' >&2
+            exit 1
           fi
