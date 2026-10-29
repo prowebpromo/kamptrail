@@ -1,7 +1,13 @@
 """Guard the single data-refresh owner and prevent shell-expression injection."""
 from pathlib import Path
 import ast
+import gzip
+import json
+import os
 import re
+import subprocess
+import sys
+import tempfile
 import unittest
 import yaml
 
@@ -20,6 +26,101 @@ def shell_expression_steps(text):
 
 
 class WorkflowSafetyTests(unittest.TestCase):
+    def test_elevation_uses_owner_lock_and_selected_branch(self):
+        workflow = yaml.safe_load(OWNER.read_text())
+        jobs = workflow['jobs']
+        self.assertIn("inputs.source != 'elevation'", jobs['fetch-data']['if'])
+        self.assertEqual(jobs['elevation']['if'], "${{ inputs.source == 'elevation' }}")
+        self.assertEqual(jobs['elevation']['timeout-minutes'], 360)
+        self.assertNotIn('concurrency', jobs['elevation'])
+        steps = jobs['elevation']['steps']
+        checkout = next(s for s in steps if s.get('uses') == 'actions/checkout@v4')
+        self.assertEqual(checkout['with']['ref'], '${{ github.ref_name }}')
+        commit = next(s for s in steps if s.get('id') == 'commit')['run']
+        self.assertIn('git rev-parse FETCH_HEAD', commit)
+        self.assertIn('git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"', commit)
+        self.assertNotIn('--force', commit)
+        self.assertNotRegex(commit, r'\bmain\b')
+        self.assertIn('git add -A data/sources/elevation.json data/campsites/elevation data/campsites/search-index.json', commit)
+        self.assertIn('commit_sha=%s', commit)
+
+    def test_elevation_failure_checkpoints_precede_publication_commit(self):
+        steps = yaml.safe_load(OWNER.read_text())['jobs']['elevation']['steps']
+        sample = next(s for s in steps if s.get('id') == 'sample')
+        self.assertEqual(sample['timeout-minutes'], 330)
+        self.assertNotIn('continue-on-error', sample)
+        self.assertIn('--catalogue data/campsites/search-index.json', sample['run'])
+        commit_index = next(i for i, s in enumerate(steps) if s.get('id') == 'commit')
+        checkpoint_steps = [s for s in steps if s.get('id') == 'checkpoint' or s.get('uses') in
+                            ('actions/cache/save@v4', 'actions/upload-artifact@v4')]
+        self.assertEqual(len(checkpoint_steps), 3)
+        for step in checkpoint_steps:
+            self.assertIn('always()', step['if'])
+            self.assertLess(steps.index(step), commit_index)
+        artifact = next(s for s in checkpoint_steps if s.get('uses') == 'actions/upload-artifact@v4')
+        self.assertEqual(artifact['with']['retention-days'], 7)
+        self.assertTrue(artifact['with']['include-hidden-files'])
+        self.assertEqual(artifact['with']['path'], '.elevation-checkpoint/elevation.json')
+        restore = next(s for s in steps if s.get('id') == 'restore')
+        self.assertTrue(restore['with']['key'].startswith('kamptrail-elevation-v1-'))
+        self.assertNotIn('inputs.', restore['with']['key'])
+
+    def test_elevation_verifies_exact_result_without_write_permissions_or_secrets(self):
+        jobs = yaml.safe_load(OWNER.read_text())['jobs']
+        verify = jobs['verify-elevation']
+        self.assertEqual(verify['needs'], 'elevation')
+        self.assertEqual(verify['permissions'], {'contents': 'read'})
+        self.assertEqual(verify['uses'], './.github/workflows/test.yml')
+        self.assertEqual(verify['with']['ref'], '${{ needs.elevation.outputs.commit_sha }}')
+        self.assertNotIn('secrets', verify)
+        self.assertEqual(jobs['elevation']['outputs']['commit_sha'], '${{ steps.commit.outputs.commit_sha }}')
+        regression = yaml.safe_load((WORKFLOWS / 'test.yml').read_text())
+        # BaseLoader preserves the GitHub YAML 1.2 "on" key instead of YAML 1.1's boolean.
+        trigger = yaml.load((WORKFLOWS / 'test.yml').read_text(), Loader=yaml.BaseLoader)['on']
+        self.assertEqual(trigger['workflow_call']['inputs']['ref']['type'], 'string')
+        checkout = next(s for s in regression['jobs']['regression']['steps'] if s.get('uses') == 'actions/checkout@v4')
+        self.assertEqual(checkout['with']['ref'], '${{ inputs.ref || github.sha }}')
+
+    def test_checkpoint_bootstrap_merge_and_failure_preservation_execute_offline(self):
+        steps = yaml.safe_load(OWNER.read_text())['jobs']['elevation']['steps']
+        scripts = {step['id']: step['run'].split("<<'PY'\n", 1)[1].rsplit('\nPY', 1)[0]
+                   for step in steps if step.get('id') in ('prepare', 'checkpoint')}
+        with gzip.open(ROOT / 'data/sources/elevation-seed.json.gz', 'rt') as file:
+            seed = json.load(file)
+        first, second = list(seed['coordinates'])[:2]
+        baseline = dict(seed, coordinates={first: seed['coordinates'][first]})
+        restored = dict(seed, coordinates={first: dict(seed['coordinates'][first], elevation_m=12),
+                                          second: seed['coordinates'][second]})
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / 'data/sources'
+            source.mkdir(parents=True)
+            checkpoint = root / '.elevation-checkpoint/elevation.json'
+            checkpoint.parent.mkdir()
+            checkpoint.write_text(json.dumps(restored))
+            with gzip.open(source / 'elevation-seed.json.gz', 'wt') as file:
+                json.dump(baseline, file)
+            env = dict(os.environ, PYTHONPATH=str(ROOT / 'scripts'), GITHUB_OUTPUT=str(root / 'outputs'))
+            def run(name):
+                return subprocess.run([sys.executable, '-c', scripts[name]], cwd=root, env=env,
+                                      capture_output=True, text=True)
+            result = run('prepare')
+            self.assertEqual(result.returncode, 0, result.stderr)
+            merged = json.loads((source / 'elevation.json').read_text())
+            self.assertEqual(set(merged['coordinates']), {first, second})
+            self.assertEqual(merged['coordinates'][first], baseline['coordinates'][first])
+            # An existing canonical cache makes the compressed bootstrap irrelevant.
+            (source / 'elevation-seed.json.gz').write_bytes(b'not gzip')
+            self.assertEqual(run('prepare').returncode, 0)
+            result = run('checkpoint')
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual((root / 'outputs').read_text(), 'ready=true\n')
+            saved = checkpoint.read_bytes()
+            merged['coordinates'][first]['source']['units'] = 'feet'
+            (source / 'elevation.json').write_text(json.dumps(merged))
+            self.assertNotEqual(run('checkpoint').returncode, 0)
+            self.assertEqual(checkpoint.read_bytes(), saved)
+
     def test_weekly_refresh_covers_every_state(self):
         tree = ast.parse((ROOT / 'scripts/fetch_recreation_gov_data.py').read_text())
         states = next(ast.literal_eval(node.value) for node in tree.body

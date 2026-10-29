@@ -81,3 +81,8 @@ test('worker upgrades retain saved Forest Service road views',async()=>{
 test('worker upgrades retain only the separate published camper aggregate cache',async()=>{
  const w=worker();const name='kamptrail:https://example.test/kamptrail/:camper-discovery-v1';await w.caches.open(name);let done;w.handlers.activate({waitUntil:p=>done=p});await done;assert.equal(w.stores.has(name),true);
 });
+
+test('worker preserves validated terrain cache and leaves terrain responses to the validating loader',async()=>{
+ const w=worker(),name='kamptrail:https://example.test/kamptrail/:elevation-v1';await w.caches.open(name);let done;w.handlers.activate({waitUntil:p=>done=p});await done;assert.equal(w.stores.has(name),true);
+ for(const tail of ['index.json','snapshots/'+ 'a'.repeat(24)+'/NY.json']){let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/campsites/elevation/'+tail),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false);}
+});

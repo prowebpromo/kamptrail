@@ -1,5 +1,12 @@
 name: Test KampTrail
 on:
+  workflow_call:
+    inputs:
+      ref:
+        description: Exact commit to verify after a data refresh
+        required: false
+        type: string
+        default: ''
   pull_request:
   push:
     branches: [main]
@@ -24,6 +31,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

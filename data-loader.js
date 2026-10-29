@@ -117,12 +117,66 @@
   async function loadIndex() {
     try{state.index=await fetchJSON('data/campsites/index.json');}catch(err){console.warn('Campsite index unavailable; state loading is still available.',err.message);}
   }
+  // Static terrain samples have a separate validated cache. A stable per-state alias
+  // survives manifest rotation; coordinate identity is checked again before use.
+  const elevationSnapshots=new Map(),elevationTasks=new Map(),elevationStatus=new Map();
+  let elevationManifestTask;
+  function elevationCache(){
+    if(!window.location?.href)return null;
+    const scope=new URL('./',window.location.href);
+    return{scope,name:`kamptrail:${scope.href}:elevation-v1`,root:new URL('data/campsites/elevation/',scope)};
+  }
+  async function elevationFetch(url,limit){
+    if(typeof navigator!=='undefined'&&navigator.onLine===false)throw new Error('Offline');
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
+    try{const r=await fetch(url,{signal:controller.signal,cache:'no-store',redirect:'error'});if(!r.ok)throw new Error('Elevation unavailable');const text=await r.text();if(text.length>limit)throw new Error('Elevation response too large');return text;}finally{clearTimeout(timer);}
+  }
+  async function elevationDigest(text){
+    if(!window.crypto?.subtle)throw new Error('Elevation validation unavailable');
+    return [...new Uint8Array(await window.crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  async function elevationManifest(force=false){
+    if(force)elevationManifestTask=null;
+    if(!elevationManifestTask)elevationManifestTask=(async()=>{
+      const target=elevationCache();if(!target)throw new Error('Elevation unavailable');
+      const url=new URL('index.json',target.root).href;
+      try{const text=await elevationFetch(url,1000000),d=JSON.parse(text);if(!DataQuality.validElevationManifest(d))throw new Error('Invalid elevation index');try{const c=await window.caches.open(target.name);await c.put(url,new Response(text));}catch{}return d;}
+      catch(error){try{const c=await window.caches.open(target.name),r=await c.match(url),d=r&&await r.json();if(DataQuality.validElevationManifest(d))return d;}catch{}throw error;}
+    })();
+    return elevationManifestTask;
+  }
+  function attachLoadedElevations(){for(const f of state.allCampsites)DataQuality.attachElevation(f,[...elevationSnapshots.values()]);}
+  async function loadElevation(code,retry=false){
+    if(!detailVisible()||!elevationCache())return;
+    if(elevationTasks.has(code))return elevationTasks.get(code);
+    if(!retry&&elevationStatus.has(code))return;
+    const task=(async()=>{
+      const target=elevationCache(),alias=new URL(`__saved_${code}__`,target.root).href;
+      elevationStatus.set(code,'loading');notify();
+      try{
+        const index=await elevationManifest(retry),entry=index.states[code];if(!entry)throw new Error('No elevation snapshot');
+        // The validator restricts this exact relative path; URL resolution cannot leave our data directory.
+        const url=new URL(entry.url,target.root);if(url.origin!==target.scope.origin||!url.href.startsWith(target.root.href))throw new Error('Invalid elevation path');
+        const raw=await elevationFetch(url.href,24000000);if(await elevationDigest(raw)!==entry.sha256)throw new Error('Elevation checksum mismatch');
+        const d=JSON.parse(raw);if(!DataQuality.validElevationState(d,code,index.snapshot_id)||Object.keys(d.records).length!==entry.count)throw new Error('Invalid elevation snapshot');
+        elevationSnapshots.set(code,d);elevationStatus.set(code,'ready');
+        try{const c=await window.caches.open(target.name);await c.put(alias,new Response(JSON.stringify({sha256:entry.sha256,raw})));}catch{}
+      }catch{
+        let restored=false;
+        try{const c=await window.caches.open(target.name),r=await c.match(alias),saved=r&&await r.json();if(typeof saved?.raw==='string'&&saved.raw.length<=24000000&&/^[a-f0-9]{64}$/.test(saved.sha256)&&await elevationDigest(saved.raw)===saved.sha256){const d=JSON.parse(saved.raw);if(DataQuality.validElevationState(d,code)){elevationSnapshots.set(code,d);elevationStatus.set(code,'saved');restored=true;}}}catch{}
+        // A validated in-memory snapshot is also usable if Cache Storage is unavailable.
+        if(!restored&&elevationSnapshots.has(code)){elevationStatus.set(code,'saved');restored=true;}
+        if(!restored){elevationSnapshots.delete(code);elevationStatus.set(code,'unavailable');}
+      }finally{elevationTasks.delete(code);attachLoadedElevations();}
+    })();elevationTasks.set(code,task);return task;
+  }
   function mergeLoaded(features,stateCode) {
     const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode}));
     if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
     const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, {state:stateCode});
     state.allCampsites=cleaned.features;
     if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
+    attachLoadedElevations();
   }
   async function loadAgencyIndex() {
     try{const data=await fetchJSON('data/campsites/agency/index.json');if(Array.isArray(data?.states)){state.agencyStates=new Set(data.states);state.agencyCounts=data.counts&&typeof data.counts==='object'?data.counts:{};}}
@@ -134,7 +188,7 @@
   }
   async function loadState(code,{retry=false}={}) {
     if(!STATE_BOUNDS[code])return;
-    if(state.loadedStates.has(code))return;
+    if(state.loadedStates.has(code))return loadElevation(code,retry);
     if(state.loading.has(code))return state.loading.get(code);
     const last=state.failed.get(code);
     if(!retry&&last&&Date.now()-last.at<15000)return;
@@ -146,6 +200,8 @@
         const extra=await agency;
         mergeLoaded([...data.features,...(extra?.type==='FeatureCollection'&&Array.isArray(extra.features)?extra.features:[])],code);
         state.loadedStates.add(code);state.failed.delete(code);
+        updateMarkers(); // Terrain lookup must not delay otherwise usable campsite markers.
+        await loadElevation(code,retry);
       }catch(error){
         const message=error.name==='AbortError'?'Request timed out':error.message;
         state.failed.set(code,{error:message,at:Date.now()});
@@ -192,6 +248,8 @@
       ${p.reservable?'<div class="kt-fine">Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.</div>':''}
       <div><strong>Type:</strong> ${esc(p.type)}</div>
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
+      <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
+      ${DataQuality.elevationInfo(site)?`<p class="kt-fine">Interpolated terrain from <a href="${DataQuality.ELEVATION_SOURCE}" target="_blank" rel="noopener noreferrer">USGS 3DEP</a>. Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grade or RV clearance.</p>`:''}
       <div><strong>Access reported:</strong> ${esc(p.access_label || p.access || 'Not verified')}</div>
       <div><strong>Amenities reported:</strong> ${p.amenities.length?p.amenities.map(esc).join(', '):'Not verified'}</div>
       ${p.road_difficulty?`<div><strong>Road:</strong> ${esc(p.road_difficulty)}</div>`:''}
@@ -320,7 +378,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.11.0',
+    version:'2.12.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -347,20 +405,21 @@
     getLoadedStates:()=>[...state.loadedStates],
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,
-    getVisibleCampsites(){
+    getVisibleCampsites(filters=api.getCurrentFilters()){
       if(state.map&&!detailVisible())return [];
-      const list=DataQuality.applyFilters(state.allCampsites,api.getCurrentFilters());
+      const list=DataQuality.applyFilters(state.allCampsites,filters);
       if(!state.map)return list;
       const b=state.map.getBounds();return list.filter(f=>{const [lon,lat]=f.geometry.coordinates;return b.contains([lat,lon])||b.contains([lat,lon+360])||b.contains([lat,lon-360]);});
     },
+    getElevationStatus(){const f=api.getCurrentFilters();return{loading:[...elevationStatus.values()].includes('loading'),saved:[...elevationStatus.values()].includes('saved'),unavailable:[...elevationStatus].filter(([,v])=>v==='unavailable').map(([k])=>k),unknown:DataQuality.elevationRange(f).active?api.getVisibleCampsites({...f,elevationMin:null,elevationMax:null}).filter(s=>!DataQuality.elevationInfo(s)).length:0};},
     getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0,overview:!detailVisible(),catalogueTotal:Object.values(stateTotals()).reduce((a,b)=>a+b,0)}),
     loadStates:codes=>loadBatch(codes,true),
     refresh:()=>detailVisible()?loadBatch(getVisibleStates(),true):Promise.resolve(api.getLoadStatus()),
     getStateTotals:stateTotals,
-    focusCampsite(id){
+    focusCampsite(id,{preserveFilters=false}={}){
       const site=api.getCampsiteById(id);if(!site)return false;
       let marker=state.markers.get(site.properties.id);
-      if(!marker && typeof window.KampTrailFilters?.reset==='function') {window.KampTrailFilters.reset();marker=state.markers.get(site.properties.id);}
+      if(!marker && !preserveFilters && typeof window.KampTrailFilters?.reset==='function') {window.KampTrailFilters.reset();marker=state.markers.get(site.properties.id);}
       if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
       const focusSeq=state.focusSeq=(state.focusSeq||0)+1;
       state.map.closePopup();

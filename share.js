@@ -4,9 +4,10 @@
   const REPO = 'https://github.com/prowebpromo/kamptrail';
   function baseUrl() { return location.href.split('#')[0].split('?')[0]; }
   function linkFor(target) {
-    if (target.site != null) return `${baseUrl()}#site=${encodeURIComponent(String(target.site))}`;
-    if (Array.isArray(target.spot)) return `${baseUrl()}#spot=${target.spot[0].toFixed(5)},${target.spot[1].toFixed(5)}`;
-    return baseUrl();
+    let hash=target.site!=null?'site='+encodeURIComponent(String(target.site)):Array.isArray(target.spot)?'spot='+target.spot[0].toFixed(5)+','+target.spot[1].toFixed(5):'';
+    const f=target.elevation||window.kamptrailFilters||{},range=window.DataQuality?.elevationRange(f);
+    if(hash&&range?.active&&range.valid){if(range.min!==null)hash+='&emin='+range.min;if(range.max!==null)hash+='&emax='+range.max;hash+='&eunit='+(f.elevationUnit==='m'?'m':'ft');}
+    return baseUrl()+(hash?'#'+hash:'');
   }
   async function share(target, title) {
     const url = linkFor(target);
@@ -18,12 +19,20 @@
     return url;
   }
   function parse(hash = location.hash) {
-    const h = String(hash || '').replace(/^#/, '');
-    const site = h.match(/^site=(.+)$/);
-    if (site) { try { return {site: decodeURIComponent(site[1]).slice(0, 200)}; } catch { return null; } }
-    const spot = h.match(/^spot=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/);
-    if (spot) { const lat = +spot[1], lng = +spot[2]; if (Math.abs(lat) <= 90 && Math.abs(lng) <= 180) return {spot: [lat, lng]}; }
-    return null;
+    const parts=String(hash||'').replace(/^#/,'').split('&'),h=parts.shift();let target=null;
+    const site=h.match(/^site=(.+)$/);
+    if(site){try{target={site:decodeURIComponent(site[1]).slice(0,200)};}catch{return null;}}
+    const spot=h.match(/^spot=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/);
+    if(spot){const lat=+spot[1],lng=+spot[2];if(Math.abs(lat)<=90&&Math.abs(lng)<=180)target={spot:[lat,lng]};}
+    if(!target)return null;
+    const params=new URLSearchParams(parts.join('&'));
+    if(params.has('emin')||params.has('emax')){
+      if(['emin','emax','eunit'].some(k=>params.getAll(k).length>1))return null;
+      const number=k=>!params.has(k)?null:/^-?\d+(?:\.\d+)?$/.test(params.get(k))?Number(params.get(k)):NaN;
+      const e={elevationMin:number('emin'),elevationMax:number('emax'),elevationUnit:params.get('eunit')==='m'?'m':'ft'};
+      if(!window.DataQuality?.elevationRange(e).valid)return null;target.elevation=e;
+    }
+    return target;
   }
   function issueUrl(kind, site) {
     const p = new URLSearchParams();
@@ -41,5 +50,5 @@
     }
     return `${REPO}/issues/new?${p}`;
   }
-  window.KampTrailShare = {version: '2.11.0', linkFor, share, parse, issueUrl, REPO};
+  window.KampTrailShare = {version: '2.12.0', linkFor, share, parse, issueUrl, REPO};
 })();

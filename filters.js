@@ -4,13 +4,13 @@
   const AMENITIES=[['toilet','Toilets'],['water','Drinking water'],['dump','Dump station'],['shower','Showers']];
   const RIGS=[['all','Any'],['tent','Tents'],['trailer','Trailers and caravans']];
   const HOOKUPS=[['electric','Electric'],['water','Water'],['sewer','Sewer']];
-  const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0,rigLength:0,rigIncludeUnknown:false,hookups:[],minReviews:1,observedDays:365});
+  const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0,rigLength:0,rigIncludeUnknown:false,hookups:[],minReviews:1,observedDays:365,elevationMin:null,elevationMax:null,elevationUnit:'ft'});
   const state={filters:defaults(),panel:null,button:null};
   function close(){state.panel.style.display='none';state.button.setAttribute('aria-expanded','false');}
-  function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal);}
+  function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal)+Number(DataQuality.elevationRange(f).active);}
   function apply(){
     const f=state.filters;
-    try{localStorage.setItem('kt_filters_mvp',JSON.stringify({cost:f.cost,type:f.type,rigSize:f.rigSize,amenities:f.amenities,rigLength:f.rigLength,rigIncludeUnknown:f.rigIncludeUnknown,hookups:f.hookups,minRating:f.minRating,minReviews:f.minReviews,observedDays:f.observedDays,...Object.fromEntries(Object.keys(window.KampTrailDiscovery?.AXES||{}).map(k=>['observed_'+k,f['observed_'+k]||''])),observed_carrier:f.observed_carrier||'',observed_signal:f.observed_signal||''}));}catch{}
+    try{localStorage.setItem('kt_filters_mvp',JSON.stringify({cost:f.cost,type:f.type,rigSize:f.rigSize,amenities:f.amenities,rigLength:f.rigLength,rigIncludeUnknown:f.rigIncludeUnknown,hookups:f.hookups,minRating:f.minRating,minReviews:f.minReviews,observedDays:f.observedDays,elevationMin:f.elevationMin,elevationMax:f.elevationMax,elevationUnit:f.elevationUnit,...Object.fromEntries(Object.keys(window.KampTrailDiscovery?.AXES||{}).map(k=>['observed_'+k,f['observed_'+k]||''])),observed_carrier:f.observed_carrier||'',observed_signal:f.observed_signal||''}));}catch{}
     window.kamptrailFilters=f;
     window.KampTrailData?.updateFilters(f);
     if(window.KampTrailDiscovery?.active(f))window.KampTrailDiscovery.load();
@@ -21,6 +21,7 @@
     const p=state.panel;if(!p)return;
     p.querySelector(`[name="f-cost"][value="${state.filters.cost}"]`).checked=true;
     p.querySelector('#f-type').value=state.filters.type;
+    syncElevation();
     p.querySelector('#f-rig').value=state.filters.rigSize;
     p.querySelectorAll('[name="f-amenity"]').forEach(el=>{el.checked=state.filters.amenities.includes(el.value);});
     p.querySelectorAll('[data-camper-filter]').forEach(n=>{n.value=String(state.filters[n.dataset.camperFilter]??'');});
@@ -28,9 +29,20 @@
     p.querySelector('#f-length-unknown').checked=!!state.filters.rigIncludeUnknown;
     p.querySelectorAll('[name="f-hookup"]').forEach(el=>{el.checked=state.filters.hookups.includes(el.value);});
   }
+  function syncElevation(){
+    const p=state.panel;if(!p)return;const unit=state.filters.elevationUnit;
+    p.querySelector('#f-elevation-unit').value=unit;
+    for(const which of ['Min','Max']){const n=p.querySelector('#f-elevation-'+which.toLowerCase()),value=state.filters['elevation'+which];n.value=value===null?'':String(DataQuality.elevationFromMetres(value,unit));n.setAttribute('aria-label',(which==='Min'?'Minimum':'Maximum')+' elevation ('+(unit==='m'?'metres':'feet')+')');n.removeAttribute('aria-invalid');}
+    p.querySelector('#f-elevation-error').textContent='';
+  }
+  function setElevationFilters(f){
+    const candidate={elevationMin:f.elevationMin??null,elevationMax:f.elevationMax??null,elevationUnit:f.elevationUnit==='m'?'m':'ft'};
+    if(!DataQuality.elevationRange(candidate).valid)return false;
+    Object.assign(state.filters,candidate);syncElevation();apply();return true;
+  }
   function reset(){state.filters=defaults();sync();apply();}
   window.KampTrailFilters={
-    version:'2.11.0',
+    version:'2.12.0',
     init(map){
       const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
       p.setAttribute('role','region');p.setAttribute('aria-label','Campsite filters');
@@ -42,6 +54,11 @@
         <label><input type="radio" name="f-cost" value="paid"> Paid</label>
         <label><input type="radio" name="f-cost" value="unknown"> Unknown</label></div>
         <label for="f-type"><strong>Campsite type</strong></label><select id="f-type"><option value="all">All types</option><option value="established">Campground</option><option value="dispersed">Dispersed</option><option value="backcountry">Backcountry</option><option value="parking">Overnight parking</option><option value="other">Other / unspecified</option></select>
+        <fieldset class="kt-elevation-filters"><legend>Approximate terrain elevation</legend>
+        <label for="f-elevation-unit">Elevation units</label><select id="f-elevation-unit"><option value="ft">Feet (ft)</option><option value="m">Metres (m)</option></select>
+        <div class="kt-elevation-bounds"><label>Minimum<input id="f-elevation-min" type="number" step="any" inputmode="decimal" aria-describedby="f-elevation-help f-elevation-error" placeholder="No minimum"></label><label>Maximum<input id="f-elevation-max" type="number" step="any" inputmode="decimal" aria-describedby="f-elevation-help f-elevation-error" placeholder="No maximum"></label></div>
+        <p id="f-elevation-help" class="filter-note">Bounds include their endpoints. Missing elevations are excluded. USGS 3DEP interpolated terrain is approximate; grid resolution does not guarantee point accuracy, road grade or RV clearance.</p>
+        <p id="f-elevation-error" class="filter-note" role="alert"></p><p id="f-elevation-status" class="filter-note" role="status"></p><button type="button" id="f-elevation-retry" class="btn">Retry elevation data</button></fieldset>
         <label for="f-length"><strong>Fits my rig (feet)</strong></label><input id="f-length" type="number" inputmode="numeric" min="10" max="80" step="1" placeholder="e.g. 32">
         <label class="kt-inline"><input type="checkbox" id="f-length-unknown"> Include listings with no documented RV length</label>
         <fieldset class="amenity-options"><legend><strong>Hookups reported</strong></legend>${HOOKUPS.map(([v,l])=>`<label><input type="checkbox" name="f-hookup" value="${v}"> ${l}</label>`).join('')}</fieldset>
@@ -56,11 +73,22 @@
         if(['all','free','conditional','paid','unknown'].includes(saved.cost))state.filters.cost=saved.cost;
         if(['all','established','dispersed','backcountry','parking','other'].includes(saved.type))state.filters.type=saved.type;
         if(RIGS.some(([v])=>v===saved.rigSize))state.filters.rigSize=saved.rigSize;
+        const e={elevationMin:saved.elevationMin??null,elevationMax:saved.elevationMax??null};if(DataQuality.elevationRange(e).valid)Object.assign(state.filters,e);state.filters.elevationUnit=saved.elevationUnit==='m'?'m':'ft';
         if(Number.isInteger(saved.rigLength)&&saved.rigLength>=10&&saved.rigLength<=80)state.filters.rigLength=saved.rigLength;
         state.filters.rigIncludeUnknown=saved.rigIncludeUnknown===true;
         if(Array.isArray(saved.hookups))state.filters.hookups=saved.hookups.filter(h=>HOOKUPS.some(([v])=>v===h));
         if(Array.isArray(saved.amenities))state.filters.amenities=saved.amenities.filter(a=>AMENITIES.some(([v])=>v===a));
       }catch{}
+      const elevationChange=()=>{
+        const candidate={};let invalid=false;
+        for(const which of ['Min','Max']){const n=p.querySelector('#f-elevation-'+which.toLowerCase());candidate['elevation'+which]=n.value.trim()===''?null:DataQuality.elevationToMetres(Number(n.value),state.filters.elevationUnit);if(n.validity.badInput)invalid=true;}
+        if(invalid||!DataQuality.elevationRange(candidate).valid){p.querySelector('#f-elevation-error').textContent='Enter valid bounds between −500 and 9,000 metres (about −1,640 to 29,528 ft), with minimum no greater than maximum. Your last valid filter remains applied.';for(const n of p.querySelectorAll('.kt-elevation-bounds input'))n.setAttribute('aria-invalid','true');return;}
+        Object.assign(state.filters,candidate);p.querySelector('#f-elevation-error').textContent='';for(const n of p.querySelectorAll('.kt-elevation-bounds input'))n.removeAttribute('aria-invalid');apply();
+      };
+      for(const n of p.querySelectorAll('.kt-elevation-bounds input'))n.onchange=elevationChange;
+      p.querySelector('#f-elevation-unit').onchange=e=>{state.filters.elevationUnit=e.target.value;syncElevation();apply();};
+      const elevationStatus=()=>{const s=window.KampTrailData?.getElevationStatus?.(),active=DataQuality.elevationRange(state.filters).active;const status=p.querySelector('#f-elevation-status');status.textContent=window.KampTrailData?.getLoadStatus?.().overview?'Zoom in to load campsite elevations.':s?.loading?'Loading terrain elevations…':active?`${s?.unknown||0} listings matching other filters in this view have unknown elevation and are excluded.${s?.saved?' Saved static elevation evidence is in use.':''}${s?.unavailable?.length?' Elevation data unavailable for '+s.unavailable.join(', ')+'.':''}`:'Elevation filters are off.';p.querySelector('#f-elevation-retry').hidden=!s?.unavailable?.length;p.querySelector('#f-elevation-retry').disabled=!!s?.loading;};
+      window.addEventListener('kamptrail:dataupdated',elevationStatus);p.querySelector('#f-elevation-retry').onclick=()=>window.KampTrailData?.refresh();elevationStatus();
       const evidence=window.KampTrailDiscovery;
       if(evidence){
         const set=document.createElement('fieldset');set.className='kt-camper-filters';const legend=document.createElement('legend');legend.textContent='Published camper evidence';set.append(legend);
@@ -93,6 +121,6 @@
       p.querySelectorAll('[name="f-hookup"]').forEach(el=>el.onchange=()=>{state.filters.hookups=[...p.querySelectorAll('[name="f-hookup"]:checked')].map(i=>i.value);apply();});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
       apply();
-    },reset,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
+    },reset,setElevationFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
   };
 })();

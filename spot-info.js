@@ -136,5 +136,5 @@
     }
     target.replaceChildren(box);relayout(target);
   }
-  global.KampTrailSpot = {version: '2.11.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, AGENCIES, SMA_URL: SMA};
+  global.KampTrailSpot = {version: '2.12.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -5,6 +5,7 @@
 // No geocoding, name invention, or provider calls occur in this build.
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const DataQuality = require('../data-quality.js');
 
 function featureIds(feature) {
@@ -12,7 +13,7 @@ function featureIds(feature) {
   return [...new Set([p.id, ...(p.legacy_ids || [])].filter(id => id != null && id !== '').map(String))];
 }
 
-function buildSearchIndex(collections, quality = DataQuality, siteDetails = null) {
+function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = []) {
   const input = [];
   const stateById = new Map();
   for (const {state, geojson} of collections) {
@@ -34,6 +35,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
 
   const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input});
   const sites = cleaned.features.map(feature => {
+    quality.attachElevation(feature,elevationSnapshots);
     const states = new Set();
     for (const id of featureIds(feature)) {
       for (const state of stateById.get(id) || []) states.add(state);
@@ -47,10 +49,26 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if(typeof p.open_status==='string'&&p.open_status.trim()&&p.open_status.trim().toLowerCase()!=='none')m.o=p.open_status.trim().toLowerCase().slice(0,80);
     if(p.rating!==null)m.q=p.rating;
     if(p.rv_sigs?.length)m.g=p.rv_sigs;
+    const elevation=quality.elevationInfo(feature);if(elevation)m.e=elevation;
     return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states:[...states].sort(),lat,lng,m};
   });
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
-  return {version:1, filter_version:1, community_version:1, sites};
+  return {version:1, filter_version:1, community_version:1, elevation_version:1, sites};
+}
+
+function readElevationSnapshots(directory){
+  const root=path.join(directory,'elevation'),file=path.join(root,'index.json');
+  if(!fs.existsSync(file))return [];
+  const manifest=JSON.parse(fs.readFileSync(file,'utf8'));
+  if(!DataQuality.validElevationManifest(manifest))throw new Error('Invalid elevation manifest');
+  return Object.entries(manifest.states).map(([code,entry])=>{
+    // Manifest validation restricts the relative path to snapshots/<id>/<state>.json.
+    const bytes=fs.readFileSync(path.join(root,entry.url));
+    if(bytes.length>24000000||crypto.createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw new Error('Elevation snapshot checksum mismatch: '+code);
+    const d=JSON.parse(bytes.toString('utf8'));
+    if(!DataQuality.validElevationState(d,code,manifest.snapshot_id)||Object.keys(d.records).length!==entry.count)throw new Error('Invalid elevation snapshot: '+code);
+    return d;
+  });
 }
 
 function buildFromDirectory(directory) {
@@ -70,7 +88,7 @@ function buildFromDirectory(directory) {
       if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
     }
     return {state, geojson};
-  }),DataQuality,siteDetails);
+  }),DataQuality,siteDetails,readElevationSnapshots(directory));
 }
 
 if (require.main === module) {
@@ -89,4 +107,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = {buildSearchIndex, buildFromDirectory};
+module.exports = {buildSearchIndex, buildFromDirectory, readElevationSnapshots};

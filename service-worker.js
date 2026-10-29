@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v37';
+const VERSION = 'kt-v38';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -7,6 +7,7 @@ const DATA_CACHE = `${PREFIX}data-v1`;
 const TILE_CACHE = `${PREFIX}tiles-v1`;
 const MVUM_CACHE = `${PREFIX}mvum-v1`;
 const CAMPER_CACHE = `${PREFIX}camper-discovery-v1`;
+const ELEVATION_CACHE = `${PREFIX}elevation-v1`;
 const ROUTE_CACHE = `${PREFIX}routes-v1`;
 const SHELL = [
   './','index.html','app.js','app.css','data/places-us.json','manifest.json','icon-192.png','icon-512.png','og.png',
@@ -22,13 +23,16 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   const keys=await caches.keys();
-  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE).map(key=>caches.delete(key)));
+  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE).map(key=>caches.delete(key)));
   await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{
   const request=event.request,url=new URL(request.url);
   // Moderation status and photos must never outlive a removal in an offline cache.
   if(url.origin===self.location.origin && url.pathname.includes('/api/'))return;
+  // The page validates hashes/schema and manages stable last-good terrain snapshots.
+  // Never let generic shell caching pin a manifest or cache an unvalidated sidecar.
+  if(url.href.startsWith(new URL('data/campsites/elevation/',self.registration.scope).href))return;
   // Saved offline map areas: USGS Topo tiles the visitor chose to save. Cache first, network otherwise. Nothing is added here automatically.
   if(request.method==='GET' && request.url.startsWith(TOPO_TILES)) {event.respondWith(savedTile(request));return;}
   if(request.method!=='GET' || url.origin!==self.location.origin || !url.href.startsWith(self.registration.scope))return;

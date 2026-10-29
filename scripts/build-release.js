@@ -9,6 +9,8 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
   for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','ridb-sites.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
   // The runtime loads this index and its state files separately from merged snapshots.
   await fs.cp(path.join(root,'data','campsites','agency'),path.join(out,'data','campsites','agency'),{recursive:true});
+  const elevationRoot=path.join(root,'data','campsites','elevation');
+  if(await fs.stat(elevationRoot).then(s=>s.isDirectory()).catch(()=>false))await fs.cp(elevationRoot,path.join(out,'data','campsites','elevation'),{recursive:true,filter:source=>{const rel=path.relative(elevationRoot,source).split(path.sep).join('/');return rel===''||rel==='index.json'||rel==='snapshots'||/^snapshots\/[a-f0-9]{24}(?:\/[A-Z]{2}\.json)?$/.test(rel);}});
   await fs.mkdir(path.join(out,'data','services'),{recursive:true});await fs.copyFile(path.join(root,'data','services','services.json'),path.join(out,'data','services','services.json'));
   for(const file of ['places-us.json','places-us.LICENSE.txt','health.json'])await fs.copyFile(path.join(root,'data',file),path.join(out,'data',file));
   if(process.env.KAMPTRAIL_PUBLIC_URL){
