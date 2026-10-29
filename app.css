@@ -52,3 +52,4 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 .kt-health-table th,.kt-health-table td{text-align:left;vertical-align:top;padding:4px 6px;border-bottom:1px solid var(--line,#d8dfd5)}
 .kt-health-table tr[data-status="stale"] td:last-child,.kt-health-table tr[data-status="failing"] td:last-child{color:#8a2a1a;font-weight:600}
 .kt-health-warn{background:#fff4e5;border:1px solid #e0a94a;color:#5a3a00;border-radius:6px;padding:8px 10px}
+.kt-state-leader{pointer-events:none}

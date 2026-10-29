@@ -2,6 +2,13 @@
 
 Published October 28, 2026 at https://boondockorbust.com/resources/kamptrail-campsite-map/ (WordPress page 73633). The Resources submenu entry **KampTrail Map** was verified in the live page DOM. The existing RV Park & Campground Finder remains separate.
 
+## 2.5 update (published 2026-10-28 20:43 ET)
+
+- Page 73633: RV fit sentence now states one site must list the length and every hookup. About the data sentence mentions source download dates. New section "Report a problem or a missing campsite". `kamptrail-page.html` matches.
+- Post 58434: second KampTrail paragraph adds in-app corrections. Quick facts Includes line adds in-app corrections.
+- Pages 35 and 68009 already carried the 2.4.1 copy and needed no change.
+- Verified on the live pages (LiteSpeed cache miss). "GPX tools" and "public-land overlays" no longer appear as missing features in post 58434.
+
 ## Publication record
 
 - Published **KampTrail Campsite Map** under Resources with the embedded app and full-page link. `kamptrail-page.html` contains the page markup; WordPress supplies the page H1.
