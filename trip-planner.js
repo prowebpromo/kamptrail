@@ -111,7 +111,7 @@
       if(requestedKey!==pointsKey(st.stops.map(getSite).filter(Boolean).map(latLng))){info('Your stops changed while routing. Calculate the updated trip.');return;}
       st.drive={legs:route.legs.map(l=>({s:l.duration,m:l.distance/1609.344})),s:route.duration,m:route.distance/1609.344,raw:route};st.driveKey=requestedKey;st.showRoute=true;
       try{localStorage.setItem('kt_trip_route','1');}catch{}render();drawRoute();
-    }catch(e){notify(e.message||'Road routing is unavailable. External directions and saved stops still work.');}
+    }catch(e){const message=e.message||'Road routing is unavailable. External directions and saved stops still work.';notify(message);st.el.querySelector('#kt-trip-route-status').textContent=message;}
     finally{st.driveBusy=false;btn.disabled=false;btn.textContent='Calculate road route';}
   }
   function insertAfter(feature,index){
@@ -178,7 +178,7 @@
     const road=currentDrive();
     st.el.querySelector('#kt-trip-route').checked=st.showRoute&&!!road;st.el.querySelector('#kt-trip-route').disabled=!road;
     st.el.querySelector('#kt-trip-discover').disabled=!road;st.el.querySelector('#kt-trip-view-route').disabled=!road;
-    st.el.querySelector('#kt-trip-route-status').textContent=road?`${road.raw.from_cache?'Saved':'Calculated'} road route from ${road.raw.calculated_at.slice(0,10)}.${road.raw.offline?' Offline: conditions may have changed.':''}`:'Calculate a road route to draw roads and search along the trip.';
+    st.el.querySelector('#kt-trip-route-status').textContent=road?`${road.raw.from_cache?'Saved':'Calculated'} road route from ${road.raw.calculated_at.slice(0,10)}.${road.raw.offline?' Offline: conditions may have changed.':road.raw.source_unavailable?' Routing service unavailable; showing the saved route.':''}`:'Calculate a road route to draw roads and search along the trip.';
     renderSummary();renderLegs();
     st.el.querySelector('#kt-trip-drive').hidden=st.stops.length<2;st.el.querySelector('#kt-trip-drive-credit').hidden=!currentDrive();
     if(!st.stops.length) {const empty=document.createElement('p');empty.textContent='No saved stops yet. Save a campsite from its listing or map popup, long-press the map to save any spot, or import a GPX file.';list.append(empty);return;}
