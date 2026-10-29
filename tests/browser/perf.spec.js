@@ -83,5 +83,5 @@ test('explicitly focusing a second campsite replaces an already open popup',asyn
  await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>1&&!KampTrailData.getLoadStatus().loading);
  const sites=await page.evaluate(()=>{const all=KampTrailData.getAllCampsites(),first=all[0],second=all.find(f=>f.properties.name!==first.properties.name);return[first,second].map(f=>({id:f.properties.id,name:f.properties.name}));});
  await page.evaluate(id=>KampTrailData.focusCampsite(id),sites[0].id);await expect(page.locator('.kt-site-popup h3')).toHaveText(sites[0].name);
- await page.evaluate(id=>KampTrailData.focusCampsite(id),sites[1].id);await expect(page.locator('.kt-site-popup h3')).toHaveText(sites[1].name);
+ await page.evaluate(id=>KampTrailData.focusCampsite(id),sites[1].id);await expect(page.locator('.kt-site-popup')).toHaveCount(1);await expect(page.locator('.kt-site-popup h3')).toHaveText(sites[1].name);
 });

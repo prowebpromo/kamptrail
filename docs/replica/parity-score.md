@@ -14,7 +14,7 @@ features 80.8  (59 counted, must-haves 13 of 13 done)
 - offline                      100.0  (3 features)
 
 ## Missing, in build order
-- [should] layers: Cell carrier coverage overlay, no  (FCC authenticated/current data access and mobile-data usage conditions unverified; see FCC_COVERAGE_ACCESS.md)
+- [should] layers: Cell carrier coverage overlay, no  (Official FCC provider/date/state mobile GIS downloads and public-data API documentation verified. No KampTrail carrier overlay. API access, redistribution terms, regional processing and delivery still need validation.)
 - [should] amenities: Overnight parking places (Walmart truck stops rest areas), partial  (Type filter exists; few records)
 - [should] place: Place detail: amenities list, partial  (Shown when source reports them)
 - [could] amenities: Laundry showers groceries gas facilities, no  (Not in current POI data)
@@ -32,13 +32,13 @@ features 80.8  (59 counted, must-haves 13 of 13 done)
 - [could] trips: Route elevation chart, no
 - [could] trips: Route settings rig height avoid highways, no
 - [could] ugc: Overnight allowed voting, no  (Needs backend)
-- [could] ugc: Review sub-scores and cell signal reports, no  (Core star reviews now live; structured seasonal/noise/shade/signal sub-scores remain absent)
+- [could] ugc: Review sub-scores and cell signal reports, no  (Needs backend)
 - [could] other: Leave No Trace / respect the land guidance, partial  (Agency stay-limit and land rules in spot check)
 
 ## Left out on purpose (not scored)
 - Turn-by-turn navigation: Native app only in original; hand off to Google/Apple Maps
 - Accounts and profiles: No-account design is a deliberate choice
-- Friends DMs groups forum events: Community network cannot be cloned; out of scope
+- Friends DMs groups forum events: A deliberate scope exclusion. A new community can be built; the original community, accounts and content cannot be transferred without authorization.
 - Notifications: Tied to social features
 - Donations and partners: Business model item not a user feature
 - Product guides and backpack: Affiliate content belongs on Boondock or Bust
@@ -49,3 +49,11 @@ features 80.8  (59 counted, must-haves 13 of 13 done)
 - About the data / transparency
 - Land manager lookup with agency stay-limit guidance
 - Fee status with source wording (free, conditional, paid, unknown)
+- Fee context and negation safeguards
+- Joint site suitability evidence
+- Per-source freshness and degraded refresh status
+- Account-light correction status for campers
+- MVUM coverage gaps and seasonal source context
+- Predicted versus observed carrier evidence
+- Domain migration and portable saved-stop guidance
+- Offline area readiness checklist
