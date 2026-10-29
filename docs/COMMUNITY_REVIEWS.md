@@ -11,7 +11,7 @@ Campers can read approved reviews and photo galleries from a campsite popup. Con
 
 ## Moderation
 
-The existing moderator login at `/api/admin.php` has a **Reviews, photos and reports** link. Apply `002_community` there before enabling the release. It adds tables and indexes without changing the existing contributions tables.
+The existing moderator login at `/api/admin.php` has a **Reviews, photos and reports** link. Apply `002_community` there before opening community contributions. Existing campsite corrections remain available while this additive migration is pending. It adds tables and indexes without changing the existing contributions tables.
 
 Review states are pending, published, rejected and hidden. Photo states are independent. Publishing a review never publishes its photos. Public lists include published reviews only; photo delivery requires both review and photo to be published. Pending photo previews require the moderator session. The pending queue includes reviews with pending photos even when their text is already published.
 

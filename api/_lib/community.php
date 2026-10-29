@@ -86,7 +86,7 @@ function kc_photos(): array {
         if ($mime==='image/jpeg' && function_exists('exif_read_data')) {
             $exif=@exif_read_data($tmp); $o=(int)($exif['Orientation']??1);
             if (in_array($o,[2,4,5,7],true)) imageflip($src,IMG_FLIP_HORIZONTAL);
-            $angle=[3=>180,4=>180,5=>-90,6=>-90,7=>90,8=>90][$o]??0;
+            $angle=[3=>180,4=>180,5=>90,6=>-90,7=>-90,8=>90][$o]??0;
             if ($angle) { $rotated=imagerotate($src,$angle,0); if ($rotated) {imagedestroy($src);$src=$rotated;} }
         }
         $w=imagesx($src);$h=imagesy($src);$scale=min(1,1600/max($w,$h));$nw=max(1,(int)round($w*$scale));$nh=max(1,(int)round($h*$scale));
