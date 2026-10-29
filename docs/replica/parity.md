@@ -1,3 +1,5 @@
+> Latest comparison: [October 29, 2026 audit](2026-10-29/parity.md). The report below is retained as historical release evidence.
+
 # KampTrail vs FreeRoam — 2.8.0 feature audit
 
 Date: 2026-10-28. Feature score: **80.8/100**, up from the latest independent 69.2 baseline (2.4.1). All **13 of 13 must-haves** are implemented. This measures 59 features in the existing matrix, weighted must=3, should=2, could=1; partial earns half credit. Deliberately excluded social/account features and KampTrail-only additions do not inflate the score.
