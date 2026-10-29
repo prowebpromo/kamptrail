@@ -48,7 +48,7 @@
   if(st.pending)return st.pending;
   if(!force&&usable()&&Date.now()-Date.parse(st.checked)<60000)return;
   const generation=st.generation;
-  st.pending=(async()=>{
+  st.pending=Promise.resolve().then(async()=>{
    st.mode='loading';st.error='';notify();
    try{
     if(typeof navigator!=='undefined'&&!navigator.onLine)throw new Error('offline');
@@ -71,7 +71,7 @@
     try{const c=await caches.open(cacheName()),r=await c.match(cacheKey()),d=r&&await r.json();if(generation!==st.generation)return;if(d?.version===1&&validSites(d.sites)&&Number.isFinite(Date.parse(d.checked_at))&&Date.now()-Date.parse(d.checked_at)<=7*86400000){st.sites=new Map(Object.entries(d.sites));st.checked=d.checked_at;st.mode='cached';return;}}catch{}
     st.mode='error';st.sites=new Map();st.checked=null;
    }finally{st.pending=null;notify();}
-  })();return st.pending;
+  });return st.pending;
  }
  function observeFields(form,review,el,field){
   const values=review.observations||{},set=el('fieldset');set.append(el('legend',{},'Conditions you observed (optional)'),el('p',{class:'kt-fine'},'Report only this visit. Approach depends on your rig. Comfort is subjective. These reports do not establish permission, safety or current road conditions.'));

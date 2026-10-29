@@ -70,3 +70,6 @@ test('legacy campsite identifiers preserve the same rating match in map and rebu
 test('matching evidence counts include only qualifying report dates',async()=>{
  const today=new Date().toISOString().slice(0,10),e=runtime(async()=>page({a:{...summary,rating_count:101,rating_sum:404,observations:[{values:{noise:'quiet'},count:100,latest_visit:'2020-01-01'},{values:{noise:'quiet'},count:1,latest_visit:today}]}}));await e.D.load();assert.match(e.D.matchNote('a',{observed_noise:'quiet',observedDays:90}),/1 published report ·/);assert.match(e.D.matchNote('a',{observed_noise:'quiet',observedDays:0}),/101 published reports/);
 });
+test('offline failure without CacheStorage can retry successfully after reconnecting',async()=>{
+ let calls=0;const e=runtime(async()=>{calls++;return page({a:summary});});e.c.caches=undefined;e.c.navigator.onLine=false;await e.D.load();e.c.navigator.onLine=true;await e.D.load(true);assert.equal(calls,1);assert.equal(e.D.matches('a',{minRating:4}),true);
+});
