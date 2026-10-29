@@ -3,6 +3,7 @@
  'use strict';
  const AXES={access:{label:'Approach for your rig',values:{easy:'Easy',moderate:'Moderate',difficult:'Difficult'}},noise:{label:'Noise',values:{quiet:'Quiet',mixed:'Mixed',noisy:'Noisy'}},shade:{label:'Shade',values:{none:'None',partial:'Partial',full:'Full'}},crowding:{label:'Crowding',values:{sparse:'Sparse',moderate:'Moderate',crowded:'Crowded'}},comfort:{label:'Personal comfort',values:{comfortable:'Felt comfortable',concerns:'Had concerns'}}};
  const CARRIERS={att:'AT&T',verizon:'Verizon',tmobile:'T-Mobile',other:'Other carrier'},SIGNAL={none:'No service',weak:'Weak',usable:'Usable',strong:'Strong'},ENVIRONMENTS={unspecified:'Setting not specified',outdoors:'Outdoors',inside_rv:'Inside RV',other_vehicle:'Inside other vehicle'};
+ const SIGNAL_FILTER={none:'No service reported',weak:'Weak or better',usable:'Usable or better',strong:'Strong'},SIGNAL_LEVEL={none:0,weak:1,usable:2,strong:3};
  const st={sites:new Map(),mode:'idle',checked:null,error:'',pending:null,generation:0};
  const active=f=>+f.minRating>0||+f.minReviews>1||Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
  const conditions=f=>Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
@@ -20,7 +21,7 @@
    if(g.latest_visit<cutoff)return false;
    const o=g.values||{};
    if(Object.keys(AXES).some(k=>f['observed_'+k]&&o[k]!==f['observed_'+k]))return false;
-   return !(f.observed_carrier||f.observed_signal)||(o.signals||[]).some(x=>(!f.observed_carrier||x.carrier===f.observed_carrier)&&(!f.observed_signal||x.signal===f.observed_signal));
+   return !(f.observed_carrier||f.observed_signal)||(o.signals||[]).some(x=>(!f.observed_carrier||x.carrier===f.observed_carrier)&&(!f.observed_signal||(f.observed_signal==='none'?x.signal==='none':SIGNAL_LEVEL[x.signal]>=SIGNAL_LEVEL[f.observed_signal])));
   });
  }
  const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
@@ -82,7 +83,7 @@
  }
  function formValues(form){const data=new FormData(form),out={};for(const k of Object.keys(AXES)){const v=data.get('observed_'+k);if(v)out[k]=v;}const signals=[];for(const carrier of Object.keys(CARRIERS)){const signal=data.get('signal_'+carrier);if(signal)signals.push({carrier,signal,environment:data.get('environment_'+carrier)||'unspecified'});}if(signals.length)out.signals=signals;return out;}
  function describe(o){const text=[];for(const[k,a]of Object.entries(AXES))if(a.values[o?.[k]])text.push(a.label+': '+a.values[o[k]]);for(const s of o?.signals||[])if(CARRIERS[s.carrier]&&SIGNAL[s.signal])text.push(CARRIERS[s.carrier]+': '+SIGNAL[s.signal]+' ('+(ENVIRONMENTS[s.environment]||'Setting not specified')+')');return text.join(' · ');}
- global.KampTrailDiscovery={version:'2.9.0',AXES,CARRIERS,SIGNAL,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
+ global.KampTrailDiscovery={version:'2.9.0',AXES,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
  if(typeof module!=='undefined'&&module.exports)module.exports=global.KampTrailDiscovery;
  if(global.addEventListener){global.addEventListener('kamptrail:communitychanged',async()=>{const reload=st.mode!=='idle'||active(global.kamptrailFilters||{}),pending=st.pending;st.generation++;st.sites=new Map();st.checked=null;st.mode='idle';notify();try{await caches.delete(cacheName());}catch{}if(pending)await pending;try{await caches.delete(cacheName());}catch{}if(reload)load(true);});global.addEventListener('focus',()=>{if(active(global.kamptrailFilters||{}))load();});}
 })(typeof window!=='undefined'?window:globalThis);

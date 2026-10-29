@@ -11,6 +11,8 @@ test('community discovery requires the same visit and carrier; unknown reports n
  assert.equal(D.matchesSummary(summary,{observed_noise:'quiet',observed_carrier:'verizon',observed_signal:'strong'},now),false);
  assert.equal(D.matchesSummary(summary,{observed_noise:'noisy',observed_carrier:'verizon',observed_signal:'strong'},now),true);
  assert.equal(D.matchesSummary(summary,{observed_carrier:'att',observed_signal:'strong'},now),false);
+ assert.equal(D.matchesSummary(summary,{observed_carrier:'verizon',observed_signal:'usable'},now),true);
+ assert.equal(D.matchesSummary(summary,{observed_carrier:'verizon',observed_signal:'none'},now),false);
  assert.equal(D.matchesSummary(summary,{observed_shade:'full'},now),false);
  assert.equal(D.matchesSummary({...summary,rating_sum:7},{minRating:4},now),false);
  assert.equal(D.matchesSummary({...summary,observations:[group({noise:'quiet'},'2024-01-01')]},{observed_noise:'quiet',observedDays:365},now),false);

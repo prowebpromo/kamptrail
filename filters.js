@@ -70,7 +70,7 @@
         add('minReviews','Minimum published reviews',[['1','1+ reviews'],['3','3+ reviews'],['5','5+ reviews']],'1');
         for(const[k,a]of Object.entries(evidence.AXES))add('observed_'+k,'Reported '+a.label.toLowerCase(),[['','Any / not filtering'],...Object.entries(a.values)]);
         add('observed_carrier','Reported carrier',[['','Any carrier'],...Object.entries(evidence.CARRIERS)]);
-        add('observed_signal','Reported signal',[['','Any signal'],...Object.entries(evidence.SIGNAL)]);
+        add('observed_signal','Reported signal',[['','Any signal'],...Object.entries(evidence.SIGNAL_FILTER)]);
         add('observedDays','Observation age',[['0','Any visit date'],['365','Past 12 months'],['90','Past 90 days']],'365');
         const note=document.createElement('p');note.className='filter-note';note.textContent='Ratings use all published reviews. Condition selections must occur on the same reported visit, within the selected age. Missing reports do not match. Camper reports are not FCC predictions, permission or safety guarantees.';set.append(note);
         const status=document.createElement('p');status.className='filter-note';status.setAttribute('role','status');const refresh=document.createElement('button');refresh.type='button';refresh.className='btn';refresh.textContent='Refresh camper evidence';refresh.onclick=()=>evidence.load(true);set.append(status,refresh);const showStatus=()=>{status.textContent=evidence.status();refresh.disabled=status.textContent.startsWith('Loading');};window.addEventListener('kamptrail:discoveryupdated',showStatus);showStatus();p.querySelector('.filter-body').append(set);

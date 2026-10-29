@@ -192,7 +192,7 @@
       ${p.road_difficulty?`<div><strong>Road:</strong> ${esc(p.road_difficulty)}</div>`:''}
       ${p.rig_friendly.length?`<div><strong>Rig types reported:</strong> ${p.rig_friendly.map(esc).join(', ')}</div>`:''}
       ${rvText(p)}
-      ${window.KampTrailDiscovery?.summary(p)?`<div><strong>Community rating:</strong> ${(window.KampTrailDiscovery.summary(p).rating_sum/window.KampTrailDiscovery.summary(p).rating_count).toFixed(1)}/5 · ${window.KampTrailDiscovery.summary(p).rating_count} published reviews · latest visit ${esc(window.KampTrailDiscovery.summary(p).latest_visit)}</div>`:''}
+      ${window.KampTrailDiscovery?.summary(p)?`<div><strong>Community rating:</strong> ${(window.KampTrailDiscovery.summary(p).rating_sum/window.KampTrailDiscovery.summary(p).rating_count).toFixed(1)}/5 · ${window.KampTrailDiscovery.summary(p).rating_count} published ${window.KampTrailDiscovery.summary(p).rating_count===1?'review':'reviews'} · latest visit ${esc(window.KampTrailDiscovery.summary(p).latest_visit)}</div>`:''}
       ${p.rating!==null?`<div><strong>Source rating:</strong> ${p.rating}/5${p.reviews_count?` (${p.reviews_count} reviews)`:''}</div>`:''}
       <p style="font-size:11px;line-height:1.4">Confirm current fees, access, and camping rules with the operator before traveling.${p.attributes_unverified?' Legacy inferred fees and amenities are hidden.':''}</p>
       ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">Check source / operator</a></p>`:''}

@@ -68,7 +68,7 @@ test('storage exhaustion rejects the whole upload but still accepts a text revie
 });
 
 test('published observations and rating discovery follow moderation, edit, hide, restore and delete',{skip:!capable},async()=>{
- const e=await env('',18907);try{
+ const e=await env('',18957);try{
   const details={access:'moderate',noise:'quiet',shade:'partial',crowding:'sparse',comfort:'comfortable',signals:[{carrier:'verizon',signal:'usable',environment:'inside_rv'}]};
   const fields={...good,observations:JSON.stringify(details)};
   const discovery=()=>e.get('/api/community-discovery.php');
@@ -95,7 +95,7 @@ test('published observations and rating discovery follow moderation, edit, hide,
 });
 
 test('additive observation migration preserves legacy reviews/photos and paginated discovery is revision-consistent',{skip:!capable},async()=>{
- const e=await env('',18908);try{
+ const e=await env('',18958);try{
   const response=await e.post(good,[{}]);const {id}=await response.json();await e.admin({do:'community_review',review_id:id,status:'published'});
   e.sql("$p->exec('DROP TABLE community_observations');$p->exec('DROP TABLE community_discovery_state');$p->exec(\"DELETE FROM schema_migrations WHERE version='004_observations'\");");
   const snapshot=()=>e.sql("$r=$p->query('SELECT * FROM community_reviews ORDER BY id')->fetchAll(PDO::FETCH_ASSOC);$s=$p->query('SELECT used_bytes FROM community_storage WHERE id=1')->fetchColumn();$rows=$p->query('SELECT image_data,byte_size,status FROM community_photos ORDER BY id')->fetchAll(PDO::FETCH_ASSOC);foreach($rows as &$row)$row['image_data']=base64_encode($row['image_data']);echo hash('sha256',json_encode([$r,$s,$rows]));");
@@ -105,7 +105,8 @@ test('additive observation migration preserves legacy reviews/photos and paginat
   // Recover safely when DDL succeeded but its migration-version insert was interrupted.
   e.sql("$p->exec(\"DELETE FROM schema_migrations WHERE version='004_observations'\");");await e.admin({do:'migrate'});assert.equal(snapshot(),before);
   e.sql(`$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?,?,?,?,4,?,'2026-10-01','','published','2026-10-01','2026-10-01')");for($i=0;$i<102;$i++){$q->execute([hash('sha256','synthetic-'.$i),'qa:'.sprintf('%03d',$i),'Synthetic pagination fixture','Fixture','Disposable review fixture for pagination.']);} $review=$p->query("SELECT id FROM community_reviews WHERE campsite_id='qa:000'")->fetchColumn();$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)')->execute([$review,'{"noise":"quiet"}']);`);
-  d=await e.get('/api/community-discovery.php');assert.equal(Object.keys(d.sites).length,100);assert.ok(d.next_after);const next=await e.get('/api/community-discovery.php?after='+encodeURIComponent(d.next_after)+'&revision='+d.revision);assert.equal(next.next_after,null);assert.equal(Object.keys(next.sites).length,3);assert.equal(new Set([...Object.keys(d.sites),...Object.keys(next.sites)]).size,103);
+  e.sql(`$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?, 'qa:000','Synthetic old visit','Fixture',4,'Older disposable visit report','2020-01-01','','published','2020-01-01','2020-01-01')");$q->execute([hash('sha256','older-synthetic-visit')]);$review=$p->lastInsertId();$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)')->execute([$review,'{"noise":"quiet"}']);`);
+  d=await e.get('/api/community-discovery.php');assert.equal(d.sites['qa:000'].observations.length,2);assert.deepEqual(d.sites['qa:000'].observations.map(x=>x.count),[1,1]);assert.equal(Object.keys(d.sites).length,100);assert.ok(d.next_after);const next=await e.get('/api/community-discovery.php?after='+encodeURIComponent(d.next_after)+'&revision='+d.revision);assert.equal(next.next_after,null);assert.equal(Object.keys(next.sites).length,3);assert.equal(new Set([...Object.keys(d.sites),...Object.keys(next.sites)]).size,103);
   await e.admin({do:'community_review',review_id:id,status:'hidden'});assert.equal((await fetch(e.base+'/api/community-discovery.php?after='+encodeURIComponent(d.next_after)+'&revision='+d.revision)).status,409);
  }finally{e.close();}
 });

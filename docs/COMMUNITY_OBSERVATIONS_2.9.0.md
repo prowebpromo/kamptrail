@@ -13,6 +13,8 @@ measurement or current access/permission/safety guarantee is added.
   minimum number of published reviews. External source ratings cannot satisfy it.
 - Condition and carrier selections must occur on one published visit report.
   Multiple carriers or multiple reviews cannot be combined into a false match.
+- Signal discovery uses the selected reported level or better; “No service” matches
+  only a no-service report.
 - Condition age is selectable: any date, past 12 months (default) or past 90 days.
   Rating averages use all published reviews. Missing evidence never matches.
 - Map and route-corridor discovery use the same predicate and campsite aliases.

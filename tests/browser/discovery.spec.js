@@ -11,7 +11,7 @@ test('published rating and same-visit conditions filter map results and remain l
  await panel.getByLabel('Minimum community rating',{exact:true}).selectOption('4');
  await expect(panel).toContainText('Published camper evidence checked');
  await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);
- await expect(page.locator('#result-list')).toContainText('1 published reviews');
+ await expect(page.locator('#result-list')).toContainText('1 published review');
  await panel.getByLabel('Minimum published reviews',{exact:true}).selectOption('3');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBe(0);
  await panel.getByLabel('Minimum community rating',{exact:true}).selectOption('0');await panel.getByLabel('Minimum published reviews',{exact:true}).selectOption('1');
  await panel.getByLabel('Reported noise',{exact:true}).selectOption('quiet');await panel.getByLabel('Reported carrier',{exact:true}).selectOption('verizon');await panel.getByLabel('Reported signal',{exact:true}).selectOption('strong');
