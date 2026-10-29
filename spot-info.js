@@ -115,5 +115,5 @@
       return wx;
     }).catch(() => { target.replaceChildren(el('p', 'Forecast is unavailable for this spot right now. The NWS covers US locations only.', 'kt-muted')); });
   }
-  global.KampTrailSpot = {version: '2.7.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, AGENCIES, SMA_URL: SMA};
+  global.KampTrailSpot = {version: '2.8.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);

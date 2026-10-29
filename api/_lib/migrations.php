@@ -104,4 +104,17 @@ return [
             "INSERT INTO community_storage (id,used_bytes) VALUES (1,0)",
         ],
     ],
+    '003_routing' => [
+        'mysql' => [
+            "CREATE TABLE routing_state (id INTEGER PRIMARY KEY, last_started_ms BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+            "INSERT INTO routing_state (id,last_started_ms) VALUES (1,0)",
+            "CREATE TABLE routing_events (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, client_hash CHAR(64) NOT NULL, created_at DATETIME NOT NULL, INDEX idx_routing_client (client_hash,created_at)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+        ],
+        'sqlite' => [
+            "CREATE TABLE routing_state (id INTEGER PRIMARY KEY, last_started_ms INTEGER NOT NULL)",
+            "INSERT INTO routing_state (id,last_started_ms) VALUES (1,0)",
+            "CREATE TABLE routing_events (id INTEGER PRIMARY KEY AUTOINCREMENT, client_hash TEXT NOT NULL, created_at TEXT NOT NULL)",
+            "CREATE INDEX idx_routing_client ON routing_events (client_hash,created_at)",
+        ],
+    ],
 ];
