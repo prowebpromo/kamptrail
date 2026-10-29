@@ -26,3 +26,15 @@ The code's MIT license does not replace these data or third-party software licen
 | Fee classification | `scripts/fee_text.py` | free, conditional, paid, unknown. Wording is kept as evidence |
 | Drive times | FOSSGIS OSRM car router (routing.openstreetmap.de) | On demand, one request per click. Attribution shown. Not RV aware |
 | Offline maps | USGS Topo tiles saved by the visitor | Public domain. OSM standard tiles are never bulk saved |
+
+### Fire, smoke and weather alert context (2.10.0)
+
+Opt-in viewport layers use the NIFC WFIGS Current Interagency Fire Perimeters and NOAA HMS Satellite Smoke Detection public services. On-demand point alerts use the National Weather Service API. Requests pass through the KampTrail server with bounded viewport, response-size and geometry limits; only complete responses are shown. No API token is required. Dynamic context is not saved on the device for offline use.
+
+- NIFC source: https://services3.arcgis.com/T4QMspbfLg3qTGWY/ArcGIS/rest/services/WFIGS_Interagency_Perimeters_Current/FeatureServer/0
+- NOAA source: https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/NOAA_Satellite_Smoke_Detection_(v1)/FeatureServer/0
+- NOAA limitations and analysis schedule: https://www.ospo.noaa.gov/products/land/hms.html
+- NWS API and use: https://www.weather.gov/documentation/services-web-api
+- NWS point-alert geolocation: https://www.weather.gov/media/documentation/docs/NWS_Geolocation.pdf
+
+Fire perimeters are not available for all incidents and may be substantially older than their incident record. Smoke plumes describe satellite-visible smoke, not ground-level AQI or a forecast. NOAA analysis may contain observation gaps. Each popup shows source dates separately from retrieval time. Empty results do not establish safe travel, no fire, clean air, camping permission, or absence of closures. NWS alerts do not cover all non-weather emergencies. Consult the land manager and local emergency authorities.
