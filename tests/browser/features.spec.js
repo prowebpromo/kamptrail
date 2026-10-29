@@ -175,11 +175,11 @@ test('trip drive times come from one on-demand router request and replace straig
   const calls=[];await mockRemote(context,calls);await ready(page);
   await page.evaluate(()=>{const mk=(id,n,lng,lat)=>({type:'Feature',geometry:{type:'Point',coordinates:[lng,lat]},properties:{id,name:n}});
     [mk('t1','One',-105,40),mk('t2','Two',-106,40),mk('t3','Three',-107,40)].forEach(s=>KampTrailTrip.addStop(s.properties.id,s));});
-  await page.getByRole('button',{name:'Drive times'}).click();
+  await page.route('**/api/route.php',r=>{calls.push(r.request().url());return r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,route:{duration:9000,distance:321869,calculated_at:'2026-10-28T12:00:00Z',geometry:{type:'LineString',coordinates:[[-105,40],[-106,40],[-107,40]]},leg_ends:[1,2],legs:[{duration:5400,distance:160934},{duration:3600,distance:160935}]}})});});await page.getByRole('button',{name:'Calculate road route'}).click();
   await expect(page.locator('#kt-trip-summary')).toContainText('2 hr 30 min driving, 200 mi by road');
   await expect(page.locator('.kt-saved-stop').nth(1)).toContainText('1 hr 30 min, 100 mi from stop 1 by road');
   await expect(page.locator('#kt-trip-drive-credit')).toContainText('OpenStreetMap contributors');
-  expect(calls.filter(u=>u.startsWith('https://routing.openstreetmap.de/')).length).toBe(1);
+  expect(calls.filter(u=>u.endsWith('/api/route.php')).length).toBe(1);
   await page.getByRole('button',{name:'Move Three up'}).click();
   await expect(page.locator('#kt-trip-summary')).not.toContainText('driving');
 });

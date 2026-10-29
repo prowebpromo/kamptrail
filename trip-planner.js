@@ -82,43 +82,44 @@
       st.savedMarker=L.marker([lat,lng],{title:nameOf(site)}).addTo(st.map).bindPopup(popup).openPopup();
     }
   }
+  const ROUTE_CREDIT='Routes: <a href="https://routing.openstreetmap.de/about.html">OSRM / FOSSGIS</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · <a href="https://www.openstreetmap.org/fixthemap">fix the map</a>';
   function drawRoute() {
-    if (!st.map || !window.L?.polyline) return;
-    st.routeLayer?.remove(); st.routeLayer=null;
-    if (!st.showRoute) return;
-    const points=st.stops.map(getSite).filter(Boolean).map(latLng);
-    if (points.length < 2) return;
-    st.routeLayer=L.polyline(points,{color:'#c25b12',weight:3,dashArray:'6 8',opacity:.85,interactive:false}).addTo(st.map);
+    if(!st.map||!window.L?.polyline)return;
+    st.routeLayer?.remove();st.routeLayer=null;st.map.attributionControl?.removeAttribution(ROUTE_CREDIT);
+    const drive=currentDrive();if(!st.showRoute||!drive?.raw?.geometry)return;
+    const root=getComputedStyle(document.documentElement),points=drive.raw.geometry.coordinates.map(([lng,lat])=>[lat,lng]);
+    st.routeLayer=L.polyline(points,{renderer:L.svg(),color:root.getPropertyValue('--route-color').trim(),weight:parseFloat(root.getPropertyValue('--route-stroke')),opacity:.85,interactive:false,className:'kt-road-route'}).addTo(st.map);st.map.attributionControl?.addAttribution(ROUTE_CREDIT);
   }
   function move(index, delta) {
     const target=index+delta;if(target<0||target>=st.stops.length)return;
     const [item]=st.stops.splice(index,1);st.stops.splice(target,0,item);save();render();drawRoute();
     st.el.querySelectorAll('.kt-saved-stop')[target]?.querySelector(delta<0?'.kt-trip-up':'.kt-trip-down')?.focus();
   }
-  // ---- Drive times: one on-demand request to the FOSSGIS OSRM server (light use, attribution required) ----
-  const ROUTER='https://routing.openstreetmap.de/routed-car/route/v1/driving/';
+  // One explicit road-route request, shared with discovery and cached on this device.
   const MAX_ROUTE_STOPS=25;
   const pointsKey=points=>points.map(pt).join(';');
   const fmtTime=s=>{const m=Math.round(s/60),h=Math.floor(m/60);return h?`${h} hr ${m%60} min`:`${m} min`;};
-  async function fetchDrive() {
-    const points=st.stops.map(getSite).filter(Boolean).map(latLng);
-    if(points.length<2){notify('Save at least two stops to get drive times.');return;}
-    if(points.length>MAX_ROUTE_STOPS){notify(`Drive times cover up to ${MAX_ROUTE_STOPS} stops at a time. Remove or split stops and try again.`);return;}
+  async function fetchDrive(){
+    const sites=st.stops.map(getSite),points=sites.filter(Boolean).map(latLng);
+    if(points.length<2){notify('Save at least two stops to calculate a road route.');return;}
+    if(sites.some(s=>!s)){notify('An older stop has no coordinates. Resolve or remove it before routing.');return;}
+    if(points.length>MAX_ROUTE_STOPS){notify(`Road routing covers up to ${MAX_ROUTE_STOPS} stops. Split this into shorter trips.`);return;}
     if(st.driveBusy)return;st.driveBusy=true;
-    const btn=st.el.querySelector('#kt-trip-drive');btn.disabled=true;btn.textContent='Getting drive times…';
-    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
-    try {
-      const coords=points.map(([lat,lng])=>`${+lng.toFixed(5)},${+lat.toFixed(5)}`).join(';');
-      const r=await fetch(`${ROUTER}${coords}?overview=false&steps=false`,{signal:controller.signal});
-      const data=await r.json();
-      if(!r.ok||data.code!=='Ok'||!data.routes?.[0]?.legs)throw new Error(data.message||'No route');
-      const route=data.routes[0];
-      st.drive={legs:route.legs.map(l=>({s:l.duration,m:l.distance/1609.344})),s:route.duration,m:route.distance/1609.344};
-      st.driveKey=pointsKey(points);render();
-    } catch(err) {
-      notify('Drive times are unavailable right now. Use Directions for the whole trip to see times in Google Maps.');
-    } finally {clearTimeout(timer);st.driveBusy=false;btn.disabled=false;btn.textContent='Drive times';}
+    const btn=st.el.querySelector('#kt-trip-drive');btn.disabled=true;btn.textContent='Calculating road route…';const requestedKey=pointsKey(points),refresh=!!currentDrive();
+    try{
+      const route=await KampTrailRoutes.calculate(points.map(([lat,lng])=>[lng,lat]),{refresh});
+      if(requestedKey!==pointsKey(st.stops.map(getSite).filter(Boolean).map(latLng))){info('Your stops changed while routing. Calculate the updated trip.');return;}
+      st.drive={legs:route.legs.map(l=>({s:l.duration,m:l.distance/1609.344})),s:route.duration,m:route.distance/1609.344,raw:route};st.driveKey=requestedKey;st.showRoute=true;
+      try{localStorage.setItem('kt_trip_route','1');}catch{}render();drawRoute();
+    }catch(e){const message=e.message||'Road routing is unavailable. External directions and saved stops still work.';notify(message);st.el.querySelector('#kt-trip-route-status').textContent=message;}
+    finally{st.driveBusy=false;btn.disabled=false;btn.textContent='Calculate road route';}
   }
+  function insertAfter(feature,index){
+    if(!valid(feature))return;const id=String(feature.properties.id);if(st.stops.some(x=>x.id===id)){open();return;}
+    st.stops.splice(Math.min(st.stops.length,index+1),0,{id,feature:clone(feature),note:'',arrive:'',depart:''});save();render();drawRoute();open();
+  }
+  function viewRoadRoute(){const drive=currentDrive();if(!drive?.raw)return;close();st.showRoute=true;drawRoute();const padding=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--route-fit-padding'));st.map.fitBounds(L.latLngBounds(drive.raw.geometry.coordinates.map(([lng,lat])=>[lat,lng])),{padding:[padding,padding],maxZoom:12});}
+  function discoverRoute(){const drive=currentDrive();if(!drive?.raw)return;const sites=st.stops.map(getSite);if(sites.some(s=>!s))return;close();KampTrailRoutes.open(drive.raw,sites,{insert:insertAfter});}
   function currentDrive() {
     const points=st.stops.map(getSite).filter(Boolean).map(latLng);
     return st.drive&&st.driveKey===pointsKey(points)?st.drive:null;
@@ -174,7 +175,10 @@
     const list=st.el.querySelector('#kt-trip-list');list.replaceChildren();
     st.el.querySelector('#kt-trip-clear').hidden=!st.stops.length;
     st.el.querySelector('#kt-trip-tools').hidden=!st.stops.length;
-    st.el.querySelector('#kt-trip-route').checked=st.showRoute;
+    const road=currentDrive();
+    st.el.querySelector('#kt-trip-route').checked=st.showRoute&&!!road;st.el.querySelector('#kt-trip-route').disabled=!road;
+    st.el.querySelector('#kt-trip-discover').disabled=!road;st.el.querySelector('#kt-trip-view-route').disabled=!road;
+    st.el.querySelector('#kt-trip-route-status').textContent=road?`${road.raw.from_cache?'Saved':'Calculated'} road route from ${road.raw.calculated_at.slice(0,10)}.${road.raw.offline?' Offline: conditions may have changed.':road.raw.source_unavailable?' Routing service unavailable; showing the saved route.':''}`:'Calculate a road route to draw roads and search along the trip.';
     renderSummary();renderLegs();
     st.el.querySelector('#kt-trip-drive').hidden=st.stops.length<2;st.el.querySelector('#kt-trip-drive-credit').hidden=!currentDrive();
     if(!st.stops.length) {const empty=document.createElement('p');empty.textContent='No saved stops yet. Save a campsite from its listing or map popup, long-press the map to save any spot, or import a GPX file.';list.append(empty);return;}
@@ -258,9 +262,12 @@
       <p class="kt-saved-note">Saved on this device. Confirm current access before traveling.</p>
       <p id="kt-trip-summary" role="status" aria-live="polite"></p>
       <div id="kt-trip-tools">
-        <div class="kt-trip-row"><button type="button" class="btn" id="kt-trip-directions">Directions for the whole trip</button><button type="button" class="btn" id="kt-trip-drive">Drive times</button></div>
-        <p class="kt-route-credit" id="kt-trip-drive-credit" hidden>Drive times: car routing by <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener noreferrer">OSRM (FOSSGIS)</a>, map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>, <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">fix the map</a>. Not checked for RV height, weight, or length.</p>
-        <label class="kt-route-toggle"><input type="checkbox" id="kt-trip-route"> Show route line on map (straight-line, not roads)</label>
+        <div class="kt-trip-row"><button type="button" class="btn" id="kt-trip-directions">Directions for the whole trip</button><button type="button" class="btn" id="kt-trip-drive">Calculate road route</button></div>
+        <p class="kt-route-credit" id="kt-trip-drive-credit" hidden>Routes and drive times: car routing by <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener noreferrer">OSRM (FOSSGIS)</a>, map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>, <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">fix the map</a>. Not checked for RV height, weight, or length.</p>
+        <label class="kt-route-toggle"><input type="checkbox" id="kt-trip-route"> Show road route on map</label>
+        <p id="kt-trip-route-status" class="kt-route-credit" role="status"></p>
+        <div class="kt-trip-row"><button type="button" class="btn" id="kt-trip-view-route" disabled>View road route</button><button type="button" class="btn" id="kt-trip-discover" disabled>Find campsites along route</button></div>
+        <p class="kt-route-credit">Calculating sends stop coordinates to FOSSGIS, which records requests in its server logs. Successful routes are saved on this device when browser storage is available.</p>
         <div id="kt-trip-legs" hidden></div>
       </div>
       <div id="kt-trip-list" role="list"></div>
@@ -323,7 +330,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.7.0',
+    version:'2.8.0',
     init(map) {
       if(st.el)return;
       st.map=map;load();st.el=drawer();render();drawRoute();
@@ -333,6 +340,7 @@
       st.el.querySelector('#kt-trip-clear').onclick=()=>{if(confirm('Remove all saved stops from this device?')){st.stops=[];save();render();drawRoute();st.el.querySelector('#kt-trip-close').focus();}};
       st.el.querySelector('#kt-trip-directions').onclick=showLegs;
       st.el.querySelector('#kt-trip-drive').onclick=fetchDrive;
+      st.el.querySelector('#kt-trip-view-route').onclick=viewRoadRoute;st.el.querySelector('#kt-trip-discover').onclick=discoverRoute;
       st.el.querySelector('#kt-trip-route').onchange=e=>{st.showRoute=e.target.checked;try{localStorage.setItem('kt_trip_route',st.showRoute?'1':'0');}catch{}drawRoute();};
       st.el.querySelector('#kt-trip-export').onclick=exportGPX;
       const file=st.el.querySelector('#kt-trip-file');

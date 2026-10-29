@@ -1,63 +1,39 @@
-# KampTrail vs Free Roam: parity report
+# KampTrail vs FreeRoam — 2.8.0 feature audit
 
-Date: 2026-10-28. Compared against the Free Roam open-source frontend (github.com/FreeRoamApp/free-roam), by source inspection. Free Roam went offline in early 2024, so there was no live app to screenshot. No layout diff was run.
+Date: 2026-10-28. Feature score: **80.8/100**, up from the last recorded 72.4 baseline. All **13 of 13 must-haves** are implemented. This measures 59 features in the existing matrix, weighted must=3, should=2, could=1; partial earns half credit. Deliberately excluded social/account features and KampTrail-only additions do not inflate the score.
 
-## Scores
+This is an updated implementation/evidence audit against the existing FreeRoam source baseline, commit `f3b5f2d87517c57afe6e6af3f5ee52f42c43fe14`. It is not a new test of a running FreeRoam backend or a claim that KampTrail reproduces its community, campsite inventory, or real-world data accuracy. No comparable original screenshots were available; no layout score or combined visual score is claimed. The prior public-review research remains directional, with the limitations in fixes.md; it was not re-quoted or refreshed for this release.
 
-| | Before (2.2.1) | After (2.3.0) |
+## What changed
+
+- Reviews and photos: independent moderation, published ratings/gallery, private pending images, author management, edits returned to review, reporting and removal. Live verification used an explicitly synthetic unlisted QA identifier. It never created a review on a real campground, and all QA content was removed. Encoded photos survived a real deploy; disposable MySQL dumps were restored and compared.
+- USFS MVUM: official viewport road geometry, vehicle/season evidence, district coverage and unit-entry dates, official links, independent layer opacity and bounded offline views. Source designation is not RV clearance, current road conditions or camping permission.
+- Routes: actual car-road geometry, filtered campsite corridor search, requested driving detours, leg-order insertion, stale-itinerary checks and device caching. FOSSGIS requests are user-triggered and centrally limited. It is not RV-safe navigation.
+- The nearby-services row is corrected from partial to yes: the existing UI covers dump, water-fill and propane points. That is verification of an existing feature, not new inventory added in 2.8.0.
+- FCC carrier coverage remains no. Authenticated current-data access and usage conditions are outstanding; see ../FCC_COVERAGE_ACCESS.md.
+
+## Behaviour differences to keep
+
+| Flow | Original source baseline | KampTrail |
 | --- | --- | --- |
-| Feature parity (weighted must 3, should 2, could 1) | 42.5 | 67.3 |
-| Must-haves done | 10 of 13 | 12 of 13 |
+| Contribute | Account-based community | No-account form, independent moderation and private author code; no account recovery |
+| Save or move trips | Account/server state | Device snapshots and GPX transfer; browser storage may be evicted |
+| Road context | Map layers | Opt-in official source evidence, missing-coverage labels and dated saved views |
+| Find a stop on a trip | Server routing/discovery | User-triggered car-road corridor; route-line distance and actual driving detour are separate |
+| Routing limits | Original service-dependent | Up to 25 saved stops per car calculation; external directions split to provider limits |
 
-Full matrix: [features.csv](features.csv). Scored output: [parity-score.md](parity-score.md).
+## Next five priorities
 
-The remaining must-have is partial: the water side of "dump, water, propane." The old water points were Recreation.gov campgrounds tagged by keyword, so they were dropped. OSM water fill points (`amenity=water_point`, `waterway=water_point`) are now fetched by the weekly data workflow. The layer shows them after its next run.
+1. Unlock FCC mobile-data access and confirm permitted redistribution, then build dated provider/technology tiles. This is the outstanding item from the four-package plan.
+2. Connect moderated community averages to minimum-rating discovery; add optional structured signal/noise/shade observations with visit dates and small-sample labels. Do not treat carrier models as camper measurements.
+3. Add verified clearance and approach-road hazards, preserving unknowns and source freshness. MVUM alone cannot decide RV fit.
+4. Improve overnight-parking coverage and campsite amenity completeness with documented permission and operating-status evidence.
+5. Add fire/restriction context from authoritative feeds with update times and explicit missing/stale states.
 
-## Left out on purpose
+Operationally, review the moderation queue and monitor source-refresh errors, image-storage usage, backup coverage and routing volume. FOSSGIS permits light use; a sustained audience needs a contracted or self-hosted routing service. Shared hosting should continue serving the app/API, not an OSRM graph.
 
-Accounts, friends, DMs, groups, forum, notifications, donations, and the product guide. These are Free Roam's community and business layers. KampTrail stays no-account. Turn-by-turn navigation hands off to Google Maps, as Free Roam's web app did.
+## Release gate
 
-## Still missing, in build order
+The combined branch passes 79 local Node/PHP tests and 31 Python tests. MySQL integration, real dump/restore comparison, expanded browser/accessibility suite, production migration003 and live smoke checks are required before calling 2.8.0 shipped. The feature score describes the completed branch; production readiness must be recorded separately in test-report.md after deployment.
 
-1. Water fill points: run the data workflow once (manual dispatch) to populate.
-2. Rig length filter: needs campsite-level max vehicle length. RIDB campsite attributes carry it. Requires extending the RIDB fetcher (API key already in Actions secrets).
-3. Reviews and star ratings: needs a backend, moderation, and abuse handling. Biggest remaining gap and the most expensive.
-4. Find places along a route: needs a routing service. A free public OSRM server is not for production load.
-5. Cell coverage overlay: no free, keyless national tile source verified. The FCC map has no public tile API that was confirmed here.
-6. Drive time on trip totals: needs routing (same as 4). Totals are straight-line and labeled so.
-
-## Behaviour differences
-
-| Flow | Free Roam | KampTrail 2.3.0 | Keep or fix |
-| --- | --- | --- | --- |
-| Check land at a point | Tap map, server lookup | Long-press or right-click, BLM SMA query in the browser, plus agency stay-limit guidance | Keep. Fewer steps than the original |
-| Trip directions | Server-side Mapbox routing | Google Maps handoff, split into legs that fit Google's 3 (mobile) or 9 (desktop) waypoint limit | Keep. Fixes the "11 stops" complaint seen in user research |
-| Save a place | Needs an account | Saved on device, GPX export to move or back up | Keep. Matches the no-account positioning |
-| Report a problem | Direct edit by logged-in users | GitHub issue form prefilled with the campsite | Fix later. A GitHub account is a barrier for non-technical campers |
-| Weather | DarkSky (now shut down) | National Weather Service, US only | Keep |
-
-## Verdict
-
-Not yet shippable by the replica rule (one must-have partial). Shippable in practice once the data workflow runs and water points appear. The two bugs found during testing were fixed before release: an open campsite popup was re-rendered on every data update (erasing loaded forecast or land results), and removing a clicked popup button made Leaflet treat the click as a map click and close the popup.
-
-## Tests
-
-46 Node unit tests, 14 Python tests, 23 Playwright browser tests (7 new for 2.3.0). The new browser suite passed 35 of 35 on a 5x repeat. A live check against the real BLM, NWS, USGS, and OSM endpoints passed at 1440x900 and 390x844 with no page errors or failed requests. That is a point-in-time check, not an uptime guarantee.
-
-## Update: 2.4.0
-
-Feature parity 67.3 to 71.0. Added RV length and hookup filters (Recreation.gov RIDB bulk export, no key), on-demand drive times (FOSSGIS OSRM), and offline USGS Topo map areas. Fee status now comes from each source's own wording: US Forest Service and BLM recreation services, OpenStreetMap fee tags, and Recreation.gov fee text. Listings with free-camping evidence rose from 4 to 1,305 of about 15,700 loaded records in a full-data check on 2026-10-28.
-
-The weekly OSM refresh had been failing with HTTP 406 because Overpass rejects the default Python client. The scripts now identify the app. Confirm on the next workflow run.
-
-Most free sites still have no documented RV length (2 of 1,305). The finder says how many listings an RV length filter hides and offers to include them, labeled.
-
-## Update: all-states refresh, 2026-10-28
-
-The Overpass User-Agent fix worked: zero HTTP 406 errors. Water fill points are live (993), with 3,739 dump stations and 777 propane locations. All 13 must-haves are done. Parity 72.4.
-
-27 of 50 states refreshed OSM campsites. The other 23 got HTTP 502 (Overpass busy) on their single attempt. The campsite fetcher now retries with backoff and falls back to a public mirror.
-
-## Update: 2.4.1 performance, 2026-10-28
-
-The full OSM refresh grew the catalogue to about 58,700 source listings. The national view on 2.4.0 took 35.9 s and 670 MB of memory. 2.4.1 shows per-state totals below zoom 8 and loads listings only from zoom 8. National view: 0.4 s, 10 MB. Denver at zoom 8: 1.1 s, 18 MB on desktop. Splitting long text into detail files is not needed at these numbers.
+Full matrix: features.csv. Generated scoring output: parity-score.md. No current claim of full FreeRoam parity: coverage, structured review sub-scores, clearance data and several filters remain absent.
