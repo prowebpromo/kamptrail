@@ -4,7 +4,7 @@ First increment: filter **published NWS temperature samples over the next 24 or 
 
 ## Source and matching
 
-Use fixed NOAA NDFD days 1–3 `ds.temp.bin` for CONUS, Alaska and Hawaii. Pinned grib2io/g2c decodes; wgrib2 cross-checks normalized scan order. Map final catalogue coordinates to actual nearest grid points, retain grid coordinates/distance/hash, reject distant edge points, and never substitute a nearby nonmissing value. Convert Kelvin once to Celsius (millidegrees suppress decoder noise). Null stays unknown; zero and negative Celsius are valid. Preserve exact sorted UTC timestamps; cadence can be 1–3 hours.
+Use fixed NOAA NDFD days 1–3 `ds.temp.bin` for CONUS, Alaska and Hawaii. Pinned grib2io/g2c decodes; wgrib2 cross-checks normalized scan order. Choose the regional product by catalogue state (AK → Alaska, HI → Hawaii, other states → CONUS), independently of temperature presence; overlapping grid rectangles must not select another jurisdiction’s product. Map final catalogue coordinates to actual nearest grid points, retain grid coordinates/distance/hash, reject distant edge points, and never substitute a nearby nonmissing value. Convert Kelvin once to Celsius (millidegrees suppress decoder noise). Null stays unknown; zero and negative Celsius are valid. Preserve exact sorted UTC timestamps; cadence can be 1–3 hours.
 
 ## Wire format v1
 

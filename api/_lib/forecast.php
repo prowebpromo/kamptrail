@@ -11,6 +11,7 @@ const KF_JSON_MAX = 8388608;
 const KF_DISK_MAX = 314572800;
 const KF_REFRESH = 900;
 const KF_GRACE = 1800;
+const KF_MAX_AGE = 10800;
 
 final class KfException extends RuntimeException {
     public function __construct(public string $reason, public int $status = 503, public int $retryAfter = KF_REFRESH) { parent::__construct($reason); }
@@ -77,7 +78,7 @@ function kf_manifest(string $raw, array $catalogue, int $now, bool $allowExpired
     kf_assert($m['version'] === 1 && kf_snapshot($m['snapshot_id']) && kf_hash($m['catalogue_sha256']));
     kf_assert(hash_equals($catalogue['sha256'], $m['catalogue_sha256']), 'catalogue_mismatch');
     $generated = kf_time($m['generated_at']); $expiry = kf_time($m['expires_at']);
-    kf_assert($generated <= $now + 300 && $expiry > $generated && $expiry <= $generated + 10800);
+    kf_assert($generated <= $now + 300 && $expiry > $generated && $expiry <= $generated + KF_MAX_AGE);
     if (!$allowExpired) kf_assert($expiry > $now, 'stale');
     kf_assert(is_array($m['source']) && is_array($m['regions']) && is_array($m['states']) && is_array($m['coverage']));
     kf_keys($m['source'], ['name','files']); kf_keys($m['regions'], KF_REGIONS); kf_keys($m['states'], KF_STATES);
@@ -88,7 +89,7 @@ function kf_manifest(string $raw, array $catalogue, int $now, bool $allowExpired
         $r = $file['region']; kf_assert(is_string($r) && in_array($r, KF_REGIONS, true) && !isset($seen[$r])); $seen[$r] = true;
         kf_assert($file['url'] === 'https://noaa-ndfd-pds.s3.amazonaws.com/opnl/AR.' . $r . '/VP.001-003/ds.temp.bin');
         kf_assert(kf_hash($file['sha256']) && is_string($file['etag']) && strlen($file['etag']) >= 1 && strlen($file['etag']) <= 256 && !preg_match('/[\x00-\x1f\x7f]/', $file['etag']) && kf_int($file['bytes'], 1, 157286400));
-        $modified = kf_time($file['last_modified']); kf_assert($modified <= $generated + 300 && $modified <= $now + 300 && $expiry <= $modified + 10800); $sourceBytes += $file['bytes'];
+        $modified = kf_time($file['last_modified']); kf_assert($modified <= $generated + 300 && $modified <= $now + 300 && $expiry <= $modified + KF_MAX_AGE); $sourceBytes += $file['bytes'];
     }
     kf_assert($sourceBytes <= 157286400);
     foreach ($m['regions'] as $region) {
@@ -217,14 +218,26 @@ function kf_local(string $dir, string $id, array $catalogue, int $now): array {
     $m = kf_manifest($raw, $catalogue, $now); kf_assert($m['snapshot_id'] === $id); return $m;
 }
 /** Caller holds global metadata lock. Only expired, unprotected known cache files are removed. */
-function kf_cleanup(string $dir, array &$active, int $now): void {
+function kf_cleanup(string $dir, array &$active, int $now, array $preserve = []): void {
     foreach (glob($dir . '/*', GLOB_ONLYDIR) ?: [] as $sub) {
-        $id = basename($sub); kf_assert(!is_link($sub), 'cache_unavailable'); if (!kf_snapshot($id) || $id === $active['current'] || $id === $active['previous']) continue;
-        $raw = kf_read($sub . '/manifest.json', KF_MANIFEST_MAX); $expires = PHP_INT_MAX;
+        $id = basename($sub); kf_assert(!is_link($sub), 'cache_unavailable'); if (!kf_snapshot($id) || $id === $active['current'] || $id === $active['previous'] || in_array($id, $preserve, true)) continue;
+        clearstatcache(true, $sub); $modified = filemtime($sub); kf_assert(is_int($modified), 'cache_unavailable');
+        // A crash after mkdir but before manifest promotion must not strand a quota slot forever.
+        // Without a manifest, allow the full source lifetime plus reader grace from directory mtime.
+        $raw = kf_read($sub . '/manifest.json', KF_MANIFEST_MAX); $expires = $modified + KF_MAX_AGE;
         if ($raw !== null) { try { $expires = kf_time(kf_json($raw, KF_MANIFEST_MAX)['expires_at'] ?? null); } catch (KfException $e) { continue; } }
-        $retired = $active['retired'][$id] ?? filemtime($sub);
+        $retired = $active['retired'][$id] ?? $modified;
         if ($now <= max($expires, $retired) + KF_GRACE) continue;
-        foreach (scandir($sub) ?: [] as $name) { if ($name === '.' || $name === '..') continue; kf_assert(!is_link($sub . '/' . $name), 'cache_unavailable'); kf_assert($name === 'manifest.json' || preg_match('/^[A-Z]{2}(?:-attempt)?\.json$|^[A-Z]{2}\.lock$/D', $name) === 1 || str_starts_with($name, '.stage-'), 'cache_unavailable'); kf_assert(@unlink($sub . '/' . $name), 'cache_unavailable'); }
+        $names = scandir($sub); kf_assert(is_array($names), 'cache_unavailable'); $files = [];
+        foreach ($names as $name) {
+            if ($name === '.' || $name === '..') continue;
+            $path = $sub . '/' . $name;
+            kf_assert(!is_link($path) && is_file($path), 'cache_unavailable');
+            kf_assert($name === 'manifest.json' || preg_match('/^[A-Z]{2}(?:-attempt)?\.json$|^[A-Z]{2}\.lock$/D', $name) === 1 || str_starts_with($name, '.stage-'), 'cache_unavailable');
+            $files[] = $path;
+        }
+        // Validate the whole directory before removing any of its contents.
+        foreach ($files as $path) kf_assert(@unlink($path), 'cache_unavailable');
         kf_assert(@rmdir($sub), 'cache_unavailable'); unset($active['retired'][$id]);
     }
 }
@@ -251,9 +264,9 @@ function kf_index(string $dir, array $catalogue, callable $http, int $now): arra
                     $existing = kf_read($dir . '/' . $id . '/manifest.json', KF_MANIFEST_MAX);
                     if ($existing !== null && kf_json($existing, KF_MANIFEST_MAX) !== $m) continue;
                     if ($id !== $active['current']) {
-                        kf_cleanup($dir, $active, $now);
+                        kf_cleanup($dir, $active, $now, [$id]);
                         $dirs = array_filter(glob($dir . '/*', GLOB_ONLYDIR) ?: [], static fn($p)=>kf_snapshot(basename($p)));
-                        kf_assert($existing !== null || count($dirs) < 4, 'cache_full'); kf_assert(kf_usage($dir) + KF_MANIFEST_MAX < KF_DISK_MAX, 'cache_full');
+                        kf_assert(is_dir($dir . '/' . $id) || count($dirs) < 4, 'cache_full'); kf_assert(kf_usage($dir) + KF_MANIFEST_MAX < KF_DISK_MAX, 'cache_full');
                         kf_dir($dir . '/' . $id); kf_write($dir . '/' . $id . '/manifest.json', $candidate['raw']);
                         if ($active['current'] !== null) $active['retired'][$active['current']] = $now;
                         $active['previous'] = $active['current']; $active['current'] = $id; $active['high_water'] = max($active['high_water'], $generated);

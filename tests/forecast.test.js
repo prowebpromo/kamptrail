@@ -3,12 +3,12 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const Q=require('../data-quality.js'),F=require('../forecast.js'),{coordinateIndex}=require('../scripts/build-search-index.js');
 const now=Date.parse('2026-10-29T12:00:00Z'),iso=n=>new Date(n).toISOString().replace('.000Z','Z'),snapshot='a'.repeat(24),catalogue='b'.repeat(64);
 const feature=(id='zero',state='NY',coordinates=[-75,43])=>({type:'Feature',geometry:{type:'Point',coordinates},properties:{id,state,forecastStates:[state],name:id,amenities:[],rig_friendly:[],fee_status:'unknown',type:'established'}});
-function fixture(codes=['NY']){
+function fixture(codes=['NY'],snapshotID=snapshot){
  const times=Array.from({length:60},(_,i)=>iso(now+(i+1)*3600000));
- const m={version:1,snapshot_id:snapshot,catalogue_sha256:catalogue,generated_at:iso(now-5*60000),expires_at:iso(now+2*3600000),source:{name:'NOAA/NWS NDFD',files:[{region:'conus',url:'https://noaa-ndfd-pds.s3.amazonaws.com/opnl/AR.conus/VP.001-003/ds.temp.bin',etag:'opaque',sha256:'e'.repeat(64),last_modified:iso(now-15*60000),bytes:100}]},regions:{conus:{times,grid_sha256:'c'.repeat(64),max_step_seconds:3600,reference_times:[iso(now)]}},states:{},coverage:{total:6,grid_known:5,unknown:1}};
+ const m={version:1,snapshot_id:snapshotID,catalogue_sha256:catalogue,generated_at:iso(now-5*60000),expires_at:iso(now+2*3600000),source:{name:'NOAA/NWS NDFD',files:[{region:'conus',url:'https://noaa-ndfd-pds.s3.amazonaws.com/opnl/AR.conus/VP.001-003/ds.temp.bin',etag:'opaque',sha256:'e'.repeat(64),last_modified:iso(now-15*60000),bytes:100}]},regions:{conus:{times,grid_sha256:'c'.repeat(64),max_step_seconds:3600,reference_times:[iso(now)]}},states:{},coverage:{total:6,grid_known:5,unknown:1}};
  const record=t=>({coordinate_key:Q.coordinateKey([-75,43]),status:'known',region:'conus',grid_lat:43,grid_lng:-75,grid_distance_m:0,temperatures_c:Array(60).fill(t)});
  const records={zero:record(0),negative:record(-10),hot:record(10),partial:record(0),missing:{coordinate_key:Q.coordinateKey([-75,43]),status:'unknown',reason:'missing grid'},later:record(0)};records.partial.temperatures_c[2]=null;records.later.temperatures_c[24]=5;
- const raw={};for(const code of codes){const state={version:1,snapshot_id:snapshot,state:code,generated_at:m.generated_at,expires_at:m.expires_at,records};raw[code]=JSON.stringify(state);m.states[code]={asset:`forecast-v1-${snapshot}-${code}.json.gz`,sha256:'d'.repeat(64),json_sha256:createHash('sha256').update(raw[code]).digest('hex'),bytes:200,json_bytes:Buffer.byteLength(raw[code]),count:6};}
+ const raw={};for(const code of codes){const state={version:1,snapshot_id:snapshotID,state:code,generated_at:m.generated_at,expires_at:m.expires_at,records};raw[code]=JSON.stringify(state);m.states[code]={asset:`forecast-v1-${snapshotID}-${code}.json.gz`,sha256:'d'.repeat(64),json_sha256:createHash('sha256').update(raw[code]).digest('hex'),bytes:200,json_bytes:Buffer.byteLength(raw[code]),count:6};}
  return{m,raw,records};
 }
 function client(data=fixture(),customFetch){
@@ -53,12 +53,31 @@ test('server clock ignores device wall clock, expiry and offline/resume invalida
  c.env.navigator.onLine=true;c.event('online');await c.api.ensureStates(['NY']);assert.equal(c.api.matches(feature(),{forecastMaxC:0}),true);
  c.advance(2*3600000);assert.equal(c.api.matches(feature(),{forecastMaxC:0}),false);c.fire();assert.equal(c.api.status().ready,false);
 });
-test('bounded concurrency uses only supported state API requests and retries explicitly',async()=>{
- const d=fixture(['NY','CA','CO','HI']),waiting=[];let count=0,peak=0;
- const c=client(d,async url=>{if(url.includes('coordinate-index'))return new Response(JSON.stringify({version:1,sha256:catalogue,count:6}));if(url.includes('kind=index'))return new Response(JSON.stringify({ok:true,server_now:iso(now),manifest:d.m}));count++;peak=Math.max(peak,count);await new Promise(resolve=>waiting.push(resolve));count--;const code=new URL(url,'https://example.test/').searchParams.get('state');return new Response(d.raw[code]);});
+test('bounded concurrency uses only supported state API requests', {timeout:5000}, async()=>{
+ const d=fixture(['NY','CA','CO','HI']),waiting=[];let count=0,peak=0,started=0,firstPair,secondPair;
+ const firstStarted=new Promise(resolve=>{firstPair=resolve;}),secondStarted=new Promise(resolve=>{secondPair=resolve;});
+ const c=client(d,async url=>{if(url.includes('coordinate-index'))return new Response(JSON.stringify({version:1,sha256:catalogue,count:6}));if(url.includes('kind=index'))return new Response(JSON.stringify({ok:true,server_now:iso(now),manifest:d.m}));count++;started++;peak=Math.max(peak,count);const gate=new Promise(resolve=>waiting.push(resolve));if(started===2)firstPair();if(started===4)secondPair();await gate;count--;const code=new URL(url,'https://example.test/').searchParams.get('state');return new Response(d.raw[code]);});
  const done=c.api.ensureStates(['NY','CA','CO','HI','ZZ','../NY','NY']);
- for(let i=0;i<20;i++){await new Promise(resolve=>setImmediate(resolve));for(const resolve of waiting.splice(0))resolve();}
+ await firstStarted;assert.equal(count,2);assert.equal(started,2);for(const resolve of waiting.splice(0))resolve();
+ await secondStarted;assert.equal(count,2);assert.equal(started,4);for(const resolve of waiting.splice(0))resolve();
  await done;assert.equal(peak,2);assert.equal(c.calls.filter(u=>u.includes('kind=state')).length,4);assert.equal(c.calls.some(u=>u.includes('weather.gov')),false);
+});
+test('old snapshot failures cannot poison or delete new snapshot evidence', {timeout:5000}, async()=>{
+ const old=fixture(['NY','CA']),next=fixture(['NY','CA'],'f'.repeat(24));let current=old,rejectOld,oldStarted;
+ const oldRequestStarted=new Promise(resolve=>{oldStarted=resolve;});
+ const c=client(old,async url=>{
+  if(url.includes('coordinate-index'))return new Response(JSON.stringify({version:1,sha256:catalogue,count:6}));
+  if(url.includes('kind=index'))return new Response(JSON.stringify({ok:true,server_now:iso(now),manifest:current.m}));
+  const params=new URL(url,'https://example.test/').searchParams,code=params.get('state');
+  if(params.get('snapshot')===old.m.snapshot_id){oldStarted();return new Promise((resolve,reject)=>{rejectOld=reject;});}
+  return new Response(next.raw[code]);
+ });
+ const pendingOld=c.api.ensureStates(['NY']);await oldRequestStarted;current=next;
+ // A forced refresh must load the same state's new generation without borrowing A's pending promise.
+ await c.api.ensureStates(['NY','CA'],{force:true});assert.equal(c.api.matches(feature(),{forecastMaxC:0}),true);
+ rejectOld(new Error('Retired snapshot transport failed'));await pendingOld;
+ assert.equal(c.api.matches(feature(),{forecastMaxC:0}),true);assert.deepEqual(c.api.status().unavailable,[]);assert.equal(c.api.status().loading,false);
+ const before=c.calls.length;await c.api.ensureStates(['NY']);assert.equal(c.calls.length,before);assert.equal(c.api.matches(feature(),{forecastMaxC:0}),true);
 });
 test('map and route use identical current evidence and exclude coordinate changes',async()=>{
  const c=client();await c.api.ensureStates(['NY']);global.KampTrailForecast=c.api;
@@ -103,4 +122,18 @@ test('null, signed zero and negative Celsius preserve inclusive canonical shared
 });
 test('restored-page evidence must refresh its server clock and never reuse an interrupted stale response',async()=>{
  const c=client();await c.api.ensureStates(['NY']);const count=c.calls.length;c.env.dispatchEvent({type:'pageshow',persisted:true});assert.equal(c.api.matches(feature(),{forecastMaxC:0}),false);c.advance(3600000);await c.api.ensureStates(['NY']);assert.equal(c.api.effectiveNow(),now+3600000);assert.ok(c.calls.length>count);assert.equal(c.api.matches(feature('later'),{forecastMaxC:0}),false);
+});
+
+test('retired request cleanup preserves the current generation pending request', {timeout:5000}, async()=>{
+ const old=fixture(),next=fixture(['NY'],'f'.repeat(24));let current=old,rejectOld,releaseNext,markOld,markNext;
+ const oldStarted=new Promise(resolve=>{markOld=resolve;}),nextStarted=new Promise(resolve=>{markNext=resolve;});
+ const c=client(old,async url=>{
+  if(url.includes('coordinate-index'))return new Response(JSON.stringify({version:1,sha256:catalogue,count:6}));
+  if(url.includes('kind=index'))return new Response(JSON.stringify({ok:true,server_now:iso(now),manifest:current.m}));
+  if(new URL(url,'https://example.test/').searchParams.get('snapshot')===old.m.snapshot_id){markOld();return new Promise((resolve,reject)=>{rejectOld=reject;});}
+  markNext();await new Promise(resolve=>{releaseNext=resolve;});return new Response(next.raw.NY);
+ });
+ const a=c.api.ensureStates(['NY']);await oldStarted;current=next;const b=c.api.ensureStates(['NY'],{force:true});await nextStarted;
+ rejectOld(new Error('Retired snapshot unavailable'));await a;assert.equal(c.api.status().loading,true);assert.deepEqual(c.api.status().unavailable,[]);
+ const duplicate=c.api.ensureStates(['NY']);releaseNext();await Promise.all([b,duplicate]);assert.equal(c.calls.filter(u=>u.includes('kind=state')).length,2);assert.equal(c.api.status().loading,false);assert.equal(c.api.matches(feature(),{forecastMaxC:0}),true);
 });

@@ -521,11 +521,11 @@ def publish(api, manifest, raw, files, now, source_sha):
     draft = release.get('draft') is True
     pointers = read_pointers(api, assets, now, draft=draft)
     sid = manifest['snapshot_id']
+    already_current = False
     for previous, previous_raw in pointers.values():
         if previous['snapshot_id'] == sid:
             require(previous_raw == raw, 'immutable_asset_conflict')
-            if not draft:
-                return {'snapshot_id': sid, 'status': 'unchanged', 'deleted_assets': 0}
+            already_current = True
             continue
         require(timestamp(previous['generated_at']) < timestamp(manifest['generated_at']), 'forecast_rollback')
     deleted = 0 if draft else cleanup(api, assets, pointers, now, preserve=(sid,))
@@ -539,6 +539,8 @@ def publish(api, manifest, raw, files, now, source_sha):
     for name, data in additions.items():
         ensure_asset(api, release['id'], assets, name, data, allow_starter=sid not in protected, draft=draft)
     validate_manifest(raw, max(now, api.clock()))
+    if already_current and not draft:
+        return {'snapshot_id': sid, 'status': 'unchanged', 'deleted_assets': deleted}
     if draft:
         for name in POINTERS:
             old = assets.get(name)
@@ -546,6 +548,7 @@ def publish(api, manifest, raw, files, now, source_sha):
                 api.delete(old['id'])
                 assets.pop(name)
             ensure_asset(api, release['id'], assets, name, raw, allow_starter=True, draft=True)
+        validate_manifest(raw, max(now, api.clock()))
         _, release = api.api('PATCH', f'/releases/{release["id"]}',
                              {'draft': False, 'prerelease': True, 'make_latest': 'false'})
         release_check(release)  # An immutable result halts without further writes.

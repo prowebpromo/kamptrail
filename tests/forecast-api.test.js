@@ -104,6 +104,24 @@ test('new manifest promotion is atomic, retains previous, and cannot roll back',
   check(kf_index($dir,$f['catalogue'],static fn()=>$f['raw'],$now+2000)['snapshot_id']===str_repeat('b',24));
   $handle=fopen($dir.'/active.json','rb');$old=stream_get_contents($handle);kf_write($dir.'/active.json',json_encode($a));rewind($handle);check(stream_get_contents($handle)===$old);fclose($handle);
 `));
+test('conflicting pointers and changed immutable manifests preserve last accepted snapshot',{skip:!capable},()=>php(`
+  kf_index($dir,$f['catalogue'],static fn()=>$f['raw'],$now);
+  $left=ff_fixture($now+1000,'b');$right=ff_fixture($now+1000,'c');
+  $http=static fn($url)=>str_ends_with($url,'current-a.json')?$left['raw']:$right['raw'];
+  check(kf_index($dir,$f['catalogue'],$http,$now+1000)['snapshot_id']===$f['manifest']['snapshot_id']);
+  $changed=$f['manifest'];$changed['source']['files'][0]['etag']='changed';
+  check(kf_index($dir,$f['catalogue'],static fn()=>json_encode($changed),$now+2000)['source']['files'][0]['etag']==='fixture');
+  $lock=kf_lock($dir.'/metadata.lock');$calls=0;$http=function()use(&$calls){$calls++;throw new KfException('unexpected_network');};
+  check(kf_index($dir,$f['catalogue'],$http,$now+3000)['snapshot_id']===$f['manifest']['snapshot_id']);check($calls===0);kf_unlock($lock);
+`));
+test('metadata retry delay is shared across requests without extending absolute expiry',{skip:!capable},()=>php(`
+  kf_index($dir,$f['catalogue'],static fn()=>$f['raw'],$now);$calls=0;
+  $http=function()use(&$calls){$calls++;throw new KfException('upstream_unavailable',503,3600);};
+  check(kf_index($dir,$f['catalogue'],$http,$now+900)['snapshot_id']===$f['manifest']['snapshot_id']);check($calls===2);
+  kf_index($dir,$f['catalogue'],$http,$now+1800);check($calls===2);
+  kf_index($dir,$f['catalogue'],$http,$now+4500);check($calls===4);
+  rejects(fn()=>kf_index($dir,$f['catalogue'],$http,$now+7200),'stale');check($calls===4);
+`));
 test('shards load only accepted snapshots and serve exact cached raw bytes',{skip:!capable},()=>php(`
   kf_index($dir,$f['catalogue'],static fn()=>$f['raw'],$now);$calls=0;
   $http=function($url,$limit)use(&$calls,$f){$calls++;return$f['compressed'][basename($url)];};
@@ -138,6 +156,32 @@ test('expiry-aware cleanup protects current and previous generations',{skip:!cap
   foreach(['a','b','c']as$letter){$fixture=ff_fixture($now,$letter);$sub=$dir.'/'.str_repeat($letter,24);kf_dir($sub);kf_write($sub.'/manifest.json',$fixture['raw']);}
   kf_cleanup($dir,$a,$now+8999);check(is_dir($dir.'/'.str_repeat('a',24)));
   kf_cleanup($dir,$a,$now+9001);check(!is_dir($dir.'/'.str_repeat('a',24)));check(is_dir($dir.'/'.str_repeat('b',24))&&is_dir($dir.'/'.str_repeat('c',24)));
+`));
+test('manifestless crash remnants expire after source lifetime plus grace while protected directories survive',{skip:!capable},()=>php(`
+  kf_dir($dir);$a=['current'=>str_repeat('a',24),'previous'=>str_repeat('b',24),'retired'=>[],'high_water'=>0];
+  foreach(['a','b','c','d','e']as$letter){$sub=$dir.'/'.str_repeat($letter,24);kf_dir($sub);kf_write($sub.'/.stage-fixture','partial');touch($sub,$now);}
+  kf_cleanup($dir,$a,$now+KF_MAX_AGE+KF_GRACE,[str_repeat('c',24)]);
+  check(is_dir($dir.'/'.str_repeat('d',24)));
+  touch($dir.'/'.str_repeat('e',24),$now+100);
+  kf_cleanup($dir,$a,$now+KF_MAX_AGE+KF_GRACE+1,[str_repeat('c',24)]);
+  check(!is_dir($dir.'/'.str_repeat('d',24)));
+  foreach(['a','b','c','e']as$letter)check(is_file($dir.'/'.str_repeat($letter,24).'/.stage-fixture'));
+`));
+test('four abandoned manifestless generations cannot permanently prevent a new snapshot',{skip:!capable},()=>php(`
+  kf_dir($dir);
+  foreach(['b','c','d','e']as$letter){$sub=$dir.'/'.str_repeat($letter,24);kf_dir($sub);touch($sub,$now-KF_MAX_AGE-KF_GRACE-1);}
+  $m=kf_index($dir,$f['catalogue'],static fn()=>$f['raw'],$now);check($m['snapshot_id']===$f['manifest']['snapshot_id']);
+  check(count(glob($dir.'/*',GLOB_ONLYDIR))===1);
+`));
+test('orphan cleanup refuses symlinks and unrelated content before deleting any files',{skip:!capable},()=>php(`
+  kf_dir($dir);$a=['current'=>null,'previous'=>null,'retired'=>[],'high_water'=>0];
+  $outside=$dir.'/outside';kf_write($outside,'keep');$sub=$dir.'/'.str_repeat('a',24);kf_dir($sub);
+  kf_write($sub.'/.stage-fixture','partial');symlink($outside,$sub.'/CA.json');touch($sub,$now-KF_MAX_AGE-KF_GRACE-1);
+  rejects(function()use($dir,&$a,$now){kf_cleanup($dir,$a,$now);},'cache_unavailable');
+  check(file_get_contents($outside)==='keep'&&is_link($sub.'/CA.json')&&is_file($sub.'/.stage-fixture'));
+  unlink($sub.'/CA.json');kf_write($sub.'/unrelated.txt','keep too');touch($sub,$now-KF_MAX_AGE-KF_GRACE-1);
+  rejects(function()use($dir,&$a,$now){kf_cleanup($dir,$a,$now);},'cache_unavailable');
+  check(is_file($sub.'/unrelated.txt')&&is_file($sub.'/.stage-fixture'));
 `));
 test('forecast endpoint rejects bad query or method before private cache access',{skip:!capable},()=>{
   for(const [method,q,reason]of [['POST',{},'method_not_allowed'],['GET',{kind:'evil'},'invalid_query']]){

@@ -29,6 +29,29 @@ class ProducerTests(unittest.TestCase):
                      last_modified=f.stamp(NOW-timedelta(minutes=30)), sha256=f.digest(b'GRIB'))
                 for r in f.REGIONS]
 
+    def test_jurisdiction_selects_product_before_values_or_overlap_distance(self):
+        self.assertEqual(f.row_regions({'states':['WA','OR']}),{'conus'})
+        self.assertEqual(f.row_regions({'states':['AK']}),{'alaska'})
+        self.assertEqual(f.row_regions({'states':['HI']}),{'hawaii'})
+        row={'id':'wa','coordinate_key':'48.0000000,-123.0000000','states':['WA']}
+        def decode(path,keys):
+            region=path.stem
+            if region=='conus': self.assertEqual(keys,[row['coordinate_key']])
+            else:self.assertEqual(keys,[])
+            times=[f.stamp(NOW+timedelta(hours=n)) for n in range(49)]
+            return {'times':times,'max_step_seconds':3600}, ({row['coordinate_key']:{
+                'grid_distance_m':2000,'temperatures_c':[0]*49}} if keys else {})
+        captured={}
+        def package(rows,hash,files,regions,records,output,now):
+            captured.update(records)
+            return {'snapshot_id':'a'*24,'coverage':{'total':1,'grid_known':1,'unknown':0},
+                    'states':{'WA':{'bytes':1,'json_bytes':1}}}
+        with patch.object(f,'catalogue',return_value=([row],'a'*64)), \
+             patch.object(f,'sources',return_value=(self.files(),0)), \
+             patch.object(f,'decode_region',side_effect=decode),patch.object(f,'package',side_effect=package):
+            f.produce('unused','unused','unused',now=NOW,offline=True)
+        self.assertEqual(captured['wa']['region'],'conus')
+
     def test_kelvin_conversion_keeps_zero_negative_and_null(self):
         self.assertEqual([f.temperature(v) for v in (273.15, 263.15, 280.15, None, float('nan'), 999)],
                          [0, -10, 7, None, None, None])

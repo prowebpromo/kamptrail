@@ -421,22 +421,36 @@ def package(rows, catalogue_hash, files, regions, records, output, now):
         shutil.rmtree(staging)
 
 
+def row_regions(row):
+    """Use the regional product for the catalogue jurisdiction.
+
+    Alaska's rectangular grid overlaps the Pacific Northwest, but those offshore
+    bitmap cells are not the CONUS product. Never choose a product by whether its
+    temperature happens to be present.
+    """
+    return {'alaska' if state == 'AK' else 'hawaii' if state == 'HI' else 'conus'
+            for state in row['states']}
+
+
 def produce(catalogue_path, cache, output, now=None, offline=False):
     started = time.monotonic()
     now = now or datetime.now(UTC)
     rows, catalogue_hash = catalogue(catalogue_path)
     files, downloaded = sources(cache, offline)
     expiry(files, now)
-    keys = sorted({row['coordinate_key'] for row in rows})
     regions, best = {}, {}
     for region in REGIONS:
+        keys = sorted({row['coordinate_key'] for row in rows if region in row_regions(row)})
         metadata, samples = decode_region(Path(cache) / f'{region}.bin', keys)
         regions[region] = metadata
         for key, sample in samples.items():
-            if key not in best or sample['grid_distance_m'] < best[key]['grid_distance_m']:
-                best[key] = {'coordinate_key': key, 'region': region, 'status': 'known', **sample}
-    records = {row['id']: best.get(row['coordinate_key'], {'coordinate_key': row['coordinate_key'],
-               'status': 'unknown', 'reason': 'outside_forecast_grid'}) for row in rows}
+            best[(region, key)] = {'coordinate_key': key, 'region': region, 'status': 'known', **sample}
+    records = {}
+    for row in rows:
+        candidates = [best[(region, row['coordinate_key'])] for region in sorted(row_regions(row))
+                      if (region, row['coordinate_key']) in best]
+        records[row['id']] = min(candidates, key=lambda r: r['grid_distance_m']) if candidates else {
+            'coordinate_key': row['coordinate_key'], 'status': 'unknown', 'reason': 'outside_forecast_grid'}
     manifest = package(rows, catalogue_hash, files, regions, records, output, now)
     complete = {}
     for hours in (24, 48):

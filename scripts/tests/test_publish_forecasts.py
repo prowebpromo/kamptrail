@@ -250,6 +250,29 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(p.PublishError, 'forecast_rollback'):
             self.publish(fixture(NOW-2000, 'c'*24))
 
+    def test_idempotent_rerun_verifies_and_repairs_missing_generation_asset(self):
+        name = self.old[0]['states']['CA']['asset']
+        self.api.delete(self.api.entries[name]['id'])
+        self.api.log.clear()
+        self.assertEqual(self.publish(self.old)['status'], 'unchanged')
+        self.assertEqual(self.api.bodies[name], self.old[2][name])
+        self.assertFalse(any(item[0] == 'DELETE' for item in self.api.log))
+
+    def test_published_generation_cannot_be_overwritten(self):
+        name = self.old[0]['states']['CA']['asset']
+        self.api.bodies[name] = b'x' * len(self.api.bodies[name])
+        with self.assertRaisesRegex(p.PublishError, 'immutable_asset_conflict'):
+            self.publish(self.old)
+        self.assertFalse(any(item[0] in ('UPLOAD', 'DELETE') for item in self.api.log))
+
+    def test_conflicting_pointer_generation_is_rejected(self):
+        altered = fixture(NOW-1800, 'c'*24)
+        self.api.bodies['current-a.json'] = altered[1]
+        self.api.entries['current-a.json']['size'] = len(altered[1])
+        with self.assertRaisesRegex(p.PublishError, 'pointer_conflict'):
+            self.publish()
+        self.assertFalse(any(item[0] in ('UPLOAD', 'DELETE') for item in self.api.log))
+
     def test_immutable_private_or_wrong_repo_fail_before_writes(self):
         for key, value in [('immutable', True), ('immutable', None), ('prerelease', False)]:
             with self.subTest(key=key, value=value):

@@ -1,5 +1,5 @@
 {
-  "snapshot_id": "ffeb583abcac0f4f60ef4e1c",
+  "snapshot_id": "9f60ec5aebbb8fe7ee506916",
   "catalogue_sha256": "9a77eed89c95fee0452953c542fce2f8c1cc0e190fb765dd035d1f62cf7edaa3",
   "generated_at": "2026-10-29T23:24:07Z",
   "expires_at": "2026-10-30T01:53:34Z",
@@ -35,23 +35,23 @@
     "unknown": 0
   },
   "complete_samples": {
-    "24": 31570,
-    "48": 31570
+    "24": 32325,
+    "48": 32325
   },
   "by_region": {
     "conus": {
-      "grid_known": 31833,
-      "all_samples_finite": 31060,
-      "complete_24h": 31060,
-      "complete_48h": 31060,
-      "all_null": 773
+      "grid_known": 32625,
+      "all_samples_finite": 31815,
+      "complete_24h": 31815,
+      "complete_48h": 31815,
+      "all_null": 810
     },
     "alaska": {
-      "grid_known": 1405,
+      "grid_known": 613,
       "all_samples_finite": 461,
       "complete_24h": 461,
       "complete_48h": 461,
-      "all_null": 944
+      "all_null": 152
     },
     "hawaii": {
       "grid_known": 49,
@@ -71,15 +71,14 @@
     "NM": 3,
     "NY": 401,
     "OH": 4,
-    "OR": 195,
     "TX": 23,
-    "WA": 742
+    "WA": 98
   },
   "state_count": 50,
-  "state_gzip_bytes": 2665491,
-  "largest_state_gzip_bytes": 273573,
+  "state_gzip_bytes": 2685044,
+  "largest_state_gzip_bytes": 273568,
   "largest_state_json_bytes": 1933795,
-  "manifest_bytes": 17377,
+  "manifest_bytes": 17378,
   "decoder_crosschecks": {
     "conus": {
       "dimensions": [
@@ -357,12 +356,12 @@
           "temperature_c": 9.45
         },
         {
-          "id": "osm:way:1091923843",
-          "coordinate_key": "33.4711530,-83.8609300",
-          "grid_lat": 33.470121,
-          "grid_lng": -83.8602367,
-          "grid_distance_m": 131.5,
-          "temperature_c": 17.75
+          "id": "osm:way:1092976781",
+          "coordinate_key": "36.8324035,-79.1809872",
+          "grid_lat": 36.835936,
+          "grid_lng": -79.167806,
+          "grid_distance_m": 1237.2,
+          "temperature_c": 15.55
         },
         {
           "id": "usfs:9913",
@@ -650,20 +649,20 @@
           "temperature_c": 0.55
         },
         {
-          "id": "osm:way:1186072422",
-          "coordinate_key": "46.2696706,-123.9401927",
-          "grid_lat": 46.2685671,
-          "grid_lng": -123.9462567,
-          "grid_distance_m": 482.0,
+          "id": "osm:way:1094344300",
+          "coordinate_key": "60.0655094,-134.5621091",
+          "grid_lat": 60.0742552,
+          "grid_lng": -134.5705022,
+          "grid_distance_m": 1078.3,
           "temperature_c": null
         },
         {
-          "id": "usfs:83518",
-          "coordinate_key": "48.5523210,-119.8577230",
-          "grid_lat": 48.5467355,
-          "grid_lng": -119.8551341,
-          "grid_distance_m": 649.7,
-          "temperature_c": null
+          "id": "usfs:82849",
+          "coordinate_key": "59.5859080,-139.4964690",
+          "grid_lat": 59.5734021,
+          "grid_lng": -139.496882,
+          "grid_distance_m": 1390.8,
+          "temperature_c": 3.85
         }
       ]
     },
@@ -960,5 +959,24 @@
         }
       ]
     }
-  }
+  },
+  "producer_benchmark": {
+    "catalogue_sha256": "9a77eed89c95fee0452953c542fce2f8c1cc0e190fb765dd035d1f62cf7edaa3",
+    "complete_samples": {
+      "24": 32325,
+      "48": 32325
+    },
+    "elapsed_seconds": 30.877,
+    "grid_known": 33287,
+    "largest_state_gzip_bytes": 273568,
+    "largest_state_json_bytes": 1933795,
+    "peak_rss_kib": 479920,
+    "snapshot_id": "9f60ec5aebbb8fe7ee506916",
+    "source_download_bytes": 0,
+    "state_gzip_bytes": 2685044,
+    "total": 33287,
+    "unknown": 0
+  },
+  "environment_lock_sha256": "bf1784dc4941da0a4e80076fc6dec1ba5f7ce43cab0f1fc99ed1e58589f3ca38",
+  "source_total_bytes": 54374183
 }

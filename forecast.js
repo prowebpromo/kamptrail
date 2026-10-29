@@ -72,15 +72,15 @@
     }
     function drain(){while(workers<2&&queue.length){const task=queue.shift();workers++;task().finally(()=>{workers--;drain();});}}
     function loadState(code,force){
-      if(pending.has(code))return pending.get(code);if(!force&&(shards.has(code)||failures.has(code)))return Promise.resolve();
-      const current=epoch,m=manifest;let resolve;const promise=new Promise(r=>{resolve=r;});pending.set(code,promise);
+      if(pending.get(code)?.manifest===manifest)return pending.get(code).promise;if(!force&&(shards.has(code)||failures.has(code)))return Promise.resolve();
+      const current=epoch,m=manifest;let resolve;const promise=new Promise(r=>{resolve=r;});pending.set(code,{manifest:m,promise});
       queue.push(async()=>{try{
-        if(current!==epoch||!online()||!fresh())return;
+        if(current!==epoch||manifest!==m||!online()||!fresh())return;
         if(!m.states[code])throw new Error('State forecast unavailable');const entry=m.states[code],raw=await request(`api/forecast.php?kind=state&state=${code}&snapshot=${m.snapshot_id}`,8*1024*1024);
         if(new env.TextEncoder().encode(raw).length!==entry.json_bytes||await digest(raw)!==entry.json_sha256)throw new Error('Forecast checksum mismatch');
         const d=JSON.parse(raw);if(!validState(d,code,m,q))throw new Error('Invalid state forecast');if(current!==epoch||manifest!==m||!fresh())return;
         shards.set(code,d);failures.delete(code);
-      }catch(e){if(current===epoch){shards.delete(code);failures.add(code);error=e.message;}}finally{pending.delete(code);resolve();emit();}});drain();return promise;
+      }catch(e){if(current===epoch&&manifest===m){shards.delete(code);failures.add(code);error=e.message;}}finally{if(pending.get(code)?.promise===promise)pending.delete(code);resolve();emit();}});drain();return promise;
     }
     async function ensureStates(codes,{force=false}={}){const list=[...new Set(codes)].filter(c=>STATES.has(c)).slice(0,50);if(!list.length)return;list.forEach(c=>wanted.add(c));if(!online()||!await loadIndex(force))return;await Promise.all(list.map(c=>loadState(c,force)));}
     function get(feature,hours=24,now=effectiveNow()){

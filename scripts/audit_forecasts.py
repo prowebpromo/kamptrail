@@ -106,7 +106,10 @@ def audit(catalogue,cache,output):
             assert id not in records or records[id]==record
             records[id]=record
     assert len(records)==len(rows)
-    for row in rows:assert records[row['id']]['coordinate_key']==row['coordinate_key']
+    for row in rows:
+        record=records[row['id']]
+        assert record['coordinate_key']==row['coordinate_key']
+        assert record['status']!='known' or record['region'] in f.row_regions(row)
     now=f.utc(manifest['generated_at'])
     breakdown={};state_missing=Counter();complete={str(h):0 for h in (24,48)}
     for region in f.REGIONS:
@@ -139,8 +142,16 @@ def main():
     parser.add_argument('--cache',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
+    parser.add_argument('--benchmark',type=Path,help='Measured output from the same producer snapshot')
     args=parser.parse_args()
     report=audit(args.catalogue,args.cache,args.output)
+    if args.benchmark:
+        benchmark=json.loads(args.benchmark.read_text())
+        assert benchmark['snapshot_id']==report['snapshot_id']
+        assert benchmark['complete_samples']==report['complete_samples']
+        report['producer_benchmark']=benchmark
+    report['environment_lock_sha256']=f.file_hash(Path(__file__).resolve().parents[1]/'environment/forecast-linux-64.lock')
+    report['source_total_bytes']=sum(x['bytes'] for x in report['source_files'])
     f.atomic_bytes(args.report,json.dumps(report,indent=2,allow_nan=False).encode()+b'\n')
     print(json.dumps({k:v for k,v in report.items() if k not in ('decoder_crosschecks','source_files')},sort_keys=True))
 
