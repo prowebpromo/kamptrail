@@ -3,7 +3,7 @@
   'use strict';
   const STORE='kt_reviews_v1', API='api/community.php';
   const st={dialog:null,site:null,focus:null,opened:0,view:0};
-  const el=(tag,attrs={},text)=>{const n=document.createElement(tag);for(const[k,v]of Object.entries(attrs))if(v!==false&&v!=null)n.setAttribute(k,v===true?'':v);if(text!=null)n.textContent=text;return n;};
+  const el=(tag,attrs={},text)=>{const n=document.createElement(tag);for(const[k,v]of Object.entries(attrs))if(v!==false&&v!=null)n.setAttribute(k,k.startsWith('aria-')?String(v):v===true?'':v);if(text!=null)n.textContent=text;return n;};
   const button=(text,fn)=>{const b=el('button',{type:'button',class:'btn'},text);b.onclick=fn;return b;};
   function saved(){try{const a=JSON.parse(localStorage.getItem(STORE));return Array.isArray(a)?a.filter(r=>/^[a-f0-9]{64}$/.test(r?.token)):[];}catch{return [];}}
   function remember(r){try{localStorage.setItem(STORE,JSON.stringify([r,...saved().filter(x=>x.token!==r.token)].slice(0,100)));return true;}catch{return false;}}
@@ -18,9 +18,16 @@
     const fig=el('figure'),a=el('a',{href:'api/photo.php?id='+p.id,target:'_blank',rel:'noopener noreferrer'}),img=el('img',{src:'api/photo.php?id='+p.id,loading:'lazy',width:p.width,height:p.height,alt:`Campsite photo by ${review.display_name}, visited ${review.visited_on}`});
     a.append(img);fig.append(a,button('Report photo',()=>report(review.id,p.id)));return fig;
   }
+  function legacyAddress(body,site){
+    if(location.hostname!=='prowebpromo.github.io')return false;
+    const href='https://kamptrail.com/'+(site?'#site='+encodeURIComponent(site.properties.id):'');
+    body.append(el('p',{},'Reviews and photos are hosted at kamptrail.com. Open the current app to read, contribute or manage a review.'),el('a',{href,target:'_blank',rel:'noopener noreferrer'},'Open KampTrail reviews'));
+    return true;
+  }
   async function open(site){
     st.focus=document.activeElement;st.site=site;const name=site.properties.name,body=shell('Reviews and photos');const view=st.view;
     body.append(el('h3',{},name),el('p',{class:'kt-fine'},'Firsthand camper experiences. Reviews and photos are checked by a moderator before publication. They do not verify current fees, access or road conditions.'));
+    if(legacyAddress(body,site))return;
     const actions=el('div',{class:'kt-community-actions'});actions.append(button('Write a review',()=>edit({campsite_id:site.properties.id,campsite_name:name})),button('My reviews',mine));body.append(actions);
     const summary=message('Loading reviews…'),list=el('div',{class:'kt-review-list'});body.append(summary,list);
     const more=button('Load more reviews',()=>load(more.dataset.before));more.hidden=true;body.append(more);
@@ -76,10 +83,10 @@
       const confirm=el('label',{class:'kt-confirm'}),check=el('input',{type:'checkbox'});confirm.append(check,' Delete my review and photos permanently.');const del=button('Delete my review',async()=>{if(!check.checked){notice.textContent='Check the deletion confirmation first.';return;}del.disabled=true;const data=new FormData();data.set('action','delete');try{await request(data,token);await manage(token);}catch(err){notice.textContent=err.message;del.disabled=false;}}),notice=message('');body.append(confirm,del,notice,button('My reviews',mine));
     }catch(err){if(view===st.view)body.replaceChildren(message(err.message||'Unable to load your review. Try again online.',true),button('Retry',()=>manage(token)),button('My reviews',mine));}
   }
-  function mine(){st.focus=document.activeElement;const body=shell('My reviews');body.append(el('p',{class:'kt-fine'},'Management codes stay on this device. Copy yours to keep access on another device. No account is needed.'));
+  function mine(){st.focus=document.activeElement;const body=shell('My reviews');if(legacyAddress(body))return;body.append(el('p',{class:'kt-fine'},'Management codes stay on this device. Copy yours to keep access on another device. No account is needed.'));
     const list=el('ul',{class:'kt-report-list'});for(const r of saved()){const li=el('li');li.append(button(r.name,()=>manage(r.token)));list.append(li);}if(!saved().length)body.append(el('p',{},'No reviews saved on this device yet.'));body.append(list);
     const f=el('form'),code=el('input',{name:'code',required:true,pattern:'[a-f0-9]{64}',autocomplete:'off',spellcheck:false});f.append(field('Restore a private management code',code),el('button',{type:'submit',class:'btn'},'Open my review'));f.onsubmit=e=>{e.preventDefault();manage(code.value.trim());};body.append(f);
   }
   function report(id,photo){const body=shell(photo?'Report a photo':'Report a review'),f=el('form');const reason=el('textarea',{name:'reason',required:true,minlength:10,maxlength:1000,rows:4});f.append(field('What is the problem?',reason,'Examples: private information, harassment, copied content, or a misleading campsite claim. A moderator will review the report.'));const msg=message(''),send=el('button',{class:'btn',type:'submit'},'Send report');f.append(msg,send);body.append(f);f.onsubmit=async e=>{e.preventDefault();send.disabled=true;const data=new FormData(f);data.set('action','report');data.set('review_id',id);if(photo)data.set('photo_id',photo);try{const out=await request(data);body.replaceChildren(message(out.message),button('Close',()=>st.dialog.close()));}catch(err){msg.textContent=err.message;send.disabled=false;}};}
-  window.KampTrailCommunity={version:'2.6.0',open,mine};
+  window.KampTrailCommunity={version:'2.6.1',open,mine};
 })();
