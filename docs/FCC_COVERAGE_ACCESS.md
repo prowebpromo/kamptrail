@@ -1,14 +1,50 @@
-# FCC carrier coverage — access checkpoint
+# FCC mobile coverage integration
 
-Checked 2026-10-28. No carrier layer is shipped yet.
+## Current status
 
-The FCC public map's download page returned Access Denied in this browser, including one reload. No attempt was made to evade that restriction. The documented public-data API requires an FCC user account. No FCC account/API credentials were available in this session, and redistribution/usage conditions for the intended mobile datasets have not been verified.
+The protected credential form is deployed. Native browser submissions have a
+regression test covering the former null-origin failure and a successful save
+using synthetic credentials. Production credentials are never included in tests.
 
-Official sources:
-- https://help.bdc.fcc.gov/hc/en-us/articles/20044640394395-How-to-Create-an-FCC-User-Account
+A real server-side authentication attempt passed local validation but the FCC
+service denied authentication or access. Successful FCC authentication is still
+unverified. No mobile coverage geometry has been downloaded or published.
+Temporary authentication checks have stopped.
+
+The request contract matches the official FCC specification. A denial alone does
+not distinguish an invalid credential from account permissions or a service access
+restriction. Verify the FCC account username before changing credentials.
+
+## Security design
+
+The importer uses the official HTTPS API, constrained routes and named
+authentication headers. Credentials stay in private server storage outside the
+web root. They are never returned to the public application, committed to source,
+placed in URLs or recorded in logs. Redirects are refused to prevent credential
+forwarding. Error reporting uses fixed categories without raw upstream bodies.
+
+The form requires moderator authentication, CSRF validation and same-origin
+submission checks. Null and foreign origins remain rejected. Secret fields are
+masked, never prefilled, and never reflected in responses.
+
+## Remaining work
+
+1. Resolve the authentication/access denial through the authorized account.
+2. Obtain Mobile Broadband availability metadata and a provider/state pilot.
+3. Validate the downloaded geometry, CRS, carrier and technology fields.
+4. Produce bounded map tiles with filing and retrieval dates and source hashes.
+5. Test carrier switching, missing coverage, offline behavior and mobile access.
+6. Publish validated coverage and its modeled-service limitations.
+7. Enable scheduled refresh only after transfer, processing and publication work.
+
+BDC availability and CostQuest Location Fabric have separate licensing. This
+integration is scoped to mobile availability. It does not request Location Fabric
+or consumer challenge records. Coverage does not establish measured signal,
+indoor RV reception or usable service at a campsite. Route clearance checks are
+a separate feature.
+
+## Official references
+
+- https://us-fcc.app.box.com/v/bdc-public-data-api-spec
+- https://help.bdc.fcc.gov/hc/en-us/articles/6789299021723-Key-Reference-Documents
 - https://help.bdc.fcc.gov/hc/en-us/articles/43909220634651-How-to-Download-Mobile-Broadband-Coverage-Data-from-the-FCC-s-National-Broadband-Map-Step-by-Step-Instructions
-- https://www.fcc.gov/sites/default/files/bdc-public-data-api-spec.pdf (not retrievable here)
-
-Resume with authorized FCC download/API access or a user-provided current mobile coverage export plus its usage documentation. Verify mobile-data redistribution separately; do not infer it from Location Fabric licensing. Record provider identifiers, technology, data-as-of date and modeled service assumptions. Simplify/tile on the server or in builds; load viewport tiles only. Keep carrier models distinct from camper-reported signal. Model coverage is not a promise of usable service inside an RV.
-
-Do not add a decorative coverage toggle, substitute an old mirror, invent carrier polygons, or mark parity complete until current licensed data is loaded and tested. This is the only external-access blocker among the four requested packages.
