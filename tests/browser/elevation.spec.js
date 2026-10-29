@@ -20,7 +20,8 @@ async function fixture(page,context,{zoom=11,mobile=false}={}){
  await page.route('**/data/campsites/search-index.json',r=>json(r,search));
  await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features}));
  await page.route('**/data/campsites/elevation/**',r=>{elevationRequests.push(r.request().url());return r.request().url().endsWith('/index.json')?json(r,manifest):r.fulfill({contentType:'application/json',body:raw});});
- await page.addInitScript(zoom=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.085,zoom})),zoom);
+ // Seed only the first visit so reload exercises the app's persisted map position.
+ await page.addInitScript(zoom=>{if(localStorage.getItem('kt_last_position')===null)localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.085,zoom}));},zoom);
  await page.goto('/');await page.waitForFunction(()=>window.KampTrailData&&KampTrailData.getLoadStatus().catalogueTotal===4);
  if(zoom>=8)await page.waitForFunction(()=>KampTrailData.getAllCampsites().length===4&&!KampTrailData.getLoadStatus().loading&&DataQuality.elevationInfo(KampTrailData.getCampsiteById('elev:zero')));
  return{errors,elevationRequests};
@@ -36,12 +37,19 @@ test('elevation snapshots are lazy; inclusive feet/metres bounds persist and rep
  await p.getByLabel('Elevation units',{exact:true}).selectOption('m');await expect(p.getByLabel('Maximum elevation (metres)',{exact:true})).toHaveValue('304.8');
  await bound(p,'Minimum elevation (metres)','-20');await bound(p,'Maximum elevation (metres)','0');await expect.poll(()=>visible(page)).toEqual(['elev:below','elev:zero']);
  await bound(p,'Minimum elevation (metres)','20');await expect(p.locator('#f-elevation-error')).toContainText('last valid filter remains applied');await expect.poll(()=>visible(page)).toEqual(['elev:below','elev:zero']);
- await bound(p,'Minimum elevation (metres)','-20');await page.reload();const restored=await panel(page);await expect(restored.getByLabel('Minimum elevation (metres)',{exact:true})).toHaveValue('-20');await expect(restored.getByLabel('Maximum elevation (metres)',{exact:true})).toHaveValue('0');
+ await bound(p,'Minimum elevation (metres)','-20');await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('kt_last_position')).zoom)).toBe(11);await page.reload();await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBe(11);await expect.poll(()=>visible(page)).toEqual(['elev:below','elev:zero']);const restored=await panel(page);await expect(restored.getByLabel('Minimum elevation (metres)',{exact:true})).toHaveValue('-20');await expect(restored.getByLabel('Maximum elevation (metres)',{exact:true})).toHaveValue('0');
  await restored.getByRole('button',{name:'Reset',exact:true}).click();await expect(restored.getByLabel('Minimum elevation (feet)',{exact:true})).toHaveValue('');await expect.poll(()=>visible(page)).toHaveLength(4);expect(errors).toEqual([]);
 });
 test('map and route share zero-elevation filtering, cached evidence and source/date explanations',async({page,context})=>{
  const {errors}=await fixture(page,context);const p=await panel(page);await bound(p,'Minimum elevation (feet)','0');await bound(p,'Maximum elevation (feet)','0');await expect.poll(()=>visible(page)).toEqual(['elev:zero']);
- await page.evaluate(async()=>{const points=[[-75.2,43],[-75,43]],stops=points.map((coordinates,i)=>({type:'Feature',geometry:{type:'Point',coordinates},properties:{id:'stop:'+i}}));await KampTrailRoutes.open({distance:16000,duration:1200,calculated_at:new Date().toISOString(),geometry:{type:'LineString',coordinates:points},legs:[{distance:16000,duration:1200}],leg_ends:[1]},stops);});
+ await page.evaluate(async()=>{
+  const points=[[-75.2,43],[-75,43]],stops=points.map((coordinates,i)=>({type:'Feature',geometry:{type:'Point',coordinates},properties:{id:'stop:'+i,name:'Route stop '+i}}));
+  // Route actions validate the current itinerary; use actual saved stops, not an unrelated synthetic route.
+  for(const stop of stops)KampTrailTrip.addStop(stop.properties.id,stop);
+  KampTrailTrip.toggle();
+  await KampTrailRoutes.open({distance:16000,duration:1200,calculated_at:new Date().toISOString(),geometry:{type:'LineString',coordinates:points},legs:[{distance:16000,duration:1200}],leg_ends:[1]},KampTrailTrip.getStops().map(stop=>stop.feature));
+ });
+ expect(await page.evaluate(()=>KampTrailTrip.getStops().map(stop=>stop.id))).toEqual(['stop:0','stop:1']);
  const d=page.getByRole('dialog',{name:'Campsites along your route'});await expect(d.locator('.kt-route-result')).toHaveCount(1);await expect(d).toContainText('Elevation zero Campground');await expect(d).toContainText('1 listings matching other filters in this corridor have unknown elevation and are excluded.');await expect(d).toContainText('USGS 3DEP · retrieved 2026-10-29');await d.getByRole('button',{name:'View listing',exact:true}).click();await expect(d).not.toBeVisible();expect(await page.evaluate(()=>KampTrailFilters.getFilters().elevationMax)).toBe(0);
  await context.setOffline(true);await page.evaluate(()=>KampTrailData.refresh());await expect(p).toContainText('Saved static elevation evidence is in use.');await expect.poll(()=>visible(page)).toEqual(['elev:zero']);
  await page.evaluate(()=>KampTrailData.focusCampsite('elev:zero'));await expect(page.locator('.kt-site-popup')).toContainText('Approx. elevation 0 ft');await expect(page.locator('.kt-site-popup')).toContainText('Retrieval date is not acquisition date.');expect(errors).toEqual([]);
