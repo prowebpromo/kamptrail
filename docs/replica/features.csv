@@ -12,8 +12,8 @@ Elevation contours / topo basemap,layers,could,yes,yes,USGS Topo
 BLM and USFS public land overlay,layers,must,yes,yes,BLM Surface Management Agency tiles + legend
 Cell carrier coverage overlay,layers,should,yes,no,Original self-hosted tiles; no free keyless national tile source verified
 Fire weather and smoke layers,layers,could,yes,no,NOAA smoke/fire tiles possible
-MVUM motor vehicle use map layer,layers,could,yes,no,USFS MVUM ArcGIS service possible
-Per-layer opacity,layers,could,yes,no,
+MVUM motor vehicle use map layer,layers,could,yes,partial,"2.7.0 road, vehicle, season and unit-coverage context implemented; live deployment verification pending. See docs/MVUM_ROADS.md."
+Per-layer opacity,layers,could,yes,partial,MVUM roads and public-land boundaries have independent device-persisted opacity controls in 2.7.0; live verification pending.
 Filter by fee (free/paid),filters,must,yes,yes,"Negation, ancillary free services and reservability fixed in 2.4.2; see fee-fit-2.4.2.md"
 Filter by campsite type,filters,must,yes,yes,
 Filter by rig length,filters,should,yes,yes,"Recreation.gov site lengths (RIDB bulk export), unknowns excluded unless included and labeled"
