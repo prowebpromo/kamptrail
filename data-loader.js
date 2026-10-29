@@ -245,17 +245,46 @@
     for(const [code,n] of Object.entries(state.agencyCounts||{}))if(STATE_BOUNDS[code]&&Number.isFinite(n))totals[code]=(totals[code]||0)+n;
     return totals;
   }
+  // Visual centers where a bounding-box center falls in water or far from most of the state.
+  const BUBBLE_ANCHOR={AK:[64.2,-152.5],FL:[28.4,-81.7],MI:[43.8,-84.7],HI:[20.6,-156.9],LA:[31.0,-92.3],MA:[42.35,-71.9],MD:[39.3,-76.9],ME:[45.3,-69.2],NY:[42.9,-75.3],VA:[37.6,-78.6],ID:[44.2,-114.6],MN:[46.2,-94.4],TX:[31.3,-99.3]};
+  function bubbleIcon(size,n,dx=0,dy=0){
+    return L.divIcon({className:'kt-state-bubble',html:`<span style="width:${size}px;height:${size}px${size<32?';font-size:10px':''}">${short(n)}</span>`,iconSize:[size,size],iconAnchor:[size/2-dx,size/2-dy]});
+  }
   function buildOverview() {
-    const group=L.layerGroup();
+    const group=L.layerGroup();group.items=[];
     for(const [code,n] of Object.entries(stateTotals())){
       if(!n)continue;const b=STATE_BOUNDS[code];
       const size=n>=5000?46:n>=1000?40:34;
-      const icon=L.divIcon({className:'kt-state-bubble',html:`<span style="width:${size}px;height:${size}px">${short(n)}</span>`,iconSize:[size,size],iconAnchor:[size/2,size/2]});
-      const m=L.marker([(b.s+b.n)/2,(b.w+b.e)/2],{icon,title:`${code}: about ${n.toLocaleString('en-US')} source listings. Select to zoom in.`,keyboard:true});
+      const ll=BUBBLE_ANCHOR[code]||[(b.s+b.n)/2,(b.w+b.e)/2];
+      const m=L.marker(ll,{icon:bubbleIcon(size,n),title:`${code}: about ${n.toLocaleString('en-US')} source listings. Select to zoom in.`,keyboard:true,zIndexOffset:n});
       m.on('click',()=>{state.map.fitBounds([[b.s,b.w],[b.n,b.e]],{maxZoom:9});if(state.map.getZoom()<DETAIL_ZOOM)state.map.setView([(b.s+b.n)/2,(b.w+b.e)/2],DETAIL_ZOOM);});
-      group.addLayer(m);
+      group.addLayer(m);group.items.push({code,n,base:size,size,ll,marker:m,line:null,dx:0,dy:0});
     }
     return group;
+  }
+  // Small eastern states overlap at national zoom. Larger totals keep their place, and each smaller
+  // bubble moves to the nearest free spot, preferring east and south (open water), with a leader line.
+  const BUBBLE_DIRECTIONS=[0,30,-30,60,90,-60,120,150,180,-90,-120,-150].map(d=>d*Math.PI/180);
+  function layoutOverview() {
+    const g=state.overview;if(!g||!g.items||!state.map||!state.map.hasLayer(g))return;
+    const placed=[],scale=state.map.getZoom()<=4?0.72:1;
+    for(const it of [...g.items].sort((a,b)=>b.n-a.n)){
+      const size=Math.round(it.base*scale),resized=size!==it.size;it.size=size;
+      const p=state.map.latLngToLayerPoint(it.ll);
+      const free=(x,y)=>placed.every(q=>Math.hypot(q.x-x,q.y-y)>=(q.r+it.size/2+3));
+      let dx=0,dy=0;
+      if(!free(p.x,p.y)){
+        let found=false;
+        for(let ring=1;ring<=6&&!found;ring++){
+          const dist=ring*it.size*0.75;
+          for(const a of BUBBLE_DIRECTIONS){const x=p.x+Math.cos(a)*dist,y=p.y+Math.sin(a)*dist;if(free(x,y)){dx=Math.round(x-p.x);dy=Math.round(y-p.y);found=true;break;}}
+        }
+      }
+      placed.push({x:p.x+dx,y:p.y+dy,r:it.size/2});
+      if(resized||dx!==it.dx||dy!==it.dy){it.dx=dx;it.dy=dy;it.marker.setIcon(bubbleIcon(it.size,it.n,dx,dy));}
+      if(dx||dy){const end=state.map.layerPointToLatLng([p.x+dx,p.y+dy]);if(it.line)it.line.setLatLngs([it.ll,end]);else it.line=L.polyline([it.ll,end],{className:'kt-state-leader',interactive:false,weight:1.5,color:'#24613f',opacity:.8});if(!g.hasLayer(it.line))g.addLayer(it.line);}
+      else if(it.line&&g.hasLayer(it.line))g.removeLayer(it.line);
+    }
   }
   function syncMode() {
     if(!state.map||!state.clusterGroup)return;
@@ -266,7 +295,7 @@
     } else {
       if(state.map.hasLayer(state.clusterGroup))state.map.removeLayer(state.clusterGroup);
       if(!state.overview)state.overview=buildOverview();
-      if(!state.map.hasLayer(state.overview))state.map.addLayer(state.overview);
+      if(!state.map.hasLayer(state.overview)){state.map.addLayer(state.overview);layoutOverview();}
     }
   }
   function onView() {
@@ -277,13 +306,15 @@
   const api=window.KampTrailData={
     version:'2.6.0',
     DETAIL_ZOOM,
+    _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
       state.map=map;state.config=config;
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});
       let timer;
+      map.on('zoomend',layoutOverview);
       map.on('moveend',()=>{syncMode();clearTimeout(timer);timer=setTimeout(onView,250);});
       await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex()]);
-      state.overview=null;
+      if(state.overview&&map.hasLayer(state.overview))map.removeLayer(state.overview);state.overview=null;
       await onView();
     },
     getDefaultFilters:defaults,
