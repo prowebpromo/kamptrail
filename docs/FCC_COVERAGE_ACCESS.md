@@ -93,3 +93,5 @@ availability metadata. Temporary probe cron must be removed after observing its
 result. No public layer, national refresh or production API deployment yet.
 
 Sanitized follow-up result: `FCC token field is missing or empty.` No FCC request was transmitted. Owner must privately populate that field, save and close the editor. Do not inspect the credential file or capture it.
+
+Latest retry, 2026-10-29 16:00 UTC: direct Python cron ran successfully and reported `FCC account email field is missing or empty.` This supersedes the earlier missing-token diagnosis. Validation stopped before any FCC request. No raw credential values were read. The temporary direct-test cron was removed; wait for owner-provided FCC account email, which can be inserted server-side without displaying or replacing the saved token.

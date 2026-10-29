@@ -32,3 +32,5 @@ existing fetcher tests require `requests`, absent from this runtime (three impor
 See `docs/FCC_COVERAGE_ACCESS.md` for private setup and remaining gates.
 
 Hostinger verification: Python 3.9.25, original six security tests passed on server. Seven tests now pass locally including field-only diagnostics. Private worker and credential data installed outside web root. Real API probe stopped before transmission: the `token` field was missing or empty. No raw credential values were read by the model. Temporary probe schedule removed after validation. Public mobile layer remains blocked on private token entry.
+
+Latest retry, 2026-10-29 16:00 UTC: direct Python cron ran successfully and reported `FCC account email field is missing or empty.` This supersedes the earlier missing-token diagnosis. Validation stopped before any FCC request. No raw credential values were read. The temporary direct-test cron was removed; wait for owner-provided FCC account email, which can be inserted server-side without displaying or replacing the saved token.
