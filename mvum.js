@@ -26,7 +26,7 @@
     }).finally(()=>{st.linksPromise=null;});
     return st.linksPromise;
   }
-  function forestLink(name,links){const key=norm(name),rows=Array.isArray(links)?links:[],exact=rows.find(f=>norm(f.name)===key);if(exact)return exact.url;const candidates=rows.filter(f=>key.length>6&&norm(f.name).includes(key)),urls=[...new Set(candidates.map(f=>f.url))];return urls.length===1?urls[0]:null;}
+  function forestLink(name,links){const key=norm(name),rows=Array.isArray(links)?links:[],exact=rows.filter(f=>norm(f.name)===key),candidates=exact.length?exact:rows.filter(f=>key.length>6&&norm(f.name).includes(key)),urls=[...new Set(candidates.map(f=>f.url))];return urls.length===1?urls[0]:null;}
   function detail(feature,links){const p=props(feature.properties),box=node('div',null,'kt-road-popup');box.append(node('h3',clean(p.name)||`Forest road ${clean(p.id)||'number not reported'}`),node('p',designation(p)));
     const dl=node('dl');const add=(label,value)=>{dl.append(node('dt',label),node('dd',clean(value)||'Not reported'));};
     add('Road number',p.id);add('Forest',p.forestname);add('Ranger district',p.districtname);add('Surface reported',p.surfacetype);add('Road status reported',p.routestatus);
@@ -80,5 +80,5 @@
     const retry=node('button','Retry road data','btn');retry.type='button';retry.onclick=refresh;body.append(retry);st.coverage=node('div',null,'kt-mvum-coverage');body.append(st.coverage);details.append(body);box.append(details);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);st.box=box;return box;};return c;}
   function init(map){st.map=map;st.renderer=L.svg();try{const n=Number(localStorage.getItem('kt_mvum_opacity'));if(n>=.2&&n<=1)st.opacity=n;}catch{}st.group=L.layerGroup();st.group.on('add',()=>{st.enabled=true;st.control=control().addTo(map);refresh();});st.group.on('remove',()=>{st.enabled=false;st.sequence++;st.abort?.abort();clearTimeout(st.timer);st.control?.remove();});map.on('moveend',()=>{if(st.enabled&&!st.reading){clearTimeout(st.timer);st.timer=setTimeout(refresh,500);}});return st.group;}
   function showNear(lat,lng){if(!st.map||!st.group)return;st.map.closePopup();st.map.setView([lat,lng],Math.max(12,st.map.getZoom()));clearTimeout(st.timer);if(!st.map.hasLayer(st.group))st.group.addTo(st.map);else refresh();st.box?.querySelector('details')?.setAttribute('open','');}
-  global.KampTrailMVUM={version:'2.8.0',init,showNear,refresh,designation,reported,normalizeUnits,validRoad,safeLink,forestLink,query,SERVICE};
+  global.KampTrailMVUM={version:'2.8.1',init,showNear,refresh,designation,reported,normalizeUnits,validRoad,safeLink,forestLink,query,SERVICE};
 })(typeof window!=='undefined'?window:globalThis);
