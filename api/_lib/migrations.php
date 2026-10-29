@@ -117,4 +117,16 @@ return [
             "CREATE INDEX idx_routing_client ON routing_events (client_hash,created_at)",
         ],
     ],
+    '004_observations' => [
+        'mysql' => [
+            "CREATE TABLE IF NOT EXISTS community_observations (review_id BIGINT UNSIGNED PRIMARY KEY, details TEXT NOT NULL, FOREIGN KEY (review_id) REFERENCES community_reviews(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+            "CREATE TABLE IF NOT EXISTS community_discovery_state (id INTEGER PRIMARY KEY, revision BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+            "INSERT INTO community_discovery_state (id,revision) SELECT 1,1 WHERE NOT EXISTS (SELECT 1 FROM community_discovery_state WHERE id=1)",
+        ],
+        'sqlite' => [
+            "CREATE TABLE IF NOT EXISTS community_observations (review_id INTEGER PRIMARY KEY, details TEXT NOT NULL, FOREIGN KEY (review_id) REFERENCES community_reviews(id))",
+            "CREATE TABLE IF NOT EXISTS community_discovery_state (id INTEGER PRIMARY KEY, revision INTEGER NOT NULL)",
+            "INSERT INTO community_discovery_state (id,revision) SELECT 1,1 WHERE NOT EXISTS (SELECT 1 FROM community_discovery_state WHERE id=1)",
+        ],
+    ],
 ];

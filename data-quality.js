@@ -201,7 +201,7 @@
       if (filters.rigSize && filters.rigSize !== 'all' && !p.rig_friendly.includes(filters.rigSize)) return false;
       if (filters.roadDifficulty && filters.roadDifficulty !== 'all' && p.road_difficulty !== filters.roadDifficulty) return false;
       if (Array.isArray(filters.amenities) && !filters.amenities.every(a => p.amenities.includes(a))) return false;
-      if (+filters.minRating > 0 && (p.rating === null || p.rating < +filters.minRating)) return false;
+      if (global.KampTrailDiscovery?.active(filters)) {if(!global.KampTrailDiscovery.matches(p,filters))return false;} else if(+filters.minRating>0)return false;
       // Rig length: a campground matches only if at least one site reports an RV-type length that fits.
       // Rig length and hookups must be satisfied by the same campsite, never by different sites in one campground.
       const rig = +filters.rigLength > 0 ? +filters.rigLength : 0, hooks = Array.isArray(filters.hookups) ? filters.hookups : [];
@@ -236,6 +236,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={version:'2.8.1',summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={version:'2.9.0',summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

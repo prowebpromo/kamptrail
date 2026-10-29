@@ -10,6 +10,7 @@ try {
         if ($owner!=='') {
             $q=$pdo->prepare('SELECT id,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,public_note,updated_at FROM community_reviews WHERE owner_hash=?');$q->execute([$owner]);$row=$q->fetch();
             if (!$row) kc_error(404,'Management code not found.');
+            $row['observations']=ko_read($pdo,(int)$row['id']);
             $row['photos']=kc_photo_rows($pdo,(int)$row['id'],false);
             kt_json(200,['ok'=>true,'review'=>$row]);
         }
@@ -17,8 +18,9 @@ try {
         if ($site==='') kc_error(422,'Choose a campsite.');
         $before=max(0,(int)($_GET['before']??0));
         $q=$pdo->prepare("SELECT COUNT(*) AS count, AVG(rating) AS average FROM community_reviews WHERE campsite_id=? AND status='published'");$q->execute([$site]);$stats=$q->fetch();
-        $q=$pdo->prepare("SELECT id,display_name,rating,body,visited_on,rig,created_at,updated_at FROM community_reviews WHERE campsite_id=? AND status='published'".($before?' AND id < ?':'').' ORDER BY id DESC LIMIT 11');$q->execute($before?[$site,$before]:[$site]);$rows=$q->fetchAll();$more=count($rows)>10;$rows=array_slice($rows,0,10);
-        foreach ($rows as &$r) {$r['id']=(int)$r['id'];$r['rating']=(int)$r['rating'];$r['photos']=kc_photo_rows($pdo,$r['id']);}unset($r);
+        $hasObservations=ko_ready($pdo);
+        $q=$pdo->prepare("SELECT r.id,r.display_name,r.rating,r.body,r.visited_on,r.rig,r.created_at,r.updated_at,".($hasObservations?"o.details":"NULL")." AS observation_details FROM community_reviews r ".($hasObservations?"LEFT JOIN community_observations o ON o.review_id=r.id ":"")."WHERE r.campsite_id=? AND r.status='published'".($before?' AND r.id < ?':'').' ORDER BY r.id DESC LIMIT 11');$q->execute($before?[$site,$before]:[$site]);$rows=$q->fetchAll();$more=count($rows)>10;$rows=array_slice($rows,0,10);
+        foreach ($rows as &$r) {$r['id']=(int)$r['id'];$r['rating']=(int)$r['rating'];$r['observations']=$r['observation_details']?(json_decode($r['observation_details'],true)?:[]):[];unset($r['observation_details']);$r['photos']=kc_photo_rows($pdo,$r['id']);}unset($r);
         kt_json(200,['ok'=>true,'count'=>(int)$stats['count'],'average'=>$stats['average']===null?null:round((float)$stats['average'],1),'reviews'=>$rows,'next_before'=>$more?(int)end($rows)['id']:null,'photos_available'=>extension_loaded('gd') && class_exists('finfo'),'limits'=>['photos'=>3,'bytes_per_photo'=>KT_PHOTO_INPUT_LIMIT,'pixels_per_photo'=>KT_PHOTO_PIXEL_LIMIT]]);
     }
     kc_origin();
@@ -45,9 +47,10 @@ try {
         kc_lock($pdo);kc_rate($pdo,'manage',20);$id=(int)$old['id'];
         foreach (kc_photo_rows($pdo,$id,false) as $p) kc_delete_photo($pdo,$p['id'],$id);
         $pdo->prepare("UPDATE community_reviews SET status='deleted',body='',display_name='',rig='',visited_on='',public_note=NULL,updated_at=? WHERE id=?")->execute([kt_now(),$id]);
-        kc_audit($pdo,$id,'author_delete',$old['status'],'deleted','author');$pdo->commit();kt_json(200,['ok'=>true,'status'=>'deleted']);
+        ko_save($pdo,$id,[]);ko_changed($pdo);kc_audit($pdo,$id,'author_delete',$old['status'],'deleted','author');$pdo->commit();kt_json(200,['ok'=>true,'status'=>'deleted']);
     }
-    $v=kc_validate($in);
+    $v=kc_validate($in);$observations=ko_validate($in['observations']??'');
+    if ($observations && !ko_ready($pdo)) kc_error(503,'Camper observations are temporarily unavailable. Please try again later.');
     if ($old && $v['campsite_id']!==$old['campsite_id']) kc_error(422,'An existing review cannot be moved to another campsite.');
     // Reject excess photos before decoding any image.
     $removeRaw=$in['remove_photos']??[];
@@ -62,6 +65,7 @@ try {
     }
     $photos=kc_photos();
     kc_lock($pdo);kc_rate($pdo,$old?'manage':'submit',$old?20:5);
+    if($old){$fresh=kc_row($pdo,(int)$old['id']);if(!$fresh||$fresh['status']==='deleted'){$pdo->rollBack();kc_error(409,'This review changed. Reload it before editing.');}$old=$fresh;if(!array_key_exists('observations',$in))$observations=ko_read($pdo,(int)$old['id']);}
     $token=null;$now=kt_now();
     if (!$old) {
         $token=bin2hex(random_bytes(32));
@@ -69,11 +73,10 @@ try {
     } else {
         $id=(int)$old['id'];
         $q=$pdo->prepare("UPDATE community_reviews SET display_name=?,rating=?,body=?,visited_on=?,rig=?,status='pending',public_note=NULL,updated_at=? WHERE id=? AND status<>'deleted'");$q->execute([$v['display_name'],$v['rating'],$v['body'],$v['visited_on'],$v['rig'],$now,$id]);
-        if (!$q->rowCount()) {$pdo->rollBack();kc_error(409,'This review changed. Reload it before editing.');}
         foreach ($remove as $photo) kc_delete_photo($pdo,$photo,$id);
         $pdo->prepare("UPDATE community_photos SET status='pending' WHERE review_id=? AND status<>'deleted'")->execute([$id]);
     }
-    kc_save_photos($pdo,$id,$photos);kc_audit($pdo,$id,$old?'author_edit':'submit',$old?$old['status']:'new','pending','author');$pdo->commit();
+    ko_save($pdo,$id,$observations);kc_save_photos($pdo,$id,$photos);kc_audit($pdo,$id,$old?'author_edit':'submit',$old?$old['status']:'new','pending','author');ko_changed($pdo);$pdo->commit();
     kt_json($old?200:201,['ok'=>true,'id'=>$id,'token'=>$token,'status'=>'pending']);
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();
