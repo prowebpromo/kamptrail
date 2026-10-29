@@ -11,7 +11,7 @@
     if(!st.dialog){const d=el('dialog',{id:'kt-community','aria-labelledby':'kt-community-title'}),head=el('div',{class:'kt-report-head'});head.append(el('h2',{id:'kt-community-title'}),button('Close',()=>d.close()));d.append(head,el('div',{class:'kt-community-body'}));d.addEventListener('close',()=>{st.view++;st.focus?.focus?.();});document.body.append(d);st.dialog=d;}
     st.view++;st.dialog.querySelector('h2').textContent=title;const body=st.dialog.querySelector('.kt-community-body');body.replaceChildren();if(!st.dialog.open)st.dialog.showModal();return body;
   }
-  function field(label,input,hint){const l=el('label',{class:'kt-field'});l.append(el('span',{},label),input);if(hint)l.append(el('small',{},hint));return l;}
+  function field(label,input,hint){if(!input.hasAttribute('aria-label'))input.setAttribute('aria-label',label);const l=el('label',{class:'kt-field'});l.append(el('span',{},label),input);if(hint)l.append(el('small',{},hint));return l;}
   async function request(body,token){const r=await fetch(API,{method:'POST',headers:token?{Authorization:'Bearer '+token}:{},body});const out=await r.json().catch(()=>({}));if(!r.ok)throw new Error(out.message||(r.status===413?'The upload is too large. Use smaller photos.':'The reviews service is unavailable. Try again when you have a connection.'));return out;}
   function message(text,error=false){return el('p',{role:'status','aria-live':'polite',class:error?'kt-report-msg is-error':'kt-report-msg'},text);}
   function image(p,review){
