@@ -39,7 +39,7 @@ return [
 
 - Missing config: every endpoint returns 503 with `config: missing`. No paths or errors are shown.
 - Database unreachable: 503 `database: unavailable`. The PDO error goes to the server error log only.
-- Migrations pending: submissions return 503 until a moderator applies them.
+- Base contributions migration pending: submissions return 503 until a moderator applies it. A later additive community migration does not block existing campsite corrections.
 - `health.php` reports `config_permissions: too_open` if the config file is readable by group or others.
 - The app treats any non-201 response as unavailable and offers a GitHub issue link instead.
 

@@ -2,9 +2,10 @@
 // Moderator page: review reports, set status with a public note, keep an audit trail, apply schema migrations.
 declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
+require __DIR__ . '/_lib/community-admin.php';
 
 header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
+header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 kt_headers('text/html; charset=utf-8');
 
 function h($v): string { return htmlspecialchars((string)$v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
@@ -29,7 +30,7 @@ if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(16));
 $csrf = $_SESSION['csrf'];
 $self = h(basename(__FILE__));
 
-if (($_POST['do'] ?? '') === 'logout') { $_SESSION = []; session_destroy(); header('Location: ' . basename(__FILE__)); exit; }
+if (($_POST['do'] ?? '') === 'logout' && hash_equals($csrf, (string)($_POST['csrf'] ?? ''))) { $_SESSION = []; session_destroy(); header('Location: ' . basename(__FILE__)); exit; }
 
 if (empty($_SESSION['moderator'])) {
     $error = '';
@@ -60,6 +61,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         if (($_POST['do'] ?? '') === 'migrate') {
             $applied = kt_migrate($pdo);
             $notice = $applied ? 'Applied migrations: ' . h(implode(', ', $applied)) : 'No migrations were pending.';
+        } elseif (str_starts_with((string)($_POST['do'] ?? ''), 'community_')) {
+            $notice = kc_moderate($pdo, $moderator);
         } elseif (($_POST['do'] ?? '') === 'set') {
             $id = (int)($_POST['id'] ?? 0);
             $to = (string)($_POST['status'] ?? '');
@@ -91,6 +94,8 @@ if ($pending) {
     $body .= '<div class="card"><strong>Schema migrations pending:</strong> ' . h(implode(', ', $pending)) . '<form method="post" action="' . $self . '"><input type="hidden" name="do" value="migrate"><input type="hidden" name="csrf" value="' . h($csrf) . '"><button>Apply migrations</button></form></div>';
     page('KampTrail moderation', $body);
 }
+$body .= '<nav><a href="' . $self . '">Campsite corrections</a><a href="' . $self . '?community=1">Reviews, photos and reports</a></nav>';
+if (isset($_GET['community'])) page('KampTrail community moderation', $body . kc_admin_body($pdo, $csrf, $self));
 $filter = in_array($_GET['status'] ?? 'received', KT_STATUSES, true) ? (string)($_GET['status'] ?? 'received') : 'received';
 $body .= '<nav>' . implode('', array_map(fn($s) => '<a href="' . $self . '?status=' . h($s) . '">' . ($s === $filter ? '<strong>' . h($s) . '</strong>' : h($s)) . '</a>', KT_STATUSES)) . '</nav>';
 $rows = $pdo->prepare('SELECT * FROM submissions WHERE status = ? ORDER BY created_at ASC LIMIT 100');

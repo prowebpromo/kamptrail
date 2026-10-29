@@ -24,7 +24,7 @@ test('an existing stale worker upgrades automatically without asking the visitor
     legacy=false;let navigations=0;page.on('framenavigated',f=>{if(f===page.mainFrame())navigations++;});
     await page.evaluate(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:42.65,lng:-73.75,zoom:8})));
     await page.goto(url+'/',{waitUntil:'domcontentloaded'});
-    await page.waitForFunction(()=>window.KampTrailData?.version==='2.5.1'&&KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+    await page.waitForFunction(version=>window.KampTrailData?.version===version&&KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading,require('../../package.json').version);
     expect(navigations).toBeGreaterThanOrEqual(2);
     await expect(page.locator('#trip')).toContainText('Saved stops');
     await expect(page.locator('#result-summary')).not.toContainText('Updating');

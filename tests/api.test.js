@@ -148,3 +148,14 @@ test('a world-readable configuration is reported without revealing its contents'
     assert.equal(health.config_permissions, 'too_open');
   } finally { proc.kill(); }
 });
+
+test('a pending additive community migration does not interrupt existing campsite corrections', {skip: !hasPhp}, async()=>{
+  const cfg=tmpConfig(),port=18907,base=`http://127.0.0.1:${port}`,proc=await server(cfg.file,port);
+  try{
+    const admin=await adminSession(base);await admin.form({do:'login',password:'correct horse battery'});await admin.form({do:'migrate'});
+    const removed=spawnSync('php',['-r',`$p=new PDO('sqlite:${cfg.db}');$p->exec("DELETE FROM schema_migrations WHERE version='002_community'");`]);assert.equal(removed.status,0);
+    const h=await(await fetch(base+'/api/health.php')).json();assert.equal(h.accepting_reports,true);assert.equal(h.community,'migrations_pending');
+    assert.equal((await post(base,good)).status,201);
+    assert.equal((await fetch(base+'/api/community.php?site=usfs:77')).status,503);
+  }finally{proc.kill();}
+});

@@ -23,5 +23,7 @@ kt_json($pending ? 503 : 200, [
     'config_permissions' => $tooOpen === null ? 'unknown' : ($tooOpen ? 'too_open' : 'private'),
     'database' => 'ok',
     'schema' => $pending ? 'migrations_pending' : 'current',
-    'accepting_reports' => !$pending,
+    'accepting_reports' => in_array('001_contributions', kt_applied_migrations($pdo), true),
+    'community' => in_array('002_community', kt_applied_migrations($pdo), true) ? 'ready' : 'migrations_pending',
+    'photo_processing' => extension_loaded('gd') && class_exists('finfo') ? 'ready' : 'unavailable',
 ]);
