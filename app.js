@@ -42,7 +42,7 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.5.1' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib].some(module=>module?.version!=='2.5.1')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.6.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity].some(module=>module?.version!=='2.6.0')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
@@ -50,6 +50,7 @@
   const dataDialog = document.getElementById('data-dialog');
   document.getElementById('about-data').addEventListener('click', () => {updateCatalogueSummary();dataDialog.showModal();});
   document.getElementById('kt-my-reports')?.addEventListener('click', () => {dataDialog.close();KampTrailContrib.showReports();});
+  document.getElementById('kt-my-reviews')?.addEventListener('click', () => {dataDialog.close();KampTrailCommunity.mine();});
   dataDialog.addEventListener('click', event => { if (event.target === dataDialog) {
     const box=dataDialog.getBoundingClientRect();
     if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dataDialog.close();

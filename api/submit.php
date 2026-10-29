@@ -7,7 +7,7 @@ kt_require_method('POST');
 $pdo = kt_db();
 if (!$pdo) kt_unavailable();
 try {
-    if (kt_pending_migrations($pdo)) kt_unavailable();
+    if (!in_array('001_contributions', kt_applied_migrations($pdo), true)) kt_unavailable();
 } catch (Throwable $e) {
     kt_unavailable();
 }
