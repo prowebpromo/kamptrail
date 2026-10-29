@@ -32,4 +32,12 @@ test('built release contains agency index dependencies and supports a custom-dom
     if(/^(?:https?:|#)/.test(url)||url.includes('?'))continue;
     assert.ok(fs.existsSync(path.join(out,url)),`Missing page dependency: ${url}`);
   }
+  // The contributions API ships its public entry points and private helpers, never configuration.
+  for(const file of ['data/health.json','api/health.php','api/submit.php','api/status.php','api/admin.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
+    assert.ok(fs.existsSync(path.join(out,file)),`Missing API file: ${file}`);
+  assert.match(fs.readFileSync(path.join(out,'api/_lib/.htaccess'),'utf8'),/Require all denied/);
+  const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
+  for(const file of walk(out)){
+    assert.ok(!/kamptrail-config|\.env$|private[\/]/.test(file),`Configuration must not be packaged: ${file}`);
+  }
 });

@@ -47,7 +47,7 @@ test('long-press spot check shows the land manager, stay-limit guidance, forecas
   await expect(popup).toContainText('Bureau of Land Management (BLM)');
   await expect(popup).toContainText('14 days within any 28-day period');
   await expect(popup.locator('a[href="https://www.blm.gov/camping"]')).toBeVisible();
-  await expect(popup.locator('a',{hasText:'Suggest a campsite here'})).toHaveAttribute('href',/template=new-campsite\.yml.*coordinates=37\.45000%2C\+-118\.40000/);
+  await expect(popup.getByRole('button',{name:'Suggest a campsite here'})).toBeVisible();
   await popup.getByRole('button',{name:'Forecast + elevation'}).click();
   await expect(popup).toContainText('Elevation about 4,921 ft');
   await expect(popup).toContainText('Tonight: 31°F, Clear');
@@ -62,7 +62,7 @@ test('campsite popup links to share, corrections, nearest services, and opens fr
   await page.goto(`/#site=${encodeURIComponent(target.id)}`,{waitUntil:'domcontentloaded'});
   const popup=page.locator('.leaflet-popup');
   await expect(popup).toContainText(target.name);
-  await expect(popup.locator('a',{hasText:'Suggest a fix'})).toHaveAttribute('href',/github\.com\/prowebpromo\/kamptrail\/issues\/new\?template=campsite-correction\.yml/);
+  await expect(popup.getByRole('button',{name:'Suggest a fix'})).toBeVisible();
   await popup.getByRole('button',{name:'Share'}).click();
   expect(await page.evaluate(()=>navigator.clipboard.readText())).toContain(`#site=${encodeURIComponent(target.id)}`);
   await popup.getByRole('button',{name:'Nearest RV services'}).click();

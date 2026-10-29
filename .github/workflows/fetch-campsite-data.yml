@@ -89,22 +89,30 @@ jobs:
         run: |
           set -euo pipefail
           failures=0
+          node scripts/record_health.js start
           for state in $STATE_INPUT; do
             if [[ "$SOURCE_MODE" != osm ]]; then
               if [[ -n "$RIDB_API_KEY" ]]; then
-                python scripts/fetch_recreation_gov_data.py --api-key "$RIDB_API_KEY" --state "$state" --limit "$PAGE_SIZE" || {
+                if python scripts/fetch_recreation_gov_data.py --api-key "$RIDB_API_KEY" --state "$state" --limit "$PAGE_SIZE"; then
+                  node scripts/record_health.js record ridb "$state" fresh
+                else
                   echo "RIDB refresh failed for $state; saved source retained"
+                  node scripts/record_health.js record ridb "$state" failed
                   failures=$((failures + 1))
-                }
+                fi
               else
                 echo 'RIDB secret unavailable; retaining saved RIDB source records'
+                node scripts/record_health.js record ridb "$state" skipped
               fi
             fi
             if [[ "$SOURCE_MODE" != ridb ]]; then
-              python scripts/fetch_osm_data.py --state "$state" || {
+              if python scripts/fetch_osm_data.py --state "$state"; then
+                node scripts/record_health.js record osm "$state" fresh
+              else
                 echo "OSM refresh failed for $state; saved source retained"
+                node scripts/record_health.js record osm "$state" failed
                 failures=$((failures + 1))
-              }
+              fi
             fi
             node scripts/merge_campsite_data.js --state="$state"
             sleep 5
@@ -138,8 +146,10 @@ jobs:
         shell: bash
         run: |
           set -uo pipefail
-          python scripts/fetch_usfs_recreation.py || echo 'USFS refresh failed; saved records kept.' >> "$GITHUB_STEP_SUMMARY"
-          python scripts/fetch_blm_recreation.py || echo 'BLM refresh failed; saved records kept.' >> "$GITHUB_STEP_SUMMARY"
+          if python scripts/fetch_usfs_recreation.py; then node scripts/record_health.js record usfs US fresh
+          else echo 'USFS refresh failed; saved records kept.' >> "$GITHUB_STEP_SUMMARY"; node scripts/record_health.js record usfs US failed; fi
+          if python scripts/fetch_blm_recreation.py; then node scripts/record_health.js record blm US fresh
+          else echo 'BLM refresh failed; saved records kept.' >> "$GITHUB_STEP_SUMMARY"; node scripts/record_health.js record blm US failed; fi
           python scripts/build_agency_states.py
       - name: Rebuild national campsite-name search
         run: node scripts/build-search-index.js
@@ -148,24 +158,33 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          set -euo pipefail
-          curl -fsSL --retry 3 -o "$RUNNER_TEMP/ridb.zip" https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip
-          python scripts/build_ridb_sites.py "$RUNNER_TEMP/ridb.zip"
+          set -uo pipefail
+          if curl -fsSL --retry 3 -o "$RUNNER_TEMP/ridb.zip" https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip \
+            && python scripts/build_ridb_sites.py "$RUNNER_TEMP/ridb.zip"; then
+            node scripts/record_health.js record ridb_sites US fresh
+          else
+            echo 'Recreation.gov site details refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
+            node scripts/record_health.js record ridb_sites US failed
+          fi
       - name: Refresh RV services (dump, water fill, propane) from OpenStreetMap
         # A failed Overpass request raises before writing, so saved services stay unchanged.
         continue-on-error: true
         shell: bash
         run: |
-          set -euo pipefail
-          python scripts/fetch_osm_poi.py
-          node scripts/build-services.js
+          set -uo pipefail
+          if python scripts/fetch_osm_poi.py && node scripts/build-services.js; then
+            node scripts/record_health.js record services US fresh
+          else
+            echo 'RV services refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
+            node scripts/record_health.js record services US failed
+          fi
       - name: Commit successful source and snapshot updates
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/campsites data/opencampingmap data/poi_dump_water_propane.geojson data/services data/sources
+          git add data/campsites data/opencampingmap data/poi_dump_water_propane.geojson data/services data/sources data/health.json
           if ! git diff --staged --quiet; then
             git commit -m 'Refresh sourced campsite data and merged snapshots'
             git push

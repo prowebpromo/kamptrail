@@ -85,10 +85,9 @@
     const dir = document.createElement('a'); dir.href = directions(lat, lng); dir.target = '_blank'; dir.rel = 'noopener noreferrer'; dir.textContent = 'Directions';
     actions.append(wxBtn, save, share, dir);
     const suggest = document.createElement('p'); suggest.className = 'kt-fine';
-    if (window.KampTrailShare) {
-      const a = document.createElement('a'); a.href = KampTrailShare.issueUrl('new', {lat, lng}); a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'Suggest a campsite here';
-      suggest.append(a, ' (free GitHub account needed)');
-    }
+    const sug = btn('Suggest a campsite here', () => window.KampTrailContrib ? KampTrailContrib.open({kind: 'new_place', lat, lng}) : window.KampTrailShare && window.open(KampTrailShare.issueUrl('new', {lat, lng}), '_blank', 'noopener'));
+    sug.className = 'kt-linkbtn';
+    suggest.append(sug, ' No account needed.');
     box.append(h, gps, land, wx, actions, suggest);
     L.popup({maxWidth: 320, className: 'kt-spot'}).setLatLng([lat, latlng.lng]).setContent(box).openOn(st.map);
     KampTrailSpot.renderLand(land, lat, lng);
@@ -126,5 +125,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.4.2', init, openSpot, loadServices, showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.5.0', init, openSpot, loadServices, showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();
