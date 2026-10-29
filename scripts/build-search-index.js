@@ -20,7 +20,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (geojson?.type !== 'FeatureCollection' || !Array.isArray(geojson.features)) {
       throw new Error(`${state} is not a GeoJSON FeatureCollection`);
     }
-    for (const raw of geojson.features) {
+    for (const raw of quality.publicationCandidates(geojson.features,{state})) {
       const feature = quality.normalizeFeature(raw, {state});
       if (!feature) continue;
       if(siteDetails)quality.attachSiteDetails(feature,siteDetails);
@@ -44,6 +44,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if(p.amenities?.length)m.a=p.amenities;
     if(p.rig_friendly?.length)m.r=p.rig_friendly;
     if(p.road_difficulty)m.d=p.road_difficulty;
+    if(typeof p.open_status==='string'&&p.open_status.trim()&&p.open_status.trim().toLowerCase()!=='none')m.o=p.open_status.trim().toLowerCase().slice(0,80);
     if(p.rating!==null)m.q=p.rating;
     if(p.rv_sigs?.length)m.g=p.rv_sigs;
     return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states:[...states].sort(),lat,lng,m};

@@ -65,6 +65,33 @@ test('world-wrapped map still loads the geographic state',()=>{
   assert.ok(h.api.getVisibleStates(h.map).includes('NY'));
 });
 
+test('known agency closures appear before fee claims without changing free matches',async()=>{
+  const statuses=['closed','temporarily closed','unknown','none'];
+  const rows=statuses.map((open_status,i)=>feature({name:`Closure ${i} Campground`,osm_id:100+i,tourism:'camp_site',fee:'no',open_status}));
+  const h=harness(async url=>url.endsWith('.json')?response({}):response({type:'FeatureCollection',features:rows}));
+  h.context.kamptrailFilters={cost:'free'};
+  await h.api.init(h.map);
+  assert.equal(h.api.getVisibleCampsites().length,4);
+  for(const [i,status] of statuses.entries()){
+    const html=h.cluster.layers.find(marker=>marker.html.includes(`Closure ${i} Campground`)).html;
+    if(i<2){assert.ok(html.includes(`Agency reports: ${status}.`));assert.ok(html.indexOf('kt-closure-notice')<html.indexOf('<strong>Cost:'));assert.ok(html.includes('Confirm reopening with the operator.'));}
+    else{assert.ok(!html.includes('kt-closure-notice'));assert.ok(!html.includes('Agency reports: open'));}
+  }
+});
+
+test('unverified records cannot acquire camping eligibility from an earlier state load',async()=>{
+  for(const fee_status of ['unknown','paid'])for(const order of [['ID','OR'],['OR','ID']]){
+    const ridb={type:'Feature',geometry:{type:'Point',coordinates:[-117.2177778,44.36611111]},properties:{id:'ridb:255223',facility_id:'255223',name:'Steck Park',schema_version:3,fee_status,cost:null,description:'Reservoir access and boat ramps.'}};
+    const osm={type:'Feature',geometry:{type:'Point',coordinates:[-117.2184182,44.3652693]},properties:{id:'osm:way:1059339869',osm_id:1059339869,osm_type:'way',name:'Steck Park',tourism:'camp_site'}};
+    const h=harness(async url=>url.endsWith('ridb-sites.json')?response({facilities:{'255223':{f:'paid'}}}):url.endsWith('ID_merged.geojson')?response({type:'FeatureCollection',features:[ridb]}):url.endsWith('OR_merged.geojson')?response({type:'FeatureCollection',features:[osm]}):response({}));
+    for(const name of ['getSouth','getNorth','getWest','getEast'])h.bounds[name]=()=>0;
+    await h.api.init(h.map);for(const code of order)await h.api.loadStates([code]);
+    const rows=h.api.getAllCampsites();assert.equal(rows.length,1);
+    const p=rows[0].properties;assert.equal(p.id,'osm:way:1059339869');assert.equal(p.fee_status,'unknown');
+    assert.ok(!p.legacy_ids.includes('ridb:255223'));assert.equal(h.api.getCampsiteById('ridb:255223'),undefined);
+  }
+});
+
 function cacheStorage() {
   const stores=new Map(),writes=[];
   return {stores,writes,async open(name){

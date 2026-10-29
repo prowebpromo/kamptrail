@@ -22,6 +22,35 @@ test('national index contains publishable sites from snapshots outside the curre
   assert.deepEqual(index.sites.find(s=>s.name==='Pacific Campground').states,['CA']);
 });
 
+test('compact index retains agency closure status without inferring missing availability',()=>{
+  const statuses=['closed','temporarily closed',undefined,'none'];
+  const features=statuses.map((open_status,i)=>{const f=campsite(`Status ${i} Campground`,200+i);f.properties.open_status=open_status;f.properties.fee='no';return f;});
+  const index=buildSearchIndex([source('NY',features)]);
+  for(const [i,status] of statuses.entries()){
+    const row=index.sites.find(s=>s.name===`Status ${i} Campground`);
+    assert.equal(row.m.f,'free');
+    assert.equal(row.m.o,i<2?status:undefined);
+  }
+});
+
+test('search screens camping within each state before cross-state fee reconciliation',()=>{
+  const ridb={type:'Feature',geometry:{type:'Point',coordinates:[-117.2177778,44.36611111]},properties:{id:'ridb:255223',facility_id:'255223',name:'Steck Park',schema_version:3,fee_status:'paid',cost:null,description:'Reservoir access and boat ramps.'}};
+  const osm=campsite('Steck Park',1059339869,[-117.2184182,44.3652693]);osm.properties.osm_type='way';
+  for(const collections of [[source('ID',[ridb]),source('OR',[osm])],[source('OR',[osm]),source('ID',[ridb])]]){
+    const index=buildSearchIndex(collections,DataQuality,{'255223':{f:'paid'}});
+    assert.equal(index.sites.length,1);const row=index.sites[0];assert.equal(row.id,'osm:way:1059339869');assert.equal(row.m.f,'unknown');assert.deepEqual(row.states,['OR']);assert.ok(!row.legacy_ids.includes('ridb:255223'));
+  }
+});
+
+test('state admission preserves original rows and global transitive dedupe topology',()=>{
+  const a=campsite('Bird Creek Campground',100,[-114,39]);
+  const b={type:'Feature',geometry:{type:'Point',coordinates:[-113.997,39]},properties:{id:'ridb:200',facility_id:'200',schema_version:3,name:'Bird Creek Campground',fee_status:'paid'}};
+  const c={type:'Feature',geometry:{type:'Point',coordinates:[-113.994,39]},properties:{id:'usfs:300',schema_version:3,name:'Bird Creek Campground',camping_activity:'Campground Camping',fee_status:'paid'}};
+  const admitted=DataQuality.publicationCandidates([b,c],{state:'NV'});assert.equal(admitted.length,2);assert.equal(admitted[0],b);assert.equal(admitted[1],c);
+  const index=buildSearchIndex([source('CA',[a]),source('NV',[b,c])]);assert.equal(index.sites.length,2);
+  assert.ok(index.sites.some(r=>r.id==='osm:node:100'&&r.legacy_ids.includes('ridb:200')));assert.ok(index.sites.some(r=>r.id==='usfs:300'));
+});
+
 test('cross-state duplicates retain source snapshots and a focusable stable ID', () => {
   const a = campsite('Border Campground',101);
   const b = campsite('Border Campground',102,[-73.8001,43.1]);

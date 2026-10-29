@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.10.0">
+  <meta name="kamptrail-version" content="2.11.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
@@ -62,20 +62,22 @@
       <div id="map" role="region" aria-label="Campsite map" tabindex="0"></div>
     </main>
     <footer>
-      <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.10.0</a></span>
+      <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.11.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
     <div class="data-dialog-heading"><h2 id="data-title">About the data</h2><form method="dialog"><button class="btn" aria-label="Close data information">Close</button></form></div>
     <p id="catalogue-summary" role="status">Loading catalogue information…</p>
     <h3>Sources and dates</h3>
-    <p>Campsite records come from Recreation.gov, the US Forest Service, the Bureau of Land Management, and OpenStreetMap contributors. City search uses GeoNames. Each listing links to its source when available. Forest Service and BLM listings show the date their fee wording was imported.</p>
+    <p>Campsite records come from Recreation.gov, the US Forest Service, the Bureau of Land Management, and OpenStreetMap contributors. City search uses GeoNames. Each listing links to its source when available. Forest Service and BLM listings retain the full camping-fee wording and source field when supplied. Use Fee evidence to inspect source records and retrieval dates. A source update date is shown only when the feed provides one.</p>
     <div id="kt-health" class="kt-health" aria-live="polite"><p class="kt-muted">Loading data freshness…</p></div>
     <p>A refresh date is when KampTrail last downloaded that source. It does not mean a campsite was recently checked. Listings have not been field verified.</p>
     <h3>Coverage and fees</h3>
     <p>Coverage varies by state and is incomplete. A missing campsite does not mean camping is prohibited. A public land location does not establish permission to camp.</p>
     <p>“Reported free” means the source says camping has no fee. Free water, showers, parking, or day use do not count. “Free with conditions” means camping is free only in some seasons, for some sites, or with a pass or permit. “Fee unknown” means no reliable camping fee was supplied. It does not mean free. Being reservable on Recreation.gov, or a note to check Recreation.gov, is not treated as fee evidence. Confirm fees, access, seasonal closures, and reservations with the operator.</p>
+    <p>Some Forest Service camping opportunities are secondary activities rather than the main map category. KampTrail includes them only with evidence of on-site camping. Administrative offices, trail access alone and broad multi-area pointers are excluded. Agency points are checked against Census state boundaries; ambiguous or invalid locations are held for review rather than assigned to the nearest town.</p>
+    <p>Follow current posted limits and closures, use established sites where required, pack out trash, and follow local fire restrictions. Source listings do not replace the land manager’s rules.</p>
     <h3>Public land, weather, and services</h3>
     <p>The public land layer and land manager lookup use the BLM Surface Management Agency map. Boundaries can be approximate and do not grant permission to camp. Posted signs and local orders take priority.</p>
     <p>Fire perimeters come from NIFC; satellite smoke plume polygons come from NOAA HMS. Layers load only when enabled and zoomed in. Each feature shows its source date and retrieval time. Smoke plumes do not measure ground-level air quality or AQI. Perimeters are incomplete and are not evacuation boundaries or closures. Weather alerts are checked on demand at a coordinate using the National Weather Service. This is not an emergency notification service. Dynamic fire, smoke and alert data require a connection and are hidden offline. Check local authorities, land-manager restrictions and posted signs before travel.</p>

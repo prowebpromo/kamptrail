@@ -115,5 +115,26 @@
       return wx;
     }).catch(() => { target.replaceChildren(el('p', 'Forecast is unavailable for this spot right now. The NWS covers US locations only.', 'kt-muted')); });
   }
-  global.KampTrailSpot = {version: '2.10.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, AGENCIES, SMA_URL: SMA};
+  function renderFeeEvidence(target, properties) {
+    const records=global.DataQuality.mergeFeeEvidence(properties.fee_evidence_records);
+    if(!records.length&&typeof properties.fee_text==='string'&&properties.fee_text.trim())records.push({source:properties.fee_source||'Source reported',source_field:properties.fee_source_field||null,source_record_id:null,source_url:global.DataQuality.mergeFeeEvidence([{source:'Source',text:'Source',source_url:properties.source_url||properties.website}])[0]?.source_url,retrieved_at:properties.fee_checked,text:properties.fee_text});
+    const box=el('section',null,'kt-fee-records');box.append(el('h4','Camping fee evidence'),el('p','Source wording is shown in full. A retrieval date is when KampTrail downloaded the record, not a field inspection. Confirm current fees and restrictions with the operator.','kt-fine'));
+    if(properties.fee_conflict)box.append(el('p','Sources disagree. The fee remains unknown; neither statement is treated as proof of free camping.'));
+    if(!records.length){box.append(el('p',properties.fee_status==='unknown'?'No camping-fee wording is recorded. The fee remains unknown.':'This snapshot has a structured fee classification but no retained source wording.'));if(Number.isFinite(properties.cost)&&properties.cost>=0)box.append(el('p','Reported nightly amount: $'+properties.cost));if(properties.fee_evidence)box.append(el('p',String(properties.fee_evidence)));}
+    const labels={feedescription:'Camping fee information',recareadescription:'Recreation-area description',restrictions:'Restrictions',FacilityDescription:'Campground description',FacilityUseFeeDescription:'Camping fee information',UseFeeDescription:'Camping fee information',fee:'Community fee tag','fee / fee:conditional':'Community fee and conditions tags'};
+    for(const r of records){const details=el('details');details.open=records.length===1;details.append(el('summary',r.source+' · '+(labels[r.source_field]||'Source wording')));
+      const meta=[];if(r.source_record_id)meta.push('Record '+r.source_record_id);if(r.retrieved_at)meta.push('Retrieved '+r.retrieved_at);if(r.source_updated_at)meta.push('Source record updated '+r.source_updated_at);if(meta.length)details.append(el('p',meta.join(' · '),'kt-fine'));
+      details.append(el('p',r.text,'kt-fee-full-text'));
+      if(r.classification_text&&r.classification_text!==r.text){const used=el('details');used.append(el('summary','Wording used to classify the camping fee'),el('p',r.classification_text,'kt-fee-full-text'));details.append(used);}
+      if(r.qualification_text){const used=el('details');used.append(el('summary','Conditions used to qualify the fee'),el('p',r.qualification_text,'kt-fee-full-text'));details.append(used);}
+      if(r.source_url)details.append(link(r.source_url,'Open source record'));
+      if(r.query_url==='https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query'&&/^\d+$/.test(r.source_record_id||'')){
+        const row=new URL(r.query_url);row.searchParams.set('where','recareaid='+r.source_record_id);row.searchParams.set('outFields','recareaid,recareaname,feedescription,restrictions,recareadescription');row.searchParams.set('returnGeometry','false');row.searchParams.set('f','pjson');
+        details.append(el('span',' · '),link(row.href,'View official data row'));
+      }
+      box.append(details);
+    }
+    target.replaceChildren(box);relayout(target);
+  }
+  global.KampTrailSpot = {version: '2.11.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -118,7 +118,9 @@
     try{state.index=await fetchJSON('data/campsites/index.json');}catch(err){console.warn('Campsite index unavailable; state loading is still available.',err.message);}
   }
   function mergeLoaded(features,stateCode) {
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...features]}, {state:stateCode});
+    const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode}));
+    if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, {state:stateCode});
     state.allCampsites=cleaned.features;
     if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
   }
@@ -173,15 +175,18 @@
   }
   function popup(site) {
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
+    const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
+    const closure=['closed','temporarily closed'].includes(status)?status:null;
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
     return `<div class="kt-site-popup" style="min-width:220px;max-width:300px;color:#263443">
       <h3 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h3>
+      ${closure?`<div class="kt-closure-notice"><strong>Agency reports: ${esc(closure)}.</strong> Confirm reopening with the operator.${p.season?` Season reported: ${esc(p.season)}.`:''}</div>`:''}
       <div><strong>Cost:</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||'Source')}${p.fee_checked?`, imported ${esc(p.fee_checked)}`:''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
       ${p.fee_status==='free'||p.fee_status==='conditional'?'<div class="kt-fine">This is the camping fee only. Entrance fees, passes, permits, or reservation charges may still apply.</div>':''}
       ${p.fee_conflict?'<div class="kt-fine">Sources disagree on the fee, so it shows as unknown.</div>':''}
-      ${p.open_status&&p.open_status!=='none'?`<div><strong>Status (agency):</strong> ${esc(p.open_status)}${p.season?` · season ${esc(p.season)}`:''}</div>`:''}
+      ${p.open_status&&status!=='none'&&!closure?`<div><strong>Status (agency):</strong> ${esc(p.open_status)}${p.season?` · season ${esc(p.season)}`:''}</div>`:''}
       ${p.restrictions?`<div><strong>Restrictions:</strong> ${esc(p.restrictions.length>180?p.restrictions.slice(0,177)+'…':p.restrictions)}</div>`:''}
       ${p.stay_limit?`<div><strong>Stay limit:</strong> ${esc(p.stay_limit)}</div>`:''}
       ${p.reservable?'<div class="kt-fine">Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.</div>':''}
@@ -202,6 +207,7 @@
         <button type="button" data-kt-action="share" data-siteid="${siteId}">Share</button>
       </div>
       <div class="kt-popup-actions kt-popup-more">
+        <button type="button" data-kt-action="fees" data-siteid="${siteId}">Fee evidence</button>
         <button type="button" data-kt-action="weather" data-siteid="${siteId}">Forecast + elevation</button>
         <button type="button" data-kt-action="alerts" data-siteid="${siteId}">Weather alerts</button>
         <button type="button" data-kt-action="environment" data-siteid="${siteId}">Fire and smoke nearby</button>
@@ -314,7 +320,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.10.0',
+    version:'2.11.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -427,7 +433,8 @@
       if(kind==='fix'){if(window.KampTrailContrib)KampTrailContrib.open({kind:'correction',site});else if(window.KampTrailShare)window.open(KampTrailShare.issueUrl('fix',site),'_blank','noopener');return;}
       const extra=action.closest('.kt-site-popup')?.querySelector('.kt-popup-extra');if(!extra)return;
       const box=document.createElement('div');extra.append(box);action.disabled=true;
-      if(kind==='weather')window.KampTrailSpot?.renderForecast(box,lat,lng);
+      if(kind==='fees')window.KampTrailSpot?.renderFeeEvidence(box,site.properties);
+      else if(kind==='weather')window.KampTrailSpot?.renderForecast(box,lat,lng);
       else if(kind==='land')window.KampTrailSpot?.renderLand(box,lat,lng);
       else if(kind==='nearby')api.renderNearbyServices(box,lat,lng);
       return;
