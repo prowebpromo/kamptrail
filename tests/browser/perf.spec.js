@@ -57,3 +57,22 @@ test('state jump opens at listing zoom and filters apply to the full dataset',as
   await expect(page.locator('#result-summary')).toContainText('Zoomed out');
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBe(0);
 });
+
+test('state bubbles do not overlap at national zoom, and moved bubbles keep a leader line',async({page})=>{
+  await national(page);await page.setViewportSize({width:1280,height:800});await page.goto('/',{waitUntil:'domcontentloaded'});
+  await expect.poll(()=>page.locator('.kt-state-bubble').count()).toBeGreaterThan(40);
+  for(const zoom of [4,5,6]){
+    await page.evaluate(z=>map.setView([40,-80],z),zoom);await page.waitForTimeout(400);
+    const boxes=await page.locator('.kt-state-bubble span').evaluateAll(els=>els.map(e=>{const r=e.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2,r:r.width/2,t:e.parentElement.title.slice(0,2)};}));
+    const overlaps=[];
+    for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j];if(Math.hypot(a.x-b.x,a.y-b.y)<a.r+b.r)overlaps.push(a.t+'/'+b.t);}
+    expect(overlaps,`zoom ${zoom}`).toEqual([]);
+  }
+  await page.evaluate(()=>map.setView([40,-80],4));await page.waitForTimeout(400);
+  const moved=await page.evaluate(()=>KampTrailData._overviewMoved());
+  expect(moved.length).toBeGreaterThan(0);
+  expect(moved.every(m=>m.leader)).toBe(true);
+  await page.locator('.kt-state-bubble[title^="RI:"]').click();
+  await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThanOrEqual(8);
+  expect(await page.evaluate(()=>map.getBounds().contains([41.7,-71.5]))).toBe(true);
+});
