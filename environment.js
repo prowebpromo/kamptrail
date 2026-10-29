@@ -15,6 +15,7 @@
   }
   function validate(d,kind,now=Date.now()){
     if(!Object.hasOwn(SOURCES,kind)||!d||d.ok!==true||d.version!==1||d.kind!==kind||d.partial===true||d.data?.type!=='FeatureCollection'||!Array.isArray(d.data.features)||d.data.features.length>MAX_FEATURES)throw new Error('Invalid context');
+    if(kind==='smoke'&&(!/^\d{4}-\d{2}-\d{2}$/.test(d.source?.observation_date||'')||!Number.isFinite(Date.parse(d.source.observation_date))))throw new Error('Missing observation day');
     const at=Date.parse(d.retrieved_at);if(!Number.isFinite(at)||at>now+60000||now-at>MAX_AGE)throw new Error('Outdated context');
     const budget={count:0};
     for(const f of d.data.features){
@@ -51,7 +52,7 @@
   }
   function color(kind,f){const key=kind==='fire'?'--environment-fire':text(f.properties.density).toLowerCase()==='heavy'?'--environment-smoke-heavy':text(f.properties.density).toLowerCase()==='medium'?'--environment-smoke-medium':'--environment-smoke-light';return getComputedStyle(document.documentElement).getPropertyValue(key).trim();}
   function draw(kind,d){
-    st.groups[kind].clearLayers();L.geoJSON(d.data,{bubblingMouseEvents:false,style:f=>({color:color(kind,f),weight:Number(getComputedStyle(document.documentElement).getPropertyValue('--environment-stroke')),fillOpacity:Number(getComputedStyle(document.documentElement).getPropertyValue(kind==='fire'?'--environment-fire-opacity':'--environment-smoke-opacity'))}),onEachFeature(f,l){l.bindPopup(()=>evidence(f,kind,d.retrieved_at));l.on('popupopen',()=>st.reading.add(kind));l.on('popupclose',()=>st.reading.delete(kind));l.on('add',()=>{const e=l.getElement?.();if(e){e.setAttribute('tabindex','0');e.setAttribute('role','button');e.setAttribute('aria-label',`${kind==='fire'?'Fire perimeter':'Smoke plume'}: ${text(f.properties.name)||text(f.properties.density)||'source details'}`);e.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();event.stopPropagation();l.openPopup();}});}});}}).addTo(st.groups[kind]);
+    st.groups[kind].clearLayers();L.geoJSON(d.data,{renderer:st.renderer,bubblingMouseEvents:false,style:f=>({color:color(kind,f),weight:Number(getComputedStyle(document.documentElement).getPropertyValue('--environment-stroke')),fillOpacity:Number(getComputedStyle(document.documentElement).getPropertyValue(kind==='fire'?'--environment-fire-opacity':'--environment-smoke-opacity'))}),onEachFeature(f,l){l.bindPopup(()=>evidence(f,kind,d.retrieved_at));l.on('popupopen',()=>st.reading.add(kind));l.on('popupclose',()=>st.reading.delete(kind));l.on('add',()=>{const e=l.getElement?.();if(e){e.setAttribute('tabindex','0');e.setAttribute('role','button');e.setAttribute('aria-label',`${kind==='fire'?'Fire perimeter':'Smoke plume'}: ${text(f.properties.name)||text(f.properties.density)||'source details'}`);e.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();event.stopPropagation();l.openPopup();}});}});}}).addTo(st.groups[kind]);
   }
   function bounds(){const b=st.map.getBounds(),w=((b.getWest()+540)%360)-180;return [w,b.getSouth(),w+b.getEast()-b.getWest(),b.getNorth()].map(x=>+x.toFixed(3));}
   function status(kind,message){if(st.status[kind])st.status[kind].textContent=message;}
@@ -63,7 +64,7 @@
     status(kind,'Loading official source…');const controller=new AbortController();st.controllers[kind]=controller;const timeout=setTimeout(()=>controller.abort(),45000);
     try{
       const d=await request(kind,b,controller.signal);if(seq!==st.sequence[kind]||!st.enabled.has(kind)||!navigator.onLine)return;draw(kind,d);
-      status(kind,`${d.data.features.length} ${kind==='fire'?'reported perimeters':'satellite plumes'} returned. Retrieved ${stamp(d.retrieved_at)}. ${kind==='fire'?'Not every fire has a mapped perimeter.':'No plume does not mean clean air.'}`);
+      status(kind,`${kind==='smoke'?'Observation day '+d.source.observation_date+' (UTC). ':''}${d.data.features.length} ${kind==='fire'?'reported perimeters':'satellite plumes'} returned. Retrieved ${stamp(d.retrieved_at)}. ${kind==='fire'?'Not every fire has a mapped perimeter.':'No plume does not mean clean air.'}`);
       st.timers[kind]=setTimeout(()=>refresh(kind),5*60*1000);
     }catch{if(seq!==st.sequence[kind]||!st.enabled.has(kind))return;status(kind,navigator.onLine?'Source unavailable or incomplete. No shapes are shown. Refresh or zoom closer.':'Offline: live context is hidden. Reconnect and refresh.');}
     finally{clearTimeout(timeout);}
@@ -72,11 +73,11 @@
     const box=node('div',null,'kt-environment-control'),details=node('details');details.open=!matchMedia('(max-width:760px)').matches;details.append(node('summary','Fire and smoke context'));
     const body=node('div',null,'kt-environment-body');body.append(node('p','Official source context, not an emergency warning service. Check local authorities, closures, and posted restrictions before travel.','kt-fine'));
     for(const kind of ['fire','smoke']){const section=node('section');section.dataset.environment=kind;section.append(node('strong',SOURCES[kind].label));const line=node('p','Not enabled.');line.setAttribute('role','status');line.setAttribute('aria-live','polite');st.status[kind]=line;section.append(line,sourceLink(kind));body.append(section);}
-    body.append(node('p','Smoke shading: light / medium / heavy satellite plume density. This is not AQI. Empty or unavailable layers do not establish safe conditions.','kt-fine'));
+    const legend=node('ul',null,'kt-environment-key');for(const [key,label]of [['fire','Reported fire perimeter'],['smoke-light','Light smoke plume'],['smoke-medium','Medium smoke plume'],['smoke-heavy','Heavy smoke plume']]){const li=node('li'),swatch=node('i');swatch.className='kt-environment-key-'+key;swatch.setAttribute('aria-hidden','true');li.append(swatch,label);legend.append(li);}body.append(legend,node('p','Smoke shading is satellite plume density, not AQI. Empty or unavailable layers do not establish safe conditions.','kt-fine'));
     const retry=node('button','Refresh fire and smoke','btn');retry.type='button';retry.onclick=()=>st.enabled.forEach(refresh);body.append(retry);details.append(body);box.append(details);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);st.box=box;return box;};return c;}
   function syncPanel(){if(st.enabled.size){if(!st.control)st.control=panel().addTo(st.map);}else{st.control?.remove();st.control=null;st.status={};}}
   function init(map){
-    st.map=map;const overlays={};for(const kind of ['fire','smoke']){const group=L.layerGroup();st.groups[kind]=group;overlays[SOURCES[kind].label]=group;
+    st.map=map;st.renderer=L.svg();const overlays={};for(const kind of ['fire','smoke']){const group=L.layerGroup();st.groups[kind]=group;overlays[SOURCES[kind].label]=group;
       group.on('add',()=>{st.enabled.add(kind);syncPanel();refresh(kind);});
       group.on('remove',()=>{st.enabled.delete(kind);st.sequence[kind]++;st.controllers[kind]?.abort();clearTimeout(st.timers[kind]);group.clearLayers();status(kind,'Not enabled.');syncPanel();});
     }

@@ -9,3 +9,5 @@
 
 - 2026-10-29: 2.8.0 merged and deployed (source1c591e4), all55 browser checks,79 Node/PHP,31 Python,MySQL integration and dump/restore passed. Production migration003 applied and health reports routing/community ready.
 - 2026-10-29: Live QA reproduced an existing popup retained after explicit navigation to a second campsite. 2.8.1 closes it and cancels older focus attempts. Ambiguous official forest aliases now omit the destination instead of choosing a sibling unit. Both have regressions.
+
+2026-10-29 — Environmental context (2.10.0): NIFC perimeter + NOAA satellite smoke overlays, on-demand NWS point alerts, dated sources, unavailable/offline states. Partial against the historical fire-weather/smoke row: no fire-weather risk overlay or universal closure feed. Weather/elevation filters remain separate.

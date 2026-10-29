@@ -42,6 +42,9 @@ STATED_FREE = re.compile(
     r"|\b(?:camping|campsites?|sites?)(?:\s+fee)?\s*[:\-]?\s*free\b"
     r"|\bavailable\s+at\s+no\s+(?:charge|cost)\b", re.I)
 CAMP_STATED_FREE = re.compile(r"\bcamping(?:\s+(?:and|&)\s+[\w\s-]{1,20}?)?\s+(?:is|are)\s+(?:completely\s+|always\s+)?free\b", re.I)
+# Explicit camping statement from the BLM feed; require a complete sentence so
+# negated quotations and statements about parking or entry do not qualify.
+CAMP_NO_FEE_REQUIREMENT = re.compile(r'(?:^|[.!?]\s+)(?:there\s+is\s+)?no\s+permit\s+or\s+fee\s+requirement\s+to\s+camp(?=[.!?]|$)', re.I)
 SEASONAL_FREE = re.compile(r"(?:\bfree|\bno\s+fees?|\bfee-free|\bno\s+charge)\s*,?\s+(?:after|until|before|during|when|outside(?:\s+of)?|from|in\s+(?:the\s+)?(?:off|winter|summer|fall|spring))\b", re.I)
 NO_FEE_TO_CAMP = re.compile(r"\bno\s+(?:camping\s+fees?|fees?\s+(?:to|for)\s+camp(?:ing)?)\b", re.I)
 CAMP_PAID = re.compile(r'\bcamping\s+fees?\b(?!\s*(?::\s*)?(?:free|none|no\b))|\bfees?\s+(?:for|to)\s+camp|\bcamping:?\s*\$\s?[1-9]', re.I)
@@ -76,7 +79,7 @@ def classify(text):
         return 'paid', classify_cost(t)
     # Strip wording about free non-camping services and other negations before looking for a free signal.
     core = NEG_FREE_ANY.sub(' ', ANCILLARY_FREE.sub(' ', t))
-    free_signal = bool(FEE_FREE.search(core) or STATED_FREE.search(core) or CAMP_STATED_FREE.search(t))
+    free_signal = bool(FEE_FREE.search(core) or STATED_FREE.search(core) or CAMP_STATED_FREE.search(t) or CAMP_NO_FEE_REQUIREMENT.search(t))
     if amounts and not charges and not re.search(r'\$\s?0(?:\.00)?\s*(?:for|at)\s+(?:day|parking)', t, re.I):
         free_signal = True
     if CAMP_PAID.search(t) and not NO_FEE_TO_CAMP.search(t):
@@ -86,7 +89,10 @@ def classify(text):
         return 'conditional', None
     if free_signal and not charges:
         # Free camping that still needs a paid pass or permit is conditional, not free.
-        if (PASS_REQUIRED.search(t) or NEED_PASS.search(t)) and not NO_PASS.search(t):
+        # The explicit no-camping-permit statement does not negate a separate
+        # vehicle/pass requirement elsewhere in the wording.
+        permit_text = CAMP_NO_FEE_REQUIREMENT.sub(' ', t)
+        if (PASS_REQUIRED.search(permit_text) or NEED_PASS.search(permit_text)) and not NO_PASS.search(permit_text):
             return 'conditional', None
         return 'free', 0
     if free_signal and charges:
