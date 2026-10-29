@@ -1,584 +1,599 @@
 {
  "version": 1,
  "stale_after_days": 45,
- "run": null,
+ "run": {
+  "started": "2026-10-29T02:45:25.489Z",
+  "counts": {
+   "fresh": 104
+  }
+ },
  "sources": {
   "ridb": {
    "scopes": {
     "AL": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:45:27.109Z",
+     "last_success": "2026-10-29T02:45:27.109Z",
+     "outcome": "fresh"
     },
     "AK": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T00:29:12.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:46:30.182Z",
+     "last_success": "2026-10-29T02:46:30.182Z",
+     "outcome": "fresh"
     },
     "AZ": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:47:25.085Z",
+     "last_success": "2026-10-29T02:47:25.085Z",
+     "outcome": "fresh"
     },
     "AR": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:48:25.628Z",
+     "last_success": "2026-10-29T02:48:25.628Z",
+     "outcome": "fresh"
     },
     "CA": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:50:45.755Z",
+     "last_success": "2026-10-29T02:50:45.755Z",
+     "outcome": "fresh"
     },
     "CO": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:52:26.418Z",
+     "last_success": "2026-10-29T02:52:26.418Z",
+     "outcome": "fresh"
     },
     "CT": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:53:21.339Z",
+     "last_success": "2026-10-29T02:53:21.339Z",
+     "outcome": "fresh"
     },
     "FL": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T00:29:12.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:54:41.087Z",
+     "last_success": "2026-10-29T02:54:41.087Z",
+     "outcome": "fresh"
     },
     "GA": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T00:29:12.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:55:37.234Z",
+     "last_success": "2026-10-29T02:55:37.234Z",
+     "outcome": "fresh"
     },
     "HI": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:56:29.897Z",
+     "last_success": "2026-10-29T02:56:29.897Z",
+     "outcome": "fresh"
     },
     "ID": {
-     "last_attempt": null,
-     "last_success": "2025-12-30T19:06:41.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:57:25.630Z",
+     "last_success": "2026-10-29T02:57:25.630Z",
+     "outcome": "fresh"
     },
     "IL": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T00:29:12.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:58:12.531Z",
+     "last_success": "2026-10-29T02:58:12.531Z",
+     "outcome": "fresh"
     },
     "IN": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:59:06.592Z",
+     "last_success": "2026-10-29T02:59:06.592Z",
+     "outcome": "fresh"
     },
     "IA": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T00:29:12.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:59:51.243Z",
+     "last_success": "2026-10-29T02:59:51.243Z",
+     "outcome": "fresh"
     },
     "KS": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:00:54.968Z",
+     "last_success": "2026-10-29T03:00:54.968Z",
+     "outcome": "fresh"
     },
     "KY": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:01:57.305Z",
+     "last_success": "2026-10-29T03:01:57.305Z",
+     "outcome": "fresh"
     },
     "LA": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:03:23.868Z",
+     "last_success": "2026-10-29T03:03:23.868Z",
+     "outcome": "fresh"
     },
     "ME": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:04:15.119Z",
+     "last_success": "2026-10-29T03:04:15.119Z",
+     "outcome": "fresh"
     },
     "MD": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:04:53.140Z",
+     "last_success": "2026-10-29T03:04:53.140Z",
+     "outcome": "fresh"
     },
     "MA": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:05:47.650Z",
+     "last_success": "2026-10-29T03:05:47.650Z",
+     "outcome": "fresh"
     },
     "MI": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:06:42.366Z",
+     "last_success": "2026-10-29T03:06:42.366Z",
+     "outcome": "fresh"
     },
     "MN": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:07:35.931Z",
+     "last_success": "2026-10-29T03:07:35.931Z",
+     "outcome": "fresh"
     },
     "MS": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:08:37.567Z",
+     "last_success": "2026-10-29T03:08:37.567Z",
+     "outcome": "fresh"
     },
     "MO": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:09:31.406Z",
+     "last_success": "2026-10-29T03:09:31.406Z",
+     "outcome": "fresh"
     },
     "MT": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:10:59.803Z",
+     "last_success": "2026-10-29T03:10:59.803Z",
+     "outcome": "fresh"
     },
     "NE": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:11:49.658Z",
+     "last_success": "2026-10-29T03:11:49.658Z",
+     "outcome": "fresh"
     },
     "NV": {
-     "last_attempt": null,
-     "last_success": "2025-12-30T19:06:41.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:12:37.778Z",
+     "last_success": "2026-10-29T03:12:37.778Z",
+     "outcome": "fresh"
     },
     "NH": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:13:31.360Z",
+     "last_success": "2026-10-29T03:13:31.360Z",
+     "outcome": "fresh"
     },
     "NJ": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:14:13.448Z",
+     "last_success": "2026-10-29T03:14:13.448Z",
+     "outcome": "fresh"
     },
     "NM": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:15:01.086Z",
+     "last_success": "2026-10-29T03:15:01.086Z",
+     "outcome": "fresh"
     },
     "NY": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:19:09.806Z",
+     "last_success": "2026-10-29T03:19:09.806Z",
+     "outcome": "fresh"
     },
     "NC": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:20:12.704Z",
+     "last_success": "2026-10-29T03:20:12.704Z",
+     "outcome": "fresh"
     },
     "ND": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:25:34.438Z",
+     "last_success": "2026-10-29T03:25:34.438Z",
+     "outcome": "fresh"
     },
     "OH": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:26:27.087Z",
+     "last_success": "2026-10-29T03:26:27.087Z",
+     "outcome": "fresh"
     },
     "OK": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:27:18.187Z",
+     "last_success": "2026-10-29T03:27:18.187Z",
+     "outcome": "fresh"
     },
     "OR": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:28:33.789Z",
+     "last_success": "2026-10-29T03:28:33.789Z",
+     "outcome": "fresh"
     },
     "PA": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:30:03.700Z",
+     "last_success": "2026-10-29T03:30:03.700Z",
+     "outcome": "fresh"
     },
     "SC": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:32:58.035Z",
+     "last_success": "2026-10-29T03:32:58.035Z",
+     "outcome": "fresh"
     },
     "SD": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:33:52.468Z",
+     "last_success": "2026-10-29T03:33:52.468Z",
+     "outcome": "fresh"
     },
     "TN": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:34:50.994Z",
+     "last_success": "2026-10-29T03:34:50.994Z",
+     "outcome": "fresh"
     },
     "TX": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:35:38.922Z",
+     "last_success": "2026-10-29T03:35:38.922Z",
+     "outcome": "fresh"
     },
     "UT": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:36:53.932Z",
+     "last_success": "2026-10-29T03:36:53.932Z",
+     "outcome": "fresh"
     },
     "VT": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:37:44.821Z",
+     "last_success": "2026-10-29T03:37:44.821Z",
+     "outcome": "fresh"
     },
     "VA": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:38:41.218Z",
+     "last_success": "2026-10-29T03:38:41.218Z",
+     "outcome": "fresh"
     },
     "WA": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:39:39.846Z",
+     "last_success": "2026-10-29T03:39:39.846Z",
+     "outcome": "fresh"
     },
     "WV": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:40:30.266Z",
+     "last_success": "2026-10-29T03:40:30.266Z",
+     "outcome": "fresh"
     },
     "WI": {
-     "last_attempt": null,
-     "last_success": "2025-12-31T01:45:52.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:41:50.794Z",
+     "last_success": "2026-10-29T03:41:50.794Z",
+     "outcome": "fresh"
     },
     "WY": {
-     "last_attempt": null,
-     "last_success": "2026-01-04T04:09:13.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:42:40.093Z",
+     "last_success": "2026-10-29T03:42:40.093Z",
+     "outcome": "fresh"
+    },
+    "DE": {
+     "last_attempt": "2026-10-29T02:54:06.361Z",
+     "last_success": "2026-10-29T02:54:06.361Z",
+     "outcome": "fresh"
+    },
+    "RI": {
+     "last_attempt": "2026-10-29T03:32:08.121Z",
+     "last_success": "2026-10-29T03:32:08.121Z",
+     "outcome": "fresh"
     }
    },
    "label": "Recreation.gov campgrounds",
-   "oldest_success": "2025-12-30T19:06:41.000Z",
-   "newest_success": "2026-01-04T04:09:13.000Z",
+   "oldest_success": "2026-10-29T02:45:27.109Z",
+   "newest_success": "2026-10-29T03:42:40.093Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "not_recorded": 48
+    "fresh": 50
    }
   },
   "osm": {
    "scopes": {
     "AL": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:46:12.002Z",
+     "last_success": "2026-10-29T02:46:12.002Z",
+     "outcome": "fresh"
     },
     "AK": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:47:12.765Z",
+     "last_success": "2026-10-29T02:47:12.765Z",
+     "outcome": "fresh"
     },
     "AZ": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:48:13.439Z",
+     "last_success": "2026-10-29T02:48:13.439Z",
+     "outcome": "fresh"
     },
     "AR": {
-     "last_attempt": null,
-     "last_success": "2026-04-12T05:00:34.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:50:05.567Z",
+     "last_success": "2026-10-29T02:50:05.567Z",
+     "outcome": "fresh"
     },
     "CA": {
-     "last_attempt": null,
-     "last_success": "2026-04-19T05:05:33.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:52:02.913Z",
+     "last_success": "2026-10-29T02:52:02.913Z",
+     "outcome": "fresh"
     },
     "CO": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:53:13.040Z",
+     "last_success": "2026-10-29T02:53:13.040Z",
+     "outcome": "fresh"
     },
     "CT": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:53:59.895Z",
+     "last_success": "2026-10-29T02:53:59.895Z",
+     "outcome": "fresh"
     },
     "DE": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:54:34.297Z",
+     "last_success": "2026-10-29T02:54:34.297Z",
+     "outcome": "fresh"
     },
     "FL": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:55:27.529Z",
+     "last_success": "2026-10-29T02:55:27.529Z",
+     "outcome": "fresh"
     },
     "GA": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:56:22.996Z",
+     "last_success": "2026-10-29T02:56:22.996Z",
+     "outcome": "fresh"
     },
     "HI": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:57:01.556Z",
+     "last_success": "2026-10-29T02:57:01.556Z",
+     "outcome": "fresh"
     },
     "ID": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:58:04.851Z",
+     "last_success": "2026-10-29T02:58:04.851Z",
+     "outcome": "fresh"
     },
     "IL": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:58:59.784Z",
+     "last_success": "2026-10-29T02:58:59.784Z",
+     "outcome": "fresh"
     },
     "IN": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T02:59:44.173Z",
+     "last_success": "2026-10-29T02:59:44.173Z",
+     "outcome": "fresh"
     },
     "IA": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:00:45.228Z",
+     "last_success": "2026-10-29T03:00:45.228Z",
+     "outcome": "fresh"
     },
     "KS": {
-     "last_attempt": null,
-     "last_success": "2026-03-29T04:50:38.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:01:48.189Z",
+     "last_success": "2026-10-29T03:01:48.189Z",
+     "outcome": "fresh"
     },
     "KY": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:03:17.291Z",
+     "last_success": "2026-10-29T03:03:17.291Z",
+     "outcome": "fresh"
     },
     "LA": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:04:08.546Z",
+     "last_success": "2026-10-29T03:04:08.546Z",
+     "outcome": "fresh"
     },
     "ME": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:04:46.133Z",
+     "last_success": "2026-10-29T03:04:46.133Z",
+     "outcome": "fresh"
     },
     "MD": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:05:40.880Z",
+     "last_success": "2026-10-29T03:05:40.880Z",
+     "outcome": "fresh"
     },
     "MA": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:06:32.676Z",
+     "last_success": "2026-10-29T03:06:32.676Z",
+     "outcome": "fresh"
     },
     "MI": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:07:27.046Z",
+     "last_success": "2026-10-29T03:07:27.046Z",
+     "outcome": "fresh"
     },
     "MN": {
-     "last_attempt": null,
-     "last_success": "2026-04-19T05:05:33.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:08:26.979Z",
+     "last_success": "2026-10-29T03:08:26.979Z",
+     "outcome": "fresh"
     },
     "MS": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:09:21.575Z",
+     "last_success": "2026-10-29T03:09:21.575Z",
+     "outcome": "fresh"
     },
     "MO": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:10:37.376Z",
+     "last_success": "2026-10-29T03:10:37.376Z",
+     "outcome": "fresh"
     },
     "MT": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:11:42.501Z",
+     "last_success": "2026-10-29T03:11:42.501Z",
+     "outcome": "fresh"
     },
     "NE": {
-     "last_attempt": null,
-     "last_success": "2026-01-19T23:06:48.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:12:31.026Z",
+     "last_success": "2026-10-29T03:12:31.026Z",
+     "outcome": "fresh"
     },
     "NV": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:13:24.264Z",
+     "last_success": "2026-10-29T03:13:24.264Z",
+     "outcome": "fresh"
     },
     "NH": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:14:06.721Z",
+     "last_success": "2026-10-29T03:14:06.721Z",
+     "outcome": "fresh"
     },
     "NJ": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:14:51.566Z",
+     "last_success": "2026-10-29T03:14:51.566Z",
+     "outcome": "fresh"
     },
     "NM": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:19:02.445Z",
+     "last_success": "2026-10-29T03:19:02.445Z",
+     "outcome": "fresh"
     },
     "NY": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:20:01.828Z",
+     "last_success": "2026-10-29T03:20:01.828Z",
+     "outcome": "fresh"
     },
     "NC": {
-     "last_attempt": null,
-     "last_success": "2026-04-19T05:05:33.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:25:27.037Z",
+     "last_success": "2026-10-29T03:25:27.037Z",
+     "outcome": "fresh"
     },
     "ND": {
-     "last_attempt": null,
-     "last_success": "2026-04-12T05:00:34.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:26:20.450Z",
+     "last_success": "2026-10-29T03:26:20.450Z",
+     "outcome": "fresh"
     },
     "OH": {
-     "last_attempt": null,
-     "last_success": "2026-04-12T05:00:34.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:27:06.395Z",
+     "last_success": "2026-10-29T03:27:06.395Z",
+     "outcome": "fresh"
     },
     "OK": {
-     "last_attempt": null,
-     "last_success": "2026-03-29T04:50:38.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:28:09.556Z",
+     "last_success": "2026-10-29T03:28:09.556Z",
+     "outcome": "fresh"
     },
     "OR": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:29:55.143Z",
+     "last_success": "2026-10-29T03:29:55.143Z",
+     "outcome": "fresh"
     },
     "PA": {
-     "last_attempt": null,
-     "last_success": "2026-04-12T05:00:34.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:32:01.151Z",
+     "last_success": "2026-10-29T03:32:01.151Z",
+     "outcome": "fresh"
     },
     "RI": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:32:51.391Z",
+     "last_success": "2026-10-29T03:32:51.391Z",
+     "outcome": "fresh"
     },
     "SC": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:33:45.559Z",
+     "last_success": "2026-10-29T03:33:45.559Z",
+     "outcome": "fresh"
     },
     "SD": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:34:41.617Z",
+     "last_success": "2026-10-29T03:34:41.617Z",
+     "outcome": "fresh"
     },
     "TN": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:35:24.589Z",
+     "last_success": "2026-10-29T03:35:24.589Z",
+     "outcome": "fresh"
     },
     "TX": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:36:27.481Z",
+     "last_success": "2026-10-29T03:36:27.481Z",
+     "outcome": "fresh"
     },
     "UT": {
-     "last_attempt": null,
-     "last_success": "2026-04-19T05:05:33.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:37:36.811Z",
+     "last_success": "2026-10-29T03:37:36.811Z",
+     "outcome": "fresh"
     },
     "VT": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:38:31.206Z",
+     "last_success": "2026-10-29T03:38:31.206Z",
+     "outcome": "fresh"
     },
     "VA": {
-     "last_attempt": null,
-     "last_success": "2026-04-19T05:05:33.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:39:23.579Z",
+     "last_success": "2026-10-29T03:39:23.579Z",
+     "outcome": "fresh"
     },
     "WA": {
-     "last_attempt": null,
-     "last_success": "2026-04-19T05:05:33.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:40:19.371Z",
+     "last_success": "2026-10-29T03:40:19.371Z",
+     "outcome": "fresh"
     },
     "WV": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:41:43.610Z",
+     "last_success": "2026-10-29T03:41:43.610Z",
+     "outcome": "fresh"
     },
     "WI": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:42:25.313Z",
+     "last_success": "2026-10-29T03:42:25.313Z",
+     "outcome": "fresh"
     },
     "WY": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:43:15.849Z",
+     "last_success": "2026-10-29T03:43:15.849Z",
+     "outcome": "fresh"
     }
    },
    "label": "OpenStreetMap campsites",
-   "oldest_success": "2026-01-19T23:06:48.000Z",
-   "newest_success": "2026-10-28T21:19:30.000Z",
+   "oldest_success": "2026-10-29T02:46:12.002Z",
+   "newest_success": "2026-10-29T03:43:15.849Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "not_recorded": 50
+    "fresh": 50
    }
   },
   "usfs": {
    "scopes": {
     "US": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T00:00:00.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:43:28.644Z",
+     "last_success": "2026-10-29T03:43:28.644Z",
+     "outcome": "fresh"
     }
    },
    "label": "Forest Service recreation sites",
-   "oldest_success": "2026-10-28T00:00:00.000Z",
-   "newest_success": "2026-10-28T00:00:00.000Z",
+   "oldest_success": "2026-10-29T03:43:28.644Z",
+   "newest_success": "2026-10-29T03:43:28.644Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "not_recorded": 1
+    "fresh": 1
    }
   },
   "blm": {
    "scopes": {
     "US": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T00:00:00.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:43:29.721Z",
+     "last_success": "2026-10-29T03:43:29.721Z",
+     "outcome": "fresh"
     }
    },
    "label": "BLM recreation sites",
-   "oldest_success": "2026-10-28T00:00:00.000Z",
-   "newest_success": "2026-10-28T00:00:00.000Z",
+   "oldest_success": "2026-10-29T03:43:29.721Z",
+   "newest_success": "2026-10-29T03:43:29.721Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "not_recorded": 1
+    "fresh": 1
    }
   },
   "ridb_sites": {
    "scopes": {
     "US": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:43:40.851Z",
+     "last_success": "2026-10-29T03:43:40.851Z",
+     "outcome": "fresh"
     }
    },
    "label": "Recreation.gov site details",
-   "oldest_success": "2026-10-28T21:19:30.000Z",
-   "newest_success": "2026-10-28T21:19:30.000Z",
+   "oldest_success": "2026-10-29T03:43:40.851Z",
+   "newest_success": "2026-10-29T03:43:40.851Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "not_recorded": 1
+    "fresh": 1
    }
   },
   "services": {
    "scopes": {
     "US": {
-     "last_attempt": null,
-     "last_success": "2026-10-28T21:19:30.000Z",
-     "outcome": "not_recorded"
+     "last_attempt": "2026-10-29T03:45:42.189Z",
+     "last_success": "2026-10-29T03:45:42.189Z",
+     "outcome": "fresh"
     }
    },
    "label": "RV services (OpenStreetMap)",
-   "oldest_success": "2026-10-28T21:19:30.000Z",
-   "newest_success": "2026-10-28T21:19:30.000Z",
+   "oldest_success": "2026-10-29T03:45:42.189Z",
+   "newest_success": "2026-10-29T03:45:42.189Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "not_recorded": 1
+    "fresh": 1
    }
   }
  },
- "generated": "2026-10-28T23:59:47.188Z"
+ "generated": "2026-10-29T03:45:42.190Z"
 }

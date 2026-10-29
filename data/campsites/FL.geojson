@@ -11,28 +11,30 @@
         ]
       },
       "properties": {
-        "id": "FL-001",
+        "id": "ridb:234599",
+        "schema_version": 3,
         "name": "DOE LAKE GROUP SITE",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234599",
-        "description": "<h2>Overview</h2>\n<p>Doe Lake is a group campsite with a variety of activities. Centered around a historic lodge with a large group kitchen, it's an ideal place for major outdoor gatherings of up to 2"
+        "description": "<h2>Overview</h2>\n<p>Doe Lake is a group campsite with a variety of activities. Centered around a historic lodge with a large group kitchen, it's an ideal place for major outdoor gatherings of up to 250 people. The site is a favorite among equestrian groups, but can also accommodate weddings and other social events.\u00a0</p>\n<p>Please read before making reservations <a href=\"https://cdn.recreation.gov/public/2024/09/17/18/11/234599_af64ee74-72d2-4cdf-83b9-594f9dc9aa58.pdf\" rel=\"nofollow\">Doe Lake Rules and Regulations Agreement</a>\u00a0\u00a0\u00a0\u00a0</p>\n<p>For reservations or refund request please call (877) 444-6777</p>\n<h2>Recreation</h2>\nEquestrian camping, canoeing, boating and fishing are some of the popular activities around Doe Lake, and can be enjoyed exclusively by visitors with a group reservation.\n<br/><br/>\nCampers can launch a canoe or low-powered boat and drop a line in the middle of Doe Lake for an afternoon of fishing.\n<br/><h2>Facilities</h2>\nThis site is centered around a classic 1930s Civilian Conservation Corps dining hall that has been historically restored.\n<br/><br/>\nTent camping is most common at this facility. RVs and horse trailers are allowed, but limited to specific areas that do not offer hookups. Restrooms with flush toilets and showers are provided, as are hitching posts for horses.<h2>Natural Features</h2>\nLocated in north central Florida, the Ocala National Forest spans four counties and 383,000 acres. It is the southernmost and oldest national forest east of the Mississippi River and protects the world's largest contiguous sand pine scrub forest.\n<br/><br/>\nThe camping area sits beneath a shady grove of oaks and pines overlooking Doe Lake, and the dining hall sits atop a grassy hill with a view of the water.\n<h2>Nearby Attractions</h2>\nThe Ocala National Forest is notable for its extensive off-road trail system catering to both ATV enthusiasts and Jeeps, as well as being a traditional destination for deer hunters. These opportunities are available in designated areas throughout the forest.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234599",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -45,27 +47,30 @@
         ]
       },
       "properties": {
-        "id": "FL-002",
+        "id": "ridb:234516",
+        "schema_version": 3,
         "name": "MILL DAM GROUP CAMP",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234516",
-        "description": "<h2>Overview</h2>\nMill Dam Group Campground offers a fun and relaxing setting for groups of up to 150 to enjoy Ocala National Forest. Large picnic shelters and access to outdoor and water recreation m"
+        "description": "<h2>Overview</h2>\nMill Dam Group Campground offers a fun and relaxing setting for groups of up to 150 to enjoy Ocala National Forest. Large picnic shelters and access to outdoor and water recreation make this area ideal for family reunions and other large parties.<h2>Recreation</h2>\nThe campground sits along the 168-acre Mill Dam Lake, and water activities are popular among campers and day-use visitors. \n<br/><br/>\nAnglers come from all over to enjoy bass fishing. Campers can bring their boats, canoes and kayaks for easy access to the water via an adjacent boat ramp. \n<br/><br/>\nA large swimming beach and picnic area are great ways to keep the kids entertained.<h2>Facilities</h2>\nIn the spring, summer and early fall, Mill Dam is a day-use area only. For the remainder of the year, it becomes a group campground and recreation area for both day-use and tent camping.\n<br/><br/>\nAmenities include a picnic shelter, group grills, picnic tables and flush toilets. The parking lot can hold up to 70 vehicles.\n<br/><br/>\nA boat ramp adjoins the recreation area, on a separate entrance.<h2>Natural Features</h2>\nLocated in north central Florida, the Ocala National Forest spans four counties and 383,000 acres. It is the southernmost and oldest national forest east of the Mississippi River and protects the world's largest contiguous sand pine scrub forest.\n<br/><br/>\nThe campground and recreation area sit in the shade of live oak trees overlooking Mill Dam Lake. Numerous animals make their home in the area, including alligators, turtles, deer, raccoons, black bear and many bird species.\n<h2>Nearby Attractions</h2>\nThe Ocala National Forest is notable for its extensive off-road trail system catering to both ATV enthusiasts and Jeeps, as well as being a traditional destination for deer hunters from around Central Florida. These opportunities are available within a short drive.\n<h2>Contact Info</h2>\nThis location has limited staffing. Please call (352) 625-3147 for general information.<h2>Charges & Cancellations</h2>\n<p>Cancelling a Reservation: Customers may cancel their reservation prior to arrival both on-line and through the call center. A $10 service fee will be withheld from any refund for a cancellation. Depending on when you cancel in relation to your arrival day, it may be considered a late cancellation.</p>\n\n<p><a href=\"https://www.recreation.gov/rules-reservation-policies\" rel=\"nofollow\">https://www.recreation.gov/rules-reservation-policies </a>\u00a0</p>\n\n<p><strong>Refunds are not given for inclement weather for camping, gear rentals, or day-use fees.</strong></p>\n",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234516",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -78,26 +83,30 @@
         ]
       },
       "properties": {
-        "id": "FL-003",
+        "id": "ridb:234597",
+        "schema_version": 3,
         "name": "RIVER FOREST GROUP SITE",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234597",
-        "description": "<h2>Overview</h2>\n<p>River Forest is a shaded group camping facility on the shores of the St. Johns River in Ocala National Forest. Located just across the river from Deland, the site is popular for g"
+        "description": "<h2>Overview</h2>\n<p>River Forest is a shaded group camping facility on the shores of the St. Johns River in Ocala National Forest. Located just across the river from Deland, the site is popular for groups, family reunions and weddings and can accommodate up to 125 guests.</p>\n<p>14 day stay limit in a 30 day period in ALL Ocala National Forest Campgrounds</p>\n<h2>Recreation</h2>\nThis site is a great setting for groups to relax, picnic and enjoy the shade on a warm day. A large field offers ample space for activities such as softball, volleyball and horseshoe tossing. \n<br/><br/>\nVisitors wanting to venture out of the picnic area can go for a long walk through floodplain forests and pine flatwoods on the St. Francis Trail, or head to the river to canoe, kayak or fish for bass.<h2>Facilities</h2>\nAll new facilities are the highlight of the River Forest Group Site. Facilities include a screened pavilion for food preparation and cooking with your own cook stoves.  A new bathhouse has also been built on site.\n<br/><br/>\nThe camping area is flat for tents with some shade provided by trees. While RVs are welcome, there are no hookups and all vehicles must remain in the designated parking area. Grills and picnic tables are provided.<h2>Natural Features</h2>\nThe Ocala National Forest spans four counties and 383,000 acres. It is the southernmost and oldest national forest east of the Mississippi River and protects the world's largest contiguous sand pine scrub forest.\n<br/><br/>\nThe campground is shaded with large live oaks with a flat, grassy patch of land that leads to the St. Johns River.\n<h2>Nearby Attractions</h2>\nThe Ocala National Forest is notable for its extensive off-road trail system catering to off-road vehicle enthusiasts, as well as being a traditional destination for deer hunters from around Central Florida. Numerous lakes, rivers and natural springs surround the area and offer many water activities.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234597",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -110,28 +119,30 @@
         ]
       },
       "properties": {
-        "id": "FL-004",
+        "id": "ridb:234514",
+        "schema_version": 3,
         "name": "LAKE SHORE GROUP CAMP",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234514",
-        "description": "<h2>Overview</h2>\n<p>Lake Shore Group Campground sits on the north shore of Fore Lake in Ocala National Forest. It is a favorite for scout, church and civic groups, as well as large families and reuni"
+        "description": "<h2>Overview</h2>\n<p>Lake Shore Group Campground sits on the north shore of Fore Lake in Ocala National Forest. It is a favorite for scout, church and civic groups, as well as large families and reunions.</p>\n<p>14 day stay limit in a 30 day period in ALL Ocala National Forest Campgrounds</p>\n<h2>Recreation</h2>\nFore Lake is an excellent spot for birding. Visitors can also picnic and fish along the shore. Campers who wish to venture out into the water can launch their electric-motor boats, canoes and kayaks from the facility's boat ramp.\n<br/><br/>\nSwimming is allowed, but campers should be aware that there are alligators in this lake.<h2>Facilities</h2>\nLake Shore Group Camp is for tent camping, however RVs are allowed in the small parking area. The site can accommodate up to 50 guests and there are campsites in the shade and in the sun, all within sight of the lake. The centerpiece of the facility is the large accessible picnic shelter, perfect for group gatherings. A group grill, picnic tables and a restroom with showers and flush toilets are available.\n<br/><br/>\nThe lake is situated in the historic community of Scrambletown, which has a store.<h2>Natural Features</h2>\nLocated in north central Florida, the Ocala National Forest spans four counties and 383,000 acres. It is the southernmost and oldest national forest east of the Mississippi River and protects the world's largest contiguous sand pine scrub forest.\n<br/><br/>\nLined by marshes, the 12-acre Fore Lake is home to many species of birds. The surrounding landscape is forested with saw palmetto and oak trees.\n<h2>Nearby Attractions</h2>\nThe Ocala National Forest is notable for its extensive off-road trail system catering to both ATV enthusiasts and Jeeps, as well as being a traditional destination for deer hunters. These opportunities are available within a short drive.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234514",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -144,19 +155,30 @@
         ]
       },
       "properties": {
-        "id": "FL-005",
+        "id": "ridb:247888",
+        "schema_version": 3,
         "name": "River Junction",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247888",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247888",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -169,19 +191,30 @@
         ]
       },
       "properties": {
-        "id": "FL-006",
+        "id": "ridb:247884",
+        "schema_version": 3,
         "name": "Moore Haven West",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247884",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247884",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -194,19 +227,30 @@
         ]
       },
       "properties": {
-        "id": "FL-007",
+        "id": "ridb:247889",
+        "schema_version": 3,
         "name": "Hales Landing",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247889",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247889",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -219,19 +263,30 @@
         ]
       },
       "properties": {
-        "id": "FL-008",
+        "id": "ridb:247886",
+        "schema_version": 3,
         "name": "Okeetantie",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247886",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247886",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -244,24 +299,30 @@
         ]
       },
       "properties": {
-        "id": "FL-009",
+        "id": "ridb:233661",
+        "schema_version": 3,
         "name": "W.P. FRANKLIN N",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "water"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "233661",
-        "description": "<h2>Overview</h2>\nVisitors flock to W.P. Franklin Campground for its well-kept facilities and location on the Caloosahatchee River, where campers can fish, boat and take it easy in sunny southwest Flo"
+        "description": "<h2>Overview</h2>\nVisitors flock to W.P. Franklin Campground for its well-kept facilities and location on the Caloosahatchee River, where campers can fish, boat and take it easy in sunny southwest Florida. \nThe campground, about 10 miles east of Fort Myers, provides visitors with a taste of tranquil, tropical country life.   \nNearby Telegraph Creek, offers exciting opportunities to canoe Florida's backcountry swamps and view wildlife.<h2>Recreation</h2>\nFishing for both salt and fresh water game fish is popular, as is boating. A unique feature of the campground is its cruiser sites, where campers sleep on their boat while enjoying the perks of the campsite facilities.<h2>Facilities</h2>\n<p>The 29 RV sites and 8 boat sites are equipped with 50 amp electric and water hookups. A boat ramp, fishing pier and trailer dump station are conveniently onsite.</p>\n<h2>Natural Features</h2>\nThe campground is almost completely surrounded by the Caloosahatchee River with just a narrow stretch of land connecting it to the shore.   \nThe Caloosahatchee River is part of the 152 mile Okeechobee Waterway that spans South Florida from the Atlantic Ocean to the Gulf of Mexico.\n<h2>Nearby Attractions</h2>\nVisit the U.S Army Corps of Engineers visitor center across the river in the W.P. Franklin South Recreation Area.  \nVisit downtown Fort Myers for flea markets, grocery stores, shopping and the historic Thomas Edison and Henry Ford Winter Estates,  \nor spend a day exploring the sandy Gulf of Mexico beaches, about 45 minutes from the campground.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/233661",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -274,19 +335,30 @@
         ]
       },
       "properties": {
-        "id": "FL-010",
+        "id": "ridb:247892",
+        "schema_version": 3,
         "name": "Three Rivers State Park",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247892",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247892",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -299,29 +371,30 @@
         ]
       },
       "properties": {
-        "id": "FL-011",
+        "id": "ridb:251903",
+        "schema_version": 3,
         "name": "GROUP LANDING",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "fire_rings",
-          "picnic_tables",
-          "trash"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "251903",
-        "description": "<h2>Overview</h2>\nGroup Landing is a secluded area that offers a flexible space accommodating many outdoor activities, from a weekend family camping trip to a midweek company picnic.<h2>Recreation</h2"
+        "description": "<h2>Overview</h2>\nGroup Landing is a secluded area that offers a flexible space accommodating many outdoor activities, from a weekend family camping trip to a midweek company picnic.<h2>Recreation</h2>\nSwimming, canoeing, kayaking, fishing and more are easily accommodated. A private sand beach gives a great venue for relaxing by the water or swimming in its cool waters. It's easy to shore launch a small boat, canoe, or kayak, and a boat ramp at Olustee Beach nearby can handle larger craft.<h2>Facilities</h2>\nThe site includes four electric hookups, an accessible bathhouse with hot showers and flush toilets, a large picnic shelter, and potable water. Bear-proof garbage cans, picnic tables, a large grill, and a fire pit are also provided.<h2>Natural Features</h2>\nSituated on the shore of Ocean Pond, you can relax and admire the tranquil beauty from your own private beach. Your campsites are surrounded by tall pines and cypress draped in Spanish moss. Wildlife sightings abound.\n<h2>Nearby Attractions</h2>\nOlustee Beach, with a large day use area, swimming beach, and boat ramp, is right next door. Ocean Pond is a large freshwater lake excellent for fishing and boating. Twenty-two miles of the Florida National Scenic Trail wind through the Osceola National Forest. Make sure to visit the Olustee Battlefield, site of the largest Civil War battle in Florida.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/251903",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -334,29 +407,30 @@
         ]
       },
       "properties": {
-        "id": "FL-012",
+        "id": "ridb:234032",
+        "schema_version": 3,
         "name": "Alexander Springs Recreation Area",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234032",
-        "description": "<h2>Overview</h2>\n<p>Alexander Springs Recreation Area is located in the Ocala National Forest near the beautiful, turquoise waters of Alexander Springs. With forested scenery and abundant water, the "
+        "description": "<h2>Overview</h2>\n<p>Alexander Springs Recreation Area is located in the Ocala National Forest near the beautiful, turquoise waters of Alexander Springs. With forested scenery and abundant water, the recreation area offers camping, swimming, canoeing, scuba diving (for certified divers), hiking, birding and wildlife viewing.<br><br>The Ocala National Forest, located in north central Florida, spans four counties and 383,000 acres. It is the southernmost and oldest national forest east of the Mississippi River, and protects the world's largest contiguous sand pine scrub forest.</p>\n\n<p>If you are planning to visit the weekend of Memorial Day through Labor Day on a Saturday, Sunday, or holiday, you will be required to obtain a <a href=\"https://www.recreation.gov/timed-entry/10112101\" rel=\"nofollow\">Vehicle Access Reservation. </a>\u00a0</p>\n<h2>Recreation</h2>\n<p>Visitors can swim, snorkel and dive year-round in the crystalline waters of the spring. The spring is the only place in the Ocala National Forest where scuba diving is permitted, and a broad and naturally gently sloped spring pool becomes a natural water park where visitors can picnic, swim and play.<br></p>\n<p>If you are planning to visit the weekend of Memorial Day through Labor Day on a Saturday, Sunday, or holiday, you will be required to obtain a <a href=\"https://www.recreation.gov/timed-entry/10112101\" rel=\"nofollow\">Vehicle Access Reservation. </a><br><br>Fishing and canoeing are p opular outside the swimming area. Anglers can bring a rod and reel and head down to one of the platforms along the Timucuan Trail to drop a line in Alexander Run. Visitors can rent canoes or bring their own and paddle down Alexander Run into the Alexander Springs Wilderness.<br><br><br>Day hikers will appreciate a short interpretive trail on a boardwalk over the spring and through the palm trees. They can also access two segments of the 1,400-mile Florida National Scenic Trail, which runs through the entire national forest.</p>\n<h2>Facilities</h2>\nThe camping area contains four loops of campsites within an easy walk of the swimming and picnicking area. The sites are shaded with level parking pads for RVs and plenty of space for tents. No hookups are available. Restrooms have flush toilets and showers. Camping necessities and firewood are available at a small general store.<h2>Natural Features</h2>\nAlexander Springs is among 27 first-magnitude springs in Florida, and is by far one of the easiest for visitors to enjoy. The water is a constant 72 degrees and extraordinarily clear with a sandy bottom.\n<br/><br/>\nThe area is subtropical, surrounded by a floodplain forest of maples, sweet gum and cabbage palms. Alligators, turtles, deer, raccoons, black bear and numerous birds make their home in the national forest.\n<h2>Nearby Attractions</h2>\nVisitors can explore the surrounding Alexander Springs Wilderness Area. A paddle down the spring run is the best option to explore the mosaic of hardwood swamp, hardwood forest and scrub habitats and spot the animals that live there.\n<br/><br/>\nThe Ocala National Forest is notable for its extensive off-road trail system catering to both ATV enthusiasts and Jeeps, as well as being a traditional destination for deer hunters from around Central Florida. These opportunities are available within a short drive of Alexander Springs.\n<h2>Contact Info</h2>\nFor facility specific information, please call (352) 669-3522.<h2>Charges & Cancellations</h2>\n<p>Cancelling a Reservation: Customers may cancel their reservation prior to arrival both on-line and through the call center. A $10 service fee will be withheld from any refund for a cancellation. Depending on when you cancel in relation to your arrival day, it may be considered a late cancellation.</p>\n\n<p><a href=\"https://www.recreation.gov/rules-reservation-policies\" rel=\"nofollow\">https://www.recreation.gov/rules-reservation-policies</a>\u00a0</p>\n\n<p><strong>Refunds are not given for inclement weather for camping, gear rentals, or day-use fees.</strong></p>\n",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234032",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -369,29 +443,30 @@
         ]
       },
       "properties": {
-        "id": "FL-013",
+        "id": "ridb:234657",
+        "schema_version": 3,
         "name": "LAKE DORR CABIN",
         "type": "established",
-        "cost": 15,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "The deposit is for security and shall be refunded within 60 days of the Check-out Date, provided the following has not occurred: Damage caused to the property or furnishings Removal of furnishings or non-consumable items Violation of any rules for site and forest Dirt or mess requiring excessive cleaning, or Any other cost incurred by the Business due to Guest\u2019s stay.",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234657",
-        "description": "<h2>Overview</h2>\nLake Dorr Cabin is set along the south shore of beautiful Lake Dorr, ideal for a family getaway. The cabin is open year-round and creates a great setting for plenty of outdoor water "
+        "description": "<h2>Overview</h2>\nLake Dorr Cabin is set along the south shore of beautiful Lake Dorr, ideal for a family getaway. The cabin is open year-round and creates a great setting for plenty of outdoor water fun. The rental includes a private boat ramp, canoes and a fishing dock. It's located just over an hour from popular amusement parks and other exciting attractions in Orlando. \n<br/><br/>\nThe cabin entrance and bathroom is accessible. A flat section on the property fits two tents if guests wish to camp outside.<h2>Recreation</h2>\nBoating, skiing, jet skiing, fishing and swimming are among the most popular activities for guests. The abundance of largemouth bass, crappie and pan fish entice anglers. \n<br/><br/>\nA private boat ramp, fishing dock, picnic table, grill and three canoes with life vests are provided.<h2>Facilities</h2>\n<p>Lake Dorr Cabin is a modern, newly restored facility with polished hardwood floors and large windows that overlook the lake. The cabin sleeps 10 guests, with a queen bed in one bedroom, two sets of bunk beds in the other bedroom and two sleeper sofas in the living room. Electricity and drinking water are available, along with a flush toilet and hot shower. Modern amenities in the kitchen include a refrigerator, microwave, coffee maker and electric stove.  (The pictured fireplace is non-functional)<br><br><br><br>Guests should bring food, bedding, dish soap, sunscreen, towels and all other basic camping supplies and lake gear. <a href=\"http://www.fs.usda.gov/recarea/ocala/recreation/camping-cabins/recarea/?recid=40245&actid=101\" rel=\"nofollow\">Click here</a> for more cabin details.</p>\n<h2>Natural Features</h2>\nThe cabin rests on the south shores of the lake, with shady Palmetto palms and other tropical vegetation. Views of Lake Dorr, which spans 1,760 acres, are impressive from the cabin grounds. \n<br/><br/>\nOcala National Forest boasts more than 600 lakes, rivers and springs, including three first-magnitude springs.\n<h2>Contact Info</h2>\nThis location is unstaffed. To speak with our main office for general information, please call: (352) 669-3522.\n<h2>Nearby Attractions</h2>\nAltoona lies directly south of Lake Dorr, with gas stations and conveniece stores. Umatilla is a little farther south, offering grocery stores and pharmacies.\n<br/><br/>\nThe cabin is about 50 miles from Daytona Beach to the east and the city of Orlando to the south. Both trips take just over an hour and offer many opportunities for entertainment.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234657",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -404,19 +479,30 @@
         ]
       },
       "properties": {
-        "id": "FL-014",
+        "id": "ridb:247891",
+        "schema_version": 3,
         "name": "Butlers Ferry (Trails End Marina)",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247891",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247891",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -429,19 +515,30 @@
         ]
       },
       "properties": {
-        "id": "FL-015",
+        "id": "ridb:247885",
+        "schema_version": 3,
         "name": "Pahokee City Park",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247885",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247885",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -454,27 +551,30 @@
         ]
       },
       "properties": {
-        "id": "FL-016",
+        "id": "ridb:251904",
+        "schema_version": 3,
         "name": "CAMEL LAKE CAMPGROUND",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "251904",
-        "description": "<h2>Overview</h2>\nCamel Lake Recreation Area provides a quiet place to relax and take in the beauty of the longleaf pine forest. Camping, swimming, hiking, and boating opportunities are all available,"
+        "description": "<h2>Overview</h2>\nCamel Lake Recreation Area provides a quiet place to relax and take in the beauty of the longleaf pine forest. Camping, swimming, hiking, and boating opportunities are all available, focused on the crystal-clear waters of Camel Lake.<h2>Recreation</h2>\nAbove the lake's rim, the focal points of this recreation area are the well-shaded ten-site campground, suitable for RVs or tents, and the day use recreation area with its picnic tables, picnic shelter, and sandy beach for swimming. A short loop trail surrounds the lake, with longer loops possible incorporating the nearby Florida National Scenic Trail. <h2>Facilities</h2>\nSome of the campsites have electricity, and there is a bathhouse with flush toilets in the campsite and in the day-use area. A campground host is always available. The day-use parking lots, picnic areas, and restrooms are accessible. Hours of operation through the summer are 8 am to 8 pm (April 1st - Oct 31st) and through the winter are 8 am to 6 pm (Nov 1st - March 31st). <h2>Natural Features</h2>\nThe Apalachicola is one of the most bio diverse places in the world, and Camel Lake places you in the middle of this natural treasure. You will be surrounded by tall longleaf pines and wiregrass, while seepage slopes in the forest create pitcher plant bogs. Rare pine savannahs are just to the south and the creeks and swamps around host a wide variety of animal life.\n<h2>Nearby Attractions</h2>\nNearby, several boat landings provide access to the numerous creeks that feed into the Apalachicola River. The Apalachee Savannahs Scenic Byway and the Big Bend Scenic Byway provide beautiful views of pine savannahs, and they make excellent routes for trips down to the coast, which is only about an hour south.<h2>Charges & Cancellations</h2>\nRefunds can not be made on site. Refunds must be processed by Recreation.gov ",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/251904",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -487,28 +587,30 @@
         ]
       },
       "properties": {
-        "id": "FL-017",
+        "id": "ridb:234033",
+        "schema_version": 3,
         "name": "CLEARWATER LAKE REC AREA",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234033",
-        "description": "<h2>Overview</h2>\nClearwater Lake Recreation Area offers a quiet getaway along the southeastern edge of the Ocala National Forest, just outside the community of Paisley, Florida. With a shaded campgro"
+        "description": "<h2>Overview</h2>\nClearwater Lake Recreation Area offers a quiet getaway along the southeastern edge of the Ocala National Forest, just outside the community of Paisley, Florida. With a shaded campground, day use picnic area, beach and a nature trail that winds through the pine woods and scrub around Clearwater Lake, this facility has plenty of activities to keep campers occupied.\n<br/><br/>\nThe Ocala National Forest, in north central Florida, spans four counties and 383,000 acres. It is the southernmost and oldest national forest east of the Mississippi River, and protects the world's largest, contiguous sand pine scrub forest.<h2>Recreation</h2>\nThe abundant water in the area offers many opportunities for recreation. In addition to swimming in the lake, a 7-mile canoe trail meanders not far from Clearwater Lake. Canoe rentals are available at the campground. Campers can fish for largemouth bass, brim or catfish. Hikers have access to the Clearwater Lake Loop Trail, a 1.3-mile nature trail; a segment of the 1,400-mile Florida National Scenic Trail; and mountain bikers can ride the Paisley Woods Bicycle Trail, a 22-mile forested path. This is bear country; practice safe food storage techniques. It is also alligator country; practice caution around water.<h2>Facilities</h2>\nThe campground area is nicely shaded, its breezy lakefront sites border Clearwater Lake. Sites accommodate motor homes, trailers and tents, and flush toilets and showers are available. A dish washing station is also available in both loops. Campsites have level parking pads and space for tents. No hookups are available.\n<br/><br/>\nThe small town of Paisley is a mile away, with camping supplies, a post office and a library with Internet access.<h2>Natural Features</h2>\nThe semi-tropical region gives the campground a mixture of pines and palms, with lush greenery and warm temperatures. With ample habitat, alligators, turtles, deer, raccoons, black bear and numerous birds make their home here.\n<h2>Nearby Attractions</h2>\nThe Ocala National Forest is notable for its extensive off-road trail system catering to both ATV enthusiasts and Jeeps, as well as being a traditional destination for deer hunters from around Central Florida. These opportunities are available within a short drive of Clearwater Lake.\n<h2>Contact Info</h2>\nFor facility specific information, please call (352) 669-0078.<h2>Charges & Cancellations</h2>\n<p>Cancelling a Reservation: Customers may cancel their reservation prior to arrival both on-line and through the call center. A $10 service fee will be withheld from any refund for a cancellation. Depending on when you cancel in relation to your arrival day, it may be considered a late cancellation.</p>\n\n<p><a href=\"https://www.recreation.gov/rules-reservation-policies\" rel=\"nofollow\">https://www.recreation.gov/rules-reservation-policies</a>\u00a0\u00a0</p>\n\n<p>Refunds are not given for inclement weather for camping, gear rentals, or day-use fees.</p>\n\n",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234033",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -521,26 +623,30 @@
         ]
       },
       "properties": {
-        "id": "FL-018",
+        "id": "ridb:233638",
+        "schema_version": 3,
         "name": "ST LUCIE SOUTH",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "233638",
-        "description": "<h2>Overview</h2>\nSt. Lucie Campground provides a relaxing camping experience on the St. Lucie Canal, part of the 152 mile Okeechobee Waterway that spans South Florida from the Atlantic Ocean to the G"
+        "description": "<h2>Overview</h2>\nSt. Lucie Campground provides a relaxing camping experience on the St. Lucie Canal, part of the 152 mile Okeechobee Waterway that spans South Florida from the Atlantic Ocean to the Gulf of Mexico.   Campers can enjoy watching boats and the occasional manatee pass through the St Lucie Lock while sitting under the warm Florida sun.<h2>Recreation</h2>\nHike the St. Lucie Nature Trail on the north side of the canal, or spend the day fishing and boating on the St Lucie Canal and the south fork of the St. Lucie River.<h2>Facilities</h2>\n<p>The St. Lucie South Campground offers waterfront RV and tent sites, plus cruiser sites for boat campers. All RV and cruiser sites have 50 amp electric and water hookups. Our tent sites also have electric. A trailer dump station is on site for your convenience A family-friendly visitor center, group picnic shelter, horseshoe pit and  are onsite to entertain the group.</p>\n<h2>Natural Features</h2>\nTropical vegetation surrounds the campground, which is about 25 miles east of Lake Okeechobee, the second largest freshwater lake in the United States.   \nThe lake is 451,000 acres and on average only 9 feet deep.\n<h2>Nearby Attractions</h2>\nThe Hobe Sound National Wildlife Refuge is recommended for visitors who are interested in the many species of birds in the area.   \nThe city of Stuart is just down the road with restaurants and shopping. Sandy beaches located on nearby Hutchison Island make for a fun days trip to the Atlantic Ocean.\nNearby Fort Pierce is home to the National Navy UDT-SEAL Museum.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/233638",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -553,19 +659,30 @@
         ]
       },
       "properties": {
-        "id": "FL-019",
+        "id": "ridb:247890",
+        "schema_version": 3,
         "name": "Seminole State Park",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247890",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247890",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -578,19 +695,30 @@
         ]
       },
       "properties": {
-        "id": "FL-020",
+        "id": "ridb:247894",
+        "schema_version": 3,
         "name": "Seminole Lodge",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247894",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247894",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -603,19 +731,30 @@
         ]
       },
       "properties": {
-        "id": "FL-021",
+        "id": "ridb:247895",
+        "schema_version": 3,
         "name": "Spring Creek Resort",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247895",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=445&agencyCode=130\" rel=\"nofollow\">Lake Seminole</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247895",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -628,26 +767,30 @@
         ]
       },
       "properties": {
-        "id": "FL-022",
+        "id": "ridb:261793",
+        "schema_version": 3,
         "name": "W.P. FRANKLIN SOUTH RECREATION AREA",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "261793",
-        "description": "<h2>Overview</h2>\nWP Franklin South Recreation Area is a day use area located on the Caloosahatchee River adjacent to the WP Franklin Lock and Dam. Visitors can watch boats traversing the 152 mile Oke"
+        "description": "<h2>Overview</h2>\nWP Franklin South Recreation Area is a day use area located on the Caloosahatchee River adjacent to the WP Franklin Lock and Dam. Visitors can watch boats traversing the 152 mile Okeechobee Waterway that spans South Florida from the Atlantic Ocean to the Gulf of Mexico, enjoy the exhibits at the visitor center or just relax with a picnic lunch.<h2>Recreation</h2>\nBoating, canoeing and kayaking on the Caloosahatchee River are popular activities. Anglers can try their luck with catching both freshwater and saltwater fish.<h2>Facilities</h2>\nThis day use area has a visitor center, boat ramp, volleyball and horseshoe courts, a playground and several covered picnic sites. Flush toilets and drinking water are also available. There are two group picnic shelters available for reservation. Each shelter has water and electricity, six picnic tables, a large charcoal BBQ grill and can accommodate up to 50 people.\n<h2>Nearby Attractions</h2>\nLee County Manatee Park is six miles west on Palm Beach Blvd. Hickeys Creek Mitigation Park is two miles east on Palm Beach Boulevard, Gulf of Mexico beaches and the J.N. Ding Darling National Wildlife Refuge are 30 miles to the west.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/261793",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -660,19 +803,30 @@
         ]
       },
       "properties": {
-        "id": "FL-023",
+        "id": "ridb:247887",
+        "schema_version": 3,
         "name": "Indiantown Marina",
-        "type": "established",
-        "cost": 0,
+        "type": "other",
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
         "amenities": [],
         "rig_friendly": [],
-        "road_difficulty": "paved",
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "247887",
-        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>"
+        "description": "This recreation area is part of <a href=\"http://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&recAreaId=437&agencyCode=130\" rel=\"nofollow\">Lake Okeechobee</a>",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/247887",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -685,29 +839,30 @@
         ]
       },
       "properties": {
-        "id": "FL-024",
+        "id": "ridb:234031",
+        "schema_version": 3,
         "name": "JUNIPER SPRINGS REC AREA",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234031",
-        "description": "<h2>Overview</h2>\nJuniper Springs Campground is one of the most popular campgrounds in the Ocala National Forest. The location offers deeply shaded sites within walking distance of some of Florida's m"
+        "description": "<h2>Overview</h2>\nJuniper Springs Campground is one of the most popular campgrounds in the Ocala National Forest. The location offers deeply shaded sites within walking distance of some of Florida's most beautiful natural springs. The surrounding recreation area has plenty of activities to entertain visitors, including swimming, picnicking, canoeing, snorkeling, hiking, birding and wildlife viewing.\n<br/><br/>\nThis campground was named one of Reserve America's Top 100 Family Campgrounds in the United States.<h2>Recreation</h2>\n<p>Visitors love swimming in a 72-degree, natural pool found in the day use area. Constructed by the Civilian Conservation Corps, it is more developed with a pool-like look.\u00a0\u00a0\u00a0</p>\n<p>Paddling Juniper Run is also extremely popular year-round. Juniper Run is recognized as one of the top 25 canoe runs in America by ReserveAmerica. This 7-mile waterway winds through a scenic landscape, surrounded by a dense canopy of ancient trees in an old-growth forest.</p>\n<p>While the journey offers picturesque scenery, it's important to highlight that <strong>Juniper Run is not suitable for beginners due to its challenging course and changing conditions</strong>. The run travels through a National Wilderness Area, and as defined in The Wilderness Act of 1967 Section 4(c): \"There shall be no use of motor vehicles, motorized equipment, or motorboats, no landing of aircraft, no other form of mechanical transport, and no structure or installation within any such area.\" So, clearing the run is limited to hand tools only. The run often has hazards overhead and underwater that make navigation difficult - even for seasoned paddlers. Learn more about Juniper Run and our rental kayaks & shuttle service: <a href=\"https://www.naventure.com/juniper-run\" rel=\"nofollow\">https://www.naventure.com/juniper-run</a>\u00a0</p>\n<p><br><br>Back on land, campers can spend a day in the woods on a segment of the statewide Florida National Scenic Trail, or walk a shorter nature trail within the facility. Interpretive programs are available during summer months.</p>\n<h2>Facilities</h2>\n<p>The facility is divided into a day use area and campground. Campsites are arranged into three loops near the creek and springs. All sites are shaded and equipped with a picnic table, grill, campfire ring, lantern post and space for tents. There are no sites with full hookups. Other amenities include hot showers, flush toilets and dump station.<br><br><br><br>A convenience store with camping supplies, beach supplies, drinks and ice cream is nearby. Restaurants, shopping and gas are just 10 miles from campground.</p>\n<h2>Natural Features</h2>\nThe natural springs are at the heart of this recreation area. Hundreds of bubbling springs emerge from crevices in the earth beneath a dense canopy of palms and oaks - an oasis within the heart of the desert-like Big Scrub ecosystem for which the national forest is known.\n<br/><br/>\nAbundant wildlife inhabitant the area, including alligators, turtles, deer, black bear, turkey, raccoons and numerous species of birds, as well as uncommon species like the albino gray squirrel, river otters and American eels.\n<h2>Nearby Attractions</h2>\nLake George and its many activities are just a short drive away. The Ocala National Forest is also notable for its extensive off-road trail system catering to both ATV enthusiasts and Jeeps, as well as being a traditional destination for deer hunters from around Central Florida. These opportunities are available nearby.\n<h2>Contact Info</h2>\nFor facility specific information, please call (352) 625-3147.<h2>Charges & Cancellations</h2>\n<p>Cancelling a Reservation: Customers may cancel their reservation prior to arrival both on-line and through the call center. A $10 service fee will be withheld from any refund for a cancellation. Depending on when you cancel in relation to your arrival day, it may be considered a late cancellation.</p>\n\n<p><a href=\"https://www.recreation.gov/rules-reservation-policies\" rel=\"nofollow\">https://www.recreation.gov/rules-reservation-policies </a>\u00a0</p>\n\n<p>Refunds are not given for inclement weather for camping, gear rentals, or day-use fees.</p>\n\n",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234031",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -720,27 +875,30 @@
         ]
       },
       "properties": {
-        "id": "FL-025",
+        "id": "ridb:234513",
+        "schema_version": 3,
         "name": "BIG SCRUB CAMPGROUND",
         "type": "established",
-        "cost": 12,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "Sites A and B = Full Hook up = $12 + $10 = $22 per night",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "234513",
-        "description": "<h2>Overview</h2>\n<p>Perennially popular with off-road vehicle enthusiasts, Big Scrub Campground sits in the Ocala National Forest in central Florida. A trailhead within the facility offers riders cam"
+        "description": "<h2>Overview</h2>\n<p>Perennially popular with off-road vehicle enthusiasts, Big Scrub Campground sits in the Ocala National Forest in central Florida. A trailhead within the facility offers riders campsite-to-trail access.\u00a0</p><p>14 day stay limit in a 30 day period in ALL Ocala National Forest Campgrounds</p><p>For reservations or refund request please call (877) 444-6777</p><h2>Recreation</h2>\nBig Scrub Campground offers direct access to the 47-mile Ocala Adventure Trail. All off-road vehicle riders will enjoy exploring the Tread Lightly Four Wheel Drive Way. A permit is required for use of the trail system.\n<br/><br/>\n<a href=\"http://www.fs.usda.gov/activity/ocala/recreation/ohv\" rel=\"nofollow\">Learn more</a> about off-road vehicle use in Ocala National Forest.<h2>Facilities</h2>\nBig Scrub can accommodate tents, campers and RVs. The campground is equipped with showers, restrooms and drinking water. <h2>Natural Features</h2>\nThe Ocala National Forest spans four counties and 383,000 acres. It is the southernmost and oldest national forest east of the Mississippi River and protects the world's largest contiguous sand pine scrub forest. \n<br/><br/>\nMiles of trails offer plenty of open space and blue skies for off-road vehicles.\n<h2>Contact Info</h2>\nThis location has limited staffing. Please call (352) 625-2520 for general information.\n<h2>Nearby Attractions</h2>\nThe warm, turquoise waters of Alexander Springs are a short drive away. Visitors can swim, canoe and dive in a natural spring-fed lake and creek.",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234513",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -753,28 +911,30 @@
         ]
       },
       "properties": {
-        "id": "FL-026",
+        "id": "ridb:251908",
+        "schema_version": 3,
         "name": "WRIGHT LAKE CAMPGROUND",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "showers",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "tent",
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "251908",
-        "description": "<h2>Overview</h2>\nWright Lake is located approximately 25 miles from the Gulf of Mexico in an area known as the Forgotten Coast. Wright Lake and nearby Hickory Landing provide easy access to the Apala"
+        "description": "<h2>Overview</h2>\nWright Lake is located approximately 25 miles from the Gulf of Mexico in an area known as the Forgotten Coast. Wright Lake and nearby Hickory Landing provide easy access to the Apalachicola River, known for its sport fishing, boating and paddling.  You will never run out of things to do!<h2>Recreation</h2>\nWright Lake is a quiet scenic lakefront recreation area that offers a host of amenities and activities for campers and day-trippers. The area around the clear, spring-fed lake offers both a day-use area for swimming, picnicking, and hiking, and a campground in a beautiful forest setting along one portion of the lakeshore. It is perfect for fishing and boating. The campground bathhouse includes flush toilets and hot showers. Picnic tables and grills are scattered among trees with views of the lake.<br/><br/>\nHikers can enjoy a 4.6-mile trail that winds through several different ecosystems in the area, and there is a short 0.2 mile loop that circles the lake. Nearby Hickory Landing offers boating access to Owl Creek and the Apalachicola River.<h2>Facilities</h2>\n<p>The campground includes 1 electric(host) and 18 nonelectric campsites with picnic tables, grills, tent pads and fire rings. The recreation area is fairly level and easily accessible. The comfort station has flush toilets and warm showers.</p>\n<h2>Natural Features</h2>\nYou will find peace and quiet on a ridge in the Apalachicola Savannahs.  The longleaf pine dominates this open landscape where wiregrass, or sometimes palmetto, covers the forest floor. Swamps and savannahs are commonly interspersed with the longleaf community.\n<h2>Nearby Attractions</h2>\n<p>The Apalachee Savannahs Scenic Byway is part of a nationwide program to provide viewing opportunities of well-managed and pleasing forest landscapes. This scenic drive is an excellent way to see the forest, as it showcases grassy, open savannahs sporting the most diverse collection of wildflowers in Florida's Panhandle.<br><br><br>Nearby, historic Prospect Bluff played an important role in Florida history. Located along the Apalachicola River, this interpretive area offers detailed information about the site and its history along with trails, river access, and a picnic area. Detailed interpretive information in the form of kiosks and signage lead you through the site of both forts and the cemetery where the victims from 1816 are buried.</p>\n<h2>Charges & Cancellations</h2>\nRefunds can not be processed on site. All refunds must go through Recreation.gov. ",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/251908",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     },
     {
@@ -787,28 +947,30 @@
         ]
       },
       "properties": {
-        "id": "FL-027",
+        "id": "ridb:233570",
+        "schema_version": 3,
         "name": "ORTONA SOUTH",
         "type": "established",
-        "cost": 0,
+        "cost": null,
+        "fee_status": "unknown",
+        "fee_description": "",
+        "field_provenance": {
+          "cost": "unknown",
+          "amenities": "unknown",
+          "rig_friendly": "unknown",
+          "road_difficulty": "unknown"
+        },
         "rating": null,
         "reviews_count": 0,
-        "amenities": [
-          "toilets",
-          "water",
-          "showers",
-          "fire_rings",
-          "picnic_tables"
-        ],
-        "rig_friendly": [
-          "RV",
-          "trailer"
-        ],
-        "road_difficulty": "paved",
+        "amenities": [],
+        "rig_friendly": [],
+        "road_difficulty": null,
         "state": "FL",
         "source": "recreation.gov",
         "facility_id": "233570",
-        "description": "<h2>Overview</h2>\n<p>Ortona South is a perfect campground for a quiet, sunny escape to South Florida.  The campground is set along the Caloosahatchie River.</p>\n<h2>Recreation</h2>\n<p>Activities here "
+        "description": "<h2>Overview</h2>\n<p>Ortona South is a perfect campground for a quiet, sunny escape to South Florida.  The campground is set along the Caloosahatchie River.</p>\n<h2>Recreation</h2>\n<p>Activities here are focused on simple, relaxing pleasures like fishing and strolling the grounds.  If you walk across the dam in between 7AM and 4 PM, the road on the north side of the river provides a great place for walking and bicycling. Catfish, Largemouth Bass, Bluegill, and Tilapia are the most commonly caught fish at the large wooden pier at the campground.  Snook are commonly caught at the small north end pier which is also accessible by walking across the dam from 7AM to 4PM.  Several large bird species frequent the area if you are a Bird Watcher.<br></p>\n<h2>Facilities</h2>\n<p>All campsites have concrete pads, electric, 30 amp and 50 amp, water hookups, a fire ring and grill, and a covererd picnic table. Other amenities include a sanitary dump station, restrooms with showers, dumpsters, Wifi (near west end restroom only), and a picnic pavilion for campers only.  Day use visitors are allowed on site for fishing.  The Ortona North Day Use Area has a boat launch and is a 25 minute drive by way of the Town of LaBelle.  LaBelle is the nearest town and has stores, restaurants, etc.  Laundry Facilities are not currently available on site.\u00a0</p>\n<h2>Natural Features</h2>\n<p>The campground's terrain is flat and lined with tropical greenery , including the Sabal Palm, the state tree of Florida.  The Caloosahatchee River to your north and picturesque pastures to your south.  The South Florida Water Management District is constructing a Water Quality Treatment and Testing Facility, adjacent to the South East end of the campground.  Construction at that site may affect the serenity of your experience.<br> <br></p>\n\n<h2>Nearby Attractions</h2>\n<p>Head west to LaBelle, Florida, where an annual Swamp Cabbage Festival is held the last weekend of each February. Or travel east to hike or bike along the Herbert Hoover Dike, part of Lake Okeechobee, and part of the 1,400-mile long Florida National Scenic Trail.</p>\n",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/233570",
+        "source_retrieved_at": "2026-10-29T02:54:40Z"
       }
     }
   ]
