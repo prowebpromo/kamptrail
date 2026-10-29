@@ -9,6 +9,7 @@ import fcntl
 import time
 import datetime as dt
 import getpass
+import warnings
 import hashlib
 import json
 import os
@@ -85,8 +86,11 @@ def setup(directory):
     path = directory / 'credentials.json'
     if path.exists() or path.is_symlink():
         raise SafeError('Credentials already exist. Remove them privately before rotating.')
-    username = getpass.getpass('FCC account email (hidden): ').strip()
-    token = getpass.getpass('FCC Public Map Data API token (hidden): ').strip()
+    # getpass otherwise falls back to echoed input on an unsuitable terminal.
+    with warnings.catch_warnings():
+        warnings.simplefilter('error', getpass.GetPassWarning)
+        username = getpass.getpass('FCC account email (hidden): ').strip()
+        token = getpass.getpass('FCC Public Map Data API token (hidden): ').strip()
     if not all(v and len(v) <= 512 and not re.search(r'[\x00-\x20\x7f]', v) for v in (username, token)):
         raise SafeError('Credential input is invalid.')
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
