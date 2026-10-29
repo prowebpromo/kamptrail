@@ -1,16 +1,17 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v31';
+const VERSION = 'kt-v32';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
 const DATA_CACHE = `${PREFIX}data-v1`;
 const TILE_CACHE = `${PREFIX}tiles-v1`;
+const MVUM_CACHE = `${PREFIX}mvum-v1`;
 const SHELL = [
   './','index.html','app.js','app.css','data/places-us.json','manifest.json','icon-192.png','icon-512.png','og.png',
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'data-loader.js','data-quality.js','filters.js','trip-planner.js','spot-info.js','share.js','layers.js','offline-maps.js','contributions.js','community.js'
+  'data-loader.js','data-quality.js','filters.js','trip-planner.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js'
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
@@ -19,7 +20,7 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   const keys=await caches.keys();
-  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==DATA_CACHE && key!==TILE_CACHE).map(key=>caches.delete(key)));
+  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==MVUM_CACHE).map(key=>caches.delete(key)));
   await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{
