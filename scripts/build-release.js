@@ -23,7 +23,7 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
     await fs.writeFile(page,html);
   }
   // Contributions API: only these public PHP entry points and their private helpers. Never configuration or credentials.
-  const apiFiles=['api/.htaccess','api/health.php','api/route.php','api/_lib/routing.php','api/community.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php'];
+  const apiFiles=['api/.htaccess','api/health.php','api/route.php','api/_lib/routing.php','api/community.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php'];
   await fs.mkdir(path.join(out,'api','_lib'),{recursive:true});
   for(const file of apiFiles)await fs.copyFile(path.join(root,file),path.join(out,file));
   for(const file of await fs.readdir(path.join(root,'api'),{recursive:true})){
