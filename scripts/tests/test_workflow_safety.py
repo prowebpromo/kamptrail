@@ -3,10 +3,20 @@ from pathlib import Path
 import ast
 import re
 import unittest
+import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKFLOWS = ROOT / '.github' / 'workflows'
 OWNER = WORKFLOWS / 'fetch-campsite-data.yml'
+
+
+def shell_expression_steps(text):
+    """Inspect parsed shell strings, excluding job/step conditions and env values."""
+    workflow = yaml.safe_load(text)
+    return [f'{job_name}/{index}'
+            for job_name, job in workflow.get('jobs', {}).items()
+            for index, step in enumerate(job.get('steps', []))
+            if isinstance(step.get('run'), str) and '${{' in step['run']]
 
 
 class WorkflowSafetyTests(unittest.TestCase):
@@ -54,10 +64,41 @@ class WorkflowSafetyTests(unittest.TestCase):
 
     def test_shell_blocks_receive_inputs_only_through_env(self):
         text = OWNER.read_text()
-        for block in re.findall(r'        run: \|\n(.*?)(?=\n      - |\Z)', text, re.S):
-            self.assertNotIn('${{', block)
+        self.assertEqual(shell_expression_steps(text), [])
         self.assertIn('STATE_INPUT: ${{ inputs.states', text)
         self.assertIn('PAGE_SIZE: ${{ inputs.page_size', text)
+
+    def test_shell_check_separates_jobs_and_accepts_literal_block_styles(self):
+        text = '''jobs:
+  first:
+    steps:
+      - run: |
+          echo "$STATE_INPUT"
+  second:
+    if: ${{ inputs.source == 'agency' }}
+    env:
+      EXPECTED_CATALOGUE: ${{ inputs.expected_catalogue }}
+    steps:
+      - run: |-
+          echo "$EXPECTED_CATALOGUE"
+'''
+        self.assertEqual(shell_expression_steps(text), [])
+
+    def test_shell_check_rejects_direct_input_expressions_in_every_scalar_style(self):
+        for style in ('|', '|-', '>', '>-'):
+            with self.subTest(style=style):
+                text = f'''jobs:
+  refresh:
+    steps:
+      - run: {style}
+          echo "${{{{ inputs.states }}}}"
+'''
+                self.assertEqual(shell_expression_steps(text), ['refresh/0'])
+        self.assertEqual(shell_expression_steps('''jobs:
+  refresh:
+    steps:
+      - run: echo "${{ inputs.states }}"
+'''), ['refresh/0'])
 
 
 if __name__ == '__main__':
