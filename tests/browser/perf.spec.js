@@ -76,3 +76,12 @@ test('state bubbles do not overlap at national zoom, and moved bubbles keep a le
   await expect.poll(()=>page.evaluate(()=>map.getZoom())).toBeGreaterThanOrEqual(8);
   expect(await page.evaluate(()=>map.getBounds().contains([41.7,-71.5]))).toBe(true);
 });
+
+test('explicitly focusing a second campsite replaces an already open popup',async({page,context})=>{
+ await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64')}));
+ await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:40,lng:-105.5,zoom:9})));
+ await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>1&&!KampTrailData.getLoadStatus().loading);
+ const sites=await page.evaluate(()=>{const all=KampTrailData.getAllCampsites(),first=all[0],second=all.find(f=>f.properties.name!==first.properties.name);return[first,second].map(f=>({id:f.properties.id,name:f.properties.name}));});
+ await page.evaluate(id=>KampTrailData.focusCampsite(id),sites[0].id);await expect(page.locator('.kt-site-popup h3')).toHaveText(sites[0].name);
+ await page.evaluate(id=>KampTrailData.focusCampsite(id),sites[1].id);await expect(page.locator('.kt-site-popup h3')).toHaveText(sites[1].name);
+});

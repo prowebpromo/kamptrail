@@ -32,8 +32,8 @@ This is an updated implementation/evidence audit against the existing FreeRoam s
 
 Operationally, review the moderation queue and monitor source-refresh errors, image-storage usage, backup coverage and routing volume. FOSSGIS permits light use; a sustained audience needs a contracted or self-hosted routing service. Shared hosting should continue serving the app/API, not an OSRM graph.
 
-## Release gate
+## Release evidence
 
-The combined branch passes 79 local Node/PHP tests and 31 Python tests. MySQL integration, real dump/restore comparison, expanded browser/accessibility suite, production migration003 and live smoke checks are required before calling 2.8.0 shipped. The feature score describes the completed branch; production readiness must be recorded separately in test-report.md after deployment.
+2.8.0 shipped on 2026-10-29: 79 Node/PHP tests,31 Python tests,55 browser/accessibility flows,MySQL integration and real dump/restore comparison passed. Production migration003 is applied; health reports routing and community ready. A live public-campground route returned106 road miles and3hr17min, and discovery found111 catalogue records within5miles of the road. These are smoke-test observations, not travel advice. See test-report.md. The 2.8.1 follow-up adds regressions for explicit popup navigation and ambiguous forest links without changing the parity score.
 
 Full matrix: features.csv. Generated scoring output: parity-score.md. No current claim of full FreeRoam parity: coverage, structured review sub-scores, clearance data and several filters remain absent.

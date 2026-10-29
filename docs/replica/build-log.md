@@ -6,3 +6,6 @@
 
 - 2026-10-28: Road geometry, on-demand along-route discovery, compact filter metadata, requested driving detours, route-order insertion and bounded offline reuse implemented for 2.8.0. Fixed-provider backend and additive migration003; no coordinate storage. CI and production activation pending. See docs/ROUTE_DISCOVERY.md.
 - 2026-10-28: MVUM 2.7.0 implements opt-in viewport roads, source vehicle/season fields, district coverage/date context, official forest links, independent road/land opacity, bounded saved-view fallback and source-error states. 72 local Node/PHP tests pass; browser and live-source checks pending.
+
+- 2026-10-29: 2.8.0 merged and deployed (source1c591e4), all55 browser checks,79 Node/PHP,31 Python,MySQL integration and dump/restore passed. Production migration003 applied and health reports routing/community ready.
+- 2026-10-29: Live QA reproduced an existing popup retained after explicit navigation to a second campsite. 2.8.1 closes it and cancels older focus attempts. Ambiguous official forest aliases now omit the destination instead of choosing a sibling unit. Both have regressions.
