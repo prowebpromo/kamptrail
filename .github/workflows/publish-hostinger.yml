@@ -75,6 +75,7 @@ jobs:
           KT_MYSQL_CONTAINER: ${{ job.services.mysql.id }}
       - run: npm run test:python
       - run: npx playwright install --with-deps chromium
+      - run: npm run build:search
       - run: npm run test:browser
       - run: npm run build
         env:

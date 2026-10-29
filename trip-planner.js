@@ -82,12 +82,13 @@
       st.savedMarker=L.marker([lat,lng],{title:nameOf(site)}).addTo(st.map).bindPopup(popup).openPopup();
     }
   }
+  const ROUTE_CREDIT='Routes: <a href="https://routing.openstreetmap.de/about.html">OSRM / FOSSGIS</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · <a href="https://www.openstreetmap.org/fixthemap">fix the map</a>';
   function drawRoute() {
     if(!st.map||!window.L?.polyline)return;
-    st.routeLayer?.remove();st.routeLayer=null;
+    st.routeLayer?.remove();st.routeLayer=null;st.map.attributionControl?.removeAttribution(ROUTE_CREDIT);
     const drive=currentDrive();if(!st.showRoute||!drive?.raw?.geometry)return;
     const root=getComputedStyle(document.documentElement),points=drive.raw.geometry.coordinates.map(([lng,lat])=>[lat,lng]);
-    st.routeLayer=L.polyline(points,{renderer:L.svg(),color:root.getPropertyValue('--route-color').trim(),weight:parseFloat(root.getPropertyValue('--route-stroke')),opacity:.85,interactive:false,className:'kt-road-route'}).addTo(st.map);
+    st.routeLayer=L.polyline(points,{renderer:L.svg(),color:root.getPropertyValue('--route-color').trim(),weight:parseFloat(root.getPropertyValue('--route-stroke')),opacity:.85,interactive:false,className:'kt-road-route'}).addTo(st.map);st.map.attributionControl?.addAttribution(ROUTE_CREDIT);
   }
   function move(index, delta) {
     const target=index+delta;if(target<0||target>=st.stops.length)return;
