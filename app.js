@@ -13,7 +13,7 @@
   window.setLoading = on => { document.getElementById('loading').hidden = !on; };
   function updateOnline() {
     document.getElementById('status-dot').style.color = navigator.onLine ? '#287d45' : '#b06719';
-    document.getElementById('status-text').textContent = navigator.onLine ? 'Online' : 'Offline: saved listings; maps need internet';
+    document.getElementById('status-text').textContent = navigator.onLine ? 'Online' : 'Offline: viewed listings, saved stops and saved Topo maps work';
   }
   addEventListener('online', updateOnline);
   addEventListener('offline', updateOnline);
@@ -42,13 +42,14 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.4.2' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline].some(module=>module?.version!=='2.4.2')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.5.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib].some(module=>module?.version!=='2.5.0')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
   }
   const dataDialog = document.getElementById('data-dialog');
   document.getElementById('about-data').addEventListener('click', () => {updateCatalogueSummary();dataDialog.showModal();});
+  document.getElementById('kt-my-reports')?.addEventListener('click', () => {dataDialog.close();KampTrailContrib.showReports();});
   dataDialog.addEventListener('click', event => { if (event.target === dataDialog) {
     const box=dataDialog.getBoundingClientRect();
     if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dataDialog.close();
@@ -214,7 +215,31 @@
     .then(r => {if (!r.ok) throw new Error('Campsite search index unavailable');return r.json();})
     .then(data => {campsiteIndex = data.sites || [];})
     .catch(() => {siteIndexPromise = null;}));
+  async function updateHealth() {
+    const box = document.getElementById('kt-health'); if (!box) return;
+    let sum = null;
+    try { const r = await fetch('data/health.json', {cache: 'no-cache'}); if (r.ok) sum = DataQuality.summarizeHealth(await r.json()); } catch {}
+    box.replaceChildren();
+    const p = (text, cls) => { const e = document.createElement('p'); if (cls) e.className = cls; e.textContent = text; return e; };
+    if (!sum) { box.append(p('Data freshness is unavailable right now.', 'kt-muted')); return; }
+    if (sum.runFailed) box.append(p(`Degraded: the last data refresh (${sum.lastRun}) did not save any new data. Saved data is shown.`, 'kt-health-warn'));
+    else if (sum.degraded) box.append(p(`Some sources are out of date: ${sum.rows.filter(r => r.status === 'stale' || r.status === 'failing').map(r => r.label).join(', ')}.`, 'kt-health-warn'));
+    const table = document.createElement('table'); table.className = 'kt-health-table';
+    table.innerHTML = '<caption>Data freshness</caption><thead><tr><th scope="col">Source</th><th scope="col">Last downloaded</th><th scope="col">Status</th></tr></thead>';
+    const tb = document.createElement('tbody');
+    const label = {current: 'Current', partial: 'Partly refreshed', stale: 'Out of date', failing: 'Refresh failing'};
+    for (const r of sum.rows) {
+      const tr = document.createElement('tr');
+      const when = !r.newest ? 'Unknown' : r.oldest && r.oldest !== r.newest ? `${r.oldest} to ${r.newest}` : r.newest;
+      const status = label[r.status] + (r.note ? `. ${r.note}` : '');
+      for (const [i, t] of [r.label, when, status].entries()) { const c = document.createElement(i ? 'td' : 'th'); if (!i) c.scope = 'row'; c.textContent = t; tr.append(c); }
+      tr.dataset.status = r.status; tb.append(tr);
+    }
+    table.append(tb); box.append(table);
+    if (sum.lastRun) box.append(p(`Last refresh run: ${sum.lastRun}.`, 'kt-muted'));
+  }
   function updateCatalogueSummary() {
+    updateHealth();
     const totals = KampTrailData.getStateTotals ? KampTrailData.getStateTotals() : {};
     const n = Object.values(totals).reduce((a,b) => a + b, 0), states = Object.keys(totals).filter(k => totals[k] > 0).length;
     document.getElementById('catalogue-summary').textContent = n ? `About ${n.toLocaleString('en-US')} source listings across ${states} states in the current catalogue, before duplicates are merged. Coverage is incomplete.` : 'Catalogue count is unavailable. Source coverage is incomplete.';
