@@ -60,6 +60,19 @@ class WorkerTests(unittest.TestCase):
             self.assertEqual(len(result['sha256']), 64)
             self.assertTrue(zipfile.is_zipfile(path))
 
+    def test_schema_errors_identify_only_the_field_not_the_value(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = fcc.secure_dir(tmp)
+            path = directory / 'credentials.json'
+            for value, message in [('{bad', 'not valid JSON'), ('{"username":"", "token":"synthetic-secret"}', 'email field'), ('{"username":"test@example.invalid", "token":""}', 'token field')]:
+                path.write_text(value)
+                path.chmod(0o600)
+                with self.assertRaises(fcc.SafeError) as result:
+                    fcc.load_credentials(directory)
+                self.assertIn(message, str(result.exception))
+                self.assertNotIn('synthetic-secret', str(result.exception))
+                self.assertNotIn('test@example.invalid', str(result.exception))
+
     def test_rate_limit_is_shared_across_runs(self):
         with tempfile.TemporaryDirectory() as tmp:
             directory = fcc.secure_dir(tmp)

@@ -19,7 +19,7 @@ See `docs/COMMUNITY_REVIEWS.md` for operation, storage and backup details.
 - [x] Fixed HTTPS origin, no credential-bearing redirects, fixed error messages.
 - [x] Shared request spacing, bounded downloads, private provenance/hash sidecars.
 - [x] Six isolated security tests pass locally.
-- [ ] Current official API specification reconciled with request/response contract.
+- [x] Official FCC specification dated June 8, 2026 retrieved and API origin/contract reconciled.
 - [ ] Real server authentication and mobile availability download verified.
 - [ ] Actual mobile geometry schema, CRS and filing-date processing validated.
 - [ ] Dated viewport layer, browser tests, refresh, production deployment.
@@ -30,3 +30,5 @@ still reports missing originating browser context. No production coverage toggle
 or fake data was added. Full Python suite could not complete locally because the
 existing fetcher tests require `requests`, absent from this runtime (three imports).
 See `docs/FCC_COVERAGE_ACCESS.md` for private setup and remaining gates.
+
+Hostinger verification: Python 3.9.25, original six security tests passed on server. Seven tests now pass locally including field-only diagnostics. Private worker and credential data installed outside web root. Real API probe stopped before transmission: the `token` field was missing or empty. No raw credential values were read by the model. Temporary probe schedule removed after validation. Public mobile layer remains blocked on private token entry.

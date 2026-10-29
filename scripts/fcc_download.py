@@ -21,7 +21,7 @@ import tempfile
 import urllib.error
 import urllib.request
 
-BASE = 'https://broadbandmap.fcc.gov/api/public/map/'
+BASE = 'https://bdc.fcc.gov/api/public/map/'
 ROOT = Path(__file__).resolve().parents[1]
 LIMIT = 2 * 1024**3
 
@@ -70,10 +70,19 @@ def load_credentials(directory):
             info = os.fstat(stream.fileno())
             if not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) & 0o077:
                 raise SafeError('Credential file must be owned by the worker user and have mode 600.')
-            value = json.load(stream)
+            try:
+                value = json.load(stream)
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                raise SafeError('Credential file is not valid JSON.') from None
+        if not isinstance(value, dict):
+            raise SafeError('Credential file must be a JSON object.')
+        if not isinstance(value.get('username'), str) or not value['username']:
+            raise SafeError('FCC account email field is missing or empty.')
+        if not isinstance(value.get('token'), str) or not value['token']:
+            raise SafeError('FCC token field is missing or empty.')
         username, token = value['username'], value['token']
         if not all(isinstance(v, str) and v and len(v) <= 512 and not re.search(r'[\x00-\x20\x7f]', v) for v in (username, token)):
-            raise ValueError()
+            raise SafeError('Credential fields contain whitespace/control characters or exceed the permitted length.')
         return username, token
     except SafeError:
         raise

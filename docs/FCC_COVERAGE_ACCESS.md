@@ -20,11 +20,12 @@ and archives remain private. Maximum archive size 2 GiB, temporary-file validati
 SHA-256 and atomic replacement. A shared lock reserves requests at least 6.1 seconds
 apart. No automatic retries, credential forwarding or automatic publication.
 
-The initial API route/header assumptions MUST be reconciled with the current
-**official** Public Data API specification before live use. The worker requires
-`--spec-verified` to acknowledge this. Do not set that flag based on third-party
-examples. The official PDF and official Box copies were unavailable to our tools.
-A public copy downloaded by the owner is sufficient; it contains no token.
+Official API specification retrieved from the FCC-published Box link on 2026-10-29:
+https://us-fcc.app.box.com/v/bdc-public-data-api-spec
+Document dated June 8, 2026, sections 3.1–3.4. Verified header names, route paths,
+response envelope, GIS format values and 10 calls/minute limit. Corrected API
+origin to https://bdc.fcc.gov. The worker still requires `--spec-verified` for
+manual CLI requests. Redirects remain refused.
 
 ## Private entry on Hostinger
 
@@ -74,3 +75,21 @@ Official references:
 - https://help.bdc.fcc.gov/hc/en-us/articles/6789299021723-Key-Reference-Documents
 - https://help.bdc.fcc.gov/hc/en-us/articles/43909220634651-How-to-Download-Mobile-Broadband-Coverage-Data-from-the-FCC-s-National-Broadband-Map-Step-by-Step-Instructions
 - https://www.fcc.gov/sites/default/files/bdc-public-data-api-spec.pdf
+
+## Verified Hostinger installation
+
+Private installation: `/home/u720198529/domains/kamptrail.com/private/fcc-install/`.
+`fcc-worker` contains code only. `fcc-data` has mode 700 and its credential file
+has mode 600. Python 3.9.25 and six security tests passed on the actual Hostinger
+server. Initial self-check cron was removed. Owner privately saved credentials.
+The model did not open/read the credential file. First API probe stopped on local
+credential validation before transmitting an FCC request. Follow-up validator
+returns only a fixed reason identifying an invalid/missing field, never its value.
+
+The server wrapper `scripts/fcc_server_auth.py` is installed as
+`fcc-worker/server_auth.py` beside a `scripts/` folder containing the downloader.
+It uses a private process lock and writes only sanitized results and public mobile
+availability metadata. Temporary probe cron must be removed after observing its
+result. No public layer, national refresh or production API deployment yet.
+
+Sanitized follow-up result: `FCC token field is missing or empty.` No FCC request was transmitted. Owner must privately populate that field, save and close the editor. Do not inspect the credential file or capture it.
