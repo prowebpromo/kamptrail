@@ -212,6 +212,30 @@
       return true;
     });
   }
-  global.DataQuality={version:'2.4.2',attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  // Refresh health: which sources are current, stale, or failing. Pure, so the About dialog and tests share it.
+  function summarizeHealth(h, now = Date.now()) {
+    if (!h || h.version !== 1 || !h.sources) return null;
+    const DAY = 86400000, limit = (+h.stale_after_days || 45) * DAY, issues = [];
+    const day = iso => iso ? String(iso).slice(0, 10) : null;
+    const rows = Object.entries(h.sources).map(([id, s]) => {
+      const scopes = Object.values(s.scopes || {}), n = scopes.length;
+      const failed = scopes.filter(x => x.outcome === 'failed').length, skipped = scopes.filter(x => x.outcome === 'skipped').length;
+      const stale = scopes.filter(x => !x.last_success || now - Date.parse(x.last_success) > limit).length;
+      let status = 'current';
+      if (n && failed === n) status = 'failing'; else if (stale) status = 'stale'; else if (failed) status = 'partial';
+      const where = n > 1 ? (k => `${k} of ${n} states`) : (() => '');
+      let note = '';
+      if (status === 'failing') note = 'The last refresh failed. Saved data is shown.';
+      else if (stale) note = `Older than ${Math.round(limit / DAY)} days${n > 1 ? ' in ' + where(stale) : ''}.`;
+      if (failed && status !== 'failing') note += `${note ? ' ' : ''}Last refresh failed${n > 1 ? ' in ' + where(failed) : ''}. Saved data is shown.`;
+      if (skipped) note += `${note ? ' ' : ''}Not refreshed in the last run${n > 1 ? ' in ' + where(skipped) : ''}.`;
+      if (status !== 'current') issues.push(s.label || id);
+      return {id, label: s.label || id, oldest: day(s.oldest_success), newest: day(s.newest_success), status, note};
+    });
+    const c = (h.run && h.run.counts) || {};
+    const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
+    return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
+  }
+  global.DataQuality={version:'2.5.0',summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

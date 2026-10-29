@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.4.2">
+  <meta name="kamptrail-version" content="2.5.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
@@ -63,7 +63,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.4.2</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.5.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -71,7 +71,8 @@
     <p id="catalogue-summary" role="status">Loading catalogue information…</p>
     <h3>Sources and dates</h3>
     <p>Campsite records come from Recreation.gov, the US Forest Service, the Bureau of Land Management, and OpenStreetMap contributors. City search uses GeoNames. Each listing links to its source when available. Forest Service and BLM listings show the date their fee wording was imported.</p>
-    <p><strong>Snapshot dates are not recorded consistently in the imported files.</strong> The app’s update date does not mean a campsite was recently checked. Listings have not been field verified.</p>
+    <div id="kt-health" class="kt-health" aria-live="polite"><p class="kt-muted">Loading data freshness…</p></div>
+    <p>A refresh date is when KampTrail last downloaded that source. It does not mean a campsite was recently checked. Listings have not been field verified.</p>
     <h3>Coverage and fees</h3>
     <p>Coverage varies by state and is incomplete. A missing campsite does not mean camping is prohibited. A public land location does not establish permission to camp.</p>
     <p>“Reported free” means the source says camping has no fee. Free water, showers, parking, or day use do not count. “Free with conditions” means camping is free only in some seasons, for some sites, or with a pass or permit. “Fee unknown” means no reliable camping fee was supplied. It does not mean free. Being reservable on Recreation.gov, or a note to check Recreation.gov, is not treated as fee evidence. Confirm fees, access, seasonal closures, and reservations with the operator.</p>
@@ -82,7 +83,8 @@
     <p>RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means one campsite reports your length and every hookup you chose. Different sites in the same campground are never combined. Drive times use the free FOSSGIS OSRM car router and are not checked for RV height, weight, or length.</p>
     <p>Offline maps save USGS Topo tiles for an area you choose. The standard map is not saved, because OpenStreetMap's tile policy does not allow bulk downloads.</p>
     <h3>Corrections</h3>
-    <p>Use “Suggest a fix” on any campsite, or long-press the map and choose “Suggest a campsite here.” Both open a form on GitHub (free account needed). Reports are reviewed before the data changes.</p>
+    <p>Use “Suggest a fix” on any campsite, or long-press the map and choose “Suggest a campsite here.” No account is needed. A moderator reviews every report before the map data changes. This device keeps a private link to each report so you can check its status.</p>
+    <p><button type="button" class="btn" id="kt-my-reports">My reports</button></p>
     <h3>Saved stops and offline use</h3>
     <p>Saved stops, notes, and dates stay in this browser on this device. Export a GPX file to back them up or move them to another device. After an online visit, listings for areas you viewed stay available offline. Map imagery needs internet, except Topo areas you saved with Offline. Campsite name search works offline after one online search. Directions, forecasts, and land lookups need internet. Clearing browser data removes saved stops and saved maps.</p>
     <p>Embedded and full-page versions may keep separate saved stops, depending on your browser. No account is required. Standard map tiles are requested from OpenStreetMap. Topo and satellite tiles come from the USGS.</p>
@@ -100,6 +102,7 @@
   <script src="trip-planner.js"></script>
   <script src="layers.js"></script>
   <script src="offline-maps.js"></script>
+  <script src="contributions.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

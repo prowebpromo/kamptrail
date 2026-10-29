@@ -205,7 +205,7 @@
         <button type="button" data-kt-action="nearby" data-siteid="${siteId}">Nearest RV services</button>
       </div>
       <div class="kt-popup-extra"></div>
-      ${window.KampTrailShare?`<p class="kt-fine"><a href="${esc(window.KampTrailShare.issueUrl('fix',site))}" target="_blank" rel="noopener noreferrer">Suggest a fix</a> (free GitHub account needed)</p>`:''}
+      <p class="kt-fine"><button type="button" class="kt-linkbtn" data-kt-action="fix" data-siteid="${siteId}">Suggest a fix</button> No account needed. A moderator reviews every report.</p>
     </div>`;
   }
   function updateMarkers() {
@@ -274,7 +274,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.4.2',
+    version:'2.5.0',
     DETAIL_ZOOM,
     async init(map,config={}){
       state.map=map;state.config=config;
@@ -365,6 +365,7 @@
       const site=api.getCampsiteById(id);if(!site)return;
       const [lng,lat]=site.geometry.coordinates;
       if(kind==='share'){window.KampTrailShare?.share({site:site.properties.id},site.properties.name);return;}
+      if(kind==='fix'){if(window.KampTrailContrib)KampTrailContrib.open({kind:'correction',site});else if(window.KampTrailShare)window.open(KampTrailShare.issueUrl('fix',site),'_blank','noopener');return;}
       const extra=action.closest('.kt-site-popup')?.querySelector('.kt-popup-extra');if(!extra)return;
       const box=document.createElement('div');extra.append(box);action.disabled=true;
       if(kind==='weather')window.KampTrailSpot?.renderForecast(box,lat,lng);
