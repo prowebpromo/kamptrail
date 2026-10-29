@@ -14,6 +14,8 @@ The map previously offered forecasts and agency road designations but no dated f
 
 `api/environment.php` accepts only a known `kind` with a bounded bbox or numeric coordinate. It does not accept upstream URLs. Fixed HTTPS sources, TLS validation, no redirect following, response-size/time/feature/coordinate limits and normalized public attributes. Cache files live outside the public root, with a fixed number of slots and lock/throttle protection. No config credentials or database migration are required. Fresh server cache: 5 minutes for fire/alerts, 15 minutes for smoke; failures are briefly cached; stale snapshots are not served. NOAA requests select the latest observed source day and reject a source observation older than 48 hours.
 
+Both polygon feeds request ArcGIS `maxAllowableOffset=0.001` with `outSR=4326`, generalizing shapes for map display at approximately 110 meters of latitude. Complete intersecting source polygons can exceed the response cap even in a small viewport; generalization keeps the contextual overlay practical without relaxing byte, coordinate or completeness checks. These displayed shapes are not precise incident boundaries; consult the linked source for boundary details.
+
 ## Verification
 
 Unit/API fixtures cover invalid bounds, complete versus partial ArcGIS responses, geometry limits, NOAA Julian-day UTC parsing, source timestamps, NWS status/expiry and cache behavior. Browser fixtures cover opt-in/zoom gating, dated popups, safe text, offline removal, empty/failure states and mobile accessibility. Production feeds must also be checked after deployment because fixture tests cannot prove upstream availability from the host.

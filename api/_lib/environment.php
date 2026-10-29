@@ -112,7 +112,7 @@ function ke_smoke_fetch(array $query, callable $http, int $now): array {
     $count = $http(KE_SMOKE, $parameters + ['f' => 'json', 'returnCountOnly' => 'true']);
     if (!isset($count['count']) || !is_int($count['count']) || $count['count'] < 0) throw new KeException('upstream_unavailable');
     if ($count['count'] > KE_MAX_FEATURES) throw new KeException('zoom_in', 422);
-    $raw = $http(KE_SMOKE, $parameters + ['f' => 'geojson', 'outSR' => '4326', 'outFields' => 'FID,Start,End_,Density', 'returnGeometry' => 'true', 'resultRecordCount' => KE_MAX_FEATURES + 1]);
+    $raw = $http(KE_SMOKE, $parameters + ['f' => 'geojson', 'outSR' => '4326', 'outFields' => 'FID,Start,End_,Density', 'returnGeometry' => 'true', 'maxAllowableOffset' => 0.001, 'resultRecordCount' => KE_MAX_FEATURES + 1]);
     if (!is_array($raw['features'] ?? null) || count($raw['features']) !== $count['count']) throw new KeException('upstream_unavailable');
     return [$raw, ['name' => 'NOAA HMS satellite smoke', 'url' => 'https://www.ospo.noaa.gov/products/land/hms.html', 'observation_date' => substr($date, 0, 10)]];
 }
@@ -184,7 +184,8 @@ function ke_fetch(array $query, callable $http, int $now): array {
         $count = $http(KE_FIRE, $parameters + ['f' => 'json', 'returnCountOnly' => 'true']);
         if (!isset($count['count']) || !is_int($count['count']) || $count['count'] < 0) throw new KeException('upstream_unavailable');
         if ($count['count'] > KE_MAX_FEATURES) throw new KeException('zoom_in', 422);
-        $raw = $http(KE_FIRE, $parameters + ['f' => 'geojson', 'outSR' => '4326', 'outFields' => 'OBJECTID,poly_IncidentName,poly_GISAcres,poly_DateCurrent,poly_PolygonDateTime,poly_IRWINID,attr_IncidentName,attr_IncidentTypeCategory', 'returnGeometry' => 'true', 'resultRecordCount' => KE_MAX_FEATURES + 1]);
+        // Generalize map context to ~110 m latitude; full intersecting shapes can otherwise exceed the byte cap even in a small viewport.
+        $raw = $http(KE_FIRE, $parameters + ['f' => 'geojson', 'outSR' => '4326', 'outFields' => 'OBJECTID,poly_IncidentName,poly_GISAcres,poly_DateCurrent,poly_PolygonDateTime,poly_IRWINID,attr_IncidentName,attr_IncidentTypeCategory', 'returnGeometry' => 'true', 'maxAllowableOffset' => 0.001, 'resultRecordCount' => KE_MAX_FEATURES + 1]);
         if (!is_array($raw['features'] ?? null) || count($raw['features']) !== $count['count']) throw new KeException('upstream_unavailable');
         $source = ['name' => 'NIFC WFIGS current fire perimeters', 'url' => 'https://data-nifc.opendata.arcgis.com/'];
     } elseif ($kind === 'alerts') {

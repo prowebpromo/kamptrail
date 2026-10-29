@@ -108,6 +108,8 @@ test('environment reads latest NOAA observation day and detects stale or incompl
       if(isset($q['orderByFields']))return ['features'=>[['attributes'=>['Start'=>'2026302 1200']]]];
       check($q['where']==="Start LIKE '2026302 %'");
       if(isset($q['returnCountOnly']))return ['count'=>1];
+      check($q['maxAllowableOffset']===0.001 && $q['outSR']==='4326');
+      check($q['outFields']==='FID,Start,End_,Density');
       return ['type'=>'FeatureCollection','features'=>[['type'=>'Feature','geometry'=>$polygon,'properties'=>['FID'=>1,'Start'=>'2026302 1200','End_'=>'2026302 1500','Density'=>'Light']]]];
     };
     $result=ke_fetch(['kind'=>'smoke','bbox'=>[-110,35,-105,40]],$http,$now);
@@ -122,7 +124,13 @@ test('environment reads latest NOAA observation day and detects stale or incompl
 test('environment distinguishes complete empty responses from partial upstream failure', { skip: !capable }, () => {
     php(`
     $query=['kind'=>'fire','bbox'=>[-110,35,-105,40]];
-    $http=static fn($url,$q)=>isset($q['returnCountOnly'])?['count'=>0]:['type'=>'FeatureCollection','features'=>[]];
+    $http=static function($url,$q){
+      check($url===KE_FIRE);
+      if(isset($q['returnCountOnly'])) return ['count'=>0];
+      check($q['maxAllowableOffset']===0.001 && $q['outSR']==='4326');
+      check($q['outFields']==='OBJECTID,poly_IncidentName,poly_GISAcres,poly_DateCurrent,poly_PolygonDateTime,poly_IRWINID,attr_IncidentName,attr_IncidentTypeCategory');
+      return ['type'=>'FeatureCollection','features'=>[]];
+    };
     $result=ke_fetch($query,$http,1793304000);
     check($result['ok']===true && $result['partial']===false && count($result['data']['features'])===0);
     check($result['kind']==='fire' && $result['version']===1 && isset($result['retrieved_at']));
@@ -146,8 +154,13 @@ test('environment cache expires without stale fallback, caches failures, bounds 
         rejects(fn()=>ke_cached($query,$dir,$fail,2600),'upstream_unavailable'); check($calls===3);
         rejects(fn()=>ke_cached($query,$dir,$fail,2610),'upstream_unavailable'); check($calls===3);
         ke_cached($query,$dir,$fetch,2631); check($calls===4);
+        rejects(fn()=>ke_cached(['kind'=>'smoke','bbox'=>[-110,35,-105,40]],$dir,$fetch,2632),'busy');
         $lock=fopen($dir.'/cache.lock','c+');flock($lock,LOCK_EX);
         rejects(fn()=>ke_cached($query,$dir,$fetch,2700),'busy');flock($lock,LOCK_UN);fclose($lock);
+        $alerts=['kind'=>'alerts','lat'=>40,'lng'=>-105];
+        $alertFetch=static fn()=>['data'=>['features'=>[['properties'=>['expires'=>gmdate('c',2820),'ends'=>null]]]]];
+        check(count(ke_cached($alerts,$dir,$alertFetch,2800)['data']['features'])===1);
+        check(count(ke_cached($alerts,$dir,$alertFetch,2821)['data']['features'])===0);
         for($i=0;$i<100;$i++) ke_cached(['kind'=>'alerts','lat'=>$i/100,'lng'=>0],$dir,$fetch,3000+2*$i);
         check(count(glob($dir.'/*.json'))<=KE_CACHE_SLOTS);
         check(count(scandir($dir))<=KE_CACHE_SLOTS+3);

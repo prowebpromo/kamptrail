@@ -44,7 +44,7 @@
     if(kind==='fire'){
       box.append(node('p',`Incident type: ${text(p.type)||'Not reported'}`));
       if(typeof p.acres==='number'&&Number.isFinite(p.acres))box.append(node('p',`Reported area: ${p.acres.toLocaleString()} acres`));
-      box.append(node('p',`Source updated: ${stamp(p.source_updated_at)}`),node('p','A reported perimeter may be incomplete or outdated. It does not establish evacuation zones, closures, containment, or safe access.','kt-fine'));
+      box.append(node('p',`Source updated: ${stamp(p.source_updated_at)}`),node('p','Shapes are simplified for map display; consult source boundaries. A reported perimeter may be incomplete or outdated. It does not establish evacuation zones, closures, containment, or safe access.','kt-fine'));
     }else{
       box.append(node('p',`Satellite plume density: ${text(p.density)||'Not reported'}`),node('p',`Observation: ${stamp(p.start)} to ${stamp(p.end)}`),node('p','Smoke can be above ground level. This is satellite plume analysis, not ground-level air quality, AQI, or a smoke forecast. Clouds and observation gaps can hide smoke.','kt-fine'));
     }
@@ -71,7 +71,7 @@
   }
   function panel(){const c=L.control({position:'bottomleft'});c.onAdd=()=>{
     const box=node('div',null,'kt-environment-control'),details=node('details');details.open=!matchMedia('(max-width:760px)').matches;details.append(node('summary','Fire and smoke context'));
-    const body=node('div',null,'kt-environment-body');body.append(node('p','Official source context, not an emergency warning service. Check local authorities, closures, and posted restrictions before travel.','kt-fine'));
+    const body=node('div',null,'kt-environment-body');body.append(node('p','Official source context, not an emergency warning service. Shapes are simplified for map display. Check local authorities, closures, and posted restrictions before travel.','kt-fine'));
     for(const kind of ['fire','smoke']){const section=node('section');section.dataset.environment=kind;section.append(node('strong',SOURCES[kind].label));const line=node('p','Not enabled.');line.setAttribute('role','status');line.setAttribute('aria-live','polite');st.status[kind]=line;section.append(line,sourceLink(kind));body.append(section);}
     const legend=node('ul',null,'kt-environment-key');for(const [key,label]of [['fire','Reported fire perimeter'],['smoke-light','Light smoke plume'],['smoke-medium','Medium smoke plume'],['smoke-heavy','Heavy smoke plume']]){const li=node('li'),swatch=node('i');swatch.className='kt-environment-key-'+key;swatch.setAttribute('aria-hidden','true');li.append(swatch,label);legend.append(li);}body.append(legend,node('p','Smoke shading is satellite plume density, not AQI. Empty or unavailable layers do not establish safe conditions.','kt-fine'));
     const retry=node('button','Refresh fire and smoke','btn');retry.type='button';retry.onclick=()=>st.enabled.forEach(refresh);body.append(retry);details.append(body);box.append(details);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);st.box=box;return box;};return c;}
