@@ -67,3 +67,10 @@ test('private management and removed community photos cannot be replayed from of
     assert.equal(intercepted,false,url);
   }
 });
+
+
+test('worker upgrades retain saved Forest Service road views',async()=>{
+  const w=worker();await w.caches.open('kamptrail:https://example.test/kamptrail/:mvum-v1');
+  let done;w.handlers.activate({waitUntil:p=>done=p});await done;
+  assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:mvum-v1'),true);
+});
