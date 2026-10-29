@@ -15,3 +15,11 @@ Found by the new road-detail browser flow. The map defaults to canvas; road path
 ## ROUTE-QA-01 — Test isolation
 
 The new routing fixture initially reused the corrections test's PHP port and reset community fixtures in the shared disposable MySQL database. It now uses a distinct port and resets only routing tables/migration state. MySQL integration and backup restoration pass together. This affected CI fixtures, not production data.
+
+## MAP-FOCUS-01 — S2 — Old popup retained after explicit campsite navigation
+
+Live2.8.0: open Denver Creek, search Pawnee and select it. The map moved to Pawnee while Denver Creek remained in the popup, so Save stop still targeted the first place. The guard intended to preserve popup content during background clustering also blocked intentional navigation. 2.8.1 closes the previous popup on an explicit focus and cancels older pending focus callbacks. A two-campsite browser regression verifies the new heading.
+
+## MVUM-02 — S3 — Ambiguous forest alias selected a sibling unit website
+
+The official forest index can repeat one administrative name for several destination URLs. Choosing the first exact alias could label a grassland destination as another ranger district's forest link. 2.8.1 links only when matching candidates have one unique URL. Source metadata and coverage labels remain available; no URL is guessed.

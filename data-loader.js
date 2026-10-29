@@ -311,7 +311,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.8.0',
+    version:'2.8.1',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -352,10 +352,13 @@
       let marker=state.markers.get(site.properties.id);
       if(!marker && typeof window.KampTrailFilters?.reset==='function') {window.KampTrailFilters.reset();marker=state.markers.get(site.properties.id);}
       if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
+      const focusSeq=state.focusSeq=(state.focusSeq||0)+1;
+      state.map.closePopup();
       const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14);syncMode();
       // Chunked cluster loading can lag behind a focus request, so wait until the marker is placed.
       let tries=0;
       const attempt=()=>{
+        if(focusSeq!==state.focusSeq)return;
         if(!state.clusterGroup.zoomToShowLayer){marker.openPopup();return;}
         // Wait for chunked cluster loading to finish. Later chunks re-cluster and would close the popup.
         if(!state.chunking&&(marker.__parent||state.map.hasLayer(marker))){
@@ -363,7 +366,7 @@
           // A popup bound to the marker closes whenever markercluster re-clusters it (zoom animation,
           // later chunks, neighboring states loading), losing anything the camper opened in it.
           // A map-level popup at the campsite's point survives re-clustering.
-          let opened=false;const show=()=>{if(opened)return;opened=true;fallback();};
+          let opened=false;const show=()=>{if(opened||focusSeq!==state.focusSeq)return;opened=true;fallback();};
           state.clusterGroup.zoomToShowLayer(marker,()=>setTimeout(show,0));
           setTimeout(show,1500);
           return;

@@ -1,8 +1,8 @@
 # KampTrail vs FreeRoam — 2.8.0 feature audit
 
-Date: 2026-10-28. Feature score: **80.8/100**, up from the last recorded 72.4 baseline. All **13 of 13 must-haves** are implemented. This measures 59 features in the existing matrix, weighted must=3, should=2, could=1; partial earns half credit. Deliberately excluded social/account features and KampTrail-only additions do not inflate the score.
+Date: 2026-10-28. Feature score: **80.8/100**, up from the latest independent 69.2 baseline (2.4.1). All **13 of 13 must-haves** are implemented. This measures 59 features in the existing matrix, weighted must=3, should=2, could=1; partial earns half credit. Deliberately excluded social/account features and KampTrail-only additions do not inflate the score.
 
-This is an updated implementation/evidence audit against the existing FreeRoam source baseline, commit `f3b5f2d87517c57afe6e6af3f5ee52f42c43fe14`. It is not a new test of a running FreeRoam backend or a claim that KampTrail reproduces its community, campsite inventory, or real-world data accuracy. No comparable original screenshots were available; no layout score or combined visual score is claimed. The prior public-review research remains directional, with the limitations in fixes.md; it was not re-quoted or refreshed for this release.
+This is an updated implementation/evidence audit against the existing FreeRoam source baseline, commit `f3b5f2d87517c57afe6e6af3f5ee52f42c43fe14`. It is not a new test of a running FreeRoam backend or a claim that KampTrail reproduces its community, campsite inventory, or real-world data accuracy. No comparable original screenshots were available; no layout score or combined visual score is claimed. The current audit archive (KampTrail_FreeRoam_Audit_2026-10-28.zip, version 2) was re-read for scope continuity. It retains 32 historical FreeRoam feedback items: 21 archived iOS, 4 archived Android and 7 direct Reddit comments. This selected sample is not representative or newly collected in this release. The older repository mixed-competitor sample is a different evidence set and is not counted here. No fresh quotations or matched original-runtime tests are claimed. Original-feature support has not been independently re-established for every inherited row.
 
 ## What changed
 
@@ -32,8 +32,8 @@ This is an updated implementation/evidence audit against the existing FreeRoam s
 
 Operationally, review the moderation queue and monitor source-refresh errors, image-storage usage, backup coverage and routing volume. FOSSGIS permits light use; a sustained audience needs a contracted or self-hosted routing service. Shared hosting should continue serving the app/API, not an OSRM graph.
 
-## Release gate
+## Release evidence
 
-The combined branch passes 79 local Node/PHP tests and 31 Python tests. MySQL integration, real dump/restore comparison, expanded browser/accessibility suite, production migration003 and live smoke checks are required before calling 2.8.0 shipped. The feature score describes the completed branch; production readiness must be recorded separately in test-report.md after deployment.
+2.8.0 shipped on 2026-10-29: 79 Node/PHP tests,31 Python tests,55 browser/accessibility flows,MySQL integration and real dump/restore comparison passed. Production migration003 is applied; health reports routing and community ready. A live public-campground route returned106 road miles and3hr17min, and discovery found111 catalogue records within5miles of the road. These are smoke-test observations, not travel advice. See test-report.md. The 2.8.1 follow-up adds regressions for explicit popup navigation and ambiguous forest links without changing the parity score.
 
 Full matrix: features.csv. Generated scoring output: parity-score.md. No current claim of full FreeRoam parity: coverage, structured review sub-scores, clearance data and several filters remain absent.

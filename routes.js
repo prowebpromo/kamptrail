@@ -75,5 +75,5 @@
     async function load(force=false){status.textContent='Loading national campsite index…';try{index=await KampTrailData.loadSearchIndex(force);if(stillCurrent())search();}catch{if(stillCurrent()){status.textContent='The campsite catalogue is unavailable. Reconnect or retry.';status.append(button('Retry catalogue',()=>load(true)));}}}
     radius.onchange=search;use.onchange=search;sort.onchange=search;let timer;terms.oninput=()=>{clearTimeout(timer);timer=setTimeout(search,200);};await load();
   }
-  global.KampTrailRoutes={version:'2.8.0',calculate,open,validRoute,indexFeature,find,corridor,simplify,segmentDistance,miles,key,MAX_STOPS};
+  global.KampTrailRoutes={version:'2.8.1',calculate,open,validRoute,indexFeature,find,corridor,simplify,segmentDistance,miles,key,MAX_STOPS};
 })(typeof window!=='undefined'?window:globalThis);
