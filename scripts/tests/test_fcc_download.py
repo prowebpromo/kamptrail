@@ -10,6 +10,9 @@ import zipfile
 spec = importlib.util.spec_from_file_location('fcc_download', Path(__file__).parents[1] / 'fcc_download.py')
 fcc = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(fcc)
+email_spec = importlib.util.spec_from_file_location('fcc_server_set_email', Path(__file__).parents[1] / 'fcc_server_set_email.py')
+email_helper = importlib.util.module_from_spec(email_spec)
+email_spec.loader.exec_module(email_helper)
 
 class WorkerTests(unittest.TestCase):
     def test_refuses_web_root_and_repo(self):
@@ -72,6 +75,30 @@ class WorkerTests(unittest.TestCase):
                 self.assertIn(message, str(result.exception))
                 self.assertNotIn('synthetic-secret', str(result.exception))
                 self.assertNotIn('test@example.invalid', str(result.exception))
+
+    def test_email_update_preserves_token_and_private_permissions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            path = directory / 'credentials.json'
+            path.write_text(json.dumps({'username': '', 'token': 'synthetic-secret', 'other': 'retained'}))
+            path.chmod(0o600)
+            email_helper.set_email(directory, 'owner@example.invalid')
+            self.assertEqual(json.loads(path.read_text()), {'username': 'owner@example.invalid', 'token': 'synthetic-secret', 'other': 'retained'})
+            self.assertEqual(path.stat().st_mode & 0o777, 0o600)
+            self.assertEqual(sorted(p.name for p in directory.iterdir()), ['credentials.json'])
+
+    def test_email_update_refuses_insecure_credentials_and_invalid_email(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            path = directory / 'credentials.json'
+            path.write_text('{"token":"synthetic-secret"}')
+            path.chmod(0o644)
+            with self.assertRaises(ValueError):
+                email_helper.set_email(directory, 'owner@example.invalid')
+            path.chmod(0o600)
+            with self.assertRaises(ValueError):
+                email_helper.set_email(directory, 'owner@example.invalid\nInjected')
+            self.assertEqual(json.loads(path.read_text()), {'token': 'synthetic-secret'})
 
     def test_rate_limit_is_shared_across_runs(self):
         with tempfile.TemporaryDirectory() as tmp:
