@@ -1,6 +1,6 @@
 const fs=require('node:fs/promises'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','environment.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
   for(const file of files)await fs.copyFile(path.join(root,file),path.join(out,file));
@@ -23,7 +23,7 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
     await fs.writeFile(page,html);
   }
   // Contributions API: only these public PHP entry points and their private helpers. Never configuration or credentials.
-  const apiFiles=['api/.htaccess','api/health.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php'];
+  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php'];
   await fs.mkdir(path.join(out,'api','_lib'),{recursive:true});
   for(const file of apiFiles)await fs.copyFile(path.join(root,file),path.join(out,file));
   for(const file of await fs.readdir(path.join(root,'api'),{recursive:true})){

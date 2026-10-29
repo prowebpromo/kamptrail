@@ -203,6 +203,8 @@
       </div>
       <div class="kt-popup-actions kt-popup-more">
         <button type="button" data-kt-action="weather" data-siteid="${siteId}">Forecast + elevation</button>
+        <button type="button" data-kt-action="alerts" data-siteid="${siteId}">Weather alerts</button>
+        <button type="button" data-kt-action="environment" data-siteid="${siteId}">Fire and smoke nearby</button>
         <button type="button" data-kt-action="land" data-siteid="${siteId}">Land manager</button>
         <button type="button" data-kt-action="roads" data-siteid="${siteId}">Approach roads</button>
         <button type="button" data-kt-action="nearby" data-siteid="${siteId}">Nearest RV services</button>
@@ -312,7 +314,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.9.0',
+    version:'2.10.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -417,6 +419,8 @@
       if(kind==='trip'){api.addToTrip(id);return;}
       const site=api.getCampsiteById(id);if(!site)return;
       const [lng,lat]=site.geometry.coordinates;
+      if(kind==='alerts'){window.KampTrailEnvironment?.openAlerts(lat,lng);return;}
+      if(kind==='environment'){window.KampTrailEnvironment?.showNear(lat,lng);return;}
       if(kind==='roads'){window.KampTrailMVUM?.showNear(lat,lng);return;}
       if(kind==='reviews'){window.KampTrailCommunity?.open(site);return;}
       if(kind==='share'){window.KampTrailShare?.share({site:site.properties.id},site.properties.name);return;}

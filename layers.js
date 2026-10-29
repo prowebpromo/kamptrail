@@ -85,9 +85,11 @@
     const save = btn('Save stop', () => {
       window.KampTrailTrip?.addStop(`spot:${lat.toFixed(5)},${lng.toFixed(5)}`, {type: 'Feature', geometry: {type: 'Point', coordinates: [lng, lat]}, properties: {id: `spot:${lat.toFixed(5)},${lng.toFixed(5)}`, name: `Spot ${lat.toFixed(4)}, ${lng.toFixed(4)}`, type: 'spot', fee_status: 'unknown', amenities: [], rig_friendly: []}});
     });
+    const alerts = btn('Weather alerts', () => KampTrailEnvironment.openAlerts(lat, lng));
+    const context = btn('Fire and smoke nearby', () => KampTrailEnvironment.showNear(lat, lng));
     const share = btn('Share', () => window.KampTrailShare?.share({spot: [lat, lng]}, 'This spot'));
     const dir = document.createElement('a'); dir.href = directions(lat, lng); dir.target = '_blank'; dir.rel = 'noopener noreferrer'; dir.textContent = 'Directions';
-    actions.append(wxBtn, save, share, dir);
+    actions.append(wxBtn, alerts, context, save, share, dir);
     const suggest = document.createElement('p'); suggest.className = 'kt-fine';
     const sug = btn('Suggest a campsite here', () => window.KampTrailContrib ? KampTrailContrib.open({kind: 'new_place', lat, lng}) : window.KampTrailShare && window.open(KampTrailShare.issueUrl('new', {lat, lng}), '_blank', 'noopener'));
     sug.className = 'kt-linkbtn';
@@ -105,8 +107,9 @@
     bases[st.base].addTo(map);
     const land = landLayer();
     const roads = KampTrailMVUM.init(map);
+    const environment = KampTrailEnvironment.init(map);
     st.services = L.markerClusterGroup ? L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false, chunkedLoading: true, iconCreateFunction: c => L.divIcon({className: 'kt-svc-cluster', html: `<span>${c.getChildCount()}</span>`, iconSize: [28, 28]})}) : L.layerGroup();
-    st.overlays = {'Public land (BLM, USFS, NPS)': land, 'RV services (dump, water, propane)': st.services, 'USFS motor vehicle roads': roads};
+    st.overlays = {'Public land (BLM, USFS, NPS)': land, 'RV services (dump, water, propane)': st.services, 'USFS motor vehicle roads': roads, ...environment};
     st.landLegend = legendControl();
     const control = L.control.layers(bases, st.overlays, {position: 'topright', collapsed: true}).addTo(map);
     const container = control.getContainer();
@@ -130,5 +133,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.9.0', init, openSpot, loadServices, showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.10.0', init, openSpot, loadServices, showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();
