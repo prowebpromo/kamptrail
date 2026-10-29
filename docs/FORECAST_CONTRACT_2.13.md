@@ -13,7 +13,7 @@ All datetimes are real UTC ISO strings; hashes lowercase SHA-256; snapshot ID 24
 Manifest:
 
 ```json
-{"version":1,"snapshot_id":"24hex","catalogue_sha256":"64hex","generated_at":"UTC","expires_at":"UTC","source":{"name":"NOAA/NWS NDFD","files":[{"region":"conus","url":"fixed NOAA HTTPS URL","etag":"reported","last_modified":"UTC","bytes":123}]},"regions":{"conus":{"times":["UTC"],"grid_sha256":"64hex","max_step_seconds":10800}},"states":{"CA":{"asset":"forecast-v1-24hex-CA.json.gz","sha256":"compressed64hex","json_sha256":"raw64hex","bytes":123,"json_bytes":456,"count":789}},"coverage":{"total":0,"grid_known":0,"unknown":0}}
+{"version":1,"snapshot_id":"24hex","catalogue_sha256":"64hex","generated_at":"UTC","expires_at":"UTC","source":{"name":"NOAA/NWS NDFD","files":[{"region":"conus","url":"fixed NOAA HTTPS URL","etag":"reported","last_modified":"UTC","bytes":123,"sha256":"actualGRIB64hex","sha256":"source64hex"}]},"regions":{"conus":{"times":["UTC"],"reference_times":["UTC"],"grid_sha256":"64hex","max_step_seconds":10800,"reference_times":["UTC"]}},"states":{"CA":{"asset":"forecast-v1-24hex-CA.json.gz","sha256":"compressed64hex","json_sha256":"raw64hex","bytes":123,"json_bytes":456,"count":789}},"coverage":{"total":0,"grid_known":0,"unknown":0}}
 ```
 
 State file, hashed over exact raw JSON bytes before gzip:
@@ -22,7 +22,9 @@ State file, hashed over exact raw JSON bytes before gzip:
 {"version":1,"snapshot_id":"24hex","state":"CA","generated_at":"UTC","expires_at":"UTC","records":{"campsite-id":{"coordinate_key":"lat7,lng7","region":"conus","status":"known","grid_lat":1,"grid_lng":2,"grid_distance_m":100,"temperatures_c":[0,null,-5]}}}
 ```
 
-Arrays align exactly with manifest regional timestamps. An unknown record retains coordinate key, `status:"unknown"`, bounded reason and no invented temperatures/grid point. Known mapping may contain null forecast values; required samples must all be finite to match.
+Each source file includes `sha256` over the actual downloaded GRIB bytes. Each region includes sorted, unique UTC `reference_times` (at most 100), separate from file modification and retrieval times.
+
+Source file `sha256` hashes the downloaded GRIB bytes. Regional `reference_times` is the sorted, unique set of actual model reference UTC timestamps, with 1–100 entries; it is distinct from HTTP file modification time. Arrays align exactly with manifest regional timestamps. An unknown record retains coordinate key, `status:"unknown"`, bounded reason and no invented temperatures/grid point. Known mapping may contain null forecast values; required samples must all be finite to match.
 
 `catalogue_sha256` is SHA-256 of deterministic UTF-8 JSON (literal Unicode, no spaces), an array sorted by ID, rows `[id, coordinate_key, sortedStates]`. Mutable fee/elevation metadata is excluded. Search builder writes `data/campsites/coordinate-index.json` as `{version:1,sha256,count}`; PHP/client compare this tiny file instead of parsing the national index. Producer independently computes identical hash. Coordinate identity still checked per record.
 

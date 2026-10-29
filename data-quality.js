@@ -146,6 +146,7 @@
   }
   function mergeFeatures(primary, secondary) {
     const p=primary.properties, q=secondary.properties;
+    if(p.forecastStates||q.forecastStates)p.forecastStates=[...new Set([...(p.forecastStates||[]),...(q.forecastStates||[])])];
     p.legacy_ids = [...new Set([...(p.legacy_ids || []), ...(q.legacy_ids || []), q.id])];
     p.sources = [...new Set([...(p.sources || []), ...(q.sources || [])])];
     p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records,q.fee_evidence_records);
@@ -290,8 +291,10 @@
   }
   function applyFilters(sites, filters = {}) {
     const elevation=elevationRange(filters);
+    const forecast=global.KampTrailForecast,forecastActive=filters.forecastMinC!=null||filters.forecastMaxC!=null,forecastNow=forecast?.effectiveNow();
     return sites.filter(site => {
       const p=site.properties;
+      if(forecastActive&&(!forecast||!forecast.matches(site,filters,forecastNow)))return false;
       if(elevation.active){const e=elevationInfo(site);if(!elevation.valid||!e||(elevation.min!==null&&e.m<elevation.min)||(elevation.max!==null&&e.m>elevation.max))return false;}
       if (filters.cost && filters.cost !== 'all' && p.fee_status !== filters.cost) return false;
       if (filters.type && filters.type !== 'all' && p.type !== filters.type) return false;
@@ -333,6 +336,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.12.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.13.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -82,3 +82,11 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 .kt-elevation-bounds label{min-width:0}
 .kt-elevation-bounds input{width:100%;min-width:0;box-sizing:border-box}
 #f-elevation-error:not(:empty){color:#9d2424}
+
+.kt-forecast-filters{min-width:0;margin:14px 0;padding:10px;border:1px solid #d0d9d3;border-radius:6px}
+.kt-forecast-filters legend{font-weight:700}
+.kt-forecast-bounds{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.kt-forecast-bounds label{min-width:0}
+.kt-forecast-bounds input{width:100%;min-width:0;box-sizing:border-box}
+#f-forecast-error:not(:empty){color:#9d2424}
+.kt-forecast-evidence{overflow-wrap:anywhere}

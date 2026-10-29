@@ -172,6 +172,7 @@
   }
   function mergeLoaded(features,stateCode) {
     const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode}));
+    incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
     const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, {state:stateCode});
     state.allCampsites=cleaned.features;
@@ -248,6 +249,7 @@
       ${p.reservable?'<div class="kt-fine">Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.</div>':''}
       <div><strong>Type:</strong> ${esc(p.type)}</div>
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
+      ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
       ${DataQuality.elevationInfo(site)?`<p class="kt-fine">Interpolated terrain from <a href="${DataQuality.ELEVATION_SOURCE}" target="_blank" rel="noopener noreferrer">USGS 3DEP</a>. Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grade or RV clearance.</p>`:''}
       <div><strong>Access reported:</strong> ${esc(p.access_label || p.access || 'Not verified')}</div>
@@ -372,17 +374,22 @@
       if(!state.map.hasLayer(state.overview)){state.map.addLayer(state.overview);layoutOverview();}
     }
   }
+  function requestForecast(force=false){
+    if(detailVisible()&&window.KampTrailForecast?.active(api.getCurrentFilters()))return window.KampTrailForecast.ensureStates(getVisibleStates(),{force});
+    return Promise.resolve();
+  }
   function onView() {
     syncMode();
-    if(detailVisible())return loadBatch(getVisibleStates(),false);
+    if(detailVisible()){requestForecast();return loadBatch(getVisibleStates(),false);}
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.12.0',
+    version:'2.13.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
       window.addEventListener?.('kamptrail:discoveryupdated',()=>updateMarkers());
+      window.addEventListener?.('kamptrail:forecastupdated',()=>{updateMarkers();requestForecast();});
       state.map=map;state.config=config;
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true,chunkProgress:(done,total)=>{state.chunking=done<total;}});
       let timer;
@@ -399,7 +406,7 @@
     },
     getDefaultFilters:defaults,
     getCurrentFilters:()=>window.kamptrailFilters || defaults(),
-    updateFilters(filters){window.kamptrailFilters={...defaults(),...filters};updateMarkers();},
+    updateFilters(filters){window.kamptrailFilters={...defaults(),...filters};updateMarkers();requestForecast();},
     getAllCampsites:()=>state.allCampsites,
     getCampsiteById(id){const key=String(id);return state.allCampsites.find(s=>s.properties.id===key||s.properties.legacy_ids?.includes(key));},
     getLoadedStates:()=>[...state.loadedStates],
@@ -411,9 +418,11 @@
       if(!state.map)return list;
       const b=state.map.getBounds();return list.filter(f=>{const [lon,lat]=f.geometry.coordinates;return b.contains([lat,lon])||b.contains([lat,lon+360])||b.contains([lat,lon-360]);});
     },
+    refreshForecast:()=>requestForecast(true),
+    getForecastStatus(){const f=api.getCurrentFilters(),forecast=window.KampTrailForecast;return{...forecast?.status(),unknown:forecast?.active(f)?api.getVisibleCampsites({...f,forecastMinC:null,forecastMaxC:null}).filter(s=>!forecast.get(s,f.forecastHours)).length:0};},
     getElevationStatus(){const f=api.getCurrentFilters();return{loading:[...elevationStatus.values()].includes('loading'),saved:[...elevationStatus.values()].includes('saved'),unavailable:[...elevationStatus].filter(([,v])=>v==='unavailable').map(([k])=>k),unknown:DataQuality.elevationRange(f).active?api.getVisibleCampsites({...f,elevationMin:null,elevationMax:null}).filter(s=>!DataQuality.elevationInfo(s)).length:0};},
     getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0,overview:!detailVisible(),catalogueTotal:Object.values(stateTotals()).reduce((a,b)=>a+b,0)}),
-    loadStates:codes=>loadBatch(codes,true),
+    loadStates:async codes=>{const result=await loadBatch(codes,true);if(detailVisible()&&window.KampTrailForecast?.active(api.getCurrentFilters()))await window.KampTrailForecast.ensureStates(codes);return result;},
     refresh:()=>detailVisible()?loadBatch(getVisibleStates(),true):Promise.resolve(api.getLoadStatus()),
     getStateTotals:stateTotals,
     focusCampsite(id,{preserveFilters=false}={}){
