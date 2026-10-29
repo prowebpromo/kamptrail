@@ -42,7 +42,7 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.6.1' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity].some(module=>module?.version!=='2.6.1')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.8.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailRoutes].some(module=>module?.version!=='2.8.0')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
@@ -211,11 +211,7 @@
   let places = [], campsiteIndex = [];
   const placeLoad = fetch('data/places-us.json').then(r => {if (!r.ok) throw new Error('Place index unavailable');return r.json();}).then(d => {places = d.places || [];}).catch(() => {});
   // The national name index is large, so it loads on first search or shared link, not on page load.
-  let siteIndexPromise = null;
-  const ensureSiteIndex = () => siteIndexPromise || (siteIndexPromise = fetch('data/campsites/search-index.json')
-    .then(r => {if (!r.ok) throw new Error('Campsite search index unavailable');return r.json();})
-    .then(data => {campsiteIndex = data.sites || [];})
-    .catch(() => {siteIndexPromise = null;}));
+  const ensureSiteIndex = () => KampTrailData.loadSearchIndex().then(data=>{campsiteIndex=data.sites;}).catch(()=>{});
   async function updateHealth() {
     const box = document.getElementById('kt-health'); if (!box) return;
     let sum = null;

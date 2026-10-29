@@ -71,7 +71,7 @@
       const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
       if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
       const relative = target.pathname.slice(scope.pathname.length);
-      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/services/services.json':'services'};
+      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/services/services.json':'services','data/campsites/search-index.json':'search'};
       if (!relative.endsWith('.geojson') && !kinds[relative]) return null;
       return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:kinds[relative]==='index', kind:kinds[relative]||'geojson'};
     } catch { return null; }
@@ -80,6 +80,7 @@
     if (target?.index) return Array.isArray(data?.states) && Number.isFinite(data.total_sites) && data.total_sites >= 0;
     if (target?.kind === 'agencyIndex') return data?.version === 1 && Array.isArray(data.states);
     if (target?.kind === 'sites') return [1, 2].includes(data?.version) && !!data.facilities && typeof data.facilities === 'object';
+    if (target?.kind === 'search') return data?.version===1 && Array.isArray(data.sites);
     if (target?.kind === 'services') return data?.version === 1 && Array.isArray(data.items);
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
@@ -304,7 +305,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.6.1',
+    version:'2.8.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -316,6 +317,11 @@
       await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex()]);
       if(state.overview&&map.hasLayer(state.overview))map.removeLayer(state.overview);state.overview=null;
       await onView();
+    },
+    loadSearchIndex(force=false){
+      if(force)state.searchIndexPromise=null;
+      if(!state.searchIndexPromise)state.searchIndexPromise=fetchJSON('data/campsites/search-index.json').then(d=>{if(d.version!==1||!Array.isArray(d.sites))throw new Error('Search index unavailable');return d;}).catch(e=>{state.searchIndexPromise=null;throw e;});
+      return state.searchIndexPromise;
     },
     getDefaultFilters:defaults,
     getCurrentFilters:()=>window.kamptrailFilters || defaults(),

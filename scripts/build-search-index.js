@@ -12,7 +12,7 @@ function featureIds(feature) {
   return [...new Set([p.id, ...(p.legacy_ids || [])].filter(id => id != null && id !== '').map(String))];
 }
 
-function buildSearchIndex(collections, quality = DataQuality) {
+function buildSearchIndex(collections, quality = DataQuality, siteDetails = null) {
   const input = [];
   const stateById = new Map();
   for (const {state, geojson} of collections) {
@@ -23,6 +23,7 @@ function buildSearchIndex(collections, quality = DataQuality) {
     for (const raw of geojson.features) {
       const feature = quality.normalizeFeature(raw, {state});
       if (!feature) continue;
+      if(siteDetails)quality.attachSiteDetails(feature,siteDetails);
       input.push(feature);
       for (const id of featureIds(feature)) {
         if (!stateById.has(id)) stateById.set(id, new Set());
@@ -39,10 +40,16 @@ function buildSearchIndex(collections, quality = DataQuality) {
     }
     if (!states.size) throw new Error(`No source snapshot found for ${feature.properties.id}`);
     const [lng, lat] = feature.geometry.coordinates;
-    return {id:feature.properties.id, name:feature.properties.name, states:[...states].sort(), lat, lng};
+    const p=feature.properties,m={f:p.fee_status,t:p.type};
+    if(p.amenities?.length)m.a=p.amenities;
+    if(p.rig_friendly?.length)m.r=p.rig_friendly;
+    if(p.road_difficulty)m.d=p.road_difficulty;
+    if(p.rating!==null)m.q=p.rating;
+    if(p.rv_sigs?.length)m.g=p.rv_sigs;
+    return {id:p.id,name:p.name,states:[...states].sort(),lat,lng,m};
   });
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
-  return {version:1, sites};
+  return {version:1, filter_version:1, sites};
 }
 
 function buildFromDirectory(directory) {
@@ -50,6 +57,8 @@ function buildFromDirectory(directory) {
   if (files.length !== 50) {
     throw new Error(`Expected 50 saved state snapshots; found ${files.length}. Search index was not replaced.`);
   }
+  const detailsFile=path.join(directory,'ridb-sites.json');
+  const siteDetails=fs.existsSync(detailsFile)?JSON.parse(fs.readFileSync(detailsFile,'utf8')).facilities:null;
   // Agency records (USFS, BLM) load beside each state snapshot, so search must index them too.
   return buildSearchIndex(files.map(name => {
     const state = name.slice(0,2);
@@ -60,7 +69,7 @@ function buildFromDirectory(directory) {
       if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
     }
     return {state, geojson};
-  }));
+  }),DataQuality,siteDetails);
 }
 
 if (require.main === module) {
