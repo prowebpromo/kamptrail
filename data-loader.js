@@ -225,7 +225,12 @@
       const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site));
       marker.kamptrailId=id;state.markers.set(id,marker);additions.push(marker);
     }
-    if(additions.length)state.clusterGroup.addLayers?state.clusterGroup.addLayers(additions):additions.forEach(m=>state.clusterGroup.addLayer(m));
+    // Adding markers re-clusters nearby ones, which would close an open popup and lose what the camper
+    // opened in it (services, land manager). Hold new markers until that popup closes.
+    if(state.map._popup?.isOpen?.()){
+      if(additions.length){(state.heldMarkers||(state.heldMarkers=[])).push(...additions);
+        if(!state.flushHeld){state.flushHeld=()=>{const held=(state.heldMarkers||[]).filter(m=>state.markers.get(m.kamptrailId)===m);state.heldMarkers=[];if(held.length)state.clusterGroup.addLayers?state.clusterGroup.addLayers(held):held.forEach(m=>state.clusterGroup.addLayer(m));};state.map.on('popupclose',()=>setTimeout(()=>{if(!state.map._popup?.isOpen?.())state.flushHeld();},0));}}
+    } else if(additions.length&&(state.chunking=true))state.clusterGroup.addLayers?state.clusterGroup.addLayers(additions):additions.forEach(m=>state.clusterGroup.addLayer(m));
     state.config.onFilterUpdate?.(filtered.length,state.allCampsites.length);
     notify();
   }
@@ -310,7 +315,7 @@
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
       state.map=map;state.config=config;
-      state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true});
+      state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true,chunkProgress:(done,total)=>{state.chunking=done<total;}});
       let timer;
       map.on('zoomend',layoutOverview);
       map.on('moveend',()=>{syncMode();clearTimeout(timer);timer=setTimeout(onView,250);});
@@ -346,11 +351,15 @@
       let tries=0;
       const attempt=()=>{
         if(!state.clusterGroup.zoomToShowLayer){marker.openPopup();return;}
-        if(marker.__parent||state.map.hasLayer(marker)){
+        // Wait for chunked cluster loading to finish. Later chunks re-cluster and would close the popup.
+        if(!state.chunking&&(marker.__parent||state.map.hasLayer(marker))){
           const fallback=()=>{if(!marker.isPopupOpen?.()&&!state.map._popup?.isOpen?.())L.popup({maxWidth:320}).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);};
-          state.clusterGroup.zoomToShowLayer(marker,()=>{if(marker._map)marker.openPopup();else fallback();});
-          // markercluster can drop the callback, or leave the marker inside a cluster. Open the same popup at the point instead.
-          setTimeout(fallback,1500);
+          // A popup bound to the marker closes whenever markercluster re-clusters it (zoom animation,
+          // later chunks, neighboring states loading), losing anything the camper opened in it.
+          // A map-level popup at the campsite's point survives re-clustering.
+          let opened=false;const show=()=>{if(opened)return;opened=true;fallback();};
+          state.clusterGroup.zoomToShowLayer(marker,()=>setTimeout(show,0));
+          setTimeout(show,1500);
           return;
         }
         if(++tries<50){setTimeout(attempt,100);return;}
