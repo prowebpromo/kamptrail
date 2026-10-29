@@ -19,7 +19,8 @@
     };
   }
   function landLayer() {
-    return L.tileLayer(`${KampTrailSpot.SMA_URL}/tile/{z}/{y}/{x}`, {opacity: 0.55, maxNativeZoom: 16, maxZoom: 19, attribution: 'BLM Surface Management Agency', className: 'kt-land-tiles'});
+    const saved=Number(readPrefs().landOpacity),opacity=Number.isFinite(saved)&&saved>=0.1&&saved<=1?saved:0.55;
+    return L.tileLayer(`${KampTrailSpot.SMA_URL}/tile/{z}/{y}/{x}`, {opacity, maxNativeZoom: 16, maxZoom: 19, attribution: 'BLM Surface Management Agency', className: 'kt-land-tiles'});
   }
   function legendControl() {
     const c = L.control({position: matchMedia('(max-width:760px)').matches ? 'topleft' : 'bottomleft'});
@@ -27,6 +28,9 @@
       const el = L.DomUtil.create('div', 'kt-land-legend');
       el.setAttribute('role', 'note');
       el.innerHTML = '<strong>Public land</strong><span><i style="background:#fee679"></i>BLM</span><span><i style="background:#ccebc5"></i>Forest Service</span><span><i style="background:#cabddc"></i>National Park</span><small>Tap the map to check who manages a spot.</small>';
+      const label=document.createElement('label');label.textContent='Public land opacity';
+      const slider=document.createElement('input');slider.type='range';slider.min='10';slider.max='100';slider.step='5';slider.value=String(Math.round((st.overlays['Public land (BLM, USFS, NPS)']?.options.opacity||0.55)*100));
+      slider.oninput=()=>{const opacity=Number(slider.value)/100;st.overlays['Public land (BLM, USFS, NPS)']?.setOpacity(opacity);const prefs=readPrefs();prefs.landOpacity=opacity;writePrefs(prefs);};label.append(slider);el.append(label);
       L.DomEvent.disableClickPropagation(el);
       return el;
     };
@@ -100,8 +104,9 @@
     st.base = bases[prefs.base] ? prefs.base : 'Standard';
     bases[st.base].addTo(map);
     const land = landLayer();
+    const roads = KampTrailMVUM.init(map);
     st.services = L.markerClusterGroup ? L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false, chunkedLoading: true, iconCreateFunction: c => L.divIcon({className: 'kt-svc-cluster', html: `<span>${c.getChildCount()}</span>`, iconSize: [28, 28]})}) : L.layerGroup();
-    st.overlays = {'Public land (BLM, USFS, NPS)': land, 'RV services (dump, water, propane)': st.services};
+    st.overlays = {'Public land (BLM, USFS, NPS)': land, 'RV services (dump, water, propane)': st.services, 'USFS motor vehicle roads': roads};
     st.landLegend = legendControl();
     const control = L.control.layers(bases, st.overlays, {position: 'topright', collapsed: true}).addTo(map);
     const container = control.getContainer();

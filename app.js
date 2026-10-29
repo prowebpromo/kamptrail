@@ -42,7 +42,7 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.8.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailRoutes].some(module=>module?.version!=='2.8.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.8.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes].some(module=>module?.version!=='2.8.0')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;

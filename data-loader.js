@@ -203,6 +203,7 @@
       <div class="kt-popup-actions kt-popup-more">
         <button type="button" data-kt-action="weather" data-siteid="${siteId}">Forecast + elevation</button>
         <button type="button" data-kt-action="land" data-siteid="${siteId}">Land manager</button>
+        <button type="button" data-kt-action="roads" data-siteid="${siteId}">Approach roads</button>
         <button type="button" data-kt-action="nearby" data-siteid="${siteId}">Nearest RV services</button>
       </div>
       <div class="kt-popup-extra"></div>
@@ -402,6 +403,7 @@
       if(kind==='trip'){api.addToTrip(id);return;}
       const site=api.getCampsiteById(id);if(!site)return;
       const [lng,lat]=site.geometry.coordinates;
+      if(kind==='roads'){window.KampTrailMVUM?.showNear(lat,lng);return;}
       if(kind==='reviews'){window.KampTrailCommunity?.open(site);return;}
       if(kind==='share'){window.KampTrailShare?.share({site:site.properties.id},site.properties.name);return;}
       if(kind==='fix'){if(window.KampTrailContrib)KampTrailContrib.open({kind:'correction',site});else if(window.KampTrailShare)window.open(KampTrailShare.issueUrl('fix',site),'_blank','noopener');return;}
