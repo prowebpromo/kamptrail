@@ -7,7 +7,7 @@ try {
     $id=(int)($_GET['id']??0);
     $q=$pdo->prepare('SELECT p.image_data,p.status,r.status AS review_status FROM community_photos p JOIN community_reviews r ON r.id=p.review_id WHERE p.id=?');$q->execute([$id]);$p=$q->fetch();
     $allowed=$p && $p['status']==='published' && $p['review_status']==='published';
-    if (!$allowed && isset($_GET['preview'])) {
+    if (!$allowed && isset($_GET['preview']) && !empty($_COOKIE['kt_mod'])) {
         session_name('kt_mod');session_start(['read_and_close'=>true]);$allowed=$p && !empty($_SESSION['moderator']) && $p['status']!=='deleted' && $p['review_status']!=='deleted';
     }
     if (!$allowed || empty($p['image_data'])) kc_error(404,'Photo not found.');

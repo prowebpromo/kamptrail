@@ -46,6 +46,10 @@ jobs:
         env:
           KT_REQUIRE_PHP: '1'
           KT_TEST_MYSQL_DSN: 'mysql:host=127.0.0.1;port=3306;dbname=kamptrail_test;charset=utf8mb4'
+      - name: Restore a disposable MySQL backup including photos
+        run: node --test tests/mysql-backup.test.js
+        env:
+          KT_MYSQL_CONTAINER: ${{ job.services.mysql.id }}
       - run: npm run test:python
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser

@@ -44,4 +44,4 @@ Private management responses and images bypass the service worker and use no-sto
 
 ## Validation
 
-`npm test` exercises PHP HTTP workflows against SQLite when PHP, GD and mbstring are available. CI sets `KT_REQUIRE_PHP=1` so missing extensions fail instead of silently skipping. Both PR validation and Hostinger publication repeat the community suite against a disposable MySQL 8 service. Browser tests cover desktop reading/reporting, a photo submission and device management code, plus the mobile failure/recovery interface. No production camper review is used as test data.
+`npm test` exercises PHP HTTP workflows against SQLite when PHP, GD and mbstring are available. CI sets `KT_REQUIRE_PHP=1` so missing extensions fail instead of silently skipping. Both PR validation and Hostinger publication repeat the community suite against a disposable MySQL 8 service, then use mysqldump to restore a copy and compare every table, including photo byte hashes and storage accounting. Browser tests cover desktop reading/reporting, a photo submission and device management code, plus the mobile failure/recovery interface. No production camper review is used as test data.

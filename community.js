@@ -29,7 +29,7 @@
       try{const res=await fetch(API+'?site='+encodeURIComponent(site.properties.id)+(before?'&before='+before:''));const out=await res.json();if(!res.ok)throw new Error();if(view!==st.view)return;
         summary.textContent=out.count?`${out.average}/5 from ${out.count} published ${out.count===1?'review':'reviews'}.`:'No published reviews yet. Been here? Share your experience.';
         for(const r of out.reviews){
-          const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},`Visited ${r.visited_on}${r.rig?' · '+r.rig:''} · published ${String(r.created_at).slice(0,10)}`),el('p',{class:'kt-review-text'},r.body));
+          const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},`Visited ${r.visited_on}${r.rig?' · '+r.rig:''} · submitted ${String(r.created_at).slice(0,10)}`),el('p',{class:'kt-review-text'},r.body));
           if(r.photos.length){const gallery=el('div',{class:'kt-photo-grid'});r.photos.forEach(p=>gallery.append(image(p,r)));article.append(gallery);}
           article.append(button('Report review',()=>report(r.id)));list.append(article);
         }

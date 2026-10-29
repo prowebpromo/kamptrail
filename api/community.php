@@ -23,6 +23,7 @@ try {
     }
     kc_origin();
     if ((int)($_SERVER['CONTENT_LENGTH']??0)>20000000) kc_error(413,'This upload is too large. Attach at most three photos, 6 MB each.');
+    if ((int)($_SERVER['CONTENT_LENGTH']??0)>0 && !$_POST && !$_FILES) kc_error(413,'This upload exceeds the server limit. Try fewer or smaller photos.');
     $in=$_POST;$action=kc_string($in['action']??'submit',20);
     if (kc_string($in['website']??'',200)!=='') kc_error(422,'Unable to accept this submission.');
     if ($action==='report') {
@@ -43,7 +44,7 @@ try {
     if ($action==='delete') {
         kc_lock($pdo);kc_rate($pdo,'manage',20);$id=(int)$old['id'];
         foreach (kc_photo_rows($pdo,$id,false) as $p) kc_delete_photo($pdo,$p['id'],$id);
-        $pdo->prepare("UPDATE community_reviews SET status='deleted',body='',display_name='',rig='',public_note=NULL,updated_at=? WHERE id=?")->execute([kt_now(),$id]);
+        $pdo->prepare("UPDATE community_reviews SET status='deleted',body='',display_name='',rig='',visited_on='',public_note=NULL,updated_at=? WHERE id=?")->execute([kt_now(),$id]);
         kc_audit($pdo,$id,'author_delete',$old['status'],'deleted','author');$pdo->commit();kt_json(200,['ok'=>true,'status'=>'deleted']);
     }
     $v=kc_validate($in);

@@ -58,3 +58,12 @@ test('activation keeps saved offline map tiles',async()=>{
   let done;w.handlers.activate({waitUntil:p=>done=p});await done;
   assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:tiles-v1'),true);
 });
+
+test('private management and removed community photos cannot be replayed from offline caches',()=>{
+  const w=worker();
+  for(const url of ['https://example.test/kamptrail/api/community.php','https://example.test/kamptrail/api/photo.php?id=1','https://example.test/kamptrail/api/admin.php']){
+    let intercepted=false;
+    w.handlers.fetch({request:{method:'GET',url,mode:'navigate'},respondWith:()=>{intercepted=true;}});
+    assert.equal(intercepted,false,url);
+  }
+});
