@@ -45,3 +45,11 @@ Private management responses and images bypass the service worker and use no-sto
 ## Validation
 
 `npm test` exercises PHP HTTP workflows against SQLite when PHP, GD and mbstring are available. CI sets `KT_REQUIRE_PHP=1` so missing extensions fail instead of silently skipping. Both PR validation and Hostinger publication repeat the community suite against a disposable MySQL 8 service, then use mysqldump to restore a copy and compare every table, including photo byte hashes and storage accounting. Browser tests cover desktop reading/reporting, a photo submission and device management code, plus the mobile failure/recovery interface. No production camper review is used as test data.
+
+## Live verification
+
+The 2.6.0 release was deployed from `fc8b9c3`. The additive migration ran through the authenticated moderator page. Health confirmed private configuration permissions, MySQL connectivity, current schema, and available image processing. A database export was saved before migration.
+
+An isolated QA identifier, never a real campground, verified that pending content is absent from the public feed, review approval does not approve its photo, photo approval enables JPEG delivery, metadata is removed, and a photo report reaches the API. The original campsite-correction record remained present. Hostinger daily backups are enabled; its newly requested manual backup was not yet listed as a completed restore point during this check. A disposable MySQL backup/restore passed in CI.
+
+2.6.1 hides the spam field from assistive technology and directs visitors on the old GitHub Pages address to the functioning community backend at kamptrail.com. Management codes remain out of URLs.
