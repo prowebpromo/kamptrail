@@ -17,11 +17,11 @@ test('FCC credential form requires moderator session, CSRF and origin; secrets n
   let csrf=html.match(/name="csrf" value="([a-f0-9]+)"/)[1];
   r=await fetch(base+'/api/admin.php',{method:'POST',redirect:'manual',headers:{Cookie:cookie,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf,do:'login',password:'synthetic moderator password'})});
   cookie=r.headers.get('set-cookie').split(';')[0];
-  r=await fetch(url,{headers:{Cookie:cookie}});assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/\bno-store\b/);assert.match(r.headers.get('content-security-policy'),/form-action 'self'/);
+  r=await fetch(url,{headers:{Cookie:cookie}});assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/\bno-store\b/);assert.match(r.headers.get('content-security-policy'),/form-action 'self'/);assert.equal(r.headers.get('referrer-policy'),'same-origin');
   html=await r.text();assert.match(html,/type="password" name="fcc_token" required/);assert.ok(!/name="fcc_token"[^>]*value=/.test(html));csrf=html.match(/name="csrf" value="([a-f0-9]+)"/)[1];
   const submit=(body,origin=base)=>fetch(url,{method:'POST',headers:{Cookie:cookie,Origin:origin,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf,...body})});
   const good={username:'owner@example.invalid',fcc_token:'synthetic-token-value-for-testing'};
-  assert.equal((await submit({...good,csrf:'wrong'})).status,403);assert.equal((await submit(good,'https://attacker.invalid')).status,403);
+  assert.equal((await submit({...good,csrf:'wrong'})).status,403);assert.equal((await submit(good,'https://attacker.invalid')).status,403);assert.equal((await submit(good,'null')).status,403);
   for(const bad of [{...good,fcc_token:''},{...good,username:''},{...good,fcc_token:'contains spaces'}]){r=await submit(bad);assert.equal(r.status,422);assert.ok(!(await r.text()).includes(good.fcc_token));}
   const file=path.join(data,'credentials.json');assert.equal(fs.existsSync(file),false);
   r=await submit(good);assert.equal(r.status,200);html=await r.text();assert.match(html,/saved privately/);assert.ok(!html.includes(good.fcc_token));assert.ok(!html.includes(good.username));
