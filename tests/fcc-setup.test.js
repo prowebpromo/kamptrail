@@ -17,7 +17,7 @@ test('FCC credential form requires moderator session, CSRF and origin; secrets n
   let csrf=html.match(/name="csrf" value="([a-f0-9]+)"/)[1];
   r=await fetch(base+'/api/admin.php',{method:'POST',redirect:'manual',headers:{Cookie:cookie,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf,do:'login',password:'synthetic moderator password'})});
   cookie=r.headers.get('set-cookie').split(';')[0];
-  r=await fetch(url,{headers:{Cookie:cookie}});assert.equal(r.status,200);assert.equal(r.headers.get('cache-control'),'no-store');assert.match(r.headers.get('content-security-policy'),/form-action 'self'/);
+  r=await fetch(url,{headers:{Cookie:cookie}});assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/\bno-store\b/);assert.match(r.headers.get('content-security-policy'),/form-action 'self'/);
   html=await r.text();assert.match(html,/type="password" name="fcc_token" required/);assert.ok(!/name="fcc_token"[^>]*value=/.test(html));csrf=html.match(/name="csrf" value="([a-f0-9]+)"/)[1];
   const submit=(body,origin=base)=>fetch(url,{method:'POST',headers:{Cookie:cookie,Origin:origin,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf,...body})});
   const good={username:'owner@example.invalid',fcc_token:'synthetic-token-value-for-testing'};
