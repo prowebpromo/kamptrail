@@ -71,9 +71,12 @@
     p.cost = feeEvidence && !legacyRIDB && validNumber(raw.cost) && raw.cost >= 0 ? raw.cost : null;
     p.fee_status = feeEvidence && !legacyRIDB && ['free', 'paid', 'conditional', 'unknown'].includes(raw.fee_status) ? raw.fee_status : 'unknown';
     if (feeEvidence && !legacyRIDB && p.cost !== null && p.fee_status !== 'conditional') p.fee_status = p.cost === 0 ? 'free' : 'paid';
-    if (osm && /^(no|0|false)$/i.test(String(raw.fee)) && raw['fee:conditional']) {p.fee_status = 'conditional'; p.cost = null; p.fee_text = `OSM fee=no; fee:conditional=${String(raw['fee:conditional']).slice(0, 200)}`; p.fee_source = 'OpenStreetMap contributors';}
-    else if (osm && /^(no|0|false)$/i.test(String(raw.fee))) {p.fee_status = 'free'; p.cost = 0; p.fee_text = p.fee_text || 'OSM tag fee=no'; p.fee_source = p.fee_source || 'OpenStreetMap contributors (community reported)';}
-    else if (osm && /^(yes|true)$/i.test(String(raw.fee))) {p.fee_status = 'paid'; if (p.cost === 0) p.cost = null;}
+    if (osm && !raw._kt_normalized && /^(no|0|false)$/i.test(String(raw.fee)) && raw['fee:conditional']) {p.fee_status = 'conditional'; p.cost = null; p.fee_text = `OSM fee=no; fee:conditional=${String(raw['fee:conditional']).slice(0, 200)}`; p.fee_source = 'OpenStreetMap contributors';}
+    else if (osm && !raw._kt_normalized && /^(no|0|false)$/i.test(String(raw.fee))) {p.fee_status = 'free'; p.cost = 0; p.fee_text = p.fee_text || 'OSM tag fee=no'; p.fee_source = p.fee_source || 'OpenStreetMap contributors (community reported)';}
+    else if (osm && !raw._kt_normalized && /^(yes|true)$/i.test(String(raw.fee))) {p.fee_status = 'paid'; if (p.cost === 0) p.cost = null;}
+    // State loading normalizes merged records again. A retained source tag cannot
+    // resolve an existing disagreement with another source.
+    if (p.fee_conflict) {p.fee_status = 'unknown'; p.cost = null; p.fee_text = null;}
     p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other'].includes(raw.type) ? raw.type : (osm ? 'established' : 'other');
     if (ridb && !osm && p.camping_classification === 'unverified_camping_record') p.type = 'other';
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
@@ -119,6 +122,7 @@
     if (p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;}
     if (p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;if(p.type==='other')p.type=q.type;}
     // Preserve known facts, but do not hide conflicts between sources.
+    if (p.fee_conflict || q.fee_conflict) {p.fee_conflict=true; p.fee_status='unknown'; p.cost=null; p.fee_text=null;}
     const adopt = () => {p.fee_status=q.fee_status; p.cost=q.cost; for (const k of ['fee_text','fee_source','fee_checked','fee_evidence']) p[k]=q[k] ?? null;};
     const charged = v => v === 'paid' || v === 'conditional';
     if (p.fee_status === 'unknown' && q.fee_status !== 'unknown' && !p.fee_conflict) adopt();
@@ -236,6 +240,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={version:'2.9.0',summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={version:'2.10.0',summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

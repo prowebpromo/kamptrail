@@ -58,6 +58,17 @@ class FeeTextTests(unittest.TestCase):
             self.check(t, 'paid')
         self.check('10$ / night, April 1 to November 30.', 'paid', 10)
 
+    def test_blm_explicit_no_permit_or_fee_requirement_to_camp(self):
+        wording = 'There is no permit or fee requirement to camp. All sites are first-come, first-served.'
+        self.check(wording, 'free', 0)
+        self.check(wording + ' A $5 vehicle permit is required.', 'conditional')
+        self.check(wording + ' An Adventure Pass is required.', 'conditional')
+        self.check(wording + ' You must purchase a vehicle permit.', 'conditional')
+        self.check(wording + ' A vehicle permit is required.', 'conditional')
+        self.check('It is not true that there is no permit or fee requirement to camp.', 'unknown')
+        self.check('There is no permit or fee requirement to park.', 'unknown')
+        self.check('There is no permit or fee requirement to camp. Camping is no longer free.', 'paid')
+
     def test_usfs_feature_preserves_wording_and_source(self):
         f = fetch_usfs_recreation.to_feature({'recareaid': 77, 'recareaname': 'Tiffany Springs', 'latitude': '48.7', 'longitude': '-120.0',
                                               'recareaurl': 'https://www.fs.usda.gov/recarea/okawen/recarea/?recid=77', 'markeractivity': 'Campground Camping',

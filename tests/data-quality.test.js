@@ -61,6 +61,50 @@ test('conflicting source fees stay unknown after another matching record',()=>{
   const result=quality.cleanAndDedupeGeoJSON({features:[free,paid,point({schema_version:3,cost:0})]});
   assert.equal(result.features.length,1);assert.equal(result.features[0].properties.fee_status,'unknown');assert.equal(result.features[0].properties.cost,null);
 });
+test('source fee conflicts survive subsequent state loads and RIDB fee enrichment',()=>{
+  for (const [fee, agencyStatus, agencyCost] of [['no','paid',20],['yes','free',0]]) {
+    const osm=point({osm_id:71,osm_type:'node',tourism:'camp_site',fee});
+    const agency=point({facility_id:42,schema_version:3,camping_activity:'Campground Camping',fee_status:agencyStatus,cost:agencyCost});
+    let result=quality.cleanAndDedupeGeoJSON({features:[osm,agency]});
+    for (let load=0;load<3;load++) {
+      // The loader cleans accumulated records each time another state arrives.
+      const nextState=point({id:'next-state',name:'Other State Campground'},[-110,30]);
+      result=quality.cleanAndDedupeGeoJSON({features:[...result.features,nextState]});
+      for (const site of result.features) quality.attachSiteDetails(site,{'42':{f:'free'}});
+      assert.equal(result.features.length,2);
+      const p=result.features.find(f=>f.properties.name==='Pine Campground').properties;
+      assert.equal(p.fee_conflict,true);assert.equal(p.fee_status,'unknown');assert.equal(p.cost,null);
+      assert.equal(quality.applyFilters(result.features,{cost:'free'}).length,0);
+      assert.equal(quality.applyFilters(result.features,{cost:'paid'}).length,0);
+    }
+  }
+});
+test('merged agency conditions survive normalization of retained OSM fee tags',()=>{
+  for (const fee of ['yes','no']) {
+    const osm=point({osm_id:71,osm_type:'node',tourism:'camp_site',fee});
+    const agency=point({id:'usfs:42',schema_version:3,camping_activity:'Campground Camping',fee_status:'conditional',cost:null,fee_text:'No fee during winter.'});
+    let result=quality.cleanAndDedupeGeoJSON({features:[osm,agency]});
+    for (let load=0;load<3;load++) {
+      result=quality.cleanAndDedupeGeoJSON(result);
+      assert.equal(result.features[0].properties.fee_status,'conditional');
+      assert.equal(result.features[0].properties.cost,null);
+      assert.equal(result.features[0].properties.fee_text,'No fee during winter.');
+      assert.equal(quality.applyFilters(result.features,{cost:'free'}).length,0);
+    }
+  }
+});
+test('a previously conflicting record keeps the fee unknown in either merge order',()=>{
+  const free=point({schema_version:3,cost:0});
+  const paid=point({schema_version:3,cost:20});
+  const conflict=quality.cleanAndDedupeGeoJSON({features:[free,paid]}).features[0];
+  for (const features of [[free,conflict],[conflict,free]]) {
+    const result=quality.cleanAndDedupeGeoJSON({features});
+    assert.equal(result.features.length,1);
+    const p=result.features[0].properties;
+    assert.equal(p.fee_conflict,true);assert.equal(p.fee_status,'unknown');assert.equal(p.cost,null);
+    assert.equal(quality.applyFilters(result.features,{cost:'free'}).length,0);
+  }
+});
 test('conflicting water reports do not advertise a verified water amenity',()=>{
   const result=quality.cleanAndDedupeGeoJSON({features:[point({osm_id:1,tourism:'camp_site',drinking_water:'yes'}),point({osm_id:2,tourism:'camp_site',drinking_water:'no'})]});
   assert.ok(!result.features[0].properties.amenities.includes('water'));
