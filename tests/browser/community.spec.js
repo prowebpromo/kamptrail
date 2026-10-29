@@ -29,3 +29,19 @@ test('write a review with a photo, save the private code, and reopen for editing
 test('mobile: recoverable service failure and management-code recovery remain usable',async({page,context})=>{
  await page.setViewportSize({width:390,height:844});await setup(page,context,{down:true});const d=page.getByRole('dialog',{name:'Reviews and photos'});await expect(d).toContainText('could not be loaded');await expect(d.getByRole('button',{name:'Retry',exact:true})).toBeEnabled();expect(await d.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);await d.getByRole('button',{name:'My reviews',exact:true}).click();await expect(page.getByRole('dialog',{name:'My reviews'}).getByLabel('Restore a private management code')).toBeVisible();
 });
+
+test('review form hides spam controls from screen readers and passes its accessibility scan',async({page,context})=>{
+ const AxeBuilder=require('@axe-core/playwright').default;
+ await setup(page,context);await page.getByRole('button',{name:'Write a review',exact:true}).click();const d=page.getByRole('dialog',{name:'Write a review'});
+ expect(await d.getByRole('textbox').evaluateAll(nodes=>nodes.some(n=>n.name==='website'))).toBe(false);
+ const audit=await new AxeBuilder({page}).include('#kt-community').analyze();expect(audit.violations).toEqual([]);
+});
+test('the old GitHub Pages address hands community features to the live host without a dead form',async({page})=>{
+ const fs=require('node:fs'),path=require('node:path');let apiRequests=0;
+ await page.route('https://prowebpromo.github.io/**',r=>{
+  if(r.request().url().includes('/api/')){apiRequests++;return r.fulfill({status:404,body:'No PHP here'});}
+  const script=fs.readFileSync(path.resolve(__dirname,'../../community.js'),'utf8');
+  return r.fulfill({contentType:'text/html',body:'<!doctype html><html lang="en"><title>Legacy address fixture</title><script>'+script+'</script><button onclick="KampTrailCommunity.open({properties:{id:\'usfs:77\',name:\'Test campsite\'}})">Read reviews</button><button onclick="KampTrailCommunity.mine()">Manage reviews</button></html>'});
+ });
+ await page.goto('https://prowebpromo.github.io/kamptrail/');await page.getByRole('button',{name:'Read reviews',exact:true}).click();await expect(page.getByRole('link',{name:'Open KampTrail reviews'})).toHaveAttribute('href','https://kamptrail.com/#site=usfs%3A77');await expect(page.getByRole('button',{name:'Write a review',exact:true})).toHaveCount(0);expect(apiRequests).toBe(0);
+});
