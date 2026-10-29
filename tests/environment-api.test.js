@@ -121,6 +121,27 @@ test('environment reads latest NOAA observation day and detects stale or incompl
     `);
 });
 
+test('environment NWS active query uses supported parameters and retains response caps', { skip: !capable }, () => {
+    php(`
+    $query=['kind'=>'alerts','lat'=>39.0,'lng'=>-90.0];
+    $calls=0;
+    $http=function($url,$parameters)use(&$calls){
+      $calls++; check($url===KE_ALERTS);
+      // Match the live NWS endpoint, which returns HTTP 400 for query.limit.
+      if(array_diff(array_keys($parameters),['point','status'])) throw new KeException('upstream_unavailable');
+      check($parameters===['point'=>'39,-90','status'=>'actual']);
+      return ['type'=>'FeatureCollection','features'=>[]];
+    };
+    $result=ke_fetch($query,$http,strtotime('2026-10-29T20:00:00Z'));
+    check($calls===1 && $result['ok']===true && $result['kind']==='alerts');
+    check($result['data']['features']===[]);
+    $tooMany=static fn($url,$parameters)=>['type'=>'FeatureCollection','features'=>array_fill(0,KE_MAX_FEATURES+1,[])];
+    rejects(fn()=>ke_fetch($query,$tooMany,time()),'zoom_in');
+    $partial=static fn($url,$parameters)=>['type'=>'FeatureCollection','features'=>[],'pagination'=>['next'=>'https://api.weather.gov/alerts/next']];
+    rejects(fn()=>ke_fetch($query,$partial,time()),'zoom_in');
+    `);
+});
+
 test('environment distinguishes complete empty responses from partial upstream failure', { skip: !capable }, () => {
     php(`
     $query=['kind'=>'fire','bbox'=>[-110,35,-105,40]];
