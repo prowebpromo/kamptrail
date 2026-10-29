@@ -38,3 +38,18 @@ Opt-in viewport layers use the NIFC WFIGS Current Interagency Fire Perimeters an
 - NWS point-alert geolocation: https://www.weather.gov/media/documentation/docs/NWS_Geolocation.pdf
 
 Fire perimeters are not available for all incidents and may be substantially older than their incident record. Smoke plumes describe satellite-visible smoke, not ground-level AQI or a forecast. NOAA analysis may contain observation gaps. Each popup shows source dates separately from retrieval time. Empty results do not establish safe travel, no fire, clean air, camping permission, or absence of closures. NWS alerts do not cover all non-weather emergencies. Consult the land manager and local emergency authorities.
+
+## Census state assignment for agency records (2.11.0)
+
+**Source: U.S. Census Bureau, TIGERweb Boundary and Annexation Survey (BAS) 2026, detailed States layer; January 1, 2026 boundary vintage.** KampTrail repackages these public-domain U.S. Government data as 50 compressed GeoJSON reference files for its offline data pipeline. Census materials may be reproduced under 17 U.S.C. § 105; credit remains with the U.S. Census Bureau. KampTrail is an independent application, not a Census Bureau product or endorsement.
+
+TIGER/Line® is a registered trademark of the U.S. Census Bureau. The name identifies the Census data family, not a KampTrail product name.
+
+- [Official layer metadata and query service](https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18)
+- [Official TIGERweb service directory](https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_restmapservice.html)
+- [Census citation, reproduction and boundary limitations](https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2020/TGRSHP2020_TechDoc.pdf), sections 1.1–1.2
+- Local provenance, source URLs, retrieval timestamp and file checksums: `data/reference/us-state-boundaries/manifest.json`; additional notes: `data/reference/us-state-boundaries/README.md`.
+
+The pipeline checks Forest Service and BLM point coordinates against these polygons even when the source supplies a state. The original state is retained with assignment provenance. Points within 10 meters of a boundary, overlapping state matches, invalid coordinates and points outside the supported 50 states are held in a separate review report. The 10-meter band is an ambiguity rule, not a guarantee of source or GPS accuracy. Polygon holes and Alaska's dateline geometry are handled explicitly; longitude signs are never silently repaired.
+
+The reference geometry is excluded from the website release and is not a visitor-facing boundary layer. These checks apply to agency records; existing Recreation.gov and OpenStreetMap state buckets have not all been revalidated. Census boundaries support statistical work, are not legal land descriptions, and do not determine ownership, jurisdictional rights, camping access or current land-manager restrictions. Neither boundary coordinates nor campsite coordinates are guaranteed accurate.

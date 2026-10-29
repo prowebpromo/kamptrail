@@ -224,3 +224,22 @@ test('rig length and hookups must be met by one campsite, not different sites in
   assert.strictEqual(DQ.matchingSites(sites[0].properties, 40, ['electric']), 0);
   assert.strictEqual(DQ.matchingSites(sites[1].properties, 40, ['electric']), 1);
 });
+
+test('full fee evidence survives reconciliation, conditional refinement and both conflict merge orders',()=>{
+ const phrase='No camping fee. '+('Source context. '.repeat(45))+'An Adventure Pass is required.';
+ const record={source:'US Forest Service',source_field:'feedescription',source_record_id:'123',source_url:'https://www.fs.usda.gov/visit/a',retrieved_at:'2026-10-29',source_updated_at:null,text:phrase,sha256:'a'.repeat(64)};
+ const agency=point({id:'usfs:123',name:'Evidence Campground',camping_activity:'Campground Camping',schema_version:3,fee_status:'conditional',cost:null,fee_text:phrase,fee_evidence_records:[record]});
+ const osm=point({osm_id:123,osm_type:'node',tourism:'camp_site',name:'Evidence Campground',fee:'no'});
+ for(const inputs of [[agency,osm],[osm,agency]]){
+  let f=quality.cleanAndDedupeGeoJSON({features:inputs}).features[0];
+  for(let i=0;i<3;i++)f=quality.cleanAndDedupeGeoJSON({features:[f]}).features[0];
+  assert.equal(f.properties.fee_status,'conditional');assert.equal(f.properties.fee_evidence_records.length,2);assert.equal(f.properties.fee_evidence_records.find(r=>r.source==='US Forest Service').text,phrase);assert.equal(f.properties.fee_evidence_records.find(r=>r.source==='OpenStreetMap contributors').source_record_id,'osm:node:123');
+ }
+ const paid=point({id:'usfs:123',name:'Evidence Campground',camping_activity:'Campground Camping',schema_version:3,fee_status:'paid',cost:15,fee_text:'Camping $15 per night',fee_evidence_records:[{...record,text:'Camping $15 per night',sha256:'b'.repeat(64)}]});
+ for(const inputs of [[osm,paid],[paid,osm]]){const f=quality.cleanAndDedupeGeoJSON({features:inputs}).features[0];assert.equal(f.properties.fee_status,'unknown');assert.equal(f.properties.fee_evidence_records.length,2);}
+});
+
+test('fee evidence strips private fields, rejects unsafe links and deduplicates identical newer snapshots',()=>{
+ const a={source:'Source',source_field:'fee',source_record_id:'1',text:'No fee.',source_url:'javascript:alert(1)',retrieved_at:'2026-10-28',source_updated_at:'not a date',sha256:'invalid',password:'must never copy'};
+ const r=quality.mergeFeeEvidence([a],[{...a,retrieved_at:'2026-10-29',source_url:'https://user:pass@example.com/'}]);assert.equal(r.length,1);assert.equal(r[0].retrieved_at,'2026-10-29');assert.equal(r[0].source_url,null);assert.equal(r[0].source_updated_at,null);assert.equal(r[0].sha256,null);assert.equal(Object.hasOwn(r[0],'password'),false);assert.equal(quality.mergeFeeEvidence([{...a,text:'x'.repeat(65537)}]).length,0);
+});

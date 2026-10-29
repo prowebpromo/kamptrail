@@ -30,7 +30,7 @@ ANCILLARY_FREE = re.compile(
     r"|\b(?:drinking\s+water|water|wi-?fi|showers?|parking|firewood|dump\s+station|admission|entry|entrance|day[\s-]?use(?:\s+areas?)?|"
     r"picnicking|picnic\s+areas?|maps?|boat\s+launch(?:ing)?|trailhead\s+parking)\b[^.;]{0,30}?\b(?:is|are)\s+(?:also\s+)?free\b"
     r"|\bday[\s-]?use(?:\s+areas?)?\s*[:\-\u2013]\s*(?:no\s+fees?|free|none)\b"
-    r"|(?:no\s+fees?|none|free|no\s+charge)\s+(?:for|at)\s+(?:day[\s-]?use|parking|picnic(?:king)?|riding|the\s+trails?|trails?|boat\s+launch(?:ing)?|entry|entrance)(?!\s+(?:or|and|&)\s+(?:overnight\s+)?camp)", re.I)
+    r"|(?:no\s+fees?(?:\s+currently\s+charged)?|none|free|no\s+charge)\s+(?:for|at)\s+(?:day[\s-]?use|parking|picnic(?:king)?|riding|the\s+trails?|trails?|boat\s+launch(?:ing)?|entry|entrance)(?!\s+(?:or|and|&)\s+(?:overnight\s+)?camp)", re.I)
 FEE_FREE = re.compile(
     r"\bnot\s+a\s+fee\s+(?:site|area|campground)\b|\b(?:non-fee|no-fee|fee-free|no[\s-]charge|not\s+charging(?:\s+any)?(?:\s+use)?\s+fees?|no\s+(?:camping\s+|use\s+|overnight\s+|user\s+)?fees?|no\s+charge|no\s+cost|"
     r"fees?\s*:?\s*(?:none|free|\$\s?0(?:\.00)?)\b|free\s+of\s+charge)\b", re.I)
@@ -46,6 +46,16 @@ CAMP_STATED_FREE = re.compile(r"\bcamping(?:\s+(?:and|&)\s+[\w\s-]{1,20}?)?\s+(?
 # negated quotations and statements about parking or entry do not qualify.
 CAMP_NO_FEE_REQUIREMENT = re.compile(r'(?:^|[.!?]\s+)(?:there\s+is\s+)?no\s+permit\s+or\s+fee\s+requirement\s+to\s+camp(?=[.!?]|$)', re.I)
 SEASONAL_FREE = re.compile(r"(?:\bfree|\bno\s+fees?|\bfee-free|\bno\s+charge)\s*,?\s+(?:after|until|before|during|when|outside(?:\s+of)?|from|in\s+(?:the\s+)?(?:off|winter|summer|fall|spring))\b", re.I)
+SEASON_BEFORE_FREE = re.compile(r'\b(?:after\s+(?:the\s+)?season|off[ -]season)\b[^.!?]{0,140}\b(?:no\s+fees?|free)\b', re.I)
+TEMPORARY_NO_COLLECTION = re.compile(
+    r'^(?:camping\s+)?fees?\s+are\s+not\s+(?:being\s+)?collected\s+at\s+this\s+time[.!]?$'
+    r'|^at\s+this\s+time\s+we\s+are\s+not\s+charging\s+(?:any\s+)?(?:use\s+)?fees?\b'
+    r'|^no\s+(?:camping\s+)?fees?\s+(?:is\s+|are\s+)?currently\s+charged[.!]?$', re.I)
+# The four BLM campground fee fields use this mandatory-payment statement.
+# Keep it tied to the named campground, not booking or ancillary-service prose.
+MANDATORY_CAMP_PAYMENT = re.compile(
+    r'^(?!nearby\b|another\b|other\b)(?:[\w\u2019\x27() -]{1,100}\s+campground|the\s+campground\s+at\s+[\w\u2019\x27() -]{1,100})'
+    r'\s+is\s+first\s+come,\s*first\s+served\s+and\s+payment\s+must\s+be\s+made\s+upon\s+arrival\b', re.I)
 NO_FEE_TO_CAMP = re.compile(r"\bno\s+(?:camping\s+fees?|fees?\s+(?:to|for)\s+camp(?:ing)?)\b", re.I)
 CAMP_PAID = re.compile(r'\bcamping\s+fees?\b(?!\s*(?::\s*)?(?:free|none|no\b))|\bfees?\s+(?:for|to)\s+camp|\bcamping:?\s*\$\s?[1-9]', re.I)
 PASS_REQUIRED = re.compile(r'\b(?:pass|permit)\b(?![^.]{0,30}\bnot\s+required)[^.]{0,30}\b(?:is\s+|are\s+)?required\b|\brequires?\b[^.]{0,30}\b(?:pass|permit)\b', re.I)
@@ -68,6 +78,28 @@ def classify_cost(t):
     return int(nightly[0]) if nightly[0].is_integer() else nightly[0]
 
 
+def required_pass(text):
+    """A negated permit in one sentence does not cancel a later requirement."""
+    text = CAMP_NO_FEE_REQUIREMENT.sub(' ', clean(text))
+    # Keep named permits containing a person's initial in the same sentence.
+    text = re.sub(r'\b([A-Z])\.(?=\s+[A-Z][a-z])', r'\1', text)
+    for clause in re.split(r'[.;]|\bbut\b|\bhowever\b', text, flags=re.I):
+        clause = clause.strip(' ,')
+        # These complete agency clauses describe commercial/group exceptions or
+        # explicitly different land, not ordinary camping at the named site.
+        if re.fullmatch(
+                r'commercial, competitive, and large organized group events require a special recreation permit'
+                r'|use of public lands in connection with commercial recreational use requires a BLM special recreation permit'
+                r'|recreational activities on any nearby state trust land require a permit from the State of Arizona'
+                r'|visitors should note that entering the adjacent San Carlos Indian Reservation, which shares the wilderness[\u2019\x27] northeastern border, requires a recreation permit from the tribe',
+                clause, re.I):
+            continue
+        named_range_permit = re.search(r'\brequires? a free Barry M Goldwater Range permit\b', clause, re.I)
+        if (PASS_REQUIRED.search(clause) or NEED_PASS.search(clause) or named_range_permit) and not NO_PASS.search(clause):
+            return True
+    return False
+
+
 def classify(text):
     """Return (status, cost) where cost is a nightly amount or None."""
     t = clean(text)
@@ -77,6 +109,10 @@ def classify(text):
     charges = [a for a in amounts if a > 0]
     if NEG_FREE_CAMP.search(t):
         return 'paid', classify_cost(t)
+    if MANDATORY_CAMP_PAYMENT.search(t) and not re.search(r'\b(?:not true|incorrect|not accurate|false that)\b', t, re.I):
+        return 'paid', classify_cost(t)
+    if TEMPORARY_NO_COLLECTION.search(t):
+        return 'conditional', None
     # Strip wording about free non-camping services and other negations before looking for a free signal.
     core = NEG_FREE_ANY.sub(' ', ANCILLARY_FREE.sub(' ', t))
     free_signal = bool(FEE_FREE.search(core) or STATED_FREE.search(core) or CAMP_STATED_FREE.search(t) or CAMP_NO_FEE_REQUIREMENT.search(t))
@@ -84,15 +120,14 @@ def classify(text):
         free_signal = True
     if CAMP_PAID.search(t) and not NO_FEE_TO_CAMP.search(t):
         return ('conditional', None) if free_signal and re.search(r'\bcamping\b[^.]{0,40}\b(?:free|no\s+fees?)', core, re.I) else ('paid', classify_cost(t) if charges else None)
-    if free_signal and not charges and SEASONAL_FREE.search(t):
+    if free_signal and not charges and (SEASONAL_FREE.search(t) or SEASON_BEFORE_FREE.search(t)):
         # Free only in some seasons or conditions.
         return 'conditional', None
     if free_signal and not charges:
         # Free camping that still needs a paid pass or permit is conditional, not free.
         # The explicit no-camping-permit statement does not negate a separate
         # vehicle/pass requirement elsewhere in the wording.
-        permit_text = CAMP_NO_FEE_REQUIREMENT.sub(' ', t)
-        if (PASS_REQUIRED.search(permit_text) or NEED_PASS.search(permit_text)) and not NO_PASS.search(permit_text):
+        if required_pass(t):
             return 'conditional', None
         return 'free', 0
     if free_signal and charges:

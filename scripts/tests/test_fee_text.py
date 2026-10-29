@@ -13,14 +13,43 @@ class FeeTextTests(unittest.TestCase):
 
     def test_explicit_free(self):
         for t in ('No fee', '<p>No Fees.</p>', 'None', 'Free', 'This is a free facility.', '$0',
-                  'Campground is in non-fee status.', 'Camping Fee: Free, Stay Limit: 14 days.',
-                  'At this time we are not charging any use fees at this recreation site.'):
+                  'Campground is in non-fee status.', 'Camping Fee: Free, Stay Limit: 14 days.'):
             self.check(t, 'free', 0)
 
     def test_conditional_keeps_charges_separate(self):
         self.check('Camping: No fee Trailhead : $5/vehicle/day', 'conditional')
         self.check('Camping - No camping fee but an Adventure Pass is required', 'conditional')
         self.check('$33.00 per night during summer season. No fee when water and trash service are off.', 'conditional')
+        self.check('Fees are not collected at this time', 'conditional')
+        # USFS Jerry Johnson (82782): a current waiver is not a permanent free claim.
+        self.check('No fee currently charged.', 'conditional')
+        self.check('No fee currently charged for parking.', 'unknown')
+        self.check('At this time we are not charging any use fees at this recreation site.', 'conditional')
+        self.check('For current fees, please go to <a href="https://www.recreation.gov/">Recreation.gov</a> Open after season, First Come/First Served; No fee, No Toilets, No Water', 'conditional')
+        self.check('Camping is free. No permit is required for hiking. A vehicle pass is required.', 'conditional')
+
+    def test_mandatory_campground_payment_not_reservability(self):
+        for name in ('Creek Pasture Campground', 'Superbowl Campground', 'Hamburger Rock Campground', 'The campground at Sand Island Recreation Area'):
+            self.check(name + ' is first come, first served and payment must be made upon arrival at the self-register kiosk at the campground using cash, check, or the Scan & Pay feature on the Recreation.gov mobile app. There is no fee for day use.', 'paid')
+        for text in ('Reservations must be made upon arrival at the campground.',
+                     'Payment must be made upon arrival for parking.',
+                     'Nearby Campground is first come, first served and payment must be made upon arrival.',
+                     'It is not true that Creek Pasture Campground is first come, first served and payment must be made upon arrival.'):
+            self.check(text, 'unknown')
+
+    def test_commercial_and_explicitly_adjacent_land_permits_do_not_qualify_camping(self):
+        basic = 'There are no permits, passes, or fees required to visit this wilderness area. It is free.'
+        exceptions = [
+            'However, commercial, competitive, and large organized group events require a special recreation permit . Contact the local managing field office for more information about special recreation permits.',
+            'Recreational activities on any nearby state trust land require a permit from the State of Arizona.',
+            'Visitors should note that entering the adjacent San Carlos Indian Reservation, which shares the wilderness’ northeastern border, requires a recreation permit from the tribe.',
+        ]
+        self.check(basic + ' '.join(exceptions), 'free', 0)
+        self.check('The Shores and Christmas recreation sites are available at no cost on a first come, first served basis. A permit is not required for private, non-commercial use of the sites. Use of public lands in connection with commercial recreational use requires a BLM Special Recreation Permit.', 'free', 0)
+        for requirement in ('A camping permit is required.', 'All campers must purchase a vehicle permit.',
+                            'Commercial camping is free but a camping permit is required.',
+                            'Visits to the Sand Tank Mountains, located south of Interstate 8, require a free Barry M. Goldwater Range permit .'):
+            self.check(basic + ' '.join(exceptions) + ' ' + requirement, 'conditional')
 
     def test_paid_and_unknown(self):
         self.check('$10 per night for overnight camping. No fee for day use.', 'paid', 10)

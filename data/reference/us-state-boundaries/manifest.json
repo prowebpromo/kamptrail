@@ -1,0 +1,866 @@
+{
+  "version": 1,
+  "complete": true,
+  "source": "U.S. Census Bureau TIGERweb BAS 2026 detailed States",
+  "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query",
+  "vintage": "2026-01-01",
+  "retrieved_at": "2026-10-29T20:21:23.490107+00:00",
+  "geometry_policy": "Finest-scale BAS 2026 layer; WGS84; no simplification or coordinate rounding requested.",
+  "license": "U.S. Government work; public domain under 17 USC 105. Credit U.S. Census Bureau.",
+  "license_url": "https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2020/TGRSHP2020_TechDoc.pdf",
+  "limitations": "Statistical boundaries, not legal land descriptions. Source positional accuracy is not guaranteed.",
+  "expected_states": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY"
+  ],
+  "states": {
+    "AK": {
+      "file": "AK.geojson.gz",
+      "name": "Alaska",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27AK%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "346ee93482f0a1c97c299d954b674342dae3d1931270146ca84a45bdc5690adf",
+      "raw_sha256": "df2a1571cd4eaef944af2e53753a6206ab90298e934918714ef961f66215af43",
+      "compressed_bytes": 230894,
+      "raw_bytes": 624586,
+      "coordinate_count": 15332,
+      "bounds": [
+        -179.23108599959195,
+        51.17509200018345,
+        179.85968100035376,
+        71.43978600002835
+      ]
+    },
+    "AL": {
+      "file": "AL.geojson.gz",
+      "name": "Alabama",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27AL%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "0ad83f6b0e1dac0d8d0eded88733aca749cad7e2ca539a70c233ee80f1643020",
+      "raw_sha256": "18f065beb352d46fefc58d0f6e773175022709c6fecc0564580366e573e935f4",
+      "compressed_bytes": 188990,
+      "raw_bytes": 556572,
+      "coordinate_count": 13645,
+      "bounds": [
+        -88.4732270002003,
+        30.144425000011907,
+        -84.88824600041195,
+        35.00802799983999
+      ]
+    },
+    "AR": {
+      "file": "AR.geojson.gz",
+      "name": "Arkansas",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27AR%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "77630313e8f20e64f16fdccce88ced286de8b62f5ae60bac0d6a14d089c04984",
+      "raw_sha256": "885509c2f1bb9c688088d30586635b515dafeb1e460efccc55c1cef28a67f8e9",
+      "compressed_bytes": 415530,
+      "raw_bytes": 1214810,
+      "coordinate_count": 29787,
+      "bounds": [
+        -94.61785899973269,
+        33.00428200023324,
+        -89.64099699962843,
+        36.49974900006288
+      ]
+    },
+    "AZ": {
+      "file": "AZ.geojson.gz",
+      "name": "Arizona",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27AZ%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "01e086b791f5f80f2ee50dcdc9742c96f2851f7fa41ee09c8442983b831ffa82",
+      "raw_sha256": "5d695b6e3c23ad7e4afeede45159319dd3384695d03df566bd260a7fcf799efe",
+      "compressed_bytes": 145348,
+      "raw_bytes": 441462,
+      "coordinate_count": 10823,
+      "bounds": [
+        -114.81630000028981,
+        31.33234199999572,
+        -109.04517199995568,
+        37.0037249997718
+      ]
+    },
+    "CA": {
+      "file": "CA.geojson.gz",
+      "name": "California",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27CA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "86f370a4824b95e5089874033d7b22d1e551b74d1205ed57e36689015051548b",
+      "raw_sha256": "413c4b0f33387853c29a3cd282a94217b4c2c1fafe234506158f1a3a06e98e08",
+      "compressed_bytes": 173698,
+      "raw_bytes": 493710,
+      "coordinate_count": 12102,
+      "bounds": [
+        -124.482003000119,
+        32.52950800017594,
+        -114.1312109996437,
+        42.00950300018286
+      ]
+    },
+    "CO": {
+      "file": "CO.geojson.gz",
+      "name": "Colorado",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27CO%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "e62506d1e2199649cad8377e3bb34697fb4e19e32d6b8e9f49ae5527f7aae423",
+      "raw_sha256": "e8e4286faa07c21ae560dabfa8bd1e6fd8ea8a484c42cfe5aa0fcfdd41e82969",
+      "compressed_bytes": 93452,
+      "raw_bytes": 306732,
+      "coordinate_count": 7519,
+      "bounds": [
+        -109.060204000085,
+        36.992449000103086,
+        -102.04152199990457,
+        41.00344399977076
+      ]
+    },
+    "CT": {
+      "file": "CT.geojson.gz",
+      "name": "Connecticut",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27CT%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "231e7a0063e9da6653d5ef7d75a76a855e12c9d62031ef2c80963880e369b20e",
+      "raw_sha256": "47b07e48b48b46964f7cd6ac30e4776c0a97b044ac61a9a41d18a8ee66568be8",
+      "compressed_bytes": 46937,
+      "raw_bytes": 130863,
+      "coordinate_count": 3205,
+      "bounds": [
+        -73.72777499981095,
+        40.95094299982573,
+        -71.78723899968534,
+        42.05051099966888
+      ]
+    },
+    "DE": {
+      "file": "DE.geojson.gz",
+      "name": "Delaware",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27DE%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "e19cb2de88ce639e89000273652b5c0f16b78b9c5235e578a1297eaddf64967c",
+      "raw_sha256": "f0ac1dbf850b8ed710e96e76be6aeab9e5413f7b768644cab5b9e84851fbbd94",
+      "compressed_bytes": 75165,
+      "raw_bytes": 218119,
+      "coordinate_count": 5345,
+      "bounds": [
+        -75.78902300018237,
+        38.45113199969663,
+        -74.98416500037006,
+        39.83951600026485
+      ]
+    },
+    "FL": {
+      "file": "FL.geojson.gz",
+      "name": "Florida",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27FL%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "556711e58f327e4ecddca9e25babf55a37cfff47cb9fcce190d8001b077558c2",
+      "raw_sha256": "ad5f06189522063b10f73ce336678e2f55b9ee15c4710271f624a2cc91b30360",
+      "compressed_bytes": 289663,
+      "raw_bytes": 840321,
+      "coordinate_count": 20605,
+      "bounds": [
+        -87.63489599962733,
+        24.396308000324215,
+        -79.97430600031043,
+        31.000967999621924
+      ]
+    },
+    "GA": {
+      "file": "GA.geojson.gz",
+      "name": "Georgia",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27GA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "60ea3170e312d5cc5b8ceed82a42ec984ac16969f55176a535370d9c2b675dae",
+      "raw_sha256": "68ed661a5996dc16a5f1a871b2d73db4d6ee4f02b01fc3dea92d7554101884ef",
+      "compressed_bytes": 427475,
+      "raw_bytes": 1254444,
+      "coordinate_count": 30761,
+      "bounds": [
+        -85.60516500023209,
+        30.355756999764676,
+        -80.78296000023906,
+        35.00130300022481
+      ]
+    },
+    "HI": {
+      "file": "HI.geojson.gz",
+      "name": "Hawaii",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27HI%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "720fb6ce16a67d1bdb703f6bd25f6e3044bb46968b6b07f81c982124a2e3add4",
+      "raw_sha256": "eef5633ce00a23bf9b11e1a2331da460fa0435fa55b191f587277a9c62495a76",
+      "compressed_bytes": 51330,
+      "raw_bytes": 143709,
+      "coordinate_count": 3519,
+      "bounds": [
+        -178.4435930001603,
+        18.865459999924425,
+        -154.755791999553,
+        28.51726899980199
+      ]
+    },
+    "IA": {
+      "file": "IA.geojson.gz",
+      "name": "Iowa",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27IA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "a7f19bf128726c486945a2a4bdffe4e710bd91654902e09eca2a3d45edab8ebd",
+      "raw_sha256": "33591bb8dcda877f70a13f636a6cd5c5499e00fde557e6596e53d57b278d2dc7",
+      "compressed_bytes": 335422,
+      "raw_bytes": 986929,
+      "coordinate_count": 24198,
+      "bounds": [
+        -96.63948499978262,
+        40.37544000021866,
+        -90.14006100004835,
+        43.50119599978025
+      ]
+    },
+    "ID": {
+      "file": "ID.geojson.gz",
+      "name": "Idaho",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27ID%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "22f04aded1cdd884a4a09c1b8629825abb18cc1207df0bd11e099f553ca048c4",
+      "raw_sha256": "5ef38a13cf4edc23ce5828e7531e17bb31883b07083a9440fca5cc4a15e825e6",
+      "compressed_bytes": 480255,
+      "raw_bytes": 1432459,
+      "coordinate_count": 35121,
+      "bounds": [
+        -117.2430269999818,
+        41.988181999870925,
+        -111.04349499995132,
+        49.000845999851144
+      ]
+    },
+    "IL": {
+      "file": "IL.geojson.gz",
+      "name": "Illinois",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27IL%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "7b16dcddeff0e9124e1f75906d3f2d4e9ffde467197f06739ac5f7b694b465a2",
+      "raw_sha256": "57b61773c8c9be5d8b2f657532ac0bd7a295fbff54613362c17f28017edcae26",
+      "compressed_bytes": 281736,
+      "raw_bytes": 807136,
+      "coordinate_count": 19789,
+      "bounds": [
+        -91.51307899995854,
+        36.97029799973748,
+        -87.01993500032552,
+        42.508481000028475
+      ]
+    },
+    "IN": {
+      "file": "IN.geojson.gz",
+      "name": "Indiana",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27IN%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "007133811e098864dc5dcde16d2c68a3b9d3519cb2cb7a19213c86cd2ceec019",
+      "raw_sha256": "39cb9988196a4769fe92c9f68e86a12b450fb548b3d8aefafe16f2eb3704b42f",
+      "compressed_bytes": 227946,
+      "raw_bytes": 662444,
+      "coordinate_count": 16240,
+      "bounds": [
+        -88.09789199999273,
+        37.771671999691385,
+        -84.78453499960042,
+        41.7613680001885
+      ]
+    },
+    "KS": {
+      "file": "KS.geojson.gz",
+      "name": "Kansas",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27KS%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "e4d1af239dfd30fe5d61150fb302c0500060dc83910afa48576d85e4890b7cde",
+      "raw_sha256": "cf13b1dbab308d8be1d9cfd10d8f5e0db1b4c006eb4e478d2202ba067c935d0c",
+      "compressed_bytes": 169615,
+      "raw_bytes": 542263,
+      "coordinate_count": 13296,
+      "bounds": [
+        -102.05176899970552,
+        36.993015999850805,
+        -94.58838700002607,
+        40.00316600026501
+      ]
+    },
+    "KY": {
+      "file": "KY.geojson.gz",
+      "name": "Kentucky",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27KY%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "292a25a4546987d4251810b82290cb80eba57a7d8b2dffad8214458f908cbde5",
+      "raw_sha256": "822724ba06da4a417523439227c7c56c6f650714c9ea48c154e27653b12023fc",
+      "compressed_bytes": 494569,
+      "raw_bytes": 1412246,
+      "coordinate_count": 34631,
+      "bounds": [
+        -89.57120299999157,
+        36.497057999768,
+        -81.96478799965307,
+        39.14773200026906
+      ]
+    },
+    "LA": {
+      "file": "LA.geojson.gz",
+      "name": "Louisiana",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27LA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "87ad33e98c95077a6251d3addbea637be1bcb300dc95efeb3cc4053f52bf538b",
+      "raw_sha256": "97ad2b2bf6b09d1b83ce3fdc89a345c349f7465b1a1c3a74d68bef6988e8ce6e",
+      "compressed_bytes": 298174,
+      "raw_bytes": 878885,
+      "coordinate_count": 21548,
+      "bounds": [
+        -94.04335199970727,
+        28.855127000300833,
+        -88.75838800007364,
+        33.01962000001487
+      ]
+    },
+    "MA": {
+      "file": "MA.geojson.gz",
+      "name": "Massachusetts",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27MA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "3bd3bb36d1c411e317580bc9aa02bc70352c410681135d92a387af298af054b4",
+      "raw_sha256": "5fd778f893c9c687eb4466c5378a7e9658e034e6657dc328b97ec6ed054bddab",
+      "compressed_bytes": 69701,
+      "raw_bytes": 195435,
+      "coordinate_count": 4788,
+      "bounds": [
+        -73.50820999977523,
+        41.187052999986186,
+        -69.8588609998376,
+        42.886778000316056
+      ]
+    },
+    "MD": {
+      "file": "MD.geojson.gz",
+      "name": "Maryland",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27MD%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "8de6c23b6a4e13e783572bf425eee98fbe8f73638bde2dc93cdba089e0ea7044",
+      "raw_sha256": "f69e4af8d6e08a7bd321def9edfa1046825bb4570989eaeb2d9749bcb8d4a9aa",
+      "compressed_bytes": 361867,
+      "raw_bytes": 1064361,
+      "coordinate_count": 26095,
+      "bounds": [
+        -79.48765100023856,
+        37.886604999729734,
+        -74.98628199981302,
+        39.723037000341044
+      ]
+    },
+    "ME": {
+      "file": "ME.geojson.gz",
+      "name": "Maine",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27ME%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "76cc9b857691d484756a651cbc4873b687346322020601710b88ec3cf30b5f0d",
+      "raw_sha256": "4f6d23cbf5a4ccedabab8bfa8e9a2607385ee77607d6f6eae0ca3e1f0a1b7c6a",
+      "compressed_bytes": 272147,
+      "raw_bytes": 772301,
+      "coordinate_count": 18934,
+      "bounds": [
+        -71.08392799958928,
+        42.91712599993515,
+        -66.88544400034124,
+        47.45983299982984
+      ]
+    },
+    "MI": {
+      "file": "MI.geojson.gz",
+      "name": "Michigan",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27MI%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "87ce9b2aad9a0d7d543a3c627748dfb2dcb561a7c726ce1d17d5bbabf1f6af95",
+      "raw_sha256": "19f3dc47a1e28323561dd560d8535167f2a279197bb3e7295d6029a88e5c3bf2",
+      "compressed_bytes": 153867,
+      "raw_bytes": 437354,
+      "coordinate_count": 10721,
+      "bounds": [
+        -90.41839200012036,
+        41.69611800009349,
+        -82.12297100044222,
+        48.306062999958236
+      ]
+    },
+    "MN": {
+      "file": "MN.geojson.gz",
+      "name": "Minnesota",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27MN%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "164bc2dfb0f4c0f0d05ddd11a98598c4dcb9f02381fe869d242310d435eb299e",
+      "raw_sha256": "8176c0e762bd087732a96111a065f950ae75b7421c61c9ddbc535e6385a0deab",
+      "compressed_bytes": 558470,
+      "raw_bytes": 1644028,
+      "coordinate_count": 40307,
+      "bounds": [
+        -97.23909300036136,
+        43.499361000130705,
+        -89.48338500037322,
+        49.38447899976769
+      ]
+    },
+    "MO": {
+      "file": "MO.geojson.gz",
+      "name": "Missouri",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27MO%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "20089b10a542d5e81ae45e7ec575e881a424a4d4b580648079cc9be915a71690",
+      "raw_sha256": "e03b71f6e7f4c035b21d1a7abcfe7eaea556a720efdb58d95334e35470ae8076",
+      "compressed_bytes": 284417,
+      "raw_bytes": 828866,
+      "coordinate_count": 20323,
+      "bounds": [
+        -95.77470400039076,
+        35.995684999700686,
+        -89.09896800030384,
+        40.61363999995376
+      ]
+    },
+    "MS": {
+      "file": "MS.geojson.gz",
+      "name": "Mississippi",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27MS%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "96672c5ccbe7092b24c9985d25432c657511c54e8728fc28b37ed5a781ee96f7",
+      "raw_sha256": "e42536b9bce575a5e711a4a457cc735aad48c2e5f3e7b4f2788ba108a0d165df",
+      "compressed_bytes": 361054,
+      "raw_bytes": 1049059,
+      "coordinate_count": 25725,
+      "bounds": [
+        -91.6550089997044,
+        30.139845000075447,
+        -88.09788799979476,
+        34.996099000130016
+      ]
+    },
+    "MT": {
+      "file": "MT.geojson.gz",
+      "name": "Montana",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27MT%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "f40482b05cb22b2f24ea5f3f46964e7eb8c1bb07a59c4a06438d9cba7870fe40",
+      "raw_sha256": "350b1a84ba7380189e1b987de1e69d6974847cf92f452c96eb45f07323ba7cd0",
+      "compressed_bytes": 366079,
+      "raw_bytes": 1089989,
+      "coordinate_count": 26725,
+      "bounds": [
+        -116.0491530004429,
+        44.35791499980466,
+        -104.03969400028747,
+        49.001109000009016
+      ]
+    },
+    "NC": {
+      "file": "NC.geojson.gz",
+      "name": "North Carolina",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27NC%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "28bbab7e9ffa9684f7e08e67c037838ff0a151e9e64f1087b6727c8fe16b2e5b",
+      "raw_sha256": "41fad6b2a4b8d75558dff8b1b7ef3ac54822462670ed6fcd4f719dbe5b0b8114",
+      "compressed_bytes": 441215,
+      "raw_bytes": 1311000,
+      "coordinate_count": 32145,
+      "bounds": [
+        -84.32182100016563,
+        33.752877999797406,
+        -75.40011899971046,
+        36.588137000022726
+      ]
+    },
+    "ND": {
+      "file": "ND.geojson.gz",
+      "name": "North Dakota",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27ND%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "aa5667a94a07d431db90b193647e39789375e633ad9f00de88499059685673b7",
+      "raw_sha256": "9d72673efbe4271988a97d56561a202fe063c0a90f2a54873af0d6aaf000392b",
+      "compressed_bytes": 444623,
+      "raw_bytes": 1323243,
+      "coordinate_count": 32442,
+      "bounds": [
+        -104.04901200015081,
+        45.9350720000774,
+        -96.55441100031932,
+        49.0005609999698
+      ]
+    },
+    "NE": {
+      "file": "NE.geojson.gz",
+      "name": "Nebraska",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27NE%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "d5569c0ee299f61bacbd4310b1eb2be344c4089462e26b1e5026218271a106f0",
+      "raw_sha256": "e054f1fb277c8f244946a2c7bf057e8d7717688302bc4c8f6297b99056bdc75e",
+      "compressed_bytes": 184343,
+      "raw_bytes": 570137,
+      "coordinate_count": 13982,
+      "bounds": [
+        -104.05351399972366,
+        39.999931999770055,
+        -95.3082900002008,
+        43.00170700025884
+      ]
+    },
+    "NH": {
+      "file": "NH.geojson.gz",
+      "name": "New Hampshire",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27NH%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "05946d198471d268c0abba6e6a779f66997737243ce46ef1139bebf9a65020ac",
+      "raw_sha256": "acbc540aed14dfc0933c0358ab97b140a2b9a23ef5bd2c6f4702ee72d3ef6e28",
+      "compressed_bytes": 236881,
+      "raw_bytes": 678160,
+      "coordinate_count": 16624,
+      "bounds": [
+        -72.5571239999604,
+        42.697041999738616,
+        -70.5750940002927,
+        45.30577800020018
+      ]
+    },
+    "NJ": {
+      "file": "NJ.geojson.gz",
+      "name": "New Jersey",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27NJ%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "311f2a3e2de8a7caf93515e4913ca7cb3ceb85a9ddfc4712351fde453efbc09b",
+      "raw_sha256": "fc80f957096188132865cc77aa9acfc1d8ee6e72305ff174352357b8024be706",
+      "compressed_bytes": 114596,
+      "raw_bytes": 322130,
+      "coordinate_count": 7897,
+      "bounds": [
+        -75.56358599969694,
+        38.78865700033517,
+        -73.88505999972632,
+        41.357607000098184
+      ]
+    },
+    "NM": {
+      "file": "NM.geojson.gz",
+      "name": "New Mexico",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27NM%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "62509846f38e7dbf4b9a45bb58157dc1b0fb0e19fc84efc231ede3e3012c2282",
+      "raw_sha256": "63bf85b7d79a68cc1b2eed3b3f55c35c15b8174dc613f090a45e1a5c0fc2bbf4",
+      "compressed_bytes": 89002,
+      "raw_bytes": 290046,
+      "coordinate_count": 7107,
+      "bounds": [
+        -109.05043099993698,
+        31.33216000005733,
+        -103.00204299975863,
+        37.000233000031926
+      ]
+    },
+    "NV": {
+      "file": "NV.geojson.gz",
+      "name": "Nevada",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27NV%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "5f3e5cf069a29b6555f0e9e2bd27a7e058554d5e33a1a6c969c5e49ad8f518bb",
+      "raw_sha256": "b79c0952e818ad28c3fc141a0fea242081412fae08c88e5cc7b85590b3ea3074",
+      "compressed_bytes": 131046,
+      "raw_bytes": 389112,
+      "coordinate_count": 9539,
+      "bounds": [
+        -120.00647300038868,
+        35.00185699992408,
+        -114.0394610003649,
+        42.001841999931585
+      ]
+    },
+    "NY": {
+      "file": "NY.geojson.gz",
+      "name": "New York",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27NY%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "b87e9ec30bd47c1ffca6248c357ce5aa78c673d101dad4faa255e17b24a6561b",
+      "raw_sha256": "bb98b532a70e5b67adacb841ef1e1b96feac0c91cdcf0c3be696fdd264c9176b",
+      "compressed_bytes": 150146,
+      "raw_bytes": 419299,
+      "coordinate_count": 10278,
+      "bounds": [
+        -79.76259000042532,
+        40.4765780002232,
+        -71.77749099965166,
+        45.01586499980938
+      ]
+    },
+    "OH": {
+      "file": "OH.geojson.gz",
+      "name": "Ohio",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27OH%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "701b053d780ae21bb91b7fd1206683f48ca6b9f0b7fdc737c2359c5d62b8c850",
+      "raw_sha256": "996c9edfb987b7f971c10bc3d23ed521e7609dc51769d77f3afbc225ccfcb246",
+      "compressed_bytes": 238122,
+      "raw_bytes": 708138,
+      "coordinate_count": 17359,
+      "bounds": [
+        -84.82030499972909,
+        38.40342299992483,
+        -80.51870499969628,
+        42.32713200000673
+      ]
+    },
+    "OK": {
+      "file": "OK.geojson.gz",
+      "name": "Oklahoma",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27OK%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "bdda8039aff20718d1814db4590d31601af206ffe59bdbfb291639c46efbdadc",
+      "raw_sha256": "ba53cc4cc3451221dbf64ddd15113d22110c4984ba42745c676bac3b2472dc55",
+      "compressed_bytes": 293095,
+      "raw_bytes": 864663,
+      "coordinate_count": 21200,
+      "bounds": [
+        -103.0024129996545,
+        33.61578700014712,
+        -94.43101400024715,
+        37.00231199975241
+      ]
+    },
+    "OR": {
+      "file": "OR.geojson.gz",
+      "name": "Oregon",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27OR%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "d0d2df17d3cdd29986476fca2313602871debbdfbdf9a70e7c559aaaf21a0d29",
+      "raw_sha256": "ca04ad6c99415ce1deb06864c07e67647986eb206cc4f84851b7658cf9682a05",
+      "compressed_bytes": 200538,
+      "raw_bytes": 594820,
+      "coordinate_count": 14580,
+      "bounds": [
+        -124.70354099965763,
+        41.992081999780375,
+        -116.4632620003269,
+        46.29909899997804
+      ]
+    },
+    "PA": {
+      "file": "PA.geojson.gz",
+      "name": "Pennsylvania",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27PA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "e383bf16b18e28306c9bca8a843a098ddfd11719a587e1c2a2a525d8ae76c843",
+      "raw_sha256": "201273ae995a7f16f4cb632c5e019671f4515c80e13435564cbba5ae2b521d62",
+      "compressed_bytes": 214729,
+      "raw_bytes": 652306,
+      "coordinate_count": 15994,
+      "bounds": [
+        -80.51985100026717,
+        39.71979899992485,
+        -74.68956100006157,
+        42.516072000324215
+      ]
+    },
+    "RI": {
+      "file": "RI.geojson.gz",
+      "name": "Rhode Island",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27RI%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "54e1638db282e3613a273cdc4d6c993dcfe68e9e5db141d668934f250dc6460c",
+      "raw_sha256": "d24fc9e934166aa3afce31c421f92a2f5dcc6b9e83b40a00a36034642352ae57",
+      "compressed_bytes": 38283,
+      "raw_bytes": 109084,
+      "coordinate_count": 2671,
+      "bounds": [
+        -71.9072579999951,
+        41.09583399969442,
+        -71.08857099962744,
+        42.01879900018441
+      ]
+    },
+    "SC": {
+      "file": "SC.geojson.gz",
+      "name": "South Carolina",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27SC%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "b86d1b1fefe66c138939022d0c2cd3da4f47fda33954db6417348b57e7bd5c8d",
+      "raw_sha256": "534beb77d4c7407c4928beca5b8f32dcee7d96df37b0d85027c1b4bd36a72bad",
+      "compressed_bytes": 250237,
+      "raw_bytes": 714189,
+      "coordinate_count": 17510,
+      "bounds": [
+        -83.35392800018695,
+        31.995954000083838,
+        -78.4993009995696,
+        35.2154850003125
+      ]
+    },
+    "SD": {
+      "file": "SD.geojson.gz",
+      "name": "South Dakota",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27SD%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "ed6bf88e5f4a2c453a7b72424ea9d28b9cceb4a9dcd4ea570c7f581cece955e8",
+      "raw_sha256": "b4acd92452d7a4fc0f09c1ba259c84b8e9c54142c3fa66edcc579fe7cdf8f5ac",
+      "compressed_bytes": 267805,
+      "raw_bytes": 813796,
+      "coordinate_count": 19954,
+      "bounds": [
+        -104.05787899992745,
+        42.47968599987141,
+        -96.43647199964262,
+        45.94537699985839
+      ]
+    },
+    "TN": {
+      "file": "TN.geojson.gz",
+      "name": "Tennessee",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27TN%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "16071aa97f43681ada8ce73e7d0137c3de733ce1081d88d3967f217b54586a7c",
+      "raw_sha256": "ac7f9ced37e60080f53e45935f215d08d812f65161d34a9c5c4f860dfa27838f",
+      "compressed_bytes": 405342,
+      "raw_bytes": 1178379,
+      "coordinate_count": 28894,
+      "bounds": [
+        -90.31049099990554,
+        34.98292399972572,
+        -81.6468999995569,
+        36.678255000030305
+      ]
+    },
+    "TX": {
+      "file": "TX.geojson.gz",
+      "name": "Texas",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27TX%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "ac5a8df7f06cb3dc0bf38021efe5a01cba8e1c6fbdaf68063334d5f8a78f620c",
+      "raw_sha256": "c89f23e5ac8e277ef3f9bb6344fb7c2b13f0a8acbc83fea82b5a76b0c537fd08",
+      "compressed_bytes": 881794,
+      "raw_bytes": 2563697,
+      "coordinate_count": 62863,
+      "bounds": [
+        -106.64564599964328,
+        25.83704800001939,
+        -93.50803900038119,
+        36.500703999763466
+      ]
+    },
+    "UT": {
+      "file": "UT.geojson.gz",
+      "name": "Utah",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27UT%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "1b0d37bebfb336d38227e1b3e2efcbbb5fd5dc730109d40fbfc321a700596943",
+      "raw_sha256": "4630d529e6041ecb4a2c2efbb98c20432d2a4c60f3f77f07f2f7b5b5e7fae086",
+      "compressed_bytes": 94118,
+      "raw_bytes": 305916,
+      "coordinate_count": 7499,
+      "bounds": [
+        -114.05288499996597,
+        36.99765700001516,
+        -109.04157199965796,
+        42.00170199996529
+      ]
+    },
+    "VA": {
+      "file": "VA.geojson.gz",
+      "name": "Virginia",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27VA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "4a1c74a2b31a32f2b1320c0493f555fc32aada2bf9a14fe70a4954b0a0d1232f",
+      "raw_sha256": "50a649aa4befa3d9b1dcee6b8a617838cd314091748c19b2a0552f8d46a2420a",
+      "compressed_bytes": 674931,
+      "raw_bytes": 2027470,
+      "coordinate_count": 49713,
+      "bounds": [
+        -83.67539499976617,
+        36.540852000292325,
+        -75.1664349995895,
+        39.46601199983728
+      ]
+    },
+    "VT": {
+      "file": "VT.geojson.gz",
+      "name": "Vermont",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27VT%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "9260a6ea7cd69f0890dc245bde1fcdb1cf7f3e932c3d348b309ef382f678efc6",
+      "raw_sha256": "fc801e50fb51cb4401c3d924909ee9573793dccd858ecbf75316b85793862940",
+      "compressed_bytes": 173685,
+      "raw_bytes": 495130,
+      "coordinate_count": 12136,
+      "bounds": [
+        -73.43790499977723,
+        42.72693300027202,
+        -71.46504700038301,
+        45.01665800001635
+      ]
+    },
+    "WA": {
+      "file": "WA.geojson.gz",
+      "name": "Washington",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27WA%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "e58c8324a46145bad6a63d62766ec7bdc54b3ac9c5823eece097c2a38fc60a95",
+      "raw_sha256": "f8239c776e30efe163f4f84b00a798ed3b49005cbd3f0b8196e3392e84344bb5",
+      "compressed_bytes": 106311,
+      "raw_bytes": 324178,
+      "coordinate_count": 7944,
+      "bounds": [
+        -124.84897399961686,
+        45.54354100012852,
+        -116.91607100026751,
+        49.002438999941695
+      ]
+    },
+    "WI": {
+      "file": "WI.geojson.gz",
+      "name": "Wisconsin",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27WI%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "da95356f65f614dc170e6f05d220da3f40e651327866c95c8a3f87e7c56b3fcd",
+      "raw_sha256": "09421b54ec660eb94157a0e88d4a4c5160b510148c3f41662245c2b33a53033d",
+      "compressed_bytes": 232598,
+      "raw_bytes": 661121,
+      "coordinate_count": 16207,
+      "bounds": [
+        -92.88943299967748,
+        42.49171999995949,
+        -86.2495479999101,
+        47.30982200019525
+      ]
+    },
+    "WV": {
+      "file": "WV.geojson.gz",
+      "name": "West Virginia",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27WV%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "71bd011b2f26a0a466c1d5e0b86f13a4296c790b7a5c5fe15048588820537d44",
+      "raw_sha256": "2fde7f72a6b76590a09ae41705a8953b3d5165e94d024d9ac3fe6f323b50b972",
+      "compressed_bytes": 495567,
+      "raw_bytes": 1437543,
+      "coordinate_count": 35247,
+      "bounds": [
+        -82.64459099965542,
+        37.2015400000175,
+        -77.71951900019627,
+        40.63880100014802
+      ]
+    },
+    "WY": {
+      "file": "WY.geojson.gz",
+      "name": "Wyoming",
+      "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query?where=STUSAB%3D%27WY%27&outFields=STUSAB%2CSTATE%2CNAME&outSR=4326&returnGeometry=true&f=geojson",
+      "sha256": "4ab9c46cbf5f377eac893cd6cbce3d9d136976558feec754a0349fe8491c86e4",
+      "raw_sha256": "6941db445e0b7b80cba628c5d912aca97ea1d6cf061be173f554b7ba93f72dea",
+      "compressed_bytes": 106305,
+      "raw_bytes": 350524,
+      "coordinate_count": 8591,
+      "bounds": [
+        -111.05455799971195,
+        40.99477199985894,
+        -104.05224500002744,
+        45.005815000063905
+      ]
+    }
+  }
+}

@@ -2,9 +2,9 @@
  "version": 1,
  "stale_after_days": 45,
  "run": {
-  "started": "2026-10-29T02:45:25.489Z",
+  "started": "2026-10-29T22:11:02.445Z",
   "counts": {
-   "fresh": 104
+   "fresh": 2
   }
  },
  "sources": {
@@ -533,14 +533,14 @@
   "usfs": {
    "scopes": {
     "US": {
-     "last_attempt": "2026-10-29T03:43:28.644Z",
-     "last_success": "2026-10-29T03:43:28.644Z",
+     "last_attempt": "2026-10-29T22:11:02.475Z",
+     "last_success": "2026-10-29T22:11:02.475Z",
      "outcome": "fresh"
     }
    },
    "label": "Forest Service recreation sites",
-   "oldest_success": "2026-10-29T03:43:28.644Z",
-   "newest_success": "2026-10-29T03:43:28.644Z",
+   "oldest_success": "2026-10-29T22:11:02.475Z",
+   "newest_success": "2026-10-29T22:11:02.475Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 1
@@ -549,14 +549,14 @@
   "blm": {
    "scopes": {
     "US": {
-     "last_attempt": "2026-10-29T03:43:29.721Z",
-     "last_success": "2026-10-29T03:43:29.721Z",
+     "last_attempt": "2026-10-29T22:11:02.504Z",
+     "last_success": "2026-10-29T22:11:02.504Z",
      "outcome": "fresh"
     }
    },
    "label": "BLM recreation sites",
-   "oldest_success": "2026-10-29T03:43:29.721Z",
-   "newest_success": "2026-10-29T03:43:29.721Z",
+   "oldest_success": "2026-10-29T22:11:02.504Z",
+   "newest_success": "2026-10-29T22:11:02.504Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 1
@@ -595,5 +595,5 @@
    }
   }
  },
- "generated": "2026-10-29T03:45:42.190Z"
+ "generated": "2026-10-29T22:11:02.505Z"
 }

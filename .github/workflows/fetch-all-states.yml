@@ -2,6 +2,15 @@ name: Refresh all states (manual)
 
 on:
   workflow_dispatch:
+    inputs:
+      agency_only:
+        description: 'Refresh only Forest Service and BLM evidence and derived agency/search files'
+        type: boolean
+        default: false
+      expected_catalogue:
+        description: 'Optional exact census JSON for a reviewed agency release'
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -12,5 +21,6 @@ jobs:
     uses: ./.github/workflows/fetch-campsite-data.yml
     with:
       states: 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'
-      source: both
+      source: ${{ inputs.agency_only && 'agency' || 'both' }}
+      expected_catalogue: ${{ inputs.expected_catalogue }}
     secrets: inherit

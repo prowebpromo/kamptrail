@@ -46,6 +46,27 @@
       camping_classification: explicitlyCamping || campingName || campingIntro ? 'campsite' : 'unverified_camping_record'
     };
   }
+  // Keep full, attributable source wording when records are reconciled.
+  function evidenceURL(value) {
+    try {const u=new URL(value);return ['https:','http:'].includes(u.protocol)&&!u.username&&!u.password?u.href:null;}catch{return null;}
+  }
+  function evidenceDate(value) {
+    if(typeof value==='number'&&Number.isFinite(value)&&value>0&&value<4102444800000)return new Date(value).toISOString();
+    return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}(?:T[^\s]+)?$/.test(value)&&Number.isFinite(Date.parse(value))?value:null;
+  }
+  function mergeFeeEvidence(...lists) {
+    const records=new Map();
+    for(const list of lists)for(const raw of Array.isArray(list)?list:[]){
+      if(!raw||typeof raw.source!=='string'||!raw.source.trim()||typeof raw.text!=='string'||!raw.text.trim()||raw.text.length>65536)continue;
+      const clean=(value,max)=>typeof value==='string'?value.slice(0,max):null;
+      const r={source:clean(raw.source,160),source_field:clean(raw.source_field,160),source_record_id:clean(raw.source_record_id,240),source_url:evidenceURL(raw.source_url),query_url:evidenceURL(raw.query_url),retrieved_at:evidenceDate(raw.retrieved_at),source_updated_at:evidenceDate(raw.source_updated_at),text:raw.text,sha256:typeof raw.sha256==='string'&&/^[a-f0-9]{64}$/i.test(raw.sha256)?raw.sha256.toLowerCase():null};
+      if(typeof raw.classification_text==='string'&&raw.classification_text.length<=65536)r.classification_text=raw.classification_text;
+      if(typeof raw.qualification_text==='string'&&raw.qualification_text.length<=65536)r.qualification_text=raw.qualification_text;
+      const key=JSON.stringify([r.source,r.source_field,r.source_record_id,r.text]),old=records.get(key);
+      if(!old||Date.parse(r.retrieved_at)>Date.parse(old.retrieved_at)||(!old.retrieved_at&&r.retrieved_at))records.set(key,r);
+    }
+    return [...records.values()].sort((a,b)=>(Date.parse(b.retrieved_at)||0)-(Date.parse(a.retrieved_at)||0)).slice(0,24);
+  }
   function normalizeFeature(feature, options = {}) {
     const ll = getLatLng(feature);
     if (!ll) return null;
@@ -66,6 +87,12 @@
       const elementType = raw.osm_type || (['node', 'way', 'relation'].includes(raw.type) ? raw.type : 'unknown');
       p.id = `osm:${elementType}:${raw.osm_id}${elementType === 'unknown' ? ':' + coordKey : ''}`;
     } else p.id = raw.id != null && raw.id !== '' ? String(raw.id) : `site:${normalizeName(name)}:${coordKey}`;
+    p.fee_evidence_records=mergeFeeEvidence(raw.fee_evidence_records);
+    if(osm&&!raw._kt_normalized&&/^(?:no|0|false|yes|true)$/i.test(String(raw.fee))){
+      const kind=raw.osm_type||(['node','way','relation'].includes(raw.type)?raw.type:null),id=String(raw.osm_id??'');
+      const tagText='fee='+String(raw.fee)+(raw['fee:conditional']?'; fee:conditional='+String(raw['fee:conditional']):'');
+      p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records,[{source:'OpenStreetMap contributors',source_field:'fee'+(raw['fee:conditional']?' / fee:conditional':''),source_record_id:id?'osm:'+(kind||'unknown')+':'+id:null,source_url:kind&&/^\d+$/.test(id)?'https://www.openstreetmap.org/'+kind+'/'+id:null,retrieved_at:raw.fee_checked||null,source_updated_at:raw.osm_timestamp||null,text:tagText}]);
+    }
     if (legacyRIDB) p.legacy_inferred = {cost:raw.cost, amenities:raw.amenities, rig_friendly:raw.rig_friendly, road_difficulty:raw.road_difficulty};
     const feeEvidence = raw._kt_normalized || Number(raw.schema_version) >= 3 || !!raw.field_provenance?.cost;
     p.cost = feeEvidence && !legacyRIDB && validNumber(raw.cost) && raw.cost >= 0 ? raw.cost : null;
@@ -119,6 +146,7 @@
     const p=primary.properties, q=secondary.properties;
     p.legacy_ids = [...new Set([...(p.legacy_ids || []), ...(q.legacy_ids || []), q.id])];
     p.sources = [...new Set([...(p.sources || []), ...(q.sources || [])])];
+    p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records,q.fee_evidence_records);
     if (p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;}
     if (p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;if(p.type==='other')p.type=q.type;}
     // Preserve known facts, but do not hide conflicts between sources.
@@ -135,6 +163,15 @@
     p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];
     for (const key of ['description','website','source_url','road_difficulty','rating','stay_limit','open_status','season','restrictions','camping_activity']) if (p[key] == null || p[key] === '') p[key]=q[key] ?? p[key];
     return primary;
+  }
+  // A state's complete snapshot must support camping before another state's
+  // previously loaded listings can enrich it. Keep original rows/order here:
+  // returning locally merged rows would change cross-state dedupe geometry.
+  function publicationCandidates(features, options = {}) {
+    const candidates=(Array.isArray(features)?features:[]).map(raw=>({raw,feature:normalizeFeature(raw,options)})).filter(x=>x.feature);
+    const published=cleanAndDedupeGeoJSON({features:candidates.map(x=>x.feature)},options).features;
+    const admitted=new Set(published.flatMap(f=>[f.properties.id,...(f.properties.legacy_ids||[])]));
+    return candidates.filter(x=>admitted.has(x.feature.properties.id)).map(x=>x.raw);
   }
   function cleanAndDedupeGeoJSON(input, options = {}) {
     if (!input || !Array.isArray(input.features)) return {type:'FeatureCollection',features:[]};
@@ -240,6 +277,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={version:'2.10.0',summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={version:'2.11.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

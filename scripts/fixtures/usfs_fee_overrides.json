@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "policy": "Maintain independently checked official fee evidence by USFS recareaid. Contradictory conclusive statements produce unknown with a conflict flag; retrieval date does not establish source precedence. Revisit these records when agency wording changes.",
+  "records": [
+    {
+      "recareaid": 76196,
+      "name": "Broad Canyon Campground & Trailhead",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r04/salmon-challis/recreation/broad-canyon-campground-trailhead",
+      "retrieved_at": "2026-10-29",
+      "source_updated_at": "2026-07-01",
+      "source_updated_at_basis": "Official page footer: Last updated July 1, 2026; this is a webpage update date, not a fee effective date.",
+      "text": "$5 per night"
+    }
+  ]
+}
