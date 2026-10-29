@@ -205,6 +205,7 @@
         <button type="button" data-kt-action="nearby" data-siteid="${siteId}">Nearest RV services</button>
       </div>
       <div class="kt-popup-extra"></div>
+      <p><button type="button" class="btn" data-kt-action="reviews" data-siteid="${siteId}">Reviews and photos</button></p>
       <p class="kt-fine"><button type="button" class="kt-linkbtn" data-kt-action="fix" data-siteid="${siteId}">Suggest a fix</button> No account needed. A moderator reviews every report.</p>
     </div>`;
   }
@@ -274,7 +275,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.5.0',
+    version:'2.6.0',
     DETAIL_ZOOM,
     async init(map,config={}){
       state.map=map;state.config=config;
@@ -364,6 +365,7 @@
       if(kind==='trip'){api.addToTrip(id);return;}
       const site=api.getCampsiteById(id);if(!site)return;
       const [lng,lat]=site.geometry.coordinates;
+      if(kind==='reviews'){window.KampTrailCommunity?.open(site);return;}
       if(kind==='share'){window.KampTrailShare?.share({site:site.properties.id},site.properties.name);return;}
       if(kind==='fix'){if(window.KampTrailContrib)KampTrailContrib.open({kind:'correction',site});else if(window.KampTrailShare)window.open(KampTrailShare.issueUrl('fix',site),'_blank','noopener');return;}
       const extra=action.closest('.kt-site-popup')?.querySelector('.kt-popup-extra');if(!extra)return;

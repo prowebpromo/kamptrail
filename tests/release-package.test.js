@@ -33,7 +33,7 @@ test('built release contains agency index dependencies and supports a custom-dom
     assert.ok(fs.existsSync(path.join(out,url)),`Missing page dependency: ${url}`);
   }
   // The contributions API ships its public entry points and private helpers, never configuration.
-  for(const file of ['data/health.json','api/health.php','api/submit.php','api/status.php','api/admin.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
+  for(const file of ['data/health.json','community.js','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
     assert.ok(fs.existsSync(path.join(out,file)),`Missing API file: ${file}`);
   assert.match(fs.readFileSync(path.join(out,'api/_lib/.htaccess'),'utf8'),/Require all denied/);
   const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);

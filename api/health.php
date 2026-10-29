@@ -24,4 +24,6 @@ kt_json($pending ? 503 : 200, [
     'database' => 'ok',
     'schema' => $pending ? 'migrations_pending' : 'current',
     'accepting_reports' => !$pending,
+    'community' => in_array('002_community', kt_applied_migrations($pdo), true) ? 'ready' : 'migrations_pending',
+    'photo_processing' => extension_loaded('gd') && class_exists('finfo') ? 'ready' : 'unavailable',
 ]);

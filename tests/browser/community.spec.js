@@ -1,0 +1,31 @@
+const{test,expect}=require('@playwright/test');
+const token='c'.repeat(64),pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
+async function setup(page,context,{down=false}={}){
+ const sent=[];
+ await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('**/api/photo.php*',r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('**/api/community.php*',r=>{
+  const req=r.request();if(down&&req.method()==='GET')return r.fulfill({status:503,contentType:'application/json',body:'{"ok":false}'});
+  if(req.method()==='POST'){sent.push({headers:req.headers(),body:req.postData()});return r.fulfill({status:201,contentType:'application/json',body:JSON.stringify({ok:true,id:1,token,status:'pending',message:'Report received. A moderator will review it.'})});}
+  if(req.headers().authorization)return r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,review:{id:1,campsite_id:'usfs:1',campsite_name:'Test campground',display_name:'Camper',rating:4,body:'A firsthand campsite review with useful details.',visited_on:'2026-10-01',rig:'Van',status:'pending',photos:[],updated_at:'2026-10-28'}})});
+  return r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,count:1,average:4,reviews:[{id:1,display_name:'<img src=x onerror=alert(1)>',rating:4,body:'Quiet night. <script>alert(1)</script>',visited_on:'2026-10-01',rig:'22-foot van',created_at:'2026-10-02',photos:[{id:1,width:1,height:1}]}],next_before:null})});
+ });
+ await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
+ await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ const id=await page.evaluate(()=>KampTrailData.getVisibleCampsites()[0].properties.id);await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
+ await page.locator('.leaflet-popup').getByRole('button',{name:'Reviews and photos',exact:true}).click();return sent;
+}
+test('read moderated reviews and photos, safely render text, and report content',async({page,context})=>{
+ const sent=await setup(page,context),d=page.getByRole('dialog',{name:'Reviews and photos'});
+ await expect(d).toContainText('4/5 from 1 published review');await expect(d).toContainText('<script>alert(1)</script>');await expect(d.locator('script')).toHaveCount(0);await expect(d.locator('figure img')).toBeVisible();
+ await d.getByRole('button',{name:'Report photo',exact:true}).click();const form=page.getByRole('dialog',{name:'Report a photo'});await form.getByLabel('What is the problem?').fill('This photograph contains private information.');await form.getByRole('button',{name:'Send report'}).click();await expect(form).toContainText('Report received');expect(sent[0].body).toContain('name="photo_id"');
+});
+test('write a review with a photo, save the private code, and reopen for editing',async({page,context})=>{
+ const sent=await setup(page,context);await page.getByRole('button',{name:'Write a review',exact:true}).click();const d=page.getByRole('dialog',{name:'Write a review'});
+ await d.getByLabel('Public name', {exact:false}).fill('Camper');await d.getByLabel('Overall rating').selectOption('4');await d.getByLabel('Date visited').fill('2026-10-01');await d.getByLabel('Your experience').fill('A firsthand campsite review with useful details.');
+ await d.getByLabel('Photos (optional)',{exact:false}).setInputFiles({name:'test.png',mimeType:'image/png',buffer:pixel});await expect(d.locator('img')).toBeVisible();await d.getByLabel(/This is my firsthand experience/).check();await d.getByRole('button',{name:'Send for review'}).click();await expect(page.getByRole('dialog',{name:'Review received'})).toContainText('waiting for moderation');expect(sent).toHaveLength(1);expect(sent[0].body).toContain('name="photos[]"');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_reviews_v1'))[0].token)).toBe(token);
+ await page.getByRole('button',{name:'My reviews',exact:true}).click();await page.getByRole('dialog',{name:'My reviews',exact:true}).locator('li button').click();await expect(page.getByRole('dialog',{name:'Manage your review'})).toContainText('Status: pending');await page.getByRole('button',{name:'Edit review',exact:true}).click();await expect(page.getByRole('dialog',{name:'Edit your review'})).toContainText('until they are reviewed again');
+});
+test('mobile: recoverable service failure and management-code recovery remain usable',async({page,context})=>{
+ await page.setViewportSize({width:390,height:844});await setup(page,context,{down:true});const d=page.getByRole('dialog',{name:'Reviews and photos'});await expect(d).toContainText('could not be loaded');await expect(d.getByRole('button',{name:'Retry',exact:true})).toBeEnabled();expect(await d.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);await d.getByRole('button',{name:'My reviews',exact:true}).click();await expect(page.getByRole('dialog',{name:'My reviews'}).getByLabel('Restore a private management code')).toBeVisible();
+});
