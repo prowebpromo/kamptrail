@@ -10,7 +10,7 @@ agent inspection resumes. No screenshot or DOM inspection during secret entry.
 The route reuses the existing `kt_mod` moderator session and CSRF token. It requires
 HTTPS (except the loopback PHP test server), checks an Origin header when supplied,
 limits submitted length, validates both fields server-side, and sends no-store,
-no-referrer, noindex, frame denial and a strict CSP. No third-party resources or
+same-origin referrer policy, noindex, frame denial and a strict CSP. No third-party resources or
 scripts load on this page. There is no credential-read or credential-download route.
 
 Storage is fixed at `private/fcc-install/fcc-data/credentials.json` beside the web
@@ -26,3 +26,9 @@ reuse, CSRF, origin, missing/invalid fields, no secret values in HTML, mode-600
 storage and symlink/insecure-file refusal. The release build explicitly allowlists
 this entry point. Local PHP tests are skipped where PHP is unavailable; require
 CI to run them before merge.
+
+The referrer policy must preserve the origin of native same-site form POSTs.
+`no-referrer` makes browsers send `Origin: null` and fails our strict origin check.
+The Chromium regression test reproduces that rejected save with no file written,
+then submits the corrected form successfully using synthetic credentials only.
+Null and cross-site origins remain rejected. No external referrers are sent.

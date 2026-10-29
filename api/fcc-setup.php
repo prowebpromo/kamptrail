@@ -5,7 +5,9 @@ require __DIR__ . '/_lib/bootstrap.php';
 kt_headers('text/html; charset=utf-8');
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
-header('Referrer-Policy: no-referrer');
+// no-referrer makes native form POSTs send Origin: null in browsers.
+// same-origin preserves our origin check without sending referrers off-site.
+header('Referrer-Policy: same-origin');
 header('X-Robots-Tag: noindex, nofollow');
 function fcc_page(int $code, string $message, string $csrf = ''): never {
     http_response_code($code);
