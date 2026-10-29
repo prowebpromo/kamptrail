@@ -1,5 +1,9 @@
 const {test,expect}=require('@playwright/test');
 const AxeBuilder=require('@axe-core/playwright').default;
+// The app's worker can claim the first visit before state loading starts and
+// bypass page.route, replacing these fixtures with the real state catalogue.
+// Keep this mocked disclosure suite isolated; upgrade.spec.js covers the worker.
+test.use({serviceWorkers:'block'});
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
 const full='No camping fee. '+('Additional source context. '.repeat(25))+'An Adventure Pass is required. <script>doNotRun()</script>';
 async function fixture(page,context,{mobile=false,unknown=false,openStatus=null}={}){

@@ -2,6 +2,15 @@ name: Refresh all states (manual)
 
 on:
   workflow_dispatch:
+    inputs:
+      agency_only:
+        description: 'Refresh only Forest Service and BLM evidence and derived agency/search files'
+        type: boolean
+        default: false
+      expected_catalogue:
+        description: 'Optional exact census JSON for a reviewed agency release'
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -9,8 +18,68 @@ permissions:
 # The called workflow owns the shared concurrency lock and every data write.
 jobs:
   refresh:
+    if: ${{ !inputs.agency_only }}
     uses: ./.github/workflows/fetch-campsite-data.yml
     with:
       states: 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'
       source: both
     secrets: inherit
+  agencies:
+    if: ${{ inputs.agency_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: kamptrail-data-refresh
+      cancel-in-progress: false
+    env:
+      EXPECTED_CATALOGUE: ${{ inputs.expected_catalogue }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt pyyaml
+      - name: Refresh complete official agency sources
+        run: |
+          python scripts/fetch_usfs_recreation.py
+          python scripts/fetch_blm_recreation.py
+          python scripts/build_agency_states.py
+          node scripts/build-search-index.js
+      - name: Check the reviewed census before committing
+        run: |
+          python - <<'PY'
+          import collections, hashlib, json, os
+          from pathlib import Path
+          sites = json.loads(Path('data/campsites/search-index.json').read_text())['sites']
+          actual = {'total': len(sites), **dict(collections.Counter(s['m']['f'] for s in sites))}
+          expected = json.loads(os.environ['EXPECTED_CATALOGUE']) if os.environ['EXPECTED_CATALOGUE'] else None
+          if expected is not None and actual != expected:
+              raise SystemExit(f'Reviewed census differs: expected {expected}, received {actual}; nothing committed')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('Agency refresh census: `' + json.dumps(actual, sort_keys=True) + '`\n\n')
+              for name in ('usfs', 'blm'):
+                  p = Path('data/sources') / (name + '.json')
+                  summary.write(f'{name} SHA-256: `{hashlib.sha256(p.read_bytes()).hexdigest()}`\n\n')
+          PY
+      - name: Validate source contracts
+        run: python -m unittest discover -s scripts/tests -p 'test_*.py'
+      - name: Record agency freshness
+        run: |
+          node scripts/record_health.js start
+          node scripts/record_health.js record usfs US fresh
+          node scripts/record_health.js record blm US fresh
+      - name: Commit only to the selected branch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/sources/usfs.json data/sources/blm.json data/sources/agency-quarantine.json data/campsites/agency data/campsites/search-index.json data/health.json
+          if ! git diff --staged --quiet; then
+            git commit -m 'Refresh complete official agency camping evidence and search snapshots'
+            git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+          fi
