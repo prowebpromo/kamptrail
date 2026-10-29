@@ -189,7 +189,8 @@ function ke_fetch(array $query, callable $http, int $now): array {
         if (!is_array($raw['features'] ?? null) || count($raw['features']) !== $count['count']) throw new KeException('upstream_unavailable');
         $source = ['name' => 'NIFC WFIGS current fire perimeters', 'url' => 'https://data-nifc.opendata.arcgis.com/'];
     } elseif ($kind === 'alerts') {
-        $raw = $http(KE_ALERTS, ['point' => $query['lat'] . ',' . $query['lng'], 'status' => 'actual', 'limit' => KE_MAX_FEATURES]);
+        // /alerts/active rejects a limit parameter; response byte/feature caps still apply locally.
+        $raw = $http(KE_ALERTS, ['point' => $query['lat'] . ',' . $query['lng'], 'status' => 'actual']);
         $source = ['name' => 'National Weather Service active alerts', 'url' => 'https://www.weather.gov/alerts'];
     } else {
         [$raw, $source] = ke_smoke_fetch($query, $http, $now);
