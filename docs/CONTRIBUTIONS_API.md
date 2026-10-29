@@ -59,3 +59,12 @@ Honeypot field, a 3-second minimum on the form, 5 reports per client per hour, a
 ## Refresh health
 
 `scripts/record_health.js` writes `data/health.json` during the scheduled data refresh: per source and state, the last attempt, last success, and outcome (`fresh`, `failed`, `skipped`). The About dialog shows it. A run where every refresh failed, or a source older than 45 days, is shown as degraded. `node scripts/record_health.js seed` fills missing entries from each file's `retrieved` date or git history, marked `not_recorded`.
+
+## Production verification (2026-10-28)
+
+- Release c309c31 deployed through the `hostinger` branch. Without config, every endpoint returned 503 with no secrets. `api/_lib/` and the `api/` listing returned 403.
+- Config created in `private/` through hPanel File Manager. Secrets typed by the owner. Permissions set to 600. Health showed `config_permissions: private`, `database: ok`.
+- Apply migrations ran `001_contributions` on MySQL. Health showed `schema: current`, `accepting_reports: true`.
+- Test report #1 (Clints Well, marked as a test) returned 201 with a token. Status showed `received`. Validation returned 422 for a short description.
+- Moderator set it to accepted with a public note. Status returned the note. The audit log recorded received to accepted by the moderator.
+- Persistence across an automatic deployment: checked after the release that carries this note.
