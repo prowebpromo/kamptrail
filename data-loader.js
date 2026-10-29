@@ -180,7 +180,7 @@
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
     return `<div class="kt-site-popup" style="min-width:220px;max-width:300px;color:#263443">
-      <h3 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h3>
+      <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
       ${closure?`<div class="kt-closure-notice"><strong>Agency reports: ${esc(closure)}.</strong> Confirm reopening with the operator.${p.season?` Season reported: ${esc(p.season)}.`:''}</div>`:''}
       <div><strong>Cost:</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||'Source')}${p.fee_checked?`, imported ${esc(p.fee_checked)}`:''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
