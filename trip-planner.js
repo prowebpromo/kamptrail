@@ -87,7 +87,7 @@
     st.routeLayer?.remove();st.routeLayer=null;
     const drive=currentDrive();if(!st.showRoute||!drive?.raw?.geometry)return;
     const root=getComputedStyle(document.documentElement),points=drive.raw.geometry.coordinates.map(([lng,lat])=>[lat,lng]);
-    st.routeLayer=L.polyline(points,{color:root.getPropertyValue('--route-color').trim(),weight:parseFloat(root.getPropertyValue('--route-stroke')),opacity:.85,interactive:false,className:'kt-road-route'}).addTo(st.map);
+    st.routeLayer=L.polyline(points,{renderer:L.svg(),color:root.getPropertyValue('--route-color').trim(),weight:parseFloat(root.getPropertyValue('--route-stroke')),opacity:.85,interactive:false,className:'kt-road-route'}).addTo(st.map);
   }
   function move(index, delta) {
     const target=index+delta;if(target<0||target>=st.stops.length)return;
