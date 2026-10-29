@@ -16,7 +16,7 @@ try{
     foreach($rows as $r){$id=$r['campsite_id'];$sites[$id]=['rating_count'=>(int)$r['rating_count'],'rating_sum'=>(int)$r['rating_sum'],'latest_visit'=>$r['latest_visit'],'observations'=>[]];}
     if($sites){
         $marks=implode(',',array_fill(0,count($sites),'?'));
-        $q=$pdo->prepare("SELECT r.campsite_id,o.details,COUNT(*) AS samples,MAX(r.visited_on) AS latest_visit FROM community_reviews r JOIN community_observations o ON o.review_id=r.id WHERE r.status='published' AND r.campsite_id IN ($marks) GROUP BY r.campsite_id,o.details ORDER BY r.campsite_id,latest_visit DESC LIMIT 10001");$q->execute(array_keys($sites));$groups=$q->fetchAll();
+        $q=$pdo->prepare("SELECT r.campsite_id,o.details,COUNT(*) AS samples,r.visited_on AS latest_visit FROM community_reviews r JOIN community_observations o ON o.review_id=r.id WHERE r.status='published' AND r.campsite_id IN ($marks) GROUP BY r.campsite_id,o.details,r.visited_on ORDER BY r.campsite_id,latest_visit DESC LIMIT 10001");$q->execute(array_keys($sites));$groups=$q->fetchAll();
         if(count($groups)>10000){$pdo->rollBack();kc_error(503,'This discovery page needs a smaller server batch. No partial result was returned.');}
         foreach($groups as $g)$sites[$g['campsite_id']]['observations'][]=['values'=>json_decode($g['details'],true),'count'=>(int)$g['samples'],'latest_visit'=>$g['latest_visit']];
     }

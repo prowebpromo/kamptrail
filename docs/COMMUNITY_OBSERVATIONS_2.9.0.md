@@ -38,7 +38,7 @@ Author deletion removes the structured content. Existing rate limits, ownership
 checks, moderation audit history and photo protections remain in force.
 
 `api/community-discovery.php` serves 100 campsites per page, containing published
-rating totals and grouped observation signatures/counts/latest visit dates only.
+rating totals and observation signatures grouped by visit date, with counts only.
 It uses an explicit repeatable-read snapshot on MySQL and a revision token across
 pages. Publication or author changes increment the revision transactionally.
 The route search index carries aliases and a community metadata version so an old

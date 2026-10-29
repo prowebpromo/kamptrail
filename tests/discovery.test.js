@@ -65,3 +65,6 @@ test('legacy campsite identifiers preserve the same rating match in map and rebu
  const e=runtime(async()=>page({old:summary}));await e.D.load();const prev=global.KampTrailDiscovery;global.KampTrailDiscovery=e.D;
  try{const Q=require('../data-quality.js');require('../routes.js');const R=global.KampTrailRoutes;const row={id:'canonical',legacy_ids:['old'],name:'Evidence Creek',lat:40,lng:-104.5,m:{f:'free',a:[],r:[]}},f={minRating:4};assert.equal(Q.applyFilters([R.indexFeature(row)],f).length,1);assert.equal(R.find([row],{geometry:{coordinates:[[-105,40],[-104,40]]},leg_ends:[1]},5,f).length,1);}finally{global.KampTrailDiscovery=prev;}
 });
+test('matching evidence counts include only qualifying report dates',async()=>{
+ const today=new Date().toISOString().slice(0,10),e=runtime(async()=>page({a:{...summary,rating_count:101,rating_sum:404,observations:[{values:{noise:'quiet'},count:100,latest_visit:'2020-01-01'},{values:{noise:'quiet'},count:1,latest_visit:today}]}}));await e.D.load();assert.match(e.D.matchNote('a',{observed_noise:'quiet',observedDays:90}),/1 published report ·/);assert.match(e.D.matchNote('a',{observed_noise:'quiet',observedDays:0}),/101 published reports/);
+});

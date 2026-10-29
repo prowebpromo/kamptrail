@@ -67,7 +67,7 @@
    }catch{
     if(generation!==st.generation)return;
     st.error='Published camper evidence could not refresh. Retry online. No partial download is used.';
-    try{const c=await caches.open(cacheName()),r=await c.match(cacheKey()),d=r&&await r.json();if(d?.version===1&&validSites(d.sites)&&Number.isFinite(Date.parse(d.checked_at))&&Date.now()-Date.parse(d.checked_at)<=7*86400000){st.sites=new Map(Object.entries(d.sites));st.checked=d.checked_at;st.mode='cached';return;}}catch{}
+    try{const c=await caches.open(cacheName()),r=await c.match(cacheKey()),d=r&&await r.json();if(generation!==st.generation)return;if(d?.version===1&&validSites(d.sites)&&Number.isFinite(Date.parse(d.checked_at))&&Date.now()-Date.parse(d.checked_at)<=7*86400000){st.sites=new Map(Object.entries(d.sites));st.checked=d.checked_at;st.mode='cached';return;}}catch{}
     st.mode='error';st.sites=new Map();st.checked=null;
    }finally{st.pending=null;notify();}
   })();return st.pending;
