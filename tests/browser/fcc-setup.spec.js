@@ -17,6 +17,21 @@ test('native browser form saves FCC credentials without an opaque Origin',async(
   await page.goto(base+'/api/admin.php');
   await page.locator('input[name="password"]').fill('synthetic moderator password');
   await page.locator('button').filter({hasText:/Sign in/i}).click();
+  // Reproduce the original native-POST failure with the former response policy.
+  await page.route(url,async route=>{
+   if(route.request().method()!=='GET')return route.continue();
+   const response=await route.fetch();
+   await route.fulfill({response,headers:{...response.headers(),'referrer-policy':'no-referrer'}});
+  });
+  await page.goto(url);
+  await page.getByLabel('FCC account email',{exact:true}).fill('owner@example.invalid');
+  await page.getByLabel('FCC API token',{exact:true}).fill('synthetic-token-value-for-browser-testing');
+  const rejected=page.waitForRequest(r=>r.url()===url&&r.method()==='POST');
+  await page.getByRole('button',{name:'Save FCC credentials',exact:true}).click();
+  expect((await rejected).headers().origin).toBe('null');
+  await expect(page.getByText('This request did not originate from KampTrail.',{exact:true})).toBeVisible();
+  expect(fs.existsSync(path.join(data,'credentials.json'))).toBe(false);
+  await page.unroute(url);
   const response=await page.goto(url);expect(response.status()).toBe(200);
   expect(response.headers()['referrer-policy']).toBe('same-origin');
   const email='owner@example.invalid',token='synthetic-token-value-for-browser-testing';
