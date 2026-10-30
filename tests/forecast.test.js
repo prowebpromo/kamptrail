@@ -27,6 +27,14 @@ test('strict UTC, impossible dates and manifest source freshness are validated',
  for(const date of ['2026-02-30T12:00:00Z','2026-10-29','2026-10-29T12:00:00-04:00','2026-10-29T25:00:00Z'])assert.ok(Number.isNaN(F.utc(date)));
  for(const mutate of [m=>m.catalogue_sha256='0'.repeat(64),m=>m.expires_at=iso(now),m=>m.source.files[0].last_modified=iso(now-4*3600000),m=>m.states.ZZ=m.states.NY,m=>m.regions.conus.times[3]=iso(now+10*3600000),m=>m.regions.conus.max_step_seconds=21600,m=>m.states.NY.json_bytes=9*1024*1024]){const copy=structuredClone(m);mutate(copy);assert.equal(F.validManifest(copy,catalogue,now),false);}
 });
+test('forecast-start references can follow publication while source freshness still expires',async()=>{
+ const d=fixture();d.m.regions.conus.reference_times=[iso(now+10*60000)];
+ assert.equal(F.validManifest(d.m,catalogue,now),true);
+ const c=client(d);await c.api.ensureStates(['NY']);assert.equal(c.api.matches(feature(),{forecastMinC:0,forecastMaxC:0}),true);
+ c.advance(2*3600000);assert.equal(c.api.matches(feature(),{forecastMinC:0,forecastMaxC:0}),false);
+ const bad=structuredClone(d.m);bad.regions.conus.reference_times=[iso(now+61*3600000)];assert.equal(F.validManifest(bad,catalogue,now),false);
+ const futureFile=structuredClone(d.m);futureFile.source.files[0].last_modified=iso(now+301000);assert.equal(F.validManifest(futureFile,catalogue,now),false);
+});
 test('24 and 48 hour windows use all actual published samples, no interpolation, no shortening',()=>{
  const {m,records}=fixture(),r=m.regions.conus;
  assert.equal(F.sampleWindow(records.zero,r,24,now).samples,24);
@@ -96,14 +104,14 @@ test('weather remains outside offline generic caches and search metadata',()=>{
  assert.doesNotMatch(fs.readFileSync('scripts/build-search-index.js','utf8'),/temperatures_c|forecastMinC|forecastMaxC/);
 });
 
-test('source hashes and model reference inventory reject missing, duplicate, unordered and future values',()=>{
+test('source hashes and references reject missing, duplicate, unordered and out-of-window values',()=>{
  const {m}=fixture();
  for(const change of [
   m=>delete m.source.files[0].sha256,m=>m.source.files[0].sha256='E'.repeat(64),m=>m.source.files[0].etag='bad\nvalidator',
   m=>delete m.regions.conus.reference_times,m=>m.regions.conus.reference_times=[],
   m=>m.regions.conus.reference_times=[iso(now),iso(now)],
   m=>m.regions.conus.reference_times=[iso(now),iso(now-3600000)],
-  m=>m.regions.conus.reference_times=[iso(now+1000)],
+  m=>m.regions.conus.reference_times=[iso(now+60*3600000+1000)],
   m=>m.regions.conus.reference_times=['2026-02-30T12:00:00Z'],
   m=>m.regions.conus.reference_times=Array.from({length:101},(_,i)=>iso(now-(101-i)*3600000)),
   m=>m.coverage={total:7,grid_known:6,unknown:1}
