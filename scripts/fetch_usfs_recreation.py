@@ -234,14 +234,59 @@ def load_fee_reviews():
     reviews = {}
     for record in data['records']:
         rid = record_id(record.get('recareaid'))
-        if rid in reviews or not record.get('text') or not record.get('source_field'):
+        if (rid in reviews or record.get('source') != 'US Forest Service' or
+                not all(isinstance(record.get(k), str) and record[k].strip() for k in ('name', 'text', 'source_field')) or
+                len(record['text']) > 20000):
             raise RuntimeError('Duplicate or incomplete USFS maintained fee evidence')
-        if urllib.parse.urlsplit(record.get('source_url', '')).hostname != 'www.fs.usda.gov':
+        parsed = urllib.parse.urlsplit(record.get('source_url', ''))
+        if parsed.scheme != 'https' or parsed.hostname != 'www.fs.usda.gov' or parsed.username or parsed.password:
             raise RuntimeError('USFS fee review must identify an official source')
-        date.fromisoformat(record['retrieved_at'])
-        date.fromisoformat(record['source_updated_at'])
+        checked = date.fromisoformat(record['retrieved_at'])
+        if record.get('source_updated_at') is not None:
+            date.fromisoformat(record['source_updated_at'])
+        if record.get('review_after') is not None and date.fromisoformat(record['review_after']) <= checked:
+            raise RuntimeError('USFS fee review deadline must follow its observation')
+        point = record.get('identity_coordinates')
+        if (record.get('review_after') is not None and point is None) or (point is not None and (not isinstance(point, list) or len(point) != 2 or
+                not all(type(v) in (int, float) and math.isfinite(v) for v in point) or
+                not (-180 <= point[0] <= 180 and -90 <= point[1] <= 90))):
+            raise RuntimeError('Invalid USFS review identity coordinates')
+        context = record.get('context', [])
+        if not isinstance(context, list) or len(context) > 10 or any(
+                not isinstance(c, dict) or not isinstance(c.get('source_field'), str) or not c['source_field'].strip() or not isinstance(c.get('text'), str)
+                or not c['text'].strip() or len(c['text']) > 20000 for c in context):
+            raise RuntimeError('Invalid USFS review context')
         reviews[rid] = record
     return reviews
+
+
+def applicable_fee_review(row, retrieved):
+    """Keep a reviewed page tied to one named location and its review window.
+
+    A public website ID, not a nearby name, identifies the site. A changed name
+    or a point displaced by more than the existing 300 m identity radius needs
+    review. Expired positive observations cannot promote an unknown fee.
+    """
+    review = load_fee_reviews().get(record_id(row.get('recareaid')))
+    if not review or fee_text.clean(review['name']).casefold() != fee_text.clean(row.get('recareaname')).casefold():
+        return None
+    checked = date.fromisoformat(retrieved)
+    if checked < date.fromisoformat(review['retrieved_at']):
+        return None
+    if review.get('review_after') and checked >= date.fromisoformat(review['review_after']):
+        return None
+    expected = review.get('identity_coordinates')
+    if review.get('review_after') and expected is None:
+        return None
+    if expected is not None:
+        point, reason = coordinates(row)
+        if reason:
+            return None
+        delta_lon = (point[0] - expected[0] + 180) % 360 - 180
+        distance = 111195 * math.hypot(point[1] - expected[1], delta_lon * math.cos(math.radians((point[1] + expected[1]) / 2)))
+        if distance > 300:
+            return None
+    return review
 
 
 def to_feature(row, retrieved):
@@ -277,23 +322,41 @@ def to_feature(row, retrieved):
             'qualification_text': qualification if field == 'restrictions' else '',
         })
     conflict = False
-    review = load_fee_reviews().get(rid)
+    review = applicable_fee_review(row, retrieved)
     if review:
         text = fee_text.clean(review['text'])
         reviewed_status, reviewed_cost = fee_text.classify(text)
         evidence.append({
             'source': review['source'], 'source_field': review['source_field'],
             'source_record_id': str(rid), 'source_url': review['source_url'],
-            'retrieved_at': review['retrieved_at'], 'source_updated_at': review['source_updated_at'],
-            'source_updated_at_basis': review['source_updated_at_basis'],
+            'retrieved_at': review['retrieved_at'], 'source_updated_at': review.get('source_updated_at'),
+            'source_updated_at_basis': review.get('source_updated_at_basis'),
             'text': text, 'sha256': hashlib.sha256(text.encode('utf-8')).hexdigest(),
             'classification_text': text, 'evidence_kind': 'maintained_official_page_observation',
         })
+        for context in review.get('context', []):
+            context_text = fee_text.clean(context['text'])
+            evidence.append({
+                'source': review['source'], 'source_field': context['source_field'],
+                'source_record_id': str(rid), 'source_url': review['source_url'],
+                'retrieved_at': review['retrieved_at'], 'source_updated_at': review.get('source_updated_at'),
+                'text': context_text, 'sha256': hashlib.sha256(context_text.encode('utf-8')).hexdigest(),
+                'classification_text': '', 'evidence_kind': 'maintained_official_page_context',
+            })
         conflict = ({base_status, reviewed_status} == {'free', 'paid'} or
                     (base_status == reviewed_status == 'paid' and base_cost is not None and
                      reviewed_cost is not None and base_cost != reviewed_cost))
         if conflict:
             status, cost = 'unknown', None
+        elif base_status == 'unknown' and reviewed_status != 'unknown' and review.get('review_after'):
+            status, cost = reviewed_status, reviewed_cost
+            wording, source_field = text, review['source_field']
+        elif status == 'free' and reviewed_status == 'conditional':
+            status, cost = 'conditional', None
+            wording, source_field = text, review['source_field']
+        # Mandatory camping/access permits still qualify an otherwise free fee.
+        if status == 'free' and qualification:
+            status, cost = 'conditional', None
     activities = row.get('_camping_activities') or ([row['markeractivity']] if row.get('markeractivity') in ACTIVITIES else [])
     camping_activity = row.get('markeractivity') if row.get('markeractivity') in ACTIVITIES else next((a for a in ACTIVITIES if a in activities), None)
     props = {
@@ -304,12 +367,13 @@ def to_feature(row, retrieved):
         'operator': row.get('forestname') or None,
         'fee_status': status, 'cost': cost, 'fee_text': wording or None,
         'fee_source': 'US Forest Service', 'fee_source_field': source_field,
-        'fee_checked': retrieved, 'fee_evidence_records': evidence,
+        'fee_checked': review['retrieved_at'] if review and source_field == review['source_field'] else retrieved,
+        'fee_evidence_records': evidence,
         'fee_conflict': conflict, 'fee_evidence_conflict': conflict,
         'fee_conflict_note': 'Official agency fee sources disagree; check the current site page before travel.' if conflict else None,
         'schema_version': 3,
         'field_provenance': {
-            'cost': f'USFS Recreation Opportunities {source_field}',
+            'cost': f'USFS official campground page {source_field}' if source_field.startswith('official_page.') else f'USFS Recreation Opportunities {source_field}',
             'camping_activities': 'USFS Recreation Area Activities activityname' if row.get('_discovery') == 'secondary_activity' else 'USFS Recreation Opportunities markeractivity',
             'coordinates': 'USFS EDW geometry outSR=4326' if '_geometry' in row else 'USFS EDW longitude/latitude attributes',
         },
@@ -327,7 +391,7 @@ def to_feature(row, retrieved):
 
 
 def main():
-    retrieved = date.today().isoformat()
+    retrieved = fee_text.retrieval_date()
     rows = fetch_all()
     features, quarantined = [], []
     for row in rows:
