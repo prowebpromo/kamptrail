@@ -23,7 +23,7 @@ test('official catalogue keeps exact source identities, UTC provenance and unkno
   const d=rest.validate(clone());assert.equal(d.records.length,78);assert.equal(new Set(d.records.map(r=>r.id)).size,78);assert(d.records.every(r=>r.permission==='unknown'));assert.equal(d.duration_context.maximum_hours,24);assert.equal(d.source.source_updated_at,null);
 });
 test('parking duration cannot become a permission statement or a fee',()=>{
-  const d=clone(),r=d.records[0],f=rest.feature(r,d);assert.match(rest.describe(r,d),/does not establish permission to sleep overnight/);assert.match(rest.describe(r,d),/Overnight permission.*unknown/);assert.equal(f.properties.type,'spot');assert.equal(f.properties.cost,undefined);assert.equal(f.properties.permission,undefined);assert.equal(f.properties.id,rest.place(r).id);assert.deepEqual(f.geometry.coordinates,rest.place(r).coordinates);
+  const d=clone(),r=d.records[0],f=rest.feature(r,d);assert.match(rest.describe(r,d),/does not establish permission to sleep overnight/);assert.match(rest.describe(r,d),/camping permission remain unknown/);assert.equal(f.properties.type,'spot');assert.equal(f.properties.cost,undefined);assert.equal(f.properties.permission,undefined);assert.equal(f.properties.id,rest.place(r).id);assert.deepEqual(f.geometry.coordinates,rest.place(r).coordinates);
   r.permission='allowed';assert.throws(()=>rest.validate(d),/permission claim/);
 });
 test('duplicate identity, nonfinite coordinates, malformed dates and hostile source links are rejected',()=>{
@@ -35,4 +35,13 @@ test('source identity remains distinct from a canonical rounded map spot',()=>{
 });
 test('viewport selection handles the dateline and excludes points outside the requested view',()=>{
   assert(rest.within([-97,31],{west:-100,east:-95,south:30,north:32}));assert(!rest.within([-97,31],{west:-100,east:-95,south:33,north:34}));assert(rest.within([179,50],{west:170,east:-170,south:40,north:60}));assert(!rest.within([0,50],{west:170,east:-170,south:40,north:60}));
+});
+
+test('dynamic facility rules are not contradicted by a hard-coded unknown paragraph',()=>{
+  const d=clone(),r=d.records[0];d.state_policies=structuredClone(policies);
+  const scope={facility_id:r.id,state:'TX',operator:'txdot',facility_kind:'safety_rest_area',sources:d.state_policies.policies[0].sources};
+  d.state_policies.exceptions=[{...scope,rules:{overnight_parking:'allowed'}}];
+  let description=rest.describe(r,d,policyNow);assert.match(description,/overnight parking Allowed/);assert.doesNotMatch(description,/Overnight permission.*unknown/);assert.match(description,/sleeping in a vehicle Unknown/);
+  d.state_policies.exceptions[0].rules.overnight_parking='prohibited';description=rest.describe(r,d,policyNow);assert.match(description,/overnight parking Prohibited/);assert.doesNotMatch(description,/Overnight permission.*unknown/);
+  delete d.state_policies.exceptions;assert.match(rest.describe(r,d,policyNow),/overnight parking Unknown/);
 });
