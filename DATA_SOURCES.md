@@ -72,6 +72,8 @@ Only a complete, current, coordinate-matched series can satisfy an active filter
 
 ### Service discovery (2.14.0)
 
+
+
 The separate services database is derived from OpenStreetMap contributors under [ODbL 1.0](https://www.openstreetmap.org/copyright). Expanded-category imports use [Geofabrik's public regional PBF extracts](https://www.geofabrik.de/data/download.html). They allow ODbL reuse with attribution and share-alike for derived databases. Source and derivation code remain available in this repository. Public extracts exclude contributor user IDs, names and changeset IDs. No private metadata endpoint is used.
 
 The first complete expanded extract is Utah. Other areas retain legacy dump, water-fill and LPG evidence, screened against Census state geometry. [Geofabrik explains](https://download.geofabrik.de/technical.html) that extract boundaries are buffered and can include neighboring regions; the pipeline does not use the extract name as proof of state membership. Ambiguous, outside-state and unsupported geometry records are quarantined. Exact node/way/relation identity, version, edit date, extract timestamp, retrieval date, source hash and relevant tags remain separate. A retrieval or build is not a field inspection.
@@ -80,10 +82,14 @@ Only explicit supported tags establish a service category. Potability, opening, 
 
 Spatial shards limit delivery to the viewed area or route corridor. Hash-validated visited shards can be read offline with their source dates; uncached or budget-limited areas remain incomplete. Service metadata and previous bounded snapshots survive separately from weather, which never matches offline. See [the contract](docs/SERVICES_CONTRACT_2.14.md) and the source pilot report for measured coverage and limitations.
 
-### On-demand route terrain (2.16.0)
+### Official rest-area locations (2.15)
+
+The first official rest-area pilot uses TxDOT's public [location list](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list.html). It preserves exact source labels, links and coordinates, validated against Census state geometry, with document hashes and retrieval dates. Texas travel information centers are excluded. The separately sourced [visitor duration context](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html) does not establish permission to sleep overnight. Every pilot location's overnight permission remains unknown. See [the source audit](docs/REST_AREAS_PILOT_2.15.md). Other states are not yet covered.
+
+### On-demand route terrain (2.17.0)
 
 The route profile uses the same fixed [USGS 3DEP ImageServer](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer) and [getSamples operation](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/getSamples) as the catalogue elevation pipeline, with bilinear interpolation, WGS84 coordinates and values in metres. It has a separate user-triggered request and cache contract: opening a profile makes no terrain request. Choosing Load sends at most 200 distinct sampled coordinates, in sequential batches of at most 50, through the same-origin server. The full route and rig profile are not transmitted to USGS.
 
 Endpoints and route leg boundaries are included. Target spacing is one kilometre and adapts to the sample cap; the actual maximum spacing is shown. Missing or failed values remain gaps. The displayed extrema are sampled terrain extrema, not complete route minima/maxima, road grade or cumulative ascent. Terrain under bridges and over tunnels is not road-surface elevation and cannot establish clearance, road access or safe passage.
 
-Each sample retains its retrieval date and available provider datum/date metadata. Device storage is bounded to eight exact-route profiles, without automatic expiry; offline use retains their dates and unknown gaps. The private server cache stores independent coordinate hashes and normalized values, not routes, stop names or rig profiles. Read [the 2.16 contract](docs/RIG_TERRAIN_CONTRACT_2.16.md) for request limits, cache behavior, deployment and verification.
+Each sample retains its retrieval date and available provider datum/date metadata. Device storage is bounded to eight exact-route profiles, without automatic expiry; offline use retains their dates and unknown gaps. The private server cache stores independent coordinate hashes and normalized values, not routes, stop names or rig profiles. Read [the 2.17 contract](docs/RIG_TERRAIN_CONTRACT_2.17.md) for request limits, cache behavior, deployment and verification.

@@ -1,0 +1,310 @@
+{
+  "version": 1,
+  "index_url": "https://download.geofabrik.de/index-v1.json",
+  "index_sha256": "9b1d170b09eee255c0e56925788eb367646397c1ba1882f36b4c5c79133691fc",
+  "retrieved_at": "2026-10-30T16:28:57Z",
+  "index_bytes": 3785307,
+  "policy": "Exactly the 50 Census states; buffered neighbors, DC and territories are quarantined by Census containment.",
+  "regions": {
+    "AK": {
+      "iso3166_2": "US-AK",
+      "geofabrik_id": "us/alaska",
+      "name": "us/alaska",
+      "url": "https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf"
+    },
+    "AL": {
+      "iso3166_2": "US-AL",
+      "geofabrik_id": "us/alabama",
+      "name": "us/alabama",
+      "url": "https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf"
+    },
+    "AR": {
+      "iso3166_2": "US-AR",
+      "geofabrik_id": "us/arkansas",
+      "name": "us/arkansas",
+      "url": "https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf"
+    },
+    "AZ": {
+      "iso3166_2": "US-AZ",
+      "geofabrik_id": "us/arizona",
+      "name": "us/arizona",
+      "url": "https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf"
+    },
+    "CA": {
+      "iso3166_2": "US-CA",
+      "geofabrik_id": "us/california",
+      "name": "us/california",
+      "url": "https://download.geofabrik.de/north-america/us/california-latest.osm.pbf"
+    },
+    "CO": {
+      "iso3166_2": "US-CO",
+      "geofabrik_id": "us/colorado",
+      "name": "us/colorado",
+      "url": "https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf"
+    },
+    "CT": {
+      "iso3166_2": "US-CT",
+      "geofabrik_id": "us/connecticut",
+      "name": "us/connecticut",
+      "url": "https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf"
+    },
+    "DE": {
+      "iso3166_2": "US-DE",
+      "geofabrik_id": "us/delaware",
+      "name": "us/delaware",
+      "url": "https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf"
+    },
+    "FL": {
+      "iso3166_2": "US-FL",
+      "geofabrik_id": "us/florida",
+      "name": "us/florida",
+      "url": "https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf"
+    },
+    "GA": {
+      "iso3166_2": "US-GA",
+      "geofabrik_id": "us/georgia",
+      "name": "Georgia",
+      "url": "https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf"
+    },
+    "HI": {
+      "iso3166_2": "US-HI",
+      "geofabrik_id": "us/hawaii",
+      "name": "us/hawaii",
+      "url": "https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf"
+    },
+    "IA": {
+      "iso3166_2": "US-IA",
+      "geofabrik_id": "us/iowa",
+      "name": "us/iowa",
+      "url": "https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf"
+    },
+    "ID": {
+      "iso3166_2": "US-ID",
+      "geofabrik_id": "us/idaho",
+      "name": "us/idaho",
+      "url": "https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf"
+    },
+    "IL": {
+      "iso3166_2": "US-IL",
+      "geofabrik_id": "us/illinois",
+      "name": "us/illinois",
+      "url": "https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf"
+    },
+    "IN": {
+      "iso3166_2": "US-IN",
+      "geofabrik_id": "us/indiana",
+      "name": "us/indiana",
+      "url": "https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf"
+    },
+    "KS": {
+      "iso3166_2": "US-KS",
+      "geofabrik_id": "us/kansas",
+      "name": "us/kansas",
+      "url": "https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf"
+    },
+    "KY": {
+      "iso3166_2": "US-KY",
+      "geofabrik_id": "us/kentucky",
+      "name": "us/kentucky",
+      "url": "https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf"
+    },
+    "LA": {
+      "iso3166_2": "US-LA",
+      "geofabrik_id": "us/louisiana",
+      "name": "us/louisiana",
+      "url": "https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf"
+    },
+    "MA": {
+      "iso3166_2": "US-MA",
+      "geofabrik_id": "us/massachusetts",
+      "name": "us/massachusetts",
+      "url": "https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf"
+    },
+    "MD": {
+      "iso3166_2": "US-MD",
+      "geofabrik_id": "us/maryland",
+      "name": "us/maryland",
+      "url": "https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf"
+    },
+    "ME": {
+      "iso3166_2": "US-ME",
+      "geofabrik_id": "us/maine",
+      "name": "us/maine",
+      "url": "https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf"
+    },
+    "MI": {
+      "iso3166_2": "US-MI",
+      "geofabrik_id": "us/michigan",
+      "name": "us/michigan",
+      "url": "https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf"
+    },
+    "MN": {
+      "iso3166_2": "US-MN",
+      "geofabrik_id": "us/minnesota",
+      "name": "us/minnesota",
+      "url": "https://download.geofabrik.de/north-america/us/minnesota-latest.osm.pbf"
+    },
+    "MO": {
+      "iso3166_2": "US-MO",
+      "geofabrik_id": "us/missouri",
+      "name": "us/missouri",
+      "url": "https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf"
+    },
+    "MS": {
+      "iso3166_2": "US-MS",
+      "geofabrik_id": "us/mississippi",
+      "name": "us/mississippi",
+      "url": "https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf"
+    },
+    "MT": {
+      "iso3166_2": "US-MT",
+      "geofabrik_id": "us/montana",
+      "name": "us/montana",
+      "url": "https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf"
+    },
+    "NC": {
+      "iso3166_2": "US-NC",
+      "geofabrik_id": "us/north-carolina",
+      "name": "us/north-carolina",
+      "url": "https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf"
+    },
+    "ND": {
+      "iso3166_2": "US-ND",
+      "geofabrik_id": "us/north-dakota",
+      "name": "us/north-dakota",
+      "url": "https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf"
+    },
+    "NE": {
+      "iso3166_2": "US-NE",
+      "geofabrik_id": "us/nebraska",
+      "name": "us/nebraska",
+      "url": "https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf"
+    },
+    "NH": {
+      "iso3166_2": "US-NH",
+      "geofabrik_id": "us/new-hampshire",
+      "name": "us/new-hampshire",
+      "url": "https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf"
+    },
+    "NJ": {
+      "iso3166_2": "US-NJ",
+      "geofabrik_id": "us/new-jersey",
+      "name": "us/new-jersey",
+      "url": "https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf"
+    },
+    "NM": {
+      "iso3166_2": "US-NM",
+      "geofabrik_id": "us/new-mexico",
+      "name": "us/new-mexico",
+      "url": "https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf"
+    },
+    "NV": {
+      "iso3166_2": "US-NV",
+      "geofabrik_id": "us/nevada",
+      "name": "us/nevada",
+      "url": "https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf"
+    },
+    "NY": {
+      "iso3166_2": "US-NY",
+      "geofabrik_id": "us/new-york",
+      "name": "us/new-york",
+      "url": "https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf"
+    },
+    "OH": {
+      "iso3166_2": "US-OH",
+      "geofabrik_id": "us/ohio",
+      "name": "us/ohio",
+      "url": "https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf"
+    },
+    "OK": {
+      "iso3166_2": "US-OK",
+      "geofabrik_id": "us/oklahoma",
+      "name": "us/oklahoma",
+      "url": "https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf"
+    },
+    "OR": {
+      "iso3166_2": "US-OR",
+      "geofabrik_id": "us/oregon",
+      "name": "us/oregon",
+      "url": "https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf"
+    },
+    "PA": {
+      "iso3166_2": "US-PA",
+      "geofabrik_id": "us/pennsylvania",
+      "name": "us/pennsylvania",
+      "url": "https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf"
+    },
+    "RI": {
+      "iso3166_2": "US-RI",
+      "geofabrik_id": "us/rhode-island",
+      "name": "us/rhode-island",
+      "url": "https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf"
+    },
+    "SC": {
+      "iso3166_2": "US-SC",
+      "geofabrik_id": "us/south-carolina",
+      "name": "us/south-carolina",
+      "url": "https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf"
+    },
+    "SD": {
+      "iso3166_2": "US-SD",
+      "geofabrik_id": "us/south-dakota",
+      "name": "us/south-dakota",
+      "url": "https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf"
+    },
+    "TN": {
+      "iso3166_2": "US-TN",
+      "geofabrik_id": "us/tennessee",
+      "name": "us/tennessee",
+      "url": "https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf"
+    },
+    "TX": {
+      "iso3166_2": "US-TX",
+      "geofabrik_id": "us/texas",
+      "name": "us/texas",
+      "url": "https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf"
+    },
+    "UT": {
+      "iso3166_2": "US-UT",
+      "geofabrik_id": "us/utah",
+      "name": "us/utah",
+      "url": "https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf"
+    },
+    "VA": {
+      "iso3166_2": "US-VA",
+      "geofabrik_id": "us/virginia",
+      "name": "us/virginia",
+      "url": "https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf"
+    },
+    "VT": {
+      "iso3166_2": "US-VT",
+      "geofabrik_id": "us/vermont",
+      "name": "us/vermont",
+      "url": "https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf"
+    },
+    "WA": {
+      "iso3166_2": "US-WA",
+      "geofabrik_id": "us/washington",
+      "name": "us/washington",
+      "url": "https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf"
+    },
+    "WI": {
+      "iso3166_2": "US-WI",
+      "geofabrik_id": "us/wisconsin",
+      "name": "us/wisconsin",
+      "url": "https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf"
+    },
+    "WV": {
+      "iso3166_2": "US-WV",
+      "geofabrik_id": "us/west-virginia",
+      "name": "us/west-virginia",
+      "url": "https://download.geofabrik.de/north-america/us/west-virginia-latest.osm.pbf"
+    },
+    "WY": {
+      "iso3166_2": "US-WY",
+      "geofabrik_id": "us/wyoming",
+      "name": "us/wyoming",
+      "url": "https://download.geofabrik.de/north-america/us/wyoming-latest.osm.pbf"
+    }
+  }
+}

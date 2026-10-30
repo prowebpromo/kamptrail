@@ -45,6 +45,7 @@ const crypto = require('node:crypto');
 const CATEGORIES = ['dump', 'water', 'lpg', 'showers', 'laundry', 'groceries', 'fuel'];
 const TAGS = new Set(['amenity','tourism','sanitary_dump_station','waterway','drinking_water','fuel','fuel:lpg','shop','laundry','self_service','access','access:conditional','fee','charge','opening_hours','operator','brand','website','phone','wheelchair','shower']);
 const STATES = new Set('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
+const REGION_URLS = Object.fromEntries(Object.entries(require('./services-regions.json').regions).map(([region, record]) => [region, record.url]));
 const MAX_SHARD_BYTES = 512 * 1024, MAX_ROWS = 1500, MAX_MANIFEST_BYTES = 1024 * 1024;
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 function stable(value) {
@@ -63,7 +64,7 @@ function validateSource(wrapper) {
   invariant(wrapper && wrapper.version === 2 && (wrapper.region === 'legacy' || STATES.has(wrapper.region)) && Array.isArray(wrapper.items) && wrapper.items.length > 0 && wrapper.items.length <= 1000000, 'Invalid source wrapper');
   const source = wrapper.source, legacy = wrapper.region === 'legacy';
   invariant(source && source.kind === (legacy ? 'legacy' : 'geofabrik') && source.license === 'ODbL-1.0' && /^[a-f0-9]{64}$/.test(source.sha256), 'Invalid source provenance');
-  invariant(legacy ? source.url === 'https://www.openstreetmap.org' : /^https:\/\/download\.geofabrik\.de\/north-america\/us\/[a-z-]+-latest\.osm\.pbf$/.test(source.url), 'Unapproved source URL');
+  invariant(legacy ? source.url === 'https://www.openstreetmap.org' : source.url === REGION_URLS[wrapper.region], 'Unapproved source URL');
   date(source.extract_timestamp, legacy); date(source.retrieved_at, legacy);
   if (!legacy) invariant(Date.parse(source.extract_timestamp) <= Date.parse(source.retrieved_at) + 300000, 'Extract date newer than retrieval');
   invariant(Array.isArray(source.categories) && source.categories.length && new Set(source.categories).size === source.categories.length && source.categories.every(c => CATEGORIES.includes(c)), 'Invalid source categories');
@@ -191,9 +192,11 @@ function writeDatabase(database, destination) {
 module.exports = {build,buildDatabase,writeDatabase,validateSource,selectRows,CATEGORIES,MAX_ROWS,MAX_SHARD_BYTES,MAX_MANIFEST_BYTES};
 
 if (require.main === module) {
-  const sourceDir = path.join(root, 'data/sources/services');
+  const argv = process.argv.slice(2);
+  invariant(argv.length === 0 || (argv.length === 2 && argv.every(arg => path.isAbsolute(arg))), 'Usage: build-services.js [absolute-source-dir absolute-destination]');
+  const sourceDir = argv[0] || path.join(root, 'data/sources/services');
   const sources = fs.readdirSync(sourceDir).filter(name => /^(legacy|[A-Z]{2})\.json$/.test(name)).sort().map(name => JSON.parse(fs.readFileSync(path.join(sourceDir,name),'utf8')));
   const result = buildDatabase(sources);
-  writeDatabase(result,outDir);
+  writeDatabase(result,argv[1] || outDir);
   console.log(`services v2: ${result.manifest.total} identities, ${result.shards.length} shards, manifest ${result.raw.length} bytes, snapshot ${result.manifest.snapshot_id}`);
 }

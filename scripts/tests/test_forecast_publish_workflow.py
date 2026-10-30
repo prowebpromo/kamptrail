@@ -41,6 +41,10 @@ class ForecastWorkflowTests(unittest.TestCase):
         self.assertNotIn('secrets.', self.text)
 
     def test_actions_are_pinned_and_artifacts_are_same_run_only(self):
+        jobs = self.workflow['jobs']
+        upload = next(step for step in jobs['produce']['steps'] if step.get('uses', '').startswith('actions/upload-artifact@'))
+        self.assertEqual(upload['id'], 'forecast_package')
+        self.assertEqual(jobs['produce']['outputs']['artifact_id'], '${{ steps.forecast_package.outputs.artifact-id }}')
         for job in self.workflow['jobs'].values():
             for step in job['steps']:
                 if 'uses' in step:
@@ -49,7 +53,12 @@ class ForecastWorkflowTests(unittest.TestCase):
                     self.assertEqual(step['with']['persist-credentials'], 'false')
                     self.assertEqual(step['with']['ref'], '${{ github.sha }}')
                 if step.get('uses', '').startswith('actions/download-artifact@'):
-                    self.assertEqual(step['with']['name'], 'forecast-publication-${{ github.run_id }}-${{ github.run_attempt }}')
+                    # Failed-job reruns have a new run_attempt, while their
+                    # successful producer still owns the original artifact ID.
+                    self.assertEqual(step['with']['artifact-ids'], '${{ needs.produce.outputs.artifact_id }}')
+                    self.assertEqual(step['with']['merge-multiple'], 'true')
+                    self.assertNotIn('name', step['with'])
+                    self.assertNotIn('run_attempt', str(step['with']))
                     self.assertNotIn('run-id', step['with'])
                     self.assertNotIn('github-token', step['with'])
         self.assertIn('environment/forecast-linux-64.lock', self.text)

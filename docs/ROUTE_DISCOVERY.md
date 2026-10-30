@@ -12,11 +12,11 @@ Calculating transmits stop coordinates to FOSSGIS, which logs requests. KampTrai
 
 Successful routes are cached on the device, bounded to eight routes. Online cache reuse lasts 24 hours; an explicit recalculation refreshes it. Older cached routes remain readable offline with calculation date and an offline warning. Viewed search index data is cached too. Browser storage can be unavailable or evicted; do not promise guaranteed offline storage. Community/private API responses are never cached by the worker.
 
-## Rig matching and route terrain (2.16.0)
+## Rig matching and route terrain (2.17.0)
 
 A local portable rig profile can apply campsite fit/preferences to the same map and route-discovery predicate. Campsite fit length retains fractional-foot precision; height, width, weight and travel combination length remain reference values. The profile does not add restrictions to the car router.
 
-The separate Terrain profile action opens a disclosure before any USGS request. Load sends at most 200 sampled coordinates, in batches of at most 50, through a fixed same-origin proxy. Ground terrain values cannot establish road grade, cumulative ascent, bridge/tunnel surface height or clearance. Dated exact-route device profiles have their own cache with no automatic expiry, separate from the calculated road-route cache above. See [the full contract](RIG_TERRAIN_CONTRACT_2.16.md) for gaps, sample spacing, import/export, offline storage and server privacy.
+The separate Terrain profile action opens a disclosure before any USGS request. Load sends at most 200 sampled coordinates, in batches of at most 50, through a fixed same-origin proxy. Ground terrain values cannot establish road grade, cumulative ascent, bridge/tunnel surface height or clearance. Dated exact-route device profiles have their own cache with no automatic expiry, separate from the calculated road-route cache above. See [the full contract](RIG_TERRAIN_CONTRACT_2.17.md) for gaps, sample spacing, import/export, offline storage and server privacy.
 
 ## Deployment
 

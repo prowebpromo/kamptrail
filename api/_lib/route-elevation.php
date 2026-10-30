@@ -62,7 +62,7 @@ function kre_http(string $url, array $parameters): array {
     $body=''; $ch=curl_init($url);
     curl_setopt_array($ch,[CURLOPT_POST=>true,CURLOPT_POSTFIELDS=>http_build_query($parameters,'','&',PHP_QUERY_RFC3986),
         CURLOPT_FOLLOWLOCATION=>false,CURLOPT_CONNECTTIMEOUT=>4,CURLOPT_TIMEOUT=>12,CURLOPT_PROTOCOLS=>CURLPROTO_HTTPS,
-        CURLOPT_SSL_VERIFYPEER=>true,CURLOPT_SSL_VERIFYHOST=>2,CURLOPT_USERAGENT=>'KampTrail/2.16 (https://kamptrail.com; terrain context)',
+        CURLOPT_SSL_VERIFYPEER=>true,CURLOPT_SSL_VERIFYHOST=>2,CURLOPT_USERAGENT=>'KampTrail/2.17 (https://kamptrail.com; terrain context)',
         CURLOPT_HTTPHEADER=>['Accept: application/json','Content-Type: application/x-www-form-urlencoded'],
         CURLOPT_WRITEFUNCTION=>static function($handle,string $chunk)use(&$body):int { if(strlen($body)+strlen($chunk)>KRE_RESPONSE_MAX)return 0;$body.=$chunk;return strlen($chunk); }]);
     $ok=curl_exec($ch);$status=(int)curl_getinfo($ch,CURLINFO_HTTP_CODE);curl_close($ch);

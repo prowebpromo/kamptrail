@@ -134,8 +134,9 @@
     const land = landLayer();
     const roads = KampTrailMVUM.init(map);
     const environment = KampTrailEnvironment.init(map);
+    const restAreas = window.KampTrailRestAreas?.init(map);
     st.services = L.markerClusterGroup ? L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false, chunkedLoading: false, iconCreateFunction: c => L.divIcon({className: 'kt-svc-cluster', html: `<span>${c.getChildCount()}</span>`, iconSize: [28, 28]})}) : L.layerGroup();
-    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, 'USFS motor vehicle roads': roads, ...environment};
+    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, ...(restAreas?{'Official rest areas (Texas pilot)':restAreas}:{}), 'USFS motor vehicle roads': roads, ...environment};
     st.landLegend = legendControl();
     serviceControl().addTo(map);
     let serviceTimer;
@@ -166,5 +167,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.16.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.17.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();

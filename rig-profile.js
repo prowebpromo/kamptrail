@@ -69,7 +69,7 @@
       export:()=>profile?JSON.stringify(profile,null,2):null
     };
   }
-  let store,dialog,form,draft,preview=null,pending=null,linked=false,opener=null,initialized=false;
+  let store,dialog,form,draft,preview=null,pending=null,linked=false,opener=null,initialized=false,importGeneration=0;
   const $=s=>dialog.querySelector(s);
   function status(text){if(dialog)$('#kt-rig-status').textContent=text;}
   function updateLink(reason){
@@ -116,7 +116,7 @@
     root.document.body.append(dialog);form=$('#kt-rig-form');
     const invalidatePending=()=>{if(pending){pending=null;$('#kt-rig-session').hidden=true;error('The draft changed. Save again to choose session-only recovery for the latest values.');}};
     form.addEventListener('input',invalidatePending);form.addEventListener('change',invalidatePending);
-    $('#kt-rig-close').onclick=()=>dialog.close();dialog.addEventListener('close',()=>opener?.focus?.());
+    $('#kt-rig-close').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{importGeneration++;opener?.focus?.();});
     dialog.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const nodes=[...dialog.querySelectorAll('button,input,select,[tabindex]')].filter(n=>!n.disabled&&!n.hidden&&n.getClientRects().length);const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&root.document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&root.document.activeElement===last){e.preventDefault();first.focus();}});
     for(const n of dialog.querySelectorAll('[data-dimension]'))n.addEventListener('input',()=>{n.dataset.dirty='true';});
     for(const kind of ['length','weight'])$('#kt-rig-'+kind+'-unit').onchange=e=>{try{readDimensions();draft.displayUnits[kind]=e.target.value;renderDimensions();error('');}catch(err){e.target.value=draft.displayUnits[kind];error(err.message);}};
@@ -125,9 +125,9 @@
     $('#kt-rig-reset').onclick=()=>{draft=create();render();status('Draft reset. Save to replace your profile.');};
     $('#kt-rig-use').onchange=e=>{if(!e.target.checked){unlink('Profile preferences remain in the filters until you change or reset them.');return;}const p=store.get();if(!p||!root.KampTrailFilters?.applyProfile(p)){e.target.checked=false;error('Save a valid profile before applying it.');return;}linked=true;updateLink();};
     $('#kt-rig-export').onclick=()=>{try{download(pending||readDraft());status('Exported the current draft as a portable JSON profile.');}catch(err){error(err.message);}};
-    $('#kt-rig-import').onchange=async e=>{preview=null;$('#kt-rig-preview').hidden=true;error('');const file=e.target.files?.[0];if(!file)return;try{if(file.size>MAX_BYTES)fail('Choose a JSON profile no larger than 32 KiB.');preview=parse(await file.text());$('#kt-rig-preview-text').textContent=summary(preview);$('#kt-rig-preview').hidden=false;status('Preview only. Your current profile and matching filters are unchanged.');}catch(err){error(err.message);}finally{e.target.value='';}};
+    $('#kt-rig-import').onchange=async e=>{const generation=++importGeneration;preview=null;$('#kt-rig-preview').hidden=true;error('');const file=e.target.files?.[0];if(!file)return;try{if(file.size>MAX_BYTES)fail('Choose a JSON profile no larger than 32 KiB.');const text=await file.text();if(generation!==importGeneration||!dialog.open)return;preview=parse(text);$('#kt-rig-preview-text').textContent=summary(preview);$('#kt-rig-preview').hidden=false;status('Preview only. Your current profile and matching filters are unchanged.');}catch(err){if(generation===importGeneration&&dialog.open)error(err.message);}finally{if(generation===importGeneration)e.target.value='';}};
     $('#kt-rig-replace').onclick=()=>{if(preview)save(preview);};
-    $('#kt-rig-cancel-import').onclick=()=>{preview=null;$('#kt-rig-preview').hidden=true;status('Import cancelled.');};
+    $('#kt-rig-cancel-import').onclick=()=>{importGeneration++;preview=null;$('#kt-rig-preview').hidden=true;status('Import cancelled.');};
     $('#kt-rig-delete').onclick=()=>{$('#kt-rig-confirm-delete').hidden=false;status('Confirm to delete your saved profile. Current filter values remain until you change or reset them.');};
     $('#kt-rig-confirm-delete').onclick=()=>{const result=store.remove();if(!result.ok){error(result.error);return;}unlink('Profile deleted.');draft=create();render();status(store.status().notice);};
   }
@@ -136,6 +136,7 @@
   function readDimensions(){const values={};for(const k of Object.keys(DIMENSIONS)){const n=$('#kt-rig-'+k);if(n.validity.badInput)fail('Enter a valid '+labels[k].toLowerCase()+'.');values[k]=n.dataset.dirty==='true'?toCanonical(n.value,k,draft.displayUnits[k==='weightKg'?'weight':'length']):draft.rig[k];}Object.assign(draft.rig,values);}
   function readDraft(){readDimensions();const p=clone(draft);p.name=$('#kt-rig-name').value.trim();p.updatedAt=new Date().toISOString();p.rig.category=$('#kt-rig-category').value;p.campsite.cost=$('#kt-rig-cost').value;p.campsite.type=$('#kt-rig-type').value;p.campsite.includeUnknownLength=$('#kt-rig-unknown').checked;for(const k of ['amenities','hookups'])p.campsite[k]=[...dialog.querySelectorAll('[name="rig-'+k+'"]:checked')].map(n=>n.value);return validate(p);}
   function render(){
+    importGeneration++;
     $('#kt-rig-name').value=draft.name;for(const k of ['length','weight'])$('#kt-rig-'+k+'-unit').value=draft.displayUnits[k];renderDimensions();$('#kt-rig-category').value=draft.rig.category;for(const k of ['cost','type'])$('#kt-rig-'+k).value=draft.campsite[k];$('#kt-rig-unknown').checked=draft.campsite.includeUnknownLength;for(const k of ['amenities','hookups'])dialog.querySelectorAll('[name="rig-'+k+'"]').forEach(n=>n.checked=draft.campsite[k].includes(n.value));
     pending=null;preview=null;$('#kt-rig-session').hidden=true;$('#kt-rig-confirm-delete').hidden=true;$('#kt-rig-preview').hidden=true;$('#kt-rig-delete').disabled=!store.get();error('');updateLink();
   }
@@ -146,5 +147,5 @@
   function summary(p){const lines=[p.name,'Saved: '+p.updatedAt,'Source category: '+p.rig.category];for(const k of Object.keys(DIMENSIONS)){const unit=p.displayUnits[k==='weightKg'?'weight':'length'];lines.push(labels[k]+': '+(p.rig[k]===null?'Not set':fromCanonical(p.rig[k],k,unit)+' '+unit));}lines.push('Fee: '+p.campsite.cost,'Type: '+p.campsite.type,'Hookups: '+(p.campsite.hookups.join(', ')||'Any'),'Amenities: '+(p.campsite.amenities.join(', ')||'Any'),'Include unknown length: '+(p.campsite.includeUnknownLength?'Yes':'No'));return lines.join('\n');}
   function download(p){const blob=new Blob([JSON.stringify(validate(p),null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),a=root.document.createElement('a');a.href=url;a.download='kamptrail-rig-profile.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function open(){init();if(!dialog)build();opener=root.document.activeElement;draft=store.get()||create();render();status(store.status().notice||'Measurements stay on this device. Save a profile to enable matching.');if(!dialog.open)dialog.showModal();$('#kt-rig-name').focus();}
-  return {version:'2.16.0',schemaVersion:1,MAX_BYTES,KEY,validate,parse,create,fromCanonical,toCanonical,toFilters,createStore,init,open,unlink,getProfile:()=>{init();return store.get();},isLinked:()=>linked};
+  return {version:'2.17.0',schemaVersion:1,MAX_BYTES,KEY,validate,parse,create,fromCanonical,toCanonical,toFilters,createStore,init,open,unlink,getProfile:()=>{init();return store.get();},isLinked:()=>linked};
 });

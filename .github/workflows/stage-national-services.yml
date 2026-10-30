@@ -1,0 +1,111 @@
+name: Stage dated state service extracts
+
+# Produces reviewable candidates only. The existing weekly writer and its
+# rebase/retry save path remain the sole repository data-promotion owner.
+on:
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'Space-separated Census states; ALL requires complete national proof'
+        type: string
+        default: 'RI'
+        required: true
+  schedule:
+    - cron: '0 7 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kamptrail-services-staging-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      states: ${{ steps.plan.outputs.states }}
+      regions: ${{ steps.plan.outputs.regions }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        env:
+          REQUESTED_STATES: ${{ inputs.states || 'ALL' }}
+        run: |
+          python - <<'PY'
+          import json, os, sys
+          sys.path.insert(0, 'scripts')
+          from services_regions import URLS
+          from stage_services import checked_regions
+          regions = checked_regions(URLS if os.environ['REQUESTED_STATES'] == 'ALL' else os.environ['REQUESTED_STATES'])
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('states=' + json.dumps(regions) + '\n')
+              f.write('regions=' + ' '.join(regions) + '\n')
+          PY
+
+  state:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        state: ${{ fromJSON(needs.plan.outputs.states) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install checksum-pinned native parser
+        run: python -m pip install --no-deps --require-hashes -r scripts/requirements-services.txt
+      - name: Verify bounded importer and immutable delivery
+        run: |
+          python -m unittest scripts/tests/test_services_import.py scripts/tests/test_national_services.py
+          node --test scripts/tests/services-builder.test.js
+      - name: Import one bounded complete state
+        env:
+          SERVICE_STATE: ${{ matrix.state }}
+          BATCH: ${{ github.run_id }}-${{ github.sha }}
+        run: python -u scripts/stage_services.py --regions "$SERVICE_STATE" --batch "$BATCH" --stage "$RUNNER_TEMP/stage" --scratch "$RUNNER_TEMP/public-pbf"
+      - name: Keep state proof, including failure receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: services-state-${{ matrix.state }}
+          overwrite: true
+          path: ${{ runner.temp }}/stage
+          if-no-files-found: error
+          retention-days: 14
+
+  aggregate:
+    needs: [plan, state]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: services-state-*
+          path: ${{ runner.temp }}/stage
+          merge-multiple: true
+      - name: Validate every requested state and all delivery caps
+        env:
+          REGIONS: ${{ needs.plan.outputs.regions }}
+          BATCH: ${{ github.run_id }}-${{ github.sha }}
+        run: python -u scripts/aggregate_services.py --regions "$REGIONS" --batch "$BATCH" --stage "$RUNNER_TEMP/stage" --destination "$RUNNER_TEMP/candidate"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: services-complete-candidate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/candidate
+          if-no-files-found: error
+          retention-days: 14

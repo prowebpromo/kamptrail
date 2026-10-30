@@ -93,3 +93,7 @@ test('new service snapshots bypass generic caching and validated service cache s
   let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/services/'+path),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false,path);
  }
 });
+
+test('official rest-area facts are not pinned in the generic shell cache',()=>{
+ const w=worker();let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/rest-areas/TX.json'),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false);
+});

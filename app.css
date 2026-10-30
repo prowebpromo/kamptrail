@@ -107,6 +107,12 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 .kt-services-control input{flex-shrink:0}
 .kt-services-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
 .kt-services-status{font-size:.85rem;line-height:1.4;overflow-wrap:anywhere}
+.kt-rest-control{width:min(260px,calc(100vw - 3.5rem));max-height:28vh;overflow:auto;background:#fff;color:#152b1d;padding:.65rem;border-radius:.6rem;box-shadow:0 2px 10px #0003;font:13px/1.4 system-ui,sans-serif}
+.kt-rest-control[hidden]{display:none!important}.kt-rest-control p{margin:.4rem 0;overflow-wrap:anywhere}
+.kt-rest-icon span{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:4px;background:#574323;color:#fff;border:2px solid #fff;font:700 13px system-ui,sans-serif;box-shadow:0 1px 4px #0008}
+.kt-rest-popup{max-width:300px;overflow:auto;overscroll-behavior:contain;overflow-wrap:anywhere}.kt-rest-popup h2{font-size:15px;margin:0 0 6px}.kt-rest-popup p{font-size:12px;line-height:1.45}
+.leaflet-container:has(.kt-rest-popup) .kt-rest-control{display:none}
+.leaflet-container:has(.kt-rest-popup) .leaflet-top.leaflet-right{visibility:hidden}
 @media(max-width:760px){.kt-services-control{max-height:45vh}.kt-route-tabs{gap:.35rem}.kt-service-category-controls{gap:.3rem .65rem}}
 
 /* Scoped permission evidence and report management dialog. */

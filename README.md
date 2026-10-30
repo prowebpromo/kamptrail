@@ -1,4 +1,4 @@
-# KampTrail 2.16.0
+# KampTrail 2.17.0
 
 KampTrail is a free campsite map and trip planner at https://kamptrail.com/. No account is required for the core camping tools or moderated contributions.
 
@@ -26,7 +26,7 @@ The catalogue combines Recreation.gov, USFS, BLM and OpenStreetMap source record
 
 Modeled FCC coverage is blocked on actual provider access. Enforced RV-restriction routing, wider service/permission evidence and community/media depth remain separate packages. Accounts/social messaging, cross-device synchronization, notifications, native navigation and full video uploads are not implemented. Versioned features in this source tree are not evidence of deployment; release and live-verification gates remain in [the active parity queue](docs/replica/parity-queue.md). Existing historical parity scores do not establish current full-product parity.
 
-The [rig and route-terrain contract](docs/RIG_TERRAIN_CONTRACT_2.16.md) describes local profile data, explicit coordinate disclosure, bounded sampling, private server caches and offline limits.
+The [rig and route-terrain contract](docs/RIG_TERRAIN_CONTRACT_2.17.md) describes local profile data, explicit coordinate disclosure, bounded sampling, private server caches and offline limits.
 
 ## Run and test
 

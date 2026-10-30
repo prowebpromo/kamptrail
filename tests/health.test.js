@@ -56,8 +56,10 @@ test('stale, partial, skipped and current sources are distinguished', () => {
 test('the shipped health file is valid and covers every source', () => {
   const h = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'health.json')));
   assert.equal(h.version, 1);
-  assert.deepEqual(Object.keys(h.sources).sort(), ['blm', 'osm', 'ridb', 'ridb_sites', 'services', 'services_extracts', 'usfs']);
+  assert.deepEqual(Object.keys(h.sources).sort(), ['blm', 'osm', 'rest_areas', 'ridb', 'ridb_sites', 'services', 'services_extracts', 'usfs']);
   assert.ok(quality.summarizeHealth(h).rows.every(r => r.newest));
   assert.ok(h.sources.services_extracts.scopes.UT.last_success,'Expanded source health retains its actual pilot state');
   assert.ok(!h.sources.services_extracts.scopes.US,'A state extract cannot claim national refresh coverage');
+  assert.ok(h.sources.rest_areas.scopes.TX.last_success,'The official rest-area pilot retains its actual download date');
+  assert.ok(!h.sources.rest_areas.scopes.US,'A Texas rest-area pilot cannot claim national refresh coverage');
 });

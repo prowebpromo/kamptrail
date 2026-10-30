@@ -1,4 +1,4 @@
-# Local rig profiles and sampled route terrain — 2.16.0
+# Local rig profiles and sampled route terrain — 2.17.0
 
 This source implementation is a separate release package. Passing local checks does not establish deployment or full-product parity. Car routing remains FOSSGIS OSRM and does not enforce vehicle restrictions.
 
@@ -49,3 +49,12 @@ Build packaging must include both JavaScript modules, the PHP endpoint/helper an
 `npm test` includes rig-profile, terrain client and PHP-contract tests. PHP integration checks require the PHP/PDO SQLite/cURL runtime; skipped tests are not passes. The Playwright runner includes both `rig-profile.spec.js` and `route-elevation.spec.js`, covering portable data, preview/import failures, storage failure, precise shared matching, mobile/keyboard/focus behavior, scoped accessibility, explicit coordinate disclosure, units, gaps, exact-route offline reuse and stale response rejection.
 
 Before release, pass the full required CI/package checks, verify the private cache and fixed upstream from the production host using public test coordinates, and verify the real UI's mobile dialog/terrain behavior. Do not sample a user's saved trip without their Load action. FCC access is independent and remains blocked; this package does not add predicted coverage or towers.
+
+
+## Current-main integration review, 2026-10-30
+
+Prepared from main `369efee3ed2f2b81ce867f269ff08bad523c039b`, after PR #96. This is the 2.17 candidate, ordered after the pending amenities 2.16 package. The combined browser handshake, service-worker shell, release files and test lists retain the shipped rest-area feature. The preserved popup regression, RIDB facility-alias importer and forecast publisher have no source diff from that main baseline.
+
+The review corrected an asynchronous import-preview race: reading an earlier selected file can no longer replace a later selection's preview. Closing, resetting or canceling an import invalidates its pending file read. A dedicated browser regression exercises out-of-order reads; it needs Chromium CI.
+
+Local full Node checks: 254 tests, 201 passed, 53 PHP-dependent skips, no failures. Python: 188 tests, seven optional native skips, no failures. Release packaging and JavaScript syntax passed. The local full Playwright attempt discovered 111 tests before the new import regression, then failed at the first browser launch because the expected Chromium 1200 executable is absent; no app behavior was tested. The final configured suite contains 112 tests. Full exact-commit browser/PHP/MySQL checks, Lighthouse, integration with the amenities release and production public-coordinate/provider/private-cache checks remain gates. Scored feature statuses remain unchanged until deployed verification.
