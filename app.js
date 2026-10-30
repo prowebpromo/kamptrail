@@ -231,13 +231,14 @@
     if (sum.runFailed) box.append(p(t("Degraded: the last data refresh ({0}) did not save any new data. Saved data is shown.", {"0":(sum.lastRun)}), 'kt-health-warn'));
     else if (sum.degraded) box.append(p(t("Some sources are out of date: {0}.", {"0":(sum.rows.filter(r => r.status === 'stale' || r.status === 'failing').map(r => r.label).join(', '))}), 'kt-health-warn'));
     const table = document.createElement('table'); table.className = 'kt-health-table';
-    table.innerHTML = `<caption>${t("Data freshness")}</caption><thead><tr><th scope="col">${t("Source")}</th><th scope="col">${t("Last downloaded")}</th><th scope="col">${t("Status")}</th></tr></thead>`;
+    table.innerHTML = `<caption>${t("Data freshness")}</caption><thead><tr><th scope="col">${t("Source")}</th><th scope="col">${t("Freshness date")}</th><th scope="col">${t("Status")}</th></tr></thead>`;
     const tb = document.createElement('tbody');
     const label = {current: t("Current"), partial: t("Partly refreshed"), stale: t("Out of date"), failing: t("Refresh failing")};
     for (const r of sum.rows) {
       const tr = document.createElement('tr');
       const when = !r.newest ? t("Unknown") : r.oldest && r.oldest !== r.newest ? t("{0} to {1}", {"0":(r.oldest),"1":(r.newest)}) : r.newest;
-      const status = label[r.status] + (r.note ? `. ${r.note}` : '');
+      const note = String(r.note || '').replace(/Expanded extracts cover (\d+) of 50 states\. Dates describe source extracts\./g, (_, count) => t('Expanded extracts cover {count} of 50 states. Dates describe source extracts.', {count}));
+      const status = label[r.status] + (note ? `. ${note}` : '');
       for (const [i, t] of [r.label, when, status].entries()) { const c = document.createElement(i ? 'td' : 'th'); if (!i) c.scope = 'row'; c.textContent = t; tr.append(c); }
       tr.dataset.status = r.status; tb.append(tr);
     }

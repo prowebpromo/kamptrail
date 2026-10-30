@@ -10,8 +10,16 @@ on:
         type: string
         default: 'RI'
         required: true
-  schedule:
-    - cron: '0 7 * * 1'
+  workflow_call:
+    inputs:
+      states:
+        type: string
+        default: 'ALL'
+        required: false
+    outputs:
+      candidate_artifact:
+        description: 'Complete proof and normalized sources from this caller run'
+        value: ${{ jobs.aggregate.outputs.candidate_artifact }}
 
 permissions:
   contents: read
@@ -82,6 +90,8 @@ jobs:
           retention-days: 14
 
   aggregate:
+    outputs:
+      candidate_artifact: ${{ steps.receipt.outputs.name }}
     needs: [plan, state]
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -103,6 +113,8 @@ jobs:
           REGIONS: ${{ needs.plan.outputs.regions }}
           BATCH: ${{ github.run_id }}-${{ github.sha }}
         run: python -u scripts/aggregate_services.py --regions "$REGIONS" --batch "$BATCH" --stage "$RUNNER_TEMP/stage" --destination "$RUNNER_TEMP/candidate"
+      - id: receipt
+        run: echo "name=services-complete-candidate-${{ github.run_id }}-${{ github.run_attempt }}" >> "$GITHUB_OUTPUT"
       - name: Keep public assets, exact normalized sources and checkpoint proof
         uses: actions/upload-artifact@v4
         with:

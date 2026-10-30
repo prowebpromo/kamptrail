@@ -386,7 +386,7 @@
     if (!h || h.version !== 1 || !h.sources) return null;
     const DAY = 86400000, limit = (+h.stale_after_days || 45) * DAY, issues = [];
     const day = iso => iso ? String(iso).slice(0, 10) : null;
-    const rows = Object.entries(h.sources).map(([id, s]) => {
+    const rows = Object.entries(h.sources).filter(([, s]) => !s.retired_by).map(([id, s]) => {
       const scopes = Object.values(s.scopes || {}), n = scopes.length;
       const failed = scopes.filter(x => x.outcome === 'failed').length, skipped = scopes.filter(x => x.outcome === 'skipped').length;
       const stale = scopes.filter(x => !x.last_success || now - Date.parse(x.last_success) > limit).length;
@@ -398,6 +398,7 @@
       else if (stale) note = `Older than ${Math.round(limit / DAY)} days${n > 1 ? ' in ' + where(stale) : ''}.`;
       if (failed && status !== 'failing') note += `${note ? ' ' : ''}Last refresh failed${n > 1 ? ' in ' + where(failed) : ''}. Saved data is shown.`;
       if (skipped) note += `${note ? ' ' : ''}Not refreshed in the last run${n > 1 ? ' in ' + where(skipped) : ''}.`;
+      if (id === 'services_extracts' && Array.isArray(s.coverage_states)) note += `${note ? ' ' : ''}Expanded extracts cover ${s.coverage_states.length} of 50 states. Dates describe source extracts.`;
       if (status !== 'current') issues.push(s.label || id);
       return {id, label: s.label || id, oldest: day(s.oldest_success), newest: day(s.newest_success), status, note};
     });

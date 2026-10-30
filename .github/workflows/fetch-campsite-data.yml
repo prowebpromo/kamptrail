@@ -64,8 +64,16 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  national-services-stage:
+    if: ${{ github.event_name == 'schedule' }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/stage-national-services.yml
+    with:
+      states: ALL
   fetch-data:
-    if: ${{ inputs.source != 'agency' && inputs.source != 'elevation' && inputs.source != 'services' }}
+    needs: national-services-stage
+    if: ${{ always() && !cancelled() && inputs.source != 'agency' && inputs.source != 'elevation' && inputs.source != 'services' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -73,6 +81,7 @@ jobs:
       SOURCE_MODE: ${{ inputs.source || 'both' }}
       PAGE_SIZE: ${{ inputs.page_size || '50' }}
       RIDB_API_KEY: ${{ secrets.RECREATION_GOV_API_KEY || secrets.RIDB_API_KEY }}
+      SERVICES_BATCH: ${{ github.run_id }}-${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -186,18 +195,36 @@ jobs:
             echo 'Recreation.gov site details refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
             node scripts/record_health.js record ridb_sites US failed
           fi
-      - name: Refresh RV services (dump, water fill, propane) from OpenStreetMap
-        # A failed Overpass request raises before writing, so saved services stay unchanged.
+      - name: Download this weekly run's complete national service candidate
+        id: service-candidate
+        if: ${{ github.event_name == 'schedule' && needs.national-services-stage.result == 'success' }}
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.national-services-stage.outputs.candidate_artifact }}
+          path: ${{ runner.temp }}/national-service-candidate
+      - name: Validate against current main and promote complete service evidence
+        id: service-promotion
+        if: ${{ steps.service-candidate.outcome == 'success' }}
         continue-on-error: true
         shell: bash
         run: |
-          set -uo pipefail
-          if python scripts/fetch_osm_poi.py && python scripts/import_services.py --region legacy --scratch "$RUNNER_TEMP/services-legacy" && node scripts/build-services.js; then
-            node scripts/record_health.js record services US fresh
-          else
-            echo 'RV services refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
-            node scripts/record_health.js record services US failed
-          fi
+          set -euo pipefail
+          git fetch origin main
+          python scripts/promote_services.py --candidate "$RUNNER_TEMP/national-service-candidate" --batch "$SERVICES_BATCH" --accepted-ref origin/main --summary "$RUNNER_TEMP/national-service-summary.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          summary = json.loads((Path(os.environ['RUNNER_TEMP']) / 'national-service-summary.json').read_bytes())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as output:
+              output.write('Services: complete 50-state candidate accepted; source extract dates retained. Service imports are counted separately from campsite refreshes.\n\n')
+              output.write('Batch: `' + summary['batch'] + '`; snapshot: `' + summary['snapshot_id'] + '`\n\n')
+              output.write('Source extract range: ' + summary['oldest_extract'] + ' through ' + summary['newest_extract'] + '.\n\n')
+              output.write('Exact OSM identity accounting (not physical new-service counts): `' + json.dumps(summary['legacy_exact_identities'], sort_keys=True) + '`\n\n')
+          PY
+      - name: Report national staging or promotion failure without changing service data
+        if: ${{ github.event_name == 'schedule' && steps.service-promotion.outcome != 'success' }}
+        run: echo 'National services failed staging or promotion; exact last-good service sources, assets and freshness retained. Campsite refreshes are counted separately. No national coverage claim added.' >> "$GITHUB_STEP_SUMMARY"
       - name: Refresh the official TxDOT rest-area pilot
         # Coordinates and duration context stay separate from overnight permission.
         continue-on-error: true
@@ -222,6 +249,10 @@ jobs:
             git commit -m 'Refresh sourced campsite data and merged snapshots'
             # main can move during a long refresh. Data paths are written only by this workflow, so rebase and retry.
             for attempt in 1 2 3 4 5; do
+              if [[ -f "$RUNNER_TEMP/national-service-summary.json" ]]; then
+                git fetch origin main
+                python scripts/promote_services.py --candidate "$RUNNER_TEMP/national-service-candidate" --batch "$SERVICES_BATCH" --accepted-ref origin/main --check-only > /dev/null
+              fi
               if git push; then exit 0; fi
               echo "Push rejected (attempt $attempt); rebasing on the latest main"
               git pull --rebase origin main

@@ -5,7 +5,7 @@ const id='abcdefghijk',token='d'.repeat(64);
 async function setup(page,context,{spanish=false,publication=true,slow=false}={}){
  const external=[],sent=[];let checks=0,release;
  await context.route(/^https:\/\//,r=>{
-  if(new URL(r.request().url()).hostname.includes('youtube')){external.push(r.request().url());return r.fulfill({contentType:'text/html',body:'<!doctype html><html lang="en"><title>Fixture player</title><body>Fixture player</body></html>'});}
+  if(new URL(r.request().url()).hostname.includes('youtube')){external.push(r.request().url());return r.fulfill({contentType:'text/html',body:'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Fixture player</title></head><body><main><h1>Fixture player</h1></main></body></html>'});}
   return r.abort();
  });
  const review={id:1,campsite_id:'qa:video',campsite_name:'Original visitor place',display_name:'Original Name',rating:4,body:'Original visitor words <script>alert(1)</script>',visited_on:'2026-10-01',created_at:'2026-10-02',status:'published',observations:{noise:'quiet'},photos:[],video:{provider:'youtube',id,url:'https://www.youtube.com/watch?v='+id}};

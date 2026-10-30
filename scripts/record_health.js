@@ -60,13 +60,25 @@ function check(source, scope) {
   if (!def) throw new Error(`Unknown source: ${source}`);
   if (def.scope === 'state' ? !STATES.includes(scope) : scope !== 'US') throw new Error(`Invalid scope for ${source}: ${scope}`);
 }
-function record(h, source, scope, outcome, at = new Date().toISOString()) {
+function record(h, source, scope, outcome, at = new Date().toISOString(), serviceSource = null) {
   check(source, scope);
   if (!OUTCOMES.includes(outcome)) throw new Error(`Invalid outcome: ${outcome}`);
   const s = h.sources[source] || (h.sources[source] = {scopes: {}});
   const prev = s.scopes[scope] || {};
-  s.scopes[scope] = {last_attempt: at, last_success: outcome === 'fresh' ? at : (prev.last_success || null), outcome};
-  if (h.run) h.run.counts[outcome] = (h.run.counts[outcome] || 0) + 1;
+  if (source === 'services_extracts') {
+    if (outcome === 'fresh') {
+      const wrapper = serviceSource || JSON.parse(fs.readFileSync(path.join(ROOT, `data/sources/services/${scope}.json`), 'utf8'));
+      const saved = wrapper.source;
+      if (wrapper.region !== scope || !saved || !saved.extract_timestamp || !saved.retrieved_at || !Number.isFinite(Date.parse(saved.extract_timestamp)) || !Number.isFinite(Date.parse(saved.retrieved_at))) throw new Error('Dated matching service source required');
+      s.scopes[scope] = {...prev, last_attempt: at, last_success: saved.extract_timestamp, outcome, extract_timestamp: saved.extract_timestamp, retrieved_at: saved.retrieved_at};
+      s.coverage_states = [...new Set([...(s.coverage_states || []), scope])].sort();
+      s.date_basis = 'source_extract_timestamp';
+    } else s.scopes[scope] = {...prev, last_attempt: at, last_success: prev.last_success || null, outcome};
+    h.services_run = {started: at, counts: {[outcome]: 1}, coverage_states: (s.coverage_states || []).length};
+  } else {
+    s.scopes[scope] = {last_attempt: at, last_success: outcome === 'fresh' ? at : (prev.last_success || null), outcome};
+    if (h.run) h.run.counts[outcome] = (h.run.counts[outcome] || 0) + 1;
+  }
 }
 // Best known date the saved data was fetched: a "retrieved" date inside the file, else the last commit by
 // the refresh workflow, else the last commit that changed the file (which can be a reprocessing commit).
@@ -94,10 +106,39 @@ function seed(h) {
       if (s.scopes[scope]) continue;
       const files = def.files(scope);
       if (!files.some(f => fs.existsSync(path.join(ROOT, f)))) continue;
-      // The commit date is when saved data last changed. Attempts before this recorder existed are unknown.
-      s.scopes[scope] = {last_attempt: null, last_success: knownDate(files), outcome: 'not_recorded'};
+      // Service freshness comes from the dated extract, never the commit time.
+      if (id === 'services_extracts') {
+        const wrapper = JSON.parse(fs.readFileSync(path.join(ROOT, files[0]), 'utf8'));
+        const saved = wrapper.source;
+        if (wrapper.region !== scope || !saved || !Number.isFinite(Date.parse(saved.extract_timestamp)) || !Number.isFinite(Date.parse(saved.retrieved_at))) throw new Error('Dated matching service source required');
+        s.scopes[scope] = {last_attempt: null, last_success: saved.extract_timestamp, outcome: 'not_recorded', extract_timestamp: saved.extract_timestamp, retrieved_at: saved.retrieved_at};
+        s.coverage_states = [...new Set([...(s.coverage_states || []), scope])].sort();
+        s.date_basis = 'source_extract_timestamp';
+      } else {
+        // The commit date is when saved data last changed.
+        s.scopes[scope] = {last_attempt: null, last_success: knownDate(files), outcome: 'not_recorded'};
+      }
     }
   }
+}
+
+// Service attempts are counted separately from campsite refresh attempts. A
+// promotion time must never make an old extract look newly downloaded.
+function nationalServices(h, outcome, manifest) {
+  if (!OUTCOMES.includes(outcome)) throw new Error('Invalid service outcome');
+  const coverage = new Map((manifest.coverage || []).filter(c => STATES.includes(c.region)).map(c => [c.region, c]));
+  if (outcome === 'fresh' && (coverage.size !== 50 || [...coverage.values()].some(c => !c.extract_timestamp || !c.retrieved_at) || (manifest.coverage || []).some(c => c.region === 'legacy' && c.count))) throw new Error('Complete dated national service coverage required');
+  const source = h.sources.services_extracts || (h.sources.services_extracts = {scopes: {}});
+  const at = new Date().toISOString();
+  for (const state of STATES) {
+    const previous = source.scopes[state] || {}, saved = coverage.get(state);
+    source.scopes[state] = {...previous, last_attempt: at, last_success: outcome === 'fresh' ? saved.extract_timestamp : (previous.last_success || (saved && saved.extract_timestamp) || null), outcome,
+      ...(saved && outcome === 'fresh' ? {extract_timestamp: saved.extract_timestamp, retrieved_at: saved.retrieved_at} : {})};
+  }
+  source.coverage_states = STATES.filter(state => coverage.has(state));
+  source.date_basis = 'source_extract_timestamp';
+  h.services_run = {started: at, counts: {[outcome]: 50}, coverage_states: coverage.size};
+  if (coverage.size === 50 && h.sources.services) h.sources.services.retired_by = 'services_extracts';
 }
 
 function main(argv) {
@@ -106,10 +147,11 @@ function main(argv) {
   if (cmd === 'start') h.run = {started: new Date().toISOString(), counts: {}};
   else if (cmd === 'record') record(h, ...args);
   else if (cmd === 'seed') seed(h);
+  else if (cmd === 'national-services') nationalServices(h, args[0], JSON.parse(fs.readFileSync(args[1] || path.join(ROOT, 'data/services/index.json'), 'utf8')));
   else throw new Error('Usage: record_health.js start | record <source> <scope> <fresh|failed|skipped> | seed');
   save(h);
 }
 if (require.main === module) {
   try { main(process.argv.slice(2)); } catch (e) { console.error(e.message); process.exit(1); }
 }
-module.exports = {SOURCES, STATES, load, save, record, seed, main, STALE_DAYS};
+module.exports = {SOURCES, STATES, load, save, record, seed, main, nationalServices, STALE_DAYS};

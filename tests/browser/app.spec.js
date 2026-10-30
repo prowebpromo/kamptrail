@@ -115,7 +115,8 @@ test('data information uses the real catalogue and supports keyboard dismissal o
   await page.locator('#about-data').click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.locator('#catalogue-summary')).toContainText(count.toLocaleString('en-US'));
-  await expect(page.getByRole('dialog')).toContainText('does not mean a campsite was recently checked');
+  await expect(page.getByRole('dialog')).toContainText('Expanded service freshness uses each saved extract’s source date');
+  await expect(page.getByRole('dialog')).toContainText('do not mean a location was recently checked');
   await expect(page.getByRole('dialog')).toContainText('It does not mean free');await expect(page.getByRole('dialog')).toContainText('US Forest Service');await expect(page.getByRole('dialog')).toContainText('water fill points');await expect(page.getByRole('dialog')).toContainText('Moved from the old address');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.keyboard.press('Escape');

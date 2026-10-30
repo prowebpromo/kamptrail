@@ -14,7 +14,7 @@ The code's MIT license does not replace these data or third-party software licen
 | Public land layer and land manager lookup | BLM Surface Management Agency map service (gis.blm.gov) | US federal government data. Boundaries can be approximate. Not permission to camp |
 | Forecast and elevation | National Weather Service API (api.weather.gov) | US government data. US locations only |
 | Topo and satellite basemaps | USGS The National Map (basemap.nationalmap.gov) | Public domain |
-| Dump stations, water fill points, propane | OpenStreetMap contributors via Overpass, built into `data/services/services.json` | ODbL. Hours, fees, and potability not verified |
+| Service discovery | OpenStreetMap contributors: dated Geofabrik state extracts and retained legacy Overpass records, delivered by `data/services/index.json` | ODbL. Saved coverage and source dates are shown; hours, RV fit, overnight permission and potability are not verified |
 
 ## Agency campsites, RV details, routing, offline maps (2.4.0)
 
@@ -76,7 +76,7 @@ Only a complete, current, coordinate-matched series can satisfy an active filter
 
 The separate services database is derived from OpenStreetMap contributors under [ODbL 1.0](https://www.openstreetmap.org/copyright). Expanded-category imports use [Geofabrik's public regional PBF extracts](https://www.geofabrik.de/data/download.html). They allow ODbL reuse with attribution and share-alike for derived databases. Source and derivation code remain available in this repository. Public extracts exclude contributor user IDs, names and changeset IDs. No private metadata endpoint is used.
 
-The first complete expanded extract is Utah. Other areas retain legacy dump, water-fill and LPG evidence, screened against Census state geometry. [Geofabrik explains](https://download.geofabrik.de/technical.html) that extract boundaries are buffered and can include neighboring regions; the pipeline does not use the extract name as proof of state membership. Ambiguous, outside-state and unsupported geometry records are quarantined. Exact node/way/relation identity, version, edit date, extract timestamp, retrieval date, source hash and relevant tags remain separate. A retrieval or build is not a field inspection.
+The shipped expanded extract is currently Utah. The weekly writer stages all 50 states and promotes only a complete, same-batch, hash-verified candidate that passes the current accepted sources’ date/loss guards and every delivery cap. Until that succeeds, the saved snapshot remains in use. Sources and dates in About the data reports the actual saved expanded state coverage and source extract dates; service attempts are counted separately from campsite refresh attempts. Other areas retain legacy dump, water-fill and LPG evidence, screened against Census state geometry. [Geofabrik explains](https://download.geofabrik.de/technical.html) that extract boundaries are buffered and can include neighboring regions; the pipeline does not use the extract name as proof of state membership. Ambiguous, outside-state and unsupported geometry records are quarantined. Exact node/way/relation identity, version, edit date, extract timestamp, retrieval date, source hash and relevant tags remain separate. A retrieval or build is not a field inspection.
 
 Only explicit supported tags establish a service category. Potability, opening, fees, customer-only access and other restrictions remain source-reported or unknown. LPG does not establish cylinder refill; parking, a brand, land ownership or a successful stay does not establish overnight permission. Representative map points are not guaranteed driveway entrances or RV access. Service discovery sends no route coordinates to an external POI service.
 
@@ -85,6 +85,12 @@ Spatial shards limit delivery to the viewed area or route corridor. Hash-validat
 ### Official rest-area locations (2.15)
 
 The first official rest-area pilot uses TxDOT's public [location list](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list.html). It preserves exact source labels, links and coordinates, validated against Census state geometry, with document hashes and retrieval dates. Texas travel information centers are excluded. The separately sourced [visitor duration context](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html) does not establish permission to sleep overnight. Every pilot location's overnight permission remains unknown. See [the source audit](docs/REST_AREAS_PILOT_2.15.md). Other states are not yet covered.
+
+### National service promotion operations
+
+The sole weekly data writer calls the read-only state staging workflow with exactly 50 Census states and at most two parallel imports. Its candidate artifact is bound to the caller run ID and source commit. Promotion copies and validates checkpoint bytes, compares every served byte with a deterministic rebuild, and rechecks current main source dates and the 30% loss guard before committing and after a rebase. A missing state, mismatched hash, older extract, excessive loss, or delivery-cap failure preserves the exact public last-good service sources, assets and freshness. The workflow reports the failure separately; campsite refreshes may continue. There is no fallback to a partial national candidate. Caps remain 1 MiB per manifest, 4,096 shards, 1,000,000 identities, and 512 KiB/1,500 rows per shard.
+
+A complete state extract supersedes legacy rows for that exact state, including objects absent from the new extract. The promotion receipt reports legacy exact OSM identities also present in state extracts and those absent. These are node/way/relation identity comparisons, not counts of new physical businesses or services. Legacy source evidence remains available for audit; once all 50 extracts are served it contributes zero selected rows and its old freshness row is retired. Unknown access, potability, cylinder refill, overnight permission and RV fit stay unknown.
 
 ### On-demand route terrain (2.17.0)
 
