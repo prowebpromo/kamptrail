@@ -16,11 +16,11 @@ import tempfile
 import time
 import urllib.request
 from collections import Counter
+from services_regions import URLS, validate_resolved_url
 
 from build_agency_states import StateBoundaries, valid_point, STATES
 
 ROOT = Path(__file__).resolve().parents[1]
-URLS = {'UT': 'https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf'}
 CATEGORIES = ('dump', 'water', 'lpg', 'showers', 'laundry', 'groceries', 'fuel')
 TAGS = ('amenity', 'tourism', 'sanitary_dump_station', 'waterway', 'drinking_water', 'fuel', 'fuel:lpg', 'shop', 'laundry', 'self_service', 'access', 'access:conditional', 'fee', 'charge', 'opening_hours', 'operator', 'brand', 'website', 'phone', 'wheelchair', 'shower')
 MAX_BYTES = 2 * 1024**3
@@ -67,10 +67,20 @@ def categories(tags):
 
 
 class FixedRedirect(urllib.request.HTTPRedirectHandler):
+    def __init__(self, region=None):
+        super().__init__()
+        self.region = region
+        self.redirects = 0
+
     def redirect_request(self, req, fp, code, msg, headers, newurl):
-        # Geofabrik latest resolves to the same state's dated public file.
-        if req is None or not re.fullmatch(r'https://download\.geofabrik\.de/north-america/us/utah-(?:latest|[0-9]{6})\.osm\.pbf', newurl) or req.full_url not in URLS.values():
+        region = self.region or next((key for key, url in URLS.items() if req is not None and req.full_url == url), None)
+        if region is None or req is None:
             raise ValueError('PBF redirect outside fixed same-state public extract')
+        validate_resolved_url(region, req.full_url)
+        validate_resolved_url(region, newurl)
+        self.redirects += 1
+        if self.redirects > 3:
+            raise ValueError('Excessive PBF redirects')
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
@@ -86,7 +96,9 @@ def download(region, destination):
     total = 0
     try:
         request = urllib.request.Request(url, headers={'User-Agent': 'KampTrail-services/2.14 (+https://www.openstreetmap.org/copyright)'})
-        with urllib.request.build_opener(FixedRedirect()).open(request, timeout=60) as response, partial.open('wb') as output:
+        with urllib.request.build_opener(FixedRedirect(region)).open(request, timeout=60) as response, partial.open('wb') as output:
+            resolved_url = response.geturl()
+            validate_resolved_url(region, resolved_url)
             expected = int(response.headers.get('Content-Length', 0))
             if not 0 < expected <= MAX_BYTES:
                 raise ValueError('Missing or excessive PBF content length')
@@ -102,7 +114,7 @@ def download(region, destination):
         partial.replace(destination)
     finally:
         partial.unlink(missing_ok=True)
-    return {'url': url, 'sha256': digest.hexdigest(), 'retrieved_at': utc_now(), 'bytes': total, 'download_seconds': round(time.monotonic() - started, 3)}
+    return {'url': url, 'resolved_url': resolved_url, 'sha256': digest.hexdigest(), 'retrieved_at': utc_now(), 'bytes': total, 'download_seconds': round(time.monotonic() - started, 3)}
 
 
 def assign(items, boundaries, region):
@@ -138,8 +150,12 @@ def legacy(raw, boundaries):
     return {'version': 2, 'region': 'legacy', 'source': {'kind': 'legacy', 'url': 'https://www.openstreetmap.org', 'extract_timestamp': None, 'retrieved_at': None, 'sha256': hashlib.sha256(raw).hexdigest(), 'license': 'ODbL-1.0', 'categories': ['dump', 'water', 'lpg']}, 'items': rows}, quarantine
 
 
-def import_pbf(path, region, metadata, boundaries):
+def import_pbf(path, region, metadata, boundaries, location_index=None):
     import osmium
+    from importlib.metadata import version
+    parser_version = version('osmium')
+    if parser_version != '4.3.2':
+        raise ValueError('Native parser must be the checksum-pinned osmium 4.3.2')
     started = time.monotonic()
     if not 0 < Path(path).stat().st_size <= MAX_BYTES:
         raise ValueError('Invalid PBF byte size')
@@ -150,6 +166,13 @@ def import_pbf(path, region, metadata, boundaries):
     with osmium.io.Reader(str(path)) as reader:
         header = reader.header()
         extract = timestamp(header.get('osmosis_replication_timestamp'))
+    if metadata.get('url', URLS[region]) != URLS[region]:
+        raise ValueError('Download receipt differs from requested region')
+    dated = validate_resolved_url(region, metadata.get('resolved_url', URLS[region]))
+    if dated and dt.datetime.fromisoformat(extract.replace('Z', '+00:00')).date() != dated:
+        raise ValueError('Extract header date differs from resolved URL date')
+    if extract > timestamp(metadata['retrieved_at']):
+        raise ValueError('Extract date newer than retrieval')
     stats = Counter()
     rows = []
     unresolved_relations = set()
@@ -172,6 +195,8 @@ def import_pbf(path, region, metadata, boundaries):
                 return
             if tags.get('access') in ('no', 'private'): stats['restricted_retained'] += 1
             if tags.get('access') in ('customers', 'permit'): stats['conditional_access'] += 1
+            if len(rows) >= 1000000:
+                raise ValueError('Canonical row budget exceeded')
             rows.append({'id': f'osm:{typ}:{obj.id}', 'osm_type': typ, 'osm_id': str(obj.id), 'osm_version': obj.version or None, 'edited_at': timestamp(obj.timestamp.isoformat()), 'coordinates': coords, 'name': bounded_text(tags.get('name', ''), 120), 'categories': selected, 'tags': {k: bounded_text(tags[k], 240) for k in TAGS if k in tags}, 'states': [], 'source_region': region})
 
         def node(self, obj):
@@ -206,30 +231,38 @@ def import_pbf(path, region, metadata, boundaries):
             self.record(RelationProxy, 'relation', coords[len(coords) // 2])
             unresolved_relations.discard(f'osm:relation:{obj.orig_id()}')
 
-    # Sparse in-memory location index has no persistent raw cache inside the checkout.
+    # Production runs use a bounded child process and an external file-backed index.
     # Native key filtering occurs after location/area assembly, avoiding Python
     # callbacks for the millions of untagged geometry nodes in a state extract.
     service_keys = ['amenity', 'shop', 'sanitary_dump_station', 'waterway', 'fuel', 'fuel:lpg']
     service_keys += [prefix + ':' + key for prefix in ('disused', 'abandoned', 'demolished', 'removed', 'razed', 'proposed', 'construction') for key in service_keys.copy()]
-    Handler().apply_file(str(path), locations=True, idx='flex_mem', filters=[osmium.filter.KeyFilter(*service_keys)])
+    with tempfile.TemporaryDirectory(prefix='services-location-index-') as index_directory:
+        index = location_index or f'sparse_file_array,{Path(index_directory) / "locations.idx"}'
+        Handler().apply_file(str(path), locations=True, idx=index, filters=[osmium.filter.KeyFilter(*service_keys)])
     rows, quarantine = assign(rows, boundaries, region)
     quarantine.extend({'id': oid, 'coordinates': None, 'reason': 'unsupported_relation_geometry', 'candidates': []} for oid in sorted(unresolved_relations))
     source = {'kind': 'geofabrik', 'url': URLS[region], 'extract_timestamp': extract, 'retrieved_at': timestamp(metadata['retrieved_at']), 'sha256': metadata['sha256'], 'license': 'ODbL-1.0', 'categories': list(CATEGORIES)}
     for name in ('lifecycle_excluded', 'invalid_geometry', 'restricted_retained', 'conditional_access'):
         stats.setdefault(name, 0)
     stats.update({'accepted': len(rows), 'quarantined': len(quarantine)})
-    return {'version': 2, 'region': region, 'source': source, 'items': sorted(rows, key=lambda row: row['id'])}, quarantine, {**metadata, **stats, 'parse_seconds': round(time.monotonic() - started, 3)}
+    return {'version': 2, 'region': region, 'source': source, 'items': sorted(rows, key=lambda row: row['id'])}, quarantine, {**metadata, **stats, 'parser_version': parser_version, 'parse_seconds': round(time.monotonic() - started, 3)}
+
+
+def validate_source_update(wrapper, prior=None, allow_shrink=False):
+    """Check loss/freshness without mutating either candidate or accepted evidence."""
+    if not wrapper['items']:
+        raise ValueError('Empty source cannot replace accepted state')
+    if prior is not None:
+        old_date, new_date = prior['source']['extract_timestamp'], wrapper['source']['extract_timestamp']
+        if old_date and (not new_date or new_date < old_date):
+            raise ValueError('Source date regression')
+        if len(wrapper['items']) < len(prior['items']) * .7 and not allow_shrink:
+            raise ValueError('Unreviewed source shrink exceeds 30%; previous source retained')
 
 
 def write_source(path, wrapper, allow_shrink=False):
     path = Path(path)
-    if not wrapper['items']: raise ValueError('Empty source cannot replace accepted state')
-    if path.exists():
-        prior = json.loads(path.read_bytes())
-        old_date, new_date = prior['source']['extract_timestamp'], wrapper['source']['extract_timestamp']
-        if old_date and (not new_date or new_date < old_date): raise ValueError('Source date regression')
-        if len(wrapper['items']) < len(prior['items']) * .7 and not allow_shrink:
-            raise ValueError('Unreviewed source shrink exceeds 30%; previous source retained')
+    validate_source_update(wrapper, json.loads(path.read_bytes()) if path.exists() else None, allow_shrink)
     path.parent.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(wrapper, ensure_ascii=False, separators=(',', ':')) + '\n'
     with tempfile.NamedTemporaryFile(mode='w', dir=path.parent, delete=False) as output:
@@ -249,8 +282,8 @@ def main():
     scratch = args.scratch.resolve()
     if scratch.is_relative_to(ROOT): raise ValueError('Scratch must be outside checkout')
     scratch.mkdir(parents=True, exist_ok=True)
-    boundaries = StateBoundaries()
     if args.region == 'legacy':
+        boundaries = StateBoundaries()
         wrapper, quarantine = legacy((ROOT / 'data/poi_dump_water_propane.geojson').read_bytes(), boundaries)
         stats = {'accepted': len(wrapper['items']), 'quarantined': len(quarantine)}
     else:
@@ -264,10 +297,11 @@ def main():
         else:
             metadata = download(args.region, pbf)
             receipt.write_text(json.dumps(metadata, indent=2))
-        wrapper, quarantine, stats = import_pbf(pbf, args.region, metadata, boundaries)
-    write_source(args.output_dir / f'{args.region}.json', wrapper, args.allow_reviewed_shrink)
-    report = {'region': args.region, 'source': wrapper['source'], 'counts': dict(Counter(c for row in wrapper['items'] for c in row['categories'])), 'statistics': stats, 'quarantine_reasons': dict(Counter(q['reason'] for q in quarantine)), 'quarantine': quarantine, 'samples': {category: [{'id': row['id'], 'url': f"https://www.openstreetmap.org/{row['osm_type']}/{row['osm_id']}", 'tags': row['tags']} for row in wrapper['items'] if category in row['categories']][:2] for category in CATEGORIES}}
+        from services_parse_budget import bounded_import
+        wrapper, quarantine, stats = bounded_import(pbf, args.region, metadata, scratch)
+    report = {'region': args.region, 'source': wrapper['source'], 'counts': {category: sum(category in row['categories'] for row in wrapper['items']) for category in CATEGORIES}, 'statistics': stats, 'quarantine_reasons': dict(Counter(q['reason'] for q in quarantine)), 'quarantine': quarantine, 'samples': {category: [{'id': row['id'], 'url': f"https://www.openstreetmap.org/{row['osm_type']}/{row['osm_id']}", 'tags': row['tags']} for row in wrapper['items'] if category in row['categories']][:2] for category in CATEGORIES}}
     (scratch / f'{args.region}-report.json').write_text(json.dumps(report, indent=2))
+    write_source(args.output_dir / f'{args.region}.json', wrapper, args.allow_reviewed_shrink)
     print(json.dumps({k: v for k, v in report.items() if k not in ('quarantine', 'samples')}, indent=2))
 
 

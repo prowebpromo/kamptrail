@@ -1,0 +1,188 @@
+import copy
+import hashlib
+import io
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+import urllib.request
+
+SCRIPTS = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(SCRIPTS))
+import import_services as services
+from services_regions import URLS, REGISTRY, validate_resolved_url
+from services_parse_budget import bounded_process
+from stage_services import validate_checkpoint, stage_one, digest, checked_regions
+from aggregate_services import aggregate
+
+
+class Response(io.BytesIO):
+    def __init__(self, raw, length):
+        super().__init__(raw)
+        self.headers = {'Content-Length': str(length)}
+    def geturl(self):
+        return URLS['RI'].replace('latest', '250101')
+
+
+class NationalServicesTests(unittest.TestCase):
+    def test_official_exact_fifty_state_projection(self):
+        self.assertEqual(len(URLS), 50)
+        self.assertEqual(set(URLS), services.STATES)
+        self.assertEqual(REGISTRY['index_url'], 'https://download.geofabrik.de/index-v1.json')
+        self.assertEqual(URLS['MD'], 'https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf')
+        for state, row in REGISTRY['regions'].items():
+            self.assertEqual(row['iso3166_2'], 'US-' + state)
+        for values in ['UT UT', 'DC', 'RI --allow-anywhere', '']:
+            with self.assertRaises(ValueError): checked_regions(values)
+
+    def test_same_requested_region_redirect_binding(self):
+        handler = services.FixedRedirect('RI')
+        good = URLS['RI'].replace('latest', '250101')
+        request = urllib.request.Request(URLS['RI'])
+        self.assertEqual(handler.redirect_request(request, None, 302, '', {}, good).full_url, good)
+        for bad in [URLS['UT'], good.replace('https:', 'http:'), good.replace('download.', 'osm-internal.download.'), good + '?key=x', good.replace('250101', '250230'), good.replace('250101', '681231'), good.replace('rhode-island', 'rhode-island/../utah')]:
+            with self.assertRaises(ValueError): validate_resolved_url('RI', bad)
+        with self.assertRaises(ValueError):
+            handler.redirect_request(urllib.request.Request(URLS['UT']), None, 302, '', {}, good)
+
+    def test_truncated_download_retains_last_good(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / 'RI.osm.pbf'
+            p.write_bytes(b'last-good')
+            opener = unittest.mock.Mock()
+            opener.open.return_value = Response(b'short', 100)
+            with patch('urllib.request.build_opener', return_value=opener):
+                with self.assertRaisesRegex(ValueError, 'Truncated'):
+                    services.download('RI', p)
+            self.assertEqual(p.read_bytes(), b'last-good')
+            self.assertFalse(p.with_suffix('.part').exists())
+
+    def test_parse_walltime_and_disk_failure_never_touch_accepted_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            accepted = directory / 'UT.json'; accepted.write_bytes(b'accepted')
+            with self.assertRaisesRegex(ValueError, 'walltime'):
+                bounded_process([sys.executable, '-c', 'import time; time.sleep(30)'], directory, seconds=.15)
+            self.assertEqual(accepted.read_bytes(), b'accepted')
+            with self.assertRaisesRegex(ValueError, 'disk budget'):
+                bounded_process([sys.executable, '-c', "import pathlib,time; pathlib.Path('" + str(directory / 'large') + "').write_bytes(b'x'*4096); time.sleep(30)"], directory, disk_bytes=2048)
+            self.assertEqual(accepted.read_bytes(), b'accepted')
+            with self.assertRaisesRegex(ValueError, 'MemoryError'):
+                bounded_process([sys.executable, '-c', 'bytearray(5 * 1024**3)'], directory)
+            self.assertEqual(accepted.read_bytes(), b'accepted')
+
+    def checkpoint(self, root, region='RI', batch='test', count=1, extract='2025-01-01T00:00:00Z'):
+        p = root / region; p.mkdir()
+        record = {'id':'osm:node:1', 'osm_type':'node', 'osm_id':'1', 'osm_version':1, 'edited_at':'2025-01-01T00:00:00Z', 'coordinates':[-71.4,41.8], 'name':'Station', 'categories':['fuel'], 'tags':{'amenity':'fuel'}, 'states':[region], 'source_region':region}
+        source = {'kind':'geofabrik','url':URLS[region], 'extract_timestamp':extract, 'retrieved_at':'2025-03-01T00:00:00Z', 'sha256':'a'*64, 'license':'ODbL-1.0', 'categories':list(services.CATEGORIES)}
+        (p/'source.json').write_text(json.dumps({'version':2,'region':region,'source':source,'items':[{**record,'id':f'osm:node:{i}','osm_id':str(i)} for i in range(1,count+1)]}))
+        (p/'report.json').write_text(json.dumps({'source':source,'statistics':{'accepted':count,'parser_version':'4.3.2','sha256':source['sha256'],'url':source['url'],'resolved_url':source['url'].replace('latest',extract[2:10].replace('-','')),'retrieved_at':source['retrieved_at'],'bytes':100,'quarantined':0},'quarantine':[]}))
+        receipt={'version':1,'region':region,'batch':batch,'registry_sha256':digest(SCRIPTS/'services-regions.json'),'accepted':count,'hashes':{name:digest(p/name) for name in ('source.json','report.json')}}
+        (p/'receipt.json').write_text(json.dumps(receipt))
+        return p
+
+    def test_resume_checks_content_and_batch_without_network(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); stage=root/'stage'; stage.mkdir(); p=self.checkpoint(stage)
+            with patch('stage_services.subprocess.run', wraps=__import__('subprocess').run) as run:
+                self.assertEqual(stage_one('RI',stage,root/'raw','test'),'resumed')
+                self.assertEqual(len(run.call_args_list),1) # schema check only
+            (p/'source.json').write_text('{}')
+            with self.assertRaisesRegex(ValueError,'hash-mismatched'):validate_checkpoint(p,'RI','test')
+            with self.assertRaisesRegex(ValueError,'binding'):validate_checkpoint(p,'RI','other')
+
+    def test_failed_refresh_and_interrupted_checkpoint_replacement_retain_last_good(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); stage=root/'stage';stage.mkdir();p=self.checkpoint(stage)
+            before=(p/'source.json').read_bytes()
+            # Crash after previous checkpoint rename is recovered before resume.
+            p.rename(stage/'.RI-previous')
+            self.assertEqual(stage_one('RI',stage,root/'raw','test'),'resumed')
+            self.assertEqual((p/'source.json').read_bytes(),before)
+            # Import/download/parse failure before checkpoint leaves accepted bytes.
+            with patch('stage_services.run_import', side_effect=ValueError('simulated parse budget failure')):
+                with self.assertRaisesRegex(ValueError,'parse budget'):
+                    stage_one('RI',stage,root/'raw','test',resume=False)
+            self.assertEqual((p/'source.json').read_bytes(),before)
+            failure=json.loads((stage/'RI-failure.json').read_bytes())
+            self.assertTrue(failure['last_good_retained'])
+            validate_checkpoint(p,'RI','test')
+
+    def test_refresh_obeys_both_accepted_and_checkpoint_regression_and_loss_guards(self):
+        # An older checkpoint cannot authorize regression or shrink versus accepted
+        # evidence; its own larger count also keeps its loss guard binding.
+        cases = [('date',1,10,'2025-01-15T00:00:00Z',10,'date regression'),
+                 ('accepted_loss',1,10,'2025-02-02T00:00:00Z',1,'shrink'),
+                 ('checkpoint_loss',10,5,'2025-02-02T00:00:00Z',5,'shrink')]
+        for name, checkpoint_count, accepted_count, candidate_date, candidate_count, reason in cases:
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as tmp:
+                root=Path(tmp); stage=root/'stage'; stage.mkdir()
+                checkpoint=self.checkpoint(stage,count=checkpoint_count)
+                checkout=root/'checkout'; checkout.mkdir()
+                (checkout/'scripts').symlink_to(SCRIPTS,target_is_directory=True)
+                accepted_dir=checkout/'data/sources/services'; accepted_dir.mkdir(parents=True)
+                accepted=copy.deepcopy(json.loads((checkpoint/'source.json').read_bytes()))
+                accepted['source']['extract_timestamp']='2025-02-01T00:00:00Z'
+                template=accepted['items'][0]
+                accepted['items']=[{**template,'id':f'osm:node:{i}','osm_id':str(i)} for i in range(1,accepted_count+1)]
+                accepted_path=accepted_dir/'RI.json'; accepted_path.write_text(json.dumps(accepted))
+                candidate=copy.deepcopy(accepted)
+                candidate['source']['extract_timestamp']=candidate_date
+                candidate['items']=[{**template,'id':f'osm:node:{i}','osm_id':str(i)} for i in range(1,candidate_count+1)]
+                before={p:p.read_bytes() for p in [accepted_path,*checkpoint.iterdir()] if p.is_file()}
+                def imported(command):
+                    self.assertIn('--reuse-download',command)
+                    output=Path(command[command.index('--output-dir')+1])/'RI.json'
+                    services.write_source(output,candidate)
+                    report=json.loads((checkpoint/'report.json').read_bytes())
+                    report['source']=candidate['source']
+                    report['statistics'].update({'accepted':candidate_count,'resolved_url':URLS['RI'].replace('latest',candidate_date[2:10].replace('-',''))})
+                    (root/'raw/RI-report.json').write_text(json.dumps(report))
+                with patch('stage_services.ROOT',checkout), patch('stage_services.run_import',side_effect=imported):
+                    with self.assertRaisesRegex(ValueError,reason):
+                        stage_one('RI',stage,root/'raw','test',resume=False,reuse_download=True)
+                for path, raw in before.items():
+                    self.assertEqual(path.read_bytes(),raw)
+                self.assertFalse((stage/'.RI-previous').exists())
+
+    def test_resume_and_aggregation_recheck_current_accepted_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); stage=root/'stage';stage.mkdir(); checkpoint=self.checkpoint(stage)
+            checkout=root/'checkout';checkout.mkdir();(checkout/'scripts').symlink_to(SCRIPTS,target_is_directory=True)
+            sources=checkout/'data/sources/services';sources.mkdir(parents=True)
+            accepted=json.loads((checkpoint/'source.json').read_bytes())
+            accepted['source']['extract_timestamp']='2025-02-01T00:00:00Z'
+            accepted_path=sources/'RI.json';accepted_path.write_text(json.dumps(accepted))
+            destination=root/'assets';destination.mkdir();(destination/'index.json').write_bytes(b'last-good')
+            before={p:p.read_bytes() for p in [accepted_path,*checkpoint.iterdir()] if p.is_file()}
+            with patch('stage_services.ROOT',checkout), patch('aggregate_services.ROOT',checkout):
+                with self.assertRaisesRegex(ValueError,'date regression'):
+                    stage_one('RI',stage,root/'raw','test')
+                with self.assertRaisesRegex(ValueError,'date regression'):
+                    aggregate(stage,destination,'test',['RI'])
+            self.assertEqual((destination/'index.json').read_bytes(),b'last-good')
+            for path,raw in before.items():self.assertEqual(path.read_bytes(),raw)
+
+    def test_incomplete_aggregate_preserves_last_good_and_regional_proof_is_explicit(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); stage=root/'stage';stage.mkdir();self.checkpoint(stage)
+            dest=root/'assets'; dest.mkdir(); (dest/'index.json').write_text('last-good')
+            with self.assertRaises(FileNotFoundError):aggregate(stage,dest,'test')
+            self.assertEqual((dest/'index.json').read_text(),'last-good')
+            (dest/'index.json').unlink()
+            receipt=aggregate(stage,dest,'test',['RI'])
+            self.assertFalse(receipt['national_complete'])
+            manifest=json.loads((dest/'index.json').read_bytes())
+            self.assertLessEqual((dest/'index.json').stat().st_size,1024*1024)
+            self.assertLessEqual(len(manifest['shards']),4096)
+            self.assertLessEqual(manifest['total'],1000000)
+            for shard in manifest['shards']:
+                raw=(dest/shard['url']).read_bytes()
+                self.assertEqual(hashlib.sha256(raw).hexdigest(),shard['sha256'])
+                self.assertLessEqual(len(raw),512*1024)
+                self.assertLessEqual(shard['count'],1500)
+
+
+if __name__ == '__main__': unittest.main()

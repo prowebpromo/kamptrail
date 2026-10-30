@@ -85,3 +85,35 @@ test('canonical wire bytes ignore source object property insertion order',()=>{
  const a=buildDatabase([original]),b=buildDatabase([reverseKeys(original)]);
  assert.equal(a.manifest.snapshot_id,b.manifest.snapshot_id);assert.deepEqual(a.raw,b.raw);assert.deepEqual(a.shards.map(s=>s.raw),b.shards.map(s=>s.raw));
 });
+
+test('official registry binds a source to its exact requested state',()=>{
+ const s=source([row()]);
+ s.source.url='https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf';
+ assert.throws(()=>buildDatabase([s]),/source URL/);
+ const valid=source([row('1','node','AK',[179.5,51]),row('1','way','AK',[-179.5,51])],'AK');
+ valid.source.url='https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf';
+ const hi=source([row('1','relation','HI',[-155.5,19.5])],'HI');
+ hi.source.url='https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf';
+ const result=buildDatabase([valid,hi]);
+ assert.equal(result.manifest.total,3);
+ assert.deepEqual(new Set(result.shards.flatMap(s=>JSON.parse(s.raw).items.map(r=>r.id))),new Set(['osm:node:1','osm:way:1','osm:relation:1']));
+ for(const shard of result.shards)assert.ok(shard.entry.bbox[0] < shard.entry.bbox[2]);
+});
+test('published manifest is retained when the immutable candidate is incomplete or corrupt',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'services-candidate-'));
+ try {
+  const accepted=buildDatabase([source([row()])]);writeDatabase(accepted,dir);
+  const before=fs.readFileSync(path.join(dir,'index.json'));
+  const candidate=buildDatabase([source([row('2')])]);
+  const corrupt=path.join(dir,candidate.shards[0].entry.url);fs.mkdirSync(path.dirname(corrupt),{recursive:true});fs.writeFileSync(corrupt,'truncated');
+  assert.throws(()=>writeDatabase(candidate,dir),/collision/);
+  assert.deepEqual(fs.readFileSync(path.join(dir,'index.json')),before);
+ } finally {fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('national growth fails closed at unchanged shard and manifest caps',()=>{
+ // Synthetic cells exercise the exact producer limits without downloading data.
+ const items=Array.from({length:4097},(_,i)=>row(String(i+1),'node','UT',[-179.9+(i%360),-79.9+Math.floor(i/360)]));
+ assert.throws(()=>buildDatabase([source(items)]),/Shard count cap exceeded/);
+ assert.throws(()=>buildDatabase([source(items.slice(0,4000))]),/Manifest byte cap exceeded/);
+});

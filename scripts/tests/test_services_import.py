@@ -78,6 +78,10 @@ class ServicesImportTests(unittest.TestCase):
             self.assertEqual({r['id'] for r in result['items']},{'osm:node:1','osm:way:1','osm:relation:1'})
             self.assertEqual(result['source']['extract_timestamp'],'2025-01-01T00:00:00Z')
             self.assertFalse(quarantine)
+            with self.assertRaisesRegex(ValueError,'header date'):
+                services.import_pbf(p,'UT',{**metadata,'resolved_url':services.URLS['UT'].replace('latest','250102')},Boundaries())
+            with self.assertRaisesRegex(ValueError,'requested region'):
+                services.import_pbf(p,'UT',{**metadata,'url':services.URLS['RI']},Boundaries())
             metadata['sha256']='a'*64
             with self.assertRaisesRegex(ValueError,'checksum'):
                 services.import_pbf(p,'UT',metadata,Boundaries())
