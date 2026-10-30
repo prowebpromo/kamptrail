@@ -169,6 +169,8 @@ jobs:
           fs.writeFileSync(path.join(folder, 'index.json.tmp'), `${JSON.stringify(index, null, 2)}\n`);
           fs.renameSync(path.join(folder, 'index.json.tmp'), path.join(folder, 'index.json'));
           JS
+      - name: Recheck maintained USFS fee pages and record exceptions
+        run: python scripts/recheck_usfs_fee_pages.py
       - name: Refresh agency camping records with fee wording (Forest Service, BLM)
         # Public services, no keys. Each fetch raises before writing on failure or a shrunken result.
         continue-on-error: true
@@ -278,6 +280,8 @@ jobs:
         with:
           node-version: '22'
       - run: pip install -r requirements.txt pyyaml
+      - name: Recheck maintained USFS fee pages and record exceptions
+        run: python scripts/recheck_usfs_fee_pages.py
       - name: Refresh complete official agency sources
         run: |
           python scripts/fetch_usfs_recreation.py
@@ -317,7 +321,7 @@ jobs:
           [[ "$(git rev-parse FETCH_HEAD)" == "$(git rev-parse HEAD)" ]] || { echo 'Selected branch moved; start a fresh reviewed import'; exit 1; }
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/sources/usfs.json data/sources/blm.json data/sources/agency-quarantine.json data/campsites/agency data/campsites/search-index.json data/health.json
+          git add data/sources/usfs-fee-checks.json data/sources/usfs.json data/sources/blm.json data/sources/agency-quarantine.json data/campsites/agency data/campsites/search-index.json data/health.json
           if ! git diff --staged --quiet; then
             git commit -m 'Refresh complete official agency camping evidence and search snapshots'
             git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"

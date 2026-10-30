@@ -18,6 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fee_text  # noqa: E402
+import recheck_usfs_fee_pages as fee_rechecks  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query'
@@ -273,7 +274,10 @@ def applicable_fee_review(row, retrieved):
     checked = date.fromisoformat(retrieved)
     if checked < date.fromisoformat(review['retrieved_at']):
         return None
-    if review.get('review_after') and checked >= date.fromisoformat(review['review_after']):
+    automated = fee_rechecks.validation(review, checked)
+    if automated is False:
+        return None
+    if automated is not True and review.get('review_after') and checked >= date.fromisoformat(review['review_after']):
         return None
     expected = review.get('identity_coordinates')
     if review.get('review_after') and expected is None:
@@ -324,6 +328,8 @@ def to_feature(row, retrieved):
     conflict = False
     review = applicable_fee_review(row, retrieved)
     if review:
+        automated = fee_rechecks.load_checks() or {}
+        automated = automated.get(rid) if fee_rechecks.validation(review, date.fromisoformat(retrieved)) is True else None
         text = fee_text.clean(review['text'])
         reviewed_status, reviewed_cost = fee_text.classify(text)
         evidence.append({
@@ -333,6 +339,9 @@ def to_feature(row, retrieved):
             'source_updated_at_basis': review.get('source_updated_at_basis'),
             'text': text, 'sha256': hashlib.sha256(text.encode('utf-8')).hexdigest(),
             'classification_text': text, 'evidence_kind': 'maintained_official_page_observation',
+            **({'automated_check': {'checked_at': automated['checked_at'], 'valid_until': automated['valid_until'],
+                'basis': 'Approved complete main-page text and links, fee section, identity and notice dependencies unchanged',
+                'page_sha256': automated['page_sha256']}} if automated else {}),
         })
         for context in review.get('context', []):
             context_text = fee_text.clean(context['text'])
