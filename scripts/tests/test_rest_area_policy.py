@@ -1,0 +1,83 @@
+import copy
+import datetime as dt
+import json
+from pathlib import Path
+import sys
+import unittest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import rest_area_policy as policy
+
+BUNDLE = json.loads(policy.POLICIES.read_text())
+NOW = dt.datetime(2026, 10, 31, tzinfo=dt.timezone.utc)
+
+
+def resolve(state='MT', operator='mdt', kind='rest_area', **kwargs):
+    return policy.resolve(BUNDLE, state=state, operator=operator,
+                          facility_kind=kind, now=NOW, **kwargs)
+
+
+def exception(**rules):
+    return {'facility_id': 'test:1', 'state': 'MT', 'operator': 'mdt',
+            'facility_kind': 'rest_area', 'sources': BUNDLE['policies'][1]['sources'],
+            'rules': rules}
+
+
+class StatePolicies(unittest.TestCase):
+    def test_duration_and_camping_do_not_imply_other_permissions(self):
+        tx = resolve('TX', 'txdot', 'safety_rest_area')
+        self.assertEqual(tx['rules']['max_stay_hours'], 24)
+        self.assertEqual(tx['rules']['overnight_parking'], 'unknown')
+        self.assertEqual(tx['rules']['sleeping_in_vehicle'], 'unknown')
+        mt = resolve()
+        self.assertEqual(mt['rules']['overnight_parking'], 'allowed')
+        self.assertEqual(mt['rules']['camping'], 'prohibited')
+        self.assertEqual(mt['rules']['sleeping_in_vehicle'], 'unknown')
+        self.assertEqual(mt['rules']['max_stay_hours'], 12)
+        self.assertEqual(mt['current_opening'], 'unknown')
+
+    def test_state_alone_cannot_apply_agency_rule_to_other_facilities(self):
+        for state, operator, kind in [('TX', 'private', 'safety_rest_area'),
+                                       ('TX', 'txdot', 'travel_information_center'),
+                                       ('MT', 'mdt', 'campsite'), ('NY', 'mdt', 'rest_area')]:
+            result = resolve(state, operator, kind)
+            self.assertIsNone(result['policy_id'])
+            self.assertEqual(result['rules']['overnight_parking'], 'unknown')
+            self.assertIsNone(result['rules']['max_stay_hours'])
+
+    def test_specific_restrictive_exception_and_unknown_can_block_default(self):
+        result = resolve(facility_id='test:1', exceptions=[exception(overnight_parking='prohibited', max_stay_hours=4)])
+        self.assertEqual(result['rules']['overnight_parking'], 'prohibited')
+        self.assertEqual(result['rules']['max_stay_hours'], 4)
+        self.assertEqual(result['review_required'], [])
+        result = resolve(facility_id='test:1', exceptions=[exception(overnight_parking='unknown')])
+        self.assertEqual(result['rules']['overnight_parking'], 'unknown')
+        self.assertEqual(resolve(facility_id='other', exceptions=[exception(overnight_parking='prohibited')])['rules']['overnight_parking'], 'allowed')
+
+    def test_permissive_conflicts_need_review_instead_of_relaxing_state_rule(self):
+        result = resolve(facility_id='test:1', exceptions=[exception(camping='allowed', max_stay_hours=24)])
+        self.assertEqual(result['rules']['camping'], 'unknown')
+        self.assertIsNone(result['rules']['max_stay_hours'])
+        self.assertEqual(result['review_required'], ['camping', 'max_stay_hours'])
+
+    def test_invalid_and_ambiguous_evidence_rejected(self):
+        for mutate in [lambda b: b['policies'].append(copy.deepcopy(b['policies'][0])),
+                       lambda b: b['policies'][0].update(sources=[]),
+                       lambda b: b['policies'][0]['sources'][0].update(url='https://example.com/'),
+                       lambda b: b['policies'][0]['sources'][0].update(retrieved_at='2027-01-01T00:00:00Z')]:
+            bundle = copy.deepcopy(BUNDLE)
+            mutate(bundle)
+            with self.assertRaises(ValueError):
+                policy.validate(bundle, NOW)
+        with self.assertRaises(ValueError):
+            resolve(facility_id='test:1', exceptions=[exception(), exception()])
+
+    def test_conflicting_site_rule_cannot_mutate_reusable_state_evidence(self):
+        original = copy.deepcopy(BUNDLE)
+        resolve(facility_id='test:1', exceptions=[exception(overnight_parking='prohibited')])
+        self.assertEqual(BUNDLE, original)
+        self.assertEqual(resolve()['rules']['overnight_parking'], 'allowed')
+
+
+if __name__ == '__main__':
+    unittest.main()
