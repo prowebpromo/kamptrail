@@ -34,3 +34,5 @@ test('nearby panels cancel old category loads, refresh rendered selections and d
  pending[1].resolve(result([item(2,[-111.5,40.5],{name:'Water point',categories:['water'],tags:{amenity:'water_point'}})]));await new Promise(r=>setImmediate(r));assert.match(box.textContent,/Water fill: Water point/);assert.doesNotMatch(box.textContent,/Fuel:/);
  selected=['groceries'];events.get('kamptrail:servicescategories')();assert.equal(pending.length,3);pending[2].resolve(result([]));await new Promise(r=>setImmediate(r));assert.match(box.textContent,/Groceries: none in loaded source coverage/);attached=[];events.get('kamptrail:servicescategories')();assert.equal(pending.length,3);
 });
+
+test('a changed descriptor cannot borrow validated memory from the same snapshot URL',async()=>{const f=fixture(),s=setup(f);await s.client.loadBounds(bounds);f.manifest.shards[0].sha256='e'.repeat(64);f.files.set('index.json',JSON.stringify(f.manifest));const result=await s.client.loadBounds(bounds,{force:true});assert(result.partial);assert.equal(result.items.length,0);});

@@ -123,7 +123,7 @@ function buildDatabase(inputSources) {
   const sources = inputSources.map(validateSource).sort((a,b) => a.region.localeCompare(b.region));
   const rows = selectRows(sources);
   invariant(rows.length > 0 && rows.length <= 1000000, 'Invalid database row count');
-  const snapshot = hash(stable({schema:2,sources:sources.map(s => ({region:s.region,source:s.source})),items:rows})).slice(0,24);
+  const snapshot = hash(stable({schema:2,encoding:'canonical-json-1',sources:sources.map(s => ({region:s.region,source:s.source})),items:rows})).slice(0,24);
   const cells = new Map(), shards = [];
   for (const row of rows) {
     const x = Math.min(179, Math.floor(row.coordinates[0])), y = Math.min(89, Math.floor(row.coordinates[1]));
@@ -132,7 +132,7 @@ function buildDatabase(inputSources) {
     cells.get(key).items.push(row);
   }
   function split(items, bbox, id, depth = 0) {
-    const raw = Buffer.from(JSON.stringify({version:2,snapshot_id:snapshot,shard_id:id,items}));
+    const raw = Buffer.from(stable({version:2,snapshot_id:snapshot,shard_id:id,items}));
     if (items.length <= MAX_ROWS && raw.length <= MAX_SHARD_BYTES) {
       const counts = Object.fromEntries(CATEGORIES.map(c => [c,items.filter(row => row.categories.includes(c)).length]));
       shards.push({entry:{id,url:`snapshots/${snapshot}/${id}.json`,bbox,sha256:hash(raw),bytes:raw.length,count:items.length,counts},raw});
@@ -148,7 +148,7 @@ function buildDatabase(inputSources) {
   const dates = sources.flatMap(s => [s.source.retrieved_at,...(s.region === 'legacy' ? s.items.map(row => row.retrieved_at) : [])]).filter(Boolean).sort((a,b) => Date.parse(a)-Date.parse(b));
   invariant(dates.length > 0, 'No dated source evidence');
   const manifest = {version:2,snapshot_id:snapshot,generated_at:dates[dates.length-1],source:{name:'OpenStreetMap contributors',license:'ODbL-1.0',copyright_url:'https://www.openstreetmap.org/copyright'},coverage:sources.map(s => ({region:s.region,...s.source,count:rows.filter(row => row.source_region===s.region).length})),total:rows.length,shards:shards.map(s => s.entry)};
-  const raw = Buffer.from(JSON.stringify(manifest));
+  const raw = Buffer.from(stable(manifest));
   invariant(raw.length <= MAX_MANIFEST_BYTES, 'Manifest byte cap exceeded');
   return {manifest,raw,shards,compatibility:makeV1(rows)};
 }

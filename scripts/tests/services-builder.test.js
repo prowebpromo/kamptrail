@@ -78,3 +78,10 @@ test('immutable generation manifest is present and cannot be silently changed',(
  fs.writeFileSync(target,'{}');assert.throws(()=>writeDatabase(result,directory),/Immutable manifest collision/);
  }finally{fs.rmSync(directory,{recursive:true,force:true});}
 });
+
+test('canonical wire bytes ignore source object property insertion order',()=>{
+ const original=source([row()]);
+ function reverseKeys(value){if(Array.isArray(value))return value.map(reverseKeys);if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).reverse().map(([k,v])=>[k,reverseKeys(v)]));return value;}
+ const a=buildDatabase([original]),b=buildDatabase([reverseKeys(original)]);
+ assert.equal(a.manifest.snapshot_id,b.manifest.snapshot_id);assert.deepEqual(a.raw,b.raw);assert.deepEqual(a.shards.map(s=>s.raw),b.shards.map(s=>s.raw));
+});

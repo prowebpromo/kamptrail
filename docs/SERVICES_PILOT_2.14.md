@@ -36,7 +36,7 @@ Full quarantine identities/reasons, source-linked samples, runtime measurements 
 
 ## Output proof
 
-- Snapshot `aa125629cee931801c7a836c`: 7,340 identities in 698 spatial shards.
+- Snapshot `e92c275da02941e9983e26d2`: 7,340 identities in 698 spatial shards.
 - Manifest: 198,948 bytes. All shard bytes: 2,322,573. Largest shard: 427,766 bytes / 1,285 rows.
 - Caps: 1 MiB manifest, 4,096 shards, 1,000,000 identities; 512 KiB / 1,500 rows per shard. One-degree cells subdivide deterministically when required. Coordinates at ±180° are assigned without crossing bounding boxes.
 - SHA-256 is calculated from actual UTF-8 shard bytes. Immutable per-generation manifest and shards exist before atomic current-index promotion. Current plus two prior generations are retained; packaging must retain each complete validated generation. Compatibility `services.json` projects only dump, water and LPG.
@@ -79,7 +79,7 @@ A source failure keeps the previous accepted state and current published manifes
 
 Source aging is explicit: extract time, retrieval time, element edit time and build time are distinct. `generated_at` is derived from accepted retrieval evidence; a rebuild or `--reuse-download` replay does not refresh it. The replay re-hashes the existing PBF against its receipt. Historical dated evidence may remain available offline, but is never labeled current inspection or current operating status. Missing offline/unsupported areas remain unknown. AK/HI/dateline geometry fixtures pass; this pilot does not claim a new real Alaska or Hawaii import.
 
-This producer checkpoint includes seven Python tests (including actual native PBF node/way/relation decoding) and nine Node builder tests. Full application/browser/release checks belong to the integrated release gate.
+This producer checkpoint includes seven Python tests (including actual native PBF node/way/relation decoding) and ten Node builder tests. Full application/browser/release checks belong to the integrated release gate.
 
 ## Attribution and derivation
 
