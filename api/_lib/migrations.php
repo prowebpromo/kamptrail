@@ -129,4 +129,5 @@ return [
             "INSERT INTO community_discovery_state (id,revision) SELECT 1,1 WHERE NOT EXISTS (SELECT 1 FROM community_discovery_state WHERE id=1)",
         ],
     ],
+    '005_permissions' => require __DIR__ . '/permissions-migration.php',
 ];

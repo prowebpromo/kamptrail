@@ -72,6 +72,8 @@ Only a complete, current, coordinate-matched series can satisfy an active filter
 
 ### Service discovery (2.14.0)
 
+
+
 The separate services database is derived from OpenStreetMap contributors under [ODbL 1.0](https://www.openstreetmap.org/copyright). Expanded-category imports use [Geofabrik's public regional PBF extracts](https://www.geofabrik.de/data/download.html). They allow ODbL reuse with attribution and share-alike for derived databases. Source and derivation code remain available in this repository. Public extracts exclude contributor user IDs, names and changeset IDs. No private metadata endpoint is used.
 
 The first complete expanded extract is Utah. Other areas retain legacy dump, water-fill and LPG evidence, screened against Census state geometry. [Geofabrik explains](https://download.geofabrik.de/technical.html) that extract boundaries are buffered and can include neighboring regions; the pipeline does not use the extract name as proof of state membership. Ambiguous, outside-state and unsupported geometry records are quarantined. Exact node/way/relation identity, version, edit date, extract timestamp, retrieval date, source hash and relevant tags remain separate. A retrieval or build is not a field inspection.
@@ -79,3 +81,7 @@ The first complete expanded extract is Utah. Other areas retain legacy dump, wat
 Only explicit supported tags establish a service category. Potability, opening, fees, customer-only access and other restrictions remain source-reported or unknown. LPG does not establish cylinder refill; parking, a brand, land ownership or a successful stay does not establish overnight permission. Representative map points are not guaranteed driveway entrances or RV access. Service discovery sends no route coordinates to an external POI service.
 
 Spatial shards limit delivery to the viewed area or route corridor. Hash-validated visited shards can be read offline with their source dates; uncached or budget-limited areas remain incomplete. Service metadata and previous bounded snapshots survive separately from weather, which never matches offline. See [the contract](docs/SERVICES_CONTRACT_2.14.md) and the source pilot report for measured coverage and limitations.
+
+### Official rest-area locations (2.15)
+
+The first official rest-area pilot uses TxDOT's public [location list](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list.html). It preserves exact source labels, links and coordinates, validated against Census state geometry, with document hashes and retrieval dates. Texas travel information centers are excluded. The separately sourced [visitor duration context](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html) does not establish permission to sleep overnight. Every pilot location's overnight permission remains unknown. See [the source audit](docs/REST_AREAS_PILOT_2.15.md). Other states are not yet covered.

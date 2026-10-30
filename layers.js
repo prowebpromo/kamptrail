@@ -53,7 +53,8 @@
     const save=document.createElement('button');save.type='button';save.textContent='Save service stop';save.onclick=()=>window.KampTrailTrip?.addStop(item.id,KampTrailServices.feature(item,manifest));
     const [lng,lat]=item.coordinates;
     for(const [label,url] of [['Directions',directions(lat,lng)],['View on OSM',`https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`],['ODbL source','https://www.openstreetmap.org/copyright']]){const a=document.createElement('a');a.href=url;a.textContent=label;a.target='_blank';a.rel='noopener noreferrer';actions.append(a);}
-    actions.prepend(save);box.append(title,evidence,attribution,actions);return box;
+    const permission=document.createElement('button');permission.type='button';permission.textContent='Overnight permission';permission.onclick=()=>window.KampTrailPermissions?.open({kind:'service',id:item.id,name:item.name,coordinates:item.coordinates});
+    actions.prepend(save,permission);box.append(title,evidence,attribution,actions);return box;
   }
   function serviceControl() {
     const control=L.control({position:'topright'});
@@ -113,7 +114,8 @@
     const context = btn('Fire and smoke nearby', () => KampTrailEnvironment.showNear(lat, lng));
     const share = btn('Share', () => window.KampTrailShare?.share({spot: [lat, lng]}, 'This spot'));
     const dir = document.createElement('a'); dir.href = directions(lat, lng); dir.target = '_blank'; dir.rel = 'noopener noreferrer'; dir.textContent = 'Directions';
-    actions.append(wxBtn, alerts, context, save, share, dir);
+    const permission=btn('Overnight permission',()=>window.KampTrailPermissions?.open({kind:'spot',id:`spot:${lat.toFixed(5)},${lng.toFixed(5)}`,name:'This spot',coordinates:[lng,lat]}));
+    actions.append(wxBtn, alerts, context, permission, save, share, dir);
     const suggest = document.createElement('p'); suggest.className = 'kt-fine';
     const sug = btn('Suggest a campsite here', () => window.KampTrailContrib ? KampTrailContrib.open({kind: 'new_place', lat, lng}) : window.KampTrailShare && window.open(KampTrailShare.issueUrl('new', {lat, lng}), '_blank', 'noopener'));
     sug.className = 'kt-linkbtn';
@@ -132,8 +134,9 @@
     const land = landLayer();
     const roads = KampTrailMVUM.init(map);
     const environment = KampTrailEnvironment.init(map);
+    const restAreas = window.KampTrailRestAreas?.init(map);
     st.services = L.markerClusterGroup ? L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false, chunkedLoading: false, iconCreateFunction: c => L.divIcon({className: 'kt-svc-cluster', html: `<span>${c.getChildCount()}</span>`, iconSize: [28, 28]})}) : L.layerGroup();
-    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, 'USFS motor vehicle roads': roads, ...environment};
+    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, ...(restAreas?{'Official rest areas (Texas pilot)':restAreas}:{}), 'USFS motor vehicle roads': roads, ...environment};
     st.landLegend = legendControl();
     serviceControl().addTo(map);
     let serviceTimer;
@@ -164,5 +167,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.14.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.15.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();
