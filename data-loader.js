@@ -472,7 +472,7 @@
       return api.loadServices(lat,lng,{categories:selected,signal:controller.signal,force}).then(result=>{
         if(controller.signal.aborted)return;
         const best=api.nearestServices(result.items,lat,lng,selected);box.replaceChildren();
-        const heading=document.createElement('h4');heading.textContent='Services within 30 miles (straight-line)';
+        const heading=document.createElement('h3');heading.textContent='Services within 30 miles (straight-line)';
         const list=document.createElement('ul');
         for(const key of selected){
           const label=KampTrailServices.categories[key].label,li=document.createElement('li'),match=best[key];

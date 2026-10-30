@@ -75,6 +75,7 @@
     const tags=item.tags||{},source=manifest?.coverage?.find(c=>c.region===item.source_region),stamp=item.retrieved_at || source?.retrieved_at;
     const parts=[item.categories.map(k=>categories[k]?.label||k).join(', ')];
     if(tags.access)parts.push(`Access reported: ${tags.access}${['customers','permit'].includes(tags.access)?' (conditional)':''}`);
+    if(item.categories.includes('dump')&&tags.sanitary_dump_station==='customers')parts.push('Dump access reported: customers (conditional)');
     if(tags['access:conditional'])parts.push(`Conditional access: ${tags['access:conditional']}`);
     if(tags.fee||tags.charge)parts.push(`Fee reported: ${[tags.fee,tags.charge].filter(Boolean).join('; ')}`);
     if(tags.shop)parts.push(`Shop type: ${tags.shop}`);

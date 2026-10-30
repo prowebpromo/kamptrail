@@ -36,3 +36,5 @@ test('nearby panels cancel old category loads, refresh rendered selections and d
 });
 
 test('a changed descriptor cannot borrow validated memory from the same snapshot URL',async()=>{const f=fixture(),s=setup(f);await s.client.loadBounds(bounds);f.manifest.shards[0].sha256='e'.repeat(64);f.files.set('index.json',JSON.stringify(f.manifest));const result=await s.client.loadBounds(bounds,{force:true});assert(result.partial);assert.equal(result.items.length,0);});
+
+test('customers-only dump tagging remains visible even without a general access tag',()=>{const dump=item(99,[-111.5,40.5],{categories:['dump'],tags:{amenity:'camp_site',sanitary_dump_station:'customers'}});assert(matches(dump,['dump']));assert.match(describe(dump,fixture().manifest),/Dump access reported: customers \(conditional\)/);assert.doesNotMatch(describe({...dump,tags:{amenity:'sanitary_dump_station'}},fixture().manifest),/customers/);});

@@ -39,13 +39,14 @@
 
   // Services use the same dated, spatially bounded loader as nearby and routes.
   const SERVICE_LAYER = 'Services (7 categories)';
+  const SERVICE_ATTRIBUTION='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>';
   function serviceIcon(kind) {
     const k = KampTrailServices.categories[kind] || KampTrailServices.categories.dump;
     return L.divIcon({className: 'kt-svc-icon', html: `<span style="background:${k.color}">${k.letter}</span>`, iconSize: [24, 24], iconAnchor: [12, 12]});
   }
   function servicePopup(item, manifest) {
     const box=document.createElement('div');box.className='kt-svc-popup';box.dataset.serviceId=item.id;
-    const title=document.createElement('h3');title.textContent=item.name||item.categories.map(k=>KampTrailServices.categories[k].label).join(', ');
+    const title=document.createElement('h2');title.textContent=item.name||item.categories.map(k=>KampTrailServices.categories[k].label).join(', ');
     const evidence=document.createElement('p');evidence.className='kt-fine';evidence.textContent=KampTrailServices.describe(item,manifest);
     const attribution=document.createElement('p');attribution.className='kt-fine';attribution.textContent='Derived from OpenStreetMap contributors (ODbL).';
     const actions=document.createElement('div');actions.className='kt-popup-actions';
@@ -68,7 +69,8 @@
       const restricted=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.onchange=()=>{st.includeRestricted=check.checked;loadServices();};restricted.append(check,'Include no/private access (restricted)');
       const status=document.createElement('p');status.className='kt-services-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');st.serviceStatus=status;
       const retry=document.createElement('button');retry.type='button';retry.textContent='Retry service areas';retry.onclick=()=>loadServices(true);
-      box.append(fields,actions,restricted,status,retry);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);
+      const attribution=document.createElement('p');attribution.className='kt-fine';attribution.textContent='Service locations derived from OpenStreetMap contributors (ODbL).';
+      box.append(fields,actions,restricted,status,attribution,retry);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);
       window.addEventListener('kamptrail:servicescategories',()=>{for(const input of fields.querySelectorAll('input'))input.checked=KampTrailServices.getCategories().includes(input.value);loadServices();});
       return box;
     };return control;
@@ -134,7 +136,6 @@
     st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, 'USFS motor vehicle roads': roads, ...environment};
     st.landLegend = legendControl();
     serviceControl().addTo(map);
-    map.attributionControl?.addAttribution('Services derived from &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> (ODbL)');
     let serviceTimer;
     map.on('moveend',()=>{st.serviceAbort?.abort();++st.serviceSequence;clearTimeout(serviceTimer);serviceTimer=setTimeout(()=>loadServices(),180);});
     const control = L.control.layers(bases, st.overlays, {position: 'topright', collapsed: true}).addTo(map);
@@ -147,7 +148,10 @@
       const on = e.type === 'overlayadd';
       const p = readPrefs(); p.overlays = p.overlays || {}; p.overlays[e.name] = on; writePrefs(p);
       if (e.layer === land) { on ? st.landLegend.addTo(map) : st.landLegend.remove(); }
-      if (e.layer === st.services) loadServices();
+      if (e.layer === st.services) {
+        if(on)map.attributionControl?.addAttribution(SERVICE_ATTRIBUTION);else map.attributionControl?.removeAttribution(SERVICE_ATTRIBUTION);
+        loadServices();
+      }
     });
     if(prefs.overlays?.['RV services (dump, water, propane)']&&prefs.overlays[SERVICE_LAYER]===undefined)prefs.overlays[SERVICE_LAYER]=true;
     Object.entries(prefs.overlays || {}).forEach(([name, on]) => { if (on && st.overlays[name]) st.overlays[name].addTo(map); });
