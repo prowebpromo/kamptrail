@@ -11,8 +11,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.16.0">
-  <link rel="manifest" href="manifest.json?v=2.16.0">
+  <meta name="kamptrail-version" content="2.17.0">
+  <link rel="manifest" href="manifest.json?v=2.17.0">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
   <link rel="canonical" href="https://kamptrail.com/">
@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.Default.css">
-  <link rel="stylesheet" href="app.css?v=2.16.0">
+  <link rel="stylesheet" href="app.css?v=2.17.0">
   <script src="vendor/leaflet/leaflet.js"></script>
   <script src="vendor/markercluster/leaflet.markercluster.js"></script>
 </head>
@@ -36,6 +36,7 @@
       <div class="brand"><h1>KampTrail</h1><span>Free to use. No account required.</span></div>
       <nav class="actions" aria-label="Map tools">
         <button id="filters" class="btn" aria-label="Open filters" aria-expanded="false">Filters <span id="filter-badge" style="display:none"></span></button>
+        <button id="rig-profile" class="btn" aria-label="Open rig profile">My rig</button>
         <button id="trip" class="btn" aria-label="Open saved stops">Saved stops <span id="trip-count">(0)</span></button>
         <button id="near" class="btn" aria-label="Find campsites near me" aria-pressed="false">Near me</button>
       </nav>
@@ -63,7 +64,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.16.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.17.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -99,6 +100,13 @@
     <p><button type="button" class="btn" id="kt-my-reviews">My reviews</button></p>
     <h3>Routing privacy and offline routes</h3>
     <p>Calculating a route sends stop coordinates to FOSSGIS through KampTrail. KampTrail does not store coordinates or route geometry in its server database. It keeps a salted connection hash for routing limits. FOSSGIS may log routing requests under its own policy. Successful routes are cached on this device when browser storage allows. Saved routes can be reused offline, with their calculation date displayed. New routes and driving detours require a connection.</p>
+    <h3>Your rig profile</h3>
+    <p>“My rig” keeps one named profile in this browser. Dimensions, campsite preferences and JSON import/export stay on your device and are not sent to KampTrail or the routing provider. Export the profile to back it up or move it to another device. Imports show a preview before you choose to replace your profile. When device storage fails, you can explicitly use a profile for this session and export it.</p>
+    <p>Campsite fit length is separate from your full travel combination length. Applying a saved profile updates the matching campsite filters; editing those filters or resetting filters turns the profile link off while retaining the profile. Travel height, width, combination length and weight are reference values. They do not make car routing enforce vehicle restrictions. Unknown source measurements do not verify a fit. Clearing browser data removes the saved profile.</p>
+    <h3>Terrain along your route</h3>
+    <p>After calculating a car route, open its terrain profile and choose “Load terrain profile” to request USGS 3DEP samples. This sends up to 200 sampled coordinates to USGS through KampTrail in bounded requests. It does not send the full route, stop names, notes or rig dimensions. The server keeps a bounded cache of independent terrain values under coordinate hashes, plus request counters; it does not store the route or rig profile. USGS receives the requested sample coordinates.</p>
+    <p>Samples describe ground terrain, including under a bridge or above a tunnel. They do not measure the road surface, road grade, cumulative ascent, clearance or safe passage. The profile shows source and retrieval dates, available datum metadata, sample spacing and unknown gaps. It includes route endpoints and leg boundaries; longer routes have wider sample spacing. Minimum and maximum values describe only the samples.</p>
+    <p>Up to eight exact-route terrain profiles can stay on this device when storage allows, without automatic expiry. Offline views show their original dates and gaps; changed routes require their own profile. Choose refresh or retry to request new samples online. “Clear saved terrain” removes the stored profiles; an already open view remains visible until you close it. Clearing browser data also removes saved terrain.</p>
     <h3>Saved stops and offline use</h3>
     <p>Overnight permission is separate from price, parking and reviews. Open “Overnight permission” for dated, place-specific official evidence and moderated firsthand reports. A personal grant or a stay without asking does not establish permission for other visitors. Initial official evidence covers two BLM locations; other places remain unknown. The report location, visit date, public name and text become public only after approval. Private management codes stay on this device; reports and permission conclusions are not saved offline.</p>
     <p>Saved stops, notes, and dates stay in this browser on this device. Export a GPX file to back them up or move them to another device. After an online visit, listings for areas you viewed stay available offline. Map imagery needs internet, except Topo areas you saved with Offline. Campsite name search works offline after one online search. Directions, forecasts, and land lookups need internet. Clearing browser data removes saved stops and saved maps.</p>
@@ -109,24 +117,26 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden>Loading…</div>
   <noscript>KampTrail needs JavaScript to display its interactive map.</noscript>
-  <script src="share.js?v=2.16.0"></script>
-  <script src="spot-info.js?v=2.16.0"></script>
-  <script src="community-discovery.js?v=2.16.0"></script>
-  <script src="data-quality.js?v=2.16.0"></script>
-  <script src="forecast.js?v=2.16.0"></script>
-  <script src="services.js?v=2.16.0"></script>
-  <script src="data-loader.js?v=2.16.0"></script>
-  <script src="filters.js?v=2.16.0"></script>
-  <script src="routes.js?v=2.16.0"></script>
-  <script src="trip-planner.js?v=2.16.0"></script>
-  <script src="mvum.js?v=2.16.0"></script>
-  <script src="environment.js?v=2.16.0"></script>
-  <script src="layers.js?v=2.16.0"></script>
-  <script src="offline-maps.js?v=2.16.0"></script>
-  <script src="contributions.js?v=2.16.0"></script>
-  <script src="community.js?v=2.16.0"></script>
-  <script src="permissions.js?v=2.16.0"></script>
-  <script src="rest-areas.js?v=2.16.0"></script>
-  <script src="app.js?v=2.16.0"></script>
+  <script src="share.js?v=2.17.0"></script>
+  <script src="spot-info.js?v=2.17.0"></script>
+  <script src="community-discovery.js?v=2.17.0"></script>
+  <script src="data-quality.js?v=2.17.0"></script>
+  <script src="forecast.js?v=2.17.0"></script>
+  <script src="services.js?v=2.17.0"></script>
+  <script src="data-loader.js?v=2.17.0"></script>
+  <script src="filters.js?v=2.17.0"></script>
+  <script src="rig-profile.js?v=2.17.0"></script>
+  <script src="routes.js?v=2.17.0"></script>
+  <script src="route-elevation.js?v=2.17.0"></script>
+  <script src="trip-planner.js?v=2.17.0"></script>
+  <script src="mvum.js?v=2.17.0"></script>
+  <script src="environment.js?v=2.17.0"></script>
+  <script src="layers.js?v=2.17.0"></script>
+  <script src="offline-maps.js?v=2.17.0"></script>
+  <script src="contributions.js?v=2.17.0"></script>
+  <script src="community.js?v=2.17.0"></script>
+  <script src="permissions.js?v=2.17.0"></script>
+  <script src="rest-areas.js?v=2.17.0"></script>
+  <script src="app.js?v=2.17.0"></script>
 </body>
 </html>
