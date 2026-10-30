@@ -65,7 +65,8 @@ test('About the data shows source freshness, and a failed refresh run is visibly
   await page.getByRole('button',{name:'About the data'}).click();
   const table=page.getByRole('table',{name:'Data freshness'});
   await expect(table.getByRole('rowheader',{name:'Forest Service recreation sites'})).toBeVisible();
-  await expect(table.locator('tbody tr')).toHaveCount(7);
+  await expect(table.locator('tbody tr')).toHaveCount(8);
+  await expect(table.getByRole('rowheader',{name:'Official rest-area locations (TxDOT Texas pilot)'})).toBeVisible();
   await expect(table.getByRole('rowheader',{name:'Expanded service extracts (Geofabrik/OpenStreetMap)'})).toBeVisible();
   await page.keyboard.press('Escape');
   const now=new Date().toISOString();

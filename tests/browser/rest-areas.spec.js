@@ -19,7 +19,13 @@ async function setup(page,context,{mobile=false,broken=false}={}){
   await page.goto('/');await page.waitForFunction(()=>window.KampTrailRestAreas&&window.map);
   return{calls,errors};
 }
-async function show(page){await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');await page.getByLabel('Official rest areas (Texas pilot)',{exact:true}).check();}
+async function show(page,{keyboard=false}={}){
+ const checkbox=page.getByLabel('Official rest areas (Texas pilot)',{exact:true});
+ if(keyboard)await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');else await page.locator('.leaflet-control-layers').hover();
+ // Leaflet suppresses clicks for one task while expanding the menu.
+ await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,0)));
+ if(keyboard){await checkbox.focus();await checkbox.press('Space');await expect(checkbox).toBeChecked();}else await checkbox.check();
+}
 async function popup(page){await page.evaluate(()=>map.eachLayer(l=>{if(l.ktRestAreaId)l.openPopup();}));return page.locator('.kt-rest-popup');}
 test('rest areas load only when requested, retain provenance, and never turn 24h parking into permission',async({page,context})=>{
   const {calls,errors}=await setup(page,context);expect(calls).toEqual([]);await show(page);await expect(page.locator('.kt-rest-control')).toContainText('1 official rest-area location');
@@ -29,7 +35,7 @@ test('rest areas load only when requested, retain provenance, and never turn 24h
   await p.getByRole('button',{name:'Save rest-area stop',exact:true}).click();const saved=await page.evaluate(()=>KampTrailTrip.getStops());expect(saved[0].feature.properties.type).toBe('spot');expect(saved[0].feature.properties.id).toBe('spot:30.90010,-97.56230');expect(saved[0].feature.properties.rest_area_evidence).toContain('Overnight permission');expect(errors).toEqual([]);
 });
 test('mobile controls and popup are accessible, and an outside viewport reports missing coverage',async({page,context})=>{
-  const {errors}=await setup(page,context,{mobile:true});await show(page);const c=page.locator('.kt-rest-control');await expect(c).toContainText('1 official rest-area location');expect(await c.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
+  const {errors}=await setup(page,context,{mobile:true});await show(page,{keyboard:true});const c=page.locator('.kt-rest-control');await expect(c).toContainText('1 official rest-area location');expect(await c.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
   expect((await new AxeBuilder({page}).include('.kt-rest-control').analyze()).violations).toEqual([]);const p=await popup(page);await expect(p).toBeVisible();expect((await new AxeBuilder({page}).include('.kt-rest-popup').analyze()).violations).toEqual([]);
   await page.getByRole('button',{name:'Close popup',exact:true}).click();await page.evaluate(()=>map.setView([40.75,-111.88],10));await expect(c).toContainText('0 official rest-area locations');await expect(c).toContainText('other regions are not covered');expect(errors).toEqual([]);
 });
