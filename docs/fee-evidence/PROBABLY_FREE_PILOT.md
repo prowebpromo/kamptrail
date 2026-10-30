@@ -60,7 +60,7 @@ A retained `fee=no` or `charge=0` does not by itself justify changing a canonica
 
 ## Pilot sample and thresholds fixed before reviews
 
-Sample: 15 dispersed records, 15 primary agency records that are not dispersed, and 20 remaining OSM-associated federal-operator leads. The strata are disjoint. Within each stratum, sort by SHA-256 of the fixed selection seed plus canonical ID. The report stores all 50 selected IDs, reasons, states and operator evidence. The order is reproducible and does not allow choosing only easy pages. These quotas intentionally test three targeting methods; they do not match population proportions.
+Sample: 15 dispersed records, 15 primary agency records that are not dispersed, and 20 remaining OSM-associated federal-operator leads. The strata are disjoint. Within each stratum, sort by SHA-256 of the fixed selection seed plus canonical ID. The first 30 attempts contain nine dispersed, nine agency-other and twelve operator-other records, followed by the remaining six, six and eight. Execution order within each phase is also fixed by a separate seeded hash. Thus an early stop cannot omit the operator stratum. The report stores all 50 selected IDs, reasons, states, phases and operator evidence. The order is reproducible and does not allow choosing only easy pages. These quotas intentionally test three targeting methods; they do not match population proportions.
 
 The thresholds below are proposed operating decisions, not measured outcomes or claims about normal review productivity. Record them unchanged before the first review. Change a threshold only as an explicit new experiment with a new sample/seed.
 

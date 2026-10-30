@@ -62,6 +62,18 @@ class FeePoolTests(unittest.TestCase):
         self.assertEqual(result['eligibility_counts']['unique_pool'], 0)
         self.assertEqual(result['retention_diagnostics']['ambiguous_snapshot_identity_joins_excluded'], 1)
 
+    def test_first_thirty_attempts_include_all_strata(self):
+        sites = [site('usfs:' + str(i), 'dispersed') for i in range(20)]
+        sites += [site('blm-area:' + str(i)) for i in range(20)]
+        osm = [site('osm:node:' + str(i)) for i in range(30)]
+        sites += osm
+        result = pool.analyze({'sites': sites}, [('CA', [feature(s['id'], 'BLM') for s in osm])])
+        first = result['sample'][:30]
+        self.assertEqual(len(first), 30)
+        self.assertTrue(all(row['review_phase'] == 1 for row in first))
+        from collections import Counter
+        self.assertEqual(dict(Counter(row['stratum'] for row in first)), pool.INTERIM_QUOTAS)
+
 
 if __name__ == '__main__':
     unittest.main()

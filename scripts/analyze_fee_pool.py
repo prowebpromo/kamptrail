@@ -16,6 +16,7 @@ FEDERAL_OPERATOR = re.compile(
     r'\b(?:united states|u\.?s\.?|usda)\s+forest service\b|'
     r'\bbureau\s+of\s+land\s+management\b', re.I)
 QUOTAS = {'dispersed': 15, 'agency_other': 15, 'osm_operator_other': 20}
+INTERIM_QUOTAS = {'dispersed': 9, 'agency_other': 9, 'osm_operator_other': 12}
 SEED = 'kamptrail-fee-pilot-v1'
 
 
@@ -76,19 +77,22 @@ def analyze(index, snapshots, seed=SEED):
     selected = []
     for stratum, identities in strata.items():
         ordered = sorted(identities, key=lambda k: hashlib.sha256((seed + '\n' + k).encode()).hexdigest())
-        for identity in ordered[:QUOTAS[stratum]]:
+        for rank, identity in enumerate(ordered[:QUOTAS[stratum]]):
             row = unknown[identity]
             flags = [label for label, group in [('unknown_dispersed', dispersed),
                      ('unknown_primary_agency', agency), ('unknown_osm_federal_operator', operators)] if identity in group]
             selected.append({'id': identity, 'name': row['name'], 'states': row['states'],
                              'type': row['m']['t'], 'fee_status': 'unknown', 'stratum': stratum,
+                             'review_phase': 1 if rank < INTERIM_QUOTAS[stratum] else 2,
                              'selection_reasons': flags, 'fee_conflict_in_joined_snapshot': identity in conflicts,
                              'operator_evidence': [{'snapshot': x[0], 'source_id': x[1],
                                                     'field': x[2], 'value': x[3]}
                                                    for x in sorted(evidence[identity])]})
+    selected.sort(key=lambda row: (row['review_phase'], hashlib.sha256(
+        (seed + '\nexecution\n' + row['id']).encode()).hexdigest()))
     return {
         'schema_version': 1, 'purpose': 'Review targeting only; no fee or federal ownership classification',
-        'selection_seed': seed, 'sample_quotas': QUOTAS,
+        'selection_seed': seed, 'sample_quotas': QUOTAS, 'interim_quotas': INTERIM_QUOTAS,
         'catalogue_count': len(sites), 'unknown_count': len(unknown),
         'unknown_by_primary_id_source': dict(sorted(collections.Counter(source_group(k) for k in unknown).items())),
         'unknown_by_type': dict(sorted(collections.Counter(r['m']['t'] for r in unknown.values()).items())),
