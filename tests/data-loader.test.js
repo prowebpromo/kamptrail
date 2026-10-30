@@ -3,10 +3,11 @@ const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const fs=require('node:fs');
 function harness(fetcher, overrides={}) {
+  const evented=target=>Object.assign(target,{handlers:{},on(type,fn){(this.handlers[type]||=[]).push(fn);return this;},fire(type,event={}){for(const fn of this.handlers[type]||[])fn(event);return this;}});
   const events=[], cluster={layers:[],addLayers(items){this.layers.push(...items);},removeLayer(item){this.layers=this.layers.filter(x=>x!==item);}};
   const bounds={getSouth:()=>42.9,getNorth:()=>43.1,getWest:()=>-75.2,getEast:()=>-75,contains:([lat,lng])=>lat>=42.9&&lat<=43.1&&lng>=-75.2&&lng<=-75};
-  const map={getBounds:()=>bounds,addLayer(){},removeLayer(){},hasLayer(){return false;},getZoom:()=>10,on(){},setView(){},closePopup(){}};
-  const context={console:{warn(){},log(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts.detail;}},document:{addEventListener(){}},dispatchEvent:e=>events.push(e),L:{markerClusterGroup:()=>cluster,divIcon:o=>o,marker:(coords,opts)=>({coords,opts,bindPopup(html){this.html=html;return this;},setPopupContent(html){this.html=html;return this;},openPopup(){this.opened=true;return this;}})}};
+  const map=evented({getBounds:()=>bounds,addLayer(){},removeLayer(){},hasLayer(){return false;},getZoom:()=>10,setView(){},closePopup(){const marker=this._popup;if(marker){this._popup=null;marker.opened=false;marker.fire('popupclose');this.fire('popupclose');}}});
+  const context={console:{warn(){},log(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts.detail;}},document:{addEventListener(){}},dispatchEvent:e=>events.push(e),L:{markerClusterGroup:()=>cluster,divIcon:o=>o,marker:(coords,opts)=>evented({coords,opts,bindPopup(html){this.html=html;return this;},setPopupContent(html){this.html=html;return this;},isPopupOpen(){return !!this.opened;},isOpen(){return !!this.opened;},openPopup(){this.opened=true;map._popup=this;return this;}})}};
   Object.assign(context,overrides);
   context.window=context;
   vm.createContext(context);
@@ -17,10 +18,78 @@ function harness(fetcher, overrides={}) {
 const feature=(props={})=>({type:'Feature',geometry:{type:'Point',coordinates:[-75.1,43]},properties:{name:'Campsite',...props}});
 const response=data=>({ok:true,json:async()=>data});
 
+const amenityPayload=()=>({version:1,source:{name:'Recreation.gov RIDB full export',url:'https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip',sha256:'a'.repeat(64),inspected_at:'2026-10-30T12:00:00Z',original_retrieved_at:null,attribute_updated_at:null,archive_entry_time:'2026-10-21T18:46:28',archive_entry_timezone:null,basis:'frozen_public_export_cache',http_last_modified:null},facilities:{'123':{sites:2,amenities:{drinking_water:{reported:1,negative:0,unknown:1,conflict:0,qualifiers:{peak_season:1,hand_pump:1}},shower:{reported:1,negative:0,unknown:0,conflict:0,qualifiers:{coin:1}},picnic_table:{reported:0,negative:1,unknown:0,conflict:1,qualifiers:{}}}}}});
+
+test('optional amenity details retain record scope, qualifiers and safe source links without filter promotion',async()=>{
+  const caches=cacheStorage(),location={href:'https://example.test/kamptrail/'};
+  const row=feature({name:'<img src=x onerror=alert(1)> Campground',facility_id:'123',schema_version:3});
+  let online=true;
+  const h=harness(async url=>{
+    if(!online)throw new Error('offline');
+    if(url.endsWith('ridb-amenities.json'))return new Response(JSON.stringify(amenityPayload()));
+    if(url.endsWith('_merged.geojson'))return new Response(JSON.stringify({type:'FeatureCollection',features:[row]}));
+    return new Response('{}');
+  },{caches,location});
+  await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));
+  const p=h.api.getAllCampsites()[0].properties,html=h.cluster.layers[0].html;
+  assert.ok(p.ridb_amenity_evidence);assert.equal(p.amenities.length,0);assert.equal(p.fee_status,'unknown');
+  assert.match(html,/Recreation.gov campsite records report/);assert.match(html,/mentioned in 1 of 2 records/);assert.match(html,/peak season: 1 records/);assert.match(html,/hand pump: 1 records/);assert.match(html,/coin operated: 1 records/);
+  assert.match(html,/explicit no: 1 records/);assert.match(html,/conflicting values: 1 records/);assert.match(html,/retrieval date unknown/);
+  assert.match(html,/campgrounds\/123/);assert.ok(!html.includes('<img'));assert.match(html,/&lt;img/);
+  h.api.updateFilters({amenities:['water']});assert.equal(h.api.getVisibleCampsites().length,0);
+  online=false;
+  const offline=harness(async()=>{throw new Error('offline');},{caches,location});
+  await offline.api.init(offline.map);await new Promise(resolve=>setImmediate(resolve));
+  assert.ok(offline.api.getAllCampsites()[0].properties.ridb_amenity_evidence);
+});
+
+test('slow, missing and corrupt optional amenity evidence cannot block campground loading or populate caches',async()=>{
+  let release;
+  const pending=new Promise(resolve=>release=resolve);
+  const h=harness(async url=>url.endsWith('ridb-amenities.json')?pending:url.endsWith('_merged.geojson')?response({type:'FeatureCollection',features:[feature({facility_id:123})]}):response({}));
+  await h.api.init(h.map);assert.equal(h.api.getAllCampsites().length,1);release(response({}));await new Promise(resolve=>setImmediate(resolve));
+  assert.match(h.cluster.layers[0].html,/amenity evidence unavailable/);
+  const data=amenityPayload();data.source.url='javascript:alert(1)';
+  const caches=cacheStorage(),location={href:'https://example.test/kamptrail/'};
+  const bad=harness(async url=>url.endsWith('ridb-amenities.json')?new Response(JSON.stringify(data)):url.endsWith('_merged.geojson')?new Response(JSON.stringify({type:'FeatureCollection',features:[feature({facility_id:123})]})):new Response('{}'),{caches,location});
+  await bad.api.init(bad.map);await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(bad.api.getAllCampsites()[0].properties.ridb_amenity_evidence,undefined);
+  assert.ok(!caches.writes.some(url=>url.endsWith('ridb-amenities.json')));
+  assert.match(bad.cluster.layers[0].html,/amenity evidence unavailable/);
+});
+
+test('delayed amenity evidence refreshes after popup close without replacing open controls or adding held markers',async()=>{
+  let release;
+  const pending=new Promise(resolve=>release=resolve);
+  const h=harness(async url=>{
+    if(url.endsWith('ridb-amenities.json'))return pending;
+    if(url.endsWith('_merged.geojson'))return response({type:'FeatureCollection',features:[url.includes('/PA_')?feature({id:'pa:456',name:'Second Campground'}):feature({facility_id:123})]});
+    return response({});
+  });
+  await h.api.init(h.map);
+  const marker=h.cluster.layers[0];marker.openPopup();
+  assert.match(marker.html,/amenity evidence unavailable/);
+  marker.html+='<div class="kt-popup-extra">Camper opened fee evidence</div>';
+  const openContent=marker.html;
+  release(response(amenityPayload()));await new Promise(resolve=>setImmediate(resolve));
+  assert.ok(h.api.getCampsiteById('ridb:123').properties.ridb_amenity_evidence);
+  assert.equal(marker.html,openContent,'The active popup and its controls survive sidecar completion');
+  await h.api.loadStates(['PA']);
+  assert.equal(marker.html,openContent);assert.equal(h.cluster.layers.length,1,'New markers wait while the popup is open');
+  h.map.closePopup();marker.openPopup();
+  assert.match(marker.html,/Recreation.gov campsite records report/);
+  assert.match(marker.html,/mentioned in 1 of 2 records/);
+  assert.doesNotMatch(marker.html,/amenity evidence unavailable/);
+  await new Promise(resolve=>setTimeout(resolve,5));
+  assert.equal(h.cluster.layers.length,1,'An immediately reopened popup still holds additions');
+  h.map.closePopup();await new Promise(resolve=>setTimeout(resolve,5));
+  assert.equal(h.cluster.layers.length,2,'Held markers flush after the popup remains closed');
+});
+
 test('transient state failure is visible and explicit retry succeeds',async()=>{
   let attempts=0;
   const h=harness(async url=>{
-    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json'))return response({});
+    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json')||url.endsWith('ridb-amenities.json'))return response({});
     attempts++;
     return attempts===1?{ok:false,status:503}:response({type:'FeatureCollection',features:[feature({id:'NY-1',facility_id:123})]});
   });

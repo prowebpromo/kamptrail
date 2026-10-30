@@ -9,6 +9,11 @@ const files=['index.html','how-to.html','app.js','app.css','manifest.json','serv
   await fs.cp(path.join(root,'media','how-to'),path.join(out,'media','how-to'),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});
   for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','ridb-sites.json','coordinate-index.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
+  const amenityPath=path.join(root,'data','campsites','ridb-amenities.json');
+  if(await fs.stat(amenityPath).then(s=>s.isFile()).catch(()=>false)){
+    const raw=await fs.readFile(amenityPath);if(raw.length>2*1024*1024||!require('../data-quality.js').validRIDBAmenities(JSON.parse(raw)))throw new Error('Invalid optional RIDB amenity evidence');
+    await fs.writeFile(path.join(out,'data','campsites','ridb-amenities.json'),raw);
+  }
   // The runtime loads this index and its state files separately from merged snapshots.
   await fs.cp(path.join(root,'data','campsites','agency'),path.join(out,'data','campsites','agency'),{recursive:true});
   const elevationRoot=path.join(root,'data','campsites','elevation');

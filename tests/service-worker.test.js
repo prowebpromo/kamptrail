@@ -7,6 +7,11 @@ function worker(fetcher) {
   return {handlers,stores,caches};
 }
 const good={type:'FeatureCollection',features:[]};
+test('optional RIDB amenity evidence bypasses generic caches for page validation',()=>{
+  const w=worker();let intercepted=false;
+  w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/campsites/ridb-amenities.json'),respondWith:()=>{intercepted=true;}});
+  assert.equal(intercepted,false);
+});
 test('malformed HTTP 200 does not overwrite a saved valid GeoJSON snapshot',async()=>{
   const w=worker(async()=>new Response('<html>error</html>',{status:200}));
   const name='kamptrail:https://example.test/kamptrail/:data-v1',url='https://example.test/kamptrail/data/campsites/NY_merged.geojson';
@@ -23,14 +28,16 @@ test('worker activation deletes only obsolete caches for this app scope',async()
   assert.equal(w.stores.has('unrelated-app'),true);assert.equal(w.stores.has('kamptrail:https://example.test/other/:old'),true);
   assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:old'),false);assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:data-v1'),true);
 });
-test('2.15.1 installs a fresh shell and retires the 2.15.0 shell while retaining visited data',async()=>{
+test('the current release installs a fresh shell and retires its preceding generation while retaining visited data',async()=>{
   const w=worker(),prefix='kamptrail:https://example.test/kamptrail/:';
-  await w.caches.open(prefix+'kt-v41');await w.caches.open(prefix+'data-v1');
+  const current=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '(kt-v(\d+))'/);assert.ok(current,'Worker declares a numbered shell generation');
+  const previous='kt-v'+(Number(current[2])-1);assert.ok(Number(current[2])>42,'This release advances beyond the shipped 2.15.1 shell');
+  await w.caches.open(prefix+previous);await w.caches.open(prefix+'data-v1');
   let installed;w.handlers.install({waitUntil:p=>installed=p});await installed;
-  assert.equal(w.stores.has(prefix+'kt-v42'),true);
+  assert.equal(w.stores.has(prefix+current[1]),true);
   let activated;w.handlers.activate({waitUntil:p=>activated=p});await activated;
-  assert.equal(w.stores.has(prefix+'kt-v41'),false);
-  assert.equal(w.stores.has(prefix+'kt-v42'),true);
+  assert.equal(w.stores.has(prefix+previous),false);
+  assert.equal(w.stores.has(prefix+current[1]),true);
   assert.equal(w.stores.has(prefix+'data-v1'),true);
 });
 test('worker does not intercept external basemap tiles or neighboring apps',()=>{
@@ -110,7 +117,8 @@ test('official rest-area facts are not pinned in the generic shell cache',()=>{
 
 test('visiting the how-to page never replaces the cached offline app shell',async()=>{
  let online=true;const w=worker(async request=>{if(!online)throw new Error('offline');return new Response(request.url.endsWith('how-to.html')?'<p>how-to</p>':'<p>app</p>',{status:200});});
- const shell='kamptrail:https://example.test/kamptrail/:kt-v42';
+ const current=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '(kt-v\d+)'/);assert.ok(current,'Worker declares its shell identity');
+ const shell='kamptrail:https://example.test/kamptrail/:'+current[1];
  async function navigate(url){let result;w.handlers.fetch({request:{method:'GET',url,mode:'navigate'},respondWith:p=>result=p});return (await result).text();}
  assert.equal(await navigate('https://example.test/kamptrail/'),'<p>app</p>');
  assert.equal(await navigate('https://example.test/kamptrail/how-to.html'),'<p>how-to</p>');

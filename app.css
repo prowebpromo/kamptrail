@@ -122,3 +122,12 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 #kt-permissions .kt-permission-text{white-space:pre-wrap}
 #kt-permissions .kt-permission-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
 #kt-permissions::backdrop{background:rgb(0 0 0 / .45)}
+
+/* Optional campsite-record evidence stays within the mobile map popup. */
+.kt-ridb-amenities {margin-top:8px;}
+.kt-site-popup{overflow:auto;overscroll-behavior:contain;overflow-wrap:anywhere;}
+.kt-site-popup:focus-visible{outline:2px solid #287d45;outline-offset:2px;}
+.leaflet-container:has(.kt-site-popup) .leaflet-top.leaflet-right{visibility:hidden;}
+.kt-ridb-amenities summary {cursor:pointer;font-weight:600;}
+.kt-ridb-amenities[open] {max-height:280px;overflow:auto;overflow-wrap:anywhere;}
+.kt-ridb-amenities ul {padding-left:18px;}

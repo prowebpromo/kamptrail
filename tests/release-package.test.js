@@ -7,7 +7,7 @@ const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
 const out=path.join(root,'dist','kamptrail');
 
-test('patch release keeps runtime versions, handshake and first-party asset URLs consistent',()=>{
+test('release keeps runtime versions, handshake and first-party asset URLs consistent',()=>{
   const version=require('../package.json').version;
   const lock=JSON.parse(fs.readFileSync(path.join(root,'package-lock.json'),'utf8'));
   assert.equal(lock.version,version);assert.equal(lock.packages[''].version,version);
@@ -15,7 +15,10 @@ test('patch release keeps runtime versions, handshake and first-party asset URLs
   assert.ok(html.includes(`<meta name="kamptrail-version" content="${version}">`));
   assert.ok(html.includes(`>v${version}</a>`));
   const scripts=[...html.matchAll(/<script src="([^"/]+\.js)(\?[^"]*)?"/g)];
-  assert.equal(scripts.length,19,'All runtime modules and the app shell have release URLs');
+  const runtimeFiles=fs.readdirSync(root).filter(file=>file.endsWith('.js')&&!file.endsWith('.spec.js')&&!['service-worker.js','playwright.config.js'].includes(file)).sort();
+  assert.ok(runtimeFiles.length>=19,'The application retains its required runtime modules');
+  assert.deepEqual(scripts.map(([,file])=>file).sort(),runtimeFiles,'Every first-party runtime module is declared exactly once in the page');
+  for(const file of ['app.js','data-loader.js','data-quality.js','permissions.js','rest-areas.js'])assert.ok(runtimeFiles.includes(file),`Required runtime module: ${file}`);
   for(const [,file,query]of scripts){
     assert.equal(query,`?v=${version}`,file);
     const source=fs.readFileSync(path.join(root,file),'utf8');
@@ -41,6 +44,7 @@ test('built release contains agency index dependencies and supports a custom-dom
   }
   execFileSync(process.execPath,['scripts/build-release.js'],{cwd:root,env:{...env,KAMPTRAIL_PUBLIC_URL:'https://kamptrail.com/'},stdio:'pipe'});
   const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
+  assert.equal(html.match(/<meta name="kamptrail-version" content="([^"]+)">/)?.[1],require('../package.json').version,'Packaged app metadata must match the release version');
   assert.match(html,/<link rel="canonical" href="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:url" content="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:image" content="https:\/\/kamptrail\.com\/og.png">/);
@@ -57,6 +61,10 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.equal(fs.readFileSync(path.join(permissionDir,'.htaccess'),'utf8'),'Require all denied\n','Generated identity data must be denied over HTTP');
   assert.equal(fs.readdirSync(permissionDir).filter(name=>/^[a-f0-9]{2}\.json$/.test(name)).length,256,'Every protected identity bucket is packaged');
   assert.ok(fs.existsSync(path.join(out,'permissions.js')));
+  const amenities=JSON.parse(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'));
+  assert.equal(require('../data-quality.js').validRIDBAmenities(amenities),true);
+  assert.equal(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'),fs.readFileSync(path.join(root,'data/campsites/ridb-amenities.json'),'utf8'));
+  assert.ok(!fs.existsSync(path.join(out,'data/campsites/ridb-amenities-audit.json')),'Build audit is not a runtime dependency');
   assert.ok(fs.existsSync(path.join(out,'api','permissions.php')));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(permissionDir,'official.json'),'utf8')),JSON.parse(fs.readFileSync(path.join(root,'data','permissions','official.json'),'utf8')),'Packaged evidence matches the reviewed source records');
   const htaccess=fs.readFileSync(path.join(out,'.htaccess'),'utf8');
@@ -64,8 +72,9 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.ok(htaccess.includes('RewriteRule (^|/)\\.(?!well-known/) - [F,L]'),'Git metadata must not be served');
   // Root-relative installation must retain the PWA's local asset paths.
   for(const [,url]of html.matchAll(/(?:src|href)="([^"]+)"/g)){
-    if(/^(?:https?:|#)/.test(url)||url.includes('?'))continue;
-    assert.ok(fs.existsSync(path.join(out,url)),`Missing page dependency: ${url}`);
+    if(/^(?:https?:|#)/.test(url))continue;
+    const asset=url.split(/[?#]/,1)[0];
+    assert.ok(fs.existsSync(path.join(out,asset)),`Missing page dependency: ${url}`);
   }
   // The contributions API ships its public entry points and private helpers, never configuration.
   for(const file of ['services.js','data/services/index.json','forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])

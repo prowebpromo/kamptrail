@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "source": {
+    "name": "Recreation.gov RIDB full export",
+    "url": "https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip",
+    "sha256": "13afd4dc1d1dec6885c2299bb4d939eb554e97ab32fc6bcd715b9ef4d9618e01",
+    "inspected_at": "2026-10-30T17:27:44.671147+00:00",
+    "original_retrieved_at": "2026-10-30T16:33:49.112988+00:00",
+    "attribute_updated_at": null,
+    "archive_entry_time": "2026-10-29T18:45:44",
+    "archive_entry_timezone": null,
+    "basis": "canonical_download",
+    "http_last_modified": "2026-10-29T18:46:42Z"
+  },
+  "scope": "Exact catalogue RIDB primary and legacy IDs; overnight campsite records only",
+  "attribute_table": "CampsiteAttributes_API_v1.csv",
+  "attribute_entity_type": "Campsite",
+  "attribute_tables": [
+    "CampsiteAttributes_API_v1.csv",
+    "PermitEntranceAttributes_API_v1.csv",
+    "TourAttributes_API_v1.csv"
+  ],
+  "facility_attribute_table": null,
+  "primary_facility_ids": 2020,
+  "alias_only_facility_ids": 143,
+  "facility_ids": 2163,
+  "facilities_with_overnight_sites": 1446,
+  "selection_sha256": "bfad2a0ab2251d11915ccc90aac98cc3ad4e6c6f5812319f0f0c7b79740a2e00",
+  "selection_encoding": "Compact UTF-8 JSON array of exact selected facility ID strings in lexicographic order",
+  "overnight_sites": 53693,
+  "amenities": {
+    "toilet": {
+      "reported": 4498,
+      "negative": 0,
+      "unknown": 0,
+      "conflict": 0,
+      "facility_ids_reporting": 221,
+      "qualifiers": {
+        "accessible": 1430,
+        "seasonal": 675
+      }
+    },
+    "drinking_water": {
+      "reported": 3078,
+      "negative": 0,
+      "unknown": 3,
+      "conflict": 0,
+      "facility_ids_reporting": 120,
+      "qualifiers": {
+        "accessible": 423,
+        "hand_pump": 316,
+        "peak_season": 311
+      }
+    },
+    "shower": {
+      "reported": 1915,
+      "negative": 0,
+      "unknown": 3,
+      "conflict": 0,
+      "facility_ids_reporting": 45,
+      "qualifiers": {
+        "accessible": 837,
+        "coin": 305,
+        "outdoor": 1,
+        "seasonal": 257
+      }
+    },
+    "dump": {
+      "reported": 1268,
+      "negative": 0,
+      "unknown": 3,
+      "conflict": 0,
+      "facility_ids_reporting": 36,
+      "qualifiers": {}
+    },
+    "picnic_table": {
+      "reported": 35509,
+      "negative": 2,
+      "unknown": 207,
+      "conflict": 0,
+      "facility_ids_reporting": 1013,
+      "qualifiers": {}
+    }
+  },
+  "counting": "Distinct overnight records per facility and amenity; conflict takes precedence over positive, then explicit negative, then blank/unrecognized. Qualifier counts overlap and count positive records only. Missing fields remain unknown.",
+  "limits": [
+    "Campsite-record mentions, not fixture counts or campground-wide guarantees",
+    "Absence is unknown; no fee, permission, filter or public-service inference",
+    "Individual attribute update dates are unknown; HTTP Last-Modified describes the export file; inspection is not refresh"
+  ]
+}
