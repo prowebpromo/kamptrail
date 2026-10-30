@@ -26,7 +26,7 @@ async function show(page,{keyboard=false}={}){
  await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,0)));
  if(keyboard){await checkbox.focus();await checkbox.press('Space');await expect(checkbox).toBeChecked();}else await checkbox.check();
 }
-async function popup(page){await page.evaluate(()=>map.eachLayer(l=>{if(l.ktRestAreaId)l.openPopup();}));return page.locator('.kt-rest-popup');}
+async function popup(page){await page.locator('#map').click({position:{x:2,y:40}});await page.evaluate(()=>map.eachLayer(l=>{if(l.ktRestAreaId)l.openPopup();}));return page.locator('.kt-rest-popup');}
 test('rest areas load only when requested, retain provenance, and never turn 24h parking into permission',async({page,context})=>{
   const {calls,errors}=await setup(page,context);expect(calls).toEqual([]);await show(page);await expect(page.locator('.kt-rest-control')).toContainText('1 official rest-area location');
   const p=await popup(page);await expect(p).toContainText('Test rest area <img src=x>');await expect(p.locator('img')).toHaveCount(0);await expect(p).toContainText('does not establish permission to sleep overnight');await expect(p).toContainText(source.source.retrieved_at);
