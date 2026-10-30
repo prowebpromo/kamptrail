@@ -444,6 +444,7 @@ jobs:
         timeout-minutes: 30
         run: |
           set -euo pipefail
+          node scripts/record_health.js start
           python -u scripts/import_services.py --region legacy --scratch "$RUNNER_TEMP/services-pbf"
           python -u scripts/import_services.py --region "$SERVICE_STATE" --scratch "$RUNNER_TEMP/services-pbf"
           node scripts/build-services.js
