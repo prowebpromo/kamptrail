@@ -146,10 +146,9 @@
     map.on('moveend',()=>{st.serviceAbort?.abort();++st.serviceSequence;clearTimeout(serviceTimer);serviceTimer=setTimeout(()=>loadServices(),180);});
     const control = L.control.layers(Object.fromEntries(Object.entries(bases).map(([name,layer])=>[t(name),layer])), Object.fromEntries(Object.entries(st.overlays).map(([name,layer])=>[t(name),layer])), {position: 'topright', collapsed: true}).addTo(map);
     const container = control.getContainer();
-    // A pointer must reach the button before the menu replaces it. Leaflet's
-    // hover expansion otherwise hides the click target beneath the pointer.
-    // Keep its click/Enter activation and mouse-leave dismissal intact.
-    L.DomEvent.off(container, 'mouseenter');
+    // Visual and keyboard order agree; hiding later panels never moves this picker.
+    const corner = container.parentNode;
+    if (corner && corner.firstChild !== container) corner.insertBefore(container, corner.firstChild);
     container.setAttribute('aria-label', t("Map layers"));
     const toggle = container.querySelector('.leaflet-control-layers-toggle');
     if (toggle) { toggle.setAttribute('aria-label', t("Map layers")); toggle.title = t("Map layers"); toggle.setAttribute('role', 'button'); }

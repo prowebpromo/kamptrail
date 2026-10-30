@@ -28,7 +28,11 @@ test('map services are zoom gated and share categories/access/identity with near
  await page.evaluate(()=>map.eachLayer(layer=>{if(layer.ktServiceId==='osm:node:1')layer.openPopup();}));
  const popup=page.locator('.kt-svc-popup');await expect(popup).toContainText('customers (conditional)');await expect(popup).toContainText('2026-01-01');await expect(popup).toContainText('overnight permission are not verified');await expect(popup.locator('img')).toHaveCount(0);expect((await new AxeBuilder({page}).include('.kt-svc-popup').analyze()).violations).toEqual([]);
  await popup.getByRole('button',{name:'Save service stop'}).click();expect(await page.evaluate(()=>KampTrailTrip.getStops().find(s=>s.id==='osm:node:1')?.feature.properties.type)).toBe('service');
- await page.evaluate(()=>{KampTrailTrip.toggle();map.closePopup();});await page.locator('.leaflet-control-layers').hover();await page.getByLabel('Satellite',{exact:true}).check();await expect(page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]')).toHaveCount(1);
+ await page.evaluate(()=>{KampTrailTrip.toggle();map.closePopup();});
+ const picker=page.locator('.leaflet-control-layers');await expect.poll(()=>picker.evaluate(el=>el.parentElement.firstElementChild===el)).toBe(true);
+ const closed=await picker.boundingBox();expect(closed).not.toBeNull();
+ await picker.hover();await expect(picker).toHaveClass(/leaflet-control-layers-expanded/);
+ await expect.poll(async()=>{const box=await picker.boundingBox();return !!box&&Math.abs(box.y-closed.y)<1&&Math.abs(box.x+box.width-closed.x-closed.width)<1;}).toBe(true);await page.getByLabel('Satellite',{exact:true}).check();await expect(page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]')).toHaveCount(1);
  await page.getByLabel('Services (7 categories)',{exact:true}).uncheck();await expect(page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]')).toHaveCount(0);await page.locator('.leaflet-control-layers').hover();await expect(page.getByLabel('Services (7 categories)',{exact:true})).toBeVisible();await page.getByLabel('Services (7 categories)',{exact:true}).check();await expect(page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]')).toHaveCount(1);
  await page.reload();await page.waitForFunction(()=>window.KampTrailServices);expect(await page.evaluate(()=>KampTrailServices.getCategories())).toEqual(['fuel']);expect(errors).toEqual([]);
 });

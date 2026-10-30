@@ -30,6 +30,9 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 #map .leaflet-top.leaflet-right{height:calc(55% - 10px);display:flex;flex-direction:column;align-items:flex-end;z-index:1001}
 #map .leaflet-top.leaflet-right>.leaflet-control{flex:0 1 auto;min-height:0}
 #map .leaflet-top.leaflet-right>.leaflet-control-layers{order:-2;flex-shrink:0;max-height:100%;overflow:auto;overscroll-behavior:contain}
+/* Hover expansion must not replace the ordinary click target with a layer label. */
+#map .leaflet-control-layers-expanded{padding-top:52px}
+#map .leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:block;position:absolute;top:0;right:0}
 #map .leaflet-top.leaflet-right>.kt-off{order:-1;max-height:100%;overflow:auto;overscroll-behavior:contain}
 #map .leaflet-top.leaflet-right>.kt-services-control{max-height:100%;overscroll-behavior:contain}
 #map .leaflet-top.leaflet-right:has(.leaflet-control-layers-expanded){height:calc(100% - 20px)}

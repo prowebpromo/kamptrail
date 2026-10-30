@@ -63,7 +63,11 @@ for(const viewport of [{width:1363,height:936},{width:390,height:844}]){
   await page.route('**/data/rest-areas/TX.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(rest)}));
   const {errors}=await setup(page,context);
   async function toggle(name,checked=true){
-   await page.getByRole('button',{name:'Map layers',exact:true}).click();
+   const button=page.getByRole('button',{name:'Map layers',exact:true});
+   await expect.poll(()=>button.evaluate(el=>el.closest('.leaflet-control').parentElement.firstElementChild===el.closest('.leaflet-control'))).toBe(true);
+   await button.click();await expect(button).toBeVisible();
+   // The hovered picker must retain its real click target after expansion.
+   await expect.poll(()=>button.evaluate(el=>{const box=el.getBoundingClientRect();return document.elementFromPoint(box.x+box.width/2,box.y+box.height/2)===el;})).toBe(true);
    const input=page.getByLabel(name,{exact:true});await expect(input).toBeVisible();
    await input.setChecked(checked);await expect(input).toBeChecked({checked});
    await page.locator('#map').click({position:{x:2,y:40}});
