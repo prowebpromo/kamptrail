@@ -154,8 +154,9 @@ def fetch(url):
 
 def load_reviews():
     values = json.loads(REVIEWS.read_text())['records']
-    reviews = {r['recareaid']: r for r in values if r.get('review_after')}
-    if set(reviews) != PILOT:
+    selected = [r for r in values if r.get('recareaid') in PILOT]
+    reviews = {r['recareaid']: r for r in selected if r.get('review_after')}
+    if len(selected) != len(PILOT) or set(reviews) != PILOT:
         raise ValueError('Pilot scope changed; review before adding maintained records')
     return reviews
 

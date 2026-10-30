@@ -165,6 +165,18 @@ class RecheckTests(unittest.TestCase):
                 b.write_text(json.dumps(later_baseline)); c.write_text(json.dumps(receipt))
                 with self.assertRaises(ValueError): check.load_checks(now=now)
 
+    def test_unrelated_manual_reviews_do_not_expand_or_disable_automated_pilot(self):
+        document = json.loads(check.REVIEWS.read_text())
+        document['records'].append({**review(), 'recareaid': 999001})
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)/'reviews.json'; path.write_text(json.dumps(document))
+            with patch.object(check, 'REVIEWS', path):
+                self.assertEqual(set(check.load_reviews()), check.PILOT)
+            document['records'].append(copy.deepcopy(document['records'][1]))
+            path.write_text(json.dumps(document))
+            with patch.object(check, 'REVIEWS', path), self.assertRaises(ValueError):
+                check.load_reviews()
+
     def test_capture_default_destination_does_not_overwrite_receipts(self):
         with patch.object(check, 'load_reviews', return_value=self.reviews), patch.object(check, 'capture_baselines', return_value=self.baseline), patch.object(check, 'write') as writer:
             check.main(['--capture-baselines'])
