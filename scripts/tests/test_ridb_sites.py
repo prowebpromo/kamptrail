@@ -29,6 +29,47 @@ class RIDBSitesTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
+    def test_catalogue_accepts_only_exact_positive_ridb_identities(self):
+        index = self.dir / 'index.json'
+        invalid = ['ridb:', 'ridb:0', 'ridb:-1', 'ridb:+1', 'ridb:001',
+                   'ridb:1.0', 'ridb:1:2', 'ridb:1/2', 'ridb:1\n',
+                   'ridb:１２３', 'RIDB:123', ' ridb:123', 'ridb:123 ',
+                   'osm:node:100', 'blm-facility:999', None, 123, True,
+                   {'id': 'ridb:999'}, ['ridb:999']]
+        index.write_text(json.dumps({'sites': [
+            {'id': 'ridb:100', 'legacy_ids': ['ridb:100', 'ridb:200', *invalid]},
+            {'id': 'usfs:300', 'legacy_ids': ['ridb:200', 'ridb:300']},
+            *({'id': identity} for identity in invalid),
+            {'id': 'osm:node:500', 'legacy_ids': 'ridb:500'},
+            {'id': 'usfs:600', 'legacy_ids': {'id': 'ridb:600'}},
+            {'id': 'usfs:700', 'legacy_ids': None},
+        ]}))
+        self.assertEqual(build_ridb_sites.catalogue_facilities(index), {'100', '200', '300'})
+
+    def test_merged_osm_or_agency_primary_retains_same_ridb_facility_summary(self):
+        index = self.dir / 'index.json'
+        expected = build_ridb_sites.build(self.dir, {'100'})
+        for primary in ['osm:way:100', 'usfs:100', 'blm-facility:100']:
+            with self.subTest(primary=primary):
+                index.write_text(json.dumps({'sites': [
+                    {'id': primary, 'legacy_ids': ['ridb:100', 'ridb:100']},
+                    {'id': 'osm:node:999', 'legacy_ids': ['blm-facility:999']},
+                ]}))
+                wanted = build_ridb_sites.catalogue_facilities(index)
+                actual = build_ridb_sites.build(self.dir, wanted)
+                self.assertEqual(wanted, {'100'})
+                self.assertEqual(actual, expected)
+                self.assertEqual(set(actual), {'100'})
+
+    def test_alias_import_does_not_infer_missing_fee_from_reservability(self):
+        index = self.dir / 'index.json'
+        index.write_text(json.dumps({'sites': [
+            {'id': 'usfs:500', 'legacy_ids': ['ridb:999']},
+        ]}))
+        actual = build_ridb_sites.build(self.dir, build_ridb_sites.catalogue_facilities(index))
+        self.assertEqual(set(actual), {'999'})
+        self.assertEqual(actual['999'], {'t': 1, 'r': 1, 'L': 40, 'g': [[40, 0, 1]], 'rs': 1})
+
     def test_lengths_count_only_rv_type_sites_and_hookups_are_explicit(self):
         out = build_ridb_sites.build(self.dir, {'100'})
         self.assertEqual(set(out), {'100'})

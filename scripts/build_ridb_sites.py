@@ -60,8 +60,16 @@ def number(value):
 
 
 def catalogue_facilities(index_path):
+    """Retain exact RIDB identities when deduplication gives a place another ID."""
     data = json.loads(Path(index_path).read_text())
-    return {s['id'].split(':', 1)[1] for s in data.get('sites', []) if str(s.get('id', '')).startswith('ridb:')}
+    facilities = set()
+    for site in data.get('sites', []):
+        aliases = site.get('legacy_ids')
+        identities = [site.get('id'), *(aliases if isinstance(aliases, list) else [])]
+        for identity in identities:
+            if isinstance(identity, str) and re.fullmatch(r'ridb:[1-9][0-9]*', identity):
+                facilities.add(identity.split(':', 1)[1])
+    return facilities
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
