@@ -143,7 +143,7 @@ class ManifestTests(unittest.TestCase):
                      lambda m: m.update(generated_at=stamp(NOW).replace('Z', '.1Z')),
                      lambda m: m['regions']['conus'].update(reference_times=[]),
                      lambda m: m['regions']['conus'].update(reference_times=[stamp(NOW), stamp(NOW)]),
-                     lambda m: m['regions']['conus'].update(reference_times=[stamp(NOW+301)]),
+                     lambda m: m['regions']['conus'].update(reference_times=[stamp(NOW+7201)]),
                      lambda m: m['regions']['conus'].update(times=[stamp(NOW), stamp(NOW+10801)]),
                      lambda m: m['states']['CA'].update(asset='../CA.json.gz'),
                      lambda m: m['coverage'].update(total=True)]
@@ -156,6 +156,18 @@ class ManifestTests(unittest.TestCase):
         with self.assertRaisesRegex(p.PublishError, 'stale'):
             p.validate_manifest(self.raw, NOW+7200)
         self.assertEqual(p.validate_manifest(self.raw, NOW+7200, allow_expired=True), self.m)
+
+    def test_forecast_start_after_publication_does_not_renew_source_freshness(self):
+        m = copy.deepcopy(self.m)
+        m['regions']['conus']['reference_times'] = [stamp(NOW + 600)]
+        m['regions']['conus']['times'] = [stamp(NOW + h * 3600) for h in (1, 2, 3)]
+        raw = p.encode_json(m)
+        self.assertEqual(p.validate_manifest(raw, NOW), m)
+        with self.assertRaisesRegex(p.PublishError, 'stale'):
+            p.validate_manifest(raw, NOW + 7200)
+        m['source']['files'][0]['last_modified'] = stamp(NOW + 301)
+        with self.assertRaises(p.PublishError):
+            p.validate_manifest(p.encode_json(m), NOW)
 
     def test_duplicate_keys_and_invalid_dates_fail(self):
         with self.assertRaisesRegex(p.PublishError, 'duplicate_json_key'):
