@@ -1,10 +1,12 @@
 # Dated overnight-permission evidence — 2.15 contract
 
-Status: implementation in progress; not deployed. Parent services release: PR87, CI 40979932301 (88 browser tests passed). Parent forecast and elevation release gates remain independent.
+Status: implemented on PR88; not deployed. Parent services release PR87 is live as 2.14.0 (`154e5a0`). The branch includes the reviewed 2.14 parity baseline from PR92. Production migration005 still requires a verified restorable production backup and the existing authenticated admin/CSRF path.
 
 ## Product boundary
 
 Permission is separate from fees, access tags, reviews and land ownership. A zero price does not authorize an overnight stay. Parking an unoccupied vehicle does not authorize sleeping. Personal permission does not establish operator policy for another visitor. Reports never change campsite fee classifications or official source conclusions.
+
+The official rest-area pilot imports 78 exact TxDOT Texas locations, with source hashes and retrieval dates; 12 travel information centers are excluded. Every location's overnight permission remains unknown. TxDOT's separate visitor duration statement is context only. See `REST_AREAS_PILOT_2.15.md` and its JSON audit. No nationwide rest-area coverage or automatic permission inference is claimed.
 
 A place descriptor is `{kind,id,name,coordinates:[longitude,latitude]}`. Catalogue places resolve against a generated protected identity lookup. `campsite` and `service` identities stay distinct even when their OSM IDs match. Generic spots use the existing `spot:LAT5,LNG5` convention with canonical rounding and no negative zero. No nearby-place, chain-wide or public-land inference.
 

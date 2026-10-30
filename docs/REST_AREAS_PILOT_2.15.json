@@ -1,0 +1,98 @@
+{
+  "source": {
+    "url": "https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list.html",
+    "sha256": "3322aac65dc42f276a8f14d9b5fa42d14085ae592f8b88961956a344d1aba061",
+    "retrieved_at": "2026-10-30T13:11:18Z",
+    "source_updated_at": null
+  },
+  "duration_context": {
+    "maximum_hours": 24,
+    "source": {
+      "url": "https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html",
+      "sha256": "cc885307e3958aafdf2d2c6c826d334da5984fdc40a54595075dc18d5c6c26f1",
+      "retrieved_at": "2026-10-30T13:11:26Z",
+      "source_updated_at": null
+    }
+  },
+  "page_rows": 90,
+  "rest_areas": 78,
+  "excluded": [
+    {
+      "name": "Texas Travel Information Center at Amarillo",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Anthony",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Austin (Capitol)",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Denison",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Gainesville",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Harlingen",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Langtry",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Laredo",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Orange",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Texarkana",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Waskom",
+      "reason": "travel_information_center_outside_pilot_scope"
+    },
+    {
+      "name": "Texas Travel Information Center at Wichita Falls",
+      "reason": "travel_information_center_outside_pilot_scope"
+    }
+  ],
+  "permission_status": "unknown for every imported location",
+  "sample": [
+    {
+      "id": "txdot:02b471337943bcb4b47ce9ca",
+      "name": "Hale County Northbound",
+      "coordinates": [
+        -101.8537,
+        33.9314
+      ],
+      "location": "IH 27 - Northbound, approximately 8 miles south of Hale Center",
+      "milepost": "29",
+      "source_url": "https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list/hale.html",
+      "state": "TX",
+      "permission": "unknown"
+    },
+    {
+      "id": "txdot:04328075ac2f99f9c15a277e",
+      "name": "Bell County Southbound",
+      "coordinates": [
+        -97.5508,
+        30.9137
+      ],
+      "location": "IH 35 - Southbound, approximately 2 miles south of Salado, midway between Austin and Waco",
+      "milepost": "282",
+      "source_url": "https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list/bell.html",
+      "state": "TX",
+      "permission": "unknown"
+    }
+  ]
+}

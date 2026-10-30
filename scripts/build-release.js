@@ -1,6 +1,6 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
@@ -13,6 +13,12 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
   const elevationRoot=path.join(root,'data','campsites','elevation');
   if(await fs.stat(elevationRoot).then(s=>s.isDirectory()).catch(()=>false))await fs.cp(elevationRoot,path.join(out,'data','campsites','elevation'),{recursive:true,filter:source=>{const rel=path.relative(elevationRoot,source).split(path.sep).join('/');return rel===''||rel==='index.json'||rel==='snapshots'||/^snapshots\/[a-f0-9]{24}(?:\/[A-Z]{2}\.json)?$/.test(rel);}});
   await fs.mkdir(path.join(out,'data','services'),{recursive:true});await fs.copyFile(path.join(root,'data','services','services.json'),path.join(out,'data','services','services.json'));
+  const restPath=path.join(root,'data','rest-areas','TX.json');
+  if(await fs.realpath(restPath)!==restPath)throw new Error('Official rest-area release must not follow symlinks');
+  const restRaw=await fs.readFile(restPath);
+  if(restRaw.length>512*1024)throw new Error('Official rest-area catalogue exceeds release bound');
+  require('../rest-areas.js').validate(JSON.parse(restRaw));
+  await fs.mkdir(path.join(out,'data','rest-areas'),{recursive:true});await fs.writeFile(path.join(out,'data','rest-areas','TX.json'),restRaw);
   const serviceRoot=path.join(root,'data','services'),serviceRaw=await fs.readFile(path.join(serviceRoot,'index.json'));
   async function copyServiceGeneration(raw,expectedId){
     if(raw.length>1024*1024)throw new Error('Services manifest exceeds release bound');

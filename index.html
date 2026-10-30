@@ -85,6 +85,7 @@
     <p>Forecast filters use published NOAA/NWS NDFD temperature samples over the next 24 or 48 hours. Bounds apply to every published sample, at the displayed cadence of up to three hours; they are not continuous or daily temperature extremes. The NDFD file modification time is not each location’s forecast issuance. Missing, incomplete, expired and offline samples are excluded. Weather stays separate from saved terrain evidence.</p>
     <p>On-demand forecasts and the separate forecast-grid elevation display come from the National Weather Service and cover US locations only. These are separate from the campsite terrain samples. Topo and satellite basemaps come from the USGS National Map.</p>
     <p>Service discovery uses OpenStreetMap tags for dump stations, water fill points, LPG, showers, laundry, groceries and fuel. Expanded category coverage starts with Utah; other areas retain older dump, water and LPG records. Each point shows source dates and access evidence. Opening, RV access, cylinder refills and overnight permission are unverified. No loaded matches may reflect incomplete coverage. Visited, validated service areas can be read offline with source dates; uncached areas stay unknown.</p>
+    <p>The optional official rest-area layer begins with TxDOT's Texas location list. Travel information centers are excluded from this pilot. Each point links to its source and download date. The separately sourced 24-hour visitor stay limit is duration context, not permission to sleep overnight. Current opening, available spaces and overnight permission remain unknown. Other states have no coverage in this layer yet. Saved rest-area stops retain dated source context; reconnect to check current permission.</p>
     <p>RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means one campsite reports your length and every hookup you chose. Different sites in the same campground are never combined. Road routes, drive times and requested detour estimates use the FOSSGIS OSRM car router. They are not checked for RV height, weight, length or current road conditions. Along-route discovery searches near the road geometry and applies the same reported-data filters as the map. Approximate distance from the line is separate from a driving detour.</p>
     <p>Offline maps save USGS Topo tiles for an area you choose. The standard map is not saved, because OpenStreetMap's tile policy does not allow bulk downloads.</p>
     <h3>Corrections</h3>
@@ -125,6 +126,7 @@
   <script src="contributions.js"></script>
   <script src="community.js"></script>
   <script src="permissions.js"></script>
+  <script src="rest-areas.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

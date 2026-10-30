@@ -2,9 +2,9 @@
   "version": 1,
   "stale_after_days": 45,
   "run": {
-    "started": "2026-10-30T03:49:28.804Z",
+    "started": "2026-10-30T13:11:18Z",
     "counts": {
-      "fresh": 2
+      "fresh": 1
     }
   },
   "sources": {
@@ -609,7 +609,23 @@
       "last_outcomes": {
         "fresh": 1
       }
+    },
+    "rest_areas": {
+      "scopes": {
+        "TX": {
+          "last_attempt": "2026-10-30T13:11:18Z",
+          "last_success": "2026-10-30T13:11:18Z",
+          "outcome": "fresh"
+        }
+      },
+      "label": "Official rest-area locations (TxDOT Texas pilot)",
+      "oldest_success": "2026-10-30T13:11:18Z",
+      "newest_success": "2026-10-30T13:11:18Z",
+      "never_succeeded": 0,
+      "last_outcomes": {
+        "fresh": 1
+      }
     }
   },
-  "generated": "2026-10-30T03:49:28.841Z"
+  "generated": "2026-10-30T13:19:11.196Z"
 }

@@ -134,8 +134,9 @@
     const land = landLayer();
     const roads = KampTrailMVUM.init(map);
     const environment = KampTrailEnvironment.init(map);
+    const restAreas = window.KampTrailRestAreas?.init(map);
     st.services = L.markerClusterGroup ? L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false, chunkedLoading: false, iconCreateFunction: c => L.divIcon({className: 'kt-svc-cluster', html: `<span>${c.getChildCount()}</span>`, iconSize: [28, 28]})}) : L.layerGroup();
-    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, 'USFS motor vehicle roads': roads, ...environment};
+    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, ...(restAreas?{'Official rest areas (Texas pilot)':restAreas}:{}), 'USFS motor vehicle roads': roads, ...environment};
     st.landLegend = legendControl();
     serviceControl().addTo(map);
     let serviceTimer;
