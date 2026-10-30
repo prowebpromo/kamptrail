@@ -23,6 +23,12 @@
   "Check saved data": "Comprobar datos guardados",
   "Save the USGS Topo map for the area on screen. Check which map tiles, listings and stops are stored on this device before travel.": "Guarda el mapa Topo de USGS de la zona visible. Antes de viajar, comprueba qué teselas, registros y paradas están guardados en este dispositivo.",
 
+  "{0}{1}. TxDOT location list retrieved {2}; source update date not supplied. TxDOT describes a visitor stay limit of up to 24 hours (duration source retrieved {3}). A time limit does not establish permission to sleep overnight.": "{0}{1}. Lista de ubicaciones de TxDOT consultada el {2}; no se proporcionó fecha de actualización de la fuente. TxDOT describe un límite de estancia de hasta 24 horas (fuente de duración consultada el {3}). Un límite de tiempo no establece permiso para dormir de noche.",
+  "State rest-area policy unavailable or older than 180 days. Overnight parking, sleeping and camping permission remain unknown.": "La política estatal de áreas de descanso no está disponible o tiene más de 180 días. Se desconoce si se permite estacionar de noche, dormir o acampar.",
+  "State policy checked {date}: overnight parking {parking}; sleeping in a vehicle {sleeping}; camping {camping}.": "Política estatal revisada el {date}: estacionamiento nocturno {parking}; dormir en un vehículo {sleeping}; acampar {camping}.",
+  "Maximum stay: {hours} hours.": "Estancia máxima: {hours} horas.",
+  "Current opening and space availability remain unknown. Check posted facility exceptions.": "Se desconocen el funcionamiento actual y las plazas disponibles. Consulta las excepciones publicadas en el lugar.",
+  "State policy source {number}": "Fuente de la política estatal {number}",
   "Status: {status}.": "Estado: {status}.",
   "hidden": "oculto",
   "Visitor video": "Video de un visitante",

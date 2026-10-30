@@ -1,0 +1,382 @@
+{
+  "http": {
+    "checked_at": "2026-10-30T22:09:23.812353+00:00",
+    "checked_against_main": "8a469726a081386ea039606ded3eecb7df607991",
+    "files": [
+      {
+        "path": "release.json",
+        "http": 200,
+        "bytes": 61,
+        "sha256": "0915cb759bb4c9e7d04a9cb369a7620a02a3f8ea7e63c6e6427549d4775cdc0c"
+      },
+      {
+        "path": "index.html",
+        "http": 200,
+        "bytes": 39148,
+        "sha256": "e1f0c4449e7f0530ed3edd2ac62cd92248f5799ec41d9581ab86c093917e7bdc",
+        "matches_main_bytes": false
+      },
+      {
+        "path": "app.js",
+        "http": 200,
+        "bytes": 27002,
+        "sha256": "34a5e45f57c577d399a65f33152c2108df989cded652c880bf88ba8861e36223",
+        "matches_main_bytes": true
+      },
+      {
+        "path": "data-loader.js",
+        "http": 200,
+        "bytes": 48148,
+        "sha256": "dff4171e8bce2033b2c3940edd240f4c5f82bcaa7cbe23be0f370ab9404997ae",
+        "matches_main_bytes": true
+      },
+      {
+        "path": "data-quality.js",
+        "http": 200,
+        "bytes": 35807,
+        "sha256": "414d4c08eb99811c315ee3e5412477d75ed2671d546a7a7bdbdbd187bdcb098b",
+        "matches_main_bytes": true
+      },
+      {
+        "path": "service-worker.js",
+        "http": 200,
+        "bytes": 7885,
+        "sha256": "a7c779bf6997f560e0ae8f778c603b9d2c8c5dcb19f2fbe76677528ee59360af",
+        "matches_main_bytes": true
+      },
+      {
+        "path": "data/campsites/ridb-amenities.json",
+        "http": 200,
+        "bytes": 360444,
+        "sha256": "344751ba6b43d5f4277d6e9ad560ce1ba357a1d4152c44be8b2c3b439c3a4206",
+        "matches_main_bytes": true
+      }
+    ],
+    "live_release": {
+      "source_commit": "27cb11225aa29c242851172fa92c907899021b9a"
+    },
+    "index_packaging_transform_verified": true
+  },
+  "actual_data_render": {
+    "method": "Node VM executes exact downloaded production renderer and DataQuality using actual downloaded production sidecar. This is not an interactive browser check.",
+    "facilities": 2163,
+    "overnight_records": 53693,
+    "positive_facility_ids": 1088,
+    "source": {
+      "name": "Recreation.gov RIDB full export",
+      "url": "https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip",
+      "sha256": "13afd4dc1d1dec6885c2299bb4d939eb554e97ab32fc6bcd715b9ef4d9618e01",
+      "inspected_at": "2026-10-30T20:00:32.987367+00:00",
+      "original_retrieved_at": "2026-10-30T16:33:49.112988+00:00",
+      "attribute_updated_at": null,
+      "archive_entry_time": "2026-10-29T18:45:44",
+      "archive_entry_timezone": null,
+      "basis": "canonical_download",
+      "http_last_modified": "2026-10-29T18:46:42Z"
+    },
+    "samples": {
+      "seasonal": {
+        "facility_id": "232080",
+        "overnight_records": 71,
+        "amenities": {
+          "fire_fixture": {
+            "reported": 71,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "picnic_table": {
+            "reported": 51,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "drinking_water": {
+            "reported": 2,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "toilet": {
+            "reported": 2,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {
+              "seasonal": 2
+            }
+          },
+          "tent_pad": {
+            "reported": 2,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          }
+        },
+        "expected_text": "seasonal:",
+        "rendered": true
+      },
+      "mixed": {
+        "facility_id": "232037",
+        "overnight_records": 92,
+        "amenities": {
+          "picnic_table": {
+            "reported": 90,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "grill": {
+            "reported": 91,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {
+              "accessible": 3
+            }
+          },
+          "drinking_water": {
+            "reported": 82,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {
+              "accessible": 4
+            }
+          },
+          "food_locker": {
+            "reported": 82,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "shower": {
+            "reported": 80,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {
+              "accessible": 4
+            }
+          },
+          "toilet": {
+            "reported": 82,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {
+              "accessible": 4
+            }
+          },
+          "dump": {
+            "reported": 46,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "grill_or_fire_ring": {
+            "reported": 1,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "fire_fixture": {
+            "reported": 1,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          }
+        },
+        "expected_text": "does not establish both features",
+        "rendered": true
+      },
+      "negative": {
+        "facility_id": "232493",
+        "overnight_records": 189,
+        "amenities": {
+          "fire_fixture": {
+            "reported": 119,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "food_locker": {
+            "reported": 1,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "picnic_table": {
+            "reported": 121,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "tent_pad": {
+            "reported": 14,
+            "negative": 8,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          }
+        },
+        "expected_text": "explicit no:",
+        "rendered": true
+      },
+      "conflict": {
+        "facility_id": "234374",
+        "overnight_records": 8,
+        "amenities": {
+          "fire_fixture": {
+            "reported": 6,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 1,
+            "qualifiers": {}
+          },
+          "picnic_table": {
+            "reported": 5,
+            "negative": 2,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "tent_pad": {
+            "reported": 1,
+            "negative": 2,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "drinking_water": {
+            "reported": 2,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "grill": {
+            "reported": 0,
+            "negative": 1,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          }
+        },
+        "expected_text": "conflicting values:",
+        "rendered": true
+      },
+      "unknown": {
+        "facility_id": "232459",
+        "overnight_records": 224,
+        "amenities": {
+          "fire_fixture": {
+            "reported": 223,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "picnic_table": {
+            "reported": 16,
+            "negative": 0,
+            "unknown": 207,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "food_locker": {
+            "reported": 96,
+            "negative": 0,
+            "unknown": 0,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "shower": {
+            "reported": 0,
+            "negative": 0,
+            "unknown": 3,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "drinking_water": {
+            "reported": 0,
+            "negative": 0,
+            "unknown": 3,
+            "conflict": 0,
+            "qualifiers": {}
+          },
+          "dump": {
+            "reported": 0,
+            "negative": 0,
+            "unknown": 3,
+            "conflict": 0,
+            "qualifiers": {}
+          }
+        },
+        "expected_text": "blank or unrecognized:",
+        "rendered": true
+      },
+      "empty": {
+        "facility_id": "1838",
+        "overnight_records": 0,
+        "amenities": {},
+        "expected_text": "No overnight campsite records",
+        "rendered": true
+      }
+    }
+  },
+  "matrix_sha256": "bbe6ca564ff33f8762566ea1656a8728733151d92c9b59ec2b1a040b83442436",
+  "score": {
+    "current": {
+      "feature_score": 89.9,
+      "counted": 61,
+      "must_have_done": 13,
+      "must_have_total": 13,
+      "problems": [],
+      "overall": 89.9
+    },
+    "diagnostic_video_partial": {
+      "feature_score": 89.4,
+      "counted": 61,
+      "must_have_done": 13,
+      "must_have_total": 13,
+      "problems": [],
+      "overall": 89.4
+    }
+  },
+  "focused_tests": {
+    "ridb_amenities": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "data_loader": {
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "existing_native_release_ci": {
+    "run_id": 41131722929,
+    "job_id": 124327076162,
+    "source_commit": "27cb11225aa29c242851172fa92c907899021b9a",
+    "conclusion": "success",
+    "browser_step": "success"
+  },
+  "fresh_interactive_browser_check": {
+    "performed": false,
+    "reason": "Connected extension lacks originating browser context; cloud browser backend connection closed."
+  }
+}

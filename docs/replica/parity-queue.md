@@ -1,48 +1,32 @@
-# Active FreeRoam comparison and build queue
+# Active comparison and implementation queue
 
-Updated for the 2.9–2.17 work. This is an implementation queue, not a new parity score. Earlier matrix scores are historical: the original runtime is unavailable and some inherited original-feature claims remain uncertain. Do not describe completion of a reduced camping-planning scope as 100% historical FreeRoam product parity.
+Updated October 30, 2026, after the live 2.20 verification and the owner's revised priorities. This is the execution order, not a new parity score. Earlier dated reports and candidate gates are historical.
 
-## Established capabilities
+## Current release and accounting
 
-- Published community rating/review-count filters, moderated review/photo lifecycle, and same-visit approach/noise/shade/crowding/comfort/carrier observations shipped in 2.9. Signal observations are not predicted coverage. Numeric/seasonal subscores remain incomplete.
-- Dated NIFC perimeter and NOAA satellite-smoke layers plus NWS point alerts shipped in 2.10. The live NWS query defect was fixed by PR83. Regional fire-weather risk, broad restriction feeds, forecast discovery and elevation filters remain incomplete.
-- 2.11 improves authorized agency camping/fee evidence and geographic validation. Measure actual catalogue deltas after screening and deduplication; a source record is not necessarily a new place or a newly free campground.
+The verified production code is **2.20.0**, source `27cb11225aa29c242851172fa92c907899021b9a` (PR110). Main `8a469726a081386ea039606ded3eecb7df607991` subsequently merged documentation in PR111. The [focused live verification](2026-10-30-parity-2.20-live.md) is the single home for current asset/source checks, amenity limits and scoring reconciliation.
 
-## Release sequence
+The merged matrix scores **89.9/100**, with **13/13 must-haves complete**. Using partial video credit instead yields the separately identified **89.4** sensitivity result. The 2.20 amenity extension remains partial under the existing broader-agency scope and adds no points. Neither score establishes full historical product parity, complete source coverage, current original-app behavior or physical site suitability.
 
-| Order | Package | Completion gate |
-|---|---|---|
-| 1 | Verified free-camping coverage | Full source wording and provenance; primary/secondary activity identity checks; fee/permit/season conflicts; actual new-place versus enrichment counts; regional source samples; correct state containment and explicit quarantine. |
-| 2 | Elevation and forecast discovery | Batch/static elevation data; bounded, cached forecast grids and explicit date periods; common map/route predicate; missing/expired nonmatches; units/time-zone/rate-limit/mobile checks. |
-| 3 | More services and overnight permission | Showers, laundry, groceries, fuel; separate operator/agency permission and dated moderated reports. Brand, parking availability, land ownership and majority votes never establish permission. |
-| 4 | Portable rig profile and route elevation | Local dimensions/preferences and export/import; apply preferences consistently; bounded route sampling and accessible text. Terrain elevation cannot prove bridge/tunnel clearance or road grade. |
-| 5 | Enforced routing restrictions | Sourced restriction hazards first; actual height/weight/length avoidance only through a backend that can enforce them. Current OSRM car routing cannot acquire RV capabilities from a checkbox. Verify known restricted routes and unresolved coverage. |
-| 6 | Community/media depth | Dated overnight reports, supported seasonal summaries/subscores, moderated videos and author management/removal. An external video link is a useful increment, not a complete upload pipeline. |
-| 7 | Language support | Extract UI strings, reviewed translations, locale dates/units and visible fallback; cover errors, accessibility and offline screens. Exact historical language claims remain unverified. |
+## Revised sequence and gates
 
-FCC predicted coverage and cell towers remain a separate lane. Resume only after a real authentication/data pilot succeeds and usage is confirmed. Tower locations must not be presented as usable carrier service.
+Preparation may proceed independently; fee-review execution and national clearance expansion retain the dependencies below. A prepared PR is not a deployed capability.
 
-Across packages, preserve portable saves, moderation operations, mobile/keyboard access, dated unknown/offline handling and rollback. Finish the offline-readiness display and verify a real-phone cold launch; desktop automation alone does not complete that gate.
+| Order | Package and single home | Current status and next gate |
+| --- | --- | --- |
+| 1 | Ten-record fee maintenance pilot: [USFS_FEE_RECHECK_PILOT.md](https://github.com/prowebpromo/kamptrail/blob/8f949c6b15e7ace5a6a1fe57be44ef2df64618a2/docs/USFS_FEE_RECHECK_PILOT.md), [PR118](https://github.com/prowebpromo/kamptrail/pull/118) | Establish and accept automated source-change checks on the ten maintained observations before scaling reviews. Commit by **Friday, November 27** and inspect actual fresh receipts/exceptions before the November 29 import. Preserve the human observation dates and distinguish machine confirmation from human review. |
+| 2 | Focused [2.20 amenity verification and re-score](2026-10-30-parity-2.20-live.md) | **Completed within the documented limits.** Exact deployed source and actual record cases verified. Broader agency amenities remain partial; no extra parity credit. No fresh interactive browser or real-phone pass is claimed. |
+| 3 | Probably-free fee pool and fixed pilot: [PROBABLY_FREE_PILOT.md](https://github.com/prowebpromo/kamptrail/blob/9ee1293e4124f87077fd0e46e66a14976cc94e14/docs/fee-evidence/PROBABLY_FREE_PILOT.md), [PR114](https://github.com/prowebpromo/kamptrail/pull/114) | Analysis prepares a deduplicated **2,065-record** targeted pool and a fixed **50-record** sample. Execution is **blocked on accepted maintenance** from step 1. Apply the contract's predeclared resolution, active-minutes, unknown-to-free share, free-yield and interim stop rules before recording new reviews. Operator tags and dispersed type select leads; they do not establish free fees. |
+| 4 | State rest-area policy model: [REST_AREA_STATE_POLICIES_2026-10-30.md](https://github.com/prowebpromo/kamptrail/blob/7d751f20fe9afe754f22130e71d41d7d21284e65/docs/REST_AREA_STATE_POLICIES_2026-10-30.md), [PR113](https://github.com/prowebpromo/kamptrail/pull/113) | Prepared state/operator/facility-class inheritance with explicit facility exceptions. Source the rule once for its actual scope, then apply the resolver. Client integration, freshness monitoring and live verification remain gates. No permission or new-place change is implied by preparation. |
+| 5 | Router feasibility: [RV_ROUTER_ASSESSMENT_2026-10-30.md](https://github.com/prowebpromo/kamptrail/blob/24ba9afc9a04863f4a296e83c952e0393f28457b/docs/RV_ROUTER_ASSESSMENT_2026-10-30.md), [PR115](https://github.com/prowebpromo/kamptrail/pull/115) | Assessment **has not passed**. Resolve provider/runtime, vehicle semantics, known restriction cases, usage rights and production-host gates first. **Scale clearance data only after the router passes.** Existing rig dimensions, route proximity and Rhode Island markers are reference evidence, not enforcement. |
+| 6 | Offline readiness and device acceptance: [OFFLINE_READINESS.md](https://github.com/prowebpromo/kamptrail/blob/b3ebe540e9d9fa391c128cb954c8b9f99bb06283/docs/OFFLINE_READINESS.md), [PR117](https://github.com/prowebpromo/kamptrail/pull/117) | Actual cache-inventory implementation is prepared; native browser CI and versioned release integration remain gates. Mr. Price's real-phone cold-launch check is scheduled for **Monday, November 2, 3:00–3:20 PM Eastern**. The physical check remains **pending**. Follow the linked runbook and record actual device results. |
 
-## Full-product scope still missing
+The linked contracts own policy details, thresholds, fixtures and acceptance steps. Keep this queue to ordering, status and dependencies rather than duplicating those rules. Pending package documents are linked to their prepared revisions; their PRs record later review/integration changes.
 
-Accounts/profiles, cross-device synchronization, friends/messages/groups/events, notifications and native navigation remain real full-product gaps. Donations/partners and editorial product guides remain business/editorial exclusions. Some archived descriptions support video and tower discovery; source-verified functionality must be distinguished from uncertain inherited matrix rows. Update evidence before changing weights or publishing a new score.
+## External dependency and persistent limits
 
-## Verification after every package
+FCC coverage stays parked pending the existing access/support case. No credential retries are part of this queue. Observed camper signal reports and cell locations do not establish modeled usable carrier coverage.
 
-1. Run relevant unit/source-contract regressions and required full checks.
-2. Review actual input/output diffs, identity conflicts, source failures and published counts.
-3. Merge/deploy only tested work; verify real provider responses from the host and core live UI flows.
-4. Record what passed and what remains partial, then continue to the next package. External access or billing blockers do not stop independent work.
+Automatic account synchronization, social/community features, notifications and native navigation remain excluded or absent full-product areas. Preserve the historical scope caveats in the comparison reports. The real-phone offline check cannot be completed from this workspace.
 
-## Current implementation gates (2026-10-30)
-
-- Live remains 2.11.0. No later package is counted as deployed parity.
-- PR85 / 2.12 elevation: code/browser CI passed; national USGS import40974281516 remains in progress. Exact published data and its regression run remain release gates.
-- PR86 / 2.13 forecast: full app and native producer CI passed. Actual first publication and Hostinger private-cache/live checks remain.
-- PR87 / 2.14 services: exact-head CI40979932301 passed all88 browser checks plus PHP/MySQL/source/packaging. Seven-category Utah pilot contains2981 identities; total7340 includes4359 legacy elsewhere. No national seven-category claim.
-- PR88 / 2.15 permissions: implementation and independent review complete, PHP/MySQL checks passed in initial CI. Backup-fixture isolation and broader restore verification are being corrected before the full browser/package gate. Two reviewed official places are not general permission coverage.
-- 2.17 local implementation adds a portable rig profile and bounded route-terrain profile. Fractional rig-length comparisons preserve metric precision. Terrain sampling requires an explicit action and has dated exact-route offline reuse; reference dimensions do not make car routing RV-aware. Required browser/PHP CI and live private-cache/provider checks remain release gates. See [the contract](../RIG_TERRAIN_CONTRACT_2.17.md).
-- Next independent package: sourced routing-restriction hazards and an enforceable routing-backend assessment, preserving explicit unknown coverage. No height/weight/length avoidance claim before a backend can enforce it.
-
-FCC remains blocked externally by helpdesk64052. No credential retries or secret handling are required to continue independent packages.
+For every executable package, retain exact identity joins, dated source evidence, unknown/unavailable states, moderation, mobile/keyboard access, portable saves and rollback. Run the relevant tests and required release checks, then verify the deployed source and real provider behavior. Measure actual classification changes or new-place counts rather than counting source records as outcomes.

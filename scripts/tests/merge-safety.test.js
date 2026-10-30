@@ -1,10 +1,16 @@
 const test = require('node:test');
+const { mock } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
 const { CampsiteMerger, saveMergedData } = require('../merge_campsite_data');
 const { mergeState } = require('../merge_all_states');
+// Node 22's test IPC can misread non-ASCII progress stdout as V8 frames
+// (nodejs/node#65934). These tests assert data and failures, not CLI progress.
+// Capture only this child test file's progress; production logging is unchanged.
+test.beforeEach(() => mock.method(console, 'log', () => {}));
+test.afterEach(() => mock.restoreAll());
 const point = (properties = {}, coordinates = [-73, 42]) => ({
   type: 'Feature', geometry: { type: 'Point', coordinates }, properties
 });

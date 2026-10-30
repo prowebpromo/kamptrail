@@ -3,6 +3,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
 const files=['index.html','locale.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
+  require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-rest-policies.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
   for(const file of files)await fs.copyFile(path.join(root,file),path.join(out,file));
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
@@ -25,6 +26,11 @@ const files=['index.html','locale.js','how-to.html','app.js','app.css','manifest
   if(restRaw.length>512*1024)throw new Error('Official rest-area catalogue exceeds release bound');
   require('../rest-areas.js').validate(JSON.parse(restRaw));
   await fs.mkdir(path.join(out,'data','rest-areas'),{recursive:true});await fs.writeFile(path.join(out,'data','rest-areas','TX.json'),restRaw);
+  const statePolicyPath=path.join(root,'data','rest-areas','state-policies.json');
+  if(await fs.realpath(statePolicyPath)!==statePolicyPath)throw new Error('State policies must not follow symlinks');
+  const statePolicyRaw=await fs.readFile(statePolicyPath);if(statePolicyRaw.length>64*1024)throw new Error('State policies exceed release bound');
+  require('../rest-areas.js').validatePolicies(JSON.parse(statePolicyRaw));
+  await fs.writeFile(path.join(out,'data','rest-areas','state-policies.json'),statePolicyRaw);
   const clearancePath=path.join(root,'data','clearances','RI.json');
   if(await fs.realpath(clearancePath)!==clearancePath)throw new Error('Height-tag pilot must not follow symlinks');
   const clearanceRaw=await fs.readFile(clearancePath);

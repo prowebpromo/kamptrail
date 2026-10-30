@@ -9,3 +9,5 @@ The fee recheck pilot is included through main merge 9fd8eb04 (PR #118). Refresh
 The physical-phone cold launch remains pending for Chuck’s November 2 weekday check. See [the acceptance runbook](OFFLINE_READINESS.md). A code or CI pass does not complete that phone gate or change its parity row to complete.
 
 Local validation: runtime identity/asset handshake test and 37 offline/locale/service-worker tests pass. Static release build passes and packaged HTML reports 2.21.0 with kt-v49 and the readiness checklist. Native CI remains required on the final exact head. The local build output was removed after inspection to preserve workspace capacity.
+
+Combined integration includes actual main 542da1d5: reviewed state-rule runtime and artifact from PR #113, the Node 22 test-transport correction, fee policy #118, and the parity/fee-pool/router preparation documents. State policies do not imply nationwide facility coverage. All incoming rule, packaging and source changes are retained; only the incoming rest-area module version becomes 2.21.0 to match the runtime handshake. Both sets of Spanish translations are retained.
