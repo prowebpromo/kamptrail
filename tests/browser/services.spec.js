@@ -47,7 +47,13 @@ test('corrupt shard is visibly partial and retry succeeds; nearby evidence and m
  await expect(page.locator('.kt-services-status')).toContainText('50 state extracts, retrieved 2026-01-01 to 2026-01-02');expect(await page.locator('.kt-services-status').evaluate(e=>e.textContent.length)).toBeLessThan(400);
  const control=page.locator('.kt-services-control');expect(await control.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);expect((await new AxeBuilder({page}).include('.kt-services-control').analyze()).violations).toEqual([]);
  await control.getByRole('button',{name:'Clear service categories',exact:true}).focus();await page.keyboard.press('Enter');await expect.poll(()=>ids(page)).toEqual([]);await control.getByLabel('Fuel',{exact:true}).check();
- await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,0)));await page.getByLabel('Services (7 categories)',{exact:true}).uncheck();await page.locator('#map').click({position:{x:2,y:40}});
+ // A passive startup notice must not block controls while it remains visible.
+ await page.evaluate(()=>showToast('Offline saving is unavailable. You can still use the map online.','info',0));
+ const toast=page.locator('#toast');await expect(toast).toBeVisible();await expect(toast).toHaveCSS('pointer-events','none');
+ await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');
+ const picker=page.locator('.leaflet-control-layers');await expect(picker).toHaveClass(/leaflet-control-layers-expanded/);await expect(control).toBeHidden();
+ const servicesLayer=page.getByLabel('Services (7 categories)',{exact:true});await expect(servicesLayer).toBeVisible();await expect(servicesLayer).toBeChecked();
+ await servicesLayer.uncheck();await expect(servicesLayer).not.toBeChecked();await expect(toast).toBeVisible();await page.locator('#map').click({position:{x:2,y:40}});
  await page.waitForFunction(()=>KampTrailData.getCampsiteById('camp:pilot'));await page.evaluate(()=>KampTrailData.focusCampsite('camp:pilot'));
  const popup=page.locator('.kt-site-popup');await popup.getByRole('button',{name:'Nearest RV services',exact:true}).click();
  await expect(popup.getByRole('heading',{name:'Services within 30 miles (straight-line)',level:3})).toBeVisible();await expect(popup.locator('[data-service-id="osm:node:1"]')).toContainText('customers');expect((await new AxeBuilder({page}).include('.kt-site-popup').analyze()).violations).toEqual([]);

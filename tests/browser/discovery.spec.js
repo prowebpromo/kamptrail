@@ -32,3 +32,28 @@ test('mobile observation fields fit the review dialog and pass a focused accessi
  expect(await d.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
  const AxeBuilder=require('@axe-core/playwright').default;expect((await new AxeBuilder({page}).include('#kt-community').analyze()).violations).toEqual([]);
 });
+
+test('seasonal numeric filters exclude unknown and sparse scores, count selections, persist and reset',async({page,context})=>{
+ let ids=[];const visited=new Date().toISOString().slice(0,10);
+ await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:Object.fromEntries(ids.map((id,i)=>[id,{rating_count:i===1?2:3,rating_sum:i===1?10:12,latest_visit:visited,observations:[{values:i===2?{noise:'quiet'}:{scores:{quietness:i===0?4:5}},count:i===1?2:3,latest_visit:visited}]}]))})}));
+ await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
+ await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);ids=await page.evaluate(()=>KampTrailData.getVisibleCampsites().slice(0,3).map(s=>s.properties.id));expect(ids).toHaveLength(3);
+ await page.getByRole('button',{name:'Open filters',exact:true}).click();const panel=page.getByRole('region',{name:'Campsite filters'});
+ await panel.getByLabel('Minimum average quietness score',{exact:true}).selectOption('4');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);await expect(page.locator('#filter-badge')).toHaveText('1');
+ const season=await page.evaluate(date=>KampTrailDiscovery.season(date),visited);await panel.getByLabel('Numeric rating visit season',{exact:true}).selectOption(season);await expect(page.locator('#filter-badge')).toHaveText('2');await expect(page.locator('#result-list')).toContainText('3 explicit ratings');
+ await page.reload();await page.getByRole('button',{name:'Open filters',exact:true}).click();await expect(page.getByLabel('Minimum average quietness score',{exact:true})).toHaveValue('4');await expect(page.getByLabel('Numeric rating visit season',{exact:true})).toHaveValue(season);await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);
+ await page.getByLabel('Minimum average personal comfort score',{exact:true}).selectOption('4');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBe(0);await expect(page.locator('#filter-badge')).toHaveText('3');
+ await page.locator('#kt-f-reset').click();await expect(page.getByLabel('Minimum average quietness score',{exact:true})).toHaveValue('0');await expect(page.getByLabel('Numeric rating visit season',{exact:true})).toHaveValue('');await expect(page.locator('#filter-badge')).toBeHidden();
+});
+
+test('review sub-ratings stay optional and explicit, and detail summaries show limited evidence',async({page,context})=>{
+ let payload='';const visited='2026-01-01';
+ await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('**/api/community.php*',async r=>{if(r.request().method()==='POST'){payload=r.request().postData();await r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,id:1,token:'a'.repeat(64),status:'pending'})});return;}await r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,count:0,average:null,reviews:[],next_before:null,score_minimum:3,seasonal_scores:{winter:{quietness:{count:2,sum:10,first_visit:'2025-12-01',latest_visit:visited}}}})});});
+ await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
+ await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);await page.evaluate(()=>KampTrailData.focusCampsite(KampTrailData.getVisibleCampsites()[0].properties.id));await page.getByRole('button',{name:'Reviews and photos',exact:true}).click();
+ await expect(page.getByRole('region',{name:'Seasonal visit sub-ratings'})).toContainText('insufficient evidence · 2 explicit ratings');await expect(page.getByRole('region',{name:'Seasonal visit sub-ratings'})).toContainText('2025-12-01 to 2026-01-01');
+ await page.getByRole('button',{name:'Write a review',exact:true}).click();const d=page.getByRole('dialog',{name:'Write a review'});await expect(d.getByLabel('Quietness',{exact:true})).toHaveValue('');await d.getByLabel('Noise',{exact:true}).selectOption('quiet');await expect(d.getByLabel('Quietness',{exact:true})).toHaveValue('');
+ await d.getByLabel('Public name',{exact:true}).fill('Numeric fixture camper');await d.getByLabel('Overall rating',{exact:true}).selectOption('4');await d.getByLabel('Date visited',{exact:true}).fill(visited);await d.getByLabel('Quietness',{exact:true}).selectOption('5');await d.getByLabel('Your experience',{exact:true}).fill('My own visit was quiet and the optional score reflects that experience.');await d.locator('[name=firsthand]').check();await d.getByRole('button',{name:'Send for review',exact:true}).click();await expect(page.getByRole('dialog',{name:'Review received'})).toBeVisible();expect(payload).toContain('{"noise":"quiet","scores":{"quietness":5}}');expect(payload).not.toContain('"comfort":');expect(payload).not.toContain('"shade":');
+});
