@@ -1441,6 +1441,14 @@
   "Retry height-tag evidence": "Reintentar datos de altura",
   "Recreation.gov campsite amenity evidence unavailable.": "Los datos sobre servicios de parcelas de Recreation.gov no están disponibles.",
   "Picnic tables": "Mesas de picnic",
+  "Fire pits or rings": "Fogones o aros para fogatas",
+  "Grills": "Parrillas",
+  "Trash collection": "Recolección de basura",
+  "Food lockers": "Armarios para alimentos",
+  "Tent pads": "Plataformas para tiendas de campaña",
+  "Grill or fire ring (source field: “Grills/Fire Ring”)": "Parrilla o aro para fogata (campo de origen: “Grills/Fire Ring”)",
+  "A fire fixture does not establish permission to have a fire.": "Un fogón o aro para fogata no establece que esté permitido encender fuego.",
+  "Quoted field name is in the original source language; it does not establish both features.": "El nombre del campo está en el idioma original de la fuente; no confirma ambas instalaciones.",
   "seasonal": "estacional",
   "peak season": "temporada alta",
   "coin operated": "funciona con monedas",
@@ -1620,7 +1628,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.19.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
+  global.KampTrailI18n = {version:'2.20.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

@@ -65,6 +65,6 @@
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
     return layer;
   }
-  const api={version:'2.19.0',validate,place,feature,describe,within,detail,init};
+  const api={version:'2.20.0',validate,place,feature,describe,within,detail,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailRestAreas=api;
 })(typeof window!=='undefined'?window:globalThis);
