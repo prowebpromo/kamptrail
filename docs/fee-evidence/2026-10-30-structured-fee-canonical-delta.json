@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "scope": "Actual canonical search-index rebuild after the bounded USFS source normalization",
+  "before_sha256": "d378bc21a395c629198b439b2d2ee437aa92967873f7f591fe4f66bdd9637354",
+  "after_sha256": "3b36b641e7890f3c03815d9df923d4a3908678cf63ff4d4a74126f6dd3256300",
+  "before_count": 33286,
+  "after_count": 33286,
+  "before_fee_counts": {
+    "unknown": 22784,
+    "free": 2153,
+    "paid": 8290,
+    "conditional": 59
+  },
+  "after_fee_counts": {
+    "unknown": 22782,
+    "free": 2154,
+    "paid": 8291,
+    "conditional": 59
+  },
+  "added_ids": [],
+  "removed_ids": [],
+  "changed_records": [
+    {
+      "id": "usfs:11263",
+      "before": {
+        "id": "usfs:11263",
+        "legacy_ids": [],
+        "name": "Aspen Grove",
+        "states": [
+          "CA"
+        ],
+        "lat": 40.555025,
+        "lng": -120.774423,
+        "m": {
+          "f": "unknown",
+          "t": "established",
+          "o": "closed",
+          "e": {
+            "m": 1568.728759766,
+            "k": "40.5550250,-120.7744230",
+            "d": "2026-10-30T01:02:56.946771Z"
+          }
+        }
+      },
+      "after": {
+        "id": "usfs:11263",
+        "legacy_ids": [],
+        "name": "Aspen Grove",
+        "states": [
+          "CA"
+        ],
+        "lat": 40.555025,
+        "lng": -120.774423,
+        "m": {
+          "f": "paid",
+          "t": "established",
+          "o": "closed",
+          "e": {
+            "m": 1568.728759766,
+            "k": "40.5550250,-120.7744230",
+            "d": "2026-10-30T01:02:56.946771Z"
+          }
+        }
+      }
+    },
+    {
+      "id": "usfs:75504",
+      "before": {
+        "id": "usfs:75504",
+        "legacy_ids": [],
+        "name": "Rio Chama Campground, Small Group Sites",
+        "states": [
+          "NM"
+        ],
+        "lat": 36.355141,
+        "lng": -106.672744,
+        "m": {
+          "f": "unknown",
+          "t": "established",
+          "o": "open",
+          "e": {
+            "m": 1954.892578125,
+            "k": "36.3551410,-106.6727440",
+            "d": "2026-10-30T00:04:22.052875Z"
+          }
+        }
+      },
+      "after": {
+        "id": "usfs:75504",
+        "legacy_ids": [],
+        "name": "Rio Chama Campground, Small Group Sites",
+        "states": [
+          "NM"
+        ],
+        "lat": 36.355141,
+        "lng": -106.672744,
+        "m": {
+          "f": "free",
+          "t": "established",
+          "o": "open",
+          "e": {
+            "m": 1954.892578125,
+            "k": "36.3551410,-106.6727440",
+            "d": "2026-10-30T00:04:22.052875Z"
+          }
+        }
+      }
+    }
+  ],
+  "agency_count": 5412,
+  "quarantine": {
+    "version": 1,
+    "boundary_source": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18/query",
+    "boundary_vintage": "2026-01-01",
+    "border_ambiguity_meters": 10.0,
+    "count": 1,
+    "reasons": {
+      "outside_supported_states": 1
+    },
+    "records": [
+      {
+        "id": "blm-area:10390884",
+        "source": "Bureau of Land Management",
+        "source_state": null,
+        "previous_state": null,
+        "coordinates": [
+          114.1417,
+          34.28848
+        ],
+        "reason": "outside_supported_states",
+        "candidates": []
+      }
+    ]
+  }
+}

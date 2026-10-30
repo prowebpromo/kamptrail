@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "scope": "Same actual complete current USFS fetch normalized by baseline6f46c79 and proposed importer; no source files or production data published",
+  "retrieved_at_start": "2026-10-30T22:45:42.731970+00:00",
+  "retrieved_at_last_response": "2026-10-30T22:46:45.504986+00:00",
+  "normalization_retrieved_day": "2026-10-30",
+  "raw_rows_count": 4632,
+  "raw_rows_sha256": "3c9a69394f4fc6f88919e8083acd84ef6d2056d58f8f9943b057c03d3f92c1c6",
+  "baseline_source_sha256": "271fe1ecf5724aa96113aede1cf148f23eba7159815d05357cf0406739c7c756",
+  "proposed_source_sha256": "1ae1e2f9d4a3387307bec47dc1de329989ee826e18303e2bb23f83347a204599",
+  "baseline_fee_counts": {
+    "paid": 2846,
+    "free": 702,
+    "unknown": 976,
+    "conditional": 47
+  },
+  "proposed_fee_counts": {
+    "paid": 2847,
+    "free": 703,
+    "unknown": 974,
+    "conditional": 47
+  },
+  "canonical_source_id_additions": [],
+  "canonical_source_id_removals": [],
+  "changed_records": [
+    {
+      "id": "usfs:11263",
+      "name": "Aspen Grove",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.774423,
+          40.555025
+        ]
+      },
+      "changed_properties": {
+        "fee_status": {
+          "before": "unknown",
+          "after": "paid"
+        }
+      }
+    },
+    {
+      "id": "usfs:75504",
+      "name": "Rio Chama Campground, Small Group Sites",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.672744,
+          36.355141
+        ]
+      },
+      "changed_properties": {
+        "field_provenance": {
+          "before": {
+            "cost": "USFS Recreation Opportunities feedescription",
+            "camping_activities": "USFS Recreation Opportunities markeractivity",
+            "coordinates": "USFS EDW geometry outSR=4326"
+          },
+          "after": {
+            "cost": "USFS Recreation Opportunities recareadescription",
+            "camping_activities": "USFS Recreation Opportunities markeractivity",
+            "coordinates": "USFS EDW geometry outSR=4326"
+          }
+        },
+        "fee_source_field": {
+          "before": "feedescription",
+          "after": "recareadescription"
+        },
+        "fee_evidence_records": {
+          "before": [
+            {
+              "source": "US Forest Service",
+              "source_field": "recareadescription",
+              "source_record_id": "75504",
+              "source_url": "https://www.fs.usda.gov/recarea/santafe/recarea/?recid=75504",
+              "query_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query",
+              "retrieved_at": "2026-10-30",
+              "source_updated_at": null,
+              "text": "The Rio Chama is a developed no-fee campground where reservations are not required. Located along the Rio Chama Wild & Scenic River, the developed campground offers a great place for families, groups, or RVs to come camp on the river's edge. Uses: camping, hiking, fishing, and river access. Facilities: This site offers two group sites with two picnic tables and fire rings, and one vault toilet and trash bin. Special Instructions: Smaller RVs (up to 20 feet) can be accommodated at some sites. No drinking water is available. Forest Road 151 is not recommended for travel when wet.",
+              "sha256": "3d9c9918fdd69de23aa6752b169d772ff865e066d38b2be2f5748255202fe58b",
+              "classification_text": "",
+              "qualification_text": ""
+            },
+            {
+              "source": "US Forest Service",
+              "source_field": "restrictions",
+              "source_record_id": "75504",
+              "source_url": "https://www.fs.usda.gov/recarea/santafe/recarea/?recid=75504",
+              "query_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query",
+              "retrieved_at": "2026-10-30",
+              "source_updated_at": null,
+              "text": "Motorized vehicles or mechanized equipment are prohibited in the Chama River Canyon Wilderness All pets must be on a leash Call Coyote Ranger District @575 638-5526 for current fire restrictions Fishing is allowed in accordance with the NMG&F Dept. regulations.",
+              "sha256": "bed813be8f0d2aab2c5f2a42056374be90ea6e4a54a0e3bfc2696721ccfb35dd",
+              "classification_text": "",
+              "qualification_text": ""
+            }
+          ],
+          "after": [
+            {
+              "source": "US Forest Service",
+              "source_field": "recareadescription",
+              "source_record_id": "75504",
+              "source_url": "https://www.fs.usda.gov/recarea/santafe/recarea/?recid=75504",
+              "query_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query",
+              "retrieved_at": "2026-10-30",
+              "source_updated_at": null,
+              "text": "The Rio Chama is a developed no-fee campground where reservations are not required. Located along the Rio Chama Wild & Scenic River, the developed campground offers a great place for families, groups, or RVs to come camp on the river's edge. Uses: camping, hiking, fishing, and river access. Facilities: This site offers two group sites with two picnic tables and fire rings, and one vault toilet and trash bin. Special Instructions: Smaller RVs (up to 20 feet) can be accommodated at some sites. No drinking water is available. Forest Road 151 is not recommended for travel when wet.",
+              "sha256": "3d9c9918fdd69de23aa6752b169d772ff865e066d38b2be2f5748255202fe58b",
+              "classification_text": "The Rio Chama is a developed no-fee campground where reservations are not required.",
+              "qualification_text": ""
+            },
+            {
+              "source": "US Forest Service",
+              "source_field": "restrictions",
+              "source_record_id": "75504",
+              "source_url": "https://www.fs.usda.gov/recarea/santafe/recarea/?recid=75504",
+              "query_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query",
+              "retrieved_at": "2026-10-30",
+              "source_updated_at": null,
+              "text": "Motorized vehicles or mechanized equipment are prohibited in the Chama River Canyon Wilderness All pets must be on a leash Call Coyote Ranger District @575 638-5526 for current fire restrictions Fishing is allowed in accordance with the NMG&F Dept. regulations.",
+              "sha256": "bed813be8f0d2aab2c5f2a42056374be90ea6e4a54a0e3bfc2696721ccfb35dd",
+              "classification_text": "",
+              "qualification_text": ""
+            }
+          ]
+        },
+        "fee_text": {
+          "before": null,
+          "after": "The Rio Chama is a developed no-fee campground where reservations are not required."
+        },
+        "fee_status": {
+          "before": "unknown",
+          "after": "free"
+        },
+        "cost": {
+          "before": null,
+          "after": 0
+        }
+      }
+    }
+  ],
+  "provider_responses": [
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:45:42.731970+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"ef318ba5\"",
+      "bytes": 14,
+      "sha256": "702d8dac09bf0e15fe4544ee3bef1887dd1cba22dc7f065029ec12bd9a2d8b35",
+      "elapsed_seconds": 8.928,
+      "retained_raw_filename": "001.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=1000",
+      "retrieved_at": "2026-10-30T22:45:51.660774+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=1000",
+      "last_modified": null,
+      "etag": "\"872957f1\"",
+      "bytes": 1796898,
+      "sha256": "fa84b40e43bc8368f9d29c51f657adbcdec9013bf58a9ffcc65ca249ba4f71d4",
+      "elapsed_seconds": 5.107,
+      "retained_raw_filename": "002.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=1000&resultRecordCount=1000",
+      "retrieved_at": "2026-10-30T22:45:56.780656+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=1000&resultRecordCount=1000",
+      "last_modified": null,
+      "etag": "\"d95391e0\"",
+      "bytes": 1804650,
+      "sha256": "616bb0090b0255b9af75f5a212b2e813229effe79c9cca0b840eddeade43c244",
+      "elapsed_seconds": 5.509,
+      "retained_raw_filename": "003.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=2000&resultRecordCount=1000",
+      "retrieved_at": "2026-10-30T22:46:02.304103+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=2000&resultRecordCount=1000",
+      "last_modified": null,
+      "etag": "\"af14e609\"",
+      "bytes": 1797215,
+      "sha256": "1afa31196bcaf06d1121be0c3918d84e3f9bb8e2717db16aa17ef1c0f2ce0a60",
+      "elapsed_seconds": 4.741,
+      "retained_raw_filename": "004.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=3000&resultRecordCount=1000",
+      "retrieved_at": "2026-10-30T22:46:07.057496+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=3000&resultRecordCount=1000",
+      "last_modified": null,
+      "etag": "\"7903ac5e\"",
+      "bytes": 1952251,
+      "sha256": "d3816a4d49c587e03ff779fc8b747f7d87d785b8c36555641049faab5046d828",
+      "elapsed_seconds": 6.254,
+      "retained_raw_filename": "005.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=4000&resultRecordCount=481",
+      "retrieved_at": "2026-10-30T22:46:13.325437+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=4000&resultRecordCount=481",
+      "last_modified": null,
+      "etag": "\"a1a6e152\"",
+      "bytes": 1021912,
+      "sha256": "51b235e7750089e380d05ca85700018781b040f7e4ca9c4c6b2986184beddb40",
+      "elapsed_seconds": 4.45,
+      "retained_raw_filename": "006.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:46:17.783015+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=markeractivity+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"ef318ba5\"",
+      "bytes": 14,
+      "sha256": "702d8dac09bf0e15fe4544ee3bef1887dd1cba22dc7f065029ec12bd9a2d8b35",
+      "elapsed_seconds": 2.775,
+      "retained_raw_filename": "007.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationAreaActivities_01/MapServer/0/query?f=json&where=activityname+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+AND+%28markeractivity+NOT+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+OR+markeractivity+IS+NULL%29+AND+UPPER%28recareaname%29+LIKE+%27%25CAMP%25%27&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:46:20.567203+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationAreaActivities_01/MapServer/0/query?f=json&where=activityname+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+AND+%28markeractivity+NOT+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+OR+markeractivity+IS+NULL%29+AND+UPPER%28recareaname%29+LIKE+%27%25CAMP%25%27&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"9c5b7bc6\"",
+      "bytes": 13,
+      "sha256": "177d7bb8bb4d241c89f19924ca03f774c2f8f1f69d457bb35c73358312b3508d",
+      "elapsed_seconds": 2.931,
+      "retained_raw_filename": "008.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationAreaActivities_01/MapServer/0/query?f=json&where=activityname+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+AND+%28markeractivity+NOT+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+OR+markeractivity+IS+NULL%29+AND+UPPER%28recareaname%29+LIKE+%27%25CAMP%25%27&outFields=objectid%2Crecareaid%2Crecareaname%2Cmarkeractivity%2Cactivityname%2Cactivitydescription&returnGeometry=false&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=215",
+      "retrieved_at": "2026-10-30T22:46:23.498345+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationAreaActivities_01/MapServer/0/query?f=json&where=activityname+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+AND+%28markeractivity+NOT+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+OR+markeractivity+IS+NULL%29+AND+UPPER%28recareaname%29+LIKE+%27%25CAMP%25%27&outFields=objectid%2Crecareaid%2Crecareaname%2Cmarkeractivity%2Cactivityname%2Cactivitydescription&returnGeometry=false&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=215",
+      "last_modified": null,
+      "etag": "\"cb1d9496\"",
+      "bytes": 43453,
+      "sha256": "0b69f75250cbe1747b7f6f55f5d07e10266eae3188edc5f394c69c7f4481e60a",
+      "elapsed_seconds": 2.855,
+      "retained_raw_filename": "009.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationAreaActivities_01/MapServer/0/query?f=json&where=activityname+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+AND+%28markeractivity+NOT+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+OR+markeractivity+IS+NULL%29+AND+UPPER%28recareaname%29+LIKE+%27%25CAMP%25%27&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:46:26.355277+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationAreaActivities_01/MapServer/0/query?f=json&where=activityname+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+AND+%28markeractivity+NOT+IN+%28%27Campground+Camping%27%2C%27Dispersed+Camping%27%2C%27RV+Camping%27%2C%27Group+Camping%27%2C%27Horse+Camping%27%2C%27OHV+Camping%27%29+OR+markeractivity+IS+NULL%29+AND+UPPER%28recareaname%29+LIKE+%27%25CAMP%25%27&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"9c5b7bc6\"",
+      "bytes": 13,
+      "sha256": "177d7bb8bb4d241c89f19924ca03f774c2f8f1f69d457bb35c73358312b3508d",
+      "elapsed_seconds": 2.69,
+      "retained_raw_filename": "010.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%285044%2C5685%2C5705%2C5876%2C6218%2C6440%2C6444%2C10676%2C10692%2C10719%2C10999%2C11228%2C11245%2C11268%2C11295%2C11364%2C11368%2C11372%2C11559%2C11560%2C11704%2C11780%2C12146%2C12204%2C12257%2C12307%2C12341%2C12868%2C13054%2C13149%2C16592%2C16634%2C18744%2C22496%2C22948%2C22950%2C24950%2C24964%2C25200%2C25250%2C25558%2C26626%2C26688%2C26690%2C30093%2C30099%2C30165%2C31454%2C31458%2C34176%2C34643%2C35741%2C35797%2C39134%2C39278%2C40094%2C45428%2C45470%2C45532%2C45538%2C47438%2C47440%2C47442%2C47444%2C47446%2C47462%2C47464%2C47466%2C47618%2C47620%2C47622%2C48172%2C48638%2C49080%2C53224%2C54912%2C59831%2C59845%2C59891%2C59899%2C59901%2C61478%2C64176%2C64790%2C64883%2C65184%2C65410%2C65632%2C66450%2C67030%2C70770%2C70984%2C71017%2C71214%2C71237%2C71883%2C73492%2C73559%2C74879%2C76168%29&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:46:29.046583+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%285044%2C5685%2C5705%2C5876%2C6218%2C6440%2C6444%2C10676%2C10692%2C10719%2C10999%2C11228%2C11245%2C11268%2C11295%2C11364%2C11368%2C11372%2C11559%2C11560%2C11704%2C11780%2C12146%2C12204%2C12257%2C12307%2C12341%2C12868%2C13054%2C13149%2C16592%2C16634%2C18744%2C22496%2C22948%2C22950%2C24950%2C24964%2C25200%2C25250%2C25558%2C26626%2C26688%2C26690%2C30093%2C30099%2C30165%2C31454%2C31458%2C34176%2C34643%2C35741%2C35797%2C39134%2C39278%2C40094%2C45428%2C45470%2C45532%2C45538%2C47438%2C47440%2C47442%2C47444%2C47446%2C47462%2C47464%2C47466%2C47618%2C47620%2C47622%2C48172%2C48638%2C49080%2C53224%2C54912%2C59831%2C59845%2C59891%2C59899%2C59901%2C61478%2C64176%2C64790%2C64883%2C65184%2C65410%2C65632%2C66450%2C67030%2C70770%2C70984%2C71017%2C71214%2C71237%2C71883%2C73492%2C73559%2C74879%2C76168%29&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"9c5b030b\"",
+      "bytes": 13,
+      "sha256": "f65a04fc8ad700ad00260653617fd76ad37f1a0791d867746dc8a6cca68188bf",
+      "elapsed_seconds": 3.541,
+      "retained_raw_filename": "011.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%285044%2C5685%2C5705%2C5876%2C6218%2C6440%2C6444%2C10676%2C10692%2C10719%2C10999%2C11228%2C11245%2C11268%2C11295%2C11364%2C11368%2C11372%2C11559%2C11560%2C11704%2C11780%2C12146%2C12204%2C12257%2C12307%2C12341%2C12868%2C13054%2C13149%2C16592%2C16634%2C18744%2C22496%2C22948%2C22950%2C24950%2C24964%2C25200%2C25250%2C25558%2C26626%2C26688%2C26690%2C30093%2C30099%2C30165%2C31454%2C31458%2C34176%2C34643%2C35741%2C35797%2C39134%2C39278%2C40094%2C45428%2C45470%2C45532%2C45538%2C47438%2C47440%2C47442%2C47444%2C47446%2C47462%2C47464%2C47466%2C47618%2C47620%2C47622%2C48172%2C48638%2C49080%2C53224%2C54912%2C59831%2C59845%2C59891%2C59899%2C59901%2C61478%2C64176%2C64790%2C64883%2C65184%2C65410%2C65632%2C66450%2C67030%2C70770%2C70984%2C71017%2C71214%2C71237%2C71883%2C73492%2C73559%2C74879%2C76168%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=100",
+      "retrieved_at": "2026-10-30T22:46:32.588326+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%285044%2C5685%2C5705%2C5876%2C6218%2C6440%2C6444%2C10676%2C10692%2C10719%2C10999%2C11228%2C11245%2C11268%2C11295%2C11364%2C11368%2C11372%2C11559%2C11560%2C11704%2C11780%2C12146%2C12204%2C12257%2C12307%2C12341%2C12868%2C13054%2C13149%2C16592%2C16634%2C18744%2C22496%2C22948%2C22950%2C24950%2C24964%2C25200%2C25250%2C25558%2C26626%2C26688%2C26690%2C30093%2C30099%2C30165%2C31454%2C31458%2C34176%2C34643%2C35741%2C35797%2C39134%2C39278%2C40094%2C45428%2C45470%2C45532%2C45538%2C47438%2C47440%2C47442%2C47444%2C47446%2C47462%2C47464%2C47466%2C47618%2C47620%2C47622%2C48172%2C48638%2C49080%2C53224%2C54912%2C59831%2C59845%2C59891%2C59899%2C59901%2C61478%2C64176%2C64790%2C64883%2C65184%2C65410%2C65632%2C66450%2C67030%2C70770%2C70984%2C71017%2C71214%2C71237%2C71883%2C73492%2C73559%2C74879%2C76168%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=100",
+      "last_modified": null,
+      "etag": "\"fd99bfed\"",
+      "bytes": 165949,
+      "sha256": "fa4ea4480d9d5c078ca5014eda37b47fabd08f53c75acbc0acc60e344a7a8937",
+      "elapsed_seconds": 4.585,
+      "retained_raw_filename": "012.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%285044%2C5685%2C5705%2C5876%2C6218%2C6440%2C6444%2C10676%2C10692%2C10719%2C10999%2C11228%2C11245%2C11268%2C11295%2C11364%2C11368%2C11372%2C11559%2C11560%2C11704%2C11780%2C12146%2C12204%2C12257%2C12307%2C12341%2C12868%2C13054%2C13149%2C16592%2C16634%2C18744%2C22496%2C22948%2C22950%2C24950%2C24964%2C25200%2C25250%2C25558%2C26626%2C26688%2C26690%2C30093%2C30099%2C30165%2C31454%2C31458%2C34176%2C34643%2C35741%2C35797%2C39134%2C39278%2C40094%2C45428%2C45470%2C45532%2C45538%2C47438%2C47440%2C47442%2C47444%2C47446%2C47462%2C47464%2C47466%2C47618%2C47620%2C47622%2C48172%2C48638%2C49080%2C53224%2C54912%2C59831%2C59845%2C59891%2C59899%2C59901%2C61478%2C64176%2C64790%2C64883%2C65184%2C65410%2C65632%2C66450%2C67030%2C70770%2C70984%2C71017%2C71214%2C71237%2C71883%2C73492%2C73559%2C74879%2C76168%29&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:46:37.174811+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%285044%2C5685%2C5705%2C5876%2C6218%2C6440%2C6444%2C10676%2C10692%2C10719%2C10999%2C11228%2C11245%2C11268%2C11295%2C11364%2C11368%2C11372%2C11559%2C11560%2C11704%2C11780%2C12146%2C12204%2C12257%2C12307%2C12341%2C12868%2C13054%2C13149%2C16592%2C16634%2C18744%2C22496%2C22948%2C22950%2C24950%2C24964%2C25200%2C25250%2C25558%2C26626%2C26688%2C26690%2C30093%2C30099%2C30165%2C31454%2C31458%2C34176%2C34643%2C35741%2C35797%2C39134%2C39278%2C40094%2C45428%2C45470%2C45532%2C45538%2C47438%2C47440%2C47442%2C47444%2C47446%2C47462%2C47464%2C47466%2C47618%2C47620%2C47622%2C48172%2C48638%2C49080%2C53224%2C54912%2C59831%2C59845%2C59891%2C59899%2C59901%2C61478%2C64176%2C64790%2C64883%2C65184%2C65410%2C65632%2C66450%2C67030%2C70770%2C70984%2C71017%2C71214%2C71237%2C71883%2C73492%2C73559%2C74879%2C76168%29&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"9c5b030b\"",
+      "bytes": 13,
+      "sha256": "f65a04fc8ad700ad00260653617fd76ad37f1a0791d867746dc8a6cca68188bf",
+      "elapsed_seconds": 3.1,
+      "retained_raw_filename": "013.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%2876182%2C76196%2C76210%2C76212%2C77771%2C79155%2C79161%2C79179%2C79235%2C79236%2C79833%2C80082%2C80212%2C80535%2C80847%2C81578%2C81606%2C81623%2C81880%2C82505%2C82558%2C82605%2C82782%2C82798%2C82847%2C82849%2C82958%2C83051%2C83135%2C83143%2C83162%2C83175%2C83180%2C83310%2C83551%2C83562%2C83564%2C83660%2C83677%2C84034%2C84086%2C84198%2C84305%2C84393%2C84468%2C84470%2C84487%2C84488%2C84516%2C84676%2C84727%29&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:46:40.275956+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%2876182%2C76196%2C76210%2C76212%2C77771%2C79155%2C79161%2C79179%2C79235%2C79236%2C79833%2C80082%2C80212%2C80535%2C80847%2C81578%2C81606%2C81623%2C81880%2C82505%2C82558%2C82605%2C82782%2C82798%2C82847%2C82849%2C82958%2C83051%2C83135%2C83143%2C83162%2C83175%2C83180%2C83310%2C83551%2C83562%2C83564%2C83660%2C83677%2C84034%2C84086%2C84198%2C84305%2C84393%2C84468%2C84470%2C84487%2C84488%2C84516%2C84676%2C84727%29&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"26138322\"",
+      "bytes": 12,
+      "sha256": "5b050563ede555f282b06b907168ac0f3cadf09228e8ced92a525beace811f2e",
+      "elapsed_seconds": 2.65,
+      "retained_raw_filename": "014.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%2876182%2C76196%2C76210%2C76212%2C77771%2C79155%2C79161%2C79179%2C79235%2C79236%2C79833%2C80082%2C80212%2C80535%2C80847%2C81578%2C81606%2C81623%2C81880%2C82505%2C82558%2C82605%2C82782%2C82798%2C82847%2C82849%2C82958%2C83051%2C83135%2C83143%2C83162%2C83175%2C83180%2C83310%2C83551%2C83562%2C83564%2C83660%2C83677%2C84034%2C84086%2C84198%2C84305%2C84393%2C84468%2C84470%2C84487%2C84488%2C84516%2C84676%2C84727%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=51",
+      "retrieved_at": "2026-10-30T22:46:42.926276+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%2876182%2C76196%2C76210%2C76212%2C77771%2C79155%2C79161%2C79179%2C79235%2C79236%2C79833%2C80082%2C80212%2C80535%2C80847%2C81578%2C81606%2C81623%2C81880%2C82505%2C82558%2C82605%2C82782%2C82798%2C82847%2C82849%2C82958%2C83051%2C83135%2C83143%2C83162%2C83175%2C83180%2C83310%2C83551%2C83562%2C83564%2C83660%2C83677%2C84034%2C84086%2C84198%2C84305%2C84393%2C84468%2C84470%2C84487%2C84488%2C84516%2C84676%2C84727%29&outFields=objectid%2Crecareaid%2Crecareaname%2Clatitude%2Clongitude%2Crecareaurl%2Cforestname%2Cmarkeractivity%2Cfeedescription%2Crestrictions%2Creservation_info%2Copen_season_start%2Copen_season_end%2Copenstatus%2Crecareadescription&returnGeometry=true&outSR=4326&orderByFields=objectid&resultOffset=0&resultRecordCount=51",
+      "last_modified": null,
+      "etag": "\"41a160fd\"",
+      "bytes": 84868,
+      "sha256": "d7299508155d26920a847732a3456dd133d2d69da448a9de6d00efd688651dac",
+      "elapsed_seconds": 2.577,
+      "retained_raw_filename": "015.json"
+    },
+    {
+      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%2876182%2C76196%2C76210%2C76212%2C77771%2C79155%2C79161%2C79179%2C79235%2C79236%2C79833%2C80082%2C80212%2C80535%2C80847%2C81578%2C81606%2C81623%2C81880%2C82505%2C82558%2C82605%2C82782%2C82798%2C82847%2C82849%2C82958%2C83051%2C83135%2C83143%2C83162%2C83175%2C83180%2C83310%2C83551%2C83562%2C83564%2C83660%2C83677%2C84034%2C84086%2C84198%2C84305%2C84393%2C84468%2C84470%2C84487%2C84488%2C84516%2C84676%2C84727%29&returnCountOnly=true",
+      "retrieved_at": "2026-10-30T22:46:45.504986+00:00",
+      "status": 200,
+      "final_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?f=json&where=recareaid+IN+%2876182%2C76196%2C76210%2C76212%2C77771%2C79155%2C79161%2C79179%2C79235%2C79236%2C79833%2C80082%2C80212%2C80535%2C80847%2C81578%2C81606%2C81623%2C81880%2C82505%2C82558%2C82605%2C82782%2C82798%2C82847%2C82849%2C82958%2C83051%2C83135%2C83143%2C83162%2C83175%2C83180%2C83310%2C83551%2C83562%2C83564%2C83660%2C83677%2C84034%2C84086%2C84198%2C84305%2C84393%2C84468%2C84470%2C84487%2C84488%2C84516%2C84676%2C84727%29&returnCountOnly=true",
+      "last_modified": null,
+      "etag": "\"26138322\"",
+      "bytes": 12,
+      "sha256": "5b050563ede555f282b06b907168ac0f3cadf09228e8ced92a525beace811f2e",
+      "elapsed_seconds": 5.763,
+      "retained_raw_filename": "016.json"
+    }
+  ]
+}
