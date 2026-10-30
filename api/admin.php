@@ -3,6 +3,7 @@
 declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
 require __DIR__ . '/_lib/community-admin.php';
+require __DIR__ . '/_lib/permissions-admin.php';
 
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
@@ -61,6 +62,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         if (($_POST['do'] ?? '') === 'migrate') {
             $applied = kt_migrate($pdo);
             $notice = $applied ? 'Applied migrations: ' . h(implode(', ', $applied)) : 'No migrations were pending.';
+        } elseif (str_starts_with((string)($_POST['do'] ?? ''), 'permission_')) {
+            $notice = kp_admin_action($pdo, $moderator);
         } elseif (str_starts_with((string)($_POST['do'] ?? ''), 'community_')) {
             $notice = kc_moderate($pdo, $moderator);
         } elseif (($_POST['do'] ?? '') === 'set') {
@@ -94,7 +97,8 @@ if ($pending) {
     $body .= '<div class="card"><strong>Schema migrations pending:</strong> ' . h(implode(', ', $pending)) . '<form method="post" action="' . $self . '"><input type="hidden" name="do" value="migrate"><input type="hidden" name="csrf" value="' . h($csrf) . '"><button>Apply migrations</button></form></div>';
     page('KampTrail moderation', $body);
 }
-$body .= '<nav><a href="' . $self . '">Campsite corrections</a><a href="' . $self . '?community=1">Reviews, photos and reports</a><a href="fcc-setup.php">FCC credentials</a></nav>';
+$body .= '<nav><a href="' . $self . '">Campsite corrections</a><a href="' . $self . '?community=1">Reviews, photos and reports</a><a href="' . $self . '?permissions=1">Overnight permission reports</a><a href="fcc-setup.php">FCC credentials</a></nav>';
+if (isset($_GET['permissions'])) page('KampTrail permission moderation', $body . kp_admin_view($pdo, $csrf, $self));
 if (isset($_GET['community'])) page('KampTrail community moderation', $body . kc_admin_body($pdo, $csrf, $self));
 $filter = in_array($_GET['status'] ?? 'received', KT_STATUSES, true) ? (string)($_GET['status'] ?? 'received') : 'received';
 $body .= '<nav>' . implode('', array_map(fn($s) => '<a href="' . $self . '?status=' . h($s) . '">' . ($s === $filter ? '<strong>' . h($s) . '</strong>' : h($s)) . '</a>', KT_STATUSES)) . '</nav>';

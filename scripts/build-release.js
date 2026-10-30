@@ -1,7 +1,8 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
+  require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
   for(const file of files)await fs.copyFile(path.join(root,file),path.join(out,file));
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
@@ -12,6 +13,12 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
   const elevationRoot=path.join(root,'data','campsites','elevation');
   if(await fs.stat(elevationRoot).then(s=>s.isDirectory()).catch(()=>false))await fs.cp(elevationRoot,path.join(out,'data','campsites','elevation'),{recursive:true,filter:source=>{const rel=path.relative(elevationRoot,source).split(path.sep).join('/');return rel===''||rel==='index.json'||rel==='snapshots'||/^snapshots\/[a-f0-9]{24}(?:\/[A-Z]{2}\.json)?$/.test(rel);}});
   await fs.mkdir(path.join(out,'data','services'),{recursive:true});await fs.copyFile(path.join(root,'data','services','services.json'),path.join(out,'data','services','services.json'));
+  const restPath=path.join(root,'data','rest-areas','TX.json');
+  if(await fs.realpath(restPath)!==restPath)throw new Error('Official rest-area release must not follow symlinks');
+  const restRaw=await fs.readFile(restPath);
+  if(restRaw.length>512*1024)throw new Error('Official rest-area catalogue exceeds release bound');
+  require('../rest-areas.js').validate(JSON.parse(restRaw));
+  await fs.mkdir(path.join(out,'data','rest-areas'),{recursive:true});await fs.writeFile(path.join(out,'data','rest-areas','TX.json'),restRaw);
   const serviceRoot=path.join(root,'data','services'),serviceRaw=await fs.readFile(path.join(serviceRoot,'index.json'));
   async function copyServiceGeneration(raw,expectedId){
     if(raw.length>1024*1024)throw new Error('Services manifest exceeds release bound');
@@ -56,9 +63,16 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
     await fs.writeFile(page,html);
   }
   // Contributions API: only these public PHP entry points and their private helpers. Never configuration or credentials.
-  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php'];
+  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
   await fs.mkdir(path.join(out,'api','_lib'),{recursive:true});
   for(const file of apiFiles)await fs.copyFile(path.join(root,file),path.join(out,file));
+  const permissionRoot=path.join(root,'api','_data','permissions');
+  for(const file of await fs.readdir(permissionRoot)){
+    if(!/^(?:[a-f0-9]{2}\.json|official\.json|manifest\.json|\.htaccess)$/.test(file))throw new Error('Unexpected protected permission asset');
+    const rel=path.posix.join('api','_data','permissions',file),stat=await fs.lstat(path.join(root,rel));
+    if(!stat.isFile()||stat.isSymbolicLink())throw new Error('Invalid protected permission asset');
+    await fs.mkdir(path.dirname(path.join(out,rel)),{recursive:true});await fs.copyFile(path.join(root,rel),path.join(out,rel));apiFiles.push(rel);
+  }
   for(const file of await fs.readdir(path.join(root,'api'),{recursive:true})){
     const rel=path.posix.join('api',file.split(path.sep).join('/'));
     if((await fs.stat(path.join(root,rel))).isFile()&&!apiFiles.includes(rel))throw new Error(`Unlisted API file would be skipped: ${rel}. Add it to apiFiles deliberately.`);

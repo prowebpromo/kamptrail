@@ -198,13 +198,25 @@ jobs:
             echo 'RV services refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
             node scripts/record_health.js record services US failed
           fi
+      - name: Refresh the official TxDOT rest-area pilot
+        # Coordinates and duration context stay separate from overnight permission.
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -uo pipefail
+          if python scripts/fetch_rest_areas.py; then
+            node scripts/record_health.js record rest_areas TX fresh
+          else
+            echo 'Official rest-area refresh failed; saved locations kept.' >> "$GITHUB_STEP_SUMMARY"
+            node scripts/record_health.js record rest_areas TX failed
+          fi
       - name: Commit successful source and snapshot updates
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/campsites data/opencampingmap data/poi_dump_water_propane.geojson data/services data/sources data/health.json
+          git add data/campsites data/opencampingmap data/poi_dump_water_propane.geojson data/services data/sources data/health.json data/rest-areas docs/REST_AREAS_PILOT_2.15.json
           git add -A data/campsites
           if ! git diff --staged --quiet; then
             git commit -m 'Refresh sourced campsite data and merged snapshots'

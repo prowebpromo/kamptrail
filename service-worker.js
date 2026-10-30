@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v40';
+const VERSION = 'kt-v41';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -15,7 +15,7 @@ const SHELL = [
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','environment.js'
+  'data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','community-discovery.js','environment.js'
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
@@ -31,6 +31,8 @@ self.addEventListener('fetch',event=>{
   const request=event.request,url=new URL(request.url);
   // Moderation status and photos must never outlive a removal in an offline cache.
   if(url.origin===self.location.origin && url.pathname.includes('/api/'))return;
+  // Official rest-area source evidence is revalidated by its loader, never shell-pinned.
+  if(url.href.startsWith(new URL('data/rest-areas/',self.registration.scope).href))return;
   // The page validates hashes/schema and manages stable last-good terrain snapshots.
   // Never let generic shell caching pin a manifest or cache an unvalidated sidecar.
   if(url.href.startsWith(new URL('data/campsites/elevation/',self.registration.scope).href))return;

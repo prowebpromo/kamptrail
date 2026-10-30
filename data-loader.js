@@ -266,6 +266,7 @@
         <button type="button" data-kt-action="share" data-siteid="${siteId}">Share</button>
       </div>
       <div class="kt-popup-actions kt-popup-more">
+        <button type="button" data-kt-action="permissions" data-siteid="${siteId}">Overnight permission</button>
         <button type="button" data-kt-action="fees" data-siteid="${siteId}">Fee evidence</button>
         <button type="button" data-kt-action="weather" data-siteid="${siteId}">Forecast + elevation</button>
         <button type="button" data-kt-action="alerts" data-siteid="${siteId}">Weather alerts</button>
@@ -383,7 +384,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.14.0',
+    version:'2.15.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -483,7 +484,8 @@
           const directions=document.createElement('a');directions.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;directions.target='_blank';directions.rel='noopener noreferrer';directions.textContent='Directions';
           const osm=document.createElement('a');osm.href=`https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`;osm.target='_blank';osm.rel='noopener noreferrer';osm.textContent='View on OSM';
           const save=document.createElement('button');save.type='button';save.textContent='Save service stop';save.onclick=()=>window.KampTrailTrip?.addStop(item.id,KampTrailServices.feature(item,result.manifest));
-          li.append(title,evidence,directions,' · ',osm,' ',save);list.append(li);
+          const permission=document.createElement('button');permission.type='button';permission.textContent='Overnight permission';permission.onclick=()=>window.KampTrailPermissions?.open({kind:'service',id:item.id,name:item.name,coordinates:item.coordinates});
+          li.append(title,evidence,directions,' · ',osm,' ',save,' ',permission);list.append(li);
         }
         const note=document.createElement('p');note.className='kt-fine';note.textContent=result.message;
         const attribution=document.createElement('a');attribution.href='https://www.openstreetmap.org/copyright';attribution.textContent='Derived from OpenStreetMap contributors (ODbL)';attribution.target='_blank';attribution.rel='noopener noreferrer';
@@ -507,6 +509,7 @@
       if(kind==='alerts'){window.KampTrailEnvironment?.openAlerts(lat,lng);return;}
       if(kind==='environment'){window.KampTrailEnvironment?.showNear(lat,lng);return;}
       if(kind==='roads'){window.KampTrailMVUM?.showNear(lat,lng);return;}
+      if(kind==='permissions'){window.KampTrailPermissions?.open({kind:'campsite',id:String(site.properties.id),name:site.properties.name,coordinates:[lng,lat]});return;}
       if(kind==='reviews'){window.KampTrailCommunity?.open(site);return;}
       if(kind==='share'){window.KampTrailShare?.share({site:site.properties.id},site.properties.name);return;}
       if(kind==='fix'){if(window.KampTrailContrib)KampTrailContrib.open({kind:'correction',site});else if(window.KampTrailShare)window.open(KampTrailShare.issueUrl('fix',site),'_blank','noopener');return;}

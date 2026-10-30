@@ -24,6 +24,12 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.match(html,/<link rel="canonical" href="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:url" content="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:image" content="https:\/\/kamptrail\.com\/og.png">/);
+  const permissionDir=path.join(out,'api','_data','permissions');
+  assert.equal(fs.readFileSync(path.join(permissionDir,'.htaccess'),'utf8'),'Require all denied\n','Generated identity data must be denied over HTTP');
+  assert.equal(fs.readdirSync(permissionDir).filter(name=>/^[a-f0-9]{2}\.json$/.test(name)).length,256,'Every protected identity bucket is packaged');
+  assert.ok(fs.existsSync(path.join(out,'permissions.js')));
+  assert.ok(fs.existsSync(path.join(out,'api','permissions.php')));
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(permissionDir,'official.json'),'utf8')),JSON.parse(fs.readFileSync(path.join(root,'data','permissions','official.json'),'utf8')),'Packaged evidence matches the reviewed source records');
   const htaccess=fs.readFileSync(path.join(out,'.htaccess'),'utf8');
   assert.match(htaccess,/^DirectoryIndex index.html\n/);
   assert.ok(htaccess.includes('RewriteRule (^|/)\\.(?!well-known/) - [F,L]'),'Git metadata must not be served');
