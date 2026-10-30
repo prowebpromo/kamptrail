@@ -23,27 +23,46 @@ def aggregate(stage, destination, batch, regions=None):
     if destination.is_relative_to(ROOT):
         raise ValueError('Candidate output must remain outside checkout until reviewed promotion')
     # No writes to destination before all source proof is validated.
-    receipts = {r: validate_checkpoint(stage / r, r, batch) for r in regions}
     with tempfile.TemporaryDirectory(prefix='services-aggregate-') as temporary:
         sources = Path(temporary) / 'sources'
         sources.mkdir()
+        checkpoints = Path(temporary) / 'checkpoints'
+        checkpoints.mkdir()
+        receipts = {}
         # Retain existing unrefreshed state + legacy evidence in regional candidates.
         for path in (ROOT / 'data/sources/services').glob('*.json'):
             if path.stem == 'legacy' or path.stem in URLS:
+                if json.loads(path.read_bytes()).get('region') != path.stem:
+                    raise ValueError('Source filename/region binding mismatch')
                 shutil.copyfile(path, sources / path.name)
         for region in regions:
-            candidate = stage / region / 'source.json'
+            # Validate the exact copied bytes used by the build and handoff, so a
+            # changing input checkpoint cannot diverge from its validated proof.
+            checkpoint = checkpoints / region
+            checkpoint.mkdir()
+            for name in ('source.json', 'report.json', 'receipt.json'):
+                shutil.copyfile(stage / region / name, checkpoint / name)
+            receipts[region] = validate_checkpoint(checkpoint, region, batch)
+            candidate = checkpoint / 'source.json'
             accepted = sources / f'{region}.json'
             if accepted.exists():
                 validate_source_update(json.loads(candidate.read_bytes()), json.loads(accepted.read_bytes()))
-            shutil.copyfile(candidate, accepted)
+            candidate.replace(accepted)
         candidate = Path(temporary) / 'assets'
         subprocess.run(['node', str(ROOT / 'scripts/build-services.js'), str(sources), str(candidate)], check=True, timeout=300)
         manifest = json.loads((candidate / 'index.json').read_bytes())
         # Rebuild from the same validated sources into destination. Existing builder
         # checks immutable bytes before its atomic index rename and keeps old snapshots.
         subprocess.run(['node', str(ROOT / 'scripts/build-services.js'), str(sources), str(destination)], check=True, timeout=300)
-        receipt = {'version': 1, 'batch': batch, 'regions': regions, 'national_complete': set(regions) == set(URLS), 'snapshot_id': manifest['snapshot_id'], 'total': manifest['total'], 'shards': len(manifest['shards']), 'manifest_bytes': (candidate / 'index.json').stat().st_size, 'manifest_sha256': digest(candidate / 'index.json'), 'state_receipts': receipts}
+        # Include every builder input, including retained regional/legacy data.
+        # State receipt hashes name source.json; its identical handoff bytes live
+        # at sources/STATE.json, alongside checkpoints/STATE/{report,receipt}.json.
+        for name, source in (('sources', sources), ('checkpoints', checkpoints)):
+            target = destination / name
+            if target.exists():
+                shutil.rmtree(target)
+            shutil.copytree(source, target)
+        receipt = {'version': 1, 'batch': batch, 'regions': regions, 'national_complete': set(regions) == set(URLS), 'snapshot_id': manifest['snapshot_id'], 'total': manifest['total'], 'shards': len(manifest['shards']), 'manifest_bytes': (candidate / 'index.json').stat().st_size, 'manifest_sha256': digest(candidate / 'index.json'), 'source_files': {f'sources/{path.name}': digest(path) for path in sorted(sources.glob('*.json'))}, 'state_receipts': receipts}
         (destination / 'aggregate-receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
         return receipt
 
