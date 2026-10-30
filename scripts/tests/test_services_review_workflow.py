@@ -14,6 +14,10 @@ class ServicesReviewWorkflowTests(unittest.TestCase):
         self.assertEqual(set(workflow['on']), {'workflow_dispatch'})
         self.assertEqual(workflow['permissions'], {'contents': 'write', 'actions': 'read'})
         self.assertEqual(workflow['concurrency']['cancel-in-progress'], 'false')
+        self.assertEqual(workflow['concurrency']['group'], 'kamptrail-data-refresh-refs/heads/main')
+        weekly = yaml.load((ROOT / '.github/workflows/fetch-campsite-data.yml').read_text(), Loader=yaml.BaseLoader)
+        self.assertEqual(weekly['concurrency']['group'], 'kamptrail-data-refresh-${{ github.ref }}')
+        self.assertEqual(weekly['concurrency']['cancel-in-progress'], 'false')
         job = workflow['jobs']['prepare']
         self.assertIn("github.repository == 'prowebpromo/kamptrail'", job['if'])
         self.assertIn("github.ref == 'refs/heads/main'", job['if'])

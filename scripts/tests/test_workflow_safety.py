@@ -43,14 +43,48 @@ class WorkflowSafetyTests(unittest.TestCase):
         commit=next(step['run'] for step in steps if step.get('id')=='commit')
         self.assertIn('git rev-parse FETCH_HEAD',commit)
         self.assertIn('git add -A data/sources/services data/services data/health.json',commit)
-        normal=next(step['run'] for step in jobs['fetch-data']['steps'] if 'Refresh RV services' in step.get('name',''))
-        self.assertLess(normal.index('import_services.py --region legacy'),normal.index('node scripts/build-services.js'))
+        normal='\n'.join(step.get('run','') for step in jobs['fetch-data']['steps'])
+        self.assertNotIn('fetch_osm_poi.py',normal)
+        self.assertNotIn('import_services.py --region legacy',normal)
+        self.assertIn('promote_services.py',normal)
+        self.assertIn('--accepted-ref origin/main --check-only',normal)
         self.assertIn('git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"',commit)
         self.assertNotIn('--force',commit)
         verify=jobs['verify-services']
         self.assertEqual(verify['permissions'],{'contents':'read'})
         self.assertEqual(verify['with']['ref'],'${{ needs.services.outputs.commit_sha }}')
         self.assertNotIn('secrets',verify)
+
+
+    def test_weekly_national_services_bind_same_run_and_preserve_exact_failure_snapshot(self):
+        workflow = yaml.safe_load(OWNER.read_text())
+        stage = workflow['jobs']['national-services-stage']
+        self.assertEqual(stage['if'], "${{ github.event_name == 'schedule' }}")
+        self.assertEqual(stage['uses'], './.github/workflows/stage-national-services.yml')
+        self.assertEqual(stage['permissions'], {'contents': 'read'})
+        self.assertEqual(stage['with'], {'states': 'ALL'})
+        writer = workflow['jobs']['fetch-data']
+        self.assertEqual(writer['needs'], 'national-services-stage')
+        self.assertIn('always()', writer['if'])
+        self.assertEqual(writer['env']['SERVICES_BATCH'], '${{ github.run_id }}-${{ github.sha }}')
+        download = next(s for s in writer['steps'] if s.get('id') == 'service-candidate')
+        self.assertEqual(download['with']['name'], '${{ needs.national-services-stage.outputs.candidate_artifact }}')
+        self.assertNotIn('run-id', download['with'])  # default is this caller run, never an arbitrary completed artifact
+        failure = next(s for s in writer['steps'] if 'Report national staging' in s.get('name', ''))
+        self.assertNotIn('record_health', failure['run'])
+        self.assertNotIn('python', failure['run'])
+        staged_text = (WORKFLOWS / 'stage-national-services.yml').read_text()
+        staged = yaml.safe_load(staged_text)
+        self.assertEqual(staged['permissions'], {'contents': 'read'})
+        self.assertEqual(staged['jobs']['state']['strategy']['max-parallel'], 2)
+        self.assertNotIn('git push', staged_text)
+        trigger = yaml.load(staged_text, Loader=yaml.BaseLoader)['on']
+        self.assertIn('workflow_call', trigger)
+        self.assertNotIn('schedule', trigger)
+        # Preserve RIDB duplicate cleanup and the existing serialized rebase/retry owner.
+        self.assertIn('rm -f "data/campsites/${state}(1).geojson"', OWNER.read_text())
+        self.assertIn('git add -A data/campsites', OWNER.read_text())
+        self.assertIn('git pull --rebase origin main', OWNER.read_text())
 
     def test_elevation_uses_owner_lock_and_selected_branch(self):
         workflow = yaml.safe_load(OWNER.read_text())

@@ -14,6 +14,7 @@ import re
 from pathlib import Path
 import tempfile
 import time
+import urllib.error
 import urllib.request
 from collections import Counter
 from services_regions import URLS, validate_resolved_url
@@ -84,6 +85,26 @@ class FixedRedirect(urllib.request.HTTPRedirectHandler):
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
+def _open_download(request, region, deadline):
+    """Retry only initial-response timeouts, within the original download budget."""
+    for delay in (1, 3, None):  # At most three total attempts, never body retries.
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise ValueError('PBF download budget exceeded')
+        try:
+            return urllib.request.build_opener(FixedRedirect(region)).open(request, timeout=min(60, remaining))
+        except (TimeoutError, urllib.error.URLError) as exc:
+            timed_out = isinstance(exc, TimeoutError) or isinstance(getattr(exc, 'reason', None), TimeoutError)
+            if isinstance(exc, urllib.error.HTTPError) or not timed_out:
+                raise
+            if delay is None:
+                raise
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise ValueError('PBF download budget exceeded') from exc
+            time.sleep(min(delay, remaining))
+
+
 def download(region, destination):
     url = URLS[region]
     destination = Path(destination).resolve()
@@ -92,11 +113,14 @@ def download(region, destination):
     destination.parent.mkdir(parents=True, exist_ok=True)
     partial = destination.with_suffix('.part')
     started = time.monotonic()
+    deadline = started + MAX_SECONDS
     digest = hashlib.sha256()
     total = 0
     try:
         request = urllib.request.Request(url, headers={'User-Agent': 'KampTrail-services/2.14 (+https://www.openstreetmap.org/copyright)'})
-        with urllib.request.build_opener(FixedRedirect(region)).open(request, timeout=60) as response, partial.open('wb') as output:
+        with _open_download(request, region, deadline) as response, partial.open('wb') as output:
+            if time.monotonic() >= deadline:
+                raise ValueError('PBF download budget exceeded')
             resolved_url = response.geturl()
             validate_resolved_url(region, resolved_url)
             expected = int(response.headers.get('Content-Length', 0))
@@ -104,9 +128,11 @@ def download(region, destination):
                 raise ValueError('Missing or excessive PBF content length')
             while True:
                 chunk = response.read(1024 * 1024)
+                if time.monotonic() >= deadline:
+                    raise ValueError('PBF download budget exceeded')
                 if not chunk: break
                 total += len(chunk)
-                if total > MAX_BYTES or time.monotonic() - started > MAX_SECONDS:
+                if total > MAX_BYTES:
                     raise ValueError('PBF download budget exceeded')
                 digest.update(chunk)
                 output.write(chunk)

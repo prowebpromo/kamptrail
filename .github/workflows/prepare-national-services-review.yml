@@ -15,7 +15,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: kamptrail-national-services-review
+  group: kamptrail-data-refresh-refs/heads/main
   cancel-in-progress: false
 
 jobs:

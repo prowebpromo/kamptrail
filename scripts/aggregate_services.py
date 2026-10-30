@@ -73,5 +73,12 @@ if __name__ == '__main__':
     p.add_argument('--destination', required=True, type=Path)
     p.add_argument('--batch', required=True)
     p.add_argument('--regions', help='Regional pilot only; omit to require the complete 50-state batch')
+    p.add_argument('--strict', action='store_true', help='Require exactly the 50 state checkpoint directories')
     a = p.parse_args()
+    if a.strict:
+        if a.regions is not None or {p.name for p in a.stage.iterdir()} != set(URLS):
+            raise ValueError('Strict mode requires exactly the 50 state checkpoint directories')
+        for region in URLS:
+            if not (a.stage / region).is_dir() or {p.name for p in (a.stage / region).iterdir()} != {'source.json', 'report.json', 'receipt.json'}:
+                raise ValueError('Strict mode requires exact state checkpoint files')
     print(json.dumps(aggregate(a.stage, a.destination, a.batch, a.regions), indent=2))

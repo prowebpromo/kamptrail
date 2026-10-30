@@ -4,7 +4,10 @@ const root=path.resolve(__dirname,'../..');
 
 test('an existing stale worker upgrades automatically without asking the visitor to clear caches',async({page})=>{
   let legacy=true;
-  const oldWorker=`self.addEventListener('install',e=>e.waitUntil((async()=>{const c=await caches.open('kt-v18-safe');await c.addAll(['data-loader.js','data-quality.js','filters.js','trip-planner.js']);await self.skipWaiting()})()));self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>{if(new URL(e.request.url).origin!==self.location.origin)return;if(e.request.url.endsWith('.js')&&!e.request.url.endsWith('service-worker.js'))e.respondWith(caches.open('kt-v18-safe').then(async c=>(await c.match(e.request))||fetch(e.request)))})`;
+  // The old worker must actually serve stale modules even when the new page
+  // adds versioned query strings. Otherwise a first fresh navigation can pass
+  // before the controller change, leaving the recovery path unexercised.
+  const oldWorker=`self.addEventListener('install',e=>e.waitUntil((async()=>{const c=await caches.open('kt-v18-safe');await c.addAll(['data-loader.js','data-quality.js','filters.js','trip-planner.js']);await self.skipWaiting()})()));self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==self.location.origin)return;if(u.pathname.endsWith('.js')&&!u.pathname.endsWith('service-worker.js'))e.respondWith(caches.open('kt-v18-safe').then(async c=>(await c.match(e.request,{ignoreSearch:true}))||fetch(e.request)))})`;
   const server=http.createServer(async(req,res)=>{
     try{
       const pathname=new URL(req.url,'http://localhost').pathname;
