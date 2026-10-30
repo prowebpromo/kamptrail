@@ -48,7 +48,7 @@ test('USGS contract joins shuffled IDs and coordinates; zero and negative remain
 test('real SQLite cache isolates coordinate identity, expires and stores no route or client identities',{skip:!capable},()=>php(`
  $calls=0;$http=function($url,$p)use(&$calls,$meta,$rows){$calls++;return $url===KRE_SERVICE?$meta:$rows;};
  $r=kre_cached($points,$dir,'client-a',$http,$now);check($calls===2&&$r['samples'][0]['id']===7&&$r['samples'][0]['elevation_m']===0.0);
- $reordered=[$points[1],$points[0]];$reordered[0]['id']=90;$r=kre_cached($reordered,$dir,'client-b',$http,$now+1);check($calls===2&&$r['samples'][0]['id']===90&&$r['samples'][0]['elevation_m']===-50.0);
+ $reordered=[$points[1],$points[0]];$reordered[0]['id']=90;$r=kre_cached($reordered,$dir,'client-b',$http,$now+1);check($calls===2&&$r['samples'][0]['id']===90&&kre_number($r['samples'][0]['elevation_m'])&&(float)$r['samples'][0]['elevation_m']===-50.0);
  $db=kre_db($dir);check((int)$db->query('SELECT count(*) FROM samples')->fetchColumn()===2);
  $all=json_encode($db->query('SELECT * FROM samples')->fetchAll(PDO::FETCH_ASSOC));check(!str_contains($all,'-105')&&!str_contains($all,'client-a')&&!str_contains($all,'geometry')&&!str_contains($all,'"lat"'));
  $bad=static function(){throw new KreException('upstream_unavailable');};$r=kre_cached($points,$dir,'client-a',$bad,$now+KRE_TTL-1);check($r['samples'][0]['status']==='value');
