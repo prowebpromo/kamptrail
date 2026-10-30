@@ -131,3 +131,18 @@ test('visiting the how-to page never replaces the cached offline app shell',asyn
  online=false;
  assert.equal(await navigate('https://example.test/kamptrail/'),'<p>app</p>');
 });
+
+test('saved app navigation retains dated land care guidance when offline',async()=>{
+  const w=worker(async()=>{throw new Error('offline');});
+  const shell=fs.readFileSync('index.html','utf8');
+  const shellVersion=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '([^']+)'/)[1];
+  const cache=await w.caches.open('kamptrail:https://example.test/kamptrail/:'+shellVersion);
+  await cache.put('index.html',new Response(shell,{headers:{'Content-Type':'text/html'}}));
+  let answer;
+  w.handlers.fetch({request:{url:'https://example.test/kamptrail/',method:'GET',mode:'navigate'},respondWith:p=>answer=p});
+  const saved=await(await answer).text();
+  assert.ok(saved.includes('id="kt-camping-care"'));
+  assert.ok(saved.includes('Current local orders and posted rules control.'));
+  assert.ok(saved.includes('datetime="2026-10-30"'));
+  assert.ok(saved.includes('https://www.blm.gov/programs/recreation/camping'));
+});

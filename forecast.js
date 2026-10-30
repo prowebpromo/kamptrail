@@ -1,6 +1,7 @@
 /* Volatile NOAA/NWS NDFD samples. Never persist weather in the campsite catalogue. */
 (function(global){
   'use strict';
+  const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
   const HOUR=3600000,STATES=new Set('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
   const object=x=>!!x&&typeof x==='object'&&!Array.isArray(x),number=x=>typeof x==='number'&&Number.isFinite(x),hash=x=>typeof x==='string'&&/^[a-f0-9]{64}$/.test(x),integer=(x,a,b)=>Number.isInteger(x)&&x>=a&&x<=b;
   function utc(x){if(typeof x!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|\+00:00)$/.test(x))return NaN;const n=Date.parse(x);return Number.isFinite(n)&&new Date(n).toISOString().slice(0,19)===x.slice(0,19)?n:NaN;}
@@ -70,7 +71,7 @@
         if(!d.ok||!validManifest(d.manifest,catalogue,server))throw new Error('Forecast is unavailable, expired or incompatible with this catalogue');
         if(current!==epoch||!online())return false;
         if(manifest?.snapshot_id!==d.manifest.snapshot_id){shards.clear();failures.clear();}
-        manifest=d.manifest;anchor={server,mono:mono()};env.clearTimeout(expiryTimer);expiryTimer=env.setTimeout(()=>invalidate('Forecast expired. Reconnect or retry for current samples.'),Math.max(1,utc(manifest.expires_at)-server));return true;
+        manifest=d.manifest;anchor={server,mono:mono()};env.clearTimeout(expiryTimer);expiryTimer=env.setTimeout(()=>invalidate(t("Forecast expired. Reconnect or retry for current samples.")),Math.max(1,utc(manifest.expires_at)-server));return true;
       }catch(e){if(current===epoch)error=e.message;return false;}finally{loadingIndex=false;indexTask=null;emit();}})();return indexTask;
     }
     function drain(){while(workers<2&&queue.length){const task=queue.shift();workers++;task().finally(()=>{workers--;drain();});}}
@@ -94,17 +95,17 @@
     }
     function matches(feature,f={},now=effectiveNow()){const bounds=range(f);if(!bounds.active)return true;if(!bounds.valid)return false;const d=get(feature,bounds.hours,now);return !!d&&(bounds.min===null||d.min>=bounds.min)&&(bounds.max===null||d.max<=bounds.max);}
     function status(){return{online:online(),loading:loadingIndex||pending.size>0,ready:fresh(),error,states:[...shards.keys()],unavailable:[...failures],expires:manifest?.expires_at||null};}
-    function statusText(){const s=status();return!s.online?'Offline: forecast samples cannot match.':s.loading?'Loading published forecast samples…':!s.ready?(s.error||'Forecast samples have not loaded.'):s.unavailable.length?`Forecast samples unavailable for ${s.unavailable.join(', ')}. Unknown samples are excluded.`:`NOAA/NWS NDFD samples. Expires ${s.expires}.`;}
+    function statusText(){const s=status();return!s.online?t("Offline: forecast samples cannot match."):s.loading?t("Loading published forecast samples…"):!s.ready?((s.error?t(s.error):null)||t("Forecast samples have not loaded.")):s.unavailable.length?t("Forecast samples unavailable for {0}. Unknown samples are excluded.", {"0":(s.unavailable.join(', '))}):t("NOAA/NWS NDFD samples. Expires {0}.", {"0":(s.expires)});}
     const date=t=>new Date(t).toISOString().replace('.000Z','Z');
-    function describe(feature,f={}){const d=get(feature,range(f).hours);if(!d)return'Forecast samples unknown, incomplete, expired or unavailable.';const u=f.forecastUnit==='C'?'C':'F';return`${d.samples} published samples: ${fromC(d.min,u)} to ${fromC(d.max,u)} °${u}; next ${range(f).hours} h (${date(d.start)} to ${date(d.end)}). First/last sample ${date(d.first)} / ${date(d.last)}; cadence up to ${d.cadence} h. NOAA/NWS NDFD file updated ${d.modified}; expires ${d.expires}. File update is not each location’s forecast issuance. Samples are not continuous or daily extrema.`;}
-    function invalidate(reason='Forecast needs a fresh server clock check.') {epoch++;anchor=null;manifest=null;shards.clear();failures.clear();lastAttempt=-Infinity;error=reason;env.clearTimeout(expiryTimer);emit();}
-    env.addEventListener?.('offline',()=>invalidate('Offline: forecast samples cannot match.'));
+    function describe(feature,f={}){const d=get(feature,range(f).hours);if(!d)return t("Forecast samples unknown, incomplete, expired or unavailable.");const u=f.forecastUnit==='C'?'C':'F';return t("{0} published samples: {1} to {2} °{3}; next {4} h ({5} to {6}). First/last sample {7} / {8}; cadence up to {9} h. NOAA/NWS NDFD file updated {10}; expires {11}. File update is not each location’s forecast issuance. Samples are not continuous or daily extrema.", {"0":(d.samples),"1":(fromC(d.min,u)),"2":(fromC(d.max,u)),"3":(u),"4":(range(f).hours),"5":(date(d.start)),"6":(date(d.end)),"7":(date(d.first)),"8":(date(d.last)),"9":(d.cadence),"10":(d.modified),"11":(d.expires)});}
+    function invalidate(reason=t("Forecast needs a fresh server clock check.")) {epoch++;anchor=null;manifest=null;shards.clear();failures.clear();lastAttempt=-Infinity;error=reason;env.clearTimeout(expiryTimer);emit();}
+    env.addEventListener?.('offline',()=>invalidate(t("Offline: forecast samples cannot match.")));
     env.addEventListener?.('online',()=>invalidate());
     env.addEventListener?.('pageshow',e=>{if(e.persisted)invalidate();});
     env.document?.addEventListener('visibilitychange',()=>{if(env.document.visibilityState==='visible')invalidate();});
     // One minute checks also drop samples that leave a rolling window; no network is done per marker.
     env.setInterval?.(()=>{if(manifest&&wanted.size)emit();},60000);
-    return{version:'2.18.1',ensureStates,get,matches,effectiveNow,status,statusText,describe,invalidate,range,active,toC,fromC,validManifest,validState,sampleWindow,utc};
+    return{version:'2.19.0',ensureStates,get,matches,effectiveNow,status,statusText,describe,invalidate,range,active,toC,fromC,validManifest,validState,sampleWindow,utc};
   }
   if(typeof module!=='undefined'&&module.exports)module.exports={create,range,active,toC,fromC,utc,validManifest,validState,sampleWindow};
   else global.KampTrailForecast=create(global);

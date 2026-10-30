@@ -73,3 +73,76 @@ test('matching evidence counts include only qualifying report dates',async()=>{
 test('offline failure without CacheStorage can retry successfully after reconnecting',async()=>{
  let calls=0;const e=runtime(async()=>{calls++;return page({a:summary});});e.c.caches=undefined;e.c.navigator.onLine=false;await e.D.load();e.c.navigator.onLine=true;await e.D.load(true);assert.equal(calls,1);assert.equal(e.D.matches('a',{minRating:4}),true);
 });
+
+test('numeric seasonal scores require explicit entries and three matching dated visit ratings',()=>{
+ const now=Date.parse('2026-10-29T12:00:00Z'),scored=(scores,date='2026-10-01',count=1,other={})=>({...group({...other,scores},date),count});
+ const s={rating_count:20,rating_sum:80,latest_visit:'2026-10-01',observations:[scored({quietness:5,shade:1},'2020-10-01'),scored({quietness:4,shade:5},'2026-10-01',2),scored({quietness:1},'2026-06-01',5),group({noise:'quiet',shade:'full',comfort:'comfortable'})]};
+ assert.equal(D.active({minScore_quietness:4}),true);assert.equal(D.active({scoreSeason:'fall'}),true);
+ assert.equal(D.matchesSummary(null,{minScore_quietness:4},now),false);
+ assert.equal(D.matchesSummary(summary,{minScore_quietness:4},now),false,'qualitative observations and overall stars do not create scores');
+ assert.equal(D.matchesSummary(s,{scoreSeason:'fall',minScore_quietness:4,observedDays:0},now),true);
+ assert.equal(D.matchesSummary(s,{scoreSeason:'fall',minScore_quietness:4,observedDays:365},now),false,'only two recent ratings');
+ assert.equal(D.matchesSummary(s,{scoreSeason:'summer',minScore_quietness:4,observedDays:0},now),false);
+ assert.equal(D.matchesSummary(s,{scoreSeason:'spring',minScore_quietness:1,observedDays:0},now),false);
+ assert.equal(D.matchesSummary(s,{scoreSeason:'fall',minScore_comfort:1,observedDays:0},now),false);
+ assert.equal(D.matchesSummary(s,{scoreSeason:'fall'},now),true);assert.equal(D.matchesSummary(s,{scoreSeason:'constructor'},now),false);
+ assert.equal(D.matchesSummary(s,{scoreSeason:'fall',minScore_quietness:4,minScore_shade:4,observedDays:0},now),false,'shade average is 11/3, below 4');
+ const seasons=D.seasonalScores(s.observations);assert.deepEqual(seasons.fall.quietness,{count:3,sum:13,first_visit:'2020-10-01',latest_visit:'2026-10-01'});assert.equal(seasons.fall.comfort,undefined);
+ assert.match(D.seasonalText(seasons),/Fall \(Sep–Nov\) · Quietness: 4.3\/5 · 3 explicit ratings · visits 2020-10-01 to 2026-10-01/);
+ assert.match(D.seasonalText(D.seasonalScores([scored({quietness:5})])),/insufficient evidence · 1 explicit rating/);
+ assert.match(D.seasonalText({}),/Unreported stays unknown/);
+ assert.deepEqual(['2025-12-21','2026-01-01','2026-02-28','2026-03-01','2026-05-31','2026-06-01','2026-08-31','2026-09-01','2026-11-30'].map(D.season),['winter','winter','winter','spring','spring','summer','summer','fall','fall']);
+});
+test('numeric selections use the same visit cohort as qualitative/carrier filters and all chosen score axes',()=>{
+ const scored=(scores,other={})=>({...group({...other,scores}),count:3});
+ let s={...summary,rating_count:6,rating_sum:24,observations:[scored({quietness:5},{noise:'quiet'}),scored({comfort:5},{noise:'noisy',signals:[{carrier:'verizon',signal:'strong',environment:'outdoors'}]})]};
+ assert.equal(D.matchesSummary(s,{minScore_quietness:4,minScore_comfort:4}),false,'separate visits cannot supply combined numeric selections');
+ assert.equal(D.matchesSummary(s,{minScore_quietness:4,observed_noise:'noisy'}),false);
+ assert.equal(D.matchesSummary(s,{minScore_quietness:4,observed_carrier:'verizon',observed_signal:'strong'}),false);
+ s={...s,observations:[scored({quietness:5,comfort:4},{noise:'quiet',signals:[{carrier:'verizon',signal:'strong',environment:'outdoors'}]})]};
+ assert.equal(D.matchesSummary(s,{minScore_quietness:4,minScore_comfort:4,observed_noise:'quiet',observed_carrier:'verizon',observed_signal:'usable'}),true);
+ assert.deepEqual(D.scoreEvidence(s,{minScore_quietness:4}).quietness,{count:3,sum:15,first_visit:'2026-10-01',latest_visit:'2026-10-01'});
+});
+test('numeric discovery rejects malformed, private, fractional and string scores',()=>{
+ for(const scores of [null,[],{quietness:0},{quietness:6},{quietness:4.5},{quietness:'4'},{clearance:5},{comfort:true},{quietness:4,private_code:'secret'}])assert.equal(D.validSites({a:{...summary,observations:[group({scores})]}}),false,JSON.stringify(scores));
+ assert.equal(D.validSites({a:{...summary,observations:[group({scores:{quietness:4,shade:2,comfort:1}})]}}),true);
+ assert.equal(D.scoreFilterCount({}),0);assert.equal(D.scoreFilterCount({minScore_quietness:4,scoreSeason:'winter'}),2);assert.equal(D.scoreFilterCount({minScore_comfort:0,scoreSeason:''}),0);
+});
+test('published numeric season filters share map/route predicates and cached evidence expires',async()=>{
+ const today=new Date().toISOString().slice(0,10),s={rating_count:3,rating_sum:12,latest_visit:today,observations:[{values:{scores:{quietness:4}},count:3,latest_visit:today}]},e=runtime(async()=>page({a:s}));await e.D.load();
+ const previous=global.KampTrailDiscovery;global.KampTrailDiscovery=e.D;
+ try{const Q=require('../data-quality.js');require('../routes.js');const R=global.KampTrailRoutes,row={id:'a',name:'Numeric evidence fixture',lat:40,lng:-104.5,m:{f:'free',a:[],r:[]}},route={geometry:{type:'LineString',coordinates:[[-105,40],[-104,40]]},leg_ends:[1]},f={minScore_quietness:4,scoreSeason:D.season(today),observedDays:365};
+ assert.equal(Q.applyFilters([R.indexFeature(row)],f).length,1);assert.equal(R.find([row],route,5,f).length,1);f.minScore_quietness=5;assert.equal(Q.applyFilters([R.indexFeature(row)],f).length,0);assert.equal(R.find([row],route,5,f).length,0);
+ e.c.navigator.onLine=false;await e.D.load(true);assert.match(e.D.status(),/Saved camper evidence/);assert.equal(e.D.matches('a',{minScore_quietness:4}),true);await e.events['kamptrail:communitychanged']();await new Promise(r=>setTimeout(r,0));assert.equal(e.D.matches('a',{minScore_quietness:4}),false);
+ }finally{global.KampTrailDiscovery=previous;}
+});
+
+test('score forms retain explicit saved numbers and never derive them from qualitative values',()=>{
+ const e=runtime(async()=>page({}));e.c.FormData=class{constructor(values){this.values=values;}get(k){return this.values[k]??null;}};
+ const read=x=>JSON.parse(JSON.stringify(e.D.formValues(x)));
+ assert.deepEqual(read({observed_noise:'quiet',observed_shade:'full',observed_comfort:'comfortable'}),{noise:'quiet',shade:'full',comfort:'comfortable'});
+ assert.deepEqual(read({score_quietness:'4',score_shade:'',score_comfort:'1'}),{scores:{quietness:4,comfort:1}});
+ assert.deepEqual(read({}),{});
+ const el=(tag,attrs={},text)=>({tag,attrs,text,children:[],append(...nodes){this.children.push(...nodes);}}),form=el('form'),field=(label,input,hint)=>({label,input,hint});
+ e.D.observeFields(form,{observations:{noise:'quiet',scores:{quietness:4,comfort:1}}},el,field);
+ const fields=form.children[1].children.filter(x=>x.input);assert.equal(fields.length,3);
+ assert.equal(fields[0].input.attrs.name,'score_quietness');assert.equal(fields[0].input.children.find(x=>x.attrs.selected).attrs.value,'4');assert.equal(fields[1].input.children.filter(x=>x.attrs.selected).length,0);assert.equal(fields[2].input.children.find(x=>x.attrs.selected).attrs.value,'1');assert.match(fields[0].hint,/Very noisy \(1\) to very quiet \(5\)/);
+});
+test('seasonal cache validation rejects invalid calendar dates and inflated observation counts',()=>{
+ for(const date of ['2026-02-30','2026-00-01','2026-13-01'])assert.equal(D.validSites({a:{...summary,observations:[group({scores:{quietness:5}},date)]}}),false);
+ assert.equal(D.validSites({a:{...summary,observations:[{...group({scores:{quietness:5}}),count:3}]}}),false);
+});
+
+test('place review detail renders whole-site seasonal coverage and distinguishes unavailable from empty',async()=>{
+ class Element{
+  constructor(tag){this.tag=tag;this.attrs={};this.children=[];this._text='';this.dataset={};}
+  setAttribute(k,v){this.attrs[k]=String(v);}append(...items){this.children.push(...items);}addEventListener(){}showModal(){this.open=true;}
+  replaceChildren(...items){this._text='';this.children=items;}set textContent(x){this._text=String(x);this.children=[];}get textContent(){return this._text+this.children.map(x=>typeof x==='string'?x:x.textContent).join(' ');}
+  querySelector(selector){for(const x of this.children){if((selector.startsWith('.')?x.attrs?.class?.split(' ').includes(selector.slice(1)):x.tag===selector))return x;const found=x.querySelector?.(selector);if(found)return found;}return null;}
+ }
+ async function render(overrides){const document={body:new Element('body'),activeElement:new Element('button'),createElement:tag=>new Element(tag),createTextNode:text=>({textContent:text})},window={KampTrailDiscovery:D};const out={ok:true,count:0,average:null,reviews:[],next_before:null,scores_available:true,seasonal_scores:{},...overrides};vm.runInNewContext(fs.readFileSync('community.js','utf8'),{window,document,location:{hostname:'example.test'},navigator:{onLine:true},fetch:async()=>({ok:true,json:async()=>out}),Date});await window.KampTrailCommunity.open({properties:{id:'qa:seasonal',name:'Seasonal fixture'}});return document.body.textContent;}
+ const scored=await render({seasonal_scores:{fall:{quietness:{count:3,sum:12,first_visit:'2020-09-01',latest_visit:'2026-10-01'},comfort:{count:1,sum:5,first_visit:'2026-10-01',latest_visit:'2026-10-01'}}}});
+ assert.match(scored,/Quietness: 4.0\/5 · 3 explicit ratings · visits 2020-09-01 to 2026-10-01/);assert.match(scored,/Personal comfort: insufficient evidence · 1 explicit rating/);assert.match(scored,/Counts are ratings, not distinct campers/);
+ assert.match(await render({}),/No published numeric sub-ratings yet. Unreported stays unknown/);
+ const unavailable=await render({scores_available:false});assert.match(unavailable,/Seasonal sub-ratings are unavailable/);assert.doesNotMatch(unavailable,/No published numeric sub-ratings yet/);
+});

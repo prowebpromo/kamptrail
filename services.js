@@ -1,15 +1,16 @@
 /* Dated OSM service discovery. Map, nearby and routes share validation and access rules. */
 (function (root) {
   'use strict';
-  const VERSION = '2.18.1';
+  const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
+  const VERSION = '2.19.0';
   const categories = Object.freeze({
-    dump: {label: 'Dump station', letter: 'D', color: '#6b3fa0'},
-    water: {label: 'Water fill', letter: 'W', color: '#1f6fb2'},
-    lpg: {label: 'LPG', letter: 'P', color: '#a74b0b'},
-    showers: {label: 'Showers', letter: 'S', color: '#206674'},
-    laundry: {label: 'Laundry', letter: 'L', color: '#695120'},
-    groceries: {label: 'Groceries', letter: 'G', color: '#34733e'},
-    fuel: {label: 'Fuel', letter: 'F', color: '#a13b43'}
+    dump: {label: t("Dump station"), letter: 'D', color: '#6b3fa0'},
+    water: {label: t("Water fill"), letter: 'W', color: '#1f6fb2'},
+    lpg: {label: t("LPG"), letter: 'P', color: '#a74b0b'},
+    showers: {label: t("Showers"), letter: 'S', color: '#206674'},
+    laundry: {label: t('Laundry'), letter: 'L', color: '#695120'},
+    groceries: {label: t('Groceries'), letter: 'G', color: '#34733e'},
+    fuel: {label: t('Fuel'), letter: 'F', color: '#a13b43'}
   });
   const KEYS = Object.keys(categories), TAGS = new Set('amenity tourism sanitary_dump_station waterway drinking_water fuel fuel:lpg shop laundry self_service access access:conditional fee charge opening_hours operator brand website phone wheelchair shower'.split(' '));
   const STATES=new Set('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
@@ -74,31 +75,31 @@
   function describe(item,manifest) {
     const tags=item.tags||{},source=manifest?.coverage?.find(c=>c.region===item.source_region),stamp=item.retrieved_at || source?.retrieved_at;
     const parts=[item.categories.map(k=>categories[k]?.label||k).join(', ')];
-    if(tags.access)parts.push(`Access reported: ${tags.access}${['customers','permit'].includes(tags.access)?' (conditional)':''}`);
-    if(item.categories.includes('dump')&&tags.sanitary_dump_station==='customers')parts.push('Dump access reported: customers (conditional)');
-    if(tags['access:conditional'])parts.push(`Conditional access: ${tags['access:conditional']}`);
-    if(tags.fee||tags.charge)parts.push(`Fee reported: ${[tags.fee,tags.charge].filter(Boolean).join('; ')}`);
-    if(tags.shop)parts.push(`Shop type: ${tags.shop}`);
-    if(tags.self_service)parts.push(`Self service: ${tags.self_service}`);
-    if(item.categories.includes('water'))parts.push(`Drinking water: ${tags.drinking_water==='yes'?'tagged yes':tags.drinking_water==='no'?'tagged no (non-potable)':'not stated'}`);
-    if(item.categories.includes('lpg'))parts.push('Cylinder refill not verified');
-    if(tags.opening_hours)parts.push(`Hours reported: ${tags.opening_hours} (not live status)`);
+    if(tags.access)parts.push(t("Access reported: {0}{1}", {"0":(tags.access),"1":(['customers','permit'].includes(tags.access)?' (conditional)':'')}));
+    if(item.categories.includes('dump')&&tags.sanitary_dump_station==='customers')parts.push(t("Dump access reported: customers (conditional)"));
+    if(tags['access:conditional'])parts.push(t("Conditional access: {0}", {"0":(tags['access:conditional'])}));
+    if(tags.fee||tags.charge)parts.push(t("Fee reported: {0}", {"0":([tags.fee,tags.charge].filter(Boolean).join('; '))}));
+    if(tags.shop)parts.push(t("Shop type: {0}", {"0":(tags.shop)}));
+    if(tags.self_service)parts.push(t("Self service: {0}", {"0":(tags.self_service)}));
+    if(item.categories.includes('water'))parts.push(t("Drinking water: {0}", {"0":(tags.drinking_water==='yes'?t("tagged yes"):tags.drinking_water==='no'?t("tagged no (non-potable)"):t("not stated"))}));
+    if(item.categories.includes('lpg'))parts.push(t("Cylinder refill not verified"));
+    if(tags.opening_hours)parts.push(t("Hours reported: {0} (not live status)", {"0":(tags.opening_hours)}));
     if(tags.operator)parts.push(`Operator: ${tags.operator}`);
-    parts.push(`${item.source_region==='legacy'?'Legacy source':'Source '+item.source_region}; retrieved ${stamp?stamp.slice(0,10):'date unknown'}${source?.extract_timestamp?'; extract '+source.extract_timestamp.slice(0,10):''}`);
-    parts.push('Hours, RV access and overnight permission are not verified. Location may not be an entrance.');
+    parts.push(t("{0}; retrieved {1}{2}", {"0":(item.source_region==='legacy'?t("Legacy source"):t("Source ")+item.source_region),"1":(stamp?stamp.slice(0,10):t("date unknown")),"2":(source?.extract_timestamp?t("; extract ")+source.extract_timestamp.slice(0,10):'')}));
+    parts.push(t("Hours, RV access and overnight permission are not verified. Location may not be an entrance."));
     return parts.join(' · ');
   }
   function coverageSummary(coverage) {
     const extracts=coverage.filter(c=>c.kind==='geofabrik');
-    const retrieved=c=>c.retrieved_at?c.retrieved_at.slice(0,10):'date unknown';
+    const retrieved=c=>c.retrieved_at?c.retrieved_at.slice(0,10):t('date unknown');
     const parts=[];
-    if(extracts.length<=3)parts.push(...extracts.map(c=>`${c.region} extract retrieved ${retrieved(c)}`));
+    if(extracts.length<=3)parts.push(...extracts.map(c=>t('{region} extract retrieved {date}',{region:c.region,date:retrieved(c)})));
     else {
       const dates=extracts.map(retrieved).sort(),first=dates[0],last=dates.at(-1);
-      parts.push(`${extracts.length} state extracts, retrieved ${first}${first===last?'':' to '+last}`);
+      parts.push(t('{count} state extracts, retrieved {first}{last}',{count:extracts.length,first,last:first===last?'':t(' to {date}',{date:last})}));
     }
     const legacy=coverage.find(c=>c.kind==='legacy');
-    if(legacy)parts.push(`Legacy dump/water/LPG ${retrieved(legacy)}`);
+    if(legacy)parts.push(t('Legacy dump/water/LPG {date}',{date:retrieved(legacy)}));
     return parts.join('; ');
   }
   function feature(item,manifest) {
@@ -150,14 +151,14 @@
     function save(url,text,sha,isShard){cacheWrites=cacheWrites.catch(()=>{}).then(async()=>{const c=await cache();if(!c)return;await c.delete(url);await c.put(url,new Response(text,{headers:{'content-type':'application/json','x-kt-sha256':sha,'x-kt-shard':isShard?'1':'0','x-kt-bytes':String(bytes(text))}}));const keys=await c.keys(),entries=[];let total=0;for(const k of keys){const r=await c.match(k);if(r?.headers.get('x-kt-shard')==='1'){const size=Number(r.headers.get('x-kt-bytes'))||LIMIT.shard;total+=size;entries.push({k,size});}}while(entries.length>LIMIT.cacheShards||total>LIMIT.cacheBytes){const old=entries.shift();total-=old.size;await c.delete(old.k);}}).catch(()=>{});return cacheWrites;}
     function remember(key,data,size,text){if(memory.has(key)){memoryBytes-=memory.get(key).size;memory.delete(key);}memory.set(key,{data,size,text});memoryBytes+=size;while(memory.size>LIMIT.cacheShards||memoryBytes>LIMIT.cacheBytes){const [old,value]=memory.entries().next().value;memory.delete(old);memoryBytes-=value.size;}}
     async function manifest(force=false){if(current&&!force&&Date.now()-current.at<300000)return {...current,offline:env.navigator?.onLine===false||current.offline};if(manifestTask&&!force)return manifestTask;const epoch=++manifestEpoch,url=new URL('index.json',base).href;
-      const task=(async()=>{let result;try{const text=await fetchText(url,LIMIT.manifest);const value=validateManifest(JSON.parse(text));const sha=await digest(text);if(epoch===manifestEpoch)await save(url,text,sha,false);result={manifest:value,offline:false,at:Date.now()};}catch(error){const saved=await cached(url);if(!saved||bytes(saved.text)>LIMIT.manifest||!hash(saved.hash)||await digest(saved.text)!==saved.hash)throw new Error('Service coverage unavailable. Unsaved areas are unknown; reconnect and retry.');const value=validateManifest(JSON.parse(saved.text));result={manifest:value,offline:true,at:Date.now()};}if(epoch===manifestEpoch)current=result;return result;})();manifestTask=task;try{return await task;}finally{if(manifestTask===task)manifestTask=null;}}
+      const task=(async()=>{let result;try{const text=await fetchText(url,LIMIT.manifest);const value=validateManifest(JSON.parse(text));const sha=await digest(text);if(epoch===manifestEpoch)await save(url,text,sha,false);result={manifest:value,offline:false,at:Date.now()};}catch(error){const saved=await cached(url);if(!saved||bytes(saved.text)>LIMIT.manifest||!hash(saved.hash)||await digest(saved.text)!==saved.hash)throw new Error(t("Service coverage unavailable. Unsaved areas are unknown; reconnect and retry."));const value=validateManifest(JSON.parse(saved.text));result={manifest:value,offline:true,at:Date.now()};}if(epoch===manifestEpoch)current=result;return result;})();manifestTask=task;try{return await task;}finally{if(manifestTask===task)manifestTask=null;}}
     async function shard(s,m,offline,signal){ensure(signal);const url=new URL(s.url,base).href,key=`${m.snapshot_id}:${s.id}:${s.sha256}`;if(memory.has(key)){const v=memory.get(key);check(v.size===s.bytes,'cached shard size');validateShard(v.data,s,m);remember(key,v.data,v.size,v.text);await save(url,v.text,s.sha256,true);return v.data;}
       const read=async text=>{if(bytes(text)!==s.bytes||await digest(text)!==s.sha256)throw new Error('Service shard integrity mismatch');return validateShard(JSON.parse(text),s,m);};
       const saved=await cached(url);if(saved){try{const data=await read(saved.text);ensure(signal);remember(key,data,s.bytes,saved.text);await save(url,saved.text,s.sha256,true);return data;}catch(error){if(error.name==='AbortError')throw error;}}
-      if(offline)throw new Error('Area is not saved offline');const text=await fetchText(url,LIMIT.shard,signal),data=await read(text);ensure(signal);remember(key,data,s.bytes,text);await save(url,text,s.sha256,true);return data;
+      if(offline)throw new Error(t("Area is not saved offline"));const text=await fetchText(url,LIMIT.shard,signal),data=await read(text);ensure(signal);remember(key,data,s.bytes,text);await save(url,text,s.sha256,true);return data;
     }
-    function status(result){const prefix=result.offline?'Saved dated evidence (offline/fallback). ':'';result.message=`${prefix}${result.partial?'Partial results: '+result.missing.length+' areas missing or outside the loading budget; missing areas are unknown. ':result.items.length?'Results in loaded source coverage. ':'None in the loaded source coverage. '}Coverage: ${coverageSummary(result.coverage)}. Source coverage is incomplete; unloaded and uncovered areas are unknown. Hours, RV access and overnight permission are not verified.`;lastStatus=result;return result;}
-    async function load(select,accept,options={}){const {signal,force=false,onProgress}=options;ensure(signal);const selected=options.categories===undefined?getCategories():KEYS.filter(k=>options.categories.includes(k));if(!selected.length)return {items:[],partial:false,offline:env.navigator?.onLine===false,missing:[],coverage:[],message:'No service categories selected.',manifest:current?.manifest||null};const record=await waitFor(manifest(force),signal);ensure(signal);const m=record.manifest,candidates=m.shards.filter(s=>select(s.bbox)&&selected.some(k=>(s.counts[k]||0)>0));const maxShards=Number.isFinite(options.maxShards)?Math.max(0,Math.min(128,Math.floor(options.maxShards))):16,maxBytes=Number.isFinite(options.maxBytes)?Math.max(0,Math.min(LIMIT.cacheBytes,options.maxBytes)):8*1024*1024;let total=0;const chosen=[],missing=[];for(const s of candidates){if(chosen.length>=maxShards||total+s.bytes>maxBytes){missing.push(s.id);continue;}chosen.push(s);total+=s.bytes;}const items=[],ids=new Set();let next=0,done=0;
+    function status(result){const prefix=result.offline?t('Saved dated evidence (offline/fallback). '):'';result.message=t('{prefix}{result}Coverage: {coverage}. Source coverage is incomplete; unloaded and uncovered areas are unknown. Hours, RV access and overnight permission are not verified.',{prefix,result:result.partial?t('Partial results: {count} areas missing or outside the loading budget; missing areas are unknown. ',{count:result.missing.length}):result.items.length?t('Results in loaded source coverage. '):t('None in the loaded source coverage. '),coverage:coverageSummary(result.coverage)});lastStatus=result;return result;}
+    async function load(select,accept,options={}){const {signal,force=false,onProgress}=options;ensure(signal);const selected=options.categories===undefined?getCategories():KEYS.filter(k=>options.categories.includes(k));if(!selected.length)return {items:[],partial:false,offline:env.navigator?.onLine===false,missing:[],coverage:[],message:t('No service categories selected.'),manifest:current?.manifest||null};const record=await waitFor(manifest(force),signal);ensure(signal);const m=record.manifest,candidates=m.shards.filter(s=>select(s.bbox)&&selected.some(k=>(s.counts[k]||0)>0));const maxShards=Number.isFinite(options.maxShards)?Math.max(0,Math.min(128,Math.floor(options.maxShards))):16,maxBytes=Number.isFinite(options.maxBytes)?Math.max(0,Math.min(LIMIT.cacheBytes,options.maxBytes)):8*1024*1024;let total=0;const chosen=[],missing=[];for(const s of candidates){if(chosen.length>=maxShards||total+s.bytes>maxBytes){missing.push(s.id);continue;}chosen.push(s);total+=s.bytes;}const items=[],ids=new Set();let next=0,done=0;
       async function worker(){while(next<chosen.length){ensure(signal);const s=chosen[next++];try{const data=await shard(s,m,record.offline,signal);ensure(signal);for(const item of data.items)if(!ids.has(item.id)&&matches(item,selected,options.includeRestricted===true)&&accept(item.coordinates)){ids.add(item.id);items.push(item);}}catch(error){if(signal?.aborted)throw abort();missing.push(s.id);}done++;onProgress?.({loaded:done,total:chosen.length,missing:missing.length});}}
       await Promise.all([worker(),worker()]);ensure(signal);return status({items,partial:missing.length>0,offline:record.offline,missing,coverage:m.coverage,manifest:m});
     }

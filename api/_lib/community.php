@@ -51,7 +51,7 @@ function kc_validate(array $in): array {
     $out['visited_on']=kc_string($in['visited_on']??'',10);
     $date=DateTimeImmutable::createFromFormat('!Y-m-d',$out['visited_on']);
     if (!$date || $date->format('Y-m-d')!==$out['visited_on'] || $out['visited_on']>gmdate('Y-m-d') || $out['visited_on']<'1900-01-01') kc_error(422, 'Enter the date you visited, today or earlier.');
-    if (($in['firsthand']??'')!=='1') kc_error(422, 'Confirm this is your own review and you have permission to publish the photos.');
+    if (($in['firsthand']??'')!=='1') kc_error(422, 'Confirm this is your own review and you have permission to share the photos and any attached video.');
     if ((int)($in['elapsed_ms']??0)<3000) kc_error(422, 'Please take a moment to review your submission, then send it again.');
     return $out;
 }
