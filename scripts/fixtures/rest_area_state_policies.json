@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "purpose": "Reviewed state-policy preparation only; not connected to production permissions",
+  "policies": [
+    {
+      "id": "txdot-safety-rest-area-20261030",
+      "scope": {
+        "state": "TX",
+        "operator": "txdot",
+        "facility_kind": "safety_rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": 24,
+        "conditions": [
+          "TxDOT-designated safety rest areas only; inspect posted restrictions and officer directions.",
+          "The cited law has notice requirements and special rules for structures; see the complete section."
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html",
+          "retrieved_url": "https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html",
+          "retrieved_at": "2026-10-30T22:09:09Z",
+          "sha256": "b2c7a3098bb2b9a7394fde8b0e76f0053c228f4ca2a37c04c5e123655ed0874d",
+          "bytes": 222614,
+          "http_last_modified": "Fri, 30 Oct 2026 22:09:09 GMT",
+          "source_updated_at": null
+        },
+        {
+          "url": "https://tcss.legis.texas.gov/resources/TN/htm/TN.545.htm",
+          "retrieved_url": "https://tcss.legis.texas.gov/resources/TN/htm/TN.545.htm",
+          "retrieved_at": "2026-10-30T22:09:09Z",
+          "sha256": "0015cff7e777079c2ee4efb73d9879350ee979d2fe970b93e5c064f5ae7e18da",
+          "bytes": 308586,
+          "http_last_modified": "Fri, 10 Apr 2026 03:17:48 GMT",
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "The primary pages establish a duration context. Neither explicitly addresses overnight parking or sleeping. Do not infer those permissions from the stay limit."
+    },
+    {
+      "id": "mdt-rest-area-20261030",
+      "scope": {
+        "state": "MT",
+        "operator": "mdt",
+        "facility_kind": "rest_area"
+      },
+      "rules": {
+        "overnight_parking": "allowed",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "prohibited",
+        "max_stay_hours": 12,
+        "conditions": [
+          "Use a single parking space per vehicle.",
+          "Temporary closures and posted facility restrictions require separate checks."
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://mdt.mt.gov/travinfo/restarea.aspx",
+          "retrieved_url": "https://mdt.mt.gov/travinfo/restarea.aspx",
+          "retrieved_at": "2026-10-30T22:09:09Z",
+          "sha256": "3dec36e03b36694fce0f14ab10b3598cb6c3adef2fff7242da1392b7688ba0c7",
+          "bytes": 51179,
+          "http_last_modified": null,
+          "source_updated_at": null
+        },
+        {
+          "url": "https://mca.legmt.gov/bills/mca/title_0600/chapter_0060/part_0020/section_0020/0600-0060-0020-0020.html",
+          "retrieved_url": "https://mca.legmt.gov/bills/mca/title_0600/chapter_0060/part_0020/section_0020/0600-0060-0020-0020.html",
+          "retrieved_at": "2026-10-30T22:09:09Z",
+          "sha256": "6d21881c2ceab17b4ca48e24e8318784272921c0e1093aa006e27e57676908e3",
+          "bytes": 12097,
+          "http_last_modified": "Thu, 27 Aug 2026 14:33:59 GMT",
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "MDT explicitly permits overnight parking and prohibits camping. Its 12-hour operational limit remains applicable; the 2025 statute exception has a 24-hour outer ceiling and does not grant a 24-hour stay. Sleeping is not independently stated."
+    }
+  ]
+}

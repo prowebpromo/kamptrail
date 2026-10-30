@@ -1,14 +1,16 @@
 const {test,expect}=require('@playwright/test');
 const AxeBuilder=require('@axe-core/playwright').default;
 const source=require('../../data/rest-areas/TX.json');
+const statePolicies=require('../../data/rest-areas/state-policies.json');
 test.use({serviceWorkers:'block'});
 const row={...source.records[0],name:'Test rest area <img src=x>',coordinates:[-97.5623,30.9001]},data={...source,records:[row]};
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
-async function setup(page,context,{mobile=false,broken=false}={}){
+async function setup(page,context,{mobile=false,broken=false,policyBroken=false}={}){
   if(mobile)await page.setViewportSize({width:390,height:844});const calls=[],errors=[];page.on('pageerror',e=>errors.push(e.message));
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   const json=(r,d)=>r.fulfill({contentType:'application/json',body:JSON.stringify(d)});
   await page.route('**/data/rest-areas/TX.json',r=>{calls.push(r.request().url());return broken?r.fulfill({status:503,body:'unavailable'}):json(r,data);});
+  await page.route('**/data/rest-areas/state-policies.json',r=>policyBroken?r.fulfill({status:503,body:'unavailable'}):json(r,statePolicies));
   const camp={type:'Feature',geometry:{type:'Point',coordinates:[-97.56,30.90]},properties:{id:'camp:rest-test',name:'Nearby test campground',schema_version:3,type:'established',source:'US Forest Service',amenities:[],rig_friendly:[]}};
   await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'TX',count:1}],total_sites:1}));
   await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
@@ -31,8 +33,9 @@ test('rest areas load only when requested, retain provenance, and never turn 24h
   const {calls,errors}=await setup(page,context);expect(calls).toEqual([]);await show(page);await expect(page.locator('.kt-rest-control')).toContainText('1 official rest-area location');
   const p=await popup(page);await expect(p).toContainText('Test rest area <img src=x>');await expect(p.locator('img')).toHaveCount(0);await expect(p).toContainText('does not establish permission to sleep overnight');await expect(p).toContainText(source.source.retrieved_at);
   await expect(p.getByRole('link',{name:'TxDOT place source',exact:true})).toHaveAttribute('href',row.source_url);
+  await expect(p).toContainText('State policy checked 2026-10-30');await expect(p).toContainText('overnight parking Unknown');await expect(p.getByRole('link',{name:'State policy source 1',exact:true})).toHaveAttribute('href',statePolicies.policies[0].sources[0].url);
   await p.getByRole('button',{name:'Overnight permission',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Overnight permission',exact:true});await expect(dialog).toContainText('permission unknown');await expect(dialog).toContainText('Published reports are unavailable');await dialog.getByRole('button',{name:'Close',exact:true}).click();
-  await p.getByRole('button',{name:'Save rest-area stop',exact:true}).click();const saved=await page.evaluate(()=>KampTrailTrip.getStops());expect(saved[0].feature.properties.type).toBe('spot');expect(saved[0].feature.properties.id).toBe('spot:30.90010,-97.56230');expect(saved[0].feature.properties.rest_area_evidence).toContain('Overnight permission');expect(errors).toEqual([]);
+  await p.getByRole('button',{name:'Save rest-area stop',exact:true}).click();const saved=await page.evaluate(()=>KampTrailTrip.getStops());expect(saved[0].feature.properties.type).toBe('spot');expect(saved[0].feature.properties.id).toBe('spot:30.90010,-97.56230');expect(saved[0].feature.properties.rest_area_evidence).toContain('overnight parking Unknown');expect(errors).toEqual([]);
 });
 test('mobile controls and popup are accessible, and an outside viewport reports missing coverage',async({page,context})=>{
   const {errors}=await setup(page,context,{mobile:true});await show(page,{keyboard:true});const c=page.locator('.kt-rest-control');await expect(c).toContainText('1 official rest-area location');expect(await c.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
@@ -43,4 +46,7 @@ test('mobile controls and popup are accessible, and an outside viewport reports 
 });
 test('source failure and offline views remain unknown and support an explicit retry',async({page,context})=>{
   const {errors}=await setup(page,context,{broken:true});await show(page);const c=page.locator('.kt-rest-control');await expect(c).toContainText('catalogue unavailable');await page.route('**/data/rest-areas/TX.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(data)}));await c.getByRole('button',{name:'Retry official rest areas'}).click();await expect(c).toContainText('1 official rest-area location');await context.setOffline(true);await expect(c).toContainText('Offline');await expect(c).toContainText('permission are unknown');expect(errors).toEqual([]);
+});
+test('state policy failure keeps sourced locations usable with explicit unknown policy',async({page,context})=>{
+  const {errors}=await setup(page,context,{policyBroken:true});await show(page);await expect(page.locator('.kt-rest-control')).toContainText('1 official rest-area location');const p=await popup(page);await expect(p).toContainText('State rest-area policy unavailable');await expect(p.getByRole('link',{name:'State policy source 1',exact:true})).toHaveCount(0);expect(errors).toEqual([]);
 });
