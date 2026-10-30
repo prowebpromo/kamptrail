@@ -1,6 +1,7 @@
 import sys
 import unittest
 from pathlib import Path
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import fee_text  # noqa: E402
@@ -8,6 +9,13 @@ import fetch_usfs_recreation  # noqa: E402
 
 
 class FeeTextTests(unittest.TestCase):
+    def test_retrieval_day_is_utc_across_the_local_midnight_boundary(self):
+        local = datetime(2026, 10, 29, 23, 30, tzinfo=timezone(timedelta(hours=-4)))
+        self.assertEqual(fee_text.retrieval_date(local), '2026-10-30')
+        self.assertEqual(fee_text.retrieval_date(local.astimezone(timezone.utc)), '2026-10-30')
+        with self.assertRaises(ValueError):
+            fee_text.retrieval_date(local.replace(tzinfo=None))
+
     def check(self, text, status, cost=None):
         self.assertEqual(fee_text.classify(text), (status, cost), text)
 
@@ -86,6 +94,10 @@ class FeeTextTests(unittest.TestCase):
         for t in ('There is a fee for overnight camping.', 'This is a fee campground. Fee envelopes are provided.', 'User fee station at the entrance.'):
             self.check(t, 'paid')
         self.check('10$ / night, April 1 to November 30.', 'paid', 10)
+
+    def test_amount_after_number_in_blm_nightly_fee(self):
+        self.check('5$ per night campsite fee.', 'paid', 5)
+        self.check('5$ per additional vehicle. Camping fee applies.', 'paid')
 
     def test_blm_explicit_no_permit_or_fee_requirement_to_camp(self):
         wording = 'There is no permit or fee requirement to camp. All sites are first-come, first-served.'

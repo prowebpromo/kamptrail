@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy": "Maintain independently checked official fee evidence by USFS recareaid. Contradictory conclusive statements produce unknown with a conflict flag; retrieval date does not establish source precedence. Revisit these records when agency wording changes.",
+  "policy": "Maintain independently checked official fee evidence by USFS recareaid. Contradictory conclusive statements produce unknown with a conflict flag; retrieval date does not establish source precedence. Revisit these records when agency wording changes. Positive enrichment of an unknown fee requires a named, coordinate-matched official-page observation with an explicit review deadline. The 2026-10-30 reviewed batch uses a 30-day recheck window; subsequent source refreshes drop expired observations and retain unknown fees until rechecked. This is an operational review deadline, not a guarantee that fees cannot change sooner.",
   "records": [
     {
       "recareaid": 76196,
@@ -12,6 +12,369 @@
       "source_updated_at": "2026-07-01",
       "source_updated_at_basis": "Official page footer: Last updated July 1, 2026; this is a webpage update date, not a fee effective date.",
       "text": "$5 per night"
+    },
+    {
+      "recareaid": 35347,
+      "name": "Sulphide Del Rey Campground",
+      "observed_name": "Sulphide Del Rey Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r03/tonto/recreation/sulphide-del-rey-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2026-02-26",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Only trailers under 20 feet allowed."
+        }
+      ],
+      "identity_coordinates": [
+        -110.86806,
+        33.29278034
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5103.002601, USDA_PORTAL_ID=35347 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 63.40 m; page to INFRA geometry 1.15 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Year round; 14-day stay limit. Fire only in designated areas when permitted. No trash/potable water.",
+        "General Canyon Lake alert is not a closure of this Globe Ranger District campground."
+      ],
+      "observed_site_status": "Site Open",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "notice_review": {
+        "source_url": "https://www.fs.usda.gov/r03/tonto/alerts/canyon-lake-drawdown-public-safety-closure",
+        "order_number": "03-12-00-26-22",
+        "review_basis": "Full notice reviewed. Described area is Canyon Lake and listed roads in Mesa/Tonto Basin ranger districts. Named closed recreation sites are Acacia, Palo Verde, Boulder, Canyon Lake Marina, Laguna, Tortilla Campground; reviewed campgrounds are outside this area in Globe/Pleasant Valley districts.",
+        "source_updated_at": "2026-08-25"
+      },
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 35355,
+      "name": "Jones Water Campground",
+      "observed_name": "Jones Water Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r03/tonto/recreation/jones-water-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2025-04-07",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Trailers under 20 feet."
+        },
+        {
+          "source_field": "official_page.Passes and Permits",
+          "text": "No passes required."
+        }
+      ],
+      "identity_coordinates": [
+        -110.6424536,
+        33.59112827
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5100.002601, USDA_PORTAL_ID=35355 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 1.18 m; page to INFRA geometry 1.15 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Year round; 14-day stay limit. No potable water or trash service. Fires only in designated areas when allowed.",
+        "General Canyon Lake closure alert is not a closure of this Globe Ranger District campground."
+      ],
+      "observed_site_status": "Site Open",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "notice_review": {
+        "source_url": "https://www.fs.usda.gov/r03/tonto/alerts/canyon-lake-drawdown-public-safety-closure",
+        "order_number": "03-12-00-26-22",
+        "review_basis": "Full notice reviewed. Described area is Canyon Lake and listed roads in Mesa/Tonto Basin ranger districts. Named closed recreation sites are Acacia, Palo Verde, Boulder, Canyon Lake Marina, Laguna, Tortilla Campground; reviewed campgrounds are outside this area in Globe/Pleasant Valley districts.",
+        "source_updated_at": "2026-08-25"
+      },
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 35645,
+      "name": "Airplane Flat Campground",
+      "observed_name": "Airplane Flat Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r03/tonto/recreation/airplane-flat-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2026-04-06",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Trailers under 16 feet."
+        },
+        {
+          "source_field": "official_page.Passes and Permits",
+          "text": "Permit required through the District Office if over 75 people.\nNo fees or passes required for standard camping."
+        }
+      ],
+      "identity_coordinates": [
+        -110.8079593,
+        34.28263462
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5036.002601, USDA_PORTAL_ID=35645 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 1.15 m; page to INFRA geometry 1.16 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Open season April to October; 14-day stay limit.",
+        "FR 512/FR 33 unpaved; four-wheel-drive or chains advised after heavy rain/snow. No potable water; pack in/out.",
+        "Permit only for groups over 75. General Canyon Lake closure alert is not a closure of this Pleasant Valley campground."
+      ],
+      "observed_site_status": "Site Open",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "notice_review": {
+        "source_url": "https://www.fs.usda.gov/r03/tonto/alerts/canyon-lake-drawdown-public-safety-closure",
+        "order_number": "03-12-00-26-22",
+        "review_basis": "Full notice reviewed. Described area is Canyon Lake and listed roads in Mesa/Tonto Basin ranger districts. Named closed recreation sites are Acacia, Palo Verde, Boulder, Canyon Lake Marina, Laguna, Tortilla Campground; reviewed campgrounds are outside this area in Globe/Pleasant Valley districts.",
+        "source_updated_at": "2026-08-25"
+      },
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 35651,
+      "name": "Haigler Canyon Campground and Day Use",
+      "observed_name": "Haigler Canyon Campground and Day Use",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r03/tonto/recreation/haigler-canyon-campground-and-day-use",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2026-02-26",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Trailers under 20 feet."
+        }
+      ],
+      "identity_coordinates": [
+        -110.963455,
+        34.219757
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5040.002601, USDA_PORTAL_ID=35651 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 1.15 m; page to INFRA geometry 1.16 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "14 overnight campsites in two camping areas and two separate picnic sites. Fee statement is site-wide, not a day-use-only price.",
+        "Year round;14-day limit. FR200/291 unpaved, narrow/winding/steep access; four-wheel-drive/chains advised after heavy rain/snow; flash-flood hazard.",
+        "Current page trailer limit20ft differs from legacy/INFRA16ft. Preserve dated evidence; do not silently derive a site-specific fit guarantee.",
+        "General Canyon Lake alert is not a closure of this Pleasant Valley campground."
+      ],
+      "observed_site_status": "Site Open",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "notice_review": {
+        "source_url": "https://www.fs.usda.gov/r03/tonto/alerts/canyon-lake-drawdown-public-safety-closure",
+        "order_number": "03-12-00-26-22",
+        "review_basis": "Full notice reviewed. Described area is Canyon Lake and listed roads in Mesa/Tonto Basin ranger districts. Named closed recreation sites are Acacia, Palo Verde, Boulder, Canyon Lake Marina, Laguna, Tortilla Campground; reviewed campgrounds are outside this area in Globe/Pleasant Valley districts.",
+        "source_updated_at": "2026-08-25"
+      },
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 35655,
+      "name": "Colcord Ridge Campground",
+      "observed_name": "Colcord Ridge Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r03/tonto/recreation/colcord-ridge-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2026-03-16",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Trailers under 32'"
+        },
+        {
+          "source_field": "official_page.Passes and Permits",
+          "text": "Permit required through the District Office if over 75 people\nNo Fees or Passes required."
+        }
+      ],
+      "identity_coordinates": [
+        -110.8425032,
+        34.26213012
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5039.002601, USDA_PORTAL_ID=35655 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 1.13 m; page to INFRA geometry 1.16 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Year-round; 14-day stay limit; FR 512 unpaved. Weekly restroom service; pack it in/out.",
+        "Permit requirement is for groups over 75, not ordinary camping.",
+        "General forest alert names Canyon Lake Drawdown Public Safety Closure; this page is Pleasant Valley Ranger District, not a statement that this campground is closed."
+      ],
+      "observed_site_status": "Site Open",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "notice_review": {
+        "source_url": "https://www.fs.usda.gov/r03/tonto/alerts/canyon-lake-drawdown-public-safety-closure",
+        "order_number": "03-12-00-26-22",
+        "review_basis": "Full notice reviewed. Described area is Canyon Lake and listed roads in Mesa/Tonto Basin ranger districts. Named closed recreation sites are Acacia, Palo Verde, Boulder, Canyon Lake Marina, Laguna, Tortilla Campground; reviewed campgrounds are outside this area in Globe/Pleasant Valley districts.",
+        "source_updated_at": "2026-08-25"
+      },
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 60306,
+      "name": "Blodgett Campground",
+      "observed_name": "Blodgett Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r01/bitterroot/recreation/blodgett-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2026-05-22",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site\nNo fees. Sites are first come, first served.",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Campground can accommodate tents, RV's or trailers up to 45 feet."
+        }
+      ],
+      "identity_coordinates": [
+        -114.2441667,
+        46.26972222
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5204.000271, USDA_PORTAL_ID=60306 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 24.38 m; page to INFRA geometry 1.23 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Current Conditions: Open May 1 - October 31.",
+        "General Seasons of Use separately says Memorial Day to Labor Day; retain this internal season discrepancy, do not infer an exact annual operating schedule.",
+        "Typically not accessible in winter.",
+        "Camping limited to 16 consecutive days; then move 5 miles away. Food storage required. No garbage service."
+      ],
+      "observed_site_status": "Site Open",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "b4da95a265f7e5d35bba5dca7258906ab53928574fefcb2fd9b1b5aae5fe5c86",
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 60320,
+      "name": "Gold Creek Campground",
+      "observed_name": "Gold Creek Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r01/bitterroot/recreation/gold-creek-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2026-05-22",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site\nNo fee charged. First come/first serve",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Campground can accommodate RV's or trailers to 25 feet."
+        }
+      ],
+      "identity_coordinates": [
+        -113.9013889,
+        46.3975
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5205.000271, USDA_PORTAL_ID=60320 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 72.54 m; page to INFRA geometry 1.23 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Current Conditions: Open year round, snow dependent.",
+        "General Seasons of Use separately says Memorial Day - Labor Day; retain season distinction.",
+        "Camping limited to 16 consecutive days; then move 5 miles. Food storage required. No garbage service."
+      ],
+      "observed_site_status": "Site Open",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "2261f4a461a2558c579f51a9a710de66b6fe483274961e4be4a5aa05c1332f42",
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 60666,
+      "name": "Paradise Campground",
+      "observed_name": "Paradise Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r01/bitterroot/recreation/paradise-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2026-04-08",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Campground can accommodate RV's or trailers to 25 feet."
+        }
+      ],
+      "identity_coordinates": [
+        -114.7377778,
+        45.86083333
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5086.000271, USDA_PORTAL_ID=60666 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 48.58 m; page to INFRA geometry 1.24 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Site closed by snow annually; summer and fall use. Main roads not plowed in fall/winter; Nez Perce Pass generally gets snow first in early fall.",
+        "14-day camping limit. No garbage or potable water; stock welcome and weed-seed-free feed required.",
+        "Do not park on helispot. Selway River permitting May 15-July 31 concerns river use; not treated as an ordinary campground fee.",
+        "Current page says 6 sites; older INFRA description says 11. Do not carry old capacity forward."
+      ],
+      "observed_site_status": "No explicit Site Open/Closed badge in retrieved page; seasonal snow limitation, not a current closure assertion.",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 66336,
+      "name": "Devil's Corkscrew Campground",
+      "observed_name": "Devil's Corkscrew Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r01/flathead/recreation/devils-corkscrew-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2025-04-04",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Camping and access",
+          "text": "Max trailer length is 32 feet."
+        }
+      ],
+      "identity_coordinates": [
+        -113.6958242,
+        48.11022495
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5042.000621, USDA_PORTAL_ID=66336 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 42.52 m; page to INFRA geometry 1.24 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "16-day stay limit; food/attractant storage required. No potable water.",
+        "Current Conditions refers users to ranger district for conditions. Open 24 hours/day is operational-hours text, not independently confirmed current availability."
+      ],
+      "observed_site_status": "No explicit Site Open/Closed badge in retrieved page.",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "review_after": "2026-11-29"
+    },
+    {
+      "recareaid": 67118,
+      "name": "Upper Stillwater Lake Campground",
+      "observed_name": "Upper Stillwater Lake Campground",
+      "source": "US Forest Service",
+      "source_field": "official_page.Fee Site and Info",
+      "source_url": "https://www.fs.usda.gov/r01/flathead/recreation/upper-stillwater-lake-campground",
+      "retrieved_at": "2026-10-30",
+      "source_updated_at": "2025-04-09",
+      "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
+      "text": "No fees are required for this site",
+      "context": [
+        {
+          "source_field": "official_page.Seasons of Use",
+          "text": "Open year-round. Not plowed in winter."
+        }
+      ],
+      "identity_coordinates": [
+        -114.65684,
+        48.60322
+      ],
+      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5758.000621, USDA_PORTAL_ID=67118 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 1.29 m; page to INFRA geometry 1.24 m. No CN-to-recreation-ID inference.",
+      "caveats": [
+        "Current page has5 designated campsites, boat launch and separate day parking.",
+        "Open year-round; not plowed in winter; 16-day limit; first come first served.",
+        "No explicit RV/trailer suitability on dedicated page. INFRA activity_type_list contains CAMPING, TRAILER; retain separate provenance and do not infer dimensions.",
+        "Current Conditions refers users to district; no independent current-availability verification."
+      ],
+      "observed_site_status": "No explicit Site Open/Closed badge in retrieved page.",
+      "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
+      "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
+      "review_after": "2026-11-29"
     }
   ]
 }

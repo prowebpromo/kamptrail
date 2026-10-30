@@ -12,6 +12,15 @@ Reservability is not fee evidence and is not used here.
 """
 import html
 import re
+from datetime import datetime, timezone
+
+
+def retrieval_date(now=None):
+    """Agency retrieval dates use UTC, independently of the runner's time zone."""
+    now = now or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        raise ValueError('Retrieval time must have a time zone')
+    return now.astimezone(timezone.utc).date().isoformat()
 
 DOLLAR = re.compile(r'\$\s?(\d{1,4}(?:\.\d{2})?)|\b(\d{1,4}(?:\.\d{2})?)\s?\$')
 NIGHTLY = re.compile(r'\$\s?(\d{1,3}(?:\.\d{2})?)\s*(?:/|per|a|each)\s*(?:night|site|campsite|unit)', re.I)
@@ -72,7 +81,7 @@ def clean(text):
 
 
 def classify_cost(t):
-    nightly = sorted({float(a) for a in NIGHTLY.findall(t) if float(a) > 0} | {float(a) for a in re.findall(r'\b(\d{1,3}(?:\.\d{2})?)\s?\$\s*/\s*night', t, re.I) if float(a) > 0})
+    nightly = sorted({float(a) for a in NIGHTLY.findall(t) if float(a) > 0} | {float(a) for a in re.findall(r'\b(\d{1,3}(?:\.\d{2})?)\s?\$\s*(?:/|per|a|each)\s*(?:night|site|campsite|unit)', t, re.I) if float(a) > 0})
     if len(nightly) != 1:
         return None
     return int(nightly[0]) if nightly[0].is_integer() else nightly[0]
