@@ -138,3 +138,29 @@ test('management uses Bearer POST; edits detect stale versions and delete remove
   for (const request of sent.filter(r => ['owner', 'edit', 'delete'].includes(r.data.action))) {expect(request.method).toBe('POST'); expect(request.url).not.toContain('?'); expect(request.headers.authorization).toBe('Bearer ' + token);}
   expect(sent.find(r => r.data.action === 'edit').data.version).toBe(1); expect(sent.find(r => r.data.action === 'delete').data.version).toBe(2);
 });
+test('online to offline clears displayed public information and preserves an unsent draft without reconnect submission', async ({page, context}) => {
+  const sent = await fixture(page), d = page.getByRole('dialog');
+  await expect(d).toContainText('1 published firsthand report'); await expect(d).toContainText('Only expired official evidence');
+  await context.setOffline(true);
+  await expect(d).toContainText('Offline: current permission information and reports are unavailable');
+  await expect(d).not.toContainText('A manager gave me permission'); await expect(d).not.toContainText('Only expired official evidence');
+  await expect(d).not.toContainText('1 published firsthand report');
+  const reads = sent.length; await context.setOffline(false); expect(sent).toHaveLength(reads);
+  await d.getByRole('button', {name: 'Retry', exact: true}).click(); await expect(d).toContainText('1 published firsthand report');
+  await fillReport(page); await context.setOffline(true);
+  await expect(d).toContainText('Your draft remains here'); await expect(d.getByLabel('What happened?', {exact: true})).toHaveValue('The manager granted permission for one night only.');
+  await context.setOffline(false); await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+  await expect(d.getByLabel('What happened?', {exact: true})).toHaveValue('The manager granted permission for one night only.');
+  expect(sent.filter(r => r.data.action === 'submit')).toHaveLength(0);
+});
+test('current evidence is cleared at its review deadline without polling and visible resume rereads', async ({page}) => {
+  const now = Date.now(); await page.clock.install({time: new Date(now)});
+  const sent = await fixture(page, async route => {
+    await route.fulfill({contentType: 'application/json', body: JSON.stringify(response({official: {...official, status: 'conditional', as_of: new Date(now).toISOString(), summary: 'Current scoped permission evidence.', evidence: [{...official.evidence[0], freshness: 'current', effective_until: null, review_after: new Date(now + 60000).toISOString()}]}}))}); return true;
+  });
+  const d = page.getByRole('dialog'); await expect(d).toContainText('Current scoped permission evidence.');
+  await page.clock.fastForward(61000); await expect(d).toContainText('no longer current');
+  await expect(d).not.toContainText('Current scoped permission evidence.'); await expect(d).not.toContainText('A manager gave me permission'); expect(sent).toHaveLength(1);
+  await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+  await expect.poll(() => sent.length).toBe(2);
+});

@@ -4,7 +4,7 @@
   const API = 'api/permissions.php', STORE = 'kt_permission_owners_v1';
   const activities = {overnight_occupancy: 'Overnight occupancy', unoccupied_vehicle_parking: 'Unoccupied vehicle parking'};
   const observations = {granted_to_me: 'Permission granted to me', refused_to_me: 'Permission refused to me', prohibition_sign_seen: 'Prohibition sign seen', stayed_without_asking: 'Stayed without asking'};
-  const state = {dialog: null, body: null, place: null, activity: 'overnight_occupancy', generation: 0, controller: null, focus: null};
+  const state = {dialog: null, body: null, place: null, activity: 'overnight_occupancy', generation: 0, controller: null, focus: null, publicView: null, expiryTimer: null, offlineNotice: null};
   function node(tag, attrs = {}, text) {
     const n = document.createElement(tag);
     for (const [k, v] of Object.entries(attrs)) if (v != null && v !== false) n.setAttribute(k, v === true ? '' : String(v));
@@ -18,7 +18,43 @@
     if (hint) wrap.append(node('small', {}, hint)); return wrap;
   }
   function today() {return new Date().toISOString().slice(0, 10);}
-  function invalidate() {state.generation++; state.controller?.abort(); state.controller = new AbortController();}
+  function invalidate() {state.generation++; state.controller?.abort(); state.controller = new AbortController(); clearTimeout(state.expiryTimer); state.expiryTimer = null; state.publicView = null; state.offlineNotice = null;}
+  function expirePublic(view, offline = false) {
+    if (!state.dialog?.open || state.publicView !== view) return;
+    invalidate(); state.publicView = view;
+    view.source.replaceChildren(); view.list.replaceChildren(); view.concerns.replaceChildren(); view.more.hidden = true;
+    view.summary.replaceChildren(document.createTextNode(offline ? 'Offline: current permission information and reports are unavailable. This is not a zero count or a permission decision.' : 'This permission assessment is no longer current. Reload source evidence and reports before relying on them.'), button('Retry', view.refresh));
+  }
+  function scheduleExpiry(view, official) {
+    clearTimeout(state.expiryTimer);
+    const now = Date.now(), deadlines = [now + 15 * 60 * 1000];
+    if (['allowed', 'conditional', 'prohibited', 'conflict'].includes(official?.status)) {
+      const assessed = Date.parse(official.as_of);
+      if (Number.isFinite(assessed)) deadlines.push(assessed + 15 * 60 * 1000);
+    }
+    for (const r of official?.evidence || []) {
+      if (r.freshness === 'current') {
+        const review = Date.parse(r.review_after), until = Date.parse(r.effective_until);
+        if (Number.isFinite(review)) deadlines.push(review);
+        if (Number.isFinite(until)) deadlines.push(until + 86400000); // Effective-through dates are inclusive UTC days.
+      }
+      if (r.freshness === 'future') {const starts = Date.parse(r.effective_from); if (Number.isFinite(starts)) deadlines.push(starts);}
+    }
+    state.expiryTimer = setTimeout(() => expirePublic(view), Math.max(0, Math.min(...deadlines) - now));
+  }
+  window.addEventListener('offline', () => {
+    if (!state.dialog?.open) return;
+    if (state.publicView) expirePublic(state.publicView, true);
+    else if (!state.offlineNotice) {state.offlineNotice = notice('Offline. Your draft remains here; reconnect before sending. Nothing will be submitted automatically.'); state.body.append(state.offlineNotice);}
+  });
+  function resumePublic() {
+    if (state.dialog?.open && state.publicView) {
+      if (navigator.onLine) state.publicView.refresh();
+      else expirePublic(state.publicView, true);
+    }
+  }
+  document.addEventListener('visibilitychange', () => {if (document.visibilityState === 'visible') resumePublic();});
+  window.addEventListener('pageshow', event => {if (event.persisted) resumePublic();});
   function shell(title) {
     invalidate();
     if (!state.dialog) {
@@ -117,6 +153,7 @@
     const actions = node('div', {class: 'kt-permission-actions'}); actions.append(button('Share firsthand report', () => edit({place: selectedPlace, activity: selectedActivity})), button('My permission reports', mine)); body.append(actions);
     const source = node('div'), summary = notice('Loading source evidence and published reports…'), list = node('div'), concerns = node('section', {'aria-label': 'Reported concerns'});
     const more = button('Load more reports', () => load(more.dataset.before)); more.hidden = true; body.append(source, node('h3', {}, 'Published firsthand reports'), summary, concerns, list, more);
+    const view = {source, summary, list, concerns, more, refresh: () => open(selectedPlace, selectedActivity)}; state.publicView = view;
     const seen = new Set(), concernTypes = new Set();
     async function load(before) {
       more.disabled = true;
@@ -124,6 +161,7 @@
         const out = await request({action: 'read', place: selectedPlace, activity: selectedActivity, ...(before ? {before: Number(before)} : {})}, null, state.controller.signal);
         if (generation !== state.generation) return;
         source.replaceChildren(officialSection(out.official, selectedActivity));
+        scheduleExpiry(view, out.official);
         if (out.reports_available === false) {
           summary.replaceChildren(document.createTextNode('Published reports are unavailable. This is not a zero count or a permission decision.'), button('Retry', () => load(before))); more.hidden = true; return;
         }
@@ -138,6 +176,7 @@
         summary.replaceChildren(document.createTextNode(navigator.onLine ? 'Permission information could not be loaded. Availability and permission remain unknown.' : 'Offline: current permission information and reports are unavailable. This is not a zero count or a permission decision.'), button('Retry', () => load(before)));
       } finally {if (generation === state.generation) more.disabled = false;}
     }
+    if (!navigator.onLine) {expirePublic(view, true); return;}
     await load();
   }
   function codePanel(body, token) {

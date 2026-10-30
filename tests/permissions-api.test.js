@@ -11,7 +11,9 @@ async function env(port,migrate=true,concurrent=false){
  const dsn=process.env.KT_TEST_MYSQL_DSN||'sqlite:'+path.join(dir,'test.sqlite');
  fs.writeFileSync(file,`<?php return ['db'=>['dsn'=>${JSON.stringify(dsn)},'user'=>'root','pass'=>'test-only'],'ip_salt'=>'permission-tests-only','moderator_password'=>'test moderator password','moderator_name'=>'tester'];`);fs.chmodSync(file,0o600);
  const sql=code=>execFileSync('php',['-r',`$c=require ${JSON.stringify(file)};$p=new PDO($c['db']['dsn'],$c['db']['user'],$c['db']['pass'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);`+code],{encoding:'utf8'});
- if(process.env.KT_TEST_MYSQL_DSN)sql("$p->exec('SET FOREIGN_KEY_CHECKS=0');foreach($p->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN) as $t)$p->exec('DROP TABLE '.chr(96).$t.chr(96));");
+ // This suite shares the disposable MySQL database with community/routing tests.
+ // Reset only this feature in foreign-key order; preserve their rows and migrations.
+ if(process.env.KT_TEST_MYSQL_DSN)sql("foreach(['permission_flags','permission_audit','permission_events','permission_state','permission_reports'] as $t)$p->exec('DROP TABLE IF EXISTS '.chr(96).$t.chr(96));if($p->query(\"SHOW TABLES LIKE 'schema_migrations'\")->fetchColumn()!==false)$p->exec(\"DELETE FROM schema_migrations WHERE version='005_permissions'\");");
  const p=spawn('php',['-S','127.0.0.1:'+port,'-t',root],{env:{...process.env,KAMPTRAIL_CONFIG:file},stdio:'ignore'}),base='http://127.0.0.1:'+port;
  for(let i=0;i<60;i++){try{await fetch(base+'/api/health.php');break;}catch{await new Promise(r=>setTimeout(r,100));}}
  const secondary=concurrent?spawn('php',['-S','127.0.0.1:'+(port+10),'-t',root],{env:{...process.env,KAMPTRAIL_CONFIG:file},stdio:'ignore'}):null;
@@ -92,7 +94,10 @@ test('permission validation, exact origins, method privacy, rate labels and migr
 });
 test('official reads work without migrated reports; reads never write or create tables',options,async()=>{
  const e=await env(18968,false);try{
+  const tables=()=>e.sql(process.env.KT_TEST_MYSQL_DSN?"echo json_encode($p->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN));":"echo json_encode($p->query(\"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name\")->fetchAll(PDO::FETCH_COLUMN));");
+  const before=tables();
   const data=await e.list();assert.equal(data.reports_available,false);assert.equal(data.official.status,'unknown');assert.deepEqual(data.reports,[]);assert.equal((await e.post(good)).status,503);
-  const tables=e.sql(process.env.KT_TEST_MYSQL_DSN?"echo json_encode($p->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN));":"echo json_encode($p->query(\"SELECT name FROM sqlite_master WHERE type='table'\")->fetchAll(PDO::FETCH_COLUMN));");assert.deepEqual(JSON.parse(tables),[]);
+  assert.equal(tables(),before,'unmigrated reads/writes leave the existing shared schema intact');
+  assert.ok(!JSON.parse(before).some(name=>name.startsWith('permission_')));
  }finally{e.close();}
 });
