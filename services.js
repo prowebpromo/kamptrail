@@ -1,7 +1,7 @@
 /* Dated OSM service discovery. Map, nearby and routes share validation and access rules. */
 (function (root) {
   'use strict';
-  const VERSION = '2.16.0';
+  const VERSION = '2.17.0';
   const categories = Object.freeze({
     dump: {label: 'Dump station', letter: 'D', color: '#6b3fa0'},
     water: {label: 'Water fill', letter: 'W', color: '#1f6fb2'},

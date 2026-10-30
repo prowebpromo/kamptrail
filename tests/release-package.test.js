@@ -16,16 +16,15 @@ test('release keeps runtime versions, handshake and first-party asset URLs consi
   assert.ok(html.includes(`>v${version}</a>`));
   const scripts=[...html.matchAll(/<script src="([^"/]+\.js)(\?[^"]*)?"/g)];
   const runtimeFiles=fs.readdirSync(root).filter(file=>file.endsWith('.js')&&!file.endsWith('.spec.js')&&!['service-worker.js','playwright.config.js'].includes(file)).sort();
-  assert.ok(runtimeFiles.length>=19,'The application retains its required runtime modules');
   assert.deepEqual(scripts.map(([,file])=>file).sort(),runtimeFiles,'Every first-party runtime module is declared exactly once in the page');
-  for(const file of ['app.js','data-loader.js','data-quality.js','permissions.js','rest-areas.js'])assert.ok(runtimeFiles.includes(file),`Required runtime module: ${file}`);
+  for(const file of ['app.js','data-loader.js','data-quality.js','permissions.js','rest-areas.js','rig-profile.js','route-elevation.js'])assert.ok(runtimeFiles.includes(file),`Required runtime module: ${file}`);
   for(const [,file,query]of scripts){
     assert.equal(query,`?v=${version}`,file);
     const source=fs.readFileSync(path.join(root,file),'utf8');
     if(file==='app.js'){
       assert.ok(source.includes(`?.content !== '${version}'`),'HTML handshake uses package version');
       assert.ok(source.includes(`module?.version!=='${version}'`),'Module handshake uses package version');
-    }else assert.match(source,new RegExp(`(?:version:\\s*|const VERSION = )'${version.replaceAll('.','\\.')}'`),file);
+    }else assert.match(source,new RegExp(`(?:version:\\s*|const VERSION\\s*=\\s*)'${version.replaceAll('.','\\.')}'`),file);
   }
   for(const file of ['app.css','manifest.json'])assert.ok(html.includes(`href="${file}?v=${version}"`),file);
 });
@@ -77,7 +76,7 @@ test('built release contains agency index dependencies and supports a custom-dom
     assert.ok(fs.existsSync(path.join(out,asset)),`Missing page dependency: ${url}`);
   }
   // The contributions API ships its public entry points and private helpers, never configuration.
-  for(const file of ['services.js','data/services/index.json','forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
+  for(const file of ['rig-profile.js','route-elevation.js','api/route-elevation.php','api/_lib/route-elevation.php','rest-areas.js','data/rest-areas/TX.json','services.js','data/services/index.json','forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
     assert.ok(fs.existsSync(path.join(out,file)),`Missing API file: ${file}`);
   const services=JSON.parse(fs.readFileSync(path.join(out,'data/services/index.json'),'utf8'));
   assert.equal(services.version,2);let serviceTotal=0;

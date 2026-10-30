@@ -1,4 +1,4 @@
-# KampTrail 2.14.0
+# KampTrail 2.17.0
 
 KampTrail is a free campsite map and trip planner at https://kamptrail.com/. No account is required for the core camping tools or moderated contributions.
 
@@ -15,6 +15,8 @@ Service discovery shares category and access rules across the map, nearby result
 - Opt-in, dated NIFC fire perimeters and NOAA satellite smoke plumes; on-demand NWS point alerts and forecast/elevation checks. These are context, not an evacuation, closure, AQI or emergency-notification service. Dynamic hazards require a connection.
 - OSM dump stations, tagged water points and propane; nearest-service discovery from campsite popups.
 - Ordered saved stops, dates, notes, GPX import/export, road geometry and along-route campsite discovery. Requested drive times/detours use the OSRM car router and are not checked for RV dimensions or road conditions.
+- One local rig profile with separate campsite-fit and travel dimensions, campsite matching preferences, previewed JSON import and export. Metric dimensions preserve fractional-foot matching; travel dimensions remain reference values.
+- Explicitly requested USGS terrain samples along a calculated car route, with source dates, unknown gaps, an accessible selector/table and exact-route offline reuse. Ground terrain does not establish road grade, bridge/tunnel height, clearance or RV suitability.
 - Save selected USGS Topo areas offline. The app shell, previously visited listings, saved stops, cached routes and eligible dated camper aggregates remain available when browser storage permits. Name search must first load its index online. OpenStreetMap standard tiles are not bulk saved.
 - First-party corrections/new-place proposals and a private status link, with moderator review. GitHub issue forms remain a fallback.
 
@@ -22,7 +24,9 @@ The catalogue combines Recreation.gov, USFS, BLM and OpenStreetMap source record
 
 ## Remaining work
 
-Modeled FCC coverage is blocked on actual provider access. Forecast discovery filters, broader POIs and overnight permission evidence, portable rig profiles, route elevation and enforced RV-restriction routing remain separate packages. Accounts/social messaging, cross-device synchronization, notifications, native navigation and full video uploads are not implemented. Existing historical parity scores do not establish current full-product parity. See [the active parity queue](docs/replica/parity-queue.md).
+Modeled FCC coverage is blocked on actual provider access. Enforced RV-restriction routing, wider service/permission evidence and community/media depth remain separate packages. Accounts/social messaging, cross-device synchronization, notifications, native navigation and full video uploads are not implemented. Versioned features in this source tree are not evidence of deployment; release and live-verification gates remain in [the active parity queue](docs/replica/parity-queue.md). Existing historical parity scores do not establish current full-product parity.
+
+The [rig and route-terrain contract](docs/RIG_TERRAIN_CONTRACT_2.17.md) describes local profile data, explicit coordinate disclosure, bounded sampling, private server caches and offline limits.
 
 ## Run and test
 
