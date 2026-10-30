@@ -44,6 +44,15 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.match(html,/<link rel="canonical" href="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:url" content="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:image" content="https:\/\/kamptrail\.com\/og.png">/);
+  const howTo=fs.readFileSync(path.join(out,'how-to.html'),'utf8');
+  assert.match(howTo,/<link rel="canonical" href="https:\/\/kamptrail\.com\/how-to\.html">/);
+  const videos=JSON.parse(howTo.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+  assert.equal(videos.length,3);
+  for(const video of videos){assert.equal(video['@type'],'VideoObject');for(const key of ['name','description','thumbnailUrl','uploadDate','duration','embedUrl'])assert.ok(video[key],`VideoObject missing ${key}`);}
+  for(const [,url]of howTo.matchAll(/(?:src|href)="([^"]+)"/g)){
+    if(/^(?:https?:|#|\.\/$)/.test(url))continue;
+    assert.ok(fs.existsSync(path.join(out,url)),`Missing how-to dependency: ${url}`);
+  }
   const permissionDir=path.join(out,'api','_data','permissions');
   assert.equal(fs.readFileSync(path.join(permissionDir,'.htaccess'),'utf8'),'Require all denied\n','Generated identity data must be denied over HTTP');
   assert.equal(fs.readdirSync(permissionDir).filter(name=>/^[a-f0-9]{2}\.json$/.test(name)).length,256,'Every protected identity bucket is packaged');

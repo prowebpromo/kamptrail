@@ -107,3 +107,14 @@ test('new service snapshots bypass generic caching and validated service cache s
 test('official rest-area facts are not pinned in the generic shell cache',()=>{
  const w=worker();let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/rest-areas/TX.json'),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false);
 });
+
+test('visiting the how-to page never replaces the cached offline app shell',async()=>{
+ let online=true;const w=worker(async request=>{if(!online)throw new Error('offline');return new Response(request.url.endsWith('how-to.html')?'<p>how-to</p>':'<p>app</p>',{status:200});});
+ const shell='kamptrail:https://example.test/kamptrail/:kt-v42';
+ async function navigate(url){let result;w.handlers.fetch({request:{method:'GET',url,mode:'navigate'},respondWith:p=>result=p});return (await result).text();}
+ assert.equal(await navigate('https://example.test/kamptrail/'),'<p>app</p>');
+ assert.equal(await navigate('https://example.test/kamptrail/how-to.html'),'<p>how-to</p>');
+ assert.equal(await (await (await w.caches.open(shell)).match('index.html')).text(),'<p>app</p>');
+ online=false;
+ assert.equal(await navigate('https://example.test/kamptrail/'),'<p>app</p>');
+});
