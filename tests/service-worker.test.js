@@ -7,6 +7,11 @@ function worker(fetcher) {
   return {handlers,stores,caches};
 }
 const good={type:'FeatureCollection',features:[]};
+test('optional RIDB amenity evidence bypasses generic caches for page validation',()=>{
+  const w=worker();let intercepted=false;
+  w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/campsites/ridb-amenities.json'),respondWith:()=>{intercepted=true;}});
+  assert.equal(intercepted,false);
+});
 test('malformed HTTP 200 does not overwrite a saved valid GeoJSON snapshot',async()=>{
   const w=worker(async()=>new Response('<html>error</html>',{status:200}));
   const name='kamptrail:https://example.test/kamptrail/:data-v1',url='https://example.test/kamptrail/data/campsites/NY_merged.geojson';

@@ -21,6 +21,7 @@ test('built release contains agency index dependencies and supports a custom-dom
   }
   execFileSync(process.execPath,['scripts/build-release.js'],{cwd:root,env:{...env,KAMPTRAIL_PUBLIC_URL:'https://kamptrail.com/'},stdio:'pipe'});
   const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
+  assert.equal(html.match(/<meta name="kamptrail-version" content="([^"]+)">/)?.[1],require('../package.json').version,'Packaged app metadata must match the release version');
   assert.match(html,/<link rel="canonical" href="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:url" content="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:image" content="https:\/\/kamptrail\.com\/og.png">/);
@@ -28,6 +29,10 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.equal(fs.readFileSync(path.join(permissionDir,'.htaccess'),'utf8'),'Require all denied\n','Generated identity data must be denied over HTTP');
   assert.equal(fs.readdirSync(permissionDir).filter(name=>/^[a-f0-9]{2}\.json$/.test(name)).length,256,'Every protected identity bucket is packaged');
   assert.ok(fs.existsSync(path.join(out,'permissions.js')));
+  const amenities=JSON.parse(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'));
+  assert.equal(require('../data-quality.js').validRIDBAmenities(amenities),true);
+  assert.equal(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'),fs.readFileSync(path.join(root,'data/campsites/ridb-amenities.json'),'utf8'));
+  assert.ok(!fs.existsSync(path.join(out,'data/campsites/ridb-amenities-audit.json')),'Build audit is not a runtime dependency');
   assert.ok(fs.existsSync(path.join(out,'api','permissions.php')));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(permissionDir,'official.json'),'utf8')),JSON.parse(fs.readFileSync(path.join(root,'data','permissions','official.json'),'utf8')),'Packaged evidence matches the reviewed source records');
   const htaccess=fs.readFileSync(path.join(out,'.htaccess'),'utf8');
