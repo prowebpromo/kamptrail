@@ -12,7 +12,9 @@ function kp_admin_number($value): int {
 function kp_admin_action(PDO $pdo,string $moderator): string {
     kp_admin_guard(true);kp_require_db($pdo);
     $action=$_POST['do']??'';
-    kp_keys($_POST,['csrf','do','id','version','status','public_note','flag_id','flag_version']);
+    $allowed=['permission_moderate'=>['status','public_note'],'permission_flag'=>['flag_id','flag_version']];
+    if (!is_string($action) || !isset($allowed[$action])) kp_fail(422,'invalid_action','Unknown moderation action.');
+    kp_keys($_POST,array_merge(['csrf','do','id','version'],$allowed[$action]));
     $id=kp_admin_number($_POST['id']??null);$version=kp_admin_number($_POST['version']??null);
     kp_lock($pdo);
     try {
