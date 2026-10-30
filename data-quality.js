@@ -135,6 +135,10 @@
     p.attributes_unverified = legacyRIDB || !!raw.attributes_unverified;
     // Only validated sidecar metadata survives normalization; source elevation tags are not equivalent.
     p.elevation = raw._kt_normalized ? elevationInfo({...feature,properties:raw}) : null;
+    // A serialized normalization flag is not proof that evidence came from the sidecar.
+    const amenityEvidence = trustedAmenityAttachments.has(raw.ridb_amenity_evidence) ? raw.ridb_amenity_evidence : null;
+    delete p.ridb_amenity_evidence;
+    if(amenityEvidence)attachRIDBAmenities({properties:p},amenityEvidence);
     p._kt_normalized = true;
     if (osm && !p.sources.includes('OpenStreetMap')) p.sources.push('OpenStreetMap');
     if (ridb && !p.sources.includes('Recreation.gov')) p.sources.push('Recreation.gov');
@@ -166,6 +170,12 @@
     p.amenity_negatives = [...new Set([...(p.amenity_negatives || []), ...(q.amenity_negatives || [])])];
     p.amenities = [...new Set([...p.amenities,...q.amenities])].filter(a => !p.amenity_negatives.includes(a));
     p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];
+    // Repeated state/source rows never add counts to exact facility summaries.
+    if(checkedRIDBAmenities(q.ridb_amenity_evidence)){
+      const a=p.ridb_amenity_evidence,b=q.ridb_amenity_evidence;
+      if(!checkedRIDBAmenities(a))attachRIDBAmenities(primary,b);
+      else if(a.source.sha256===b.source.sha256)attachRIDBAmenities(primary,{version:1,source:a.source,facilities:{...b.facilities,...a.facilities}});
+    }
     for (const key of ['description','website','source_url','road_difficulty','rating','stay_limit','open_status','season','restrictions','camping_activity']) if (p[key] == null || p[key] === '') p[key]=q[key] ?? p[key];
     return primary;
   }
@@ -203,6 +213,60 @@
     // The public MVP lists evidence-supported camping locations only. Retain
     // unverified source records solely when an explicit diagnostic caller asks.
     return {type:'FeatureCollection',features: options.includeUnverified ? features : features.filter(f => f.properties.camping_classification === 'campsite')};
+  }
+  const RIDB_AMENITY_URL='https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip';
+  const RIDB_AMENITY_KEYS=['toilet','drinking_water','shower','dump','picnic_table'];
+  const RIDB_AMENITY_QUALIFIERS={toilet:['seasonal','accessible'],drinking_water:['peak_season','hand_pump','accessible'],shower:['seasonal','coin','accessible','outdoor'],dump:[],picnic_table:[]};
+  const object=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
+  const checkedAmenityPayloads=new WeakSet();
+  const trustedAmenityAttachments=new WeakSet();
+  function checkedRIDBAmenities(data){
+    if(object(data)&&checkedAmenityPayloads.has(data))return true;
+    if(!validRIDBAmenities(data))return false;
+    // Only immutable validated objects can skip repeated catalogue-sized validation.
+    for(const r of Object.values(data.facilities)){
+      for(const g of Object.values(r.amenities)){Object.freeze(g.qualifiers);Object.freeze(g);}
+      Object.freeze(r.amenities);Object.freeze(r);
+    }
+    Object.freeze(data.source);Object.freeze(data.facilities);Object.freeze(data);
+    checkedAmenityPayloads.add(data);return true;
+  }
+  function ridbFacilityIds(p){
+    const ids=new Set();
+    for(const id of [p.id,...(Array.isArray(p.legacy_ids)?p.legacy_ids:[])])if(typeof id==='string'&&/^ridb:[1-9][0-9]*$/.test(id))ids.add(id.slice(5));
+    return [...ids];
+  }
+  function validRIDBAmenities(data){
+    if(!object(data)||data.version!==1||!object(data.source)||!object(data.facilities))return false;
+    const s=data.source,utc=d=>typeof d==='string'&&/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,6})?(?:Z|\+00:00)$/.test(d)&&Number.isFinite(Date.parse(d))&&new Date(d).toISOString().slice(0,19)===d.slice(0,19);
+    const retrieved=s.basis==='canonical_download'&&utc(s.original_retrieved_at)&&(s.http_last_modified===null||utc(s.http_last_modified));
+    const frozen=s.basis==='frozen_public_export_cache'&&s.original_retrieved_at===null&&s.http_last_modified===null;
+    if(s.name!=='Recreation.gov RIDB full export'||s.url!==RIDB_AMENITY_URL||typeof s.sha256!=='string'||!/^[a-f0-9]{64}$/.test(s.sha256)||!utc(s.inspected_at)||!(retrieved||frozen)||s.attribute_updated_at!==null||s.archive_entry_timezone!==null||typeof s.archive_entry_time!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d$/.test(s.archive_entry_time)||!utc(s.archive_entry_time+'Z'))return false;
+    if(retrieved&&(Date.parse(s.original_retrieved_at)>Date.parse(s.inspected_at)||(s.http_last_modified!==null&&Date.parse(s.http_last_modified)>Date.parse(s.original_retrieved_at))))return false;
+    const entries=Object.entries(data.facilities),count=n=>Number.isSafeInteger(n)&&n>=0&&n<=1000000;
+    if(entries.length>3000)return false;
+    for(const [fid,r] of entries){
+      if(!/^[1-9][0-9]*$/.test(fid)||!object(r)||!count(r.sites)||!object(r.amenities)||Object.keys(r.amenities).length>5)return false;
+      for(const [key,g] of Object.entries(r.amenities)){
+        if(!RIDB_AMENITY_KEYS.includes(key)||!object(g)||!object(g.qualifiers))return false;
+        const ns=['reported','negative','unknown','conflict'].map(k=>g[k]);
+        if(!ns.every(count)||ns.reduce((a,b)=>a+b,0)>r.sites)return false;
+        for(const [qualifier,n] of Object.entries(g.qualifiers))if(!RIDB_AMENITY_QUALIFIERS[key].includes(qualifier)||!count(n)||n>g.reported)return false;
+      }
+    }
+    return true;
+  }
+  function attachRIDBAmenities(feature,data){
+    const p=feature?.properties;if(!p||!checkedRIDBAmenities(data))return feature;
+    const facilities={};
+    for(const fid of ridbFacilityIds(p))if(Object.hasOwn(data.facilities,fid))facilities[fid]=data.facilities[fid];
+    if(Object.keys(facilities).length){
+      const evidence={version:1,source:data.source,facilities};
+      checkedRIDBAmenities(evidence);
+      trustedAmenityAttachments.add(evidence);
+      p.ridb_amenity_evidence=evidence;
+    }
+    return feature;
   }
   // Attach Recreation.gov site-level summaries (RV lengths, hookups) to a campground.
   function attachSiteDetails(feature, table) {
@@ -338,6 +402,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.15.1',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.16.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);
