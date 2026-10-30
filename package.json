@@ -1,6 +1,6 @@
 {
   "name": "kamptrail",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "description": "KampTrail: free campsite map with public land, RV services, trip planning and GPX",
   "scripts": {
     "fetch-data": "bash scripts/fetch_all_campsite_data.sh",
