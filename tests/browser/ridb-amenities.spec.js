@@ -30,6 +30,7 @@ test('campsite records retain qualified amenity evidence without changing filter
   await expect(popup.getByRole('link',{name:'Recreation.gov facility 123',exact:true})).toHaveAttribute('href','https://www.recreation.gov/camping/campgrounds/123');
   expect(await popup.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
   await popup.focus();await expect(popup).toBeFocused();await popup.press('PageDown');await expect.poll(()=>popup.evaluate(e=>e.scrollTop)).toBeGreaterThan(0);
+  await expect.poll(()=>popup.evaluate(e=>{const p=e.closest('.leaflet-popup').getBoundingClientRect(),c=e.closest('.leaflet-popup').querySelector('.leaflet-popup-close-button').getBoundingClientRect(),m=document.getElementById('map').getBoundingClientRect();return p.top>=m.top&&p.bottom<=m.bottom&&c.top>=m.top&&c.bottom<=m.bottom;}),{timeout:5000,message:'Full campsite popup and native Close remain inside the map after keyboard scrolling'}).toBe(true);
   await page.getByRole('button',{name:'Close popup',exact:true}).click({timeout:5000});await expect(popup).toHaveCount(0);
   await expect(page.getByRole('button',{name:'Map layers',exact:true})).toBeVisible();await expect(page.locator('.kt-off-toggle')).toBeVisible();
   expect(await page.evaluate(()=>KampTrailData.getCampsiteById('ridb:123').properties.amenities)).toEqual([]);
