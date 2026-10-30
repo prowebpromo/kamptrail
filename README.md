@@ -1,4 +1,4 @@
-# KampTrail 2.11.0
+# KampTrail 2.12.0
 
 KampTrail is a free campsite map and trip planner at https://kamptrail.com/. No account is required for the core camping tools or moderated contributions.
 
@@ -7,6 +7,7 @@ KampTrail is a free campsite map and trip planner at https://kamptrail.com/. No 
 - Search US cities, states, coordinates and campsite names; load state listings only when zoomed in. Saved stops, shared links, map filters and route discovery use the same source-aware catalogue.
 - Camping fees remain free, free with conditions, paid or unknown. Unknown never means free. Full source wording, agency record IDs, retrieval dates and available source-update dates can be inspected from a popup; conflicting sources remain unknown.
 - Filter by fee, campsite type, RV length and hookups from individual Recreation.gov campsites, reported amenities and rig types. Missing suitability data never silently matches; undocumented RV lengths can be included explicitly.
+- Minimum/maximum terrain elevation in feet or metres, using coordinate-matched USGS 3DEP samples. Map and route filters agree; missing elevations stay unknown. Validated, dated state samples can be reused offline.
 - Published camper rating/review-count filters and same-visit approach, noise, shade, crowding, personal comfort and carrier-signal reports. Moderated reviews/photos support author editing/removal and dated offline aggregates. Carrier observations are distinct from modeled coverage.
 - Standard OpenStreetMap, USGS Topo and satellite basemaps; BLM public-land context; USFS motor-vehicle road designations, vehicle/season details and district source links.
 - Opt-in, dated NIFC fire perimeters and NOAA satellite smoke plumes; on-demand NWS point alerts and forecast/elevation checks. These are context, not an evacuation, closure, AQI or emergency-notification service. Dynamic hazards require a connection.
@@ -19,7 +20,7 @@ The catalogue combines Recreation.gov, USFS, BLM and OpenStreetMap source record
 
 ## Remaining work
 
-Modeled FCC coverage is blocked on actual provider access. Forecast/elevation discovery filters, broader POIs and overnight permission evidence, portable rig profiles, route elevation and enforced RV-restriction routing remain separate packages. Accounts/social messaging, cross-device synchronization, notifications, native navigation and full video uploads are not implemented. Existing historical parity scores do not establish current full-product parity. See [the active parity queue](docs/replica/parity-queue.md).
+Modeled FCC coverage is blocked on actual provider access. Forecast discovery filters, broader POIs and overnight permission evidence, portable rig profiles, route elevation and enforced RV-restriction routing remain separate packages. Accounts/social messaging, cross-device synchronization, notifications, native navigation and full video uploads are not implemented. Existing historical parity scores do not establish current full-product parity. See [the active parity queue](docs/replica/parity-queue.md).
 
 ## Run and test
 

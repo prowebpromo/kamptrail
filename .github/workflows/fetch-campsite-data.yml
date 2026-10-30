@@ -12,7 +12,7 @@ on:
         description: 'Source to refresh'
         type: choice
         default: both
-        options: [both, ridb, osm, agency]
+        options: [both, ridb, osm, agency, elevation]
       expected_catalogue:
         description: 'Optional exact census JSON for a reviewed agency release'
         type: string
@@ -56,7 +56,7 @@ concurrency:
 
 jobs:
   fetch-data:
-    if: ${{ inputs.source != 'agency' }}
+    if: ${{ inputs.source != 'agency' && inputs.source != 'elevation' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -279,3 +279,137 @@ jobs:
     uses: ./.github/workflows/test.yml
     with:
       ref: ${{ needs.agencies.outputs.commit_sha }}
+  elevation:
+    if: ${{ inputs.source == 'elevation' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Require a selected branch
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF_TYPE" == branch ]] || { echo 'Select a branch, not a tag'; exit 1; }
+          git check-ref-format --branch "$GITHUB_REF_NAME"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt pyyaml
+      - name: Validate source contracts before sampling
+        run: python -m unittest discover -s scripts/tests -p 'test_*.py'
+      - name: Restore resumable elevation checkpoint
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          path: .elevation-checkpoint/elevation.json
+          # Fixed provider/schema namespace, scoped to this branch; GitHub cache eviction applies.
+          key: kamptrail-elevation-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            kamptrail-elevation-v1-${{ github.ref_name }}-
+      - name: Bootstrap absent cache and merge validated checkpoint
+        id: prepare
+        run: |
+          python - <<'PY'
+          import gzip, json, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from fetch_elevation import atomic_write, cache_entry_valid, load_cache
+          path = Path('data/sources/elevation.json')
+          if not path.exists():
+              with gzip.open('data/sources/elevation-seed.json.gz', 'rt') as seed:
+                  atomic_write(path, json.load(seed))
+          cache = load_cache(path)
+          checkpoint = Path('.elevation-checkpoint/elevation.json')
+          candidates = [cache]
+          if checkpoint.exists():
+              if checkpoint.stat().st_size > 128 * 1024 * 1024:
+                  raise SystemExit('Checkpoint exceeds the 128 MiB bound')
+              candidates.append(load_cache(checkpoint))
+          for candidate in candidates:
+              if len(candidate['coordinates']) > 100000 or not all(cache_entry_valid(key, candidate) for key in candidate['coordinates']):
+                  raise SystemExit('Invalid elevation cache; preserve it for inspection')
+          if len(candidates) == 2:
+              restored = candidates[1]
+              cache['sources'].update(restored['sources'])
+              for key, record in restored['coordinates'].items():
+                  existing = cache['coordinates'].get(key)
+                  if existing is None or (existing['status'] != 'known' and record['status'] == 'known'):
+                      cache['coordinates'][key] = record
+          atomic_write(path, cache)
+          print(f"Resuming with {len(cache['coordinates'])} validated coordinate records")
+          PY
+      - name: Sample current catalogue and publish only a complete snapshot
+        id: sample
+        timeout-minutes: 330
+        run: python -u scripts/fetch_elevation.py --catalogue data/campsites/search-index.json
+      - name: Preserve validated progress even when sampling fails
+        id: checkpoint
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        timeout-minutes: 5
+        run: |
+          python - <<'PY'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from fetch_elevation import atomic_write, cache_entry_valid, load_cache
+          path = Path('data/sources/elevation.json')
+          if path.stat().st_size > 128 * 1024 * 1024:
+              raise SystemExit('Cache exceeds the 128 MiB checkpoint bound')
+          cache = load_cache(path)
+          if len(cache['coordinates']) > 100000 or not all(cache_entry_valid(key, cache) for key in cache['coordinates']):
+              raise SystemExit('Invalid cache cannot replace a resumable checkpoint')
+          atomic_write('.elevation-checkpoint/elevation.json', cache)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write('ready=true\n')
+          PY
+      - name: Save resumable elevation checkpoint
+        if: ${{ always() && steps.checkpoint.outputs.ready == 'true' }}
+        timeout-minutes: 5
+        uses: actions/cache/save@v4
+        with:
+          path: .elevation-checkpoint/elevation.json
+          key: ${{ steps.restore.outputs.cache-primary-key }}
+      - name: Keep a seven-day recovery artifact
+        if: ${{ always() && steps.checkpoint.outputs.ready == 'true' }}
+        timeout-minutes: 5
+        uses: actions/upload-artifact@v4
+        with:
+          name: elevation-checkpoint-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .elevation-checkpoint/elevation.json
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
+      - name: Rebuild search with the complete elevation snapshot
+        run: node scripts/build-search-index.js
+      - name: Commit elevation only to the unchanged selected branch
+        id: commit
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          # Refuse to attach a long-running result to intervening code/data changes.
+          git fetch origin "refs/heads/$GITHUB_REF_NAME"
+          [[ "$(git rev-parse FETCH_HEAD)" == "$(git rev-parse HEAD)" ]] || { echo 'Selected branch moved; checkpoint saved for a fresh run'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A data/sources/elevation.json data/campsites/elevation data/campsites/search-index.json
+          if ! git diff --staged --quiet; then
+            git commit -m 'Add validated USGS elevation evidence and search snapshots'
+            git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+          fi
+          printf 'commit_sha=%s\n' "$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          printf 'Elevation data commit: `%s`\n' "$(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+  verify-elevation:
+    needs: elevation
+    permissions:
+      contents: read
+    uses: ./.github/workflows/test.yml
+    with:
+      ref: ${{ needs.elevation.outputs.commit_sha }}

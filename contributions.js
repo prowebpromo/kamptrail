@@ -113,5 +113,5 @@
     if (!d.open) d.showModal();
     d.querySelector(target.kind === 'new_place' ? '[name="campsite_name"]' : '[name="problems"]')?.focus();
   }
-  window.KampTrailContrib = {version: '2.11.1', open, showReports, reports};
+  window.KampTrailContrib = {version: '2.12.0', open, showReports, reports};
 })();

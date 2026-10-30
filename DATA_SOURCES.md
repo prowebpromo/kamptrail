@@ -3,7 +3,7 @@
 - **OpenStreetMap:** © OpenStreetMap contributors. Camping records and map tiles use OSM data. Database content is available under the Open Database License (ODbL): https://www.openstreetmap.org/copyright and https://opendatacommons.org/licenses/odbl/1-0/.
 - **Recreation.gov RIDB:** federal recreation facility data from https://ridb.recreation.gov/. Source camping evidence is screened before display. A record does not establish current operating status, fees, or legal camping access. Original source/operator links are shown where recoverable.
 - **GeoNames:** US city search is derived from cities5000 under CC BY 4.0. See `data/places-us.LICENSE.txt` for exact source, extraction details, and checksum. Population is used only to rank city matches.
-- **Google Maps:** directions are external links for the selected coordinates. KampTrail does not calculate or optimize routes.
+- **Google Maps:** directions are external links for the selected coordinates. In-app road geometry and drive-time estimates use the FOSSGIS OSRM car router; RV clearances and road suitability are not checked.
 
 The code's MIT license does not replace these data or third-party software licenses. Browser-library notices are in `vendor/`. No bulk map-tile downloads occur. Basemap imagery requires internet.
 
@@ -53,3 +53,11 @@ TIGER/Line® is a registered trademark of the U.S. Census Bureau. The name ident
 The pipeline checks Forest Service and BLM point coordinates against these polygons even when the source supplies a state. The original state is retained with assignment provenance. Points within 10 meters of a boundary, overlapping state matches, invalid coordinates and points outside the supported 50 states are held in a separate review report. The 10-meter band is an ambiguity rule, not a guarantee of source or GPS accuracy. Polygon holes and Alaska's dateline geometry are handled explicitly; longitude signs are never silently repaired.
 
 The reference geometry is excluded from the website release and is not a visitor-facing boundary layer. These checks apply to agency records; existing Recreation.gov and OpenStreetMap state buckets have not all been revalidated. Census boundaries support statistical work, are not legal land descriptions, and do not determine ownership, jurisdictional rights, camping access or current land-manager restrictions. Neither boundary coordinates nor campsite coordinates are guaranteed accurate.
+
+### Terrain elevation discovery (2.12.0)
+
+Coordinate-matched terrain samples come from the [USGS 3DEP elevation service](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer), using explicit bilinear interpolation and metres. [USGS states that 3DEP products are free and unrestricted](https://www.usgs.gov/3d-elevation-program). KampTrail's state files and compact search values are derived samples, not surveyed campsite-pad measurements or unaltered USGS products.
+
+Records preserve retrieval time and available raster datum/acquisition metadata separately. Acquisition fields have provider-specific formats; a retrieval date never becomes an acquisition or inspection date. Grid resolution is not guaranteed point accuracy. Missing values remain unknown, including outside source coverage. No elevation value establishes road grade, clearance, current access or RV suitability. Static validated samples may remain available offline.
+
+See [the pipeline contract and verification](docs/ELEVATION_SOURCE_2.12.0.md) for response-order matching, coordinate identity, bounded retries, publication and source limitations. Raw cache and recovery seed files are pipeline-only and excluded from the browser release.

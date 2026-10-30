@@ -132,6 +132,8 @@
     else if (osm && raw.osm_id != null && /^(node|way|relation)$/.test(raw.osm_type || '')) p.source_url = `https://www.openstreetmap.org/${raw.osm_type}/${raw.osm_id}`;
     else p.source_url = raw.source_url || raw.website || raw.url || null;
     p.attributes_unverified = legacyRIDB || !!raw.attributes_unverified;
+    // Only validated sidecar metadata survives normalization; source elevation tags are not equivalent.
+    p.elevation = raw._kt_normalized ? elevationInfo({...feature,properties:raw}) : null;
     p._kt_normalized = true;
     if (osm && !p.sources.includes('OpenStreetMap')) p.sources.push('OpenStreetMap');
     if (ridb && !p.sources.includes('Recreation.gov')) p.sources.push('Recreation.gov');
@@ -234,9 +236,63 @@
     }, 0);
   }
   function sitesFitting(p, length, hookups = []) { return matchingSites(p, length, hookups, false); }
+  const ELEVATION_SOURCE='https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer';
+  const elevationNumber=n=>typeof n==='number'&&Number.isFinite(n)&&n>=-500&&n<=9000;
+  const ELEVATION_STATES=new Set('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
+  function elevationDate(d){
+    // Retrieval is an actual UTC instant, not a local date or a normalized impossible date.
+    if(typeof d!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|\+00:00)$/.test(d))return false;
+    const parsed=new Date(d);
+    return Number.isFinite(parsed.getTime())&&parsed.toISOString().slice(0,19)===d.slice(0,19);
+  }
+  const elevationObject=o=>!!o&&typeof o==='object'&&!Array.isArray(o);
+  function coordinateKey(coordinates){
+    if(!Array.isArray(coordinates)||coordinates.length<2||!coordinates.slice(0,2).every(Number.isFinite)||Math.abs(coordinates[0])>180||Math.abs(coordinates[1])>90)return null;
+    const fixed=n=>{const s=n.toFixed(7);return s==='-0.0000000'?'0.0000000':s;};
+    return fixed(coordinates[1])+','+fixed(coordinates[0]);
+  }
+  function validElevationManifest(d){
+    return elevationObject(d)&&d.version===1&&/^[a-f0-9]{24}$/.test(d.snapshot_id)&&elevationDate(d.generated_at)&&d.source?.url===ELEVATION_SOURCE&&d.source?.units==='metres'&&d.source?.interpolation==='RSP_BilinearInterpolation'&&elevationObject(d.states)&&Object.keys(d.states).length<=50&&Object.entries(d.states).every(([code,s])=>ELEVATION_STATES.has(code)&&elevationObject(s)&&s.url===`snapshots/${d.snapshot_id}/${code}.json`&&/^[a-f0-9]{64}$/.test(s.sha256)&&Number.isInteger(s.count)&&s.count>=0&&s.count<=100000);
+  }
+  function validElevationState(d,code,snapshot){
+    if(!elevationObject(d)||d.version!==1||d.state!==code||!ELEVATION_STATES.has(code)||!/^[a-f0-9]{24}$/.test(d.snapshot_id)||(snapshot&&d.snapshot_id!==snapshot)||!elevationObject(d.records)||Object.keys(d.records).length>100000)return false;
+    return Object.entries(d.records).every(([id,r])=>{
+      if(!id||id.length>200||!elevationObject(r)||typeof r.coordinate_key!=='string'||!elevationDate(r.retrieved_at)||r.source?.url!==ELEVATION_SOURCE||r.source?.sample_url!==ELEVATION_SOURCE+'/getSamples'||r.source?.units!=='metres'||r.source?.interpolation!=='RSP_BilinearInterpolation'||r.source?.horizontal_crs!=='EPSG:4326')return false;
+      const parts=r.coordinate_key.split(',').map(Number);
+      if(parts.length!==2||coordinateKey([parts[1],parts[0]])!==r.coordinate_key)return false;
+      if(r.status==='unknown')return r.elevation_m===null;
+      return r.status==='known'&&elevationNumber(r.elevation_m)&&coordinateKey([r.sample_coordinates?.lng,r.sample_coordinates?.lat])===r.coordinate_key;
+    });
+  }
+  function elevationInfo(feature){
+    const e=feature?.properties?.elevation;
+    return elevationObject(e)&&elevationNumber(e.m)&&elevationDate(e.d)&&typeof e.k==='string'&&e.k===coordinateKey(feature.geometry?.coordinates)?{m:e.m,k:e.k,d:e.d}:null;
+  }
+  function attachElevation(feature,sidecars){
+    feature.properties.elevation=null;
+    const p=feature.properties,key=coordinateKey(feature.geometry?.coordinates);
+    for(const id of [p.id,...(p.legacy_ids||[])])for(const d of sidecars){
+      const r=d?.records?.[id];
+      if(!r||r.coordinate_key!==key)continue;
+      if(r.status==='known'&&elevationNumber(r.elevation_m))p.elevation={m:r.elevation_m,k:key,d:r.retrieved_at};
+      return;
+    }
+  }
+  function elevationRange(f={}){
+    const present=v=>v!==null&&v!==undefined&&v!=='';
+    const min=present(f.elevationMin)?f.elevationMin:null,max=present(f.elevationMax)?f.elevationMax:null;
+    return{min,max,active:min!==null||max!==null,valid:(min===null||elevationNumber(min))&&(max===null||elevationNumber(max))&&(min===null||max===null||min<=max)};
+  }
+  function elevationToMetres(value,unit='ft'){return typeof value==='number'&&Number.isFinite(value)?Math.round((unit==='m'?value:value*.3048)*1e6)/1e6:null;}
+  function elevationFromMetres(value,unit='ft'){return typeof value==='number'&&Number.isFinite(value)?Math.round((unit==='m'?value:value/.3048)*1e6)/1e6:null;}
+  function elevationText(feature,unit='ft'){
+    const e=elevationInfo(feature);return e?`Approx. elevation ${Math.round(elevationFromMetres(e.m,unit)).toLocaleString('en-US')} ${unit==='m'?'m':'ft'} · USGS 3DEP · retrieved ${e.d.slice(0,10)}`:'Elevation unknown';
+  }
   function applyFilters(sites, filters = {}) {
+    const elevation=elevationRange(filters);
     return sites.filter(site => {
       const p=site.properties;
+      if(elevation.active){const e=elevationInfo(site);if(!elevation.valid||!e||(elevation.min!==null&&e.m<elevation.min)||(elevation.max!==null&&e.m>elevation.max))return false;}
       if (filters.cost && filters.cost !== 'all' && p.fee_status !== filters.cost) return false;
       if (filters.type && filters.type !== 'all' && p.type !== filters.type) return false;
       if (filters.rigSize && filters.rigSize !== 'all' && !p.rig_friendly.includes(filters.rigSize)) return false;
@@ -277,6 +333,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={version:'2.11.1',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.12.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);
