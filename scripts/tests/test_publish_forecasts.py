@@ -263,10 +263,15 @@ class PublicationTests(unittest.TestCase):
         return reads
 
     def test_fixed_pointer_visibility_delay_requires_exact_new_bytes_without_more_mutations(self):
-        reads = self.delayed_pointer(count=2)
+        reads = self.delayed_pointer(count=6)
+        def advance(delay):
+            self.api.delays.append(delay)
+            self.api.now += delay
+        self.api.sleep = advance
         self.assertEqual(self.publish()['status'], 'published')
-        self.assertGreaterEqual(len(reads), 3)
-        self.assertEqual(self.api.delays, [2, 4])
+        self.assertGreaterEqual(len(reads), 7)
+        self.assertEqual(self.api.delays, [20] * 6)
+        self.assertEqual(self.api.now, NOW + 120)
         self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
         self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
 
@@ -274,8 +279,8 @@ class PublicationTests(unittest.TestCase):
         reads = self.delayed_pointer(count=100)
         with self.assertRaisesRegex(p.PublishError, 'pointer_propagation_pending'):
             self.publish()
-        self.assertEqual(len(reads), 4)
-        self.assertEqual(self.api.delays, [2, 4, 8])
+        self.assertEqual(len(reads), p.POINTER_CONFIRM_READS)
+        self.assertEqual(self.api.delays, [20] * (p.POINTER_CONFIRM_READS - 1))
         self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
         self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
         self.assertTrue(all(name in self.api.bodies for name in self.old[2]))
@@ -283,10 +288,39 @@ class PublicationTests(unittest.TestCase):
 
     def test_unexpected_pointer_bytes_do_not_receive_a_visibility_retry(self):
         reads = self.delayed_pointer(count=100, body=b'unexpected')
-        with self.assertRaisesRegex(p.PublishError, 'pointer_propagation_pending'):
+        with self.assertRaisesRegex(p.PublishError, 'pointer_content_conflict'):
             self.publish()
         self.assertEqual(len(reads), 1)
         self.assertEqual(self.api.delays, [])
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_slow_confirmation_response_cannot_extend_the_deadline_or_repeat_mutations(self):
+        original = self.api.public
+        reads = []
+        def slow(name, limit):
+            if name == 'current-a.json' and self.api.bodies.get(name) == self.new[1]:
+                reads.append(name)
+                self.api.now += 301
+            return original(name, limit)
+        self.api.public = slow
+        with self.assertRaisesRegex(p.PublishError, 'pointer_confirmation_timeout'):
+            self.publish()
+        self.assertEqual(reads, ['current-a.json'])
+        self.assertEqual(self.api.delays, [])
+        self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_previous_bytes_cannot_extend_the_confirmation_clock_budget(self):
+        reads = self.delayed_pointer(count=100)
+        def advance(delay):
+            self.api.delays.append(delay)
+            self.api.now += delay + 50
+        self.api.sleep = advance
+        with self.assertRaisesRegex(p.PublishError, 'pointer_confirmation_timeout'):
+            self.publish()
+        self.assertLess(len(reads), p.POINTER_CONFIRM_READS)
+        self.assertEqual(sum(self.api.delays), 100)
+        self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
         self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
 
     def test_generation_expiry_during_pointer_wait_stops_before_a_second_read(self):

@@ -43,6 +43,9 @@ MAX_ASSETS = (MAX_GENERATIONS + 1) * 51 + 2
 MAX_REMOTE_BYTES = (MAX_GENERATIONS + 1) * 100 * MIB
 GRACE_SECONDS = 1800
 MAX_AGE = 10800
+POINTER_CONFIRM_SECONDS = 300
+POINTER_CONFIRM_READS = 16
+POINTER_CONFIRM_INTERVAL = 20
 SNAPSHOT = re.compile(r'^[a-f0-9]{24}$')
 HASH = re.compile(r'^[a-f0-9]{64}$')
 ASSET = re.compile(r'^forecast-v1-([a-f0-9]{24})-([A-Z]{2}\.json\.gz|manifest\.json)$')
@@ -535,15 +538,20 @@ def confirm_pointer(api, name, raw, previous, now):
     # A replaced fixed public URL can briefly serve its exact previous valid
     # bytes. Read only that URL again; never repeat the delete/upload or accept
     # different bytes as publication proof. Other errors still stop immediately.
-    for attempt in range(4):
+    deadline = api.clock() + POINTER_CONFIRM_SECONDS
+    for attempt in range(POINTER_CONFIRM_READS):
         validate_manifest(raw, max(now, api.clock()))
+        require(api.clock() < deadline, 'pointer_confirmation_timeout')
         observed = api.public(name, MAX_MANIFEST)
         validate_manifest(raw, max(now, api.clock()))
+        require(api.clock() <= deadline, 'pointer_confirmation_timeout')
         if observed == raw:
             return
-        require(previous is not None and observed == previous, 'pointer_propagation_pending')
-        if attempt < 3:
-            api.sleep(2 ** (attempt + 1))
+        require(previous is not None and observed == previous, 'pointer_content_conflict')
+        if attempt < POINTER_CONFIRM_READS - 1:
+            remaining = deadline - api.clock()
+            require(remaining > 0, 'pointer_confirmation_timeout')
+            api.sleep(min(POINTER_CONFIRM_INTERVAL, remaining))
     raise PublishError('pointer_propagation_pending')
 
 
@@ -613,7 +621,7 @@ def publish(api, manifest, raw, files, now, source_sha):
     confirm_pointer(api, target, raw, pointers[target][1] if target in pointers else None, now)
     final_assets = api.assets(release['id'])
     final_pointers = read_pointers(api, final_assets, now)
-    require(target in final_pointers and final_pointers[target][1] == raw, 'pointer_propagation_pending')
+    require(target in final_pointers and final_pointers[target][1] == raw, 'pointer_metadata_unconfirmed')
     deleted += cleanup(api, final_assets, final_pointers, now, preserve=(sid,))
     return {'snapshot_id': sid, 'status': 'published', 'pointer': target, 'deleted_assets': deleted}
 
