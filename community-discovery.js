@@ -1,17 +1,23 @@
 /* Published camper evidence. Never treat source ratings or predicted coverage as observations. */
 (function(global){
  'use strict';
- const AXES={access:{label:'Approach for your rig',values:{easy:'Easy',moderate:'Moderate',difficult:'Difficult'}},noise:{label:'Noise',values:{quiet:'Quiet',mixed:'Mixed',noisy:'Noisy'}},shade:{label:'Shade',values:{none:'None',partial:'Partial',full:'Full'}},crowding:{label:'Crowding',values:{sparse:'Sparse',moderate:'Moderate',crowded:'Crowded'}},comfort:{label:'Personal comfort',values:{comfortable:'Felt comfortable',concerns:'Had concerns'}}};
- const CARRIERS={att:'AT&T',verizon:'Verizon',tmobile:'T-Mobile',other:'Other carrier'},SIGNAL={none:'No service',weak:'Weak',usable:'Usable',strong:'Strong'},ENVIRONMENTS={unspecified:'Setting not specified',outdoors:'Outdoors',inside_rv:'Inside RV',other_vehicle:'Inside other vehicle'};
- const SIGNAL_FILTER={none:'No service reported',weak:'Weak or better',usable:'Usable or better',strong:'Strong'},SIGNAL_LEVEL={none:0,weak:1,usable:2,strong:3};
+  const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
+ const AXES={access:{label:t("Approach for your rig"),values:{easy:t("Easy"),moderate:t("Moderate"),difficult:t("Difficult")}},noise:{label:t("Noise"),values:{quiet:t("Quiet"),mixed:t("Mixed"),noisy:t("Noisy")}},shade:{label:t("Shade"),values:{none:t("None"),partial:t("Partial"),full:t("Full")}},crowding:{label:t("Crowding"),values:{sparse:t("Sparse"),moderate:t("Moderate"),crowded:t("Crowded")}},comfort:{label:t("Personal comfort"),values:{comfortable:t("Felt comfortable"),concerns:t("Had concerns")}}};
+ const SCORES={quietness:{label:t("Quietness"),low:t("Very noisy"),high:t("Very quiet")},shade:{label:t("Shade satisfaction"),low:t("Very dissatisfied"),high:t("Very satisfied")},comfort:{label:t("Personal comfort"),low:t("Very uncomfortable"),high:t("Very comfortable")}},SEASONS={winter:t("Winter (Dec–Feb)"),spring:t("Spring (Mar–May)"),summer:t("Summer (Jun–Aug)"),fall:t("Fall (Sep–Nov)")},SCORE_MINIMUM=3;
+ const scoreAxes=f=>Object.keys(SCORES).filter(k=>+f['minScore_'+k]>0);
+ const scoreActive=f=>!!f.scoreSeason||scoreAxes(f).length>0;
+ const scoreFilterCount=f=>scoreAxes(f).length+Number(!!f.scoreSeason);
+ const CARRIERS={att:'AT&T',verizon:'Verizon',tmobile:'T-Mobile',other:t("Other carrier")},SIGNAL={none:t("No service"),weak:t("Weak"),usable:t("Usable"),strong:t("Strong")},ENVIRONMENTS={unspecified:t("Setting not specified"),outdoors:t("Outdoors"),inside_rv:t("Inside RV"),other_vehicle:t("Inside other vehicle")};
+ const SIGNAL_FILTER={none:t("No service reported"),weak:t("Weak or better"),usable:t("Usable or better"),strong:t("Strong")},SIGNAL_LEVEL={none:0,weak:1,usable:2,strong:3};
  const st={sites:new Map(),mode:'idle',checked:null,error:'',pending:null,generation:0};
- const active=f=>+f.minRating>0||+f.minReviews>1||Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
+ const active=f=>scoreActive(f)||+f.minRating>0||+f.minReviews>1||Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
  const conditions=f=>Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
  function matchesSummary(s,f,now=Date.now()){
   if(!active(f))return true;
   if(!s||!Number.isInteger(s.rating_count)||s.rating_count<1)return false;
   if(s.rating_count<Math.max(1,+f.minReviews||1))return false;
   if(+f.minRating>0&&s.rating_sum/s.rating_count<+f.minRating)return false;
+  if(scoreActive(f)&&!matchesScores(s,f,now))return false;
   if(!conditions(f))return true;
   return matchingGroups(s,f,now).length>0;
  }
@@ -27,7 +33,7 @@
  const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
  const keys=(x,allowed)=>record(x)&&Object.keys(x).every(k=>allowed.includes(k));
  const has=(x,k)=>typeof k==='string'&&Object.hasOwn(x,k);
- const MONTHS={'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'};
+ const MONTHS={'01':t('January'),'02':t('February'),'03':t('March'),'04':t('April'),'05':t('May'),'06':t('June'),'07':t('July'),'08':t('August'),'09':t('September'),'10':t('October'),'11':t('November'),'12':t('December')};
  function validVisitDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&value>='1900-01-01'&&Number.isFinite(Date.parse(value+'T00:00:00Z'))&&new Date(value+'T00:00:00Z').toISOString().slice(0,10)===value;}
  function validMonthly(d){
   const count=n=>Number.isSafeInteger(n)&&n>=0&&n<=1000000;
@@ -62,22 +68,41 @@
   }
   return out;
  }
+ const validVisit=x=>typeof x==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(x)&&x>='1900-01-01'&&Number.isFinite(Date.parse(x+'T00:00:00Z'))&&new Date(x+'T00:00:00Z').toISOString().slice(0,10)===x;
+ function validScores(x){return keys(x,Object.keys(SCORES))&&Object.values(x).every(n=>Number.isInteger(n)&&n>=1&&n<=5);}
  function validSites(sites){
   if(!record(sites))return false;
-  return Object.entries(sites).every(([id,s])=>id.length>0&&id.length<=200&&keys(s,['rating_count','rating_sum','latest_visit','observations'])&&Number.isInteger(s.rating_count)&&s.rating_count>0&&Number.isInteger(s.rating_sum)&&s.rating_sum>=s.rating_count&&s.rating_sum<=5*s.rating_count&&/^\d{4}-\d{2}-\d{2}$/.test(s.latest_visit)&&Array.isArray(s.observations)&&s.observations.every(g=>keys(g,['count','latest_visit','values'])&&Number.isInteger(g.count)&&g.count>0&&/^\d{4}-\d{2}-\d{2}$/.test(g.latest_visit)&&keys(g.values,[...Object.keys(AXES),'signals'])&&Object.keys(g.values).every(k=>k==='signals'||has(AXES,k)&&has(AXES[k].values,g.values[k]))&&(!g.values.signals||Array.isArray(g.values.signals)&&g.values.signals.every(x=>keys(x,['carrier','signal','environment'])&&has(CARRIERS,x.carrier)&&has(SIGNAL,x.signal)&&has(ENVIRONMENTS,x.environment)))));
+  return Object.entries(sites).every(([id,s])=>id.length>0&&id.length<=200&&keys(s,['rating_count','rating_sum','latest_visit','observations'])&&Number.isInteger(s.rating_count)&&s.rating_count>0&&Number.isInteger(s.rating_sum)&&s.rating_sum>=s.rating_count&&s.rating_sum<=5*s.rating_count&&validVisit(s.latest_visit)&&Array.isArray(s.observations)&&s.observations.every(g=>keys(g,['count','latest_visit','values'])&&Number.isInteger(g.count)&&g.count>0&&validVisit(g.latest_visit)&&keys(g.values,[...Object.keys(AXES),'signals','scores'])&&Object.keys(g.values).every(k=>k==='signals'||k==='scores'&&validScores(g.values.scores)||has(AXES,k)&&has(AXES[k].values,g.values[k]))&&(!g.values.signals||Array.isArray(g.values.signals)&&g.values.signals.every(x=>keys(x,['carrier','signal','environment'])&&has(CARRIERS,x.carrier)&&has(SIGNAL,x.signal)&&has(ENVIRONMENTS,x.environment))))&&s.observations.reduce((n,g)=>n+g.count,0)<=s.rating_count);
+ }
+ // US calendar seasons label the visit month; they do not predict temperatures.
+ function season(date){const m=+date.slice(5,7);return m===12||m<=2?'winter':m<=5?'spring':m<=8?'summer':'fall';}
+ function seasonalScores(groups){
+  const out={};for(const g of groups||[]){const date=g.latest_visit,key=season(date);for(const axis of Object.keys(SCORES)){const value=g.values?.scores?.[axis];if(!Number.isInteger(value)||value<1||value>5||!Number.isInteger(g.count)||g.count<1)continue;const bucket=out[key]||(out[key]={}),r=bucket[axis]||(bucket[axis]={count:0,sum:0,first_visit:date,latest_visit:date});r.count+=g.count;r.sum+=value*g.count;if(date<r.first_visit)r.first_visit=date;if(date>r.latest_visit)r.latest_visit=date;}}return out;
+ }
+ function scoreEvidence(s,f,now=Date.now()){
+  const selected=scoreAxes(f),groups=matchingGroups(s,f,now).filter(g=>(!f.scoreSeason||season(g.latest_visit)===f.scoreSeason)&&selected.every(k=>Number.isInteger(g.values?.scores?.[k]))),seasons=seasonalScores(groups),out={};
+  for(const axes of Object.values(seasons))for(const[k,r]of Object.entries(axes)){const n=out[k]||(out[k]={count:0,sum:0,first_visit:r.first_visit,latest_visit:r.latest_visit});n.count+=r.count;n.sum+=r.sum;if(r.first_visit<n.first_visit)n.first_visit=r.first_visit;if(r.latest_visit>n.latest_visit)n.latest_visit=r.latest_visit;}return out;
+ }
+ function matchesScores(s,f,now){
+  if(f.scoreSeason&&!has(SEASONS,f.scoreSeason))return false;
+  const axes=scoreAxes(f),e=scoreEvidence(s,f,now);
+  return axes.length?axes.every(k=>+f['minScore_'+k]<=5&&e[k]?.count>=SCORE_MINIMUM&&e[k].sum/e[k].count>=+f['minScore_'+k]):Object.values(e).some(r=>r.count>=SCORE_MINIMUM);
+ }
+ function seasonalText(seasons){
+  const rows=[];for(const[key,label]of Object.entries(SEASONS)){const axes=seasons?.[key];if(!axes)continue;for(const[k,a]of Object.entries(SCORES)){const r=axes[k];if(!r?.count)continue;rows.push(t("{0} · {1}: {2} · {3} explicit {4} · visits {5} to {6}", {"0":(label),"1":(a.label),"2":(r.count>=SCORE_MINIMUM?(r.sum/r.count).toFixed(1)+'/5':t("insufficient evidence")),"3":(r.count),"4":(t(r.count===1?'rating':'ratings')),"5":(r.first_visit),"6":(r.latest_visit)}));}}return rows.length?rows.join('\n'):t("No published numeric sub-ratings yet. Unreported stays unknown.");
  }
 
  const usable=()=>['ready','cached'].includes(st.mode)&&Number.isFinite(Date.parse(st.checked))&&Date.now()-Date.parse(st.checked)<=7*86400000;
  const summary=p=>{if(!usable())return null;for(const id of typeof p==='string'?[p]:[p.id,...(p.legacy_ids||[])]){const row=st.sites.get(id);if(row)return row;}return null;};
  const matches=(p,f)=>!active(f)||matchesSummary(summary(p),f);
- function matchNote(p,f){const s=summary(p);if(!s||!conditions(f))return '';const groups=matchingGroups(s,f);if(!groups.length)return '';const count=groups.reduce((n,g)=>n+g.count,0),latest=groups.map(g=>g.latest_visit).sort().at(-1);return `Matching visit evidence: ${count} published ${count===1?'report':'reports'} · latest ${latest}.`; }
+ function matchNote(p,f){const s=summary(p);if(!s)return '';if(scoreActive(f)){if(!matchesScores(s,f))return '';const e=scoreEvidence(s,f),selected=scoreAxes(f);return t("Matching numeric visit evidence: ")+Object.entries(e).filter(([k,r])=>(!selected.length||selected.includes(k))&&r.count>=SCORE_MINIMUM).map(([k,r])=>t("{0} {1}/5 · {2} explicit ratings · visits {3} to {4}", {"0":(SCORES[k].label),"1":((r.sum/r.count).toFixed(1)),"2":(r.count),"3":(r.first_visit),"4":(r.latest_visit)})).join('; ')+'.';}if(!conditions(f))return '';const groups=matchingGroups(s,f);if(!groups.length)return '';const count=groups.reduce((n,g)=>n+g.count,0),latest=groups.map(g=>g.latest_visit).sort().at(-1);return t("Matching visit evidence: {0} published {1} · latest {2}.", {"0":(count),"1":(count===1?t("report"):t("reports")),"2":(latest)}); }
  function notify(){if(global.dispatchEvent&&typeof CustomEvent==='function')global.dispatchEvent(new CustomEvent('kamptrail:discoveryupdated'));}
  const cacheName=()=>`kamptrail:${new URL('./',location.href).href}:camper-discovery-v1`;
  const cacheKey=()=>new URL('__published_camper_discovery__',new URL('./',location.href)).href;
  function status(){
-  if(st.mode==='loading')return 'Loading published camper ratings and observations…';
-  if(usable())return `${st.mode==='cached'?'Saved camper evidence':'Published camper evidence'} checked ${new Date(st.checked).toLocaleString()}. ${st.error?'Online refresh failed. ':''}Missing reports do not match. Ratings use all published reviews; conditions are self-reported visits, not current guarantees.`;
-  return st.error||'Choose a camper filter to load published evidence. Missing reports stay unknown.';
+  if(st.mode==='loading')return t("Loading published camper ratings and observations…");
+  if(usable())return t("{0} checked {1}. {2}Missing reports do not match. Overall ratings use all published reviews. Numeric averages need 3+ explicit ratings in the selected visit cohort; conditions and scores are self-reported visits, not current guarantees.", {"0":(st.mode==='cached'?t("Saved camper evidence"):t("Published camper evidence")),"1":(new Date(st.checked).toLocaleString(global.KampTrailI18n?.locale())),"2":(st.error?t("Online refresh failed. "):'')});
+  return st.error||t("Choose a camper filter to load published evidence. Missing reports stay unknown.");
  }
  async function load(force=false){
   if(st.pending)return st.pending;
@@ -102,23 +127,25 @@
     throw new Error('size');
    }catch{
     if(generation!==st.generation)return;
-    st.error='Published camper evidence could not refresh. Retry online. No partial download is used.';
+    st.error=t("Published camper evidence could not refresh. Retry online. No partial download is used.");
     try{const c=await caches.open(cacheName()),r=await c.match(cacheKey()),d=r&&await r.json();if(generation!==st.generation)return;if(d?.version===1&&validSites(d.sites)&&Number.isFinite(Date.parse(d.checked_at))&&Date.now()-Date.parse(d.checked_at)<=7*86400000){st.sites=new Map(Object.entries(d.sites));st.checked=d.checked_at;st.mode='cached';return;}}catch{}
     st.mode='error';st.sites=new Map();st.checked=null;
    }finally{st.pending=null;notify();}
   });return st.pending;
  }
  function observeFields(form,review,el,field){
-  const values=review.observations||{},set=el('fieldset');set.append(el('legend',{},'Conditions you observed (optional)'),el('p',{class:'kt-fine'},'Report only this visit. Approach depends on your rig. Comfort is subjective. These reports do not establish permission, safety or current road conditions.'));
-  const select=(name,options,value)=>{const n=el('select',{name});n.append(el('option',{value:''},'Not reported'));for(const[k,v]of Object.entries(options))n.append(el('option',{value:k,selected:k===value},v));return n;};
+  const values=review.observations||{},set=el('fieldset');set.append(el('legend',{},t("Conditions you observed (optional)")),el('p',{class:'kt-fine'},t("Report only this visit. Approach depends on your rig. Comfort is subjective. These reports do not establish permission, safety or current road conditions.")));
+  const select=(name,options,value)=>{const n=el('select',{name});n.append(el('option',{value:''},t("Not reported")));for(const[k,v]of Object.entries(options))n.append(el('option',{value:k,selected:k===value},v));return n;};
   for(const[k,a]of Object.entries(AXES))set.append(field(a.label,select('observed_'+k,a.values,values[k])));
-  set.append(el('p',{class:'kt-fine'},'Cell signal is your experience on the visit date, not a carrier prediction or a speed measurement. Leave carriers you did not try unreported.'));
-  for(const[k,name]of Object.entries(CARRIERS)){const old=(values.signals||[]).find(x=>x.carrier===k)||{};set.append(field(name+' signal',select('signal_'+k,SIGNAL,old.signal)),field(name+' setting',select('environment_'+k,ENVIRONMENTS,old.environment||'unspecified')));}
-  form.append(set);
+  set.append(el('p',{class:'kt-fine'},t("Cell signal is your experience on the visit date, not a carrier prediction or a speed measurement. Leave carriers you did not try unreported.")));
+  for(const[k,name]of Object.entries(CARRIERS)){const old=(values.signals||[]).find(x=>x.carrier===k)||{};set.append(field(t('{carrier} signal',{carrier:name}),select('signal_'+k,SIGNAL,old.signal)),field(t('{carrier} setting',{carrier:name}),select('environment_'+k,ENVIRONMENTS,old.environment||'unspecified')));}
+  const numeric=el('fieldset');numeric.append(el('legend',{},t("Your visit sub-ratings (optional)")),el('p',{class:'kt-fine'},t("Choose a number only for your own visit. These are subjective experiences: 1 is the low end and 5 the high end. Comfort does not establish safety. Leave untried aspects unreported; no score is inferred from your review or condition choices.")));
+  for(const[k,a]of Object.entries(SCORES))numeric.append(field(a.label,select('score_'+k,Object.fromEntries([1,2,3,4,5].map(n=>[String(n),t('{number} of 5',{number:n})+(n===1?' — '+a.low:n===5?' — '+a.high:'')])),String(values.scores?.[k]||'')),t('{low} (1) to {high} (5).',{low:a.low,high:a.high.toLowerCase()})));
+  form.append(set,numeric);
  }
- function formValues(form){const data=new FormData(form),out={};for(const k of Object.keys(AXES)){const v=data.get('observed_'+k);if(v)out[k]=v;}const signals=[];for(const carrier of Object.keys(CARRIERS)){const signal=data.get('signal_'+carrier);if(signal)signals.push({carrier,signal,environment:data.get('environment_'+carrier)||'unspecified'});}if(signals.length)out.signals=signals;return out;}
- function describe(o){const text=[];for(const[k,a]of Object.entries(AXES))if(a.values[o?.[k]])text.push(a.label+': '+a.values[o[k]]);for(const s of o?.signals||[])if(CARRIERS[s.carrier]&&SIGNAL[s.signal])text.push(CARRIERS[s.carrier]+': '+SIGNAL[s.signal]+' ('+(ENVIRONMENTS[s.environment]||'Setting not specified')+')');return text.join(' · ');}
- global.KampTrailDiscovery={version:'2.18.1',AXES,MONTHS,validMonthly,monthlyView,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
+ function formValues(form){const data=new FormData(form),out={};for(const k of Object.keys(AXES)){const v=data.get('observed_'+k);if(v)out[k]=v;}const signals=[];for(const carrier of Object.keys(CARRIERS)){const signal=data.get('signal_'+carrier);if(signal)signals.push({carrier,signal,environment:data.get('environment_'+carrier)||'unspecified'});}if(signals.length)out.signals=signals;const scores={};for(const k of Object.keys(SCORES)){const v=data.get('score_'+k);if(v)scores[k]=+v;}if(Object.keys(scores).length)out.scores=scores;return out;}
+ function describe(o){const text=[];for(const[k,a]of Object.entries(AXES))if(a.values[o?.[k]])text.push(a.label+': '+a.values[o[k]]);for(const s of o?.signals||[])if(CARRIERS[s.carrier]&&SIGNAL[s.signal])text.push(CARRIERS[s.carrier]+': '+SIGNAL[s.signal]+' ('+(ENVIRONMENTS[s.environment]||t("Setting not specified"))+')');for(const[k,a]of Object.entries(SCORES))if(Number.isInteger(o?.scores?.[k]))text.push(a.label+': '+o.scores[k]+t('/5 (visit rating)'));return text.join(' · ');}
+ global.KampTrailDiscovery={version:'2.19.0',AXES,MONTHS,validMonthly,monthlyView,SCORES,SEASONS,SCORE_MINIMUM,scoreFilterCount,season,seasonalScores,seasonalText,scoreEvidence,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
  if(typeof module!=='undefined'&&module.exports)module.exports=global.KampTrailDiscovery;
  if(global.addEventListener){global.addEventListener('kamptrail:communitychanged',async()=>{const reload=st.mode!=='idle'||active(global.kamptrailFilters||{}),pending=st.pending;st.generation++;st.sites=new Map();st.checked=null;st.mode='idle';notify();try{await caches.delete(cacheName());}catch{}if(pending)await pending;try{await caches.delete(cacheName());}catch{}if(reload)load(true);});global.addEventListener('focus',()=>{if(active(global.kamptrailFilters||{}))load();});}
 })(typeof window!=='undefined'?window:globalThis);

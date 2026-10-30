@@ -5,11 +5,13 @@ require_once __DIR__ . '/community.php';
 function kc_moderate(PDO $pdo,string $moderator): string {
     $id=(int)($_POST['review_id']??0);$action=kc_string($_POST['do']??'',30);
     kc_lock($pdo);$r=kc_row($pdo,$id);
-    if (!$r || $r['status']==='deleted') throw new InvalidArgumentException('review');
+    if (!$r || $r['status']==='deleted') {if($action==='community_review')throw new UnexpectedValueException('review_changed');throw new InvalidArgumentException('review');}
     if ($action==='community_review') {
+        if(!hash_equals(kc_review_hash($pdo,$r),(string)($_POST['expected_hash']??'')))throw new UnexpectedValueException('review_changed');
         $to=kc_string($_POST['status']??'',20);
         if (!in_array($to,KT_COMMUNITY_STATES,true)) throw new InvalidArgumentException('status');
         $note=kc_string($_POST['public_note']??'',1000);
+        if($to==='published'&&ko_video(ko_read($pdo,$id))&&($_POST['video_reviewed']??'')!=='1')throw new UnexpectedValueException('video_review_required');
         $pdo->prepare('UPDATE community_reviews SET status=?,public_note=?,updated_at=? WHERE id=?')->execute([$to,$note,kt_now(),$id]);
         ko_changed($pdo);kc_audit($pdo,$id,'moderate_review',$r['status'],$to,$moderator);
     } elseif ($action==='community_photo') {
@@ -28,7 +30,7 @@ function kc_moderate(PDO $pdo,string $moderator): string {
 function kc_admin_body(PDO $pdo,string $csrf,string $self): string {
     $base=$self.'?community=1';
     $filter=in_array($_GET['state']??'pending',array_merge(KT_COMMUNITY_STATES,['reports','all']),true)?($_GET['state']??'pending'):'pending';
-    $body='<h2>Reviews and photos</h2><p>Review campsite identity, visit date and firsthand content. Approve the review and each photo separately. Hidden content can be restored by publishing it again. Author-deleted content cannot be restored.</p><nav>';
+    $body='<h2>Reviews and photos</h2><p>Review campsite identity, visit date and firsthand content. Approve the whole review, observations and attached video together; approve each photo separately. Watch an attached video and check its campsite relevance and permission before publishing. External video content can change later. Hidden content can be restored by publishing it again. Author-deleted content cannot be restored.</p><nav>';
     foreach (array_merge(KT_COMMUNITY_STATES,['reports','all']) as $s) $body.='<a href="'.$base.'&amp;state='.h($s).'">'.($s===$filter?'<strong>'.h($s).'</strong>':h($s)).'</a>';
     $used=(int)$pdo->query('SELECT used_bytes FROM community_storage WHERE id=1')->fetchColumn();
     $cap=min(KT_PHOTO_STORAGE_LIMIT,max(0,(int)(kt_config()['community_storage_bytes']??KT_PHOTO_STORAGE_LIMIT)));
@@ -45,9 +47,10 @@ function kc_admin_body(PDO $pdo,string $csrf,string $self): string {
     $options=fn($state)=>implode('',array_map(fn($s)=>'<option'.($s===$state?' selected':'').'>'.h($s).'</option>',KT_COMMUNITY_STATES));
     foreach ($rows as $r) {
         $body.='<article class="card"><h3>#'.h($r['id']).' '.h($r['campsite_name']).'</h3><p><a href="../#site='.rawurlencode($r['campsite_id']).'" target="_blank" rel="noopener noreferrer">Check listing on map</a> · '.h($r['campsite_id']).'</p><p class="meta">'.h($r['display_name']).' · '.h($r['rating']).'/5 · visited '.h($r['visited_on']).' · '.h($r['rig']).' · '.h($r['status']).'</p><p style="white-space:pre-wrap">'.h($r['body']).'</p>';
-        $observed=ko_read($pdo,(int)$r['id']);if($observed)$body.='<details open><summary>Camper observations (approve with review)</summary><pre style="white-space:pre-wrap">'.h(json_encode($observed,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)).'</pre><p>Self-reported visit conditions, not current access, safety or coverage guarantees.</p></details>';
-        $body.='<form method="post" action="'.$base.'&amp;state='.h($filter).'">'.$hidden('community_review',$r).'<label>Review status <select name="status">'.$options($r['status']).'</select></label> <label>Note to author <input name="public_note" maxlength="1000" value="'.h($r['public_note']??'').'"></label> <button>Save review decision</button></form>';
-        foreach (kc_photo_rows($pdo,(int)$r['id'],false) as $p) {
+        $observed=ko_read($pdo,(int)$r['id']);$photos=kc_photo_rows($pdo,(int)$r['id'],false);$expected=kc_review_snapshot_hash($r,$observed,$photos);$video=ko_video($observed);$observed=ko_conditions($observed);if($observed)$body.='<details open><summary>Camper observations (approve with review)</summary><pre style="white-space:pre-wrap">'.h(json_encode($observed,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)).'</pre><p>Self-reported visit conditions, not current access, safety or coverage guarantees.</p></details>';
+        if($video)$body.='<div class="card"><strong>Attached YouTube video — included in whole-review approval</strong><p><a href="'.h($video['url']).'" target="_blank" rel="noopener noreferrer">View submitted video on YouTube</a></p><p>'.h($video['url']).'</p><p>Video posted and recorded dates are unknown. The visit date is the review author’s report. No player or thumbnail loads here.</p></div>';
+        $body.='<form method="post" action="'.$base.'&amp;state='.h($filter).'">'.$hidden('community_review',$r).'<input type="hidden" name="expected_hash" value="'.h($expected).'"><label>Whole-review status <select name="status">'.$options($r['status']).'</select></label> <label>Note to author <input name="public_note" maxlength="1000" value="'.h($r['public_note']??'').'"></label> '.($video?'<label><input type="checkbox" name="video_reviewed" value="1"> I watched this attached video and checked its campsite relevance and permission to share before publishing.</label> ':'').'<button>Save review decision</button></form>';
+        foreach ($photos as $p) {
             $body.='<div class="card"><img src="photo.php?id='.h($p['id']).'&amp;preview=1" alt="Submitted photo '.h($p['id']).'" style="max-width:100%;max-height:260px"><form method="post" action="'.$base.'&amp;state='.h($filter).'">'.$hidden('community_photo',$r).'<input type="hidden" name="photo_id" value="'.h($p['id']).'"><label>Photo '.h($p['id']).' status <select name="status">'.$options($p['status']).'</select></label> <button>Save photo decision</button></form></div>';
         }
         $q=$pdo->prepare('SELECT * FROM community_reports WHERE review_id=? ORDER BY id DESC LIMIT 30');$q->execute([$r['id']]);

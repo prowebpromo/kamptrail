@@ -64,6 +64,7 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.equal(require('../data-quality.js').validRIDBAmenities(amenities),true);
   assert.equal(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'),fs.readFileSync(path.join(root,'data/campsites/ridb-amenities.json'),'utf8'));
   assert.ok(!fs.existsSync(path.join(out,'data/campsites/ridb-amenities-audit.json')),'Build audit is not a runtime dependency');
+  assert.ok(fs.existsSync(path.join(out,'locale.js')));
   assert.ok(fs.existsSync(path.join(out,'api','permissions.php')));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(permissionDir,'official.json'),'utf8')),JSON.parse(fs.readFileSync(path.join(root,'data','permissions','official.json'),'utf8')),'Packaged evidence matches the reviewed source records');
   const htaccess=fs.readFileSync(path.join(out,'.htaccess'),'utf8');

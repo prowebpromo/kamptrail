@@ -21,7 +21,7 @@ test('help attributes the checked primary sources without universal stay rules o
   const urls=[...care.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);assert.equal(urls.length,3);
   assert.deepEqual(urls.sort(),proof.sources.map(s=>s.url).sort());
   for(const source of proof.sources){assert.equal(source.status,200);assert.equal(source.final_url,source.url);assert.match(source.sha256,/^[a-f0-9]{64}$/);assert.ok(source.bytes>1000);assert.equal(source.retrieved_at.slice(0,10),proof.checked_on);}
-  assert.ok(care.includes('<time datetime="'+proof.checked_on+'">'));
+  assert.ok(care.includes('<time datetime="'+proof.checked_on+'"'));
   assert.match(care,/Map ownership does not grant permission/);assert.match(care,/General guidance, not a current site inspection/);
   assert.doesNotMatch(care,/14.day|28.day|25.mile|30.mile|200.feet|6.8.inch/i);
 });

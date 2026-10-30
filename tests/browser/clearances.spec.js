@@ -1,5 +1,6 @@
 const {test,expect}=require('@playwright/test');
 const AxeBuilder=require('@axe-core/playwright').default;
+const {mockServices}=require('./helpers/services-fixture');
 const source=require('../../data/clearances/RI.json');
 test.use({serviceWorkers:'block'});
 const first=source.records[0],row={...first,geometry:{type:'LineString',coordinates:[[-71.45,41.81],[-71.44,41.81]]},tags:{maxheight:`13'6"`,'maxheight:conditional':'3 @ (wet)'},metres:{maxheight:4.1148},context:{name:'Bridge <img src=x>',highway:'secondary'}};
@@ -55,3 +56,39 @@ test('an open source popup keeps its original record and dates while a newer sna
   await expect(popup).toContainText(source.source.extract_timestamp);await expect(popup).toContainText(`13'6"`);await expect(popup).not.toContainText(newer.source.extract_timestamp);
   await page.getByRole('button',{name:'Close popup',exact:true}).click();await expect(control).toContainText('2026-10-29');await control.getByRole('button',{name:'Open selected height tags'}).click();await expect(popup).toContainText(newer.source.extract_timestamp);await expect(popup).toContainText(`13'11"`);expect(errors).toEqual([]);
 });
+for(const viewport of [{width:1363,height:936},{width:390,height:844}]){
+ test(`map layer clicks stay reachable with services, rest areas and height tags at ${viewport.width}px`,async({page,context})=>{
+  await page.setViewportSize(viewport);await mockServices(page);
+  const rest=require('../../data/rest-areas/TX.json');
+  await page.route('**/data/rest-areas/TX.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(rest)}));
+  const {errors}=await setup(page,context);
+  async function toggle(name,checked=true){
+   const button=page.getByRole('button',{name:'Map layers',exact:true});
+   await expect.poll(()=>button.evaluate(el=>el.closest('.leaflet-control').parentElement.firstElementChild===el.closest('.leaflet-control'))).toBe(true);
+   await button.click();await expect(button).toBeVisible();
+   // The hovered picker must retain its real click target after expansion.
+   await expect.poll(()=>button.evaluate(el=>{const box=el.getBoundingClientRect();return document.elementFromPoint(box.x+box.width/2,box.y+box.height/2)===el;})).toBe(true);
+   const input=page.getByLabel(name,{exact:true});await expect(input).toBeVisible();
+   await input.setChecked(checked);await expect(input).toBeChecked({checked});
+   await page.locator('#map').click({position:{x:2,y:40}});
+  }
+  await toggle('Services (7 categories)');await expect(page.locator('.kt-services-control')).toBeVisible();
+  await toggle('Official rest areas (Texas pilot)');await expect(page.locator('.kt-rest-control')).toBeVisible();
+  await toggle('Reported height tags (Rhode Island pilot)');await expect(page.locator('.kt-clearance-control')).toContainText('1 source height-tag record');
+  // Reach the last service action through the panel's real internal scrolling.
+  await page.getByRole('button',{name:'Retry service areas',exact:true}).click();
+  for(const selector of ['.kt-services-control','.kt-rest-control','.kt-clearance-control']){
+   const panel=page.locator(selector);await expect(panel).toBeVisible();
+   const fits=await panel.evaluate(e=>{const p=e.getBoundingClientRect(),m=document.querySelector('#map').getBoundingClientRect();return p.top>=m.top&&p.bottom<=m.bottom&&e.scrollWidth<=e.clientWidth+1;});expect(fits).toBe(true);
+  }
+  const left=await page.locator('.kt-clearance-control').boundingBox(),right=await page.locator('.kt-rest-control').boundingBox();expect(left.x+left.width).toBeLessThanOrEqual(right.x);
+  // An existing popup must still let an ordinary pointer click reach Close.
+  await page.getByRole('button',{name:'Open selected height tags',exact:true}).click();
+  await expect(page.locator('.kt-clearance-popup')).toBeVisible();
+  await page.getByRole('button',{name:'Close popup',exact:true}).click();
+  await toggle('Reported height tags (Rhode Island pilot)',false);
+  await toggle('Reported height tags (Rhode Island pilot)');
+  await page.getByRole('button',{name:'Offline',exact:true}).click();await expect(page.getByRole('region',{name:'Offline maps',exact:true})).toBeVisible();
+  expect(errors).toEqual([]);
+ });
+}
