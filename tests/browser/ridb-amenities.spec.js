@@ -19,7 +19,9 @@ test('campsite records retain qualified amenity evidence without changing filter
   await page.evaluate(()=>KampTrailData.focusCampsite('ridb:123'));
   const popup=page.locator('.kt-site-popup');await expect(popup.locator('img')).toHaveCount(0);
   await expect(popup).toHaveAttribute('tabindex','0');
-  const layout=await popup.evaluate(e=>{const p=e.getBoundingClientRect(),m=document.getElementById('map').getBoundingClientRect();return{height:p.height,maxHeight:parseFloat(getComputedStyle(e).maxHeight),mapHeight:m.height,top:p.top,mapTop:m.top};});
+  const measure=()=>popup.evaluate(e=>{const p=e.getBoundingClientRect(),m=document.getElementById('map').getBoundingClientRect();return{height:p.height,maxHeight:parseFloat(getComputedStyle(e).maxHeight),mapHeight:m.height,top:p.top,mapTop:m.top};});
+  await expect.poll(async()=>{const box=await measure();return box.height<=Math.min(360,box.mapHeight-160)+1&&box.top>=box.mapTop;},{timeout:5000,message:'Campsite popup settles within the map height and top bounds'}).toBe(true);
+  const layout=await measure();
   expect(layout.height).toBeLessThanOrEqual(Math.min(360,layout.mapHeight-160)+1);expect(layout.top).toBeGreaterThanOrEqual(layout.mapTop);
   await popup.locator('.kt-ridb-amenities summary').click();
   expect(await popup.evaluate(e=>e.getBoundingClientRect().height<=parseFloat(getComputedStyle(e).maxHeight)+1)).toBe(true);
