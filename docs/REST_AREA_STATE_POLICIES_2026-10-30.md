@@ -82,3 +82,72 @@ Relevant unit tests cover scope, all 78 inherited rules, independent activities,
 expiry, malformed evidence and conflicting exceptions. Browser regressions cover
 visible rule dates/source links and policy-download failure. Full native CI and
 root's live verification are release gates. No added parity credit is claimed.
+
+
+## Independently audited five-state addition
+
+The 48-state research handoff contains 57 facility-class rows and 79 evidence
+items. Its 15 ready flags are research claims, not integration approval. The
+intake audit independently saved 29 of 32 attempted official responses. Two
+Illinois sources and one Tennessee source returned 503. Four claimed excerpt
+verification times (AZ, KS, MS and WY) were later than the handoff generation and
+audit clock. Those stamps were not accepted or silently renewed.
+
+The conservative addition below contains seven source receipts and five exact
+managed-facility scopes. Sources retain the actual October 30 retrievals,
+complete-response hashes and unknown publisher update dates. See
+[the machine-readable intake and holds](REST_AREA_RESEARCH_INTAKE_2026-10-30.json).
+The local audit's raw responses were hash-checked; they are not republished here.
+
+| Added scope | Overnight parking | Sleeping in vehicle | Camping | Numeric duration |
+| --- | --- | --- | --- | --- |
+| Florida Turnpike Enterprise service plazas | Prohibited | Unknown | Unknown | Unknown |
+| Idaho Transportation Department safety rest areas | Unknown | Unknown | Prohibited | Unknown |
+| Ohio DOT rest areas and roadside parks | Unknown | Unknown | Prohibited | Unknown |
+| Oregon DOT safety rest areas | Unknown | Unknown | Prohibited | Unknown |
+| Virginia DOT rest areas | Prohibited | Unknown | Prohibited | Unknown |
+
+These are prepared policy facts, not expanded geographic coverage. There are no
+new location records or new overnight/sleeping grants. The existing location
+layer still covers 78 TxDOT sites only. All new policies require a separately
+established exact operator and facility class. State alone and guessed OSM
+operator names cannot select them. Texas and Montana policy objects are
+unchanged, and no additional parity credit is claimed.
+
+Idaho's 10/16-hour split depends on road class. Ohio's three-hour provision
+concerns unattended vehicles. Oregon's 12-hour provision uses a 24-hour window.
+Virginia's sleeping rule concerns a building, and its government-entity
+authorization provision is separate. These facts remain qualified conditions,
+not numeric stay limits or a vehicle-sleeping decision. Florida DOT general rest
+areas, Florida Turnpike plazas, Ohio Turnpike facilities and other Oregon
+operators remain distinct scopes.
+
+Nebraska's camping rule has a designated-campsite exception. Washington has a
+department-authorization exception. Their seven-state audit projections remain
+held rather than flattening either exception into a blanket prohibition.
+Additional handoff holds include Maryland's retrieval/reuse route, Kansas's
+current-edition proof, vehicle/posted/rolling-duration predicates in Kentucky
+and Minnesota, North Carolina's structure-specific restriction, Utah's
+overnight-only camping restriction, and the two unavailable-state sources.
+
+New publisher URLs are accepted only at the exact audited policy page; another
+path, query or fragment is rejected. This addition does not broaden source
+hosts globally, add duration predicates, infer current opening or availability,
+or alter permission filters. Maintenance still uses the existing 180-day
+operational review ceiling. Automated policy change monitoring remains pending.
+
+
+## Coordinated 2.21.1 candidate
+
+This local candidate pairs the five-state policy preparation with runtime
+2.21.1 and shell generation `kt-v50`. Every first-party module identity, HTML
+asset query, boot handshake and package/lock version moves together so existing
+2.21 clients can load the reviewed validator. The shell upgrade retains the
+existing saved data, Topo tiles, routes, terrain, services and height caches.
+No source date, location record or feature score changes. The new policies still
+add no facility coverage beyond the existing Texas layer.
+
+This is not a shipped release report. Root must complete independent review,
+full native CI, the normal tested Hostinger publication and exact deployed
+source/live-upgrade verification before recording it as released. The real-phone
+offline restart remains pending for the existing November 2 appointment.

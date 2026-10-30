@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "purpose": "Reviewed state-policy preparation only; not connected to production permissions",
+  "purpose": "Reviewed state policies; exact managed-facility scope only. Locations and permission filters remain independent.",
   "policies": [
     {
       "id": "txdot-safety-rest-area-20261030",
@@ -79,6 +79,178 @@
         }
       ],
       "interpretation": "MDT explicitly permits overnight parking and prohibits camping. Its 12-hour operational limit remains applicable; the 2025 statute exception has a 24-hour outer ceiling and does not grant a 24-hour stay. Sleeping is not independently stated."
+    },
+    {
+      "id": "florida_turnpike-turnpike_service_plaza-20261030",
+      "scope": {
+        "state": "FL",
+        "operator": "florida_turnpike",
+        "facility_kind": "turnpike_service_plaza"
+      },
+      "rules": {
+        "overnight_parking": "prohibited",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": [
+          "Applies only to Florida Turnpike Enterprise service plazas. Do not apply FDOT general rest-area durations to this class.",
+          "This policy adds no facility locations. Exact managing-agency and facility-class identity must be independently established before it can apply."
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://floridasturnpike.com/traveler-resources/service-plazas/",
+          "retrieved_url": "https://floridasturnpike.com/traveler-resources/service-plazas/",
+          "retrieved_at": "2026-10-30T23:17:53Z",
+          "sha256": "6eff064c6654db3eb50431518064f161d8a1b44b350b6f3b2acc7cd252ec036f",
+          "bytes": 146506,
+          "http_last_modified": "Fri, 30 Oct 2026 05:49:59 GMT",
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Only the explicit activity facts are classified. Sleeping, current opening, capacity and every qualified duration remain unknown unless separately established."
+    },
+    {
+      "id": "itd-safety_rest_area-20261030",
+      "scope": {
+        "state": "ID",
+        "operator": "itd",
+        "facility_kind": "safety_rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "prohibited",
+        "max_stay_hours": null,
+        "conditions": [
+          "Duration remains qualified text: interstate facilities have a 10-consecutive-hour limit; other state-highway routes have 16 consecutive hours. No single statewide hour value.",
+          "This policy adds no facility locations. Exact managing-agency and facility-class identity must be independently established before it can apply."
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf",
+          "retrieved_url": "https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf",
+          "retrieved_at": "2026-10-30T23:17:33Z",
+          "sha256": "b25e435779d569c351dac1f5d73d5ea7ee3793e6c1cba6e034039679ac992f3a",
+          "bytes": 243175,
+          "http_last_modified": "Wed, 01 Jul 2026 19:17:26 GMT",
+          "source_updated_at": null
+        },
+        {
+          "url": "https://itd.idaho.gov/faqs/rest-areas/",
+          "retrieved_url": "https://itd.idaho.gov/faqs/rest-areas/",
+          "retrieved_at": "2026-10-30T23:17:53Z",
+          "sha256": "614c896c3c697276f0aa592b22914834b058f2ee3ba1141dce564c813e6d9625",
+          "bytes": 156435,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Only the explicit activity facts are classified. Sleeping, current opening, capacity and every qualified duration remain unknown unless separately established."
+    },
+    {
+      "id": "odot-rest_area_or_roadside_park-20261030",
+      "scope": {
+        "state": "OH",
+        "operator": "odot",
+        "facility_kind": "rest_area_or_roadside_park"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "prohibited",
+        "max_stay_hours": null,
+        "conditions": [
+          "The three-hour rule concerns leaving a vehicle unattended without authority permission; it is not an occupied-vehicle stay limit.",
+          "Ohio Turnpike Commission plazas and designated RV lots are separate classes; no overnight grant is projected here.",
+          "This policy adds no facility locations. Exact managing-agency and facility-class identity must be independently established before it can apply."
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01",
+          "retrieved_url": "https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01",
+          "retrieved_at": "2026-10-30T23:18:07Z",
+          "sha256": "83f34dc83843194383a58e94f7adb200dbfa5b5c44cbd405a213eacd15281d8e",
+          "bytes": 19101,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Only the explicit activity facts are classified. Sleeping, current opening, capacity and every qualified duration remain unknown unless separately established."
+    },
+    {
+      "id": "odot-safety_rest_area-20261030",
+      "scope": {
+        "state": "OR",
+        "operator": "odot",
+        "facility_kind": "safety_rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "prohibited",
+        "max_stay_hours": null,
+        "conditions": [
+          "Duration remains qualified text: 12 hours within any 24-hour period. Posted parking restrictions also apply.",
+          "Other entities and other rest opportunities may have different rules. No blanket Travel Information Council operator mapping.",
+          "This policy adds no facility locations. Exact managing-agency and facility-class identity must be independently established before it can apply."
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://tripcheck.com/Pages/Rest-Areas-Regulations",
+          "retrieved_url": "https://tripcheck.com/Pages/Rest-Areas-Regulations",
+          "retrieved_at": "2026-10-30T23:18:14Z",
+          "sha256": "1247e784e29243e38f1207e08f1f68ce03a995fd52e77f667b4c38e1e11fee2c",
+          "bytes": 17562,
+          "http_last_modified": "Fri, 30 Oct 2026 23:18:12 GMT",
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Only the explicit activity facts are classified. Sleeping, current opening, capacity and every qualified duration remain unknown unless separately established."
+    },
+    {
+      "id": "vdot-rest_area-20261030",
+      "scope": {
+        "state": "VA",
+        "operator": "vdot",
+        "facility_kind": "rest_area"
+      },
+      "rules": {
+        "overnight_parking": "prohibited",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "prohibited",
+        "max_stay_hours": null,
+        "conditions": [
+          "The sleeping restriction in the cited rule concerns the rest-area building; vehicle sleeping remains unknown.",
+          "Official posted signs and notices apply. Waysides and other facility classes must be mapped separately.",
+          "This policy adds no facility locations. Exact managing-agency and facility-class identity must be independently established before it can apply.",
+          "State-government entities can request separate VDOT authorization under section 30(E); this traveller policy does not decide that authorization."
+        ]
+      },
+      "sources": [
+        {
+          "url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/",
+          "retrieved_url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/",
+          "retrieved_at": "2026-10-30T23:18:18Z",
+          "sha256": "298e0b7c445dae9febd0846096a946e2c0f12ff7c249ba1fc6e45006a5d506cc",
+          "bytes": 30253,
+          "http_last_modified": null,
+          "source_updated_at": null
+        },
+        {
+          "url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/",
+          "retrieved_url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/",
+          "retrieved_at": "2026-10-30T23:18:18Z",
+          "sha256": "3edcfc80601834674396d0966238b0b286815ddf6227363573f9920d82e4ad10",
+          "bytes": 35772,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Only the explicit activity facts are classified. Sleeping, current opening, capacity and every qualified duration remain unknown unless separately established."
     }
   ]
 }
