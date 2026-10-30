@@ -23,6 +23,16 @@ test('worker activation deletes only obsolete caches for this app scope',async()
   assert.equal(w.stores.has('unrelated-app'),true);assert.equal(w.stores.has('kamptrail:https://example.test/other/:old'),true);
   assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:old'),false);assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:data-v1'),true);
 });
+test('2.15.1 installs a fresh shell and retires the 2.15.0 shell while retaining visited data',async()=>{
+  const w=worker(),prefix='kamptrail:https://example.test/kamptrail/:';
+  await w.caches.open(prefix+'kt-v41');await w.caches.open(prefix+'data-v1');
+  let installed;w.handlers.install({waitUntil:p=>installed=p});await installed;
+  assert.equal(w.stores.has(prefix+'kt-v42'),true);
+  let activated;w.handlers.activate({waitUntil:p=>activated=p});await activated;
+  assert.equal(w.stores.has(prefix+'kt-v41'),false);
+  assert.equal(w.stores.has(prefix+'kt-v42'),true);
+  assert.equal(w.stores.has(prefix+'data-v1'),true);
+});
 test('worker does not intercept external basemap tiles or neighboring apps',()=>{
   const w=worker();let intercepted=false;
   for(const url of ['https://tile.openstreetmap.org/4/3/6.png','https://example.test/other/app.js'])w.handlers.fetch({request:new Request(url),respondWith:()=>intercepted=true});

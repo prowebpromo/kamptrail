@@ -7,6 +7,26 @@ const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
 const out=path.join(root,'dist','kamptrail');
 
+test('patch release keeps runtime versions, handshake and first-party asset URLs consistent',()=>{
+  const version=require('../package.json').version;
+  const lock=JSON.parse(fs.readFileSync(path.join(root,'package-lock.json'),'utf8'));
+  assert.equal(lock.version,version);assert.equal(lock.packages[''].version,version);
+  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  assert.ok(html.includes(`<meta name="kamptrail-version" content="${version}">`));
+  assert.ok(html.includes(`>v${version}</a>`));
+  const scripts=[...html.matchAll(/<script src="([^"/]+\.js)(\?[^"]*)?"/g)];
+  assert.equal(scripts.length,19,'All runtime modules and the app shell have release URLs');
+  for(const [,file,query]of scripts){
+    assert.equal(query,`?v=${version}`,file);
+    const source=fs.readFileSync(path.join(root,file),'utf8');
+    if(file==='app.js'){
+      assert.ok(source.includes(`?.content !== '${version}'`),'HTML handshake uses package version');
+      assert.ok(source.includes(`module?.version!=='${version}'`),'Module handshake uses package version');
+    }else assert.match(source,new RegExp(`(?:version:\\s*|const VERSION = )'${version.replaceAll('.','\\.')}'`),file);
+  }
+  for(const file of ['app.css','manifest.json'])assert.ok(html.includes(`href="${file}?v=${version}"`),file);
+});
+
 test('built release contains agency index dependencies and supports a custom-domain install',()=>{
   const env={...process.env};delete env.KAMPTRAIL_PUBLIC_URL;
   execFileSync(process.execPath,['scripts/build-release.js'],{cwd:root,env,stdio:'pipe'});
