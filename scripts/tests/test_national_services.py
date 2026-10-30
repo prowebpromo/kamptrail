@@ -41,6 +41,35 @@ class Clock:
 
 
 class NationalServicesTests(unittest.TestCase):
+    def setUp(self):
+        # These staging/handoff fixtures are deliberately older than live data.
+        # Give them an explicit accepted-source baseline so accepting more states
+        # cannot silently turn a resume test into a production-date comparison.
+        temporary = tempfile.TemporaryDirectory(prefix='national-test-checkout-')
+        self.addCleanup(temporary.cleanup)
+        checkout = Path(temporary.name)
+        (checkout / 'scripts').symlink_to(SCRIPTS, target_is_directory=True)
+        sources = checkout / 'data/sources/services'
+        sources.mkdir(parents=True)
+        source = {'kind':'geofabrik', 'url':URLS['UT'],
+                  'extract_timestamp':'2025-01-01T00:00:00Z', 'retrieved_at':'2025-03-01T00:00:00Z',
+                  'sha256':'a'*64, 'license':'ODbL-1.0', 'categories':list(services.CATEGORIES)}
+        point = {'id':'osm:node:9001', 'osm_type':'node', 'osm_id':'9001', 'osm_version':1,
+                 'edited_at':'2025-01-01T00:00:00Z', 'coordinates':[-111.9,40.8],
+                 'name':'Fixture fuel', 'categories':['fuel'], 'tags':{'amenity':'fuel'},
+                 'states':['UT'], 'source_region':'UT'}
+        (sources / 'UT.json').write_text(json.dumps({'version':2,'region':'UT','source':source,'items':[point]}))
+        legacy = {'kind':'legacy', 'url':'https://www.openstreetmap.org', 'extract_timestamp':None,
+                  'retrieved_at':None, 'sha256':'b'*64, 'license':'ODbL-1.0', 'categories':['dump','water','lpg']}
+        legacy_point = {**point, 'id':'osm:node:9002', 'osm_id':'9002', 'coordinates':[-117,33],
+                        'name':'Fixture dump', 'categories':['dump'], 'tags':{},
+                        'states':['CA'], 'source_region':'legacy', 'retrieved_at':'2025-03-01T00:00:00Z'}
+        (sources / 'legacy.json').write_text(json.dumps({'version':2,'region':'legacy','source':legacy,'items':[legacy_point]}))
+        for target in ('stage_services.ROOT', 'aggregate_services.ROOT'):
+            override = patch(target, checkout)
+            override.start()
+            self.addCleanup(override.stop)
+
     def test_official_exact_fifty_state_projection(self):
         self.assertEqual(len(URLS), 50)
         self.assertEqual(set(URLS), services.STATES)

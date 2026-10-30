@@ -65,9 +65,20 @@ test('About the data shows source freshness, and a failed refresh run is visibly
   await page.getByRole('button',{name:'About the data'}).click();
   const table=page.getByRole('table',{name:'Data freshness'});
   await expect(table.getByRole('rowheader',{name:'Forest Service recreation sites'})).toBeVisible();
-  await expect(table.locator('tbody tr')).toHaveCount(8);
+  const savedHealth=require('../../data/health.json');
+  const sources=Object.values(savedHealth.sources);
+  await expect(table.locator('tbody tr')).toHaveCount(sources.filter(source=>!source.retired_by).length);
+  for(const source of sources.filter(source=>source.retired_by)){
+    await expect(table.getByRole('rowheader',{name:source.label,exact:true})).toHaveCount(0);
+  }
   await expect(table.getByRole('rowheader',{name:'Official rest-area locations (TxDOT Texas pilot)'})).toBeVisible();
   await expect(table.getByRole('rowheader',{name:'Expanded service extracts (Geofabrik/OpenStreetMap)'})).toBeVisible();
+  const extracts=savedHealth.sources.services_extracts;
+  if(Array.isArray(extracts.coverage_states)){
+    const row=table.getByRole('row',{name:/Expanded service extracts/});
+    await expect(row).toContainText(`Expanded extracts cover ${extracts.coverage_states.length} of 50 states. Dates describe source extracts.`);
+    await expect(row).toContainText(extracts.oldest_success.slice(0,10));
+  }
   await page.keyboard.press('Escape');
   const now=new Date().toISOString();
   await context.route('**/data/health.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({version:1,stale_after_days:45,run:{started:now,counts:{failed:3}},sources:{
