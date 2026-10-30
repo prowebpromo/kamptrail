@@ -299,6 +299,10 @@ class GitHub:
         if authenticated:
             require(parsed.hostname in ('api.github.com', 'uploads.github.com') and (parsed.path == API_ROOT or parsed.path.startswith(API_ROOT + '/')), 'invalid_transport_target')
         headers = {'User-Agent': 'KampTrail-forecast-publisher', 'Accept': accept}
+        if not authenticated:
+            # Match the public PHP reader: fixed pointer URLs must revalidate
+            # after replacement, including every credential-free redirect hop.
+            headers['Cache-Control'] = 'no-cache'
         if authenticated:
             headers['Authorization'] = 'Bearer ' + self._token
             headers['X-GitHub-Api-Version'] = '2022-11-28'
