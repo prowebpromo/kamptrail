@@ -262,13 +262,19 @@
     }).join('');
     return `<details class="kt-ridb-amenities"><summary>Recreation.gov campsite records report…</summary>${facilities}<p class="kt-fine">${esc(notes.join(' '))}</p><p class="kt-fine">${data.source.original_retrieved_at?`Export retrieved ${esc(data.source.original_retrieved_at.slice(0,10))}.`:'Saved export: retrieval date unknown.'} Amenity update dates unknown. Inspected ${esc(data.source.inspected_at.slice(0,10))}; inspection is not an update date. <a href="${DataQuality.RIDB_AMENITY_URL}" target="_blank" rel="noopener noreferrer">Public source export</a></p></details>`;
   }
+  function popupLayout(){
+    const size=state.map?.getSize?.()||{},width=Number.isFinite(size.x)?size.x:390,height=Number.isFinite(size.y)?size.y:400;
+    return {width:Math.max(100,Math.min(300,width-70)),height:Math.max(80,Math.min(360,height-160))};
+  }
+  function popupOptions(){return {maxWidth:popupLayout().width,autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]};}
   function popup(site) {
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
     const closure=['closed','temporarily closed'].includes(status)?status:null;
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
-    return `<div class="kt-site-popup" style="min-width:220px;max-width:300px;color:#263443">
+    const layout=popupLayout();
+    return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="Campsite details" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
       ${closure?`<div class="kt-closure-notice"><strong>Agency reports: ${esc(closure)}.</strong> Confirm reopening with the operator.${p.season?` Season reported: ${esc(p.season)}.`:''}</div>`:''}
       <div><strong>Cost:</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
@@ -326,7 +332,7 @@
       const [lng,lat]=site.geometry.coordinates,p=site.properties;
       const color=p.fee_status==='free'?'#258543':p.fee_status==='conditional'?'#b07d10':p.fee_status==='paid'?'#2375b9':'#687780';
       const icon=L.divIcon({html:`<span style="display:block;background:${color};width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px #333"></span>`,className:'custom-marker',iconSize:[16,16],iconAnchor:[8,8]});
-      const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site));
+      const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site),popupOptions());
       marker.kamptrailId=id;state.markers.set(id,marker);additions.push(marker);
     }
     // Adding markers re-clusters nearby ones, which would close an open popup and lose what the camper
@@ -479,7 +485,7 @@
         if(!state.clusterGroup.zoomToShowLayer){marker.openPopup();return;}
         // Wait for chunked cluster loading to finish. Later chunks re-cluster and would close the popup.
         if(!state.chunking&&(marker.__parent||state.map.hasLayer(marker))){
-          const fallback=()=>{if(!marker.isPopupOpen?.()&&!state.map._popup?.isOpen?.())L.popup({maxWidth:320}).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);};
+          const fallback=()=>{if(!marker.isPopupOpen?.()&&!state.map._popup?.isOpen?.())L.popup(popupOptions()).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);};
           // A popup bound to the marker closes whenever markercluster re-clusters it (zoom animation,
           // later chunks, neighboring states loading), losing anything the camper opened in it.
           // A map-level popup at the campsite's point survives re-clustering.
@@ -489,7 +495,7 @@
           return;
         }
         if(++tries<50){setTimeout(attempt,100);return;}
-        L.popup({maxWidth:320}).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);
+        L.popup(popupOptions()).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);
       };
       attempt();
       return true;

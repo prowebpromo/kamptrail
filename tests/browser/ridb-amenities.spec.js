@@ -18,11 +18,18 @@ test('campsite records retain qualified amenity evidence without changing filter
   await page.goto('/');await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:123')?.properties.ridb_amenity_evidence);
   await page.evaluate(()=>KampTrailData.focusCampsite('ridb:123'));
   const popup=page.locator('.kt-site-popup');await expect(popup.locator('img')).toHaveCount(0);
+  await expect(popup).toHaveAttribute('tabindex','0');
+  const layout=await popup.evaluate(e=>{const p=e.getBoundingClientRect(),m=document.getElementById('map').getBoundingClientRect();return{height:p.height,maxHeight:parseFloat(getComputedStyle(e).maxHeight),mapHeight:m.height,top:p.top,mapTop:m.top};});
+  expect(layout.height).toBeLessThanOrEqual(Math.min(360,layout.mapHeight-160)+1);expect(layout.top).toBeGreaterThanOrEqual(layout.mapTop);
   await popup.locator('.kt-ridb-amenities summary').click();
+  expect(await popup.evaluate(e=>e.getBoundingClientRect().height<=parseFloat(getComputedStyle(e).maxHeight)+1)).toBe(true);
   await expect(popup).toContainText('mentioned in 1 of 2 records');await expect(popup).toContainText('peak season: 1 records');await expect(popup).toContainText('coin operated: 1 records');
   await expect(popup).toContainText('Amenity update dates unknown');await expect(popup).toContainText('does not establish RV filling access');
   await expect(popup.getByRole('link',{name:'Recreation.gov facility 123',exact:true})).toHaveAttribute('href','https://www.recreation.gov/camping/campgrounds/123');
   expect(await popup.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
+  await popup.focus();await expect(popup).toBeFocused();await popup.press('PageDown');await expect.poll(()=>popup.evaluate(e=>e.scrollTop)).toBeGreaterThan(0);
+  await page.getByRole('button',{name:'Close popup',exact:true}).click({timeout:5000});await expect(popup).toHaveCount(0);
+  await expect(page.getByRole('button',{name:'Map layers',exact:true})).toBeVisible();await expect(page.locator('.kt-off-toggle')).toBeVisible();
   expect(await page.evaluate(()=>KampTrailData.getCampsiteById('ridb:123').properties.amenities)).toEqual([]);
   expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['water']});return KampTrailData.getVisibleCampsites().length;})).toBe(0);
   expect(errors).toEqual([]);
