@@ -89,6 +89,11 @@ class FakeGitHub:
         return value
 
     def asset_bytes(self, asset, limit, *, draft=False):
+        if not draft and asset.get('name') in p.POINTERS:
+            p.require(self.entries.get(asset['name'], {}).get('id') == asset['id'], 'public_asset_unavailable_404')
+            raw = self.bodies[asset['name']]
+            p.require(len(raw) <= limit, 'too_large')
+            return raw
         return self.public(asset['name'], limit)
 
     def upload(self, release_id, name, raw):
@@ -270,10 +275,13 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
         self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
 
-    def test_persistent_previous_pointer_is_bounded_and_retains_other_valid_generation(self):
+    def test_verified_public_asset_id_succeeds_but_does_not_claim_fixed_url_propagation(self):
         reads = self.delayed_pointer(count=100)
-        with self.assertRaisesRegex(p.PublishError, 'pointer_propagation_pending'):
-            self.publish()
+        result = self.publish()
+        self.assertEqual(result['status'], 'published')
+        self.assertEqual(result['pointer_verification'], 'public_asset_id')
+        self.assertEqual(result['pointer_url_status'], 'previous')
+        self.assertEqual(result['pointer_asset_id'], self.api.entries['current-a.json']['id'])
         self.assertEqual(len(reads), 4)
         self.assertEqual(self.api.delays, [2, 4, 8])
         self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
@@ -281,9 +289,44 @@ class PublicationTests(unittest.TestCase):
         self.assertTrue(all(name in self.api.bodies for name in self.old[2]))
         self.assertEqual([item for item in self.api.log if item[0] == 'DELETE'], [('DELETE', 'current-a.json')])
 
+    def test_bad_public_asset_id_bytes_fail_even_when_fixed_url_has_expected_bytes(self):
+        original = self.api.asset_bytes
+        def asset_bytes(asset, limit, *, draft=False):
+            if asset['name'] == 'current-a.json' and self.api.bodies.get(asset['name']) == self.new[1]:
+                return self.old[1]
+            return original(asset, limit, draft=draft)
+        self.api.asset_bytes = asset_bytes
+        with self.assertRaisesRegex(p.PublishError, 'public_asset_verification_failed'):
+            self.publish()
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_final_asset_identity_change_fails_after_public_byte_verification(self):
+        original = self.api.assets
+        def assets(release_id):
+            result = original(release_id)
+            if self.api.reads == 3:
+                result['current-a.json']['id'] += 10000
+            return result
+        self.api.assets = assets
+        with self.assertRaisesRegex(p.PublishError, 'concurrent_publication'):
+            self.publish()
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_expiry_during_final_identity_read_cannot_be_reported_as_published(self):
+        original = self.api.assets
+        def assets(release_id):
+            result = original(release_id)
+            if self.api.reads == 3:
+                self.api.now = NOW + 7201
+            return result
+        self.api.assets = assets
+        with self.assertRaisesRegex(p.PublishError, 'stale_forecast'):
+            self.publish()
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
     def test_unexpected_pointer_bytes_do_not_receive_a_visibility_retry(self):
         reads = self.delayed_pointer(count=100, body=b'unexpected')
-        with self.assertRaisesRegex(p.PublishError, 'pointer_propagation_pending'):
+        with self.assertRaisesRegex(p.PublishError, 'pointer_unexpected_bytes'):
             self.publish()
         self.assertEqual(len(reads), 1)
         self.assertEqual(self.api.delays, [])
@@ -392,6 +435,21 @@ class Opener:
 
 
 class TransportTests(unittest.TestCase):
+    def test_public_pointer_id_download_is_anonymous_and_does_not_use_a_reused_filename(self):
+        opener = Opener([Response(302, headers={'Location': 'https://release-assets.githubusercontent.com/new?signature=x'}), Response(200, b'good')])
+        api = p.GitHub('test-token', opener=opener)
+        self.assertEqual(api.asset_bytes({'id': 123, 'name': 'current-a.json'}, 100), b'good')
+        self.assertEqual(opener.requests[0].full_url, f'https://api.github.com{p.API_ROOT}/releases/assets/123')
+        self.assertTrue(all('Authorization' not in request.headers for request in opener.requests))
+        self.assertTrue(all(request.get_header('Cache-control') == 'no-cache' for request in opener.requests))
+
+    def test_forbidden_public_pointer_id_does_not_retry_or_fall_back_to_credentials(self):
+        opener = Opener([Response(403)])
+        with self.assertRaisesRegex(p.PublishError, 'public_asset_unavailable_403'):
+            p.GitHub('test-token', opener=opener).asset_bytes({'id': 123, 'name': 'current-a.json'}, 100)
+        self.assertEqual(len(opener.requests), 1)
+        self.assertNotIn('Authorization', opener.requests[0].headers)
+
     def test_mutable_pointer_and_public_redirect_revalidate_cached_bytes(self):
         class CachedOpener:
             def __init__(self):
