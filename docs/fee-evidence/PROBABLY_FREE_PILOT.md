@@ -1,6 +1,6 @@
 # Probably-free fee evidence: targeting and decision gates
 
-Status: selection and measurement design only. No new page reviews, fee classifications, overrides or production data changes have been made. The ten maintained USFS reviews and their automated-recheck pilot take priority. New overrides must wait until that pilot's maintenance policy is accepted.
+Status: the frozen first 30 were executed and independently audited. **Stop the remaining 20: 4/30 resolutions fail the predeclared minimum 9/30.** See [results and limitations](2026-10-30-first30-results.md). The thresholds below were fixed before execution and remain unchanged. No fee classifications or new overrides were published by this audit; maintenance and parser fixes remain separate reviewed work.
 
 ## Reproduce the saved-input assessment
 
