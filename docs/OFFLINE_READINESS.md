@@ -1,5 +1,7 @@
 # Offline readiness and phone acceptance check
 
+Release candidate: 2.21.0 / shell generation 49. Not deployed by this PR.
+
 The Offline panel inventories this browser’s existing app-scoped storage without downloading anything. It separates cached USGS Topo tiles, base campsite listing states, agency listing states, the national campsite name index, saved-stop records and saved location snapshots. A cached name-search result does not establish that its full listing is cached. Legacy stop IDs can lack location snapshots.
 
 The map download log shows geographic bounds, zoom range, original logged download date and the currently present versus expected tile URLs for the most recent twenty valid area logs. This comparison detects missing or evicted tile entries even when the old download log says every tile was saved. It cannot certify map coverage outside those bounds/zoom levels or current physical conditions. Unlogged tile entries are counted but receive no invented area or date.

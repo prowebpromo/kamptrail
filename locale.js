@@ -1645,7 +1645,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.20.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
+  global.KampTrailI18n = {version:'2.21.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
