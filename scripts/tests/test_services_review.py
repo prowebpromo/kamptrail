@@ -21,6 +21,23 @@ from services_regions import URLS
 
 
 class ServicesReviewTests(unittest.TestCase):
+    def test_publication_code_requires_its_exact_reviewed_blob(self):
+        name = 'scripts/promote_services.py'
+        self.assertIn(name, review.REVIEWED_FILES)
+        content = (SCRIPTS / 'promote_services.py').read_bytes()
+        def blob(data):
+            return hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+        self.assertEqual(blob(content), review.REVIEWED_OVERRIDES[name])
+        def revision(*arguments):
+            if arguments[0] == 'hash-object':
+                return blob(content) if arguments[1] == name else review.REVIEWED_OVERRIDES.get(arguments[1], 'a' * 40)
+            return 'a' * 40
+        with patch.object(review, 'git', side_effect=revision):
+            review.verify_reviewed_code()
+            content += b'\n# Unreviewed publication behavior change.\n'
+            with self.assertRaisesRegex(ValueError, 'contract changed'):
+                review.verify_reviewed_code()
+
     def metadata(self):
         identifier = '41098691497'
         run = {'id': int(identifier), 'name': 'Stage dated state service extracts', 'workflow_id': review.WORKFLOW_ID,

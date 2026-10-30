@@ -30,15 +30,17 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = 'prowebpromo/kamptrail'
 REPOSITORY_ID = 967717280
 REVIEWED_HEAD = '369efee3ed2f2b81ce867f269ff08bad523c039b'
-# Explicitly reviewed code blobs: startup-only retry and exact-source strict CLI.
+# Exact reviewed blobs for source retries, strict aggregation and publication.
 REVIEWED_OVERRIDES = {'scripts/import_services.py': '2225f7ed11f9fb6633ca887e6731ae31c65ab8ac',
-                      'scripts/aggregate_services.py': '3feb517d846aa18ea17ff827e3fd520ef5bcabe2'}
+                      'scripts/aggregate_services.py': '3feb517d846aa18ea17ff827e3fd520ef5bcabe2',
+                      'scripts/promote_services.py': 'efde8bdf5597eae123a15c05235ad96ee6807ece'}
 WORKFLOW_ID = 402051348
 WORKFLOW_PATH = '.github/workflows/stage-national-services.yml'
 REGISTRY_SHA256 = '7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee'
 REVIEWED_FILES = ('scripts/build-services.js', 'scripts/import_services.py',
                   'scripts/stage_services.py', 'scripts/aggregate_services.py',
-                  'scripts/services_regions.py', 'scripts/services-regions.json')
+                  'scripts/services_regions.py', 'scripts/services-regions.json',
+                  'scripts/promote_services.py')
 MAX_ZIP_BYTES = 128 * 1024**2
 MAX_ALL_ZIP_BYTES = 512 * 1024**2
 MAX_EXTRACTED_BYTES = 1024**3

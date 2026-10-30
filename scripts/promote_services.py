@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import stat
 import subprocess
 import tempfile
 
@@ -20,6 +21,39 @@ from stage_services import digest, validate_checkpoint
 
 def read(path):
     return json.loads(Path(path).read_bytes())
+
+
+def preflight_outputs(root):
+    """Refuse links, special files and interrupted staging before any write."""
+    root = Path(root).absolute()
+    if root != root.resolve() or not stat.S_ISDIR(root.lstat().st_mode):
+        raise ValueError('Publication root must be a regular directory without symlink parents')
+    paths = [('data', True), ('data/sources', True),
+             ('data/sources/services', True), ('data/services', True),
+             ('data/health.json', False)]
+    for relative, directory in paths:
+        path = root / relative
+        try:
+            mode = path.lstat().st_mode
+        except FileNotFoundError:
+            continue
+        if stat.S_ISLNK(mode) or not (stat.S_ISDIR(mode) if directory else stat.S_ISREG(mode)):
+            raise ValueError('Symlink or nonregular publication output or parent')
+    # Existing files are copied into the replacement tree, so inspect their
+    # types without following a linked source file or immutable snapshot.
+    for relative in ('data/sources/services', 'data/services'):
+        for path in (root / relative).rglob('*'):
+            mode = path.lstat().st_mode
+            if not (stat.S_ISDIR(mode) or stat.S_ISREG(mode)):
+                raise ValueError('Symlink or nonregular publication output')
+    for relative in ('data/sources/services', 'data/services', 'data/health.json'):
+        public = root / relative
+        for suffix in ('.national-next', '.national-previous'):
+            try:
+                public.with_name(public.name + suffix).lstat()
+            except FileNotFoundError:
+                continue
+            raise ValueError('Interrupted promotion or symlink requires inspection before retry')
 
 
 def baseline(root, name, accepted_ref=None):
@@ -37,7 +71,9 @@ def baseline(root, name, accepted_ref=None):
 
 def prepare(candidate, batch, root=ROOT, accepted_ref=None):
     """Copy first, validate exact copied bytes and rebuild without public writes."""
-    candidate, root = Path(candidate).resolve(), Path(root).resolve()
+    root = Path(root).absolute()
+    preflight_outputs(root)
+    candidate = Path(candidate).resolve()
     if candidate.is_relative_to(root):
         raise ValueError('Candidate must remain outside checkout')
     if not re.fullmatch(r'[0-9]+-[a-f0-9]{40}', batch):
@@ -103,7 +139,7 @@ def prepare(candidate, batch, root=ROOT, accepted_ref=None):
 
 
 def promote(candidate, batch, root=ROOT, check_only=False, accepted_ref=None):
-    root = Path(root).resolve()
+    root = Path(root).absolute()
     temporary, handoff, summary = prepare(candidate, batch, root, accepted_ref)
     try:
         if check_only:
@@ -137,10 +173,7 @@ def promote(candidate, batch, root=ROOT, check_only=False, accepted_ref=None):
         def remove(path):
             if path.is_dir(): shutil.rmtree(path)
             elif path.exists(): path.unlink()
-        for name in publications:
-            public = root / 'data' / name
-            if any(public.with_name(public.name + suffix).exists() for suffix in ('.national-next', '.national-previous')):
-                raise ValueError('Interrupted promotion requires inspection before retry')
+        preflight_outputs(root)
         moved = []
         staging = []
         try:
@@ -152,7 +185,11 @@ def promote(candidate, batch, root=ROOT, check_only=False, accepted_ref=None):
                 # Register before copying: copytree/copyfile can leave partial output.
                 staging.append(staged)
                 if target.is_dir(): shutil.copytree(target, staged)
-                else: shutil.copyfile(target, staged)
+                else:
+                    # Exclusive creation also refuses a staging link appearing
+                    # after preflight instead of following it during copyfile.
+                    with target.open('rb') as incoming, staged.open('xb') as output:
+                        shutil.copyfileobj(incoming, output)
                 if public.exists():
                     public.rename(previous)
                 try:

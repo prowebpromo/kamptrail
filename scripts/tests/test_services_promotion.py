@@ -120,6 +120,68 @@ class ServicesPromotionTests(unittest.TestCase):
             self.assertFalse(list((checkout / 'data').rglob('*.national-next')))
             self.assertFalse(list((checkout / 'data').rglob('*.national-previous')))
 
+    def test_linked_outputs_and_parents_fail_before_writes_and_keep_last_good(self):
+        def snapshot(directory):
+            return {p.relative_to(directory): ('link', str(p.readlink())) if p.is_symlink()
+                    else ('file', p.read_bytes()) if p.is_file() else ('directory', None)
+                    for p in directory.rglob('*')}
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            checkout, candidate = self.fixture(root)
+            before = snapshot(checkout / 'data')
+            paths = ('data/health.json.national-next', 'data/health.json.national-previous',
+                     'data/services.national-next', 'data/services.national-previous',
+                     'data/sources/services.national-next', 'data/sources/services.national-previous',
+                     'data/health.json', 'data/services', 'data/services/index.json',
+                     'data/sources/services', 'data/sources/services/UT.json', 'data/sources', 'data')
+            for number, relative in enumerate(paths):
+                for existing_target in (False, True):
+                    with self.subTest(path=relative, existing_target=existing_target):
+                        path = checkout / relative
+                        original = root / 'held-output'
+                        if path.exists():
+                            path.rename(original)
+                        external = root / f'external-{number}-{existing_target}'
+                        if existing_target:
+                            external.write_bytes(b'external bytes must stay unchanged')
+                        path.symlink_to(external)
+                        attacked = snapshot(checkout / 'data') if relative != 'data' else snapshot(checkout)
+                        with patch('promote_services.tempfile.TemporaryDirectory', side_effect=AssertionError('preflight must precede scratch writes')):
+                            with self.assertRaisesRegex(ValueError, 'symlink|Symlink'):
+                                promote(candidate, BATCH, checkout)
+                        self.assertTrue(path.is_symlink())
+                        self.assertEqual(snapshot(checkout / 'data') if relative != 'data' else snapshot(checkout), attacked)
+                        if existing_target:
+                            self.assertEqual(external.read_bytes(), b'external bytes must stay unchanged')
+                        else:
+                            self.assertFalse(external.exists())
+                        path.unlink()
+                        if original.exists():
+                            original.rename(path)
+                        self.assertEqual(snapshot(checkout / 'data'), before)
+
+    def test_late_dangling_staging_link_is_rechecked_before_publication(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            checkout, candidate = self.fixture(root)
+            before = {p.relative_to(checkout): p.read_bytes() for p in (checkout / 'data').rglob('*') if p.is_file()}
+            external = root / 'external-health.json'
+            staged = checkout / 'data/health.json.national-next'
+            real_run = subprocess.run
+            def add_late_link(command, **kwargs):
+                result = real_run(command, **kwargs)
+                if len(command) > 1 and Path(command[1]).name == 'record_health.js':
+                    staged.symlink_to(external)
+                return result
+            with patch('promote_services.subprocess.run', side_effect=add_late_link):
+                with self.assertRaisesRegex(ValueError, 'symlink'):
+                    promote(candidate, BATCH, checkout)
+            self.assertTrue(staged.is_symlink())
+            self.assertFalse(external.exists())
+            staged.unlink()
+            after = {p.relative_to(checkout): p.read_bytes() for p in (checkout / 'data').rglob('*') if p.is_file()}
+            self.assertEqual(after, before)
+
     def test_incomplete_mismatched_cap_failed_and_regressed_candidates_keep_public_bytes(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); checkout, candidate = self.fixture(root)
