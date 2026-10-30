@@ -36,9 +36,12 @@ class RecheckTests(unittest.TestCase):
         self.reviews = {35347: self.review}
         self.baseline = check.capture_baselines(self.reviews, lambda u: page())
         self.baseline['captured_at'] = '2026-10-30T12:00:00Z'
+        self.clock = patch.object(check, 'utc_now', return_value=check.instant('2027-04-28T23:00:00Z'))
+        self.clock.start()
         check.load_checks.cache_clear()
 
     def tearDown(self):
+        self.clock.stop()
         check.load_checks.cache_clear()
 
     def test_semantic_snapshot_ignores_template_and_scripts_but_keeps_all_main_links_and_text(self):
@@ -58,7 +61,7 @@ class RecheckTests(unittest.TestCase):
                 check.snapshot(raw, self.review)
 
     def test_unchanged_check_extends_automated_window_but_not_human_review_date(self):
-        receipt = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2026-11-23T13:00:00Z')
+        receipt = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2026-11-23T13:00:00Z', now=check.instant('2026-11-23T13:00:00Z'))
         self.assertEqual(receipt['records'][0]['valid_until'], '2026-12-23')
         self.assertEqual(self.review['retrieved_at'], '2026-10-30')
         self.assertEqual(self.review['review_after'], '2026-11-29')
@@ -76,7 +79,7 @@ class RecheckTests(unittest.TestCase):
             raise TimeoutError('no response')
         getters.append(unavailable)
         for getter in getters:
-            receipt = check.run_checks(self.reviews, self.baseline, getter, '2026-11-01T13:00:00Z')
+            receipt = check.run_checks(self.reviews, self.baseline, getter, '2026-11-01T13:00:00Z', now=check.instant('2026-11-01T13:00:00Z'))
             row = receipt['records'][0]
             self.assertNotEqual(row['status'], 'unchanged')
             self.assertIsNone(row['valid_until'])
@@ -84,16 +87,16 @@ class RecheckTests(unittest.TestCase):
                 self.assertFalse(check.validation(self.review, date(2026, 11, 1)))
 
     def test_manual_hard_cap_and_baseline_evidence_pin(self):
-        receipt = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2027-04-27T12:00:00Z')
+        receipt = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2027-04-27T12:00:00Z', now=check.instant('2027-04-27T12:00:00Z'))
         self.assertEqual(receipt['records'][0]['valid_until'], '2027-04-28')
-        expired = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2027-04-28T12:00:00Z')
+        expired = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2027-04-28T12:00:00Z', now=check.instant('2027-04-28T12:00:00Z'))
         self.assertEqual(expired['records'][0]['status'], 'manual_review_due')
         self.reviews[35347]['review_after'] = '2027-01-01'
-        changed = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2026-11-23T13:00:00Z')
+        changed = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2026-11-23T13:00:00Z', now=check.instant('2026-11-23T13:00:00Z'))
         self.assertNotEqual(changed['records'][0]['status'], 'unchanged')
 
     def test_receipt_tampering_future_windows_duplicate_rows_and_dependency_changes_rejected(self):
-        receipt = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2026-11-23T13:00:00Z')
+        receipt = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2026-11-23T13:00:00Z', now=check.instant('2026-11-23T13:00:00Z'))
         with tempfile.TemporaryDirectory() as folder:
             b, c = Path(folder)/'baseline.json', Path(folder)/'checks.json'
             b.write_text(json.dumps(self.baseline))
@@ -141,6 +144,26 @@ class RecheckTests(unittest.TestCase):
                 evidence = next(e for e in p['fee_evidence_records'] if e.get('evidence_kind') == 'maintained_official_page_observation')
                 self.assertEqual(evidence['automated_check']['checked_at'], '2026-11-23T13:00:00Z')
                 self.assertEqual(evidence['retrieved_at'], '2026-10-30')
+
+    def test_future_same_day_receipts_and_baselines_rejected_by_full_utc_instant(self):
+        now = check.instant('2026-10-30T22:15:00Z')
+        for checked_at in ['2026-10-30T23:59:59Z', '2026-10-30T11:59:59Z']:
+            with self.assertRaises(ValueError):
+                check.run_checks(self.reviews, self.baseline, lambda u: page(), checked_at, now=now)
+        receipt = check.run_checks(self.reviews, self.baseline, lambda u: page(), '2026-10-30T22:00:00Z', now=now)
+        with tempfile.TemporaryDirectory() as folder:
+            b, c = Path(folder)/'baseline.json', Path(folder)/'checks.json'
+            with patch.object(check, 'BASELINES', b), patch.object(check, 'CHECKS', c), patch.object(check, 'PILOT', frozenset((35347,))):
+                bad_receipt = copy.deepcopy(receipt)
+                bad_receipt['checked_at'] = bad_receipt['records'][0]['checked_at'] = '2026-10-30T23:59:59Z'
+                b.write_text(json.dumps(self.baseline)); c.write_text(json.dumps(bad_receipt))
+                with self.assertRaises(ValueError): check.load_checks(now=now)
+                check.load_checks.cache_clear()
+                later_baseline = copy.deepcopy(self.baseline)
+                later_baseline['captured_at'] = '2026-10-30T22:01:00Z'
+                receipt['baseline_sha256'] = check.digest(later_baseline)
+                b.write_text(json.dumps(later_baseline)); c.write_text(json.dumps(receipt))
+                with self.assertRaises(ValueError): check.load_checks(now=now)
 
     def test_capture_default_destination_does_not_overwrite_receipts(self):
         with patch.object(check, 'load_reviews', return_value=self.reviews), patch.object(check, 'capture_baselines', return_value=self.baseline), patch.object(check, 'write') as writer:

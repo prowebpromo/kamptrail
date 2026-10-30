@@ -39,14 +39,22 @@ def text(value):
     return re.sub(r'\s+', ' ', value).strip()
 
 
+def utc_now():
+    return datetime.now(timezone.utc)
+
+
 def stamp():
-    return datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
+    return utc_now().isoformat(timespec='seconds').replace('+00:00', 'Z')
+
+
+def instant(value):
+    if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', value):
+        raise ValueError('Invalid automated check timestamp')
+    return datetime.fromisoformat(value.replace('Z', '+00:00'))
 
 
 def day(value):
-    if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', value):
-        raise ValueError('Invalid automated check timestamp')
-    return datetime.fromisoformat(value.replace('Z', '+00:00')).date()
+    return instant(value).date()
 
 
 def official_url(url):
@@ -170,8 +178,10 @@ def capture_baselines(reviews, getter=fetch):
     return result
 
 
-def run_checks(reviews, baseline, getter=fetch, checked_at=None):
+def run_checks(reviews, baseline, getter=fetch, checked_at=None, now=None):
     checked_at = checked_at or stamp()
+    if not instant(baseline['captured_at']) <= instant(checked_at) <= (now or utc_now()):
+        raise ValueError('Automated check must follow baseline capture and cannot be in the future')
     checked = day(checked_at)
     results, dependencies = [], {}
     for url, prior in baseline['dependencies'].items():
@@ -212,7 +222,7 @@ def run_checks(reviews, baseline, getter=fetch, checked_at=None):
 
 
 @lru_cache(maxsize=1)
-def load_checks():
+def load_checks(now=None):
     if not CHECKS.exists():
         return None
     baseline = json.loads(BASELINES.read_text())
@@ -224,8 +234,8 @@ def load_checks():
             {r['recareaid'] for r in checks['records']} != PILOT):
         raise ValueError('Invalid fee recheck receipt or baseline pin')
     checked = day(checks['checked_at'])
-    if checked < day(baseline['captured_at']):
-        raise ValueError('Fee receipt predates its approved baseline')
+    if not instant(baseline['captured_at']) <= instant(checks['checked_at']) <= (now or utc_now()):
+        raise ValueError('Fee receipt predates its approved baseline or is in the future')
     for page in [r['page'] for r in baseline['records']] + list(baseline['dependencies'].values()):
         if page['semantic_sha256'] != digest({k: page[k] for k in ('title', 'text', 'links')}):
             raise ValueError('Baseline snapshot content does not match its semantic hash')
