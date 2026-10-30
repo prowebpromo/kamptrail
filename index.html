@@ -11,8 +11,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.17.0">
-  <link rel="manifest" href="manifest.json?v=2.17.0">
+  <meta name="kamptrail-version" content="2.18.0">
+  <link rel="manifest" href="manifest.json?v=2.18.0">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
   <link rel="canonical" href="https://prowebpromo.github.io/kamptrail/">
@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.Default.css">
-  <link rel="stylesheet" href="app.css?v=2.17.0">
+  <link rel="stylesheet" href="app.css?v=2.18.0">
   <script src="vendor/leaflet/leaflet.js"></script>
   <script src="vendor/markercluster/leaflet.markercluster.js"></script>
 </head>
@@ -64,7 +64,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.17.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.18.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -78,15 +78,27 @@
     <p>Coverage varies by state and is incomplete. A missing campsite does not mean camping is prohibited. A public land location does not establish permission to camp.</p>
     <p>“Reported free” means the source says camping has no fee. Free water, showers, parking, or day use do not count. “Free with conditions” means camping is free only in some seasons, for some sites, or with a pass or permit. “Fee unknown” means no reliable camping fee was supplied. It does not mean free. Being reservable on Recreation.gov, or a note to check Recreation.gov, is not treated as fee evidence. Confirm fees, access, seasonal closures, and reservations with the operator.</p>
     <p>Some Forest Service camping opportunities are secondary activities rather than the main map category. KampTrail includes them only with evidence of on-site camping. Administrative offices, trail access alone and broad multi-area pointers are excluded. Agency points are checked against Census state boundaries; ambiguous or invalid locations are held for review rather than assigned to the nearest town.</p>
-    <p>Follow current posted limits and closures, use established sites where required, pack out trash, and follow local fire restrictions. Source listings do not replace the land manager’s rules.</p>
+    <details id="kt-camping-care" class="kt-camping-care">
+      <summary>Camping care checklist</summary>
+      <ul>
+        <li><strong>Check local rules.</strong> Confirm camping permission, closures, fire restrictions, vehicle routes and waste instructions with the land manager. Map ownership does not grant permission.</li>
+        <li><strong>Choose durable ground.</strong> Use established campsites where allowed. Keep vehicles on authorized routes and avoid making new tracks.</li>
+        <li><strong>Take your litter.</strong> Remove trash, food scraps and pet waste when you leave.</li>
+        <li><strong>Use waste facilities.</strong> Use toilets and approved RV waste facilities. Follow the site's human-waste requirements.</li>
+        <li><strong>Prevent fire damage.</strong> Check current restrictions before using fires or stoves. Fully extinguish permitted fires before leaving.</li>
+        <li><strong>Share the outdoors.</strong> Give wildlife space, secure food and keep noise down for other campers.</li>
+      </ul>
+      <p class="kt-fine">Guidance: <a href="https://www.blm.gov/programs/recreation/camping" target="_blank" rel="noopener noreferrer">BLM camping</a> · <a href="https://www.fs.usda.gov/visit/know-before-you-go/camping" target="_blank" rel="noopener noreferrer">USFS camping</a> · <a href="https://lnt.org/why/7-principles/" target="_blank" rel="noopener noreferrer">Leave No Trace</a>. Sources checked <time datetime="2026-10-30">October 30, 2026</time>. General guidance, not a current site inspection.</p>
+    </details>
     <h3>Public land, weather, and services</h3>
     <p>The public land layer and land manager lookup use the BLM Surface Management Agency map. Boundaries can be approximate and do not grant permission to camp. Posted signs and local orders take priority.</p>
     <p>Fire perimeters come from NIFC; satellite smoke plume polygons come from NOAA HMS. Layers load only when enabled and zoomed in. Each feature shows its source date and retrieval time. Smoke plumes do not measure ground-level air quality or AQI. Perimeters are incomplete and are not evacuation boundaries or closures. Weather alerts are checked on demand at a coordinate using the National Weather Service. This is not an emergency notification service. Dynamic fire, smoke and alert data require a connection and are hidden offline. Check local authorities, land-manager restrictions and posted signs before travel.</p>
     <p>Approximate terrain elevation filters use dated USGS 3DEP interpolated samples at catalogue coordinates. Their retrieval date is not a terrain acquisition date, and grid resolution does not guarantee point accuracy. Missing or coordinate-mismatched samples stay unknown and do not satisfy elevation bounds. Elevation does not establish road grade, clearance or RV suitability. Validated state samples can remain available offline with their source date.</p>
     <p>Forecast filters use published NOAA/NWS NDFD temperature samples over the next 24 or 48 hours. Bounds apply to every published sample, at the displayed cadence of up to three hours; they are not continuous or daily temperature extremes. The NDFD file modification time is not each location’s forecast issuance. Missing, incomplete, expired and offline samples are excluded. Weather stays separate from saved terrain evidence.</p>
     <p>On-demand forecasts and the separate forecast-grid elevation display come from the National Weather Service and cover US locations only. These are separate from the campsite terrain samples. Topo and satellite basemaps come from the USGS National Map.</p>
-    <p>Service discovery uses OpenStreetMap tags for dump stations, water fill points, LPG, showers, laundry, groceries and fuel. Expanded category coverage starts with Utah; other areas retain older dump, water and LPG records. Each point shows source dates and access evidence. Opening, RV access, cylinder refills and overnight permission are unverified. No loaded matches may reflect incomplete coverage. Visited, validated service areas can be read offline with source dates; uncached areas stay unknown.</p>
+    <p>Service discovery uses OpenStreetMap tags for dump stations, water fill points, LPG, showers, laundry, groceries and fuel. Coverage depends on the imported, dated sources shown with loaded results and remains incomplete. Each point shows source dates and access evidence. Opening, RV access, cylinder refills and overnight permission are unverified. No loaded matches may reflect incomplete coverage. Visited, validated service areas can be read offline with source dates; uncached areas stay unknown.</p>
     <p>The optional official rest-area layer begins with TxDOT's Texas location list. Travel information centers are excluded from this pilot. Each point links to its source and download date. The separately sourced 24-hour visitor stay limit is duration context, not permission to sleep overnight. Current opening, available spaces and overnight permission remain unknown. Other states have no coverage in this layer yet. Saved rest-area stops retain dated source context; reconnect to check current permission.</p>
+    <p>The optional Rhode Island height-tag pilot shows dated OpenStreetMap highway geometry and original height tags. General/legal and physical values stay separate; missing, nonnumeric, conditional, direction-specific and lane-specific limits remain unknown or uninterpreted. These are incomplete, uninspected source statements. This layer does not match hazards to your route, compare your rig or enforce avoidance. Check current signs and operators. A validated saved snapshot can remain available with its original dates.</p>
     <p>RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means one campsite reports your length and every hookup you chose. Different sites in the same campground are never combined. Road routes, drive times and requested detour estimates use the FOSSGIS OSRM car router. They are not checked for RV height, weight, length or current road conditions. Along-route discovery searches near the road geometry and applies the same reported-data filters as the map. Approximate distance from the line is separate from a driving detour.</p>
     <p>Offline maps save USGS Topo tiles for an area you choose. The standard map is not saved, because OpenStreetMap's tile policy does not allow bulk downloads.</p>
     <h3>Corrections</h3>
@@ -117,26 +129,27 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden>Loading…</div>
   <noscript>KampTrail needs JavaScript to display its interactive map.</noscript>
-  <script src="share.js?v=2.17.0"></script>
-  <script src="spot-info.js?v=2.17.0"></script>
-  <script src="community-discovery.js?v=2.17.0"></script>
-  <script src="data-quality.js?v=2.17.0"></script>
-  <script src="forecast.js?v=2.17.0"></script>
-  <script src="services.js?v=2.17.0"></script>
-  <script src="data-loader.js?v=2.17.0"></script>
-  <script src="filters.js?v=2.17.0"></script>
-  <script src="rig-profile.js?v=2.17.0"></script>
-  <script src="routes.js?v=2.17.0"></script>
-  <script src="route-elevation.js?v=2.17.0"></script>
-  <script src="trip-planner.js?v=2.17.0"></script>
-  <script src="mvum.js?v=2.17.0"></script>
-  <script src="environment.js?v=2.17.0"></script>
-  <script src="layers.js?v=2.17.0"></script>
-  <script src="offline-maps.js?v=2.17.0"></script>
-  <script src="contributions.js?v=2.17.0"></script>
-  <script src="community.js?v=2.17.0"></script>
-  <script src="permissions.js?v=2.17.0"></script>
-  <script src="rest-areas.js?v=2.17.0"></script>
-  <script src="app.js?v=2.17.0"></script>
+  <script src="share.js?v=2.18.0"></script>
+  <script src="spot-info.js?v=2.18.0"></script>
+  <script src="community-discovery.js?v=2.18.0"></script>
+  <script src="data-quality.js?v=2.18.0"></script>
+  <script src="forecast.js?v=2.18.0"></script>
+  <script src="services.js?v=2.18.0"></script>
+  <script src="data-loader.js?v=2.18.0"></script>
+  <script src="filters.js?v=2.18.0"></script>
+  <script src="rig-profile.js?v=2.18.0"></script>
+  <script src="routes.js?v=2.18.0"></script>
+  <script src="route-elevation.js?v=2.18.0"></script>
+  <script src="trip-planner.js?v=2.18.0"></script>
+  <script src="mvum.js?v=2.18.0"></script>
+  <script src="environment.js?v=2.18.0"></script>
+  <script src="layers.js?v=2.18.0"></script>
+  <script src="offline-maps.js?v=2.18.0"></script>
+  <script src="contributions.js?v=2.18.0"></script>
+  <script src="community.js?v=2.18.0"></script>
+  <script src="permissions.js?v=2.18.0"></script>
+  <script src="rest-areas.js?v=2.18.0"></script>
+  <script src="clearances.js?v=2.18.0"></script>
+  <script src="app.js?v=2.18.0"></script>
 </body>
 </html>

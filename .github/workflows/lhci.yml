@@ -10,7 +10,7 @@ jobs:
       # Node present (good practice, some actions assume it)
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       # Serve the repo as a static site on :8080
       - name: Start static server
@@ -28,7 +28,6 @@ jobs:
           temporaryPublicStorage: true
           uploadArtifacts: true
           runs: 1
-          # Keep these soft (warn) so the run is green unless scores crater
-          assertions: |
-            categories:pwa: warn
-            categories:performance: warn
+          # The existing score policy lives in the supported LHCI config.
+          # Its warning findings are reported without creating a hard score gate.
+          configPath: .lighthouserc.json

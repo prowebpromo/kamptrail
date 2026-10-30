@@ -1,0 +1,39 @@
+# National services: immutable artifacts to a review branch
+
+This manual tooling creates a proposed data branch after a complete staging run. It does not open a pull request, merge, deploy or advance production. The separate parent workflow opens the review PR and requires regression, browser, PHP/MySQL, package and Lighthouse checks before any merge.
+
+The accepted source workflow is `.github/workflows/stage-national-services.yml`, workflow ID `402051348`, in `prowebpromo/kamptrail` only. The accepted source code head is exactly `369efee3ed2f2b81ce867f269ff08bad523c039b`, on main. A caller must supply an explicit canonical positive run ID. Only a completed successful manual dispatch is accepted. A queued, running, failed, cancelled, fork, different-head, schedule or partial source run fails before tracked data or a remote ref changes.
+
+## Permissions and immutable proof
+
+`contents:write` is the sole write permission. `actions:read` is also required because the native GitHub actions must read another workflow run's artifacts. There is no PR-write permission or new secret. Native `github-script`, checkout credentials and `download-artifact` use the existing `github.token`; the Python helper never reads, prints or implements token handling.
+
+The plan binds every selected artifact's immutable ID, name, native ZIP SHA-256, byte size, run ID, repository IDs and exact source head. It requires all 50 unique state artifact names and the complete candidate for that run attempt. Older complete-candidate artifacts from the same run may exist but are not selected. Unexpected names, duplicate identities, expired artifacts and incomplete listings fail. More than 100 listed artifacts requires a separately reviewed retrieval plan.
+
+The native managed API first obtains the ZIP bytes and hard-checks their GitHub-provided SHA-256 and size. This extra check is deliberate: the download action's digest warning alone is not sufficient fail-closed proof. The helper verifies ZIP hashes again, CRCs, unique safe member paths, regular files and extraction limits before any native action extraction. The native `download-artifact` then downloads the exact selected IDs using the explicit run ID and this repository. Every extracted file is compared with the verified immutable ZIP bytes.
+
+Bounds: 128 MiB per ZIP, 512 MiB total ZIP bytes, 1 GiB total extracted bytes, 64 MiB per JSON file and 5,000 members per artifact. A 45-minute job and bounded subprocess calls constrain execution. These proof-transfer limits do not relax any producer or browser delivery ceiling. Raw PBFs, ZIPs and native API metadata remain in runner scratch and are never committed.
+
+## All-state validation and ordinary build
+
+All 50 state checkpoints must share `<run ID>-369efee3ed2f2b81ce867f269ff08bad523c039b` and registry SHA-256 `7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee`. Full canonical source, report and receipt hashes are verified again. Native source URL/date/parser proof, exact OSM identities, positive category predicates, all seven category counts, quarantine reasons, linked samples and runtime/resource bounds must agree. Each state is checked against the currently accepted source's existing date-regression and 30% loss guards. No shrink bypass is exposed.
+
+The helper requires the reviewed source/cap code to remain byte-identical to the accepted source head. Aggregation additionally accepts the reviewed PR #99 handoff implementation at `b2f29826ab013e7f245aee4c53c88142a2d2b08c`; its source/checkpoint proof directories and `source_files` hashes are additive. The helper reruns complete aggregation against current accepted evidence and compares the stable core receipt, every delivery asset, manifest hash and snapshot to the immutable candidate. Added source/checkpoint handoff files must match completely when present. The actual older `369efee` run's receipt without those additive files remains supported. If intervening accepted evidence changes the result, the candidate is refused for fresh review. A partial candidate cannot be labeled national.
+
+All intended source/document outputs, existing services files and every existing parent directory are inspected with `lstat` before validation and again before tracked writes. Symlinks, including dangling output links, nonregular paths and paths resolving outside the checkout are refused. Only after all checks does the helper copy the 50 canonical JSON files and invoke the ordinary services builder. Canonical legacy evidence is retained byte-for-byte. The builder keeps the new current generation plus up to two predecessors; predecessor selection uses manifest source dates instead of arbitrary runner checkout mtimes. The resulting manifest must still exactly match the independently rebuilt candidate. Existing limits remain 1 MiB manifest, 4,096 shards, one million identities, 512 KiB and 1,500 rows per shard.
+
+The branch adds `docs/SERVICES_NATIONAL_<run ID>.json` and `.md` with actual per-state source dates, category/quarantine counts, runtime/resource measurements, samples, hashes, measured aggregate size and snapshot. No count or national readiness is claimed by this tooling before it successfully runs.
+
+## Branch and rerun behavior
+
+The only destination is `data/services-national-<run ID>`, based on the current main SHA. `main` and `hostinger` are refused destinations. Main is checked immediately before and after branch creation and again before an existing-branch no-op handoff. The push uses an empty expected-ref lease, an atomic create-only condition: even a branch created by someone else during validation cannot be overwritten. The main checks and branch creation are separate operations, not a joint atomic transaction. If main moves after the push, the helper reports that the existing new branch is **not ready** and fails without overwriting or deleting it.
+
+An existing branch is a no-op only when its complete tree, single parent, exact helper message and public proof match the freshly validated proposal. Any user change, changed base, changed artifact, amended branch or branch race stops the operation. There is no automatic overwrite, force reset, merge or deployment. Updating such an existing PR requires explicit human/parent review instead of silently replacing its changes.
+
+No workflow dispatch, source promotion or remote branch mutation is part of preparing this tooling change. A later authorized manual dispatch of **Prepare national services review branch** supplies the successful source run ID. The parent then opens the PR through the GitHub connector and reviews exact input/output evidence and checks.
+
+## Preparation checks
+
+Against main `b2f29826ab013e7f245aee4c53c88142a2d2b08c`, all 15 focused helper/workflow tests passed. Coverage includes exact repository/head/run binding, missing/cross-run artifacts, immutable ZIP hashes/CRC/path/budget checks, native-file equality, accepted-source date/loss guards, a complete synthetic 50-state ordinary rebuild, old/new aggregate proof compatibility, corrupted candidate rejection, nine output/parent symlink cases, conditional branch-creation races, unchanged-branch no-op and main changes before/after push. Synthetic fixtures establish orchestration behavior only and provide no real national source proof.
+
+Full local Node checks passed: 230 tests, 184 passed and 46 PHP-dependent skips. Full Python checks passed: 205 tests with seven optional skips. The ordinary release build, actual reviewed-code hash check, output-path preflight and diff check passed. No browser attempt was repeated for this Python/workflow-only change. Real source promotion remains unperformed, and normal GitHub release checks remain required before this tooling PR can merge.

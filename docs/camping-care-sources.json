@@ -1,0 +1,44 @@
+{
+  "checked_on": "2026-10-30",
+  "scope": "Original compact camping-care checklist synthesized from primary guidance. It is not a reproduction of the formal Leave No Trace principles, a universal rule set, or a site inspection. Local camping, fire, vehicle and waste requirements must be checked separately.",
+  "sources": [
+    {
+      "name": "blm",
+      "url": "https://www.blm.gov/programs/recreation/camping",
+      "final_url": "https://www.blm.gov/programs/recreation/camping",
+      "status": 200,
+      "bytes": 182330,
+      "retrieved_at": "2026-10-30T17:38:03.062016+00:00",
+      "sha256": "be5d630f8a298c7ffa19785f77ccdb31aea38704ed5a0eb7ee33e4a69860944a"
+    },
+    {
+      "name": "lnt",
+      "url": "https://lnt.org/why/7-principles/",
+      "final_url": "https://lnt.org/why/7-principles/",
+      "status": 200,
+      "bytes": 177282,
+      "retrieved_at": "2026-10-30T17:38:03.342658+00:00",
+      "sha256": "c6361fed35338dd131294218627b9b381d0eb0dda3fe4cb83a6d777a18680d43"
+    },
+    {
+      "name": "usfs",
+      "url": "https://www.fs.usda.gov/visit/know-before-you-go/camping",
+      "final_url": "https://www.fs.usda.gov/visit/know-before-you-go/camping",
+      "status": 200,
+      "bytes": 67749,
+      "retrieved_at": "2026-10-30T17:38:03.409869+00:00",
+      "sha256": "421b261afad1afe08ef90dd74fe37f35ae3b39b9cc4d292415f29ef6fba94bfe"
+    }
+  ],
+  "support": {
+    "local_rules_vehicles_existing_sites_fire_human_waste": [
+      "blm"
+    ],
+    "trash_food_scraps_pet_waste_durable_ground_wildlife_other_visitors": [
+      "lnt"
+    ],
+    "local_alerts_fire_food_storage_wildlife_trash": [
+      "usfs"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 /* Dated OSM service discovery. Map, nearby and routes share validation and access rules. */
 (function (root) {
   'use strict';
-  const VERSION = '2.17.0';
+  const VERSION = '2.18.0';
   const categories = Object.freeze({
     dump: {label: 'Dump station', letter: 'D', color: '#6b3fa0'},
     water: {label: 'Water fill', letter: 'W', color: '#1f6fb2'},
@@ -88,6 +88,19 @@
     parts.push('Hours, RV access and overnight permission are not verified. Location may not be an entrance.');
     return parts.join(' · ');
   }
+  function coverageSummary(coverage) {
+    const extracts=coverage.filter(c=>c.kind==='geofabrik');
+    const retrieved=c=>c.retrieved_at?c.retrieved_at.slice(0,10):'date unknown';
+    const parts=[];
+    if(extracts.length<=3)parts.push(...extracts.map(c=>`${c.region} extract retrieved ${retrieved(c)}`));
+    else {
+      const dates=extracts.map(retrieved).sort(),first=dates[0],last=dates.at(-1);
+      parts.push(`${extracts.length} state extracts, retrieved ${first}${first===last?'':' to '+last}`);
+    }
+    const legacy=coverage.find(c=>c.kind==='legacy');
+    if(legacy)parts.push(`Legacy dump/water/LPG ${retrieved(legacy)}`);
+    return parts.join('; ');
+  }
   function feature(item,manifest) {
     const source=manifest?.coverage?.find(c=>c.region===item.source_region);
     return {type:'Feature',geometry:{type:'Point',coordinates:[...item.coordinates]},properties:{id:item.id,name:item.name||item.categories.map(k=>categories[k].label).join(', '),type:'service',service_categories:[...item.categories],service_access:item.tags?.access||'unknown',service_source_region:item.source_region,service_evidence:describe(item,manifest),service_retrieved_at:item.retrieved_at||source?.retrieved_at||null,service_extract_timestamp:source?.extract_timestamp||null,fee_status:'unknown',amenities:[],rig_friendly:[]}};
@@ -143,7 +156,7 @@
       const saved=await cached(url);if(saved){try{const data=await read(saved.text);ensure(signal);remember(key,data,s.bytes,saved.text);await save(url,saved.text,s.sha256,true);return data;}catch(error){if(error.name==='AbortError')throw error;}}
       if(offline)throw new Error('Area is not saved offline');const text=await fetchText(url,LIMIT.shard,signal),data=await read(text);ensure(signal);remember(key,data,s.bytes,text);await save(url,text,s.sha256,true);return data;
     }
-    function status(result){const dates=result.coverage.map(c=>`${c.region==='legacy'?'Legacy dump/water/LPG':c.region+' expanded'} ${c.retrieved_at?c.retrieved_at.slice(0,10):'date unknown'}`).join('; ');const prefix=result.offline?'Saved dated evidence (offline/fallback). ':'';result.message=`${prefix}${result.partial?'Partial results: '+result.missing.length+' areas missing or outside the loading budget; missing areas are unknown. ':result.items.length?'Results in loaded source coverage. ':'None in the loaded source coverage. '}Coverage: ${dates}. Expanded seven-category coverage is bounded to imported regions; other areas retain legacy evidence only. Areas outside those sources are unknown. Hours, RV access and overnight permission are not verified.`;lastStatus=result;return result;}
+    function status(result){const prefix=result.offline?'Saved dated evidence (offline/fallback). ':'';result.message=`${prefix}${result.partial?'Partial results: '+result.missing.length+' areas missing or outside the loading budget; missing areas are unknown. ':result.items.length?'Results in loaded source coverage. ':'None in the loaded source coverage. '}Coverage: ${coverageSummary(result.coverage)}. Source coverage is incomplete; unloaded and uncovered areas are unknown. Hours, RV access and overnight permission are not verified.`;lastStatus=result;return result;}
     async function load(select,accept,options={}){const {signal,force=false,onProgress}=options;ensure(signal);const selected=options.categories===undefined?getCategories():KEYS.filter(k=>options.categories.includes(k));if(!selected.length)return {items:[],partial:false,offline:env.navigator?.onLine===false,missing:[],coverage:[],message:'No service categories selected.',manifest:current?.manifest||null};const record=await waitFor(manifest(force),signal);ensure(signal);const m=record.manifest,candidates=m.shards.filter(s=>select(s.bbox)&&selected.some(k=>(s.counts[k]||0)>0));const maxShards=Number.isFinite(options.maxShards)?Math.max(0,Math.min(128,Math.floor(options.maxShards))):16,maxBytes=Number.isFinite(options.maxBytes)?Math.max(0,Math.min(LIMIT.cacheBytes,options.maxBytes)):8*1024*1024;let total=0;const chosen=[],missing=[];for(const s of candidates){if(chosen.length>=maxShards||total+s.bytes>maxBytes){missing.push(s.id);continue;}chosen.push(s);total+=s.bytes;}const items=[],ids=new Set();let next=0,done=0;
       async function worker(){while(next<chosen.length){ensure(signal);const s=chosen[next++];try{const data=await shard(s,m,record.offline,signal);ensure(signal);for(const item of data.items)if(!ids.has(item.id)&&matches(item,selected,options.includeRestricted===true)&&accept(item.coordinates)){ids.add(item.id);items.push(item);}}catch(error){if(signal?.aborted)throw abort();missing.push(s.id);}done++;onProgress?.({loaded:done,total:chosen.length,missing:missing.length});}}
       await Promise.all([worker(),worker()]);ensure(signal);return status({items,partial:missing.length>0,offline:record.offline,missing,coverage:m.coverage,manifest:m});

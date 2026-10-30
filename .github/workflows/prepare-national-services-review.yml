@@ -1,0 +1,88 @@
+name: Prepare national services review branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: 'Explicit successful reviewed 50-state staging run ID'
+        type: string
+        required: true
+
+# The sole write scope creates a data review branch. Cross-run artifacts require
+# actions:read. There are no new secrets, PR writes, merges or deployments.
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: kamptrail-national-services-review
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.repository == 'prowebpromo/kamptrail' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Read bounded metadata using the native GitHub client
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require('node:fs'), path = require('node:path');
+            const id = process.env.SOURCE_RUN_ID;
+            if (!/^[1-9][0-9]{0,15}$/.test(id) || !Number.isSafeInteger(Number(id))) throw new Error('Invalid source run ID');
+            const parameters = {...context.repo, run_id: Number(id), request: {timeout: 90000}};
+            const run = (await github.rest.actions.getWorkflowRun(parameters)).data;
+            const artifacts = (await github.rest.actions.listWorkflowRunArtifacts({...parameters, per_page: 100})).data;
+            if (artifacts.total_count > 100) throw new Error('Artifact listing exceeds review bound');
+            const root = path.join(process.env.RUNNER_TEMP, 'services-review-metadata');
+            fs.mkdirSync(root);
+            fs.writeFileSync(path.join(root, 'run.json'), JSON.stringify(run), {flag: 'wx'});
+            fs.writeFileSync(path.join(root, 'artifacts.json'), JSON.stringify(artifacts), {flag: 'wx'});
+      - name: Bind all immutable artifact IDs to the exact reviewed successful run
+        id: plan
+        run: python scripts/prepare_services_review.py plan --run-id "$SOURCE_RUN_ID" --metadata "$RUNNER_TEMP/services-review-metadata" --output "$RUNNER_TEMP/services-review-plan.json"
+      - name: Obtain hard ZIP digest proof through the native GitHub client
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require('node:fs'), path = require('node:path'), crypto = require('node:crypto');
+            const plan = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'services-review-plan.json')));
+            const destination = path.join(process.env.RUNNER_TEMP, 'services-review-zips');
+            fs.mkdirSync(destination);
+            let total = 0;
+            for (const artifact of plan.artifacts) {
+              const response = await github.rest.actions.downloadArtifact({...context.repo, artifact_id: artifact.id, archive_format: 'zip', request: {timeout: 90000}});
+              const bytes = Buffer.from(response.data);
+              total += bytes.length;
+              const hash = 'sha256:' + crypto.createHash('sha256').update(bytes).digest('hex');
+              if (bytes.length !== artifact.size_in_bytes || bytes.length > 128 * 1024 ** 2 || total > 512 * 1024 ** 2 || hash !== artifact.digest) throw new Error('Immutable artifact ZIP digest/size mismatch');
+              fs.writeFileSync(path.join(destination, artifact.id + '.zip'), bytes, {flag: 'wx'});
+            }
+      - name: Verify ZIP CRCs, safe members and extraction limits before native download
+        run: python scripts/prepare_services_review.py check-zips --plan "$RUNNER_TEMP/services-review-plan.json" --archives "$RUNNER_TEMP/services-review-zips" --destination "$RUNNER_TEMP/services-review-verified"
+      - name: Download those immutable artifacts from this explicit same-repository run
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          artifact-ids: ${{ steps.plan.outputs.artifact_ids }}
+          run-id: ${{ steps.plan.outputs.run_id }}
+          repository: ${{ github.repository }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/services-review-downloads
+          merge-multiple: false
+      - name: Recheck full source proof and create only the conditional data review branch
+        run: python scripts/prepare_services_review.py prepare --plan "$RUNNER_TEMP/services-review-plan.json" --verified "$RUNNER_TEMP/services-review-verified" --downloaded "$RUNNER_TEMP/services-review-downloads"
