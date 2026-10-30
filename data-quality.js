@@ -216,8 +216,8 @@
     return {type:'FeatureCollection',features: options.includeUnverified ? features : features.filter(f => f.properties.camping_classification === 'campsite')};
   }
   const RIDB_AMENITY_URL='https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip';
-  const RIDB_AMENITY_KEYS=['toilet','drinking_water','shower','dump','picnic_table'];
-  const RIDB_AMENITY_QUALIFIERS={toilet:['seasonal','accessible'],drinking_water:['peak_season','hand_pump','accessible'],shower:['seasonal','coin','accessible','outdoor'],dump:[],picnic_table:[]};
+  const RIDB_AMENITY_KEYS=['toilet','drinking_water','shower','dump','picnic_table','fire_fixture','grill','trash_collection','food_locker','tent_pad','grill_or_fire_ring'];
+  const RIDB_AMENITY_QUALIFIERS={toilet:['seasonal','accessible'],drinking_water:['peak_season','hand_pump','accessible'],shower:['seasonal','coin','accessible','outdoor'],dump:[],picnic_table:[],fire_fixture:[],grill:['accessible'],trash_collection:[],food_locker:[],tent_pad:[],grill_or_fire_ring:[]};
   const object=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
   const checkedAmenityPayloads=new WeakSet();
   const trustedAmenityAttachments=new WeakSet();
@@ -247,7 +247,7 @@
     const entries=Object.entries(data.facilities),count=n=>Number.isSafeInteger(n)&&n>=0&&n<=1000000;
     if(entries.length>3000)return false;
     for(const [fid,r] of entries){
-      if(!/^[1-9][0-9]*$/.test(fid)||!object(r)||!count(r.sites)||!object(r.amenities)||Object.keys(r.amenities).length>5)return false;
+      if(!/^[1-9][0-9]*$/.test(fid)||!object(r)||!count(r.sites)||!object(r.amenities)||Object.keys(r.amenities).length>RIDB_AMENITY_KEYS.length)return false;
       for(const [key,g] of Object.entries(r.amenities)){
         if(!RIDB_AMENITY_KEYS.includes(key)||!object(g)||!object(g.qualifiers))return false;
         const ns=['reported','negative','unknown','conflict'].map(k=>g[k]);
@@ -407,6 +407,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.19.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.20.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

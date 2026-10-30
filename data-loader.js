@@ -244,9 +244,11 @@
   function ridbAmenitiesText(p){
     const data=p.ridb_amenity_evidence;
     if(!DataQuality.validRIDBAmenities(data))return DataQuality.ridbFacilityIds(p).length?'<div class="kt-fine">'+esc(t('Recreation.gov campsite amenity evidence unavailable.'))+'</div>':'';
-    const labels={toilet:t("Toilets"),drinking_water:t("Drinking water"),shower:t("Showers"),dump:t("Dump station"),picnic_table:t("Picnic tables")};
+    const labels={toilet:t("Toilets"),drinking_water:t("Drinking water"),shower:t("Showers"),dump:t("Dump station"),picnic_table:t("Picnic tables"),fire_fixture:t("Fire pits or rings"),grill:t("Grills"),trash_collection:t("Trash collection"),food_locker:t("Food lockers"),tent_pad:t("Tent pads"),grill_or_fire_ring:t("Grill or fire ring (source field: “Grills/Fire Ring”)")};
     const qualifiers={seasonal:t("seasonal"),peak_season:t("peak season"),coin:t("coin operated"),hand_pump:t("hand pump"),accessible:t("accessible feature"),outdoor:t("outdoor")};
     const groups=Object.values(data.facilities).map(r=>r.amenities),notes=[t("Counts describe records, not fixtures or every campsite. Missing fields and current availability are unknown.")];
+    if(groups.some(g=>g.fire_fixture?.reported||g.grill_or_fire_ring?.reported))notes.push(t("A fire fixture does not establish permission to have a fire."));
+    if(groups.some(g=>g.grill_or_fire_ring?.reported))notes.push(t("Quoted field name is in the original source language; it does not establish both features."));
     if(groups.some(g=>g.drinking_water?.reported))notes.push(t("Drinking water does not establish RV filling access."));
     if(groups.some(g=>g.dump?.reported))notes.push(t("Dump access and prices are unknown."));
     if(groups.some(g=>g.shower?.qualifiers.coin))notes.push(t("Coin qualifiers concern showers only."));
@@ -430,7 +432,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.19.0',
+    version:'2.20.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){

@@ -4,7 +4,7 @@
     "name": "Recreation.gov RIDB full export",
     "url": "https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip",
     "sha256": "13afd4dc1d1dec6885c2299bb4d939eb554e97ab32fc6bcd715b9ef4d9618e01",
-    "inspected_at": "2026-10-30T17:27:44.671147+00:00",
+    "inspected_at": "2026-10-30T20:00:32.987367+00:00",
     "original_retrieved_at": "2026-10-30T16:33:49.112988+00:00",
     "attribute_updated_at": null,
     "archive_entry_time": "2026-10-29T18:45:44",
@@ -71,6 +71,56 @@
       "unknown": 3,
       "conflict": 0,
       "facility_ids_reporting": 36,
+      "qualifiers": {}
+    },
+    "fire_fixture": {
+      "reported": 28676,
+      "negative": 0,
+      "unknown": 0,
+      "conflict": 1,
+      "facility_ids_reporting": 838,
+      "qualifiers": {}
+    },
+    "grill": {
+      "reported": 15591,
+      "negative": 1,
+      "unknown": 0,
+      "conflict": 0,
+      "facility_ids_reporting": 548,
+      "qualifiers": {
+        "accessible": 323
+      }
+    },
+    "trash_collection": {
+      "reported": 1069,
+      "negative": 0,
+      "unknown": 0,
+      "conflict": 0,
+      "facility_ids_reporting": 46,
+      "qualifiers": {}
+    },
+    "food_locker": {
+      "reported": 4270,
+      "negative": 0,
+      "unknown": 0,
+      "conflict": 0,
+      "facility_ids_reporting": 142,
+      "qualifiers": {}
+    },
+    "tent_pad": {
+      "reported": 8579,
+      "negative": 10,
+      "unknown": 0,
+      "conflict": 0,
+      "facility_ids_reporting": 283,
+      "qualifiers": {}
+    },
+    "grill_or_fire_ring": {
+      "reported": 471,
+      "negative": 0,
+      "unknown": 0,
+      "conflict": 0,
+      "facility_ids_reporting": 67,
       "qualifiers": {}
     },
     "picnic_table": {
