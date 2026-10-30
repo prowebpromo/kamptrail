@@ -86,3 +86,10 @@ test('worker preserves validated terrain cache and leaves terrain responses to t
  const w=worker(),name='kamptrail:https://example.test/kamptrail/:elevation-v1';await w.caches.open(name);let done;w.handlers.activate({waitUntil:p=>done=p});await done;assert.equal(w.stores.has(name),true);
  for(const tail of ['index.json','snapshots/'+ 'a'.repeat(24)+'/NY.json']){let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/campsites/elevation/'+tail),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false);}
 });
+
+test('new service snapshots bypass generic caching and validated service cache survives an app upgrade',async()=>{
+ const w=worker(),name='kamptrail:https://example.test/kamptrail/:services-v2';await w.caches.open(name);let done;w.handlers.activate({waitUntil:p=>done=p});await done;assert.equal(w.stores.has(name),true);
+ for(const path of ['index.json','snapshots/'+ 'a'.repeat(24)+'/n40w112.json','unexpected.json']){
+  let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/services/'+path),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false,path);
+ }
+});

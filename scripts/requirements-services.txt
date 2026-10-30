@@ -1,0 +1,6 @@
+# Optional native importer only. Official PyPI osmium 4.3.2, no transitive install.
+# CPython 3.12 Linux x86_64 wheel and upstream source distribution hashes.
+# Install: python3 -m pip install --no-deps --require-hashes -r scripts/requirements-services.txt
+osmium==4.3.2 \
+    --hash=sha256:604a3145aa755790b91e3eefac7ddbb74d31f188fddbbbb988877cba50e88eb7 \
+    --hash=sha256:bea7aa809d41659ad29c7b4627ce7e1af4d420d03db45b3a4211cb6192b6926f

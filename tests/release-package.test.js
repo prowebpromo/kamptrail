@@ -33,8 +33,13 @@ test('built release contains agency index dependencies and supports a custom-dom
     assert.ok(fs.existsSync(path.join(out,url)),`Missing page dependency: ${url}`);
   }
   // The contributions API ships its public entry points and private helpers, never configuration.
-  for(const file of ['forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
+  for(const file of ['services.js','data/services/index.json','forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
     assert.ok(fs.existsSync(path.join(out,file)),`Missing API file: ${file}`);
+  const services=JSON.parse(fs.readFileSync(path.join(out,'data/services/index.json'),'utf8'));
+  assert.equal(services.version,2);let serviceTotal=0;
+  for(const shard of services.shards){const raw=fs.readFileSync(path.join(out,'data/services',shard.url));assert.equal(raw.length,shard.bytes);assert.equal(require('node:crypto').createHash('sha256').update(raw).digest('hex'),shard.sha256);serviceTotal+=JSON.parse(raw).items.length;}
+  assert.equal(serviceTotal,services.total);
+  assert.ok(!fs.existsSync(path.join(out,'data/sources/services')),'Raw and canonical pipeline sources must stay outside browser release');
   assert.match(fs.readFileSync(path.join(out,'api/_lib/.htaccess'),'utf8'),/Require all denied/);
   const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
   for(const file of walk(out)){

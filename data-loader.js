@@ -71,7 +71,7 @@
       const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
       if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
       const relative = target.pathname.slice(scope.pathname.length);
-      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/services/services.json':'services','data/campsites/search-index.json':'search'};
+      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/search-index.json':'search'};
       if (!relative.endsWith('.geojson') && !kinds[relative]) return null;
       return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:kinds[relative]==='index', kind:kinds[relative]||'geojson'};
     } catch { return null; }
@@ -81,7 +81,6 @@
     if (target?.kind === 'agencyIndex') return data?.version === 1 && Array.isArray(data.states);
     if (target?.kind === 'sites') return [1, 2].includes(data?.version) && !!data.facilities && typeof data.facilities === 'object';
     if (target?.kind === 'search') return data?.version===1 && Array.isArray(data.sites);
-    if (target?.kind === 'services') return data?.version === 1 && Array.isArray(data.items);
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
   async function fetchJSON(url) {
@@ -384,7 +383,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.13.0',
+    version:'2.14.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -457,35 +456,47 @@
     },
     addToTrip(id){const site=api.getCampsiteById(id);if(site)state.config.onTripAdd?.(site.properties.id);},
     toggleFavorite(id){state.config.onFavoriteToggle?.(id);},
-    loadServices(){
-      if(!state.services)state.services=fetchJSON('data/services/services.json').then(d=>Array.isArray(d?.items)?d.items:[]).catch(e=>{state.services=null;throw e;});
-      return state.services;
+    loadServices(lat,lng,options={}){
+      const point=[lng,lat];
+      return KampTrailServices.loadBounds(KampTrailServices.radiusBounds(point,30),options).then(result=>({...result,items:result.items.filter(item=>KampTrailServices.distance(point,item.coordinates)<=30)}));
     },
-    nearestServices(items,lat,lng){
-      const rad=v=>v*Math.PI/180;
-      const mi=(a,b,c,d)=>{const h=Math.sin(rad(c-a)/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(rad(d-b)/2)**2;return 3958.8*2*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)));};
+    nearestServices(items,lat,lng,selected=KampTrailServices.getCategories()){
       const best={};
-      for(const row of items){const k=row[2];const d=mi(lat,lng,row[1],row[0]);if(!best[k]||d<best[k].miles)best[k]={row,miles:d};}
+      for(const item of items){if(!KampTrailServices.matches(item,selected))continue;const miles=KampTrailServices.distance([lng,lat],item.coordinates);if(miles>30)continue;for(const key of item.categories)if(selected.includes(key)&&(!best[key]||miles<best[key].miles))best[key]={item,miles};}
       return best;
     },
-    renderNearbyServices(box,lat,lng){
-      box.textContent='Finding the nearest RV services…';
-      return api.loadServices().then(items=>{
-        const best=api.nearestServices(items,lat,lng);box.replaceChildren();
+    renderNearbyServices(box,lat,lng,force=false){
+      box._serviceAbort?.abort();const controller=new AbortController();box._serviceAbort=controller;
+      box.dataset.ktNearbyServices='1';box._serviceLat=lat;box._serviceLng=lng;const selected=KampTrailServices.getCategories();
+      box.textContent='Finding services within 30 miles (straight-line)…';box.setAttribute('aria-live','polite');
+      return api.loadServices(lat,lng,{categories:selected,signal:controller.signal,force}).then(result=>{
+        if(controller.signal.aborted)return;
+        const best=api.nearestServices(result.items,lat,lng,selected);box.replaceChildren();
+        const heading=document.createElement('h3');heading.textContent='Services within 30 miles (straight-line)';
         const list=document.createElement('ul');
-        [['d','Dump station'],['w','Water fill'],['p','Propane']].forEach(([k,label])=>{
-          const li=document.createElement('li');const b=best[k];
-          if(!b){li.textContent=`${label}: none in the data`;list.append(li);return;}
-          const [x,y,,name]=b.row;
-          li.textContent=`${label}: ${name||label}, about ${b.miles<10?b.miles.toFixed(1):Math.round(b.miles)} mi straight-line `;
-          const a=document.createElement('a');a.href=`https://www.google.com/maps/dir/?api=1&destination=${y},${x}`;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Directions';li.append(a);list.append(li);
-        });
-        const note=document.createElement('p');note.className='kt-fine';note.textContent='From OpenStreetMap contributors. Coverage is incomplete and hours are not verified. Call ahead.';
-        box.append(list,note);window.KampTrailSpot?.relayout(box);
-      }).catch(()=>{box.textContent='Service locations could not load. Try again when connected.';});
+        for(const key of selected){
+          const label=KampTrailServices.categories[key].label,li=document.createElement('li'),match=best[key];
+          if(!match){li.textContent=`${label}: ${result.partial?'unknown in missing areas; none in loaded coverage':'none in loaded source coverage'}`;list.append(li);continue;}
+          const {item,miles}=match,[lng,lat]=item.coordinates;li.dataset.serviceId=item.id;
+          const title=document.createElement('strong');title.textContent=`${label}: ${item.name||label}, about ${miles<10?miles.toFixed(1):Math.round(miles)} mi `;
+          const evidence=document.createElement('p');evidence.className='kt-fine';evidence.textContent=KampTrailServices.describe(item,result.manifest);
+          const directions=document.createElement('a');directions.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;directions.target='_blank';directions.rel='noopener noreferrer';directions.textContent='Directions';
+          const osm=document.createElement('a');osm.href=`https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`;osm.target='_blank';osm.rel='noopener noreferrer';osm.textContent='View on OSM';
+          const save=document.createElement('button');save.type='button';save.textContent='Save service stop';save.onclick=()=>window.KampTrailTrip?.addStop(item.id,KampTrailServices.feature(item,result.manifest));
+          li.append(title,evidence,directions,' · ',osm,' ',save);list.append(li);
+        }
+        const note=document.createElement('p');note.className='kt-fine';note.textContent=result.message;
+        const attribution=document.createElement('a');attribution.href='https://www.openstreetmap.org/copyright';attribution.textContent='Derived from OpenStreetMap contributors (ODbL)';attribution.target='_blank';attribution.rel='noopener noreferrer';
+        const retry=document.createElement('button');retry.type='button';retry.textContent='Retry nearby service areas';retry.onclick=()=>api.renderNearbyServices(box,lat,lng,true);
+        box.append(heading,list,note,attribution,retry);window.KampTrailSpot?.relayout(box);return result;
+      }).catch(error=>{if(error.name==='AbortError'||controller.signal.aborted)return;box.textContent='Service coverage unavailable. Missing areas are unknown. ';const retry=document.createElement('button');retry.type='button';retry.textContent='Retry nearby service areas';retry.onclick=()=>api.renderNearbyServices(box,lat,lng,true);box.append(retry);});
     },
 
   };
+  // One document-level subscription refreshes only attached nearby panels; removed popups retain no listeners.
+  window.addEventListener?.('kamptrail:servicescategories',()=>{
+    for(const box of document.querySelectorAll('[data-kt-nearby-services]'))api.renderNearbyServices(box,box._serviceLat,box._serviceLng);
+  });
   document.addEventListener('click',event=>{
     const action=event.target.closest('[data-kt-action]');
     if(action){

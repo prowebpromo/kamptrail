@@ -26,6 +26,32 @@ def shell_expression_steps(text):
 
 
 class WorkflowSafetyTests(unittest.TestCase):
+    def test_services_share_branch_writer_lock_and_verify_only_exact_output(self):
+        workflow = yaml.safe_load(OWNER.read_text())
+        self.assertEqual(workflow['concurrency']['group'], 'kamptrail-data-refresh-${{ github.ref }}')
+        self.assertFalse(workflow['concurrency']['cancel-in-progress'])
+        jobs=workflow['jobs'];job=jobs['services']
+        self.assertIn("inputs.source != 'services'",jobs['fetch-data']['if'])
+        self.assertEqual(job['if'], "${{ inputs.source == 'services' }}")
+        self.assertNotIn('concurrency',job)
+        self.assertEqual(job['env']['SERVICE_STATE'], "${{ inputs.service_state || 'UT' }}")
+        steps=job['steps'];run='\n'.join(step.get('run','') for step in steps)
+        self.assertIn('[[ "$SERVICE_STATE" == UT ]]',run)
+        self.assertIn('--no-deps --require-hashes -r scripts/requirements-services.txt',run)
+        self.assertIn('--region "$SERVICE_STATE"',run)
+        self.assertNotIn('--allow-reviewed-shrink',run)
+        commit=next(step['run'] for step in steps if step.get('id')=='commit')
+        self.assertIn('git rev-parse FETCH_HEAD',commit)
+        self.assertIn('git add -A data/sources/services data/services data/health.json',commit)
+        normal=next(step['run'] for step in jobs['fetch-data']['steps'] if 'Refresh RV services' in step.get('name',''))
+        self.assertLess(normal.index('import_services.py --region legacy'),normal.index('node scripts/build-services.js'))
+        self.assertIn('git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"',commit)
+        self.assertNotIn('--force',commit)
+        verify=jobs['verify-services']
+        self.assertEqual(verify['permissions'],{'contents':'read'})
+        self.assertEqual(verify['with']['ref'],'${{ needs.services.outputs.commit_sha }}')
+        self.assertNotIn('secrets',verify)
+
     def test_elevation_uses_owner_lock_and_selected_branch(self):
         workflow = yaml.safe_load(OWNER.read_text())
         jobs = workflow['jobs']
