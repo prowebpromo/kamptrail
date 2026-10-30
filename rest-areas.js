@@ -30,7 +30,7 @@
     const link=(label,url)=>{const a=el('a',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;};
     const button=(label,action)=>{const b=el('button',label);b.type='button';b.onclick=action;return b;};
     function popup(r,d){
-      const box=el('div');box.className='kt-rest-popup';box.dataset.restAreaId=r.id;
+      const box=el('div');box.className='kt-rest-popup';box.dataset.restAreaId=r.id;box.tabIndex=0;box.setAttribute('role','region');box.setAttribute('aria-label','Rest-area source details');box.style.maxHeight=Math.max(80,Math.min(360,map.getSize().y-160))+'px';
       box.append(el('h2',r.name),el('p',describe(r,d)),link('TxDOT place source',r.source_url),' · ',link('TxDOT duration source',POLICY));
       const actions=el('div');actions.className='kt-popup-actions';
       actions.append(button('Save rest-area stop',()=>{const f=feature(r,d);global.KampTrailTrip?.addStop(f.properties.id,f);}),button('Overnight permission',()=>global.KampTrailPermissions?.open(place(r))));box.append(actions);return box;
@@ -55,7 +55,7 @@
         status.textContent=`${rows.length} official rest-area location${rows.length===1?'':'s'} in this view. Texas pilot only; other regions are not covered. TxDOT list retrieved ${d.source.retrieved_at.slice(0,10)}. Overnight permission and current opening are unknown.`;
         // Hold marker replacement while any popup is open, as with campsite discovery.
         if(map._popup?.isOpen?.())return;
-        layer.clearLayers();for(const r of rows){const marker=L.marker([r.coordinates[1],r.coordinates[0]],{title:r.name,keyboard:true,icon:L.divIcon({className:'kt-rest-icon',html:'<span>R</span>',iconSize:[26,26],iconAnchor:[13,13]})});marker.ktRestAreaId=r.id;marker.bindPopup(()=>popup(r,d));layer.addLayer(marker);}
+        layer.clearLayers();for(const r of rows){const marker=L.marker([r.coordinates[1],r.coordinates[0]],{title:r.name,keyboard:true,icon:L.divIcon({className:'kt-rest-icon',html:'<span>R</span>',iconSize:[26,26],iconAnchor:[13,13]})});marker.ktRestAreaId=r.id;marker.bindPopup(()=>popup(r,d),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(marker);}
       }catch(error){if(current===view&&active()){layer.clearLayers();status.textContent='Official rest-area catalogue unavailable. Missing locations and overnight permission remain unknown. Reconnect and retry.';}}
     }
     const widget=L.control({position:'bottomright'});widget.onAdd=()=>{control=el('div');control.className='kt-rest-control';control.hidden=true;status=el('p');status.setAttribute('role','status');status.setAttribute('aria-live','polite');control.append(el('strong','Official rest areas'),status,button('Retry official rest areas',()=>redraw(true)));L.DomEvent.disableClickPropagation(control);L.DomEvent.disableScrollPropagation(control);return control;};widget.addTo(map);

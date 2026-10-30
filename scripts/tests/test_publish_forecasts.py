@@ -341,6 +341,40 @@ class Opener:
 
 
 class TransportTests(unittest.TestCase):
+    def test_public_asset_visibility_retry_is_bounded_and_never_sends_authorization(self):
+        opener = Opener([Response(404, b'x' * 200), Response(404), Response(302, headers={'Location': 'https://release-assets.githubusercontent.com/a?signature=x'}), Response(200, b'good')])
+        delays = []
+        api = p.GitHub('test-token', opener=opener, sleep=delays.append)
+        self.assertEqual(api.public('forecast-v1-' + 'a' * 24 + '-CA.json.gz', 100), b'good')
+        self.assertEqual(delays, [1, 2])
+        self.assertEqual(len(opener.requests), 4)
+        self.assertTrue(all('Authorization' not in request.headers for request in opener.requests))
+
+    def test_persistent_missing_asset_stops_after_four_requests(self):
+        opener = Opener([Response(404) for _ in range(4)])
+        delays = []
+        with self.assertRaisesRegex(p.PublishError, 'public_asset_unavailable_404'):
+            p.GitHub('test-token', opener=opener, sleep=delays.append).public('current-a.json', 100)
+        self.assertEqual(delays, [1, 2, 4])
+        self.assertEqual(len(opener.requests), 4)
+
+    def test_visibility_retry_does_not_retry_forbidden_or_missing_authenticated_draft(self):
+        for status, draft in [(403, False), (404, True)]:
+            with self.subTest(status=status, draft=draft):
+                opener = Opener([Response(status)])
+                delays = []
+                api = p.GitHub('test-token', opener=opener, sleep=delays.append)
+                with self.assertRaisesRegex(p.PublishError, f'public_asset_unavailable_{status}'):
+                    api.asset_bytes({'id': 1}, 100, draft=True) if draft else api.public('current-a.json', 100)
+                self.assertEqual(len(opener.requests), 1)
+                self.assertEqual(delays, [])
+
+    def test_visibility_retry_honors_bounded_retry_after(self):
+        opener = Opener([Response(404, headers={'Retry-After': '3'}), Response(200, b'good')])
+        delays = []
+        self.assertEqual(p.GitHub('test-token', opener=opener, sleep=delays.append).public('current-a.json', 100), b'good')
+        self.assertEqual(delays, [3])
+
     def test_public_redirect_never_receives_authorization(self):
         opener = Opener([Response(302, headers={'Location': 'https://release-assets.githubusercontent.com/a?signature=x'}), Response(200, b'good')])
         api = p.GitHub('test-token', opener=opener)

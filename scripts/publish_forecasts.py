@@ -318,7 +318,12 @@ class GitHub:
                 with response:
                     status, response_headers = response.code, response.headers
                     raw = response.read(limit + 1)
-                require(len(raw) <= limit, 'remote_response_too_large')
+                # Error pages are not asset bytes or API results. Bound the read
+                # above, discard their bodies, and retain status for retry logic.
+                if status >= 400:
+                    raw = b''
+                else:
+                    require(len(raw) <= limit, 'remote_response_too_large')
             except (urllib.error.URLError, OSError, TimeoutError, ValueError):
                 if method == 'GET' and attempt < 2:
                     self.sleep(2 ** attempt)
@@ -351,10 +356,19 @@ class GitHub:
             first_api = hop == 0 and api_first
             allowed = ('api.github.com',) if first_api else (('github.com',) if hop == 0 else ('release-assets.githubusercontent.com',))
             require(parsed.scheme == 'https' and parsed.hostname in allowed and not parsed.username and not parsed.password and parsed.port in (None, 443), 'invalid_redirect')
-            status, headers, raw = self._request('GET', url, limit=limit, authenticated=first_api, accept='application/octet-stream')
+            for visibility_attempt in range(4):
+                status, headers, raw = self._request('GET', url, limit=limit, authenticated=first_api, accept='application/octet-stream')
+                # A just-uploaded public asset may not yet be visible at the
+                # download endpoint. Keep pointers unchanged until its exact
+                # bytes pass verification. Authenticated draft reads and 403s
+                # do not receive this visibility retry.
+                if status != 404 or api_first or visibility_attempt == 3:
+                    break
+                delay = response_delay(headers, self.clock()) if headers.get('Retry-After') else 2 ** visibility_attempt
+                self.sleep(delay)
             if status == 200:
                 return raw
-            require(status in (301, 302, 303, 307, 308), 'public_asset_unavailable')
+            require(status in (301, 302, 303, 307, 308), f'public_asset_unavailable_{status}')
             location = headers.get('Location')
             require(isinstance(location, str) and location, 'invalid_redirect')
             url = urllib.parse.urljoin(url, location)
