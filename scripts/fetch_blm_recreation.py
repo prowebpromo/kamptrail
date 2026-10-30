@@ -229,7 +229,7 @@ def to_feature(row, spec, retrieved, layer):
 
 
 def main():
-    retrieved = date.today().isoformat()
+    retrieved = fee_text.retrieval_date()
     features, quarantined, source_counts = [], [], {}
     for layer, spec in LAYERS.items():
         rows = fetch_layer(layer)
