@@ -86,6 +86,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         if ($pdo->inTransaction()) $pdo->rollBack();
         error_log('KampTrail API: moderation action failed');
         $notice = '<span class="err">That action could not be completed.</span>';
+        if($e instanceof UnexpectedValueException && $e->getMessage()==='review_changed'){http_response_code(409);$notice='<span class="err">This review changed after you opened it. Reload and inspect the current review and video before deciding.</span>';}
     }
 }
 

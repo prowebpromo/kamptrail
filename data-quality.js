@@ -353,7 +353,10 @@
   function elevationToMetres(value,unit='ft'){return typeof value==='number'&&Number.isFinite(value)?Math.round((unit==='m'?value:value*.3048)*1e6)/1e6:null;}
   function elevationFromMetres(value,unit='ft'){return typeof value==='number'&&Number.isFinite(value)?Math.round((unit==='m'?value:value/.3048)*1e6)/1e6:null;}
   function elevationText(feature,unit='ft'){
-    const e=elevationInfo(feature);return e?`Approx. elevation ${Math.round(elevationFromMetres(e.m,unit)).toLocaleString('en-US')} ${unit==='m'?'m':'ft'} · USGS 3DEP · retrieved ${e.d.slice(0,10)}`:'Elevation unknown';
+    const e=elevationInfo(feature), i18n=global.KampTrailI18n;
+    if(!e)return i18n?.t('Elevation unknown') || 'Elevation unknown';
+    const params={height:Math.round(elevationFromMetres(e.m,unit)).toLocaleString(i18n?.locale() || 'en-US'),unit:unit==='m'?'m':'ft',date:e.d.slice(0,10)};
+    return i18n?.t('Approx. elevation {height} {unit} · USGS 3DEP · retrieved {date}',params) || `Approx. elevation ${params.height} ${params.unit} · USGS 3DEP · retrieved ${params.date}`;
   }
   function applyFilters(sites, filters = {}) {
     const elevation=elevationRange(filters);
@@ -402,6 +405,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.18.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.19.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

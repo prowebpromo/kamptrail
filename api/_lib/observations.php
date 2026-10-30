@@ -62,6 +62,7 @@ function ko_monthly_groups(array $groups, ?string $today=null): array {
         if($n<1||$out['published_reviews']+$n>1000000)return ['version'=>1,'available'=>false,'reason'=>'limit'];
         $out['published_reviews']+=$n;
         $details=$row['details']===null?[]:json_decode($row['details'],true);
+        if(is_array($details))$details=ko_conditions($details);
         if(!is_array($details)||array_diff(array_keys($details),array_merge(array_keys(KO_AXES),['signals']))){$out['invalid_observations']+=$n;continue;}
         $values=[];$valid=true;
         foreach(KO_AXES as $axis=>$allowed){
@@ -93,4 +94,43 @@ function ko_monthly(PDO $pdo,string $site): array {
     $q->execute([$site]);$groups=$q->fetchAll();
     if(count($groups)>10000)return ['version'=>1,'available'=>false,'reason'=>'limit'];
     return ko_monthly_groups($groups);
+}
+
+// External media is metadata only. Never fetch or accept an arbitrary embed URL.
+function ko_video_id($raw): string {
+    if(!is_string($raw)||strlen($raw)>200)kc_error(422,'Use a YouTube video ID or canonical YouTube watch URL.');
+    if($raw==='')return '';
+    if(preg_match('/^[A-Za-z0-9_-]{11}$/D',$raw))return $raw;
+    if(preg_match('~^https://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]{11})$~D',$raw,$m)||preg_match('~^https://youtu\.be/([A-Za-z0-9_-]{11})$~D',$raw,$m))return $m[1];
+    kc_error(422,'Use a YouTube video ID or canonical YouTube watch URL.');
+}
+function ko_video(array $details): ?array {
+    $id=$details['video_id']??null;
+    return is_string($id)&&preg_match('/^[A-Za-z0-9_-]{11}$/D',$id)?['provider'=>'youtube','id'=>$id,'url'=>'https://www.youtube.com/watch?v='.$id]:null;
+}
+function ko_conditions(array $details): array {unset($details['video_id']);return $details;}
+// Project before grouping: a media ID must never create an observation cohort.
+function ko_discovery_groups(iterable $rows,int $maximum=10000): array {
+    $groups=[];$inputRows=0;
+    foreach($rows as $r){
+        if(++$inputRows>10000)throw new OverflowException('observation rows');
+        $values=ko_conditions(json_decode($r['details'],true)?:[]);
+        if(!$values)continue;
+        $key=json_encode([$r['campsite_id'],$r['latest_visit'],$values],JSON_THROW_ON_ERROR);
+        if(!isset($groups[$key])){
+            if(count($groups)>=$maximum)throw new OverflowException('observation groups');
+            $groups[$key]=['campsite_id'=>$r['campsite_id'],'values'=>$values,'count'=>0,'latest_visit'=>$r['latest_visit']];
+        }
+        $groups[$key]['count']+=(int)($r['samples']??1);
+    }
+    return array_values($groups);
+}
+// Includes actual content, not just second-resolution timestamps.
+function kc_review_content_hash(array $r,array $details,array $photos): string {
+    $content=[];
+    foreach(['id','campsite_id','campsite_name','display_name','rating','body','visited_on','rig','status','public_note','updated_at'] as $key)$content[$key]=(string)($r[$key]??'');
+    return hash('sha256',json_encode([$content,$details,$photos],JSON_THROW_ON_ERROR));
+}
+function kc_review_hash(PDO $pdo,array $r): string {
+    return kc_review_content_hash($r,ko_read($pdo,(int)$r['id']),kc_photo_rows($pdo,(int)$r['id'],false));
 }

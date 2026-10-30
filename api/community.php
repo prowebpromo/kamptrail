@@ -10,17 +10,27 @@ try {
         if ($owner!=='') {
             $q=$pdo->prepare('SELECT id,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,public_note,updated_at FROM community_reviews WHERE owner_hash=?');$q->execute([$owner]);$row=$q->fetch();
             if (!$row) kc_error(404,'Management code not found.');
-            $row['observations']=ko_read($pdo,(int)$row['id']);
+            $details=ko_read($pdo,(int)$row['id']);$row['video']=ko_video($details);$row['observations']=ko_conditions($details);
             $row['photos']=kc_photo_rows($pdo,(int)$row['id'],false);
             kt_json(200,['ok'=>true,'review'=>$row]);
         }
         $site=kc_string($_GET['site']??'',200);
         if ($site==='') kc_error(422,'Choose a campsite.');
+        if(array_key_exists('review_id',$_GET)){
+            $id=filter_var($_GET['review_id'],FILTER_VALIDATE_INT,['options'=>['min_range'=>1]]);
+            if($id===false)kc_error(422,'Choose a published review.');
+            if(!ko_ready($pdo))kc_error(404,'Video is no longer available.');
+            $q=$pdo->prepare("SELECT r.id,o.details FROM community_reviews r LEFT JOIN community_observations o ON o.review_id=r.id WHERE r.id=? AND r.campsite_id=? AND r.status='published'");
+            $q->execute([$id,$site]);$r=$q->fetch();
+            $video=$r?ko_video(json_decode($r['details']??'[]',true)?:[]):null;
+            if(!$video)kc_error(404,'Video is no longer available.');
+            kt_json(200,['ok'=>true,'review_id'=>(int)$r['id'],'video'=>$video]);
+        }
         $before=max(0,(int)($_GET['before']??0));
         $q=$pdo->prepare("SELECT COUNT(*) AS count, AVG(rating) AS average FROM community_reviews WHERE campsite_id=? AND status='published'");$q->execute([$site]);$stats=$q->fetch();
         $hasObservations=ko_ready($pdo);
         $q=$pdo->prepare("SELECT r.id,r.display_name,r.rating,r.body,r.visited_on,r.rig,r.created_at,r.updated_at,".($hasObservations?"o.details":"NULL")." AS observation_details FROM community_reviews r ".($hasObservations?"LEFT JOIN community_observations o ON o.review_id=r.id ":"")."WHERE r.campsite_id=? AND r.status='published'".($before?' AND r.id < ?':'').' ORDER BY r.id DESC LIMIT 11');$q->execute($before?[$site,$before]:[$site]);$rows=$q->fetchAll();$more=count($rows)>10;$rows=array_slice($rows,0,10);
-        foreach ($rows as &$r) {$r['id']=(int)$r['id'];$r['rating']=(int)$r['rating'];$r['observations']=$r['observation_details']?(json_decode($r['observation_details'],true)?:[]):[];unset($r['observation_details']);$r['photos']=kc_photo_rows($pdo,$r['id']);}unset($r);
+        foreach ($rows as &$r) {$r['id']=(int)$r['id'];$r['rating']=(int)$r['rating'];$r['observations']=$r['observation_details']?(json_decode($r['observation_details'],true)?:[]):[];$r['video']=ko_video($r['observations']);$r['observations']=ko_conditions($r['observations']);unset($r['observation_details']);$r['photos']=kc_photo_rows($pdo,$r['id']);}unset($r);
         kt_json(200,['ok'=>true,'count'=>(int)$stats['count'],'average'=>$stats['average']===null?null:round((float)$stats['average'],1),'reviews'=>$rows,'next_before'=>$more?(int)end($rows)['id']:null,'monthly'=>ko_monthly($pdo,$site),'photos_available'=>extension_loaded('gd') && class_exists('finfo'),'limits'=>['photos'=>3,'bytes_per_photo'=>KT_PHOTO_INPUT_LIMIT,'pixels_per_photo'=>KT_PHOTO_PIXEL_LIMIT]]);
     }
     kc_origin();
@@ -50,6 +60,8 @@ try {
         ko_save($pdo,$id,[]);ko_changed($pdo);kc_audit($pdo,$id,'author_delete',$old['status'],'deleted','author');$pdo->commit();kt_json(200,['ok'=>true,'status'=>'deleted']);
     }
     $v=kc_validate($in);$observations=ko_validate($in['observations']??'');
+    $video=array_key_exists('youtube_video',$in)?ko_video_id($in['youtube_video']):null;
+    if($video!==null&&$video!=='')$observations['video_id']=$video;
     if ($observations && !ko_ready($pdo)) kc_error(503,'Camper observations are temporarily unavailable. Please try again later.');
     if ($old && $v['campsite_id']!==$old['campsite_id']) kc_error(422,'An existing review cannot be moved to another campsite.');
     // Reject excess photos before decoding any image.
@@ -66,6 +78,9 @@ try {
     $photos=kc_photos();
     kc_lock($pdo);kc_rate($pdo,$old?'manage':'submit',$old?20:5);
     if($old){$fresh=kc_row($pdo,(int)$old['id']);if(!$fresh||$fresh['status']==='deleted'){$pdo->rollBack();kc_error(409,'This review changed. Reload it before editing.');}$old=$fresh;if(!array_key_exists('observations',$in))$observations=ko_read($pdo,(int)$old['id']);}
+    // Older clients omit the video field: preserve it even if they replace observations. Empty explicitly removes it.
+    if($old&&$video===null){$prior=ko_read($pdo,(int)$old['id']);if(isset($prior['video_id']))$observations['video_id']=$prior['video_id'];}
+    if($video!==null){unset($observations['video_id']);if($video!=='')$observations['video_id']=$video;}
     $token=null;$now=kt_now();
     if (!$old) {
         $token=bin2hex(random_bytes(32));

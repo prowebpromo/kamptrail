@@ -1,6 +1,7 @@
 /* Share links (#site=ID, #spot=lat,lng) and community correction links (GitHub issue forms). */
 (function () {
   'use strict';
+  const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
   const REPO = 'https://github.com/prowebpromo/kamptrail';
   function baseUrl() { return location.href.split('#')[0].split('?')[0]; }
   function linkFor(target) {
@@ -16,8 +17,8 @@
     try {
       if (navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent || '')) { await navigator.share({title: `${title} | KampTrail`, url}); return url; }
     } catch (e) { if (e && e.name === 'AbortError') return url; }
-    try { await navigator.clipboard.writeText(url); window.showToast?.('Link copied. Anyone with the link can open this location in KampTrail.'); }
-    catch { window.prompt?.('Copy this link:', url); }
+    try { await navigator.clipboard.writeText(url); window.showToast?.(t("Link copied. Anyone with the link can open this location in KampTrail.")); }
+    catch { window.prompt?.(t("Copy this link:"), url); }
     return url;
   }
   function parse(hash = location.hash) {
@@ -58,5 +59,5 @@
     }
     return `${REPO}/issues/new?${p}`;
   }
-  window.KampTrailShare = {version: '2.18.0', linkFor, share, parse, issueUrl, REPO};
+  window.KampTrailShare = {version: '2.19.0', linkFor, share, parse, issueUrl, REPO};
 })();

@@ -294,3 +294,12 @@ test('corrupt stable terrain bytes cannot become offline matches',async()=>{
  const h=harness(async url=>{if(url.includes('/elevation/'))throw new Error('offline');if(url.endsWith('index.json'))return indexed();if(url.endsWith('ridb-sites.json'))return new Response('{"version":1,"facilities":{}}');return new Response(JSON.stringify({type:'FeatureCollection',features:[feature({id:'known'})]}));},{...overrides,caches});
  await h.api.init(h.map);h.api.updateFilters({elevationMin:0});assert.equal(h.api.getVisibleCampsites().length,0);assert.equal(h.api.getElevationStatus().unknown,1);assert.equal(h.api.getElevationStatus().saved,false);
 });
+
+test('Spanish amenity details retain exact counts, qualifiers, original place words and unknown fee/eligibility',async()=>{
+  const translations={Intl,Date,localStorage:{getItem:()=> 'es'}};translations.window=translations;vm.runInNewContext(fs.readFileSync('locale.js','utf8'),translations);
+  const row=feature({name:'Original publisher Campground <img src=x>',facility_id:'123',schema_version:3});
+  const h=harness(async url=>new Response(JSON.stringify(url.endsWith('ridb-amenities.json')?amenityPayload():url.endsWith('_merged.geojson')?{type:'FeatureCollection',features:[row]}:{})),{KampTrailI18n:translations.KampTrailI18n,caches:cacheStorage(),location:{href:'https://example.test/kamptrail/'}});
+  await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));
+  const p=h.api.getAllCampsites()[0].properties,markup=h.cluster.layers[0].html;
+  assert.match(markup,/Original publisher Campground &lt;img src=x&gt;/);assert.match(markup,/Los registros de lugares de acampada de Recreation.gov indican/);assert.match(markup,/mencionado en 1 de 2 registros/);assert.match(markup,/bomba manual: 1 registros/);assert.match(markup,/negativo explícito: 1 registros/);assert.match(markup,/Fecha de descarga desconocida/);assert.match(markup,/2026-10-30/);assert.ok(markup.includes('https://www.recreation.gov/camping/campgrounds/123'));assert.equal(p.fee_status,'unknown');assert.deepEqual(Array.from(p.amenities),[]);assert.equal(h.context.DataQuality.applyFilters([h.api.getAllCampsites()[0]],{amenities:['water']}).length,0);
+});

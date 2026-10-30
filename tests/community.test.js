@@ -16,10 +16,18 @@ async function env(extra='',port=18905){
  for(let i=0;i<60;i++){try{await fetch(base+'/api/health.php');break;}catch{await new Promise(r=>setTimeout(r,100));}}
  let cookie='';const grab=res=>{const c=res.headers.get('set-cookie');if(c)cookie=c.split(';')[0];return res;};
  const login=await grab(await fetch(base+'/api/admin.php')).text();const csrf=login.match(/name="csrf" value="([a-f0-9]+)"/)[1];
- const admin=async fields=>grab(await fetch(base+'/api/admin.php?community=1',{method:'POST',redirect:'manual',headers:{'Content-Type':'application/x-www-form-urlencoded',Cookie:cookie},body:new URLSearchParams({csrf,...fields})}));
+ const reviewHash=async id=>{
+  const html=await(await fetch(base+'/api/admin.php?community=1&state=all&before='+(Number(id)+1),{headers:{Cookie:cookie}})).text();
+  const form=[...html.matchAll(/<form[^>]*>([\s\S]*?)<\/form>/g)].map(m=>m[1]).find(body=>body.includes('name="do" value="community_review"')&&body.includes('name="review_id" value="'+id+'"'));
+  assert.ok(form,'moderation form exists');return form.match(/name="expected_hash" value="([a-f0-9]{64})"/)[1];
+ };
+ const admin=async fields=>{
+  if(fields.do==='community_review'&&!Object.hasOwn(fields,'expected_hash'))fields={...fields,expected_hash:await reviewHash(fields.review_id)};
+  return grab(await fetch(base+'/api/admin.php?community=1',{method:'POST',redirect:'manual',headers:{'Content-Type':'application/x-www-form-urlencoded',Cookie:cookie},body:new URLSearchParams({csrf,...fields})}));
+ };
  await admin({do:'login',password:'test moderator password'});await admin({do:'migrate'});
  const sql=code=>execFileSync('php',['-r',`$c=require ${JSON.stringify(file)};$p=new PDO($c['db']['dsn'],$c['db']['user'],$c['db']['pass'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);`+code],{encoding:'utf8'});
- return {base,p,dir,admin,sql,cookie:()=>cookie,csrf,get:async url=>(await fetch(base+url)).json(),post:(fields,photos=[],token)=>fetch(base+'/api/community.php',{method:'POST',headers:token?{Authorization:'Bearer '+token}:{},body:form(fields,photos)}),close:()=>{p.kill();fs.rmSync(dir,{recursive:true,force:true});}};
+ return {base,p,dir,admin,reviewHash,sql,cookie:()=>cookie,csrf,get:async url=>(await fetch(base+url)).json(),post:(fields,photos=[],token)=>fetch(base+'/api/community.php',{method:'POST',headers:token?{Authorization:'Bearer '+token}:{},body:form(fields,photos)}),close:()=>{p.kill();fs.rmSync(dir,{recursive:true,force:true});}};
 }
 test('reviews and photos: moderation, ownership, re-review, reporting, removal, and quota accounting',{skip:!capable},async()=>{
  const e=await env();try{
@@ -53,7 +61,7 @@ test('reviews and photos: moderation, ownership, re-review, reporting, removal, 
   await e.admin({do:'community_review',review_id:id,status:'rejected',public_note:'Please clarify your visit date.'});assert.equal((await mine()).public_note,'Please clarify your visit date.');
   await e.admin({do:'community_review',review_id:id,status:'published'});await e.admin({do:'community_photo',review_id:id,photo_id:photo,status:'published'});
   res=await e.post({action:'delete'},[],token);assert.equal(res.status,200);row=await mine();assert.equal(row.status,'deleted');assert.equal(row.body,'');assert.equal(row.photos.length,0);assert.equal((await fetch(e.base+'/api/photo.php?id='+photo)).status,404);assert.equal((await list()).count,0);
-  queue=await (await fetch(e.base+'/api/admin.php?community=1&state=all',{headers:{Cookie:e.cookie()}})).text();assert.match(queue,/0 \/ 256 MB/);
+  queue=await (await fetch(e.base+'/api/admin.php?community=1&state=all&before='+(Number(id)+1),{headers:{Cookie:e.cookie()}})).text();assert.match(queue,/0 \/ 256 MB/);
  }finally{e.close();}
 });
 test('storage exhaustion rejects the whole upload but still accepts a text review; submit limits apply',{skip:!capable},async()=>{
@@ -122,5 +130,85 @@ test('additive observation migration preserves legacy reviews/photos and paginat
   e.sql(`$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?, 'qa:000','Synthetic old visit','Fixture',4,'Older disposable visit report','2020-01-01','','published','2020-01-01','2020-01-01')");$q->execute([hash('sha256','older-synthetic-visit')]);$review=$p->lastInsertId();$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)')->execute([$review,'{"noise":"quiet"}']);`);
   d=await e.get('/api/community-discovery.php');assert.equal(d.sites['qa:000'].observations.length,2);assert.deepEqual(d.sites['qa:000'].observations.map(x=>x.count),[1,1]);assert.equal(Object.keys(d.sites).length,100);assert.ok(d.next_after);const next=await e.get('/api/community-discovery.php?after='+encodeURIComponent(d.next_after)+'&revision='+d.revision);assert.equal(next.next_after,null);assert.equal(Object.keys(next.sites).length,3);assert.equal(new Set([...Object.keys(d.sites),...Object.keys(next.sites)]).size,103);
   await e.admin({do:'community_review',review_id:id,status:'hidden'});assert.equal((await fetch(e.base+'/api/community-discovery.php?after='+encodeURIComponent(d.next_after)+'&revision='+d.revision)).status,409);
+ }finally{e.close();}
+});
+test('a video replacement during moderation rendering cannot borrow the displayed video decision hash',{skip:!capable},async()=>{
+ const e=await env('',18978);try{
+  const first='abcdefghijk',second='lmnopqrstuv',created=await(await e.post({...good,youtube_video:first,observations:JSON.stringify({noise:'quiet'})})).json();
+  const {id,token}=created;
+  const raced=JSON.parse(e.sql(`
+   putenv('KAMPTRAIL_CONFIG='.${JSON.stringify(path.join(e.dir,'config.php'))});
+   require ${JSON.stringify(path.join(root,'api/_lib/community-admin.php'))};
+   function h($value): string {return htmlspecialchars((string)$value,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');}
+   $p->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+   class KtModerationRaceStatement extends PDOStatement {
+    public static bool $armed=true;
+    protected function __construct(private PDO $connection) {}
+    public function fetchColumn(int $column=0): mixed {
+     $displayed=parent::fetchColumn($column);
+     if(self::$armed && $this->queryString==='SELECT details FROM community_observations WHERE review_id=?'){
+      self::$armed=false;
+      $this->connection->prepare('UPDATE community_observations SET details=? WHERE review_id=?')->execute([${JSON.stringify(JSON.stringify({noise:'quiet',video_id:second}))},${id}]);
+     }
+     return $displayed;
+    }
+   }
+   $before=kc_row($p,${id});
+   $p->setAttribute(PDO::ATTR_STATEMENT_CLASS,[KtModerationRaceStatement::class,[$p]]);
+   $html=kc_admin_body($p,'fixture-csrf','admin.php');
+   $after=kc_row($p,${id});
+   echo json_encode(['html'=>$html,'before'=>$before,'after'=>$after,'current_hash'=>kc_review_hash($p,$after),'interleaved'=>!KtModerationRaceStatement::$armed]);
+  `));
+  assert.equal(raced.interleaved,true,'The attachment changes after its displayed value is read');
+  assert.deepEqual(raced.before,raced.after,'Review fields, status and timestamp remain identical');
+  assert.match(raced.html,new RegExp('watch\\?v='+first));assert.ok(!raced.html.includes('watch?v='+second));
+  const displayedHash=raced.html.match(/name="expected_hash" value="([a-f0-9]{64})"/)[1];
+  assert.notEqual(displayedHash,raced.current_hash,'The displayed A snapshot must not receive the current B hash');
+  const decision=await e.admin({do:'community_review',review_id:id,status:'published',expected_hash:displayedHash});
+  assert.equal(decision.status,409);assert.match(await decision.text(),/review changed/);
+  const own=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();assert.equal(own.review.status,'pending');assert.equal(own.review.video.id,second);
+  assert.equal((await e.admin({do:'community_review',review_id:id,status:'published'})).status,200,'Fresh inspection of B can be approved');
+ }finally{e.close();}
+});
+test('external video validates, re-moderates same-second replacements, projects cohorts and clears on deletion',{skip:!capable},async()=>{
+ const e=await env('',18916);try{
+  const first='abcdefghijk',second='lmnopqrstuv',third='123456789_-';
+  for(const youtube_video of ['http://www.youtube.com/watch?v='+first,'https://youtube.com.evil.test/watch?v='+first,'https://www.youtube.com/watch?v='+first+'&autoplay=1','https://youtu.be/'+first+'?x=1','https://user@youtube.com/watch?v='+first,'<iframe src="x">','https://www.youtube.com/playlist?list='+first,' '+first,first+'\n',{},'']){
+   if(youtube_video==='')continue;
+   assert.equal((await e.post({...good,youtube_video})).status,422,String(youtube_video));
+  }
+  const observations=JSON.stringify({noise:'quiet'});
+  let response=await e.post({...good,observations,youtube_video:'https://www.youtube.com/watch?v='+first});assert.equal(response.status,201);const {id,token}=await response.json();
+  const published=()=>e.get('/api/community.php?site='+encodeURIComponent(good.campsite_id));
+  const check=()=>fetch(e.base+'/api/community.php?site='+encodeURIComponent(good.campsite_id)+'&review_id='+id);
+  const own=async()=> (await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json()).review;
+  assert.equal((await published()).count,0);assert.equal((await check()).status,404);assert.equal((await own()).video.id,first);
+  let queue=await(await fetch(e.base+'/api/admin.php?community=1',{headers:{Cookie:e.cookie()}})).text();assert.match(queue,/View submitted video on YouTube/);assert.match(queue,/whole-review approval/);assert.ok(!queue.includes('youtube-nocookie.com'));
+  e.sql(`$p->exec("UPDATE community_reviews SET updated_at='2026-10-01 01:01:01' WHERE id=${id}");`);
+  const stale=await e.reviewHash(id);
+  response=await e.post({...good,action:'edit',youtube_video:'https://youtu.be/'+second},[],token);assert.equal(response.status,200);
+  e.sql(`$p->exec("UPDATE community_reviews SET updated_at='2026-10-01 01:01:01' WHERE id=${id}");`);
+  response=await e.admin({do:'community_review',review_id:id,status:'published',expected_hash:stale});assert.equal(response.status,409);assert.match(await response.text(),/review changed/);assert.equal((await published()).count,0);
+  response=await e.admin({do:'community_review',review_id:id,status:'published',expected_hash:''});assert.equal(response.status,409);
+  await e.admin({do:'community_review',review_id:id,status:'published'});
+  let checked=await check();assert.equal(checked.headers.get('cache-control'),'no-store');assert.equal((await checked.json()).video.id,second);
+  assert.equal((await own()).observations.noise,'quiet');assert.equal((await published()).reviews[0].observations.video_id,undefined);
+  // Different videos with identical dated conditions remain one observation cohort.
+  for(const youtube_video of [first,third]){
+   const r=await(await e.post({...good,observations,youtube_video})).json();await e.admin({do:'community_review',review_id:r.id,status:'published'});
+  }
+  let discovery=await e.get('/api/community-discovery.php');const groups=discovery.sites[good.campsite_id].observations;assert.equal(groups.length,1);assert.equal(groups[0].count,3);assert.deepEqual(groups[0].values,{noise:'quiet'});assert.ok(!JSON.stringify(discovery).includes('video_id'));
+  assert.equal((await published()).monthly.months['10'].reports,3);assert.equal((await published()).monthly.months['10'].axes.noise.quiet,3);
+  // An older client still sends observations but has no video field.
+  assert.equal((await e.post({...good,action:'edit',observations},[],token)).status,200);assert.equal((await own()).video.id,second);assert.equal((await check()).status,404);
+  await e.admin({do:'community_review',review_id:id,status:'published'});
+  assert.equal((await e.post({action:'report',review_id:id,reason:'The attached external video needs a moderator check.'})).status,201);
+  await e.admin({do:'community_review',review_id:id,status:'hidden'});assert.equal((await check()).status,404);
+  await e.admin({do:'community_review',review_id:id,status:'published'});
+  assert.equal((await e.post({...good,action:'edit',youtube_video:''},[],token)).status,200);assert.equal((await own()).video,null);
+  await e.admin({do:'community_review',review_id:id,status:'published'});assert.equal((await check()).status,404);
+  assert.equal((await e.post({...good,action:'edit',youtube_video:first},[],token)).status,200);await e.admin({do:'community_review',review_id:id,status:'published'});
+  assert.equal((await e.post({action:'delete'},[],token)).status,200);assert.equal((await check()).status,404);assert.equal((await own()).video,null);
+  assert.equal(e.sql(`echo (int)$p->query('SELECT COUNT(*) FROM community_observations WHERE review_id=${id}')->fetchColumn();`).trim(),'0');
  }finally{e.close();}
 });

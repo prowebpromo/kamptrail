@@ -1,0 +1,15 @@
+# Explicit English and Spanish interface
+
+The 2.19 candidate integrates the Spanish catalogue with the complete 2.18 source-bounded feature tree. It does not introduce the older numeric seasonal sub-rating branch. Visit-month summaries remain descriptive condition counts across reported years.
+
+The English/Español selector stores `kt_language` locally. English is the default. Changing language reloads after a successful preference write. Visible help tells visitors to save unfinished forms first. Blocked storage produces an accessible explanation without reloading or changing language. Trips, filters, map position, layer preferences and canonical API enum keys are retained.
+
+`locale.js` runs before app initialization, sets the document language and exposes explicit `t`, `label`, `number`, `date`, `locale`, `language`, `setLanguage` and `apply` helpers. Only marked shell elements and explicit first-party message calls enter the catalogue. Interpolation is literal and existing HTML escaping is preserved. Date-only inputs keep their UTC calendar day. Language selection does not change measurement units.
+
+The translated core covers search, map/list controls, campsite filters/cards, trips and GPX messages, public corrections, reviews, permission reporting, existing weather/forecast/elevation filters, service discovery, offline messages, camping-care help, visit-month counts and external-video controls. The rig profile, sampled route terrain, Rhode Island height pilot, qualified RIDB amenity details, service-source coverage summaries and their About text are also translated. The catalogue has 1,510 explicit entries. Unmapped server or native browser messages may remain English, as the Spanish notice explains. The separate tutorial page and its source videos remain English. French is absent, so the historical es/fr criterion remains partial. No complete multilingual-product parity is claimed.
+
+Place names, source quotations/descriptions, NWS prose, original service/road evidence, visitor reviews/videos and personal notes retain their original words. Future unmapped server messages and native browser messages may retain the original or platform language. Never pass publisher statements or visitor words through the catalogue.
+
+Current integration preserves exact-identity amenities, bounded campsite/spot popup behavior, unknown-state labels, shared care help, descriptive monthly evidence, rig matching, sampled terrain and the Rhode Island height pilot. The worker shell is `kt-v46`; existing saved-data and evidence cache identities remain separate.
+
+Local checks: all 309 Node tests completed with 253 passes, 56 PHP-dependent skips and no failures. Python: 212 tests, eight optional skips, no failures. The ordinary release build passed with the same 33,286 campsites and service snapshot `3229270a46978b58db5cb7d8`. Native PHP and Chromium are unavailable locally. Full GitHub PHP/MySQL, complete browser, package and Lighthouse checks remain release gates. See [RELEASE_2.19.0.md](../RELEASE_2.19.0.md).

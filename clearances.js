@@ -1,6 +1,7 @@
 /* Dated source height tags. No route enforcement, bridge inventory or safe-passage claim. */
 (function(global){
   'use strict';
+  const t=(key,params={})=>global.KampTrailI18n?.t(key,params)??String(key).replace(/\{([a-zA-Z0-9_]+)\}/g,(token,name)=>Object.hasOwn(params,name)?String(params[name]):token);
   const URL='https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf';
   const KEYS=['maxheight','maxheight:physical','maxheight:conditional','maxheight:forward','maxheight:backward','maxheight:lanes'];
   const CONTEXT=['name','ref','highway','bridge','tunnel','barrier','access','source:maxheight','maxheight:signed','source:maxheight:physical'];
@@ -49,12 +50,12 @@
     return w<=e?Math.max(...xs)>=w&&Math.min(...xs)<=e:Math.max(...xs)>=w||Math.min(...xs)<=e;
   }
   function heightText(r,key){
-    if(!Object.hasOwn(r.tags,key))return'Unknown; no source tag';
+    if(!Object.hasOwn(r.tags,key))return t('Unknown; no source tag');
     const value=r.metres[key];
-    return `${r.tags[key]}${value===null?' (numeric limit unknown)':` (about ${value.toFixed(2)} m)`}`;
+    return r.tags[key]+(value===null?t(' (numeric limit unknown)'):t(' (about {value} m)',{value:value.toFixed(2)}));
   }
   function describe(r,d,saved=false){
-    return `${saved?'Saved snapshot. ':''}OpenStreetMap extract ${d.source.extract_timestamp}; downloaded ${d.source.retrieved_at}. Object last edited ${r.edited_at}. These dates are not an inspection. Rhode Island pilot only; missing records and all other areas are unknown. Current signs, clearance, access and safe passage are unverified. This map does not match these tags to your route or enforce vehicle restrictions.`;
+    return t('{saved}OpenStreetMap extract {extract}; downloaded {retrieved}. Object last edited {edited}. These dates are not an inspection. Rhode Island pilot only; missing records and all other areas are unknown. Current signs, clearance, access and safe passage are unverified. This map does not match these tags to your route or enforce vehicle restrictions.',{saved:saved?t('Saved snapshot. '):'',extract:d.source.extract_timestamp,retrieved:d.source.retrieved_at,edited:r.edited_at});
   }
   function init(map){
     const L=global.L,layer=L.layerGroup();let data=null,pending=null,controller=null,control,status,select,openButton,view=0,saved=false;
@@ -64,11 +65,11 @@
     const assetURL=()=>new global.URL('data/clearances/RI.json',global.location.href).href;
     const link=(label,url)=>{const a=el('a',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;};
     function popup(r,d,wasSaved){
-      const box=el('div');box.className='kt-clearance-popup';box.tabIndex=0;box.setAttribute('role','region');box.setAttribute('aria-label','Reported height tag details');box.style.maxHeight=Math.max(80,Math.min(360,map.getSize().y-160))+'px';
-      box.append(el('h2',r.context.name||r.context.ref||'Reported height tags'),el('p',`General/legal tag (maxheight): ${heightText(r,'maxheight')}.`),el('p',`Physical-height tag (maxheight:physical): ${heightText(r,'maxheight:physical')}.`));
-      for(const key of KEYS.filter(k=>!['maxheight','maxheight:physical'].includes(k)))if(Object.hasOwn(r.tags,key))box.append(el('p',`${key}: ${r.tags[key]}. Raw source only; direction, lanes and conditions are not interpreted.`));
+      const box=el('div');box.className='kt-clearance-popup';box.tabIndex=0;box.setAttribute('role','region');box.setAttribute('aria-label',t("Reported height tag details"));box.style.maxHeight=Math.max(80,Math.min(360,map.getSize().y-160))+'px';
+      box.append(el('h2',r.context.name||r.context.ref||t("Reported height tags")),el('p',t('General/legal tag (maxheight): {value}.',{value:heightText(r,'maxheight')})),el('p',t('Physical-height tag (maxheight:physical): {value}.',{value:heightText(r,'maxheight:physical')})));
+      for(const key of KEYS.filter(k=>!['maxheight','maxheight:physical'].includes(k)))if(Object.hasOwn(r.tags,key))box.append(el('p',t('{key}: {value}. Raw source only; direction, lanes and conditions are not interpreted.',{key,value:r.tags[key]})));
       if(Object.keys(r.context).length){const list=el('dl');for(const [k,v] of Object.entries(r.context)){list.append(el('dt',k),el('dd',v));}box.append(list);}
-      box.append(el('p',describe(r,d,wasSaved)),link('OpenStreetMap source object',sourceLink(r)),' · ',link('OSM height-tag guidance','https://wiki.openstreetmap.org/wiki/Key:maxheight'),' · ',link('OSM physical-height guidance','https://wiki.openstreetmap.org/wiki/Key:maxheight:physical'));
+      box.append(el('p',describe(r,d,wasSaved)),link(t("OpenStreetMap source object"),sourceLink(r)),' · ',link(t("OSM height-tag guidance"),'https://wiki.openstreetmap.org/wiki/Key:maxheight'),' · ',link(t("OSM physical-height guidance"),'https://wiki.openstreetmap.org/wiki/Key:maxheight:physical'));
       return box;
     }
     async function readResponse(response){
@@ -97,31 +98,31 @@
     }
     async function redraw(force=false){
       const current=++view;if(control)control.hidden=!active();if(!active())return;
-      if(map.getZoom()<8){if(!map._popup?.isOpen?.())layer.clearLayers();status.textContent='Zoom to level 8 or closer. Rhode Island height-tag pilot only. Other areas and missing records are unknown.';return;}
-      status.textContent='Loading dated height tags…';
+      if(map.getZoom()<8){if(!map._popup?.isOpen?.())layer.clearLayers();status.textContent=t("Zoom to level 8 or closer. Rhode Island height-tag pilot only. Other areas and missing records are unknown.");return;}
+      status.textContent=t("Loading dated height tags…");
       try{const d=await load(force);if(current!==view||!active())return;
         const b=map.getBounds(),rows=d.records.filter(r=>intersect(r,{south:b.getSouth(),west:b.getWest(),north:b.getNorth(),east:b.getEast()}));
-        status.textContent=`${saved?'Saved snapshot. ':''}${rows.length} source height-tag record${rows.length===1?'':'s'} in view. RI pilot only; missing records and other areas are unknown. Extract ${d.source.extract_timestamp.slice(0,10)}. No route enforcement or safe-passage assurance.`;
+        status.textContent=t('{saved}{count} source height-tag {records} in view. RI pilot only; missing records and other areas are unknown. Extract {date}. No route enforcement or safe-passage assurance.',{saved:saved?t('Saved snapshot. '):'',count:rows.length,records:t(rows.length===1?'record':'records'),date:d.source.extract_timestamp.slice(0,10)});
         if(map._popup?.isOpen?.())return;
         const previous=select.value,snapshotSaved=saved;select.replaceChildren();layer.clearLayers();for(const r of rows){const options={color:'#9b3821',weight:5,opacity:.85};let item;
           if(r.geometry.type==='LineString')item=L.polyline(r.geometry.coordinates.map(p=>[p[1],p[0]]),options);
           else item=L.circleMarker([r.geometry.coordinates[1],r.geometry.coordinates[0]],{...options,radius:7});
           item.ktClearanceId=r.id;item.bindPopup(()=>popup(r,d,snapshotSaved),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(item);
-          const option=el('option',`${r.context.name||r.context.ref||'Source object'} · ${r.id}`);option.value=r.id;select.append(option);
+          const option=el('option',`${r.context.name||r.context.ref||t("Source object")} · ${r.id}`);option.value=r.id;select.append(option);
         }
         if(rows.some(r=>r.id===previous))select.value=previous;select.disabled=openButton.disabled=!rows.length;
-      }catch(error){if(current===view&&active()){if(!map._popup?.isOpen?.())layer.clearLayers();select.disabled=openButton.disabled=true;status.textContent='Height-tag evidence unavailable. Coverage and current clearance are unknown. Reconnect and retry.';}}
+      }catch(error){if(current===view&&active()){if(!map._popup?.isOpen?.())layer.clearLayers();select.disabled=openButton.disabled=true;status.textContent=t("Height-tag evidence unavailable. Coverage and current clearance are unknown. Reconnect and retry.");}}
     }
     const widget=L.control({position:'bottomleft'});widget.onAdd=()=>{control=el('div');control.className='kt-clearance-control';control.hidden=true;status=el('p');status.setAttribute('role','status');status.setAttribute('aria-live','polite');
-      const label=el('label','Height-tag record in view');select=el('select');select.setAttribute('aria-label','Height-tag record in view');select.disabled=true;label.append(select);
-      openButton=button('Open selected height tags',()=>{const item=layer.getLayers().find(l=>l.ktClearanceId===select.value);if(item){item.openPopup();global.setTimeout(()=>map.getContainer().querySelector('.kt-clearance-popup')?.focus(),0);}});openButton.disabled=true;
-      control.append(el('strong','Reported height tags'),status,label,openButton,button('Retry height-tag evidence',()=>redraw(true)));L.DomEvent.disableClickPropagation(control);L.DomEvent.disableScrollPropagation(control);return control;};widget.addTo(map);
+      const label=el('label',t("Height-tag record in view"));select=el('select');select.setAttribute('aria-label',t("Height-tag record in view"));select.disabled=true;label.append(select);
+      openButton=button(t("Open selected height tags"),()=>{const item=layer.getLayers().find(l=>l.ktClearanceId===select.value);if(item){item.openPopup();global.setTimeout(()=>map.getContainer().querySelector('.kt-clearance-popup')?.focus(),0);}});openButton.disabled=true;
+      control.append(el('strong',t("Reported height tags")),status,label,openButton,button(t("Retry height-tag evidence"),()=>redraw(true)));L.DomEvent.disableClickPropagation(control);L.DomEvent.disableScrollPropagation(control);return control;};widget.addTo(map);
     map.on('overlayadd overlayremove',e=>{if(e.layer===layer){if(!active()){++view;controller?.abort();}redraw();}});
     let timer;map.on('moveend',()=>{global.clearTimeout(timer);timer=global.setTimeout(()=>redraw(),180);});
     map.on('popupclose',()=>global.setTimeout(()=>{if(!map._popup?.isOpen?.())redraw();},0));
     global.addEventListener('offline',()=>{saved=!!data;redraw();});global.addEventListener('online',()=>redraw(true));
     return layer;
   }
-  const api={version:'2.18.0',validate,parseHeight,heightText,describe,sourceLink,intersect,init,MAX_BYTES};
+  const api={version:'2.19.0',validate,parseHeight,heightText,describe,sourceLink,intersect,init,MAX_BYTES};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailClearances=api;
 })(typeof window!=='undefined'?window:globalThis);

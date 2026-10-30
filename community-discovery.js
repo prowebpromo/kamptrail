@@ -1,9 +1,10 @@
 /* Published camper evidence. Never treat source ratings or predicted coverage as observations. */
 (function(global){
  'use strict';
- const AXES={access:{label:'Approach for your rig',values:{easy:'Easy',moderate:'Moderate',difficult:'Difficult'}},noise:{label:'Noise',values:{quiet:'Quiet',mixed:'Mixed',noisy:'Noisy'}},shade:{label:'Shade',values:{none:'None',partial:'Partial',full:'Full'}},crowding:{label:'Crowding',values:{sparse:'Sparse',moderate:'Moderate',crowded:'Crowded'}},comfort:{label:'Personal comfort',values:{comfortable:'Felt comfortable',concerns:'Had concerns'}}};
- const CARRIERS={att:'AT&T',verizon:'Verizon',tmobile:'T-Mobile',other:'Other carrier'},SIGNAL={none:'No service',weak:'Weak',usable:'Usable',strong:'Strong'},ENVIRONMENTS={unspecified:'Setting not specified',outdoors:'Outdoors',inside_rv:'Inside RV',other_vehicle:'Inside other vehicle'};
- const SIGNAL_FILTER={none:'No service reported',weak:'Weak or better',usable:'Usable or better',strong:'Strong'},SIGNAL_LEVEL={none:0,weak:1,usable:2,strong:3};
+  const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
+ const AXES={access:{label:t("Approach for your rig"),values:{easy:t("Easy"),moderate:t("Moderate"),difficult:t("Difficult")}},noise:{label:t("Noise"),values:{quiet:t("Quiet"),mixed:t("Mixed"),noisy:t("Noisy")}},shade:{label:t("Shade"),values:{none:t("None"),partial:t("Partial"),full:t("Full")}},crowding:{label:t("Crowding"),values:{sparse:t("Sparse"),moderate:t("Moderate"),crowded:t("Crowded")}},comfort:{label:t("Personal comfort"),values:{comfortable:t("Felt comfortable"),concerns:t("Had concerns")}}};
+ const CARRIERS={att:'AT&T',verizon:'Verizon',tmobile:'T-Mobile',other:t("Other carrier")},SIGNAL={none:t("No service"),weak:t("Weak"),usable:t("Usable"),strong:t("Strong")},ENVIRONMENTS={unspecified:t("Setting not specified"),outdoors:t("Outdoors"),inside_rv:t("Inside RV"),other_vehicle:t("Inside other vehicle")};
+ const SIGNAL_FILTER={none:t("No service reported"),weak:t("Weak or better"),usable:t("Usable or better"),strong:t("Strong")},SIGNAL_LEVEL={none:0,weak:1,usable:2,strong:3};
  const st={sites:new Map(),mode:'idle',checked:null,error:'',pending:null,generation:0};
  const active=f=>+f.minRating>0||+f.minReviews>1||Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
  const conditions=f=>Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
@@ -27,7 +28,7 @@
  const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
  const keys=(x,allowed)=>record(x)&&Object.keys(x).every(k=>allowed.includes(k));
  const has=(x,k)=>typeof k==='string'&&Object.hasOwn(x,k);
- const MONTHS={'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'};
+ const MONTHS={'01':t('January'),'02':t('February'),'03':t('March'),'04':t('April'),'05':t('May'),'06':t('June'),'07':t('July'),'08':t('August'),'09':t('September'),'10':t('October'),'11':t('November'),'12':t('December')};
  function validVisitDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&value>='1900-01-01'&&Number.isFinite(Date.parse(value+'T00:00:00Z'))&&new Date(value+'T00:00:00Z').toISOString().slice(0,10)===value;}
  function validMonthly(d){
   const count=n=>Number.isSafeInteger(n)&&n>=0&&n<=1000000;
@@ -70,14 +71,14 @@
  const usable=()=>['ready','cached'].includes(st.mode)&&Number.isFinite(Date.parse(st.checked))&&Date.now()-Date.parse(st.checked)<=7*86400000;
  const summary=p=>{if(!usable())return null;for(const id of typeof p==='string'?[p]:[p.id,...(p.legacy_ids||[])]){const row=st.sites.get(id);if(row)return row;}return null;};
  const matches=(p,f)=>!active(f)||matchesSummary(summary(p),f);
- function matchNote(p,f){const s=summary(p);if(!s||!conditions(f))return '';const groups=matchingGroups(s,f);if(!groups.length)return '';const count=groups.reduce((n,g)=>n+g.count,0),latest=groups.map(g=>g.latest_visit).sort().at(-1);return `Matching visit evidence: ${count} published ${count===1?'report':'reports'} · latest ${latest}.`; }
+ function matchNote(p,f){const s=summary(p);if(!s||!conditions(f))return '';const groups=matchingGroups(s,f);if(!groups.length)return '';const count=groups.reduce((n,g)=>n+g.count,0),latest=groups.map(g=>g.latest_visit).sort().at(-1);return t('Matching visit evidence: {0} published {1} · latest {2}.',{'0':count,'1':t(count===1?'report':'reports'),'2':latest}); }
  function notify(){if(global.dispatchEvent&&typeof CustomEvent==='function')global.dispatchEvent(new CustomEvent('kamptrail:discoveryupdated'));}
  const cacheName=()=>`kamptrail:${new URL('./',location.href).href}:camper-discovery-v1`;
  const cacheKey=()=>new URL('__published_camper_discovery__',new URL('./',location.href)).href;
  function status(){
-  if(st.mode==='loading')return 'Loading published camper ratings and observations…';
-  if(usable())return `${st.mode==='cached'?'Saved camper evidence':'Published camper evidence'} checked ${new Date(st.checked).toLocaleString()}. ${st.error?'Online refresh failed. ':''}Missing reports do not match. Ratings use all published reviews; conditions are self-reported visits, not current guarantees.`;
-  return st.error||'Choose a camper filter to load published evidence. Missing reports stay unknown.';
+  if(st.mode==='loading')return t("Loading published camper ratings and observations…");
+  if(usable())return t('{0} checked {1}. {2}Missing reports do not match. Ratings use all published reviews; conditions are self-reported visits, not current guarantees.',{'0':st.mode==='cached'?t('Saved camper evidence'):t('Published camper evidence'),'1':new Date(st.checked).toLocaleString(global.KampTrailI18n?.locale()),'2':st.error?t('Online refresh failed. '):''});
+  return st.error||t("Choose a camper filter to load published evidence. Missing reports stay unknown.");
  }
  async function load(force=false){
   if(st.pending)return st.pending;
@@ -102,23 +103,23 @@
     throw new Error('size');
    }catch{
     if(generation!==st.generation)return;
-    st.error='Published camper evidence could not refresh. Retry online. No partial download is used.';
+    st.error=t("Published camper evidence could not refresh. Retry online. No partial download is used.");
     try{const c=await caches.open(cacheName()),r=await c.match(cacheKey()),d=r&&await r.json();if(generation!==st.generation)return;if(d?.version===1&&validSites(d.sites)&&Number.isFinite(Date.parse(d.checked_at))&&Date.now()-Date.parse(d.checked_at)<=7*86400000){st.sites=new Map(Object.entries(d.sites));st.checked=d.checked_at;st.mode='cached';return;}}catch{}
     st.mode='error';st.sites=new Map();st.checked=null;
    }finally{st.pending=null;notify();}
   });return st.pending;
  }
  function observeFields(form,review,el,field){
-  const values=review.observations||{},set=el('fieldset');set.append(el('legend',{},'Conditions you observed (optional)'),el('p',{class:'kt-fine'},'Report only this visit. Approach depends on your rig. Comfort is subjective. These reports do not establish permission, safety or current road conditions.'));
-  const select=(name,options,value)=>{const n=el('select',{name});n.append(el('option',{value:''},'Not reported'));for(const[k,v]of Object.entries(options))n.append(el('option',{value:k,selected:k===value},v));return n;};
+  const values=review.observations||{},set=el('fieldset');set.append(el('legend',{},t("Conditions you observed (optional)")),el('p',{class:'kt-fine'},t("Report only this visit. Approach depends on your rig. Comfort is subjective. These reports do not establish permission, safety or current road conditions.")));
+  const select=(name,options,value)=>{const n=el('select',{name});n.append(el('option',{value:''},t("Not reported")));for(const[k,v]of Object.entries(options))n.append(el('option',{value:k,selected:k===value},v));return n;};
   for(const[k,a]of Object.entries(AXES))set.append(field(a.label,select('observed_'+k,a.values,values[k])));
-  set.append(el('p',{class:'kt-fine'},'Cell signal is your experience on the visit date, not a carrier prediction or a speed measurement. Leave carriers you did not try unreported.'));
-  for(const[k,name]of Object.entries(CARRIERS)){const old=(values.signals||[]).find(x=>x.carrier===k)||{};set.append(field(name+' signal',select('signal_'+k,SIGNAL,old.signal)),field(name+' setting',select('environment_'+k,ENVIRONMENTS,old.environment||'unspecified')));}
+  set.append(el('p',{class:'kt-fine'},t("Cell signal is your experience on the visit date, not a carrier prediction or a speed measurement. Leave carriers you did not try unreported.")));
+  for(const[k,name]of Object.entries(CARRIERS)){const old=(values.signals||[]).find(x=>x.carrier===k)||{};set.append(field(t('{carrier} signal',{carrier:name}),select('signal_'+k,SIGNAL,old.signal)),field(t('{carrier} setting',{carrier:name}),select('environment_'+k,ENVIRONMENTS,old.environment||'unspecified')));}
   form.append(set);
  }
  function formValues(form){const data=new FormData(form),out={};for(const k of Object.keys(AXES)){const v=data.get('observed_'+k);if(v)out[k]=v;}const signals=[];for(const carrier of Object.keys(CARRIERS)){const signal=data.get('signal_'+carrier);if(signal)signals.push({carrier,signal,environment:data.get('environment_'+carrier)||'unspecified'});}if(signals.length)out.signals=signals;return out;}
  function describe(o){const text=[];for(const[k,a]of Object.entries(AXES))if(a.values[o?.[k]])text.push(a.label+': '+a.values[o[k]]);for(const s of o?.signals||[])if(CARRIERS[s.carrier]&&SIGNAL[s.signal])text.push(CARRIERS[s.carrier]+': '+SIGNAL[s.signal]+' ('+(ENVIRONMENTS[s.environment]||'Setting not specified')+')');return text.join(' · ');}
- global.KampTrailDiscovery={version:'2.18.0',AXES,MONTHS,validMonthly,monthlyView,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
+ global.KampTrailDiscovery={version:'2.19.0',AXES,MONTHS,validMonthly,monthlyView,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
  if(typeof module!=='undefined'&&module.exports)module.exports=global.KampTrailDiscovery;
  if(global.addEventListener){global.addEventListener('kamptrail:communitychanged',async()=>{const reload=st.mode!=='idle'||active(global.kamptrailFilters||{}),pending=st.pending;st.generation++;st.sites=new Map();st.checked=null;st.mode='idle';notify();try{await caches.delete(cacheName());}catch{}if(pending)await pending;try{await caches.delete(cacheName());}catch{}if(reload)load(true);});global.addEventListener('focus',()=>{if(active(global.kamptrailFilters||{}))load();});}
 })(typeof window!=='undefined'?window:globalThis);

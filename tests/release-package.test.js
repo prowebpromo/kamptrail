@@ -17,7 +17,7 @@ test('release keeps runtime versions, handshake and first-party asset URLs consi
   const scripts=[...html.matchAll(/<script src="([^"/]+\.js)(\?[^"]*)?"/g)];
   const runtimeFiles=fs.readdirSync(root).filter(file=>file.endsWith('.js')&&!file.endsWith('.spec.js')&&!['service-worker.js','playwright.config.js'].includes(file)).sort();
   assert.deepEqual(scripts.map(([,file])=>file).sort(),runtimeFiles,'Every first-party runtime module is declared exactly once in the page');
-  for(const file of ['app.js','data-loader.js','data-quality.js','permissions.js','rest-areas.js','rig-profile.js','route-elevation.js','clearances.js'])assert.ok(runtimeFiles.includes(file),`Required runtime module: ${file}`);
+  for(const file of ['locale.js', 'app.js','data-loader.js','data-quality.js','permissions.js','rest-areas.js','rig-profile.js','route-elevation.js','clearances.js'])assert.ok(runtimeFiles.includes(file),`Required runtime module: ${file}`);
   for(const [,file,query]of scripts){
     assert.equal(query,`?v=${version}`,file);
     const source=fs.readFileSync(path.join(root,file),'utf8');
