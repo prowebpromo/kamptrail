@@ -21,6 +21,7 @@ import tempfile
 import zipfile
 
 from aggregate_services import aggregate
+from promote_services import promote
 from import_services import CATEGORIES, categories, timestamp, validate_source_update
 from services_regions import REGISTRY_PATH, URLS
 from stage_services import digest, validate_checkpoint
@@ -29,7 +30,9 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = 'prowebpromo/kamptrail'
 REPOSITORY_ID = 967717280
 REVIEWED_HEAD = '369efee3ed2f2b81ce867f269ff08bad523c039b'
-AGGREGATE_REVIEW_HEAD = 'b2f29826ab013e7f245aee4c53c88142a2d2b08c'
+# Explicitly reviewed code blobs: startup-only retry and exact-source strict CLI.
+REVIEWED_OVERRIDES = {'scripts/import_services.py': '2225f7ed11f9fb6633ca887e6731ae31c65ab8ac',
+                      'scripts/aggregate_services.py': '3feb517d846aa18ea17ff827e3fd520ef5bcabe2'}
 WORKFLOW_ID = 402051348
 WORKFLOW_PATH = '.github/workflows/stage-national-services.yml'
 REGISTRY_SHA256 = '7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee'
@@ -257,8 +260,8 @@ def git(*args, cwd=None):
 
 def verify_reviewed_code():
     for name in REVIEWED_FILES:
-        approved = AGGREGATE_REVIEW_HEAD if name == 'scripts/aggregate_services.py' else REVIEWED_HEAD
-        require(git('hash-object', name) == git('rev-parse', approved + ':' + name),
+        approved = REVIEWED_OVERRIDES.get(name) or git('rev-parse', REVIEWED_HEAD + ':' + name)
+        require(git('hash-object', name) == approved,
                 'Reviewed national source/cap contract changed; a new review is required')
 
 
@@ -374,6 +377,8 @@ def preflight_outputs(expected_id):
         checked(name, directory=True)
     for region in [*sorted(URLS), 'legacy']:
         checked(f'data/sources/services/{region}.json')
+    checked('data/health.json')
+    require((ROOT / 'data/health.json').is_file(), 'Accepted health file is required for promotion')
     for suffix in ('json', 'md'):
         checked(f'docs/SERVICES_NATIONAL_{expected_id}.{suffix}')
     for directory, names, files in os.walk(ROOT / 'data/services', followlinks=False):
@@ -419,6 +424,7 @@ def prepare(plan, verified, downloaded):
     require(not git('status', '--porcelain'), 'Review branch requires a clean checkout')
     base = git('rev-parse', 'HEAD')
     require(remote_head('refs/heads/main') == base, 'Checkout must start from current main')
+    command(['git', 'merge-base', '--is-ancestor', REVIEWED_HEAD, base])
     verify_reviewed_code()
     legacy = ROOT / 'data/sources/services/legacy.json'
     require(legacy.is_file() and not legacy.is_symlink(), 'Missing or symlinked accepted legacy evidence')
@@ -439,18 +445,16 @@ def prepare(plan, verified, downloaded):
         # All source, immutable ZIP, loss/freshness and full aggregate checks have
         # passed before any tracked source or browser asset is touched.
         preflight_outputs(plan['run_id'])
-        for region in sorted(URLS):
-            shutil.copyfile(work / 'stage' / region / 'source.json', ROOT / f'data/sources/services/{region}.json')
-        # Give predecessor selection stable source-date ordering, independent of
-        # runner checkout mtimes. The ordinary builder still owns retention.
+        # Stable ordering preserves the existing immutable generation policy.
         for directory in (ROOT / 'data/services/snapshots').iterdir():
             require(directory.is_dir() and not directory.is_symlink(), 'Unexpected service generation directory')
             manifest = checked_json(directory / 'manifest.json')
             stamp = dt.datetime.fromisoformat(timestamp(manifest['generated_at']).replace('Z', '+00:00')).timestamp()
             os.utime(directory, (stamp, stamp))
-        command(['node', str(ROOT / 'scripts/build-services.js')], timeout=300)
+        promotion = promote(rebuilt, plan['run_id'] + '-' + REVIEWED_HEAD, root=ROOT, accepted_ref=base)
         require(digest(ROOT / 'data/services/index.json') == receipt['manifest_sha256']
-                and digest(legacy) == legacy_hash, 'Ordinary build differs or retained legacy source changed')
+                and digest(legacy) == legacy_hash, 'Promoted build differs or retained legacy source changed')
+        summary['promotion'] = promotion
         generations = list((ROOT / 'data/services/snapshots').iterdir())
         require(len(generations) <= 3, 'Ordinary builder exceeded three-generation retention')
         summary['published_generations'] = sorted(p.name for p in generations)
@@ -473,11 +477,11 @@ def prepare(plan, verified, downloaded):
                 f'[{Path(proof_path).name}]({Path(proof_path).name}). Category totals overlap and source counts may differ from deduplicated database counts. '
                 'Only normal PR checks and review may authorize a later merge and the existing Hostinger deployment path.\n')
         (ROOT / markdown_path).write_text(text)
-        paths = [f'data/sources/services/{r}.json' for r in sorted(URLS)] + ['data/services', proof_path, markdown_path]
+        paths = [f'data/sources/services/{r}.json' for r in sorted(URLS)] + ['data/services', 'data/health.json', proof_path, markdown_path]
         git('add', '-A', '--', *paths)
         changed = git('diff', '--cached', '--name-only').splitlines()
         allowed_sources = set(paths[:50])
-        require(changed and all(p in allowed_sources or p.startswith('data/services/') or p in (proof_path, markdown_path)
+        require(changed and all(p in allowed_sources or p.startswith('data/services/') or p in ('data/health.json', proof_path, markdown_path)
                                 for p in changed), 'Unexpected staged change outside the data review scope')
         return finish_branch(plan['run_id'], base, git('write-tree'), proof_path)
 

@@ -210,6 +210,45 @@ class ServicesReviewTests(unittest.TestCase):
                     review.validate_complete_candidate(plan, downloads, next_work)
                 self.assertEqual((sources / 'legacy.json').read_bytes(), legacy_bytes)
 
+    def test_preparation_uses_transactional_promoter_and_stages_health(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / 'checkout'; root.mkdir(); self.output_fixture(root)
+            verified = Path(temporary) / 'verified'; verified.mkdir()
+            (verified / 'zip-proof.json').write_text('{}')
+            downloaded = Path(temporary) / 'downloaded'; downloaded.mkdir()
+            candidate = Path(temporary) / 'candidate'; candidate.mkdir()
+            base = 'a' * 40
+            index_hash = review.digest(root / 'data/services/index.json')
+            receipt = {'total': 50, 'shards': 1, 'manifest_bytes': 10, 'snapshot_id': 'b' * 24, 'manifest_sha256': index_hash}
+            states = {r: {'source': {}, 'accepted': 1, 'quarantine_count': 0,
+                          'category_counts': {c: 0 for c in review.CATEGORIES},
+                          'statistics': {'bytes': 1, 'peak_rss_kib': 1}, 'runtime_seconds': 1} for r in URLS}
+            plan = {'run_id': '41', 'run': {'run_attempt': 2}}
+            staged = []
+            def git(*args, **kwargs):
+                if args == ('status', '--porcelain'): return ''
+                if args == ('rev-parse', 'HEAD'): return base
+                if args[:2] == ('diff', '--cached'): return 'data/health.json'
+                if args == ('write-tree',): return 'c' * 40
+                if args[0] == 'add': staged.extend(args)
+                return ''
+            def promote(candidate_arg, batch, root, accepted_ref):
+                self.assertEqual(candidate_arg, candidate)
+                self.assertEqual(batch, '41-' + review.REVIEWED_HEAD)
+                self.assertEqual(accepted_ref, base)
+                (root / 'data/health.json').write_text('{"services_run":{"coverage_states":50}}')
+                return {'snapshot_id': receipt['snapshot_id']}
+            with patch.object(review, 'ROOT', root), patch.object(review, 'compare_downloads'), \
+                 patch.object(review, 'remote_head', return_value=base), patch.object(review, 'git', side_effect=git), \
+                 patch.object(review, 'command'), patch.object(review, 'verify_reviewed_code'), \
+                 patch.object(review, 'validate_complete_candidate', return_value=(states, receipt, candidate)), \
+                 patch.object(review, 'promote', side_effect=promote) as called, \
+                 patch.object(review, 'finish_branch', return_value={'status': 'created'}):
+                self.assertEqual(review.prepare(plan, verified, downloaded), {'status': 'created'})
+                called.assert_called_once()
+            self.assertIn('data/health.json', staged)
+            self.assertEqual(json.loads((root / 'data/health.json').read_text())['services_run']['coverage_states'], 50)
+
     def test_branch_create_uses_atomic_absent_ref_lease_and_never_protected_ref(self):
         base, tree, commit = 'a' * 40, 'b' * 40, 'c' * 40
         with patch.object(review, 'remote_head', side_effect=[base, None, base, commit, base]), patch.object(review, 'git') as git:
@@ -255,12 +294,13 @@ class ServicesReviewTests(unittest.TestCase):
         for name in ('data/sources/services', 'data/services/snapshots', 'docs'):
             (root / name).mkdir(parents=True)
         (root / 'data/services/index.json').write_text('{}')
+        (root / 'data/health.json').write_text('{}')
         (root / 'data/sources/services/legacy.json').write_text('{}')
 
     def test_all_output_roots_files_and_parents_reject_even_dangling_symlinks(self):
         cases = [('data/sources/services/RI.json', False), ('data/sources/services/legacy.json', False),
                  ('docs/SERVICES_NATIONAL_41.json', False), ('docs/SERVICES_NATIONAL_41.md', False),
-                 ('data/services/index.json', False), ('data/services/snapshots', True),
+                 ('data/services/index.json', False), ('data/health.json', False), ('data/services/snapshots', True),
                  ('data/services', True), ('data/sources', True), ('docs', True)]
         for relative, directory in cases:
             with self.subTest(path=relative), tempfile.TemporaryDirectory() as temporary:
