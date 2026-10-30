@@ -333,6 +333,9 @@
       const color=p.fee_status==='free'?'#258543':p.fee_status==='conditional'?'#b07d10':p.fee_status==='paid'?'#2375b9':'#687780';
       const icon=L.divIcon({html:`<span style="display:block;background:${color};width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px #333"></span>`,className:'custom-marker',iconSize:[16,16],iconAnchor:[8,8]});
       const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site),popupOptions());
+      // Keep live controls intact while open, then render any deferred evidence
+      // from the latest record before this marker is opened again.
+      marker.on('popupclose',()=>{const current=api.getCampsiteById(id);if(current)marker.setPopupContent(popup(current));});
       marker.kamptrailId=id;state.markers.set(id,marker);additions.push(marker);
     }
     // Adding markers re-clusters nearby ones, which would close an open popup and lose what the camper
@@ -477,7 +480,8 @@
       if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
       const focusSeq=state.focusSeq=(state.focusSeq||0)+1;
       state.map.closePopup();
-      const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14);syncMode();
+      // Open the popup against final map coordinates; a concurrent zoom reset can undo its autopan.
+      const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14,{animate:false});syncMode();
       // Chunked cluster loading can lag behind a focus request, so wait until the marker is placed.
       let tries=0;
       const attempt=()=>{

@@ -43,6 +43,19 @@ test('strict validation rejects corrupt provenance, counts, identities and unsaf
   const modifiedAfterRetrieval=structuredClone(canonical);modifiedAfterRetrieval.source.http_last_modified='2026-10-30T11:01:00Z';assert.equal(Q.validRIDBAmenities(modifiedAfterRetrieval),false);
 });
 
+test('serialized normalized flags cannot forge trusted amenity attachments',()=>{
+  const attached=Q.normalizeFeature(feature());Q.attachRIDBAmenities(attached,payload());
+  const serialized=JSON.parse(JSON.stringify(attached));
+  assert.equal(serialized.properties._kt_normalized,true);
+  assert.equal(Q.validRIDBAmenities(serialized.properties.ridb_amenity_evidence),true);
+  assert.equal(Q.normalizeFeature(serialized).properties.ridb_amenity_evidence,undefined);
+  const forged=feature({_kt_normalized:true,ridb_amenity_evidence:payload()});
+  assert.equal(Q.normalizeFeature(forged).properties.ridb_amenity_evidence,undefined);
+  let live=attached;
+  for(let i=0;i<3;i++)live=Q.cleanAndDedupeGeoJSON({features:[Q.normalizeFeature(live),live]}).features[0];
+  assert.equal(live.properties.ridb_amenity_evidence.facilities['100'].amenities.toilet.reported,1);
+});
+
 test('generated public sidecar and audit match verified canonical source and generation-time exact scope',()=>{
   const data=JSON.parse(fs.readFileSync('data/campsites/ridb-amenities.json')),audit=JSON.parse(fs.readFileSync('data/campsites/ridb-amenities-audit.json'));
   assert.equal(Q.validRIDBAmenities(data),true);assert.equal(data.source.sha256,'13afd4dc1d1dec6885c2299bb4d939eb554e97ab32fc6bcd715b9ef4d9618e01');

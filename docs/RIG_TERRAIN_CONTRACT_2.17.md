@@ -44,7 +44,7 @@ The service worker never caches API responses. Device rig, terrain, routes, map 
 
 ## Release and verification
 
-The 2.17 shell uses `kt-v43`, distinct from the 2.16 amenity release's `kt-v42`. Persistent device-data and map caches keep their existing identities.
+The 2.17 shell uses `kt-v44`, distinct from the 2.16 amenity release's `kt-v43`. Persistent device-data and map caches keep their existing identities.
 
 Build packaging must include both JavaScript modules, the PHP endpoint/helper and updated About text. The private cache directory must be writable by PHP with PDO SQLite and cURL available. A missing extension, inaccessible directory or cache lock returns a bounded unavailable state, not fabricated elevation. Deploy the endpoint/helper with the rest of the release; no public writable cache or new provider secret is needed.
 
