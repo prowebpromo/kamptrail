@@ -339,7 +339,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.15.0',
+    version:'2.15.1',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;

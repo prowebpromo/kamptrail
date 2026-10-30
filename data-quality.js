@@ -79,7 +79,8 @@
     const classification = classifyCampingRecord(raw, name, {osm, ridb});
     if (classification.exclusion_reason) return null;
     const legacyRIDB = ridb && !(Number(raw.schema_version) >= 3) && !raw._kt_normalized;
-    const p = {...raw, ...classification, name, sources, state: raw.state || raw['addr:state'] || options.state || null};
+    // Snapshot membership is a loading hint, not evidence of a site's state.
+    const p = {...raw, ...classification, name, sources, state: raw.state || raw['addr:state'] || null};
     p.legacy_ids = [...new Set([...(Array.isArray(raw.legacy_ids) ? raw.legacy_ids : []), raw.id].filter(v => v != null && v !== '').map(String))];
     const coordKey = `${ll.lon.toFixed(6)},${ll.lat.toFixed(6)}`;
     if (ridb && raw.facility_id != null) p.id = `ridb:${raw.facility_id}`;
@@ -146,6 +147,7 @@
   }
   function mergeFeatures(primary, secondary) {
     const p=primary.properties, q=secondary.properties;
+    if (p.state == null && p.id === q.id && q.state != null) p.state=q.state;
     if(p.forecastStates||q.forecastStates)p.forecastStates=[...new Set([...(p.forecastStates||[]),...(q.forecastStates||[])])];
     p.legacy_ids = [...new Set([...(p.legacy_ids || []), ...(q.legacy_ids || []), q.id])];
     p.sources = [...new Set([...(p.sources || []), ...(q.sources || [])])];
@@ -336,6 +338,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.15.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.15.1',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);
