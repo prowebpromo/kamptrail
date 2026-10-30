@@ -26,6 +26,8 @@ The fixed endpoint is `POST api/route-elevation.php`, with JSON, same-origin cre
 
 The server validates origin including scheme/host/port, method, content type, empty query, body size, unique bounded IDs and numeric coordinates. USGS output is matched by `locationId` and exact requested coordinate/CRS identity, never array order. Duplicate/missing locations, malformed values and upstream failure stay unavailable. A valid no-data response is distinct from transport failure. The response includes value/no-data/unavailable status, metres, retrieval time, source metadata and available datum/date metadata; absent metadata stays unknown.
 
+Raw provider acquisition metadata is retained as bounded strings/numbers. A year or ambiguous numeric field never becomes a precise timestamp. Only complete calendar-valid publication dates populate the normalized sample update date; numeric service edit dates use their documented epoch-millisecond format. Client and server accept terrain values from -500 through 9,000 meters.
+
 The chart breaks at gaps. A keyboard sample selector and readable table expose distances, legs, values/status, source dates and metadata. Unit changes do not refetch. Values describe ground terrain, not road surface, cumulative ascent, grade, bridge or tunnel elevation, clearance, access or safe passage. A sample retrieval date is not its terrain acquisition date or an inspection date. Sparse samples cannot establish complete route extrema.
 
 Itinerary or route changes invalidate an open profile and reject delayed responses. Closing cancels pending work. Failed refresh samples retain prior exact-route values with their original dates; valid provider no-data results replace those samples with gaps. No automatic retry loop runs.

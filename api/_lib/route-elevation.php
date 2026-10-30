@@ -71,14 +71,18 @@ function kre_http(string $url, array $parameters): array {
 function kre_text($v, int $limit=200): ?string {
     if(!is_string($v)||$v===''||strlen($v)>$limit||preg_match('/[\x00-\x1f\x7f]/',$v))return null;return $v;
 }
-function kre_date($v): ?string {
-    if(kre_number($v)&&$v>=0&&$v<=4102444800000)return gmdate('c',(int)floor($v/1000));
+function kre_date($v, bool $epochMillis=false): ?string {
+    if(kre_number($v))return $epochMillis&&$v>=0&&$v<=4102444800000?gmdate('c',(int)floor($v/1000)):null;
     if(!is_string($v)||!preg_match('/^\d{4}-\d{2}-\d{2}(?:[T ][0-9:.+-]+Z?)?$/D',$v)||strlen($v)>40)return null;
-    $stamp=strtotime($v);return $stamp===false?null:gmdate('c',$stamp);
+    if(!checkdate((int)substr($v,5,2),(int)substr($v,8,2),(int)substr($v,0,4)))return null;
+    try{$date=new DateTimeImmutable($v,new DateTimeZone('UTC'));$errors=DateTimeImmutable::getLastErrors();}
+    catch(Throwable $e){return null;}
+    if($errors!==false&&($errors['warning_count']||$errors['error_count']))return null;
+    return $date->setTimezone(new DateTimeZone('UTC'))->format('c');
 }
 function kre_source(array $raw, int $now): array {
     kre_assert(!array_key_exists('error',$raw)&&($raw['name']??null)==='3DEPElevation'&&($raw['serviceDataType']??null)==='esriImageServiceDataTypeElevation'&&($raw['bandCount']??null)===1);
-    return ['name'=>'USGS 3DEP','url'=>KRE_SERVICE,'sample_url'=>KRE_SAMPLES,'units'=>'meters','interpolation'=>'RSP_BilinearInterpolation','horizontal_crs'=>'EPSG:4326','datum'=>null,'metadata_retrieved_at'=>gmdate('c',$now),'source_updated_at'=>kre_date($raw['editingInfo']['lastEditDate']??null)];
+    return ['name'=>'USGS 3DEP','url'=>KRE_SERVICE,'sample_url'=>KRE_SAMPLES,'units'=>'meters','interpolation'=>'RSP_BilinearInterpolation','horizontal_crs'=>'EPSG:4326','datum'=>null,'metadata_retrieved_at'=>gmdate('c',$now),'source_updated_at'=>kre_date($raw['editingInfo']['lastEditDate']??null,true)];
 }
 function kre_parameters(array $points): array {
     return ['f'=>'json','geometry'=>json_encode(['points'=>array_map(static fn($p)=>[$p['lon'],$p['lat']],$points),'spatialReference'=>['wkid'=>4326]]),'geometryType'=>'esriGeometryMultipoint','interpolation'=>'RSP_BilinearInterpolation','returnFirstValueOnly'=>'true','outFields'=>'*'];
@@ -99,8 +103,10 @@ function kre_normalize(array $data, array $points, int $now): array {
         if(count($matches)===1) {
             $r=$matches[0];$v=$r['value']??null;$a=is_array($r['attributes']??null)?$r['attributes']:[];
             $value['datum']=kre_text($a['VerticalDatum']??null);$dates=[];
-            foreach(['AcquisitionDate','StartDate','EndDate','pubdate','Cdate'] as $name){$date=kre_date($a[$name]??null);if($date!==null)$dates[$name]=$date;}
-            $value['acquisition_metadata']=$dates?:null;$value['source_updated_at']=$dates['pubdate']??null;
+            // Provider fields mix epoch milliseconds, years and other formats.
+            // Keep bounded raw values without inventing dates from their names.
+            foreach(['AcquisitionDate','StartDate','EndDate','pubdate','Cdate'] as $name){$date=$a[$name]??null;if((kre_number($date)&&abs($date)<=1e16)||kre_text($date)!==null)$dates[$name]=$date;}
+            $value['acquisition_metadata']=$dates?:null;$value['source_updated_at']=kre_date($a['pubdate']??null);
             $value['raster_id']=is_int($r['rasterId']??null)?$r['rasterId']:null;
             $value['resolution']=kre_number($r['resolution']??null)&&$r['resolution']>0?$r['resolution']:null;
             if(array_key_exists('value',$r)&&($v===null||(is_string($v)&&in_array(strtolower(trim($v)),['','nodata','no data','nan'],true)))) {

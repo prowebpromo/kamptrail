@@ -28,6 +28,18 @@ test('loading uses at most four serial bounded private POSTs and unit conversion
  let calls=0,inflight=0,max=0;const e=env(async(url,options)=>{calls++;inflight++;max=Math.max(max,inflight);assert.equal(url,'api/route-elevation.php');assert.equal(options.method,'POST');assert.equal(options.cache,'no-store');const body=JSON.parse(options.body);assert.deepEqual(Object.keys(body),['samples']);assert.ok(body.samples.length<=50);await Promise.resolve();inflight--;return response(reply(body.samples));});
  const s=E.createSession(e,route([[-150,40],[-50,40]]));await s.ready;assert.equal(calls,0);await s.load();assert.equal(calls,4);assert.equal(max,1);assert.equal(s.state.profile.values[0].elevation_m,0);const before=calls;assert.equal(E.toUnit(304.8,'ft'),1000);assert.equal(E.toUnit(-30.48,'ft'),-100);assert.equal(E.toUnit(null,'ft'),null);assert.equal(calls,before);
 });
+test('wire and offline cache share terrain bounds and retain bounded raw provider date metadata',()=>{
+ const req=[{id:0,lat:40,lon:-110}],d=reply(req);
+ d.samples[0].acquisition_metadata={pubdate:2013,AcquisitionDate:1735689600000,EndDate:'2026-02-30',StartDate:'20130101'};
+ const value=()=>({...d.samples[0],source});
+ const profile=()=>({version:1,policy:E.POLICY,key:'c'.repeat(64),saved_at:date,values:[value()]});
+ for(const n of [-500,9000]){d.samples[0].elevation_m=n;assert.equal(E.validateResponse(d,req),true);assert.equal(E.validProfile(profile()),true);}
+ for(const n of [-500.001,-999,9000.001]){d.samples[0].elevation_m=n;assert.equal(E.validateResponse(d,req),false);assert.equal(E.validProfile(profile()),false);}
+ d.samples[0].elevation_m=0;
+ const memory=storage(),store=E.createStore(memory);assert.equal(store.put(profile()),true);
+ assert.deepEqual(store.get('c'.repeat(64)).values[0].acquisition_metadata,d.samples[0].acquisition_metadata);
+ for(const m of [{pubdate:true},{pubdate:Infinity},{pubdate:'x'.repeat(201)},{unexpected:'2025-01-01'}]){d.samples[0].acquisition_metadata=m;assert.equal(E.validateResponse(d,req),false);assert.equal(E.validProfile(profile()),false);}
+});
 test('late responses cannot update changed itinerary, cancelled request, or closed profile',async()=>{
  for(const action of ['revision','cancel','close','invalidate']){let resolve,revision=1;const e=env(()=>new Promise(r=>{resolve=r;}));const s=E.createSession(e,route([[0,0],[.001,0]]),{revision:1,getRevision:()=>revision});await s.ready;const task=s.load();while(!resolve)await new Promise(r=>setImmediate(r));if(action==='revision')revision=2;else s[action]();resolve(response(reply(s.state.sampled.unique)));await task;assert.equal(s.state.profile,null,action);assert.equal(E.createStore(e.localStorage).read().length,0);}
 });

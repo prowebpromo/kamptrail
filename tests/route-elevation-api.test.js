@@ -45,6 +45,22 @@ test('USGS contract joins shuffled IDs and coordinates; zero and negative remain
  $b=['samples'=>[row(0,-105,40,1)]];$b['samples'][0]['location']['spatialReference']['wkid']=3857;rejects(fn()=>kre_normalize($b,$points,$now),'upstream_unavailable');
  $meta['bandCount']=2;rejects(fn()=>kre_source($meta,$now),'upstream_unavailable');
 `));
+test('raw mixed-format metadata remains attributable without invented or rolled-over source dates',{skip:!capable},()=>php(`
+ foreach([2013,'2013',20130101,'20130101','2026-02-30','2026-10-30T24:00:00Z']as$v){
+  check(kre_date($v)===null,'ambiguous or invalid date must remain unknown');
+  $sample=$rows;$sample['samples'][1]['attributes']['pubdate']=$v;
+  $r=kre_normalize($sample,$points,$now);check($r[0]['status']==='value');
+  check($r[0]['source_updated_at']===null);check($r[0]['acquisition_metadata']['pubdate']===$v);
+ }
+ check(kre_date('2024-02-29')==='2024-02-29T00:00:00+00:00');
+ check(kre_date('2025-01-01T01:00:00+02:00')==='2024-12-31T23:00:00+00:00');
+ check(kre_date(1735689600000)===null);check(kre_date(1735689600000,true)==='2025-01-01T00:00:00+00:00');
+ $meta['editingInfo']=['lastEditDate'=>1735689600000];check(kre_source($meta,$now)['source_updated_at']==='2025-01-01T00:00:00+00:00');
+ $rows['samples'][1]['attributes']['AcquisitionDate']=1735689600000;
+ $rows['samples'][1]['attributes']['EndDate']='2026-02-30';
+ $r=kre_normalize($rows,$points,$now);check($r[0]['acquisition_metadata']['AcquisitionDate']===1735689600000);
+ check($r[0]['acquisition_metadata']['EndDate']==='2026-02-30');check($r[0]['status']==='value');
+`));
 test('real SQLite cache isolates coordinate identity, expires and stores no route or client identities',{skip:!capable},()=>php(`
  $calls=0;$http=function($url,$p)use(&$calls,$meta,$rows){$calls++;return $url===KRE_SERVICE?$meta:$rows;};
  $r=kre_cached($points,$dir,'client-a',$http,$now);check($calls===2&&$r['samples'][0]['id']===7&&$r['samples'][0]['elevation_m']===0.0);
