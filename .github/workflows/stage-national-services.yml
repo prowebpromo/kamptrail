@@ -103,7 +103,8 @@ jobs:
           REGIONS: ${{ needs.plan.outputs.regions }}
           BATCH: ${{ github.run_id }}-${{ github.sha }}
         run: python -u scripts/aggregate_services.py --regions "$REGIONS" --batch "$BATCH" --stage "$RUNNER_TEMP/stage" --destination "$RUNNER_TEMP/candidate"
-      - uses: actions/upload-artifact@v4
+      - name: Keep public assets, exact normalized sources and checkpoint proof
+        uses: actions/upload-artifact@v4
         with:
           name: services-complete-candidate-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/candidate
