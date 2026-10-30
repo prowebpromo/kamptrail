@@ -97,9 +97,12 @@ function kf_manifest(string $raw, array $catalogue, int $now, bool $allowExpired
         kf_assert(kf_hash($region['grid_sha256']) && kf_int($region['max_step_seconds'], 1, 10800) && is_array($region['times']) && array_is_list($region['times']) && count($region['times']) >= 1 && count($region['times']) <= 100);
         $last = null;
         foreach ($region['times'] as $stamp) { $t = kf_time($stamp); kf_assert($t >= $generated - 86400 && $t <= $generated + 8 * 86400 && ($last === null || ($t > $last && $t - $last <= $region['max_step_seconds']))); $last = $t; }
+        $lastForecastTime = $last;
         kf_assert(is_array($region['reference_times']) && array_is_list($region['reference_times']) && count($region['reference_times']) >= 1 && count($region['reference_times']) <= 100);
         $last = null;
-        foreach ($region['reference_times'] as $stamp) { $t = kf_time($stamp); kf_assert($t <= $generated + 300 && ($last === null || $t > $last)); $last = $t; }
+        // A reported forecast start may follow publication. File modification
+        // times above, rather than this GRIB reference, establish freshness.
+        foreach ($region['reference_times'] as $stamp) { $t = kf_time($stamp); kf_assert($t <= $lastForecastTime && ($last === null || $t > $last)); $last = $t; }
     }
     $memberships = 0;
     foreach ($m['states'] as $state => $s) {

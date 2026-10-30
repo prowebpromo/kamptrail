@@ -19,8 +19,11 @@
     for(const [name,r]of Object.entries(m.regions)){
       if(!regions.has(name)||!object(r)||!hash(r.grid_sha256)||!integer(r.max_step_seconds,1,10800)||!Array.isArray(r.times)||!r.times.length||r.times.length>100)return false;
       if(!Array.isArray(r.reference_times)||!r.reference_times.length||r.reference_times.length>100)return false;
-      const references=r.reference_times.map(utc);if(references.some((t,i)=>!number(t)||t>gen+300000||i&&t<=references[i-1]))return false;
+      const references=r.reference_times.map(utc);if(references.some((t,i)=>!number(t)||i&&t<=references[i-1]))return false;
       const times=r.times.map(utc);if(times.some((t,i)=>!number(t)||t<gen-6*HOUR||t>gen+96*HOUR||i&&(t<=times[i-1]||t-times[i-1]>r.max_step_seconds*1000)))return false;
+      // GRIB forecast-start metadata can be later than publication; source-file
+      // modification and absolute expiry above remain the freshness evidence.
+      if(references[references.length-1]>times[times.length-1])return false;
     }
     if(regions.size!==Object.keys(m.regions).length||!object(m.states)||!Object.keys(m.states).length||Object.keys(m.states).length>50)return false;
     let count=0;for(const [s,v]of Object.entries(m.states)){if(!STATES.has(s)||!object(v)||v.asset!==`forecast-v1-${m.snapshot_id}-${s}.json.gz`||!hash(v.sha256)||!hash(v.json_sha256)||!integer(v.bytes,1,2*1024*1024)||!integer(v.json_bytes,1,8*1024*1024)||!integer(v.count,0,20000))return false;count+=v.count;}
