@@ -1,0 +1,991 @@
+{
+  "schema_version": 1,
+  "purpose": "Review targeting only; no fee or federal ownership classification",
+  "selection_seed": "kamptrail-fee-pilot-v1",
+  "sample_quotas": {
+    "dispersed": 15,
+    "agency_other": 15,
+    "osm_operator_other": 20
+  },
+  "catalogue_count": 33286,
+  "unknown_count": 22784,
+  "unknown_by_primary_id_source": {
+    "BLM": 340,
+    "OSM": 20808,
+    "RIDB": 1074,
+    "USFS": 562
+  },
+  "unknown_by_type": {
+    "dispersed": 458,
+    "established": 22288,
+    "other": 38
+  },
+  "eligibility_counts": {
+    "dispersed": 458,
+    "primary_usfs_blm": 902,
+    "osm_associated_federal_operator": 1159,
+    "operator_leads_by_canonical_source": {
+      "OSM": 1124,
+      "RIDB": 35
+    },
+    "dispersed_and_agency_overlap": 454,
+    "dispersed_and_operator_overlap": 0,
+    "agency_and_operator_overlap": 0,
+    "unique_pool": 2065,
+    "pool_if_operator_leads_require_primary_osm_id": 2030
+  },
+  "stratum_sizes": {
+    "dispersed": 458,
+    "agency_other": 448,
+    "osm_operator_other": 1159
+  },
+  "retention_diagnostics": {
+    "unknown_osm_associated": 20918,
+    "with_selected_operator_field": 3963,
+    "without_selected_operator_field": 16955,
+    "ambiguous_snapshot_identity_joins_excluded": 35
+  },
+  "sample_count": 50,
+  "sample": [
+    {
+      "id": "blm-area:16296",
+      "name": "Wildcat Hills Designated Routes",
+      "states": [
+        "UT"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:13350",
+      "name": "Black Mountain Wilderness",
+      "states": [
+        "CA"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:14936",
+      "name": "Box Creek Wilderness Study Area",
+      "states": [
+        "ID"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:14866",
+      "name": "Flattop Mountain Rock Collecting Area",
+      "states": [
+        "CA"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:13425",
+      "name": "Mecca Hills Wilderness",
+      "states": [
+        "CA"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:16311",
+      "name": "Wah Wah Mountains WSA",
+      "states": [
+        "UT"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:12266",
+      "name": "Twin Ponds CUA Dispersed Camping",
+      "states": [
+        "UT"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:13463",
+      "name": "Piute Mountains Wilderness",
+      "states": [
+        "CA"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:69600",
+      "name": "Rogue River Dispersed Campsites",
+      "states": [
+        "OR"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:77747",
+      "name": "Alaska Basin",
+      "states": [
+        "WY"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:13246",
+      "name": "Santa Rosa Wilderness",
+      "states": [
+        "CA"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:14685",
+      "name": "Bald Ridge Trail",
+      "states": [
+        "WY"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:44102",
+      "name": "Upper Lagunitas / Lower Lagunitas Campgrounds",
+      "states": [
+        "NM"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:1235",
+      "name": "Cow Mountain Recreation Management Area",
+      "states": [
+        "CA"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "blm-area:2214",
+      "name": "Topaz Mountain Rockhound Recreation Area",
+      "states": [
+        "UT"
+      ],
+      "type": "dispersed",
+      "fee_status": "unknown",
+      "stratum": "dispersed",
+      "selection_reasons": [
+        "unknown_dispersed",
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:40863",
+      "name": "Heaton Bay Campground",
+      "states": [
+        "CO"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:11263",
+      "name": "Aspen Grove",
+      "states": [
+        "CA"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:5087",
+      "name": "Shafer Butte Campground and Group sites",
+      "states": [
+        "ID"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:41067",
+      "name": "Pagoda #1804",
+      "states": [
+        "CO"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:70865",
+      "name": "Penny Springs Campground",
+      "states": [
+        "ID"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:5195",
+      "name": "Bonneville Campground",
+      "states": [
+        "ID"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:27789",
+      "name": "Kathryn Lake Recreation Area",
+      "states": [
+        "WI"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:75504",
+      "name": "Rio Chama Campground, Small Group Sites",
+      "states": [
+        "NM"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:72261",
+      "name": "Kingfisher Island Boat-in Campground",
+      "states": [
+        "UT"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:11194",
+      "name": "Big Cove Campground",
+      "states": [
+        "CA"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:5149",
+      "name": "Ice Hole Campground",
+      "states": [
+        "ID"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:41327",
+      "name": "Camp Hale East Fork Group Campground",
+      "states": [
+        "CO"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:36657",
+      "name": "Dutch George Campground",
+      "states": [
+        "CO"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:9441",
+      "name": "Little Lyman Lake Campground",
+      "states": [
+        "UT"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "usfs:54505",
+      "name": "Pole Bridge",
+      "states": [
+        "ID"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "agency_other",
+      "selection_reasons": [
+        "unknown_primary_agency"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": []
+    },
+    {
+      "id": "osm:way:1217601258",
+      "name": "Blowout Campground",
+      "states": [
+        "ID"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/ID_merged.geojson",
+          "source_id": "osm:way:1217601258",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:7844472455",
+      "name": "Callao CCC Camp",
+      "states": [
+        "UT"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/UT_merged.geojson",
+          "source_id": "osm:node:7844472455",
+          "field": "operator",
+          "value": "Bureau of Land Management"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:2344691808",
+      "name": "Big John's CUA Dispersed",
+      "states": [
+        "UT"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/UT_merged.geojson",
+          "source_id": "osm:node:2344691808",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:way:882860962",
+      "name": "Windy Saddle Horse Camp",
+      "states": [
+        "ID",
+        "OR"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/ID_merged.geojson",
+          "source_id": "osm:way:882860962",
+          "field": "operator",
+          "value": "USFS"
+        },
+        {
+          "snapshot": "data/campsites/OR_merged.geojson",
+          "source_id": "osm:way:882860962",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:2371302862",
+      "name": "Clark Peak Corrals",
+      "states": [
+        "AZ"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/AZ_merged.geojson",
+          "source_id": "osm:node:2371302862",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:way:332687399",
+      "name": "Paha Campground",
+      "states": [
+        "CA",
+        "NV"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/CA_merged.geojson",
+          "source_id": "osm:way:332687399",
+          "field": "operator",
+          "value": "United States Forest Service"
+        },
+        {
+          "snapshot": "data/campsites/NV_merged.geojson",
+          "source_id": "osm:way:332687399",
+          "field": "operator",
+          "value": "United States Forest Service"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:9776362184",
+      "name": "Sumac",
+      "states": [
+        "OR"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/OR_merged.geojson",
+          "source_id": "osm:node:9776362184",
+          "field": "operator",
+          "value": "Bureau of Land Management"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:5070613722",
+      "name": "Survey Creek",
+      "states": [
+        "ID",
+        "MT"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/ID_merged.geojson",
+          "source_id": "osm:node:5070613722",
+          "field": "operator",
+          "value": "United States Forest Service"
+        },
+        {
+          "snapshot": "data/campsites/MT_merged.geojson",
+          "source_id": "osm:node:5070613722",
+          "field": "operator",
+          "value": "United States Forest Service"
+        }
+      ]
+    },
+    {
+      "id": "osm:way:1023323258",
+      "name": "9350 Camping Area",
+      "states": [
+        "AZ"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/AZ_merged.geojson",
+          "source_id": "osm:way:1023323258",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:11810510142",
+      "name": "Salt Creek 2",
+      "states": [
+        "CO"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/CO_merged.geojson",
+          "source_id": "osm:node:11810510142",
+          "field": "operator",
+          "value": "BLM"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:11810510154",
+      "name": "Mee Corner",
+      "states": [
+        "CO"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/CO_merged.geojson",
+          "source_id": "osm:node:11810510154",
+          "field": "operator",
+          "value": "BLM"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:8301666406",
+      "name": "Culver Creek",
+      "states": [
+        "ID"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/ID_merged.geojson",
+          "source_id": "osm:node:8301666406",
+          "field": "operator",
+          "value": "United States Forest Service"
+        }
+      ]
+    },
+    {
+      "id": "osm:relation:14988819",
+      "name": "Kaibab Lake Campground",
+      "states": [
+        "AZ"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/AZ_merged.geojson",
+          "source_id": "osm:relation:14988819",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:3969764556",
+      "name": "Moose Lake #1",
+      "states": [
+        "MI",
+        "MN"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/MI_merged.geojson",
+          "source_id": "osm:node:3969764556",
+          "field": "operator:short",
+          "value": "USFS"
+        },
+        {
+          "snapshot": "data/campsites/MN_merged.geojson",
+          "source_id": "osm:node:3969764556",
+          "field": "operator:short",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:12839113449",
+      "name": "Partridge Lake #2",
+      "states": [
+        "MN"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/MN_merged.geojson",
+          "source_id": "osm:node:12839113449",
+          "field": "operator:short",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "ridb:242467",
+      "name": "Corral Canyon Campground",
+      "states": [
+        "CA"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/CA_merged.geojson",
+          "source_id": "ridb:242467",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:2344691973",
+      "name": "Red Springs Campground",
+      "states": [
+        "UT"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/UT_merged.geojson",
+          "source_id": "osm:node:2344691973",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    },
+    {
+      "id": "osm:node:12480749369",
+      "name": "Ozone Rec Area",
+      "states": [
+        "AR"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/AR_merged.geojson",
+          "source_id": "osm:node:12480749369",
+          "field": "operator",
+          "value": "US Forest Service"
+        }
+      ]
+    },
+    {
+      "id": "osm:way:570407427",
+      "name": "Lost Lake Campground",
+      "states": [
+        "OR"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/OR_merged.geojson",
+          "source_id": "osm:way:570407427",
+          "field": "operator",
+          "value": "US Forest Service"
+        }
+      ]
+    },
+    {
+      "id": "osm:way:1180543519",
+      "name": "White Rock Campground",
+      "states": [
+        "CA"
+      ],
+      "type": "established",
+      "fee_status": "unknown",
+      "stratum": "osm_operator_other",
+      "selection_reasons": [
+        "unknown_osm_federal_operator"
+      ],
+      "fee_conflict_in_joined_snapshot": false,
+      "operator_evidence": [
+        {
+          "snapshot": "data/campsites/CA_merged.geojson",
+          "source_id": "osm:way:1180543519",
+          "field": "operator",
+          "value": "USFS"
+        }
+      ]
+    }
+  ],
+  "input_provenance": {
+    "search_index_sha256": "d378bc21a395c629198b439b2d2ee437aa92967873f7f591fe4f66bdd9637354",
+    "merged_snapshot_set_sha256": "bfecbc177d352d04a3550f5c2062ac50d2b9b833f02e0799f70ce6c4408c1bb9",
+    "merged_state_files": 50,
+    "source_updated_at": null,
+    "date_note": "Analysis hashes identify saved inputs, not fresh provider retrievals."
+  }
+}
