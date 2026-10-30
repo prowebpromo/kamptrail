@@ -1,7 +1,7 @@
 /* Sampled USGS terrain along the original calculated car route. Never road grade. */
 (function(global){
  'use strict';
- const VERSION='2.17.0',POLICY='terrain-v1-1km-200-original-geodesic',CACHE='kt_route_terrain_v1',CAP=200,MAX_BYTES=600000;
+ const VERSION='2.18.0',POLICY='terrain-v1-1km-200-original-geodesic',CACHE='kt_route_terrain_v1',CAP=200,MAX_BYTES=600000;
  const finite=Number.isFinite,object=x=>x&&typeof x==='object'&&!Array.isArray(x),clean=x=>typeof x==='string'&&x.length<=240&&!/[\u0000-\u001f\u007f]/.test(x);
  const utc=x=>typeof x==='string'&&/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,6})?(?:Z|\+00:00)$/.test(x)&&finite(Date.parse(x))&&new Date(x).toISOString().slice(0,19)===x.slice(0,19);
  const coord=p=>Array.isArray(p)&&p.length>=2&&finite(p[0])&&finite(p[1])&&Math.abs(p[0])<=180&&Math.abs(p[1])<=90;
