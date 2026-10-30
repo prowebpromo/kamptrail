@@ -3,10 +3,11 @@ const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const fs=require('node:fs');
 function harness(fetcher, overrides={}) {
+  const evented=target=>Object.assign(target,{handlers:{},on(type,fn){(this.handlers[type]||=[]).push(fn);return this;},fire(type,event={}){for(const fn of this.handlers[type]||[])fn(event);return this;}});
   const events=[], cluster={layers:[],addLayers(items){this.layers.push(...items);},removeLayer(item){this.layers=this.layers.filter(x=>x!==item);}};
   const bounds={getSouth:()=>42.9,getNorth:()=>43.1,getWest:()=>-75.2,getEast:()=>-75,contains:([lat,lng])=>lat>=42.9&&lat<=43.1&&lng>=-75.2&&lng<=-75};
-  const map={getBounds:()=>bounds,addLayer(){},removeLayer(){},hasLayer(){return false;},getZoom:()=>10,on(){},setView(){},closePopup(){}};
-  const context={console:{warn(){},log(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts.detail;}},document:{addEventListener(){}},dispatchEvent:e=>events.push(e),L:{markerClusterGroup:()=>cluster,divIcon:o=>o,marker:(coords,opts)=>({coords,opts,bindPopup(html){this.html=html;return this;},setPopupContent(html){this.html=html;return this;},openPopup(){this.opened=true;return this;}})}};
+  const map=evented({getBounds:()=>bounds,addLayer(){},removeLayer(){},hasLayer(){return false;},getZoom:()=>10,setView(){},closePopup(){const marker=this._popup;if(marker){this._popup=null;marker.opened=false;marker.fire('popupclose');this.fire('popupclose');}}});
+  const context={console:{warn(){},log(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts.detail;}},document:{addEventListener(){}},dispatchEvent:e=>events.push(e),L:{markerClusterGroup:()=>cluster,divIcon:o=>o,marker:(coords,opts)=>evented({coords,opts,bindPopup(html){this.html=html;return this;},setPopupContent(html){this.html=html;return this;},isPopupOpen(){return !!this.opened;},isOpen(){return !!this.opened;},openPopup(){this.opened=true;map._popup=this;return this;}})}};
   Object.assign(context,overrides);
   context.window=context;
   vm.createContext(context);
@@ -55,6 +56,34 @@ test('slow, missing and corrupt optional amenity evidence cannot block campgroun
   assert.equal(bad.api.getAllCampsites()[0].properties.ridb_amenity_evidence,undefined);
   assert.ok(!caches.writes.some(url=>url.endsWith('ridb-amenities.json')));
   assert.match(bad.cluster.layers[0].html,/amenity evidence unavailable/);
+});
+
+test('delayed amenity evidence refreshes after popup close without replacing open controls or adding held markers',async()=>{
+  let release;
+  const pending=new Promise(resolve=>release=resolve);
+  const h=harness(async url=>{
+    if(url.endsWith('ridb-amenities.json'))return pending;
+    if(url.endsWith('_merged.geojson'))return response({type:'FeatureCollection',features:[url.includes('/PA_')?feature({id:'pa:456',name:'Second Campground'}):feature({facility_id:123})]});
+    return response({});
+  });
+  await h.api.init(h.map);
+  const marker=h.cluster.layers[0];marker.openPopup();
+  assert.match(marker.html,/amenity evidence unavailable/);
+  marker.html+='<div class="kt-popup-extra">Camper opened fee evidence</div>';
+  const openContent=marker.html;
+  release(response(amenityPayload()));await new Promise(resolve=>setImmediate(resolve));
+  assert.ok(h.api.getCampsiteById('ridb:123').properties.ridb_amenity_evidence);
+  assert.equal(marker.html,openContent,'The active popup and its controls survive sidecar completion');
+  await h.api.loadStates(['PA']);
+  assert.equal(marker.html,openContent);assert.equal(h.cluster.layers.length,1,'New markers wait while the popup is open');
+  h.map.closePopup();marker.openPopup();
+  assert.match(marker.html,/Recreation.gov campsite records report/);
+  assert.match(marker.html,/mentioned in 1 of 2 records/);
+  assert.doesNotMatch(marker.html,/amenity evidence unavailable/);
+  await new Promise(resolve=>setTimeout(resolve,5));
+  assert.equal(h.cluster.layers.length,1,'An immediately reopened popup still holds additions');
+  h.map.closePopup();await new Promise(resolve=>setTimeout(resolve,5));
+  assert.equal(h.cluster.layers.length,2,'Held markers flush after the popup remains closed');
 });
 
 test('transient state failure is visible and explicit retry succeeds',async()=>{

@@ -135,7 +135,8 @@
     p.attributes_unverified = legacyRIDB || !!raw.attributes_unverified;
     // Only validated sidecar metadata survives normalization; source elevation tags are not equivalent.
     p.elevation = raw._kt_normalized ? elevationInfo({...feature,properties:raw}) : null;
-    const amenityEvidence = raw._kt_normalized && checkedRIDBAmenities(raw.ridb_amenity_evidence) ? raw.ridb_amenity_evidence : null;
+    // A serialized normalization flag is not proof that evidence came from the sidecar.
+    const amenityEvidence = trustedAmenityAttachments.has(raw.ridb_amenity_evidence) ? raw.ridb_amenity_evidence : null;
     delete p.ridb_amenity_evidence;
     if(amenityEvidence)attachRIDBAmenities({properties:p},amenityEvidence);
     p._kt_normalized = true;
@@ -218,6 +219,7 @@
   const RIDB_AMENITY_QUALIFIERS={toilet:['seasonal','accessible'],drinking_water:['peak_season','hand_pump','accessible'],shower:['seasonal','coin','accessible','outdoor'],dump:[],picnic_table:[]};
   const object=value=>!!value&&typeof value==='object'&&!Array.isArray(value);
   const checkedAmenityPayloads=new WeakSet();
+  const trustedAmenityAttachments=new WeakSet();
   function checkedRIDBAmenities(data){
     if(object(data)&&checkedAmenityPayloads.has(data))return true;
     if(!validRIDBAmenities(data))return false;
@@ -258,7 +260,12 @@
     const p=feature?.properties;if(!p||!checkedRIDBAmenities(data))return feature;
     const facilities={};
     for(const fid of ridbFacilityIds(p))if(Object.hasOwn(data.facilities,fid))facilities[fid]=data.facilities[fid];
-    if(Object.keys(facilities).length)p.ridb_amenity_evidence={version:1,source:data.source,facilities};
+    if(Object.keys(facilities).length){
+      const evidence={version:1,source:data.source,facilities};
+      checkedRIDBAmenities(evidence);
+      trustedAmenityAttachments.add(evidence);
+      p.ridb_amenity_evidence=evidence;
+    }
     return feature;
   }
   // Attach Recreation.gov site-level summaries (RV lengths, hookups) to a campground.

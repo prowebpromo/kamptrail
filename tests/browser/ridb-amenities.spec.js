@@ -36,3 +36,36 @@ test('campsite records retain qualified amenity evidence without changing filter
   expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['water']});return KampTrailData.getVisibleCampsites().length;})).toBe(0);
   expect(errors).toEqual([]);
 });
+
+test('a delayed sidecar preserves open popup controls and appears on reopening the same marker',async({page,context})=>{
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
+  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+  const json=(r,data)=>r.fulfill({contentType:'application/json',body:JSON.stringify(data)});
+  const camp={type:'Feature',geometry:{type:'Point',coordinates:[-75.1,43]},properties:{id:'ridb:123',facility_id:'123',name:'Delayed Evidence Campground',schema_version:3,type:'established',amenities:[],rig_friendly:[]}};
+  const evidence={version:1,source,facilities:{'123':{sites:2,amenities:{toilet:{reported:1,negative:0,unknown:1,conflict:0,qualifiers:{seasonal:1}}}}}};
+  let release;const delayed=new Promise(resolve=>release=resolve);
+  await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'NY',count:1}],total_sites:1}));
+  await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
+  await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:2,facilities:{}}));
+  await page.route('**/data/campsites/ridb-amenities.json',async r=>{await delayed;await json(r,evidence);});
+  await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.1,zoom:11})));
+  await page.goto('/',{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:123'));
+  await expect.poll(()=>page.evaluate(()=>{let found=false;map.eachLayer(l=>{if(l.kamptrailId==='ridb:123'){window.amenityTestMarker=l;found=true;}});return found;})).toBe(true);
+  await page.evaluate(()=>window.amenityTestMarker.openPopup());
+  const popup=page.locator('.kt-site-popup');await expect(popup).toContainText('amenity evidence unavailable');
+  await popup.getByRole('button',{name:'Fee evidence',exact:true}).click();
+  await expect(popup.getByRole('heading',{name:'Camping fee evidence',level:3})).toBeVisible();
+  await page.evaluate(()=>window.amenityTestPopup=document.querySelector('.kt-site-popup'));
+  release();await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:123').properties.ridb_amenity_evidence);
+  expect(await page.evaluate(()=>window.amenityTestPopup===document.querySelector('.kt-site-popup'))).toBe(true);
+  await expect(popup.getByRole('heading',{name:'Camping fee evidence',level:3})).toBeVisible();
+  await expect(popup).toContainText('amenity evidence unavailable');
+  await page.evaluate(()=>{map.closePopup();window.amenityTestMarker.openPopup();});
+  await popup.locator('.kt-ridb-amenities summary').click();
+  await expect(popup).toContainText('mentioned in 1 of 2 records');
+  await expect(popup).not.toContainText('amenity evidence unavailable');
+  expect(errors).toEqual([]);
+});
