@@ -160,6 +160,7 @@ class ManifestTests(unittest.TestCase):
     def test_forecast_start_after_publication_does_not_renew_source_freshness(self):
         m = copy.deepcopy(self.m)
         m['regions']['conus']['reference_times'] = [stamp(NOW + 600)]
+        m['regions']['conus']['times'] = [stamp(NOW + h * 3600) for h in (1, 2, 3)]
         raw = p.encode_json(m)
         self.assertEqual(p.validate_manifest(raw, NOW), m)
         with self.assertRaisesRegex(p.PublishError, 'stale'):

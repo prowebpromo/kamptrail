@@ -66,6 +66,7 @@ test('required source digests, reference inventories and declared cadence are va
 `));
 test('forecast-start metadata can follow publication without extending freshness',{skip:!capable},()=>php(`
   $m=$f['manifest'];$m['regions']['conus']['reference_times']=[gmdate('Y-m-d\\TH:i:s\\Z',$now+600)];
+  $m['regions']['conus']['times']=array_map(fn($h)=>gmdate('Y-m-d\\TH:i:s\\Z',$now+$h*3600),[1,2,3]);
   $checked=kf_manifest(json_encode($m),$f['catalogue'],$now);check($checked['expires_at']===$f['manifest']['expires_at']);
   rejects(fn()=>kf_manifest(json_encode($m),$f['catalogue'],$now+7200),'stale');
   $m['source']['files'][0]['last_modified']=gmdate('Y-m-d\\TH:i:s\\Z',$now+301);rejects(fn()=>kf_manifest(json_encode($m),$f['catalogue'],$now));
