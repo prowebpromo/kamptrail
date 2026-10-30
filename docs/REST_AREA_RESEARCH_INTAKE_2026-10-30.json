@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "audited_at": "2026-10-30T23:24:42.098538+00:00",
+  "original_generated_at": "2026-10-30T23:07:37Z",
+  "original_ready_flags_are_not_approval": true,
+  "original_handoff_counts": {
+    "rows": 57,
+    "states": 48,
+    "ready_flags": 15,
+    "evidence_items": 79
+  },
+  "future_claimed_verification_stamps": [
+    "AZ 2026-10-31T00:35:00Z",
+    "KS 2026-10-31T00:20:00Z",
+    "MS 2026-10-31T00:40:00Z",
+    "WY 2026-10-31T00:20:00Z"
+  ],
+  "accepted_scopes": [
+    {
+      "state": "FL",
+      "operator": "florida_turnpike",
+      "facility_kind": "turnpike_service_plaza"
+    },
+    {
+      "state": "ID",
+      "operator": "itd",
+      "facility_kind": "safety_rest_area"
+    },
+    {
+      "state": "OH",
+      "operator": "odot",
+      "facility_kind": "rest_area_or_roadside_park"
+    },
+    {
+      "state": "OR",
+      "operator": "odot",
+      "facility_kind": "safety_rest_area"
+    },
+    {
+      "state": "VA",
+      "operator": "vdot",
+      "facility_kind": "rest_area"
+    }
+  ],
+  "accepted_sources": [
+    {
+      "url": "https://floridasturnpike.com/traveler-resources/service-plazas/",
+      "retrieved_url": "https://floridasturnpike.com/traveler-resources/service-plazas/",
+      "retrieved_at": "2026-10-30T23:17:53Z",
+      "sha256": "6eff064c6654db3eb50431518064f161d8a1b44b350b6f3b2acc7cd252ec036f",
+      "bytes": 146506,
+      "http_last_modified": "Fri, 30 Oct 2026 05:49:59 GMT",
+      "source_updated_at": null
+    },
+    {
+      "url": "https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf",
+      "retrieved_url": "https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf",
+      "retrieved_at": "2026-10-30T23:17:33Z",
+      "sha256": "b25e435779d569c351dac1f5d73d5ea7ee3793e6c1cba6e034039679ac992f3a",
+      "bytes": 243175,
+      "http_last_modified": "Wed, 01 Jul 2026 19:17:26 GMT",
+      "source_updated_at": null
+    },
+    {
+      "url": "https://itd.idaho.gov/faqs/rest-areas/",
+      "retrieved_url": "https://itd.idaho.gov/faqs/rest-areas/",
+      "retrieved_at": "2026-10-30T23:17:53Z",
+      "sha256": "614c896c3c697276f0aa592b22914834b058f2ee3ba1141dce564c813e6d9625",
+      "bytes": 156435,
+      "http_last_modified": null,
+      "source_updated_at": null
+    },
+    {
+      "url": "https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01",
+      "retrieved_url": "https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01",
+      "retrieved_at": "2026-10-30T23:18:07Z",
+      "sha256": "83f34dc83843194383a58e94f7adb200dbfa5b5c44cbd405a213eacd15281d8e",
+      "bytes": 19101,
+      "http_last_modified": null,
+      "source_updated_at": null
+    },
+    {
+      "url": "https://tripcheck.com/Pages/Rest-Areas-Regulations",
+      "retrieved_url": "https://tripcheck.com/Pages/Rest-Areas-Regulations",
+      "retrieved_at": "2026-10-30T23:18:14Z",
+      "sha256": "1247e784e29243e38f1207e08f1f68ce03a995fd52e77f667b4c38e1e11fee2c",
+      "bytes": 17562,
+      "http_last_modified": "Fri, 30 Oct 2026 23:18:12 GMT",
+      "source_updated_at": null
+    },
+    {
+      "url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/",
+      "retrieved_url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/",
+      "retrieved_at": "2026-10-30T23:18:18Z",
+      "sha256": "298e0b7c445dae9febd0846096a946e2c0f12ff7c249ba1fc6e45006a5d506cc",
+      "bytes": 30253,
+      "http_last_modified": null,
+      "source_updated_at": null
+    },
+    {
+      "url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/",
+      "retrieved_url": "https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/",
+      "retrieved_at": "2026-10-30T23:18:18Z",
+      "sha256": "3edcfc80601834674396d0966238b0b286815ddf6227363573f9920d82e4ad10",
+      "bytes": 35772,
+      "http_last_modified": null,
+      "source_updated_at": null
+    }
+  ],
+  "held_dispositions": [
+    {
+      "state": "FL",
+      "disposition": "FDOT general rest-area PDF is a historical copy ending with 2007 amendment history. Current FDOT Q&A supports 3-hour general / 10-hour HOS-commercial context, but no unconditional duration. Only separate Turnpike prohibition is projected."
+    },
+    {
+      "state": "ID",
+      "disposition": "10/16 consecutive-hour split needs route/facility predicates; only camping prohibition projected."
+    },
+    {
+      "state": "IL",
+      "disposition": "Both official JCAR URLs returned HTTP 503 in the independent attempt. Earlier claimed confirmations do not supply current raw proof. No reclassification."
+    },
+    {
+      "state": "KS",
+      "disposition": "2022 official compilation confirms historical text, not current edition. Official current-publications index could not be read (403). Original excerpt-verification timestamp is in the future. No positive camping grant projected."
+    },
+    {
+      "state": "KY",
+      "disposition": "Current official page verifies four hours in any 24 per person/group, with permit/work exceptions and excluded commercial service areas. 2026-03-20 is certification history, not a new amendment date. Hold numeric mapping until interval/exemption predicates exist."
+    },
+    {
+      "state": "MD",
+      "disposition": "All four official pages re-fetched via redirect to regs.maryland.gov and quoted rules confirmed. Overnight parking/camping prohibitions apply to SHA public-use-area scope, not an assumed MDTA plaza class. Page requests no scraping and offers bulk downloads; it carries CC BY-NC-SA / later CC0 notice. Hold automated retrieval/raw redistribution route for review; retain verified facts and paraphrases separately."
+    },
+    {
+      "state": "MN",
+      "disposition": "2026 statutory page confirms the HOS-commercial/operator/suitable-stall conditions. Agency page supports four hours for other motorists only where posted. All three activity fields remain unknown. Hold unconditional numeric mapping; 2008 is history, not the current edition."
+    },
+    {
+      "state": "NE",
+      "disposition": "Published 10-hour context is advisory NDOT guidance, not a standalone parking statute. Camping has statutory designated-site exceptions. Only conservative activity facts projected."
+    },
+    {
+      "state": "NC",
+      "disposition": "Cited administrative text prohibits erecting tents/booths/structures for camping or other activities. It does not establish an unrestricted camping prohibition for a parked RV. Correct broad camping value to unknown; retain the structure-specific restriction as text. Highway abandoned-vehicle provision is not a stay-permission or parking-duration grant."
+    },
+    {
+      "state": "OH",
+      "disposition": "Only ODOT camping prohibition projected. Unattended-vehicle three-hour rule is not a general stay cap. Turnpike positive grant is limited to RVs/travel trailers in designated lots at eight named plazas, one night, with payment, capacity and length conditions. Requires explicit vehicle/facility eligibility model before any positive grant."
+    },
+    {
+      "state": "OR",
+      "disposition": "Current TripCheck operating rules confirm camping prohibition and 12-in-24 context. Original 2019 legal-history entry is temporary and expired in 2020; do not call it an unqualified current effective date. Keep current page/date and separate statute-history provenance."
+    },
+    {
+      "state": "TN",
+      "disposition": "Official TDOT URL returned HTTP 503 in independent retrieval. No raw-response proof; earlier claimed verification not promoted."
+    },
+    {
+      "state": "UT",
+      "disposition": "Current UDOT page prohibits overnight camping, not unqualified all camping, and separately describes monitored extended stays. Broader camping remains unknown; preserve overnight-camping restriction as qualified text."
+    },
+    {
+      "state": "VA",
+      "disposition": "Explicit current prohibitions independently verified. Vehicle-sleeping status stays unknown; building-only sleeping ban is not extended to vehicles."
+    },
+    {
+      "state": "WA",
+      "disposition": "Activity fact independently verified. Eight-hour duration cannot be unconditional because authorization, posted, HOS-commercial and disabled-vehicle provisions differ."
+    }
+  ],
+  "change_scope": "Five state policies prepared. No new locations, no overnight/sleeping grants, no numeric duration, no permission-filter promotion.",
+  "candidate_release": {
+    "version": "2.21.1",
+    "service_worker_shell": "kt-v50",
+    "release_state": "local_candidate_not_pushed_merged_or_deployed",
+    "location_coverage": "78 existing TxDOT rest-area records only",
+    "parity_credit_added": false
+  }
+}

@@ -45,3 +45,21 @@ test('dynamic facility rules are not contradicted by a hard-coded unknown paragr
   d.state_policies.exceptions[0].rules.overnight_parking='prohibited';description=rest.describe(r,d,policyNow);assert.match(description,/overnight parking Prohibited/);assert.doesNotMatch(description,/Overnight permission.*unknown/);
   delete d.state_policies.exceptions;assert.match(rest.describe(r,d,policyNow),/overnight parking Unknown/);
 });
+
+
+test('five additional exact policy scopes preserve unknown durations, sleeping and other operators',()=>{
+  const additions=[['FL','florida_turnpike','turnpike_service_plaza','prohibited','unknown'],['ID','itd','safety_rest_area','unknown','prohibited'],['OH','odot','rest_area_or_roadside_park','unknown','prohibited'],['OR','odot','safety_rest_area','unknown','prohibited'],['VA','vdot','rest_area','prohibited','prohibited']];
+  assert.equal(policies.policies.length,7);
+  for(const[state,operator,facility_kind,parking,camping]of additions){
+    const scope={state,operator,facility_kind},p=rest.resolvePolicy(policies,scope,policyNow);
+    assert.equal(p.rules.overnight_parking,parking);assert.equal(p.rules.camping,camping);assert.equal(p.rules.sleeping_in_vehicle,'unknown');assert.equal(p.rules.max_stay_hours,null);assert.equal(p.current_opening,'unknown');assert.ok(p.sources.length);
+    assert.equal(rest.resolvePolicy(policies,{...scope,operator:'unmatched_agency'},policyNow).policy_id,null);assert.equal(rest.resolvePolicy(policies,{...scope,facility_kind:'unmatched_class'},policyNow).policy_id,null);
+    assert.equal(rest.resolvePolicy(policies,scope,Date.parse('2027-04-29T00:00:00Z')).policy_id,null);
+  }
+  for(const[state,operator]of [['NE','ndot'],['WA','wsdot']])assert.equal(rest.resolvePolicy(policies,{state,operator,facility_kind:'safety_rest_area'},policyNow).policy_id,null);
+});
+test('new policy sources accept the audited URL and reject other pages or parameters on that publisher',()=>{
+  for(let i=2;i<policies.policies.length;i++)for(const suffix of ['?download=1','#fragment','/unreviewed']){
+    const bad=structuredClone(policies);bad.policies[i].sources[0].url+=suffix;assert.throws(()=>rest.validatePolicies(bad,policyNow));
+  }
+});

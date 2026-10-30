@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 POLICIES = ROOT / 'scripts/fixtures/rest_area_state_policies.json'
 ACTIVITIES = ('overnight_parking', 'sleeping_in_vehicle', 'camping')
 HOSTS = {'www.txdot.gov', 'tcss.legis.texas.gov', 'mdt.mt.gov', 'mca.legmt.gov'}
+# Newly reviewed publishers are accepted only at the exact audited policy URL.
+EXACT_POLICY_URLS = frozenset(('https://floridasturnpike.com/traveler-resources/service-plazas/', 'https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf', 'https://itd.idaho.gov/faqs/rest-areas/', 'https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01', 'https://tripcheck.com/Pages/Rest-Areas-Regulations', 'https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/', 'https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/'))
 
 
 def evidence(sources, now):
@@ -23,7 +25,7 @@ def evidence(sources, now):
     for source in sources:
         url = urlparse(source['url'])
         checked = dt.datetime.fromisoformat(source['retrieved_at'].replace('Z', '+00:00'))
-        if (url.scheme != 'https' or url.hostname not in HOSTS or url.username or
+        if (url.scheme != 'https' or (url.hostname not in HOSTS and source['url'] not in EXACT_POLICY_URLS) or url.username or
                 url.password or url.query or url.fragment or checked.tzinfo is None or
                 checked > now or not re.fullmatch('[a-f0-9]{64}', source['sha256'])):
             raise ValueError('Invalid policy evidence')
