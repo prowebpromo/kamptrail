@@ -1,0 +1,292 @@
+{
+  "status": "regional_candidate_only_not_published",
+  "report": {
+    "region": "RI",
+    "source": {
+      "kind": "geofabrik",
+      "url": "https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf",
+      "extract_timestamp": "2026-10-28T21:21:02Z",
+      "retrieved_at": "2026-10-30T16:30:30Z",
+      "sha256": "2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6",
+      "license": "ODbL-1.0",
+      "categories": [
+        "dump",
+        "water",
+        "lpg",
+        "showers",
+        "laundry",
+        "groceries",
+        "fuel"
+      ]
+    },
+    "counts": {
+      "dump": 5,
+      "water": 0,
+      "lpg": 1,
+      "showers": 5,
+      "laundry": 24,
+      "groceries": 248,
+      "fuel": 217
+    },
+    "statistics": {
+      "url": "https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf",
+      "resolved_url": "https://download.geofabrik.de/north-america/us/rhode-island-261028.osm.pbf",
+      "sha256": "2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6",
+      "retrieved_at": "2026-10-30T16:30:30Z",
+      "bytes": 52513926,
+      "download_seconds": 63.287,
+      "conditional_access": 1,
+      "lifecycle_excluded": 1,
+      "invalid_geometry": 0,
+      "restricted_retained": 0,
+      "accepted": 491,
+      "quarantined": 4,
+      "parser_version": "4.3.2",
+      "parse_seconds": 4.543,
+      "peak_rss_kib": 308680,
+      "bounded_parse_seconds": 7.533,
+      "sampled_peak_parse_disk_bytes": 100663830,
+      "parse_address_limit_bytes": 4294967296,
+      "parse_disk_limit_bytes": 12884901888,
+      "parse_wall_limit_seconds": 1800
+    },
+    "quarantine_reasons": {
+      "outside_requested_state": 3,
+      "unsupported_relation_geometry": 1
+    },
+    "quarantine": [
+      {
+        "id": "osm:node:3993085081",
+        "coordinates": [
+          -71.5281512,
+          42.0153873
+        ],
+        "reason": "outside_requested_state",
+        "candidates": [
+          "MA"
+        ]
+      },
+      {
+        "id": "osm:node:8902383188",
+        "coordinates": [
+          -71.1566296,
+          41.6649531
+        ],
+        "reason": "outside_requested_state",
+        "candidates": [
+          "MA"
+        ]
+      },
+      {
+        "id": "osm:way:212113352",
+        "coordinates": [
+          -71.528342,
+          42.0153454
+        ],
+        "reason": "outside_requested_state",
+        "candidates": [
+          "MA"
+        ]
+      },
+      {
+        "id": "osm:relation:7814204",
+        "coordinates": null,
+        "reason": "unsupported_relation_geometry",
+        "candidates": []
+      }
+    ],
+    "samples": {
+      "dump": [
+        {
+          "id": "osm:node:11905534364",
+          "url": "https://www.openstreetmap.org/node/11905534364",
+          "tags": {
+            "amenity": "sanitary_dump_station"
+          }
+        },
+        {
+          "id": "osm:node:11926024197",
+          "url": "https://www.openstreetmap.org/node/11926024197",
+          "tags": {
+            "amenity": "sanitary_dump_station"
+          }
+        }
+      ],
+      "water": [],
+      "lpg": [
+        {
+          "id": "osm:node:11246052789",
+          "url": "https://www.openstreetmap.org/node/11246052789",
+          "tags": {
+            "amenity": "fuel",
+            "fuel:lpg": "yes",
+            "self_service": "yes",
+            "brand": "Cumberland Farms"
+          }
+        }
+      ],
+      "showers": [
+        {
+          "id": "osm:node:12128094732",
+          "url": "https://www.openstreetmap.org/node/12128094732",
+          "tags": {
+            "amenity": "shower",
+            "access": "permit"
+          }
+        },
+        {
+          "id": "osm:node:12174148320",
+          "url": "https://www.openstreetmap.org/node/12174148320",
+          "tags": {
+            "amenity": "shower"
+          }
+        }
+      ],
+      "laundry": [
+        {
+          "id": "osm:node:10157929382",
+          "url": "https://www.openstreetmap.org/node/10157929382",
+          "tags": {
+            "shop": "laundry"
+          }
+        },
+        {
+          "id": "osm:node:11585361303",
+          "url": "https://www.openstreetmap.org/node/11585361303",
+          "tags": {
+            "shop": "laundry"
+          }
+        }
+      ],
+      "groceries": [
+        {
+          "id": "osm:node:10028628584",
+          "url": "https://www.openstreetmap.org/node/10028628584",
+          "tags": {
+            "shop": "convenience"
+          }
+        },
+        {
+          "id": "osm:node:10242936061",
+          "url": "https://www.openstreetmap.org/node/10242936061",
+          "tags": {
+            "shop": "convenience",
+            "opening_hours": "Mo-Sa 08:00-24:00, Su 09:00-24:00"
+          }
+        }
+      ],
+      "fuel": [
+        {
+          "id": "osm:node:10003086239",
+          "url": "https://www.openstreetmap.org/node/10003086239",
+          "tags": {
+            "amenity": "fuel",
+            "brand": "Exxon"
+          }
+        },
+        {
+          "id": "osm:node:10186236517",
+          "url": "https://www.openstreetmap.org/node/10186236517",
+          "tags": {
+            "amenity": "fuel",
+            "brand": "Sunoco",
+            "website": "https://www.sunoco.com/locations/store/101-pleasant-view-ave-smithfield-ri-0013040107"
+          }
+        }
+      ]
+    }
+  },
+  "aggregate_receipt": {
+    "version": 1,
+    "batch": "readiness-20261030",
+    "regions": [
+      "RI"
+    ],
+    "national_complete": false,
+    "snapshot_id": "e2e1bd6b83a6bebb862e057e",
+    "total": 7827,
+    "shards": 698,
+    "manifest_bytes": 199340,
+    "manifest_sha256": "247cb2080bef265238789bf6407204c2a9c2d672f2b3794f34494e9391163c6c",
+    "state_receipts": {
+      "RI": {
+        "version": 1,
+        "region": "RI",
+        "batch": "readiness-20261030",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-10-30T16:36:56Z",
+        "runtime_seconds": 7.736,
+        "accepted": 491,
+        "hashes": {
+          "source.json": "d2db9d5b1cf4f186b44fede017b6788926ca748fffa2fad443266de0988d0200",
+          "report.json": "4dec2934ab0b32226bb5223a56ad7c9c27c1c2fdf66022068c375dd2fa703aa0"
+        }
+      }
+    }
+  },
+  "aggregate_measurements": {
+    "coverage": [
+      {
+        "categories": [
+          "dump",
+          "water",
+          "lpg"
+        ],
+        "count": 4355,
+        "extract_timestamp": null,
+        "kind": "legacy",
+        "license": "ODbL-1.0",
+        "region": "legacy",
+        "retrieved_at": null,
+        "sha256": "c31eeb121009461ff44e98de27e1b175ff989892a65ca5c4035f7992d7b8c02e",
+        "url": "https://www.openstreetmap.org"
+      },
+      {
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ],
+        "count": 491,
+        "extract_timestamp": "2026-10-28T21:21:02Z",
+        "kind": "geofabrik",
+        "license": "ODbL-1.0",
+        "region": "RI",
+        "retrieved_at": "2026-10-30T16:30:30Z",
+        "sha256": "2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6",
+        "url": "https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf"
+      },
+      {
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ],
+        "count": 2981,
+        "extract_timestamp": "2026-10-28T21:21:02Z",
+        "kind": "geofabrik",
+        "license": "ODbL-1.0",
+        "region": "UT",
+        "retrieved_at": "2026-10-30T00:05:46Z",
+        "sha256": "2f2476fd7e8d5f9aaf50b17eb3cf731312f8e749addf9bd5ad1a4b61e4ae34d2",
+        "url": "https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf"
+      }
+    ],
+    "max_shard_bytes": 427766,
+    "max_shard_rows": 1285,
+    "total_shard_bytes": 2473697
+  },
+  "parser_wheel": {
+    "name": "osmium-4.3.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "bytes": 1876654,
+    "sha256": "604a3145aa755790b91e3eefac7ddbb74d31f188fddbbbb988877cba50e88eb7"
+  }
+}
