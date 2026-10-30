@@ -1,5 +1,7 @@
 # National service evidence from staging run 41098691497
 
+Application integration review found four historical synthetic-checkpoint tests comparing their 2025 dates with the newly accepted real Rhode Island source. Their accepted-source baseline is now a small, explicit temporary Utah/legacy fixture. Tests that deliberately supply a newer accepted Rhode Island source still require date-regression rejection, and both accepted-source and checkpoint loss checks remain intact. This test isolation changes no imported record, source timestamp, category predicate, source-loss guard or delivery ceiling. The eleven focused tests and full 216-test local Python suite passed (six optional skips); current exact-head GitHub application checks remain required.
+
 Review branch candidate only. Source: https://github.com/prowebpromo/kamptrail/actions/runs/41098691497, exact reviewed head `369efee3ed2f2b81ce867f269ff08bad523c039b`. All 50 immutable state artifacts and their source/report/receipt hashes were checked against the same batch and registry. The complete aggregate was rebuilt with current accepted freshness/loss guards and unchanged delivery ceilings.
 
 Measured candidate: 254,149 deduplicated service identities, 1,138 shards, 349,801 manifest bytes, snapshot `d05ed287cff1c41ac3c6ab2e`. Canonical legacy evidence is retained byte-for-byte; complete state extracts own their states, so obsolete legacy rows do not resurrect. This is a data review branch, not a merge, deployment, permission guarantee or current-operation claim.
