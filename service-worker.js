@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v41';
+const VERSION = 'kt-v42';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -55,6 +55,11 @@ async function savedTile(request) {
 }
 async function navigation(request) {
   const cache=await caches.open(SHELL_CACHE);
+  // Only the app shell may refresh the cached offline shell. Other pages (how-to.html) pass through.
+  const path=new URL(request.url).pathname,scope=new URL(self.registration.scope).pathname;
+  if(path!==scope && path!==`${scope}index.html`){
+    try { return await fetch(request); } catch { return await cache.match('index.html') || new Response('KampTrail is unavailable offline. Open it once with a connection.',{status:503,headers:{'Content-Type':'text/plain'}}); }
+  }
   try {
     const response=await fetch(request);
     if(response.ok)await cache.put('index.html',response.clone());
