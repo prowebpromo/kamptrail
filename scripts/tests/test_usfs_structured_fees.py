@@ -77,12 +77,34 @@ class StructuredFeeTests(unittest.TestCase):
             'The Rio Chama is a developed no-fee campground. That information is outdated.',
             'The Rio Chama is a developed no-fee campground. It is not accurate.',
             'The Rio Chama is a developed no-fee campground. This information is wrong.',
+            'The Rio Chama is a developed no-fee campground for holders of senior passes.',
+            'The Rio Chama is a developed no-fee campground for veterans.',
+            'The Rio Chama is a developed no-fee campground if visitors hold a permit.',
+            'The Rio Chama is a developed no-fee campground?',
+            'The Rio Chama is a developed no-fee campground. Visitors are billed twenty dollars each night.',
+            'The Rio Chama is a developed no-fee campground. The preceding statement has been rescinded.',
+            'The Rio Chama is a developed no-fee campground. This additional prose is not audited.',
             'The Rio Chama is a day-use area with free parking.',
             'This campground has free showers. Nearby Another Campground is fee-free.',
         ]
         for text in cases:
             with self.subTest(text=text):
                 self.assertEqual(self.properties(row(recareadescription=text))['fee_status'], 'unknown')
+
+    def test_opening_sentence_accepts_only_bare_or_observed_reservation_tail(self):
+        for text in ['The Rio Chama is a developed no-fee campground.',
+                     'The Rio Chama is a developed no-fee campground',
+                     'The Rio Chama is a developed no-fee campground where reservations are not required.']:
+            with self.subTest(text=text):
+                self.assertEqual(self.properties(row(recareadescription=text))['fee_status'], 'free')
+
+    def test_any_changed_audited_context_remains_unknown(self):
+        actual = row()['recareadescription']
+        for changed in [actual + ' Visitors are billed twenty dollars each night.',
+                        actual.replace('No drinking water is available.', 'Drinking water is available.'),
+                        actual + ' The preceding statement has been rescinded.']:
+            with self.subTest(text=changed):
+                self.assertEqual(self.properties(row(recareadescription=changed))['fee_status'], 'unknown')
 
     def test_nonempty_fee_field_is_not_bypassed_and_permit_restriction_qualifies(self):
         for field, expected in [('See Recreation.gov for current rate.', 'unknown'), ('$12 per night', 'paid')]:

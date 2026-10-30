@@ -4,6 +4,11 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const Services=require('../services.js');
 const hash=v=>crypto.createHash('sha256').update(v).digest('hex');
+function atomicWrite(file,content){
+ const temporary=file+'.'+process.pid+'.'+crypto.randomBytes(8).toString('hex')+'.tmp';
+ try{fs.writeFileSync(temporary,content,{flag:'wx'});fs.renameSync(temporary,file);}
+ finally{try{fs.unlinkSync(temporary);}catch(error){if(error.code!=='ENOENT')throw error;}}
+}
 const check=(ok,msg)=>{if(!ok)throw new Error('Permissions: '+msg);};
 const coordinates=c=>Array.isArray(c)&&c.length===2&&c.every(Number.isFinite)&&Math.abs(c[0])<=180&&Math.abs(c[1])<=90;
 function coordinate5(x){const n=Math.sign(x)*Math.floor(Math.abs(x)*1e5+0.5)/1e5;return(n===0?0:n).toFixed(5);}
@@ -42,8 +47,8 @@ function build(root){
  const buckets=Array.from({length:256},()=>({version:1,places:{}}));
  for(const [key,p]of [...places].sort(([a],[b])=>a.localeCompare(b)))buckets[parseInt(hash(key).slice(0,2),16)].places[key]=p;
  const output=path.join(root,'api/_data/permissions');fs.mkdirSync(output,{recursive:true});
- for(let i=0;i<256;i++){const file=path.join(output,i.toString(16).padStart(2,'0')+'.json');fs.writeFileSync(file+'.tmp',JSON.stringify(buckets[i])+'\n');fs.renameSync(file+'.tmp',file);}
- fs.writeFileSync(path.join(output,'official.json.tmp'),JSON.stringify(official)+'\n');fs.renameSync(path.join(output,'official.json.tmp'),path.join(output,'official.json'));
+ for(let i=0;i<256;i++){const file=path.join(output,i.toString(16).padStart(2,'0')+'.json');atomicWrite(file,JSON.stringify(buckets[i])+'\n');}
+ atomicWrite(path.join(output,'official.json'),JSON.stringify(official)+'\n');
  fs.writeFileSync(path.join(output,'.htaccess'),'Require all denied\n');
  return{places:places.size,evidence:official.records.length};
 }

@@ -297,7 +297,8 @@ STANDARD_NIGHTLY_FEE = re.compile(
     r'^Standard\s+Fees?\s*:?\s*[1-9]\d{0,3}(?:\.\d{1,2})?\s+per\s+night\s*(?:[.!]|$)', re.I)
 SELF_NO_FEE_CAMPGROUND = re.compile(
     r'^(?:The\s+)?(?P<name>[\w\u2019\x27 -]{1,100}?)\s+is\s+a\s+'
-    r'(?:developed\s+)?(?:no-fee|fee-free)\s+campground\b[^.!?]*[.!?]', re.I)
+    r'(?:developed\s+)?(?:no-fee|fee-free)\s+campground'
+    r'(?:\s+where\s+reservations\s+are\s+not\s+required)?\s*(?:[.!]|$)', re.I)
 DESCRIPTION_SCOPE_BLOCKER = re.compile(
     r'\b(?:formerly|previously|historically|used\s+to|no\s+longer|not\s+true|incorrect|'
     r'nearby|another\s+campground|other\s+campgrounds?|day[ -]use\s+only)\b', re.I)
@@ -310,6 +311,17 @@ DESCRIPTION_REMAINDER_RISK = re.compile(
     r'|\b(?:it|this|that|the\s+preceding|the\s+above)\b[^.!?]{0,80}\b(?:not|never)\b', re.I)
 STANDARD_DISCOUNT_CLAUSES = frozenset((
     'interagency passes accepted', 'senior passes save 50%',
+))
+# Only this audited non-fee narrative is understood by this source adapter.
+# Novel trailing prose could revoke or qualify the opening statement without
+# using any known fee keyword, so changed wording must remain unknown.
+AUDITED_NO_FEE_CONTEXT = frozenset((
+    "Located along the Rio Chama Wild & Scenic River, the developed campground offers a great place "
+    "for families, groups, or RVs to come camp on the river's edge. "
+    "Uses: camping, hiking, fishing, and river access. Facilities: This site offers two group sites "
+    "with two picnic tables and fire rings, and one vault toilet and trash bin. "
+    "Special Instructions: Smaller RVs (up to 20 feet) can be accommodated at some sites. "
+    "No drinking water is available. Forest Road 151 is not recommended for travel when wet.",
 ))
 
 
@@ -335,6 +347,8 @@ def self_description_fee(row):
     # Do not silently discard a later camping charge, permit/season exception,
     # negation, or amount. Rejection is conservative, not positive inference.
     remainder = text[match.end():].strip()
+    if remainder and remainder not in AUDITED_NO_FEE_CONTEXT:
+        return None
     if (DESCRIPTION_REMAINDER_RISK.search(remainder) or
             fee_text.classify(remainder)[0] in ('paid', 'conditional') or
             fee_text.required_pass(text) or fee_text.SEASONAL_FREE.search(text) or
