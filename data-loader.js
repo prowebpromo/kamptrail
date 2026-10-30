@@ -477,7 +477,8 @@
       if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
       const focusSeq=state.focusSeq=(state.focusSeq||0)+1;
       state.map.closePopup();
-      const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14);syncMode();
+      // Open the popup against final map coordinates; a concurrent zoom reset can undo its autopan.
+      const [lon,lat]=site.geometry.coordinates;state.map.setView([lat,lon],14,{animate:false});syncMode();
       // Chunked cluster loading can lag behind a focus request, so wait until the marker is placed.
       let tries=0;
       const attempt=()=>{
