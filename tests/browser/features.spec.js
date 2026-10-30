@@ -199,6 +199,11 @@ test('offline maps save USGS Topo tiles for the view and refuse oversized areas'
   await expect(page.locator('.kt-off-status')).toContainText('1 saved area',{timeout:30000});
   const cached=await page.evaluate(async()=>(await (await caches.open(KampTrailOffline.cacheName())).keys()).length);
   expect(cached).toBe(plan.urls.length);
+  await expect(page.locator('.kt-off-readiness')).toContainText(`${cached}/${cached} tiles present`);
+  await page.evaluate(async()=>{const cache=await caches.open(KampTrailOffline.cacheName());const keys=await cache.keys();await cache.delete(keys[0]);});
+  await page.getByRole('button',{name:'Check saved data'}).click();
+  await expect(page.locator('.kt-off-readiness')).toContainText(`${cached-1}/${cached} tiles present`);
+  await expect(page.locator('.kt-off-readiness')).toContainText('Listing cache dates are unknown');
   expect(calls.every(u=>!u.startsWith('https://tile.openstreetmap.org/')||!u.includes('/16/'))).toBe(true);
   await page.evaluate(()=>map.setZoom(5));
   await page.getByRole('button',{name:'Save this area'}).click();
