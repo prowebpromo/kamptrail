@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.12.0">
+  <meta name="kamptrail-version" content="2.13.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
@@ -63,7 +63,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.12.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.13.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -82,6 +82,7 @@
     <p>The public land layer and land manager lookup use the BLM Surface Management Agency map. Boundaries can be approximate and do not grant permission to camp. Posted signs and local orders take priority.</p>
     <p>Fire perimeters come from NIFC; satellite smoke plume polygons come from NOAA HMS. Layers load only when enabled and zoomed in. Each feature shows its source date and retrieval time. Smoke plumes do not measure ground-level air quality or AQI. Perimeters are incomplete and are not evacuation boundaries or closures. Weather alerts are checked on demand at a coordinate using the National Weather Service. This is not an emergency notification service. Dynamic fire, smoke and alert data require a connection and are hidden offline. Check local authorities, land-manager restrictions and posted signs before travel.</p>
     <p>Approximate terrain elevation filters use dated USGS 3DEP interpolated samples at catalogue coordinates. Their retrieval date is not a terrain acquisition date, and grid resolution does not guarantee point accuracy. Missing or coordinate-mismatched samples stay unknown and do not satisfy elevation bounds. Elevation does not establish road grade, clearance or RV suitability. Validated state samples can remain available offline with their source date.</p>
+    <p>Forecast filters use published NOAA/NWS NDFD temperature samples over the next 24 or 48 hours. Bounds apply to every published sample, at the displayed cadence of up to three hours; they are not continuous or daily temperature extremes. The NDFD file modification time is not each location’s forecast issuance. Missing, incomplete, expired and offline samples are excluded. Weather stays separate from saved terrain evidence.</p>
     <p>On-demand forecasts and the separate forecast-grid elevation display come from the National Weather Service and cover US locations only. These are separate from the campsite terrain samples. Topo and satellite basemaps come from the USGS National Map.</p>
     <p>Dump stations, water fill points, and propane come from OpenStreetMap contributors. Hours, fees, water potability, and whether a location is open are not verified.</p>
     <p>RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means one campsite reports your length and every hookup you chose. Different sites in the same campground are never combined. Road routes, drive times and requested detour estimates use the FOSSGIS OSRM car router. They are not checked for RV height, weight, length or current road conditions. Along-route discovery searches near the road geometry and applies the same reported-data filters as the map. Approximate distance from the line is separate from a driving detour.</p>
@@ -110,6 +111,7 @@
   <script src="spot-info.js"></script>
   <script src="community-discovery.js"></script>
   <script src="data-quality.js"></script>
+  <script src="forecast.js"></script>
   <script src="data-loader.js"></script>
   <script src="filters.js"></script>
   <script src="routes.js"></script>
