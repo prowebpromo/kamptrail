@@ -392,6 +392,23 @@ class Opener:
 
 
 class TransportTests(unittest.TestCase):
+    def test_mutable_pointer_and_public_redirect_revalidate_cached_bytes(self):
+        class CachedOpener:
+            def __init__(self):
+                self.requests = []
+            def open(self, request, timeout):
+                self.requests.append(request)
+                revalidate = request.get_header('Cache-control') == 'no-cache'
+                if request.full_url == p.PUBLIC_ROOT + 'current-a.json':
+                    asset = 'new' if revalidate else 'previous'
+                    return Response(302, headers={'Location':'https://release-assets.githubusercontent.com/' + asset})
+                return Response(200, b'new-pointer' if revalidate and request.full_url.endswith('/new') else b'previous-pointer')
+        opener = CachedOpener()
+        result = p.GitHub('test-token', opener=opener).public('current-a.json', 100)
+        self.assertEqual(result, b'new-pointer')
+        self.assertEqual(len(opener.requests), 2)
+        self.assertTrue(all('Authorization' not in request.headers for request in opener.requests))
+
     def test_public_asset_visibility_retry_is_bounded_and_never_sends_authorization(self):
         opener = Opener([Response(404, b'x' * 200), Response(404), Response(302, headers={'Location': 'https://release-assets.githubusercontent.com/a?signature=x'}), Response(200, b'good')])
         delays = []
