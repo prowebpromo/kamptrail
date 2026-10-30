@@ -27,6 +27,41 @@
  const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
  const keys=(x,allowed)=>record(x)&&Object.keys(x).every(k=>allowed.includes(k));
  const has=(x,k)=>typeof k==='string'&&Object.hasOwn(x,k);
+ const MONTHS={'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'};
+ function validVisitDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&value>='1900-01-01'&&Number.isFinite(Date.parse(value+'T00:00:00Z'))&&new Date(value+'T00:00:00Z').toISOString().slice(0,10)===value;}
+ function validMonthly(d){
+  const count=n=>Number.isSafeInteger(n)&&n>=0&&n<=1000000;
+  if(!keys(d,['version','available','checked_at','basis','published_reviews','condition_reports','unreported_reviews','excluded_dates','invalid_observations','months'])||d.version!==1||d.available!==true||d.basis!=='calendar_visit_month_all_years'||typeof d.checked_at!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(d.checked_at)||!Number.isFinite(Date.parse(d.checked_at))||new Date(d.checked_at).toISOString().slice(0,19)!==d.checked_at.slice(0,19)||!record(d.months))return false;
+  const totals=['condition_reports','unreported_reviews','excluded_dates','invalid_observations'].map(k=>d[k]);
+  if(!count(d.published_reviews)||!totals.every(count)||totals.reduce((a,b)=>a+b,0)!==d.published_reviews)return false;
+  let reports=0;
+  const today=new Date(d.checked_at).toISOString().slice(0,10);
+  for(const [month,row] of Object.entries(d.months)){
+   if(!has(MONTHS,month)||!keys(row,['reports','first_visit','latest_visit','axes'])||!count(row.reports)||row.reports<1||!validVisitDate(row.first_visit)||!validVisitDate(row.latest_visit)||row.first_visit>row.latest_visit||row.latest_visit>today||row.first_visit.slice(5,7)!==month||row.latest_visit.slice(5,7)!==month||!keys(row.axes,Object.keys(AXES))||Object.keys(row.axes).length!==Object.keys(AXES).length)return false;
+   let known=0;
+   for(const [axis,a] of Object.entries(AXES)){
+    const values=row.axes[axis];if(!keys(values,Object.keys(a.values)))return false;
+    const ns=Object.values(values);if(!ns.every(n=>count(n)&&n>0)||ns.reduce((a,b)=>a+b,0)>row.reports)return false;
+    known+=ns.reduce((a,b)=>a+b,0);
+   }
+   if(known<row.reports)return false;
+   reports+=row.reports;
+  }
+  return reports===d.condition_reports;
+ }
+ function monthlyView(d,month='',now=Date.now()){
+  if(!validMonthly(d))return {mode:'unavailable'};
+  const age=now-Date.parse(d.checked_at);
+  if(age>7*86400000||age< -300000)return {mode:'expired',checked_at:d.checked_at};
+  if(month!==''&&!has(MONTHS,month))return {mode:'unavailable'};
+  const out={mode:'ready',reports:0,first_visit:null,latest_visit:null,axes:Object.fromEntries(Object.keys(AXES).map(k=>[k,{}]))};
+  for(const [key,row] of Object.entries(d.months)){
+   if(month&&key!==month)continue;
+   out.reports+=row.reports;out.first_visit=out.first_visit===null?row.first_visit:[out.first_visit,row.first_visit].sort()[0];out.latest_visit=out.latest_visit===null?row.latest_visit:[out.latest_visit,row.latest_visit].sort().at(-1);
+   for(const [axis,counts] of Object.entries(row.axes))for(const [value,n] of Object.entries(counts))out.axes[axis][value]=(out.axes[axis][value]||0)+n;
+  }
+  return out;
+ }
  function validSites(sites){
   if(!record(sites))return false;
   return Object.entries(sites).every(([id,s])=>id.length>0&&id.length<=200&&keys(s,['rating_count','rating_sum','latest_visit','observations'])&&Number.isInteger(s.rating_count)&&s.rating_count>0&&Number.isInteger(s.rating_sum)&&s.rating_sum>=s.rating_count&&s.rating_sum<=5*s.rating_count&&/^\d{4}-\d{2}-\d{2}$/.test(s.latest_visit)&&Array.isArray(s.observations)&&s.observations.every(g=>keys(g,['count','latest_visit','values'])&&Number.isInteger(g.count)&&g.count>0&&/^\d{4}-\d{2}-\d{2}$/.test(g.latest_visit)&&keys(g.values,[...Object.keys(AXES),'signals'])&&Object.keys(g.values).every(k=>k==='signals'||has(AXES,k)&&has(AXES[k].values,g.values[k]))&&(!g.values.signals||Array.isArray(g.values.signals)&&g.values.signals.every(x=>keys(x,['carrier','signal','environment'])&&has(CARRIERS,x.carrier)&&has(SIGNAL,x.signal)&&has(ENVIRONMENTS,x.environment)))));
@@ -83,7 +118,7 @@
  }
  function formValues(form){const data=new FormData(form),out={};for(const k of Object.keys(AXES)){const v=data.get('observed_'+k);if(v)out[k]=v;}const signals=[];for(const carrier of Object.keys(CARRIERS)){const signal=data.get('signal_'+carrier);if(signal)signals.push({carrier,signal,environment:data.get('environment_'+carrier)||'unspecified'});}if(signals.length)out.signals=signals;return out;}
  function describe(o){const text=[];for(const[k,a]of Object.entries(AXES))if(a.values[o?.[k]])text.push(a.label+': '+a.values[o[k]]);for(const s of o?.signals||[])if(CARRIERS[s.carrier]&&SIGNAL[s.signal])text.push(CARRIERS[s.carrier]+': '+SIGNAL[s.signal]+' ('+(ENVIRONMENTS[s.environment]||'Setting not specified')+')');return text.join(' · ');}
- global.KampTrailDiscovery={version:'2.17.0',AXES,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
+ global.KampTrailDiscovery={version:'2.18.0',AXES,MONTHS,validMonthly,monthlyView,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
  if(typeof module!=='undefined'&&module.exports)module.exports=global.KampTrailDiscovery;
  if(global.addEventListener){global.addEventListener('kamptrail:communitychanged',async()=>{const reload=st.mode!=='idle'||active(global.kamptrailFilters||{}),pending=st.pending;st.generation++;st.sites=new Map();st.checked=null;st.mode='idle';notify();try{await caches.delete(cacheName());}catch{}if(pending)await pending;try{await caches.delete(cacheName());}catch{}if(reload)load(true);});global.addEventListener('focus',()=>{if(active(global.kamptrailFilters||{}))load();});}
 })(typeof window!=='undefined'?window:globalThis);

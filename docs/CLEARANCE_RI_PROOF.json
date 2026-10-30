@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "source": {
+    "kind": "geofabrik",
+    "url": "https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf",
+    "resolved_url": "https://download.geofabrik.de/north-america/us/rhode-island-261028.osm.pbf",
+    "sha256": "2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6",
+    "bytes": 52513926,
+    "retrieved_at": "2026-10-30T16:30:30Z",
+    "extract_timestamp": "2026-10-28T21:21:02Z",
+    "license": "ODbL-1.0",
+    "copyright_url": "https://www.openstreetmap.org/copyright"
+  },
+  "region": "RI",
+  "accepted": 254,
+  "vertices": 1742,
+  "by_type": {
+    "way": 254
+  },
+  "tag_counts": {
+    "maxheight": 254
+  },
+  "parsed_counts": {
+    "maxheight": 239
+  },
+  "quarantined": 4,
+  "quarantine_reasons": {
+    "no_highway_or_height_restrictor_context": 1,
+    "outside_requested_state": 1,
+    "boundary_ambiguous": 2
+  },
+  "quarantine": [
+    {
+      "id": "osm:way:529206537",
+      "reason": "no_highway_or_height_restrictor_context",
+      "candidates": []
+    },
+    {
+      "id": "osm:way:1212625344",
+      "reason": "outside_requested_state",
+      "candidates": [
+        "MA"
+      ]
+    },
+    {
+      "id": "osm:way:1476578628",
+      "reason": "boundary_ambiguous",
+      "candidates": [
+        "MA",
+        "RI"
+      ]
+    },
+    {
+      "id": "osm:way:1496803519",
+      "reason": "boundary_ambiguous",
+      "candidates": [
+        "MA",
+        "RI"
+      ]
+    }
+  ],
+  "statistics": {
+    "lifecycle_excluded": 1
+  },
+  "parser_version": "4.3.2",
+  "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
+  "samples": [
+    {
+      "id": "osm:way:5386504",
+      "url": "https://www.openstreetmap.org/way/5386504",
+      "tags": {
+        "maxheight": "13'5\""
+      }
+    },
+    {
+      "id": "osm:way:19348324",
+      "url": "https://www.openstreetmap.org/way/19348324",
+      "tags": {
+        "maxheight": "17'0\""
+      }
+    },
+    {
+      "id": "osm:way:19351727",
+      "url": "https://www.openstreetmap.org/way/19351727",
+      "tags": {
+        "maxheight": "14'9\""
+      }
+    },
+    {
+      "id": "osm:way:19352177",
+      "url": "https://www.openstreetmap.org/way/19352177",
+      "tags": {
+        "maxheight": "16'8\""
+      }
+    },
+    {
+      "id": "osm:way:19352597",
+      "url": "https://www.openstreetmap.org/way/19352597",
+      "tags": {
+        "maxheight": "default"
+      }
+    }
+  ],
+  "wall_seconds": 4.831,
+  "sampled_peak_disk_bytes": 100663812,
+  "asset_bytes": 119065,
+  "asset_sha256": "5c32f4cb33c1159dad135408d7810e5717d4bfa2b8866af77b6d2552d9a706e5",
+  "parse_address_limit_bytes": 4294967296,
+  "parse_disk_limit_bytes": 12884901888,
+  "parse_wall_limit_seconds": 1800
+}

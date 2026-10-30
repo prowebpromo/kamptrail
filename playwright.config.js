@@ -1,7 +1,7 @@
 const { defineConfig } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests/browser',
-  testMatch: ['app.spec.js','saved-stops.spec.js','upgrade.spec.js','features.spec.js','perf.spec.js','reports.spec.js','community.spec.js','routes.spec.js','mvum.spec.js','fcc-setup.spec.js','discovery.spec.js','environment.spec.js','fee-evidence.spec.js','elevation.spec.js','forecast.spec.js','services.spec.js','services-routes.spec.js','permissions.spec.js','rest-areas.spec.js','ridb-amenities.spec.js','rig-profile.spec.js','route-elevation.spec.js'],
+  testMatch: ['app.spec.js','saved-stops.spec.js','upgrade.spec.js','features.spec.js','perf.spec.js','reports.spec.js','community.spec.js','routes.spec.js','mvum.spec.js','fcc-setup.spec.js','discovery.spec.js','environment.spec.js','fee-evidence.spec.js','elevation.spec.js','forecast.spec.js','services.spec.js','services-routes.spec.js','permissions.spec.js','rest-areas.spec.js','ridb-amenities.spec.js','rig-profile.spec.js','route-elevation.spec.js','camping-care.spec.js','clearances.spec.js'],
   timeout: 45000,
   expect: { timeout: 15000 },
   fullyParallel: false,

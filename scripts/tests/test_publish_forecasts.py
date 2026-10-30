@@ -57,6 +57,8 @@ class FakeGitHub:
         self.next_id, self.now, self.reads = 1, NOW, 0
         self.fail_upload = self.race = None
         self.clock = lambda: self.now
+        self.delays = []
+        self.sleep = self.delays.append
 
     def api(self, method, suffix, body=None, allowed=(200,)):
         self.log.append((method, suffix, body))
@@ -247,6 +249,55 @@ class PublicationTests(unittest.TestCase):
         self.publish()
         self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
         self.assertEqual(self.api.bodies['current-a.json'], self.new[1])
+
+    def delayed_pointer(self, *, count, body=None):
+        original = self.api.public
+        reads = []
+        def public(name, limit):
+            if name == 'current-a.json' and self.api.bodies.get(name) == self.new[1]:
+                reads.append(name)
+                if len(reads) <= count:
+                    return self.old[1] if body is None else body
+            return original(name, limit)
+        self.api.public = public
+        return reads
+
+    def test_fixed_pointer_visibility_delay_requires_exact_new_bytes_without_more_mutations(self):
+        reads = self.delayed_pointer(count=2)
+        self.assertEqual(self.publish()['status'], 'published')
+        self.assertGreaterEqual(len(reads), 3)
+        self.assertEqual(self.api.delays, [2, 4])
+        self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_persistent_previous_pointer_is_bounded_and_retains_other_valid_generation(self):
+        reads = self.delayed_pointer(count=100)
+        with self.assertRaisesRegex(p.PublishError, 'pointer_propagation_pending'):
+            self.publish()
+        self.assertEqual(len(reads), 4)
+        self.assertEqual(self.api.delays, [2, 4, 8])
+        self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+        self.assertTrue(all(name in self.api.bodies for name in self.old[2]))
+        self.assertEqual([item for item in self.api.log if item[0] == 'DELETE'], [('DELETE', 'current-a.json')])
+
+    def test_unexpected_pointer_bytes_do_not_receive_a_visibility_retry(self):
+        reads = self.delayed_pointer(count=100, body=b'unexpected')
+        with self.assertRaisesRegex(p.PublishError, 'pointer_propagation_pending'):
+            self.publish()
+        self.assertEqual(len(reads), 1)
+        self.assertEqual(self.api.delays, [])
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_generation_expiry_during_pointer_wait_stops_before_a_second_read(self):
+        reads = self.delayed_pointer(count=100)
+        def expire(delay):
+            self.api.now = NOW + 7201
+        self.api.sleep = expire
+        with self.assertRaisesRegex(p.PublishError, 'stale'):
+            self.publish()
+        self.assertEqual(len(reads), 1)
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
 
     def test_concurrent_pointer_change_prevents_destructive_step(self):
         def race(api):

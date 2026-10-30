@@ -527,6 +527,22 @@ def ensure_asset(api, release_id, assets, name, raw, *, allow_starter=False, dra
     return result
 
 
+def confirm_pointer(api, name, raw, previous, now):
+    # A replaced fixed public URL can briefly serve its exact previous valid
+    # bytes. Read only that URL again; never repeat the delete/upload or accept
+    # different bytes as publication proof. Other errors still stop immediately.
+    for attempt in range(4):
+        validate_manifest(raw, max(now, api.clock()))
+        observed = api.public(name, MAX_MANIFEST)
+        validate_manifest(raw, max(now, api.clock()))
+        if observed == raw:
+            return
+        require(previous is not None and observed == previous, 'pointer_propagation_pending')
+        if attempt < 3:
+            api.sleep(2 ** (attempt + 1))
+    raise PublishError('pointer_propagation_pending')
+
+
 def publish(api, manifest, raw, files, now, source_sha):
     require(isinstance(source_sha, str) and re.fullmatch('[a-f0-9]{40}', source_sha), 'invalid_source_commit')
     # Validation is repeated here because callers may use the publisher as a library.
@@ -590,7 +606,7 @@ def publish(api, manifest, raw, files, now, source_sha):
     if old:
         api.delete(old['id'])
     api.upload(release['id'], target, raw)
-    require(api.public(target, MAX_MANIFEST) == raw, 'pointer_propagation_pending')
+    confirm_pointer(api, target, raw, pointers[target][1] if target in pointers else None, now)
     final_assets = api.assets(release['id'])
     final_pointers = read_pointers(api, final_assets, now)
     require(target in final_pointers and final_pointers[target][1] == raw, 'pointer_propagation_pending')
