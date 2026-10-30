@@ -57,12 +57,18 @@ test('required source digests, reference inventories and declared cadence are va
     if($case==='missing_references')unset($m['regions']['conus']['reference_times']);
     if($case==='empty_references')$m['regions']['conus']['reference_times']=[];
     if($case==='duplicate_references')$m['regions']['conus']['reference_times']=[$m['generated_at'],$m['generated_at']];
-    if($case==='future_reference')$m['regions']['conus']['reference_times']=[gmdate('Y-m-d\\TH:i:s\\Z',$now+301)];
+    if($case==='future_reference')$m['regions']['conus']['reference_times']=[gmdate('Y-m-d\\TH:i:s\\Z',$now+7201)];
     if($case==='reference_bound')$m['regions']['conus']['reference_times']=array_fill(0,101,$m['generated_at']);
     if($case==='cadence')$m['regions']['conus']['max_step_seconds']=3599;
     if($case==='membership_count')$m['states']['CA']['count']=0;
     rejects(fn()=>kf_manifest(json_encode($m),$f['catalogue'],$now));
   }
+`));
+test('forecast-start metadata can follow publication without extending freshness',{skip:!capable},()=>php(`
+  $m=$f['manifest'];$m['regions']['conus']['reference_times']=[gmdate('Y-m-d\\TH:i:s\\Z',$now+600)];
+  $checked=kf_manifest(json_encode($m),$f['catalogue'],$now);check($checked['expires_at']===$f['manifest']['expires_at']);
+  rejects(fn()=>kf_manifest(json_encode($m),$f['catalogue'],$now+7200),'stale');
+  $m['source']['files'][0]['last_modified']=gmdate('Y-m-d\\TH:i:s\\Z',$now+301);rejects(fn()=>kf_manifest(json_encode($m),$f['catalogue'],$now));
 `));
 test('state bytes are hash-bound, retain zero/null/negative samples, reject malformed records',{skip:!capable},()=>php(`
   $raw=kf_unpack($f['compressed'][$f['manifest']['states']['CA']['asset']],$f['manifest'],'CA');check($raw===$f['states']['CA']);

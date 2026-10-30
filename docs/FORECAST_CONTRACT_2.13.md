@@ -30,6 +30,8 @@ Source file `sha256` hashes the downloaded GRIB bytes. Regional `reference_times
 
 Limits: 50 states, 100,000 records globally, 20,000/state, 100 samples/region, 2 MiB compressed/8 MiB raw per state, 256 KiB manifest, 150 MiB source download/run, 300 MiB private cache. Actual national output must be benchmarked.
 
+GRIB Section 1 reference significance 1 means [start of forecast](https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table1-2.shtml), not publication or download time. On October 30, NOAA's CONUS file was modified at 11:21:03 UTC and reported an 11:30 reference. Its valid early publication must not fail because that reference is later than package generation. All readers validate real UTC, sorted references against the final forecast-valid sample time. File modification times, package generation and absolute expiry continue to enforce freshness independently; a future reference never refreshes stale source data.
+
 ## Freshness and predicate
 
 Expiry is at most three hours after the oldest included NOAA file modification time AND at most three hours after generation. Packaging never refreshes old meteorology. File modification and model reference times are separate; a new mosaic is not proof of freshly issued WFO data everywhere.

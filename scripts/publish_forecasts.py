@@ -142,13 +142,17 @@ def validate_manifest(raw, now, *, allow_expired=False):
         references = info.get('reference_times')
         require(isinstance(references, list) and 1 <= len(references) <= 100)
         parsed_references = [timestamp(value) for value in references]
-        require(parsed_references == sorted(set(parsed_references)) and parsed_references[-1] <= generated + 300)
+        require(parsed_references == sorted(set(parsed_references)))
         require(integer(info.get('max_step_seconds'), 1, 10800))
         times = info.get('times')
         require(isinstance(times, list) and 1 <= len(times) <= 100)
         parsed = [timestamp(value) for value in times]
         require(all(0 < right - left <= info['max_step_seconds'] for left, right in zip(parsed, parsed[1:])))
         require(parsed[0] >= generated - 86400 and parsed[-1] <= generated + 8 * 86400)
+        # GRIB Section 1 significance 1 is the forecast start, not publication
+        # time. NOAA can publish it before that start; actual source-file times
+        # above still control freshness and expiry.
+        require(parsed_references[-1] <= parsed[-1])
     states = m.get('states')
     require(isinstance(states, dict) and set(states) == STATES)
     record_total = 0
