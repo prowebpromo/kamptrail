@@ -1,6 +1,8 @@
 /* Campsite loading, source normalization, map markers, and recovery. */
 (function () {
   'use strict';
+  const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
+  const uiLabel = (kind,value) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.label(kind,value) ?? value;
   const state={allCampsites:[],loadedStates:new Set(),loading:new Map(),failed:new Map(),index:null,clusterGroup:null,config:{},map:null,markers:new Map()};
   const STATE_BOUNDS = {
     'AL': { s: 30.2, w: -88.5, n: 35.0, e: -84.9 },
@@ -222,45 +224,45 @@
     await task;
   }
   function costText(p) {
-    if(p.fee_status==='free')return 'Free (source reported)';
-    if(p.fee_status==='conditional')return 'Free with conditions (see wording)';
-    if(p.fee_status==='paid')return p.cost===null?'Paid · amount not verified':`$${p.cost}/night (source reported)`;
-    return 'Fee not verified';
+    if(p.fee_status==='free')return t('Free (source reported)');
+    if(p.fee_status==='conditional')return t("Free with conditions (see wording)");
+    if(p.fee_status==='paid')return p.cost===null?t('Paid · amount not verified'):t('${amount}/night (source reported)',{amount:p.cost});
+    return t("Fee not verified");
   }
   function rvText(p) {
     if(!p.site_count)return '';
     const parts=[];
     const rig=+(window.kamptrailFilters?.rigLength||0);
-    if(p.rv_sites)parts.push(`${p.rv_sites} of ${p.site_count} sites allow RVs or trailers`);
-    else parts.push(`${p.site_count} sites listed, none list RV or trailer use`);
-    if(p.rv_max_length)parts.push(`longest reported ${p.rv_max_length} ft`);
+    if(p.rv_sites)parts.push(t("{0} of {1} sites allow RVs or trailers", {"0":(p.rv_sites),"1":(p.site_count)}));
+    else parts.push(t("{0} sites listed, none list RV or trailer use", {"0":(p.site_count)}));
+    if(p.rv_max_length)parts.push(t("longest reported {0} ft", {"0":(p.rv_max_length)}));
     const hooks=(window.kamptrailFilters?.hookups)||[];
-    if(rig>0||hooks.length){const n=DataQuality.matchingSites(p,rig,hooks,false);parts.push(`${n} ${n===1?'site lists':'sites list'} ${[rig>0?`${rig} ft or more`:'',hooks.length?`${hooks.join(' + ')} hookups`:''].filter(Boolean).join(' with ')} on the same site`);}
-    const h=p.hookups||{},hk=[['electric','electric'],['water','water'],['sewer','sewer']].filter(([k])=>h[k]>0).map(([k,l])=>`${l} at ${h[k]}`);
-    return `<div><strong>RV sites (Recreation.gov):</strong> ${esc(parts.join(' · '))}</div>${hk.length?`<div><strong>Hookups reported:</strong> ${esc(hk.join(', '))} sites</div>`:''}`;
+    if(rig>0||hooks.length){const n=DataQuality.matchingSites(p,rig,hooks,false);parts.push(t("{0} {1} {2} on the same site", {"0":(n),"1":(n===1?t("site lists"):t("sites list")),"2":([rig>0?t('{0} ft or more',{'0':rig}):'',hooks.length?t('{types} hookups',{types:hooks.map(value=>uiLabel('hookup',value)).join(' + ')}):''].filter(Boolean).join(t(" with ")))}));}
+    const h=p.hookups||{},hk=[['electric','electric'],['water','water'],['sewer','sewer']].filter(([k])=>h[k]>0).map(([k,l])=>t("{0} at {1}", {"0":(uiLabel('hookup',l)),"1":(h[k])}));
+    return `<div><strong>${t("RV sites (Recreation.gov):")}</strong> ${esc(parts.join(' · '))}</div>${hk.length?`<div><strong>${t("Hookups reported:")}</strong> ${esc(hk.join(', '))}${t(' sites')}</div>`:''}`;
   }
   function ridbAmenitiesText(p){
     const data=p.ridb_amenity_evidence;
-    if(!DataQuality.validRIDBAmenities(data))return DataQuality.ridbFacilityIds(p).length?'<div class="kt-fine">Recreation.gov campsite amenity evidence unavailable.</div>':'';
-    const labels={toilet:'Toilets',drinking_water:'Drinking water',shower:'Showers',dump:'Dump station',picnic_table:'Picnic tables'};
-    const qualifiers={seasonal:'seasonal',peak_season:'peak season',coin:'coin operated',hand_pump:'hand pump',accessible:'accessible feature',outdoor:'outdoor'};
-    const groups=Object.values(data.facilities).map(r=>r.amenities),notes=['Counts describe records, not fixtures or every campsite. Missing fields and current availability are unknown.'];
-    if(groups.some(g=>g.drinking_water?.reported))notes.push('Drinking water does not establish RV filling access.');
-    if(groups.some(g=>g.dump?.reported))notes.push('Dump access and prices are unknown.');
-    if(groups.some(g=>g.shower?.qualifiers.coin))notes.push('Coin qualifiers concern showers only.');
+    if(!DataQuality.validRIDBAmenities(data))return DataQuality.ridbFacilityIds(p).length?'<div class="kt-fine">'+esc(t('Recreation.gov campsite amenity evidence unavailable.'))+'</div>':'';
+    const labels={toilet:t("Toilets"),drinking_water:t("Drinking water"),shower:t("Showers"),dump:t("Dump station"),picnic_table:t("Picnic tables")};
+    const qualifiers={seasonal:t("seasonal"),peak_season:t("peak season"),coin:t("coin operated"),hand_pump:t("hand pump"),accessible:t("accessible feature"),outdoor:t("outdoor")};
+    const groups=Object.values(data.facilities).map(r=>r.amenities),notes=[t("Counts describe records, not fixtures or every campsite. Missing fields and current availability are unknown.")];
+    if(groups.some(g=>g.drinking_water?.reported))notes.push(t("Drinking water does not establish RV filling access."));
+    if(groups.some(g=>g.dump?.reported))notes.push(t("Dump access and prices are unknown."));
+    if(groups.some(g=>g.shower?.qualifiers.coin))notes.push(t("Coin qualifiers concern showers only."));
     const facilities=Object.entries(data.facilities).map(([fid,rec])=>{
       const rows=Object.entries(rec.amenities).map(([key,g])=>{
         const parts=[];
-        if(g.reported)parts.push(`mentioned in ${g.reported} of ${rec.sites} records`);
-        for(const [q,n] of Object.entries(g.qualifiers))parts.push(`${qualifiers[q]}: ${n} records`);
-        if(g.negative)parts.push(`explicit no: ${g.negative} records`);
-        if(g.unknown)parts.push(`blank or unrecognized: ${g.unknown} records`);
-        if(g.conflict)parts.push(`conflicting values: ${g.conflict} records`);
+        if(g.reported)parts.push(t('mentioned in {count} of {total} records',{count:g.reported,total:rec.sites}));
+        for(const [q,n] of Object.entries(g.qualifiers))parts.push(t('{qualifier}: {count} records',{qualifier:qualifiers[q],count:n}));
+        if(g.negative)parts.push(t('explicit no: {count} records',{count:g.negative}));
+        if(g.unknown)parts.push(t('blank or unrecognized: {count} records',{count:g.unknown}));
+        if(g.conflict)parts.push(t('conflicting values: {count} records',{count:g.conflict}));
         return `<li>${esc(labels[key])}: ${esc(parts.join('; '))}</li>`;
       });
-      return `<p><a href="https://www.recreation.gov/camping/campgrounds/${encodeURIComponent(fid)}" target="_blank" rel="noopener noreferrer">Recreation.gov facility ${esc(fid)}</a></p>${rows.length?`<ul>${rows.join('')}</ul>`:`<p>${rec.sites?'No mapped amenity claims in these overnight campsite records.':'No overnight campsite records in this snapshot.'}</p>`}`;
+      return `<p><a href="https://www.recreation.gov/camping/campgrounds/${encodeURIComponent(fid)}" target="_blank" rel="noopener noreferrer">${esc(t('Recreation.gov facility {id}',{id:fid}))}</a></p>${rows.length?`<ul>${rows.join('')}</ul>`:`<p>${rec.sites?t("No mapped amenity claims in these overnight campsite records."):t("No overnight campsite records in this snapshot.")}</p>`}`;
     }).join('');
-    return `<details class="kt-ridb-amenities"><summary>Recreation.gov campsite records report…</summary>${facilities}<p class="kt-fine">${esc(notes.join(' '))}</p><p class="kt-fine">${data.source.original_retrieved_at?`Export retrieved ${esc(data.source.original_retrieved_at.slice(0,10))}.`:'Saved export: retrieval date unknown.'} Amenity update dates unknown. Inspected ${esc(data.source.inspected_at.slice(0,10))}; inspection is not an update date. <a href="${DataQuality.RIDB_AMENITY_URL}" target="_blank" rel="noopener noreferrer">Public source export</a></p></details>`;
+    return `<details class="kt-ridb-amenities"><summary>${esc(t('Recreation.gov campsite records report…'))}</summary>${facilities}<p class="kt-fine">${esc(notes.join(' '))}</p><p class="kt-fine">${data.source.original_retrieved_at?esc(t('Export retrieved {date}.',{date:data.source.original_retrieved_at.slice(0,10)})):esc(t('Saved export: retrieval date unknown.'))} ${esc(t('Amenity update dates unknown. Inspected {date}; inspection is not an update date.',{date:data.source.inspected_at.slice(0,10)}))} <a href="${DataQuality.RIDB_AMENITY_URL}" target="_blank" rel="noopener noreferrer">${esc(t('Public source export'))}</a></p></details>`;
   }
   function popupLayout(){
     const size=state.map?.getSize?.()||{},width=Number.isFinite(size.x)?size.x:390,height=Number.isFinite(size.y)?size.y:400;
@@ -274,50 +276,51 @@
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
     const layout=popupLayout();
-    return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="Campsite details" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
+    return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
-      ${closure?`<div class="kt-closure-notice"><strong>Agency reports: ${esc(closure)}.</strong> Confirm reopening with the operator.${p.season?` Season reported: ${esc(p.season)}.`:''}</div>`:''}
-      <div><strong>Cost:</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
-      ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||'Source')}${p.fee_checked?`, imported ${esc(p.fee_checked)}`:''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
-      ${p.fee_status==='free'||p.fee_status==='conditional'?'<div class="kt-fine">This is the camping fee only. Entrance fees, passes, permits, or reservation charges may still apply.</div>':''}
-      ${p.fee_conflict?'<div class="kt-fine">Sources disagree on the fee, so it shows as unknown.</div>':''}
-      ${p.open_status&&status!=='none'&&!closure?`<div><strong>Status (agency):</strong> ${esc(p.open_status)}${p.season?` · season ${esc(p.season)}`:''}</div>`:''}
-      ${p.restrictions?`<div><strong>Restrictions:</strong> ${esc(p.restrictions.length>180?p.restrictions.slice(0,177)+'…':p.restrictions)}</div>`:''}
-      ${p.stay_limit?`<div><strong>Stay limit:</strong> ${esc(p.stay_limit)}</div>`:''}
-      ${p.reservable?'<div class="kt-fine">Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.</div>':''}
-      <div><strong>Type:</strong> ${esc(p.type)}</div>
+      ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
+      <div><strong>${t("Cost:")}</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
+      ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||t("Source"))}${p.fee_checked?t(", imported {0}", {"0":(esc(p.fee_checked))}):''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
+      ${p.fee_status==='free'||p.fee_status==='conditional'?`<div class="kt-fine">${t("This is the camping fee only. Entrance fees, passes, permits, or reservation charges may still apply.")}</div>`:''}
+      ${p.fee_conflict?`<div class="kt-fine">${t("Sources disagree on the fee, so it shows as unknown.")}</div>`:''}
+      ${p.open_status&&status!=='none'&&!closure?`<div><strong>${t("Status (agency):")}</strong> ${esc(p.open_status)}${p.season?t(" · season {0}", {"0":(esc(p.season))}):''}</div>`:''}
+      ${p.restrictions?`<div><strong>${t("Restrictions:")}</strong> ${esc(p.restrictions.length>180?p.restrictions.slice(0,177)+'…':p.restrictions)}</div>`:''}
+      ${p.stay_limit?`<div><strong>${t("Stay limit:")}</strong> ${esc(p.stay_limit)}</div>`:''}
+      ${p.reservable?`<div class="kt-fine">${t("Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.")}</div>`:''}
+      <div><strong>${t("Type:")}</strong> ${esc(uiLabel('type',p.type))}</div>
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
-      ${DataQuality.elevationInfo(site)?`<p class="kt-fine">Interpolated terrain from <a href="${DataQuality.ELEVATION_SOURCE}" target="_blank" rel="noopener noreferrer">USGS 3DEP</a>. Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grade or RV clearance.</p>`:''}
-      <div><strong>Access reported:</strong> ${esc(p.access_label || p.access || 'Not verified')}</div>
-      <div><strong>Amenities reported:</strong> ${p.amenities.length?p.amenities.map(esc).join(', '):'Not verified'}</div>
+      ${DataQuality.elevationInfo(site)?`<p class="kt-fine">${t("Interpolated terrain from ")}<a href="${DataQuality.ELEVATION_SOURCE}" target="_blank" rel="noopener noreferrer">USGS 3DEP</a>${t(". Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grade or RV clearance.")}</p>`:''}
+      <div><strong>${t("Access reported:")}</strong> ${esc(p.access_label || p.access || t("Not verified"))}</div>
+      <div><strong>${t("Amenities reported:")}</strong> ${p.amenities.length?p.amenities.map(value=>esc(uiLabel('amenity',value))).join(', '):t("Not verified")}</div>
       ${ridbAmenitiesText(p)}
-      ${p.road_difficulty?`<div><strong>Road:</strong> ${esc(p.road_difficulty)}</div>`:''}
-      ${p.rig_friendly.length?`<div><strong>Rig types reported:</strong> ${p.rig_friendly.map(esc).join(', ')}</div>`:''}
+      ${p.road_difficulty?`<div><strong>${t("Road:")}</strong> ${esc(p.road_difficulty)}</div>`:''}
+      ${p.rig_friendly.length?`<div><strong>${t("Rig types reported:")}</strong> ${p.rig_friendly.map(value=>esc(uiLabel('rig',value))).join(', ')}</div>`:''}
       ${rvText(p)}
-      ${window.KampTrailDiscovery?.summary(p)?`<div><strong>Community rating:</strong> ${(window.KampTrailDiscovery.summary(p).rating_sum/window.KampTrailDiscovery.summary(p).rating_count).toFixed(1)}/5 · ${window.KampTrailDiscovery.summary(p).rating_count} published ${window.KampTrailDiscovery.summary(p).rating_count===1?'review':'reviews'} · latest visit ${esc(window.KampTrailDiscovery.summary(p).latest_visit)}</div>`:''}
-      ${p.rating!==null?`<div><strong>Source rating:</strong> ${p.rating}/5${p.reviews_count?` (${p.reviews_count} reviews)`:''}</div>`:''}
-      <p style="font-size:11px;line-height:1.4">Confirm current fees, access, and camping rules with the operator before traveling.${p.attributes_unverified?' Legacy inferred fees and amenities are hidden.':''}</p>
-      ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">Check source / operator</a></p>`:''}
+      ${window.KampTrailDiscovery?.summary(p)?`<div><strong>${t("Community rating:")}</strong> ${esc(t("{0}/5 · {1} published {2} · latest visit {3}",{'0':(window.KampTrailDiscovery.summary(p).rating_sum/window.KampTrailDiscovery.summary(p).rating_count).toFixed(1),'1':window.KampTrailDiscovery.summary(p).rating_count,'2':t(window.KampTrailDiscovery.summary(p).rating_count===1?'review':'reviews'),'3':window.KampTrailDiscovery.summary(p).latest_visit}))}</div>`:''}
+      <details class="kt-seasonal-scores"><summary>${t("Seasonal visit sub-ratings")}</summary><p class="kt-seasonal-values">${esc(window.KampTrailDiscovery?.summary(p)?window.KampTrailDiscovery.seasonalText(window.KampTrailDiscovery.seasonalScores(window.KampTrailDiscovery.summary(p).observations)):t("Open Reviews and photos to load published numeric sub-ratings."))}</p><p class="kt-fine">${t("Subjective 1–5 scores; at least 3 explicit ratings per aspect and season for an average. US calendar seasons combine years. Not current conditions or safety guarantees.")}</p></details>
+      ${p.rating!==null?`<div><strong>${t("Source rating:")}</strong> ${p.rating}/5${p.reviews_count?` (${p.reviews_count}${t(' reviews')})`:''}</div>`:''}
+      <p style="font-size:11px;line-height:1.4">${t("Confirm current fees, access, and camping rules with the operator before traveling.")}${p.attributes_unverified?t(" Legacy inferred fees and amenities are hidden."):''}</p>
+      ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">${t("Check source / operator")}</a></p>`:''}
       <div class="kt-popup-actions">
-        <button type="button" data-kt-action="trip" data-siteid="${siteId}">Save stop</button>
-        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${lat},${lng}" target="_blank" rel="noopener noreferrer">Directions</a>
-        <button type="button" data-kt-action="share" data-siteid="${siteId}">Share</button>
+        <button type="button" data-kt-action="trip" data-siteid="${siteId}">${t("Save stop")}</button>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${lat},${lng}" target="_blank" rel="noopener noreferrer">${t("Directions")}</a>
+        <button type="button" data-kt-action="share" data-siteid="${siteId}">${t("Share")}</button>
       </div>
       <div class="kt-popup-actions kt-popup-more">
-        <button type="button" data-kt-action="permissions" data-siteid="${siteId}">Overnight permission</button>
-        <button type="button" data-kt-action="fees" data-siteid="${siteId}">Fee evidence</button>
-        <button type="button" data-kt-action="weather" data-siteid="${siteId}">Forecast + elevation</button>
-        <button type="button" data-kt-action="alerts" data-siteid="${siteId}">Weather alerts</button>
-        <button type="button" data-kt-action="environment" data-siteid="${siteId}">Fire and smoke nearby</button>
-        <button type="button" data-kt-action="land" data-siteid="${siteId}">Land manager</button>
-        <button type="button" data-kt-action="roads" data-siteid="${siteId}">Approach roads</button>
-        <button type="button" data-kt-action="nearby" data-siteid="${siteId}">Nearest RV services</button>
+        <button type="button" data-kt-action="permissions" data-siteid="${siteId}">${t("Overnight permission")}</button>
+        <button type="button" data-kt-action="fees" data-siteid="${siteId}">${t("Fee evidence")}</button>
+        <button type="button" data-kt-action="weather" data-siteid="${siteId}">${t("Forecast + elevation")}</button>
+        <button type="button" data-kt-action="alerts" data-siteid="${siteId}">${t("Weather alerts")}</button>
+        <button type="button" data-kt-action="environment" data-siteid="${siteId}">${t("Fire and smoke nearby")}</button>
+        <button type="button" data-kt-action="land" data-siteid="${siteId}">${t("Land manager")}</button>
+        <button type="button" data-kt-action="roads" data-siteid="${siteId}">${t("Approach roads")}</button>
+        <button type="button" data-kt-action="nearby" data-siteid="${siteId}">${t("Nearest RV services")}</button>
       </div>
       <div class="kt-popup-extra"></div>
-      <p><button type="button" class="btn" data-kt-action="reviews" data-siteid="${siteId}">Reviews and photos</button></p>
-      <p class="kt-fine"><button type="button" class="kt-linkbtn" data-kt-action="fix" data-siteid="${siteId}">Suggest a fix</button> No account needed. A moderator reviews every report.</p>
+      <p><button type="button" class="btn" data-kt-action="reviews" data-siteid="${siteId}">${t("Reviews and photos")}</button></p>
+      <p class="kt-fine"><button type="button" class="kt-linkbtn" data-kt-action="fix" data-siteid="${siteId}">${t("Suggest a fix")}</button> ${t("No account needed. A moderator reviews every report.")}</p>
     </div>`;
   }
   function updateMarkers() {
@@ -375,7 +378,7 @@
       if(!n)continue;const b=STATE_BOUNDS[code];
       const size=n>=5000?46:n>=1000?40:34;
       const ll=BUBBLE_ANCHOR[code]||[(b.s+b.n)/2,(b.w+b.e)/2];
-      const m=L.marker(ll,{icon:bubbleIcon(size,n),title:`${code}: about ${n.toLocaleString('en-US')} source listings. Select to zoom in.`,keyboard:true,zIndexOffset:n});
+      const m=L.marker(ll,{icon:bubbleIcon(size,n),title:t("{0}: about {1} source listings. Select to zoom in.", {"0":(code),"1":(n.toLocaleString(window.KampTrailI18n?.locale() || 'en-US'))}),keyboard:true,zIndexOffset:n});
       m.on('click',()=>{state.map.fitBounds([[b.s,b.w],[b.n,b.e]],{maxZoom:9});if(state.map.getZoom()<DETAIL_ZOOM)state.map.setView([(b.s+b.n)/2,(b.w+b.e)/2],DETAIL_ZOOM);});
       group.addLayer(m);group.items.push({code,n,base:size,size,ll,marker:m,line:null,dx:0,dy:0});
     }
@@ -427,7 +430,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.18.1',
+    version:'2.19.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -477,7 +480,7 @@
       const site=api.getCampsiteById(id);if(!site)return false;
       let marker=state.markers.get(site.properties.id);
       if(!marker && !preserveFilters && typeof window.KampTrailFilters?.reset==='function') {window.KampTrailFilters.reset();marker=state.markers.get(site.properties.id);}
-      if(!marker) {window.showToast?.('This campsite is hidden by your filters. Reset Filters to view it on the map.','info',7000);return false;}
+      if(!marker) {window.showToast?.(t("This campsite is hidden by your filters. Reset Filters to view it on the map."),'info',7000);return false;}
       const focusSeq=state.focusSeq=(state.focusSeq||0)+1;
       state.map.closePopup();
       // Open the popup against final map coordinates; a concurrent zoom reset can undo its autopan.
@@ -518,29 +521,29 @@
     renderNearbyServices(box,lat,lng,force=false){
       box._serviceAbort?.abort();const controller=new AbortController();box._serviceAbort=controller;
       box.dataset.ktNearbyServices='1';box._serviceLat=lat;box._serviceLng=lng;const selected=KampTrailServices.getCategories();
-      box.textContent='Finding services within 30 miles (straight-line)…';box.setAttribute('aria-live','polite');
+      box.textContent=t("Finding services within 30 miles (straight-line)…");box.setAttribute('aria-live','polite');
       return api.loadServices(lat,lng,{categories:selected,signal:controller.signal,force}).then(result=>{
         if(controller.signal.aborted)return;
         const best=api.nearestServices(result.items,lat,lng,selected);box.replaceChildren();
-        const heading=document.createElement('h3');heading.textContent='Services within 30 miles (straight-line)';
+        const heading=document.createElement('h3');heading.textContent=t("Services within 30 miles (straight-line)");
         const list=document.createElement('ul');
         for(const key of selected){
           const label=KampTrailServices.categories[key].label,li=document.createElement('li'),match=best[key];
-          if(!match){li.textContent=`${label}: ${result.partial?'unknown in missing areas; none in loaded coverage':'none in loaded source coverage'}`;list.append(li);continue;}
+          if(!match){li.textContent=`${label}: ${result.partial?t("unknown in missing areas; none in loaded coverage"):t("none in loaded source coverage")}`;list.append(li);continue;}
           const {item,miles}=match,[lng,lat]=item.coordinates;li.dataset.serviceId=item.id;
-          const title=document.createElement('strong');title.textContent=`${label}: ${item.name||label}, about ${miles<10?miles.toFixed(1):Math.round(miles)} mi `;
+          const title=document.createElement('strong');title.textContent=t("{0}: {1}, about {2} mi ", {"0":(label),"1":(item.name||label),"2":(miles<10?miles.toFixed(1):Math.round(miles))});
           const evidence=document.createElement('p');evidence.className='kt-fine';evidence.textContent=KampTrailServices.describe(item,result.manifest);
-          const directions=document.createElement('a');directions.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;directions.target='_blank';directions.rel='noopener noreferrer';directions.textContent='Directions';
-          const osm=document.createElement('a');osm.href=`https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`;osm.target='_blank';osm.rel='noopener noreferrer';osm.textContent='View on OSM';
-          const save=document.createElement('button');save.type='button';save.textContent='Save service stop';save.onclick=()=>window.KampTrailTrip?.addStop(item.id,KampTrailServices.feature(item,result.manifest));
-          const permission=document.createElement('button');permission.type='button';permission.textContent='Overnight permission';permission.onclick=()=>window.KampTrailPermissions?.open({kind:'service',id:item.id,name:item.name,coordinates:item.coordinates});
+          const directions=document.createElement('a');directions.href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;directions.target='_blank';directions.rel='noopener noreferrer';directions.textContent=t("Directions");
+          const osm=document.createElement('a');osm.href=`https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`;osm.target='_blank';osm.rel='noopener noreferrer';osm.textContent=t("View on OSM");
+          const save=document.createElement('button');save.type='button';save.textContent=t("Save service stop");save.onclick=()=>window.KampTrailTrip?.addStop(item.id,KampTrailServices.feature(item,result.manifest));
+          const permission=document.createElement('button');permission.type='button';permission.textContent=t("Overnight permission");permission.onclick=()=>window.KampTrailPermissions?.open({kind:'service',id:item.id,name:item.name,coordinates:item.coordinates});
           li.append(title,evidence,directions,' · ',osm,' ',save,' ',permission);list.append(li);
         }
         const note=document.createElement('p');note.className='kt-fine';note.textContent=result.message;
-        const attribution=document.createElement('a');attribution.href='https://www.openstreetmap.org/copyright';attribution.textContent='Derived from OpenStreetMap contributors (ODbL)';attribution.target='_blank';attribution.rel='noopener noreferrer';
-        const retry=document.createElement('button');retry.type='button';retry.textContent='Retry nearby service areas';retry.onclick=()=>api.renderNearbyServices(box,lat,lng,true);
+        const attribution=document.createElement('a');attribution.href='https://www.openstreetmap.org/copyright';attribution.textContent=t("Derived from OpenStreetMap contributors (ODbL)");attribution.target='_blank';attribution.rel='noopener noreferrer';
+        const retry=document.createElement('button');retry.type='button';retry.textContent=t("Retry nearby service areas");retry.onclick=()=>api.renderNearbyServices(box,lat,lng,true);
         box.append(heading,list,note,attribution,retry);window.KampTrailSpot?.relayout(box);return result;
-      }).catch(error=>{if(error.name==='AbortError'||controller.signal.aborted)return;box.textContent='Service coverage unavailable. Missing areas are unknown. ';const retry=document.createElement('button');retry.type='button';retry.textContent='Retry nearby service areas';retry.onclick=()=>api.renderNearbyServices(box,lat,lng,true);box.append(retry);});
+      }).catch(error=>{if(error.name==='AbortError'||controller.signal.aborted)return;box.textContent=t("Service coverage unavailable. Missing areas are unknown. ");const retry=document.createElement('button');retry.type='button';retry.textContent=t("Retry nearby service areas");retry.onclick=()=>api.renderNearbyServices(box,lat,lng,true);box.append(retry);});
     },
 
   };

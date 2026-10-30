@@ -1,6 +1,7 @@
 /* Basemaps, public land, RV services, and "check this spot". All public, keyless sources. */
 (function () {
   'use strict';
+  const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
   const STORE = 'kt_layers_v1';
   const st = {map: null, base: null, overlays: {}, services: null, serviceSequence: 0, serviceAbort: null, serviceStatus: null, serviceControls: null, includeRestricted: false, landLegend: null, popupOpenAtDown: false};
   const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -11,7 +12,7 @@
   function basemaps() {
     let errors = 0;
     const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'});
-    osm.on('tileerror', () => { if (++errors === 3 && navigator.onLine) window.showToast?.('Map imagery is temporarily unavailable. Campsite search, lists, and saved stops still work.', 'error'); });
+    osm.on('tileerror', () => { if (++errors === 3 && navigator.onLine) window.showToast?.(t("Map imagery is temporarily unavailable. Campsite search, lists, and saved stops still work."), 'error'); });
     return {
       Standard: osm,
       Topo: L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {maxNativeZoom: 16, maxZoom: 19, attribution: 'USGS The National Map'}),
@@ -27,8 +28,8 @@
     c.onAdd = () => {
       const el = L.DomUtil.create('div', 'kt-land-legend');
       el.setAttribute('role', 'note');
-      el.innerHTML = '<strong>Public land</strong><span><i style="background:#fee679"></i>BLM</span><span><i style="background:#ccebc5"></i>Forest Service</span><span><i style="background:#cabddc"></i>National Park</span><small>Tap the map to check who manages a spot.</small>';
-      const label=document.createElement('label');label.textContent='Public land opacity';
+      el.innerHTML = `<strong>${t("Public land")}</strong><span><i style="background:#fee679"></i>BLM</span><span><i style="background:#ccebc5"></i>${t("Forest Service")}</span><span><i style="background:#cabddc"></i>${t("National Park")}</span><small>${t("Tap the map to check who manages a spot.")}</small>`;
+      const label=document.createElement('label');label.textContent=t("Public land opacity");
       const slider=document.createElement('input');slider.type='range';slider.min='10';slider.max='100';slider.step='5';slider.value=String(Math.round((st.overlays['Public land (BLM, USFS, NPS)']?.options.opacity||0.55)*100));
       slider.oninput=()=>{const opacity=Number(slider.value)/100;st.overlays['Public land (BLM, USFS, NPS)']?.setOpacity(opacity);const prefs=readPrefs();prefs.landOpacity=opacity;writePrefs(prefs);};label.append(slider);el.append(label);
       L.DomEvent.disableClickPropagation(el);
@@ -48,29 +49,29 @@
     const box=document.createElement('div');box.className='kt-svc-popup';box.dataset.serviceId=item.id;
     const title=document.createElement('h2');title.textContent=item.name||item.categories.map(k=>KampTrailServices.categories[k].label).join(', ');
     const evidence=document.createElement('p');evidence.className='kt-fine';evidence.textContent=KampTrailServices.describe(item,manifest);
-    const attribution=document.createElement('p');attribution.className='kt-fine';attribution.textContent='Derived from OpenStreetMap contributors (ODbL).';
+    const attribution=document.createElement('p');attribution.className='kt-fine';attribution.textContent=t("Derived from OpenStreetMap contributors (ODbL).");
     const actions=document.createElement('div');actions.className='kt-popup-actions';
-    const save=document.createElement('button');save.type='button';save.textContent='Save service stop';save.onclick=()=>window.KampTrailTrip?.addStop(item.id,KampTrailServices.feature(item,manifest));
+    const save=document.createElement('button');save.type='button';save.textContent=t("Save service stop");save.onclick=()=>window.KampTrailTrip?.addStop(item.id,KampTrailServices.feature(item,manifest));
     const [lng,lat]=item.coordinates;
-    for(const [label,url] of [['Directions',directions(lat,lng)],['View on OSM',`https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`],['ODbL source','https://www.openstreetmap.org/copyright']]){const a=document.createElement('a');a.href=url;a.textContent=label;a.target='_blank';a.rel='noopener noreferrer';actions.append(a);}
-    const permission=document.createElement('button');permission.type='button';permission.textContent='Overnight permission';permission.onclick=()=>window.KampTrailPermissions?.open({kind:'service',id:item.id,name:item.name,coordinates:item.coordinates});
+    for(const [label,url] of [[t("Directions"),directions(lat,lng)],[t("View on OSM"),`https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`],[t("ODbL source"),'https://www.openstreetmap.org/copyright']]){const a=document.createElement('a');a.href=url;a.textContent=label;a.target='_blank';a.rel='noopener noreferrer';actions.append(a);}
+    const permission=document.createElement('button');permission.type='button';permission.textContent=t("Overnight permission");permission.onclick=()=>window.KampTrailPermissions?.open({kind:'service',id:item.id,name:item.name,coordinates:item.coordinates});
     actions.prepend(save,permission);box.append(title,evidence,attribution,actions);return box;
   }
   function serviceControl() {
     const control=L.control({position:'topright'});
     control.onAdd=()=>{
       const box=L.DomUtil.create('div','kt-services-control');box.hidden=true;st.serviceControls=box;
-      const fields=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent='Service categories';fields.append(legend);
+      const fields=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent=t("Service categories");fields.append(legend);
       for(const [key,meta] of Object.entries(KampTrailServices.categories)){
         const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.value=key;input.checked=KampTrailServices.getCategories().includes(key);
         input.onchange=()=>KampTrailServices.setCategories([...fields.querySelectorAll('input:checked')].map(n=>n.value));label.append(input,meta.label);fields.append(label);
       }
       const actions=document.createElement('div');actions.className='kt-services-actions';
-      for(const [label,values] of [['All',Object.keys(KampTrailServices.categories)],['Clear',[]]]){const button=document.createElement('button');button.type='button';button.textContent=label;button.setAttribute('aria-label',label+' service categories');button.onclick=()=>KampTrailServices.setCategories(values);actions.append(button);}
-      const restricted=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.onchange=()=>{st.includeRestricted=check.checked;loadServices();};restricted.append(check,'Include no/private access (restricted)');
+      for(const [label,values] of [[t("All"),Object.keys(KampTrailServices.categories)],[t("Clear"),[]]]){const button=document.createElement('button');button.type='button';button.textContent=label;button.setAttribute('aria-label',t('{label} service categories',{label}));button.onclick=()=>KampTrailServices.setCategories(values);actions.append(button);}
+      const restricted=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.onchange=()=>{st.includeRestricted=check.checked;loadServices();};restricted.append(check,t("Include no/private access (restricted)"));
       const status=document.createElement('p');status.className='kt-services-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');st.serviceStatus=status;
-      const retry=document.createElement('button');retry.type='button';retry.textContent='Retry service areas';retry.onclick=()=>loadServices(true);
-      const attribution=document.createElement('p');attribution.className='kt-fine';attribution.textContent='Service locations derived from OpenStreetMap contributors (ODbL).';
+      const retry=document.createElement('button');retry.type='button';retry.textContent=t("Retry service areas");retry.onclick=()=>loadServices(true);
+      const attribution=document.createElement('p');attribution.className='kt-fine';attribution.textContent=t("Service locations derived from OpenStreetMap contributors (ODbL).");
       box.append(fields,actions,restricted,status,attribution,retry);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);
       window.addEventListener('kamptrail:servicescategories',()=>{for(const input of fields.querySelectorAll('input'))input.checked=KampTrailServices.getCategories().includes(input.value);loadServices();});
       return box;
@@ -82,16 +83,16 @@
     const enabled=st.map.hasLayer(st.services);if(st.serviceControls)st.serviceControls.hidden=!enabled;
     st.services.clearLayers();
     if(!enabled)return;
-    if(st.map.getZoom()<10){st.serviceStatus.textContent='Zoom to level 10 or closer to load services. Coverage depends on imported sources; missing areas are unknown.';return;}
-    const b=st.map.getBounds();st.serviceStatus.textContent='Loading dated service areas…';
+    if(st.map.getZoom()<10){st.serviceStatus.textContent=t('Zoom to level 10 or closer to load services. Coverage depends on imported sources; missing areas are unknown.');return;}
+    const b=st.map.getBounds();st.serviceStatus.textContent=t('Loading dated service areas…');
     try{
-      const result=await KampTrailServices.loadBounds({south:Math.max(-90,b.getSouth()),west:b.getWest(),north:Math.min(90,b.getNorth()),east:b.getEast()},{categories:KampTrailServices.getCategories(),includeRestricted:st.includeRestricted,signal:st.serviceAbort.signal,force,onProgress:p=>{if(sequence===st.serviceSequence)st.serviceStatus.textContent=`Loading service areas ${p.loaded}/${p.total}…`;}});
+      const result=await KampTrailServices.loadBounds({south:Math.max(-90,b.getSouth()),west:b.getWest(),north:Math.min(90,b.getNorth()),east:b.getEast()},{categories:KampTrailServices.getCategories(),includeRestricted:st.includeRestricted,signal:st.serviceAbort.signal,force,onProgress:p=>{if(sequence===st.serviceSequence)st.serviceStatus.textContent=t("Loading service areas {0}/{1}…", {"0":(p.loaded),"1":(p.total)});}});
       if(sequence!==st.serviceSequence)return;
       const selected=KampTrailServices.getCategories();
       const markers=result.items.map(item=>{const kind=item.categories.find(k=>selected.includes(k));const marker=L.marker([item.coordinates[1],item.coordinates[0]],{icon:serviceIcon(kind),title:item.name||KampTrailServices.categories[kind].label,keyboard:true});marker.ktServiceId=item.id;marker.bindPopup(()=>servicePopup(item,result.manifest));return marker;});
       st.services.addLayers?st.services.addLayers(markers):markers.forEach(marker=>st.services.addLayer(marker));st.serviceStatus.textContent=result.message;
       return result;
-    }catch(error){if(sequence===st.serviceSequence&&error.name!=='AbortError')st.serviceStatus.textContent='Service coverage unavailable. Missing areas are unknown. Reconnect and retry.';}
+    }catch(error){if(sequence===st.serviceSequence&&error.name!=='AbortError')st.serviceStatus.textContent=t("Service coverage unavailable. Missing areas are unknown. Reconnect and retry.");}
   }
 
   // ---- Check this spot ----
@@ -99,28 +100,28 @@
     const lat = latlng.lat, lng = ((latlng.lng + 540) % 360) - 180;
     const box = document.createElement('div');
     box.className = 'kt-spot-popup';
-    const h = document.createElement('h3'); h.textContent = 'This spot';
+    const h = document.createElement('h3'); h.textContent = t("This spot");
     const gps = document.createElement('div'); gps.className = 'kt-muted'; gps.textContent = `GPS ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
     const land = document.createElement('div'); land.className = 'kt-spot-land';
     const wx = document.createElement('div'); wx.className = 'kt-spot-wx';
     const actions = document.createElement('div'); actions.className = 'kt-popup-actions';
     const btn = (text, fn) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = text; b.onclick = fn; return b; };
     // Disable rather than remove: removing the clicked node makes Leaflet treat the click as a map click and close the popup.
-    const wxBtn = btn('Forecast + elevation', () => { wxBtn.disabled = true; KampTrailSpot.renderForecast(wx, lat, lng); });
-    const save = btn('Save stop', () => {
-      window.KampTrailTrip?.addStop(`spot:${lat.toFixed(5)},${lng.toFixed(5)}`, {type: 'Feature', geometry: {type: 'Point', coordinates: [lng, lat]}, properties: {id: `spot:${lat.toFixed(5)},${lng.toFixed(5)}`, name: `Spot ${lat.toFixed(4)}, ${lng.toFixed(4)}`, type: 'spot', fee_status: 'unknown', amenities: [], rig_friendly: []}});
+    const wxBtn = btn(t("Forecast + elevation"), () => { wxBtn.disabled = true; KampTrailSpot.renderForecast(wx, lat, lng); });
+    const save = btn(t("Save stop"), () => {
+      window.KampTrailTrip?.addStop(`spot:${lat.toFixed(5)},${lng.toFixed(5)}`, {type: 'Feature', geometry: {type: 'Point', coordinates: [lng, lat]}, properties: {id: `spot:${lat.toFixed(5)},${lng.toFixed(5)}`, name: t("Spot {0}, {1}", {"0":(lat.toFixed(4)),"1":(lng.toFixed(4))}), type: 'spot', fee_status: 'unknown', amenities: [], rig_friendly: []}});
     });
-    const alerts = btn('Weather alerts', () => KampTrailEnvironment.openAlerts(lat, lng));
-    const context = btn('Fire and smoke nearby', () => KampTrailEnvironment.showNear(lat, lng));
-    const share = btn('Share', () => window.KampTrailShare?.share({spot: [lat, lng]}, 'This spot'));
-    const dir = document.createElement('a'); dir.href = directions(lat, lng); dir.target = '_blank'; dir.rel = 'noopener noreferrer'; dir.textContent = 'Directions';
-    const permission=btn('Overnight permission',()=>window.KampTrailPermissions?.open({kind:'spot',id:`spot:${lat.toFixed(5)},${lng.toFixed(5)}`,name:'This spot',coordinates:[lng,lat]}));
-    const care = btn('Camping care', () => KampTrailSpot.openCampingCare());
+    const alerts = btn(t("Weather alerts"), () => KampTrailEnvironment.openAlerts(lat, lng));
+    const context = btn(t("Fire and smoke nearby"), () => KampTrailEnvironment.showNear(lat, lng));
+    const share = btn(t("Share"), () => window.KampTrailShare?.share({spot: [lat, lng]}, t("This spot")));
+    const dir = document.createElement('a'); dir.href = directions(lat, lng); dir.target = '_blank'; dir.rel = 'noopener noreferrer'; dir.textContent = t("Directions");
+    const permission=btn(t("Overnight permission"),()=>window.KampTrailPermissions?.open({kind:'spot',id:`spot:${lat.toFixed(5)},${lng.toFixed(5)}`,name:t("This spot"),coordinates:[lng,lat]}));
+    const care = btn(t('Camping care'), () => KampTrailSpot.openCampingCare());
     actions.append(wxBtn, alerts, context, permission, care, save, share, dir);
     const suggest = document.createElement('p'); suggest.className = 'kt-fine';
-    const sug = btn('Suggest a campsite here', () => window.KampTrailContrib ? KampTrailContrib.open({kind: 'new_place', lat, lng}) : window.KampTrailShare && window.open(KampTrailShare.issueUrl('new', {lat, lng}), '_blank', 'noopener'));
+    const sug = btn(t("Suggest a campsite here"), () => window.KampTrailContrib ? KampTrailContrib.open({kind: 'new_place', lat, lng}) : window.KampTrailShare && window.open(KampTrailShare.issueUrl('new', {lat, lng}), '_blank', 'noopener'));
     sug.className = 'kt-linkbtn';
-    suggest.append(sug, ' No account needed.');
+    suggest.append(sug, t(" No account needed."));
     box.append(h, gps, land, wx, actions, suggest);
     L.popup({maxWidth: 320, className: 'kt-spot'}).setLatLng([lat, latlng.lng]).setContent(box).openOn(st.map);
     KampTrailSpot.renderLand(land, lat, lng);
@@ -143,15 +144,18 @@
     serviceControl().addTo(map);
     let serviceTimer;
     map.on('moveend',()=>{st.serviceAbort?.abort();++st.serviceSequence;clearTimeout(serviceTimer);serviceTimer=setTimeout(()=>loadServices(),180);});
-    const control = L.control.layers(bases, st.overlays, {position: 'topright', collapsed: true}).addTo(map);
+    const control = L.control.layers(Object.fromEntries(Object.entries(bases).map(([name,layer])=>[t(name),layer])), Object.fromEntries(Object.entries(st.overlays).map(([name,layer])=>[t(name),layer])), {position: 'topright', collapsed: true}).addTo(map);
     const container = control.getContainer();
-    container.setAttribute('aria-label', 'Map layers');
+    // Visual and keyboard order agree; hiding later panels never moves this picker.
+    const corner = container.parentNode;
+    if (corner && corner.firstChild !== container) corner.insertBefore(container, corner.firstChild);
+    container.setAttribute('aria-label', t("Map layers"));
     const toggle = container.querySelector('.leaflet-control-layers-toggle');
-    if (toggle) { toggle.setAttribute('aria-label', 'Map layers'); toggle.title = 'Map layers'; toggle.setAttribute('role', 'button'); }
-    map.on('baselayerchange', e => { st.base = e.name; const p = readPrefs(); p.base = e.name; writePrefs(p); });
+    if (toggle) { toggle.setAttribute('aria-label', t("Map layers")); toggle.title = t("Map layers"); toggle.setAttribute('role', 'button'); }
+    map.on('baselayerchange', e => { st.base = Object.keys(bases).find(name=>bases[name]===e.layer) || st.base; const p = readPrefs(); p.base = st.base; writePrefs(p); });
     map.on('overlayadd overlayremove', e => {
       const on = e.type === 'overlayadd';
-      const p = readPrefs(); p.overlays = p.overlays || {}; p.overlays[e.name] = on; writePrefs(p);
+      const p = readPrefs(); p.overlays = p.overlays || {}; p.overlays[Object.keys(st.overlays).find(name=>st.overlays[name]===e.layer) || e.name] = on; writePrefs(p);
       if (e.layer === land) { on ? st.landLegend.addTo(map) : st.landLegend.remove(); }
       if (e.layer === st.services) {
         if(on)map.attributionControl?.addAttribution(SERVICE_ATTRIBUTION);else map.attributionControl?.removeAttribution(SERVICE_ATTRIBUTION);
@@ -169,5 +173,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.18.1', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.19.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();
