@@ -9,10 +9,12 @@
   const utc=s=>typeof s==='string'&&/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(s)&&Number.isFinite(Date.parse(s))&&new Date(s).toISOString()===s.replace('Z','.000Z');
   const activities=['overnight_parking','sleeping_in_vehicle','camping'],policyAge=180*86400000;
   const policyHosts=new Set(['www.txdot.gov','tcss.legis.texas.gov','mdt.mt.gov','mca.legmt.gov']);
+  // New publishers are scoped to the exact reviewed URL, not every page on their domain.
+  const exactPolicyUrls=new Set(["https://floridasturnpike.com/traveler-resources/service-plazas/","https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf","https://itd.idaho.gov/faqs/rest-areas/","https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01","https://tripcheck.com/Pages/Rest-Areas-Regulations","https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/","https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/"]);
   const unknownPolicy=()=>({policy_id:null,rules:{overnight_parking:'unknown',sleeping_in_vehicle:'unknown',camping:'unknown',max_stay_hours:null,conditions:[]},sources:[],review_required:[],current_opening:'unknown'});
   function policySources(sources,now){
     check(Array.isArray(sources)&&sources.length>0&&sources.length<=8,'missing policy sources');
-    for(const s of sources){let u;try{u=new URL(s.url);}catch{check(false,'invalid policy URL');}check(u.protocol==='https:'&&policyHosts.has(u.hostname)&&!u.username&&!u.password&&!u.port&&!u.search&&!u.hash&&/^[a-f0-9]{64}$/.test(s.sha256)&&utc(s.retrieved_at)&&Date.parse(s.retrieved_at)<=now,'invalid policy evidence');}
+    for(const s of sources){let u;try{u=new URL(s.url);}catch{check(false,'invalid policy URL');}check(u.protocol==='https:'&&(policyHosts.has(u.hostname)||exactPolicyUrls.has(s.url))&&!u.username&&!u.password&&!u.port&&!u.search&&!u.hash&&/^[a-f0-9]{64}$/.test(s.sha256)&&utc(s.retrieved_at)&&Date.parse(s.retrieved_at)<=now,'invalid policy evidence');}
   }
   function validatePolicies(bundle,now=Date.now()){
     check(bundle?.version===1&&Array.isArray(bundle.policies)&&bundle.policies.length<=50,'invalid state policies');const ids=new Set(),scopes=new Set();
@@ -103,6 +105,6 @@
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
     return layer;
   }
-  const api={version:'2.21.0',validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
+  const api={version:'2.21.1',validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailRestAreas=api;
 })(typeof window!=='undefined'?window:globalThis);

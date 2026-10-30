@@ -60,6 +60,38 @@ class StatePolicies(unittest.TestCase):
         self.assertIsNone(result['rules']['max_stay_hours'])
         self.assertEqual(result['review_required'], ['camping', 'max_stay_hours'])
 
+    def test_five_additions_keep_qualified_durations_and_sleeping_unknown(self):
+        expected = {
+            ('FL', 'florida_turnpike', 'turnpike_service_plaza'): ('prohibited', 'unknown'),
+            ('ID', 'itd', 'safety_rest_area'): ('unknown', 'prohibited'),
+            ('OH', 'odot', 'rest_area_or_roadside_park'): ('unknown', 'prohibited'),
+            ('OR', 'odot', 'safety_rest_area'): ('unknown', 'prohibited'),
+            ('VA', 'vdot', 'rest_area'): ('prohibited', 'prohibited'),
+        }
+        self.assertEqual(len(BUNDLE['policies']), 7)
+        for (state, operator, kind), (parking, camping) in expected.items():
+            with self.subTest(state=state):
+                p = resolve(state, operator, kind)
+                self.assertEqual(p['rules']['overnight_parking'], parking)
+                self.assertEqual(p['rules']['camping'], camping)
+                self.assertEqual(p['rules']['sleeping_in_vehicle'], 'unknown')
+                self.assertIsNone(p['rules']['max_stay_hours'])
+                self.assertEqual(p['current_opening'], 'unknown')
+                self.assertTrue(p['sources'])
+                self.assertIsNone(resolve(state, 'unmatched_agency', kind)['policy_id'])
+                self.assertIsNone(resolve(state, operator, 'unmatched_class')['policy_id'])
+                self.assertTrue(all(source['source_updated_at'] is None for source in p['sources']))
+        self.assertIsNone(resolve('NE', 'ndot', 'safety_rest_area')['policy_id'])
+        self.assertIsNone(resolve('WA', 'wsdot', 'safety_rest_area')['policy_id'])
+
+    def test_new_source_publishers_require_exact_audited_url(self):
+        for index in range(2, len(BUNDLE['policies'])):
+            for suffix in ['?download=1', '#fragment', '/unreviewed']:
+                bundle = copy.deepcopy(BUNDLE)
+                bundle['policies'][index]['sources'][0]['url'] += suffix
+                with self.subTest(index=index, suffix=suffix), self.assertRaises(ValueError):
+                    policy.validate(bundle, NOW)
+
     def test_invalid_and_ambiguous_evidence_rejected(self):
         for mutate in [lambda b: b['policies'].append(copy.deepcopy(b['policies'][0])),
                        lambda b: b['policies'][0].update(sources=[]),
