@@ -72,25 +72,39 @@ test('published observations and rating discovery follow moderation, edit, hide,
   const details={access:'moderate',noise:'quiet',shade:'partial',crowding:'sparse',comfort:'comfortable',signals:[{carrier:'verizon',signal:'usable',environment:'inside_rv'}]};
   const fields={...good,observations:JSON.stringify(details)};
   const discovery=()=>e.get('/api/community-discovery.php');
+  const monthly=async()=>(await e.get('/api/community.php?site='+encodeURIComponent(good.campsite_id))).monthly;
   for(const bad of ['not json',JSON.stringify({noise:'secret'}),JSON.stringify({other:'x'}),JSON.stringify({signals:[{carrier:'verizon',signal:'usable'},{carrier:'verizon',signal:'none'}]})])assert.equal((await e.post({...good,observations:bad})).status,422);
   const res=await e.post(fields);assert.equal(res.status,201);const {id,token}=await res.json();
   assert.deepEqual((await discovery()).sites,{});
+  assert.equal((await monthly()).condition_reports,0,'Pending reviews do not contribute seasonal counts');
   let mine=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();assert.deepEqual(mine.review.observations,details);
   let queue=await(await fetch(e.base+'/api/admin.php?community=1',{headers:{Cookie:e.cookie()}})).text();assert.match(queue,/approve with review/);assert.match(queue,/inside_rv/);
   await e.admin({do:'community_review',review_id:id,status:'published'});
   let data=await discovery(),row=data.sites[good.campsite_id];assert.equal(row.rating_count,1);assert.equal(row.rating_sum,4);assert.equal(row.observations[0].latest_visit,good.visited_on);assert.deepEqual(row.observations[0].values,details);
+  let months=await monthly();assert.equal(months.condition_reports,1);assert.equal(months.months['10'].axes.noise.quiet,1);assert.equal(months.months['10'].latest_visit,good.visited_on);assert.ok(!JSON.stringify(months).includes('verizon'));
   for(const hidden of [token,'owner_hash','display_name',good.body,good.display_name])assert.ok(!JSON.stringify(data).includes(hidden));
   const revision=data.revision;await e.admin({do:'community_review',review_id:id,status:'hidden'});assert.deepEqual((await discovery()).sites,{});
+  assert.equal((await monthly()).condition_reports,0,'Hidden reviews are removed from the complete monthly summary');
   assert.equal((await fetch(e.base+'/api/community-discovery.php?revision='+revision)).status,409);
   await e.admin({do:'community_review',review_id:id,status:'published'});assert.equal((await discovery()).sites[good.campsite_id].rating_count,1);
   assert.equal((await e.post({...fields,action:'edit',rating:'5'},[],token)).status,200);assert.deepEqual((await discovery()).sites,{});
+  assert.equal((await monthly()).condition_reports,0,'Edited reviews return to moderation before their counts reappear');
   await e.admin({do:'community_review',review_id:id,status:'published'});assert.equal((await discovery()).sites[good.campsite_id].rating_sum,5);
   // An older client without observation fields preserves them. A new explicit empty object clears them.
   assert.equal((await e.post({...good,action:'edit'},[],token)).status,200);mine=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();assert.deepEqual(mine.review.observations,details);
   assert.equal((await e.post({...fields,action:'edit',observations:'{}'},[],token)).status,200);
   await e.admin({do:'community_review',review_id:id,status:'published'});assert.deepEqual((await discovery()).sites[good.campsite_id].observations,[]);
+  months=await monthly();assert.equal(months.condition_reports,0);assert.equal(months.unreported_reviews,1,'Explicitly cleared observations stay unreported');
   assert.equal((await e.post({action:'delete'},[],token)).status,200);assert.deepEqual((await discovery()).sites,{});
+  assert.equal((await monthly()).published_reviews,0,'Author deletion removes the review from seasonal counts');
   assert.equal((await fetch(e.base+'/api/community-discovery.php',{method:'POST'})).status,405);
+ }finally{e.close();}
+});
+test('monthly conditions cover all published review pages and keep malformed dates and other sites separate',{skip:!capable},async()=>{
+ const e=await env('',18969);try{
+  e.sql(`$p->beginTransaction();$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?,?,'Seasonal fixture','Fixture',4,'Disposable seasonal condition fixture',?,'',?,'2026-10-01','2026-10-01')");$o=$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)');for($i=0;$i<23;$i++){$q->execute([hash('sha256','seasonal-'.$i),'qa:monthly','2026-01-05','published']);$o->execute([$p->lastInsertId(),'{"noise":"quiet","shade":"partial"}']);}foreach([['qa:monthly','2025-01-20','published','{"noise":"mixed"}'],['qa:monthly','2026-07-02','published','{"noise":"noisy"}'],['qa:monthly','2026-02-30','published','{"noise":"quiet"}'],['qa:monthly','2999-01-01','published','{"noise":"quiet"}'],['qa:monthly','2026-01-05','hidden','{"noise":"noisy"}'],['qa:other','2026-01-05','published','{"noise":"noisy"}']] as $i=>$v){$q->execute([hash('sha256','seasonal-extra-'.$i),$v[0],$v[1],$v[2]]);$o->execute([$p->lastInsertId(),$v[3]]);}$p->commit();`);
+  const first=await e.get('/api/community.php?site=qa%3Amonthly');assert.equal(first.reviews.length,10);assert.ok(first.next_before);const m=first.monthly;assert.equal(m.published_reviews,27);assert.equal(m.condition_reports,25);assert.equal(m.excluded_dates,2);assert.equal(m.months['01'].reports,24);assert.equal(m.months['01'].axes.noise.quiet,23);assert.equal(m.months['01'].first_visit,'2025-01-20');assert.equal(m.months['01'].latest_visit,'2026-01-05');assert.equal(m.months['07'].axes.noise.noisy,1);assert.equal(m.months['01'].axes.noise.noisy,undefined);
+  const next=await e.get('/api/community.php?site=qa%3Amonthly&before='+first.next_before);assert.equal(next.monthly.condition_reports,25);assert.deepEqual(next.monthly.months,m.months);for(const forbidden of ['owner_hash','display_name','body','private_code'])assert.ok(!JSON.stringify(m).includes(forbidden));
  }finally{e.close();}
 });
 

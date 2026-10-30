@@ -46,3 +46,24 @@ test('nearby panels cancel old category loads, refresh rendered selections and d
 test('a changed descriptor cannot borrow validated memory from the same snapshot URL',async()=>{const f=fixture(),s=setup(f);await s.client.loadBounds(bounds);f.manifest.shards[0].sha256='e'.repeat(64);f.files.set('index.json',JSON.stringify(f.manifest));const result=await s.client.loadBounds(bounds,{force:true});assert(result.partial);assert.equal(result.items.length,0);});
 
 test('customers-only dump tagging remains visible even without a general access tag',()=>{const dump=item(99,[-111.5,40.5],{categories:['dump'],tags:{amenity:'camp_site',sanitary_dump_station:'customers'}});assert(matches(dump,['dump']));assert.match(describe(dump,fixture().manifest),/Dump access reported: customers \(conditional\)/);assert.doesNotMatch(describe({...dump,tags:{amenity:'sanitary_dump_station'}},fixture().manifest),/customers/);});
+
+test('large source coverage uses actual state-extract count and retrieval range while retaining complete evidence',async()=>{
+ const f=fixture(),registry=require('../scripts/services-regions.json').regions,template=f.manifest.coverage[0];
+ f.manifest.coverage=Object.entries(registry).map(([region,source],i)=>({...template,region,url:source.url,count:region==='UT'?1:0,retrieved_at:i%2?'2026-01-02T12:00:00Z':stamp}));
+ f.manifest.coverage.push({...template,region:'legacy',kind:'legacy',url:'https://www.openstreetmap.org',count:0,extract_timestamp:null,retrieved_at:null,categories:['dump','water','lpg']});
+ f.manifest.generated_at='2026-01-03T00:00:00Z';f.files.set('index.json',JSON.stringify(f.manifest));
+ const original=structuredClone(f.manifest.coverage),result=await setup(f).client.loadBounds(bounds);
+ assert.match(result.message,/50 state extracts, retrieved 2026-01-01 to 2026-01-02/);
+ assert.match(result.message,/Legacy dump\/water\/LPG date unknown/);assert.doesNotMatch(result.message,/51 state|national|comprehensive|AL extract/);
+ assert.match(result.message,/coverage is incomplete/);assert.match(result.message,/unloaded and uncovered areas are unknown/);assert.ok(result.message.length<400,'National status stays compact for mobile');
+ assert.deepEqual(result.coverage,original);assert.equal(result.coverage,result.manifest.coverage);assert.equal(result.items.length,1);
+ const source=result.coverage.find(c=>c.region==='UT');assert.match(describe(result.items[0],result.manifest),new RegExp('retrieved '+source.retrieved_at.slice(0,10)));
+ f.manifest.coverage=f.manifest.coverage.filter(c=>c.region!=='AK');f.files.set('index.json',JSON.stringify(f.manifest));
+ const regional=await setup(f).client.loadBounds(bounds);assert.match(regional.message,/49 state extracts/);assert.doesNotMatch(regional.message,/50 state|national/);
+});
+test('small pilots keep exact source codes and dates without treating legacy evidence as a state extract',async()=>{
+ const f=fixture(),registry=require('../scripts/services-regions.json').regions,template=f.manifest.coverage[0];
+ f.manifest.coverage=['UT','RI','AK'].map((region,i)=>({...template,region,url:registry[region].url,count:region==='UT'?1:0,retrieved_at:`2026-01-0${i+1}T00:00:00Z`}));
+ f.manifest.generated_at='2026-01-03T00:00:00Z';f.files.set('index.json',JSON.stringify(f.manifest));
+ const result=await setup(f).client.loadBounds(bounds);assert.match(result.message,/UT extract retrieved 2026-01-01; RI extract retrieved 2026-01-02; AK extract retrieved 2026-01-03/);assert.doesNotMatch(result.message,/50 state|Legacy|national/);
+});

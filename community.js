@@ -24,17 +24,42 @@
     body.append(el('p',{},'Reviews and photos are hosted at kamptrail.com. Open the current app to read, contribute or manage a review.'),el('a',{href,target:'_blank',rel:'noopener noreferrer'},'Open KampTrail reviews'));
     return true;
   }
+  function monthDetails(container,data,selected=''){
+    const D=window.KampTrailDiscovery;
+    container.replaceChildren();
+    const panel=el('details',{class:'kt-monthly-reports'});panel.append(el('summary',{},'Reports by visit month'));
+    const info=message('');panel.append(info);container.append(panel);
+    if(!D?.validMonthly(data)){info.textContent='Visit-month summaries are unavailable. Individual dated reviews remain below.';return;}
+    if(D.monthlyView(data).mode!=='ready'){info.textContent='This visit-month summary is expired or has an invalid check date. Reload reviews online.';return;}
+    panel.append(el('p',{class:'kt-fine'},'Calendar visit months across all reported years. These are counts of published firsthand condition reports, not numeric subscores or current conditions. Approach reports concern each contributor’s rig. Carrier reports stay in individual reviews.'));
+    const select=el('select',{'aria-label':'Visit month'});select.append(el('option',{value:''},'All visit months'));for(const [key,label]of Object.entries(D.MONTHS))select.append(el('option',{value:key},label));select.value=selected;
+    panel.append(field('Visit month',select),el('p',{class:'kt-fine'},`Checked ${new Date(data.checked_at).toLocaleString()}. ${data.unreported_reviews} published reviews have no condition fields. ${data.excluded_dates} condition reports have unusable visit dates. ${data.invalid_observations} reviews have unusable condition data.`));
+    const counts=el('ul');panel.append(counts,el('p',{class:'kt-fine'},'Missing fields remain unreported. Past reports do not establish safety, camping permission or conditions on your next visit.'));
+    function render(){
+      counts.replaceChildren();const row=D.monthlyView(data,select.value);
+      if(row.mode!=='ready'){info.textContent='This summary has expired. Reload reviews online.';return;}
+      info.textContent=row.reports?`${row.reports} published condition ${row.reports===1?'report':'reports'} · visits ${row.first_visit} through ${row.latest_visit}.`:`No published condition reports with usable visit dates${select.value?' for this month':''}. Missing evidence stays unknown.`;
+      if(!row.reports)return;
+      for(const [axis,a]of Object.entries(D.AXES)){
+        const values=row.axes[axis],known=Object.values(values).reduce((n,v)=>n+v,0),parts=Object.entries(a.values).filter(([key])=>values[key]).map(([key,label])=>`${label}: ${values[key]}`);
+        if(row.reports-known)parts.push(`Not reported: ${row.reports-known}`);
+        counts.append(el('li',{},`${axis==='access'?'Approach (contributor’s rig)':a.label}: ${parts.join(' · ')}`));
+      }
+    }
+    select.onchange=render;render();
+  }
   async function open(site){
     st.focus=document.activeElement;st.site=site;const name=site.properties.name,body=shell('Reviews and photos');const view=st.view;
     body.append(el('h3',{},name),el('p',{class:'kt-fine'},'Firsthand camper experiences. Reviews and photos are checked by a moderator before publication. They do not verify current fees, access or road conditions.'));
     if(legacyAddress(body,site))return;
     const actions=el('div',{class:'kt-community-actions'});actions.append(button('Write a review',()=>edit({campsite_id:site.properties.id,campsite_name:name})),button('My reviews',mine));body.append(actions);
-    const summary=message('Loading reviews…'),list=el('div',{class:'kt-review-list'});body.append(summary,list);
+    const summary=message('Loading reviews…'),monthly=el('div'),list=el('div',{class:'kt-review-list'});body.append(summary,monthly,list);
     const more=button('Load more reviews',()=>load(more.dataset.before));more.hidden=true;body.append(more);
     async function load(before){
       more.disabled=true;
       try{const res=await fetch(API+'?site='+encodeURIComponent(site.properties.id)+(before?'&before='+before:''));const out=await res.json();if(!res.ok)throw new Error();if(view!==st.view)return;
         summary.textContent=out.count?`${out.average}/5 from ${out.count} published ${out.count===1?'review':'reviews'}.`:'No published reviews yet. Been here? Share your experience.';
+        monthDetails(monthly,out.monthly,monthly.querySelector('select')?.value||'');
         for(const r of out.reviews){
           const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},`Visited ${r.visited_on}${r.rig?' · '+r.rig:''} · submitted ${String(r.created_at).slice(0,10)}`),el('p',{class:'kt-review-text'},r.body));
           const observed=window.KampTrailDiscovery?.describe(r.observations);if(observed)article.append(el('p',{class:'kt-observation'},'Reported on '+r.visited_on+' · '+observed));
@@ -42,7 +67,7 @@
           article.append(button('Report review',()=>report(r.id)));list.append(article);
         }
         more.hidden=!out.next_before;more.dataset.before=out.next_before||'';
-      }catch{if(view===st.view){summary.replaceChildren(document.createTextNode(navigator.onLine?'Reviews could not be loaded.':'Reviews and photos need an internet connection.'),button('Retry',()=>load(before)));}}
+      }catch{if(view===st.view){summary.replaceChildren(document.createTextNode(navigator.onLine?'Reviews could not be loaded.':'Reviews and photos need an internet connection.'),button('Retry',()=>load(before)));if(!monthly.hasChildNodes())monthly.append(el('p',{class:'kt-fine'},'Visit-month summaries are unavailable until reviews reload.'));}}
       finally{more.disabled=false;}
     }
     await load();
@@ -90,5 +115,5 @@
     const f=el('form'),code=el('input',{name:'code',required:true,pattern:'[a-f0-9]{64}',autocomplete:'off',spellcheck:false});f.append(field('Restore a private management code',code),el('button',{type:'submit',class:'btn'},'Open my review'));f.onsubmit=e=>{e.preventDefault();manage(code.value.trim());};body.append(f);
   }
   function report(id,photo){const body=shell(photo?'Report a photo':'Report a review'),f=el('form');const reason=el('textarea',{name:'reason',required:true,minlength:10,maxlength:1000,rows:4});f.append(field('What is the problem?',reason,'Examples: private information, harassment, copied content, or a misleading campsite claim. A moderator will review the report.'));const msg=message(''),send=el('button',{class:'btn',type:'submit'},'Send report');f.append(msg,send);body.append(f);f.onsubmit=async e=>{e.preventDefault();send.disabled=true;const data=new FormData(f);data.set('action','report');data.set('review_id',id);if(photo)data.set('photo_id',photo);try{const out=await request(data);body.replaceChildren(message(out.message),button('Close',()=>st.dialog.close()));}catch(err){msg.textContent=err.message;send.disabled=false;}};}
-  window.KampTrailCommunity={version:'2.16.0',open,mine};
+  window.KampTrailCommunity={version:'2.18.0',open,mine};
 })();

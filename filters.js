@@ -8,14 +8,15 @@
   const state={filters:defaults(),panel:null,button:null};
   function close(){state.panel.style.display='none';state.button.setAttribute('aria-expanded','false');}
   function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal)+Number(DataQuality.elevationRange(f).active)+Number(window.KampTrailForecast?.active(f));}
-  function apply(){
+  function apply(origin='manual'){
     const f=state.filters;
     try{localStorage.setItem('kt_filters_mvp',JSON.stringify({cost:f.cost,type:f.type,rigSize:f.rigSize,amenities:f.amenities,rigLength:f.rigLength,rigIncludeUnknown:f.rigIncludeUnknown,hookups:f.hookups,minRating:f.minRating,minReviews:f.minReviews,observedDays:f.observedDays,elevationMin:f.elevationMin,elevationMax:f.elevationMax,elevationUnit:f.elevationUnit,forecastMinC:f.forecastMinC,forecastMaxC:f.forecastMaxC,forecastHours:f.forecastHours,forecastUnit:f.forecastUnit,...Object.fromEntries(Object.keys(window.KampTrailDiscovery?.AXES||{}).map(k=>['observed_'+k,f['observed_'+k]||''])),observed_carrier:f.observed_carrier||'',observed_signal:f.observed_signal||''}));}catch{}
     window.kamptrailFilters=f;
     window.KampTrailData?.updateFilters(f);
     if(window.KampTrailDiscovery?.active(f))window.KampTrailDiscovery.load();
     const badge=document.getElementById('filter-badge'),n=count(f);
-    badge.style.display=n?'inline-block':'none';badge.textContent=n;
+    if(badge){badge.style.display=n?'inline-block':'none';badge.textContent=n;}
+    window.dispatchEvent(new CustomEvent('kamptrail:filterschanged',{detail:{origin}}));
   }
   function sync(){
     const p=state.panel;if(!p)return;
@@ -50,14 +51,18 @@
     const candidate={forecastMinC:f.forecastMinC??null,forecastMaxC:f.forecastMaxC??null,forecastHours:f.forecastHours??24,forecastUnit:f.forecastUnit==='C'?'C':'F'};
     if(!window.KampTrailForecast?.range(candidate).valid)return false;Object.assign(state.filters,candidate);syncForecast();apply();return true;
   }
-  function reset(){state.filters=defaults();sync();apply();}
+  function reset(){state.filters=defaults();sync();apply('reset');}
+  function applyProfile(profile){
+    const f=window.KampTrailRigProfile?.toFilters(profile);if(!f)return false;
+    Object.assign(state.filters,f);sync();apply('profile');return true;
+  }
   window.KampTrailFilters={
-    version:'2.16.0',
+    version:'2.18.0',
     init(map){
       const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
       p.setAttribute('role','region');p.setAttribute('aria-label','Campsite filters');
       p.innerHTML=`<div class="filter-header"><h2 style="flex:1">Filters</h2><button id="kt-f-reset" class="btn">Reset</button><button id="kt-f-close" class="btn" aria-label="Close filters">Close</button></div>
-        <div class="filter-body"><strong>Reported fee</strong><div class="cost-options">
+        <div class="filter-body"><p id="kt-rig-filter-status" class="filter-note" role="status">Profile matching is off.</p><button type="button" id="kt-filter-rig-profile" class="btn">Rig profile</button><strong>Reported fee</strong><div class="cost-options">
         <label><input type="radio" name="f-cost" value="all" checked> All fees</label>
         <label><input type="radio" name="f-cost" value="free"> Free</label>
         <label><input type="radio" name="f-cost" value="conditional"> Free with conditions</label>
@@ -75,7 +80,7 @@
         <div class="kt-forecast-bounds"><label>Minimum<input id="f-forecast-min" type="number" step="any" inputmode="decimal" aria-describedby="f-forecast-help f-forecast-error" placeholder="No minimum"></label><label>Maximum<input id="f-forecast-max" type="number" step="any" inputmode="decimal" aria-describedby="f-forecast-help f-forecast-error" placeholder="No maximum"></label></div>
         <p id="f-forecast-help" class="filter-note">Every published sample in the next 24 or 48 hours must meet these inclusive bounds. NOAA/NWS NDFD samples can be 1–3 hours apart; these are not continuous or daily temperature extremes. Missing, incomplete, expired and offline forecasts are excluded. Terrain elevation remains available separately.</p>
         <p id="f-forecast-error" class="filter-note" role="alert"></p><p id="f-forecast-status" class="filter-note" role="status"></p><button type="button" id="f-forecast-retry" class="btn">Retry forecast samples</button></fieldset>
-        <label for="f-length"><strong>Fits my rig (feet)</strong></label><input id="f-length" type="number" inputmode="numeric" min="10" max="80" step="1" placeholder="e.g. 32">
+        <label for="f-length"><strong>Fits my rig (feet)</strong></label><input id="f-length" type="number" inputmode="decimal" min="0.001" max="80" step="any" placeholder="e.g. 32">
         <label class="kt-inline"><input type="checkbox" id="f-length-unknown"> Include listings with no documented RV length</label>
         <fieldset class="amenity-options"><legend><strong>Hookups reported</strong></legend>${HOOKUPS.map(([v,l])=>`<label><input type="checkbox" name="f-hookup" value="${v}"> ${l}</label>`).join('')}</fieldset>
         <p class="filter-note">Rig length and hookups use Recreation.gov site details, so only those campgrounds can match. A match means at least one site reports it. Book or confirm the exact site.</p>
@@ -91,7 +96,7 @@
         if(RIGS.some(([v])=>v===saved.rigSize))state.filters.rigSize=saved.rigSize;
         const forecast={forecastMinC:saved.forecastMinC??null,forecastMaxC:saved.forecastMaxC??null,forecastHours:saved.forecastHours??24,forecastUnit:saved.forecastUnit==='C'?'C':'F'};if(window.KampTrailForecast?.range(forecast).valid)Object.assign(state.filters,forecast);
         const e={elevationMin:saved.elevationMin??null,elevationMax:saved.elevationMax??null};if(DataQuality.elevationRange(e).valid)Object.assign(state.filters,e);state.filters.elevationUnit=saved.elevationUnit==='m'?'m':'ft';
-        if(Number.isInteger(saved.rigLength)&&saved.rigLength>=10&&saved.rigLength<=80)state.filters.rigLength=saved.rigLength;
+        if(Number.isFinite(saved.rigLength)&&saved.rigLength>0&&saved.rigLength<=80)state.filters.rigLength=saved.rigLength;
         state.filters.rigIncludeUnknown=saved.rigIncludeUnknown===true;
         if(Array.isArray(saved.hookups))state.filters.hookups=saved.hookups.filter(h=>HOOKUPS.some(([v])=>v===h));
         if(Array.isArray(saved.amenities))state.filters.amenities=saved.amenities.filter(a=>AMENITIES.some(([v])=>v===a));
@@ -139,6 +144,7 @@
       sync();
       state.button=document.getElementById('filters');
       state.button.onclick=()=>{const open=p.style.display==='none';p.style.display=open?'block':'none';state.button.setAttribute('aria-expanded',String(open));};
+      p.querySelector('#kt-filter-rig-profile').onclick=()=>window.KampTrailRigProfile?.open();
       p.querySelector('#kt-f-reset').onclick=reset;p.querySelector('#kt-f-close').onclick=()=>{close();state.button.focus();};
       p.querySelectorAll('[name="f-cost"]').forEach(el=>el.onchange=()=>{state.filters.cost=el.value;apply();});
       p.querySelector('#f-type').onchange=e=>{state.filters.type=e.target.value;apply();};
@@ -147,13 +153,13 @@
       const len=p.querySelector('#f-length');
       // Apply while typing, and make the later change event a no-op, so a click right after typing is not lost to a re-render.
       let lenTimer;
-      const setLen=final=>{const raw=len.value.trim(),n=Math.round(+raw);const next=raw&&n>=10&&n<=80?n:0;if(final&&!next&&raw)len.value='';if(next===state.filters.rigLength)return;state.filters.rigLength=next;apply();};
+      const setLen=final=>{const raw=len.value.trim(),n=Number(raw);const next=raw&&Number.isFinite(n)&&n>0&&n<=80?n:0;if(final&&!next&&raw)len.value='';if(next===state.filters.rigLength)return;state.filters.rigLength=next;apply();};
       len.oninput=()=>{clearTimeout(lenTimer);lenTimer=setTimeout(()=>setLen(false),400);};
       len.onchange=()=>{clearTimeout(lenTimer);setLen(true);};
       p.querySelector('#f-length-unknown').onchange=e=>{state.filters.rigIncludeUnknown=e.target.checked;apply();};
       p.querySelectorAll('[name="f-hookup"]').forEach(el=>el.onchange=()=>{state.filters.hookups=[...p.querySelectorAll('[name="f-hookup"]:checked')].map(i=>i.value);apply();});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
       apply();
-    },reset,setElevationFilters,setForecastFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
+    },reset,applyProfile,setElevationFilters,setForecastFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
   };
 })();

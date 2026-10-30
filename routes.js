@@ -155,5 +155,5 @@
     global.addEventListener?.('kamptrail:discoveryupdated',search);st.dialog.addEventListener('close',()=>global.removeEventListener?.('kamptrail:discoveryupdated',search),{once:true});if(global.KampTrailDiscovery?.active(filters))global.KampTrailDiscovery.load();
     radius.onchange=search;use.onchange=search;sort.onchange=search;let timer;terms.oninput=()=>{clearTimeout(timer);timer=setTimeout(search,200);};await load();
   }
-  global.KampTrailRoutes={version:'2.16.0',calculate,open,validRoute,indexFeature,find,serviceOrder,corridor,simplify,segmentDistance,miles,key,MAX_STOPS};
+  global.KampTrailRoutes={version:'2.18.0',calculate,open,validRoute,indexFeature,find,serviceOrder,corridor,simplify,segmentDistance,miles,key,MAX_STOPS};
 })(typeof window!=='undefined'?window:globalThis);

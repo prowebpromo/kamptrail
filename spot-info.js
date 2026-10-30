@@ -87,6 +87,17 @@
     // Do not call popup.update(): it would re-render string content and erase the loaded section.
     try { popup._updateLayout && popup._updateLayout(); popup._updatePosition && popup._updatePosition(); popup._adjustPan && popup._adjustPan(); } catch {}
   }
+  function openCampingCare() {
+    const dialog = document.getElementById('data-dialog');
+    const details = document.getElementById('kt-camping-care');
+    const summary = details?.querySelector('summary');
+    if (!dialog || !details || !summary || typeof dialog.showModal !== 'function') return false;
+    if (!dialog.open) dialog.showModal();
+    details.open = true;
+    summary.focus();
+    summary.scrollIntoView({block: 'nearest'});
+    return true;
+  }
   function renderLand(target, lat, lng) {
     target.replaceChildren(el('p', 'Checking land manager…', 'kt-muted'));
     return landManager(lat, lng).then(info => {
@@ -136,5 +147,5 @@
     }
     target.replaceChildren(box);relayout(target);
   }
-  global.KampTrailSpot = {version: '2.16.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, AGENCIES, SMA_URL: SMA};
+  global.KampTrailSpot = {version: '2.18.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);

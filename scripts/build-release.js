@@ -1,6 +1,6 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
@@ -25,6 +25,12 @@ const files=['index.html','how-to.html','app.js','app.css','manifest.json','serv
   if(restRaw.length>512*1024)throw new Error('Official rest-area catalogue exceeds release bound');
   require('../rest-areas.js').validate(JSON.parse(restRaw));
   await fs.mkdir(path.join(out,'data','rest-areas'),{recursive:true});await fs.writeFile(path.join(out,'data','rest-areas','TX.json'),restRaw);
+  const clearancePath=path.join(root,'data','clearances','RI.json');
+  if(await fs.realpath(clearancePath)!==clearancePath)throw new Error('Height-tag pilot must not follow symlinks');
+  const clearanceRaw=await fs.readFile(clearancePath);
+  if(clearanceRaw.length>512*1024)throw new Error('Height-tag pilot exceeds release bound');
+  require('../clearances.js').validate(JSON.parse(clearanceRaw));
+  await fs.mkdir(path.join(out,'data','clearances'),{recursive:true});await fs.writeFile(path.join(out,'data','clearances','RI.json'),clearanceRaw);
   const serviceRoot=path.join(root,'data','services'),serviceRaw=await fs.readFile(path.join(serviceRoot,'index.json'));
   async function copyServiceGeneration(raw,expectedId){
     if(raw.length>1024*1024)throw new Error('Services manifest exceeds release bound');
@@ -71,7 +77,7 @@ const files=['index.html','how-to.html','app.js','app.css','manifest.json','serv
     }
   }
   // Contributions API: only these public PHP entry points and their private helpers. Never configuration or credentials.
-  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
+  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/route-elevation.php','api/_lib/route-elevation.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
   await fs.mkdir(path.join(out,'api','_lib'),{recursive:true});
   for(const file of apiFiles)await fs.copyFile(path.join(root,file),path.join(out,file));
   const permissionRoot=path.join(root,'api','_data','permissions');

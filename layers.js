@@ -82,7 +82,7 @@
     const enabled=st.map.hasLayer(st.services);if(st.serviceControls)st.serviceControls.hidden=!enabled;
     st.services.clearLayers();
     if(!enabled)return;
-    if(st.map.getZoom()<10){st.serviceStatus.textContent='Zoom to level 10 or closer to load services. Utah has expanded coverage; other regions retain legacy evidence.';return;}
+    if(st.map.getZoom()<10){st.serviceStatus.textContent='Zoom to level 10 or closer to load services. Coverage depends on imported sources; missing areas are unknown.';return;}
     const b=st.map.getBounds();st.serviceStatus.textContent='Loading dated service areas…';
     try{
       const result=await KampTrailServices.loadBounds({south:Math.max(-90,b.getSouth()),west:b.getWest(),north:Math.min(90,b.getNorth()),east:b.getEast()},{categories:KampTrailServices.getCategories(),includeRestricted:st.includeRestricted,signal:st.serviceAbort.signal,force,onProgress:p=>{if(sequence===st.serviceSequence)st.serviceStatus.textContent=`Loading service areas ${p.loaded}/${p.total}…`;}});
@@ -115,7 +115,8 @@
     const share = btn('Share', () => window.KampTrailShare?.share({spot: [lat, lng]}, 'This spot'));
     const dir = document.createElement('a'); dir.href = directions(lat, lng); dir.target = '_blank'; dir.rel = 'noopener noreferrer'; dir.textContent = 'Directions';
     const permission=btn('Overnight permission',()=>window.KampTrailPermissions?.open({kind:'spot',id:`spot:${lat.toFixed(5)},${lng.toFixed(5)}`,name:'This spot',coordinates:[lng,lat]}));
-    actions.append(wxBtn, alerts, context, permission, save, share, dir);
+    const care = btn('Camping care', () => KampTrailSpot.openCampingCare());
+    actions.append(wxBtn, alerts, context, permission, care, save, share, dir);
     const suggest = document.createElement('p'); suggest.className = 'kt-fine';
     const sug = btn('Suggest a campsite here', () => window.KampTrailContrib ? KampTrailContrib.open({kind: 'new_place', lat, lng}) : window.KampTrailShare && window.open(KampTrailShare.issueUrl('new', {lat, lng}), '_blank', 'noopener'));
     sug.className = 'kt-linkbtn';
@@ -135,8 +136,9 @@
     const roads = KampTrailMVUM.init(map);
     const environment = KampTrailEnvironment.init(map);
     const restAreas = window.KampTrailRestAreas?.init(map);
+    const clearances = window.KampTrailClearances?.init(map);
     st.services = L.markerClusterGroup ? L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false, chunkedLoading: false, iconCreateFunction: c => L.divIcon({className: 'kt-svc-cluster', html: `<span>${c.getChildCount()}</span>`, iconSize: [28, 28]})}) : L.layerGroup();
-    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, ...(restAreas?{'Official rest areas (Texas pilot)':restAreas}:{}), 'USFS motor vehicle roads': roads, ...environment};
+    st.overlays = {'Public land (BLM, USFS, NPS)': land, [SERVICE_LAYER]: st.services, ...(restAreas?{'Official rest areas (Texas pilot)':restAreas}:{}), ...(clearances?{'Reported height tags (Rhode Island pilot)':clearances}:{}), 'USFS motor vehicle roads': roads, ...environment};
     st.landLegend = legendControl();
     serviceControl().addTo(map);
     let serviceTimer;
@@ -167,5 +169,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.16.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.18.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();

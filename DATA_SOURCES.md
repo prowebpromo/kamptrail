@@ -85,3 +85,15 @@ Spatial shards limit delivery to the viewed area or route corridor. Hash-validat
 ### Official rest-area locations (2.15)
 
 The first official rest-area pilot uses TxDOT's public [location list](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list.html). It preserves exact source labels, links and coordinates, validated against Census state geometry, with document hashes and retrieval dates. Texas travel information centers are excluded. The separately sourced [visitor duration context](https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html) does not establish permission to sleep overnight. Every pilot location's overnight permission remains unknown. See [the source audit](docs/REST_AREAS_PILOT_2.15.md). Other states are not yet covered.
+
+### On-demand route terrain (2.17.0)
+
+The route profile uses the same fixed [USGS 3DEP ImageServer](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer) and [getSamples operation](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/getSamples) as the catalogue elevation pipeline, with bilinear interpolation, WGS84 coordinates and values in metres. It has a separate user-triggered request and cache contract: opening a profile makes no terrain request. Choosing Load sends at most 200 distinct sampled coordinates, in sequential batches of at most 50, through the same-origin server. The full route and rig profile are not transmitted to USGS.
+
+Endpoints and route leg boundaries are included. Target spacing is one kilometre and adapts to the sample cap; the actual maximum spacing is shown. Missing or failed values remain gaps. The displayed extrema are sampled terrain extrema, not complete route minima/maxima, road grade or cumulative ascent. Terrain under bridges and over tunnels is not road-surface elevation and cannot establish clearance, road access or safe passage.
+
+Each sample retains its retrieval date and available provider datum/date metadata. Device storage is bounded to eight exact-route profiles, without automatic expiry; offline use retains their dates and unknown gaps. The private server cache stores independent coordinate hashes and normalized values, not routes, stop names or rig profiles. Read [the 2.17 contract](docs/RIG_TERRAIN_CONTRACT_2.17.md) for request limits, cache behavior, deployment and verification.
+
+## Reported height tags: Rhode Island pilot
+
+An optional OSM/Geofabrik layer retains dated, Census-contained node/way height-tag evidence, original geometry and raw values. The initial RI asset contains 254 highway ways. General/legal and physical tags remain separate. Nonnumeric, conditional, directional and lane values are not interpreted as vehicle clearance. Coverage is incomplete, source dates are not inspections, and this layer does not enforce routing or safe passage. See docs/CLEARANCE_RI_PILOT.md and docs/CLEARANCE_RI_PROOF.json. OSM contributors, ODbL 1.0: https://www.openstreetmap.org/copyright .

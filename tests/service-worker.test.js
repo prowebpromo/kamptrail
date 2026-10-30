@@ -115,6 +115,11 @@ test('official rest-area facts are not pinned in the generic shell cache',()=>{
  const w=worker();let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/rest-areas/TX.json'),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false);
 });
 
+test('height-tag pilot bypasses generic caching and its validated offline snapshot survives upgrades',async()=>{
+ const w=worker(),name='kamptrail:https://example.test/kamptrail/:clearance-v1';await w.caches.open(name);let done;w.handlers.activate({waitUntil:p=>done=p});await done;assert.equal(w.stores.has(name),true);
+ let intercepted=false;w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/clearances/RI.json'),respondWith:()=>{intercepted=true;}});assert.equal(intercepted,false);
+});
+
 test('visiting the how-to page never replaces the cached offline app shell',async()=>{
  let online=true;const w=worker(async request=>{if(!online)throw new Error('offline');return new Response(request.url.endsWith('how-to.html')?'<p>how-to</p>':'<p>app</p>',{status:200});});
  const current=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '(kt-v\d+)'/);assert.ok(current,'Worker declares its shell identity');
