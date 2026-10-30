@@ -10,6 +10,10 @@ The publisher only targets public repository `prowebpromo/kamptrail` (repository
 
 Each generation has 50 immutable state gzip assets and an immutable manifest copy. Both `current-a.json` and `current-b.json` are complete manifests. Publication uploads and downloads every new asset for byte verification before replacing the older pointer. Immediately before replacement it rereads release identity, both pointer bodies and asset IDs to detect a concurrent change. The other valid pointer survives a failed deletion/upload/verification. Expired unreferenced generations are removable only after expiry plus 30 minutes. Incomplete abandoned uploads use upload time plus three hours plus the same grace. Both pointer targets are always protected.
 
+The producer exports the immutable artifact ID returned by its successful upload. The publisher downloads that exact ID from the same workflow run, including when only a failed publication job is rerun. Recomputing an artifact name from the publisher's new `run_attempt` would request a package the successful producer never created.
+
+Public asset verification tolerates a short visibility delay: a public 404 gets at most four reads with bounded backoff, honoring bounded Retry-After values. Error-page bodies are discarded after a bounded read. Missing authenticated draft assets and forbidden responses stop immediately. No pointer advances before all exact bytes pass verification, and response status is retained in failure codes. This does not establish that GitHub's hourly scheduler has executed; production run history must show that separately.
+
 Local validation performs no network mutation:
 
 ```sh
