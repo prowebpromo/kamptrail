@@ -12,7 +12,12 @@ on:
         description: 'Source to refresh'
         type: choice
         default: both
-        options: [both, ridb, osm, agency, elevation]
+        options: [both, ridb, osm, agency, elevation, services]
+      service_state:
+        description: 'Services extract pilot state (currently UT only)'
+        type: choice
+        default: UT
+        options: [UT]
       expected_catalogue:
         description: 'Optional exact census JSON for a reviewed agency release'
         type: string
@@ -30,6 +35,10 @@ on:
         required: false
         type: string
         default: both
+      service_state:
+        required: false
+        type: string
+        default: UT
       expected_catalogue:
         required: false
         type: string
@@ -51,12 +60,12 @@ permissions:
   contents: write
 
 concurrency:
-  group: kamptrail-data-refresh
+  group: kamptrail-data-refresh-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   fetch-data:
-    if: ${{ inputs.source != 'agency' && inputs.source != 'elevation' }}
+    if: ${{ inputs.source != 'agency' && inputs.source != 'elevation' && inputs.source != 'services' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -183,7 +192,7 @@ jobs:
         shell: bash
         run: |
           set -uo pipefail
-          if python scripts/fetch_osm_poi.py && node scripts/build-services.js; then
+          if python scripts/fetch_osm_poi.py && python scripts/import_services.py --region legacy --scratch "$RUNNER_TEMP/services-legacy" && node scripts/build-services.js; then
             node scripts/record_health.js record services US fresh
           else
             echo 'RV services refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
@@ -399,3 +408,74 @@ jobs:
     uses: ./.github/workflows/test.yml
     with:
       ref: ${{ needs.elevation.outputs.commit_sha }}
+
+  services:
+    if: ${{ inputs.source == 'services' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    env:
+      SERVICE_STATE: ${{ inputs.service_state || 'UT' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Require the reviewed pilot and a selected branch
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF_TYPE" == branch ]] || { echo 'Select a branch, not a tag'; exit 1; }
+          [[ "$SERVICE_STATE" == UT ]] || { echo 'Only the reviewed Utah pilot is enabled'; exit 1; }
+          git check-ref-format --branch "$GITHUB_REF_NAME"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt pyyaml
+      - name: Install the hash-locked native OSM reader
+        run: python -m pip install --no-deps --require-hashes -r scripts/requirements-services.txt
+      - name: Verify importer and immutable spatial builder
+        run: |
+          python -m unittest discover -s scripts/tests -p 'test_services_import.py'
+          node --test scripts/tests/services-builder.test.js
+      - name: Import dated legacy and the complete pilot extract
+        timeout-minutes: 30
+        run: |
+          set -euo pipefail
+          python -u scripts/import_services.py --region legacy --scratch "$RUNNER_TEMP/services-pbf"
+          python -u scripts/import_services.py --region "$SERVICE_STATE" --scratch "$RUNNER_TEMP/services-pbf"
+          node scripts/build-services.js
+          node scripts/record_health.js record services_extracts "$SERVICE_STATE" fresh
+      - name: Preserve public source summaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: services-source-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            data/sources/services
+            data/services/index.json
+          retention-days: 7
+          if-no-files-found: error
+      - name: Commit services only to the unchanged selected branch
+        id: commit
+        run: |
+          set -euo pipefail
+          git fetch origin "refs/heads/$GITHUB_REF_NAME"
+          [[ "$(git rev-parse FETCH_HEAD)" == "$(git rev-parse HEAD)" ]] || { echo 'Selected branch moved; source summary retained for inspection'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A data/sources/services data/services data/health.json
+          if ! git diff --staged --quiet; then
+            git commit -m 'Publish dated US service evidence and spatial snapshots'
+            git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+          fi
+          printf 'commit_sha=%s\n' "$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          printf 'Services data commit: `%s`\n' "$(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+  verify-services:
+    needs: services
+    permissions:
+      contents: read
+    uses: ./.github/workflows/test.yml
+    with:
+      ref: ${{ needs.services.outputs.commit_sha }}

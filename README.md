@@ -1,6 +1,8 @@
-# KampTrail 2.13.0
+# KampTrail 2.14.0
 
 KampTrail is a free campsite map and trip planner at https://kamptrail.com/. No account is required for the core camping tools or moderated contributions.
+
+Service discovery shares category and access rules across the map, nearby results and route corridor. Expanded showers, laundry, groceries and fuel coverage begins with a complete dated Utah extract; other regions retain older dump, water-fill and LPG data. Source dates and partial/offline coverage remain explicit. Overnight permission and RV access are separate, unverified facts.
 
 ## Features
 

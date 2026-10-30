@@ -2,7 +2,7 @@
    Trip tools: order, notes and dates, straight-line totals, route line, whole-trip directions, GPX. */
 (function () {
   'use strict';
-  const st = {drive:null,driveKey:'',driveBusy:false,map:null,open:false,stops:[],el:null,previousFocus:null,savedMarker:null,recoveryStates:new Set(),storageAvailable:true,routeLayer:null,gpxLayer:null,showRoute:false};
+  const st = {revision:0,topologyKey:'',drive:null,driveKey:'',driveBusy:false,map:null,open:false,stops:[],el:null,previousFocus:null,savedMarker:null,recoveryStates:new Set(),storageAvailable:true,routeLayer:null,gpxLayer:null,showRoute:false};
   const valid = site => site?.geometry?.type === 'Point' && Array.isArray(site.geometry.coordinates)
     && site.geometry.coordinates.length >= 2 && site.geometry.coordinates.slice(0,2).every(Number.isFinite)
     && Math.abs(site.geometry.coordinates[0]) <= 180 && Math.abs(site.geometry.coordinates[1]) <= 90
@@ -13,7 +13,13 @@
   const info = message => window.showToast?.(message, 'info');
   const isDate = v => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
   const cleanText = (v, max) => typeof v === 'string' ? v.slice(0, max) : '';
+  function syncRevision() {
+    const key=JSON.stringify(st.stops.map(stop=>[stop.id,valid(stop.feature)?stop.feature.geometry.coordinates.slice(0,2):null]));
+    if(key!==st.topologyKey){st.topologyKey=key;st.revision++;if(typeof window.CustomEvent==='function')window.dispatchEvent(new window.CustomEvent('kamptrail:tripchanged',{detail:{revision:st.revision}}));}
+    return st.revision;
+  }
   function save() {
+    syncRevision();
     try { localStorage.setItem('kt_trip',JSON.stringify(st.stops));st.storageAvailable=true;return true; }
     catch { st.storageAvailable=false;notify('Your browser could not save these stops. Changes are available only while this page stays open.');return false; }
   }
@@ -27,6 +33,8 @@
     try { st.showRoute = localStorage.getItem('kt_trip_route') === '1'; } catch {}
   }
   function getSite(stop) {
+    // A saved service may share an OSM identity with a campground; keep its service evidence.
+    if(stop.feature?.properties?.type==='service')return valid(stop.feature)?stop.feature:null;
     const current=window.KampTrailData?.getCampsiteById(stop.id);
     if(valid(current)) { stop.feature=clone(current);stop.id=String(current.properties.id); }
     return valid(stop.feature) ? stop.feature : null;
@@ -69,16 +77,17 @@
     const site=getSite(stop);if(!site)return;
     close();
     st.savedMarker?.remove();st.savedMarker=null;
-    if(window.KampTrailData?.focusCampsite?.(stop.id))return;
+    if(site.properties.type!=='service'&&window.KampTrailData?.focusCampsite?.(stop.id))return;
     const [lng,lat]=site.geometry.coordinates;
     st.map.setView([lat,lng],12);
     // A snapshot location remains viewable even if its source region is not loaded.
     if(window.L?.marker) {
       const popup=document.createElement('div');
       const title=document.createElement('strong');title.textContent=nameOf(site);
-      const note=document.createElement('p');note.textContent=stop.note ? stop.note : 'Saved location. Confirm current campsite access with the operator.';
+      const note=document.createElement('p');note.textContent=stop.note ? stop.note : (site.properties.type==='service'?'Saved service location. Confirm current access and opening with the operator.':'Saved location. Confirm current campsite access with the operator.');
+      const evidence=document.createElement('p');if(site.properties.type==='service')evidence.textContent=typeof site.properties.service_evidence==='string'?site.properties.service_evidence.slice(0,4000):'Dated service evidence unavailable. Opening, RV access and overnight permission are unverified.';
       const link=document.createElement('a');link.href=directions(site);link.target='_blank';link.rel='noopener noreferrer';link.textContent='Directions in Google Maps';
-      popup.append(title,note,link);
+      popup.append(title,note);if(site.properties.type==='service')popup.append(evidence);popup.append(link);
       st.savedMarker=L.marker([lat,lng],{title:nameOf(site)}).addTo(st.map).bindPopup(popup).openPopup();
     }
   }
@@ -330,7 +339,8 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.13.0',
+    version:'2.14.0',
+    getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;
       st.map=map;load();st.el=drawer();render();drawRoute();

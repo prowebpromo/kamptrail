@@ -1,6 +1,6 @@
-const fs=require('node:fs/promises'),path=require('node:path');
+const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','environment.js','forecast.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
   for(const file of files)await fs.copyFile(path.join(root,file),path.join(out,file));
@@ -12,6 +12,37 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
   const elevationRoot=path.join(root,'data','campsites','elevation');
   if(await fs.stat(elevationRoot).then(s=>s.isDirectory()).catch(()=>false))await fs.cp(elevationRoot,path.join(out,'data','campsites','elevation'),{recursive:true,filter:source=>{const rel=path.relative(elevationRoot,source).split(path.sep).join('/');return rel===''||rel==='index.json'||rel==='snapshots'||/^snapshots\/[a-f0-9]{24}(?:\/[A-Z]{2}\.json)?$/.test(rel);}});
   await fs.mkdir(path.join(out,'data','services'),{recursive:true});await fs.copyFile(path.join(root,'data','services','services.json'),path.join(out,'data','services','services.json'));
+  const serviceRoot=path.join(root,'data','services'),serviceRaw=await fs.readFile(path.join(serviceRoot,'index.json'));
+  async function copyServiceGeneration(raw,expectedId){
+    if(raw.length>1024*1024)throw new Error('Services manifest exceeds release bound');
+    const index=JSON.parse(raw);
+    if(index.version!==2||!/^[a-f0-9]{24}$/.test(index.snapshot_id)||(expectedId&&index.snapshot_id!==expectedId)||!Array.isArray(index.shards)||index.shards.length>4096)throw new Error('Invalid services release manifest');
+    let count=0;const ids=new Set();
+    for(const entry of index.shards){
+      if(!/^[A-Za-z0-9_]{1,80}$/.test(entry.id)||ids.has(entry.id)||entry.url!==`snapshots/${index.snapshot_id}/${entry.id}.json`||!/^[a-f0-9]{64}$/.test(entry.sha256)||!Number.isSafeInteger(entry.bytes)||entry.bytes<1||entry.bytes>512*1024||!Number.isSafeInteger(entry.count)||entry.count<1||entry.count>1500)throw new Error('Invalid services release shard');
+      ids.add(entry.id);const source=path.join(serviceRoot,entry.url),real=await fs.realpath(source);
+      if(real!==source)throw new Error('Services release must not follow symlinks');
+      const bytes=await fs.readFile(source);if(bytes.length!==entry.bytes||crypto.createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw new Error('Services release checksum mismatch');
+      const data=JSON.parse(bytes);if(data.version!==2||data.snapshot_id!==index.snapshot_id||data.shard_id!==entry.id||!Array.isArray(data.items)||data.items.length!==entry.count)throw new Error('Services shard identity mismatch');
+      const target=path.join(out,'data','services',entry.url);await fs.mkdir(path.dirname(target),{recursive:true});await fs.writeFile(target,bytes);count+=entry.count;
+    }
+    if(count!==index.total)throw new Error('Services release count mismatch');
+    const manifest=path.join(out,'data','services','snapshots',index.snapshot_id,'manifest.json');await fs.mkdir(path.dirname(manifest),{recursive:true});await fs.writeFile(manifest,raw);
+    return index;
+  }
+  const serviceIndex=await copyServiceGeneration(serviceRaw);
+  const prior=[];
+  for(const entry of await fs.readdir(path.join(serviceRoot,'snapshots'),{withFileTypes:true})){
+    if(entry.name===serviceIndex.snapshot_id||!/^[a-f0-9]{24}$/.test(entry.name))continue;
+    if(!entry.isDirectory()||entry.isSymbolicLink())throw new Error('Invalid services snapshot directory');
+    const file=path.join(serviceRoot,'snapshots',entry.name,'manifest.json');if(await fs.realpath(file)!==file)throw new Error('Services manifest must not follow symlinks');
+    const raw=await fs.readFile(file);if(raw.length>1024*1024)throw new Error('Services predecessor manifest exceeds bound');
+    const index=JSON.parse(raw),stamp=Date.parse(index.generated_at);if(index.snapshot_id!==entry.name||!Number.isFinite(stamp))throw new Error('Invalid services predecessor identity');
+    prior.push({id:entry.name,raw,stamp});
+  }
+  if(prior.length>2)throw new Error('Services source snapshot retention exceeds release bound');
+  for(const item of prior.sort((a,b)=>b.stamp-a.stamp))await copyServiceGeneration(item.raw,item.id);
+  await fs.writeFile(path.join(out,'data','services','index.json'),serviceRaw);
   for(const file of ['places-us.json','places-us.LICENSE.txt','health.json'])await fs.copyFile(path.join(root,'data',file),path.join(out,'data',file));
   if(process.env.KAMPTRAIL_PUBLIC_URL){
     const base=new URL(process.env.KAMPTRAIL_PUBLIC_URL);

@@ -1,5 +1,6 @@
 const {test,expect}=require('@playwright/test');
 const path=require('node:path');
+const {mockServices}=require('./helpers/services-fixture');
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
 const tripScript=path.resolve(__dirname,'../../trip-planner.js');
 
@@ -21,18 +22,20 @@ async function ready(page,url='/') {
 }
 
 test('layers control offers topo, satellite, public land and RV services from public sources',async({page,context})=>{
-  const calls=[];await mockRemote(context,calls);const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:37.4,lng:-118.4,zoom:9})));
+  const calls=[];await mockRemote(context,calls);await mockServices(page);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:40.75,lng:-111.88,zoom:9})));
   await ready(page);
   const labels=await page.locator('.leaflet-control-layers label').allTextContents();
-  for(const name of ['Standard','Topo','Satellite','Public land (BLM, USFS, NPS)','RV services (dump, water, propane)'])expect(labels.join('|')).toContain(name);
+  for(const name of ['Standard','Topo','Satellite','Public land (BLM, USFS, NPS)','Services (7 categories)'])expect(labels.join('|')).toContain(name);
   await page.locator('.leaflet-control-layers').hover();
   await page.getByLabel('Topo').check();
   await expect.poll(()=>calls.some(u=>u.includes('basemap.nationalmap.gov')&&u.includes('USGSTopo'))).toBe(true);
   await page.getByLabel('Public land (BLM, USFS, NPS)').check();
   await expect(page.locator('.kt-land-legend')).toContainText('BLM');
   await expect.poll(()=>calls.some(u=>u.includes('BLM_Natl_SMA_Cached_without_PriUnk/MapServer/tile/'))).toBe(true);
-  await page.getByLabel('RV services (dump, water, propane)').check();
+  await page.getByLabel('Services (7 categories)').check();
+  await expect(page.locator('.kt-services-status')).toContainText('Zoom to level 10');
+  await page.evaluate(()=>map.setZoom(11));
   await expect.poll(()=>page.locator('.kt-svc-icon,.kt-svc-cluster').count()).toBeGreaterThan(0);
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.KampTrailLayers?.getBase()==='Topo');
@@ -67,7 +70,7 @@ test('campsite popup links to share, corrections, nearest services, and opens fr
   expect(await page.evaluate(()=>navigator.clipboard.readText())).toContain(`#site=${encodeURIComponent(target.id)}`);
   await popup.getByRole('button',{name:'Nearest RV services'}).click();
   await expect(popup.locator('.kt-popup-extra')).toContainText('Dump station:');
-  await expect(popup.locator('.kt-popup-extra')).toContainText('mi straight-line');
+  await expect(popup.locator('.kt-popup-extra')).toContainText('Services within 30 miles (straight-line)');
   await popup.getByRole('button',{name:'Land manager'}).click();
   await expect(popup.locator('.kt-popup-extra')).toContainText('Bureau of Land Management');
 });

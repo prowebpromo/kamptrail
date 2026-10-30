@@ -23,7 +23,8 @@ const SOURCES = {
   usfs: {label: 'Forest Service recreation sites', scope: 'national', files: () => ['data/sources/usfs.json']},
   blm: {label: 'BLM recreation sites', scope: 'national', files: () => ['data/sources/blm.json']},
   ridb_sites: {label: 'Recreation.gov site details', scope: 'national', files: () => ['data/campsites/ridb-sites.json']},
-  services: {label: 'RV services (OpenStreetMap)', scope: 'national', files: () => ['data/services/services.json']},
+  services_extracts: {label: 'Expanded service extracts (Geofabrik/OpenStreetMap)', scope: 'state', files: s => [`data/sources/services/${s}.json`]},
+  services: {label: 'Legacy dump, water and LPG (OpenStreetMap)', scope: 'national', files: () => ['data/services/services.json']},
 };
 const OUTCOMES = ['fresh', 'failed', 'skipped'];
 // A source is stale when its oldest successful update is older than this.
