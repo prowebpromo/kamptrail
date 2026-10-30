@@ -1,11 +1,12 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
   for(const file of files)await fs.copyFile(path.join(root,file),path.join(out,file));
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
+  await fs.cp(path.join(root,'media','how-to'),path.join(out,'media','how-to'),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});
   for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','ridb-sites.json','coordinate-index.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
   const amenityPath=path.join(root,'data','campsites','ridb-amenities.json');
@@ -60,12 +61,14 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
     const base=new URL(process.env.KAMPTRAIL_PUBLIC_URL);
     if(base.protocol!=='https:'||base.username||base.password||base.search||base.hash)throw new Error('KAMPTRAIL_PUBLIC_URL must be an HTTPS website URL without credentials, query or fragment');
     if(!base.pathname.endsWith('/'))base.pathname+='/';
-    const page=path.join(out,'index.html');
-    let html=await fs.readFile(page,'utf8');
-    html=html.replace(/(<link rel="canonical" href=")[^"]*(">)/,`$1${base.href}$2`)
-      .replace(/(<meta property="og:url" content=")[^"]*(">)/,`$1${base.href}$2`)
-      .replace(/(<meta property="og:image" content=")[^"]*(">)/,`$1${new URL('og.png',base).href}$2`);
-    await fs.writeFile(page,html);
+    for(const name of ['index.html','how-to.html']){
+      const page=path.join(out,name),pageUrl=name==='index.html'?base.href:new URL(name,base).href;
+      let html=await fs.readFile(page,'utf8');
+      html=html.replace(/(<link rel="canonical" href=")[^"]*(">)/,`$1${pageUrl}$2`)
+        .replace(/(<meta property="og:url" content=")[^"]*(">)/,`$1${pageUrl}$2`)
+        .replace(/(<meta property="og:image" content=")[^"]*(">)/,`$1${new URL('og.png',base).href}$2`);
+      await fs.writeFile(page,html);
+    }
   }
   // Contributions API: only these public PHP entry points and their private helpers. Never configuration or credentials.
   const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
