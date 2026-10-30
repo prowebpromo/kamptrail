@@ -7,6 +7,29 @@ const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
 const out=path.join(root,'dist','kamptrail');
 
+test('release keeps runtime versions, handshake and first-party asset URLs consistent',()=>{
+  const version=require('../package.json').version;
+  const lock=JSON.parse(fs.readFileSync(path.join(root,'package-lock.json'),'utf8'));
+  assert.equal(lock.version,version);assert.equal(lock.packages[''].version,version);
+  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  assert.ok(html.includes(`<meta name="kamptrail-version" content="${version}">`));
+  assert.ok(html.includes(`>v${version}</a>`));
+  const scripts=[...html.matchAll(/<script src="([^"/]+\.js)(\?[^"]*)?"/g)];
+  const runtimeFiles=fs.readdirSync(root).filter(file=>file.endsWith('.js')&&!file.endsWith('.spec.js')&&!['service-worker.js','playwright.config.js'].includes(file)).sort();
+  assert.ok(runtimeFiles.length>=19,'The application retains its required runtime modules');
+  assert.deepEqual(scripts.map(([,file])=>file).sort(),runtimeFiles,'Every first-party runtime module is declared exactly once in the page');
+  for(const file of ['app.js','data-loader.js','data-quality.js','permissions.js','rest-areas.js'])assert.ok(runtimeFiles.includes(file),`Required runtime module: ${file}`);
+  for(const [,file,query]of scripts){
+    assert.equal(query,`?v=${version}`,file);
+    const source=fs.readFileSync(path.join(root,file),'utf8');
+    if(file==='app.js'){
+      assert.ok(source.includes(`?.content !== '${version}'`),'HTML handshake uses package version');
+      assert.ok(source.includes(`module?.version!=='${version}'`),'Module handshake uses package version');
+    }else assert.match(source,new RegExp(`(?:version:\\s*|const VERSION = )'${version.replaceAll('.','\\.')}'`),file);
+  }
+  for(const file of ['app.css','manifest.json'])assert.ok(html.includes(`href="${file}?v=${version}"`),file);
+});
+
 test('built release contains agency index dependencies and supports a custom-domain install',()=>{
   const env={...process.env};delete env.KAMPTRAIL_PUBLIC_URL;
   execFileSync(process.execPath,['scripts/build-release.js'],{cwd:root,env,stdio:'pipe'});
@@ -40,8 +63,9 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.ok(htaccess.includes('RewriteRule (^|/)\\.(?!well-known/) - [F,L]'),'Git metadata must not be served');
   // Root-relative installation must retain the PWA's local asset paths.
   for(const [,url]of html.matchAll(/(?:src|href)="([^"]+)"/g)){
-    if(/^(?:https?:|#)/.test(url)||url.includes('?'))continue;
-    assert.ok(fs.existsSync(path.join(out,url)),`Missing page dependency: ${url}`);
+    if(/^(?:https?:|#)/.test(url))continue;
+    const asset=url.split(/[?#]/,1)[0];
+    assert.ok(fs.existsSync(path.join(out,asset)),`Missing page dependency: ${url}`);
   }
   // The contributions API ships its public entry points and private helpers, never configuration.
   for(const file of ['services.js','data/services/index.json','forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])

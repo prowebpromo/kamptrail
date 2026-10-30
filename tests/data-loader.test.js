@@ -132,6 +132,30 @@ test('unverified records cannot acquire camping eligibility from an earlier stat
   }
 });
 
+test('overlapping OK and TX snapshots leave Stoney state unreported in either load order',async()=>{
+  const ids=['osm:node:13646560949','osm:way:1116183696'];
+  const snapshots=Object.fromEntries(['OK','TX'].map(code=>[code,JSON.parse(fs.readFileSync(`data/campsites/${code}_merged.geojson`,'utf8')).features.filter(f=>ids.includes(f.properties.id))]));
+  for(const order of [['OK','TX'],['TX','OK']]){
+    const h=harness(async url=>{
+      const code=/\/(OK|TX)_merged\.geojson$/.exec(url)?.[1];
+      return response(code?{type:'FeatureCollection',features:snapshots[code]}:{});
+    });
+    for(const code of order)await h.api.loadStates([code]);
+    assert.equal(h.api.getAllCampsites().length,2);
+    for(const id of ids){
+      const actual=h.api.getCampsiteById(id),original=snapshots.TX.find(f=>f.properties.id===id);
+      assert.equal(actual.properties.id,id);
+      assert.deepEqual(Array.from(actual.geometry.coordinates),original.geometry.coordinates);
+      assert.deepEqual(Array.from(actual.properties.source_ids),original.properties.source_ids);
+      assert.equal(actual.properties.source,original.properties.source);
+      assert.deepEqual(Array.from(actual.properties.forecastStates).sort(),['OK','TX']);
+      assert.equal(actual.properties.state,id===ids[0]?null:'TX');
+    }
+    assert.equal(h.api.getAllCampsites().filter(f=>f.properties.state==='OK').length,0);
+    assert.deepEqual(Array.from(h.api.getLoadedStates()).sort(),['OK','TX']);
+  }
+});
+
 function cacheStorage() {
   const stores=new Map(),writes=[];
   return {stores,writes,async open(name){

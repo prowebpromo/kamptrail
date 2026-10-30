@@ -36,6 +36,29 @@ test('shared identity across states deduplicates and keeps legacy lookup aliases
   const result=quality.cleanAndDedupeGeoJSON({features:[a,b]});
   assert.equal(result.features.length,1);assert.ok(result.features[0].properties.legacy_ids.includes('NV-099'));
 });
+test('snapshot state never supplies a missing source state or overrides an explicit value',()=>{
+  for (const state of ['OK','TX']) {
+    const missing=quality.normalizeFeature(point({id:'unreported'}),{state});
+    assert.equal(missing.properties.state,null);
+    assert.notEqual(missing.properties.state,state);
+    assert.equal(quality.normalizeFeature(missing,{state}).properties.state,null);
+    assert.equal(quality.normalizeFeature(point({'addr:state':'TX'}),{state}).properties.state,'TX');
+    assert.equal(quality.normalizeFeature(point({state:'NM','addr:state':'TX'}),{state}).properties.state,'NM');
+  }
+});
+test('only an exact identity duplicate fills an unreported state from an explicit source value',()=>{
+  const missing=point({osm_id:71,osm_type:'node',tourism:'camp_site'});
+  const reported=point({osm_id:71,osm_type:'node',tourism:'camp_site','addr:state':'TX'});
+  for (const inputs of [[missing,reported],[reported,missing]]) {
+    const result=quality.cleanAndDedupeGeoJSON({features:inputs},{state:'OK'});
+    assert.equal(result.features.length,1);
+    assert.equal(result.features[0].properties.state,'TX');
+    assert.equal(result.features[0].properties.id,'osm:node:71');
+    assert.deepEqual(result.features[0].geometry.coordinates,missing.geometry.coordinates);
+  }
+  const nearby=point({osm_id:72,osm_type:'node',tourism:'camp_site','addr:state':'TX'});
+  assert.equal(quality.cleanAndDedupeGeoJSON({features:[missing,nearby]},{state:'OK'}).features[0].properties.state,null);
+});
 test('normalization is idempotent and keeps explicit facts merged into legacy RIDB',()=>{
   const result=quality.cleanAndDedupeGeoJSON({features:[point({facility_id:1,cost:0}),point({osm_id:7,tourism:'camp_site',fee:'no',toilets:'yes'})]});
   const twice=quality.cleanAndDedupeGeoJSON(result);

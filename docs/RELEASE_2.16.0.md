@@ -1,6 +1,6 @@
 # KampTrail 2.16.0: qualified campsite amenity details
 
-Release candidate prepared October 30, 2026. This release adds Recreation.gov campsite-record amenity details and advances every application version handshake to 2.16.0. The worker shell advances from `kt-v41` to `kt-v42`, while persistent saved data, routes and chosen offline map areas retain their existing cache identities. No rig-profile or route-terrain features are included.
+Release candidate prepared October 30, 2026. This release adds Recreation.gov campsite-record amenity details and advances every application version handshake to 2.16.0. Its 2.15.1 predecessor declares `kt-v42`, so this release advances the worker shell to `kt-v43`. Persistent saved data, routes and chosen offline map areas retain their existing cache identities. No rig-profile or route-terrain features are included.
 
 ## Added behavior
 
@@ -25,3 +25,11 @@ The services snapshot remains `3229270a46978b58db5cb7d8`. Seven-category service
 The existing popup/share/link regression remains byte-for-byte unchanged. Full local Node/Python/build checks follow the version bump. GitHub must pass the complete browser suite, real PHP/MySQL checks, package build and Lighthouse before merge. Publication must follow `main` → **Publish Hostinger release** → `hostinger` branch → Hostinger. After publication, verify the exact `release.json` source commit, health, a real qualified amenity popup, cache upgrade and unchanged service snapshot. No database migration is required by this package.
 
 Version-bump verification passed locally: Node 230 tests, 184 passed with 46 PHP-dependent skips; Python 192 tests with seven optional skips; `npm run build`; and `git diff --check`. No browser attempt was repeated after the prior missing-Chromium result. These local skips and the unavailable browser remain GitHub release gates.
+
+## Current-main integration and popup verification
+
+This candidate incorporates main `a0b502fc41f1f09bc8b6950b95b5115bfe313834`. Snapshot membership remains a loading hint rather than source state evidence. Missing state labels stay unknown, and only an exact-identity duplicate can supply an explicitly reported state. The inherited data-quality, runtime-loader and search-index regressions remain active.
+
+Campsite popups now have a keyboard-scrollable height bound derived from the map, including after native amenity-detail expansion. Marker and map-level popup paths use the same bounded width and autopan padding. Map controls hidden during the popup return after its normal Close action. The mobile amenity regression retains an unforced summary click and checks initial/expanded bounds, keyboard scrolling and Close behavior. The existing popup-redraw regression is unchanged.
+
+Local verification after integration: full Node 236 tests, 190 passed and 46 PHP-dependent skips; full Python 192 tests completed with 7 optional skips; release build, syntax and diff checks passed. GitHub browser/PHP/MySQL/Lighthouse checks on the current head remain release gates. No repeated missing-browser launch was attempted.

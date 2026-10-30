@@ -28,6 +28,18 @@ test('worker activation deletes only obsolete caches for this app scope',async()
   assert.equal(w.stores.has('unrelated-app'),true);assert.equal(w.stores.has('kamptrail:https://example.test/other/:old'),true);
   assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:old'),false);assert.equal(w.stores.has('kamptrail:https://example.test/kamptrail/:data-v1'),true);
 });
+test('the current release installs a fresh shell and retires its preceding generation while retaining visited data',async()=>{
+  const w=worker(),prefix='kamptrail:https://example.test/kamptrail/:';
+  const current=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '(kt-v(\d+))'/);assert.ok(current,'Worker declares a numbered shell generation');
+  const previous='kt-v'+(Number(current[2])-1);assert.ok(Number(current[2])>42,'This release advances beyond the shipped 2.15.1 shell');
+  await w.caches.open(prefix+previous);await w.caches.open(prefix+'data-v1');
+  let installed;w.handlers.install({waitUntil:p=>installed=p});await installed;
+  assert.equal(w.stores.has(prefix+current[1]),true);
+  let activated;w.handlers.activate({waitUntil:p=>activated=p});await activated;
+  assert.equal(w.stores.has(prefix+previous),false);
+  assert.equal(w.stores.has(prefix+current[1]),true);
+  assert.equal(w.stores.has(prefix+'data-v1'),true);
+});
 test('worker does not intercept external basemap tiles or neighboring apps',()=>{
   const w=worker();let intercepted=false;
   for(const url of ['https://tile.openstreetmap.org/4/3/6.png','https://example.test/other/app.js'])w.handlers.fetch({request:new Request(url),respondWith:()=>intercepted=true});

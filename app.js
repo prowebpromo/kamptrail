@@ -169,7 +169,7 @@
       const details = document.createElement('p');
       const rigLen = +((window.kamptrailFilters || {}).rigLength || 0);
       const cost = p.fee_status === 'free' ? 'Reported free' : p.fee_status === 'conditional' ? 'Free with conditions' : p.fee_status === 'paid' ? (Number.isFinite(p.cost) ? `Reported $${p.cost}` : 'Paid · amount unknown') : 'Fee unknown';
-      details.textContent = `${cost} · ${p.type === 'established' ? 'Campground' : (p.type || 'Type unknown')} · ${p.state || ''}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? ' · RV fit not documented' : ''}`;
+      details.textContent = `${cost} · ${p.type === 'established' ? 'Campground' : (p.type || 'Type unknown')} · ${p.state || 'State not reported'}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? ' · RV fit not documented' : ''}`;
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = 'View on map'; view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
       const trip = document.createElement('button'); trip.textContent = 'Save stop'; trip.onclick = () => KampTrailTrip.addStop(p.id);
