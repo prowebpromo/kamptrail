@@ -6,6 +6,23 @@
   let language = 'en';
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   const es = {
+  "Offline storage could not be checked. Reconnect and try again before travel.": "No se pudo comprobar el almacenamiento sin conexión. Vuelve a conectarte e inténtalo de nuevo antes de viajar.",
+  "None saved": "Ninguno guardado",
+  "Topo map tiles: {0} cached entries. Only the saved areas and zoom levels are available.": "Mapa Topo: {0} teselas almacenadas. Solo están disponibles las zonas y los niveles de zoom guardados.",
+  "Campsite listing files: {0}. Agency listing files: {1}.": "Archivos de lugares de acampada: {0}. Archivos de agencias: {1}.",
+  "National campsite name index: {0}. Search results do not mean the full listing is saved.": "Índice nacional de nombres: {0}. Los resultados de búsqueda no significan que el registro completo esté guardado.",
+  "Cached": "Almacenado",
+  "Not cached": "No almacenado",
+  "Saved stops: storage could not be read. Export a GPX backup while connected.": "Paradas guardadas: no se pudo leer el almacenamiento. Exporta una copia GPX mientras tengas conexión.",
+  "Saved stops: {0} records, {1} with location snapshots. Older stops may need saved listings. Export GPX for a separate backup.": "Paradas guardadas: {0} registros, {1} con ubicación guardada. Las paradas antiguas pueden necesitar registros guardados. Exporta un GPX como copia independiente.",
+  "Offline launch support is active. Test a full restart in airplane mode before travel.": "Está activo el inicio sin conexión. Prueba a cerrar y volver a abrir la aplicación en modo avión antes de viajar.",
+  "Reload once while connected to activate offline launch support, then test a full restart.": "Recarga una vez con conexión para activar el inicio sin conexión; después prueba a cerrar y volver a abrir la aplicación.",
+  "Listing cache dates are unknown. Saved data may be incomplete or out of date; live services still need a connection.": "Se desconocen las fechas de almacenamiento de los registros. Los datos guardados pueden estar incompletos o desactualizados; los servicios en tiempo real requieren conexión.",
+  "Map area {0} to {1}, zoom {2}–{3}: {4}/{5} tiles present; download logged {6}.": "Zona del mapa de {0} a {1}, zoom {2}–{3}: {4}/{5} teselas presentes; descarga registrada el {6}.",
+  "Offline readiness checklist": "Comprobación de datos sin conexión",
+  "Check saved data": "Comprobar datos guardados",
+  "Save the USGS Topo map for the area on screen. Check which map tiles, listings and stops are stored on this device before travel.": "Guarda el mapa Topo de USGS de la zona visible. Antes de viajar, comprueba qué teselas, registros y paradas están guardados en este dispositivo.",
+
   "Status: {status}.": "Estado: {status}.",
   "hidden": "oculto",
   "Visitor video": "Video de un visitante",
