@@ -4,7 +4,7 @@
  "run": {
   "started": "2026-10-29T22:11:02.445Z",
   "counts": {
-   "fresh": 2
+   "fresh": 3
   }
  },
  "sources": {
@@ -586,14 +586,30 @@
      "outcome": "fresh"
     }
    },
-   "label": "RV services (OpenStreetMap)",
+   "label": "Legacy dump, water and LPG (OpenStreetMap)",
    "oldest_success": "2026-10-29T03:45:42.189Z",
    "newest_success": "2026-10-29T03:45:42.189Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 1
    }
+  },
+  "services_extracts": {
+   "scopes": {
+    "UT": {
+     "last_attempt": "2026-10-30T00:06:00.187Z",
+     "last_success": "2026-10-30T00:06:00.187Z",
+     "outcome": "fresh"
+    }
+   },
+   "label": "Expanded service extracts (Geofabrik/OpenStreetMap)",
+   "oldest_success": "2026-10-30T00:06:00.187Z",
+   "newest_success": "2026-10-30T00:06:00.187Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 1
+   }
   }
  },
- "generated": "2026-10-29T22:11:02.505Z"
+ "generated": "2026-10-30T00:06:00.188Z"
 }
