@@ -7,6 +7,8 @@
     let hash=target.site!=null?'site='+encodeURIComponent(String(target.site)):Array.isArray(target.spot)?'spot='+target.spot[0].toFixed(5)+','+target.spot[1].toFixed(5):'';
     const f=target.elevation||window.kamptrailFilters||{},range=window.DataQuality?.elevationRange(f);
     if(hash&&range?.active&&range.valid){if(range.min!==null)hash+='&emin='+range.min;if(range.max!==null)hash+='&emax='+range.max;hash+='&eunit='+(f.elevationUnit==='m'?'m':'ft');}
+    const forecast=target.forecast||window.kamptrailFilters||{},bounds=window.KampTrailForecast?.range(forecast);
+    if(hash&&bounds?.active&&bounds.valid){if(bounds.min!==null)hash+='&fmin='+bounds.min;if(bounds.max!==null)hash+='&fmax='+bounds.max;hash+='&fhours='+bounds.hours+'&funit='+(forecast.forecastUnit==='C'?'C':'F');}
     return baseUrl()+(hash?'#'+hash:'');
   }
   async function share(target, title) {
@@ -32,6 +34,12 @@
       const e={elevationMin:number('emin'),elevationMax:number('emax'),elevationUnit:params.get('eunit')==='m'?'m':'ft'};
       if(!window.DataQuality?.elevationRange(e).valid)return null;target.elevation=e;
     }
+    if(params.has('fmin')||params.has('fmax')){
+      if(['fmin','fmax','fhours','funit'].some(k=>params.getAll(k).length>1))return null;
+      const number=k=>!params.has(k)?null:/^-?\d+(?:\.\d+)?$/.test(params.get(k))?Number(params.get(k)):NaN;
+      const forecast={forecastMinC:number('fmin'),forecastMaxC:number('fmax'),forecastHours:params.has('fhours')?number('fhours'):24,forecastUnit:params.get('funit')==='C'?'C':'F'};
+      if(!window.KampTrailForecast?.range(forecast).valid)return null;target.forecast=forecast;
+    }
     return target;
   }
   function issueUrl(kind, site) {
@@ -50,5 +58,5 @@
     }
     return `${REPO}/issues/new?${p}`;
   }
-  window.KampTrailShare = {version: '2.12.0', linkFor, share, parse, issueUrl, REPO};
+  window.KampTrailShare = {version: '2.13.0', linkFor, share, parse, issueUrl, REPO};
 })();

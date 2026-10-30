@@ -1,0 +1,12 @@
+# Human-readable direct dependencies. Production uses the complete SHA-256 lock.
+name: kamptrail-forecast
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12.16
+  - grib2io=2.8.2
+  - nceplibs-g2c=2.3.0
+  - wgrib2=3.8.0
+  - numpy=2.5.4
+  - pyproj=3.8.0
+  - scipy=1.18.1

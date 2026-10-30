@@ -42,7 +42,7 @@
     }).catch(() => {showToast('Offline saving is unavailable. You can still use the map online.');});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.12.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment].some(module=>module?.version!=='2.12.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.13.0' || [window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast].some(module=>module?.version!=='2.13.0')) {
     showToast('Updating KampTrail. This page will reload automatically when the update is ready.','info',0);
     document.getElementById('result-summary').textContent='Updating the saved app…';
     return;
@@ -173,8 +173,9 @@
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = 'View on map'; view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
       const trip = document.createElement('button'); trip.textContent = 'Save stop'; trip.onclick = () => KampTrailTrip.addStop(p.id);
-      actions.append(view, trip); card.append(heading,details);if(DataQuality.elevationInfo(site)||DataQuality.elevationRange(active).active){const elevation=document.createElement('p');elevation.className='kt-fine';elevation.textContent=DataQuality.elevationText(site,active.elevationUnit||'ft');card.append(elevation);}const evidence=window.KampTrailDiscovery?.summary(p);if(evidence){const note=document.createElement('p');note.className='kt-fine';note.textContent=`${(evidence.rating_sum/evidence.rating_count).toFixed(1)}/5 · ${evidence.rating_count} published ${evidence.rating_count===1?'review':'reviews'} · latest visit ${evidence.latest_visit}`;card.append(note);const match=window.KampTrailDiscovery.matchNote(p,active);if(match){const n=document.createElement('p');n.className='kt-fine';n.textContent=match;card.append(n);}}card.append(actions); fragment.append(card);
+      actions.append(view, trip); card.append(heading,details);if(DataQuality.elevationInfo(site)||DataQuality.elevationRange(active).active){const elevation=document.createElement('p');elevation.className='kt-fine';elevation.textContent=DataQuality.elevationText(site,active.elevationUnit||'ft');card.append(elevation);}if(window.KampTrailForecast?.active(active)){const weather=document.createElement('p');weather.className='kt-fine kt-forecast-evidence';weather.textContent=window.KampTrailForecast.describe(site,active);card.append(weather);}const evidence=window.KampTrailDiscovery?.summary(p);if(evidence){const note=document.createElement('p');note.className='kt-fine';note.textContent=`${(evidence.rating_sum/evidence.rating_count).toFixed(1)}/5 · ${evidence.rating_count} published ${evidence.rating_count===1?'review':'reviews'} · latest visit ${evidence.latest_visit}`;card.append(note);const match=window.KampTrailDiscovery.matchNote(p,active);if(match){const n=document.createElement('p');n.className='kt-fine';n.textContent=match;card.append(n);}}card.append(actions); fragment.append(card);
     });
+    if(window.KampTrailForecast?.active(active)){const info=KampTrailData.getForecastStatus(),note=document.createElement('p');note.className='kt-fine';note.textContent=`${info.unknown.toLocaleString()} listings matching other filters here have unknown or incomplete current forecasts and are excluded. ${window.KampTrailForecast.statusText()}`;fragment.append(note);const retry=document.createElement('button');retry.className='btn';retry.textContent='Retry forecast samples';retry.disabled=info.loading;retry.onclick=()=>KampTrailData.refreshForecast();fragment.append(retry);}
     if(DataQuality.elevationRange(active).active){const info=KampTrailData.getElevationStatus();const note=document.createElement('p');note.className='kt-fine';note.textContent=`${info.unknown.toLocaleString()} listings matching other filters here have unknown elevation and are excluded.${info.saved?' Saved static elevation evidence is in use.':''}`;fragment.append(note);}
     if (+active.rigLength > 0 && !active.rigIncludeUnknown) {
       const withUnknown = DataQuality.applyFilters(KampTrailData.getAllCampsites(), {...active, rigIncludeUnknown:true});
@@ -303,11 +304,12 @@
     const target = KampTrailShare.parse();
     if (!target) return;
     if(target.elevation)KampTrailFilters.setElevationFilters(target.elevation);
+    if(target.forecast)KampTrailFilters.setForecastFilters(target.forecast);
     if (target.spot) { map.setView(target.spot, 13); KampTrailLayers.openSpot(L.latLng(target.spot[0], target.spot[1])); return; }
     await ensureSiteIndex();
     const entry = campsiteIndex.find(s => s.id === target.site);
     if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
-    if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation})) showToast(KampTrailData.getCampsiteById(target.site)?'That campsite does not match your filters or has unknown elevation. Change filters to view it.':'That shared campsite could not be found. It may have been removed from the catalogue.', 'error');
+    if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?'That campsite does not match your filters or has unknown or expired evidence. Change filters to view it.':'That shared campsite could not be found. It may have been removed from the catalogue.', 'error');
   }
   addEventListener('hashchange', () => openSharedLink().catch(() => {}));
   KampTrailData.init(map, {maxMarkers:5000,onTripAdd:id=>KampTrailTrip.addStop(id)}).then(() => { renderResults(); return openSharedLink(); }).catch(err => {

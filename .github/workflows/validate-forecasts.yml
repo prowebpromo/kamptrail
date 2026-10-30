@@ -1,0 +1,70 @@
+name: Validate forecast grids
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/*forecasts.py'
+      - 'scripts/tests/test_*forecast*.py'
+      - 'environment/forecast*'
+      - '.github/workflows/publish-forecasts.yml'
+      - '.github/workflows/validate-forecasts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: forecast-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Build the exact coordinate catalogue
+        run: node scripts/build-search-index.js
+      - name: Install reviewed native decoder environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/micromamba"
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --max-time 90 --retry 2 https://micro.mamba.pm/api/micromamba/linux-64/2.3.3 -o "$RUNNER_TEMP/micromamba.tar.bz2"
+          echo "e7274528ceb9c20d048a428d6c22d7e02e268f8ffb762c4c365422347c8b8ba2  $RUNNER_TEMP/micromamba.tar.bz2" | sha256sum --check --status
+          tar -xjf "$RUNNER_TEMP/micromamba.tar.bz2" -C "$RUNNER_TEMP/micromamba" bin/micromamba
+          export MAMBA_ROOT_PREFIX="$RUNNER_TEMP/forecast-mamba"
+          "$RUNNER_TEMP/micromamba/bin/micromamba" create --yes --prefix "$RUNNER_TEMP/forecast-env" --file environment/forecast-linux-64.lock
+      - name: Verify native decoder and publication safeguards
+        shell: bash
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/micromamba/bin/micromamba" run --prefix "$RUNNER_TEMP/forecast-env" python -m unittest discover -s scripts/tests -p 'test_fetch_forecasts.py'
+          python3 -m unittest discover -s scripts/tests -p 'test_publish_forecasts.py'
+      - name: Decode and validate NOAA temperature snapshots
+        shell: bash
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/micromamba/bin/micromamba" run --prefix "$RUNNER_TEMP/forecast-env" python scripts/fetch_forecasts.py --catalogue data/campsites/search-index.json --cache "$RUNNER_TEMP/ndfd-cache" --output "$RUNNER_TEMP/forecast-output"
+          python3 scripts/publish_forecasts.py --input "$RUNNER_TEMP/forecast-output"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: forecast-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/forecast-output
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7

@@ -1,0 +1,982 @@
+{
+  "snapshot_id": "9f60ec5aebbb8fe7ee506916",
+  "catalogue_sha256": "9a77eed89c95fee0452953c542fce2f8c1cc0e190fb765dd035d1f62cf7edaa3",
+  "generated_at": "2026-10-29T23:24:07Z",
+  "expires_at": "2026-10-30T01:53:34Z",
+  "source_files": [
+    {
+      "region": "conus",
+      "url": "https://noaa-ndfd-pds.s3.amazonaws.com/opnl/AR.conus/VP.001-003/ds.temp.bin",
+      "etag": "\"cef2ccb8f7ceec7a0ceee763b1159792\"",
+      "last_modified": "2026-10-29T22:53:34Z",
+      "bytes": 49188248,
+      "sha256": "bc1720f02f11f54da0f79f577e74c74811525046cd96be23e302abab8fd05325"
+    },
+    {
+      "region": "alaska",
+      "url": "https://noaa-ndfd-pds.s3.amazonaws.com/opnl/AR.alaska/VP.001-003/ds.temp.bin",
+      "etag": "\"f769d15885c11cedc9b5296a2de76fa3\"",
+      "last_modified": "2026-10-29T22:53:34Z",
+      "bytes": 4936034,
+      "sha256": "1fd9cb35ebbe47fa2bc4a3c23f0cb6536c76343932cd29f1e11b51917f7eea55"
+    },
+    {
+      "region": "hawaii",
+      "url": "https://noaa-ndfd-pds.s3.amazonaws.com/opnl/AR.hawaii/VP.001-003/ds.temp.bin",
+      "etag": "\"fbd8964fa88ae3ffe5e42d984a3ea0dc\"",
+      "last_modified": "2026-10-29T22:53:34Z",
+      "bytes": 249901,
+      "sha256": "57d827d96affe805130b4e94d7ebc3ac3b370df4a95f5ffd19496f1f4befb28d"
+    }
+  ],
+  "coverage": {
+    "total": 33287,
+    "grid_known": 33287,
+    "unknown": 0
+  },
+  "complete_samples": {
+    "24": 32325,
+    "48": 32325
+  },
+  "by_region": {
+    "conus": {
+      "grid_known": 32625,
+      "all_samples_finite": 31815,
+      "complete_24h": 31815,
+      "complete_48h": 31815,
+      "all_null": 810
+    },
+    "alaska": {
+      "grid_known": 613,
+      "all_samples_finite": 461,
+      "complete_24h": 461,
+      "complete_48h": 461,
+      "all_null": 152
+    },
+    "hawaii": {
+      "grid_known": 49,
+      "all_samples_finite": 49,
+      "complete_24h": 49,
+      "complete_48h": 49
+    }
+  },
+  "incomplete_48h_state_memberships": {
+    "AK": 152,
+    "AZ": 4,
+    "CA": 2,
+    "ME": 125,
+    "MI": 64,
+    "MN": 68,
+    "NH": 28,
+    "NM": 3,
+    "NY": 401,
+    "OH": 4,
+    "TX": 23,
+    "WA": 98
+  },
+  "state_count": 50,
+  "state_gzip_bytes": 2685044,
+  "largest_state_gzip_bytes": 273568,
+  "largest_state_json_bytes": 1933795,
+  "manifest_bytes": 17378,
+  "decoder_crosschecks": {
+    "conus": {
+      "dimensions": [
+        2145,
+        1377
+      ],
+      "scan_flags": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reference_times": [
+        "2026-10-29T23:00:00Z"
+      ],
+      "sample_count": 49,
+      "first_time": "2026-10-30T00:00:00Z",
+      "last_time": "2026-11-02T00:00:00Z",
+      "grid_checks": [
+        {
+          "message": 1,
+          "row": 0,
+          "column": 0,
+          "latitude": 20.191999,
+          "longitude": -121.554001,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 0,
+          "column": 2144,
+          "latitude": 20.331773,
+          "longitude": -69.2081595,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1,
+          "column": 0,
+          "latitude": 20.2143241,
+          "longitude": -121.5587213,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1,
+          "column": 2144,
+          "latitude": 20.3541271,
+          "longitude": -69.203568,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 688,
+          "column": 1072,
+          "latitude": 38.218297,
+          "longitude": -95.4524033,
+          "kelvin": 296.5,
+          "wgrib2_kelvin": 296.5
+        },
+        {
+          "message": 1,
+          "row": 769,
+          "column": 1053,
+          "latitude": 40.0077082,
+          "longitude": -96.0065172,
+          "kelvin": 292.0,
+          "wgrib2_kelvin": 292.0
+        },
+        {
+          "message": 1,
+          "row": 770,
+          "column": 186,
+          "latitude": 38.1405316,
+          "longitude": -120.6333386,
+          "kelvin": 291.5,
+          "wgrib2_kelvin": 291.5
+        },
+        {
+          "message": 1,
+          "row": 1376,
+          "column": 0,
+          "latitude": 49.9397206,
+          "longitude": -130.1034381,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1376,
+          "column": 2144,
+          "latitude": 50.1055467,
+          "longitude": -60.8855577,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 0,
+          "column": 0,
+          "latitude": 20.191999,
+          "longitude": -121.554001,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 0,
+          "column": 2144,
+          "latitude": 20.331773,
+          "longitude": -69.2081595,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1,
+          "column": 0,
+          "latitude": 20.2143241,
+          "longitude": -121.5587213,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1,
+          "column": 2144,
+          "latitude": 20.3541271,
+          "longitude": -69.203568,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 688,
+          "column": 1072,
+          "latitude": 38.218297,
+          "longitude": -95.4524033,
+          "kelvin": 290.89999,
+          "wgrib2_kelvin": 290.9
+        },
+        {
+          "message": 25,
+          "row": 769,
+          "column": 1053,
+          "latitude": 40.0077082,
+          "longitude": -96.0065172,
+          "kelvin": 289.80002,
+          "wgrib2_kelvin": 289.8
+        },
+        {
+          "message": 25,
+          "row": 770,
+          "column": 186,
+          "latitude": 38.1405316,
+          "longitude": -120.6333386,
+          "kelvin": 292.60001,
+          "wgrib2_kelvin": 292.6
+        },
+        {
+          "message": 25,
+          "row": 1376,
+          "column": 0,
+          "latitude": 49.9397206,
+          "longitude": -130.1034381,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1376,
+          "column": 2144,
+          "latitude": 50.1055467,
+          "longitude": -60.8855577,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 49,
+          "row": 0,
+          "column": 0,
+          "latitude": 20.191999,
+          "longitude": -121.554001,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 49,
+          "row": 0,
+          "column": 2144,
+          "latitude": 20.331773,
+          "longitude": -69.2081595,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 49,
+          "row": 1,
+          "column": 0,
+          "latitude": 20.2143241,
+          "longitude": -121.5587213,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 49,
+          "row": 1,
+          "column": 2144,
+          "latitude": 20.3541271,
+          "longitude": -69.203568,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 49,
+          "row": 688,
+          "column": 1072,
+          "latitude": 38.218297,
+          "longitude": -95.4524033,
+          "kelvin": 292.60001,
+          "wgrib2_kelvin": 292.6
+        },
+        {
+          "message": 49,
+          "row": 769,
+          "column": 1053,
+          "latitude": 40.0077082,
+          "longitude": -96.0065172,
+          "kelvin": 292.60001,
+          "wgrib2_kelvin": 292.6
+        },
+        {
+          "message": 49,
+          "row": 770,
+          "column": 186,
+          "latitude": 38.1405316,
+          "longitude": -120.6333386,
+          "kelvin": 289.80002,
+          "wgrib2_kelvin": 289.8
+        },
+        {
+          "message": 49,
+          "row": 1376,
+          "column": 0,
+          "latitude": 49.9397206,
+          "longitude": -130.1034381,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 49,
+          "row": 1376,
+          "column": 2144,
+          "latitude": 50.1055467,
+          "longitude": -60.8855577,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        }
+      ],
+      "nearest_site_checks": [
+        {
+          "id": "blm-area:10000410",
+          "coordinate_key": "43.8503900,-120.7329400",
+          "grid_lat": 43.8576381,
+          "grid_lng": -120.7266266,
+          "grid_distance_m": 951.8,
+          "temperature_c": 9.45
+        },
+        {
+          "id": "osm:way:1092976781",
+          "coordinate_key": "36.8324035,-79.1809872",
+          "grid_lat": 36.835936,
+          "grid_lng": -79.167806,
+          "grid_distance_m": 1237.2,
+          "temperature_c": 15.55
+        },
+        {
+          "id": "usfs:9913",
+          "coordinate_key": "38.2031550,-80.2658000",
+          "grid_lat": 38.2128142,
+          "grid_lng": -80.2715682,
+          "grid_distance_m": 1186.5,
+          "temperature_c": 10.55
+        }
+      ]
+    },
+    "alaska": {
+      "dimensions": [
+        1649,
+        1105
+      ],
+      "scan_flags": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reference_times": [
+        "2026-10-29T23:00:00Z"
+      ],
+      "sample_count": 25,
+      "first_time": "2026-10-30T00:00:00Z",
+      "last_time": "2026-11-02T00:00:00Z",
+      "grid_checks": [
+        {
+          "message": 1,
+          "row": 0,
+          "column": 0,
+          "latitude": 40.530101,
+          "longitude": -178.571,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 0,
+          "column": 1648,
+          "latitude": 41.7395858,
+          "longitude": -124.5804955,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1,
+          "column": 0,
+          "latitude": 40.5508862,
+          "longitude": -178.5858988,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1,
+          "column": 1648,
+          "latitude": 41.7611682,
+          "longitude": -124.5667428,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 552,
+          "column": 824,
+          "latitude": 60.1278123,
+          "longitude": -153.0129003,
+          "kelvin": 272.60001,
+          "wgrib2_kelvin": 272.6
+        },
+        {
+          "message": 1,
+          "row": 598,
+          "column": 794,
+          "latitude": 61.3053729,
+          "longitude": -154.8289954,
+          "kelvin": 278.10001,
+          "wgrib2_kelvin": 278.1
+        },
+        {
+          "message": 1,
+          "row": 599,
+          "column": 520,
+          "latitude": 59.7701289,
+          "longitude": -169.4934407,
+          "kelvin": 278.10001,
+          "wgrib2_kelvin": 278.1
+        },
+        {
+          "message": 1,
+          "row": 1104,
+          "column": 0,
+          "latitude": 61.3998639,
+          "longitude": 150.1907082,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1104,
+          "column": 1648,
+          "latitude": 63.9757861,
+          "longitude": -93.6891701,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 0,
+          "column": 0,
+          "latitude": 40.530101,
+          "longitude": -178.571,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 0,
+          "column": 1648,
+          "latitude": 41.7395858,
+          "longitude": -124.5804955,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 1,
+          "column": 0,
+          "latitude": 40.5508862,
+          "longitude": -178.5858988,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 1,
+          "column": 1648,
+          "latitude": 41.7611682,
+          "longitude": -124.5667428,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 552,
+          "column": 824,
+          "latitude": 60.1278123,
+          "longitude": -153.0129003,
+          "kelvin": 272.0,
+          "wgrib2_kelvin": 272.0
+        },
+        {
+          "message": 13,
+          "row": 598,
+          "column": 794,
+          "latitude": 61.3053729,
+          "longitude": -154.8289954,
+          "kelvin": 272.60001,
+          "wgrib2_kelvin": 272.6
+        },
+        {
+          "message": 13,
+          "row": 599,
+          "column": 520,
+          "latitude": 59.7701289,
+          "longitude": -169.4934407,
+          "kelvin": 274.80002,
+          "wgrib2_kelvin": 274.8
+        },
+        {
+          "message": 13,
+          "row": 1104,
+          "column": 0,
+          "latitude": 61.3998639,
+          "longitude": 150.1907082,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 1104,
+          "column": 1648,
+          "latitude": 63.9757861,
+          "longitude": -93.6891701,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 0,
+          "column": 0,
+          "latitude": 40.530101,
+          "longitude": -178.571,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 0,
+          "column": 1648,
+          "latitude": 41.7395858,
+          "longitude": -124.5804955,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1,
+          "column": 0,
+          "latitude": 40.5508862,
+          "longitude": -178.5858988,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1,
+          "column": 1648,
+          "latitude": 41.7611682,
+          "longitude": -124.5667428,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 552,
+          "column": 824,
+          "latitude": 60.1278123,
+          "longitude": -153.0129003,
+          "kelvin": 271.5,
+          "wgrib2_kelvin": 271.5
+        },
+        {
+          "message": 25,
+          "row": 598,
+          "column": 794,
+          "latitude": 61.3053729,
+          "longitude": -154.8289954,
+          "kelvin": 272.0,
+          "wgrib2_kelvin": 272.0
+        },
+        {
+          "message": 25,
+          "row": 599,
+          "column": 520,
+          "latitude": 59.7701289,
+          "longitude": -169.4934407,
+          "kelvin": 275.89999,
+          "wgrib2_kelvin": 275.9
+        },
+        {
+          "message": 25,
+          "row": 1104,
+          "column": 0,
+          "latitude": 61.3998639,
+          "longitude": 150.1907082,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1104,
+          "column": 1648,
+          "latitude": 63.9757861,
+          "longitude": -93.6891701,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        }
+      ],
+      "nearest_site_checks": [
+        {
+          "id": "blm-area:10",
+          "coordinate_key": "65.1774100,-148.0768000",
+          "grid_lat": 65.1637732,
+          "grid_lng": -148.0453057,
+          "grid_distance_m": 2112.4,
+          "temperature_c": 0.55
+        },
+        {
+          "id": "osm:way:1094344300",
+          "coordinate_key": "60.0655094,-134.5621091",
+          "grid_lat": 60.0742552,
+          "grid_lng": -134.5705022,
+          "grid_distance_m": 1078.3,
+          "temperature_c": null
+        },
+        {
+          "id": "usfs:82849",
+          "coordinate_key": "59.5859080,-139.4964690",
+          "grid_lat": 59.5734021,
+          "grid_lng": -139.496882,
+          "grid_distance_m": 1390.8,
+          "temperature_c": 3.85
+        }
+      ]
+    },
+    "hawaii": {
+      "dimensions": [
+        321,
+        225
+      ],
+      "scan_flags": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reference_times": [
+        "2026-10-29T23:00:00Z"
+      ],
+      "sample_count": 25,
+      "first_time": "2026-10-30T00:00:00Z",
+      "last_time": "2026-11-02T00:00:00Z",
+      "grid_checks": [
+        {
+          "message": 1,
+          "row": 0,
+          "column": 0,
+          "latitude": 18.072654,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 0,
+          "column": 320,
+          "latitude": 18.072654,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1,
+          "column": 0,
+          "latitude": 18.0953974,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 1,
+          "column": 320,
+          "latitude": 18.0953974,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 112,
+          "column": 160,
+          "latitude": 20.6008599,
+          "longitude": -157.6969469,
+          "kelvin": 299.30002,
+          "wgrib2_kelvin": 299.3
+        },
+        {
+          "message": 1,
+          "row": 128,
+          "column": 211,
+          "latitude": 20.9587613,
+          "longitude": -156.4767617,
+          "kelvin": 299.30002,
+          "wgrib2_kelvin": 299.3
+        },
+        {
+          "message": 1,
+          "row": 129,
+          "column": 148,
+          "latitude": 20.9811019,
+          "longitude": -157.9840493,
+          "kelvin": 301.5,
+          "wgrib2_kelvin": 301.5
+        },
+        {
+          "message": 1,
+          "row": 224,
+          "column": 0,
+          "latitude": 23.0878224,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 1,
+          "row": 224,
+          "column": 320,
+          "latitude": 23.0878224,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 0,
+          "column": 0,
+          "latitude": 18.072654,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 0,
+          "column": 320,
+          "latitude": 18.072654,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 1,
+          "column": 0,
+          "latitude": 18.0953974,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 1,
+          "column": 320,
+          "latitude": 18.0953974,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 112,
+          "column": 160,
+          "latitude": 20.6008599,
+          "longitude": -157.6969469,
+          "kelvin": 299.30002,
+          "wgrib2_kelvin": 299.3
+        },
+        {
+          "message": 13,
+          "row": 128,
+          "column": 211,
+          "latitude": 20.9587613,
+          "longitude": -156.4767617,
+          "kelvin": 298.10001,
+          "wgrib2_kelvin": 298.1
+        },
+        {
+          "message": 13,
+          "row": 129,
+          "column": 148,
+          "latitude": 20.9811019,
+          "longitude": -157.9840493,
+          "kelvin": 298.70001,
+          "wgrib2_kelvin": 298.7
+        },
+        {
+          "message": 13,
+          "row": 224,
+          "column": 0,
+          "latitude": 23.0878224,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 13,
+          "row": 224,
+          "column": 320,
+          "latitude": 23.0878224,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 0,
+          "column": 0,
+          "latitude": 18.072654,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 0,
+          "column": 320,
+          "latitude": 18.072654,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1,
+          "column": 0,
+          "latitude": 18.0953974,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 1,
+          "column": 320,
+          "latitude": 18.0953974,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 112,
+          "column": 160,
+          "latitude": 20.6008599,
+          "longitude": -157.6969469,
+          "kelvin": 299.30002,
+          "wgrib2_kelvin": 299.3
+        },
+        {
+          "message": 25,
+          "row": 128,
+          "column": 211,
+          "latitude": 20.9587613,
+          "longitude": -156.4767617,
+          "kelvin": 299.30002,
+          "wgrib2_kelvin": 299.3
+        },
+        {
+          "message": 25,
+          "row": 129,
+          "column": 148,
+          "latitude": 20.9811019,
+          "longitude": -157.9840493,
+          "kelvin": 301.5,
+          "wgrib2_kelvin": 301.5
+        },
+        {
+          "message": 25,
+          "row": 224,
+          "column": 0,
+          "latitude": 23.0878224,
+          "longitude": -161.524979,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        },
+        {
+          "message": 25,
+          "row": 224,
+          "column": 320,
+          "latitude": 23.0878224,
+          "longitude": -153.8689148,
+          "kelvin": null,
+          "wgrib2_kelvin": null
+        }
+      ],
+      "nearest_site_checks": [
+        {
+          "id": "osm:node:10566510082",
+          "coordinate_key": "19.2609258,-155.3007200",
+          "grid_lat": 19.251327,
+          "grid_lng": -155.3044269,
+          "grid_distance_m": 1136.1,
+          "temperature_c": 29.95
+        },
+        {
+          "id": "osm:node:5648959222",
+          "coordinate_key": "21.3012550,-158.0580094",
+          "grid_lat": 21.2935182,
+          "grid_lng": -158.0558249,
+          "grid_distance_m": 889.6,
+          "temperature_c": 27.25
+        },
+        {
+          "id": "osm:way:807317307",
+          "coordinate_key": "19.5844243,-155.3541252",
+          "grid_lat": 19.5897855,
+          "grid_lng": -155.3522773,
+          "grid_distance_m": 626.8,
+          "temperature_c": 18.35
+        }
+      ]
+    }
+  },
+  "producer_benchmark": {
+    "catalogue_sha256": "9a77eed89c95fee0452953c542fce2f8c1cc0e190fb765dd035d1f62cf7edaa3",
+    "complete_samples": {
+      "24": 32325,
+      "48": 32325
+    },
+    "elapsed_seconds": 30.877,
+    "grid_known": 33287,
+    "largest_state_gzip_bytes": 273568,
+    "largest_state_json_bytes": 1933795,
+    "peak_rss_kib": 479920,
+    "snapshot_id": "9f60ec5aebbb8fe7ee506916",
+    "source_download_bytes": 0,
+    "state_gzip_bytes": 2685044,
+    "total": 33287,
+    "unknown": 0
+  },
+  "environment_lock_sha256": "bf1784dc4941da0a4e80076fc6dec1ba5f7ce43cab0f1fc99ed1e58589f3ca38",
+  "source_total_bytes": 54374183
+}

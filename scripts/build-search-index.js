@@ -71,6 +71,17 @@ function readElevationSnapshots(directory){
   });
 }
 
+// Hash only stable coordinate identity; fee and terrain enrichment cannot rotate weather.
+function coordinateIndex(sites) {
+  const seen=new Set();
+  const rows=sites.map(row=>{
+    const key=DataQuality.coordinateKey([row.lng,row.lat]);
+    if(typeof row.id!=='string'||!row.id||seen.has(row.id)||!key||!Array.isArray(row.states)||!row.states.length)throw new Error('Invalid coordinate catalogue row');
+    seen.add(row.id);return[row.id,key,[...new Set(row.states)].sort()];
+  }).sort((a,b)=>Buffer.compare(Buffer.from(a[0],'utf8'),Buffer.from(b[0],'utf8')));
+  return{version:1,sha256:crypto.createHash('sha256').update(JSON.stringify(rows),'utf8').digest('hex'),count:rows.length};
+}
+
 function buildFromDirectory(directory) {
   const files = fs.readdirSync(directory).filter(name => /^[A-Z]{2}_merged\.geojson$/.test(name)).sort();
   if (files.length !== 50) {
@@ -100,6 +111,9 @@ if (require.main === module) {
     const temporary = output + '.tmp';
     fs.writeFileSync(temporary, JSON.stringify(result) + '\n');
     fs.renameSync(temporary, output);
+    const identity=path.join(directory,'coordinate-index.json');
+    fs.writeFileSync(identity+'.tmp',JSON.stringify(coordinateIndex(result.sites))+'\n');
+    fs.renameSync(identity+'.tmp',identity);
     console.log(`Indexed ${result.sites.length.toLocaleString('en-US')} publishable campsites from 50 state snapshots and agency records (${fs.statSync(output).size.toLocaleString('en-US')} bytes).`);
   } catch (error) {
     console.error(`Campsite search index build failed: ${error.message}`);
@@ -107,4 +121,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = {buildSearchIndex, buildFromDirectory, readElevationSnapshots};
+module.exports = {buildSearchIndex, buildFromDirectory, readElevationSnapshots, coordinateIndex};

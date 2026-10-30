@@ -1,4 +1,4 @@
-# KampTrail 2.12.0
+# KampTrail 2.13.0
 
 KampTrail is a free campsite map and trip planner at https://kamptrail.com/. No account is required for the core camping tools or moderated contributions.
 

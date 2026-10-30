@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v38';
+const VERSION = 'kt-v39';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -14,7 +14,7 @@ const SHELL = [
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'data-loader.js','data-quality.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','environment.js'
+  'data-loader.js','data-quality.js','forecast.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','community-discovery.js','environment.js'
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
@@ -33,6 +33,8 @@ self.addEventListener('fetch',event=>{
   // The page validates hashes/schema and manages stable last-good terrain snapshots.
   // Never let generic shell caching pin a manifest or cache an unvalidated sidecar.
   if(url.href.startsWith(new URL('data/campsites/elevation/',self.registration.scope).href))return;
+  // Catalogue identity must accompany fresh weather, never a stale shell response.
+  if(url.href===new URL('data/campsites/coordinate-index.json',self.registration.scope).href)return;
   // Saved offline map areas: USGS Topo tiles the visitor chose to save. Cache first, network otherwise. Nothing is added here automatically.
   if(request.method==='GET' && request.url.startsWith(TOPO_TILES)) {event.respondWith(savedTile(request));return;}
   if(request.method!=='GET' || url.origin!==self.location.origin || !url.href.startsWith(self.registration.scope))return;
