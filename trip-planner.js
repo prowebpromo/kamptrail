@@ -87,7 +87,7 @@
       const note=document.createElement('p');note.textContent=stop.note ? stop.note : (site.properties.type==='service'?'Saved service location. Confirm current access and opening with the operator.':'Saved location. Confirm current campsite access with the operator.');
       const evidence=document.createElement('p');if(site.properties.type==='service')evidence.textContent=typeof site.properties.service_evidence==='string'?site.properties.service_evidence.slice(0,4000):'Dated service evidence unavailable. Opening, RV access and overnight permission are unverified.';
       const link=document.createElement('a');link.href=directions(site);link.target='_blank';link.rel='noopener noreferrer';link.textContent='Directions in Google Maps';
-      popup.append(title,note);if(site.properties.type==='service')popup.append(evidence);popup.append(link);
+      popup.append(title,note);if(site.properties.type==='service')popup.append(evidence);popup.append(link,button('Overnight permission',()=>window.KampTrailPermissions?.open({kind:site.properties.type==='service'?'service':['spot','imported'].includes(site.properties.type)||String(site.properties.id||stop.id).startsWith('gpx:')?'spot':'campsite',id:String(site.properties.id||stop.id),name:nameOf(site),coordinates:[lng,lat]})));
       st.savedMarker=L.marker([lat,lng],{title:nameOf(site)}).addTo(st.map).bindPopup(popup).openPopup();
     }
   }
@@ -339,7 +339,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.14.0',
+    version:'2.15.0',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;

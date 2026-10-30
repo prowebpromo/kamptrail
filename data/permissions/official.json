@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "activity": "overnight_occupancy",
+      "effective_from": null,
+      "effective_until": null,
+      "retrieved_at": "2026-10-30T00:40:52Z",
+      "reviewed_at": "2026-10-30T00:40:52Z",
+      "review_after": "2026-11-29T00:40:52Z",
+      "supersedes": [],
+      "id": "blm-sand-island-generic-camping",
+      "place": {
+        "kind": "campsite",
+        "id": "osm:node:436690832",
+        "name": "Sand Island Campground",
+        "coordinates": [
+          -109.6180927,
+          37.2606718
+        ]
+      },
+      "statement": "conditional",
+      "issuer": "Bureau of Land Management, Monticello Field Office",
+      "source_url": "https://www.blm.gov/visit/sand-island",
+      "quote": "The 27-site campground is open year round.",
+      "conditions": [
+        "General campground description is superseded by the flooding closure; it is not current permission."
+      ],
+      "sha256": "8632bddcb94818375450308e3cfa239993acd624ac380e5f7a8c4a8fd47feae8"
+    },
+    {
+      "activity": "overnight_occupancy",
+      "effective_from": "2026-10-26",
+      "effective_until": null,
+      "retrieved_at": "2026-10-30T00:40:52Z",
+      "reviewed_at": "2026-10-30T00:40:52Z",
+      "review_after": "2026-10-31T00:40:52Z",
+      "supersedes": [
+        "blm-sand-island-generic-camping"
+      ],
+      "id": "blm-sand-island-flood-closure-2026-10-26",
+      "place": {
+        "kind": "campsite",
+        "id": "osm:node:436690832",
+        "name": "Sand Island Campground",
+        "coordinates": [
+          -109.6180927,
+          37.2606718
+        ]
+      },
+      "statement": "prohibited",
+      "issuer": "Bureau of Land Management, Monticello Field Office",
+      "source_url": "https://www.blm.gov/visit/sand-island",
+      "quote": "This closure is in response to public safety concerns resulting from the flooding",
+      "conditions": [
+        "Sand Island Campground is temporarily closed due to flooding, effective October 26, 2026.",
+        "The source provides no reopening date. Check the current BLM notice before visiting."
+      ],
+      "sha256": "7fc1bceb8cbdd705b8fc519dcb09e4b11bd1594371ac2806c1f0d228ff494d34"
+    },
+    {
+      "activity": "overnight_occupancy",
+      "effective_from": null,
+      "effective_until": null,
+      "retrieved_at": "2026-10-30T00:40:52Z",
+      "reviewed_at": "2026-10-30T00:40:52Z",
+      "review_after": "2026-11-29T00:40:52Z",
+      "supersedes": [],
+      "id": "blm-sand-mountain-pipeline-numbered-sites",
+      "place": {
+        "kind": "campsite",
+        "id": "blm-area:10301148",
+        "name": "Sand Mountain Pipeline Designated Dispersed Camping Area",
+        "coordinates": [
+          -113.439236,
+          37.098591
+        ]
+      },
+      "statement": "conditional",
+      "issuer": "Bureau of Land Management, St. George Field Office",
+      "source_url": "https://www.blm.gov/visit/sand-mountain-pipeline-designated-dispersed-camping-area",
+      "quote": "Camping along the Sand Mountain Pipeline Road is authorized in eight numbered sites each with a steel fire ring.",
+      "conditions": [
+        "Camping is limited to the eight numbered sites; this area record does not authorize camping at nearby coordinates.",
+        "Sites are first come, first served; stay no more than 14 days within a 28-day period.",
+        "Follow current fire restrictions and use the steel fire rings for permitted campfires."
+      ],
+      "sha256": "aeaa351064ae3a4a14b80b631d5d6ef8a7b43bdfb6c72336c9b912e8b687aaaf"
+    }
+  ]
+}

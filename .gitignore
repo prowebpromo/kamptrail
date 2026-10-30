@@ -37,3 +37,6 @@ debug-errors.html
 # Python test cache
 __pycache__/
 *.pyc
+
+# Generated protected permission identity lookup; rebuilt from verified catalogue.
+api/_data/permissions/
