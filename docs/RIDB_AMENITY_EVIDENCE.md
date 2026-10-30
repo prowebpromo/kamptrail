@@ -22,6 +22,21 @@ Qualifier counts overlap. Missing fields remain unknown and are not included in 
 
 For a concrete production check, catalogue identity `ridb:233309`, [Camp Gateway–Brooklyn](https://www.recreation.gov/camping/campgrounds/233309), has 54 overnight records. This snapshot mentions toilets in 12 records, drinking water in 10, showers in 12, a dump station in 1 and picnic tables in 54. All 12 toilet and shower mentions carry seasonal qualifiers. These are source-record statements, not a current-operation guarantee.
 
+## Expanded campsite attributes (2.20.0)
+
+The same frozen export now includes six more details-only groups. Its dates, exact IDs and 53,693 overnight-record denominator remain unchanged. All prior five groups match the previous sidecar, and 1,088 facility IDs have a positive mapped mention, up from 1,031. Counts are distinct records, not fixtures; categories may overlap.
+
+| Source-record group | Positive records | Facility IDs | Other values |
+| --- | ---: | ---: | --- |
+| Fire pits or rings | 28,676 | 838 | 1 conflict |
+| Grills | 15,591 | 548 | 1 explicit no; 323 accessible qualifiers |
+| Trash collection | 1,069 | 46 | — |
+| Food lockers | 4,270 | 142 | — |
+| Tent pads | 8,579 | 283 | 10 explicit no |
+| “Grills/Fire Ring” (mixed field) | 471 | 67 | Source does not establish both features |
+
+Fire fixture mentions do not establish permission to build a fire. A record at facility `234374`, campsite `73586`, carries both Fire Pit=No and a positive CAMPFIRE RINGS value, and is counted as a conflict. Mixed-field values stay in their own group. Pet and campfire policies are not inferred. The generated sidecar is 360,444 bytes, under the 2 MiB release ceiling. USFS and BLM snapshots have no populated structured amenity arrays; USFS descriptive text is not a reviewed facility-attribute inventory. Broader agency amenities remain partial.
+
 ## Implementation and failure behavior
 
 `scripts/build_ridb_amenities.py` uses exact observed field/value pairs. It deduplicates repeated attribute rows per campsite and amenity. Conflicting positive/negative records take precedence over positive, then explicit negative, then blank/unrecognized. Unrecognized truthy values, water hookups, water spigots and nonpotable water do not become drinking-water evidence. No positive facility-wide amenity is inferred from absence or from a campsite record.

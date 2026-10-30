@@ -44,6 +44,18 @@ MAPPINGS = {
         'OUTDOOR SHOWERS': ('Outdoor Showers', ('outdoor',)),
     },
     'dump': {'DUMP STATION': ('Dump Station', ())},
+    'fire_fixture': {
+        'Fire Pit': (('Y', 'Fire Pit'), ()),
+        'CAMPFIRE RINGS': ('Campfire Rings', ()),
+    },
+    'grill': {
+        'GRILLS': (('Y', 'Grills'), ()),
+        'ACCESSIBLE GRILLS': ('Accessible Grills', ('accessible',)),
+    },
+    'trash_collection': {'TRASH COLLECTION': ('Trash Collection', ())},
+    'food_locker': {'Food Locker': (('Y', 'Food Locker'), ()), 'FOOD STORAGE LOCKER': ('Food Storage Locker', ())},
+    'tent_pad': {'Tent Pad': (('Y', 'Tent Pad'), ()), 'TENT PADS': (('Tent Pads', 'Tent pads'), ())},
+    'grill_or_fire_ring': {'Grills/Fire Ring': (('Grills', 'Y', 'Grills/Fire Ring'), ())},
     'picnic_table': {
         'Picnic Table': (('Y', 'Picnic Table'), ()),
         'PICNIC TABLES': ('Picnic Tables', ()),
@@ -70,7 +82,7 @@ def build(source, wanted):
         if value in values:
             item['positive'] = True
             item['qualifiers'].update(qualifiers)
-        elif row.get('AttributeName') == 'Picnic Table' and value == 'No':
+        elif row.get('AttributeName') in ('Picnic Table', 'Fire Pit', 'GRILLS', 'Tent Pad') and value == 'No':
             item['negative'] = True
         # Blank and unrecognized values remain unknown; never use truthiness.
     totals = Counter(sites.values())

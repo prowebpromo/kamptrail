@@ -7,7 +7,7 @@ test('campsite records retain qualified amenity evidence without changing filter
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   const json=(r,data)=>r.fulfill({contentType:'application/json',body:JSON.stringify(data)});
   const group=qualifiers=>({reported:1,negative:0,unknown:0,conflict:0,qualifiers});
-  const evidence={version:1,source,facilities:{'123':{sites:2,amenities:{drinking_water:group({peak_season:1,hand_pump:1}),shower:group({coin:1}),dump:group({})}}}};
+  const evidence={version:1,source,facilities:{'123':{sites:2,amenities:{drinking_water:group({peak_season:1,hand_pump:1}),shower:group({coin:1}),dump:group({}),fire_fixture:group({}),grill:group({accessible:1}),grill_or_fire_ring:group({})}}}};
   const camp={type:'Feature',geometry:{type:'Point',coordinates:[-75.1,43]},properties:{id:'ridb:123',facility_id:'123',name:'Pine <img src=x> Campground',schema_version:3,type:'established',amenities:[],rig_friendly:[]}};
   await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'NY',count:1}],total_sites:1}));
   await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
@@ -26,6 +26,7 @@ test('campsite records retain qualified amenity evidence without changing filter
   await popup.locator('.kt-ridb-amenities summary').click();
   expect(await popup.evaluate(e=>e.getBoundingClientRect().height<=parseFloat(getComputedStyle(e).maxHeight)+1)).toBe(true);
   await expect(popup).toContainText('mentioned in 1 of 2 records');await expect(popup).toContainText('peak season: 1 records');await expect(popup).toContainText('coin operated: 1 records');
+  await expect(popup).toContainText('Fire pits or rings');await expect(popup).toContainText('Grills/Fire Ring');await expect(popup).toContainText('does not establish permission');await expect(popup).toContainText('original source language');
   await expect(popup).toContainText('Amenity update dates unknown');await expect(popup).toContainText('does not establish RV filling access');
   await expect(popup.getByRole('link',{name:'Recreation.gov facility 123',exact:true})).toHaveAttribute('href','https://www.recreation.gov/camping/campgrounds/123');
   expect(await popup.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);

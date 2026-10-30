@@ -78,6 +78,31 @@ class AmenityTests(unittest.TestCase):
         self.assertEqual(output['100']['amenities']['toilet']['unknown'], 1)
         self.assertEqual(output['200'], {'sites': 1, 'amenities': {}})
 
+    def test_fixture_groups_are_distinct_and_conflicts_take_precedence(self):
+        self.rows = [
+            ['1', 'Fire Pit', 'No', '1', 'Campsite'],
+            ['2', 'CAMPFIRE RINGS', 'Campfire Rings', '1', 'Campsite'],
+            ['3', 'CAMPFIRE RINGS', 'Campfire Rings', '1', 'Campsite'],
+            ['4', 'GRILLS', 'No', '1', 'Campsite'],
+            ['5', 'ACCESSIBLE GRILLS', 'Accessible Grills', '2', 'Campsite'],
+            ['6', 'Grills/Fire Ring', 'Y', '3', 'Campsite'],
+            ['7', 'Food Locker', 'yes', '2', 'Campsite'],
+            ['8', 'Tent Pad', 'No', '1', 'Campsite'],
+            ['9', 'TRASH COLLECTION', 'Trash Collection', '2', 'Campsite'],
+            ['10', 'Campfire Allowed', 'Yes', '3', 'Campsite'],
+        ]
+        self.archive(); result = amenities.build(self.source, {'100', '200'})
+        a = result['100']['amenities']
+        self.assertEqual(a['fire_fixture']['conflict'], 1)
+        self.assertEqual(a['fire_fixture']['reported'], 0)
+        self.assertEqual(a['grill']['negative'], 1)
+        self.assertEqual(a['grill']['qualifiers'], {'accessible': 1})
+        self.assertEqual(a['food_locker']['unknown'], 1)
+        self.assertEqual(a['tent_pad']['negative'], 1)
+        self.assertEqual(a['trash_collection']['reported'], 1)
+        self.assertEqual(set(result['200']['amenities']), {'grill_or_fire_ring'})
+        self.assertEqual(result['200']['amenities']['grill_or_fire_ring']['reported'], 1)
+
     def test_source_provenance_is_inspection_not_freshness(self):
         self.archive(); output = self.directory / 'output.json'; audit = self.directory / 'audit.json'
         amenities.main([str(self.source), '--index', str(self.index), '--out', str(output), '--audit', str(audit)])

@@ -68,3 +68,18 @@ test('generated public sidecar and audit match verified canonical source and gen
   assert.equal(audit.facility_ids,2163);assert.equal(audit.amenities.picnic_table.reported,35509);assert.equal(audit.amenities.picnic_table.negative,2);
   assert.equal(audit.amenities.toilet.reported,4498);assert.equal(audit.amenities.drinking_water.reported,3078);assert.equal(audit.amenities.shower.reported,1915);assert.equal(audit.amenities.dump.reported,1268);
 });
+
+test('expanded fixture groups and qualifiers validate without implying other features',()=>{
+  const d=payload();d.facilities['100'].amenities.grill=group({qualifiers:{accessible:1}});
+  d.facilities['100'].amenities.grill_or_fire_ring=group({qualifiers:{}});
+  d.facilities['100'].amenities.fire_fixture=group({reported:0,conflict:1,qualifiers:{}});
+  assert.equal(Q.validRIDBAmenities(d),true);
+  d.facilities['100'].amenities.grill.qualifiers.seasonal=1;assert.equal(Q.validRIDBAmenities(d),false);
+});
+
+test('expanded production evidence keeps audited counts and conflicts',()=>{
+  const audit=require('../data/campsites/ridb-amenities-audit.json');
+  for(const [key,count] of Object.entries({fire_fixture:28676,grill:15591,trash_collection:1069,food_locker:4270,tent_pad:8579,grill_or_fire_ring:471}))assert.equal(audit.amenities[key].reported,count);
+  assert.equal(audit.amenities.fire_fixture.conflict,1);assert.equal(audit.amenities.grill.negative,1);assert.equal(audit.amenities.tent_pad.negative,10);assert.equal(audit.amenities.grill.qualifiers.accessible,323);
+  assert.equal(audit.overnight_sites,53693);
+});
