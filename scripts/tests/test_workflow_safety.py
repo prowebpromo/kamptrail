@@ -62,6 +62,20 @@ class WorkflowSafetyTests(unittest.TestCase):
         self.assertNotRegex(text, r'\bcp\s+[^\n]*_merged\.geojson')
         self.assertIn('from fetch_recreation_gov_data import US_STATES', text)
 
+    def test_agency_refresh_verifies_the_data_commit_instead_of_the_dispatch_parent(self):
+        jobs = yaml.safe_load(OWNER.read_text())['jobs']
+        agency, verify = jobs['agencies'], jobs['verify-agencies']
+        self.assertEqual(verify['needs'], 'agencies')
+        self.assertEqual(verify['with']['ref'], '${{ needs.agencies.outputs.commit_sha }}')
+        self.assertEqual(agency['outputs']['commit_sha'], '${{ steps.commit.outputs.commit_sha }}')
+        commit = next(step for step in agency['steps'] if step.get('id') == 'commit')['run']
+        self.assertLess(commit.index('Selected branch moved'), commit.index('git commit'))
+        self.assertIn('git rev-parse HEAD', commit)
+        self.assertIn('"$GITHUB_OUTPUT"', commit)
+        tests = yaml.safe_load((WORKFLOWS / 'test.yml').read_text())
+        checkout = tests['jobs']['regression']['steps'][0]
+        self.assertEqual(checkout['with']['ref'], '${{ inputs.ref || github.sha }}')
+
     def test_shell_blocks_receive_inputs_only_through_env(self):
         text = OWNER.read_text()
         self.assertEqual(shell_expression_steps(text), [])

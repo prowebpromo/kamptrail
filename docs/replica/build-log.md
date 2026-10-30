@@ -11,3 +11,5 @@
 - 2026-10-29: Live QA reproduced an existing popup retained after explicit navigation to a second campsite. 2.8.1 closes it and cancels older focus attempts. Ambiguous official forest aliases now omit the destination instead of choosing a sibling unit. Both have regressions.
 
 2026-10-29 — Environmental context (2.10.0): NIFC perimeter + NOAA satellite smoke overlays, on-demand NWS point alerts, dated sources, unavailable/offline states. Partial against the historical fire-weather/smoke row: no fire-weather risk overlay or universal closure feed. Weather/elevation filters remain separate.
+
+- 2026-10-30: 2.11.1 reviews ten existing USFS fee records against dedicated official pages: nine additional combined free classifications and one already-free record gains agency evidence. No new locations; BLM Tower Rock gains an explicit $5 nightly fee and absent Crocodile source marker is retired without a closure claim. Positive reviews require identity/point/deadline checks; retained access context remains separate. Guarded agency data refresh verifies the exact new data commit. See docs/FREE_CAMPING_REVIEW_2026-10-30.md.
