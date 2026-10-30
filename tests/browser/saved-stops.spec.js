@@ -1,5 +1,6 @@
 const {test,expect}=require('@playwright/test');
 const path=require('node:path');
+const {saveNamedResult,checkSourceListingCount}=require('../../scripts/smoke-deployment.js');
 const script=path.resolve(__dirname,'../../trip-planner.js');
 const site={type:'Feature',geometry:{type:'Point',coordinates:[-119.5,36.2]},properties:{id:'ridb:1',name:'Saved Camp',state:'CA',cost:null,fee_status:'unknown'}};
 async function scaffold(page,current=site) {
@@ -69,4 +70,28 @@ test('clear removes all saved stops and hides the empty clear control',async({pa
   page.on('dialog',dialog=>dialog.accept());await page.locator('#kt-trip-clear').click();
   await expect(page.locator('#trip-count')).toHaveText('(0)');await expect(page.locator('#kt-trip-clear')).toBeHidden();
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')))).toEqual([]);
+});
+
+test('deployment smoke saves the named card after results reorder',async({page})=>{
+  await page.setContent('<div id="result-list"><article class="site-card"><h3>Camp [A].*</h3><button>Save stop</button></article><article class="site-card"><h3>Camp B</h3><button>Save stop</button></article></div><div id="kt-trip-list"></div>');
+  await page.evaluate(()=>document.querySelectorAll('.site-card button').forEach(button=>button.onclick=()=>{document.querySelector('#kt-trip-list').textContent=button.closest('.site-card').querySelector('h3').textContent;}));
+  const name=await page.locator('#result-list h3').first().textContent();
+  await page.evaluate(()=>{const list=document.querySelector('#result-list');list.prepend(list.lastElementChild);});
+  await expect(page.locator('#result-list h3').first()).toHaveText('Camp B');
+  await saveNamedResult(page,name);
+  await expect(page.locator('#kt-trip-list')).toHaveText('Camp [A].*');
+});
+
+test('deployment smoke distinguishes source listings from the deduplicated catalogue',async({page})=>{
+  await page.setContent('<p id="catalogue-summary">About 69,574 source listings across 50 states, before duplicates are merged.</p>');
+  await page.evaluate(()=>{window.KampTrailData={getStateTotals:()=>({NY:40000,CA:29574})};});
+  expect(await checkSourceListingCount(page)).toBe(69574);
+  await page.locator('#catalogue-summary').evaluate(el=>{el.textContent='About 33,286 source listings across 50 states.';});
+  await expect(checkSourceListingCount(page)).rejects.toThrow('Data panel source-listing count mismatch');
+});
+
+test('deployment smoke does not accept unavailable source totals as a zero count',async({page})=>{
+  await page.setContent('<p id="catalogue-summary">Catalogue count is unavailable. Source coverage is incomplete.</p>');
+  await page.evaluate(()=>{window.KampTrailData={getStateTotals:()=>({})};});
+  await expect(checkSourceListingCount(page)).rejects.toThrow('Source catalogue totals unavailable');
 });

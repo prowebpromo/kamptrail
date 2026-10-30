@@ -1,8 +1,23 @@
-// Check the real deployed MVP. Set KT_SMOKE_TARGET for a staging/local target.
+// Check the deployed app. Set KT_SMOKE_TARGET for a staging/local target.
 const {chromium}=require('playwright'),fs=require('node:fs/promises'),path=require('node:path');
 const version=require('../package.json').version;
-const target=process.env.KT_SMOKE_TARGET || 'https://prowebpromo.github.io/kamptrail/';
-(async()=>{
+const target=process.env.KT_SMOKE_TARGET || 'https://kamptrail.com/';
+
+async function saveNamedResult(page,name){
+  const card=page.locator('#result-list .site-card').filter({has:page.getByRole('heading',{name,exact:true})});
+  await card.getByRole('button',{name:'Save stop',exact:true}).click();
+  if(!(await page.locator('#kt-trip-list').textContent()).includes(name))throw new Error('Saved stop missing');
+}
+
+async function checkSourceListingCount(page){
+  const sourceListings=await page.evaluate(()=>Object.values(KampTrailData.getStateTotals()).reduce((sum,count)=>sum+count,0));
+  if(!Number.isSafeInteger(sourceListings)||sourceListings<=0)throw new Error('Source catalogue totals unavailable');
+  const expected='About '+sourceListings.toLocaleString('en-US')+' source listings';
+  if(!(await page.locator('#catalogue-summary').textContent()).includes(expected))throw new Error('Data panel source-listing count mismatch');
+  return sourceListings;
+}
+
+async function smokeDeployment(){
   const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),...(process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{}),args:['--no-sandbox','--disable-dev-shm-usage',...(process.env.HTTPS_PROXY?['--ignore-certificate-errors']:[])]});
   try{
     const context=await browser.newContext({viewport:{width:1440,height:1000},ignoreHTTPSErrors:!!process.env.HTTPS_PROXY});
@@ -16,15 +31,14 @@ const target=process.env.KT_SMOKE_TARGET || 'https://prowebpromo.github.io/kampt
     await page.locator('#destination').fill('Albany, NY');await page.locator('#search-form button').click();await page.getByRole('button',{name:'Albany, NY · City',exact:true}).click();
     await page.waitForFunction(()=>KampTrailData.getVisibleCampsites().length>0);
     const name=await page.locator('#result-list h3').first().textContent();
-    await page.locator('#result-list .site-actions button').filter({hasText:'Save stop'}).first().click();
-    if(!(await page.locator('#kt-trip-list').textContent()).includes(name))throw new Error('Saved stop missing');
+    await saveNamedResult(page,name);
     await page.locator('#kt-trip-close').click();
     await page.waitForFunction(()=>[...document.querySelectorAll('.leaflet-tile')].filter(i=>!i.complete||!i.naturalWidth).length===0);
     await fs.mkdir(path.join(__dirname,'../docs'),{recursive:true});
     await page.screenshot({path:path.join(__dirname,'../docs/mvp-desktop.png')});
     const catalogue=await page.evaluate(async()=> (await (await fetch('data/campsites/search-index.json')).json()));
     await page.locator('#about-data').click();
-    if(!(await page.locator('#catalogue-summary').textContent()).includes(catalogue.sites.length.toLocaleString('en-US')))throw new Error('Data panel count mismatch');
+    const sourceListings=await checkSourceListingCount(page);
     await page.getByRole('button',{name:'Close data information'}).click();
     const campsite=catalogue.sites.find(s=>s.states.length===1&&s.states[0]==='CA'&&s.name.length>8);
     await page.locator('#destination').fill(campsite.name);await page.locator('#search-form button').click();await page.getByRole('button',{name:`${campsite.name} · Campsite`,exact:true}).first().click();
@@ -38,7 +52,10 @@ const target=process.env.KT_SMOKE_TARGET || 'https://prowebpromo.github.io/kampt
     if(await mobile.locator('#app').evaluate(el=>el.inert))throw new Error('Mobile map stayed blocked');
     await mobile.waitForFunction(()=>[...document.querySelectorAll('.leaflet-tile')].filter(i=>!i.complete||!i.naturalWidth).length===0);
     await mobile.screenshot({path:path.join(__dirname,'../docs/mvp-mobile.png')});
-    const result={target,version,workerActive:!!(await page.evaluate(()=>navigator.serviceWorker.controller)),dataPanel:true,catalogue:catalogue.sites.length,nationalSearch:campsite.name,savedStop:name,mobile:true,errors,failures};
+    const result={target,version,workerActive:!!(await page.evaluate(()=>navigator.serviceWorker.controller)),dataPanel:true,sourceListings,catalogue:catalogue.sites.length,nationalSearch:campsite.name,savedStop:name,mobile:true,errors,failures};
     console.log(JSON.stringify(result,null,2));if(errors.length||failures.length)process.exitCode=1;
   }finally{await browser.close();}
-})().catch(e=>{console.error(e);process.exitCode=1;});
+}
+
+module.exports={saveNamedResult,checkSourceListingCount};
+if(require.main===module)smokeDeployment().catch(e=>{console.error(e);process.exitCode=1;});
