@@ -1,9 +1,11 @@
-# State rest-area rules: prepared model
+# State rest-area rules: shared dated policies
 
-This preparation package researches a rule once for a precisely scoped state
-operator and facility class. Facility exceptions are separate evidence. It does
-not add locations, change the 78-record Texas catalogue, connect to permission
-filters, or grant production overnight permission.
+This package researches a rule once for a precisely scoped state operator and
+facility class. Each of the 78 existing TxDOT locations inherits the same dated
+Texas policy in its popup and saved source context, with links to the rule and
+statute. Facility exceptions are separate evidence. No locations are added and
+the raw Texas catalogue is unchanged. Texas overnight permission stays unknown.
+State-policy facts do not create permission-filter matches.
 
 ## Reviewed primary evidence
 
@@ -55,15 +57,28 @@ python scripts/rest_area_policy.py --state MT --operator mdt --kind rest_area
 python -m unittest discover -s scripts/tests -p 'test_rest_area*.py'
 ```
 
-## Integration gates
+## Publication and maintenance
 
-Before this model can affect live permission filters or map copy: define the
-policy recheck/change-monitoring process, freshness display and response to
-unavailable or changed sources; wire reviewed agency scope and specific exceptions
-into the client; preserve independent opening/closure evidence; verify normal
-mobile/keyboard and unknown/offline behavior. These reviewed snapshots have no
-invented expiry or automatic date renewal. They are dated evidence, not a promise
-that the legal or operational rules remain current indefinitely.
+The reviewed source lives in `scripts/fixtures/rest_area_state_policies.json`.
+`node scripts/build-rest-policies.js` validates it and generates
+`data/rest-areas/state-policies.json`; the release packager calls the builder and
+ships that public file. The client fetches it only when the rest-area layer is
+requested. Each popup resolves exact state/operator/class and then its facility
+exception. Dates and official links remain visible; saved stops retain dated
+source context. The existing permission dialog and permission filters remain
+independent. Montana's reviewed policy is available without inventing Montana
+locations.
 
-The fixture lives under `scripts/fixtures`, outside the deployed rest-area data,
-until those gates pass. No new parity credit is justified by this preparation.
+Policy evidence older than 180 days yields unknown in the diagnostic resolver
+and client. This operational review ceiling is not a legal effective period.
+Rechecking sources is a state-policy task, not 78 duplicate location reviews.
+A failed, invalid or absent policy download leaves the independently sourced
+Texas locations usable with explicit unknown policy. Future timestamps,
+unsupported source hosts and ambiguous scope/exception records are rejected.
+The fixture is never automatically re-dated. Source change monitoring remains
+a future improvement; readers must check posted exceptions and current closures.
+
+Relevant unit tests cover scope, all 78 inherited rules, independent activities,
+expiry, malformed evidence and conflicting exceptions. Browser regressions cover
+visible rule dates/source links and policy-download failure. Full native CI and
+root's live verification are release gates. No added parity credit is claimed.

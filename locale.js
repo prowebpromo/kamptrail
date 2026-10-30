@@ -6,6 +6,13 @@
   let language = 'en';
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   const es = {
+  "State rest-area policy unavailable or older than 180 days. Overnight parking, sleeping and camping permission remain unknown.": "La política estatal de áreas de descanso no está disponible o tiene más de 180 días. Se desconoce si se permite estacionar de noche, dormir o acampar.",
+  "State policy checked {date}: overnight parking {parking}; sleeping in a vehicle {sleeping}; camping {camping}.": "Política estatal revisada el {date}: estacionamiento nocturno {parking}; dormir en un vehículo {sleeping}; acampar {camping}.",
+  "Maximum stay: {hours} hours.": "Estancia máxima: {hours} horas.",
+  "Current opening and space availability remain unknown. Check posted facility exceptions.": "Se desconocen el funcionamiento actual y las plazas disponibles. Consulta las excepciones publicadas en el lugar.",
+  "State policy source {number}": "Fuente de la política estatal {number}",
+  "Allowed": "Permitido",
+  "Prohibited": "Prohibido",
   "Status: {status}.": "Estado: {status}.",
   "hidden": "oculto",
   "Visitor video": "Video de un visitante",

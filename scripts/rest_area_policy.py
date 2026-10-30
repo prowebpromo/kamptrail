@@ -1,7 +1,7 @@
 """Resolve sourced state rest-area rules without inferring overnight permission.
 
-Preparation tool only. It neither edits location catalogues nor feeds permission
-filters. Application integration and source-monitoring remain separate gates.
+Diagnostic resolver for the same reviewed policies used by the rest-area popup.
+It never edits raw location records or promotes permission-filter matches.
 """
 import argparse
 import copy
@@ -67,6 +67,8 @@ def resolve(bundle, *, state, operator, facility_kind, facility_id=None, excepti
         'state': state, 'operator': operator, 'facility_kind': facility_kind}]
     if matches:
         policy = matches[0]
+        if any(now - dt.datetime.fromisoformat(s['retrieved_at'].replace('Z', '+00:00')) >= dt.timedelta(days=180) for s in policy['sources']):
+            return output
         output.update(policy_id=policy['id'], rules=copy.deepcopy(policy['rules']),
                       sources=copy.deepcopy(policy['sources']))
     applicable = [e for e in exceptions if facility_id and e['facility_id'] == facility_id

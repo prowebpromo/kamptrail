@@ -1,6 +1,24 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const rest=require('../rest-areas.js'),published=JSON.parse(fs.readFileSync('data/rest-areas/TX.json','utf8'));
 const clone=()=>structuredClone(published);
+const policies=JSON.parse(fs.readFileSync('data/rest-areas/state-policies.json','utf8')),policyNow=Date.parse('2026-10-31T00:00:00Z');
+test('all 78 trusted TxDOT locations inherit one dated state policy without changing permission',()=>{
+  const d=clone();d.state_policies=policies;assert.equal(new Set(d.records.map(r=>rest.policyFor(r,d,policyNow).policy_id)).size,1);
+  for(const r of d.records){const p=rest.policyFor(r,d,policyNow);assert.equal(p.policy_id,'txdot-safety-rest-area-20261030');assert.equal(p.rules.overnight_parking,'unknown');assert.equal(p.rules.sleeping_in_vehicle,'unknown');assert.equal(p.rules.max_stay_hours,24);assert.equal(r.permission,'unknown');}
+  assert.match(rest.policyDescription(rest.policyFor(d.records[0],d,policyNow)),/State policy checked 2026-10-30/);
+  assert.equal(rest.resolvePolicy(policies,{state:'TX',operator:'private',facility_kind:'safety_rest_area'},policyNow).policy_id,null);
+  const mt=rest.resolvePolicy(policies,{state:'MT',operator:'mdt',facility_kind:'rest_area'},policyNow);assert.equal(mt.rules.overnight_parking,'allowed');assert.equal(mt.rules.camping,'prohibited');assert.equal(mt.rules.sleeping_in_vehicle,'unknown');assert.equal(mt.rules.max_stay_hours,12);
+});
+test('policy expiry, missing evidence and facility conflicts preserve unknowns',()=>{
+  const scope={state:'MT',operator:'mdt',facility_kind:'rest_area',facility_id:'test:1'};
+  assert.equal(rest.resolvePolicy(null,scope,policyNow).rules.overnight_parking,'unknown');
+  assert.equal(rest.resolvePolicy(policies,scope,Date.parse('2027-04-28T23:00:00Z')).rules.overnight_parking,'unknown');
+  const p=structuredClone(policies);p.exceptions=[{...scope,sources:p.policies[1].sources,rules:{overnight_parking:'prohibited',max_stay_hours:4}}];
+  assert.equal(rest.resolvePolicy(p,scope,policyNow).rules.overnight_parking,'prohibited');assert.equal(rest.resolvePolicy(p,scope,policyNow).rules.max_stay_hours,4);
+  p.exceptions[0].rules={camping:'allowed',max_stay_hours:24};const conflict=rest.resolvePolicy(p,scope,policyNow);assert.equal(conflict.rules.camping,'unknown');assert.equal(conflict.rules.max_stay_hours,null);assert.deepEqual(conflict.review_required,['camping','max_stay_hours']);
+  const bad=structuredClone(policies);bad.policies[0].sources[0].url='https://evil.example/';assert.throws(()=>rest.validatePolicies(bad,policyNow));
+  const duplicate=structuredClone(policies),first=duplicate.policies[0];duplicate.policies.push({...first,id:'duplicate',scope:{operator:first.scope.operator,facility_kind:first.scope.facility_kind,state:first.scope.state}});assert.throws(()=>rest.validatePolicies(duplicate,policyNow));
+});
 test('official catalogue keeps exact source identities, UTC provenance and unknown permission',()=>{
   const d=rest.validate(clone());assert.equal(d.records.length,78);assert.equal(new Set(d.records.map(r=>r.id)).size,78);assert(d.records.every(r=>r.permission==='unknown'));assert.equal(d.duration_context.maximum_hours,24);assert.equal(d.source.source_updated_at,null);
 });
