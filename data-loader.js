@@ -71,7 +71,7 @@
       const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
       if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
       const relative = target.pathname.slice(scope.pathname.length);
-      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/search-index.json':'search'};
+      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/ridb-amenities.json':'amenityEvidence','data/campsites/search-index.json':'search'};
       if (!relative.endsWith('.geojson') && !kinds[relative]) return null;
       return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:kinds[relative]==='index', kind:kinds[relative]||'geojson'};
     } catch { return null; }
@@ -80,6 +80,7 @@
     if (target?.index) return Array.isArray(data?.states) && Number.isFinite(data.total_sites) && data.total_sites >= 0;
     if (target?.kind === 'agencyIndex') return data?.version === 1 && Array.isArray(data.states);
     if (target?.kind === 'sites') return [1, 2].includes(data?.version) && !!data.facilities && typeof data.facilities === 'object';
+    if (target?.kind === 'amenityEvidence') return DataQuality.validRIDBAmenities(data);
     if (target?.kind === 'search') return data?.version===1 && Array.isArray(data.sites);
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
@@ -173,9 +174,11 @@
     const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode}));
     incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
+    if(state.amenityDetails)incoming.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
     const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, {state:stateCode});
     state.allCampsites=cleaned.features;
     if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
+    if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
     attachLoadedElevations();
   }
   async function loadAgencyIndex() {
@@ -185,6 +188,13 @@
   async function loadSiteDetails() {
     try{const data=await fetchJSON('data/campsites/ridb-sites.json');if(data&&typeof data.facilities==='object')state.siteDetails=data.facilities;}
     catch(err){console.warn('Campsite RV details unavailable; listings still load.',err.message);}
+  }
+  async function loadAmenityDetails(){
+    try{
+      const data=await fetchJSON('data/campsites/ridb-amenities.json');
+      if(!DataQuality.validRIDBAmenities(data))throw new Error('Invalid RIDB amenity evidence');
+      state.amenityDetails=data;
+    }catch(err){console.warn('RIDB amenity evidence unavailable; listings still load.',err.message);}
   }
   async function loadState(code,{retry=false}={}) {
     if(!STATE_BOUNDS[code])return;
@@ -229,13 +239,42 @@
     const h=p.hookups||{},hk=[['electric','electric'],['water','water'],['sewer','sewer']].filter(([k])=>h[k]>0).map(([k,l])=>`${l} at ${h[k]}`);
     return `<div><strong>RV sites (Recreation.gov):</strong> ${esc(parts.join(' · '))}</div>${hk.length?`<div><strong>Hookups reported:</strong> ${esc(hk.join(', '))} sites</div>`:''}`;
   }
+  function ridbAmenitiesText(p){
+    const data=p.ridb_amenity_evidence;
+    if(!DataQuality.validRIDBAmenities(data))return DataQuality.ridbFacilityIds(p).length?'<div class="kt-fine">Recreation.gov campsite amenity evidence unavailable.</div>':'';
+    const labels={toilet:'Toilets',drinking_water:'Drinking water',shower:'Showers',dump:'Dump station',picnic_table:'Picnic tables'};
+    const qualifiers={seasonal:'seasonal',peak_season:'peak season',coin:'coin operated',hand_pump:'hand pump',accessible:'accessible feature',outdoor:'outdoor'};
+    const groups=Object.values(data.facilities).map(r=>r.amenities),notes=['Counts describe records, not fixtures or every campsite. Missing fields and current availability are unknown.'];
+    if(groups.some(g=>g.drinking_water?.reported))notes.push('Drinking water does not establish RV filling access.');
+    if(groups.some(g=>g.dump?.reported))notes.push('Dump access and prices are unknown.');
+    if(groups.some(g=>g.shower?.qualifiers.coin))notes.push('Coin qualifiers concern showers only.');
+    const facilities=Object.entries(data.facilities).map(([fid,rec])=>{
+      const rows=Object.entries(rec.amenities).map(([key,g])=>{
+        const parts=[];
+        if(g.reported)parts.push(`mentioned in ${g.reported} of ${rec.sites} records`);
+        for(const [q,n] of Object.entries(g.qualifiers))parts.push(`${qualifiers[q]}: ${n} records`);
+        if(g.negative)parts.push(`explicit no: ${g.negative} records`);
+        if(g.unknown)parts.push(`blank or unrecognized: ${g.unknown} records`);
+        if(g.conflict)parts.push(`conflicting values: ${g.conflict} records`);
+        return `<li>${esc(labels[key])}: ${esc(parts.join('; '))}</li>`;
+      });
+      return `<p><a href="https://www.recreation.gov/camping/campgrounds/${encodeURIComponent(fid)}" target="_blank" rel="noopener noreferrer">Recreation.gov facility ${esc(fid)}</a></p>${rows.length?`<ul>${rows.join('')}</ul>`:`<p>${rec.sites?'No mapped amenity claims in these overnight campsite records.':'No overnight campsite records in this snapshot.'}</p>`}`;
+    }).join('');
+    return `<details class="kt-ridb-amenities"><summary>Recreation.gov campsite records report…</summary>${facilities}<p class="kt-fine">${esc(notes.join(' '))}</p><p class="kt-fine">${data.source.original_retrieved_at?`Export retrieved ${esc(data.source.original_retrieved_at.slice(0,10))}.`:'Saved export: retrieval date unknown.'} Amenity update dates unknown. Inspected ${esc(data.source.inspected_at.slice(0,10))}; inspection is not an update date. <a href="${DataQuality.RIDB_AMENITY_URL}" target="_blank" rel="noopener noreferrer">Public source export</a></p></details>`;
+  }
+  function popupLayout(){
+    const size=state.map?.getSize?.()||{},width=Number.isFinite(size.x)?size.x:390,height=Number.isFinite(size.y)?size.y:400;
+    return {width:Math.max(100,Math.min(300,width-70)),height:Math.max(80,Math.min(360,height-160))};
+  }
+  function popupOptions(){return {maxWidth:popupLayout().width,autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]};}
   function popup(site) {
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
     const closure=['closed','temporarily closed'].includes(status)?status:null;
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
-    return `<div class="kt-site-popup" style="min-width:220px;max-width:300px;color:#263443">
+    const layout=popupLayout();
+    return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="Campsite details" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
       ${closure?`<div class="kt-closure-notice"><strong>Agency reports: ${esc(closure)}.</strong> Confirm reopening with the operator.${p.season?` Season reported: ${esc(p.season)}.`:''}</div>`:''}
       <div><strong>Cost:</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
@@ -253,6 +292,7 @@
       ${DataQuality.elevationInfo(site)?`<p class="kt-fine">Interpolated terrain from <a href="${DataQuality.ELEVATION_SOURCE}" target="_blank" rel="noopener noreferrer">USGS 3DEP</a>. Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grade or RV clearance.</p>`:''}
       <div><strong>Access reported:</strong> ${esc(p.access_label || p.access || 'Not verified')}</div>
       <div><strong>Amenities reported:</strong> ${p.amenities.length?p.amenities.map(esc).join(', '):'Not verified'}</div>
+      ${ridbAmenitiesText(p)}
       ${p.road_difficulty?`<div><strong>Road:</strong> ${esc(p.road_difficulty)}</div>`:''}
       ${p.rig_friendly.length?`<div><strong>Rig types reported:</strong> ${p.rig_friendly.map(esc).join(', ')}</div>`:''}
       ${rvText(p)}
@@ -292,7 +332,7 @@
       const [lng,lat]=site.geometry.coordinates,p=site.properties;
       const color=p.fee_status==='free'?'#258543':p.fee_status==='conditional'?'#b07d10':p.fee_status==='paid'?'#2375b9':'#687780';
       const icon=L.divIcon({html:`<span style="display:block;background:${color};width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px #333"></span>`,className:'custom-marker',iconSize:[16,16],iconAnchor:[8,8]});
-      const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site));
+      const marker=L.marker([lat,lng],{icon,title:p.name}).bindPopup(popup(site),popupOptions());
       marker.kamptrailId=id;state.markers.set(id,marker);additions.push(marker);
     }
     // Adding markers re-clusters nearby ones, which would close an open popup and lose what the camper
@@ -395,6 +435,11 @@
       let timer;
       map.on('zoomend',layoutOverview);
       map.on('moveend',()=>{syncMode();clearTimeout(timer);timer=setTimeout(onView,250);});
+      // Optional evidence must not delay the map when its request is slow or unavailable.
+      loadAmenityDetails().then(()=>{
+        if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
+        updateMarkers();
+      });
       await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex()]);
       if(state.overview&&map.hasLayer(state.overview))map.removeLayer(state.overview);state.overview=null;
       await onView();
@@ -440,7 +485,7 @@
         if(!state.clusterGroup.zoomToShowLayer){marker.openPopup();return;}
         // Wait for chunked cluster loading to finish. Later chunks re-cluster and would close the popup.
         if(!state.chunking&&(marker.__parent||state.map.hasLayer(marker))){
-          const fallback=()=>{if(!marker.isPopupOpen?.()&&!state.map._popup?.isOpen?.())L.popup({maxWidth:320}).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);};
+          const fallback=()=>{if(!marker.isPopupOpen?.()&&!state.map._popup?.isOpen?.())L.popup(popupOptions()).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);};
           // A popup bound to the marker closes whenever markercluster re-clusters it (zoom animation,
           // later chunks, neighboring states loading), losing anything the camper opened in it.
           // A map-level popup at the campsite's point survives re-clustering.
@@ -450,7 +495,7 @@
           return;
         }
         if(++tries<50){setTimeout(attempt,100);return;}
-        L.popup({maxWidth:320}).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);
+        L.popup(popupOptions()).setLatLng([lat,lon]).setContent(popup(site)).openOn(state.map);
       };
       attempt();
       return true;

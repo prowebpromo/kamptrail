@@ -3,6 +3,8 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -183,6 +185,53 @@ class NationalServicesTests(unittest.TestCase):
                 self.assertEqual(hashlib.sha256(raw).hexdigest(),shard['sha256'])
                 self.assertLessEqual(len(raw),512*1024)
                 self.assertLessEqual(shard['count'],1500)
+
+    def test_candidate_handoff_rebuilds_exact_assets_without_original_checkpoints(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); stage=root/'stage';stage.mkdir(); checkpoint=self.checkpoint(stage)
+            expected={name:(checkpoint/name).read_bytes() for name in ('source.json','report.json','receipt.json')}
+            destination=root/'candidate'
+            receipt=aggregate(stage,destination,'test',['RI'])
+            self.assertEqual((destination/'sources/RI.json').read_bytes(),expected['source.json'])
+            for name in ('report.json','receipt.json'):
+                self.assertEqual((destination/'checkpoints/RI'/name).read_bytes(),expected[name])
+            # Regional candidates also retain the exact accepted UT and legacy
+            # wrappers used by the builder, rather than just refreshed states.
+            self.assertEqual(set(receipt['source_files']),{'sources/RI.json','sources/UT.json','sources/legacy.json'})
+            for relative, sha256 in receipt['source_files'].items():
+                self.assertEqual(digest(destination/relative),sha256)
+            state_receipt=json.loads((destination/'checkpoints/RI/receipt.json').read_bytes())
+            self.assertEqual(state_receipt,receipt['state_receipts']['RI'])
+            self.assertEqual(digest(destination/'sources/RI.json'),state_receipt['hashes']['source.json'])
+            self.assertEqual(digest(destination/'checkpoints/RI/report.json'),state_receipt['hashes']['report.json'])
+            # Only packaged inputs remain available to this independent rebuild.
+            shutil.rmtree(stage)
+            rebuilt=root/'rebuilt'
+            subprocess.run(['node',str(SCRIPTS/'build-services.js'),str(destination/'sources'),str(rebuilt)],check=True,capture_output=True)
+            self.assertEqual((rebuilt/'index.json').read_bytes(),(destination/'index.json').read_bytes())
+            self.assertEqual((rebuilt/'services.json').read_bytes(),(destination/'services.json').read_bytes())
+            manifest=json.loads((rebuilt/'index.json').read_bytes())
+            for shard in manifest['shards']:
+                self.assertEqual((rebuilt/shard['url']).read_bytes(),(destination/shard['url']).read_bytes())
+
+    def test_aggregate_rejects_unbound_source_before_destination_changes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);stage=root/'stage';stage.mkdir();checkpoint=self.checkpoint(stage)
+            destination=root/'candidate';destination.mkdir();(destination/'index.json').write_bytes(b'last-good')
+            # Source bytes must remain bound to the checkpoint proof at handoff.
+            (checkpoint/'source.json').write_bytes(b'{}')
+            with self.assertRaisesRegex(ValueError,'hash-mismatched'):
+                aggregate(stage,destination,'test',['RI'])
+            self.assertEqual(list(destination.iterdir()),[destination/'index.json'])
+            self.assertEqual((destination/'index.json').read_bytes(),b'last-good')
+            checkout=root/'checkout';sources=checkout/'data/sources/services';sources.mkdir(parents=True)
+            # A misnamed retained wrapper must not silently acquire another
+            # state's normalized promotion path or duplicate its source region.
+            (sources/'UT.json').write_text(json.dumps({'region':'RI'}))
+            with patch('aggregate_services.ROOT',checkout):
+                with self.assertRaisesRegex(ValueError,'filename/region'):
+                    aggregate(stage,destination,'test',['RI'])
+            self.assertEqual((destination/'index.json').read_bytes(),b'last-good')
 
 
 if __name__ == '__main__': unittest.main()

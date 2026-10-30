@@ -44,6 +44,8 @@ The service worker never caches API responses. Device rig, terrain, routes, map 
 
 ## Release and verification
 
+The 2.17 shell uses `kt-v43`, distinct from the 2.16 amenity release's `kt-v42`. Persistent device-data and map caches keep their existing identities.
+
 Build packaging must include both JavaScript modules, the PHP endpoint/helper and updated About text. The private cache directory must be writable by PHP with PDO SQLite and cURL available. A missing extension, inaccessible directory or cache lock returns a bounded unavailable state, not fabricated elevation. Deploy the endpoint/helper with the rest of the release; no public writable cache or new provider secret is needed.
 
 `npm test` includes rig-profile, terrain client and PHP-contract tests. PHP integration checks require the PHP/PDO SQLite/cURL runtime; skipped tests are not passes. The Playwright runner includes both `rig-profile.spec.js` and `route-elevation.spec.js`, covering portable data, preview/import failures, storage failure, precise shared matching, mobile/keyboard/focus behavior, scoped accessibility, explicit coordinate disclosure, units, gaps, exact-route offline reuse and stale response rejection.
@@ -58,3 +60,10 @@ Prepared from main `369efee3ed2f2b81ce867f269ff08bad523c039b`, after PR #96. Thi
 The review corrected an asynchronous import-preview race: reading an earlier selected file can no longer replace a later selection's preview. Closing, resetting or canceling an import invalidates its pending file read. A dedicated browser regression exercises out-of-order reads; it needs Chromium CI.
 
 Local full Node checks: 254 tests, 201 passed, 53 PHP-dependent skips, no failures. Python: 188 tests, seven optional native skips, no failures. Release packaging and JavaScript syntax passed. The local full Playwright attempt discovered 111 tests before the new import regression, then failed at the first browser launch because the expected Chromium 1200 executable is absent; no app behavior was tested. The final configured suite contains 112 tests. Full exact-commit browser/PHP/MySQL checks, Lighthouse, integration with the amenities release and production public-coordinate/provider/private-cache checks remain gates. Scored feature statuses remain unchanged until deployed verification.
+
+
+### Integrated amenities candidate
+
+The 2.17 tree now incorporates the full PR #97 amenities candidate, local source commit `8c37de11ba8e148c8b4e1cd08f1810b1cd519f22` / tree `2d217a64fa80741a7981fc0ef142ce9e1f2013ae`, alongside rig and terrain behavior. RIDB sidecar and audit bytes, importer, details-only client logic, source documentation and amenity tests are retained. The data loader and quality modules differ from that candidate only in their 2.17 release version. The rig preview-race fix, popup regressions, RIDB facility-alias import and forecast publisher are unchanged from the reviewed rig integration.
+
+After integration, the full Node suite completed 261 checks: 208 passed, 53 PHP-dependent skips, no failures. Python completed 192 tests with seven optional skips and no failures. The complete search/services/permissions/release build passed. Playwright discovery lists 113 tests across 22 files. Browser launch was not repeated because local Chromium is absent. These checks do not replace exact-commit GitHub PHP/MySQL/browser/Lighthouse validation or the production provider/cache checks. Final ancestry must include the actual main merge of PR #97 before publication.

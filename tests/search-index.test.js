@@ -61,6 +61,20 @@ test('cross-state duplicates retain source snapshots and a focusable stable ID',
   assert.ok(runtime.features.some(f=>f.properties.id===index.sites[0].id || f.properties.legacy_ids.includes(index.sites[0].id)));
 });
 
+test('source partition membership remains available without supplying a reported state',()=>{
+  const unknown=campsite('Unreported State Campground',101,[-101.8556764,33.8690531]);
+  const collections=[source('OK',[unknown]),source('TX',[unknown])];
+  const row=buildSearchIndex(collections).sites[0];
+  assert.deepEqual(row.states,['OK','TX']);
+  assert.equal(row.id,'osm:node:101');
+  assert.deepEqual([row.lng,row.lat],unknown.geometry.coordinates);
+  for(const {state} of collections){
+    const normalized=DataQuality.normalizeFeature(unknown,{state});
+    assert.equal(normalized.properties.state,null);
+    assert.notEqual(normalized.properties.state,state);
+  }
+});
+
 test('search uses the same screening as the runtime normalizer', () => {
   const invalid = campsite('No coordinates',102,[null,null]);
   const placeholder = campsite('Sample Campsite 3',103);
