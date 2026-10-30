@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+import urllib.error
 import urllib.request
 
 SCRIPTS = Path(__file__).resolve().parents[1]
@@ -26,6 +27,17 @@ class Response(io.BytesIO):
         self.headers = {'Content-Length': str(length)}
     def geturl(self):
         return URLS['RI'].replace('latest', '250101')
+
+
+class Clock:
+    def __init__(self):
+        self.now = 100
+        self.pauses = []
+    def monotonic(self):
+        return self.now
+    def sleep(self, seconds):
+        self.pauses.append(seconds)
+        self.now += seconds
 
 
 class NationalServicesTests(unittest.TestCase):
@@ -89,6 +101,100 @@ class NationalServicesTests(unittest.TestCase):
                     services.download('RI', p)
             self.assertEqual(p.read_bytes(), b'last-good')
             self.assertFalse(p.with_suffix('.part').exists())
+
+    def test_initial_response_timeout_retries_same_state_then_succeeds(self):
+        for failure in [TimeoutError('initial status timeout'), urllib.error.URLError(TimeoutError('initial status timeout'))]:
+            with self.subTest(failure=type(failure).__name__), tempfile.TemporaryDirectory() as tmp:
+                path=Path(tmp)/'RI.osm.pbf'; path.write_bytes(b'last-good')
+                clock=Clock(); opener=unittest.mock.Mock()
+                opener.open.side_effect=[failure,Response(b'complete',8)]
+                with patch('urllib.request.build_opener',return_value=opener) as build, patch('import_services.time.monotonic',clock.monotonic), patch('import_services.time.sleep',clock.sleep):
+                    receipt=services.download('RI',path)
+                self.assertEqual(path.read_bytes(),b'complete')
+                self.assertEqual(receipt['sha256'],hashlib.sha256(b'complete').hexdigest())
+                self.assertEqual(receipt['download_seconds'],1)
+                self.assertEqual(clock.pauses,[1])
+                self.assertEqual(opener.open.call_count,2)
+                self.assertTrue(all(call.args[0].full_url==URLS['RI'] for call in opener.open.call_args_list))
+                self.assertEqual([call.args[0].region for call in build.call_args_list],['RI','RI'])
+                self.assertIsNot(build.call_args_list[0].args[0],build.call_args_list[1].args[0])
+                self.assertFalse(path.with_suffix('.part').exists())
+
+    def test_three_initial_timeouts_exhaust_without_replacing_last_good(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
+            path.with_suffix('.part').write_bytes(b'interrupted-old-partial')
+            clock=Clock();opener=unittest.mock.Mock()
+            opener.open.side_effect=TimeoutError('initial status timeout')
+            with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.monotonic',clock.monotonic), patch('import_services.time.sleep',clock.sleep):
+                with self.assertRaises(TimeoutError):services.download('RI',path)
+            self.assertEqual(opener.open.call_count,3)
+            self.assertEqual(clock.pauses,[1,3])
+            self.assertEqual(path.read_bytes(),b'last-good')
+            self.assertFalse(path.with_suffix('.part').exists())
+
+    def test_startup_retry_shares_original_deadline_and_bounds_backoff(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
+            clock=Clock();opener=unittest.mock.Mock()
+            def timeout(request,timeout):
+                clock.now+=services.MAX_SECONDS-.5
+                raise TimeoutError('initial status timeout')
+            opener.open.side_effect=timeout
+            with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.monotonic',clock.monotonic), patch('import_services.time.sleep',clock.sleep):
+                with self.assertRaisesRegex(ValueError,'download budget'):services.download('RI',path)
+            self.assertEqual(opener.open.call_count,1)
+            self.assertEqual(clock.pauses,[.5])
+            self.assertEqual(clock.now,100+services.MAX_SECONDS)
+            self.assertEqual(path.read_bytes(),b'last-good')
+            self.assertFalse(path.with_suffix('.part').exists())
+
+    def test_startup_retries_do_not_extend_body_deadline(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
+            clock=Clock();opener=unittest.mock.Mock()
+            response=Response(b'complete',8)
+            def opened(request,timeout):
+                if opener.open.call_count==1:
+                    clock.now+=services.MAX_SECONDS-40
+                    raise TimeoutError('initial status timeout')
+                self.assertEqual(timeout,39)
+                return response
+            chunks=iter([b'complete',b''])
+            def read(size):
+                chunk=next(chunks)
+                if not chunk:clock.now+=40
+                return chunk
+            response.read=read;opener.open.side_effect=opened
+            with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.monotonic',clock.monotonic), patch('import_services.time.sleep',clock.sleep):
+                with self.assertRaisesRegex(ValueError,'download budget'):services.download('RI',path)
+            self.assertEqual(opener.open.call_count,2)
+            self.assertEqual(path.read_bytes(),b'last-good')
+            self.assertFalse(path.with_suffix('.part').exists())
+
+    def test_http_auth_redirect_and_partial_body_errors_are_not_retried(self):
+        failures=[urllib.error.HTTPError(URLS['RI'],code,'refused',{},None) for code in (401,403,404)]
+        failures.extend([urllib.error.URLError('not a timeout'),ValueError('invalid redirect')])
+        for failure in failures:
+            with self.subTest(failure=str(failure)), tempfile.TemporaryDirectory() as tmp:
+                path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
+                opener=unittest.mock.Mock();opener.open.side_effect=failure
+                with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.sleep') as sleep:
+                    with self.assertRaises(type(failure)):services.download('RI',path)
+                self.assertEqual(opener.open.call_count,1)
+                sleep.assert_not_called()
+                self.assertEqual(path.read_bytes(),b'last-good')
+                self.assertFalse(path.with_suffix('.part').exists())
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
+            response=Response(b'',8);response.read=unittest.mock.Mock(side_effect=[b'part',TimeoutError('body timeout')])
+            opener=unittest.mock.Mock();opener.open.return_value=response
+            with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.sleep') as sleep:
+                with self.assertRaises(TimeoutError):services.download('RI',path)
+            self.assertEqual(opener.open.call_count,1)
+            sleep.assert_not_called()
+            self.assertEqual(path.read_bytes(),b'last-good')
+            self.assertFalse(path.with_suffix('.part').exists())
 
     def test_parse_walltime_and_disk_failure_never_touch_accepted_source(self):
         with tempfile.TemporaryDirectory() as tmp:

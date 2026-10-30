@@ -63,3 +63,39 @@ test('the shipped health file is valid and covers every source', () => {
   assert.ok(h.sources.rest_areas.scopes.TX.last_success,'The official rest-area pilot retains its actual download date');
   assert.ok(!h.sources.rest_areas.scopes.US,'A Texas rest-area pilot cannot claim national refresh coverage');
 });
+
+test('national service freshness uses extract dates and separate import accounting', () => {
+  const {nationalServices, STATES} = require('../scripts/record_health.js');
+  const h = {version: 1, run: {counts: {fresh: 104}}, sources: {services: {scopes: {US: {last_success: '2024-01-01T00:00:00Z'}}}}};
+  const coverage = STATES.map(region => ({region, extract_timestamp: '2025-01-01T00:00:00Z', retrieved_at: '2025-01-02T00:00:00Z', count: 1}));
+  assert.throws(() => nationalServices(h, 'fresh', {coverage: coverage.slice(1)}), /Complete/);
+  assert.deepEqual(h.run.counts, {fresh: 104});
+  nationalServices(h, 'fresh', {coverage});
+  assert.deepEqual(h.run.counts, {fresh: 104});
+  assert.deepEqual(h.services_run.counts, {fresh: 50});
+  assert.equal(h.sources.services_extracts.scopes.UT.last_success, '2025-01-01T00:00:00Z');
+  assert.equal(h.sources.services_extracts.scopes.UT.retrieved_at, '2025-01-02T00:00:00Z');
+  assert.equal(h.sources.services.retired_by, 'services_extracts');
+  assert.ok(!quality.summarizeHealth(h).rows.some(row => row.id === 'services'));
+  assert.match(quality.summarizeHealth(h).rows.find(row => row.id === 'services_extracts').note, /50 of 50 states/);
+  nationalServices(h, 'failed', {coverage});
+  assert.equal(h.sources.services_extracts.scopes.UT.last_success, '2025-01-01T00:00:00Z');
+  assert.deepEqual(h.run.counts, {fresh: 104});
+});
+
+
+test('manual state service refresh preserves national coverage and uses extract date', () => {
+  const {nationalServices, record, STATES} = require('../scripts/record_health.js');
+  const h = {version: 1, run: {counts: {fresh: 104}}, sources: {services: {scopes: {}}}};
+  const coverage = STATES.map(region => ({region, extract_timestamp: '2025-01-01T00:00:00Z', retrieved_at: '2025-01-02T00:00:00Z', count: 1}));
+  nationalServices(h, 'fresh', {coverage});
+  record(h, 'services_extracts', 'UT', 'fresh', '2025-03-01T00:00:00Z', {region: 'UT', source: {extract_timestamp: '2025-02-01T00:00:00Z', retrieved_at: '2025-02-02T00:00:00Z'}});
+  const ut = h.sources.services_extracts.scopes.UT;
+  assert.equal(ut.last_success, '2025-02-01T00:00:00Z');
+  assert.equal(ut.retrieved_at, '2025-02-02T00:00:00Z');
+  assert.equal(h.sources.services_extracts.coverage_states.length, 50);
+  assert.deepEqual(h.run.counts, {fresh: 104});
+  record(h, 'services_extracts', 'UT', 'failed', '2025-03-02T00:00:00Z');
+  assert.equal(h.sources.services_extracts.scopes.UT.extract_timestamp, '2025-02-01T00:00:00Z');
+  assert.equal(h.sources.services_extracts.scopes.UT.retrieved_at, '2025-02-02T00:00:00Z');
+});
