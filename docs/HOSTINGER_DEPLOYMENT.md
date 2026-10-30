@@ -31,6 +31,14 @@ The Sunday 03:00 UTC schedule covers all 50 states. Manual refreshes retain thei
 
 Verify one automatic deployment by matching the live `release.json` to the release branch after a new tested publication. Then switch public links. If publication or deployment fails, inspect the GitHub Actions run and hPanel deployment status. To roll back, deploy the previous release commit. The Git metadata and other dotfiles are denied HTTP access by the packaged `.htaccess`.
 
+## Route terrain runtime (2.16.0)
+
+The release includes `api/route-elevation.php` and its private helper. PHP needs cURL and PDO SQLite. The helper creates `route-elevation-cache/` beside the existing private configuration location; it must be outside the public webroot and writable by PHP with private permissions. This cache does not use the MySQL routing tables and needs no migration or provider key. API responses must remain outside generic browser/service-worker caching.
+
+After the required PHP/browser/package checks pass, verify an explicitly requested profile with public test coordinates from the host: fixed USGS responses, original retrieval dates, unknown gaps, private directory/file permissions, bounded cache growth and unavailable behavior when storage/provider access fails. Do not use a user's saved trip for an unrequested probe. The [2.16 contract](RIG_TERRAIN_CONTRACT_2.16.md) records the limits and local data behavior.
+
 ## Saved data during a domain move
 
 Browser storage and offline maps are specific to the origin. Existing saved stops on the GitHub Pages origin do not automatically appear on kamptrail.com. Preserve access to the old app, provide an export/import path and have users download needed offline maps at the new origin before retiring the old location.
+
+Rig profiles have a separate local JSON export/import path. Export from the old origin, inspect the import preview at the new one, then choose Replace. Exact-route terrain caches do not transfer automatically; load terrain explicitly at the new origin before offline travel. Browser storage remains optional and can be evicted.

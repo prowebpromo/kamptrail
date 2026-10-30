@@ -11,3 +11,6 @@
 - 2026-10-29: Live QA reproduced an existing popup retained after explicit navigation to a second campsite. 2.8.1 closes it and cancels older focus attempts. Ambiguous official forest aliases now omit the destination instead of choosing a sibling unit. Both have regressions.
 
 2026-10-29 — Environmental context (2.10.0): NIFC perimeter + NOAA satellite smoke overlays, on-demand NWS point alerts, dated sources, unavailable/offline states. Partial against the historical fire-weather/smoke row: no fire-weather risk overlay or universal closure feed. Weather/elevation filters remain separate.
+
+- 2026-10-29 (EDT): Confirmed 2.11.0 live and verified Hawkins Reservoir reports free camping with complete BLM wording and separate source/retrieval dates. BLM/USFS expansion and polygon assignment are merged under PR84. See the existing dated audit for catalogue deltas.
+- 2026-10-29 (EDT): 2.16 local rig profile and bounded sampled route terrain implemented. Independent review found and verified fixes for clear-during-refresh persistence and retry-with-no-missing-samples feedback. Python/source suite passed 156 checks with six native-tool skips. App CI, real PHP/MySQL, browser checks, parent data/release gates and live provider/cache checks remain pending. This is an unreleased implementation, not additional deployed parity.

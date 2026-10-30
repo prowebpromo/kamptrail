@@ -2,6 +2,8 @@
 
 Verified 2026-10-29 UTC. This feature samples interpolated bare-earth terrain; it does not measure a campsite pad, certify accessibility, determine a road grade, or establish whether a site is open. No elevation is inferred from neighbouring campsites or an agency's regional elevation range.
 
+This document covers the static catalogue pipeline. The separate user-triggered route sampler introduced in 2.16 uses the same USGS service, with its own [bounded request, privacy and offline-cache contract](RIG_TERRAIN_CONTRACT_2.16.md). Static import retry/checkpoint policies below do not apply to route requests.
+
 ## Authoritative source
 
 - [USGS 3DEP ImageServer](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer)

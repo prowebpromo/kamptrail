@@ -116,3 +116,57 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 #kt-permissions .kt-permission-text{white-space:pre-wrap}
 #kt-permissions .kt-permission-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
 #kt-permissions::backdrop{background:rgb(0 0 0 / .45)}
+
+/* Local rig profile and explicitly requested route terrain. */
+#kt-rig-dialog,#kt-route-terrain{width:min(820px,calc(100vw - 24px));max-height:90vh;max-height:90dvh;overflow:auto;overscroll-behavior:contain;border:1px solid #b8c5b1;border-radius:12px;padding:20px;background:#fff;color:#203b2d;font-size:14px;line-height:1.5;overflow-wrap:anywhere;box-shadow:0 14px 48px #10281f40}
+#kt-rig-dialog::backdrop,#kt-route-terrain::backdrop{background:#10281f99}
+.kt-rig-form{display:grid;gap:12px;min-width:0}
+.kt-rig-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kt-rig-header h2,#kt-route-terrain h2{font-size:21px;line-height:1.3;margin:0}
+.kt-rig-form p{margin:0}
+.kt-rig-form fieldset{min-width:0;border:1px solid #c4d0be;border-radius:8px;padding:12px;margin:0}
+.kt-rig-form fieldset>p,.kt-rig-form fieldset>.kt-rig-grid,.kt-rig-form fieldset>fieldset{margin-top:10px}
+.kt-rig-form legend{padding:0 4px;font-weight:700}
+.kt-rig-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kt-rig-form label:not(.kt-inline){display:block;min-width:0;font-weight:600}
+.kt-rig-form input:not([type=checkbox]),.kt-rig-form select{display:block;width:100%;min-width:0;min-height:44px;padding:9px;border:1px solid #8a9c89;border-radius:6px;background:#fff;color:#203b2d;font:inherit}
+.kt-rig-form label>input:not([type=checkbox]),.kt-rig-form label>select{margin-top:5px}
+.kt-rig-form input[type=file]{font-size:13px;margin-top:6px;overflow:hidden}
+.kt-rig-form .kt-inline{display:flex;align-items:center;gap:8px;min-height:44px;font-weight:400}
+.kt-rig-form input[type=checkbox]{flex:0 0 auto;width:18px;height:18px;margin:0;accent-color:#24613f}
+.kt-rig-actions,.kt-terrain-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.kt-rig-form .btn,#kt-route-terrain button{min-height:44px}
+#kt-rig-measure-help,.kt-rig-form fieldset>p,#kt-rig-filter-status{font-size:13px;color:#53664d}
+#kt-rig-status:not(:empty),#kt-rig-linked:not(:empty){border-left:3px solid #3b7653;background:#eef5ea;padding:8px 10px}
+#kt-rig-error:not(:empty){border-left:3px solid #a63c27;background:#fff1ed;color:#8a2a1a;padding:8px 10px}
+#kt-rig-status:empty,#kt-rig-error:empty{display:none}
+#kt-rig-preview{margin-top:12px;padding:12px;border:1px solid #acbfa6;border-radius:6px;background:#f3f7ef}
+#kt-rig-preview h3{font-size:16px;margin:0 0 8px}
+#kt-rig-preview pre{max-width:100%;margin:8px 0;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 system-ui,sans-serif}
+#kt-rig-preview .btn{margin:4px 4px 0 0}
+#kt-rig-confirm-delete{background:#8a2a1a;border-color:#8a2a1a}
+.kt-terrain-panel,.kt-terrain-content{display:grid;gap:12px;min-width:0}
+.kt-terrain-panel>button:first-child{justify-self:end}
+#kt-route-terrain p{margin:0}
+#kt-route-terrain button{border:1px solid #526758;border-radius:7px;padding:8px 12px;background:#203d2e;color:#f5fff7;font:600 13px system-ui,sans-serif}
+#kt-route-terrain button:hover:not(:disabled){background:#345e45;border-color:#345e45}
+.kt-terrain-warning,.kt-terrain-privacy{padding:10px 12px;border-radius:6px}
+.kt-terrain-warning{background:#fff6e3;border-left:4px solid #a66e14;color:#594009}
+.kt-terrain-privacy{background:#eef5ea;border:1px solid #ccd9c5}
+#kt-route-terrain select{max-width:100%;min-height:44px;margin-left:6px;padding:7px 9px;border:1px solid #8a9c89;border-radius:6px;background:#fff;color:#203b2d}
+#kt-route-terrain [role=status]{font-weight:600}
+.kt-terrain-chart{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:10/3;border:1px solid #c4d0be;border-radius:6px;background:#f6f9f2;color:#24613f}
+.kt-terrain-chart text{font:14px system-ui,sans-serif}
+.kt-terrain-content label{display:grid;gap:6px;font-weight:600}
+.kt-terrain-content input[type=range]{width:100%;min-width:0;min-height:44px;margin:0;accent-color:#24613f}
+.kt-terrain-content details{min-width:0;border:1px solid #c4d0be;border-radius:6px}
+.kt-terrain-content summary{min-height:44px;padding:10px 12px;cursor:pointer;font-weight:600}
+.kt-terrain-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.kt-terrain-table-wrap table{width:100%;border-collapse:collapse;font-size:12px}
+.kt-terrain-table-wrap caption{text-align:left;padding:8px 12px;color:#53664d}
+.kt-terrain-table-wrap th,.kt-terrain-table-wrap td{text-align:left;vertical-align:top;min-width:70px;max-width:220px;padding:8px;border-top:1px solid #d8dfd5;overflow-wrap:anywhere}
+.kt-terrain-table-wrap th{background:#eef5ea}
+#kt-rig-dialog button:disabled,#kt-rig-dialog input:disabled,#kt-route-terrain button:disabled{opacity:1;background:#e4e9e0;color:#576451;border-color:#aebba7;cursor:not-allowed}
+#kt-rig-dialog :focus-visible,#kt-route-terrain :focus-visible{outline:3px solid #976600;outline-offset:3px}
+@media(max-width:560px){#kt-rig-dialog,#kt-route-terrain{width:calc(100vw - 16px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);padding:14px}.kt-rig-grid{grid-template-columns:minmax(0,1fr)}.kt-rig-form fieldset{padding:10px}.kt-rig-actions>.btn,.kt-terrain-actions>button{flex:1 1 140px}.kt-rig-header h2,#kt-route-terrain h2{font-size:19px}.kt-terrain-warning,.kt-terrain-privacy{padding:10px}.kt-terrain-table-wrap table{min-width:780px}}
+@media(forced-colors:active){.kt-terrain-chart,.kt-terrain-warning,.kt-terrain-privacy,#kt-rig-status:not(:empty),#kt-rig-linked:not(:empty),#kt-rig-error:not(:empty){border:1px solid CanvasText}.kt-terrain-chart{color:CanvasText}}

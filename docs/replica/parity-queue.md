@@ -1,6 +1,6 @@
 # Active FreeRoam comparison and build queue
 
-Updated for the 2.9–2.15 work. This is an implementation queue, not a new parity score. Earlier matrix scores are historical: the original runtime is unavailable and some inherited original-feature claims remain uncertain. Do not describe completion of a reduced camping-planning scope as 100% historical FreeRoam product parity.
+Updated for the 2.9–2.16 work. This is an implementation queue, not a new parity score. Earlier matrix scores are historical: the original runtime is unavailable and some inherited original-feature claims remain uncertain. Do not describe completion of a reduced camping-planning scope as 100% historical FreeRoam product parity.
 
 ## Established capabilities
 
@@ -42,6 +42,7 @@ Accounts/profiles, cross-device synchronization, friends/messages/groups/events,
 - PR86 / 2.13 forecast: full app and native producer CI passed. Actual first publication and Hostinger private-cache/live checks remain.
 - PR87 / 2.14 services: exact-head CI40979932301 passed all88 browser checks plus PHP/MySQL/source/packaging. Seven-category Utah pilot contains2981 identities; total7340 includes4359 legacy elsewhere. No national seven-category claim.
 - PR88 / 2.15 permissions: implementation and independent review complete, PHP/MySQL checks passed in initial CI. Backup-fixture isolation and broader restore verification are being corrected before the full browser/package gate. Two reviewed official places are not general permission coverage.
-- Next: portable local rig profile and bounded route-terrain profile. Fractional rig-length comparisons must never round a metric rig down to fit a shorter site. Reference dimensions do not make car routing RV-aware.
+- 2.16 local implementation adds a portable rig profile and bounded route-terrain profile. Fractional rig-length comparisons preserve metric precision. Terrain sampling requires an explicit action and has dated exact-route offline reuse; reference dimensions do not make car routing RV-aware. Required browser/PHP CI and live private-cache/provider checks remain release gates. See [the contract](../RIG_TERRAIN_CONTRACT_2.16.md).
+- Next independent package: sourced routing-restriction hazards and an enforceable routing-backend assessment, preserving explicit unknown coverage. No height/weight/length avoidance claim before a backend can enforce it.
 
 FCC remains blocked externally by helpdesk64052. No credential retries or secret handling are required to continue independent packages.

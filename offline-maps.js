@@ -111,5 +111,5 @@
     };
     addEventListener('offline', nudge); nudge();
   }
-  window.KampTrailOffline = {version: '2.15.0', init, plan, cacheName, TOPO};
+  window.KampTrailOffline = {version: '2.16.0', init, plan, cacheName, TOPO};
 })();

@@ -1,6 +1,6 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rig-profile.js','route-elevation.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
@@ -57,7 +57,7 @@ const files=['index.html','app.js','app.css','manifest.json','service-worker.js'
     await fs.writeFile(page,html);
   }
   // Contributions API: only these public PHP entry points and their private helpers. Never configuration or credentials.
-  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
+  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/route-elevation.php','api/_lib/route-elevation.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
   await fs.mkdir(path.join(out,'api','_lib'),{recursive:true});
   for(const file of apiFiles)await fs.copyFile(path.join(root,file),path.join(out,file));
   const permissionRoot=path.join(root,'api','_data','permissions');
