@@ -75,3 +75,10 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 :root{--environment-key-size:14px}.kt-environment-key{list-style:none;padding:0}.kt-environment-key li{display:flex;align-items:center;gap:var(--environment-space)}.kt-environment-key i{width:var(--environment-key-size);height:var(--environment-key-size);display:inline-block;background:var(--environment-fire)}.kt-environment-key .kt-environment-key-smoke-light{background:var(--environment-smoke-light)}.kt-environment-key .kt-environment-key-smoke-medium{background:var(--environment-smoke-medium)}.kt-environment-key .kt-environment-key-smoke-heavy{background:var(--environment-smoke-heavy)}
 
 :root{--fee-evidence-gap:8px}.kt-fee-records{overflow-wrap:anywhere}.kt-fee-records details{margin:var(--fee-evidence-gap) 0}.kt-fee-records summary{font-weight:600;cursor:pointer}.kt-fee-full-text{white-space:pre-wrap;line-height:1.5}.kt-fee-records h3{margin:var(--fee-evidence-gap) 0;font-size:1em}
+/* Elevation bounds remain readable in the narrow map filter panel. */
+.kt-elevation-filters{min-width:0;margin:14px 0;padding:10px;border:1px solid #d0d9d3;border-radius:6px}
+.kt-elevation-filters legend{font-weight:700}
+.kt-elevation-bounds{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.kt-elevation-bounds label{min-width:0}
+.kt-elevation-bounds input{width:100%;min-width:0;box-sizing:border-box}
+#f-elevation-error:not(:empty){color:#9d2424}
