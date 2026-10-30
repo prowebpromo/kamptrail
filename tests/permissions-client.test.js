@@ -27,7 +27,7 @@ function setup(fetcher) {
 }
 test('public reads send location only in JSON POST, bypass browser cache, and save no public data', async () => {
   const env = setup(); await env.api.open(place);
-  assert.equal(env.api.version, '2.15.0');
+  assert.equal(env.api.version, require('../package.json').version);
   assert.equal(env.requests.length, 1);
   const {url, options, payload} = env.requests[0];
   assert.equal(url, 'api/permissions.php'); assert.equal(options.method, 'POST'); assert.equal(options.cache, 'no-store');
