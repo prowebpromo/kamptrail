@@ -1,6 +1,6 @@
 # INDOT facility-level overnight parking
 
-Date: 2026-10-31. Follows docs/REST_AREA_PERMISSIONS_2.28.1.md, which left Indiana's 17 records all unknown.
+Release 2.29.1 (cache `kt-v62`). Date: 2026-10-31. Follows docs/REST_AREA_PERMISSIONS_2.28.1.md, which left Indiana's 17 records all unknown.
 
 ## Acceptance criterion
 
