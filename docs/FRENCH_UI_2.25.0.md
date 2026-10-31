@@ -18,7 +18,7 @@ Thirteen English strings join English word fragments in code (for example "listi
 - The translation was produced with AI assistance and checked automatically for key and placeholder parity. A native French speaker has not reviewed it.
 - The how-to page and its videos stay in English. This was a listed exception for the row and remains one.
 - Untranslated server or browser messages can appear in English, as in Spanish.
-- The route clearance dialog's fixed text is English in every language (see live verification).
+- The route clearance dialog's fixed text was English in every language in 2.25.0. Fixed and verified live in 2.25.1 (`ROUTE_CLEARANCE_I18N_2.25.1.md`).
 
 ## Tests
 
@@ -40,10 +40,11 @@ A scripted headless Chromium check against kamptrail.com at a 390 by 844 mobile 
 - With the French file returning 404, the page switched to English with the bilingual fallback notice.
 
 Not demonstrated live:
-- The corrected route no-match and height-tag status lines. Both are confirmed in the served file. A probe route did not complete a clearance search, so the no-match line did not render. That probe used a hand-built route, so it is not evidence of a production fault.
+- The corrected height-tag layer status line, confirmed in the served file only.
+- The corrected route no-match line did not render in the first probe, which passed a malformed route. With a correctly shaped route it rendered live later the same day (see the 2.25.1 record).
 - A physical phone. The scheduled November 2 test stays separate and pending.
 
-Additional limit found: the route clearance dialog builds its heading, Close button, introduction, loading and unavailable messages as fixed English text, outside the translation catalogue. They appear in English in French and Spanish. Only its result line is translated.
+Additional limit found (fixed in 2.25.1): the route clearance dialog builds its heading, Close button, introduction, loading and unavailable messages as fixed English text, outside the translation catalogue. They appear in English in French and Spanish. Only its result line is translated.
 
 ## Checklist effect
 
