@@ -123,6 +123,6 @@
     global.addEventListener('offline',()=>{saved=!!data;redraw();});global.addEventListener('online',()=>redraw(true));
     return layer;
   }
-  const api={version:'2.25.0',validate,parseHeight,heightText,describe,sourceLink,intersect,init,MAX_BYTES};
+  const api={version:'2.25.1',validate,parseHeight,heightText,describe,sourceLink,intersect,init,MAX_BYTES};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailClearances=api;
 })(typeof window!=='undefined'?window:globalThis);
