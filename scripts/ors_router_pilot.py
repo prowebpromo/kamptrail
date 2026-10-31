@@ -100,28 +100,49 @@ class Pilot:
         return record
 
 
+def bearing(a, b):
+    lat = math.radians((a[1] + b[1]) / 2)
+    return math.atan2(math.radians(b[1] - a[1]), math.radians(b[0] - a[0]) * math.cos(lat))
+
+
 def street_chain(elements, start_ids, name, steps):
-    """Walk outward along ways with the given name from the restricted segment ends."""
+    """Walk outward from each restricted-segment end along connected roads.
+
+    Prefers ways with the restricted street's name, then the straightest
+    continuation, so the corridor runs through the restriction rather than
+    around it.
+    """
     nodes, adj = {}, {}
     for el in elements:
-        if el.get('type') != 'way' or (el.get('tags') or {}).get('name') != name:
+        if el.get('type') != 'way' or 'highway' not in (el.get('tags') or {}):
+            continue
+        tags = el['tags']
+        if tags['highway'] in ('footway', 'cycleway', 'path', 'steps', 'pedestrian', 'service', 'track', 'bridleway', 'corridor', 'proposed', 'construction'):
             continue
         ids, geom = el.get('nodes') or [], el.get('geometry') or []
         for nid, g in zip(ids, geom):
             nodes[nid] = [g['lon'], g['lat']]
+        same = tags.get('name') == name
         for a, b in zip(ids, ids[1:]):
-            adj.setdefault(a, set()).add(b)
-            adj.setdefault(b, set()).add(a)
+            adj.setdefault(a, {})[b] = same or adj.get(a, {}).get(b, False)
+            adj.setdefault(b, {})[a] = same or adj.get(b, {}).get(a, False)
     seg = set(start_ids)
     found = {}
     for end in start_ids:
+        other = start_ids[1] if end == start_ids[0] else start_ids[0]
         for target in steps:
-            prev, cur, walked, seen = None, end, 0.0, set(seg)
+            prev, cur, walked, seen = other, end, 0.0, set(seg)
             while walked < target:
-                nxt = [n for n in adj.get(cur, ()) if n not in seen and n != prev]
-                if not nxt:
+                options = [(n, same) for n, same in adj.get(cur, {}).items() if n not in seen]
+                if not options:
                     break
-                prev, cur = cur, nxt[0]
+                heading = bearing(nodes[prev], nodes[cur]) if prev in nodes else 0.0
+                def score(item):
+                    n, same = item
+                    turn = abs((bearing(nodes[cur], nodes[n]) - heading + math.pi) % (2 * math.pi) - math.pi)
+                    return (0 if same else 1, turn)
+                nxt = min(options, key=score)[0]
+                prev, cur = cur, nxt
                 seen.add(cur)
                 walked += metres(nodes[prev], nodes[cur])
             if walked >= target * 0.6:
@@ -130,7 +151,7 @@ def street_chain(elements, start_ids, name, steps):
 
 
 def height_tests(p, report):
-    q = f'[out:json][timeout:60];way({RESTRICTED_WAY});out body geom;way(around:700,41.89296,-71.38510)[highway][name="Blackstone Street"];out body geom;'
+    q = f'[out:json][timeout:60];way({RESTRICTED_WAY});out body geom;way(around:700,41.89296,-71.38510)[highway];out body geom;'
     data = p.overpass(q)
     restricted = next(e for e in data['elements'] if e.get('id') == RESTRICTED_WAY)
     tags = restricted.get('tags') or {}
@@ -149,6 +170,7 @@ def height_tests(p, report):
             corridor = {'a': a, 'b': b, 'walk_m': [a_opts[i][2], b_opts[i][2]], 'control_distance_m': control['distance_m']}
             break
     report['corridor'] = corridor
+    report['corridor_candidates'] = {str(k): [(t, c, w) for t, c, w in v] for k, v in ends.items()}
     if not corridor:
         report['height_result'] = 'NOT VALIDATED: no car control route crossed the restricted segment'
         return
