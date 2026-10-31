@@ -71,6 +71,23 @@
     }
     return legs;
   }
+  // ---- After-stay review prompt (local only; opens the existing moderated review form) ----
+  const STAY_KEY='kt_stay_prompts_v1';
+  function localToday(now=new Date()){const p=n=>String(n).padStart(2,'0');return `${now.getFullYear()}-${p(now.getMonth()+1)}-${p(now.getDate())}`;}
+  function stayDismissed(){try{const v=JSON.parse(localStorage.getItem(STAY_KEY)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{};}catch{return {};}}
+  function stayKey(stop){return `${stop.id}|${stop.depart||stop.arrive}`;}
+  function stayDue(stop,site,today=localToday()){
+    const date=stop.depart||stop.arrive;
+    return !!(site&&site.properties?.type!=='service'&&isDate(date)&&date<=today&&!stayDismissed()[stayKey(stop)]);
+  }
+  function dismissStay(stop){const v=stayDismissed();v[stayKey(stop)]=localToday();try{localStorage.setItem(STAY_KEY,JSON.stringify(v));}catch{}}
+  function stayPrompt(stop,site,label){
+    const box=document.createElement('div');box.className='kt-stay-prompt';
+    const text=document.createElement('p');text.textContent=t("How was your stay? A dated review helps other campers. Nothing is sent unless you submit the review form.");
+    const write=button(t("Write a review"),()=>{if(window.KampTrailCommunity)KampTrailCommunity.open(site);});write.setAttribute('aria-label',t("Write a review for {name}",{name:label}));
+    const later=button(t("Dismiss"),()=>{dismissStay(stop);box.remove();});later.setAttribute('aria-label',t("Dismiss the review reminder for {name}",{name:label}));
+    box.append(text,write,later);return box;
+  }
   function button(text,action) {
     const el=document.createElement('button');el.type='button';el.className='btn';el.textContent=text;el.onclick=action;return el;
   }
@@ -215,7 +232,7 @@
       const up=button(t("Up"),()=>move(index,-1));up.classList.add('kt-trip-up');up.disabled=index===0;up.setAttribute('aria-label',t("Move {name} up", {name:label}));
       const down=button(t("Down"),()=>move(index,1));down.classList.add('kt-trip-down');down.disabled=index===st.stops.length-1;down.setAttribute('aria-label',t("Move {name} down", {name:label}));
       const remove=button(t("Remove"),()=>{st.stops=st.stops.filter(item=>item!==stop);save();render();drawRoute();st.el.querySelector('#kt-trip-close').focus();});remove.classList.add('kt-trip-del');remove.setAttribute('aria-label',t("Remove {name}", {name:label}));
-      actions.append(up,down,remove);card.append(title,detail,actions,stopEditor(stop));list.append(card);
+      actions.append(up,down,remove);card.append(title,detail,actions);if(stayDue(stop,site))card.append(stayPrompt(stop,site,label));card.append(stopEditor(stop));list.append(card);
     });
   }
   // ---- GPX ----
@@ -306,6 +323,8 @@
       #kt-trip-drawer h3 {font-size:14px;line-height:1.4;margin:0 0 6px;overflow-wrap:anywhere}
       #kt-trip-drawer .kt-saved-stop p {font-size:12px;line-height:1.5;color:#bed3c4;margin:0 0 10px}
       #kt-trip-drawer .kt-saved-actions {display:flex;gap:7px;flex-wrap:wrap}
+      #kt-trip-drawer .kt-stay-prompt {display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px;padding:10px;border:1px dashed #6f9a78;border-radius:8px}
+      #kt-trip-drawer .kt-stay-prompt p {flex-basis:100%;margin:0}
       #kt-trip-drawer .btn {display:inline-block;text-decoration:none;border:1px solid #73947b;background:#203d2e;color:#f5fff7;padding:7px 10px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;min-height:34px}
       #kt-trip-drawer .btn:disabled {opacity:.45;cursor:default}
       #kt-trip-drawer .btn:focus-visible,#kt-trip-drawer input:focus-visible,#kt-trip-drawer textarea:focus-visible,#kt-trip-drawer summary:focus-visible {outline:3px solid #e2a535;outline-offset:2px}
@@ -342,7 +361,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.25.1',
+    version:'2.26.0',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;

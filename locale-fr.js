@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.25.1', messages:{
+  global.KampTrailI18nFr = {version:'2.26.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1640,6 +1640,10 @@
   "Type: {type}": "Type : {type}",
   "Hookups: {hookups}": "Raccordements : {hookups}",
   "Amenities: {amenities}": "Équipements : {amenities}",
+  "How was your stay? A dated review helps other campers. Nothing is sent unless you submit the review form.": "Comment s’est passé votre séjour ? Un avis daté aide les autres campeurs. Rien n’est envoyé tant que vous ne soumettez pas le formulaire d’avis.",
+  "Write a review for {name}": "Rédiger un avis sur {name}",
+  "Dismiss": "Ignorer",
+  "Dismiss the review reminder for {name}": "Ignorer le rappel d’avis pour {name}",
   "Include unknown length: {value}": "Inclure la longueur inconnue : {value}",
   "Yes": "Oui",
   "No": "Non",
