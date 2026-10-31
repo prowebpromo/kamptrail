@@ -13,6 +13,23 @@ const fs = require('fs').promises;
 const path = require('path');
 const crypto = require('crypto');
 
+const osmIdentity = p => /^osm:(?:node|way|relation|unknown):/.test(String(p.id || ''));
+const ownedOsmFields = ['fee', 'charge', 'fee:conditional', 'access', 'fee_status', 'cost', 'fee_text', 'fee_source', 'fee_checked', 'fee_evidence'];
+
+// Name/proximity matching is not proof that a second OSM element's tags apply
+// to the retained element. Keep those observations available for identity review.
+function osmFieldRecords(...properties) {
+  const records = new Map();
+  for (const p of properties) {
+    for (const r of Array.isArray(p.unverified_osm_field_records) ? p.unverified_osm_field_records : []) records.set(JSON.stringify(r), r);
+    if (!osmIdentity(p)) continue;
+    const fields = Object.fromEntries(ownedOsmFields.filter(k => Object.hasOwn(p, k)).map(k => [k, p[k]]));
+    const r = {source_record_id: p.id, fields, retrieved_at: p.source_retrieved_at || null, source_updated_at: p.osm_timestamp || null};
+    records.set(JSON.stringify(r), r);
+  }
+  return [...records.values()];
+}
+
 class CampsiteMerger {
   constructor() {
     this.DISTANCE_THRESHOLD_METERS = 500; // Consider campsites within 500m as duplicates
@@ -148,7 +165,7 @@ class CampsiteMerger {
     const primaryRating = number(primary.rating, 5), secondaryRating = number(secondary.rating, 5);
     const conflicts = [...list(primary.data_conflicts), ...list(secondary.data_conflicts)];
     if (primaryCost !== null && secondaryCost !== null && primaryCost !== secondaryCost) conflicts.push('cost');
-    return {
+    const merged = {
       ...secondary,
       ...primary,
       name: primary.name || primary.Name || secondary.name || secondary.Name || 'Unnamed campsite',
@@ -179,6 +196,22 @@ class CampsiteMerger {
       description: (primary.description?.length > secondary.description?.length)
         ? primary.description : (secondary.description || primary.description || '')
     };
+    if (osmIdentity(primary) && osmIdentity(secondary) && primary.id !== secondary.id) {
+      for (const key of ownedOsmFields) {
+        if (Object.hasOwn(primary, key)) merged[key] = primary[key];
+        else delete merged[key];
+      }
+      merged.unverified_osm_field_records = osmFieldRecords(primary, secondary);
+      merged.field_provenance.cost = primaryCost !== null ? (primary.field_provenance?.cost || 'source-reported') : 'unknown';
+      const feeKind = p => /^(?:no|0|false)$/i.test(String(p.fee)) ? 'free' : /^(?:yes|true)$/i.test(String(p.fee)) ? 'paid' : null;
+      if (primary.fee_conflict || secondary.fee_conflict || (feeKind(primary) && feeKind(secondary) && feeKind(primary) !== feeKind(secondary))) {
+        merged.fee_conflict = true;
+        merged.fee_status = 'unknown';
+        merged.cost = null;
+        merged.fee_text = null;
+      }
+    }
+    return merged;
   }
 
   /**

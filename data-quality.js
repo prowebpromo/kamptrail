@@ -152,22 +152,31 @@
   }
   function mergeFeatures(primary, secondary) {
     const p=primary.properties, q=secondary.properties;
+    const distinctOsm = /^osm:(?:node|way|relation|unknown):/.test(p.id) && /^osm:(?:node|way|relation|unknown):/.test(q.id) && p.id !== q.id;
+    if (distinctOsm) {
+      // Retain the secondary report for review without granting its fee/access
+      // to the canonical element merely because names and coordinates matched.
+      const records = new Map();
+      const list = value => Array.isArray(value) ? value : [];
+      for (const r of [...list(p.unverified_osm_matches), ...list(q.unverified_osm_matches), {source_record_id:q.id, fee_status:q.fee_status, cost:q.cost, access:q.access, access_status:q.access_status}]) records.set(JSON.stringify(r),r);
+      p.unverified_osm_matches = [...records.values()];
+    }
     if (p.state == null && p.id === q.id && q.state != null) p.state=q.state;
     if(p.forecastStates||q.forecastStates)p.forecastStates=[...new Set([...(p.forecastStates||[]),...(q.forecastStates||[])])];
     p.legacy_ids = [...new Set([...(p.legacy_ids || []), ...(q.legacy_ids || []), q.id])];
     p.sources = [...new Set([...(p.sources || []), ...(q.sources || [])])];
     p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records,q.fee_evidence_records);
-    if (p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;}
+    if (!distinctOsm && p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;}
     if (p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;if(p.type==='other')p.type=q.type;}
     // Preserve known facts, but do not hide conflicts between sources.
     if (p.fee_conflict || q.fee_conflict) {p.fee_conflict=true; p.fee_status='unknown'; p.cost=null; p.fee_text=null;}
     const adopt = () => {p.fee_status=q.fee_status; p.cost=q.cost; for (const k of ['fee_text','fee_source','fee_checked','fee_evidence']) p[k]=q[k] ?? null;};
     const charged = v => v === 'paid' || v === 'conditional';
-    if (p.fee_status === 'unknown' && q.fee_status !== 'unknown' && !p.fee_conflict) adopt();
+    if (!distinctOsm && p.fee_status === 'unknown' && q.fee_status !== 'unknown' && !p.fee_conflict) adopt();
     // Agency wording that names conditions refines a bare free or paid record. Free versus paid is a real conflict.
-    else if (q.fee_status === 'conditional' && p.fee_status !== 'conditional' && !p.fee_conflict) adopt();
+    else if (!distinctOsm && q.fee_status === 'conditional' && p.fee_status !== 'conditional' && !p.fee_conflict) adopt();
     else if (p.fee_status !== 'unknown' && q.fee_status !== 'unknown' && p.fee_status !== q.fee_status && !(charged(p.fee_status) && charged(q.fee_status)) && !(p.fee_status === 'conditional' || q.fee_status === 'conditional')) {p.fee_status='unknown'; p.cost=null; p.fee_conflict=true; p.fee_text=null;}
-    if (p.cost === null && q.cost !== null && !p.fee_conflict && p.fee_status === q.fee_status) p.cost=q.cost;
+    if (!distinctOsm && p.cost === null && q.cost !== null && !p.fee_conflict && p.fee_status === q.fee_status) p.cost=q.cost;
     p.amenity_negatives = [...new Set([...(p.amenity_negatives || []), ...(q.amenity_negatives || [])])];
     p.amenities = [...new Set([...p.amenities,...q.amenities])].filter(a => !p.amenity_negatives.includes(a));
     p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];

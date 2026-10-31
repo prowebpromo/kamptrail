@@ -173,9 +173,42 @@ test('direct source intro preserves legitimate short RIDB campground names witho
   assert.equal(ambiguous.properties.type,'other');
   assert.equal(normalize({name:'Lake Recreation Area',facility_id:99,description:'No overnight camping is permitted here.'}),null);
 });
-test('duplicate records retain explicit permit/customer access when another source lacks access details',()=>{
-  const result=quality.cleanAndDedupeGeoJSON({features:[point({osm_id:1,tourism:'camp_site'}),point({osm_id:2,tourism:'camp_site',access:'permit'})]});
-  assert.equal(result.features.length,1);assert.equal(result.features[0].properties.access_status,'permit');assert.match(result.features[0].properties.access_label,/Permit/);
+test('nearby distinct OSM records do not lend permit access to the canonical element',()=>{
+  const result=quality.cleanAndDedupeGeoJSON({features:[point({osm_id:1,osm_type:'node',tourism:'camp_site'}),point({osm_id:2,osm_type:'node',tourism:'camp_site',access:'permit'})]});
+  assert.equal(result.features.length,1);assert.equal(result.features[0].properties.access_status,'unknown');
+  assert.equal(result.features[0].properties.unverified_osm_matches[0].access_status,'permit');
+});
+
+test('index OSM fee ownership survives repeated cleaning and state loads',()=>{
+  for (const fee of ['no','yes']) {
+    const a=point({osm_id:1,osm_type:'node',tourism:'camp_site'});
+    const b=point({osm_id:2,osm_type:'node',tourism:'camp_site',fee});
+    let result=quality.cleanAndDedupeGeoJSON({features:[a,b]});
+    for(let i=0;i<3;i++) {
+      result=quality.cleanAndDedupeGeoJSON({features:[...result.features,b]});
+      const p=result.features[0].properties;
+      assert.equal(result.features.length,1);assert.equal(p.id,'osm:node:1');
+      assert.equal(p.fee_status,'unknown');assert.equal(p.cost,null);
+      assert.equal(quality.applyFilters(result.features,{cost:'free'}).length,0);
+      assert.equal(quality.applyFilters(result.features,{cost:'paid'}).length,0);
+      assert.ok(p.fee_evidence_records.some(r=>r.source_record_id==='osm:node:2'));
+      assert.equal(p.unverified_osm_matches.length,1);
+    }
+  }
+});
+
+test('exact OSM identity duplicates can still fill explicit fee and access evidence',()=>{
+  const a=point({osm_id:1,osm_type:'node',tourism:'camp_site'});
+  const b=point({osm_id:1,osm_type:'node',tourism:'camp_site',fee:'no',access:'permit'});
+  const result=quality.cleanAndDedupeGeoJSON({features:[a,b]});
+  assert.equal(result.features.length,1);assert.equal(result.features[0].properties.fee_status,'free');
+  assert.equal(result.features[0].properties.access_status,'permit');
+});
+
+test('legacy OSM identities with unknown element types cannot borrow nearby fees',()=>{
+  const result=quality.cleanAndDedupeGeoJSON({features:[point({osm_id:1,tourism:'camp_site'}),point({osm_id:2,tourism:'camp_site',fee:'no',access:'permit'})]});
+  assert.equal(result.features[0].properties.fee_status,'unknown');
+  assert.equal(result.features[0].properties.access_status,'unknown');
 });
 
 

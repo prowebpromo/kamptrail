@@ -15,6 +15,45 @@ const point = (properties = {}, coordinates = [-73, 42]) => ({
   type: 'Feature', geometry: { type: 'Point', coordinates }, properties
 });
 
+test('OSM snapshot merges retain field ownership, dates and donor observations', () => {
+  const merger = new CampsiteMerger();
+  const a = {id:'osm:node:1',osm_id:1,osm_type:'node',name:'Pine Campground',tourism:'camp_site',source_retrieved_at:'2026-10-01T00:00:00Z'};
+  const b = {id:'osm:node:2',osm_id:2,osm_type:'node',name:'Pine Campground',tourism:'camp_site',fee:'no',access:'permit',source_retrieved_at:'2026-10-02T00:00:00Z'};
+  const original = structuredClone([a,b]);
+  const merged = merger.mergeProperties(a,b);
+  assert.equal(merged.id,a.id);
+  for (const k of ['fee','access','cost','fee_status']) assert.equal(merged[k],undefined,k);
+  assert.equal(merged.unverified_osm_field_records.find(r=>r.source_record_id===b.id).fields.fee,'no');
+  assert.equal(merged.unverified_osm_field_records.find(r=>r.source_record_id===b.id).retrieved_at,b.source_retrieved_at);
+  assert.deepEqual([a,b],original);
+  const reverse = merger.mergeProperties(b,a);
+  assert.equal(reverse.fee,'no');assert.equal(reverse.access,'permit');
+  const repeated = merger.mergeProperties(merged,b);
+  assert.equal(repeated.fee,undefined);assert.equal(repeated.access,undefined);
+  assert.equal(repeated.unverified_osm_field_records.length,2);
+});
+
+test('snapshot OSM free versus paid conflicts survive another free donor and normalization', () => {
+  const merger = new CampsiteMerger(), quality = require('../../data-quality');
+  const a={id:'osm:node:1',osm_id:1,osm_type:'node',name:'Pine Campground',tourism:'camp_site',fee:'no'};
+  const b={...a,id:'osm:node:2',osm_id:2,fee:'yes'};
+  const merged=merger.mergeProperties(merger.mergeProperties(a,b),a);
+  const normalized=quality.normalizeFeature(point(merged));
+  assert.equal(normalized.properties.fee_status,'unknown');assert.equal(normalized.properties.cost,null);
+  assert.equal(normalized.properties.fee_conflict,true);
+});
+
+test('snapshot ownership guards leave merge membership, canonical IDs and coordinates unchanged', async () => {
+  const merger=new CampsiteMerger();
+  const a=point({id:'osm:node:1',osm_id:1,osm_type:'node',name:'Pine Campground',tourism:'camp_site'});
+  const b=point({id:'osm:node:2',osm_id:2,osm_type:'node',name:'Pine Campground',tourism:'camp_site',fee:'yes'},[-73.0001,42]);
+  const merged=await merger.mergeDatasets([{features:[a,b]}]);
+  assert.equal(merged.features.length,1);assert.equal(merged.duplicatesRemoved,1);
+  assert.equal(merged.features[0].properties.id,a.properties.id);
+  assert.deepEqual(merged.features[0].geometry,a.geometry);
+  assert.deepEqual(merged.features[0].properties.source_ids,[a.properties.id,b.properties.id]);
+});
+
 test('merging preserves explicit zero and never manufactures a free campsite', () => {
   const merger = new CampsiteMerger();
   assert.equal(merger.mergeProperties({ cost: 0 }, { cost: 20 }).cost, 0);
