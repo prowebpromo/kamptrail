@@ -95,6 +95,9 @@ class Pilot:
         except urllib.error.HTTPError as e:
             detail = e.read()[:400].decode('utf-8', 'replace')
             record.update(status=e.code, line=None, error=detail)
+            if e.code in (403, 429) and 'quota' in detail.lower():
+                self.log.append({k: v for k, v in record.items() if k != 'line'} | {'points': 0})
+                raise RuntimeError(f'ORS quota exceeded (HTTP {e.code}); run stopped, results so far kept')
         time.sleep(PAUSE_S)
         self.log.append({k: v for k, v in record.items() if k != 'line'} | {'points': len(record['line'] or [])})
         return record

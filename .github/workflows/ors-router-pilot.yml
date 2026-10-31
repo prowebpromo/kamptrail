@@ -26,8 +26,6 @@ jobs:
       - name: Run pilot
         env:
           ORS_API_KEY: ${{ secrets.ORS_API_KEY }}
-          ORS_STATES: US-NY
-          ORS_CANDIDATES: '3'
         run: |
           set -o pipefail
           python3 scripts/ors_height_multistate.py "$RUNNER_TEMP/ors-pilot"

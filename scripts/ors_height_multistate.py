@@ -21,7 +21,7 @@ from ors_router_pilot import Pilot, street_chain, passes_through, length, now, d
 
 STATES = tuple(os.environ.get('ORS_STATES', 'US-NY,US-MA,US-PA,US-OH,US-IL,US-GA,US-CO,US-CA,US-OR,US-WA').split(','))
 PER_STATE = 3                  # validated corridors wanted per state
-CANDIDATES_PER_STATE = int(os.environ.get('ORS_CANDIDATES', '8'))
+CANDIDATES_PER_STATE = int(os.environ.get('ORS_CANDIDATES', '5'))
 PROFILES = ('hgv', 'bus')
 UNDER, OVER = 0.4, 0.2
 MIN_TEST, MAX_TEST = 2.3, 4.2
@@ -118,7 +118,7 @@ def main(out_dir):
         print('ORS_API_KEY is not set', file=sys.stderr)
         return 2
     import ors_router_pilot
-    ors_router_pilot.MAX_ORS_CALLS = 420
+    ors_router_pilot.MAX_ORS_CALLS = 300
     os.makedirs(out_dir, exist_ok=True)
     p = Pilot(key)
     rng = random.Random(SEED)
