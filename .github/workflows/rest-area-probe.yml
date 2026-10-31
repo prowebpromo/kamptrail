@@ -1,0 +1,22 @@
+name: Rest-area layer probe
+# Read-only metadata probe of candidate official rest-area layers. No commits, no publication.
+on:
+  push:
+    branches: [pilot/rest-area-probe]
+permissions:
+  contents: read
+jobs:
+  probe:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - run: python3 scripts/probe_rest_area_layers.py "$RUNNER_TEMP/probe.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rest-area-probe
+          path: ${{ runner.temp }}/probe.json
+          retention-days: 30
