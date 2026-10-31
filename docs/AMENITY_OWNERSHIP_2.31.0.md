@@ -32,7 +32,7 @@ Approved by the owner. Recorded before any code change. It must not be weakened.
 
 ### Snapshot merge guard (`scripts/merge_campsite_data.js`)
 
-- `AMENITY_TAG` names the amenity-type OSM keys: `toilets`, `toilets:*`, `drinking_water`, `shower`, `sanitary_dump_station`, `power_supply`, `bin`, `openfire`, `fireplace`, `firepit`, `picnic_table`, `bbq`, `water_point` and the other water, waste and fire keys found in the retained extract, plus `check_date` and `check_date:*`.
+- `AMENITY_TAG` names every amenity-like OSM key found in the retained extract, each with its `:*` subkeys: toilets, drinking water and other water, hookup and sewer keys, showers, dump and waste keys, bins, power, sockets and electricity, internet access and wifi, laundry, washing machines and dryers, kitchens, grills, fire and firewood keys, picnic tables and sites, shelters, pools, saunas, playgrounds, `amenity` itself, plus `check_date` and `check_date:*`. Review on PR #150 found `internet_access`, `sewer_hookup`, `washing_machine` and `amenity` missing from the first list. They are now covered.
 - `osmTag` now covers fee, charge, access and these keys. The existing `ownedOsmField` and `memberEvidence` path does the rest. When a distinct OSM element is absorbed, the kept record keeps only its own values. The absorbed element's values go to `member_evidence[]` with `source_record_id`, `source`, `retrieved_at`, `source_updated_at` and `source_url`. A survey date travels inside `fields` with its element.
 - An `amenities` array is no longer unioned across different records. The same record seen twice still unions. No retained input has a non-empty array, so this changes no data.
 - Fee and access behaviour is unchanged. The fee-evidence builder in `normalizeFeature` still reads only fee and access keys from member evidence.
@@ -43,6 +43,7 @@ Approved by the owner. Recorded before any code change. It must not be weakened.
 - New fields: `osm_amenity_tags` (the own element's amenity keys, verbatim), `amenity_record` (a non-OSM record's own amenity list with its source), `amenity_members` (attributed observations of other merged records). `amenity_negatives` is deduplicated and no longer grows on each pass.
 - `mergeFeatures` no longer unions `amenities` or `amenity_negatives` from another record. The other record's own observation and its members are added to `amenity_members`, keyed by record id.
 - `amenityEvidence(p)` is the single evidence model. Every statement carries source, record id, scope and date. Scopes: `element`, `listing_record`, `site_record` (Forest Service) and `campsite_records` (Recreation.gov, "N of M records, not every site"). The date is an observation date (OSM `check_date`, Forest Service `infra_last_update`) or `null`, shown as "date unknown". Retrieval dates are shown separately and labelled. A rebuild date is never used.
+- Only a Forest Service record whose type is `CAMPGROUND`, `GROUP CAMPGROUND` or `HORSE CAMP` is campground-wide (`site_record`). Any other type under the same Recreation.gov ID (swimming site, picnic site, entrance station, lookout or cabin, day-use area) is `other_site_record`. The popup shows it with its own name and type as "different site, not this campground". It never satisfies a filter and never sets a status. Review on PR #150 found 8 listings with such records, for example `ridb:251845` (a swimming site), `ridb:234526` (an entrance station) and `ridb:234452` (a picnic area). 5 lost a Toilets match and 3 a Drinking water match, with or without a length filter.
 - Per filter amenity the status is `present`, `absent`, `conflict`, `unrecognized` or `unknown`. A campground-wide statement that disagrees with another statement is a conflict. Forest Service records that disagree give a conflict, never a label. Member observations are shown and never used, for or against.
 - `amenityMatches` is what `applyFilters` uses. A listing matches only on `present` evidence. With a length or hookup filter on, Recreation.gov campsite-record counts never count, because the sidecar holds counts per facility and cannot show that the fitting campsite is the one with the amenity. Campground-wide evidence still combines with a fitting campsite.
 
@@ -75,28 +76,28 @@ node scripts/verify-amenity-ownership.js --baseline=<origin/main checkout> --rep
 
 - `verify-osm-provenance.js`: all assertions true. Fee changes 0, access changes 0, held exclusions 4 (unchanged), listing count 33,370.
 - Replaying the unchanged code first reproduced every snapshot byte for byte, so every later difference comes from this repair.
-- 43 of 50 state snapshots changed. 502 rows lost 810 tag instances to member evidence (toilets 170, drinking_water 186, power_supply 101, sanitary_dump_station 93, shower 82, picnic_table 48, openfire 46, toilets:disposal 25, others 59). `search-index.json` changed only in `m.a`, `m.s` and `amenity_version`. `coordinate-index.json` is unchanged.
-- `verify-amenity-ownership.js` checks every snapshot row, index row and published listing. Allowed: amenity tags removed from a row that does not own them, the same values added to member evidence on a member that owns them in the retained extract, and the amenity fields listed above. Everything else (IDs, coordinates, aliases and legacy_ids, state partitions, `source_ids`, fees, fee evidence, access, admission, type, rig data, sidecar joins and resolution of 36,290 saved-place IDs and aliases) must be identical. **Unexpected deltas: 0.**
-- Determinism: two independent rebuilds (this worktree and a separate fresh checkout of the base commit, same code and inputs) produced identical SHA-256 for all 50 snapshots, `search-index.json` and `coordinate-index.json`. Rebuilding the index again on its own output is also identical.
-  - `search-index.json`: `84d331e19947e88e5c309fe3de54ae66a2c24446268997bc8fff028c3cf4a0c9`
-  - digest of all output hashes: `136647d92c33ae0e0b71195f9ad0ac7f8688c098d89fa2ee9bbf8be3ad8ab9e6`
+- 44 of 50 state snapshots changed. 549 rows lost 915 tag instances to member evidence (drinking_water 186, toilets 170, power_supply 101, sanitary_dump_station 93, shower 82, internet_access 79, picnic_table 48, openfire 46, toilets:disposal 25, sewer_hookup 9, water_hookup 9, washing_machine 4, amenity 4, others 59). The review fix moved 47 more rows and 105 more tags than the first guard. `search-index.json` changed only in `m.a`, `m.s` and `amenity_version`. `coordinate-index.json` is unchanged.
+- `verify-amenity-ownership.js` checks every snapshot row, index row and published listing. Allowed: amenity tags removed from a row that does not own them, the same values added to member evidence on a member that owns them in the retained extract, and the amenity fields listed above. A second check does not use the guard's key list. For every merged row it compares each stored key with the row's own source record, by any key. A key whose value came from a member fails if it is amenity-like or unclassified. Keys outside R8 stay as they were and are reported: 3,601 instances on 826 rows, mostly `tourism` 703, `operator` 453, `website` 375, `tents` 209 and `caravans` 205 (classification, rig, contact, booking and metadata). Everything else (IDs, coordinates, aliases and legacy_ids, state partitions, `source_ids`, fees, fee evidence, access, admission, type, rig data, sidecar joins and resolution of 36,290 saved-place IDs and aliases) must be identical. **Unexpected deltas: 0.**
+- Determinism: two independent rebuilds (this worktree and a separate fresh checkout of the merge-base 35e223f, same code and inputs) produced identical SHA-256 for all 50 snapshots, `search-index.json` and `coordinate-index.json`. Rebuilding the index again on its own output is also identical.
+  - `search-index.json`: `7f0d331a8292e75833f129f3ba86579c993af28a8b2b194472a062d0fa6ad895`
+  - digest of all output hashes: `b28d8395ba625730e2f497270ea4aa69615db4165396fb6e91f4f51fb2cac86d`
 
 ## Intended amenity changes
 
-- 1,167 published listings change amenity evidence or filter results. 191 lose at least one shown value that they did not own. 398 now carry attributed member observations.
-- Filter results, no other filter on, before and after: Toilets 2,856 to 3,517, Drinking water 1,831 to 2,255, Dump station 1,261 to 1,266, Showers 1,106 to 1,134. Borrowed values leave, Recreation.gov and Forest Service evidence joins.
+- 1,193 published listings change amenity evidence or filter results. 191 lose at least one shown value that they did not own. 431 now carry attributed member observations.
+- Filter results, no other filter on, before and after: Toilets 2,856 to 3,512, Drinking water 1,831 to 2,252, Dump station 1,261 to 1,266, Showers 1,106 to 1,134. Borrowed values leave, Recreation.gov and Forest Service evidence joins.
 
 ## The 188 and 221 cases
 
 `tests/fixtures/amenity-ownership-cases.json` lists all 404 listings, one per line, with the before state and the expected toilets, water and toilets-with-length-filter outcome and reason. `tests/amenity-ownership.test.js` recomputes every row from the committed data.
 
 - Borrowed-amenity listings: **191**, not 188. The audit's load-order simulation hosted 3 `usfs:` listings on their absorbed OSM element. The published index hosts them on the `usfs:` record, so their OSM values are borrowed too (ridb 149, osm 36, usfs 6). The ridb and osm counts match the audit exactly. The audit kept no id list, so the match is by definition and class count.
-  - Toilets: 61 included (Forest Service site record 54, Recreation.gov campsite records 8, own element 2), 88 no amenity source, 37 no toilet statement, 5 unrecognized value. Before: 147 matched.
-  - Water: 43 included, 88 no amenity source, 48 no water statement, 11 explicit negative, 1 unrecognized value. Before: 96 matched.
+  - Toilets: 61 included (Forest Service site record 54, Recreation.gov campsite records 8, own element 2), 86 no amenity source, 39 no toilet statement, 5 unrecognized value. Before: 147 matched.
+  - Water: 43 included, 86 no amenity source, 50 no water statement, 11 explicit negative, 1 unrecognized value. Before: 96 matched.
 - Recreation.gov toilet-record listings: **221**. Before, 209 were hidden by the Toilets filter.
   - Toilets: 219 included. 2 excluded, sources disagree: `ridb:234257` (Forest Service records say flush and vault) and `ridb:234553`.
-  - Water: 117 included, 88 no water statement, 15 explicit negative (Forest Service says no water or not for drinking), 1 unrecognized value.
-  - Toilets with a 20 ft length filter: 60 included on campground-wide evidence, 159 excluded because campsite-record counts cannot be tied to the fitting campsite, 2 sources disagree.
+  - Water: 116 included, 91 no water statement, 13 explicit negative (Forest Service says no water or not for drinking), 1 unrecognized value.
+  - Toilets with a 20 ft length filter: 57 included on campground-wide evidence, 162 excluded because campsite-record counts cannot be tied to the fitting campsite, 2 sources disagree.
 
 ## Published counts
 
@@ -106,12 +107,12 @@ Counted over the 33,370 published listings. Eligible: a join path exists (OSM: t
 | --- | --- | ---: | ---: | ---: | ---: |
 | Toilets | OSM own element | 28,618 | 3,388 | 3,121 | 2,711 |
 | Toilets | Recreation.gov campsite records | 2,158 | 1,446 | 221 | 219 |
-| Toilets | Forest Service site records | 2,158 | 676 | 654 | 652 |
-| Toilets | Any source | 33,370 | | | 3,517 (3,358 campground-wide) |
+| Toilets | Forest Service site records | 2,158 | 676 | 654 | 644 |
+| Toilets | Any source | 33,370 | | | 3,512 (3,350 campground-wide) |
 | Drinking water | OSM own element | 28,618 | 2,981 | 2,905 | 1,734 |
 | Drinking water | Recreation.gov campsite records | 2,158 | 1,446 | 120 | 120 |
-| Drinking water | Forest Service site records | 2,158 | 601 | 568 | 436 |
-| Drinking water | Any source | 33,370 | | | 2,255 (2,165 campground-wide) |
+| Drinking water | Forest Service site records | 2,158 | 601 | 568 | 433 |
+| Drinking water | Any source | 33,370 | | | 2,252 (2,162 campground-wide) |
 | Dump station | OSM own element | 28,618 | 2,084 | 1,933 | 1,230 |
 | Dump station | Recreation.gov campsite records | 2,158 | 1,446 | 36 | 36 |
 | Dump station | Any source | 33,370 | | | 1,266 (1,230 campground-wide) |
@@ -119,11 +120,11 @@ Counted over the 33,370 published listings. Eligible: a join path exists (OSM: t
 | Showers | Recreation.gov campsite records | 2,158 | 1,446 | 45 | 44 |
 | Showers | Any source | 33,370 | | | 1,134 (1,090 campground-wide) |
 
-"Campground-wide" is the evidence that can combine with a length or hookup filter. The Forest Service layer has no dump or shower field.
+"Campground-wide" is the evidence that can combine with a length or hookup filter. The Forest Service layer has no dump or shower field. Forest Service attached and known counts include every record type. Filterable counts only campground records (`CAMPGROUND`, `GROUP CAMPGROUND`, `HORSE CAMP`).
 
-Recreation.gov-linked listings, three separate counts: **2,158 eligible, 1,448 with records, 1,324 with a known value.** 866 of them have at least one filterable amenity. 710 eligible listings have a sidecar entry with no overnight records, which is not evidence.
+Recreation.gov-linked listings, three separate counts: **2,158 eligible, 1,448 with records, 1,324 with a known value.** 861 of them have at least one filterable amenity. 710 eligible listings have a sidecar entry with no overnight records, which is not evidence.
 
-25,654 listings show "No amenity source for this listing."
+25,037 listings show "No amenity source for this listing."
 
 ## Judgment calls
 

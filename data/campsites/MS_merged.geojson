@@ -852,7 +852,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "internet_access": "no",
         "motor_vehicle": "yes",
         "name": "Dub Patton Campground",
         "operator": "US Army Corps of Engineers",
@@ -896,6 +895,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes"
             },
             "retrieved_at": "2026-10-29T03:09:21Z",

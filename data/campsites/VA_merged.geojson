@@ -369,8 +369,6 @@
         "caravans": "yes",
         "dog": "leashed",
         "group_only": "no",
-        "internet_access": "no",
-        "laundry_service": "no",
         "name": "OAK RIDGE CAMPGROUND",
         "opening_hours": "Mar-Nov",
         "operator": "National Park Service",
@@ -420,6 +418,8 @@
               "charge": "26 USD/day",
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
+              "laundry_service": "no",
               "shower": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -1480,7 +1480,6 @@
         "capacity:tents": "165",
         "caravans": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "MATHEWS ARM CAMPGROUND",
         "operator": "National Park Service",
         "operator:short": "NPS",
@@ -1530,6 +1529,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "sanitary_dump_station": "yes",
               "shower": "no",
               "toilets": "yes"
@@ -2065,7 +2065,6 @@
         "capacity:cabins": "13",
         "caravans": "no",
         "group_only": "no",
-        "internet_access": "no",
         "name": "Cabin Camp 3",
         "opening_hours": "Apr-Nov",
         "operator": "National Park Service",
@@ -2116,7 +2115,8 @@
             "fields": {
               "access": "permit",
               "charge": "35 USD/day",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -2449,7 +2449,6 @@
         "camp_site": "standard",
         "caravans": "yes",
         "dog": "yes",
-        "internet_access": "no",
         "name": "Loft Mountain Campground",
         "nudism": "no",
         "opening_hours": "May-Oct 24/7; Nov-Apr Closed",
@@ -2500,6 +2499,7 @@
               "charge": "30 USD",
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "shower": "no",
               "toilets": "yes"
             },
@@ -3665,6 +3665,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "shower": "yes",
               "toilets": "yes"
             },
@@ -3678,6 +3679,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "shower": "yes",
               "toilets": "yes"
             },
@@ -3691,6 +3693,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "shower": "yes",
               "toilets": "yes"
             },
@@ -3704,6 +3707,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "shower": "yes",
               "toilets": "yes"
             },
@@ -10826,6 +10830,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "shower": "yes",
               "toilets": "yes"
             },
@@ -17475,6 +17480,7 @@
             "source_record_id": "osm:way:1459962041",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
@@ -18512,6 +18518,7 @@
               "access": "permissive",
               "drinking_water": "no",
               "fee": "no",
+              "internet_access": "no",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -35244,7 +35251,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1163510164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1163510164"
+          }
+        ]
       }
     },
     {

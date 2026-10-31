@@ -633,7 +633,6 @@
         "addr:state": "NV",
         "addr:street": "Moenkopi Road",
         "caravans": "yes",
-        "internet_access": "no",
         "name": "Red Rock Canyon Campground",
         "operator": "Bureau of Land Managment",
         "tents": "yes",
@@ -677,6 +676,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "no",
               "internet_access:fee": "no"
             },
             "retrieved_at": "2026-10-29T03:13:24Z",
@@ -7389,6 +7389,7 @@
             "source_record_id": "osm:way:1134389248",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
             },
@@ -30093,7 +30094,6 @@
         "addr:street": "US-93",
         "drinking_water": "yes",
         "fee": "yes",
-        "internet_access": "yes",
         "name": "Saguaro RV Park",
         "power_supply": "yes",
         "sanitary_dump_station": "yes",
@@ -30130,6 +30130,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"

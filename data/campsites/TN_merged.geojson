@@ -13,7 +13,6 @@
       "properties": {
         "capacity": "14",
         "description": "<h2>Overview</h2>\n<p>Dennis Cove Campground is a secluded campground along Laurel Fork Creek at an elevation of 2,650 feet in Carter County. This remote developed campground is popular with those seeking a rustic experience. The altitude, creek side location and lush forest surroundings make Dennis Cove particularly desirable during hot summer months. With 15 campsites, Dennis Cove is a great option for family camping.  </p>\n<h2>Recreation</h2>\n<p>Along with camping, Laurel Fork Creek is stocked with rainbow trout below the campground. Above the campground, the creek and its tributaries are managed as wild trout streams for brown, rainbow and brook trout. Laurel Fork Trail (#39) follows the creek upstream for 8.0 miles with twenty-six stream crossings. The Appalachian National Scenic Trail is accessed one mile west of the campground along Dennis Cove Rd, or at the top of the nearby Coon Den Falls Trail (#37). </p>\n<h2>Facilities</h2>\n<p>There are 15 single campsites, including two double sites within Dennis Cove Campground. The campground has flush toilets. Each site contains a table, fire ring and lantern holder.</p>\n<h2>Natural Features</h2>\nDennis Cove Campground is located along the beautiful Laurel Fork Creek nestled in the mountains of the Southern Appalachians.\n<h2>Nearby Attractions</h2>\n<p>The trailhead for Coon Den Falls Trail (#37) is next to Dennis Cove Campground, and the trailhead for the Appalachian National Scenic Trail (#1) is approximately one mile west of the campground on Dennis Cove Rd.  Watauga Lake is approximately 25 minutes away.  </p>\n",
-        "internet_access": "no",
         "name": "DENNIS COVE CAMPGROUND",
         "operator": "US Forest Service",
         "tourism": "camp_site",
@@ -54,7 +53,8 @@
             "source_record_id": "osm:node:5857313093",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -2177,7 +2177,6 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "internet_access": "no",
         "mobile_reception": "no",
         "mobile_reception:strength": "none",
         "name": "ABRAM'S CREEK CAMPGROUND",
@@ -2230,6 +2229,7 @@
               "charge": "30 USD",
               "drinking_water": "no",
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
@@ -3249,7 +3249,6 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "internet_access": "no",
         "mobile_reception": "no",
         "mobile_reception:strength": "none",
         "name": "COSBY CAMPGROUND",
@@ -3302,6 +3301,7 @@
               "access": "yes",
               "charge": "30 USD",
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes",
               "shower": "no",
               "toilets": "yes"
@@ -7522,6 +7522,7 @@
             "source_record_id": "osm:node:3561199064",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7533,6 +7534,7 @@
             "source_record_id": "osm:node:3561199066",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7544,6 +7546,7 @@
             "source_record_id": "osm:node:3561199067",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7555,6 +7558,7 @@
             "source_record_id": "osm:node:3561199068",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7566,6 +7570,7 @@
             "source_record_id": "osm:node:3561199071",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7577,6 +7582,7 @@
             "source_record_id": "osm:node:3561199072",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7588,6 +7594,7 @@
             "source_record_id": "osm:node:3561199073",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7599,6 +7606,7 @@
             "source_record_id": "osm:node:3561199074",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7610,6 +7618,7 @@
             "source_record_id": "osm:node:3561199075",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7621,6 +7630,7 @@
             "source_record_id": "osm:node:3561199076",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7632,6 +7642,7 @@
             "source_record_id": "osm:node:3561199077",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7643,6 +7654,7 @@
             "source_record_id": "osm:node:3561199078",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7654,6 +7666,7 @@
             "source_record_id": "osm:node:3561199079",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7665,6 +7678,7 @@
             "source_record_id": "osm:node:3561199080",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7676,6 +7690,7 @@
             "source_record_id": "osm:node:3561199081",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7734,6 +7749,7 @@
             "source_record_id": "osm:node:3561199069",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -7745,6 +7761,7 @@
             "source_record_id": "osm:node:3561199070",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "customers"
             },
@@ -19734,7 +19751,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "check_date": "2025-09-09"
+              "check_date": "2025-09-09",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,

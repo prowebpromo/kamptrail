@@ -1054,7 +1054,6 @@
         "caravans": "yes",
         "description": "<h2>Overview</h2>\n<p>Elkhorn Campground is located 20 miles northeast of Loa, Utah, on the scenic Thousand Lake Mountain at an elevation of approximately 9300 feet. Visitors enjoy exploring local trails on foot, bike or off-road vehicle.</p>\n<p><a href=\"https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd1203403.pdf\" rel=\"nofollow\">View Elkhorn Campground Map</a> </p>\n<h2>Recreation</h2>\nMiles of trails, including the Great Western Trail, crisscross the area, offering excellent hiking, biking and off-roading opportunities. Numerous sparkling alpine lakes provide great fishing and scenery.<h2>Facilities</h2>\n<p>The campground contains one group site and a pavilion that can accommodate up to 75 people, with large tables, grills, Dutch oven cooking surfaces and a fire ring with benches. <br><br><br>Vault toilets are provided. Roads and parking spurs are gravel. Elkhorn Ranger Station is just across a meadow from the site.  Drinking water has been shut down for the season</p>\n<h2>Natural Features</h2>\nA thick stand of aspen, pine, and spruce trees covers the campground, offering pleasant shade. Summer wildflowers are abundant in the surrounding meadow. ",
         "group_only": "no",
-        "internet_access": "no",
         "name": "ELKHORN CAMPGROUND",
         "nudism": "no",
         "operator": "USFS",
@@ -1101,6 +1100,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
@@ -5009,7 +5009,6 @@
         "caravans": "yes",
         "description": "<p>Campground. This is a favorite for campers. There is trout fishing nearby at Lower Bowns Reservoir and Lower Pleasant Creek. RVs over 25 feet long are not advised.  Water will be turned off at threat of first frost.  Campground closes 10/15/20 or threat of first frost.</p>",
         "group_only": "no",
-        "internet_access": "no",
         "nudism": "no",
         "opening_hours": "May - Oct",
         "operator": "USFS",
@@ -5045,6 +5044,7 @@
             "fields": {
               "drinking_water": "no",
               "fee": "yes",
+              "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
               "toilets": "yes"
@@ -8297,7 +8297,6 @@
         "capacity": "7",
         "caravans": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "SUNGLOW CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
@@ -8344,6 +8343,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
@@ -9290,7 +9290,6 @@
         "capacity": "53",
         "caravans": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "DEVILS GARDEN CAMPGROUND",
         "nudism": "no",
         "operator": "National Park Service",
@@ -9336,6 +9335,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
+              "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
               "toilets": "yes"
@@ -11392,7 +11392,6 @@
       "properties": {
         "capacity": "71",
         "caravans": "yes",
-        "internet_access": "no",
         "name": "FRUITA CAMPGROUND",
         "nudism": "no",
         "operator": "National Park Service",
@@ -11440,6 +11439,7 @@
               "charge": "20.00 USD",
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "customers",
               "shower": "no"
@@ -11793,6 +11793,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
@@ -11804,6 +11805,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
@@ -13364,7 +13366,6 @@
         "capacity": "36",
         "caravans": "yes",
         "description": "See web site for specific opening dates each season.",
-        "internet_access": "no",
         "name": "Little Mill Campground",
         "opening_hours": "May-Oct 00:00-24:00; Nov-Apr off",
         "operator": "Utah Recreation",
@@ -13411,6 +13412,7 @@
               "access": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
@@ -24325,7 +24327,6 @@
       "properties": {
         "description": "There are a couple Teepees, a few cabins and 2 RV hookups here. The RV hookups are outside the village. There is a communal refrigerator and bathrooms with hot showers.",
         "email": "aaronholiday1989@gmail.com",
-        "internet_access": "wlan",
         "mobile": "+1 435-444-5974",
         "name": "Tipi Village",
         "reservation": "recommended",
@@ -24365,6 +24366,7 @@
             "source_record_id": "osm:node:11263563978",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
@@ -47915,6 +47917,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "seasonal",
+              "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
               "toilets": "no"
@@ -47928,6 +47931,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "seasonal",
+              "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
               "toilets": "no"
@@ -74265,6 +74269,7 @@
             "source_record_id": "osm:way:1422360278",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "campground",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
@@ -74318,6 +74323,7 @@
             "source_record_id": "osm:way:1422360276",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "campground",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",

@@ -209,7 +209,6 @@
         "caravans": "no",
         "dog": "no",
         "group_only": "no",
-        "internet_access": "no",
         "name": "DUCK HARBOR CAMPGROUND",
         "nudism": "no",
         "opening_hours": "May 15-Oct 15 open",
@@ -256,6 +255,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "no",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",

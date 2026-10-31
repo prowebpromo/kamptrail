@@ -935,7 +935,6 @@
       "properties": {
         "capacity": "21",
         "fixme": "the extent of this is a guess",
-        "internet_access": "no",
         "name": "Pine Glen Recreation Area",
         "operator": "United States Forest Service",
         "tents": "yes",
@@ -981,6 +980,7 @@
               "charge": "3 USD/night",
               "drinking_water": "no",
               "fee": "yes",
+              "internet_access": "no",
               "shower": "no",
               "toilets": "yes"
             },
@@ -1845,7 +1845,6 @@
         ],
         "backcountry": "yes",
         "drinking_water": "no",
-        "internet_access": "no",
         "static_caravans": "no",
         "tents": "yes",
         "wheelchair": "no",
@@ -1873,6 +1872,7 @@
             "fields": {
               "drinking_water": "no",
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
               "sanitary_dump_station": "yes"

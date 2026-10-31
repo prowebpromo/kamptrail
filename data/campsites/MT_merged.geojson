@@ -3197,7 +3197,6 @@
         ]
       },
       "properties": {
-        "internet_access": "no",
         "name": "LOST JOHNNY POINT CAMPGROUND",
         "operator": "Flathead National Forest",
         "operator:short": "USFS",
@@ -3245,6 +3244,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
@@ -4385,7 +4385,6 @@
         ]
       },
       "properties": {
-        "amenity": "ranger_station",
         "building": "yes",
         "name": "BEND GUARD STATION",
         "note": "Lolo National Forest 1 to 5 people for $45.00 per night. For groups of 6 to 16 people, the fee is an additional $8.00 per person per night. Visit Recreation.gov to make reservations. Drinking water available, Flush toilets - hot shower.",
@@ -4423,7 +4422,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1517725355",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "ranger_station"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1517725355"
+          }
+        ]
       }
     },
     {
@@ -10542,7 +10553,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "internet_access": "no",
         "name": "EMERY BAY CAMPGROUND",
         "operator": "NFS",
         "tents": "yes",
@@ -10585,7 +10595,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -12972,7 +12983,6 @@
         "name": "Black Bear Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "sewer_hookup": "no",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/black-bear-campground",
         "id": "ridb:10071730",
@@ -13017,6 +13027,7 @@
               "firepit": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
+              "sewer_hookup": "no",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine",
               "water_hookup": "no"

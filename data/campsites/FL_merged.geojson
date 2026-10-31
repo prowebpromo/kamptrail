@@ -9389,6 +9389,7 @@
             "source_record_id": "osm:way:777172302",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
             },
@@ -10134,7 +10135,6 @@
         "backcountry": "no",
         "caravans": "yes",
         "group_only": "no",
-        "internet_access": "wlan",
         "name": "Naval Air Station Key West Campground",
         "nudism": "no",
         "operator": "United States Navy MWR",
@@ -10173,6 +10173,7 @@
               "access": "private",
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "customers"
@@ -10843,6 +10844,7 @@
             "source_record_id": "osm:way:1067979482",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"

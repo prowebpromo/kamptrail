@@ -302,7 +302,6 @@
         "cabins": "yes",
         "caravans": "no",
         "email": "CATO_Camp_Manager@nps.gov",
-        "internet_access": "no",
         "name": "CAMP MISTY MOUNT",
         "opening_hours": "May-Oct",
         "operator": "National Park Service",
@@ -344,7 +343,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:874693866",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/874693866"
+          }
+        ]
       }
     },
     {
@@ -19205,7 +19216,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1163510164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1163510164"
+          }
+        ]
       }
     },
     {

@@ -608,7 +608,6 @@
         "caravans": "yes",
         "contact:phone": "+1-618-594-4410",
         "contact:website": "https://www.recreation.gov/camping/campgrounds/233483",
-        "internet_access": "wlan",
         "name": "Dam West Campground",
         "operator": "US Army Corps of Engineers",
         "permanent_camping": "no",
@@ -652,6 +651,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "wlan",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
               "water_point": "yes"
@@ -13752,7 +13752,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:253726099",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/253726099"
+          }
+        ]
       }
     },
     {

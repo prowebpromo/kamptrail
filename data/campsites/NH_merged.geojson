@@ -499,7 +499,6 @@
         "addr:postcode": "03215",
         "addr:state": "NH",
         "addr:street": "Tripoli Road",
-        "internet_access": "no",
         "name": "OSCEOLA VISTA CAMPGROUND",
         "operator": "National Forest",
         "tourism": "camp_site",
@@ -541,7 +540,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:14:06Z",
             "source_updated_at": null,
@@ -786,7 +786,6 @@
           "osm:way:1004215386",
           "osm:way:1004215387"
         ],
-        "water": "faucet",
         "type": "established",
         "cost": null,
         "fee_status": "unknown",
@@ -815,7 +814,8 @@
             "source_record_id": "osm:way:1004215386",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "toilets": "yes"
+              "toilets": "yes",
+              "water": "faucet"
             },
             "retrieved_at": "2026-10-29T03:14:06Z",
             "source_updated_at": null,

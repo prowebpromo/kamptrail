@@ -4966,7 +4966,6 @@
         "capacity:tents": "0",
         "caravans": "yes",
         "food": "snacks",
-        "internet_access": "no",
         "name": "Lebanon Hills Campground West Loop",
         "nudism": "no",
         "operator": "Dakota County Parks",
@@ -4992,7 +4991,6 @@
         "drinking_water": "yes",
         "phone": "+16514807773",
         "power_supply": "yes",
-        "sauna": "no",
         "shower": "yes",
         "toilets": "yes",
         "website": "https://dakotacountymn.gov/parks/parks-trails/lebanon-hills/lebanon-hills-campground",
@@ -5021,9 +5019,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
+              "internet_access": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "no",
+              "sauna": "no",
               "shower": "yes",
+              "swimming_pool": "no",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
@@ -5034,7 +5035,9 @@
             "source_record_id": "osm:node:14090677596",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "sanitary_dump_station": "no"
+              "internet_access": "no",
+              "sanitary_dump_station": "no",
+              "swimming_pool": "no"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -13569,6 +13572,7 @@
             "source_record_id": "osm:node:3382298425",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -13581,6 +13585,7 @@
             "source_record_id": "osm:node:3382298426",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -13745,6 +13750,7 @@
             "source_record_id": "osm:node:3383868596",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -13757,6 +13763,7 @@
             "source_record_id": "osm:node:3383868602",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -13822,6 +13829,7 @@
             "source_record_id": "osm:node:3383868598",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -13834,6 +13842,7 @@
             "source_record_id": "osm:node:3383868601",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -13979,6 +13988,7 @@
             "source_record_id": "osm:node:3383868604",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -13991,6 +14001,7 @@
             "source_record_id": "osm:node:3383872417",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -14003,6 +14014,7 @@
             "source_record_id": "osm:node:3383872418",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -14079,6 +14091,7 @@
             "source_record_id": "osm:node:3383872420",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -14144,6 +14157,7 @@
             "source_record_id": "osm:node:3383872422",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -14156,6 +14170,7 @@
             "source_record_id": "osm:node:3383872423",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -20460,6 +20475,7 @@
             "source_record_id": "osm:node:3388728298",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"

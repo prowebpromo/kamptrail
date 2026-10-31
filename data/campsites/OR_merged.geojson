@@ -5369,7 +5369,6 @@
         ]
       },
       "properties": {
-        "internet_access": "no",
         "name": "Elderberry Flat Campground",
         "operator": "Bureau of Land Management",
         "tourism": "camp_site",
@@ -5405,7 +5404,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3286932328",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3286932328"
+          }
+        ]
       }
     },
     {
@@ -8985,7 +8996,6 @@
         "addr:postcode": "97520",
         "addr:state": "OR",
         "addr:street": "Hyatt Prairie Road",
-        "internet_access": "no",
         "name": "Hyatt Lake Recreation Area",
         "operator": "Bureau of Land Management",
         "tourism": "camp_site",
@@ -9028,6 +9038,7 @@
             "fields": {
               "access": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "yes"
             },
@@ -52450,6 +52461,7 @@
             "source_record_id": "osm:way:1185181240",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"

@@ -264,7 +264,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "internet_access": "no",
         "name": "West Fork Campground",
         "tents": "yes",
         "tourism": "camp_site",
@@ -305,7 +304,8 @@
             "source_record_id": "osm:way:430531631",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -787,7 +787,6 @@
       },
       "properties": {
         "capacity": "13",
-        "internet_access": "no",
         "large_vehicles": "discouraged",
         "mobile_reception": "no",
         "name": "Black Bear Campground",
@@ -832,6 +831,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no"
             },
@@ -3512,7 +3512,6 @@
         "capacity": "19",
         "caravans": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "LAST CHANCE CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
@@ -3562,6 +3561,7 @@
               "bbq": "yes",
               "drinking_water": "yes",
               "fireplace": "yes",
+              "internet_access": "no",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
@@ -5686,7 +5686,6 @@
       },
       "properties": {
         "capacity": "10",
-        "internet_access": "no",
         "name": "SIGNAL CREEK CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
@@ -5694,9 +5693,7 @@
         "reservation": "yes",
         "tents": "yes",
         "tourism": "camp_site",
-        "washing_machine": "no",
         "website": "https://www.recreation.gov/camping/campgrounds/232141",
-        "wood_available": "yes",
         "id": "ridb:232141",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5737,8 +5734,11 @@
               "bbq": "yes",
               "drinking_water": "no",
               "fireplace": "yes",
+              "internet_access": "no",
               "sanitary_dump_station": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "washing_machine": "no",
+              "wood_available": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -8421,7 +8421,6 @@
         "backcountry": "no",
         "capacity": "60",
         "caravans": "yes",
-        "internet_access": "no",
         "large_vehicles": "yes",
         "mobile_reception": "no",
         "name": "WILLIWAW CAMPGROUND",
@@ -8468,6 +8467,7 @@
             "fields": {
               "access": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "picnic_table": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
@@ -20420,7 +20420,6 @@
       },
       "properties": {
         "access": "yes",
-        "amenity": "parking",
         "camping": "yes",
         "caravans": "yes",
         "covered": "no",
@@ -20469,6 +20468,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "amenity": "parking",
               "fee": "no",
               "picnic_table": "no",
               "power_supply": "no",

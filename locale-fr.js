@@ -1737,6 +1737,8 @@
   "Amenity evidence:": "Preuves d’équipements :",
   "No amenity source for this listing.": "Aucune source d’équipements pour ce lieu.",
   "Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence.": "Les filtres d’équipements ne retiennent que les preuves listées ici, avec la portée indiquée. Inconnu ne signifie pas absent.",
-  "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Les filtres d’équipements n’utilisent que les preuves affichées dans chaque fiche : l’élément OpenStreetMap propre au lieu, les fiches de site du Service des forêts et les fiches d’emplacement Recreation.gov. Avec un filtre de longueur ou de branchements actif, les équipements des fiches d’emplacement ne comptent que s’ils sont liés à l’emplacement qui convient, ce qui n’est pas le cas de ces fiches."
+  "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Les filtres d’équipements n’utilisent que les preuves affichées dans chaque fiche : l’élément OpenStreetMap propre au lieu, les fiches de site du Service des forêts et les fiches d’emplacement Recreation.gov. Avec un filtre de longueur ou de branchements actif, les équipements des fiches d’emplacement ne comptent que s’ils sont liés à l’emplacement qui convient, ce qui n’est pas le cas de ces fiches.",
+  "different site ({type}), not this campground": "autre site ({type}), pas ce camping",
+  "type unknown": "type inconnu"
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

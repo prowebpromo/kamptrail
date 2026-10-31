@@ -63,6 +63,20 @@ for (const name of fs.readdirSync(path.join(root, 'data/opencampingmap')).filter
 }
 const ownsTag = (id, key, value) => elements.has(id) && Object.hasOwn(elements.get(id), key) && String(elements.get(id)[key]) === String(value);
 
+// Own source rows for Recreation.gov records, for the key-independent inheritance check below.
+const ownRows = new Map(elements);
+for (const name of fs.readdirSync(path.join(root, 'data/campsites')).filter(n => /^[A-Z]{2}(?:\(1\))?\.geojson$/.test(n)).sort()) {
+  for (const f of read(path.join(root, 'data/campsites', name)).features) { const p = f.properties || {}; if (p.facility_id != null && !ownRows.has(`ridb:${p.facility_id}`)) ownRows.set(`ridb:${p.facility_id}`, p); }
+}
+// Keys the merger itself writes by rule (identity, provenance, chosen name/description, fee classification).
+const MERGE_KEYS = new Set(['id','name','rating','reviews_count','cost','amenities','rig_friendly','type','sources','source_ids','data_conflicts','field_provenance','schema_version','description','member_evidence','access_hold','legacy_inferred','fee_status','source']);
+// This check does not use the guard's key list. Any key the retained row does not carry in its own source,
+// whose value came from a member element, is classified here. Amenity-like keys fail. Keys outside R8
+// (classification, rig, contact, booking, metadata) are counted and reported. An unclassified key fails.
+const AMENITY_LIKE = /toilet|water|shower|dump|sanitary|power|electric|socket|sewer|hookup|internet|wifi|wlan|laundry|washing|dryer|kitchen|bbq|grill|fire|picnic|(?:^|:)bin(?:$|:)|waste|trash|amenit|pool|sauna|playground|shelter|check_date|potable|propane|lpg/i;
+const OUT_OF_SCOPE = /^(?:tourism|leisure|landuse|boundary|natural|building(?::.*)?|man_made|area|camp_site(?::reservations)?|backcountry|group_only|impromptu|permanent_camping|seasonal|nudism|cabins?|capacity(?::.*)?|sites|campsites|tents|caravans|static_caravans|motorhome|campers|camping:tents|large_vehicles|motor_vehicle(?::.*)?|ohv|horse|dog|pets|wheelchair|mobile_reception(?::.*)?|smoking|quiet_time|sport|surface|maxspeed|maxstay|opening_hours|reservation(?::.*)?|website(?::.*)?|url|web|contact:.*|phone(?::.*)?|mobile|fax|email|image|addr:.*|nohousenumber|operator(?::.*)?|owner|ownership|brand(?::.*)?|(?:alt|old|official|short|not)_?name|name:.*|not:name|wikidata|wikipedia|gnis:.*|ref|source_ref|uuid|notes?|note:.*|fixme|FIXME|description:.*|attribution|Attribution|created_by|start_date|magic:.*|massgis:.*|LandPro08:.*|lacounty:.*|FMMP_.*|OBJECTID|Zoning|acres|protect_class|protection_title|protected|designation|height|ele|stars|payment:.*|parking)$/;
+const inherited = {rows:new Set(), out_of_scope:{}, out_of_scope_instances:0, rows_without_own_source:0};
+
 // 3. Snapshot rows.
 const snapshot = {rows:0, rows_changed:0, tags_moved:0, tags_moved_by_key:{}, rows_with_member_amenity_evidence:0, states_changed:[]};
 for (const state of states) {
@@ -109,6 +123,17 @@ for (const state of states) {
       if (e.retrieved_at && !Number.isFinite(Date.parse(e.retrieved_at))) fail('member_evidence_date', id, {state, member:rid});
     }
     if (hasAmenityMember) snapshot.rows_with_member_amenity_evidence++;
+    if ((ap.source_ids || []).length > 1) {
+      const own = ownRows.get(id), members = ap.source_ids.filter(m => m !== id).map(m => ownRows.get(m)).filter(Boolean);
+      if (!own) inherited.rows_without_own_source++;
+      else for (const k of Object.keys(ap)) {
+        if (MERGE_KEYS.has(k) || Object.hasOwn(own, k) || !members.some(m => Object.hasOwn(m, k) && JSON.stringify(m[k]) === JSON.stringify(ap[k]))) continue;
+        if (FEE_ACCESS(k)) fail('snapshot_fee_access_inherited', id, {state, key:k});
+        else if (AMENITY_LIKE.test(k)) fail('snapshot_amenity_like_key_inherited', id, {state, key:k, value:ap[k]});
+        else if (OUT_OF_SCOPE.test(k)) { inherited.rows.add(id); inherited.out_of_scope[k] = (inherited.out_of_scope[k] || 0) + 1; inherited.out_of_scope_instances++; }
+        else fail('snapshot_unclassified_key_inherited', id, {state, key:k});
+      }
+    }
     // Every removed tag is either not owned by the row, and is retained on a member that owns it.
     for (const k of moved) {
       if (/^osm:/.test(id) && ownsTag(id, k, bp[k])) fail('snapshot_owned_tag_removed', id, {state, key:k});
@@ -269,7 +294,7 @@ const report = {
   baseline_commit:execFileSync('git', ['rev-parse', 'HEAD'], {cwd:baseline, encoding:'utf8'}).trim(),
   input_hashes:inputHashes,
   output_hashes:Object.fromEntries([...states.map(s => `data/campsites/${s}_merged.geojson`), 'data/campsites/search-index.json', 'data/campsites/coordinate-index.json'].map(rel => [rel, sha(path.join(root, rel))])),
-  snapshot, index, saved_places:saved, catalogue:{listings:N.size, listings_with_amenity_change:changes.length,
+  snapshot, inherited_out_of_scope:{rows:inherited.rows.size, instances:inherited.out_of_scope_instances, rows_without_own_source:inherited.rows_without_own_source, by_key:inherited.out_of_scope}, index, saved_places:saved, catalogue:{listings:N.size, listings_with_amenity_change:changes.length,
     listings_losing_a_shown_value:changes.filter(c => c.removed.length).length,
     filter_hits_before:Object.fromEntries(NEW.FILTER_AMENITIES.map(a => [a, oldCat.filter(f => f.properties.amenities.includes(a)).length])),
     filter_hits_after:Object.fromEntries(NEW.FILTER_AMENITIES.map(a => [a, newCat.filter(f => NEW.amenityMatches(f.properties, [a], {})).length])),

@@ -2730,7 +2730,6 @@
         "backcountry": "no",
         "camp_site": "standard",
         "caravans": "no",
-        "internet_access": "no",
         "motor_vehicle": "yes",
         "name": "Cave Falls Campground",
         "note": "pit toilets, water from artisian well",
@@ -2738,7 +2737,6 @@
         "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
-        "washing_machine": "no",
         "id": "ridb:239007",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2777,7 +2775,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "openfire": "yes"
+              "internet_access": "no",
+              "openfire": "yes",
+              "washing_machine": "no"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,

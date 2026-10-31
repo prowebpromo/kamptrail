@@ -18119,6 +18119,7 @@
             "source_record_id": "osm:node:3388728298",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "openfire": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -24968,7 +24969,8 @@
             "source_record_id": "osm:node:7185787423",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -25024,7 +25026,8 @@
             "source_record_id": "osm:node:7185816694",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -25080,7 +25083,8 @@
             "source_record_id": "osm:node:6965151875",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -25137,7 +25141,8 @@
             "source_record_id": "osm:node:6965223653",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -25147,7 +25152,8 @@
             "source_record_id": "osm:node:7185816695",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -25203,7 +25209,8 @@
             "source_record_id": "osm:node:6965223675",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -26393,7 +26400,8 @@
             "source_record_id": "osm:node:7185764676",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -26518,7 +26526,8 @@
             "source_record_id": "osm:node:7185787422",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -26609,7 +26618,8 @@
             "source_record_id": "osm:node:7185808855",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -26842,7 +26852,8 @@
             "source_record_id": "osm:node:7228928746",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -40882,6 +40893,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "no",
+              "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
               "power_supply": "no"
@@ -40895,6 +40907,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "no",
+              "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
               "power_supply": "no"
@@ -47853,7 +47866,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:253726099",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:07:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/253726099"
+          }
+        ]
       }
     },
     {
@@ -58081,6 +58106,7 @@
             "source_record_id": "osm:way:973377830",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no"
             },
@@ -58092,6 +58118,7 @@
             "source_record_id": "osm:way:973377831",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
@@ -58102,6 +58129,7 @@
             "source_record_id": "osm:way:973377832",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",

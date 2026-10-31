@@ -16,7 +16,7 @@ const crypto = require('crypto');
 const osmIdentity = p => /^osm:(?:node|way|relation|unknown):/.test(String(p.id || ''));
 // Amenity-type OSM tags and survey dates describe the element that carries them.
 // A merge never moves them onto the retained record (R8, 2.31.0).
-const AMENITY_TAG = /^(?:toilets?|drinking_water|shower|sanitary_dump_station|power_supply|bin|openfire|fireplace|firepit|fire_pit|picnic_table|bbq|water_point|waste_disposal|waste_basket|hot_water|water_tap|water_hookup|water_supply|water_source|camp_site:fire|camp_site:water|amenity:shower|check_date)(?::|$)/;
+const AMENITY_TAG = /^(?:toilets?|drinking_water|water|water_point|water_tap|water_hookup|water_supply|water_source|hot_water|shower|showers|sanitary_dump_station|waste|waste_disposal|waste_basket|bin|power|power_supply|socket|electric_hookup|electricity|sewer|sewer_hookup|hookups?|internet_access|wifi|washing_machine|dryer|laundry|laundry_service|kitchen|bbq|grill|fireplace|firepit|fire_pit|fire|openfire|campfire|firewood|wood_available|picnic_table|picnic_site|shelter|swimming_pool|sauna|playground|amenity(?:_[0-9]+)?|camp_site:fire|camp_site:water|check_date)(?::|$)/;
 const amenityTag = k => AMENITY_TAG.test(k);
 const feeAccessTag = k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k);
 const osmTag = k => feeAccessTag(k) || amenityTag(k);

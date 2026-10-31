@@ -14,6 +14,8 @@ const features=[
   camp('ridb:601',[-75.12,43.01],{name:'Record Campground',facility_id:'601',source:'recreation.gov',type:'established',description:'A campground with camping.'}),
   // Recreation.gov host with a Forest Service site record saying vault toilets.
   camp('ridb:602',[-75.14,43.02],{name:'Site Record Campground',facility_id:'602',source:'recreation.gov',type:'established',description:'A campground with camping.'}),
+  // A Forest Service record under this ID describes a different site (a swimming site), not the campground.
+  camp('ridb:603',[-75.18,43.04],{name:'South Lake Campground',facility_id:'603',source:'recreation.gov',type:'established',description:'A campground with camping.'}),
   // No amenity source at all.
   camp('blm-area:700',[-75.16,43.03],{name:'Quiet Campground',source:'blm',type:'established',camping_activity:'Camping'})
 ];
@@ -22,8 +24,8 @@ async function open(page,context){
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   const json=(r,data)=>r.fulfill({contentType:'application/json',body:JSON.stringify(data)});
   const ridb={version:1,source:ridbSource,facilities:{'601':{sites:40,amenities:{toilet:g(3)}},'602':{sites:0,amenities:{}}}};
-  const usfs={version:1,source:{...usfsSource,retrieved:'2026-10-31'},facilities:{'602':{conflicts:[],records:[{cn:'1',name:'Site Record Campground',type:'CAMPGROUND',toilet:{text:'Vault toilet(s)',class:'vault_or_pit'},updated:null,edw_modified:null}]}}};
-  await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'NY',count:4}],total_sites:4}));
+  const usfs={version:1,source:{...usfsSource,retrieved:'2026-10-31'},facilities:{'602':{conflicts:[],records:[{cn:'1',name:'Site Record Campground',type:'CAMPGROUND',toilet:{text:'Vault toilet(s)',class:'vault_or_pit'},updated:null,edw_modified:null}]},'603':{conflicts:[],records:[{cn:'2',name:'North Lake Recreation Area',type:'SWIMMING SITE',toilet:{text:'Flush toilets',class:'flush'},updated:'2026-05-01',edw_modified:null}]}}};
+  await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'NY',count:5}],total_sites:5}));
   await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
   await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:2,facilities:{'601':{t:40,r:40,L:40,g:[[40,1,1],[20,0,39]],e:1},'602':{t:10,r:10,L:40,g:[[40,0,10]]}}}));
   await page.route('**/data/campsites/ridb-amenities.json',r=>json(r,ridb));
@@ -32,7 +34,7 @@ async function open(page,context){
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43.015,lng:-75.13,zoom:12})));
   const usfsLoaded=page.waitForResponse('**/data/campsites/usfs-site-amenities.json'),ridbLoaded=page.waitForResponse('**/data/campsites/ridb-amenities.json');
   await page.goto('/');await usfsLoaded;await ridbLoaded;
-  await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:601')?.properties.ridb_amenity_evidence&&KampTrailData.getCampsiteById('ridb:602')?.properties.usfs_site_evidence);
+  await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:601')?.properties.ridb_amenity_evidence&&KampTrailData.getCampsiteById('ridb:602')?.properties.usfs_site_evidence&&KampTrailData.getCampsiteById('ridb:603')?.properties.usfs_site_evidence);
 }
 async function popupFor(page,id){
   await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
@@ -63,6 +65,9 @@ test('popup amenity evidence shows source, scope and date, and the filters agree
   await expect(box.locator('[data-amenity="toilet"]')).toContainText('Toilets: reported: Recreation.gov facility 601 (3 of 40 campsite records, not every site · date unknown)');
   box=await popupFor(page,'ridb:602');
   await expect(box.locator('[data-amenity="toilet"]')).toContainText('Toilets: reported: Forest Service site record: Site Record Campground (site record · value “Vault toilet(s)” · date unknown)');
+  box=await popupFor(page,'ridb:603');
+  await expect(box.locator('[data-amenity="toilet"]')).toHaveAttribute('data-status','unknown');
+  await expect(box.locator('[data-amenity="toilet"]')).toContainText('Toilets: unknown: Forest Service site record: North Lake Recreation Area (different site (SWIMMING SITE), not this campground · value “Flush toilets” · updated 2026-05-01)');
   box=await popupFor(page,'blm-area:700');
   await expect(box).toHaveAttribute('data-state','no_source');await expect(box).toContainText('Amenity evidence: No amenity source for this listing.');
   // Filters: the same evidence, at its scope.

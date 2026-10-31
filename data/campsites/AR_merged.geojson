@@ -1114,7 +1114,6 @@
       },
       "properties": {
         "capacity": "18",
-        "internet_access": "no",
         "name": "LAKE WEDINGTON",
         "tents": "yes",
         "tourism": "caravan_site",
@@ -1156,6 +1155,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "10.00",
+              "internet_access": "no",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -12053,6 +12053,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "32",
+              "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"

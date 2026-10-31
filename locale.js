@@ -1753,7 +1753,9 @@
   "Amenity evidence:": "Pruebas de servicios:",
   "No amenity source for this listing.": "No hay ninguna fuente de servicios para este lugar.",
   "Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence.": "Los filtros de servicios solo coinciden con las pruebas indicadas aquí, con el alcance indicado. Desconocido no significa ausente.",
-  "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Los filtros de servicios usan solo las pruebas que muestra cada ficha: el propio elemento de OpenStreetMap del lugar, los registros de sitio del Servicio Forestal y los registros de parcelas de Recreation.gov. Con un filtro de longitud o de conexiones activo, los servicios de los registros de parcelas solo cuentan si están vinculados a la parcela que encaja, y estos registros no lo están."
+  "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Los filtros de servicios usan solo las pruebas que muestra cada ficha: el propio elemento de OpenStreetMap del lugar, los registros de sitio del Servicio Forestal y los registros de parcelas de Recreation.gov. Con un filtro de longitud o de conexiones activo, los servicios de los registros de parcelas solo cuentan si están vinculados a la parcela que encaja, y estos registros no lo están.",
+  "different site ({type}), not this campground": "otro sitio ({type}), no este camping",
+  "type unknown": "tipo desconocido"
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);

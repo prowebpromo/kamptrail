@@ -2564,7 +2564,6 @@
         "tents": "yes",
         "tourism": "camp_site",
         "type": "established",
-        "washing_machine": "no",
         "website": "https://www.recreation.gov/camping/campgrounds/255286?tab=campsites",
         "id": "ridb:255286",
         "source": "recreation.gov",
@@ -2606,7 +2605,8 @@
               "fee": "yes",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "washing_machine": "no"
             },
             "retrieved_at": "2026-10-29T02:56:22Z",
             "source_updated_at": null,
@@ -4381,7 +4381,6 @@
         ],
         "backcountry": "yes",
         "drinking_water": "no",
-        "internet_access": "no",
         "static_caravans": "no",
         "tents": "yes",
         "wheelchair": "no",
@@ -4409,6 +4408,7 @@
             "fields": {
               "drinking_water": "no",
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
               "sanitary_dump_station": "yes"
@@ -16559,7 +16559,6 @@
         ]
       },
       "properties": {
-        "internet_access": "yes",
         "name": "Rush Creek Campground",
         "operator": "USFS",
         "tourism": "camp_site",
@@ -16593,7 +16592,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "internet_access": "yes"
             },
             "retrieved_at": "2026-10-29T02:56:22Z",
             "source_updated_at": null,

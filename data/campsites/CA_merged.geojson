@@ -1881,7 +1881,6 @@
         "addr:state": "CA",
         "addr:street": "Happy Isles Loop Road",
         "capacity": "60",
-        "internet_access": "no",
         "name": "Lower Pines Campground",
         "operator": "Yosemite National Park",
         "tourism": "camp_site",
@@ -1927,6 +1926,7 @@
             "fields": {
               "access": "customers",
               "fee": "yes",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "yes"
             },
@@ -4617,7 +4617,6 @@
         "capacity": "14",
         "caravans": "yes",
         "email": "blm_ca_barstow_fo_web@blm.gov",
-        "internet_access": "no",
         "name": "Sawtooth Canyon Campground",
         "note": "Boundary is a guess",
         "ohv": "no",
@@ -4667,6 +4666,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "no",
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "water_point": "no"
@@ -10196,7 +10196,6 @@
         "operator": "USFS",
         "reservation": "required",
         "tourism": "camp_site",
-        "water": "yes",
         "website": "https://www.fs.usda.gov/recarea/mendocino/recreation/camping-cabins/recarea/?recid=25268",
         "id": "ridb:233161",
         "source": "recreation.gov",
@@ -10239,7 +10238,8 @@
               "charge": "75 USD",
               "fee": "yes",
               "picnic_table": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "water": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -15466,7 +15466,6 @@
         ]
       },
       "properties": {
-        "internet_access": "no",
         "name": "Lovers Leap Campground",
         "operator": "United States Forest Service",
         "payment:cash": "yes",
@@ -15509,7 +15508,8 @@
             "source_record_id": "osm:way:914024863",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -20177,7 +20177,6 @@
         "addr:postcode": "92561",
         "addr:state": "CA",
         "caravans": "yes",
-        "internet_access": "no",
         "name": "Pinyon Flat Campground",
         "operator": "USFS",
         "source": "recreation.gov",
@@ -20220,6 +20219,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "no",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -53238,6 +53238,7 @@
             "source_record_id": "osm:way:1134389248",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
             },
@@ -55430,7 +55431,8 @@
             "source_record_id": "osm:node:12195370290",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -84698,7 +84700,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1408215931",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "wlan"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1408215931"
+          }
+        ]
       }
     },
     {
@@ -94263,7 +94277,6 @@
         ]
       },
       "properties": {
-        "amenity": "toilets",
         "building": "yes",
         "building:units": "1",
         "ele": "184.3",
@@ -94304,6 +94317,7 @@
             "source_record_id": "osm:way:460160638",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "toilets",
               "fee": "yes",
               "sanitary_dump_station": "yes",
               "shower": "yes",
@@ -118206,7 +118220,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1496786626",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1496786626"
+          }
+        ]
       }
     },
     {
@@ -122159,7 +122185,6 @@
         "addr:postcode": "93103",
         "addr:state": "CA",
         "addr:street": "South Salinas Street",
-        "internet_access": "wlan",
         "name": "Santa Barbara Sunrise RV Park",
         "phone": "+1 805-966-9954",
         "tourism": "caravan_site",
@@ -122193,6 +122218,7 @@
             "source_record_id": "osm:way:731530963",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
             },
@@ -131225,7 +131251,6 @@
         "addr:street": "US-93",
         "drinking_water": "yes",
         "fee": "yes",
-        "internet_access": "yes",
         "name": "Saguaro RV Park",
         "power_supply": "yes",
         "sanitary_dump_station": "yes",
@@ -131262,6 +131287,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"

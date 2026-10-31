@@ -5080,6 +5080,7 @@
             "source_record_id": "osm:node:7552476429",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:01:48Z",
@@ -5539,6 +5540,7 @@
             "source_record_id": "osm:way:1204924020",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"

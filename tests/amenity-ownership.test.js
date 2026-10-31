@@ -61,6 +61,16 @@ test('scope rules: campsite records stay "some sites", site records and elements
   const v=Q.normalizeFeature(osm(23,{toilets:'vault'}));assert.equal(Q.amenityEvidence(v.properties).amenities.toilet.status,'unrecognized');assert.equal(Q.applyFilters([v],{amenities:['toilet']}).length,0);
 });
 
+test('Forest Service records for a different site type are shown as a different site and never match',()=>{
+  for(const type of ['SWIMMING SITE','PICNIC SITE','INFO SITE/FEE STATION','LOOKOUT/CABIN','DAY USE AREA']){
+    const f=Q.normalizeFeature(ridb(70));f.properties.rv_sigs=[[40,0,1]];
+    Q.attachUSFSSiteAmenities(f,usfsPayload('70',[fsRecord({name:'Lake North Recreation Area',type,water:{text:'Potable Water',class:'drinking_water'}})]));
+    const e=Q.amenityEvidence(f.properties);
+    assert.equal(e.amenities.toilet.status,'unknown',type);assert.equal(e.amenities.toilet.elsewhere[0].scope,'other_site_record');
+    for(const filters of [{},{rigLength:30}])for(const a of ['toilet','water'])assert.equal(Q.applyFilters([f],{amenities:[a],...filters}).length,0,type+' '+a);
+  }
+  for(const type of ['CAMPGROUND','GROUP CAMPGROUND','HORSE CAMP']){const f=Q.normalizeFeature(ridb(71));Q.attachUSFSSiteAmenities(f,usfsPayload('71',[fsRecord({type})]));assert.deepEqual(Q.amenityFilterSets(f.properties),{g:['toilet'],s:[]},type);}
+});
 test('explicit negatives and contradictions stay visible and never match',()=>{
   const f=Q.normalizeFeature(osm(30,{toilets:'yes',drinking_water:'no'},[-105,40],'Pine Campground'));f.properties.legacy_ids.push('ridb:30');
   Q.attachUSFSSiteAmenities(f,usfsPayload('30',[fsRecord({toilet:{text:'No toilets',class:'no_toilet'}})]));

@@ -2308,7 +2308,6 @@
         "caravans": "yes",
         "contact:campendium": "http://www.campendium.com/chosa-campground",
         "image": "http://www.nps.gov/common/uploads/cropped_image/primary/B5F856BB-0F22-2401-EE8F10DDA63B8B30.jpg",
-        "internet_access": "cellular",
         "name": "Chosa Campground",
         "operator": "Bureau of Land Management",
         "parking": "yes",
@@ -2357,6 +2356,7 @@
               "access": "yes",
               "drinking_water": "no",
               "fee": "no",
+              "internet_access": "cellular",
               "openfire": "no",
               "picnic_table": "no",
               "power_supply": "no",
@@ -3521,6 +3521,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "wlan",
               "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -11885,6 +11886,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"

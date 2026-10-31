@@ -198,7 +198,6 @@
       },
       "properties": {
         "capacity": "5",
-        "internet_access": "no",
         "name": "Big Rock Campground",
         "operator": "National Forest Service",
         "tourism": "camp_site",
@@ -241,6 +240,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "no",
+              "internet_access": "no",
               "internet_access:fee": "no"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -260,7 +260,6 @@
         ]
       },
       "properties": {
-        "internet_access": "no",
         "name": "Bear Heaven Campground",
         "operator": "USDA Forest Service",
         "tourism": "camp_site",
@@ -304,6 +303,7 @@
             "fields": {
               "charge": "5 USD/day",
               "fee": "yes",
+              "internet_access": "no",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -14659,6 +14659,7 @@
             "source_record_id": "osm:way:1459962041",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
@@ -15717,6 +15718,7 @@
               "access": "permissive",
               "drinking_water": "no",
               "fee": "no",
+              "internet_access": "no",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -26564,7 +26566,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1163510164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1163510164"
+          }
+        ]
       }
     },
     {

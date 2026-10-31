@@ -241,7 +241,6 @@
         ]
       },
       "properties": {
-        "amenity": "charging_station",
         "backcountry": "no",
         "caravans": "yes",
         "dog": "leashed",
@@ -252,8 +251,6 @@
         "operator": "National Forest Service",
         "reservation": "recommended",
         "reservation:url": "https://www.recreation.gov/camping/campgrounds/233312",
-        "socket:nema_14_50": "yes",
-        "socket:nema_5_15": "yes",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/nfsnc/recreation/camping-cabins/recarea/?recid=48470&actid=29",
@@ -294,11 +291,14 @@
             "source_record_id": "osm:way:408052573",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "charging_station",
               "drinking_water": "yes",
               "fee": "yes",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
               "shower": "yes",
+              "socket:nema_14_50": "yes",
+              "socket:nema_5_15": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -1195,7 +1195,6 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "internet_access": "no",
         "mobile_reception": "limited",
         "mobile_reception:strength": "issues",
         "name": "BALSAM MOUNTAIN CAMPGROUND",
@@ -1249,6 +1248,7 @@
               "charge": "30 USD",
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
@@ -1317,7 +1317,6 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "internet_access": "no",
         "mobile_reception": "no",
         "mobile_reception:strength": "none",
         "name": "CATALOOCHEE CAMPGROUND",
@@ -1370,6 +1369,7 @@
               "charge": "30 USD",
               "drinking_water": "yes",
               "fee": "yes",
+              "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
               "shower": "no",
@@ -32501,7 +32501,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "check_date": "2025-09-09"
+              "check_date": "2025-09-09",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -39712,6 +39713,7 @@
             "source_record_id": "osm:way:658223122",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -42395,6 +42397,7 @@
             "fields": {
               "check_date:internet_access": "2022-04-09",
               "drinking_water": "yes",
+              "internet_access": "no",
               "power_supply": "yes",
               "shower": "yes",
               "toilets": "yes"
@@ -48970,7 +48973,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1170960936",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1170960936"
+          }
+        ]
       }
     },
     {
@@ -57676,7 +57691,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:15829173",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/15829173"
+          },
+          {
+            "source_record_id": "osm:relation:17210094",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/17210094"
+          }
+        ]
       }
     },
     {
@@ -57749,7 +57786,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:17210097",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/17210097"
+          }
+        ]
       }
     },
     {

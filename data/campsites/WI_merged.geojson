@@ -22522,7 +22522,6 @@
         "addr:street": "Grand Avenue",
         "caravans": "no",
         "group_only": "yes",
-        "internet_access": "wlan",
         "name": "Ingawanis Adventure Base",
         "operator": "BSA",
         "static_caravans": "no",
@@ -22559,7 +22558,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "private",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "wlan"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,

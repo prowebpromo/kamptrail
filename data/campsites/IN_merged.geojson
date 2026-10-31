@@ -8815,12 +8815,23 @@
             "source_record_id": "osm:way:850354495",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:59:44Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/850354495"
+          },
+          {
+            "source_record_id": "osm:way:863389593",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T02:59:44Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/863389593"
           }
         ]
       }
@@ -9890,6 +9901,7 @@
             "source_record_id": "osm:way:973377830",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no"
             },
@@ -9901,6 +9913,7 @@
             "source_record_id": "osm:way:973377831",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T02:59:44Z",
@@ -9911,6 +9924,7 @@
             "source_record_id": "osm:way:973377832",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:59:44Z",

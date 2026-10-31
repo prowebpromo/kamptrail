@@ -3938,7 +3938,6 @@
         "backcountry": "no",
         "caravans": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "Burnt Corral Campground",
         "nudism": "no",
         "operator": "USFS",
@@ -3983,7 +3982,8 @@
             "source_record_id": "osm:relation:11727080",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "drinking_water": "yes"
+              "drinking_water": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
             "source_updated_at": null,
@@ -4242,7 +4242,6 @@
         "caravans": "yes",
         "ele": "584",
         "group_only": "yes",
-        "internet_access": "no",
         "name": "GRAPEVINE GROUP CAMPGROUND",
         "nudism": "no",
         "operator": "USFS",
@@ -4288,6 +4287,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
+              "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "yes",
               "toilets": "yes"
@@ -5512,7 +5512,6 @@
         "caravans": "yes",
         "group_only": "yes",
         "horse": "yes",
-        "internet_access": "no",
         "name": "FRAZIER GROUP CAMPGROUND",
         "nudism": "no",
         "operator": "USFS",
@@ -5559,7 +5558,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
             "source_updated_at": null,
@@ -19060,6 +19060,7 @@
             "source_record_id": "osm:node:9552912228",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "no",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -23851,6 +23852,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "internet_access": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "no"
             },
@@ -26313,7 +26315,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1408215931",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "wlan"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1408215931"
+          }
+        ]
       }
     },
     {
@@ -30111,7 +30125,6 @@
         "backcountry": "yes",
         "caravans": "no",
         "group_only": "no",
-        "internet_access": "no",
         "leisure": "park",
         "name": "Cottonwood Campground",
         "nudism": "no",
@@ -30154,6 +30167,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "May-Oct: yes; Jan-Apr,Nov-Dec: no",
+              "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
               "toilets": "yes"

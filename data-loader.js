@@ -334,10 +334,10 @@
     const status={present:t("reported"),absent:t("source says no"),conflict:t("sources disagree"),unrecognized:t("value not recognized"),unknown:t("unknown")};
     const when=r=>{const d=day(r.date);if(!d)return t("date unknown");return r.source==='osm'?t("survey date {date}",{date:d}):r.source==='usfs'?t("updated {date}",{date:d}):d;};
     const who=r=>r.source==='osm'?osmLink(r.record,t("OpenStreetMap element {ref}",{ref:osmRef(r.record)})):r.source==='ridb'?esc(t('Recreation.gov facility {id}',{id:r.record.slice(5)})):r.source==='usfs'?esc(r.name?t("Forest Service site record: {name}",{name:r.name}):t("Forest Service site record")):esc(t("{source} listing record",{source:r.label||r.record}));
-    const scope=r=>r.scope==='element'?t("whole mapped element"):r.scope==='listing_record'?t("this listing's own record"):r.scope==='site_record'?t("site record"):t("{count} of {total} campsite records, not every site",{count:r.count,total:r.total});
+    const scope=r=>r.scope==='element'?t("whole mapped element"):r.scope==='listing_record'?t("this listing's own record"):r.scope==='site_record'?t("site record"):r.scope==='other_site_record'?t("different site ({type}), not this campground",{type:r.type||t("type unknown")}):t("{count} of {total} campsite records, not every site",{count:r.count,total:r.total});
     const part=r=>`${who(r)} <span class="kt-muted">(${esc(scope(r))}${r.value!=null&&r.source!=='ridb'?` · ${esc(t("value “{value}”",{value:String(r.value).slice(0,120)}))}`:''} · ${esc(when(r))})</span>`;
     const rows=DataQuality.FILTER_AMENITIES.map(a=>{
-      const x=e.amenities[a],refs=[...x.positive,...x.negative,...x.conflict,...(x.status==='unrecognized'?x.other:[])];
+      const x=e.amenities[a],refs=[...x.positive,...x.negative,...x.conflict,...(x.status==='unrecognized'?x.other:[]),...x.elsewhere];
       return `<li data-amenity="${a}" data-status="${x.status}"><strong>${esc(labels[a])}:</strong> ${esc(status[x.status])}${refs.length?`: ${refs.map(part).join('; ')}`:''}</li>`;
     }).join('');
     const osm=e.sources.find(s=>s.source==='osm');

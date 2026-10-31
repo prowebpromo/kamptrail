@@ -8394,6 +8394,7 @@
             "source_record_id": "osm:way:1533353372",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
@@ -8520,6 +8521,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -8531,6 +8533,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -8627,6 +8630,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -8638,6 +8642,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -8649,6 +8654,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -8744,6 +8750,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -8755,6 +8762,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -8814,6 +8822,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -9048,6 +9057,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -10906,7 +10916,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5078029069",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T02:53:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5078029069"
+          }
+        ]
       }
     },
     {
@@ -18530,7 +18552,8 @@
             "source_record_id": "osm:way:616476211",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "fee": "no",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -50385,7 +50408,6 @@
       "properties": {
         "backcountry": "yes",
         "caravans": "no",
-        "internet_access": "no",
         "name": "Rippling Brook River Camp 1",
         "operator": "Dinosaur National Monument",
         "static_caravans": "no",
@@ -50421,6 +50443,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "internet_access": "no",
               "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -69216,7 +69239,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "customers",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -77209,7 +77233,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:782838955",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "wifi": "free"
+            },
+            "retrieved_at": "2026-10-29T02:53:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/782838955"
+          }
+        ]
       }
     },
     {

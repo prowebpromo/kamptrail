@@ -13075,7 +13075,6 @@
       "properties": {
         "email": "mingorv@sbcglobal.net",
         "fax": "+1-918-836-7371",
-        "internet_access": "wlan",
         "landuse": "residential",
         "name": "Mingo RV Park",
         "phone": "+1-918-832-8824",
@@ -13112,6 +13111,7 @@
             "source_record_id": "osm:relation:2715197",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "internet_access:fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:28:09Z",
