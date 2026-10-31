@@ -136,6 +136,7 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 #kt-permissions{width:min(720px,calc(100vw - 24px));max-height:90vh;overflow:auto;overflow-wrap:anywhere;box-sizing:border-box}
 #kt-permissions .kt-permissions-body label,#kt-permissions input,#kt-permissions select,#kt-permissions textarea{max-width:100%;box-sizing:border-box}
 #kt-permissions .kt-permission-card{border:1px solid var(--border,#ced8ce);border-radius:8px;padding:12px;margin:12px 0}
+#kt-permissions .kt-stay-answers{border:1px solid var(--border,#ced8ce);border-radius:8px;padding:12px;margin:12px 0}
 #kt-permissions .kt-permission-text{white-space:pre-wrap}
 #kt-permissions .kt-permission-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
 #kt-permissions::backdrop{background:rgb(0 0 0 / .45)}
