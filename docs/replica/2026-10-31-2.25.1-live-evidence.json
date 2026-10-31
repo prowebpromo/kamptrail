@@ -1,0 +1,191 @@
+{
+ "checked_at": "2026-10-31T14:58:40Z",
+ "release": {
+  "source_commit": "10110c802e9d9466c7ad29f63a646493c5ed5d5a"
+ },
+ "search_index_sha256": {
+  "live": "bbaa8878d70e3b5b5f05daaa750cd3659a60ee526ea3e88090f3e44349e24a14",
+  "main": "bbaa8878d70e3b5b5f05daaa750cd3659a60ee526ea3e88090f3e44349e24a14",
+  "identical": true
+ },
+ "api_health": {
+  "ok": true,
+  "api": "1.0.0",
+  "config": "present",
+  "config_permissions": "private",
+  "database": "ok",
+  "schema": "current",
+  "accepting_reports": true,
+  "routing": "ready",
+  "community": "ready",
+  "observations": "ready",
+  "photo_processing": "ready"
+ },
+ "data_source_health": {
+  "ridb": {
+   "oldest_success": "2026-10-29T02:45:27.109Z",
+   "newest_success": "2026-10-29T03:42:40.093Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 50
+   }
+  },
+  "osm": {
+   "oldest_success": "2026-10-29T02:46:12.002Z",
+   "newest_success": "2026-10-29T03:43:15.849Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 50
+   }
+  },
+  "usfs": {
+   "oldest_success": "2026-10-30T23:56:50.555Z",
+   "newest_success": "2026-10-30T23:56:50.555Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 1
+   }
+  },
+  "blm": {
+   "oldest_success": "2026-10-30T23:56:50.587Z",
+   "newest_success": "2026-10-30T23:56:50.587Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 1
+   }
+  },
+  "ridb_sites": {
+   "oldest_success": "2026-10-29T03:43:40.851Z",
+   "newest_success": "2026-10-29T03:43:40.851Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 1
+   }
+  },
+  "services": {
+   "oldest_success": "2026-10-29T03:45:42.189Z",
+   "newest_success": "2026-10-29T03:45:42.189Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 1
+   }
+  },
+  "services_extracts": {
+   "oldest_success": "2026-10-28T21:21:02Z",
+   "newest_success": "2026-10-28T21:21:02Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 50
+   }
+  },
+  "rest_areas": {
+   "oldest_success": "2026-10-30T13:11:18Z",
+   "newest_success": "2026-10-31T12:33:16.080Z",
+   "never_succeeded": 0,
+   "last_outcomes": {
+    "fresh": 5
+   }
+  }
+ },
+ "nws_alert_proxy_los_angeles": {
+  "ok": true,
+  "kind": "alerts",
+  "retrieved_at": "2026-10-31T14:54:42+00:00",
+  "partial": false,
+  "error": null,
+  "features": 0
+ },
+ "smoke_deployment": {
+  "target": "https://kamptrail.com/",
+  "version": "2.25.1",
+  "workerActive": true,
+  "dataPanel": true,
+  "sourceListings": 69574,
+  "catalogue": 33370,
+  "nationalSearch": "[CLOSED] Toyon Group Camp 3",
+  "savedStop": "Thompsons Lake Campground",
+  "mobile": true,
+  "errors": [],
+  "failures": []
+ },
+ "must_have_checks": {
+  "base": "https://kamptrail.com/",
+  "run_at": "2026-10-31T14:54:25.244Z",
+  "checks": {
+   "1 Clustering": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "zoom 8: 270 .marker-cluster, 69 single markers, 689 visible sites; zoom 15: 1 single markers, 0 clusters"
+    }
+   },
+   "2 Near me": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "map center before 38.5,-98,8 -> after 42.65,-73.75,8 (0.00km from 42.65,-73.75), aria-pressed=true, accuracy circle paths=0; \"685 in this view \u00b7 4,333 loaded\"; first card \"Schodack Island State Park Campground\"; nearest sites: Schodack Island State Park Campground 16.6km | Lean-Tos 19.4km | Thompsons Lake Campground 24.2km | Cherry Plain State Park Campgrounds 28.0km | Adventure Bound Camping Resorts Deer Run 29.8km"
+    }
+   },
+   "3 Showing X of Y count": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "text \"689 in this view \u00b7 2,705 loaded\" ; KampTrailData visible=689 loaded=2705; literal \"Showing X of Y\" wording present=false (app wording is \"N in this view \u00b7 M loaded\")"
+    }
+   },
+   "4 BLM/USFS land overlay": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "layer was off=true, on after UI toggle=true; 15 SMA tile responses (200) from https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_SMA_Cached_without_PriUn; 0 tile imgs in DOM; legend visible=true \"Public land BLM Forest Service National Park Tap the map to check who manages a spot. Public land opacity\""
+    }
+   },
+   "5 Filter by fee": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "visible before 689 -> free 24 (non-free in set: 0; fee_status values free); cards with \"Reported free\": 24/48; badge \"1\"; summary \"24 in this view \u00b7 2,705 loaded\"; after clearing: 689"
+    }
+   },
+   "6 Filter by campsite type": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "before 689 (types {\"established\":684,\"dispersed\":5}); tried dispersed=5; chosen \"dispersed\" visible 5, listings with other type: 0; after clear: 689"
+    }
+   },
+   "7+8 Popup detail and source link": {
+    "run1": {
+     "c7": {
+      "status": "PASS",
+      "evidence": "name \"INDIAN HOLLOW\", Cost: \"Fee not verified\", Type: \"established\", GPS \"42.34194, -72.84944\" (matches data 42.34194, -72.84944: true)"
+     },
+     "c8": {
+      "status": "PASS",
+      "evidence": "href https://www.recreation.gov/camping/campgrounds/233519 (target=_blank); equals listing source_url=true; GET status 200"
+     }
+    }
+   },
+   "9 Dump/water/propane services": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "categories dump,water,lpg,showers,laundry,groceries,fuel (dump/water/lpg labels: Dump station/Water fill/LPG); view Denver CO z11: 1594 service items, counts {\"groceries\":846,\"water\":11,\"fuel\":617,\"laundry\":97,\"lpg\":3,\"dump\":4,\"showers\":17}, 1594 markers on layer, DOM icon letters {\"F\":2,\"G\":1,\"D\":1}; status \"Results in loaded source coverage. Coverage: 50 state extracts, retrieved 2026-10-30; Legacy dump/water/LPG date unknown. Source coverage is incomplete; unloaded and uncovered areas are unknown. Hours, RV access and overnight permission are not verified.\"; locations tried Albany NY:657, Moab UT:43, Phoenix AZ:1839, Denver CO:1594"
+    }
+   },
+   "10 Trip ordered stops": {
+    "run1": {
+     "status": "PASS",
+     "evidence": "saved Thompsons Lake Campground + Lean-Tos (count (2)); after Down on first, kt_trip order [osm:node:9945724718,osm:node:4412512598] swapped=true; UI order [\"1. Lean-Tos\",\"2. Thompsons Lake Campground\"]; after reload kt_trip [osm:node:9945724718,osm:node:4412512598] (2), UI order [\"1. Lean-Tos\",\"2. Thompsons Lake Campground\"], persisted=true; cleanup -> 0 stops, count (0)"
+    }
+   }
+  },
+  "release": {
+   "status": 200,
+   "body": {
+    "source_commit": "8c9bde808c26ff64e1d1952a4fa9947434fb699f"
+   },
+   "matches_expected": true,
+   "expected": "8c9bde808c26ff64e1d1952a4fa9947434fb699f"
+  },
+  "page_errors": [],
+  "console_errors": [],
+  "failed_requests_kamptrail": [],
+  "failed_requests_other_hosts": []
+ },
+ "nws_alert_proxy_rate_limit_note": "Two further back-to-back queries at 39.5,-119.8 and 35.1,-106.6 around 14:54Z returned ok=false, error=busy, the proxy rate limit. Testing stopped there.",
+ "smoke_deployment_note": "scripts/smoke-deployment.js throws on a directions-coordinate mismatch, a missing saved stop, a source-count mismatch or a blocked mobile map. Exit 0 with empty errors and failures means each passed."
+}
