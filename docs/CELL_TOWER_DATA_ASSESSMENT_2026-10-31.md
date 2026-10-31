@@ -121,3 +121,48 @@ Blockers needing owner approval:
 - https://www.openstreetmap.org/copyright
 - https://wiki.openstreetmap.org/wiki/Key:communication:mobile_phone
 - https://iftdss.firenet.gov/firenetHelp/help/pageHelp/content/10-mapstudio/reflayermetadata/infrastructure/commtwr_m.htm
+
+## Addendum, 2026-10-31: FCC ASR follow-up verification
+
+Research only. Nothing downloaded, no terms accepted, no accounts created, nothing imported. The cell-tower layer stays parked.
+
+### What an ASR record identifies
+
+An ASR record is a registered antenna structure: a tower or other structure tall enough, or close enough to an airport, to require FAA or FCC notification. It is not a cell site and not evidence of cellular service. Many registered structures carry only broadcast, microwave, paging or other non-cellular antennas. Many cell sites (rooftops, short poles, small cells) are below the registration threshold and are absent. The owner field names the structure owner, often a tower company, not a carrier serving users. Any KampTrail wording must call these "FCC-registered antenna structures", never "cell towers", and must not imply carrier coverage.
+
+### Verification status
+
+| Item | Status | Basis |
+|---|---|---|
+| Reuse terms on the download page | Partly verified | The ULS/ASR download page states no license, attribution rule, acceptance step or redistribution limit. Archived FCC web policy pages (2012, 2020) state none either. |
+| Reuse terms overall | Unresolved | The current FCC website terms page was not retrieved. An absence of stated terms is not proof that none apply. Owner or counsel confirmation is still required before import. |
+| Click-through or account on download | Partly verified | The page text describes plain zip downloads and mentions no agreement or login. Page text cannot show a script-driven prompt. Confirm on first manual visit. |
+| Record types | Partly verified | FCC intro document (2013 archive): RA registration, EN names and addresses, CO coordinates, RE remarks, SC special conditions, HS history. Pipe-delimited, joined on registration number. |
+| Coordinates | Partly verified | CO holds latitude and longitude as degrees, minutes, seconds (state GIS metadata). Hemisphere field not confirmed. |
+| Structure type, overall height, status fields | Unverified | The current field-definition document did not load. Do not build the importer until these are confirmed. |
+| Datum and accuracy | Unverified at the FCC | One state repackaging is NAD83. That is the state's statement, not the FCC's. No positional accuracy figure found. |
+| Cadence | Partly verified | Weekly complete files and daily transaction files exist. Weekly file size not stated. |
+| Cellular or carrier field | Unverified | No such field found in readable record types. Field-level definitions did not load, so absence is not confirmed. |
+
+### Session limits recorded, not product limits
+
+- Several fcc.gov PDFs and pages failed to load from this research session. That is a tool access failure in this session, not evidence about the FCC data.
+- The NWS active-alerts API was not reachable from this session on 2026-10-31, so the fire-weather zone geometry check in `PACKAGE5_AUDIT_2026-10-31.md` was not run. This is a failed check in this session, not a verified production limitation. Production alert display is unchanged and was not retested here.
+
+### Still required before any import
+
+1. Owner or counsel confirmation of FCC reuse terms.
+2. Field-level confirmation of structure type, height, status, hemisphere and datum from the current FCC documentation.
+3. Owner approval of on-screen wording, marker design, pilot region and update schedule, as listed above.
+
+### Sources
+
+Arkansas Geographic Information Office. (2017). *ASR towers FCC (point) metadata*. https://gis.arkansas.gov/metadata/HTML/asdi.utilities.TOWER_FCC_export.html
+
+Federal Communications Commission. (n.d.). *ULS and ASR public access files download page*. https://www.fcc.gov/node/215180
+
+Federal Communications Commission. (2012). *FCC web policies* [Archived]. https://webarchive.library.unt.edu/web/20121002063145/http://www.fcc.gov/webpolicies.html
+
+Federal Communications Commission. (2013). *ULS database public access files* [Archived]. https://webarchive.library.unt.edu/web/20130214225916/http://wireless.fcc.gov/uls/documentation/towintro-1.doc
+
+Federal Communications Commission. (2020). *Website notices* [Archived]. https://webarchive.library.unt.edu/web/20201218004741/https://www.fcc.gov/website-notices
