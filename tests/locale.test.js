@@ -4,15 +4,16 @@ const vm=require('node:vm');
 const fs=require('node:fs');
 const path=require('node:path');
 const source=fs.readFileSync(path.join(__dirname,'../locale.js'),'utf8');
-function boot(saved='en', blocked=false, dom){
+const frSource=fs.readFileSync(path.join(__dirname,'../locale-fr.js'),'utf8');
+function boot(saved='en', blocked=false, dom, withFrench=false){
   const rows=new Map([['kt_language',saved],['kt_trip','visitor notes: Leave my words unchanged.'],['kt_filters_mvp','{"cost":"free"}']]);
   const context={Intl,Date,localStorage:{getItem:key=>{if(blocked)throw Error('blocked');return rows.get(key);},setItem:(key,value)=>{if(blocked)throw Error('blocked');rows.set(key,value);}},document:dom};
-  context.window=context;vm.runInNewContext(source,context);return {api:context.KampTrailI18n,rows,context};
+  context.window=context;if(withFrench)vm.runInNewContext(frSource,context);vm.runInNewContext(source,context);return {api:context.KampTrailI18n,rows,context};
 }
 test('explicit supported language persists without changing trips, filters or user content',()=>{
   const {api,rows}=boot();assert.equal(api.language,'en');assert.equal(api.t('Save stop'),'Save stop');assert.equal(api.setLanguage('es'),true);
   assert.equal(rows.get('kt_language'),'es');assert.equal(api.t('Save stop'),'Guardar parada');assert.equal(rows.get('kt_trip'),'visitor notes: Leave my words unchanged.');assert.equal(rows.get('kt_filters_mvp'),'{"cost":"free"}');
-  const restarted=boot(rows.get('kt_language'));assert.equal(restarted.api.language,'es');assert.equal(restarted.api.setLanguage('fr'),false);assert.equal(restarted.api.language,'es');
+  const restarted=boot(rows.get('kt_language'));assert.equal(restarted.api.language,'es');assert.equal(restarted.api.setLanguage('de'),false);assert.equal(restarted.api.language,'es');
 });
 test('invalid preferences and unavailable storage retain a usable English fallback',()=>{
   assert.equal(boot('de').api.language,'en');const {api}=boot('es',true);assert.equal(api.language,'en');assert.equal(api.t('Missing future UI key'),'Missing future UI key');assert.equal(api.setLanguage('es'),false);assert.equal(api.language,'en');
@@ -30,7 +31,7 @@ test('only explicitly marked first-party elements change; html lang is set befor
   const marked={dataset:{i18n:'Save stop'},textContent:'Save stop'},sourceNode={textContent:'Camping is free'},input={getAttribute:()=> 'City, campsite, or lat, lng',setAttribute:(k,v)=>input[k]=v};
   const listeners={},dom={documentElement:{lang:'en'},addEventListener:(name,fn)=>listeners[name]=fn,querySelectorAll:selector=>selector==='[data-i18n]'?[marked]:selector==='[data-i18n-placeholder]'?[input]:[],getElementById:()=>null};
   const {api}=boot('es',false,dom);assert.equal(dom.documentElement.lang,'es');listeners.DOMContentLoaded();assert.equal(marked.textContent,'Guardar parada');assert.equal(input.placeholder,'Ciudad, lugar de acampada o latitud, longitud');assert.equal(sourceNode.textContent,'Camping is free');
-  assert.deepEqual(Array.from(api.supported),['en','es']);
+  assert.deepEqual(Array.from(api.supported),['en','es','fr']);
 });
 test('locale asset is present in early boot, offline shell and release package',()=>{
   const read=f=>fs.readFileSync(path.join(__dirname,'..',f),'utf8');const index=read('index.html');assert.ok(index.indexOf('src="locale.js?v=')<index.indexOf('src="app.js?v='));assert.match(index,/id="kt-language"/);assert.match(read('service-worker.js'),/'locale\.js'/);assert.match(read('scripts/build-release.js'),/'locale\.js'/);assert.match(read('playwright.config.js'),/'locale\.spec\.js'/);
@@ -103,4 +104,22 @@ test('Spanish height evidence translates product explanations while retaining ra
   assert.equal(C.heightText(row,'maxheight'),'none (límite numérico desconocido)');
   assert.match(C.heightText(row,'maxheight:physical'),/no hay etiqueta en la fuente/);
   const description=C.describe(row,data,true);assert.match(description,/Instantánea guardada/);assert.match(description,/no aplica restricciones del vehículo|ni aplica restricciones del vehículo/);assert.ok(description.includes(data.source.extract_timestamp));assert.ok(description.includes(data.source.retrieved_at));assert.ok(description.includes(row.edited_at));assert.equal(C.sourceLink(row),'https://www.openstreetmap.org/'+row.osm_type+'/'+row.osm_id);
+});
+
+test('French uses its own catalogue, keeps every Spanish key and placeholder, and falls back visibly when missing',()=>{
+  const {api}=boot('fr',false,undefined,true);assert.equal(api.language,'fr');assert.equal(api.locale(),'fr-CA');assert.equal(api.catalogueReady(),true);
+  assert.notEqual(api.t('Save stop'),'Save stop');assert.equal(api.t('Camping is free'),'Camping is free','an unknown key stays English rather than invented');
+  assert.equal(api.label('fee','unknown'),api.t('Fee unknown'));assert.notEqual(api.label('fee','unknown'),'Fee unknown');
+  const ctx={};vm.runInNewContext(frSource,ctx);const fr=ctx.KampTrailI18nFr,esKeys=[...source.matchAll(/^  ("(?:[^"\\]|\\.)*"):/gm)].map(m=>JSON.parse(m[1]));
+  assert.equal(fr.version,api.version);assert.deepEqual(Object.keys(fr.messages).sort(),[...new Set(esKeys)].sort());
+  const ph=x=>[...new Set(x.match(/\{[a-zA-Z0-9_]+\}/g)||[])].sort().join();
+  for(const [k,v] of Object.entries(fr.messages)){assert.ok(v.trim(),k);for(const p of ph(v).split(',').filter(Boolean))assert.ok(ph(k).includes(p),'French adds no placeholder: '+k);}
+  assert.doesNotMatch(Object.values(fr.messages).join('\n'),/Spanish interface|Interfaz en español/);
+  const missing=boot('fr').api;assert.equal(missing.language,'fr');assert.equal(missing.catalogueReady(),false);assert.equal(missing.t('Save stop'),'Save stop');assert.equal(missing.locale(),'en-US','English fallback text uses English formats');
+  const stale=boot('fr',false,undefined,false);stale.context.KampTrailI18nFr={version:'0.0.1',messages:{'Save stop':'Ancien texte'}};assert.equal(stale.api.catalogueReady(),false,'a cached catalogue from another release is ignored');assert.equal(stale.api.t('Save stop'),'Save stop');
+});
+test('French is offered, cached for offline use and packaged',()=>{
+  const read=f=>fs.readFileSync(path.join(__dirname,'..',f),'utf8');
+  assert.match(read('index.html'),/<option value="fr" lang="fr">Français<\/option>/);assert.doesNotMatch(read('service-worker.js'),/locale-fr/,'not precached, so other visitors never fetch it');assert.match(read('scripts/build-release.js'),/'locale-fr\.js'/);
+  assert.doesNotMatch(read('index.html'),/src="locale-fr\.js/,'English and Spanish visitors do not download the French catalogue');
 });

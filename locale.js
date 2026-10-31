@@ -2,9 +2,20 @@
 (function (global) {
   'use strict';
   const STORAGE_KEY = 'kt_language';
-  const supported = ['en', 'es'];
+  const supported = ['en', 'es', 'fr'];
   let language = 'en';
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
+  // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
+  // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
+  const FR_VERSION = '2.25.0';
+  if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
+  let fr = null;
+  const catalogue = () => {
+    if (language === 'es') return es;
+    if (language !== 'fr') return null;
+    if (!fr) { const pack = global.KampTrailI18nFr; if (pack && pack.version === FR_VERSION && pack.messages && typeof pack.messages === 'object') fr = pack.messages; }
+    return fr || {};
+  };
   const es = {
   "Separate mapped element": "Elemento cartográfico separado",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Este informe pertenece a un elemento cartográfico separado. No confirma la tarifa ni el acceso de este camping.",
@@ -1664,7 +1675,7 @@
   "Freshness date": "Fecha de referencia"
 };
   function t(key, params = {}) {
-    const message = language === 'es' && Object.hasOwn(es, key) ? es[key] : String(key);
+    const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);
     return message.replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params, name) ? String(params[name]) : token);
   }
   const labels = {
@@ -1677,8 +1688,12 @@
     sourceStatement:{allowed:'Allowed',conditional:'Conditional',prohibited:'Prohibited',conflict:'Conflict',unknown:'Unknown'},
     reportStatus:{pending:'pending',published:'published',rejected:'rejected',deleted:'deleted',flagged:'flagged'}
   };
-  function label(kind, value) {return language === 'es' && Object.hasOwn(labels,kind) && Object.hasOwn(labels[kind],value) ? t(labels[kind][value]) : String(value ?? '');}
-  const locale = () => language === 'es' ? 'es-US' : 'en-US';
+  function label(kind, value) {return language !== 'en' && Object.hasOwn(labels,kind) && Object.hasOwn(labels[kind],value) ? t(labels[kind][value]) : String(value ?? '');}
+  // True only when the selected catalogue is present, so a missing French file is reported instead of silently showing English.
+  const catalogueReady = () => language !== 'fr' || Object.keys(catalogue()).length > 0;
+  // The language actually shown. A missing French catalogue shows English, so lang and number/date formats follow English too.
+  const shown = () => catalogueReady() ? language : 'en';
+  const locale = () => shown() === 'es' ? 'es-US' : shown() === 'fr' ? 'fr-CA' : 'en-US';
   function number(value, options) { return new Intl.NumberFormat(locale(), options).format(value); }
   function date(value, options = {}) {
     if (!value) return t('Unknown');
@@ -1700,13 +1715,18 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.24.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
+  global.KampTrailI18n = {version:'2.25.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
       if (!shellApplied) apply();
       const choice = global.document.getElementById('kt-language');
-      const scope = global.document.getElementById('kt-language-scope'); if (scope) scope.hidden = language !== 'es';
+      global.document.documentElement.lang = shown();
+      const scope = global.document.getElementById('kt-language-scope');
+      if (scope) {
+        scope.hidden = language === 'en';
+        if (!catalogueReady()) scope.textContent = 'French text could not be loaded. Showing English. Reconnect and reload to try again. / Le texte français n’a pas pu être chargé.';
+      }
       if (choice) {choice.value = language; choice.addEventListener('change', () => {
         if (choice.value === language) return;
         if (!setLanguage(choice.value)) {
