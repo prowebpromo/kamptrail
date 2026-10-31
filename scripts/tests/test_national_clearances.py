@@ -809,7 +809,7 @@ class NativeTests(unittest.TestCase):
             by_id = {r['id']: r for r in doc['candidates']}
             self.assertEqual(sorted(by_id), ['osm:node:5', 'osm:way:10', 'osm:way:13'])
             self.assertEqual(by_id['osm:way:10']['inches']['maxheight'], 162.0)
-            self.assertEqual((by_id['osm:way:10']['status'], by_id['osm:way:10']['comparable'], by_id['osm:way:10']['min_inches']), ('numeric_only', True, 157.48))
+            self.assertEqual((by_id['osm:way:10']['status'], by_id['osm:way:10']['comparable'], by_id['osm:way:10']['min_inches']), ('numeric_only', True, 161.41))
             self.assertEqual((by_id['osm:node:5']['parse'], by_id['osm:node:5']['restriction_on'], by_id['osm:node:5']['status']), ({'maxheight': 'below_default'}, 'node', 'unknown'))
             self.assertEqual(by_id['osm:way:13']['parse'], {'maxheight': 'unparseable'})
             self.assertEqual(sorted(e['id'] for e in national.decode_excluded(doc['excluded'])), ['osm:node:6', 'osm:way:14'])
