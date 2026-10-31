@@ -13,7 +13,7 @@ function featureIds(feature) {
   return [...new Set([p.id, ...(p.legacy_ids || [])].filter(id => id != null && id !== '').map(String))];
 }
 
-function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = []) {
+function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null) {
   const input = [];
   const stateById = new Map();
   for (const {state, geojson} of collections) {
@@ -33,7 +33,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     }
   }
 
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input});
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     const states = new Set();
@@ -82,6 +82,23 @@ function coordinateIndex(sites) {
   return{version:1,sha256:crypto.createHash('sha256').update(JSON.stringify(rows),'utf8').digest('hex'),count:rows.length};
 }
 
+// Canonical IDs in the committed index. Records keyed by them (reviews, saved stops) must keep resolving.
+function publishedIds(directory) {
+  const file = path.join(directory, 'search-index.json');
+  if (!fs.existsSync(file)) return null;
+  const sites = JSON.parse(fs.readFileSync(file, 'utf8')).sites;
+  return Array.isArray(sites) ? new Set(sites.map(site => site.id)) : null;
+}
+
+// Alias to canonical ID in the committed index, so an alias stays with its listing across rebuilds.
+function publishedHosts(directory) {
+  const file = path.join(directory, 'search-index.json');
+  if (!fs.existsSync(file)) return null;
+  const sites = JSON.parse(fs.readFileSync(file, 'utf8')).sites, hosts = new Map();
+  if (Array.isArray(sites)) for (const site of sites) for (const alias of site.legacy_ids || []) hosts.set(alias, site.id);
+  return hosts;
+}
+
 function buildFromDirectory(directory) {
   const files = fs.readdirSync(directory).filter(name => /^[A-Z]{2}_merged\.geojson$/.test(name)).sort();
   if (files.length !== 50) {
@@ -99,7 +116,7 @@ function buildFromDirectory(directory) {
       if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
     }
     return {state, geojson};
-  }),DataQuality,siteDetails,readElevationSnapshots(directory));
+  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory));
 }
 
 if (require.main === module) {
@@ -121,4 +138,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = {buildSearchIndex, buildFromDirectory, readElevationSnapshots, coordinateIndex};
+module.exports = {buildSearchIndex, buildFromDirectory, readElevationSnapshots, coordinateIndex, publishedIds, publishedHosts};

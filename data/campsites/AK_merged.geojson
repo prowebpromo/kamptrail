@@ -20883,33 +20883,10 @@
         "source_url": "https://www.openstreetmap.org/node/13121707765",
         "source_retrieved_at": "2026-10-29T02:47:12Z",
         "source_ids": [
-          "osm:node:13121707765",
-          "osm:way:1427370419"
+          "osm:node:13121707765"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1427370419",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:47:12Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1427370419"
-          }
         ]
       }
     },
@@ -23466,6 +23443,8 @@
       "properties": {
         "fee": "yes",
         "fixme": "boundary is approximate",
+        "large_vehicles": "discouraged",
+        "mobile_reception": "yes",
         "name": "Cooper Creek North Campground",
         "tourism": "caravan_site",
         "osm_id": 297217845,
@@ -23476,35 +23455,39 @@
         "source_url": "https://www.openstreetmap.org/way/297217845",
         "source_retrieved_at": "2026-10-29T02:47:12Z",
         "source_ids": [
-          "osm:way:297217845",
-          "osm:way:297217846"
+          "osm:way:297217845"
         ],
-        "large_vehicles": "discouraged",
-        "mobile_reception": "yes",
         "sources": [
           "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -149.8820463,
+          60.4825689
+        ]
+      },
+      "properties": {
+        "fee": "yes",
+        "fixme": "boundary is approximate",
+        "name": "Cooper Creek South Campground",
+        "tourism": "caravan_site",
+        "osm_id": 297217846,
+        "osm_type": "way",
+        "id": "osm:way:297217846",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/297217846",
+        "source_retrieved_at": "2026-10-29T02:47:12Z",
+        "source_ids": [
+          "osm:way:297217846"
         ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:297217846",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:47:12Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/297217846"
-          }
+        "sources": [
+          "openstreetmap"
         ]
       }
     },
@@ -24715,12 +24698,16 @@
       },
       "properties": {
         "fee": "yes",
-        "fixme": "Imagery poor, location approx. - needs repositioning when possible",
         "large_vehicles": "yes",
         "mobile_reception": "yes",
         "name": "Resurrection North Campground",
         "operator": "City of Seward",
+        "power_supply": "no",
+        "reservation": "required",
+        "sanitary_dump_station": "no",
+        "shower": "yes",
         "source": "openstreetmap",
+        "toilets": "yes",
         "tourism": "caravan_site",
         "osm_id": 438358829,
         "osm_type": "way",
@@ -24729,38 +24716,42 @@
         "source_url": "https://www.openstreetmap.org/way/438358829",
         "source_retrieved_at": "2026-10-29T02:47:12Z",
         "source_ids": [
-          "osm:way:438358829",
-          "osm:way:438358830"
+          "osm:way:438358829"
         ],
-        "power_supply": "no",
-        "reservation": "required",
-        "sanitary_dump_station": "no",
-        "shower": "yes",
-        "toilets": "yes",
         "sources": [
           "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -149.4344812,
+          60.1055764
+        ]
+      },
+      "properties": {
+        "fee": "yes",
+        "fixme": "Imagery poor, location approx. - needs repositioning when possible",
+        "large_vehicles": "yes",
+        "mobile_reception": "yes",
+        "name": "Resurrection South Campground",
+        "operator": "City of Seward",
+        "source": "openstreetmap",
+        "tourism": "caravan_site",
+        "osm_id": 438358830,
+        "osm_type": "way",
+        "id": "osm:way:438358830",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/438358830",
+        "source_retrieved_at": "2026-10-29T02:47:12Z",
+        "source_ids": [
+          "osm:way:438358830"
         ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:438358830",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:47:12Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/438358830"
-          }
+        "sources": [
+          "openstreetmap"
         ]
       }
     },
@@ -32736,6 +32727,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -135.0808589,
+          59.7857364
+        ]
+      },
+      "properties": {
+        "fee": "yes",
+        "name": "Lindeman City Lower Campground",
+        "operator": "National Park Service",
+        "tourism": "camp_site",
+        "website": "https://www.nps.gov/klgo/planyourvisit/lindeman-city.htm",
+        "osm_id": 1427370419,
+        "osm_type": "way",
+        "id": "osm:way:1427370419",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1427370419",
+        "source_retrieved_at": "2026-10-29T02:47:12Z",
+        "source_ids": [
+          "osm:way:1427370419"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -139.6813152,
           67.5676742
         ]
@@ -33451,6 +33472,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 28,
+  "duplicatesRemoved": 25,
   "invalidRemoved": 0
 }

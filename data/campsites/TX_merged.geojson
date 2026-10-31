@@ -10332,22 +10332,11 @@
         "source_url": "https://www.openstreetmap.org/node/2332493741",
         "source_retrieved_at": "2026-10-29T03:36:27Z",
         "source_ids": [
-          "osm:node:2332493741",
-          "osm:node:2332493815"
+          "osm:node:2332493741"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -10658,6 +10647,35 @@
           "cost": "unknown"
         },
         "description": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.730788,
+          32.969717
+        ]
+      },
+      "properties": {
+        "name": "Upper Fir Group Campground",
+        "operator": "USFS",
+        "source": "openstreetmap",
+        "tourism": "camp_site",
+        "uuid": "sonora_20130605",
+        "osm_id": 2332493815,
+        "osm_type": "node",
+        "id": "osm:node:2332493815",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/2332493815",
+        "source_retrieved_at": "2026-10-29T03:36:27Z",
+        "source_ids": [
+          "osm:node:2332493815"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
       }
     },
     {
@@ -48229,22 +48247,40 @@
         "source_url": "https://www.openstreetmap.org/node/11446414700",
         "source_retrieved_at": "2026-10-29T03:36:27Z",
         "source_ids": [
-          "osm:node:11446414700",
+          "osm:node:11446414700"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3019261,
+          34.888634
+        ]
+      },
+      "properties": {
+        "caravans": "no",
+        "name": "River Run Campground South",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 11446414701,
+        "osm_type": "node",
+        "id": "osm:node:11446414701",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/11446414701",
+        "source_retrieved_at": "2026-10-29T03:36:27Z",
+        "source_ids": [
           "osm:node:11446414701"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -56657,22 +56693,11 @@
         "source_url": "https://www.openstreetmap.org/way/30897634",
         "source_retrieved_at": "2026-10-29T03:36:27Z",
         "source_ids": [
-          "osm:way:30897634",
-          "osm:way:1244239425"
+          "osm:way:30897634"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -94368,6 +94393,43 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -97.6357884,
+          30.5250885
+        ]
+      },
+      "properties": {
+        "addr:city": "Round Rock",
+        "addr:housenumber": "3300",
+        "addr:postcode": "78665",
+        "addr:state": "TX",
+        "addr:street": "Palm Valley Boulevard",
+        "name": "Old Settlers Association RV Park - South Lot",
+        "operator": "Old Settlers Association of Williamson Couty",
+        "phone": "+1-512-388-1733",
+        "power_supply": "yes",
+        "sanitary_dump_station": "yes",
+        "tourism": "caravan_site",
+        "website": "https://wcosa.org/",
+        "osm_id": 1244239425,
+        "osm_type": "way",
+        "id": "osm:way:1244239425",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1244239425",
+        "source_retrieved_at": "2026-10-29T03:36:27Z",
+        "source_ids": [
+          "osm:way:1244239425"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -97.2841092,
           32.4965141
         ]
@@ -123585,6 +123647,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 226,
+  "duplicatesRemoved": 223,
   "invalidRemoved": 0
 }

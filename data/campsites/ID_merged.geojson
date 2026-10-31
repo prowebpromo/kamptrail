@@ -21669,32 +21669,10 @@
         "source_url": "https://www.openstreetmap.org/node/3759671891",
         "source_retrieved_at": "2026-10-29T02:58:04Z",
         "source_ids": [
-          "osm:node:3759671891",
-          "osm:node:3759671902"
+          "osm:node:3759671891"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:3759671902",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:58:04Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/3759671902"
-          }
         ]
       }
     },
@@ -21718,6 +21696,49 @@
         "source_retrieved_at": "2026-10-29T02:58:04Z",
         "source_ids": [
           "osm:node:3759671898"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.6944817,
+          44.2574832
+        ]
+      },
+      "properties": {
+        "capacity:pitches": "10",
+        "description": "Ten first-come, nonelectric sites include one double site. A vault toilet, potable water and picnic tables are provided.",
+        "dog": "leashed",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "horse": "yes",
+        "maxstay": "10 days",
+        "name": "Lower O'Brien Campground",
+        "operator": "United States Forest Service",
+        "operator:type": "government",
+        "picnic_table": "yes",
+        "power_supply": "no",
+        "reservation": "no",
+        "seasonal": "yes",
+        "toilets": "yes",
+        "toilets:disposal": "pitlatrine",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/r04/sawtooth/recreation/lower-obrien-campground",
+        "osm_id": 3759671902,
+        "osm_type": "node",
+        "id": "osm:node:3759671902",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/3759671902",
+        "source_retrieved_at": "2026-10-29T02:58:04Z",
+        "source_ids": [
+          "osm:node:3759671902"
         ],
         "sources": [
           "openstreetmap"
@@ -73743,22 +73764,39 @@
         "source_url": "https://www.openstreetmap.org/way/1548224554",
         "source_retrieved_at": "2026-10-29T02:58:04Z",
         "source_ids": [
-          "osm:way:1548224554",
+          "osm:way:1548224554"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.2834318,
+          42.196887
+        ]
+      },
+      "properties": {
+        "area": "yes",
+        "name": "Lower Penstmon Campground",
+        "tourism": "camp_site",
+        "osm_id": 1548224555,
+        "osm_type": "way",
+        "id": "osm:way:1548224555",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1548224555",
+        "source_retrieved_at": "2026-10-29T02:58:04Z",
+        "source_ids": [
           "osm:way:1548224555"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -76318,6 +76356,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 133,
+  "duplicatesRemoved": 131,
   "invalidRemoved": 0
 }

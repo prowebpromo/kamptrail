@@ -18087,22 +18087,39 @@
         "source_url": "https://www.openstreetmap.org/node/5691885734",
         "source_retrieved_at": "2026-10-29T02:53:12Z",
         "source_ids": [
-          "osm:node:5691885734",
+          "osm:node:5691885734"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6865106,
+          40.3435213
+        ]
+      },
+      "properties": {
+        "camp_site": "basic",
+        "name": "Spruce Lake East",
+        "tourism": "camp_site",
+        "osm_id": 5691885736,
+        "osm_type": "node",
+        "id": "osm:node:5691885736",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/5691885736",
+        "source_retrieved_at": "2026-10-29T02:53:12Z",
+        "source_ids": [
           "osm:node:5691885736"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -62005,33 +62022,45 @@
         "source_url": "https://www.openstreetmap.org/node/13998817328",
         "source_retrieved_at": "2026-10-29T02:53:12Z",
         "source_ids": [
-          "osm:node:13998817328",
+          "osm:node:13998817328"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.663623,
+          40.4419785
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "caravans": "no",
+        "fee": "yes",
+        "name": "Upper Chipmunk West",
+        "openfire": "no",
+        "operator": "National Park Service",
+        "reservation": "required",
+        "static_caravans": "no",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 13998817333,
+        "osm_type": "node",
+        "id": "osm:node:13998817333",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/13998817333",
+        "source_retrieved_at": "2026-10-29T02:53:12Z",
+        "source_ids": [
           "osm:node:13998817333"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:13998817333",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:53:12Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/13998817333"
-          }
         ]
       }
     },
@@ -75390,22 +75419,39 @@
         "source_url": "https://www.openstreetmap.org/way/636944591",
         "source_retrieved_at": "2026-10-29T02:53:12Z",
         "source_ids": [
-          "osm:way:636944591",
+          "osm:way:636944591"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3969372,
+          39.1575018
+        ]
+      },
+      "properties": {
+        "name": "Halfmoon West Campground",
+        "operator": "USFS",
+        "tourism": "camp_site",
+        "osm_id": 636944592,
+        "osm_type": "way",
+        "id": "osm:way:636944592",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/636944592",
+        "source_retrieved_at": "2026-10-29T02:53:12Z",
+        "source_ids": [
           "osm:way:636944592"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -87347,6 +87393,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 220,
+  "duplicatesRemoved": 217,
   "invalidRemoved": 0
 }

@@ -8197,22 +8197,11 @@
         "source_url": "https://www.openstreetmap.org/way/513706196",
         "source_retrieved_at": "2026-10-29T02:59:44Z",
         "source_ids": [
-          "osm:way:513706196",
-          "osm:way:513706198"
+          "osm:way:513706196"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -8239,6 +8228,34 @@
         "source_retrieved_at": "2026-10-29T02:59:44Z",
         "source_ids": [
           "osm:way:513706197"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.8035404,
+          41.5796072
+        ]
+      },
+      "properties": {
+        "name": "Northeast Campgrounds",
+        "operator": "Elkhart County 4-H Fairgrounds",
+        "tourism": "caravan_site",
+        "osm_id": 513706198,
+        "osm_type": "way",
+        "id": "osm:way:513706198",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/513706198",
+        "source_retrieved_at": "2026-10-29T02:59:44Z",
+        "source_ids": [
+          "osm:way:513706198"
         ],
         "sources": [
           "openstreetmap"
@@ -15222,6 +15239,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 43,
+  "duplicatesRemoved": 42,
   "invalidRemoved": 0
 }

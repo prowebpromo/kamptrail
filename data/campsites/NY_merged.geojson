@@ -58749,6 +58749,8 @@
         ]
       },
       "properties": {
+        "ele": "99",
+        "gnis:feature_id": "950291",
         "name": "Floating Battery Island (South)",
         "place": "islet",
         "tourism": "camp_site",
@@ -58760,24 +58762,39 @@
         "source_url": "https://www.openstreetmap.org/way/189007074",
         "source_retrieved_at": "2026-10-29T03:20:01Z",
         "source_ids": [
-          "osm:way:189007074",
-          "osm:way:189007075"
+          "osm:way:189007074"
         ],
-        "ele": "99",
-        "gnis:feature_id": "950291",
         "sources": [
           "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5536281,
+          43.6149386
+        ]
+      },
+      "properties": {
+        "name": "Floating Battery Island (North)",
+        "place": "islet",
+        "tourism": "camp_site",
+        "osm_id": 189007075,
+        "osm_type": "way",
+        "id": "osm:way:189007075",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/189007075",
+        "source_retrieved_at": "2026-10-29T03:20:01Z",
+        "source_ids": [
+          "osm:way:189007075"
         ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        "sources": [
+          "openstreetmap"
+        ]
       }
     },
     {
@@ -70637,22 +70654,39 @@
         "source_url": "https://www.openstreetmap.org/way/854583734",
         "source_retrieved_at": "2026-10-29T03:20:01Z",
         "source_ids": [
-          "osm:way:854583734",
+          "osm:way:854583734"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3280459,
+          44.5673858
+        ]
+      },
+      "properties": {
+        "name": "McRae Point Park - South Campground",
+        "tourism": "camp_site",
+        "website": "https://www.ontarioparks.ca/park/mcraepoint/camping",
+        "osm_id": 854583735,
+        "osm_type": "way",
+        "id": "osm:way:854583735",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/854583735",
+        "source_retrieved_at": "2026-10-29T03:20:01Z",
+        "source_ids": [
           "osm:way:854583735"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -91786,6 +91820,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 131,
+  "duplicatesRemoved": 129,
   "invalidRemoved": 0
 }

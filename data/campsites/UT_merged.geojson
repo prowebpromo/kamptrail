@@ -50090,22 +50090,39 @@
         "source_url": "https://www.openstreetmap.org/node/13312701919",
         "source_retrieved_at": "2026-10-29T03:37:36Z",
         "source_ids": [
-          "osm:node:13312701919",
+          "osm:node:13312701919"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.027938,
+          39.3798813
+        ]
+      },
+      "properties": {
+        "group_only": "yes",
+        "name": "Oasis West Group Camping Area",
+        "tourism": "camp_site",
+        "osm_id": 13312701920,
+        "osm_type": "node",
+        "id": "osm:node:13312701920",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/13312701920",
+        "source_retrieved_at": "2026-10-29T03:37:36Z",
+        "source_ids": [
           "osm:node:13312701920"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -57435,22 +57452,43 @@
         "source_url": "https://www.openstreetmap.org/way/334210651",
         "source_retrieved_at": "2026-10-29T03:37:36Z",
         "source_ids": [
-          "osm:way:334210651",
+          "osm:way:334210651"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.6562517,
+          37.7001798
+        ]
+      },
+      "properties": {
+        "caravans": "no",
+        "name": "Panguitch Lake South Campground",
+        "operator": "United States Forest Service",
+        "source": "openstreetmap",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "uuid": "sonora_20130614",
+        "website": "https://www.fs.usda.gov/recarea/dixie/recarea/?recid=24878",
+        "osm_id": 334210652,
+        "osm_type": "way",
+        "id": "osm:way:334210652",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/334210652",
+        "source_retrieved_at": "2026-10-29T03:37:36Z",
+        "source_ids": [
           "osm:way:334210652"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -62879,6 +62917,7 @@
         "caravans": "no",
         "charge": "16.00 USD, 50.00 USD, 105.00 USD",
         "description": "There are six single sites; no reservations as singles but you can reserve sites 1-4 and the USFS treats it as a small group site or reserve all 6 to serve as a big group site. 16/50/105 fees are confirmed May 2021. Pets must be on a leash.",
+        "dog": "leashed",
         "drinking_water": "no",
         "ele": "2110",
         "fee": "yes",
@@ -62893,7 +62932,6 @@
         "tents": "yes",
         "toilets": "yes",
         "tourism": "camp_site",
-        "type": null,
         "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9768",
         "osm_id": 746986923,
         "osm_type": "way",
@@ -62903,36 +62941,10 @@
         "source_url": "https://www.openstreetmap.org/way/746986923",
         "source_retrieved_at": "2026-10-29T03:37:36Z",
         "source_ids": [
-          "osm:way:746986923",
-          "osm:relation:19325196"
+          "osm:way:746986923"
         ],
-        "dog": "leashed",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "data_conflicts": [
-          "member_fee_disagreement"
-        ],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "member_evidence": [
-          {
-            "source_record_id": "osm:relation:19325196",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "access": "permissive",
-              "charge": "16 USD",
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:37:36Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/relation/19325196"
-          }
         ]
       }
     },
@@ -74045,22 +74057,39 @@
         "source_url": "https://www.openstreetmap.org/way/1422343365",
         "source_retrieved_at": "2026-10-29T03:37:36Z",
         "source_ids": [
-          "osm:way:1422343365",
+          "osm:way:1422343365"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.4827711,
+          38.6352101
+        ]
+      },
+      "properties": {
+        "name": "Upper Drinks Canyon Campground",
+        "operator": "BLM",
+        "tourism": "camp_site",
+        "osm_id": 1422350041,
+        "osm_type": "way",
+        "id": "osm:way:1422350041",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1422350041",
+        "source_retrieved_at": "2026-10-29T03:37:36Z",
+        "source_ids": [
           "osm:way:1422350041"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -74797,7 +74826,8 @@
         ]
       },
       "properties": {
-        "group_only": "yes",
+        "ele": "2394",
+        "gnis:feature_id": "1448872",
         "name": "Price Recreation Area Upper Campground",
         "tourism": "camp_site",
         "osm_id": 1476885384,
@@ -74808,24 +74838,39 @@
         "source_url": "https://www.openstreetmap.org/way/1476885384",
         "source_retrieved_at": "2026-10-29T03:37:36Z",
         "source_ids": [
-          "osm:way:1476885384",
-          "osm:way:1476885387"
+          "osm:way:1476885384"
         ],
-        "ele": "2394",
-        "gnis:feature_id": "1448872",
         "sources": [
           "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.9196644,
+          39.7615018
+        ]
+      },
+      "properties": {
+        "group_only": "yes",
+        "name": "Price Recreation Area Lower Campground",
+        "tourism": "camp_site",
+        "osm_id": 1476885387,
+        "osm_type": "way",
+        "id": "osm:way:1476885387",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1476885387",
+        "source_retrieved_at": "2026-10-29T03:37:36Z",
+        "source_ids": [
+          "osm:way:1476885387"
         ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        "sources": [
+          "openstreetmap"
+        ]
       }
     },
     {
@@ -77225,6 +77270,7 @@
       },
       "properties": {
         "alt_name": "Swinging Bridge South Campground",
+        "camp_site": "basic",
         "capacity": "11",
         "drinking_water": "no",
         "fee": "yes",
@@ -77232,7 +77278,7 @@
         "operator": "BLM",
         "picnic_table": "yes",
         "tourism": "camp_site",
-        "type": null,
+        "type": "multipolygon",
         "website": "https://www.blm.gov/visit/search-details/202133/1",
         "osm_id": 14503068,
         "osm_type": "relation",
@@ -77242,33 +77288,10 @@
         "source_url": "https://www.openstreetmap.org/relation/14503068",
         "source_retrieved_at": "2026-10-29T03:37:36Z",
         "source_ids": [
-          "osm:relation:14503068",
-          "osm:relation:14503070"
+          "osm:relation:14503068"
         ],
-        "camp_site": "basic",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:relation:14503070",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:37:36Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/relation/14503070"
-          }
         ]
       }
     },
@@ -77294,6 +77317,41 @@
         "source_retrieved_at": "2026-10-29T03:37:36Z",
         "source_ids": [
           "osm:relation:14503069"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.6648934,
+          39.0816336
+        ]
+      },
+      "properties": {
+        "alt_name": "Swinging Bridge North Campground",
+        "capacity": "6",
+        "drinking_water": "no",
+        "fee": "yes",
+        "name": "Swinging Bridge North Campground",
+        "operator": "BLM",
+        "picnic_table": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.blm.gov/visit/search-details/202133/1",
+        "osm_id": 14503070,
+        "osm_type": "relation",
+        "id": "osm:relation:14503070",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/relation/14503070",
+        "source_retrieved_at": "2026-10-29T03:37:36Z",
+        "source_ids": [
+          "osm:relation:14503070"
         ],
         "sources": [
           "openstreetmap"
@@ -79121,6 +79179,54 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -112.5915255,
+          40.4921775
+        ]
+      },
+      "properties": {
+        "access": "permissive",
+        "camp_site": "basic",
+        "campers": "yes",
+        "capacity": "3",
+        "caravans": "no",
+        "charge": "16 USD",
+        "description": "Stay limit is 7 days. Pets must be on a leash. Fee $16 confirmed May 2021. Three single sites. Oddly shaped polygon because one site is across the street.",
+        "drinking_water": "no",
+        "ele": "2085",
+        "fee": "yes",
+        "internet_access": "no",
+        "name": "Lower Narrows Campground",
+        "operator": "US Forest Service",
+        "payment:cash": "yes",
+        "phone": "+1-801-733-2660",
+        "power_supply": "no",
+        "reservation": "yes",
+        "shower": "no",
+        "tents": "yes",
+        "toilets": "yes",
+        "tourism": "camp_site",
+        "type": "multipolygon",
+        "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9461",
+        "osm_id": 19325196,
+        "osm_type": "relation",
+        "id": "osm:relation:19325196",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/relation/19325196",
+        "source_retrieved_at": "2026-10-29T03:37:36Z",
+        "source_ids": [
+          "osm:relation:19325196"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -109.4334792,
           37.8740618
         ]
@@ -80150,6 +80256,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 416,
+  "duplicatesRemoved": 410,
   "invalidRemoved": 0
 }

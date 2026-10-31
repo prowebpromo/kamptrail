@@ -1,0 +1,957 @@
+{
+ "release": "2.22.0",
+ "base_commit": "cc6c65373b5a1656a041cde13d683be9a319af75",
+ "census_before": {
+  "conditional": 58,
+  "free": 2140,
+  "paid": 8206,
+  "unknown": 22882,
+  "total": 33286
+ },
+ "census_after": {
+  "conditional": 58,
+  "free": 2150,
+  "paid": 8224,
+  "unknown": 22938,
+  "total": 33370
+ },
+ "assertions": {
+  "listings_removed": 0,
+  "existing_fee_changes": 0,
+  "existing_coordinate_changes": 0,
+  "existing_aliases_removed": 0
+ },
+ "separated_listings": [
+  {
+   "id": "osm:node:11026459520",
+   "name": "Blue Rock State Park Upper Campground",
+   "states": [
+    "OH",
+    "WV"
+   ],
+   "fee_status": "paid",
+   "lat": 39.8157837,
+   "lng": -81.8513577
+  },
+  {
+   "id": "osm:node:11446414701",
+   "name": "River Run Campground South",
+   "states": [
+    "OK",
+    "TX"
+   ],
+   "fee_status": "unknown",
+   "lat": 34.888634,
+   "lng": -99.3019261
+  },
+  {
+   "id": "osm:node:12001090355",
+   "name": "Upper Myrtle Lake Camp",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "unknown",
+   "lat": 48.0536738,
+   "lng": -120.7020932
+  },
+  {
+   "id": "osm:node:12020456092",
+   "name": "Dead Water South (1)",
+   "states": [
+    "ME"
+   ],
+   "fee_status": "unknown",
+   "lat": 46.9026085,
+   "lng": -69.2250261
+  },
+  {
+   "id": "osm:node:12020456105",
+   "name": "Big Brook North (1)",
+   "states": [
+    "ME"
+   ],
+   "fee_status": "unknown",
+   "lat": 46.9746562,
+   "lng": -69.0830161
+  },
+  {
+   "id": "osm:node:12119445816",
+   "name": "North Ozette River",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "paid",
+   "lat": 48.1822947,
+   "lng": -124.7070006
+  },
+  {
+   "id": "osm:node:12441880853",
+   "name": "Trout Brook North",
+   "states": [
+    "ME"
+   ],
+   "fee_status": "unknown",
+   "lat": 45.1737836,
+   "lng": -70.4119464
+  },
+  {
+   "id": "osm:node:12441880856",
+   "name": "Myers Lodge East",
+   "states": [
+    "ME"
+   ],
+   "fee_status": "unknown",
+   "lat": 45.1885108,
+   "lng": -70.4150187
+  },
+  {
+   "id": "osm:node:12720625806",
+   "name": "East Campground",
+   "states": [
+    "MO"
+   ],
+   "fee_status": "unknown",
+   "lat": 37.9581523,
+   "lng": -91.5281541
+  },
+  {
+   "id": "osm:node:12739075150",
+   "name": "Cooper's Landing South Campground",
+   "states": [
+    "MO"
+   ],
+   "fee_status": "unknown",
+   "lat": 38.8155981,
+   "lng": -92.3828514
+  },
+  {
+   "id": "osm:node:13312701920",
+   "name": "Oasis West Group Camping Area",
+   "states": [
+    "UT"
+   ],
+   "fee_status": "unknown",
+   "lat": 39.3798813,
+   "lng": -112.027938
+  },
+  {
+   "id": "osm:node:13583643215",
+   "name": "Granite Cliff North",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 48.4019888,
+   "lng": -92.4797118
+  },
+  {
+   "id": "osm:node:13583643234",
+   "name": "Wolf Pack Island East",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 48.4317155,
+   "lng": -92.6749535
+  },
+  {
+   "id": "osm:node:13583643268",
+   "name": "Sphunge Island West",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 48.438316,
+   "lng": -92.9977937
+  },
+  {
+   "id": "osm:node:13998817333",
+   "name": "Upper Chipmunk West",
+   "states": [
+    "CO"
+   ],
+   "fee_status": "paid",
+   "lat": 40.4419785,
+   "lng": -105.663623
+  },
+  {
+   "id": "osm:node:3064201402",
+   "name": "Ice Lake South",
+   "states": [
+    "WY"
+   ],
+   "fee_status": "paid",
+   "lat": 44.7201242,
+   "lng": -110.6330458
+  },
+  {
+   "id": "osm:node:3064201459",
+   "name": "North Thorofare",
+   "states": [
+    "WY"
+   ],
+   "fee_status": "paid",
+   "lat": 44.1431161,
+   "lng": -110.1061563
+  },
+  {
+   "id": "osm:node:3633680360",
+   "name": "West Davis Lake Campground",
+   "states": [
+    "OR"
+   ],
+   "fee_status": "unknown",
+   "lat": 43.5927857,
+   "lng": -121.8548308
+  },
+  {
+   "id": "osm:node:4328280087",
+   "name": "North Camp Area @ Potawatomi State Park",
+   "states": [
+    "MI",
+    "WI"
+   ],
+   "fee_status": "unknown",
+   "lat": 44.8662337,
+   "lng": -87.4147631
+  },
+  {
+   "id": "osm:node:5470535062",
+   "name": "Upper Sharps Bar Camp",
+   "states": [
+    "OR",
+    "WA"
+   ],
+   "fee_status": "unknown",
+   "lat": 45.5637276,
+   "lng": -120.909034
+  },
+  {
+   "id": "osm:node:5691885736",
+   "name": "Spruce Lake East",
+   "states": [
+    "CO"
+   ],
+   "fee_status": "unknown",
+   "lat": 40.3435213,
+   "lng": -105.6865106
+  },
+  {
+   "id": "osm:node:6427468155",
+   "name": "Leidl North Campground",
+   "states": [
+    "OR",
+    "WA"
+   ],
+   "fee_status": "free",
+   "lat": 45.9383478,
+   "lng": -121.1193646
+  },
+  {
+   "id": "osm:node:709011912",
+   "name": "East Devil Track",
+   "states": [
+    "MI",
+    "MN"
+   ],
+   "fee_status": "free",
+   "lat": 47.7809786,
+   "lng": -90.2973079
+  },
+  {
+   "id": "osm:node:709011941",
+   "name": "North Sonju Lake",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 47.4825059,
+   "lng": -91.2019578
+  },
+  {
+   "id": "osm:node:709011953",
+   "name": "Northwest Split Rock River",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 47.2015574,
+   "lng": -91.428861
+  },
+  {
+   "id": "osm:node:709011957",
+   "name": "North Cross River",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "free",
+   "lat": 47.5590196,
+   "lng": -90.9166262
+  },
+  {
+   "id": "osm:node:709011969",
+   "name": "East Rollins Creek",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "free",
+   "lat": 47.6315381,
+   "lng": -90.7603752
+  },
+  {
+   "id": "osm:node:709011982",
+   "name": "North Little Brule River",
+   "states": [
+    "MI",
+    "MN"
+   ],
+   "fee_status": "free",
+   "lat": 47.8208626,
+   "lng": -90.0905006
+  },
+  {
+   "id": "osm:node:709011983",
+   "name": "Southeast Split Rock River",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 47.1993738,
+   "lng": -91.4209588
+  },
+  {
+   "id": "osm:node:709011986",
+   "name": "East Kennedy Creek",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 47.3761072,
+   "lng": -91.18263
+  },
+  {
+   "id": "osm:node:709011996",
+   "name": "South Beaver River",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 47.2675954,
+   "lng": -91.3007262
+  },
+  {
+   "id": "osm:node:709011997",
+   "name": "East Caribou River",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "free",
+   "lat": 47.471129,
+   "lng": -91.0323104
+  },
+  {
+   "id": "osm:node:709012002",
+   "name": "North Bally Creek Pond",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "free",
+   "lat": 47.7691466,
+   "lng": -90.4314679
+  },
+  {
+   "id": "osm:node:709012008",
+   "name": "North Egge Lake",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 47.4574263,
+   "lng": -91.2159747
+  },
+  {
+   "id": "osm:node:709012017",
+   "name": "West Palisade Creek",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 47.3231905,
+   "lng": -91.2709538
+  },
+  {
+   "id": "osm:node:709012024",
+   "name": "West Leveaux Pond",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "free",
+   "lat": 47.6172794,
+   "lng": -90.8058437
+  },
+  {
+   "id": "osm:node:7333423871",
+   "name": "Upper Bear Creek Campground",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "unknown",
+   "lat": 48.4897957,
+   "lng": -120.1163685
+  },
+  {
+   "id": "osm:node:7738026472",
+   "name": "Upper Bakeoven Dispersed Camping Area",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "unknown",
+   "lat": 46.5953654,
+   "lng": -121.214722
+  },
+  {
+   "id": "osm:node:778881431",
+   "name": "Cordoniz Group Area South",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "fee_status": "unknown",
+   "lat": 37.2136533,
+   "lng": -119.9626866
+  },
+  {
+   "id": "osm:node:8714566519",
+   "name": "South Campground",
+   "states": [
+    "MI"
+   ],
+   "fee_status": "unknown",
+   "lat": 44.9289454,
+   "lng": -84.6907711
+  },
+  {
+   "id": "osm:node:9017988091",
+   "name": "Lake Cunningham Campground East",
+   "states": [
+    "IA",
+    "NE"
+   ],
+   "fee_status": "unknown",
+   "lat": 41.3440982,
+   "lng": -96.0419208
+  },
+  {
+   "id": "osm:node:9908145615",
+   "name": "Salmon Meadows Upper Campground",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "unknown",
+   "lat": 48.6588531,
+   "lng": -119.8401225
+  },
+  {
+   "id": "osm:node:9998793490",
+   "name": "Lower North Canyon Camp",
+   "states": [
+    "AZ"
+   ],
+   "fee_status": "unknown",
+   "lat": 36.6293703,
+   "lng": -111.764078
+  },
+  {
+   "id": "osm:relation:14503070",
+   "name": "Swinging Bridge North Campground",
+   "states": [
+    "UT"
+   ],
+   "fee_status": "paid",
+   "lat": 39.0816336,
+   "lng": -110.6648934
+  },
+  {
+   "id": "osm:way:1057266782",
+   "name": "North Campground",
+   "states": [
+    "OR",
+    "WA"
+   ],
+   "fee_status": "paid",
+   "lat": 45.6980382,
+   "lng": -121.6665432
+  },
+  {
+   "id": "osm:way:1079886856",
+   "name": "Hurricane River Upper Campground",
+   "states": [
+    "MI"
+   ],
+   "fee_status": "unknown",
+   "lat": 46.6643253,
+   "lng": -86.1619723
+  },
+  {
+   "id": "osm:way:1096462153",
+   "name": "North Campground",
+   "states": [
+    "VA",
+    "WV"
+   ],
+   "fee_status": "unknown",
+   "lat": 37.8084008,
+   "lng": -79.4248163
+  },
+  {
+   "id": "osm:way:1128043568",
+   "name": "Union Reservoir West Campground",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "fee_status": "unknown",
+   "lat": 38.4265527,
+   "lng": -119.9971068
+  },
+  {
+   "id": "osm:way:1181190276",
+   "name": "North Campground",
+   "states": [
+    "MI",
+    "WI"
+   ],
+   "fee_status": "paid",
+   "lat": 43.8499705,
+   "lng": -88.046241
+  },
+  {
+   "id": "osm:way:1184843602",
+   "name": "North Causeway Campground",
+   "states": [
+    "WY"
+   ],
+   "fee_status": "unknown",
+   "lat": 41.1783169,
+   "lng": -105.2448486
+  },
+  {
+   "id": "osm:way:1204059581",
+   "name": "Upper Scorpion Campground",
+   "states": [
+    "NM"
+   ],
+   "fee_status": "free",
+   "lat": 33.2305854,
+   "lng": -108.2608863
+  },
+  {
+   "id": "osm:way:1207016597",
+   "name": "Korbel East Campground",
+   "states": [
+    "OH"
+   ],
+   "fee_status": "unknown",
+   "lat": 40.0028829,
+   "lng": -82.9930657
+  },
+  {
+   "id": "osm:way:1233138868",
+   "name": "Campground West",
+   "states": [
+    "AZ"
+   ],
+   "fee_status": "unknown",
+   "lat": 33.3605017,
+   "lng": -111.3689006
+  },
+  {
+   "id": "osm:way:1244239425",
+   "name": "Old Settlers Association RV Park - South Lot",
+   "states": [
+    "TX"
+   ],
+   "fee_status": "unknown",
+   "lat": 30.5250885,
+   "lng": -97.6357884
+  },
+  {
+   "id": "osm:way:1258383846",
+   "name": "Sleepy Hollow-Modern South Campground",
+   "states": [
+    "MI"
+   ],
+   "fee_status": "unknown",
+   "lat": 42.9404053,
+   "lng": -84.4035755
+  },
+  {
+   "id": "osm:way:1339032524",
+   "name": "Long Lake Campground Upper 900s",
+   "states": [
+    "MI",
+    "WI"
+   ],
+   "fee_status": "unknown",
+   "lat": 43.6581833,
+   "lng": -88.1672143
+  },
+  {
+   "id": "osm:way:1359433301",
+   "name": "West Campground",
+   "states": [
+    "MO"
+   ],
+   "fee_status": "unknown",
+   "lat": 37.6094228,
+   "lng": -93.7402704
+  },
+  {
+   "id": "osm:way:1360201433",
+   "name": "Camp Maiden Rock West",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "unknown",
+   "lat": 44.2339395,
+   "lng": -93.4617226
+  },
+  {
+   "id": "osm:way:1390753895",
+   "name": "Schaefer West Campground",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "paid",
+   "lat": 47.0971096,
+   "lng": -123.4680441
+  },
+  {
+   "id": "osm:way:1422350041",
+   "name": "Upper Drinks Canyon Campground",
+   "states": [
+    "UT"
+   ],
+   "fee_status": "unknown",
+   "lat": 38.6352101,
+   "lng": -109.4827711
+  },
+  {
+   "id": "osm:way:1427370419",
+   "name": "Lindeman City Lower Campground",
+   "states": [
+    "AK"
+   ],
+   "fee_status": "paid",
+   "lat": 59.7857364,
+   "lng": -135.0808589
+  },
+  {
+   "id": "osm:way:1476885387",
+   "name": "Price Recreation Area Lower Campground",
+   "states": [
+    "UT"
+   ],
+   "fee_status": "unknown",
+   "lat": 39.7615018,
+   "lng": -110.9196644
+  },
+  {
+   "id": "osm:way:1486143177",
+   "name": "Lower Oak Bay Campground",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "unknown",
+   "lat": 48.0210631,
+   "lng": -122.7310863
+  },
+  {
+   "id": "osm:way:1548224555",
+   "name": "Lower Penstmon Campground",
+   "states": [
+    "ID"
+   ],
+   "fee_status": "unknown",
+   "lat": 42.196887,
+   "lng": -114.2834318
+  },
+  {
+   "id": "osm:way:1550258264",
+   "name": "Silver Lake East Campground",
+   "states": [
+    "CA"
+   ],
+   "fee_status": "paid",
+   "lat": 38.6718627,
+   "lng": -120.1169753
+  },
+  {
+   "id": "osm:way:189007075",
+   "name": "Floating Battery Island (North)",
+   "states": [
+    "NY"
+   ],
+   "fee_status": "unknown",
+   "lat": 43.6149386,
+   "lng": -73.5536281
+  },
+  {
+   "id": "osm:way:244588684",
+   "name": "South Deer Lake Campground",
+   "states": [
+    "MN"
+   ],
+   "fee_status": "paid",
+   "lat": 47.5141202,
+   "lng": -94.1053271
+  },
+  {
+   "id": "osm:way:297217846",
+   "name": "Cooper Creek South Campground",
+   "states": [
+    "AK"
+   ],
+   "fee_status": "paid",
+   "lat": 60.4825689,
+   "lng": -149.8820463
+  },
+  {
+   "id": "osm:way:359675789",
+   "name": "Dairy Creek Campground West",
+   "states": [
+    "OR",
+    "WA"
+   ],
+   "fee_status": "unknown",
+   "lat": 45.7395622,
+   "lng": -123.1923397
+  },
+  {
+   "id": "osm:way:42486218",
+   "name": "Upper Deadman Campground",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "fee_status": "free",
+   "lat": 37.721029,
+   "lng": -119.0111425
+  },
+  {
+   "id": "osm:way:42486427",
+   "name": "Old Shady Rest Campground",
+   "states": [
+    "NV"
+   ],
+   "fee_status": "unknown",
+   "lat": 37.6496181,
+   "lng": -118.9646262
+  },
+  {
+   "id": "osm:way:438358830",
+   "name": "Resurrection South Campground",
+   "states": [
+    "AK"
+   ],
+   "fee_status": "paid",
+   "lat": 60.1055764,
+   "lng": -149.4344812
+  },
+  {
+   "id": "osm:way:479632744",
+   "name": "Lake Miola Upper Campground",
+   "states": [
+    "KS",
+    "MO"
+   ],
+   "fee_status": "paid",
+   "lat": 38.5934036,
+   "lng": -94.8469381
+  },
+  {
+   "id": "osm:way:507868060",
+   "name": "D.L Bliss State Park - East Ridge",
+   "states": [
+    "CA"
+   ],
+   "fee_status": "paid",
+   "lat": 38.9924035,
+   "lng": -120.1043073
+  },
+  {
+   "id": "osm:way:513706198",
+   "name": "Northeast Campgrounds",
+   "states": [
+    "IN"
+   ],
+   "fee_status": "unknown",
+   "lat": 41.5796072,
+   "lng": -85.8035404
+  },
+  {
+   "id": "osm:way:575413305",
+   "name": "Johnny Creek Campground (Upper)",
+   "states": [
+    "WA"
+   ],
+   "fee_status": "paid",
+   "lat": 47.6006594,
+   "lng": -120.8174445
+  },
+  {
+   "id": "osm:way:604672821",
+   "name": "D.L Bliss State Park - Lower Pine",
+   "states": [
+    "CA"
+   ],
+   "fee_status": "paid",
+   "lat": 38.9878379,
+   "lng": -120.1007187
+  },
+  {
+   "id": "osm:way:789641912",
+   "name": "Upper Pines Organizational Campground",
+   "states": [
+    "MI"
+   ],
+   "fee_status": "unknown",
+   "lat": 42.5729562,
+   "lng": -83.55724
+  },
+  {
+   "id": "osm:way:802194217",
+   "name": "Tailwater East",
+   "states": [
+    "IA"
+   ],
+   "fee_status": "unknown",
+   "lat": 41.7203753,
+   "lng": -91.5283525
+  },
+  {
+   "id": "osm:way:847801784",
+   "name": "Flag Rock Recreation Area Upper Campground",
+   "states": [
+    "KY",
+    "VA"
+   ],
+   "fee_status": "unknown",
+   "lat": 36.9154602,
+   "lng": -82.6328677
+  },
+  {
+   "id": "osm:way:854583735",
+   "name": "McRae Point Park - South Campground",
+   "states": [
+    "NY"
+   ],
+   "fee_status": "unknown",
+   "lat": 44.5673858,
+   "lng": -79.3280459
+  },
+  {
+   "id": "osm:way:92796526",
+   "name": "Highland Lakes Upper Campground",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "fee_status": "unknown",
+   "lat": 38.4879843,
+   "lng": -119.8050501
+  },
+  {
+   "id": "osm:way:942285719",
+   "name": "Almanor North Campground",
+   "states": [
+    "CA"
+   ],
+   "fee_status": "unknown",
+   "lat": 40.2185406,
+   "lng": -121.1791003
+  },
+  {
+   "id": "osm:way:995065564",
+   "name": "Black Lake State Forest Campground-Upper",
+   "states": [
+    "MI"
+   ],
+   "fee_status": "unknown",
+   "lat": 45.4918894,
+   "lng": -84.2664641
+  }
+ ],
+ "aliases_added": [
+  {
+   "canonical_id": "usfs:12476",
+   "name": "Halfmoon West Campground",
+   "aliases_added": [
+    "osm:way:636944592"
+   ]
+  },
+  {
+   "canonical_id": "usfs:20680",
+   "name": "Upper Grays Meadow Campground",
+   "aliases_added": [
+    "osm:way:335361783"
+   ]
+  },
+  {
+   "canonical_id": "usfs:24878",
+   "name": "Panguitch Lake South Campground",
+   "aliases_added": [
+    "osm:way:334210652"
+   ]
+  },
+  {
+   "canonical_id": "usfs:26736",
+   "name": "East Seelye Bay Campground",
+   "aliases_added": [
+    "osm:way:244588682"
+   ]
+  },
+  {
+   "canonical_id": "usfs:34214",
+   "name": "Upper Fir Group Campground",
+   "aliases_added": [
+    "osm:node:2332493815"
+   ]
+  },
+  {
+   "canonical_id": "usfs:45510",
+   "name": "Billy Creek, Upper Campground",
+   "aliases_added": [
+    "osm:way:975055224"
+   ]
+  },
+  {
+   "canonical_id": "usfs:5901",
+   "name": "Lower O'Brien Campground",
+   "aliases_added": [
+    "osm:node:3759671902"
+   ]
+  },
+  {
+   "canonical_id": "usfs:6427",
+   "name": "Lower Jones Valley Campground",
+   "aliases_added": [
+    "osm:node:2304190971"
+   ]
+  },
+  {
+   "canonical_id": "usfs:65606",
+   "name": "Upper Bluster Campground",
+   "aliases_added": [
+    "osm:node:2333792012"
+   ]
+  },
+  {
+   "canonical_id": "usfs:9461",
+   "name": "Lower Narrows Campground",
+   "aliases_added": [
+    "osm:relation:19325196"
+   ]
+  }
+ ]
+}

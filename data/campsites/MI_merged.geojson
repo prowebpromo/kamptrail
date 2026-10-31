@@ -3935,33 +3935,10 @@
         "source_url": "https://www.openstreetmap.org/node/709011783",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:node:709011783",
-          "osm:node:709011912"
+          "osm:node:709011783"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:709011912",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "no"
-            },
-            "retrieved_at": "2026-10-29T03:07:26Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/709011912"
-          }
         ]
       }
     },
@@ -4022,33 +3999,10 @@
         "source_url": "https://www.openstreetmap.org/node/709011862",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:node:709011862",
-          "osm:node:709011982"
+          "osm:node:709011862"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:709011982",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "no"
-            },
-            "retrieved_at": "2026-10-29T03:07:26Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/709011982"
-          }
         ]
       }
     },
@@ -4078,6 +4032,37 @@
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
           "osm:node:709011908"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.2973079,
+          47.7809786
+        ]
+      },
+      "properties": {
+        "fee": "no",
+        "maxtents": "2",
+        "mndnr:collector": "Sundew Technical Services",
+        "name": "East Devil Track",
+        "operator": "Superior Hiking Trail Association",
+        "source": "openstreetmap",
+        "tourism": "camp_site",
+        "osm_id": 709011912,
+        "osm_type": "node",
+        "id": "osm:node:709011912",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/709011912",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
+          "osm:node:709011912"
         ],
         "sources": [
           "openstreetmap"
@@ -4238,6 +4223,38 @@
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
           "osm:node:709011972"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.0905006,
+          47.8208626
+        ]
+      },
+      "properties": {
+        "capacity": "5",
+        "fee": "no",
+        "maxtents": "4",
+        "mndnr:collector": "Sundew Technical Services",
+        "name": "North Little Brule River",
+        "operator": "Superior Hiking Trail Association",
+        "source": "openstreetmap",
+        "tourism": "camp_site",
+        "osm_id": 709011982,
+        "osm_type": "node",
+        "id": "osm:node:709011982",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/709011982",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
+          "osm:node:709011982"
         ],
         "sources": [
           "openstreetmap"
@@ -6701,31 +6718,20 @@
       "properties": {
         "name": "Hurricane River Lower Campground",
         "operator": "National Parks Service",
+        "source": "openstreetmap",
         "tourism": "camp_site",
         "osm_id": 2475508051,
         "osm_type": "node",
         "id": "osm:node:2475508051",
-        "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/2475508051",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:node:2475508051",
-          "osm:way:1079886856"
+          "osm:node:2475508051"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -21369,22 +21375,38 @@
         "source_url": "https://www.openstreetmap.org/node/4328280073",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:node:4328280073",
+          "osm:node:4328280073"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.4147631,
+          44.8662337
+        ]
+      },
+      "properties": {
+        "name": "North Camp Area @ Potawatomi State Park",
+        "tourism": "camp_site",
+        "osm_id": 4328280087,
+        "osm_type": "node",
+        "id": "osm:node:4328280087",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/4328280087",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
           "osm:node:4328280087"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -29432,22 +29454,38 @@
         "source_url": "https://www.openstreetmap.org/node/8714566518",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:node:8714566518",
+          "osm:node:8714566518"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.6907711,
+          44.9289454
+        ]
+      },
+      "properties": {
+        "name": "South Campground",
+        "tourism": "caravan_site",
+        "osm_id": 8714566519,
+        "osm_type": "node",
+        "id": "osm:node:8714566519",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/8714566519",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
           "osm:node:8714566519"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -45624,22 +45662,11 @@
         "source_url": "https://www.openstreetmap.org/way/23165839",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:way:23165839",
-          "osm:way:1339032524"
+          "osm:way:23165839"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -57141,22 +57168,38 @@
         "source_url": "https://www.openstreetmap.org/way/789641911",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:way:789641911",
+          "osm:way:789641911"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.55724,
+          42.5729562
+        ]
+      },
+      "properties": {
+        "name": "Upper Pines Organizational Campground",
+        "tourism": "camp_site",
+        "osm_id": 789641912,
+        "osm_type": "way",
+        "id": "osm:way:789641912",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/789641912",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
           "osm:way:789641912"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -65090,22 +65133,40 @@
         "source_url": "https://www.openstreetmap.org/way/995065563",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:way:995065563",
+          "osm:way:995065563"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.2664641,
+          45.4918894
+        ]
+      },
+      "properties": {
+        "capacity": "35",
+        "name": "Black Lake State Forest Campground-Upper",
+        "tourism": "camp_site",
+        "website": "https://www2.dnr.state.mi.us/parksandtrails/Details.aspx?id=626&type=SFCG#overview",
+        "osm_id": 995065564,
+        "osm_type": "way",
+        "id": "osm:way:995065564",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/995065564",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
           "osm:way:995065564"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -69778,6 +69839,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -86.1619723,
+          46.6643253
+        ]
+      },
+      "properties": {
+        "name": "Hurricane River Upper Campground",
+        "operator": "National Parks Service",
+        "tourism": "camp_site",
+        "osm_id": 1079886856,
+        "osm_type": "way",
+        "id": "osm:way:1079886856",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1079886856",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
+          "osm:way:1079886856"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -83.780558,
           44.5627497
         ]
@@ -74293,33 +74382,10 @@
         "source_url": "https://www.openstreetmap.org/way/1181190274",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:way:1181190274",
-          "osm:way:1181190276"
+          "osm:way:1181190274"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1181190276",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:07:26Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1181190276"
-          }
         ]
       }
     },
@@ -74347,6 +74413,37 @@
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
           "osm:way:1181190275"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.046241,
+          43.8499705
+        ]
+      },
+      "properties": {
+        "caravans": "yes",
+        "fee": "yes",
+        "name": "North Campground",
+        "static_caravans": "no",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 1181190276,
+        "osm_type": "way",
+        "id": "osm:way:1181190276",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1181190276",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
+          "osm:way:1181190276"
         ],
         "sources": [
           "openstreetmap"
@@ -78140,22 +78237,38 @@
         "source_url": "https://www.openstreetmap.org/way/1258383845",
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
-          "osm:way:1258383845",
+          "osm:way:1258383845"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.4035755,
+          42.9404053
+        ]
+      },
+      "properties": {
+        "name": "Sleepy Hollow-Modern South Campground",
+        "tourism": "caravan_site",
+        "osm_id": 1258383846,
+        "osm_type": "way",
+        "id": "osm:way:1258383846",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1258383846",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
           "osm:way:1258383846"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -82130,6 +82243,33 @@
         "source_retrieved_at": "2026-10-29T03:07:26Z",
         "source_ids": [
           "osm:way:1331403973"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1672143,
+          43.6581833
+        ]
+      },
+      "properties": {
+        "name": "Long Lake Campground Upper 900s",
+        "tourism": "camp_site",
+        "osm_id": 1339032524,
+        "osm_type": "way",
+        "id": "osm:way:1339032524",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1339032524",
+        "source_retrieved_at": "2026-10-29T03:07:26Z",
+        "source_ids": [
+          "osm:way:1339032524"
         ],
         "sources": [
           "openstreetmap"
@@ -90303,6 +90443,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 167,
+  "duplicatesRemoved": 157,
   "invalidRemoved": 0
 }

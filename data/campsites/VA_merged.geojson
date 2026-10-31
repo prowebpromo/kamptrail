@@ -27758,22 +27758,11 @@
         "source_url": "https://www.openstreetmap.org/way/802700838",
         "source_retrieved_at": "2026-10-29T03:39:23Z",
         "source_ids": [
-          "osm:way:802700838",
-          "osm:way:847801784"
+          "osm:way:802700838"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -28542,6 +28531,33 @@
         "source_retrieved_at": "2026-10-29T03:39:23Z",
         "source_ids": [
           "osm:way:844408430"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.6328677,
+          36.9154602
+        ]
+      },
+      "properties": {
+        "name": "Flag Rock Recreation Area Upper Campground",
+        "tourism": "camp_site",
+        "osm_id": 847801784,
+        "osm_type": "way",
+        "id": "osm:way:847801784",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/847801784",
+        "source_retrieved_at": "2026-10-29T03:39:23Z",
+        "source_ids": [
+          "osm:way:847801784"
         ],
         "sources": [
           "openstreetmap"
@@ -32824,22 +32840,11 @@
         "source_url": "https://www.openstreetmap.org/way/1096462140",
         "source_retrieved_at": "2026-10-29T03:39:23Z",
         "source_ids": [
-          "osm:way:1096462140",
-          "osm:way:1096462153"
+          "osm:way:1096462140"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -32862,6 +32867,33 @@
         "source_retrieved_at": "2026-10-29T03:39:23Z",
         "source_ids": [
           "osm:way:1096462151"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4248163,
+          37.8084008
+        ]
+      },
+      "properties": {
+        "name": "North Campground",
+        "tourism": "caravan_site",
+        "osm_id": 1096462153,
+        "osm_type": "way",
+        "id": "osm:way:1096462153",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1096462153",
+        "source_retrieved_at": "2026-10-29T03:39:23Z",
+        "source_ids": [
+          "osm:way:1096462153"
         ],
         "sources": [
           "openstreetmap"
@@ -42971,6 +43003,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 54,
+  "duplicatesRemoved": 52,
   "invalidRemoved": 0
 }

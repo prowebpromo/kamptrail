@@ -10589,22 +10589,40 @@
         "source_url": "https://www.openstreetmap.org/node/11446414700",
         "source_retrieved_at": "2026-10-29T03:28:09Z",
         "source_ids": [
-          "osm:node:11446414700",
+          "osm:node:11446414700"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.3019261,
+          34.888634
+        ]
+      },
+      "properties": {
+        "caravans": "no",
+        "name": "River Run Campground South",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 11446414701,
+        "osm_type": "node",
+        "id": "osm:node:11446414701",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/11446414701",
+        "source_retrieved_at": "2026-10-29T03:28:09Z",
+        "source_ids": [
           "osm:node:11446414701"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -24649,6 +24667,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 16,
+  "duplicatesRemoved": 15,
   "invalidRemoved": 0
 }
