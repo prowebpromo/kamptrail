@@ -157,6 +157,10 @@
     const amenityEvidence = trustedAmenityAttachments.has(raw.ridb_amenity_evidence) ? raw.ridb_amenity_evidence : null;
     delete p.ridb_amenity_evidence;
     if(amenityEvidence)attachRIDBAmenities({properties:p},amenityEvidence);
+    // Forest Service site-record evidence is kept apart from the Recreation.gov amenity evidence above.
+    const usfsEvidence = trustedUSFSAttachments.has(raw.usfs_site_evidence) ? raw.usfs_site_evidence : null;
+    delete p.usfs_site_evidence;
+    if(usfsEvidence)attachUSFSSiteAmenities({properties:p},usfsEvidence);
     p._kt_normalized = true;
     if (osm && !p.sources.includes('OpenStreetMap')) p.sources.push('OpenStreetMap');
     if (ridb && !p.sources.includes('Recreation.gov')) p.sources.push('Recreation.gov');
@@ -205,6 +209,11 @@
       const a=p.ridb_amenity_evidence,b=q.ridb_amenity_evidence;
       if(!checkedRIDBAmenities(a))attachRIDBAmenities(primary,b);
       else if(a.source.sha256===b.source.sha256)attachRIDBAmenities(primary,{version:1,source:a.source,facilities:{...b.facilities,...a.facilities}});
+    }
+    if(checkedUSFSSiteAmenities(q.usfs_site_evidence)){
+      const a=p.usfs_site_evidence,b=q.usfs_site_evidence;
+      if(!checkedUSFSSiteAmenities(a))attachUSFSSiteAmenities(primary,b);
+      else if(a.source.rows_sha256===b.source.rows_sha256)attachUSFSSiteAmenities(primary,{version:1,source:a.source,facilities:{...b.facilities,...a.facilities}});
     }
     for (const key of ['description','website','source_url','road_difficulty','rating','stay_limit','open_status','season','restrictions','camping_activity']) if (p[key] == null || p[key] === '') p[key]=q[key] ?? p[key];
     return primary;
@@ -310,6 +319,65 @@
       checkedRIDBAmenities(evidence);
       trustedAmenityAttachments.add(evidence);
       p.ridb_amenity_evidence=evidence;
+    }
+    return feature;
+  }
+  // Forest Service Recreation Site records joined only by an exact Recreation.gov facility ID.
+  // The agency's own water and restroom text is kept verbatim. A class exists only when the text is explicit.
+  const USFS_SITE_URL='https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecInfraRecreationSites_02/MapServer/0';
+  const USFS_SITE_NAME='USDA Forest Service Recreation Site record';
+  const USFS_CLASSES={water:['drinking_water','no_drinking_water','no_water','unknown'],toilet:['flush','vault_or_pit','no_toilet','nearby_only','unknown']};
+  const USFS_QUALIFIERS={drinking_water:['hand_pump','seasonal'],flush:['accessible'],vault_or_pit:['accessible']};
+  const checkedUSFSPayloads=new WeakSet();
+  const trustedUSFSAttachments=new WeakSet();
+  function deepFreeze(value){
+    if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);Object.values(value).forEach(deepFreeze);}
+    return value;
+  }
+  function checkedUSFSSiteAmenities(data){
+    if(object(data)&&checkedUSFSPayloads.has(data))return true;
+    if(!validUSFSSiteAmenities(data))return false;
+    deepFreeze(data);checkedUSFSPayloads.add(data);return true;
+  }
+  function validUSFSSiteAmenities(data){
+    if(!object(data)||data.version!==1||!object(data.source)||!object(data.facilities))return false;
+    const s=data.source,day=d=>typeof d==='string'&&/^\d{4}-\d\d-\d\d$/.test(d)&&new Date(d+'T00:00:00Z').toISOString().slice(0,10)===d;
+    if(s.name!==USFS_SITE_NAME||s.layer_url!==USFS_SITE_URL||s.license!=='CC BY 4.0'||!['saved_download','layer_query'].includes(s.basis)||!day(s.retrieved)||typeof s.rows_sha256!=='string'||!/^[a-f0-9]{64}$/.test(s.rows_sha256))return false;
+    const text=(v,max)=>typeof v==='string'&&v.length>0&&v.length<=max&&v===v.trim()&&v.toLowerCase()!=='null';
+    const entries=Object.entries(data.facilities);
+    if(entries.length>3000)return false;
+    for(const [fid,f] of entries){
+      if(!/^[1-9][0-9]*$/.test(fid)||!object(f)||!Array.isArray(f.records)||f.records.length<1||f.records.length>25||!Array.isArray(f.conflicts))return false;
+      const classes={water:new Set(),toilet:new Set()};
+      for(const r of f.records){
+        if(!object(r)||!text(r.cn,40)||!(r.name===null||text(r.name,160))||!(r.type===null||text(r.type,80)))return false;
+        if(!(r.updated===null||day(r.updated))||!(r.edw_modified===null||day(r.edw_modified)))return false;
+        if(!r.water&&!r.toilet)return false;
+        for(const field of ['water','toilet']){
+          const item=r[field];if(item===undefined)continue;
+          if(!object(item)||!text(item.text,600)||!USFS_CLASSES[field].includes(item.class))return false;
+          const allowed=USFS_QUALIFIERS[item.class]||[],q=item.qualifiers;
+          if(q!==undefined&&(!Array.isArray(q)||!q.length||new Set(q).size!==q.length||q.some(x=>!allowed.includes(x))))return false;
+          if(item.class!=='unknown')classes[field].add(item.class);
+        }
+        if(r.season!==undefined&&(!object(r.season)||!Object.keys(r.season).length||Object.keys(r.season).some(k=>!['open_season','description'].includes(k)||!text(r.season[k],600))))return false;
+      }
+      // A disagreement between records must be flagged, so no label is ever shown under it.
+      const flagged=new Set(f.conflicts);
+      if(flagged.size!==f.conflicts.length||[...flagged].some(x=>!Object.hasOwn(classes,x)))return false;
+      for(const field of ['water','toilet'])if((classes[field].size>1)!==flagged.has(field))return false;
+    }
+    return true;
+  }
+  function attachUSFSSiteAmenities(feature,data){
+    const p=feature?.properties;if(!p||!checkedUSFSSiteAmenities(data))return feature;
+    const facilities={};
+    for(const fid of ridbFacilityIds(p))if(Object.hasOwn(data.facilities,fid))facilities[fid]=data.facilities[fid];
+    if(Object.keys(facilities).length){
+      const evidence={version:1,source:data.source,facilities};
+      checkedUSFSSiteAmenities(evidence);
+      trustedUSFSAttachments.add(evidence);
+      p.usfs_site_evidence=evidence;
     }
     return feature;
   }
@@ -453,6 +521,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.28.1',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.29.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

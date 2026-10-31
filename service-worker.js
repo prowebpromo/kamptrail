@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v60';
+const VERSION = 'kt-v61';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -45,6 +45,8 @@ self.addEventListener('fetch',event=>{
   if(url.href===new URL('data/campsites/coordinate-index.json',self.registration.scope).href)return;
   // Only the page loader may persist validated optional campsite amenity evidence.
   if(url.href===new URL('data/campsites/ridb-amenities.json',self.registration.scope).href)return;
+  // Forest Service site-record evidence is also persisted only after the page validates it.
+  if(url.href===new URL('data/campsites/usfs-site-amenities.json',self.registration.scope).href)return;
   // Saved offline map areas: USGS Topo tiles the visitor chose to save. Cache first, network otherwise. Nothing is added here automatically.
   if(request.method==='GET' && request.url.startsWith(TOPO_TILES)) {event.respondWith(savedTile(request));return;}
   if(request.method!=='GET' || url.origin!==self.location.origin || !url.href.startsWith(self.registration.scope))return;

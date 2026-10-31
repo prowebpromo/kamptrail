@@ -73,7 +73,7 @@
       const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
       if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
       const relative = target.pathname.slice(scope.pathname.length);
-      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/ridb-amenities.json':'amenityEvidence','data/campsites/search-index.json':'search'};
+      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/ridb-amenities.json':'amenityEvidence','data/campsites/usfs-site-amenities.json':'usfsSiteEvidence','data/campsites/search-index.json':'search'};
       if (!relative.endsWith('.geojson') && !kinds[relative]) return null;
       return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:kinds[relative]==='index', kind:kinds[relative]||'geojson'};
     } catch { return null; }
@@ -83,6 +83,7 @@
     if (target?.kind === 'agencyIndex') return data?.version === 1 && Array.isArray(data.states);
     if (target?.kind === 'sites') return [1, 2].includes(data?.version) && !!data.facilities && typeof data.facilities === 'object';
     if (target?.kind === 'amenityEvidence') return DataQuality.validRIDBAmenities(data);
+    if (target?.kind === 'usfsSiteEvidence') return DataQuality.validUSFSSiteAmenities(data);
     if (target?.kind === 'search') return data?.version===1 && Array.isArray(data.sites);
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
@@ -177,10 +178,12 @@
     incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
     if(state.amenityDetails)incoming.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
+    if(state.usfsDetails)incoming.forEach(f=>DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails));
     const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, {state:stateCode});
     state.allCampsites=cleaned.features;
     if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
     if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
+    if(state.usfsDetails)state.allCampsites.forEach(f=>DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails));
     attachLoadedElevations();
   }
   async function loadAgencyIndex() {
@@ -197,6 +200,13 @@
       if(!DataQuality.validRIDBAmenities(data))throw new Error('Invalid RIDB amenity evidence');
       state.amenityDetails=data;
     }catch(err){console.warn('RIDB amenity evidence unavailable; listings still load.',err.message);}
+  }
+  async function loadUSFSSiteDetails(){
+    try{
+      const data=await fetchJSON('data/campsites/usfs-site-amenities.json');
+      if(!DataQuality.validUSFSSiteAmenities(data))throw new Error('Invalid Forest Service site evidence');
+      state.usfsDetails=data;
+    }catch(err){console.warn('Forest Service site evidence unavailable; listings still load.',err.message);}
   }
   async function loadState(code,{retry=false}={}) {
     if(!STATE_BOUNDS[code])return;
@@ -287,6 +297,32 @@
     }).join('');
     return `<details class="kt-ridb-amenities"><summary>${esc(t('Recreation.gov campsite records report…'))}</summary>${facilities}<p class="kt-fine">${esc(notes.join(' '))}</p><p class="kt-fine">${data.source.original_retrieved_at?esc(t('Export retrieved {date}.',{date:data.source.original_retrieved_at.slice(0,10)})):esc(t('Saved export: retrieval date unknown.'))} ${esc(t('Amenity update dates unknown. Inspected {date}; inspection is not an update date.',{date:data.source.inspected_at.slice(0,10)}))} <a href="${DataQuality.RIDB_AMENITY_URL}" target="_blank" rel="noopener noreferrer">${esc(t('Public source export'))}</a></p></details>`;
   }
+  // Forest Service Recreation Site statements for an exactly matched Recreation.gov ID. Separate from ridbAmenitiesText.
+  function usfsSiteText(p){
+    const data=p.usfs_site_evidence;
+    if(!DataQuality.validUSFSSiteAmenities(data))return '';
+    const labels={
+      water:{drinking_water:t("Drinking water stated"),no_drinking_water:t("Not for drinking, per the text"),no_water:t("Text says no water")},
+      toilet:{flush:t("Flush toilets stated"),vault_or_pit:t("Vault, pit or similar toilets stated"),no_toilet:t("Text says no toilets"),nearby_only:t("Restrooms stated as nearby only")}
+    };
+    const qualifiers={hand_pump:t("hand pump"),seasonal:t("seasonal"),accessible:t("accessible feature")};
+    const heads={water:t("Water (Forest Service text):"),toilet:t("Restrooms (Forest Service text):")};
+    const entries=Object.entries(data.facilities),separate=DataQuality.validRIDBAmenities(p.ridb_amenity_evidence);
+    const facilities=entries.map(([fid,facility])=>{
+      const records=facility.records.map(r=>{
+        const lines=['water','toilet'].filter(field=>r[field]).map(field=>{
+          const item=r[field],known=item.class!=='unknown'&&labels[field][item.class];
+          const note=facility.conflicts.includes(field)?t("No normalized label: Forest Service records for this ID disagree."):known?t("Normalized: {label}",{label:[labels[field][item.class],...(item.qualifiers||[]).map(q=>qualifiers[q])].join(', ')}):t("No normalized label: the wording is ambiguous.");
+          return `<li><strong>${esc(heads[field])}</strong> <span class="kt-usfs-text">“${esc(item.text)}”</span><br><span class="kt-muted">${esc(note)}</span></li>`;
+        });
+        const season=r.season?[r.season.open_season?t("Open season: {value}",{value:r.season.open_season}):'',r.season.description?t("Season description: {value}",{value:r.season.description}):''].filter(Boolean):[];
+        const credit=r.updated?t("Source: USDA Forest Service Recreation Site record, updated {date}.",{date:r.updated}):t("Source: USDA Forest Service Recreation Site record, update date unknown.");
+        return `<p><strong>${esc(r.name||t("Forest Service site record"))}</strong>${r.type?` <span class="kt-muted">(${esc(r.type)})</span>`:''}</p><ul>${lines.join('')}</ul>${season.length?`<p class="kt-fine">${esc(t("Season text on this record (context only, not about water or restrooms):"))} ${esc(season.join('; '))}</p>`:''}<p class="kt-fine">${esc(credit)}</p>`;
+      }).join('');
+      return `${entries.length>1?`<p><a href="https://www.recreation.gov/camping/campgrounds/${encodeURIComponent(fid)}" target="_blank" rel="noopener noreferrer">${esc(t('Recreation.gov facility {id}',{id:fid}))}</a></p>`:''}${records}`;
+    }).join('');
+    return `<details class="kt-usfs-site"><summary>${esc(t("Forest Service site record says…"))}</summary>${facilities}<p class="kt-fine">${esc(t("Free text written by the Forest Service and matched by Recreation.gov facility ID.")+(separate?" "+t("Kept separate from the Recreation.gov records above."):"")+" "+t("Blank or ambiguous wording is unknown, never a statement of absence. Not current availability."))}</p><p class="kt-fine">${esc(t("Data retrieved {date}. CC BY 4.0.",{date:data.source.retrieved}))} <a href="${DataQuality.USFS_SITE_URL}" target="_blank" rel="noopener noreferrer">${esc(t("Forest Service source layer"))}</a></p></details>`;
+  }
   function popupLayout(){
     const size=state.map?.getSize?.()||{},width=Number.isFinite(size.x)?size.x:390,height=Number.isFinite(size.y)?size.y:400;
     return {width:Math.max(100,Math.min(300,width-70)),height:Math.max(80,Math.min(360,height-160))};
@@ -318,6 +354,7 @@
       <div><strong>${t("Access reported:")}</strong> ${esc(p.access_label || p.access || t("Not verified"))}</div>
       <div><strong>${t("Amenities reported:")}</strong> ${p.amenities.length?p.amenities.map(value=>esc(uiLabel('amenity',value))).join(', '):t("Not verified")}</div>
       ${ridbAmenitiesText(p)}
+      ${usfsSiteText(p)}
       ${p.road_difficulty?`<div><strong>${t("Road:")}</strong> ${esc(p.road_difficulty)}</div>`:''}
       ${p.rig_friendly.length?`<div><strong>${t("Rig types reported:")}</strong> ${p.rig_friendly.map(value=>esc(uiLabel('rig',value))).join(', ')}</div>`:''}
       ${rvText(p)}
@@ -454,7 +491,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.28.1',
+    version:'2.29.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -468,6 +505,10 @@
       // Optional evidence must not delay the map when its request is slow or unavailable.
       loadAmenityDetails().then(()=>{
         if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
+        updateMarkers();
+      });
+      loadUSFSSiteDetails().then(()=>{
+        if(state.usfsDetails)state.allCampsites.forEach(f=>DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails));
         updateMarkers();
       });
       await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex()]);
