@@ -4,7 +4,7 @@
  "run": {
   "started": "2026-10-30T23:56:50.524Z",
   "counts": {
-   "fresh": 6
+   "fresh": 14
   }
  },
  "sources": {
@@ -1035,18 +1035,58 @@
      "last_attempt": "2026-10-31T12:33:16.080Z",
      "last_success": "2026-10-31T12:33:16.080Z",
      "outcome": "fresh"
+    },
+    "CA": {
+     "last_attempt": "2026-10-31T16:33:17.815Z",
+     "last_success": "2026-10-31T16:33:17.815Z",
+     "outcome": "fresh"
+    },
+    "IA": {
+     "last_attempt": "2026-10-31T16:33:21.551Z",
+     "last_success": "2026-10-31T16:33:21.551Z",
+     "outcome": "fresh"
+    },
+    "IN": {
+     "last_attempt": "2026-10-31T16:33:21.589Z",
+     "last_success": "2026-10-31T16:33:21.589Z",
+     "outcome": "fresh"
+    },
+    "KS": {
+     "last_attempt": "2026-10-31T16:33:21.626Z",
+     "last_success": "2026-10-31T16:33:21.626Z",
+     "outcome": "fresh"
+    },
+    "MI": {
+     "last_attempt": "2026-10-31T16:33:21.658Z",
+     "last_success": "2026-10-31T16:33:21.658Z",
+     "outcome": "fresh"
+    },
+    "NV": {
+     "last_attempt": "2026-10-31T16:33:21.689Z",
+     "last_success": "2026-10-31T16:33:21.689Z",
+     "outcome": "fresh"
+    },
+    "SD": {
+     "last_attempt": "2026-10-31T16:33:21.721Z",
+     "last_success": "2026-10-31T16:33:21.721Z",
+     "outcome": "fresh"
+    },
+    "WA": {
+     "last_attempt": "2026-10-31T16:33:21.753Z",
+     "last_success": "2026-10-31T16:33:21.753Z",
+     "outcome": "fresh"
     }
    },
    "label": "Official state rest-area locations",
    "oldest_success": "2026-10-30T13:11:18Z",
-   "newest_success": "2026-10-31T12:33:16.080Z",
+   "newest_success": "2026-10-31T16:33:21.753Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "fresh": 5
+    "fresh": 13
    }
   }
  },
- "generated": "2026-10-31T12:33:16.080Z",
+ "generated": "2026-10-31T16:33:21.753Z",
  "services_run": {
   "started": "2026-10-30T19:35:28.712Z",
   "counts": {

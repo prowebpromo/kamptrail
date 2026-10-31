@@ -1,7 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const rest=require('../rest-areas.js'),published=JSON.parse(fs.readFileSync('data/rest-areas/TX.json','utf8'));
 const clone=()=>structuredClone(published);
-const policies=JSON.parse(fs.readFileSync('data/rest-areas/state-policies.json','utf8')),policyNow=Date.parse('2026-10-31T00:00:00Z');
+const policies=JSON.parse(fs.readFileSync('data/rest-areas/state-policies.json','utf8')),policyNow=Date.parse('2026-11-01T00:00:00Z');
 test('all 78 trusted TxDOT locations inherit one dated state policy without changing permission',()=>{
   const d=clone();d.state_policies=policies;assert.equal(new Set(d.records.map(r=>rest.policyFor(r,d,policyNow).policy_id)).size,1);
   for(const r of d.records){const p=rest.policyFor(r,d,policyNow);assert.equal(p.policy_id,'txdot-safety-rest-area-20261030');assert.equal(p.rules.overnight_parking,'unknown');assert.equal(p.rules.sleeping_in_vehicle,'unknown');assert.equal(p.rules.max_stay_hours,24);assert.equal(r.permission,'unknown');}
@@ -49,14 +49,20 @@ test('dynamic facility rules are not contradicted by a hard-coded unknown paragr
 
 test('five additional exact policy scopes preserve unknown durations, sleeping and other operators',()=>{
   const additions=[['FL','florida_turnpike','turnpike_service_plaza','prohibited','unknown'],['ID','itd','safety_rest_area','unknown','prohibited'],['OH','odot','rest_area_or_roadside_park','unknown','prohibited'],['OR','odot','safety_rest_area','unknown','prohibited'],['VA','vdot','rest_area','prohibited','prohibited']];
-  assert.equal(policies.policies.length,7);
+  assert.equal(policies.policies.length,15);
   for(const[state,operator,facility_kind,parking,camping]of additions){
     const scope={state,operator,facility_kind},p=rest.resolvePolicy(policies,scope,policyNow);
     assert.equal(p.rules.overnight_parking,parking);assert.equal(p.rules.camping,camping);assert.equal(p.rules.sleeping_in_vehicle,'unknown');assert.equal(p.rules.max_stay_hours,null);assert.equal(p.current_opening,'unknown');assert.ok(p.sources.length);
     assert.equal(rest.resolvePolicy(policies,{...scope,operator:'unmatched_agency'},policyNow).policy_id,null);assert.equal(rest.resolvePolicy(policies,{...scope,facility_kind:'unmatched_class'},policyNow).policy_id,null);
     assert.equal(rest.resolvePolicy(policies,scope,Date.parse('2027-04-29T00:00:00Z')).policy_id,null);
   }
-  for(const[state,operator]of [['NE','ndot'],['WA','wsdot']])assert.equal(rest.resolvePolicy(policies,{state,operator,facility_kind:'safety_rest_area'},policyNow).policy_id,null);
+  for(const[state,operator]of [['NE','ndot'],['GA','gdot']])assert.equal(rest.resolvePolicy(policies,{state,operator,facility_kind:'safety_rest_area'},policyNow).policy_id,null);
+});
+test('eight location-only scopes keep every permission unknown',()=>{
+  for(const[state,operator,facility_kind]of [['CA','caltrans','safety_roadside_rest_area'],['IA','iowa_dot','rest_area'],['IN','indot','rest_area_or_welcome_center'],['KS','kdot','rest_area'],['MI','mdot','rest_area_or_welcome_center'],['NV','ndot','rest_area'],['SD','sddot','rest_area'],['WA','wsdot','safety_rest_area']]){
+    const p=rest.resolvePolicy(policies,{state,operator,facility_kind},policyNow);
+    assert.ok(p.policy_id);assert.deepEqual([p.rules.overnight_parking,p.rules.sleeping_in_vehicle,p.rules.camping],['unknown','unknown','unknown']);assert.equal(p.rules.max_stay_hours,null);assert.deepEqual(p.rules.conditions,[]);
+  }
 });
 test('new policy sources accept the audited URL and reject other pages or parameters on that publisher',()=>{
   for(let i=2;i<policies.policies.length;i++)for(const suffix of ['?download=1','#fragment','/unreviewed']){
