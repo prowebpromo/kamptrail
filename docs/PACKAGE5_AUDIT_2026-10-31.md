@@ -25,7 +25,7 @@ Result: no change.
 
 Acceptance criterion: a dated map overlay of official fire-weather warnings, clearly separate from closures.
 
-Findings: NWS Red Flag Warnings and Fire Weather Watches are public. Point alerts already show them where issued. On 2026-10-31 there were zero active alerts, so polygon and zone geometry could not be checked against live data. No national closure dataset was found.
+Findings: NWS Red Flag Warnings and Fire Weather Watches are public. Point alerts already show them where issued. On 2026-10-31 there were zero active alerts, so polygon and zone geometry could not be checked against live data. A later recheck the same day could not connect to the NWS alerts API from that research session. That is a failed check in the session, not a production limitation, and it neither confirms nor contradicts the zero-alert finding. No national closure dataset was found.
 
 Result: deferred until live alerts can be used to test the zone geometry handling. Closures stay absent.
 
@@ -37,4 +37,4 @@ Result: no change until real submissions exist.
 
 ## Cell-tower locations (could, no)
 
-See `CELL_TOWER_DATA_ASSESSMENT_2026-10-31.md`. The FCC Antenna Structure Registration files are the best fit for a regional pilot, but the FCC terms and file layout were not verified, and registered structures are not cell sites. Nothing was imported.
+See `CELL_TOWER_DATA_ASSESSMENT_2026-10-31.md`. The FCC Antenna Structure Registration files are the best fit for a regional pilot, and registered structures are not cell sites. A follow-up check (addendum in that file) partly verified the download page and record types. Reuse terms, structure type, height, status and datum fields remain unresolved. Nothing was imported, and the layer stays parked.
