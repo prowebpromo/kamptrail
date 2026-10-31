@@ -50,6 +50,11 @@ def join(*parts):
 # Exact reviewed scopes. The operator and facility_kind must match a reviewed policy scope in
 # data/rest-areas/state-policies.json. min/max bound the expected record count so a changed or
 # truncated source keeps the prior catalogue. Each mapper reads only the agency's own fields.
+def _num(value):
+    """Format a numeric milepost without a trailing .0. Blank becomes None."""
+    return None if value in (None, '') else f"{float(value):g}"
+
+
 REGIONS = {
     'ID': {
         'operator': 'itd', 'facility_kind': 'safety_rest_area',
@@ -102,6 +107,120 @@ REGIONS = {
         'milepost': lambda a: None if a.get('MILE_MARKER') in (None, '') else str(a['MILE_MARKER']),
         'updated': lambda a: None,
     },
+    'CA': {
+        'operator': 'caltrans', 'facility_kind': 'safety_roadside_rest_area',
+        'publisher': 'Caltrans, Division of Maintenance',
+        'layer': 'https://caltrans-gis.dot.ca.gov/arcgis/rest/services/CHhighway/Rest_Areas/FeatureServer/0',
+        'info_url': 'https://dot.ca.gov/programs/design/lap-landscape-architecture-and-community-livability/lap-liv-h-safety-roadside-rest-areas',
+        # Layer is Caltrans' "Safety Roadside Rest Areas" and has no type or status field. 1=1 relies on the layer scope.
+        'where': '1=1', 'min': 60, 'max': 120,
+        'bbox': (-124.6, 32.4, -114.0, 42.1),
+        'native_id': lambda a: slug(a.get('CT_NO')),
+        'name': lambda a: a.get('MAP_LABEL_NAME'),
+        'location': lambda a: join(a.get('ROUTE') and f"Route {str(a['ROUTE']).strip()}", a.get('LANDMARK_LOCATION'), a.get('COUNTY') and f"{a['COUNTY']} County"),
+        'milepost': lambda a: _num(a.get('POSTMILE')),
+        'updated': lambda a: None,
+    },
+    'WA': {
+        'operator': 'wsdot', 'facility_kind': 'safety_rest_area',
+        'publisher': 'Washington State Department of Transportation',
+        'layer': 'https://data.wsdot.wa.gov/arcgis/rest/services/Shared/FacilitiesData/FeatureServer/8',
+        'info_url': 'https://wsdot.wa.gov/travel/safety/rest-areas/home',
+        # Layer 8 is "Sites Active Rest Area" (site points). Layer 6 (buildings) is not used. SiteStatus samples: OWNED. Leased sites are still WSDOT facilities.
+        'where': '1=1', 'min': 30, 'max': 70,
+        'bbox': (-124.9, 45.5, -116.9, 49.1),
+        'native_id': lambda a: slug(str(a.get('SiteFCR') or '').strip()),
+        'name': lambda a: a.get('SiteName'),
+        'location': lambda a: join(re.sub(r'\s+', ' ', str(a.get('SiteLocation') or '')).strip(), a.get('SiteCity')),
+        'milepost': lambda a: (re.search(r'\bMP\s+(\d+(?:\.\d+)?)', str(a.get('SiteLocation') or '')) or [None, None])[1],
+        'updated': lambda a: None,
+    },
+    'SD': {
+        'operator': 'sddot', 'facility_kind': 'rest_area',
+        'publisher': 'South Dakota Department of Transportation',
+        'layer': 'https://dotgis.sd.gov/missouririver/rest/services/Operations/DOT_Rest_Areas/MapServer/1',
+        'info_url': 'https://dot.sd.gov/travelers/travelers/rest-areaports-of-entry/',
+        # Welcome_Center = Y/N marks SDDOT welcome centers that sit at rest areas. They stay in scope. Verified 2026-10-31: every record has Type_ 'Rest Area'.
+        'where': "Type_ = 'Rest Area'", 'min': 15, 'max': 60,
+        'bbox': (-104.2, 42.4, -96.3, 46.0),
+        'native_id': lambda a: str(a.get('GlobalID') or '').strip('{}').lower(),
+        'name': lambda a: a.get('Location') and join(f"{a['Location']} Rest Area", a.get('Lane_Dir')).replace(', ', ' ', 1),
+        'location': lambda a: join(a.get('Hwy_route'), a.get('County') and f"{a['County']} County"),
+        'milepost': lambda a: None if a.get('MRM') in (None, '') else str(a['MRM']),
+        'updated': lambda a: None,
+    },
+    'MI': {
+        'operator': 'mdot', 'facility_kind': 'rest_area_or_welcome_center',
+        'publisher': 'Michigan Department of Transportation',
+        'layer': 'https://gisagomdot.state.mi.us/arcgis/rest/services/MDOT/MdotRestAreaPublic/MapServer/0',
+        'info_url': 'https://www.michigan.gov/mdot/travel/tourists/rest-areas',
+        # Only Status = 'Open' is proven by samples. FacilityFunction samples: "Safety Rest Area", "Safety Rest Area/Welcome Center".
+        # Verified 2026-10-31: Status is Open or Closed; FacilityFunction is Safety Rest Area or Safety Rest Area/Welcome Center.
+        'where': "Status = 'Open'", 'min': 40, 'max': 110,
+        'bbox': (-90.6, 41.6, -82.1, 48.4),
+        'native_id': lambda a: slug(join(a.get('FacilityName'), a.get('RouteName'), a.get('RouteDirection'))),
+        'name': lambda a: a.get('FacilityName'),
+        'location': lambda a: ' '.join(str(x).strip() for x in (a.get('RouteName'), a.get('RouteDirection')) if x not in (None, '') and str(x).strip()),
+        'milepost': lambda a: None if str(a.get('MileMarker') or '').strip() == '' else str(a['MileMarker']).strip(),
+        'updated': lambda a: None,
+    },
+    'NV': {
+        'operator': 'ndot', 'facility_kind': 'rest_area',
+        'publisher': 'Nevada Department of Transportation',
+        'layer': 'https://gis.dot.nv.gov/arcgis/rest/services/Applications/511Map/MapServer/5',
+        'info_url': 'https://www.dot.nv.gov/travel-info/rest-areas-welcome-centers',
+        # Layer metadata says NDOT and county entities maintain these. MAINTAINED_BY separates them (samples: Nevada DOT, Eureka County).
+        # Verified 2026-10-31 on the live layer: MAINTAINED_BY is Nevada DOT or a county; STATUS includes closed, under construction and removed.
+        'where': "MAINTAINED_BY = 'Nevada DOT' AND STATUS = 'Open To Traffic'", 'min': 15, 'max': 50,
+        'bbox': (-120.1, 35.0, -114.0, 42.0),
+        'native_id': lambda a: slug(a.get('REST_AREA_ID')),
+        'name': lambda a: a.get('NAME'),
+        'location': lambda a: join(a.get('ROUTE_FULL'), a.get('COUNTY') and f"{a['COUNTY']} County"),
+        'milepost': lambda a: _num(a.get('MILEPOST')),
+        'updated': lambda a: epoch_iso(a.get('last_edited_date')),
+    },
+    'IN': {
+        'operator': 'indot', 'facility_kind': 'rest_area_or_welcome_center',
+        'publisher': 'Indiana Department of Transportation',
+        'layer': 'https://gis.indot.in.gov/ro/rest/services/DOT/INDOT_Rest_Areas/FeatureServer/0',
+        'info_url': 'https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/',
+        # STATUS and MAINT_BY are real fields (samples: Open, INDOT). Truck-only sites are named "... Truck Parking ..." in SITE_NAME (one sample). UNVERIFIED: that naming holds for every truck-only site.
+        'where': "MAINT_BY = 'INDOT' AND STATUS = 'Open' AND SITE_NAME NOT LIKE '%Truck Parking%'", 'min': 15, 'max': 45,
+        'bbox': (-88.2, 37.7, -84.7, 41.8),
+        'native_id': lambda a: str(a.get('GLOBALID') or '').strip('{}').lower(),
+        'name': lambda a: a.get('SITE_NAME'),
+        'location': lambda a: a.get('LOCATION'),
+        'milepost': lambda a: (re.search(r'Mile Marker\s+(\d+(?:\.\d+)?)', str(a.get('LOCATION') or '')) or [None, None])[1],
+        'updated': lambda a: epoch_iso(a.get('LAST_EDITED_DATE')),
+    },
+    'KS': {
+        'operator': 'kdot', 'facility_kind': 'rest_area',
+        'publisher': 'Kansas Department of Transportation',
+        'layer': 'https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Facilities/Rest_Areas/MapServer/0',
+        'info_url': 'https://www.ksdot.gov/Assets/wwwksdotorg/Safety_Rest_Areas_in_Kansas.pdf',
+        # No type, status or name field exists. Whether closed sites remain in the layer is not stated.
+        'where': '1=1', 'min': 25, 'max': 60,
+        'bbox': (-102.1, 36.9, -94.6, 40.1),
+        'native_id': lambda a: slug(str(a.get('DOT_NO') or '').strip()),
+        'name': lambda a: a.get('Route') and join(f"{str(a['Route']).strip()} Rest Area", str(a.get('LocationDescription') or '').strip().title()).replace(', ', ' ', 1),
+        'location': lambda a: a.get('LocationDescription'),
+        'milepost': lambda a: None,
+        'updated': lambda a: None,
+    },
+    'IA': {
+        'operator': 'iowa_dot', 'facility_kind': 'rest_area',
+        'publisher': 'Iowa Department of Transportation',
+        'layer': 'https://gis.iowadot.gov/agshost/rest/services/Hosted/Rest_Areas_All/FeatureServer/1',
+        'info_url': 'https://ia.iowadot.gov/maintenance/rest-areas',
+        # Layer description says it also holds parking facilities and weigh areas. facility_type samples: Rest Area. Verified 2026-10-31: every record has facility_type 'Rest Area'.
+        'where': "facility_type = 'Rest Area'", 'order': 'objectid', 'min': 20, 'max': 60,
+        'bbox': (-96.7, 40.3, -90.1, 43.6),
+        'native_id': lambda a: slug(str(a.get('inventory_id') or '').strip()),
+        'name': lambda a: a.get('rest_areas'),
+        'location': lambda a: a.get('address'),
+        'milepost': lambda a: _num(a.get('milepost')),
+        'updated': lambda a: epoch_iso(a.get('rest_updated')) or epoch_iso(a.get('edited_date')),
+    },
 }
 
 
@@ -123,7 +242,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 def query_url(cfg):
     params = {'where': cfg['where'], 'outFields': '*', 'outSR': '4326', 'returnGeometry': 'true',
-              'orderByFields': 'OBJECTID', 'f': 'json'}
+              'orderByFields': cfg.get('order', 'OBJECTID'), 'f': 'json'}
     return cfg['layer'] + '/query?' + urllib.parse.urlencode(params)
 
 
