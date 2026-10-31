@@ -1,0 +1,47 @@
+name: Capture NWS fire-weather samples
+
+# Saves real Red Flag Warnings and Fire Weather Watches, with zone geometry for
+# alerts that have no polygon, as workflow artifacts for test fixtures.
+# Read-only: no commits, no data publication, and not a trigger for any release.
+on:
+  schedule:
+    - cron: '41 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kamptrail-fire-weather-capture
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Capture active fire-weather alerts
+        id: capture
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/capture_fire_weather.py --out "$RUNNER_TEMP/fire-weather"
+          alerts=$(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['alerts'])" "$RUNNER_TEMP/fire-weather/summary.json")
+          echo "alerts=$alerts" >> "$GITHUB_OUTPUT"
+          {
+            echo "### NWS fire-weather capture"
+            echo
+            python3 -c "import json,sys;d=json.load(open(sys.argv[1]));print(f\"Retrieved {d['retrieved_at']}: {d['alerts']} alerts, {d.get('with_polygon',0)} with polygon, {d.get('zone_only',0)} zone-only, {d.get('zone_geometries_saved',0)} zone geometries saved.\")" "$RUNNER_TEMP/fire-weather/summary.json"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep samples
+        if: steps.capture.outputs.alerts != '0'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: nws-fire-weather-${{ github.run_id }}
+          path: ${{ runner.temp }}/fire-weather
+          retention-days: 90
+          if-no-files-found: error
