@@ -1,0 +1,495 @@
+{
+ "version": 1,
+ "schema": "kamptrail-clearances-2",
+ "generated_at": "2026-10-30T16:30:30Z",
+ "license": "ODbL-1.0",
+ "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+ "copyright_url": "https://www.openstreetmap.org/copyright",
+ "attribution": "Contains information from OpenStreetMap, © OpenStreetMap contributors, available under the Open Database Licence (ODbL) 1.0.",
+ "limits": {
+  "max_file_bytes": 524288,
+  "max_file_records": 2000,
+  "max_file_vertices": 50000,
+  "shrink_ratio": 0.7
+ },
+ "notice": "Source-reported OSM tags. Coverage is uneven and incomplete. Not a route, passage or safety statement.",
+ "totals": {
+  "states_with_data": 1,
+  "records": 254,
+  "bytes": 119065,
+  "states_not_built": [
+   "AK",
+   "AL",
+   "AR",
+   "AZ",
+   "CA",
+   "CO",
+   "CT",
+   "DC",
+   "DE",
+   "FL",
+   "GA",
+   "HI",
+   "IA",
+   "ID",
+   "IL",
+   "IN",
+   "KS",
+   "KY",
+   "LA",
+   "MA",
+   "MD",
+   "ME",
+   "MI",
+   "MN",
+   "MO",
+   "MS",
+   "MT",
+   "NC",
+   "ND",
+   "NE",
+   "NH",
+   "NJ",
+   "NM",
+   "NV",
+   "NY",
+   "OH",
+   "OK",
+   "OR",
+   "PA",
+   "SC",
+   "SD",
+   "TN",
+   "TX",
+   "UT",
+   "VA",
+   "VT",
+   "WA",
+   "WI",
+   "WV",
+   "WY"
+  ],
+  "states_with_failures": []
+ },
+ "states": {
+  "AK": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "AL": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "AR": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "AZ": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "CA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "CO": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "CT": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "DE": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "FL": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "GA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "HI": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "IA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "ID": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "IL": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "IN": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "KS": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "KY": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "LA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "MA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "MD": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "ME": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "MI": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "MN": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "MO": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "MS": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "MT": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "NC": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "ND": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "NE": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "NH": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "NJ": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "NM": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "NV": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "NY": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "OH": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "OK": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "OR": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "PA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "RI": {
+   "status": "present",
+   "schema": "pilot-1",
+   "records": 254,
+   "parts": 1,
+   "files": [
+    {
+     "path": "RI.json",
+     "bytes": 119065,
+     "sha256": "5c32f4cb33c1159dad135408d7810e5717d4bfa2b8866af77b6d2552d9a706e5",
+     "records": 254
+    }
+   ],
+   "bytes": 119065,
+   "sha256": "5c32f4cb33c1159dad135408d7810e5717d4bfa2b8866af77b6d2552d9a706e5",
+   "retrieved_at": "2026-10-30T16:30:30Z",
+   "extract_timestamp": "2026-10-28T21:21:02Z",
+   "source_sha256": "2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6"
+  },
+  "SC": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "SD": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "TN": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "TX": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "UT": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "VA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "VT": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "WA": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "WI": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "WV": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "WY": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  },
+  "DC": {
+   "status": "not_built",
+   "records": 0,
+   "parts": 0,
+   "files": [],
+   "bytes": 0,
+   "sha256": null
+  }
+ }
+}
