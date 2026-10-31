@@ -907,7 +907,10 @@ def publish(stage, directory, expected=(), now=utc_now):
             path = stage / 'state' / f'{status["state"]}.json'
             if not path.is_file():
                 raise SystemExit(f'{status["state"]}: staged state file is missing')
-            docs[status['state']] = read_json(path)
+            doc = read_json(path)
+            # Same content from a newer extract is not a change. Keep the committed source entry so no date churns.
+            if store['sources'].get(status['state'], {}).get('content_sha256') != doc['content_sha256']:
+                docs[status['state']] = doc
     store['candidates'] = merge_candidates(store['candidates'], docs)
     for region, doc in docs.items():
         store['sources'][region] = source_entry(doc['source'], doc)
