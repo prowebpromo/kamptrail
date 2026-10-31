@@ -185,5 +185,7 @@
   "console_errors": [],
   "failed_requests_kamptrail": [],
   "failed_requests_other_hosts": []
- }
+ },
+ "nws_alert_proxy_rate_limit_note": "Two further back-to-back queries at 39.5,-119.8 and 35.1,-106.6 around 14:54Z returned ok=false, error=busy, the proxy rate limit. Testing stopped there.",
+ "smoke_deployment_note": "scripts/smoke-deployment.js throws on a directions-coordinate mismatch, a missing saved stop, a source-count mismatch or a blocked mobile map. Exit 0 with empty errors and failures means each passed."
 }
