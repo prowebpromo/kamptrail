@@ -91,7 +91,7 @@ test('every published region validates against its exact publisher and inherits 
       assert.equal(r.permission,'unknown');assert.equal(r.state,code);
       const p=rest.policyFor(r,d,policyNow),expected=policies.policies.find(x=>x.scope.state===code&&x.scope.operator===g.operator&&x.scope.facility_kind===g.facility_kind);
       assert.equal(p.policy_id,expected?expected.id:null);
-      for(const a of ['overnight_parking','sleeping_in_vehicle','camping'])assert.equal(p.rules[a],expected?expected.rules[a]:'unknown');
+      const site=(policies.exceptions||[]).find(e=>e.facility_id===r.id);for(const a of ['overnight_parking','sleeping_in_vehicle','camping'])assert.equal(p.rules[a],site?.rules[a]??(expected?expected.rules[a]:'unknown'));
     }
     if(code!=='TX'){const text=rest.describe(d.records[0],d,policyNow);assert.match(text,/does not establish permission to park or sleep overnight/);assert.match(text,new RegExp(g.publisher));}
   }
@@ -105,4 +105,15 @@ test('region manifest and catalogues reject unreviewed regions, borrowed scopes 
 test('a saved rest-area stop keeps its coordinate identity in every region',()=>{
   for(const {region:code} of index.regions){const d=region(code),r=d.records[0],f=rest.feature(r,d);assert.equal(f.properties.id,rest.place(r).id);assert.match(f.properties.id,/^spot:-?\d+\.\d{5},-?\d+\.\d{5}$/);assert.equal(f.properties.source,rest.REGIONS[code].publisher);}
   const tx=region('TX');assert.equal(rest.feature(tx.records[0],tx).properties.source,'Texas Department of Transportation');
+});
+test('INDOT facility pages tighten overnight parking only at the 16 matched records',()=>{
+  const d=JSON.parse(fs.readFileSync('data/rest-areas/IN.json','utf8'));d.region='IN';d.state_policies=policies;
+  const ids=new Set(policies.exceptions.map(e=>e.facility_id));assert.equal(ids.size,16);
+  for(const r of d.records){const p=rest.policyFor(r,d,policyNow);
+    if(ids.has(r.id)){assert.deepEqual([p.rules.overnight_parking,p.rules.sleeping_in_vehicle,p.rules.camping,p.rules.max_stay_hours],['prohibited','unknown','unknown',null]);assert.equal(p.facility_sources,1);assert.match(rest.policyDescription(p),/"Overnight Parking: No"/);}
+    else{assert.equal(r.name,'Auburn Rest Area');assert.equal(p.rules.overnight_parking,'unknown');assert.deepEqual(p.rules.conditions,[]);}}
+  for(const e of policies.exceptions)assert.match(e.sources[0].url,/^https:\/\/www\.in\.gov\/indot\/resources\/maps\/welcome-centers-and-rest-areas\/[a-z0-9]+(?:-[a-z0-9]+){1,8}$/);
+  for(const url of ['https://www.in.gov/indot/other/page','https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/x?y=1','https://in.gov/indot/resources/maps/welcome-centers-and-rest-areas/a-b','https://www.in.gov:8443/indot/resources/maps/welcome-centers-and-rest-areas/a-b','https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/a-b#x','https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/a-b/','https://WWW.IN.GOV/indot/resources/maps/welcome-centers-and-rest-areas/a-b/','https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/single','http://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/a-b']){const bad=structuredClone(policies);bad.exceptions[0].sources[0].url=url;assert.throws(()=>rest.validatePolicies(bad,policyNow));}
+  const bad=structuredClone(policies);bad.exceptions[0].conditions=['x'.repeat(501)];assert.throws(()=>rest.validatePolicies(bad,policyNow));
+  assert.equal(rest.resolvePolicy(policies,{state:'IN',operator:'indot',facility_kind:'rest_area_or_welcome_center',facility_id:policies.exceptions[0].facility_id},Date.parse('2027-05-01T00:00:00Z')).rules.overnight_parking,'unknown');
 });

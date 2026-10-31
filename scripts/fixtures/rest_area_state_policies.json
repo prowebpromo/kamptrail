@@ -506,5 +506,391 @@
       ],
       "interpretation": "RCW 47.38.020 restricts camping and limits stopping, standing or parking to 8 hours within 24 hours, both subject to WSDOT authorization. Following the 2026-10-30 convention, the authorization exception is not flattened into a blanket prohibition: every field stays unknown and the rule is shown as a condition."
     }
+  ],
+  "exceptions": [
+    {
+      "facility_id": "indot:0db7d09b-31eb-439c-b8bc-f6322669b016",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/greenfield-rest-area-westbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/greenfield-rest-area-westbound",
+          "retrieved_at": "2026-10-31T17:49:17Z",
+          "sha256": "396a58dbcf2ae7a8d05fe2df279cda1588847619be733184dfaef94e8e71231b",
+          "bytes": 229679,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 70, Mile Marker 107, Westbound\") and coordinates 102 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:1afa8503-57ce-4817-8244-89993d5c7de6",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/spring-creek-welcome-center",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/spring-creek-welcome-center",
+          "retrieved_at": "2026-10-31T17:49:18Z",
+          "sha256": "150ecfa6048a003c425a0bbb1371f3e668518b0674d5e5a6bf533bd42842a775",
+          "bytes": 229647,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 74, Mile Marker 1, Eastbound\") and coordinates 18 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:2acc1cdf-ed0a-4912-abce-9b440d157253",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/henryville-rest-area-southbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/henryville-rest-area-southbound",
+          "retrieved_at": "2026-10-31T17:49:18Z",
+          "sha256": "11a3439cd18d75d61f04705ac41763895a16779493d45192f195e406f6917c67",
+          "bytes": 229510,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 65, Mile Marker 22, Southbound\") and coordinates 2 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:4241a415-fbc1-4b1e-9068-c523792a1087",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/kankakee-rest-area-southbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/kankakee-rest-area-southbound",
+          "retrieved_at": "2026-10-31T17:49:19Z",
+          "sha256": "c8cfbed3dfb31ef1795ec0cb9c6e7ea6adebaa4f469f0b90f0f4689b39af2c59",
+          "bytes": 229668,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 65, Mile Marker 231, Southbound\") and coordinates 290 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:5fdf7978-d6f0-46c1-b1e8-6a1ed77dcfa5",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/michigan-city-welcome-center",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/michigan-city-welcome-center",
+          "retrieved_at": "2026-10-31T17:49:19Z",
+          "sha256": "9131b760f811ac7801957522ed63474fa4a71631605320db2a5233e3cbafe9e3",
+          "bytes": 229685,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 94, Mile Marker 43, Westbound\") and coordinates 20 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:6d262ecf-5ced-4970-8fd2-95fa9b879ccf",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/clear-creek-welcome-center",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/clear-creek-welcome-center",
+          "retrieved_at": "2026-10-31T17:49:19Z",
+          "sha256": "96576cb74def4cf698d64698111e90bf696508f158924cfded3063e9745250c3",
+          "bytes": 229653,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 70, Mile Marker 2, Eastbound\") and coordinates 2 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:6d3d879c-b824-43e9-9ca2-71b480d7d127",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/black-river-welcome-center",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/black-river-welcome-center",
+          "retrieved_at": "2026-10-31T17:49:20Z",
+          "sha256": "26390d8f3296547143d20fed26e7b8223dca2e4066917f002e2fe57d438bc188",
+          "bytes": 229652,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 64, Mile Marker 7, Eastbound\") and coordinates 1 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:78cb28ec-4f0f-4c01-b71f-3fbb6abdc1ea",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/nancy-hanks-rest-area-westbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/nancy-hanks-rest-area-westbound",
+          "retrieved_at": "2026-10-31T17:49:20Z",
+          "sha256": "7b42ed091dbff01c955447aaf796f553ef122930e15c59d7bd83de07795cb591",
+          "bytes": 229593,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 64, Mile Marker 59, Westbound\") and coordinates 1 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:7e0c1f08-fa46-4212-a5c9-9c0dd3554724",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/lizton-rest-area-westbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/lizton-rest-area-westbound",
+          "retrieved_at": "2026-10-31T17:49:21Z",
+          "sha256": "2fd2cc5e01f8196e74b86230d477e54a8c366d31117d5d0b83ac8e78a6d29f6f",
+          "bytes": 229554,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 74, Mile Marker 57, Westbound\") and coordinates 1 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:8a4e704b-7c64-4c17-848b-1f9ee2063a7d",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/pigeon-creek-welcome-center",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/pigeon-creek-welcome-center",
+          "retrieved_at": "2026-10-31T17:49:21Z",
+          "sha256": "a90ae9422848f65c5241f1876992e52d2677fe2a63b04e4ecb19ae739439dc9d",
+          "bytes": 229790,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 69, Mile Marker 345, Southbound\") and coordinates 216 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:a52e5f0b-5cd5-4789-94c6-8c7d23a28b15",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/plainfield-rest-area-eastbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/plainfield-rest-area-eastbound",
+          "retrieved_at": "2026-10-31T17:49:22Z",
+          "sha256": "fa7d37854f8082983c36de2f3ac687d1c6e372b478bde3418ae2c99e877e7069",
+          "bytes": 229676,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 70, Mile Marker 64, Eastbound\") and coordinates 1 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:b91a3bc5-911b-45de-906a-9402b1e9f592",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/greenfield-rest-area-eastbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/greenfield-rest-area-eastbound",
+          "retrieved_at": "2026-10-31T17:49:22Z",
+          "sha256": "a6d1552f4d7024e3968670c2bb3015fa3d5e7cf364175b839b3dad0f13fee746",
+          "bytes": 229589,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 70, Mile Marker 107, Eastbound\") and coordinates 5 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:c2ba79fe-1d7b-43b1-9c7e-3c07fa8655e6",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/henryville-rest-area-northbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/henryville-rest-area-northbound",
+          "retrieved_at": "2026-10-31T17:49:23Z",
+          "sha256": "6ca1b7481e03d02c51d55a8316bc48f748635169493e1fd2a27218d4f182ef80",
+          "bytes": 229691,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 65, Mile Marker 22, Northbound\") and coordinates 1 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:d1fd6f73-e164-4d94-a9eb-52bd897907ce",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/lizton-rest-area-eastbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/lizton-rest-area-eastbound",
+          "retrieved_at": "2026-10-31T17:49:24Z",
+          "sha256": "8cb51f522bdbcb3ecfb6353f4f2b5439172c6e1caac7e20c8c308094b29c0ec3",
+          "bytes": 229643,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 74, Mile Marker 57, Eastbound\") and coordinates 3 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:f52b69b2-1eb3-4880-ba5b-07b6d1e8e0ce",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/batesville-welcome-center",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/batesville-welcome-center",
+          "retrieved_at": "2026-10-31T17:49:24Z",
+          "sha256": "f4ffaa26b81f55d9d705e09233ec366b54266801c2ff551077c8882b0446ae11",
+          "bytes": 229639,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 74, Mile Marker 151, Westbound\") and coordinates 473 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    },
+    {
+      "facility_id": "indot:f72a1e28-2f86-4039-8075-59bc51c8196a",
+      "state": "IN",
+      "operator": "indot",
+      "facility_kind": "rest_area_or_welcome_center",
+      "rules": {
+        "overnight_parking": "prohibited"
+      },
+      "conditions": [
+        "INDOT's page for this facility lists \"Overnight Parking: No\". It does not address sleeping in a vehicle or camping."
+      ],
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/plainfield-rest-area-westbound",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/plainfield-rest-area-westbound",
+          "retrieved_at": "2026-10-31T17:49:24Z",
+          "sha256": "60d592f0260f37713b0fa77ce75089d3baf60c64c618135d682f538c1eed9b74",
+          "bytes": 229586,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Facility page matched by identical location text (\"Interstate 70, Mile Marker 64, Westbound\") and coordinates 2 m apart. Its \"Overnight Parking: No\" field is read as overnight parking not permitted at this facility."
+    }
   ]
 }
