@@ -179,17 +179,12 @@
         ]
       },
       "properties": {
-        "access": "customers",
         "camping:tents": "yes",
-        "charge": "5 USD",
         "drinking_water": "no",
-        "fee": "yes",
         "name": "Turnipseed Campground",
         "permanent_camping": "no",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/alabama/recreation/recarea/?recid=30139",
-        "osm_id": 4220162504,
-        "osm_type": "node",
         "id": "ridb:270602",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -221,7 +216,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4220162504",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "customers",
+              "charge": "5 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4220162504"
+          }
+        ]
       }
     },
     {
@@ -785,8 +794,6 @@
         "operator": "National Forest Service",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/alabama/recarea/?recid=30099",
-        "osm_id": 6282190586,
-        "osm_type": "node",
         "id": "ridb:243195",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -916,9 +923,7 @@
       },
       "properties": {
         "capacity": "21",
-        "charge": "3 USD/night",
         "drinking_water": "no",
-        "fee": "yes",
         "fixme": "the extent of this is a guess",
         "internet_access": "no",
         "name": "Pine Glen Recreation Area",
@@ -928,8 +933,6 @@
         "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/alabama/recreation/camping-cabins/recarea/?recid=30159",
-        "osm_id": 606829328,
-        "osm_type": "way",
         "id": "ridb:243219",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -961,7 +964,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:606829328",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "3 USD/night",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/606829328"
+          }
+        ]
       }
     },
     {
@@ -1818,7 +1834,6 @@
         ],
         "backcountry": "yes",
         "drinking_water": "no",
-        "fee": "yes",
         "internet_access": "no",
         "openfire": "yes",
         "picnic_table": "yes",
@@ -1835,7 +1850,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1843,7 +1857,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2462387598",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2462387598"
+          }
+        ]
       }
     },
     {
@@ -2185,7 +2211,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2338,7 +2363,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2385,7 +2409,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2430,7 +2453,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2631,7 +2653,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5732,7 +5753,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7029,7 +7049,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7037,7 +7056,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13056873569",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13056873569"
+          }
+        ]
       }
     },
     {
@@ -7420,7 +7451,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7428,7 +7458,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:495985131",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/495985131"
+          }
+        ]
       }
     },
     {
@@ -9852,7 +9894,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9978,7 +10019,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10536,7 +10576,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10544,7 +10583,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:538788393",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/538788393"
+          }
+        ]
       }
     },
     {
@@ -12333,7 +12384,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13688,7 +13738,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

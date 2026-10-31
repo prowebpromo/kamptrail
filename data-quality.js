@@ -61,6 +61,7 @@
       if(!raw||typeof raw.source!=='string'||!raw.source.trim()||typeof raw.text!=='string'||!raw.text.trim()||raw.text.length>65536)continue;
       const clean=(value,max)=>typeof value==='string'?value.slice(0,max):null;
       const r={source:clean(raw.source,160),source_field:clean(raw.source_field,160),source_record_id:clean(raw.source_record_id,240),source_url:evidenceURL(raw.source_url),query_url:evidenceURL(raw.query_url),retrieved_at:evidenceDate(raw.retrieved_at),source_updated_at:evidenceDate(raw.source_updated_at),text:raw.text,sha256:typeof raw.sha256==='string'&&/^[a-f0-9]{64}$/i.test(raw.sha256)?raw.sha256.toLowerCase():null};
+      if(raw.classification_use==='not_used')r.classification_use='not_used';
       if(typeof raw.classification_text==='string'&&raw.classification_text.length<=65536)r.classification_text=raw.classification_text;
       if(typeof raw.qualification_text==='string'&&raw.qualification_text.length<=65536)r.qualification_text=raw.qualification_text;
       const key=JSON.stringify([r.source,r.source_field,r.source_record_id,r.text]),old=records.get(key);
@@ -78,7 +79,9 @@
     const ridb = raw.facility_id != null || sources.some(s => /recreation\.gov|\bridb\b/i.test(s));
     const osm = raw.osm_id != null || raw.tourism === 'camp_site' || raw.tourism === 'caravan_site';
     const classification = classifyCampingRecord(raw, name, {osm, ridb});
-    if (classification.exclusion_reason) return null;
+    // A held inherited restriction blocks admission until identity review. It
+    // is not a statement about the kept element's own public-access tags.
+    if (classification.exclusion_reason || (raw.access_hold && /^(private|no|military)$/.test(raw.access_hold.value))) return null;
     const legacyRIDB = ridb && !(Number(raw.schema_version) >= 3) && !raw._kt_normalized;
     // Snapshot membership is a loading hint, not evidence of a site's state.
     const p = {...raw, ...classification, name, sources, state: raw.state || raw['addr:state'] || null};
@@ -90,19 +93,33 @@
       p.id = `osm:${elementType}:${raw.osm_id}${elementType === 'unknown' ? ':' + coordKey : ''}`;
     } else p.id = raw.id != null && raw.id !== '' ? String(raw.id) : `site:${normalizeName(name)}:${coordKey}`;
     p.fee_evidence_records=mergeFeeEvidence(raw.fee_evidence_records);
-    if(osm&&!raw._kt_normalized&&/^(?:no|0|false|yes|true)$/i.test(String(raw.fee))){
+    const ownOsmFee = osm && !ridb && !raw._kt_normalized;
+    if(ownOsmFee && raw.fee != null){
       const kind=raw.osm_type||(['node','way','relation'].includes(raw.type)?raw.type:null),id=String(raw.osm_id??'');
       const tagText='fee='+String(raw.fee)+(raw['fee:conditional']?'; fee:conditional='+String(raw['fee:conditional']):'');
-      p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records,[{source:'OpenStreetMap contributors',source_field:'fee'+(raw['fee:conditional']?' / fee:conditional':''),source_record_id:id?'osm:'+(kind||'unknown')+':'+id:null,source_url:kind&&/^\d+$/.test(id)?'https://www.openstreetmap.org/'+kind+'/'+id:null,retrieved_at:raw.fee_checked||null,source_updated_at:raw.osm_timestamp||null,text:tagText}]);
+      p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records,[{source:'OpenStreetMap contributors',source_field:'fee'+(raw['fee:conditional']?' / fee:conditional':''),source_record_id:id?'osm:'+(kind||'unknown')+':'+id:null,source_url:kind&&/^\d+$/.test(id)?'https://www.openstreetmap.org/'+kind+'/'+id:null,retrieved_at:raw.fee_checked||raw.source_retrieved_at||null,source_updated_at:raw.osm_timestamp||null,text:tagText}]);
+    }
+    for (const e of Array.isArray(raw.member_evidence) ? raw.member_evidence : []) {
+      if (!e || typeof e.source_record_id !== 'string' || !/^osm:(node|way|relation|unknown):/.test(e.source_record_id) || !e.fields || typeof e.fields !== 'object') continue;
+      const text = Object.keys(e.fields).filter(k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k)).sort().map(k => k + '=' + String(e.fields[k]).slice(0, 2048)).join('; ');
+      if (text) p.fee_evidence_records = mergeFeeEvidence(p.fee_evidence_records, [{source:'OpenStreetMap contributors', source_field:'member element tags', classification_use:'not_used', source_record_id:e.source_record_id, source_url:e.source_url, retrieved_at:e.retrieved_at, source_updated_at:e.source_updated_at, text, qualification_text:'Recorded on a merged member element. Not used to classify this record.'}]);
     }
     if (legacyRIDB) p.legacy_inferred = {cost:raw.cost, amenities:raw.amenities, rig_friendly:raw.rig_friendly, road_difficulty:raw.road_difficulty};
     const feeEvidence = raw._kt_normalized || Number(raw.schema_version) >= 3 || !!raw.field_provenance?.cost;
     p.cost = feeEvidence && !legacyRIDB && validNumber(raw.cost) && raw.cost >= 0 ? raw.cost : null;
     p.fee_status = feeEvidence && !legacyRIDB && ['free', 'paid', 'conditional', 'unknown'].includes(raw.fee_status) ? raw.fee_status : 'unknown';
     if (feeEvidence && !legacyRIDB && p.cost !== null && p.fee_status !== 'conditional') p.fee_status = p.cost === 0 ? 'free' : 'paid';
-    if (osm && !raw._kt_normalized && /^(no|0|false)$/i.test(String(raw.fee)) && raw['fee:conditional']) {p.fee_status = 'conditional'; p.cost = null; p.fee_text = `OSM fee=no; fee:conditional=${String(raw['fee:conditional']).slice(0, 200)}`; p.fee_source = 'OpenStreetMap contributors';}
-    else if (osm && !raw._kt_normalized && /^(no|0|false)$/i.test(String(raw.fee))) {p.fee_status = 'free'; p.cost = 0; p.fee_text = p.fee_text || 'OSM tag fee=no'; p.fee_source = p.fee_source || 'OpenStreetMap contributors (community reported)';}
-    else if (osm && !raw._kt_normalized && /^(yes|true)$/i.test(String(raw.fee))) {p.fee_status = 'paid'; if (p.cost === 0) p.cost = null;}
+    if (ownOsmFee && /^(no|0|false)$/i.test(String(raw.fee)) && /(?:^|;)\s*(?:yes|true)\s*@/i.test(String(raw['fee:conditional'] || ''))) {p.fee_status = 'conditional'; p.cost = null; p.fee_text = `OSM fee=no; fee:conditional=${String(raw['fee:conditional']).slice(0, 200)}`; p.fee_source = 'OpenStreetMap contributors';}
+    else if (ownOsmFee && /^(no|0|false)$/i.test(String(raw.fee))) {p.fee_status = 'free'; p.cost = 0; p.fee_text = p.fee_text || 'OSM tag fee=no'; p.fee_source = p.fee_source || 'OpenStreetMap contributors (community reported)';}
+    else if (ownOsmFee && /^(yes|true)$/i.test(String(raw.fee))) {p.fee_status = 'paid'; if (p.cost === 0) p.cost = null;}
+    if (ownOsmFee && p.fee_status !== 'unknown') {
+      p.fee_source = p.fee_source || 'OpenStreetMap contributors';
+      p.fee_source_record_id = p.id;
+    } else if (!raw._kt_normalized && p.fee_status !== 'unknown') {
+      p.fee_source_record_id = raw.fee_source_record_id || p.id;
+      p.fee_source = raw.fee_source || (ridb ? 'Recreation.gov' : sources[0] || p.id.split(':')[0]);
+    }
+    if (p.access_status !== 'unknown') p.access_source_record_id = raw.access_source_record_id || p.id;
     // State loading normalizes merged records again. A retained source tag cannot
     // resolve an existing disagreement with another source.
     if (p.fee_conflict) {p.fee_status = 'unknown'; p.cost = null; p.fee_text = null;}
@@ -152,22 +169,34 @@
   }
   function mergeFeatures(primary, secondary) {
     const p=primary.properties, q=secondary.properties;
+    const distinctOsm = /^osm:(?:node|way|relation|unknown):/.test(q.id) && p.id !== q.id;
+    const feeDonor = q.fee_source_record_id || q.id, accessDonor = q.access_source_record_id || q.id;
+    const blockedFee = /^osm:(?:node|way|relation|unknown):/.test(feeDonor) && p.id !== feeDonor;
+    const blockedAccess = /^osm:(?:node|way|relation|unknown):/.test(accessDonor) && p.id !== accessDonor;
+    if (distinctOsm) {
+      // Retain the secondary report for review without granting its fee/access
+      // to the canonical element merely because names and coordinates matched.
+      const records = new Map();
+      const list = value => Array.isArray(value) ? value : [];
+      for (const r of [...list(p.unverified_osm_matches), ...list(q.unverified_osm_matches), {source_record_id:q.id, fee_status:q.fee_status, cost:q.cost, access:q.access, access_status:q.access_status}]) records.set(JSON.stringify(r),r);
+      p.unverified_osm_matches = [...records.values()].slice(0,128);
+    }
     if (p.state == null && p.id === q.id && q.state != null) p.state=q.state;
     if(p.forecastStates||q.forecastStates)p.forecastStates=[...new Set([...(p.forecastStates||[]),...(q.forecastStates||[])])];
     p.legacy_ids = [...new Set([...(p.legacy_ids || []), ...(q.legacy_ids || []), q.id])];
     p.sources = [...new Set([...(p.sources || []), ...(q.sources || [])])];
-    p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records,q.fee_evidence_records);
-    if (p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;}
+    p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records, blockedFee ? (q.fee_evidence_records||[]).map(r=>({...r,classification_use:'not_used',qualification_text:r.qualification_text || 'Recorded on an unverified merged OSM element. Not used to classify this record.'})) : q.fee_evidence_records);
+    if (!blockedAccess && p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;p.access_source_record_id=q.access_source_record_id||q.id;}
     if (p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;if(p.type==='other')p.type=q.type;}
     // Preserve known facts, but do not hide conflicts between sources.
     if (p.fee_conflict || q.fee_conflict) {p.fee_conflict=true; p.fee_status='unknown'; p.cost=null; p.fee_text=null;}
-    const adopt = () => {p.fee_status=q.fee_status; p.cost=q.cost; for (const k of ['fee_text','fee_source','fee_checked','fee_evidence']) p[k]=q[k] ?? null;};
+    const adopt = () => {p.fee_status=q.fee_status; p.cost=q.cost; p.fee_source_record_id=q.fee_source_record_id||q.id; for (const k of ['fee_text','fee_source','fee_checked','fee_evidence']) p[k]=q[k] ?? null; p.fee_source=p.fee_source || (q.sources||[])[0] || q.id.split(':')[0];};
     const charged = v => v === 'paid' || v === 'conditional';
-    if (p.fee_status === 'unknown' && q.fee_status !== 'unknown' && !p.fee_conflict) adopt();
+    if (!blockedFee && p.fee_status === 'unknown' && q.fee_status !== 'unknown' && !p.fee_conflict) adopt();
     // Agency wording that names conditions refines a bare free or paid record. Free versus paid is a real conflict.
-    else if (q.fee_status === 'conditional' && p.fee_status !== 'conditional' && !p.fee_conflict) adopt();
+    else if (!blockedFee && q.fee_status === 'conditional' && p.fee_status !== 'conditional' && !p.fee_conflict) adopt();
     else if (p.fee_status !== 'unknown' && q.fee_status !== 'unknown' && p.fee_status !== q.fee_status && !(charged(p.fee_status) && charged(q.fee_status)) && !(p.fee_status === 'conditional' || q.fee_status === 'conditional')) {p.fee_status='unknown'; p.cost=null; p.fee_conflict=true; p.fee_text=null;}
-    if (p.cost === null && q.cost !== null && !p.fee_conflict && p.fee_status === q.fee_status) p.cost=q.cost;
+    if (!blockedFee && p.cost === null && q.cost !== null && !p.fee_conflict && p.fee_status === q.fee_status) p.cost=q.cost;
     p.amenity_negatives = [...new Set([...(p.amenity_negatives || []), ...(q.amenity_negatives || [])])];
     p.amenities = [...new Set([...p.amenities,...q.amenities])].filter(a => !p.amenity_negatives.includes(a));
     p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];
@@ -288,6 +317,8 @@
       p.fee_status = rec.f;
       p.cost = rec.f === 'free' ? 0 : (validNumber(rec.c) && rec.c > 0 ? rec.c : null);
       p.fee_evidence = 'Recreation.gov fee description';
+      p.fee_source = 'Recreation.gov';
+      p.fee_source_record_id = `ridb:${p.facility_id}`;
     }
     if (typeof rec.sl === 'string' && rec.sl.trim()) p.stay_limit = rec.sl.trim().slice(0, 160);
     return feature;
@@ -407,6 +438,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.21.1',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.21.2',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

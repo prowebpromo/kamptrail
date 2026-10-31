@@ -803,7 +803,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -842,7 +841,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -993,7 +991,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1994,7 +1991,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2585,7 +2581,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4732,7 +4727,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4740,7 +4734,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11701123969",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit"
+            },
+            "retrieved_at": "2026-10-29T03:12:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11701123969"
+          }
+        ]
       }
     },
     {
@@ -5344,7 +5350,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5352,7 +5357,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:14090029823",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "charge": "$10/night",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:12:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/14090029823"
+          }
+        ]
       }
     },
     {
@@ -7127,7 +7146,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7997,7 +8015,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

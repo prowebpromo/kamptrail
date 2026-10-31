@@ -1581,7 +1581,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2648,7 +2647,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2656,7 +2654,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3448813844",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "destination"
+            },
+            "retrieved_at": "2026-10-29T03:33:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3448813844"
+          }
+        ]
       }
     },
     {
@@ -2689,7 +2699,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2697,7 +2706,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3448813846",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "destination"
+            },
+            "retrieved_at": "2026-10-29T03:33:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3448813846"
+          }
+        ]
       }
     },
     {
@@ -2810,7 +2831,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3733,7 +3753,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9653,7 +9672,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10712,7 +10730,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

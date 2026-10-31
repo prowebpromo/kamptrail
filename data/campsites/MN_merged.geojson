@@ -687,8 +687,6 @@
         "operator": "United States Forest Service",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/superior/recreation/recarea/?recid=37047&actid=29",
-        "osm_id": 439215393,
-        "osm_type": "way",
         "id": "ridb:233840",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -733,9 +731,7 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "caravans": "yes",
-        "fee": "yes",
         "name": "POKEGAMA DAM CAMPGROUND",
         "operator": "United States Army Corps of Engineers",
         "operator:short": "USACE",
@@ -743,8 +739,6 @@
         "operator:wikidata": "Q1049334",
         "tents": "yes",
         "tourism": "camp_site",
-        "osm_id": 1200850837,
-        "osm_type": "way",
         "id": "ridb:233588",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -776,7 +770,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1200850837",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1200850837"
+          }
+        ]
       }
     },
     {
@@ -965,8 +972,6 @@
         "tents": "yes",
         "toilets": "yes",
         "tourism": "camp_site",
-        "osm_id": 1239433092,
-        "osm_type": "way",
         "id": "ridb:233841",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/233841",
@@ -1060,8 +1065,6 @@
         "toilets": "vault",
         "tourism": "camp_site",
         "website": "https://flourlakecampground.com/",
-        "osm_id": 1159184655,
-        "osm_type": "way",
         "id": "ridb:232429",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1151,8 +1154,6 @@
         "name": "Two Island Lake Campground",
         "operator": "US Forest Service",
         "tourism": "camp_site",
-        "osm_id": 2520164188,
-        "osm_type": "node",
         "id": "ridb:240995",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1460,8 +1461,6 @@
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/superior/recreation/camping-cabins/recarea/?recid=36977&actid=29",
         "website:reservation": "https://www.recreation.gov/camping/campgrounds/233165",
-        "osm_id": 162329157,
-        "osm_type": "way",
         "id": "ridb:233165",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2135,7 +2134,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2247,7 +2245,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2255,7 +2252,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:709011912",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/709011912"
+          }
+        ]
       }
     },
     {
@@ -2347,7 +2356,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2393,7 +2401,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2401,7 +2408,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:709011969",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/709011969"
+          }
+        ]
       }
     },
     {
@@ -2498,7 +2517,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2579,7 +2597,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2587,7 +2604,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:709011957",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/709011957"
+          }
+        ]
       }
     },
     {
@@ -2654,7 +2683,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2662,7 +2690,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:709011982",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/709011982"
+          }
+        ]
       }
     },
     {
@@ -2944,7 +2984,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2991,7 +3030,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2999,7 +3037,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:709012024",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/709012024"
+          }
+        ]
       }
     },
     {
@@ -3095,7 +3145,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3265,7 +3314,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3273,7 +3321,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:709011997",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/709011997"
+          }
+        ]
       }
     },
     {
@@ -3375,7 +3435,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3383,7 +3442,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:709012002",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/709012002"
+          }
+        ]
       }
     },
     {
@@ -3481,7 +3552,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4696,7 +4766,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4735,7 +4804,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4939,7 +5007,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5067,7 +5134,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5332,7 +5398,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6885,7 +6950,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7970,7 +8034,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13212,7 +13275,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13363,7 +13425,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13415,7 +13476,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13547,7 +13607,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13598,7 +13657,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13650,7 +13708,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -19941,7 +19998,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20029,7 +20085,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20117,7 +20172,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -23227,7 +23281,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -38950,7 +39003,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -39380,7 +39432,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -39506,7 +39557,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -39670,7 +39720,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -39758,7 +39807,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -39885,7 +39933,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -40164,7 +40211,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -40770,7 +40816,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -41181,7 +41226,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -41291,7 +41335,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -41365,7 +41408,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -41751,7 +41793,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -42296,7 +42337,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -42718,7 +42758,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -42838,7 +42877,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -42886,7 +42924,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -42964,7 +43001,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -43463,7 +43499,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -47886,7 +47921,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -52085,7 +52119,6 @@
       },
       "properties": {
         "capacity": "98",
-        "fee": "yes",
         "name": "Perrot State Park Campground",
         "tourism": "camp_site",
         "osm_id": 7157761509,
@@ -52112,7 +52145,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -52120,7 +52152,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:592156327",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/592156327"
+          }
+        ]
       }
     },
     {
@@ -52241,7 +52285,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -52249,7 +52292,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:478115863",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "25 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/478115863"
+          }
+        ]
       }
     },
     {
@@ -53302,14 +53358,28 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
-        "data_conflicts": [],
+        "data_conflicts": [
+          "member_fee_disagreement"
+        ],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7185812931",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "20 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7185812931"
+          }
+        ]
       }
     },
     {
@@ -53421,7 +53491,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -53468,7 +53537,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -53647,7 +53715,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -53705,14 +53772,27 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
-        "data_conflicts": [],
+        "data_conflicts": [
+          "member_fee_disagreement"
+        ],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1134826235",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1134826235"
+          }
+        ]
       }
     },
     {
@@ -54677,7 +54757,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -56925,9 +57004,7 @@
         "addr:state": "MN",
         "addr:street": "Eagle Nest Road",
         "capacity": "22",
-        "charge": "16 USD",
         "drinking_water": "yes",
-        "fee": "yes",
         "seasonal": "spring;summer;autumn",
         "toilets": "yes",
         "phone": "+1-218-335-8600",
@@ -56936,7 +57013,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -56944,7 +57020,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:244588682",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "16 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/244588682"
+          }
+        ]
       }
     },
     {
@@ -59252,7 +59341,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61215,7 +61303,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61281,7 +61368,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61320,7 +61406,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61395,7 +61480,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61434,7 +61518,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61564,7 +61647,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61605,7 +61687,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61648,7 +61729,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61689,7 +61769,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61789,7 +61868,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -61859,7 +61937,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -62020,7 +62097,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -62177,7 +62253,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -64349,7 +64424,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -68397,7 +68471,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -68465,7 +68538,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -68506,7 +68578,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -68714,7 +68785,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -68754,7 +68824,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -68906,7 +68975,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -69059,7 +69127,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -69127,7 +69194,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -74953,7 +75019,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -75001,7 +75066,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -75265,7 +75329,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -78193,7 +78256,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -78277,7 +78339,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -78325,7 +78386,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -78374,7 +78434,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -78458,7 +78517,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -84955,7 +85013,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -85226,7 +85283,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -90441,7 +90497,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -90449,7 +90504,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:157714742",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/157714742"
+          }
+        ]
       }
     },
     {
@@ -93538,7 +93606,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -93546,7 +93613,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12817877469",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12817877469"
+          },
+          {
+            "source_record_id": "osm:node:12817877470",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12817877470"
+          }
+        ]
       }
     },
     {
@@ -93987,7 +94076,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -94071,7 +94159,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -94799,7 +94886,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -94847,7 +94933,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -94895,7 +94980,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -94944,7 +95028,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -94993,7 +95076,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -95041,7 +95123,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -95089,7 +95170,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -95209,7 +95289,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -95230,14 +95309,12 @@
         ]
       },
       "properties": {
-        "access": "permit",
         "backcountry": "yes",
         "camp_site": "basic",
         "capacity:persons": "9",
         "capacity:tents": "4",
         "caravans": "no",
         "description": "This campsite is the best I've ever been to. Hands down.\n(Visited in 2024 and 2025)",
-        "fee": "no",
         "name": "Saganaga Lake #13",
         "openfire": "yes",
         "operator": "Superior National Forest",
@@ -95264,14 +95341,26 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318515",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318515"
+          }
+        ]
       }
     },
     {
@@ -95347,7 +95436,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -95395,7 +95483,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -95443,7 +95530,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -96424,7 +96510,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -96432,7 +96517,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12892202045",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12892202045"
+          },
+          {
+            "source_record_id": "osm:node:12892202046",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12892202046"
+          }
+        ]
       }
     },
     {
@@ -96521,7 +96628,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -96529,7 +96635,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12899395390",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12899395390"
+          }
+        ]
       }
     },
     {
@@ -96573,7 +96691,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -96581,7 +96698,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12899400347",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12899400347"
+          }
+        ]
       }
     },
     {
@@ -96825,7 +96954,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -96833,7 +96961,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12899435329",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12899435329"
+          }
+        ]
       }
     },
     {
@@ -96917,7 +97057,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -96925,7 +97064,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12899453519",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12899453519"
+          }
+        ]
       }
     },
     {
@@ -96969,7 +97120,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -96977,7 +97127,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12899453521",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12899453521"
+          }
+        ]
       }
     },
     {
@@ -97229,7 +97391,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -97237,7 +97398,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12902326410",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12902326410"
+          }
+        ]
       }
     },
     {
@@ -97401,7 +97574,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -97409,7 +97581,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12902326415",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12902326415"
+          }
+        ]
       }
     },
     {
@@ -97453,7 +97637,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -97461,7 +97644,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12902326417",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12902326417"
+          }
+        ]
       }
     },
     {
@@ -97505,7 +97700,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -97513,7 +97707,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12902326419",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12902326419"
+          }
+        ]
       }
     },
     {
@@ -97558,7 +97764,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -97566,7 +97771,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12902326421",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12902326421"
+          },
+          {
+            "source_record_id": "osm:node:12902326422",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12902326422"
+          }
+        ]
       }
     },
     {
@@ -97610,7 +97837,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -97618,7 +97844,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12902326424",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12902326424"
+          }
+        ]
       }
     },
     {
@@ -98215,7 +98453,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -98223,7 +98460,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12903309970",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12903309970"
+          }
+        ]
       }
     },
     {
@@ -98307,7 +98556,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -98315,7 +98563,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12903309978",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12903309978"
+          }
+        ]
       }
     },
     {
@@ -98399,7 +98659,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -98407,7 +98666,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12907590525",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12907590525"
+          }
+        ]
       }
     },
     {
@@ -98491,7 +98762,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -98499,7 +98769,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12907590528",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12907590528"
+          }
+        ]
       }
     },
     {
@@ -98583,7 +98865,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -98591,7 +98872,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12907963442",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12907963442"
+          }
+        ]
       }
     },
     {
@@ -98636,7 +98929,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -98644,7 +98936,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12907963444",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12907963444"
+          },
+          {
+            "source_record_id": "osm:node:12907963445",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12907963445"
+          }
+        ]
       }
     },
     {
@@ -102661,7 +102975,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -109681,7 +109994,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -110216,7 +110528,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -111098,7 +111409,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -113685,7 +113995,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -115408,15 +115717,28 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
-        "data_conflicts": [],
+        "data_conflicts": [
+          "member_fee_disagreement"
+        ],
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:244588684",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/244588684"
+          }
+        ]
       }
     },
     {
@@ -117083,7 +117405,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -122421,7 +122742,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -130450,7 +130770,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -134197,7 +134516,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

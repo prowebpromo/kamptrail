@@ -517,8 +517,6 @@
       "properties": {
         "name": "LITHIA SPRINGS",
         "tourism": "camp_site",
-        "osm_id": 12668854455,
-        "osm_type": "node",
         "id": "ridb:233539",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -610,7 +608,6 @@
         "caravans": "yes",
         "contact:phone": "+1-618-594-4410",
         "contact:website": "https://www.recreation.gov/camping/campgrounds/233483",
-        "fee": "yes",
         "internet_access": "wlan",
         "name": "Dam West Campground",
         "operator": "US Army Corps of Engineers",
@@ -620,8 +617,6 @@
         "tents": "yes",
         "tourism": "caravan_site",
         "water_point": "yes",
-        "osm_id": 1108044726,
-        "osm_type": "way",
         "id": "ridb:233483",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -653,7 +648,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1108044726",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1108044726"
+          }
+        ]
       }
     },
     {
@@ -918,16 +925,12 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "camp_site:reservations": "no",
         "capacity": "8",
-        "fee": "yes",
         "name": "Camp Cadiz Campground",
         "phone:ranger": "+1-618-253-7114",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/shawnee/recreation/horseriding-camping/recarea/?recid=10682&actid=30",
-        "osm_id": 874059400,
-        "osm_type": "way",
         "id": "ridb:244060",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -959,7 +962,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:874059400",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/874059400"
+          }
+        ]
       }
     },
     {
@@ -1574,7 +1590,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2163,7 +2178,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3639,7 +3653,6 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "name": "Twisted Oak Campground",
         "operator": "Argyle Lake State Park",
         "reservation": "yes",
@@ -3660,7 +3673,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3668,7 +3680,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1272558231",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1272558231"
+          }
+        ]
       }
     },
     {
@@ -3811,7 +3835,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3879,7 +3902,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4547,7 +4569,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5808,7 +5829,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5848,7 +5868,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6191,7 +6210,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9565,7 +9583,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10931,7 +10948,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -10969,7 +10985,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11499,7 +11514,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11569,7 +11583,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11853,7 +11866,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "fee": "yes",
         "name": "Questing Hills Equistrain Campground",
         "operator": "Jim Edgar Panther Creek State Fish and Wildlife Area",
         "reservation": "required",
@@ -11875,7 +11887,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11883,7 +11894,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:760586141",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/760586141"
+          }
+        ]
       }
     },
     {
@@ -12035,7 +12058,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12158,7 +12180,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12721,7 +12742,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12729,7 +12749,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1025289930",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1025289930"
+          }
+        ]
       }
     },
     {
@@ -13713,7 +13745,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -14564,7 +14595,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -15027,7 +15057,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -18887,14 +18916,25 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:932194370",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/932194370"
+          }
+        ]
       }
     },
     {
@@ -19411,7 +19451,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20488,7 +20527,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -22090,7 +22128,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -23589,7 +23626,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -23597,7 +23633,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1376181564",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1376181564"
+          }
+        ]
       }
     },
     {
@@ -25149,7 +25197,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -25190,7 +25237,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],

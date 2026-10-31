@@ -186,7 +186,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -395,7 +394,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -696,7 +694,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1402,7 +1399,6 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "name": "Montauk County Park RV Campground",
         "natural": "beach",
         "surface": "sand",
@@ -1423,7 +1419,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1431,7 +1426,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:964648648",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:53:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/964648648"
+          }
+        ]
       }
     },
     {
@@ -1608,7 +1615,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1701,7 +1707,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

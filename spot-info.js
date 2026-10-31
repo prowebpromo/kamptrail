@@ -133,12 +133,13 @@
     const box=el('section',null,'kt-fee-records');box.append(el('h3',t("Camping fee evidence")),el('p',t("Source wording is shown in full. A retrieval date is when KampTrail downloaded the record, not a field inspection. Confirm current fees and restrictions with the operator."),'kt-fine'));
     if(properties.fee_conflict)box.append(el('p',t("Sources disagree. The fee remains unknown; neither statement is treated as proof of free camping.")));
     if(!records.length){box.append(el('p',properties.fee_status==='unknown'?t("No camping-fee wording is recorded. The fee remains unknown."):t("This snapshot has a structured fee classification but no retained source wording.")));if(Number.isFinite(properties.cost)&&properties.cost>=0)box.append(el('p',t("Reported nightly amount: $")+properties.cost));if(properties.fee_evidence)box.append(el('p',String(properties.fee_evidence)));}
-    const labels={feedescription:t("Camping fee information"),recareadescription:t("Recreation-area description"),restrictions:t("Restrictions"),FacilityDescription:t("Campground description"),FacilityUseFeeDescription:t("Camping fee information"),UseFeeDescription:t("Camping fee information"),fee:t("Community fee tag"),'fee / fee:conditional':t("Community fee and conditions tags"),'official_page.Fee Site and Info':t("Official campground fee information"),'official_page.Camping and access':t("Camping and vehicle access")};
+    const labels={'member element tags':t("Separate mapped element"),feedescription:t("Camping fee information"),recareadescription:t("Recreation-area description"),restrictions:t("Restrictions"),FacilityDescription:t("Campground description"),FacilityUseFeeDescription:t("Camping fee information"),UseFeeDescription:t("Camping fee information"),fee:t("Community fee tag"),'fee / fee:conditional':t("Community fee and conditions tags"),'official_page.Fee Site and Info':t("Official campground fee information"),'official_page.Camping and access':t("Camping and vehicle access")};
     for(const r of records){const details=el('details');details.open=records.length===1;details.append(el('summary',r.source+' · '+(labels[r.source_field]||t("Source wording"))));
       const meta=[];if(r.source_record_id)meta.push(t("Record ")+r.source_record_id);if(r.retrieved_at)meta.push(t("Retrieved ")+r.retrieved_at);if(r.source_updated_at)meta.push(t("Source record updated ")+r.source_updated_at);if(meta.length)details.append(el('p',meta.join(' · '),'kt-fine'));
+      if(r.classification_use==='not_used')details.append(el('p',t("This report belongs to a separate mapped element. It does not establish this campsite's fee or access."),'kt-fine'));
       details.append(el('p',t('Original source text (publisher language)'),'kt-fine'),el('p',r.text,'kt-fee-full-text'));
       if(r.classification_text&&r.classification_text!==r.text){const used=el('details');used.append(el('summary',t("Wording used to classify the camping fee")),el('p',r.classification_text,'kt-fee-full-text'));details.append(used);}
-      if(r.qualification_text){const used=el('details');used.append(el('summary',t("Conditions used to qualify the fee")),el('p',r.qualification_text,'kt-fee-full-text'));details.append(used);}
+      if(r.qualification_text&&r.classification_use!=='not_used'){const used=el('details');used.append(el('summary',t("Conditions used to qualify the fee")),el('p',r.qualification_text,'kt-fee-full-text'));details.append(used);}
       if(r.source_url)details.append(link(r.source_url,t("Open source record")));
       if(r.query_url==='https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query'&&/^\d+$/.test(r.source_record_id||'')){
         const row=new URL(r.query_url);row.searchParams.set('where','recareaid='+r.source_record_id);row.searchParams.set('outFields','recareaid,recareaname,feedescription,restrictions,recareadescription');row.searchParams.set('returnGeometry','false');row.searchParams.set('f','pjson');
@@ -148,5 +149,5 @@
     }
     target.replaceChildren(box);relayout(target);
   }
-  global.KampTrailSpot = {version: '2.21.1', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
+  global.KampTrailSpot = {version: '2.21.2', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);

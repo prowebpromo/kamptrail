@@ -11,7 +11,6 @@
         ]
       },
       "properties": {
-        "access": "customers",
         "addr:city": "Sabillasville",
         "addr:housenumber": "15882",
         "addr:postcode": "21780",
@@ -21,9 +20,7 @@
         "camp_site": "standard",
         "capacity:pitches": "50",
         "caravans": "yes",
-        "charge": "30 USD/night",
         "email": "cato_campmanager@nps.gov",
-        "fee": "yes",
         "name": "OWENS CREEK CAMPGROUND",
         "opening_hours": "May-Nov unknown; Dec-Apr closed",
         "operator": "National Park Service",
@@ -34,8 +31,6 @@
         "tourism": "camp_site",
         "website": "https://www.nps.gov/cato/planyourvisit/owens-creek-campground.htm",
         "wheelchair": "limited",
-        "osm_id": 420326462,
-        "osm_type": "way",
         "id": "ridb:247762",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -67,7 +62,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:420326462",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "customers",
+              "charge": "30 USD/night",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/420326462"
+          }
+        ]
       }
     },
     {
@@ -304,8 +313,6 @@
         "website": "https://www.recreation.gov/camping/campgrounds/233241",
         "wikidata": "Q5027421",
         "wikipedia": "en:Camp Misty Mount Historic District",
-        "osm_id": 874693866,
-        "osm_type": "way",
         "id": "ridb:233241",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1988,7 +1995,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2464,7 +2470,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2762,7 +2767,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2805,7 +2809,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4117,7 +4120,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11553,7 +11555,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11561,7 +11562,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:679336588",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/679336588"
+          },
+          {
+            "source_record_id": "osm:way:679336602",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/679336602"
+          }
+        ]
       }
     },
     {
@@ -12405,14 +12430,12 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "addr:city": "Denton",
         "addr:state": "MD",
         "cabins": "no",
         "capacity:caravans": "30",
         "caravans": "yes",
         "description": "30 campsites and 6 cabins \nADA Sites: 37-38-51-52 and Camper Cabin \"C\"",
-        "fee": "yes",
         "name": "Martinak State Park Camp Loop B",
         "operator": "Martinak State Park",
         "permanent_camping": "no",
@@ -12441,14 +12464,26 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:744170055",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/744170055"
+          }
+        ]
       }
     },
     {
@@ -13585,7 +13620,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13593,7 +13627,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:759755281",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/759755281"
+          },
+          {
+            "source_record_id": "osm:way:759755282",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/759755282"
+          }
+        ]
       }
     },
     {
@@ -13612,7 +13668,6 @@
         "bbq": "yes",
         "capacity": "174",
         "caravans": "yes",
-        "fee": "yes",
         "leisure": "park",
         "name": "Greenbelt Park Campground",
         "operator": "National Park Service",
@@ -13641,7 +13696,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13649,7 +13703,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:759770891",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/759770891"
+          }
+        ]
       }
     },
     {
@@ -14707,7 +14773,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -19120,7 +19185,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -19939,7 +20003,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20366,7 +20429,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -22140,7 +22202,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

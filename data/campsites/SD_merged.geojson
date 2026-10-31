@@ -643,14 +643,10 @@
       "properties": {
         "addr:city": "Rochford",
         "addr:state": "SD",
-        "charge": "16 USD",
         "drinking_water": "no",
-        "fee": "yes",
         "name": "Black Fox Campground",
         "toilets": "vault",
         "tourism": "camp_site",
-        "osm_id": 7638845512,
-        "osm_type": "node",
         "id": "ridb:253807",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -682,7 +678,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7638845512",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "16 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:34:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7638845512"
+          }
+        ]
       }
     },
     {
@@ -1505,7 +1514,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1918,7 +1926,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1957,7 +1964,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2173,7 +2179,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4036,7 +4041,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4157,7 +4161,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -8934,7 +8937,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9573,7 +9575,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
