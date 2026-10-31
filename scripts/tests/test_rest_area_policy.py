@@ -60,11 +60,19 @@ class StatePolicies(unittest.TestCase):
         self.assertIsNone(result['rules']['max_stay_hours'])
         self.assertEqual(result['review_required'], ['camping', 'max_stay_hours'])
 
+    def test_statute_backed_scopes_keep_unstated_activities_unknown(self):
+        expected = {('WA', 'wsdot', 'safety_rest_area'): ('unknown', 'unknown', 'unknown', None),
+                    ('SD', 'sddot', 'rest_area'): ('unknown', 'unknown', 'prohibited', None),
+                    ('NV', 'ndot', 'rest_area'): ('unknown', 'unknown', 'unknown', None)}
+        for (state, operator, kind), want in expected.items():
+            with self.subTest(state=state):
+                r = resolve(state, operator, kind)['rules']
+                self.assertEqual((r['overnight_parking'], r['sleeping_in_vehicle'], r['camping'], r['max_stay_hours']), want)
+
     def test_location_only_scopes_keep_every_permission_unknown(self):
         scopes = [('CA', 'caltrans', 'safety_roadside_rest_area'), ('IA', 'iowa_dot', 'rest_area'),
                   ('IN', 'indot', 'rest_area_or_welcome_center'), ('KS', 'kdot', 'rest_area'),
-                  ('MI', 'mdot', 'rest_area_or_welcome_center'), ('NV', 'ndot', 'rest_area'),
-                  ('SD', 'sddot', 'rest_area'), ('WA', 'wsdot', 'safety_rest_area')]
+                  ('MI', 'mdot', 'rest_area_or_welcome_center')]
         for state, operator, kind in scopes:
             with self.subTest(state=state):
                 p = resolve(state, operator, kind)
