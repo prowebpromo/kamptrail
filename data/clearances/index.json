@@ -1,7 +1,7 @@
 {
  "version": 1,
  "schema": "kamptrail-clearances-2",
- "generated_at": "2026-10-30T16:30:30Z",
+ "generated_at": "2026-10-31T21:42:16Z",
  "license": "ODbL-1.0",
  "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
  "copyright_url": "https://www.openstreetmap.org/copyright",
@@ -14,9 +14,9 @@
  },
  "notice": "Source-reported OSM tags. Coverage is uneven and incomplete. Not a route, passage or safety statement.",
  "totals": {
-  "states_with_data": 1,
-  "records": 254,
-  "bytes": 119065,
+  "states_with_data": 4,
+  "records": 1335,
+  "bytes": 653694,
   "states_not_built": [
    "AK",
    "AL",
@@ -26,7 +26,6 @@
    "CO",
    "CT",
    "DC",
-   "DE",
    "FL",
    "GA",
    "HI",
@@ -63,11 +62,9 @@
    "TX",
    "UT",
    "VA",
-   "VT",
    "WA",
    "WI",
-   "WV",
-   "WY"
+   "WV"
   ],
   "states_with_failures": []
  },
@@ -129,12 +126,34 @@
    "sha256": null
   },
   "DE": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 407,
+   "parts": 1,
+   "files": [
+    {
+     "path": "DE.json",
+     "bytes": 200380,
+     "sha256": "26caf6dfb268db10eb41eeb60175d0ac28e4c891990aa25a349dcb0b559a84dc",
+     "records": 407
+    }
+   ],
+   "bytes": 200380,
+   "sha256": "26caf6dfb268db10eb41eeb60175d0ac28e4c891990aa25a349dcb0b559a84dc",
+   "retrieved_at": "2026-10-31T21:41:35Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "4df2abcfc2958b8919a217dbc160115dcdb480c1f59587b6f30db08cd09b5697",
+   "parse_counts": {
+    "numeric": 333,
+    "below_default": 0,
+    "unknown": 25,
+    "unparseable": 49
+   },
+   "quarantined": 7,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 6,
+    "boundary_ambiguous": 1
+   }
   },
   "FL": {
    "status": "not_built",
@@ -444,12 +463,35 @@
    "sha256": null
   },
   "VT": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 286,
+   "parts": 1,
+   "files": [
+    {
+     "path": "VT.json",
+     "bytes": 146186,
+     "sha256": "037d5e3fb84f1efdc05ddfd384bac04dd92bd9e3b494f11b9bdacaa6abd3ebdb",
+     "records": 286
+    }
+   ],
+   "bytes": 146186,
+   "sha256": "037d5e3fb84f1efdc05ddfd384bac04dd92bd9e3b494f11b9bdacaa6abd3ebdb",
+   "retrieved_at": "2026-10-31T21:41:33Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "68d89d3aed21c9be4f1cf2b2757953fd9c365fb03d64955cd70274b76ac351d6",
+   "parse_counts": {
+    "numeric": 276,
+    "below_default": 0,
+    "unknown": 6,
+    "unparseable": 4
+   },
+   "quarantined": 23,
+   "quarantine_reasons": {
+    "outside_requested_state": 13,
+    "no_road_structure_or_barrier_context": 5,
+    "boundary_ambiguous": 5
+   }
   },
   "WA": {
    "status": "not_built",
@@ -476,12 +518,33 @@
    "sha256": null
   },
   "WY": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 388,
+   "parts": 1,
+   "files": [
+    {
+     "path": "WY.json",
+     "bytes": 188063,
+     "sha256": "2de3aed41a71fb613f614a3a7f8407da954a82efb67cfc2d6212326620f5fcd4",
+     "records": 388
+    }
+   ],
+   "bytes": 188063,
+   "sha256": "2de3aed41a71fb613f614a3a7f8407da954a82efb67cfc2d6212326620f5fcd4",
+   "retrieved_at": "2026-10-31T21:42:16Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "8153f66613eddd0ae0902b7ad5e8840c201b119b0498e577e92e0a99cb81d8d2",
+   "parse_counts": {
+    "numeric": 386,
+    "below_default": 0,
+    "unknown": 0,
+    "unparseable": 2
+   },
+   "quarantined": 8,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 8
+   }
   },
   "DC": {
    "status": "not_built",
