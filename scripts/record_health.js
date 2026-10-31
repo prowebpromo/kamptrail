@@ -24,7 +24,7 @@ const SOURCES = {
   blm: {label: 'BLM recreation sites', scope: 'national', files: () => ['data/sources/blm.json']},
   ridb_sites: {label: 'Recreation.gov site details', scope: 'national', files: () => ['data/campsites/ridb-sites.json']},
   services_extracts: {label: 'Expanded service extracts (Geofabrik/OpenStreetMap)', scope: 'state', files: s => [`data/sources/services/${s}.json`]},
-  rest_areas: {label: 'Official rest-area locations (TxDOT Texas pilot)', scope: 'state', files: s => [`data/rest-areas/${s}.json`]},
+  rest_areas: {label: 'Official state rest-area locations', scope: 'state', files: s => [`data/rest-areas/${s}.json`]},
   services: {label: 'Legacy dump, water and LPG (OpenStreetMap)', scope: 'national', files: () => ['data/services/services.json']},
 };
 const OUTCOMES = ['fresh', 'failed', 'skipped'];

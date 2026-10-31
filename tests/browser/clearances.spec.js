@@ -73,7 +73,7 @@ for(const viewport of [{width:1363,height:936},{width:390,height:844}]){
    await page.locator('#map').click({position:{x:2,y:40}});
   }
   await toggle('Services (7 categories)');await expect(page.locator('.kt-services-control')).toBeVisible();
-  await toggle('Official rest areas (Texas pilot)');await expect(page.locator('.kt-rest-control')).toBeVisible();
+  await toggle('Official rest areas');await expect(page.locator('.kt-rest-control')).toBeVisible();
   await toggle('Reported height tags (Rhode Island pilot)');await expect(page.locator('.kt-clearance-control')).toContainText('1 source height-tag record');
   // Reach the last service action through the panel's real internal scrolling.
   await page.getByRole('button',{name:'Retry service areas',exact:true}).click();

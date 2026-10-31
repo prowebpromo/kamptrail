@@ -239,6 +239,15 @@ jobs:
             echo 'Official rest-area refresh failed; saved locations kept.' >> "$GITHUB_STEP_SUMMARY"
             node scripts/record_health.js record rest_areas TX failed
           fi
+          # Other reviewed state publishers. One failed source keeps its saved file and never blocks the rest.
+          for region in $(python -c "import sys; sys.path.insert(0, 'scripts'); import fetch_official_rest_areas as f; print(' '.join(sorted(f.REGIONS)))"); do
+            if python scripts/fetch_official_rest_areas.py --region "$region"; then
+              node scripts/record_health.js record rest_areas "$region" fresh
+            else
+              echo "Official $region rest-area refresh failed; saved locations kept." >> "$GITHUB_STEP_SUMMARY"
+              node scripts/record_health.js record rest_areas "$region" failed
+            fi
+          done
       - name: Commit successful source and snapshot updates
         shell: bash
         run: |

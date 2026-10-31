@@ -2,14 +2,17 @@ const {test,expect}=require('@playwright/test');
 const AxeBuilder=require('@axe-core/playwright').default;
 const source=require('../../data/rest-areas/TX.json');
 const statePolicies=require('../../data/rest-areas/state-policies.json');
+const montana=require('../../data/rest-areas/MT.json');
 test.use({serviceWorkers:'block'});
 const row={...source.records[0],name:'Test rest area <img src=x>',coordinates:[-97.5623,30.9001]},data={...source,records:[row]};
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
-async function setup(page,context,{mobile=false,broken=false,policyBroken=false}={}){
+async function setup(page,context,{mobile=false,broken=false,policyBroken=false,regions=['TX']}={}){
   if(mobile)await page.setViewportSize({width:390,height:844});const calls=[],errors=[];page.on('pageerror',e=>errors.push(e.message));
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   const json=(r,d)=>r.fulfill({contentType:'application/json',body:JSON.stringify(d)});
   await page.route('**/data/rest-areas/TX.json',r=>{calls.push(r.request().url());return broken?r.fulfill({status:503,body:'unavailable'}):json(r,data);});
+  await page.route('**/data/rest-areas/index.json',r=>json(r,{version:1,regions:regions.map(region=>({region,file:region+'.json',records:1}))}));
+  await page.route('**/data/rest-areas/MT.json',r=>json(r,{...montana,records:[{...montana.records[0],coordinates:[-110.8961,47.3498]}]}));
   await page.route('**/data/rest-areas/state-policies.json',r=>policyBroken?r.fulfill({status:503,body:'unavailable'}):json(r,statePolicies));
   const camp={type:'Feature',geometry:{type:'Point',coordinates:[-97.56,30.90]},properties:{id:'camp:rest-test',name:'Nearby test campground',schema_version:3,type:'established',source:'US Forest Service',amenities:[],rig_friendly:[]}};
   await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'TX',count:1}],total_sites:1}));
@@ -22,7 +25,7 @@ async function setup(page,context,{mobile=false,broken=false,policyBroken=false}
   return{calls,errors};
 }
 async function show(page,{keyboard=false}={}){
- const checkbox=page.getByLabel('Official rest areas (Texas pilot)',{exact:true});
+ const checkbox=page.getByLabel('Official rest areas',{exact:true});
  if(keyboard)await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');else await page.locator('.leaflet-control-layers').hover();
  // Leaflet suppresses clicks for one task while expanding the menu.
  await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,0)));
@@ -42,11 +45,21 @@ test('mobile controls and popup are accessible, and an outside viewport reports 
   expect((await new AxeBuilder({page}).include('.kt-rest-control').analyze()).violations).toEqual([]);const p=await popup(page);await expect(p).toBeVisible();expect((await new AxeBuilder({page}).include('.kt-rest-popup').analyze()).violations).toEqual([]);
   await expect(c).toBeHidden();await expect(page.getByRole('button',{name:'Map layers',exact:true})).toBeHidden();await expect(page.locator('.kt-off-toggle')).toBeHidden();
   try{await page.getByRole('button',{name:'Close popup',exact:true}).click({timeout:5000});}catch(error){console.log('Mobile rest-area layout',await page.evaluate(()=>['#map','.leaflet-popup','.leaflet-popup-close-button','.kt-off-toggle','.kt-rest-control'].map(selector=>{const element=document.querySelector(selector),r=element?.getBoundingClientRect();return{selector,box:r?{x:r.x,y:r.y,width:r.width,height:r.height}:null,display:element?getComputedStyle(element).display:null};})));throw error;}
-  await expect(c).toBeVisible();await expect(page.getByRole('button',{name:'Map layers',exact:true})).toBeVisible();await expect(page.locator('.kt-off-toggle')).toBeVisible();await page.evaluate(()=>map.setView([40.75,-111.88],10));await expect(c).toContainText('0 official rest-area locations');await expect(c).toContainText('other regions are not covered');expect(errors).toEqual([]);
+  await expect(c).toBeVisible();await expect(page.getByRole('button',{name:'Map layers',exact:true})).toBeVisible();await expect(page.locator('.kt-off-toggle')).toBeVisible();await page.evaluate(()=>map.setView([40.75,-111.88],10));await expect(c).toContainText('0 official rest-area locations');await expect(c).toContainText('other states are not covered');expect(errors).toEqual([]);
 });
 test('source failure and offline views remain unknown and support an explicit retry',async({page,context})=>{
   const {errors}=await setup(page,context,{broken:true});await show(page);const c=page.locator('.kt-rest-control');await expect(c).toContainText('catalogue unavailable');await page.route('**/data/rest-areas/TX.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(data)}));await c.getByRole('button',{name:'Retry official rest areas'}).click();await expect(c).toContainText('1 official rest-area location');await context.setOffline(true);await expect(c).toContainText('Offline');await expect(c).toContainText('permission are unknown');expect(errors).toEqual([]);
 });
 test('state policy failure keeps sourced locations usable with explicit unknown policy',async({page,context})=>{
   const {errors}=await setup(page,context,{policyBroken:true});await show(page);await expect(page.locator('.kt-rest-control')).toContainText('1 official rest-area location');const p=await popup(page);await expect(p).toContainText('State rest-area policy unavailable');await expect(p.getByRole('link',{name:'State policy source 1',exact:true})).toHaveCount(0);expect(errors).toEqual([]);
+});
+
+test('a second official region shows its own publisher, scoped policy and saved coordinate identity',async({page,context})=>{
+  const {errors}=await setup(page,context,{regions:['TX','MT']});await show(page);await page.evaluate(()=>map.setView([47.3498,-110.8961],10));
+  const c=page.locator('.kt-rest-control');await expect(c).toContainText('1 official rest-area location');await expect(c).toContainText('Coverage: Montana, Texas');
+  const p=await popup(page);await expect(p).toContainText(montana.records[0].name);await expect(p).toContainText('Montana Department of Transportation location list retrieved');
+  await expect(p).toContainText('does not establish permission to park or sleep overnight');await expect(p).toContainText('overnight parking Allowed');await expect(p).toContainText('camping Prohibited');await expect(p).toContainText('Maximum stay: 12 hours');
+  await expect(p.getByRole('link',{name:'Montana Department of Transportation place source',exact:true})).toHaveAttribute('href','https://mdt.mt.gov/travinfo/restarea.aspx');
+  await p.getByRole('button',{name:'Save rest-area stop',exact:true}).click();const saved=await page.evaluate(()=>KampTrailTrip.getStops());expect(saved[0].feature.properties.id).toBe('spot:47.34980,-110.89610');expect(saved[0].feature.properties.source).toBe('Montana Department of Transportation');
+  expect(errors).toEqual([]);
 });
