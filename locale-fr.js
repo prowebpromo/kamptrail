@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.27.0', messages:{
+  global.KampTrailI18nFr = {version:'2.28.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1640,6 +1640,14 @@
   "Type: {type}": "Type : {type}",
   "Hookups: {hookups}": "Raccordements : {hookups}",
   "Amenities: {amenities}": "Équipements : {amenities}",
+  "California": "Californie",
+  "Iowa": "Iowa",
+  "Indiana": "Indiana",
+  "Kansas": "Kansas",
+  "Michigan": "Michigan",
+  "Nevada": "Nevada",
+  "South Dakota": "Dakota du Sud",
+  "Washington": "Washington",
   "Cell coverage:": "Couverture cellulaire :",
   "Camper signal reports are what visitors experienced on the visit date, not a prediction.": "Les rapports de signal des campeurs décrivent ce que les visiteurs ont constaté à la date de leur visite, pas une prévision.",
   "visit {date}": "visite {date}",
