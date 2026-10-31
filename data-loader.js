@@ -229,6 +229,27 @@
     if(p.fee_status==='paid')return p.cost===null?t('Paid · amount not verified'):t('${amount}/night (source reported)',{amount:p.cost});
     return t("Fee not verified");
   }
+  // Cell coverage: dated camper signal reports beside a link to the FCC public map. No carrier prediction.
+  const FCC_MAP='https://broadbandmap.fcc.gov/home';
+  function signalReports(p){
+    const d=window.KampTrailDiscovery,s=d?.summary(p);if(!s||!d.CARRIERS||!d.SIGNAL)return [];
+    const rows=[];
+    for(const g of s.observations||[])for(const x of g.values?.signals||[]){
+      if(!d.CARRIERS[x.carrier]||!d.SIGNAL[x.signal])continue;
+      rows.push({carrier:d.CARRIERS[x.carrier],signal:d.SIGNAL[x.signal],setting:(d.ENVIRONMENTS||{})[x.environment]||'',visit:g.latest_visit,count:g.count});
+    }
+    return rows.sort((a,b)=>b.visit.localeCompare(a.visit)||a.carrier.localeCompare(b.carrier));
+  }
+  function coverageHTML(p,lat,lng,siteId){
+    const rows=signalReports(p).slice(0,6);
+    const list=rows.length?`<ul class="kt-signal-list">${rows.map(r=>`<li>${esc(r.carrier)}: ${esc(r.signal)}${r.setting?` (${esc(r.setting)})`:''} · ${esc(t("visit {date}",{date:r.visit}))} · ${esc(t(r.count===1?"{count} report":"{count} reports",{count:r.count}))}</li>`).join('')}</ul>`:`<p class="kt-fine">${t("No camper signal reports yet.")}</p>`;
+    return `<div class="kt-coverage"><strong>${t("Cell coverage:")}</strong>
+      <p class="kt-fine">${t("Camper signal reports are what visitors experienced on the visit date, not a prediction.")}</p>${list}
+      <p><a href="${FCC_MAP}" target="_blank" rel="noopener noreferrer">${t("Check carrier coverage (FCC map)")}</a>
+      <button type="button" class="kt-linkbtn" data-kt-action="copycoords" data-siteid="${siteId}">${t("Copy coordinates")}</button>
+      <span class="kt-copy-status" role="status" aria-live="polite"></span></p>
+      <p class="kt-fine">${t("On the FCC map, choose Mobile Broadband and search near {coords}. It shows coverage modeled by each carrier, not a guarantee of service.",{coords:`${lat.toFixed(5)}, ${lng.toFixed(5)}`})}</p></div>`;
+  }
   function rvText(p) {
     if(!p.site_count)return '';
     const parts=[];
@@ -305,6 +326,7 @@
       ${p.rating!==null?`<div><strong>${t("Source rating:")}</strong> ${p.rating}/5${p.reviews_count?` (${p.reviews_count}${t(' reviews')})`:''}</div>`:''}
       <p style="font-size:11px;line-height:1.4">${t("Confirm current fees, access, and camping rules with the operator before traveling.")}${p.attributes_unverified?t(" Legacy inferred fees and amenities are hidden."):''}</p>
       ${sourceURL?`<p><a href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer">${t("Check source / operator")}</a></p>`:''}
+      ${coverageHTML(p,lat,lng,siteId)}
       <div class="kt-popup-actions">
         <button type="button" data-kt-action="trip" data-siteid="${siteId}">${t("Save stop")}</button>
         <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${lat},${lng}" target="_blank" rel="noopener noreferrer">${t("Directions")}</a>
@@ -432,7 +454,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.26.0',
+    version:'2.27.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -560,6 +582,9 @@
       if(kind==='trip'){api.addToTrip(id);return;}
       const site=api.getCampsiteById(id);if(!site)return;
       const [lng,lat]=site.geometry.coordinates;
+      if(kind==='copycoords'){const text=`${lat.toFixed(5)}, ${lng.toFixed(5)}`,status=action.parentElement?.querySelector('.kt-copy-status');
+        const done=ok=>{if(status)status.textContent=ok?t("Coordinates copied."):t("Copy unavailable. Coordinates: {coords}",{coords:text});};
+        try{navigator.clipboard.writeText(text).then(()=>done(true),()=>done(false));}catch{done(false);}return;}
       if(kind==='alerts'){window.KampTrailEnvironment?.openAlerts(lat,lng);return;}
       if(kind==='environment'){window.KampTrailEnvironment?.showNear(lat,lng);return;}
       if(kind==='roads'){window.KampTrailMVUM?.showNear(lat,lng);return;}

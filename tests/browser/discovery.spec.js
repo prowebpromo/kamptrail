@@ -57,3 +57,26 @@ test('review sub-ratings stay optional and explicit, and detail summaries show l
  await page.getByRole('button',{name:'Write a review',exact:true}).click();const d=page.getByRole('dialog',{name:'Write a review'});await expect(d.getByLabel('Quietness',{exact:true})).toHaveValue('');await d.getByLabel('Noise',{exact:true}).selectOption('quiet');await expect(d.getByLabel('Quietness',{exact:true})).toHaveValue('');
  await d.getByLabel('Public name',{exact:true}).fill('Numeric fixture camper');await d.getByLabel('Overall rating',{exact:true}).selectOption('4');await d.getByLabel('Date visited',{exact:true}).fill(visited);await d.getByLabel('Quietness',{exact:true}).selectOption('5');await d.getByLabel('Your experience',{exact:true}).fill('My own visit was quiet and the optional score reflects that experience.');await d.locator('[name=firsthand]').check();await d.getByRole('button',{name:'Send for review',exact:true}).click();await expect(page.getByRole('dialog',{name:'Review received'})).toBeVisible();expect(payload).toContain('{"noise":"quiet","scores":{"quietness":5}}');expect(payload).not.toContain('"comfort":');expect(payload).not.toContain('"shade":');
 });
+test('campsite popup shows dated camper signal reports beside the FCC map link and copies coordinates',async({page,context})=>{
+ let ids=[];const visited='2026-09-12';
+ await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{[ids[0]]:{rating_count:2,rating_sum:8,latest_visit:visited,observations:[{values:{signals:[{carrier:'att',signal:'usable',environment:'inside_rv'},{carrier:'verizon',signal:'none',environment:'outdoors'}]},count:2,latest_visit:visited}]}}})}));
+ await context.grantPermissions(['clipboard-read','clipboard-write']);
+ await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
+ await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ ids=await page.evaluate(()=>KampTrailData.getVisibleCampsites().slice(0,2).map(s=>s.properties.id));
+ await page.evaluate(()=>KampTrailDiscovery.load(true));
+ await page.waitForFunction(id=>!!KampTrailDiscovery.summary(KampTrailData.getCampsiteById(id).properties),ids[0]);
+ await page.evaluate(id=>KampTrailData.focusCampsite(id),ids[0]);
+ const popup=page.locator('.leaflet-popup').last();const box=popup.locator('.kt-coverage');
+ await expect(box).toContainText('AT&T: Usable');await expect(box).toContainText('visit 2026-09-12');await expect(box).toContainText('2 reports');await expect(box).toContainText('Verizon: No service');
+ const link=box.getByRole('link',{name:'Check carrier coverage (FCC map)'});
+ await expect(link).toHaveAttribute('href','https://broadbandmap.fcc.gov/home');await expect(link).toHaveAttribute('target','_blank');await expect(link).toHaveAttribute('rel',/noopener/);
+ const coords=await page.evaluate(id=>{const [lng,lat]=KampTrailData.getCampsiteById(id).geometry.coordinates;return `${lat.toFixed(5)}, ${lng.toFixed(5)}`;},ids[0]);
+ await expect(box).toContainText(coords);
+ await box.getByRole('button',{name:'Copy coordinates'}).click();
+ await expect(box.locator('.kt-copy-status')).toHaveText('Coordinates copied.');
+ expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(coords);
+ await page.evaluate(id=>KampTrailData.focusCampsite(id),ids[1]);
+ await expect(page.locator('.leaflet-popup').last().locator('.kt-coverage')).toContainText('No camper signal reports yet.');
+});
