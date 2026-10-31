@@ -253,6 +253,7 @@ Escalate to the owner only for:
 | Date | Release | Score | Change | Evidence |
 |---|---|---|---|---|
 | 2026-10-31 | 2.29.1 | 99/109 = 90.8 | Baseline for these contracts | `docs/replica/parity-queue.md` |
+| 2026-10-31 | 2.30.0 | 100/109 = 91.7 | R2 cell-signal filter and R4 road-difficulty filter partial to yes (+0.5 each) after verified live 2.30.0 and an end-to-end submission-to-filter test | `docs/replica/evidence/2026-10-31-live-2.30.0.txt`, PR #146 run 41239742146 |
 
 ## Reproducible score calculation
 

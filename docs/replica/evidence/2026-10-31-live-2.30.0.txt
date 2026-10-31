@@ -1,0 +1,21 @@
+PASS  release.json matches merge | 4a69bf4f8ae52758ccfe4ef895bdb4f0e832407f
+PASS  api/health.php 200 | 200
+PASS  page version 2.30.0
+PASS  desktop: approach maximum and unknown handling | {"upModEasy":true,"upModDiff":false,"easyOnlyMod":false,"unknown":false,"radioUnknown":false}
+PASS  desktop: report without technology never matches a technology filter
+PASS  desktop: approach options | Any / not filtering / Easy only / Up to moderate / Up to difficult
+PASS  desktop: saved approach value upgraded as "Up to moderate"
+PASS  desktop: technology filter present
+PASS  desktop: signal mapping note visible
+PASS  desktop: saved stop survives upgrade
+PASS  desktop: no page errors
+PASS  mobile: approach maximum and unknown handling | {"upModEasy":true,"upModDiff":false,"easyOnlyMod":false,"unknown":false,"radioUnknown":false}
+PASS  mobile: report without technology never matches a technology filter
+PASS  mobile: approach options | Any / not filtering / Easy only / Up to moderate / Up to difficult
+PASS  mobile: saved approach value upgraded as "Up to moderate"
+PASS  mobile: technology filter present
+PASS  mobile: signal mapping note visible
+PASS  mobile: saved stop survives upgrade
+PASS  mobile: no page errors
+
+SUMMARY pass=19 fail=0
