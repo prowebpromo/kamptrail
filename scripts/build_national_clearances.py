@@ -675,7 +675,7 @@ def build_index(tiles, store, protected=PROTECTED):
     failures = {r: f for r, f in sorted(store['failures'].items()) if r not in protected}
     return {
         'version': SCHEMA_VERSION, 'schema': SCHEMA, 'kind': 'clearance_candidates_manifest', **HEADER,
-        'terminology': 'Records are clearance candidates. Each is an OSM object with a height tag. status and comparable say how far the value can be compared. None is a verified clearance.',
+        'terminology': 'Records are clearance candidates. Each is an OSM object with a height tag. status and comparable say how far the value can be compared. Their meaning is not established until validation.',
         'limits': {'max_file_bytes': MAX_FILE_BYTES, 'max_file_records': MAX_FILE_RECORDS, 'max_file_vertices': MAX_FILE_VERTICES, 'shrink_ratio': SHRINK_RATIO},
         'grid': GRID,
         'states_protected': {r: dict(v) for r, v in sorted(protected.items())},
