@@ -233,3 +233,4 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 .kt-review-video{margin:14px 0;padding:12px;border:1px solid var(--c-border);border-radius:8px}.kt-review-video h5{font-size:15px;margin:0 0 8px}.kt-review-video .btn{display:block;margin-top:12px}.kt-video-player{display:block;width:100%;aspect-ratio:16/9;min-height:200px;border:0;margin-top:12px}
 
 .kt-off-readiness{margin:0;padding-left:17px;display:grid;gap:7px;overflow-wrap:anywhere}.kt-off-panel{max-height:min(70vh,560px);overflow:auto;overscroll-behavior:contain}
+.kt-coverage{margin:8px 0;padding-top:6px;border-top:1px solid rgba(0,0,0,.12)}.kt-coverage p{margin:4px 0}.kt-signal-list{margin:4px 0;padding-left:18px;font-size:12px}
