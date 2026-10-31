@@ -29,7 +29,7 @@ The linked single-home contracts own policy details, frozen thresholds, fixtures
 
 ## External dependency and persistent limits
 
-FCC coverage stays parked pending the existing access/support case. No credential retries are part of this queue. Observed camper signal reports and cell locations do not establish modeled usable carrier coverage.
+FCC coverage stays parked pending the existing access/support case. Owner decision, 2026-10-31: manual bulk download is rejected as unmanageable, so the API is the only path (`docs/FCC_COVERAGE_ACCESS.md`). A $0 hosted openrouteservice pilot passed the height test but excludes truck-only roads (`docs/RV_ROUTER_ASSESSMENT_2026-10-30.md`, addendum). No credential retries are part of this queue. Observed camper signal reports and cell locations do not establish modeled usable carrier coverage.
 
 Automatic account synchronization, social/community features, notifications and native navigation remain excluded or absent full-product areas. Preserve the historical scope caveats in the comparison reports. The real-phone offline check cannot be completed from this workspace.
 
