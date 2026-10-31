@@ -4664,7 +4664,9 @@
             "source_record_id": "osm:node:3131926178",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
@@ -4674,7 +4676,9 @@
             "source_record_id": "osm:node:3131926179",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
@@ -4684,7 +4688,9 @@
             "source_record_id": "osm:node:4694576424",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
@@ -9377,7 +9383,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:777172302",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "wlan",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/777172302"
+          }
+        ]
       }
     },
     {
@@ -10114,15 +10134,11 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "no",
-        "internet_access": "wlan",
         "name": "Naval Air Station Key West Campground",
         "nudism": "no",
         "operator": "United States Navy MWR",
-        "power_supply": "yes",
         "reservation": "required",
-        "sanitary_dump_station": "customers",
         "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 8021890291,
@@ -10155,8 +10171,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "private",
+              "drinking_water": "yes",
               "fee": "yes",
-              "internet_access:fee": "no"
+              "internet_access": "wlan",
+              "internet_access:fee": "no",
+              "power_supply": "yes",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
@@ -10824,7 +10844,10 @@
             "source_record_id": "osm:way:1067979482",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "customers"
+              "internet_access": "yes",
+              "internet_access:fee": "customers",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
@@ -15982,7 +16005,6 @@
         "caravans": "yes",
         "fee": "yes",
         "name": "Blackwater River State Park Campground",
-        "sanitary_dump_station": "yes",
         "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 13317770830,
@@ -16016,7 +16038,8 @@
             "source_record_id": "osm:way:495985131",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
@@ -16854,7 +16877,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13696700502",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "check_date": "2026-03-31"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13696700502"
+          }
+        ]
       }
     },
     {
@@ -28611,8 +28646,6 @@
         "addr:street": "Southwest Old Saint Augustine Road",
         "name": "Ragan's Family Campground",
         "phone": "+1-850-973-8269",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tourism": "camp_site",
         "website": "https://ragansfamilycampground.com",
         "osm_id": 1112606664,
@@ -28639,7 +28672,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1112607587",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1112607587"
+          }
+        ]
       }
     },
     {

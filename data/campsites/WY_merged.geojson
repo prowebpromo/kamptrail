@@ -2730,17 +2730,13 @@
         "backcountry": "no",
         "camp_site": "standard",
         "caravans": "no",
-        "drinking_water": "yes",
-        "internet_access": "no",
         "motor_vehicle": "yes",
         "name": "Cave Falls Campground",
         "note": "pit toilets, water from artisian well",
-        "openfire": "yes",
         "reservation": "no",
         "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
-        "washing_machine": "no",
         "id": "ridb:239007",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2772,7 +2768,22 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1185551384",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "internet_access": "no",
+              "openfire": "yes",
+              "washing_machine": "no"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1185551384"
+          }
+        ]
       }
     },
     {
@@ -3045,10 +3056,8 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "Prior Flat Campground",
         "operator": "Bureau of Land Management",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:14713",
         "source": "recreation.gov",
@@ -3081,7 +3090,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:390105260",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/390105260"
+          }
+        ]
       }
     },
     {
@@ -8921,7 +8943,8 @@
             "source_record_id": "osm:node:3064201132",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -9203,7 +9226,8 @@
             "source_record_id": "osm:node:3064201347",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -9337,7 +9361,8 @@
             "source_record_id": "osm:node:3064201351",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -25635,12 +25660,8 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "no",
         "name": "Reno Campground 2",
-        "power_supply": "yes",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 516776905,
         "osm_type": "way",
@@ -25665,7 +25686,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:516776906",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no",
+              "power_supply": "yes",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/516776906"
+          }
+        ]
       }
     },
     {

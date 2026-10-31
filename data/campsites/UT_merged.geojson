@@ -12,12 +12,9 @@
       },
       "properties": {
         "alt_name": "People's Pasture",
-        "drinking_water": "no",
         "name": "Temple Mountain Campground East",
         "operator": "Bureau of Land Management",
         "operator:wikidata": "Q1010556",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
         "tourism": "caravan_site",
         "website": "https://www.blm.gov/visit/temple-mountain-campground-east",
         "id": "ridb:257029",
@@ -57,7 +54,10 @@
             "source_record_id": "osm:way:326751618",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -1053,19 +1053,13 @@
         "capacity": "7",
         "caravans": "yes",
         "description": "<h2>Overview</h2>\n<p>Elkhorn Campground is located 20 miles northeast of Loa, Utah, on the scenic Thousand Lake Mountain at an elevation of approximately 9300 feet. Visitors enjoy exploring local trails on foot, bike or off-road vehicle.</p>\n<p><a href=\"https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd1203403.pdf\" rel=\"nofollow\">View Elkhorn Campground Map</a> </p>\n<h2>Recreation</h2>\nMiles of trails, including the Great Western Trail, crisscross the area, offering excellent hiking, biking and off-roading opportunities. Numerous sparkling alpine lakes provide great fishing and scenery.<h2>Facilities</h2>\n<p>The campground contains one group site and a pavilion that can accommodate up to 75 people, with large tables, grills, Dutch oven cooking surfaces and a fire ring with benches. <br><br><br>Vault toilets are provided. Roads and parking spurs are gravel. Elkhorn Ranger Station is just across a meadow from the site.  Drinking water has been shut down for the season</p>\n<h2>Natural Features</h2>\nA thick stand of aspen, pine, and spruce trees covers the campground, offering pleasant shade. Summer wildflowers are abundant in the surrounding meadow. ",
-        "drinking_water": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "ELKHORN CAMPGROUND",
         "nudism": "no",
         "operator": "USFS",
-        "power_supply": "no",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130614",
@@ -1104,7 +1098,13 @@
             "source_record_id": "osm:relation:17391825",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -5008,17 +5008,12 @@
         "capacity": "16",
         "caravans": "yes",
         "description": "<p>Campground. This is a favorite for campers. There is trout fishing nearby at Lower Bowns Reservoir and Lower Pleasant Creek. RVs over 25 feet long are not advised.  Water will be turned off at threat of first frost.  Campground closes 10/15/20 or threat of first frost.</p>",
-        "drinking_water": "no",
         "group_only": "no",
-        "internet_access": "no",
         "nudism": "no",
         "opening_hours": "May - Oct",
         "operator": "USFS",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "uuid": "sonora_20130614",
         "type": null,
         "cost": null,
@@ -5047,7 +5042,12 @@
             "source_record_id": "osm:way:330929209",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "internet_access": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -5364,12 +5364,10 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "no",
         "name": "Temple Moutain Campground West",
         "operator": "Bureau of Land Management",
         "operator:wikidata": "Q1010556",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "type": "established",
         "website": "https://www.blm.gov/visit/temple-mountain-campground-west",
@@ -5409,7 +5407,9 @@
             "source_record_id": "osm:relation:14635252",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -5646,13 +5646,9 @@
         "operator": "United States Forest Service",
         "operator:short": "USFS",
         "operator:type": "government",
-        "picnic_table": "yes",
         "reservation": "required",
-        "sanitary_dump_station": "no",
-        "shower": "yes",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130614",
         "website": "https://www.fs.usda.gov/recarea/ashley/recreation/camping-cabins/recarea/?recid=72173&actid=29",
@@ -5693,7 +5689,11 @@
             "source_record_id": "osm:way:253081746",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "customers"
+              "access": "customers",
+              "picnic_table": "yes",
+              "sanitary_dump_station": "no",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -6396,7 +6396,6 @@
       "properties": {
         "name": "Bridger Campground",
         "reservation": "no",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:10150488",
         "source": "recreation.gov",
@@ -6435,7 +6434,8 @@
             "source_record_id": "osm:way:998890683",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -8296,19 +8296,13 @@
         "backcountry": "no",
         "capacity": "7",
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "SUNGLOW CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
-        "power_supply": "no",
         "reservation": "recommended",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130614",
@@ -8342,7 +8336,24 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:19096381",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "internet_access": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/19096381"
+          }
+        ]
       }
     },
     {
@@ -9278,17 +9289,12 @@
         "backcountry": "no",
         "capacity": "53",
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "DEVILS GARDEN CAMPGROUND",
         "nudism": "no",
         "operator": "National Park Service",
         "reservation": "Mar-Oct yes; no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/arch/planyourvisit/camping.htm",
         "id": "ridb:234059",
@@ -9322,7 +9328,23 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:859484025",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "internet_access": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/859484025"
+          }
+        ]
       }
     },
     {
@@ -9337,14 +9359,10 @@
       "properties": {
         "capacity": "178",
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "WATCHMAN CAMPGROUND",
         "operator": "National Park Service",
         "operator:wikipedia": "en:National Park Service",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "type": "established",
         "website": "https://www.nps.gov/zion/planyourvisit/watchman-campground.htm",
@@ -9385,7 +9403,11 @@
             "source_record_id": "osm:relation:16219625",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -11370,15 +11392,10 @@
       "properties": {
         "capacity": "71",
         "caravans": "yes",
-        "drinking_water": "yes",
-        "internet_access": "no",
         "name": "FRUITA CAMPGROUND",
         "nudism": "no",
         "operator": "National Park Service",
-        "power_supply": "no",
         "reservation": "Mar 1-Oct 1 yes; no",
-        "sanitary_dump_station": "customers",
-        "shower": "no",
         "tents": "yes",
         "tourism": "caravan_site",
         "website": "https://www.nps.gov/care/planyourvisit/fruitacampground.htm",
@@ -11420,7 +11437,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "20.00 USD",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "customers",
+              "shower": "no"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -11770,7 +11792,9 @@
             "source_record_id": "osm:node:386267997",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -11780,7 +11804,9 @@
             "source_record_id": "osm:node:386268006",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "internet_access": "no",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -13340,20 +13366,13 @@
         "capacity": "36",
         "caravans": "yes",
         "description": "See web site for specific opening dates each season.",
-        "drinking_water": "no",
-        "internet_access": "no",
         "name": "Little Mill Campground",
-        "openfire": "yes",
         "opening_hours": "May-Oct 00:00-24:00; Nov-Apr off",
         "operator": "Utah Recreation",
         "payment:cash": "yes",
         "phone": "+1-801-785-3563",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
-        "shower": "yes",
         "source": "openstreetmap",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "type": null,
         "website": "https://www.fs.usda.gov/recarea/uwcnf/recarea/?recid=9902",
@@ -13391,7 +13410,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "internet_access": "no",
+              "openfire": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -24301,12 +24327,9 @@
       "properties": {
         "description": "There are a couple Teepees, a few cabins and 2 RV hookups here. The RV hookups are outside the village. There is a communal refrigerator and bathrooms with hot showers.",
         "email": "aaronholiday1989@gmail.com",
-        "internet_access": "wlan",
         "mobile": "+1 435-444-5974",
         "name": "Tipi Village",
-        "power_supply": "yes",
         "reservation": "recommended",
-        "sanitary_dump_station": "yes",
         "tourism": "camp_site",
         "osm_id": 8910380509,
         "osm_type": "node",
@@ -24343,7 +24366,10 @@
             "source_record_id": "osm:node:11263563978",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "customers"
+              "internet_access": "wlan",
+              "internet_access:fee": "customers",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -47884,7 +47910,37 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13017864626",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "seasonal",
+              "internet_access": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "no"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13017864626"
+          },
+          {
+            "source_record_id": "osm:node:13017864627",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "seasonal",
+              "internet_access": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "no"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13017864627"
+          }
+        ]
       }
     },
     {
@@ -62379,7 +62435,6 @@
         "fee": "yes",
         "name": "Group Area 1",
         "operator": "Utah County Public Works",
-        "power_supply": "no",
         "reservation": "required",
         "shower": "no",
         "tents": "yes",
@@ -62404,7 +62459,6 @@
           "osm:way:737899424",
           "osm:way:737899425"
         ],
-        "sanitary_dump_station": "no",
         "sources": [
           "openstreetmap"
         ],
@@ -62424,7 +62478,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62435,7 +62494,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62445,7 +62509,12 @@
             "source_record_id": "osm:way:737899394",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "drinking_water": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62456,7 +62525,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62466,7 +62540,12 @@
             "source_record_id": "osm:way:737899401",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "drinking_water": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62477,7 +62556,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62488,7 +62571,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62499,7 +62586,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62510,7 +62601,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -62572,7 +62667,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -63831,7 +63930,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
@@ -74165,6 +74269,7 @@
             "source_record_id": "osm:way:1422360278",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "campground",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",
@@ -74218,6 +74323,7 @@
             "source_record_id": "osm:way:1422360276",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "amenity": "campground",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:37:36Z",

@@ -6010,7 +6010,6 @@
         "name": "TEJAS PARK",
         "phone": "+1-512-930-5253",
         "reservation": "yes",
-        "shower": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:234643",
@@ -6044,7 +6043,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:337710769",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "shower": "no"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/337710769"
+          }
+        ]
       }
     },
     {
@@ -6660,7 +6671,6 @@
         "internet_access": "wlan",
         "name": "Deer Spring RV Park",
         "phone": "+1-575-687-3464",
-        "sanitary_dump_station": "yes",
         "tourism": "caravan_site",
         "website": "https://www.deerspringrvpark.net/",
         "osm_id": 143275969,
@@ -6693,7 +6703,9 @@
             "source_record_id": "osm:way:520727639",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "wlan",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:36:27Z",
             "source_updated_at": null,
@@ -10144,14 +10156,11 @@
         ]
       },
       "properties": {
-        "drinking_water": "no",
         "name": "James Canyon Campground",
         "operator": "USFS",
-        "picnic_table": "yes",
         "reservation": "no",
         "static_caravans": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lincoln/recarea/?recid=34174",
         "osm_id": 2332493731,
@@ -10185,7 +10194,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:36:27Z",
             "source_updated_at": null,
@@ -16271,10 +16283,8 @@
       "properties": {
         "brand": "Thousand Trails",
         "brand:wikidata": "Q7797073",
-        "internet_access": "yes",
         "name": "Thousand Trails Lake Conroe RV & Camping Resort",
         "phone": "+1-936-856-7888",
-        "power_supply": "yes",
         "tourism": "caravan_site",
         "website": "https://thousandtrails.com/texas/lake-conroe-rv-camping-resort/",
         "osm_id": 3520263309,
@@ -16308,7 +16318,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:345830525",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "yes",
+              "power_supply": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/345830525"
+          }
+        ]
       }
     },
     {
@@ -51856,7 +51879,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1319634913",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1319634913"
+          }
+        ]
       }
     },
     {
@@ -57684,7 +57720,6 @@
       "properties": {
         "email": "mingorv@sbcglobal.net",
         "fax": "+1-918-836-7371",
-        "internet_access": "wlan",
         "landuse": "residential",
         "name": "Mingo RV Park",
         "phone": "+1-918-832-8824",
@@ -57721,6 +57756,7 @@
             "source_record_id": "osm:relation:2715197",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "internet_access": "wlan",
               "internet_access:fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:36:27Z",
@@ -63502,7 +63538,6 @@
         "name": "Campground D",
         "operator": "Devils Den State Park",
         "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tents": "yes",
         "tourism": "caravan_site",
         "osm_id": 412180134,
@@ -63537,7 +63572,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "32",
-              "internet_access:fee": "no"
+              "internet_access": "wlan",
+              "internet_access:fee": "no",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:36:27Z",
             "source_updated_at": null,

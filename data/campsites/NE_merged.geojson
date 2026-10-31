@@ -4756,7 +4756,10 @@
             "source_record_id": "osm:node:11701123969",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "drinking_water": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:12:30Z",
             "source_updated_at": null,
@@ -5381,7 +5384,9 @@
             "fields": {
               "access": "yes",
               "charge": "$10/night",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:12:30Z",
             "source_updated_at": null,

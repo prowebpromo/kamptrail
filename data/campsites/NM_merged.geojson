@@ -224,7 +224,6 @@
         "backcountry": "no",
         "capacity": "12",
         "caravans": "yes",
-        "drinking_water": "no",
         "ele": "2206",
         "group_only": "no",
         "horse": "yes",
@@ -233,11 +232,8 @@
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1975&actid=29",
@@ -277,7 +273,11 @@
             "source_record_id": "osm:node:2333697974",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -297,7 +297,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "RIO DE LAS VACAS CAMPGROUND",
         "operator": "USFS",
         "reservation": "required",
@@ -342,6 +341,7 @@
             "source_record_id": "osm:node:2332493797",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -889,19 +889,15 @@
       "properties": {
         "backcountry": "yes",
         "caravans": "no",
-        "drinking_water": "no",
         "ele": "2052",
         "group_only": "no",
         "name": "Black Canyon Campground - Lower",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "sites": "3",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "vault",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1994&actid=29",
@@ -943,7 +939,11 @@
             "source_record_id": "osm:node:2332493688",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "vault"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -953,7 +953,11 @@
             "source_record_id": "osm:node:2332493689",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "vault"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -2303,22 +2307,14 @@
         "backcountry": "yes",
         "caravans": "yes",
         "contact:campendium": "http://www.campendium.com/chosa-campground",
-        "drinking_water": "no",
         "image": "http://www.nps.gov/common/uploads/cropped_image/primary/B5F856BB-0F22-2401-EE8F10DDA63B8B30.jpg",
-        "internet_access": "cellular",
         "name": "Chosa Campground",
-        "openfire": "no",
         "operator": "Bureau of Land Management",
         "parking": "yes",
-        "picnic_table": "no",
-        "power_supply": "no",
         "reservation": "no",
-        "shower": "no",
         "surface": "dirt",
         "tents": "yes",
-        "toilets": "no",
         "tourism": "camp_site",
-        "waste_basket": "yes",
         "website": "https://www.nps.gov/places/gumo_chosa_campground_blm.htm",
         "id": "ridb:10278188",
         "source": "recreation.gov",
@@ -2358,7 +2354,15 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "internet_access": "cellular",
+              "openfire": "no",
+              "picnic_table": "no",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "no",
+              "waste_basket": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -2804,21 +2808,16 @@
       },
       "properties": {
         "backcountry": "no",
-        "bbq": "yes",
         "capacity": "10",
         "caravans": "yes",
-        "drinking_water": "no",
         "ele": "1953",
         "group_only": "no",
         "name": "Apache Creek Campground",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1984&actid=29",
@@ -2858,7 +2857,12 @@
             "source_record_id": "osm:way:747965972",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bbq": "yes",
+              "drinking_water": "no",
+              "fee": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -3105,11 +3109,8 @@
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1990&actid=29",
@@ -3149,7 +3150,10 @@
             "source_record_id": "osm:way:746692166",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "fee": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -3484,7 +3488,6 @@
         "internet_access": "wlan",
         "name": "Deer Spring RV Park",
         "phone": "+1-575-687-3464",
-        "sanitary_dump_station": "yes",
         "tourism": "caravan_site",
         "website": "https://www.deerspringrvpark.net/",
         "osm_id": 143275969,
@@ -3517,7 +3520,9 @@
             "source_record_id": "osm:way:520727639",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "wlan",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -8088,14 +8093,11 @@
         ]
       },
       "properties": {
-        "drinking_water": "no",
         "name": "James Canyon Campground",
         "operator": "USFS",
-        "picnic_table": "yes",
         "reservation": "no",
         "static_caravans": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lincoln/recarea/?recid=34174",
         "osm_id": 2332493731,
@@ -8129,7 +8131,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -11846,7 +11851,6 @@
         "internet_access:fee": "no",
         "name": "Rio Chama RV Park",
         "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tourism": "caravan_site",
         "osm_id": 5815873100,
         "osm_type": "node",
@@ -11882,7 +11886,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
-              "internet_access:fee": "no"
+              "internet_access": "wlan",
+              "internet_access:fee": "no",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,

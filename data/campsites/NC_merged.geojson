@@ -241,25 +241,17 @@
         ]
       },
       "properties": {
-        "amenity": "charging_station",
         "backcountry": "no",
         "caravans": "yes",
         "dog": "leashed",
-        "drinking_water": "yes",
         "group_only": "no",
         "name": "CEDAR POINT CAMPGROUND",
         "nudism": "no",
         "opening_hours": "24/7",
         "operator": "National Forest Service",
-        "power_supply": "yes",
         "reservation": "recommended",
         "reservation:url": "https://www.recreation.gov/camping/campgrounds/233312",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
-        "socket:nema_14_50": "yes",
-        "socket:nema_5_15": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/nfsnc/recreation/camping-cabins/recarea/?recid=48470&actid=29",
         "id": "ridb:233312",
@@ -299,7 +291,15 @@
             "source_record_id": "osm:way:408052573",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "amenity": "charging_station",
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes",
+              "socket:nema_14_50": "yes",
+              "socket:nema_5_15": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -1195,24 +1195,16 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "yes",
-        "internet_access": "no",
         "mobile_reception": "limited",
         "mobile_reception:strength": "issues",
         "name": "BALSAM MOUNTAIN CAMPGROUND",
         "nudism": "no",
         "official_name": "Balsam Mountain Campground",
-        "openfire": "yes",
-        "picnic_table": "yes",
-        "power_supply": "no",
         "reservation": "yes",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "start_date": "2023-06-17",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "wheelchair": "yes",
         "wikidata": "Q63564672",
@@ -1254,7 +1246,15 @@
             "fields": {
               "access": "yes",
               "charge": "30 USD",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -1317,21 +1317,15 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "yes",
-        "internet_access": "no",
         "mobile_reception": "no",
         "mobile_reception:strength": "none",
         "name": "CATALOOCHEE CAMPGROUND",
         "nudism": "no",
         "official_name": "Cataloochee Campground",
-        "openfire": "yes",
-        "power_supply": "no",
         "reservation": "yes",
-        "shower": "no",
         "source": "recreation.gov",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/233284",
         "wikidata": "Q63564924",
@@ -1373,7 +1367,13 @@
             "fields": {
               "access": "yes",
               "charge": "30 USD",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "openfire": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -2660,7 +2660,6 @@
         "mobile_reception": "no",
         "name": "SMOKEMONT CAMPGROUND",
         "operator": "National Park Service",
-        "sanitary_dump_station": "yes",
         "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
@@ -2703,7 +2702,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -7535,22 +7535,15 @@
         "capacity:tents": "12",
         "caravans": "no",
         "dog": "yes",
-        "drinking_water": "yes",
         "fee": "yes",
         "mobile_reception": "limited",
         "mobile_reception:strength": "issues",
         "name": "Big Creek Campground",
         "nudism": "no",
-        "openfire": "yes",
-        "picnic_table": "yes",
-        "power_supply": "no",
         "reservation": "yes",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "start_date": "2023-04-07",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site;caravan_site",
         "osm_id": 2366027152,
         "osm_type": "node",
@@ -7589,7 +7582,14 @@
             "fields": {
               "access": "yes",
               "charge": "30 USD",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -12617,7 +12617,6 @@
         "name": "Blue Ridge Parkway Tent",
         "opening_hours": "24/7",
         "operator": "USA",
-        "power_supply": "no",
         "tourism": "camp_site",
         "osm_id": 4315873393,
         "osm_type": "node",
@@ -12642,7 +12641,19 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4315900089",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4315900089"
+          }
+        ]
       }
     },
     {
@@ -29938,7 +29949,61 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12749127341",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12749127341"
+          },
+          {
+            "source_record_id": "osm:node:12749175119",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12749175119"
+          },
+          {
+            "source_record_id": "osm:node:12749175120",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12749175120"
+          },
+          {
+            "source_record_id": "osm:node:12749175122",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12749175122"
+          }
+        ]
       }
     },
     {
@@ -32435,7 +32500,9 @@
             "source_record_id": "osm:node:12928809456",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "check_date": "2025-09-09",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -32936,7 +33003,10 @@
             "fields": {
               "access": "permit",
               "charge": "10$ Per night",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -39637,7 +39707,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:658223122",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no",
+              "sanitary_dump_station": "customers"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/658223122"
+          }
+        ]
       }
     },
     {
@@ -40814,7 +40897,9 @@
             "source_record_id": "osm:way:701921547",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -42268,19 +42353,14 @@
         "capacity:caravans": "46",
         "capacity:tents": "34",
         "caravans": "yes",
-        "check_date:internet_access": "2022-04-09",
-        "drinking_water": "yes",
         "email": "medoc.mountain@ncparks.gov",
         "group_only": "yes",
         "internet_access": "no",
         "name": "Medoc Mountain State Park Group Campground",
         "nudism": "no",
         "phone": "+1 252 586 6588",
-        "power_supply": "yes",
         "reservation": "recommended",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.ncparks.gov/medoc-mountain-state-park/camping",
         "wheelchair": "limited",
@@ -42309,7 +42389,24 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:862879197",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "check_date:internet_access": "2022-04-09",
+              "drinking_water": "yes",
+              "internet_access": "no",
+              "power_supply": "yes",
+              "shower": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/862879197"
+          }
+        ]
       }
     },
     {
@@ -48876,7 +48973,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1170960936",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1170960936"
+          }
+        ]
       }
     },
     {
@@ -57582,7 +57691,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:15829173",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/15829173"
+          },
+          {
+            "source_record_id": "osm:relation:17210094",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/17210094"
+          }
+        ]
       }
     },
     {
@@ -57655,7 +57786,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:17210097",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/17210097"
+          }
+        ]
       }
     },
     {

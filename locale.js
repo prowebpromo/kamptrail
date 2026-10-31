@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.30.0';
+  const FR_VERSION = '2.31.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -1729,7 +1729,33 @@
   "Reported technology": "Tecnología indicada",
   "Any technology": "Cualquier tecnología",
   "Signal levels are ordered visitor categories, not the 1 to 5 bars of other apps. No service means no usable signal. Weak, Usable and Strong roughly cover the low, middle and high ranges. No numeric match is claimed.": "Los niveles de señal son categorías ordenadas según los visitantes, no las barras de 1 a 5 de otras apps. Sin servicio significa que no hay señal utilizable. Débil, Utilizable y Fuerte abarcan aproximadamente los rangos bajo, medio y alto. No se afirma ninguna equivalencia numérica.",
-  "Approach is a maximum on the visitor's 3-level scale. Up to moderate includes easy and moderate reports. Missing or unknown approach never matches.": "El acceso es un máximo en la escala de 3 niveles de los visitantes. Hasta moderado incluye informes fáciles y moderados. Un acceso ausente o desconocido nunca coincide."
+  "Approach is a maximum on the visitor's 3-level scale. Up to moderate includes easy and moderate reports. Missing or unknown approach never matches.": "El acceso es un máximo en la escala de 3 niveles de los visitantes. Hasta moderado incluye informes fáciles y moderados. Un acceso ausente o desconocido nunca coincide.",
+  "reported": "informado",
+  "source says no": "la fuente dice que no",
+  "sources disagree": "las fuentes no coinciden",
+  "value not recognized": "valor no reconocido",
+  "survey date {date}": "fecha de comprobación {date}",
+  "updated {date}": "actualizado el {date}",
+  "OpenStreetMap element {ref}": "Elemento de OpenStreetMap {ref}",
+  "Forest Service site record: {name}": "Registro de sitio del Servicio Forestal: {name}",
+  "{source} listing record": "Registro propio de {source}",
+  "whole mapped element": "todo el elemento cartografiado",
+  "this listing's own record": "registro propio de este lugar",
+  "site record": "registro del sitio",
+  "{count} of {total} campsite records, not every site": "{count} de {total} registros de parcelas, no todas las parcelas",
+  "value “{value}”": "valor «{value}»",
+  "Survey: {date}.": "Comprobación: {date}.",
+  "Retrieved: {date}.": "Obtenido: {date}.",
+  "Tags describe this mapped element only. A retrieval date is not a survey date.": "Las etiquetas describen solo este elemento cartografiado. La fecha de obtención no es una fecha de comprobación.",
+  "Merged elements, not used for this listing ({count})": "Elementos fusionados, no usados para este lugar ({count})",
+  "These observations belong to other records merged into this listing, such as a single site or a duplicate outline. They are not used for this listing's amenities or filters.": "Estas observaciones pertenecen a otros registros fusionados con este lugar, como una sola parcela o un contorno duplicado. No se usan para los servicios ni los filtros de este lugar.",
+  "A campsite length or hookup filter is on. Recreation.gov campsite-record amenities do not count toward amenity filters then, because they are not linked to the campsite that fits.": "Hay un filtro de longitud o de conexiones activo. Entonces los servicios de los registros de parcelas de Recreation.gov no cuentan para los filtros de servicios, porque no están vinculados a la parcela que encaja.",
+  "Amenity evidence:": "Pruebas de servicios:",
+  "No amenity source for this listing.": "No hay ninguna fuente de servicios para este lugar.",
+  "Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence.": "Los filtros de servicios solo coinciden con las pruebas indicadas aquí, con el alcance indicado. Desconocido no significa ausente.",
+  "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Los filtros de servicios usan solo las pruebas que muestra cada ficha: el propio elemento de OpenStreetMap del lugar, los registros de sitio del Servicio Forestal y los registros de parcelas de Recreation.gov. Con un filtro de longitud o de conexiones activo, los servicios de los registros de parcelas solo cuentan si están vinculados a la parcela que encaja, y estos registros no lo están.",
+  "different site ({type}), not this campground": "otro sitio ({type}), no este camping",
+  "type unknown": "tipo desconocido"
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);
@@ -1772,7 +1798,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.30.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.31.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

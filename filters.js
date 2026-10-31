@@ -58,7 +58,7 @@
     Object.assign(state.filters,f);sync();apply('profile');return true;
   }
   window.KampTrailFilters={
-    version:'2.30.0',
+    version:'2.31.0',
     init(map){
       const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
       p.setAttribute('role','region');p.setAttribute('aria-label',t("Campsite filters"));
@@ -87,6 +87,7 @@
         <p class="filter-note">${t("Rig length and hookups use Recreation.gov site details, so only those campgrounds can match. A match means at least one site reports it. Book or confirm the exact site.")}</p>
         <label for="f-rig"><strong>${t("Source says it allows")}</strong></label><select id="f-rig">${RIGS.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select>
         <fieldset class="amenity-options"><legend><strong>${t("Amenities reported")}</strong></legend>${AMENITIES.map(([v,l])=>`<label><input type="checkbox" name="f-amenity" value="${v}"> ${l}</label>`).join('')}</fieldset>
+        <p class="filter-note" id="f-amenity-scope">${t("Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.")}</p>
         <p class="filter-note">${t("Rig and amenity filters show only listings whose source reports them. Many listings have no data, so these filters hide a lot. Unknown fees remain unknown. Confirm with the operator.")}</p></div>`;
       map.getContainer().append(p);L.DomEvent.disableClickPropagation(p);L.DomEvent.disableScrollPropagation(p);
       state.panel=p;

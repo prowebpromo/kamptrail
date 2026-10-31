@@ -12530,7 +12530,6 @@
         "reservation": "required",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 14130133106,
         "osm_type": "node",
@@ -12562,7 +12561,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permissive",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "internet_access": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:03:17Z",
             "source_updated_at": null,
