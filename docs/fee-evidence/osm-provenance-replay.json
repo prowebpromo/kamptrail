@@ -1,0 +1,1410 @@
+{
+  "baseline_commit": "bae1e71ccd188919554d2e4c6837f66212d2fdab",
+  "source_hashes": {
+    "data/opencampingmap/AK.geojson": "378271d55d9155c3184ef07fb5cd7c361eceb072687ff0d04f05d711ed322b8f",
+    "data/opencampingmap/AL.geojson": "17213503781cd4da5e31420bf3432360243a24745b3f7725389973306fadb7c6",
+    "data/opencampingmap/AR.geojson": "bba5e03b835b08496f86c6fab68dc7b00cd702cdb6b43d95230777755f4b30c6",
+    "data/opencampingmap/AZ.geojson": "9079b8af3046110cdee30c51eaaa6aa0307c193e1dc3f535412c679d3ddc55bd",
+    "data/opencampingmap/CA.geojson": "1c09b2973291be4c0fc7825c07d25bde042b2d37ac57a9711c9a38e047879f61",
+    "data/opencampingmap/CO.geojson": "5a0f348f15113754fa59c3c902f2089c0e2a42e647c00283fe0c0fa7b0b65b05",
+    "data/opencampingmap/CT.geojson": "5109e843dd14cdfa42ab861bbd57d1e6b23ea54d7fb423777c521c934ecd2642",
+    "data/opencampingmap/DE.geojson": "b62ec110c3ae8e9c9ae717f9cbe2365c138ecddb262f9656f735805dbc6310ce",
+    "data/opencampingmap/FL.geojson": "3ec8c755ae7284b7aedfcf634b96edfe46a88d321e9e1bac3d119b1c8621864a",
+    "data/opencampingmap/GA.geojson": "aae346e2b0dbe1573086e5f384dfc5f8bf186cf7fe468819abecd4d95decb06c",
+    "data/opencampingmap/HI.geojson": "81caddd554a254fa6eaac13880bd544030b47670ee7640f384e17179108d715f",
+    "data/opencampingmap/IA.geojson": "d0ccb5720d4cf29d2392372f5f8f501bafd49443f7a9020e3ac19d3d1d66fcc5",
+    "data/opencampingmap/ID.geojson": "b0f31b2eee4d4f5edf7706fda88c6e96515c2ece2b0e93abaaac622cd5b64941",
+    "data/opencampingmap/IL.geojson": "c944305f3da8ca9dc66c8188cdf5c78c7675c1301a4c300b36e9873758c7a7dd",
+    "data/opencampingmap/IN.geojson": "152fe0e63441e9d7249ccc4d75ed16e932214531826cb3924b3f5f4e10e3633e",
+    "data/opencampingmap/KS.geojson": "d962983cfbdbfb727a6a86e54c860479f458034a5ad462516f470797df38f146",
+    "data/opencampingmap/KY.geojson": "1918d10800aa62d4a1429ed2aa8e5a4a658594946aea686cddddcb5b3067bbd4",
+    "data/opencampingmap/LA.geojson": "23c408542bcb047670c7fba0cc78d7576706bb5fc41dc655ab648b52eace8613",
+    "data/opencampingmap/MA.geojson": "a7d957c17d9df64789e6f9fbe6248eb650c2f7573e412c49e4e458e714c0a9dc",
+    "data/opencampingmap/MD.geojson": "c69b123acc605739043e2665348b9d606a6f9a6bade1d477c640b65ae8cc2d4b",
+    "data/opencampingmap/ME.geojson": "17040bfc3b9ec10484b30eee6707891145e86159bf7b91ef29e20bba17b40597",
+    "data/opencampingmap/MI.geojson": "0a379a195cc4ce8027de91ca43a28fbad5b098865d2a5338ddf7fc56af162790",
+    "data/opencampingmap/MN.geojson": "b7d6ef9ba5c7f99bf96420e04ca89ea9605df06622f2f6b02015059e8cb2817f",
+    "data/opencampingmap/MO.geojson": "78e9682b125207afd78b77cebbf77a65f31ae12e03811964a55fe7c30d84c212",
+    "data/opencampingmap/MS.geojson": "777953a65182b7858aca69295dbf6946460c133d10f8bc16ce8bf027f8bc9c35",
+    "data/opencampingmap/MT.geojson": "82d1a797ce2c18707086421699bfc62d17bef60817c8d0bb86216c8757b53c05",
+    "data/opencampingmap/NC.geojson": "df94e57c4e5e1a6b0593c70dc54e085c780da3dd7796d0a46309a984995e9793",
+    "data/opencampingmap/ND.geojson": "38a70419356c4a3217e6d312a7a59f2600637d120ef0778bb1a04f89c13e8125",
+    "data/opencampingmap/NE.geojson": "a6ca4b44bd981c17bc2cb91d1be4725a55a056c3e2ded212a2bf0a547cde5b07",
+    "data/opencampingmap/NH.geojson": "5dd3498f6ad3e4a1e306c94de319e392a8c17f42f9494918498dd0cc6f85e2e1",
+    "data/opencampingmap/NJ.geojson": "785843b0a3adc59ea54c530b30f226a4cb1e0026dc3091159ae2cd3e0379afc9",
+    "data/opencampingmap/NM.geojson": "6a1050f302ae19b8a196875275a4a4d6ba8f1fc6444b6ddad053bda1793d1c24",
+    "data/opencampingmap/NV.geojson": "d0f71d6fec6c103115684dacd85a04af024f98be441ff78b853c16c783152406",
+    "data/opencampingmap/NY.geojson": "5ecb1bc94431bad213de11765ef7b539ce50d01856f831dc017eb635f4b1f05b",
+    "data/opencampingmap/OH.geojson": "4d1f17c5426e7c02245edc3e5b5432575f6d3209e1a23527e65a0a353a77cd8d",
+    "data/opencampingmap/OK.geojson": "eb0449cfa6a4dd1e3fb48746e2d6c7ed039153a761873a233b3a2fb8c6d80309",
+    "data/opencampingmap/OR.geojson": "49904b2fc1d3a110e361c8dc8017f718917599f8a1ca3ec55b9cee688bffdc79",
+    "data/opencampingmap/PA.geojson": "1a729d881ec86c935092e81b38876eb014aa3329f2268487e037b7d466ee87a0",
+    "data/opencampingmap/RI.geojson": "fb022ce6f59c293a808b72ca7c47b5bc4d037303cb8ecb23c1b98e71e0c1e5c4",
+    "data/opencampingmap/SC.geojson": "5e08246e9346322c3f051f72a715186a467e43f58e1bba35ec36367ca5b9ae62",
+    "data/opencampingmap/SD.geojson": "e0fa2cb48050ad24159300f9334bb02de3c3d83435df4ab20e6d19e9a7a0af1a",
+    "data/opencampingmap/TN.geojson": "8623bfe7aa57c017b2b5660f6e852aafaa00ad30f7585f37d6128ebec631c8a7",
+    "data/opencampingmap/TX.geojson": "f9944d16cf42eaa865df1d4e8c5dc97a4b98a70bbea913735604825ac58f9fd0",
+    "data/opencampingmap/UT.geojson": "fb157c81d8872f2f05cbb40566f5cad2c49805f2b5d5ecca8b38817dbab8f4f8",
+    "data/opencampingmap/VA.geojson": "9e5c8515f18747ebc68ef5de35de801c3369a6fe992cfc22c3170bc0bafb4111",
+    "data/opencampingmap/VT.geojson": "83ecdd014fb7136b155cc17d644e4a0270adae5d95934d600865131298491030",
+    "data/opencampingmap/WA.geojson": "da082fee577cce7541ec1583e9f75d94cc477a1cca660f2eed20e7d62f3d8f5e",
+    "data/opencampingmap/WI.geojson": "5955c2d9dfe526c696704d582a6189fcc206e5e22b9c8d7429831ca8cba6ad9d",
+    "data/opencampingmap/WV.geojson": "168e3b455373dd1753526a2814997052160eae6a5ef7d1e2a091bd5d50b5b681",
+    "data/opencampingmap/WY.geojson": "32f4d3e6a6fa4d5431c24a57cae4089b64d0b946575c04b11f746ba703f973b3",
+    "data/campsites/AK.geojson": "53698cb183183b0584d547c277e7c747be8163a363f39e0de05a8f809904212b",
+    "data/campsites/AL.geojson": "e7f9320e36efa389d36e3323efd1289e68e2c55d8300d2a4a8fb42cc9dc59dae",
+    "data/campsites/AR.geojson": "3c00016d1663e6e1ef5836048b32dc76cf4c2986d376805ec048927c90df7816",
+    "data/campsites/AZ.geojson": "d43f76d33bd447a7c31846ad830ddd8d0a5e456d8a892a3f15979f249e42fb16",
+    "data/campsites/CA.geojson": "d06ea505744dfd863a92751bf9d6b139f103aad1587ca621f13c81e3c46adb30",
+    "data/campsites/CO.geojson": "5d899d1e5e54c8c3666f38f53486f2abab548a7a1c1e3047fca9d94aaa29c1ee",
+    "data/campsites/CT.geojson": "4f17a99496d09928bef41f9430019818500d9b102a8faa50068bc0cd8a17f278",
+    "data/campsites/FL.geojson": "1657dcbb22259b5ebf181bdb941299543540968cde9de87478ebabaf929caede",
+    "data/campsites/GA.geojson": "b6a7ab50d771bf90ce0808b5a1947eccd44ff9de2bd03261e6eb52cc870d9696",
+    "data/campsites/HI.geojson": "edcc1ac3078470f322a866d69661e45b35d42e46ce4a7362b4a6dcc8f1f54282",
+    "data/campsites/IA.geojson": "52226b17f7cfd9d10d6a5765bab86b791303d350fa45e0bd053fe99a64dbfc07",
+    "data/campsites/ID.geojson": "b2b3210cb80e8010f8648d16524119be27ef2ef2b6b91d614da7f6630ab9f7b4",
+    "data/campsites/IL.geojson": "7652d06fc901daccc11d3f58d6d5f15f892365caa8492830439073eba5a39bb9",
+    "data/campsites/IN.geojson": "e979f40a9ccb6ed4f6143e7451241ac781da62aaa858346d48200cb9dab02980",
+    "data/campsites/KS.geojson": "78f6cb16cda49d8ec9f59f2eaa9b0b511b7cd11c711035b980646b592a8a61e4",
+    "data/campsites/KY.geojson": "a8571625b0f632c784790fd8963ad8d60d3af3ff323dbb6a60cec6449ec235d7",
+    "data/campsites/LA.geojson": "b360a2916b9df17a64eb6725054b38b9a8286947c0b1437c32017eb19e362bc9",
+    "data/campsites/MA.geojson": "9b6409b53a9ccc0eb0b0c52932ca07ce4db80a8ecd488f71d92da1a9b8c7bdbd",
+    "data/campsites/MD.geojson": "a876bd213e4807a85fdea43d982b4601e49d06a58a52e5ec962f7d84d66f4581",
+    "data/campsites/ME.geojson": "cfe6ea34ba5d66d5e5814e39add484a17c885c9441fa68fd2abbef778b110c75",
+    "data/campsites/MI.geojson": "c66a19a4e974c5ea063b02a905a5804a9993a1320db87b8c722433542639f9bb",
+    "data/campsites/MN.geojson": "cca639cd3b3cd964908485aa0a44ea33363576f34e1685fa3c68584e402aafda",
+    "data/campsites/MO.geojson": "4e48f165942407cbaa0a2f0d236220705a95ffefc0ba4214c4a2003e820a1b1b",
+    "data/campsites/MS.geojson": "1ece36bef60941a4053f2150afabb45480e131281989058fe1c9270433d9c623",
+    "data/campsites/MT.geojson": "15ab471e24d5850a31326e79edbf499630eb0c53bccea382b793e0988363fb8f",
+    "data/campsites/NC.geojson": "7503edd115bd90e43df831883cea28694d4e4b1fdb38ba522e29d716c56b9599",
+    "data/campsites/ND.geojson": "f65bd4fae553df9c9cd938d8f51bc46621fd0bac4db8aaaafd8c26e0162a5d26",
+    "data/campsites/NE.geojson": "bcc33e13abb20fbc803c2006ae315aaa5cab08e906874a67cd03f1221e4e47ee",
+    "data/campsites/NH.geojson": "e7f037296345831ddf86f008653088973e86daf8b0f8935e707817d0b67c38ed",
+    "data/campsites/NJ.geojson": "adbb9961a4bd8b999f1adc8eb6659f9d9db3285f11e088a27dccbdec1cb8de9f",
+    "data/campsites/NM.geojson": "69c6b9f6113e472c1a95fd6df926c5fdf54f5c82d533ffcec9f63403bf3b5222",
+    "data/campsites/NV.geojson": "f15536cf5a6ead541a948728ff53f2a73d9f627a53fa5a1798653b5de3bff55b",
+    "data/campsites/NY.geojson": "3b2fa565d2278c0f2222c3c2ce5ff864b72bf0cb098fc9f8a585de50f2529d64",
+    "data/campsites/OH.geojson": "3426b8f55fba8ebb1255eb938c7df59d89d9073621d58102b797c510be5c01ad",
+    "data/campsites/OK.geojson": "91a40ca504e6fc352dd84d408555ccc514d2da6e3c13064d3d9549f5e0392f2f",
+    "data/campsites/OR.geojson": "69d108d9a350eec24d9cd4bf3030434c2c7156a714717d3a92b039025f44ccf4",
+    "data/campsites/PA.geojson": "70d95a2d500a1d7b793910aa23734e099fa88da6ab16778f0e98cbda716ec5ff",
+    "data/campsites/SC.geojson": "54bd1e4714c8a299a75fd3da81844539b9ddb2981ca153f2afee00168305e269",
+    "data/campsites/SD.geojson": "d7810b3e9a5b658f4d68c29ff271f2e340886d61bc772a24ff085bef902245ba",
+    "data/campsites/TN.geojson": "8a4514b1990cf035f7095fe9160a2789e65d8d25163bb91fabf888a2b1b317b3",
+    "data/campsites/TX.geojson": "04616b5bd2bf36ac67a1f41bcd24366c58e1a4fef11abb5a21907c0429c1a7d8",
+    "data/campsites/UT.geojson": "d5d13cf1318aa3a99d4892bbb544c92a7f3f8df6e5bb3113cc99bbb775b1ce5e",
+    "data/campsites/VA.geojson": "4698d9d3aa3520da3078635d0112758398f92ae253f13a6f861c688f0a9cb412",
+    "data/campsites/VT.geojson": "50750dd7232e4c39418a90917e29a628c61655ebabb363dab427619da6f57684",
+    "data/campsites/WA.geojson": "e8f6f7d155fff626f0454cb4235d74ae2ef7865bfce1d18b7537becd6536b6d6",
+    "data/campsites/WI.geojson": "39d97f454b89306a16336a2f64229dbb2bcb7c866e80489488798d737501a0bb",
+    "data/campsites/WV.geojson": "dfb579096776fb03b520ae3f448a0c00e72540bbac09eba27d403715b9b1608f",
+    "data/campsites/WY.geojson": "106965293e1404eee8c84d7e2bbdaf80b2b96999e222615938d455b719863205"
+  },
+  "assertions": {
+    "all_50_states_checked": true,
+    "raw_inputs_unchanged": true,
+    "listing_count_unchanged": true,
+    "canonical_ids_unchanged": true,
+    "coordinates_and_state_partitions_unchanged": true,
+    "aliases_unchanged": true,
+    "snapshot_counts_and_membership_unchanged": true,
+    "record_admission_unchanged": true,
+    "coordinate_catalogue_unchanged": true,
+    "known_fee_and_access_attributed": true,
+    "no_normalized_snapshots": true
+  },
+  "census_before": {
+    "total": 33286,
+    "free": 2154,
+    "conditional": 59,
+    "paid": 8291,
+    "unknown": 22782
+  },
+  "census_after": {
+    "total": 33286,
+    "free": 2140,
+    "conditional": 58,
+    "paid": 8206,
+    "unknown": 22882
+  },
+  "counts": {
+    "fee_changes": 107,
+    "access_changes": 99,
+    "held_exclusions": 4,
+    "snapshot_rows_with_member_evidence": 716,
+    "unique_records_with_member_evidence": 605,
+    "max_members_per_snapshot": 30
+  },
+  "fee_change_types": {
+    "paid->unknown": 88,
+    "free->unknown": 15,
+    "unknown->paid": 3,
+    "conditional->free": 1
+  },
+  "fee_changes": [
+    {
+      "id": "osm:node:1596375040",
+      "name": "Ainsworth Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232515",
+      "name": "ANDERSON ROAD CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:251757",
+      "name": "BACKBONE ROCK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:2462384222",
+      "name": "Backcountry 1",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:234720",
+      "name": "Bear Springs Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:249093",
+      "name": "Black Bear Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:273780",
+      "name": "BLACK MOUNTAIN CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232473",
+      "name": "BLACK ROCK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:265059",
+      "name": "Boone Fork Campground",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232023",
+      "name": "Boulder Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232453",
+      "name": "Bridalveil Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:10150488",
+      "name": "Bridger Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232028",
+      "name": "CHEMEKETAN CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:251723",
+      "name": "CHILHOWEE CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233865",
+      "name": "Clear Creek Campground",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:242732",
+      "name": "Convict Flat Campground",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:234311",
+      "name": "CONVICT LAKE CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232466",
+      "name": "COUGAR ROCK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233483",
+      "name": "Dam West Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:5828450502",
+      "name": "Dispersed Camping",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232038",
+      "name": "Douglas Fir Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232040",
+      "name": "EASLEY CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:234265",
+      "name": "ELKHORN CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232335",
+      "name": "ELKS FLAT CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232051",
+      "name": "Gold Basin Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:252786",
+      "name": "Goldhill Camping Area",
+      "before": "unknown",
+      "after": "paid"
+    },
+    {
+      "id": "osm:way:759770890",
+      "name": "Greenbelt Park Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:737899403",
+      "name": "Group Area 7",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:5254954348",
+      "name": "Group Camp Site #2",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233794",
+      "name": "HADES",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232295",
+      "name": "HEART BAR CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232059",
+      "name": "Horseshoe Cove Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:267082",
+      "name": "INDIAN FORD CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:249627",
+      "name": "Joe Elliot Yellow Post Sites",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:5781799257",
+      "name": "Lakewood campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:385475250",
+      "name": "Lazy K Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:1922410822",
+      "name": "Little Mill Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:248100",
+      "name": "Longview Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232450",
+      "name": "Lower Pines Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:23646816",
+      "name": "Malibu Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:744169316",
+      "name": "Martinak State Park Camp Loop B",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:241175",
+      "name": "Meeker Park Overflow Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233891",
+      "name": "Mineral Park Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233270",
+      "name": "MOKINS BAY CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232074",
+      "name": "Money Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:9970863588",
+      "name": "Montauk County Park RV Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:265052",
+      "name": "Mortimer Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:234608",
+      "name": "OAK BOTTOM CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233379",
+      "name": "OAK RIDGE CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232308",
+      "name": "OSCEOLA VISTA CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:247762",
+      "name": "OWENS CREEK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232081",
+      "name": "Panorama Point Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:995342541",
+      "name": "Paradise Stream Family Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232082",
+      "name": "Park Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:251438",
+      "name": "PARKSVILLE LAKE RV CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233579",
+      "name": "PAT MAYSE WEST",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:7157761509",
+      "name": "Perrot State Park Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:243219",
+      "name": "Pine Glen Recreation Area",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:259289402",
+      "name": "Pine Springs Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233588",
+      "name": "POKEGAMA DAM CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:322133776",
+      "name": "Port San Luis RV Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:247316",
+      "name": "Preston Valley Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:4345184689",
+      "name": "Quarry Park",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233909",
+      "name": "QUARTZ CREEK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:12671020366",
+      "name": "Questing Hills Equistrain Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:241183",
+      "name": "Rainbow Lakes Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233866",
+      "name": "Red Bridge Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232834",
+      "name": "RILEY HORSE CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:272179",
+      "name": "Roadrunner Campground",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:2918151787",
+      "name": "Rock Harbor",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:264886",
+      "name": "Rocky Bluff Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:6369246655",
+      "name": "Rush Creek Campground",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:12843318514",
+      "name": "Saganaga Lake #13",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:11017359935",
+      "name": "Sandy Camp",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233968",
+      "name": "SCOUT MOUNTAIN CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:233952",
+      "name": "SHADY COVE GROUP CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232096",
+      "name": "Shannon Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:234653",
+      "name": "SILVER CREEK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232099",
+      "name": "Silver Fir Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232298",
+      "name": "Silver Springs Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:713214431",
+      "name": "Site: GS, Loop: Bear Creek",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:241130",
+      "name": "Sleeping Elephant Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:245526",
+      "name": "South Fork Campground",
+      "before": "unknown",
+      "after": "paid"
+    },
+    {
+      "id": "ridb:249674",
+      "name": "Stockton Flats Yellow Post Sites",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:231974",
+      "name": "TANGLEWOOD GROUP CAMP",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:257029",
+      "name": "Temple Mountain Campground East",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:257030",
+      "name": "Temple Moutain Campground West",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:234208",
+      "name": "TIMBER CREEK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:255286",
+      "name": "Toto Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232315",
+      "name": "Troublesome Creek Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232118",
+      "name": "Turlo Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:270602",
+      "name": "Turnipseed Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:9689158668",
+      "name": "Twin Falls North Campsite",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:5421693475",
+      "name": "Twisted Oak Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:234030",
+      "name": "UPPER PAYETTE LAKE CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:10074570",
+      "name": "UPPER PLEASANT CREEK CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232120",
+      "name": "Verlot Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:14720",
+      "name": "Warren Bridge Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:way:1074603527",
+      "name": "Wayne Russell RV Park",
+      "before": "conditional",
+      "after": "free"
+    },
+    {
+      "id": "ridb:233671",
+      "name": "West Overlook Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:7486715212",
+      "name": "West Seelye Bay  Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:236550",
+      "name": "White Azalea Campground",
+      "before": "unknown",
+      "after": "paid"
+    },
+    {
+      "id": "ridb:249962",
+      "name": "White Sands Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:232324",
+      "name": "WILLIWAW CAMPGROUND",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:10011396",
+      "name": "Wolf Ford Horse Camp",
+      "before": "free",
+      "after": "unknown"
+    },
+    {
+      "id": "ridb:270947",
+      "name": "Woods Lake Campground",
+      "before": "paid",
+      "after": "unknown"
+    },
+    {
+      "id": "osm:node:2780575385",
+      "name": "Yonah Mountain Campground",
+      "before": "paid",
+      "after": "unknown"
+    }
+  ],
+  "access_changes": [
+    {
+      "state": "AK",
+      "id": "ridb:232324",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "AK",
+      "id": "osm:node:7610338480",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "AK",
+      "id": "osm:node:9180786234",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "AL",
+      "id": "ridb:270602",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "AR",
+      "id": "osm:node:4345184689",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "AZ",
+      "id": "ridb:270420",
+      "before": "permissive",
+      "after": "unknown"
+    },
+    {
+      "state": "AZ",
+      "id": "ridb:234708",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:236539",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:232450",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:232295",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:239647",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:232473",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:232890",
+      "before": "permissive",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:233161",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:234608",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:242362",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "ridb:249627",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "osm:node:5254954348",
+      "before": "permissive",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "osm:node:8397841888",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CA",
+      "id": "osm:node:8417081500",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CO",
+      "id": "ridb:234053",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CO",
+      "id": "ridb:234685",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "CO",
+      "id": "ridb:232067",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CO",
+      "id": "ridb:241175",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "CO",
+      "id": "osm:node:7779439134",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "CO",
+      "id": "osm:node:12983070913",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "GA",
+      "id": "osm:node:6369246655",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:234029",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:10074574",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:202082",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:239900",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:233968",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:237145",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:273785",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "ridb:233270",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ID",
+      "id": "osm:node:5788666453",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "IL",
+      "id": "ridb:244060",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MA",
+      "id": "ridb:248072",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MD",
+      "id": "ridb:247762",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "MD",
+      "id": "osm:way:744169316",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "ME",
+      "id": "ridb:239405",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "ME",
+      "id": "osm:node:7176626097",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "MI",
+      "id": "ridb:233253",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MI",
+      "id": "osm:node:2937772756",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "MN",
+      "id": "ridb:233588",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MN",
+      "id": "osm:node:12843318514",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "MO",
+      "id": "osm:node:4345184689",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MT",
+      "id": "ridb:10074574",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MT",
+      "id": "ridb:250001",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MT",
+      "id": "ridb:237145",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "MT",
+      "id": "ridb:234484",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "NC",
+      "id": "ridb:273848",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "NC",
+      "id": "ridb:233284",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "NC",
+      "id": "ridb:232486",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "NC",
+      "id": "osm:node:2366027152",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "NH",
+      "id": "ridb:239405",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "NH",
+      "id": "ridb:232308",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "NM",
+      "id": "ridb:10278188",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "NM",
+      "id": "osm:node:2332493731",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "NM",
+      "id": "osm:way:259289402",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "OR",
+      "id": "ridb:250031",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "OR",
+      "id": "ridb:251581",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "OR",
+      "id": "ridb:267081",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TN",
+      "id": "ridb:232515",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TN",
+      "id": "ridb:232488",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TN",
+      "id": "ridb:273847",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TN",
+      "id": "ridb:232479",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TN",
+      "id": "osm:node:2366027152",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TX",
+      "id": "ridb:233579",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TX",
+      "id": "osm:node:2332493731",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "TX",
+      "id": "osm:way:259289402",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "UT",
+      "id": "ridb:233794",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "UT",
+      "id": "ridb:247316",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "UT",
+      "id": "ridb:231900",
+      "before": "customers",
+      "after": "unknown"
+    },
+    {
+      "state": "UT",
+      "id": "ridb:256956",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "UT",
+      "id": "osm:node:1922410822",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "UT",
+      "id": "osm:node:3593021106",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "VA",
+      "id": "ridb:233379",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "VA",
+      "id": "ridb:10007130",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "VA",
+      "id": "ridb:232433",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "VA",
+      "id": "osm:way:744169316",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232120",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232118",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232051",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232082",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:233877",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232298",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:233866",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232081",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232466",
+      "before": "permit",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:233297",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:274004",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232096",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:234017",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:234025",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232023",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:234021",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:232059",
+      "before": "allowed",
+      "after": "unknown"
+    },
+    {
+      "state": "WV",
+      "id": "ridb:239774",
+      "before": "allowed",
+      "after": "unknown"
+    }
+  ],
+  "access_holds": [
+    {
+      "state": "FL",
+      "id": "osm:node:8021890291",
+      "value": "private",
+      "source_record_id": "osm:way:549386043"
+    },
+    {
+      "state": "NY",
+      "id": "osm:way:1062744164",
+      "value": "private",
+      "source_record_id": "osm:way:1062961186"
+    },
+    {
+      "state": "PA",
+      "id": "osm:way:364973410",
+      "value": "private",
+      "source_record_id": "osm:way:1029939158"
+    },
+    {
+      "state": "WA",
+      "id": "ridb:238903",
+      "value": "no",
+      "source_record_id": "osm:way:968061661"
+    }
+  ]
+}

@@ -852,7 +852,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "fee": "yes",
         "internet_access": "no",
         "motor_vehicle": "yes",
         "name": "Dub Patton Campground",
@@ -860,8 +859,6 @@
         "operator": "US Army Corps of Engineers",
         "tents": "yes",
         "tourism": "camp_site",
-        "osm_id": 5645872378,
-        "osm_type": "node",
         "id": "ridb:233492",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -893,7 +890,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5645872378",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:09:21Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5645872378"
+          }
+        ]
       }
     },
     {

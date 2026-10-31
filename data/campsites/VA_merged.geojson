@@ -307,11 +307,8 @@
       "properties": {
         "capacity": "58",
         "description": "<h2>Overview</h2>\nMorris Hill is a peaceful, rustic campground for groups of family and friends. The family campground is a family-friendly destination perched on a ridge above Lake Moomaw. Kids can have fun at the playground while older generations sit back and relax in the shade. The group sites accommodate up the 25 guests with space for up to eight tents.  Campers can enjoy the wonders of camping with simple pleasures like s'mores on the campfire, berry picking in the woods, and watching for waterfowl and wildlife like deer. The convenient location near Lake Moomaw and sandy swim beaches, a fishing pier, boat ramp, and hiking and biking trails makes Morris Hill a popular spot. <h2>Recreation</h2>\nAn inviting swimming beach at Coles Point attracts many visitors. About less than a mile from the campground is a fishing pier where anglers seek brown and rainbow trout, bass and crappie. Back Creek is also nice for trout fishing. Hikers enjoy the Morris Hill Bike Trail and Fortney Loop Trail.<h2>Facilities</h2>\nFamily Campground: Most sites will fit any size RV. Campsite amenities include flush toilets, hot showers, a playground and drinking water. Group Sites: There is no water or electricity.  Two fully accessible vault toilets, picnic tables and a group grill are on each group site. Coles Point Boat Ramp, the nearest boat ramp to Morris, is less than two miles away.<h2>Natural Features</h2>\nThe campground sits on a ridge overlooking Lake Moomaw. It is about a half-mile from the south end of the lake. Lake Moomaw, which flows from the Jackson River, is a cold-water 2,530-acre lake with an inviting swimming beach. \n<br/><br/>\nMorris Hill is part of the George Washington and Jefferson National Forests which spans across Virginia and parts of West Virginia and Kentucky. These forests protect 40 species of trees that are mostly Appalachian hardwood and mixed pine-hardwood forests, 60 species of mammals and 200 species of birds.\n<h2>Nearby Attractions</h2>\nHead downstream of the Jackson River for fly fishing, canoeing, rafting and kayaking. A half hour east of the lake is Hot Springs, Virginia, a quaint village known as a rural resort town.\n<h2>Charges & Cancellations</h2>\n<p>Due to Covid-19 restrictions group camping will not be open this season. We apologize for any inconvenience. Please visit www.cdc.gov for the latest information on the virus. </p>\n",
-        "fee": "yes",
         "name": "MORRIS HILL CAMPGROUND",
         "tourism": "camp_site",
-        "osm_id": 814665410,
-        "osm_type": "way",
         "id": "ridb:232161",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -342,7 +339,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:814665410",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/814665410"
+          }
+        ]
       }
     },
     {
@@ -355,14 +364,11 @@
         ]
       },
       "properties": {
-        "access": "permit",
         "capacity:pitches": "67",
         "capacity:tents": "33",
         "caravans": "yes",
-        "charge": "26 USD/day",
         "dog": "leashed",
         "drinking_water": "yes",
-        "fee": "yes",
         "group_only": "no",
         "internet_access": "no",
         "laundry_service": "no",
@@ -375,8 +381,6 @@
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/prwi/planyourvisit/oakridge.htm",
-        "osm_id": 266761488,
-        "osm_type": "way",
         "id": "ridb:233379",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -408,7 +412,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:266761488",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "charge": "26 USD/day",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/266761488"
+          }
+        ]
       }
     },
     {
@@ -425,7 +443,6 @@
         "capacity": "30",
         "caravans": "yes",
         "drinking_water": "yes",
-        "fee": "yes",
         "group_only": "no",
         "name": "HURRICANE CAMPGROUND",
         "opening_hours": "Apr 15-Oct 31 07:00-22:00",
@@ -435,8 +452,6 @@
         "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recreation/camping-cabins/recarea/?recid=73771&actid=29",
-        "osm_id": 808163406,
-        "osm_type": "way",
         "id": "ridb:233308",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -468,7 +483,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:808163406",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/808163406"
+          }
+        ]
       }
     },
     {
@@ -1453,7 +1480,6 @@
         "capacity:tents": "165",
         "caravans": "yes",
         "drinking_water": "yes",
-        "fee": "yes",
         "group_only": "no",
         "internet_access": "no",
         "name": "MATHEWS ARM CAMPGROUND",
@@ -1469,8 +1495,6 @@
         "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/mathews-arm-campground.htm",
-        "osm_id": 224194057,
-        "osm_type": "way",
         "id": "ridb:232432",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1502,7 +1526,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:224194057",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/224194057"
+          }
+        ]
       }
     },
     {
@@ -1518,8 +1554,6 @@
         "name": "STEEL BRIDGE CAMPGROUND",
         "tourism": "camp_site",
         "wikidata": "Q35056203",
-        "osm_id": 5902470930,
-        "osm_type": "node",
         "id": "ridb:251909",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2026,13 +2060,10 @@
         ]
       },
       "properties": {
-        "access": "permit",
         "addr:unit": "A,B",
         "cabins": "yes",
         "capacity:cabins": "13",
         "caravans": "no",
-        "charge": "35 USD/day",
-        "fee": "yes",
         "group_only": "no",
         "internet_access": "no",
         "name": "Cabin Camp 3",
@@ -2046,8 +2077,6 @@
         "tents": "no",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/10007130?tab=campsites",
-        "osm_id": 1175125858,
-        "osm_type": "way",
         "id": "ridb:10007130",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2079,7 +2108,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1175125858",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "charge": "35 USD/day",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1175125858"
+          }
+        ]
       }
     },
     {
@@ -2313,8 +2356,6 @@
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recarea/?recid=73661",
         "wikidata": "Q49479463",
-        "osm_id": 356571169,
-        "osm_type": "node",
         "id": "ridb:249858",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2400,7 +2441,6 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "addr:city": "Crozet",
         "addr:postcode": "22932",
         "addr:state": "VA",
@@ -2408,10 +2448,8 @@
         "backcountry": "no",
         "camp_site": "standard",
         "caravans": "yes",
-        "charge": "30 USD",
         "dog": "yes",
         "drinking_water": "yes",
-        "fee": "yes",
         "internet_access": "no",
         "name": "Loft Mountain Campground",
         "nudism": "no",
@@ -2424,8 +2462,6 @@
         "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/loft-mountain-campground.htm",
-        "osm_id": 689553228,
-        "osm_type": "way",
         "id": "ridb:232433",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2457,7 +2493,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:689553228",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "charge": "30 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/689553228"
+          }
+        ]
       }
     },
     {
@@ -2766,12 +2816,9 @@
       "properties": {
         "capacity": "20",
         "description": "<h2>Overview</h2>\nRaccoon Branch Campground, nestled at the base of Dickey Knob, offers scenic mountain views, hiking trail access from campsites and cool mountain streams. Campers can access Dickey Creek and the Raccoon Branch from the campground. The most notable time to visit is fall, when the trees boast gorgeous fall foliage. \n<br/><br/>\nWith a location just 11 miles from Interstate 81, the beautiful campground is easily reached by drivers heading out from one of the surrounding cities. <h2>Recreation</h2>\nThe beautiful Dickey Knob Trail takes hikers through a Wilderness to the top of Dickey Knob for spectacular views of Sugar Grove and Rye Valley. The creek provides a setting for wading and fishing.<h2>Facilities</h2>\n<p>Every site accommodates RV or tent camping and five campsites have electric hookups. Perks of the campground include flush toilets, drinking water, paved roads and spurs and a dump station.  There are no showers.   A volunteer host is onsite to welcome visitors and offer advice on the region.</p>\n<h2>Natural Features</h2>\nThe campground is at an elevation of 2,880 ft., along a large grassy area, surrounded by pines, hardwoods and rhododendrons. Perched in the Appalachian Mountains, Raccoon Branch is part of the Mount Rogers National Recreation Area, a 200,000-acre stretch of designated wilderness areas. \n<h2>Nearby Attractions</h2>\nHike the Appalachian Trail, which extends more than 2,175 miles throughout the Appalachian Mountains across 14 states. The trail was designated as the first National Scenic Trail.   The Virginia Creeper Trail, Hungry Mother State Park and Grayson Highlands State Park are nearby.",
-        "fee": "yes",
         "name": "RACCOON BRANCH CAMPGROUND",
         "operator": "Mount Rogers National Recreation Area",
         "tourism": "camp_site",
-        "osm_id": 971791283,
-        "osm_type": "way",
         "id": "ridb:234574",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2802,7 +2849,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:971791283",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/971791283"
+          }
+        ]
       }
     },
     {
@@ -3591,7 +3650,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3599,7 +3657,49 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:732432507",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/732432507"
+          },
+          {
+            "source_record_id": "osm:node:732432510",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/732432510"
+          },
+          {
+            "source_record_id": "osm:node:732432513",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/732432513"
+          },
+          {
+            "source_record_id": "osm:node:2442127652",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2442127652"
+          }
+        ]
       }
     },
     {
@@ -6505,7 +6605,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6862,7 +6961,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6905,7 +7003,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9754,7 +9851,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10703,7 +10799,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10711,7 +10806,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7856588900",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7856588900"
+          }
+        ]
       }
     },
     {
@@ -17340,7 +17447,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17348,7 +17454,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1459962041",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access:fee": "customers"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1459962041"
+          }
+        ]
       }
     },
     {
@@ -18362,7 +18480,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -18370,7 +18487,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1553076623",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permissive",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1553076623"
+          }
+        ]
       }
     },
     {
@@ -18893,7 +19023,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -18901,7 +19030,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:216869132",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "private"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/216869132"
+          },
+          {
+            "source_record_id": "osm:way:216869135",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "private"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/216869135"
+          }
+        ]
       }
     },
     {
@@ -23082,7 +23233,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -23148,7 +23298,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -24011,7 +24160,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -24019,7 +24167,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:679336588",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/679336588"
+          },
+          {
+            "source_record_id": "osm:way:679336602",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/679336602"
+          }
+        ]
       }
     },
     {
@@ -25392,14 +25564,12 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "addr:city": "Denton",
         "addr:state": "MD",
         "cabins": "no",
         "capacity:caravans": "30",
         "caravans": "yes",
         "description": "30 campsites and 6 cabins \nADA Sites: 37-38-51-52 and Camper Cabin \"C\"",
-        "fee": "yes",
         "name": "Martinak State Park Camp Loop B",
         "operator": "Martinak State Park",
         "permanent_camping": "no",
@@ -25428,14 +25598,26 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:744170055",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/744170055"
+          }
+        ]
       }
     },
     {
@@ -26309,7 +26491,6 @@
         "bbq": "yes",
         "capacity": "174",
         "caravans": "yes",
-        "fee": "yes",
         "leisure": "park",
         "name": "Greenbelt Park Campground",
         "operator": "National Park Service",
@@ -26338,7 +26519,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -26346,7 +26526,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:759770891",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/759770891"
+          }
+        ]
       }
     },
     {
@@ -27574,7 +27766,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -29772,7 +29963,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -31746,7 +31936,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -32113,7 +32302,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -32644,7 +32832,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -34736,7 +34923,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -34803,7 +34989,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -34869,7 +35054,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -34994,7 +35178,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -36232,7 +36415,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -36777,14 +36959,26 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1300622138",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1300622138"
+          }
+        ]
       }
     },
     {
@@ -37227,7 +37421,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -40180,7 +40373,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -41520,7 +41712,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -41588,7 +41779,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -41627,7 +41817,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],

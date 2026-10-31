@@ -435,8 +435,6 @@
       "properties": {
         "name": "CHERRY GLEN CAMPGROUND",
         "tourism": "camp_site",
-        "osm_id": 593001795,
-        "osm_type": "node",
         "id": "ridb:233455",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -569,13 +567,10 @@
         "addr:postcode": "52240",
         "addr:state": "IA",
         "description": "<h2>Overview</h2>\nThe West Overlook Campground is located within the Dam Complex at the Coralville Lake Project. The Coralville Lake Project is a multiple use project providing primary benefits in flood control and low flow augmentation, and secondary benefits in recreation, fish and wildlife management and forest management. Coralville Lake provides many recreational opportunities, including boating, camping, hiking, mountain biking, lake and river fishing, swimming, water skiing, picnicking and hunting.<h2>Recreation</h2>\nVisitors enjoy Coralville Lake for camping, boating, fishing, swimming and water activities. Anglers will find large and smallmouth bass, crappie, walleye and catfish.  Several trails are within the Dam Complex, including Squire Point, Woodpecker Trail, Tailwater Riverwalk and barrier-free Veterans Trail.The Devonian Fossil Gorge is just below the dam, offering a unique opportunity to explore a 375-million-year old sea floor and discover fossil remains of sea life that once inhabited this tropical marine environment. Twenty discovery points can be found throughout the site along with a cell phone audio tour. The Turkey Creek Disc Golf Course is located in the Dam Complex and offers nine partially wooden and open holes.<h2>Facilities</h2>\nThe West Overlook Campground is located on the west side of the Coralville Lake Dam. The campground offers 89 standard electric campsites. Amenities include modern restroom and shower facilities, boat ramp, playgrounds, and horseshoes. The West Overlook Day Use Area offers a beach, picnic sites, picnic shelter, volleyball court, and playground. The dump station and drinking water is located just outside of the West Overlook Campground.<h2>Natural Features</h2>\nCoralville Lake is located in the Iowa River Valley, just north of Iowa City. The West Overlook Campground lies among a heavily wooded forest of mixed hardwood species on the west side of the dam. Wildlife is abundant throughout the project.  Whitetail deer, turkeys, pheasants, waterfowl, song birds and other species roam the lands around the lake.\n<h2>Nearby Attractions</h2>\nIowa City/Coralville offers the Veterans Affairs Medical Center, University of Iowa campus, hospital and clinics, numerous restaurants and shops as well as Coral Ridge Mall. Cedar Rapids has wonderful cultural, historic and ethnic attractions such as The National Czech and Slovak Museum and Library and is the home of the Kernels Professional Baseball Club. West Branch boasts the Herbert Hoover National Historic Site and Presidential Library/Museum. At Amana Colonies visit seven quaint villages with outstanding restaurants, wineries, historic sites and specialty shops. Kalona is known as the \"Quilt Capital of Iowa\" and is home to an Old Order Amish and Mennonite Community.",
-        "fee": "yes",
         "internet_access": "no",
         "name": "West Overlook Campground",
         "phone": "+1 319-338-3543 x6300",
         "tourism": "camp_site",
-        "osm_id": 608010812,
-        "osm_type": "way",
         "id": "ridb:233671",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -606,7 +601,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:608010812",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:00:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/608010812"
+          }
+        ]
       }
     },
     {
@@ -621,8 +628,6 @@
       "properties": {
         "name": "SUGAR BOTTOM CAMPGROUND",
         "tourism": "camp_site",
-        "osm_id": 802200236,
-        "osm_type": "way",
         "id": "ridb:233642",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1531,7 +1536,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2464,7 +2468,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2583,7 +2586,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2734,7 +2736,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3260,7 +3261,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5945,7 +5945,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7018,7 +7017,6 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "name": "Twisted Oak Campground",
         "operator": "Argyle Lake State Park",
         "reservation": "yes",
@@ -7039,7 +7037,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7047,7 +7044,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1272558231",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:00:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1272558231"
+          }
+        ]
       }
     },
     {
@@ -7190,7 +7199,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7258,7 +7266,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9489,7 +9496,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12338,7 +12344,6 @@
         "addr:state": "IA",
         "addr:street": "Grand Avenue",
         "caravans": "no",
-        "fee": "yes",
         "group_only": "yes",
         "internet_access": "wlan",
         "name": "Ingawanis Adventure Base",
@@ -12363,7 +12368,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12371,7 +12375,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1174046862",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "private",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:00:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1174046862"
+          }
+        ]
       }
     },
     {
@@ -12693,7 +12710,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12701,7 +12717,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11701123969",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit"
+            },
+            "retrieved_at": "2026-10-29T03:00:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11701123969"
+          }
+        ]
       }
     },
     {
@@ -13030,7 +13058,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13628,7 +13655,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13636,7 +13662,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:14090029823",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "charge": "$10/night",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:00:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/14090029823"
+          }
+        ]
       }
     },
     {
@@ -16044,7 +16084,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -16549,7 +16588,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17170,7 +17208,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17644,7 +17681,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20492,7 +20528,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -24237,7 +24272,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],

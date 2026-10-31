@@ -226,7 +226,6 @@
         "caravans": "yes",
         "drinking_water": "no",
         "ele": "2206",
-        "fee": "no",
         "group_only": "no",
         "horse": "yes",
         "leisure": "firepit",
@@ -242,8 +241,6 @@
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1975&actid=29",
-        "osm_id": 2333697974,
-        "osm_type": "node",
         "id": "ridb:257351",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/257351",
@@ -274,7 +271,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333697974",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333697974"
+          }
+        ]
       }
     },
     {
@@ -289,7 +298,6 @@
       "properties": {
         "caravans": "yes",
         "drinking_water": "yes",
-        "fee": "yes",
         "name": "RIO DE LAS VACAS CAMPGROUND",
         "operator": "USFS",
         "reservation": "required",
@@ -298,8 +306,6 @@
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.recreation.gov/camping/campgrounds/251437",
-        "osm_id": 2332493797,
-        "osm_type": "node",
         "id": "ridb:251437",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/251437",
@@ -330,7 +336,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493797",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493797"
+          }
+        ]
       }
     },
     {
@@ -345,8 +363,6 @@
       "properties": {
         "name": "Rocky Point Campground",
         "tourism": "camp_site",
-        "osm_id": 11769788020,
-        "osm_type": "node",
         "id": "ridb:248175",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -396,8 +412,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493737,
-        "osm_type": "node",
         "id": "ridb:241360",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/241360",
@@ -446,8 +460,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493739,
-        "osm_type": "node",
         "id": "ridb:241361",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/241361",
@@ -790,8 +802,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2333697992,
-        "osm_type": "node",
         "id": "ridb:253563",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/253563",
@@ -881,7 +891,6 @@
         "caravans": "no",
         "drinking_water": "no",
         "ele": "2052",
-        "fee": "no",
         "group_only": "no",
         "name": "Black Canyon Campground - Lower",
         "nudism": "no",
@@ -896,8 +905,6 @@
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1994&actid=29",
-        "osm_id": 2332493688,
-        "osm_type": "node",
         "id": "ridb:257404",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/257404",
@@ -930,7 +937,29 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493688",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493688"
+          },
+          {
+            "source_record_id": "osm:node:2332493689",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493689"
+          }
+        ]
       }
     },
     {
@@ -946,8 +975,6 @@
         "name": "Fourth of July Campground",
         "operator": "USFS",
         "tourism": "camp_site",
-        "osm_id": 1430461164,
-        "osm_type": "way",
         "id": "ridb:253557",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1081,8 +1108,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2333697969,
-        "osm_type": "node",
         "id": "ridb:273758",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/273758",
@@ -1299,8 +1324,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493732,
-        "osm_type": "node",
         "id": "ridb:271519",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/271519",
@@ -1476,8 +1499,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493712,
-        "osm_type": "node",
         "id": "ridb:271991",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/271991",
@@ -1526,8 +1547,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493733,
-        "osm_type": "node",
         "id": "ridb:241366",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/241366",
@@ -1615,8 +1634,6 @@
       "properties": {
         "name": "Ojo Redondo Campground",
         "tourism": "camp_site",
-        "osm_id": 2332493786,
-        "osm_type": "node",
         "id": "ridb:10023205",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1795,8 +1812,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493740,
-        "osm_type": "node",
         "id": "ridb:249174",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/249174",
@@ -1971,8 +1986,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2333697951,
-        "osm_type": "node",
         "id": "ridb:253603",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/253603",
@@ -2063,8 +2076,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493736,
-        "osm_type": "node",
         "id": "ridb:241375",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/241375",
@@ -2156,8 +2167,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493789,
-        "osm_type": "node",
         "id": "ridb:257361",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/257361",
@@ -2248,8 +2257,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493794,
-        "osm_type": "node",
         "id": "ridb:253634",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/253634",
@@ -2293,12 +2300,10 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "backcountry": "yes",
         "caravans": "yes",
         "contact:campendium": "http://www.campendium.com/chosa-campground",
         "drinking_water": "no",
-        "fee": "no",
         "image": "http://www.nps.gov/common/uploads/cropped_image/primary/B5F856BB-0F22-2401-EE8F10DDA63B8B30.jpg",
         "internet_access": "cellular",
         "name": "Chosa Campground",
@@ -2315,8 +2320,6 @@
         "tourism": "camp_site",
         "waste_basket": "yes",
         "website": "https://www.nps.gov/places/gumo_chosa_campground_blm.htm",
-        "osm_id": 9170786474,
-        "osm_type": "node",
         "id": "ridb:10278188",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2348,7 +2351,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9170786474",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9170786474"
+          }
+        ]
       }
     },
     {
@@ -2576,8 +2592,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493767,
-        "osm_type": "node",
         "id": "ridb:253529",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/253529",
@@ -2795,7 +2809,6 @@
         "caravans": "yes",
         "drinking_water": "no",
         "ele": "1953",
-        "fee": "no",
         "group_only": "no",
         "name": "Apache Creek Campground",
         "nudism": "no",
@@ -2809,8 +2822,6 @@
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1984&actid=29",
-        "osm_id": 747965972,
-        "osm_type": "way",
         "id": "ridb:10078442",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/10078442",
@@ -2841,7 +2852,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:747965972",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/747965972"
+          }
+        ]
       }
     },
     {
@@ -3024,8 +3047,6 @@
       "properties": {
         "name": "SAN ANTONIO CAMPGROUND",
         "tourism": "camp_site",
-        "osm_id": 2332493802,
-        "osm_type": "node",
         "id": "ridb:233390",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3078,7 +3099,6 @@
         "caravans": "no",
         "dog": "yes",
         "ele": "1691",
-        "fee": "no",
         "group_only": "no",
         "horse": "no",
         "name": "Forks Campground",
@@ -3093,8 +3113,6 @@
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1990&actid=29",
-        "osm_id": 746692166,
-        "osm_type": "way",
         "id": "ridb:257396",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/257396",
@@ -3125,7 +3143,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:746692166",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/746692166"
+          }
+        ]
       }
     },
     {
@@ -3143,8 +3173,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2332493783,
-        "osm_type": "node",
         "id": "ridb:253552",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/253552",
@@ -3320,8 +3348,6 @@
         "source": "recreation.gov",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
-        "osm_id": 2333697977,
-        "osm_type": "node",
         "id": "ridb:257416",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/257416",
@@ -3478,7 +3504,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3486,7 +3511,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:520727639",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/520727639"
+          }
+        ]
       }
     },
     {
@@ -6894,7 +6931,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -8052,9 +8088,7 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "drinking_water": "no",
-        "fee": "no",
         "name": "James Canyon Campground",
         "operator": "USFS",
         "picnic_table": "yes",
@@ -8081,7 +8115,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -8089,7 +8122,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1289006722",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1289006722"
+          }
+        ]
       }
     },
     {
@@ -8152,7 +8198,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -8709,7 +8754,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9244,7 +9288,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9606,7 +9649,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10632,7 +10674,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11639,7 +11680,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11810,7 +11850,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11818,7 +11857,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:616412343",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes",
+              "internet_access:fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/616412343"
+          }
+        ]
       }
     },
     {
@@ -11854,7 +11906,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -15350,7 +15401,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -16243,7 +16293,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -16286,7 +16335,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -16326,7 +16374,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -16372,7 +16419,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17880,7 +17926,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17888,7 +17933,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13141822353",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13141822353"
+          }
+        ]
       }
     },
     {
@@ -18416,7 +18474,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -18607,7 +18664,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -19254,10 +19310,8 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "capacity:caravans": "13",
         "caravans": "no",
-        "fee": "yes",
         "name": "Pine Springs Campground",
         "operator": "National Park Service",
         "static_caravans": "no",
@@ -19285,7 +19339,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -19293,7 +19346,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1266999095",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1266999095"
+          }
+        ]
       }
     },
     {
@@ -21534,7 +21600,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -24034,7 +24099,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -26109,7 +26173,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -26117,7 +26180,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1204059581",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1204059581"
+          }
+        ]
       }
     },
     {
@@ -28453,7 +28528,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -28461,7 +28535,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1429633618",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1429633618"
+          }
+        ]
       }
     },
     {

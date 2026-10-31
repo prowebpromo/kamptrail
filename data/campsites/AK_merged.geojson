@@ -264,13 +264,10 @@
       },
       "properties": {
         "caravans": "yes",
-        "fee": "yes",
         "internet_access": "no",
         "name": "West Fork Campground",
         "tents": "yes",
         "tourism": "camp_site",
-        "osm_id": 430531631,
-        "osm_type": "way",
         "id": "ridb:274260",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -302,7 +299,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:430531631",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/430531631"
+          }
+        ]
       }
     },
     {
@@ -778,7 +787,6 @@
       },
       "properties": {
         "capacity": "13",
-        "fee": "yes",
         "internet_access": "no",
         "large_vehicles": "discouraged",
         "mobile_reception": "no",
@@ -788,8 +796,6 @@
         "sanitary_dump_station": "no",
         "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6602&actid=29",
-        "osm_id": 851627952,
-        "osm_type": "way",
         "id": "ridb:249093",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -821,7 +827,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:851627952",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/851627952"
+          }
+        ]
       }
     },
     {
@@ -1254,13 +1272,10 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "name": "QUARTZ CREEK CAMPGROUND",
         "operator": "U.S. Forest Service",
         "toilets": "yes",
         "tourism": "caravan_site",
-        "osm_id": 2705169107,
-        "osm_type": "node",
         "id": "ridb:233909",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1292,7 +1307,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2705169107",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2705169107"
+          }
+        ]
       }
     },
     {
@@ -1644,7 +1671,6 @@
         "caravans": "yes",
         "drinking_water": "yes",
         "email": "easterninterior@blm.gov",
-        "fee": "yes",
         "fixme": "boundary is approximate",
         "name": "Cripple Creek Campground",
         "operator": "U.S. Bureau of Land Management",
@@ -1654,8 +1680,6 @@
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/cripple-creek-campground",
-        "osm_id": 616174785,
-        "osm_type": "way",
         "id": "ridb:274261",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1687,7 +1711,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:616174785",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/616174785"
+          }
+        ]
       }
     },
     {
@@ -2080,8 +2116,6 @@
       "properties": {
         "name": "Bertha Creek Campground",
         "tourism": "caravan_site",
-        "osm_id": 230274150,
-        "osm_type": "way",
         "id": "ridb:249080",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3492,8 +3526,6 @@
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232330",
         "wheelchair": "yes",
-        "osm_id": 840370810,
-        "osm_type": "way",
         "id": "ridb:232330",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4884,8 +4916,6 @@
       "properties": {
         "name": "Eagle Campground",
         "tourism": "camp_site",
-        "osm_id": 1089802745,
-        "osm_type": "way",
         "id": "ridb:14534",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5661,8 +5691,6 @@
         "washing_machine": "no",
         "website": "https://www.recreation.gov/camping/campgrounds/232141",
         "wood_available": "yes",
-        "osm_id": 840370815,
-        "osm_type": "way",
         "id": "ridb:232141",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -7064,8 +7092,6 @@
         "source": "recreation.gov",
         "tourism": "caravan_site",
         "website": "https://www.recreation.gov/camping/poi/274259",
-        "osm_id": 295165500,
-        "osm_type": "way",
         "id": "ridb:274259",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/274259",
@@ -8370,11 +8396,9 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "backcountry": "no",
         "capacity": "60",
         "caravans": "yes",
-        "fee": "yes",
         "internet_access": "no",
         "large_vehicles": "yes",
         "mobile_reception": "no",
@@ -8387,8 +8411,6 @@
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6604&actid=29",
-        "osm_id": 851627950,
-        "osm_type": "way",
         "id": "ridb:232324",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -8420,7 +8442,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:851627950",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/851627950"
+          }
+        ]
       }
     },
     {
@@ -9231,12 +9266,9 @@
         ]
       },
       "properties": {
-        "fee": "no",
         "name": "Five Mile Campground",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/five-mile-campground",
-        "osm_id": 1233897963,
-        "osm_type": "way",
         "id": "ridb:14536",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9268,7 +9300,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1233897963",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1233897963"
+          }
+        ]
       }
     },
     {
@@ -11291,7 +11335,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11299,7 +11342,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8934341496",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8934341496"
+          }
+        ]
       }
     },
     {
@@ -16945,7 +17000,6 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "capacity": "57",
         "drinking_water": "yes",
         "fee": "yes",
@@ -16976,15 +17030,29 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
-        "data_conflicts": [],
+        "data_conflicts": [
+          "member_fee_disagreement"
+        ],
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:523991079",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/523991079"
+          }
+        ]
       }
     },
     {
@@ -17551,7 +17619,6 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "backcountry": "yes",
         "camp_site": "basic",
         "caravans": "no",
@@ -17576,7 +17643,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17584,7 +17650,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13131564114",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13131564114"
+          }
+        ]
       }
     },
     {
@@ -17631,7 +17710,6 @@
         "access": "yes",
         "backcountry": "yes",
         "camp_site": "basic",
-        "fee": "no",
         "name": "Twin Falls North Campsite",
         "operator": "Chugach State park",
         "tourism": "camp_site",
@@ -17651,7 +17729,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17659,7 +17736,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:14099939720",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/14099939720"
+          }
+        ]
       }
     },
     {
@@ -18644,7 +18734,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20121,7 +20210,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20129,7 +20217,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13131564112",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13131564112"
+          }
+        ]
       }
     },
     {
@@ -20333,7 +20433,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20341,7 +20440,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1302373145",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1302373145"
+          }
+        ]
       }
     },
     {
@@ -20512,7 +20624,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20520,7 +20631,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12092957208",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12092957208"
+          }
+        ]
       }
     },
     {
@@ -20767,7 +20891,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20775,7 +20898,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1427370419",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1427370419"
+          }
+        ]
       }
     },
     {
@@ -22592,7 +22727,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -23352,7 +23486,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -23360,7 +23493,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:297217846",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/297217846"
+          }
+        ]
       }
     },
     {
@@ -24597,7 +24742,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -24605,7 +24749,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:438358830",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/438358830"
+          }
+        ]
       }
     },
     {
@@ -27854,7 +28010,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -27862,7 +28017,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:758445778",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "20 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/758445778"
+          },
+          {
+            "source_record_id": "osm:way:758445782",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "20 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/758445782"
+          }
+        ]
       }
     },
     {
