@@ -234,3 +234,10 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 
 .kt-off-readiness{margin:0;padding-left:17px;display:grid;gap:7px;overflow-wrap:anywhere}.kt-off-panel{max-height:min(70vh,560px);overflow:auto;overscroll-behavior:contain}
 .kt-coverage{margin:8px 0;padding-top:6px;border-top:1px solid rgba(0,0,0,.12)}.kt-coverage p{margin:4px 0}.kt-signal-list{margin:4px 0;padding-left:18px;font-size:12px}
+
+/* Forest Service site-record statements: separate from Recreation.gov campsite records, same popup bounds. */
+.kt-usfs-site {margin-top:8px;}
+.kt-usfs-site summary {cursor:pointer;font-weight:600;}
+.kt-usfs-site[open] {max-height:280px;overflow:auto;overflow-wrap:anywhere;}
+.kt-usfs-site ul {padding-left:18px;}
+.kt-usfs-text {white-space:pre-line;}

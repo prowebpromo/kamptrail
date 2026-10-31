@@ -197,6 +197,19 @@ jobs:
             echo 'Recreation.gov site details refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
             node scripts/record_health.js record ridb_sites US failed
           fi
+      - name: Refresh Forest Service site water and restroom statements
+        # Public layer, no API key, run from GitHub Actions. The builder keeps the saved file on a failed query,
+        # a shrunken result or out-of-range counts, so a failure never replaces good data.
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -uo pipefail
+          if python scripts/build_usfs_site_amenities.py; then
+            node scripts/record_health.js record usfs_sites US fresh
+          else
+            echo 'Forest Service site statements refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
+            node scripts/record_health.js record usfs_sites US failed
+          fi
       - name: Download this weekly run's complete national service candidate
         id: service-candidate
         if: ${{ github.event_name == 'schedule' && needs.national-services-stage.result == 'success' }}

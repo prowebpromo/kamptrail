@@ -23,6 +23,7 @@ const SOURCES = {
   usfs: {label: 'Forest Service recreation sites', scope: 'national', files: () => ['data/sources/usfs.json']},
   blm: {label: 'BLM recreation sites', scope: 'national', files: () => ['data/sources/blm.json']},
   ridb_sites: {label: 'Recreation.gov site details', scope: 'national', files: () => ['data/campsites/ridb-sites.json']},
+  usfs_sites: {label: 'Forest Service site water and restroom statements', scope: 'national', files: () => ['data/campsites/usfs-site-amenities.json']},
   services_extracts: {label: 'Expanded service extracts (Geofabrik/OpenStreetMap)', scope: 'state', files: s => [`data/sources/services/${s}.json`]},
   rest_areas: {label: 'Official state rest-area locations', scope: 'state', files: s => [`data/rest-areas/${s}.json`]},
   services: {label: 'Legacy dump, water and LPG (OpenStreetMap)', scope: 'national', files: () => ['data/services/services.json']},

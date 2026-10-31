@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.28.1', messages:{
+  global.KampTrailI18nFr = {version:'2.29.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1609,6 +1609,28 @@
   "blank or unrecognized: {count} records": "vide ou non reconnu : {count} fiches",
   "conflicting values: {count} records": "valeurs contradictoires : {count} fiches",
   "Recreation.gov facility {id}": "Installation Recreation.gov {id}",
+  "Forest Service site record says…": "La fiche du site du Service forestier indique…",
+  "Water (Forest Service text):": "Eau (texte du Service forestier) :",
+  "Restrooms (Forest Service text):": "Toilettes (texte du Service forestier) :",
+  "Normalized: {label}": "Normalisé : {label}",
+  "No normalized label: the wording is ambiguous.": "Aucune étiquette normalisée : le texte est ambigu.",
+  "No normalized label: Forest Service records for this ID disagree.": "Aucune étiquette normalisée : les fiches du Service forestier pour cet ID ne concordent pas.",
+  "Drinking water stated": "Eau potable indiquée",
+  "Not for drinking, per the text": "Non potable, selon le texte",
+  "No water stated": "Aucune eau indiquée",
+  "Flush toilets stated": "Toilettes à chasse d’eau indiquées",
+  "Vault, pit or similar toilets stated": "Toilettes sèches à fosse ou similaires indiquées",
+  "No toilets stated": "Aucune toilette indiquée",
+  "Restrooms stated as nearby only": "Toilettes indiquées seulement à proximité",
+  "Open season: {value}": "Saison d’ouverture : {value}",
+  "Season description: {value}": "Description de la saison : {value}",
+  "Season text on this record (context only, not about water or restrooms):": "Texte sur la saison dans cette fiche (contexte seulement, sans lien avec l’eau ni les toilettes) :",
+  "Source: USDA Forest Service Recreation Site record, updated {date}.": "Source : fiche de site récréatif du Service forestier des États-Unis (USDA), mise à jour le {date}.",
+  "Source: USDA Forest Service Recreation Site record, update date unknown.": "Source : fiche de site récréatif du Service forestier des États-Unis (USDA), date de mise à jour inconnue.",
+  "Forest Service site record": "Fiche de site du Service forestier",
+  "Free text written by the Forest Service and matched by Recreation.gov facility ID. Kept separate from the Recreation.gov records above. Blank or ambiguous wording is unknown, never a statement of absence. Not current availability.": "Texte libre rédigé par le Service forestier et associé par l’identifiant d’installation Recreation.gov. Il reste distinct des fiches Recreation.gov ci-dessus. Un texte vide ou ambigu est inconnu, jamais une affirmation d’absence. Ce n’est pas la disponibilité actuelle.",
+  "Data retrieved {date}. CC BY 4.0.": "Données téléchargées le {date}. CC BY 4.0.",
+  "Forest Service source layer": "Couche source du Service forestier",
   "Export retrieved {date}.": "Export consulté le {date}.",
   "Amenity update dates unknown. Inspected {date}; inspection is not an update date.": "Dates de mise à jour des équipements inconnues. Inspecté le {date} ; l’inspection n’est pas une date de mise à jour.",
   "Attached videos are external YouTube links. The video ID is stored with your review. The whole review and video need moderation. Saving edits removes them from public view until reviewed again. Play checks publication, then loads a third-party YouTube player. YouTube may show ads and collect information. Video dates are unknown, and outside content may change.": "Les vidéos jointes sont des liens YouTube externes. L’identifiant de la vidéo est enregistré avec votre avis. L’avis complet et la vidéo nécessitent une modération. L’enregistrement de modifications les retire de l’affichage public jusqu’à un nouvel examen. Lire vérifie la publication, puis charge un lecteur YouTube tiers. YouTube peut afficher des publicités et collecter des informations. Les dates des vidéos sont inconnues et le contenu externe peut changer.",

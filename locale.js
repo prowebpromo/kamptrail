@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.28.1';
+  const FR_VERSION = '2.29.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -1625,6 +1625,28 @@
   "blank or unrecognized: {count} records": "vacío o no reconocido: {count} registros",
   "conflicting values: {count} records": "valores contradictorios: {count} registros",
   "Recreation.gov facility {id}": "Instalación de Recreation.gov {id}",
+  "Forest Service site record says…": "El registro del sitio del Servicio Forestal indica…",
+  "Water (Forest Service text):": "Agua (texto del Servicio Forestal):",
+  "Restrooms (Forest Service text):": "Baños (texto del Servicio Forestal):",
+  "Normalized: {label}": "Normalizado: {label}",
+  "No normalized label: the wording is ambiguous.": "Sin etiqueta normalizada: el texto es ambiguo.",
+  "No normalized label: Forest Service records for this ID disagree.": "Sin etiqueta normalizada: los registros del Servicio Forestal para este ID no coinciden.",
+  "Drinking water stated": "Agua potable indicada",
+  "Not for drinking, per the text": "No apta para beber, según el texto",
+  "No water stated": "Sin agua indicada",
+  "Flush toilets stated": "Inodoros con descarga indicados",
+  "Vault, pit or similar toilets stated": "Letrinas de foso, de cámara o similares indicadas",
+  "No toilets stated": "Sin baños indicados",
+  "Restrooms stated as nearby only": "Baños indicados solo en las cercanías",
+  "Open season: {value}": "Temporada abierta: {value}",
+  "Season description: {value}": "Descripción de la temporada: {value}",
+  "Season text on this record (context only, not about water or restrooms):": "Texto de temporada de este registro (solo contexto, no se refiere al agua ni a los baños):",
+  "Source: USDA Forest Service Recreation Site record, updated {date}.": "Fuente: registro de sitio recreativo del Servicio Forestal de EE. UU. (USDA), actualizado {date}.",
+  "Source: USDA Forest Service Recreation Site record, update date unknown.": "Fuente: registro de sitio recreativo del Servicio Forestal de EE. UU. (USDA), fecha de actualización desconocida.",
+  "Forest Service site record": "Registro de sitio del Servicio Forestal",
+  "Free text written by the Forest Service and matched by Recreation.gov facility ID. Kept separate from the Recreation.gov records above. Blank or ambiguous wording is unknown, never a statement of absence. Not current availability.": "Texto libre escrito por el Servicio Forestal y vinculado por el ID de instalación de Recreation.gov. Se mantiene aparte de los registros de Recreation.gov anteriores. Un texto en blanco o ambiguo es desconocido, nunca una afirmación de ausencia. No indica disponibilidad actual.",
+  "Data retrieved {date}. CC BY 4.0.": "Datos descargados {date}. CC BY 4.0.",
+  "Forest Service source layer": "Capa de origen del Servicio Forestal",
   "Export retrieved {date}.": "Exportación descargada {date}.",
   "Amenity update dates unknown. Inspected {date}; inspection is not an update date.": "Se desconocen las fechas de actualización de los servicios. Revisado {date}. La revisión no es una fecha de actualización.",
   "Attached videos are external YouTube links. The video ID is stored with your review. The whole review and video need moderation. Saving edits removes them from public view until reviewed again. Play checks publication, then loads a third-party YouTube player. YouTube may show ads and collect information. Video dates are unknown, and outside content may change.": "Los videos adjuntos son enlaces externos de YouTube. El identificador del video se guarda con tu reseña. La reseña completa y el video necesitan moderación. Guardar cambios los retira de la vista pública hasta una nueva revisión. Reproducir comprueba la publicación y después carga un reproductor externo de YouTube. YouTube puede mostrar anuncios y recopilar información. Las fechas de los videos son desconocidas y el contenido externo puede cambiar.",
@@ -1738,7 +1760,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.28.1', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.29.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
