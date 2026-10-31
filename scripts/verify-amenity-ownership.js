@@ -213,7 +213,59 @@ const summary = {
   ridb_toilet_toilet_with_length_filter:tally(cases.filter(c => c.ridb_toilet_records), 'toilet_with_length_filter')
 };
 
+// 7. Published counts by source and amenity: join eligibility, attached records, known values, filterable evidence.
+function publishedCounts(cat) {
+  const out = {}, tagOf = {toilet:'toilets', water:'drinking_water', dump:'sanitary_dump_station', shower:'shower'};
+  const ridbIds = p => NEW.ridbFacilityIds(p).length > 0;
+  for (const a of NEW.FILTER_AMENITIES) {
+    const row = {osm:{eligible:0, attached:0, known:0, filterable:0}, ridb:{eligible:0, attached:0, known:0, filterable:0}, usfs:{eligible:0, attached:0, known:0, filterable:0}, any:{filterable:0, filterable_with_length_filter:0}};
+    for (const f of cat) {
+      const p = f.properties, e = NEW.amenityEvidence(p), x = e.amenities[a], present = x.status === 'present';
+      if (/^osm:/.test(p.id)) {
+        row.osm.eligible++;
+        const v = p.osm_amenity_tags?.[tagOf[a]];
+        if (v != null) { row.osm.attached++; if (/^(yes|no)$/i.test(String(v).trim())) row.osm.known++; }
+        if (present && x.positive.some(r => r.source === 'osm')) row.osm.filterable++;
+      }
+      if (ridbIds(p)) {
+        row.ridb.eligible++;
+        const recs = Object.values(p.ridb_amenity_evidence?.facilities || {});
+        const key = {toilet:'toilet', water:'drinking_water', dump:'dump', shower:'shower'}[a];
+        if (recs.some(r => r.sites > 0)) row.ridb.attached++;
+        if (recs.some(r => r.amenities[key] && (r.amenities[key].reported || r.amenities[key].negative))) row.ridb.known++;
+        if (present && x.positive.some(r => r.source === 'ridb')) row.ridb.filterable++;
+        if (a === 'toilet' || a === 'water') {
+          row.usfs.eligible++;
+          const field = a === 'toilet' ? 'toilet' : 'water', fac = Object.values(p.usfs_site_evidence?.facilities || {});
+          if (fac.some(F => F.records.some(r => r[field]))) row.usfs.attached++;
+          if (fac.some(F => !F.conflicts.includes(field) && F.records.some(r => r[field] && r[field].class !== 'unknown'))) row.usfs.known++;
+          if (present && x.positive.some(r => r.source === 'usfs')) row.usfs.filterable++;
+        }
+      }
+      if (NEW.amenityMatches(p, [a], {})) row.any.filterable++;
+      if (NEW.amenityMatches(p, [a], rig)) row.any.filterable_with_length_filter++;
+    }
+    if (a !== 'toilet' && a !== 'water') delete row.usfs;
+    out[a] = row;
+  }
+  // The three-count Recreation.gov-linked breakdown (the audit's 2,158 / 1,448 / 1,324).
+  const linked = cat.filter(f => ridbIds(f.properties));
+  const withRecords = linked.filter(f => Object.values(f.properties.ridb_amenity_evidence?.facilities || {}).some(r => r.sites > 0) || Object.keys(f.properties.usfs_site_evidence?.facilities || {}).length);
+  const known = linked.filter(f => {
+    const p = f.properties;
+    const ridbKnown = Object.values(p.ridb_amenity_evidence?.facilities || {}).some(r => Object.values(r.amenities).some(g => g.reported || g.negative));
+    const usfsKnown = Object.values(p.usfs_site_evidence?.facilities || {}).some(F => F.records.some(r => ['water', 'toilet'].some(k => r[k] && r[k].class !== 'unknown' && !F.conflicts.includes(k))));
+    const hookups = p.hookups && (p.hookups.electric > 0 || p.hookups.water > 0 || p.hookups.sewer > 0);
+    return ridbKnown || usfsKnown || hookups;
+  });
+  const filterable = linked.filter(f => NEW.FILTER_AMENITIES.some(a => NEW.amenityMatches(f.properties, [a], {})));
+  out.recreation_gov_linked = {eligible:linked.length, with_records:withRecords.length, with_known_value:known.length, with_filterable_amenity:filterable.length};
+  out.listings = cat.length;
+  out.no_amenity_source = cat.filter(f => NEW.amenityEvidence(f.properties).state === 'no_source').length;
+  return out;
+}
 const report = {
+  published_counts:publishedCounts(newCat),
   baseline_commit:execFileSync('git', ['rev-parse', 'HEAD'], {cwd:baseline, encoding:'utf8'}).trim(),
   input_hashes:inputHashes,
   output_hashes:Object.fromEntries([...states.map(s => `data/campsites/${s}_merged.geojson`), 'data/campsites/search-index.json', 'data/campsites/coordinate-index.json'].map(rel => [rel, sha(path.join(root, rel))])),
@@ -230,6 +282,7 @@ const report = {
 };
 report.output_digest = crypto.createHash('sha256').update(JSON.stringify(report.output_hashes)).digest('hex');
 if (arg('report')) { fs.mkdirSync(path.dirname(path.resolve(arg('report'))), {recursive:true}); fs.writeFileSync(path.resolve(arg('report')), JSON.stringify(report, null, 2) + '\n'); }
-if (arg('cases')) fs.writeFileSync(path.resolve(arg('cases')), JSON.stringify({version:1, generated_from:{baseline_commit:report.baseline_commit, output_digest:report.output_digest}, length_filter_used:rig, summary, cases}, null, 1) + '\n');
+// One case per line, so a review diff shows each listing's expected inclusion or exclusion.
+if (arg('cases')) fs.writeFileSync(path.resolve(arg('cases')), JSON.stringify({version:1, generated_from:{baseline_commit:report.baseline_commit, output_digest:report.output_digest}, length_filter_used:rig, summary}, null, 1).replace(/\n}$/, ',\n "cases": [\n') + cases.map(c => JSON.stringify(c)).join(',\n') + '\n]}\n');
 console.log(JSON.stringify({output_digest:report.output_digest, snapshot, index, saved_places:saved, catalogue:report.catalogue, cases_summary:summary, unexpected_delta_count:unexpected.length, first_unexpected:unexpected.slice(0, 10)}, null, 2));
 if (unexpected.length) process.exitCode = 1;

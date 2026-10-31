@@ -2,6 +2,8 @@
 
 Release 2.29.0 adds a second, separate evidence section to the campsite popup. For a Recreation.gov-linked campground that exactly matches a USDA Forest Service Recreation Site record, the popup quotes the Forest Service's own water and restroom statements. It adds a normalized label only when the wording is explicit. It does not change filters, fees, access, the Recreation.gov campsite-record amenity section, or the services map.
 
+> Update, 2.31.0: amenity filters now use these statements. A listing matches the Toilets or Drinking water filter on an explicit Forest Service class the popup shows, at site-record scope, with its update date or "date unknown". Conflicting records give no filter evidence. Coverage is not complete: of 2,158 Recreation.gov-linked listings, 676 have restroom text, 654 a known restroom class and 652 filterable restroom evidence. 601 have water text, 568 a known water class and 436 filterable drinking water. See `docs/AMENITY_OWNERSHIP_2.31.0.md`.
+
 ## Acceptance criterion
 
 A KampTrail campground is matched when its Recreation.gov facility ID equals a Forest Service record's `rec1stop_id` as an exact string. The ID is the catalogue identity `ridb:<id>`, either the primary ID or a legacy alias listed in `data/campsites/search-index.json`. For a match, the popup shows:

@@ -1,7 +1,7 @@
 const {test,expect}=require('@playwright/test');
 const source=require('../../data/campsites/ridb-amenities.json').source;
 test.use({serviceWorkers:'block',viewport:{width:390,height:844}});
-test('campsite records retain qualified amenity evidence without changing filters',async({page,context})=>{
+test('campsite records retain qualified amenity evidence and filters match at record scope',async({page,context})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
@@ -35,7 +35,9 @@ test('campsite records retain qualified amenity evidence without changing filter
   await page.getByRole('button',{name:'Close popup',exact:true}).click({timeout:5000});await expect(popup).toHaveCount(0);
   await expect(page.getByRole('button',{name:'Map layers',exact:true})).toBeVisible();await expect(page.locator('.kt-off-toggle')).toBeVisible();
   expect(await page.evaluate(()=>KampTrailData.getCampsiteById('ridb:123').properties.amenities)).toEqual([]);
-  expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['water']});return KampTrailData.getVisibleCampsites().length;})).toBe(0);
+  // 2.31.0: filters match what the popup shows, at campsite-record scope, and never with a campsite length filter.
+  expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['water']});return KampTrailData.getVisibleCampsites().length;})).toBe(1);
+  expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['toilet']});return KampTrailData.getVisibleCampsites().length;})).toBe(0);
   expect(errors).toEqual([]);
 });
 

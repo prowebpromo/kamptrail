@@ -20,7 +20,7 @@ const response=data=>({ok:true,json:async()=>data});
 
 const amenityPayload=()=>({version:1,source:{name:'Recreation.gov RIDB full export',url:'https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip',sha256:'a'.repeat(64),inspected_at:'2026-10-30T12:00:00Z',original_retrieved_at:null,attribute_updated_at:null,archive_entry_time:'2026-10-21T18:46:28',archive_entry_timezone:null,basis:'frozen_public_export_cache',http_last_modified:null},facilities:{'123':{sites:2,amenities:{drinking_water:{reported:1,negative:0,unknown:1,conflict:0,qualifiers:{peak_season:1,hand_pump:1}},shower:{reported:1,negative:0,unknown:0,conflict:0,qualifiers:{coin:1}},picnic_table:{reported:0,negative:1,unknown:0,conflict:1,qualifiers:{}}}}}});
 
-test('optional amenity details retain record scope, qualifiers and safe source links without filter promotion',async()=>{
+test('optional amenity details retain record scope, qualifiers and safe source links, and filters match the shown scope',async()=>{
   const caches=cacheStorage(),location={href:'https://example.test/kamptrail/'};
   const row=feature({name:'<img src=x onerror=alert(1)> Campground',facility_id:'123',schema_version:3});
   let online=true;
@@ -36,7 +36,11 @@ test('optional amenity details retain record scope, qualifiers and safe source l
   assert.match(html,/Recreation.gov campsite records report/);assert.match(html,/mentioned in 1 of 2 records/);assert.match(html,/peak season: 1 records/);assert.match(html,/hand pump: 1 records/);assert.match(html,/coin operated: 1 records/);
   assert.match(html,/explicit no: 1 records/);assert.match(html,/conflicting values: 1 records/);assert.match(html,/retrieval date unknown/);
   assert.match(html,/campgrounds\/123/);assert.ok(!html.includes('<img'));assert.match(html,/&lt;img/);
-  h.api.updateFilters({amenities:['water']});assert.equal(h.api.getVisibleCampsites().length,0);
+  // 2.31.0: the filter uses what the popup shows, at its scope (some campsite records, not every site).
+  assert.match(html,/data-amenity="water" data-status="present"><strong>Drinking water:<\/strong> reported: Recreation.gov facility 123 <span class="kt-muted">\(1 of 2 campsite records, not every site · date unknown\)/);
+  assert.match(html,/data-amenity="toilet" data-status="unknown"/);assert.doesNotMatch(html,/Amenities reported:/);
+  h.api.updateFilters({amenities:['water']});assert.equal(h.api.getVisibleCampsites().length,1);
+  h.api.updateFilters({amenities:['toilet']});assert.equal(h.api.getVisibleCampsites().length,0);
   online=false;
   const offline=harness(async()=>{throw new Error('offline');},{caches,location});
   await offline.api.init(offline.map);await new Promise(resolve=>setImmediate(resolve));
@@ -301,7 +305,8 @@ test('Spanish amenity details retain exact counts, qualifiers, original place wo
   const h=harness(async url=>new Response(JSON.stringify(url.endsWith('ridb-amenities.json')?amenityPayload():url.endsWith('_merged.geojson')?{type:'FeatureCollection',features:[row]}:{})),{KampTrailI18n:translations.KampTrailI18n,caches:cacheStorage(),location:{href:'https://example.test/kamptrail/'}});
   await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));
   const p=h.api.getAllCampsites()[0].properties,markup=h.cluster.layers[0].html;
-  assert.match(markup,/Original publisher Campground &lt;img src=x&gt;/);assert.match(markup,/Los registros de parcelas de Recreation.gov indican/);assert.match(markup,/mencionado en 1 de 2 registros/);assert.match(markup,/bomba manual: 1 registros/);assert.match(markup,/negativo explícito: 1 registros/);assert.match(markup,/fecha de recuperación desconocida/);assert.match(markup,/2026-10-30/);assert.ok(markup.includes('https://www.recreation.gov/camping/campgrounds/123'));assert.equal(p.fee_status,'unknown');assert.deepEqual(Array.from(p.amenities),[]);assert.equal(h.context.DataQuality.applyFilters([h.api.getAllCampsites()[0]],{amenities:['water']}).length,0);
+  assert.match(markup,/Original publisher Campground &lt;img src=x&gt;/);assert.match(markup,/Los registros de parcelas de Recreation.gov indican/);assert.match(markup,/mencionado en 1 de 2 registros/);assert.match(markup,/bomba manual: 1 registros/);assert.match(markup,/negativo explícito: 1 registros/);assert.match(markup,/fecha de recuperación desconocida/);assert.match(markup,/2026-10-30/);assert.ok(markup.includes('https://www.recreation.gov/camping/campgrounds/123'));assert.equal(p.fee_status,'unknown');assert.deepEqual(Array.from(p.amenities),[]);assert.equal(h.context.DataQuality.applyFilters([h.api.getAllCampsites()[0]],{amenities:['water']}).length,1);
+  assert.match(markup,/Pruebas de servicios:/);assert.match(markup,/1 de 2 registros de parcelas, no todas las parcelas · fecha desconocida/);
 });
 
 const usfsPayload=()=>{
@@ -326,7 +331,13 @@ test('Forest Service site statements show exact text, credit and dates apart fro
   const conflicted=htmlFor('Conflicted Campground');
   assert.match(conflicted,/Forest Service records for this ID disagree/);assert.doesNotMatch(conflicted,/Normalized: /);assert.match(conflicted,/“Potable Water”/);assert.match(conflicted,/“No water is available”/);
   const unmatched=htmlFor('Unmatched Campground');assert.doesNotMatch(unmatched,/Forest Service site record says|kt-usfs-site/);assert.equal(by['Unmatched Campground'].usfs_site_evidence,undefined);
-  h.api.updateFilters({amenities:['water']});assert.equal(h.api.getVisibleCampsites().length,0);
+  // 2.31.0: popup and filter agree. Explicit class with its date matches; disagreeing records and no source do not.
+  assert.match(matched,/data-amenity="water" data-status="present"><strong>Drinking water:<\/strong> reported: Forest Service site record: Pine &lt;b&gt;Campground&lt;\/b&gt; <span class="kt-muted">\(site record · value “Yes, drinking water is available from a hand pump” · updated 2026-08-05\)/);
+  assert.match(matched,/data-amenity="toilet" data-status="unrecognized"/);
+  assert.match(conflicted,/data-amenity="water" data-status="conflict"><strong>Drinking water:<\/strong> sources disagree/);
+  assert.match(unmatched,/data-state="no_source"><strong>Amenity evidence:<\/strong> No amenity source for this listing\./);
+  h.api.updateFilters({amenities:['water']});assert.deepEqual(Array.from(h.api.getVisibleCampsites(),f=>f.properties.name),['Matched Campground']);
+  h.api.updateFilters({amenities:['toilet']});assert.equal(h.api.getVisibleCampsites().length,0);
 });
 test('Spanish Forest Service statements keep the agency text in English and translate only interface words',async()=>{
   const translations={Intl,Date,localStorage:{getItem:()=> 'es'}};translations.window=translations;vm.runInNewContext(fs.readFileSync('locale.js','utf8'),translations);

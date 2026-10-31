@@ -169,6 +169,7 @@ Each contract has three parts:
   - listings eligible for an exact join
   - listings with evidence attached
   - listings with at least one known amenity value
+  - Measured at 2.31.0: 2,158 eligible, 1,448 with records, 1,324 with a known value. An attached entry with no records is not evidence (`docs/AMENITY_OWNERSHIP_2.31.0.md`).
 - **OSM:** amenity-tag ownership is audited before any tag is shown, so merged records do not reintroduce inherited or borrowed amenities.
 - **Coverage:** reported by source and by amenity type. The 50% overall figure is a milestone, not a gate.
 
