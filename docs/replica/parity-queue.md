@@ -1,6 +1,6 @@
 # Active comparison and implementation queue
 
-Updated October 30, 2026, after the live 2.20 verification and the owner's revised priorities. This is the execution order, not a new parity score. Earlier dated reports and candidate gates are historical.
+Updated October 31, 2026 (current release section). The sequence below dates from October 30, after the live 2.20 verification and the owner's revised priorities. This is the execution order, not a new parity score. Earlier dated reports and candidate gates are historical.
 
 ## Current release and accounting
 

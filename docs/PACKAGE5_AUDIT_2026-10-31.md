@@ -9,7 +9,7 @@ Acceptance criterion: an agency-published, per-place amenity field joined by exa
 Findings:
 - USFS EDW Recreation Opportunities and Recreation Area Activities publish no structured amenity fields. Fields checked: description, fee, hours, reservation, restrictions, accessibility, activity names. Amenities appear only inside free text. Parsing prose would infer amenities, which the evidence rules do not allow.
 - BLM National Recreation Sites layers 2 and 8 publish no amenity fields either. Layer 8's `FacilityID` is the Recreation.gov facility ID. All 166 checked IDs matched the Recreation.gov export by exact name.
-- All 300 search-index listings with a BLM facility ID already carry the matching `ridb:` alias, so they already receive Recreation.gov amenity evidence. Live checks confirmed it. A BLM-to-RIDB join would add zero listings, so none was shipped.
+- All 300 search-index listings with a BLM facility ID already carry the matching `ridb:` identity (234 as the primary ID, 66 as a legacy alias), so they already receive Recreation.gov amenity evidence. Live checks confirmed it. A BLM-to-RIDB join would add zero listings, so none was shipped.
 
 Result: no change. A further gain needs a new structured agency source. Neither publisher offers one today.
 
@@ -17,7 +17,7 @@ Result: no change. A further gain needs a new structured agency source. Neither 
 
 Acceptance criterion: a control backed by place-specific road evidence with provenance.
 
-Findings: 0 of 33,370 listings carry source `road_difficulty`. MVUM road attributes describe individual roads, and the road that reaches a campsite is not known. A campsite-level rating would be an inference. The moderated same-visit road reports from 2.9 remain the only honest basis.
+Findings: none of the 64,280 features in the published `*_merged.geojson` state files carries a source `road_difficulty` value. MVUM road attributes describe individual roads, and the road that reaches a campsite is not known. A campsite-level rating would be an inference. The moderated same-visit road reports from 2.9 remain the only honest basis.
 
 Result: no change.
 

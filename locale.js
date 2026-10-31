@@ -5,6 +5,7 @@
   const supported = ['en', 'es', 'fr'];
   let language = 'en';
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
+  // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
   const FR_VERSION = '2.25.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
@@ -1688,9 +1689,11 @@
     reportStatus:{pending:'pending',published:'published',rejected:'rejected',deleted:'deleted',flagged:'flagged'}
   };
   function label(kind, value) {return language !== 'en' && Object.hasOwn(labels,kind) && Object.hasOwn(labels[kind],value) ? t(labels[kind][value]) : String(value ?? '');}
-  const locale = () => language === 'es' ? 'es-US' : language === 'fr' ? 'fr-CA' : 'en-US';
   // True only when the selected catalogue is present, so a missing French file is reported instead of silently showing English.
   const catalogueReady = () => language !== 'fr' || Object.keys(catalogue()).length > 0;
+  // The language actually shown. A missing French catalogue shows English, so lang and number/date formats follow English too.
+  const shown = () => catalogueReady() ? language : 'en';
+  const locale = () => shown() === 'es' ? 'es-US' : shown() === 'fr' ? 'fr-CA' : 'en-US';
   function number(value, options) { return new Intl.NumberFormat(locale(), options).format(value); }
   function date(value, options = {}) {
     if (!value) return t('Unknown');
@@ -1718,6 +1721,7 @@
     global.document.addEventListener('DOMContentLoaded', () => {
       if (!shellApplied) apply();
       const choice = global.document.getElementById('kt-language');
+      global.document.documentElement.lang = shown();
       const scope = global.document.getElementById('kt-language-scope');
       if (scope) {
         scope.hidden = language === 'en';

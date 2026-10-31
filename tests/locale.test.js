@@ -115,10 +115,11 @@ test('French uses its own catalogue, keeps every Spanish key and placeholder, an
   const ph=x=>[...new Set(x.match(/\{[a-zA-Z0-9_]+\}/g)||[])].sort().join();
   for(const [k,v] of Object.entries(fr.messages)){assert.ok(v.trim(),k);for(const p of ph(v).split(',').filter(Boolean))assert.ok(ph(k).includes(p),'French adds no placeholder: '+k);}
   assert.doesNotMatch(Object.values(fr.messages).join('\n'),/Spanish interface|Interfaz en español/);
-  const missing=boot('fr').api;assert.equal(missing.language,'fr');assert.equal(missing.catalogueReady(),false);assert.equal(missing.t('Save stop'),'Save stop');
+  const missing=boot('fr').api;assert.equal(missing.language,'fr');assert.equal(missing.catalogueReady(),false);assert.equal(missing.t('Save stop'),'Save stop');assert.equal(missing.locale(),'en-US','English fallback text uses English formats');
+  const stale=boot('fr',false,undefined,false);stale.context.KampTrailI18nFr={version:'0.0.1',messages:{'Save stop':'Ancien texte'}};assert.equal(stale.api.catalogueReady(),false,'a cached catalogue from another release is ignored');assert.equal(stale.api.t('Save stop'),'Save stop');
 });
 test('French is offered, cached for offline use and packaged',()=>{
   const read=f=>fs.readFileSync(path.join(__dirname,'..',f),'utf8');
-  assert.match(read('index.html'),/<option value="fr" lang="fr">Français<\/option>/);assert.match(read('service-worker.js'),/'locale-fr\.js'/);assert.match(read('scripts/build-release.js'),/'locale-fr\.js'/);
+  assert.match(read('index.html'),/<option value="fr" lang="fr">Français<\/option>/);assert.doesNotMatch(read('service-worker.js'),/locale-fr/,'not precached, so other visitors never fetch it');assert.match(read('scripts/build-release.js'),/'locale-fr\.js'/);
   assert.doesNotMatch(read('index.html'),/src="locale-fr\.js/,'English and Spanish visitors do not download the French catalogue');
 });

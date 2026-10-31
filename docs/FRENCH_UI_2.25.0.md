@@ -2,14 +2,14 @@
 
 ## Acceptance criterion (defined before implementation)
 
-French is selectable beside English and Spanish. Every first-party catalogue string that has a Spanish translation has a French one, with no placeholder the English lacks. The choice persists after reload. Place names, source text and visitor content stay in their original language. English and Spanish visitors do not download the French text. A missing French file falls back to English with a visible bilingual notice. The offline shell caches the French file.
+French is selectable beside English and Spanish. Every first-party catalogue string that has a Spanish translation has a French one, with no placeholder the English lacks. The choice persists after reload. Place names, source text and visitor content stay in their original language. English and Spanish visitors do not download the French text. A missing or mismatched French file falls back to English with a visible bilingual notice, and the page language and number formats switch to English too. French stays available offline after the first French load.
 
 ## What shipped
 
 - `locale-fr.js`: 1,655 French strings, one for every Spanish catalogue key, including the 2.24.0 visitor-answer texts. It loads only when French is selected and carries its own version, which must match `locale.js`.
 - `locale.js`: `fr` is a supported language with the `fr-CA` number and date locale. Shared labels (fee, type, amenity, rig, status) use the selected catalogue. `catalogueReady()` reports a missing French file.
 - Selector: "Français" option. The interface notice reads "Interface en français" and keeps the same limits as Spanish.
-- Service worker shell and release package include `locale-fr.js`.
+- The release package includes `locale-fr.js`. It is not precached: the service worker caches it when a French visitor first loads it, so English and Spanish visitors never fetch it. An independent review caught an earlier version that precached it for everyone.
 
 Thirteen English strings join English word fragments in code (for example "listing matches"/"listings match"). The Spanish catalogue already rewrites these without the fragment. The French catalogue follows the same approach, so no English fragment appears inside French text.
 
@@ -21,8 +21,8 @@ Thirteen English strings join English word fragments in code (for example "listi
 
 ## Tests
 
-- `tests/locale.test.js`: French catalogue key parity with Spanish, no added placeholders, no leftover Spanish-interface wording, labels, locale, missing-file fallback, selector, offline shell and package entries.
-- `tests/browser/locale.spec.js`: French boot loads the catalogue, translated controls, unchanged place names, switching back to English, no French download for English visitors, and labeled English fallback when the file is missing.
+- `tests/locale.test.js`: French catalogue key parity with Spanish, no added placeholders, no leftover Spanish-interface wording, labels, locale, missing and stale-version fallback, selector, no precache and package entry.
+- `tests/browser/locale.spec.js`: French boot loads the catalogue, translated controls, unchanged place names, switching back to English, no French download for English visitors, and labeled English fallback with English page language when the file is missing.
 
 ## Checklist effect
 

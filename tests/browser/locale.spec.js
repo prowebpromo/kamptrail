@@ -60,5 +60,5 @@ test('French loads its separate catalogue, keeps place names, and falls back to 
   const english=await page.context().newPage();const loaded=[];english.on('request',r=>{if(r.url().includes('locale-fr.js'))loaded.push(r.url());});
   await english.goto('/');await english.waitForFunction(()=>window.KampTrailI18n);expect(loaded).toEqual([]);await english.close();
   await page.route('**/locale-fr.js*',r=>r.fulfill({status:404,body:'missing'}));await page.evaluate(()=>localStorage.setItem('kt_language','fr'));await page.reload();
-  await page.waitForFunction(()=>window.KampTrailI18n);await expect(page.locator('#kt-language-scope')).toContainText('French text could not be loaded');await expect(page.locator('.leaflet-control-zoom-in')).toHaveAccessibleName('Zoom in');
+  await page.waitForFunction(()=>window.KampTrailI18n);await expect(page.locator('#kt-language-scope')).toContainText('French text could not be loaded');await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.locator('.leaflet-control-zoom-in')).toHaveAccessibleName('Zoom in');
 });
