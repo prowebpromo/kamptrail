@@ -1,0 +1,27 @@
+name: FCC network check
+
+# One request to the FCC Public Map Data API from a GitHub runner, to
+# compare with the KampTrail server. Prints status and format only.
+on:
+  push:
+    branches: [pilot/fcc-check]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: One FCC request
+        env:
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: |
+          python3 scripts/fcc_network_check.py | tee -a "$GITHUB_STEP_SUMMARY"
