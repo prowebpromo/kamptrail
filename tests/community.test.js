@@ -118,6 +118,27 @@ test('published observations and rating discovery follow moderation, edit, hide,
   assert.equal((await fetch(e.base+'/api/community-discovery.php',{method:'POST'})).status,405);
  }finally{e.close();}
 });
+test('approach maximum and signal technology survive submission, moderation and publication into the client filter',{skip:!capable},async()=>{
+ const e=await env('',18961);try{
+  const D=require('../community-discovery.js'),now=Date.parse('2026-10-29T12:00:00Z');
+  const withLte={access:'moderate',signals:[{carrier:'verizon',signal:'usable',environment:'outdoors',radio:'lte'}]};
+  const noRadio={access:'easy',signals:[{carrier:'att',signal:'weak',environment:'outdoors'}]};
+  const first=await e.post({...good,observations:JSON.stringify(withLte)});assert.equal(first.status,201);
+  const second=await e.post({...good,display_name:'Second camper',observations:JSON.stringify(noRadio)});assert.equal(second.status,201);
+  assert.deepEqual((await e.get('/api/community-discovery.php')).sites,{},'Pending reports are not published');
+  for(const r of [first,second])await e.admin({do:'community_review',review_id:(await r.json()).id,status:'published'});
+  const data=await e.get('/api/community-discovery.php');assert.ok(D.validSites(data.sites));
+  const site=data.sites[good.campsite_id],m=f=>D.matchesSummary(site,f,now);
+  assert.ok(JSON.stringify(site).includes('"radio":"lte"'));assert.ok(!JSON.stringify(site).includes('unspecified"}'));
+  assert.equal(m({observed_carrier:'verizon',observed_radio:'lte'}),true);
+  assert.equal(m({observed_carrier:'verizon',observed_radio:'5g'}),false);
+  assert.equal(m({observed_carrier:'att',observed_radio:'lte'}),false,'A report without technology never matches a technology filter');
+  assert.equal(m({observed_carrier:'att',observed_signal:'weak'}),true);
+  assert.equal(m({observed_access:'easy'}),true);
+  assert.equal(m({observed_access:'easy',observed_carrier:'verizon'}),false,'Criteria must match within one visit');
+  assert.equal(m({observed_access:'moderate',observed_carrier:'verizon',observed_radio:'lte'}),true);
+ }finally{e.close();}
+});
 test('monthly conditions cover all published review pages and keep malformed dates and other sites separate',{skip:!capable},async()=>{
  const e=await env('',18969);try{
   e.sql(`$p->beginTransaction();$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?,?,'Seasonal fixture','Fixture',4,'Disposable seasonal condition fixture',?,'',?,'2026-10-01','2026-10-01')");$o=$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)');for($i=0;$i<23;$i++){$q->execute([hash('sha256','seasonal-'.$i),'qa:monthly','2026-01-05','published']);$o->execute([$p->lastInsertId(),'{"noise":"quiet","shade":"partial"}']);}foreach([['qa:monthly','2025-01-20','published','{"noise":"mixed"}'],['qa:monthly','2026-07-02','published','{"noise":"noisy"}'],['qa:monthly','2026-02-30','published','{"noise":"quiet"}'],['qa:monthly','2999-01-01','published','{"noise":"quiet"}'],['qa:monthly','2026-01-05','hidden','{"noise":"noisy"}'],['qa:other','2026-01-05','published','{"noise":"noisy"}']] as $i=>$v){$q->execute([hash('sha256','seasonal-extra-'.$i),$v[0],$v[1],$v[2]]);$o->execute([$p->lastInsertId(),$v[3]]);}$p->commit();`);
