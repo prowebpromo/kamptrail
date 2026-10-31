@@ -9223,6 +9223,7 @@
         "scout": "no",
         "source": "openstreetmap",
         "tents": "yes",
+        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 10053954370,
         "osm_type": "node",
@@ -9231,23 +9232,11 @@
         "source_url": "https://www.openstreetmap.org/node/10053954370",
         "source_retrieved_at": "2026-10-29T03:04:46Z",
         "source_ids": [
-          "osm:node:10053954370",
-          "osm:node:12441880856"
+          "osm:node:10053954370"
         ],
-        "toilets": "yes",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -11065,22 +11054,39 @@
         "source_url": "https://www.openstreetmap.org/node/12020456091",
         "source_retrieved_at": "2026-10-29T03:04:46Z",
         "source_ids": [
-          "osm:node:12020456091",
+          "osm:node:12020456091"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.2250261,
+          46.9026085
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Dead Water South (1)",
+        "tourism": "camp_site",
+        "osm_id": 12020456092,
+        "osm_type": "node",
+        "id": "osm:node:12020456092",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12020456092",
+        "source_retrieved_at": "2026-10-29T03:04:46Z",
+        "source_ids": [
           "osm:node:12020456092"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -11356,22 +11362,11 @@
         "source_url": "https://www.openstreetmap.org/node/12020456103",
         "source_retrieved_at": "2026-10-29T03:04:46Z",
         "source_ids": [
-          "osm:node:12020456103",
-          "osm:node:12020456105"
+          "osm:node:12020456103"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -11396,6 +11391,34 @@
         "source_retrieved_at": "2026-10-29T03:04:46Z",
         "source_ids": [
           "osm:node:12020456104"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.0830161,
+          46.9746562
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Big Brook North (1)",
+        "tourism": "camp_site",
+        "osm_id": 12020456105,
+        "osm_type": "node",
+        "id": "osm:node:12020456105",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12020456105",
+        "source_retrieved_at": "2026-10-29T03:04:46Z",
+        "source_ids": [
+          "osm:node:12020456105"
         ],
         "sources": [
           "openstreetmap"
@@ -12022,22 +12045,50 @@
         "source_url": "https://www.openstreetmap.org/node/12441880852",
         "source_retrieved_at": "2026-10-29T03:04:46Z",
         "source_ids": [
-          "osm:node:12441880852",
+          "osm:node:12441880852"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.4119464,
+          45.1737836
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "cabins": "no",
+        "capacity:tents": "4",
+        "caravans": "no",
+        "dog": "leashed",
+        "impromptu": "no",
+        "motorhome": "no",
+        "name": "Trout Brook North",
+        "openfire": "yes",
+        "operator": "State of Maine",
+        "reservation": "no",
+        "scout": "no",
+        "source": "openstreetmap",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 12441880853,
+        "osm_type": "node",
+        "id": "osm:node:12441880853",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12441880853",
+        "source_retrieved_at": "2026-10-29T03:04:46Z",
+        "source_ids": [
           "osm:node:12441880853"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -12073,6 +12124,44 @@
         "source_retrieved_at": "2026-10-29T03:04:46Z",
         "source_ids": [
           "osm:node:12441880855"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.4150187,
+          45.1885108
+        ]
+      },
+      "properties": {
+        "backcountry": "no",
+        "cabins": "no",
+        "capacity:tents": "4",
+        "caravans": "no",
+        "dog": "leashed",
+        "impromptu": "no",
+        "motorhome": "no",
+        "name": "Myers Lodge East",
+        "openfire": "yes",
+        "reservation": "no",
+        "scout": "no",
+        "source": "openstreetmap",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 12441880856,
+        "osm_type": "node",
+        "id": "osm:node:12441880856",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12441880856",
+        "source_retrieved_at": "2026-10-29T03:04:46Z",
+        "source_ids": [
+          "osm:node:12441880856"
         ],
         "sources": [
           "openstreetmap"
@@ -23650,6 +23739,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 19,
+  "duplicatesRemoved": 15,
   "invalidRemoved": 0
 }

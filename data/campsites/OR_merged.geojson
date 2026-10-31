@@ -20738,22 +20738,11 @@
         "source_url": "https://www.openstreetmap.org/node/3633600642",
         "source_retrieved_at": "2026-10-29T03:29:55Z",
         "source_ids": [
-          "osm:node:3633600642",
-          "osm:node:3633680360"
+          "osm:node:3633600642"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -20989,6 +20978,33 @@
         "source_retrieved_at": "2026-10-29T03:29:55Z",
         "source_ids": [
           "osm:node:3633643383"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8548308,
+          43.5927857
+        ]
+      },
+      "properties": {
+        "name": "West Davis Lake Campground",
+        "tourism": "camp_site",
+        "osm_id": 3633680360,
+        "osm_type": "node",
+        "id": "osm:node:3633680360",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/3633680360",
+        "source_retrieved_at": "2026-10-29T03:29:55Z",
+        "source_ids": [
+          "osm:node:3633680360"
         ],
         "sources": [
           "openstreetmap"
@@ -28192,22 +28208,40 @@
         "source_url": "https://www.openstreetmap.org/node/5470535061",
         "source_retrieved_at": "2026-10-29T03:29:55Z",
         "source_ids": [
-          "osm:node:5470535061",
+          "osm:node:5470535061"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.909034,
+          45.5637276
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Upper Sharps Bar Camp",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 5470535062,
+        "osm_type": "node",
+        "id": "osm:node:5470535062",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/5470535062",
+        "source_retrieved_at": "2026-10-29T03:29:55Z",
+        "source_ids": [
           "osm:node:5470535062"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -31151,33 +31185,39 @@
         "source_url": "https://www.openstreetmap.org/node/6427468154",
         "source_retrieved_at": "2026-10-29T03:29:55Z",
         "source_ids": [
-          "osm:node:6427468154",
+          "osm:node:6427468154"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.1193646,
+          45.9383478
+        ]
+      },
+      "properties": {
+        "fee": "no",
+        "name": "Leidl North Campground",
+        "tourism": "camp_site",
+        "website": "https://wdfw.wa.gov/places-to-go/water-access-sites/30293",
+        "osm_id": 6427468155,
+        "osm_type": "node",
+        "id": "osm:node:6427468155",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/6427468155",
+        "source_retrieved_at": "2026-10-29T03:29:55Z",
+        "source_ids": [
           "osm:node:6427468155"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:6427468155",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "no"
-            },
-            "retrieved_at": "2026-10-29T03:29:55Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/6427468155"
-          }
         ]
       }
     },
@@ -62247,11 +62287,9 @@
         ]
       },
       "properties": {
-        "cabins": "no",
-        "caravans": "yes",
         "name": "Dairy Creek Campground East",
+        "opening_hours": "Mar 01-Oct 31",
         "operator": "Oregon State Parks",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 359675788,
         "osm_type": "way",
@@ -62261,23 +62299,42 @@
         "source_url": "https://www.openstreetmap.org/way/359675788",
         "source_retrieved_at": "2026-10-29T03:29:55Z",
         "source_ids": [
-          "osm:way:359675788",
-          "osm:way:359675789"
+          "osm:way:359675788"
         ],
-        "opening_hours": "Mar 01-Oct 31",
         "sources": [
           "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.1923397,
+          45.7395622
+        ]
+      },
+      "properties": {
+        "cabins": "no",
+        "caravans": "yes",
+        "name": "Dairy Creek Campground West",
+        "operator": "Oregon State Parks",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 359675789,
+        "osm_type": "way",
+        "id": "osm:way:359675789",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/359675789",
+        "source_retrieved_at": "2026-10-29T03:29:55Z",
+        "source_ids": [
+          "osm:way:359675789"
         ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        "sources": [
+          "openstreetmap"
+        ]
       }
     },
     {
@@ -74127,33 +74184,42 @@
         "source_url": "https://www.openstreetmap.org/way/1057266781",
         "source_retrieved_at": "2026-10-29T03:29:55Z",
         "source_ids": [
-          "osm:way:1057266781",
+          "osm:way:1057266781"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.6665432,
+          45.6980382
+        ]
+      },
+      "properties": {
+        "capacity": "61",
+        "caravans": "yes",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "name": "North Campground",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 1057266782,
+        "osm_type": "way",
+        "id": "osm:way:1057266782",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1057266782",
+        "source_retrieved_at": "2026-10-29T03:29:55Z",
+        "source_ids": [
           "osm:way:1057266782"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1057266782",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:29:55Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1057266782"
-          }
         ]
       }
     },
@@ -83699,6 +83765,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 201,
+  "duplicatesRemoved": 196,
   "invalidRemoved": 0
 }

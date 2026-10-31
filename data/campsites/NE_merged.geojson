@@ -824,31 +824,20 @@
       },
       "properties": {
         "name": "Lake Cunningham Campground West",
+        "source": "openstreetmap",
         "tourism": "caravan_site",
         "osm_id": 1781295403,
         "osm_type": "node",
         "id": "osm:node:1781295403",
-        "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/1781295403",
         "source_retrieved_at": "2026-10-29T03:12:30Z",
         "source_ids": [
-          "osm:node:1781295403",
-          "osm:node:9017988091"
+          "osm:node:1781295403"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -3867,6 +3856,33 @@
         "source_retrieved_at": "2026-10-29T03:12:30Z",
         "source_ids": [
           "osm:node:8851891026"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.0419208,
+          41.3440982
+        ]
+      },
+      "properties": {
+        "name": "Lake Cunningham Campground East",
+        "tourism": "caravan_site",
+        "osm_id": 9017988091,
+        "osm_type": "node",
+        "id": "osm:node:9017988091",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/9017988091",
+        "source_retrieved_at": "2026-10-29T03:12:30Z",
+        "source_ids": [
+          "osm:node:9017988091"
         ],
         "sources": [
           "openstreetmap"
@@ -11060,6 +11076,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 10,
+  "duplicatesRemoved": 9,
   "invalidRemoved": 0
 }

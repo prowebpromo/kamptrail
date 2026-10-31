@@ -8805,22 +8805,38 @@
         "source_url": "https://www.openstreetmap.org/node/4328280073",
         "source_retrieved_at": "2026-10-29T03:42:25Z",
         "source_ids": [
-          "osm:node:4328280073",
+          "osm:node:4328280073"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.4147631,
+          44.8662337
+        ]
+      },
+      "properties": {
+        "name": "North Camp Area @ Potawatomi State Park",
+        "tourism": "camp_site",
+        "osm_id": 4328280087,
+        "osm_type": "node",
+        "id": "osm:node:4328280087",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/4328280087",
+        "source_retrieved_at": "2026-10-29T03:42:25Z",
+        "source_ids": [
           "osm:node:4328280087"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -34915,22 +34931,11 @@
         "source_url": "https://www.openstreetmap.org/way/23165839",
         "source_retrieved_at": "2026-10-29T03:42:25Z",
         "source_ids": [
-          "osm:way:23165839",
-          "osm:way:1339032524"
+          "osm:way:23165839"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -51199,33 +51204,10 @@
         "source_url": "https://www.openstreetmap.org/way/1181190274",
         "source_retrieved_at": "2026-10-29T03:42:25Z",
         "source_ids": [
-          "osm:way:1181190274",
-          "osm:way:1181190276"
+          "osm:way:1181190274"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1181190276",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:42:25Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1181190276"
-          }
         ]
       }
     },
@@ -51253,6 +51235,37 @@
         "source_retrieved_at": "2026-10-29T03:42:25Z",
         "source_ids": [
           "osm:way:1181190275"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.046241,
+          43.8499705
+        ]
+      },
+      "properties": {
+        "caravans": "yes",
+        "fee": "yes",
+        "name": "North Campground",
+        "static_caravans": "no",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 1181190276,
+        "osm_type": "way",
+        "id": "osm:way:1181190276",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1181190276",
+        "source_retrieved_at": "2026-10-29T03:42:25Z",
+        "source_ids": [
+          "osm:way:1181190276"
         ],
         "sources": [
           "openstreetmap"
@@ -54361,6 +54374,33 @@
         "source_retrieved_at": "2026-10-29T03:42:25Z",
         "source_ids": [
           "osm:way:1324402278"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1672143,
+          43.6581833
+        ]
+      },
+      "properties": {
+        "name": "Long Lake Campground Upper 900s",
+        "tourism": "camp_site",
+        "osm_id": 1339032524,
+        "osm_type": "way",
+        "id": "osm:way:1339032524",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1339032524",
+        "source_retrieved_at": "2026-10-29T03:42:25Z",
+        "source_ids": [
+          "osm:way:1339032524"
         ],
         "sources": [
           "openstreetmap"
@@ -62666,6 +62706,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 101,
+  "duplicatesRemoved": 98,
   "invalidRemoved": 0
 }
