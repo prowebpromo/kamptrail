@@ -9,7 +9,7 @@ An Indiana rest area or welcome center shows a facility-level overnight-parking 
 - has location text identical to the KampTrail record (route, mile marker, direction), and
 - gives GPS coordinates within 500 m of the record.
 
-The page's own text is shown with its retrieval date and a link labeled "Facility page checked {date}". Sleeping in a vehicle, camping and stay limits stay unknown because the pages do not address them. Facility evidence older than 180 days returns every field to unknown, the same as state policies.
+The page's own text is shown with its retrieval date and a link labeled "Facility page checked {date}". Sleeping in a vehicle, camping and stay limits stay unknown because the pages do not address them. Facility evidence older than 180 days returns every field to unknown, the same as state policies. The facility link shows the retrieval date only.
 
 ## Result
 
@@ -20,7 +20,7 @@ The page's own text is shown with its retrieval date and a link labeled "Facilit
 | Page states "Overnight Parking: No" | 16 |
 | Unmatched (no INDOT page found) | 1 (Auburn Rest Area, I-69 MM 325) |
 
-Two matches have different names on INDOT's page: "Kankakee Welcome Center" is INDOT's `kankakee-rest-area-southbound` page and "Batesville Westbound Welcome Center" is INDOT's `batesville-welcome-center` page. Both match on identical location text and coordinates (290 m and 473 m). Michigan City's page omits the "Location:" label and carries a closure notice dated "June 5th, duration tbd" beside "Status: Open". KampTrail does not show opening status from these pages. Clear Creek's page says "Status: Closed", which is also not shown.
+Two matches have different names on INDOT's page: "Kankakee Welcome Center" is INDOT's `kankakee-rest-area-southbound` page and "Batesville Westbound Welcome Center" is INDOT's `batesville-welcome-center` page. Both match on identical location text and coordinates (290 m and 473 m). Michigan City's page omits the "Location:" label and carries a closure notice dated "June 5th, duration tbd" beside "Status: Open". KampTrail does not show opening status from these pages. Clear Creek's and Kankakee's pages say "Status: Closed" (Kankakee's as of a recheck the same day), which is also not shown.
 
 ## Interpretation
 

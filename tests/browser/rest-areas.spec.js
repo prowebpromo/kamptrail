@@ -70,7 +70,7 @@ test('an INDOT facility page tightens overnight parking with its own dated link'
   const {errors}=await setup(page,context,{regions:['TX','IN']});await show(page);await page.evaluate(([lng,lat])=>map.setView([lat,lng],10),site.coordinates);
   const p=await popup(page);await expect(p).toContainText(site.name);await expect(p).toContainText('overnight parking Prohibited');await expect(p).toContainText('sleeping in a vehicle Unknown');await expect(p).toContainText('camping Unknown');
   await expect(p).toContainText('"Overnight Parking: No"');
-  await expect(p.getByRole('link',{name:'Facility page checked '+e.sources[0].retrieved_at,exact:true})).toHaveAttribute('href',e.sources[0].url);
+  await expect(p.getByRole('link',{name:'Facility page checked '+e.sources[0].retrieved_at.slice(0,10),exact:true})).toHaveAttribute('href',e.sources[0].url);
   await expect(p.getByRole('link',{name:'State policy source 1',exact:true})).toBeVisible();
   expect(errors).toEqual([]);
 });

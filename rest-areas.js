@@ -105,7 +105,7 @@
       box.append(el('h2',r.name),el('p',describe(r,d)));
       if(d.region==='TX')box.append(link(t("TxDOT place source"),r.source_url),' · ',link(t("TxDOT duration source"),POLICY));
       else{box.append(link(t('{0} place source',{"0":t(REGIONS[d.region].publisher)}),r.source_url));if(d.source.url!==r.source_url)box.append(' · ',link(t('{0} location data',{"0":t(REGIONS[d.region].publisher)}),d.source.url));}
-      const policy=policyFor(r,d);if(policy.sources.length){const sources=el('p');sources.className='kt-rest-policy-sources';const state=policy.sources.length-policy.facility_sources;policy.sources.forEach((s,i)=>{if(i)sources.append(' · ');sources.append(link(i<state?t('State policy source {number}',{number:i+1}):t('Facility page checked {date}',{date:s.retrieved_at}),s.url));});box.append(sources);}
+      const policy=policyFor(r,d);if(policy.sources.length){const sources=el('p');sources.className='kt-rest-policy-sources';const state=policy.sources.length-policy.facility_sources;policy.sources.forEach((s,i)=>{if(i)sources.append(' · ');sources.append(link(i<state?t('State policy source {number}',{number:i+1}):t('Facility page checked {date}',{date:s.retrieved_at.slice(0,10)}),s.url));});box.append(sources);}
       const actions=el('div');actions.className='kt-popup-actions';
       actions.append(button(t("Save rest-area stop"),()=>{const f=feature(r,d);global.KampTrailTrip?.addStop(f.properties.id,f);}),button(t("Overnight permission"),()=>global.KampTrailPermissions?.open(place(r))));box.append(actions);return box;
     }

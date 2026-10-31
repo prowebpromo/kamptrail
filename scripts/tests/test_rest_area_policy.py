@@ -33,10 +33,25 @@ class StatePolicies(unittest.TestCase):
         self.assertTrue(any('Overnight Parking: No' in c for c in out['rules']['conditions']))
         other = resolve('IN', 'indot', 'rest_area_or_welcome_center', facility_id='indot:none', exceptions=BUNDLE['exceptions'])
         self.assertEqual(other['rules']['overnight_parking'], 'unknown')
-        bad = copy.deepcopy(e)
-        bad['sources'][0]['url'] = 'https://www.in.gov/indot/other/page'
+        base = 'https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/'
+        for url in ('https://www.in.gov/indot/other/page', base + 'a-b?x=1', base + 'a-b#x', base + 'a-b/',
+                    base + 'single', 'https://in.gov/indot/resources/maps/welcome-centers-and-rest-areas/a-b',
+                    'https://www.in.gov:8443/indot/resources/maps/welcome-centers-and-rest-areas/a-b',
+                    'http://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/a-b'):
+            bad = copy.deepcopy(BUNDLE)
+            bad['exceptions'][0]['sources'][0]['url'] = url
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                policy.validate(bad, NOW)
+        for mutate in (lambda x: x.update(conditions=['x' * 501]), lambda x: x['rules'].update(camping='maybe'),
+                       lambda x: x['rules'].update(note='y'), lambda x: x.update(conditions=['a'] * 5)):
+            bad = copy.deepcopy(BUNDLE)
+            mutate(bad['exceptions'][0])
+            with self.assertRaises(ValueError):
+                policy.validate(bad, NOW)
+        dup = copy.deepcopy(BUNDLE)
+        dup['exceptions'].append(copy.deepcopy(dup['exceptions'][0]))
         with self.assertRaises(ValueError):
-            resolve('IN', 'indot', 'rest_area_or_welcome_center', facility_id=e['facility_id'], exceptions=[bad])
+            policy.validate(dup, NOW)
 
     def test_duration_and_camping_do_not_imply_other_permissions(self):
         tx = resolve('TX', 'txdot', 'safety_rest_area')

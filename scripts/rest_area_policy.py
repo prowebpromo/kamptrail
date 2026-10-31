@@ -51,6 +51,32 @@ def validate(bundle, now=None):
         hours = policy['rules']['max_stay_hours']
         if hours is not None and (isinstance(hours, bool) or not isinstance(hours, (int, float)) or not 0 < hours <= 168):
             raise ValueError('Invalid duration')
+    exceptions = bundle.get('exceptions', [])
+    if not isinstance(exceptions, list) or len(exceptions) > 1000:
+        raise ValueError('Invalid facility exceptions')
+    ids = set()
+    for exception in exceptions:
+        fid = exception.get('facility_id')
+        if (not isinstance(fid, str) or not 0 < len(fid) <= 100 or fid in ids
+                or not re.fullmatch('[A-Z]{2}', str(exception.get('state')))):
+            raise ValueError('Ambiguous facility exception')
+        ids.add(fid)
+        evidence(exception['sources'], now)
+        rules = exception.get('rules')
+        if not isinstance(rules, dict):
+            raise ValueError('Invalid site rules')
+        for field, value in rules.items():
+            if field in ACTIVITIES:
+                if value not in ('allowed', 'prohibited', 'unknown'):
+                    raise ValueError('Invalid site activity rule')
+            elif field == 'max_stay_hours':
+                if value is not None and (isinstance(value, bool) or not isinstance(value, (int, float)) or not 0 < value <= 168):
+                    raise ValueError('Invalid site duration')
+            else:
+                raise ValueError('Unreviewed exception field')
+        conditions = exception.get('conditions', [])
+        if not isinstance(conditions, list) or len(conditions) > 4 or not all(isinstance(c, str) and 0 < len(c) <= 500 for c in conditions):
+            raise ValueError('Invalid site conditions')
     return bundle
 
 
