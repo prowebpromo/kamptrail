@@ -92,7 +92,16 @@ Pilot: `scripts/ors_router_pilot.py` on branch `pilot/ors-router`, run from GitH
 
 The second run's truck-only step did not start because the Overpass lookup returned HTTP 502. That is a failure of the OpenStreetMap query service, not openrouteservice, and the first run already measured the behavior.
 
-Conclusion: hosted openrouteservice enforces height correctly on the tested restriction, but its HGV and bus profiles also avoid roads closed only to trucks. For an RV that means longer, overly cautious routes rather than unsafe ones. Public rig routing stays off. Owner decision pending: accept that behavior with a clear label, or route by car and check clearances separately.
+What this establishes:
+- On this one mapped 9'4" segment, both profiles let the 2.5 m vehicle through and detoured the 3.0 m vehicle, in both directions. One segment in one state is not a validated pass rate.
+- The tested profiles can reject roads open to a private RV.
+- The pilot did not evaluate whether the detours suit an RV, and a router cannot avoid a low clearance that is not mapped in OpenStreetMap. It establishes no general safety claim.
+- The repeat truck-only test added no evidence about openrouteservice.
+
+Owner decision, 2026-10-31, after outside review:
+1. The car route stays KampTrail's only route, labeled so RV dimensions are plainly not enforced. Mapped clearances stay a separate display where data exists. No openrouteservice truck or bus profile is offered as an RV mode on this evidence.
+2. Next step at no cost: repeat the paired height test against 20 to 30 mapped restrictions across several states to establish a pass rate.
+3. Only if that holds is an opt-in beta considered, worded as avoiding height limits recorded in OpenStreetMap, possibly avoiding roads open to RVs, and not knowing unmapped clearances. Never "RV safe".
 
 ## Sources checked October 30, 2026
 
