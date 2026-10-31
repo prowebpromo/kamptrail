@@ -102,3 +102,27 @@ test('malformed or incomplete input fails instead of replacing the national inde
   try {assert.throws(()=>buildFromDirectory(directory),/Expected 50/);}
   finally {fs.rmSync(directory,{recursive:true,force:true});}
 });
+
+// ---- 2.22.0 stable listing IDs at the index layer ----
+test('an already published listing keeps its ID and point when a newly separated record merges with it', () => {
+  const mk = (id, name, lon, lat, extra = {}) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [lon, lat]}, properties: {id, name, tourism: 'camp_site', schema_version: 3, ...extra}});
+  const features = [mk('osm:way:335361783', 'Upper Grays Meadow Campground', -118.2, 36.7741, {osm_id: 335361783, osm_type: 'way'}),
+    mk('usfs:20680', 'Upper Grays Meadow Campground', -118.2001, 36.7745, {camping_activity: 'Campground Camping'})];
+  const plain = DataQuality.cleanAndDedupeGeoJSON({type: 'FeatureCollection', features: features.map(f => JSON.parse(JSON.stringify(f)))}).features;
+  assert.equal(plain[0].properties.id, 'osm:way:335361783', 'without published IDs the first record is canonical');
+  const stable = DataQuality.cleanAndDedupeGeoJSON({type: 'FeatureCollection', features: features.map(f => JSON.parse(JSON.stringify(f)))}, {preferredIds: new Set(['usfs:20680'])}).features;
+  assert.equal(stable.length, 1);
+  assert.equal(stable[0].properties.id, 'usfs:20680');
+  assert.deepEqual(stable[0].geometry.coordinates, [-118.2001, 36.7745]);
+  assert.ok(stable[0].properties.legacy_ids.includes('osm:way:335361783'));
+});
+
+test('an alias rejoins its previous listing when several same-name listings are in range', () => {
+  const mk = (id, lon, extra = {}) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [lon, 37.325]}, properties: {id, name: 'Highway K', tourism: 'camp_site', schema_version: 3, ...extra}});
+  const input = () => [mk('osm:node:2', -90.7652, {osm_id: 2, osm_type: 'node'}), mk('osm:node:1', -90.7690, {osm_id: 1, osm_type: 'node'}), mk('ridb:9', -90.7671, {facility_id: 9})];
+  const plain = DataQuality.cleanAndDedupeGeoJSON({type: 'FeatureCollection', features: input()}).features;
+  const host = id => plain.find(f => f.properties.id === id || (f.properties.legacy_ids || []).includes(id)).properties.id;
+  assert.equal(host('ridb:9'), 'osm:node:1');
+  const stable = DataQuality.cleanAndDedupeGeoJSON({type: 'FeatureCollection', features: input()}, {previousHosts: new Map([['ridb:9', 'osm:node:2']])}).features;
+  assert.equal(stable.find(f => (f.properties.legacy_ids || []).includes('ridb:9')).properties.id, 'osm:node:2');
+});

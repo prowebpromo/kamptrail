@@ -5084,22 +5084,11 @@
         "source_url": "https://www.openstreetmap.org/node/2151363873",
         "source_retrieved_at": "2026-10-29T03:10:37Z",
         "source_ids": [
-          "osm:node:2151363873",
-          "osm:node:12739075150"
+          "osm:node:2151363873"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -18523,22 +18512,38 @@
         "source_url": "https://www.openstreetmap.org/node/12720607579",
         "source_retrieved_at": "2026-10-29T03:10:37Z",
         "source_ids": [
-          "osm:node:12720607579",
+          "osm:node:12720607579"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.5281541,
+          37.9581523
+        ]
+      },
+      "properties": {
+        "name": "East Campground",
+        "tourism": "camp_site",
+        "osm_id": 12720625806,
+        "osm_type": "node",
+        "id": "osm:node:12720625806",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12720625806",
+        "source_retrieved_at": "2026-10-29T03:10:37Z",
+        "source_ids": [
           "osm:node:12720625806"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -18617,6 +18622,33 @@
         "source_retrieved_at": "2026-10-29T03:10:37Z",
         "source_ids": [
           "osm:node:12727162302"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.3828514,
+          38.8155981
+        ]
+      },
+      "properties": {
+        "name": "Cooper's Landing South Campground",
+        "tourism": "camp_site",
+        "osm_id": 12739075150,
+        "osm_type": "node",
+        "id": "osm:node:12739075150",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12739075150",
+        "source_retrieved_at": "2026-10-29T03:10:37Z",
+        "source_ids": [
+          "osm:node:12739075150"
         ],
         "sources": [
           "openstreetmap"
@@ -23508,33 +23540,41 @@
         "source_url": "https://www.openstreetmap.org/way/479632742",
         "source_retrieved_at": "2026-10-29T03:10:37Z",
         "source_ids": [
-          "osm:way:479632742",
+          "osm:way:479632742"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.8469381,
+          38.5934036
+        ]
+      },
+      "properties": {
+        "capacity": "25",
+        "fee": "yes",
+        "internet_access": "no",
+        "name": "Lake Miola Upper Campground",
+        "operator": "City of Paola",
+        "tourism": "camp_site",
+        "osm_id": 479632744,
+        "osm_type": "way",
+        "id": "osm:way:479632744",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/479632744",
+        "source_retrieved_at": "2026-10-29T03:10:37Z",
+        "source_ids": [
           "osm:way:479632744"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:479632744",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:10:37Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/479632744"
-          }
         ]
       }
     },
@@ -33412,22 +33452,38 @@
         "source_url": "https://www.openstreetmap.org/way/1359433300",
         "source_retrieved_at": "2026-10-29T03:10:37Z",
         "source_ids": [
-          "osm:way:1359433300",
+          "osm:way:1359433300"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.7402704,
+          37.6094228
+        ]
+      },
+      "properties": {
+        "name": "West Campground",
+        "tourism": "camp_site",
+        "osm_id": 1359433301,
+        "osm_type": "way",
+        "id": "osm:way:1359433301",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1359433301",
+        "source_retrieved_at": "2026-10-29T03:10:37Z",
+        "source_ids": [
           "osm:way:1359433301"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -41209,6 +41265,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 83,
+  "duplicatesRemoved": 79,
   "invalidRemoved": 0
 }

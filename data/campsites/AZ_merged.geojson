@@ -19785,22 +19785,40 @@
         "source_url": "https://www.openstreetmap.org/node/9998793489",
         "source_retrieved_at": "2026-10-29T02:48:13Z",
         "source_ids": [
-          "osm:node:9998793489",
+          "osm:node:9998793489"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.764078,
+          36.6293703
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "milestone": "20.8",
+        "name": "Lower North Canyon Camp",
+        "tourism": "camp_site",
+        "osm_id": 9998793490,
+        "osm_type": "node",
+        "id": "osm:node:9998793490",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/9998793490",
+        "source_retrieved_at": "2026-10-29T02:48:13Z",
+        "source_ids": [
           "osm:node:9998793490"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -45137,7 +45155,6 @@
         "capacity": "18",
         "name": "Campground East",
         "operator": "Peralta Regional Park",
-        "reservation": "yes",
         "tourism": "camp_site",
         "osm_id": 1233138867,
         "osm_type": "way",
@@ -45147,22 +45164,41 @@
         "source_url": "https://www.openstreetmap.org/way/1233138867",
         "source_retrieved_at": "2026-10-29T02:48:13Z",
         "source_ids": [
-          "osm:way:1233138867",
+          "osm:way:1233138867"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.3689006,
+          33.3605017
+        ]
+      },
+      "properties": {
+        "capacity": "13",
+        "name": "Campground West",
+        "operator": "Peralta Regional Park",
+        "reservation": "yes",
+        "tourism": "camp_site",
+        "osm_id": 1233138868,
+        "osm_type": "way",
+        "id": "osm:way:1233138868",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1233138868",
+        "source_retrieved_at": "2026-10-29T02:48:13Z",
+        "source_ids": [
           "osm:way:1233138868"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -49660,6 +49696,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 84,
+  "duplicatesRemoved": 82,
   "invalidRemoved": 0
 }

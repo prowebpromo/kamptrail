@@ -146,5 +146,5 @@
     const f=el('form'),code=el('input',{name:'code',required:true,pattern:'[a-f0-9]{64}',autocomplete:'off',spellcheck:false});f.append(field(t("Restore a private management code"),code),el('button',{type:'submit',class:'btn'},t("Open my review")));f.onsubmit=e=>{e.preventDefault();manage(code.value.trim());};body.append(f);
   }
   function report(id,photo){const body=shell(photo?t("Report a photo"):t("Report a review")),f=el('form');const reason=el('textarea',{name:'reason',required:true,minlength:10,maxlength:1000,rows:4});f.append(field(t("What is the problem?"),reason,t("Examples: private information, harassment, copied content, or a misleading campsite claim. A moderator will review the report.")));const msg=message(''),send=el('button',{class:'btn',type:'submit'},t("Send report"));f.append(msg,send);body.append(f);f.onsubmit=async e=>{e.preventDefault();send.disabled=true;const data=new FormData(f);data.set('action','report');data.set('review_id',id);if(photo)data.set('photo_id',photo);try{const out=await request(data);body.replaceChildren(message(t(out.message)),button(t("Close"),()=>st.dialog.close()));}catch(err){msg.textContent=err.message;send.disabled=false;}};}
-  window.KampTrailCommunity={version:'2.21.2',open,mine};
+  window.KampTrailCommunity={version:'2.22.0',open,mine};
 })();

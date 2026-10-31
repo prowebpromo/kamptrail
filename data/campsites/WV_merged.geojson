@@ -11432,33 +11432,10 @@
         "source_url": "https://www.openstreetmap.org/node/10754887402",
         "source_retrieved_at": "2026-10-29T03:41:43Z",
         "source_ids": [
-          "osm:node:10754887402",
-          "osm:node:11026459520"
+          "osm:node:10754887402"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:11026459520",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:41:43Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/11026459520"
-          }
         ]
       }
     },
@@ -11600,6 +11577,37 @@
         "source_retrieved_at": "2026-10-29T03:41:43Z",
         "source_ids": [
           "osm:node:10998413641"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8513577,
+          39.8157837
+        ]
+      },
+      "properties": {
+        "fee": "yes",
+        "name": "Blue Rock State Park Upper Campground",
+        "openfire": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "website": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/blue-rock-state-park-campground",
+        "osm_id": 11026459520,
+        "osm_type": "node",
+        "id": "osm:node:11026459520",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/11026459520",
+        "source_retrieved_at": "2026-10-29T03:41:43Z",
+        "source_ids": [
+          "osm:node:11026459520"
         ],
         "sources": [
           "openstreetmap"
@@ -25026,22 +25034,11 @@
         "source_url": "https://www.openstreetmap.org/way/1096462140",
         "source_retrieved_at": "2026-10-29T03:41:43Z",
         "source_ids": [
-          "osm:way:1096462140",
-          "osm:way:1096462153"
+          "osm:way:1096462140"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -25064,6 +25061,33 @@
         "source_retrieved_at": "2026-10-29T03:41:43Z",
         "source_ids": [
           "osm:way:1096462151"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4248163,
+          37.8084008
+        ]
+      },
+      "properties": {
+        "name": "North Campground",
+        "tourism": "caravan_site",
+        "osm_id": 1096462153,
+        "osm_type": "way",
+        "id": "osm:way:1096462153",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1096462153",
+        "source_retrieved_at": "2026-10-29T03:41:43Z",
+        "source_ids": [
+          "osm:way:1096462153"
         ],
         "sources": [
           "openstreetmap"
@@ -33811,6 +33835,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 37,
+  "duplicatesRemoved": 35,
   "invalidRemoved": 0
 }

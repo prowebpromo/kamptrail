@@ -26781,22 +26781,38 @@
         "source_url": "https://www.openstreetmap.org/node/778881295",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:node:778881295",
+          "osm:node:778881295"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.9626866,
+          37.2136533
+        ]
+      },
+      "properties": {
+        "name": "Cordoniz Group Area South",
+        "tourism": "camp_site",
+        "osm_id": 778881431,
+        "osm_type": "node",
+        "id": "osm:node:778881431",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/778881431",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
           "osm:node:778881431"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -34903,8 +34919,6 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:node:2304174844",
-          "osm:node:2304190971",
-          "osm:node:2304458007",
           "osm:node:2304458279"
         ],
         "sources": [
@@ -34948,6 +34962,45 @@
         "sources": [
           "openstreetmap"
         ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.2296579,
+          40.728556
+        ]
+      },
+      "properties": {
+        "designation": "Open year-round, 8 Single sites $18-$6 xtra car, 3 Double sites $30-$6 xtra car, No reservations, No host, Vehicle access only, Valt toilets, Bear boxes, Tent/trailer max 16', Drinking water",
+        "name": "Lower Jones Valley Campground",
+        "source": "openstreetmap",
+        "tourism": "camp_site",
+        "osm_id": 2304190971,
+        "osm_type": "node",
+        "id": "osm:node:2304190971",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/2304190971",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:node:2304190971",
+          "osm:node:2304458007"
+        ],
+        "sources": [
+          "openstreetmap"
+        ],
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "type": null,
+        "data_conflicts": [],
+        "field_provenance": {
+          "cost": "unknown"
+        },
+        "description": ""
       }
     },
     {
@@ -35867,22 +35920,11 @@
         "source_url": "https://www.openstreetmap.org/node/2333791865",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:node:2333791865",
-          "osm:node:2333792012"
+          "osm:node:2333791865"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -36145,6 +36187,36 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:node:2333792003"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.4273066,
+          41.8420491
+        ]
+      },
+      "properties": {
+        "name": "Upper Bluster Campground",
+        "operator": "USFS",
+        "source": "openstreetmap",
+        "tourism": "camp_site",
+        "uuid": "sonora_20130605",
+        "website": "https://www.fs.usda.gov/recarea/htnf/recarea/?recid=65606",
+        "osm_id": 2333792012,
+        "osm_type": "node",
+        "id": "osm:node:2333792012",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/2333792012",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:node:2333792012"
         ],
         "sources": [
           "openstreetmap"
@@ -43452,33 +43524,10 @@
         "source_url": "https://www.openstreetmap.org/node/3626480821",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:node:3626480821",
-          "osm:way:975055224"
+          "osm:node:3626480821"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:975055224",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/975055224"
-          }
         ]
       }
     },
@@ -55442,12 +55491,52 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:node:6478672969",
-          "osm:node:6478672970",
           "osm:way:1424698327"
         ],
         "capacity": "22",
         "fee": "yes",
         "wheelchair": "no",
+        "sources": [
+          "openstreetmap"
+        ],
+        "rating": null,
+        "reviews_count": 0,
+        "amenities": [],
+        "rig_friendly": [],
+        "type": null,
+        "data_conflicts": [],
+        "field_provenance": {
+          "cost": "unknown"
+        },
+        "description": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.8100971,
+          39.0121403
+        ]
+      },
+      "properties": {
+        "capacity": "33",
+        "name": "Upper Bayview Campground",
+        "operator": "Clear Lake State Park",
+        "tourism": "camp_site",
+        "wheelchair": "yes",
+        "osm_id": 1424698329,
+        "osm_type": "way",
+        "id": "osm:way:1424698329",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1424698329",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:1424698329",
+          "osm:node:6478672970"
+        ],
         "sources": [
           "openstreetmap"
         ],
@@ -95014,33 +95103,10 @@
         "source_url": "https://www.openstreetmap.org/way/42486211",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:42486211",
-          "osm:way:42486218"
+          "osm:way:42486211"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:42486218",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "no"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/42486218"
-          }
         ]
       }
     },
@@ -95184,6 +95250,38 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:way:42486216"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.0111425,
+          37.721029
+        ]
+      },
+      "properties": {
+        "attribution": "Mono County GIS",
+        "capacity": "15",
+        "fee": "no",
+        "name": "Upper Deadman Campground",
+        "reservation": "no",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20598",
+        "osm_id": 42486218,
+        "osm_type": "way",
+        "id": "osm:way:42486218",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/42486218",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:42486218"
         ],
         "sources": [
           "openstreetmap"
@@ -97646,33 +97744,38 @@
         "source_url": "https://www.openstreetmap.org/way/92796519",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:92796519",
+          "osm:way:92796519"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.8050501,
+          38.4879843
+        ]
+      },
+      "properties": {
+        "access": "permit",
+        "name": "Highland Lakes Upper Campground",
+        "tourism": "camp_site",
+        "osm_id": 92796526,
+        "osm_type": "way",
+        "id": "osm:way:92796526",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/92796526",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
           "osm:way:92796526"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:92796526",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "access": "permit"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/92796526"
-          }
         ]
       }
     },
@@ -108897,6 +109000,7 @@
         "name": "Almanor South Campground",
         "operator": "United States Forest Service",
         "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/lassen/recarea/?recid=11257",
         "osm_id": 334706073,
         "osm_type": "way",
         "id": "osm:way:334706073",
@@ -108905,23 +109009,11 @@
         "source_url": "https://www.openstreetmap.org/way/334706073",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:334706073",
-          "osm:way:942285719"
+          "osm:way:334706073"
         ],
-        "website": "https://www.fs.usda.gov/recarea/lassen/recarea/?recid=11257",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -109297,11 +109389,14 @@
         ]
       },
       "properties": {
+        "access": "yes",
         "capacity": "17",
+        "charge": "25 USD",
         "fee": "yes",
         "name": "Lower Grays Meadow Campground",
         "operator": "United States Forest Service",
         "reservation": "recommended",
+        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20678",
         "osm_id": 335361749,
@@ -109312,38 +109407,10 @@
         "source_url": "https://www.openstreetmap.org/way/335361749",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:335361749",
-          "osm:way:335361783"
+          "osm:way:335361749"
         ],
-        "access": "yes",
-        "charge": "25 USD",
-        "toilets": "yes",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [
-          "member_fee_disagreement"
-        ],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:335361783",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/335361783"
-          }
         ]
       }
     },
@@ -109438,6 +109505,38 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:way:335361755"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.2899688,
+          36.7824903
+        ]
+      },
+      "properties": {
+        "capacity": "35",
+        "fee": "yes",
+        "name": "Upper Grays Meadow Campground",
+        "operator": "United States Forest Service",
+        "reservation": "recommended",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20680",
+        "osm_id": 335361783,
+        "osm_type": "way",
+        "id": "osm:way:335361783",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/335361783",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:335361783"
         ],
         "sources": [
           "openstreetmap"
@@ -118415,33 +118514,10 @@
         "source_url": "https://www.openstreetmap.org/way/507868058",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:507868058",
-          "osm:way:507868060"
+          "osm:way:507868058"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:507868060",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/507868060"
-          }
         ]
       }
     },
@@ -118481,6 +118557,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -120.1043073,
+          38.9924035
+        ]
+      },
+      "properties": {
+        "fee": "yes",
+        "name": "D.L Bliss State Park - East Ridge",
+        "operator": "California State Parks",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 507868060,
+        "osm_type": "way",
+        "id": "osm:way:507868060",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/507868060",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:507868060"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -120.1025887,
           38.9866743
         ]
@@ -118499,33 +118605,10 @@
         "source_url": "https://www.openstreetmap.org/way/507868061",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:507868061",
-          "osm:way:604672821"
+          "osm:way:507868061"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:604672821",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/604672821"
-          }
         ]
       }
     },
@@ -121420,6 +121503,36 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:way:601785833"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.1007187,
+          38.9878379
+        ]
+      },
+      "properties": {
+        "fee": "yes",
+        "name": "D.L Bliss State Park - Lower Pine",
+        "operator": "California State Parks",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 604672821,
+        "osm_type": "way",
+        "id": "osm:way:604672821",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/604672821",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:604672821"
         ],
         "sources": [
           "openstreetmap"
@@ -132037,6 +132150,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.1791003,
+          40.2185406
+        ]
+      },
+      "properties": {
+        "name": "Almanor North Campground",
+        "operator": "USDA Forest Service",
+        "tourism": "camp_site",
+        "osm_id": 942285719,
+        "osm_type": "way",
+        "id": "osm:way:942285719",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/942285719",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:942285719"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -118.6210751,
           36.5652653
         ]
@@ -134079,6 +134220,37 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:way:975046081"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.2282393,
+          37.2387772
+        ]
+      },
+      "properties": {
+        "capacity": "44",
+        "fee": "yes",
+        "name": "Billy Creek Upper Campground",
+        "reservation": "recommended",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/sierra/recarea/?recid=45510",
+        "osm_id": 975055224,
+        "osm_type": "way",
+        "id": "osm:way:975055224",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/975055224",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:975055224"
         ],
         "sources": [
           "openstreetmap"
@@ -138429,22 +138601,40 @@
         "source_url": "https://www.openstreetmap.org/way/1128043566",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:1128043566",
+          "osm:way:1128043566"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.9971068,
+          38.4265527
+        ]
+      },
+      "properties": {
+        "name": "Union Reservoir West Campground",
+        "operator": "USDA Forest Service",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/stanislaus/recreation/camping-cabins/recarea/?recid=14907&actid=29",
+        "osm_id": 1128043568,
+        "osm_type": "way",
+        "id": "osm:way:1128043568",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1128043568",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
           "osm:way:1128043568"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -149166,34 +149356,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -122.8100971,
-          39.0121403
-        ]
-      },
-      "properties": {
-        "name": "Upper Bayview Campground",
-        "operator": "Clear Lake State Park",
-        "tourism": "camp_site",
-        "osm_id": 1424698329,
-        "osm_type": "way",
-        "id": "osm:way:1424698329",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/way/1424698329",
-        "source_retrieved_at": "2026-10-29T02:52:02Z",
-        "source_ids": [
-          "osm:way:1424698329"
-        ],
-        "sources": [
-          "openstreetmap"
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -117.4918002,
           34.8963042
         ]
@@ -152362,34 +152524,10 @@
         "source_url": "https://www.openstreetmap.org/way/1509310498",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:1509310498",
-          "osm:way:1509310503"
+          "osm:way:1509310498"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1509310503",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "access": "private",
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1509310503"
-          }
         ]
       }
     },
@@ -152422,6 +152560,41 @@
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
           "osm:way:1509310499"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9544977,
+          37.0136843
+        ]
+      },
+      "properties": {
+        "access": "private",
+        "camp_site": "standard",
+        "caravans": "no",
+        "fee": "yes",
+        "name": "South Terrace Tents",
+        "operator": "Central California Conference of Seventh-Day Adventists",
+        "static_caravans": "no",
+        "surface": "grass",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 1509310503,
+        "osm_type": "way",
+        "id": "osm:way:1509310503",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1509310503",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
+          "osm:way:1509310503"
         ],
         "sources": [
           "openstreetmap"
@@ -155603,7 +155776,6 @@
         "name": "Silver Lake West Campground",
         "toilet": "yes",
         "tourism": "camp_site",
-        "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78522",
         "osm_id": 1550258263,
         "osm_type": "way",
         "id": "osm:way:1550258263",
@@ -155612,33 +155784,41 @@
         "source_url": "https://www.openstreetmap.org/way/1550258263",
         "source_retrieved_at": "2026-10-29T02:52:02Z",
         "source_ids": [
-          "osm:way:1550258263",
+          "osm:way:1550258263"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.1169753,
+          38.6718627
+        ]
+      },
+      "properties": {
+        "dog": "leashed",
+        "fee": "yes",
+        "name": "Silver Lake East Campground",
+        "toilet": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78522",
+        "osm_id": 1550258264,
+        "osm_type": "way",
+        "id": "osm:way:1550258264",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1550258264",
+        "source_retrieved_at": "2026-10-29T02:52:02Z",
+        "source_ids": [
           "osm:way:1550258264"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1550258264",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T02:52:02Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1550258264"
-          }
         ]
       }
     },
@@ -158647,6 +158827,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 541,
+  "duplicatesRemoved": 528,
   "invalidRemoved": 0
 }

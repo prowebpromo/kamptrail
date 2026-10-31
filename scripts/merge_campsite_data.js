@@ -38,6 +38,14 @@ function memberEvidence(primary, secondary) {
   return [...records.values()];
 }
 
+// Name tokens that distinguish separate campgrounds when they are the only difference between two names.
+// Positional words that name separate campgrounds when they are the only difference between two names
+// (Upper and Lower Grays Meadow, North and South Deer Lake, Old and New Shady Rest).
+const DISTINGUISHING_TOKENS = new Set(['upper', 'lower', 'middle', 'inner', 'outer', 'north', 'south', 'east', 'west',
+  'ne', 'nw', 'se', 'sw', 'northeast', 'northwest', 'southeast', 'southwest', 'old', 'new', 'little', 'big']);
+// Individually numbered or lettered sites inside one campground (Site 4, Group Site A, Moon Lake #2).
+const INDIVIDUAL_SITE_NAME = /\b(?:sites?|campsites?|camp\s+sites?|loop|spot|pad|pitch|post|lean[- ]?to|shelter|backcountry|zone)\b|#\s*\d|\b\d+\s+of\s+\d+\b/i;
+
 class CampsiteMerger {
   constructor() {
     this.DISTANCE_THRESHOLD_METERS = 500; // Consider campsites within 500m as duplicates
@@ -138,9 +146,32 @@ class CampsiteMerger {
     const distance = this.calculateDistance(lat1, lon1, lat2, lon2);
     const name1 = p1.name || p1.Name || '';
     const name2 = p2.name || p2.Name || '';
+    // Two different OSM elements whose names differ only by Upper/Lower, a direction, a number or a
+    // letter are distinct campgrounds (for example Upper and Lower Grays Meadow). Name similarity
+    // must not merge them. Individually numbered sites inside one campground keep today's grouping.
+    if (CampsiteMerger.distinctOsmCampgrounds(p1, p2, name1, name2)) return false;
     // Nearby campgrounds can have distinct entrances or sites. Distance alone is not identity.
     return distance < this.DISTANCE_THRESHOLD_METERS
       && !!name1 && !!name2 && this.stringSimilarity(name1, name2) > 0.85;
+  }
+
+  static nameTokens(name) {
+    return String(name || '').toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9#]+/g, ' ').trim().split(/\s+/).filter(Boolean);
+  }
+
+  static distinctOsmCampgrounds(p1, p2, name1, name2) {
+    const osmKey = p => p.osm_id != null && p.osm_type ? `osm:${p.osm_type}:${p.osm_id}` : null;
+    const a = osmKey(p1), b = osmKey(p2);
+    if (!a || !b || a === b || !name1 || !name2) return false;
+    if (p1.facility_id != null || p2.facility_id != null) return false;
+    const t1 = CampsiteMerger.nameTokens(name1), t2 = CampsiteMerger.nameTokens(name2);
+    const s1 = new Set(t1), s2 = new Set(t2);
+    const diff = [...t1.filter(t => !s2.has(t)), ...t2.filter(t => !s1.has(t))];
+    if (!diff.length) return false;
+    // Only positional words split records here. A bare number or letter can name a separate campground,
+    // a loop of one park or a single site, and names alone cannot tell those apart, so those keep today's grouping.
+    if (!diff.every(t => DISTINGUISHING_TOKENS.has(t))) return false;
+    return !INDIVIDUAL_SITE_NAME.test(String(name1)) && !INDIVIDUAL_SITE_NAME.test(String(name2));
   }
 
   sanitizeProperties(properties) {
@@ -267,12 +298,12 @@ class CampsiteMerger {
           isDuplicate = true;
           duplicatesRemoved++;
 
-          // Merge properties
-          const merged = { ...uniqueFeatures[i] };
-          merged.properties = this.mergeProperties(
-            uniqueFeatures[i].properties,
-            feature.properties
-          );
+          // A published listing ID stays the kept record, with its own point, when a record that was
+          // previously absorbed elsewhere now matches it. Reviews and saved stops are keyed by that ID.
+          const keepIncoming = this.preferredIds?.has(feature.properties.id) && !this.publishedAnyIds?.has(uniqueFeatures[i].properties.id);
+          const kept = keepIncoming ? feature : uniqueFeatures[i], absorbed = keepIncoming ? uniqueFeatures[i] : feature;
+          const merged = { ...kept };
+          merged.properties = this.mergeProperties(kept.properties, absorbed.properties);
 
           uniqueFeatures[i] = merged;
           console.log(`  🔗 Merged: ${feature.properties.name}`);
@@ -378,6 +409,17 @@ async function main() {
   console.log(`${'='.repeat(60)}\n`);
 }
 
+// Canonical IDs in the committed search index, so a published listing keeps its ID across re-merges.
+function publishedIds(campsitesDir, { includeAliases = false } = {}) {
+  try {
+    const sites = JSON.parse(require('fs').readFileSync(path.join(campsitesDir, 'search-index.json'), 'utf8')).sites;
+    if (!Array.isArray(sites)) return null;
+    return new Set(sites.flatMap(site => includeAliases ? [site.id, ...(site.legacy_ids || [])] : [site.id]));
+  } catch (error) {
+    return null;
+  }
+}
+
 async function loadStateSources(stateCode, merger, directories = {}) {
   const campsitesDir = directories.campsitesDir || path.join(__dirname, '../data/campsites');
   const osmDir = directories.osmDir || path.join(__dirname, '../data/opencampingmap');
@@ -395,6 +437,9 @@ async function loadStateSources(stateCode, merger, directories = {}) {
   function sourceText(properties) {
     return [...(Array.isArray(properties.sources) ? properties.sources : []), properties.source || ''].join(' ');
   }
+  // Published listing IDs, so a re-merge keeps them canonical (both entry points load sources here).
+  if (merger.preferredIds === undefined) merger.preferredIds = publishedIds(campsitesDir);
+  if (merger.publishedAnyIds === undefined) merger.publishedAnyIds = publishedIds(campsitesDir, { includeAliases: true });
   const existing = await merger.loadGeoJSON(path.join(campsitesDir, `${stateCode}_merged.geojson`));
   const datasets = [], counts = {};
   for (const source of definitions) {
@@ -431,4 +476,4 @@ if (require.main === module) {
   main().catch(error => { console.error(error); process.exitCode = 1; });
 }
 
-module.exports = { CampsiteMerger, saveMergedData, loadStateSources };
+module.exports = { CampsiteMerger, saveMergedData, loadStateSources, publishedIds };

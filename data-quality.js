@@ -227,16 +227,31 @@
       const f=normalizeFeature(raw,options); if (!f) continue;
       const p=f.properties, ll=getLatLng(f), cx=Math.floor(ll.lon/cellSize), cy=Math.floor(ll.lat/cellSize);
       let found=ids.get(p.id);
+      // A record that was an alias of a published listing rejoins that listing when it still matches.
+      const previousHost=options.previousHosts?.get(p.id);
       if (!found) {
+        let first=null;
         for (let x=cx-3; x<=cx+3 && !found; x++) for(let y=cy-1; y<=cy+1 && !found; y++) {
           for (const other of grid.get(`${x},${y}`) || []) {
             const op=other.properties;
             if (p.facility_id && op.facility_id && String(p.facility_id)!==String(op.facility_id)) continue;
-            if (normalizeName(op.name) === normalizeName(p.name) && distanceMeters(ll,getLatLng(other))<=radius) {found=other;break;}
+            if (normalizeName(op.name) === normalizeName(p.name) && distanceMeters(ll,getLatLng(other))<=radius) {
+              if (!previousHost || op.id===previousHost) {found=other;break;}
+              if (!first) first=other;
+            }
           }
         }
+        if (!found) found=first;
       }
-      if (found) {mergeFeatures(found,f);ids.set(p.id,found);continue;}
+      if (found) {
+        // A listing ID that is already published stays canonical, with its own point, when a newly
+        // separated record merges into the same place. Reviews and saved stops are keyed by that ID.
+        const preferred=options.preferredIds;
+        if (preferred && preferred.has(p.id) && !preferred.has(found.properties.id)) {
+          mergeFeatures(f,found);found.properties=f.properties;found.geometry=f.geometry;
+        } else mergeFeatures(found,f);
+        ids.set(p.id,found);continue;
+      }
       features.push(f);ids.set(p.id,f);
       const key=`${cx},${cy}`;if(!grid.has(key))grid.set(key,[]);grid.get(key).push(f);
     }
@@ -438,6 +453,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.21.2',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={RIDB_AMENITY_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.22.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

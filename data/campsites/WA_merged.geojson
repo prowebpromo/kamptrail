@@ -24489,22 +24489,40 @@
         "source_url": "https://www.openstreetmap.org/node/5470535061",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:node:5470535061",
+          "osm:node:5470535061"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.909034,
+          45.5637276
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Upper Sharps Bar Camp",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 5470535062,
+        "osm_type": "node",
+        "id": "osm:node:5470535062",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/5470535062",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:node:5470535062"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -27575,33 +27593,39 @@
         "source_url": "https://www.openstreetmap.org/node/6427468154",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:node:6427468154",
+          "osm:node:6427468154"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.1193646,
+          45.9383478
+        ]
+      },
+      "properties": {
+        "fee": "no",
+        "name": "Leidl North Campground",
+        "tourism": "camp_site",
+        "website": "https://wdfw.wa.gov/places-to-go/water-access-sites/30293",
+        "osm_id": 6427468155,
+        "osm_type": "node",
+        "id": "osm:node:6427468155",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/6427468155",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:node:6427468155"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:6427468155",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "no"
-            },
-            "retrieved_at": "2026-10-29T03:40:19Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/6427468155"
-          }
         ]
       }
     },
@@ -30922,22 +30946,42 @@
         "source_url": "https://www.openstreetmap.org/node/7333423869",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:node:7333423869",
+          "osm:node:7333423869"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.1163685,
+          48.4897957
+        ]
+      },
+      "properties": {
+        "caravans": "yes",
+        "name": "Upper Bear Creek Campground",
+        "operator": "Washington Department of Fish and Wildlife",
+        "sanitary_dump_station": "no",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 7333423871,
+        "osm_type": "node",
+        "id": "osm:node:7333423871",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/7333423871",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:node:7333423871"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -31950,22 +31994,39 @@
         "source_url": "https://www.openstreetmap.org/node/7737862349",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:node:7737862349",
+          "osm:node:7737862349"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.214722,
+          46.5953654
+        ]
+      },
+      "properties": {
+        "name": "Upper Bakeoven Dispersed Camping Area",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/okawen/recarea/?recid=58555",
+        "osm_id": 7738026472,
+        "osm_type": "node",
+        "id": "osm:node:7738026472",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/7738026472",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:node:7738026472"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -38059,22 +38120,11 @@
         "source_url": "https://www.openstreetmap.org/node/9384678419",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:node:9384678419",
-          "osm:node:9908145615"
+          "osm:node:9384678419"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -39528,6 +39578,34 @@
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
           "osm:node:9908145332"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.8401225,
+          48.6588531
+        ]
+      },
+      "properties": {
+        "name": "Salmon Meadows Upper Campground",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/colville/recarea/?recid=83254",
+        "osm_id": 9908145615,
+        "osm_type": "node",
+        "id": "osm:node:9908145615",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/9908145615",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
+          "osm:node:9908145615"
         ],
         "sources": [
           "openstreetmap"
@@ -43730,22 +43808,39 @@
         "source_url": "https://www.openstreetmap.org/node/12001090333",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:node:12001090333",
+          "osm:node:12001090333"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.7020932,
+          48.0536738
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "name": "Upper Myrtle Lake Camp",
+        "tourism": "camp_site",
+        "osm_id": 12001090355,
+        "osm_type": "node",
+        "id": "osm:node:12001090355",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12001090355",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:node:12001090355"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -44262,34 +44357,54 @@
         "source_url": "https://www.openstreetmap.org/node/12119445815",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:node:12119445815",
+          "osm:node:12119445815"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -124.7070006,
+          48.1822947
+        ]
+      },
+      "properties": {
+        "access": "permit",
+        "backcountry": "yes",
+        "capacity:persons": "12",
+        "caravans": "no",
+        "drinking_water": "no",
+        "fee": "yes",
+        "group_only": "no",
+        "internet_access": "no",
+        "name": "North Ozette River",
+        "openfire": "yes",
+        "operator": "Olympic National Park",
+        "power_supply": "no",
+        "reservation": "no",
+        "sanitary_dump_station": "no",
+        "shower": "no",
+        "static_caravans": "no",
+        "tents": "yes",
+        "toilets": "yes",
+        "tourism": "camp_site",
+        "osm_id": 12119445816,
+        "osm_type": "node",
+        "id": "osm:node:12119445816",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/12119445816",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:node:12119445816"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:12119445816",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "access": "permit",
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:40:19Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/12119445816"
-          }
         ]
       }
     },
@@ -57614,11 +57729,9 @@
         ]
       },
       "properties": {
-        "cabins": "no",
-        "caravans": "yes",
         "name": "Dairy Creek Campground East",
+        "opening_hours": "Mar 01-Oct 31",
         "operator": "Oregon State Parks",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 359675788,
         "osm_type": "way",
@@ -57628,23 +57741,42 @@
         "source_url": "https://www.openstreetmap.org/way/359675788",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:way:359675788",
-          "osm:way:359675789"
+          "osm:way:359675788"
         ],
-        "opening_hours": "Mar 01-Oct 31",
         "sources": [
           "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.1923397,
+          45.7395622
+        ]
+      },
+      "properties": {
+        "cabins": "no",
+        "caravans": "yes",
+        "name": "Dairy Creek Campground West",
+        "operator": "Oregon State Parks",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 359675789,
+        "osm_type": "way",
+        "id": "osm:way:359675789",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/359675789",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
+          "osm:way:359675789"
         ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        "sources": [
+          "openstreetmap"
+        ]
       }
     },
     {
@@ -60813,8 +60945,13 @@
         "caravans": "yes",
         "drinking_water": "yes",
         "fee": "yesoperator=US Forest Service",
+        "internet_access": "no",
         "name": "Johnny Creek Campground (Lower)",
         "operator": "US Forest Service",
+        "payment:cash": "yes",
+        "payment:credit_cards": "no",
+        "payment:debit_cards": "no",
+        "payment:notes": "yes",
         "reservation": "no",
         "tents": "yes",
         "toilets": "yes",
@@ -60828,40 +60965,10 @@
         "source_url": "https://www.openstreetmap.org/way/464609869",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:way:464609869",
-          "osm:way:575413305"
+          "osm:way:464609869"
         ],
-        "internet_access": "no",
-        "payment:cash": "yes",
-        "payment:credit_cards": "no",
-        "payment:debit_cards": "no",
-        "payment:notes": "yes",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [
-          "member_fee_disagreement"
-        ],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:575413305",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:40:19Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/575413305"
-          }
         ]
       }
     },
@@ -63088,6 +63195,41 @@
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
           "osm:way:575387200"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.8174445,
+          47.6006594
+        ]
+      },
+      "properties": {
+        "caravans": "yes",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "name": "Johnny Creek Campground (Upper)",
+        "operator": "US Forest Service",
+        "reservation": "no",
+        "tents": "yes",
+        "toilets": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/johnny-creek-campground",
+        "osm_id": 575413305,
+        "osm_type": "way",
+        "id": "osm:way:575413305",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/575413305",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
+          "osm:way:575413305"
         ],
         "sources": [
           "openstreetmap"
@@ -70375,33 +70517,42 @@
         "source_url": "https://www.openstreetmap.org/way/1057266781",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:way:1057266781",
+          "osm:way:1057266781"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.6665432,
+          45.6980382
+        ]
+      },
+      "properties": {
+        "capacity": "61",
+        "caravans": "yes",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "name": "North Campground",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 1057266782,
+        "osm_type": "way",
+        "id": "osm:way:1057266782",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1057266782",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:way:1057266782"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1057266782",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:40:19Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1057266782"
-          }
         ]
       }
     },
@@ -79349,33 +79500,51 @@
         "source_url": "https://www.openstreetmap.org/way/1390753882",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:way:1390753882",
+          "osm:way:1390753882"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.4680441,
+          47.0971096
+        ]
+      },
+      "properties": {
+        "backcountry": "no",
+        "caravans": "yes",
+        "dog": "leashed",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "name": "Schaefer West Campground",
+        "openfire": "yes",
+        "operator": "Washington State Parks and Recreation Commission",
+        "picnic_table": "yes",
+        "power_supply": "yes",
+        "reservation": "required",
+        "sanitary_dump_station": "yes",
+        "tents": "yes",
+        "toilets": "yes",
+        "tourism": "camp_site",
+        "website": "https://parks.wa.gov/find-parks/state-parks/schafer-state-park",
+        "osm_id": 1390753895,
+        "osm_type": "way",
+        "id": "osm:way:1390753895",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1390753895",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
           "osm:way:1390753895"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1390753895",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:40:19Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1390753895"
-          }
         ]
       }
     },
@@ -83696,12 +83865,8 @@
         ]
       },
       "properties": {
-        "capacity:tents": "1",
-        "description": "Campsite is for human powered boaters. At higher tides, make sure your tent is placed appropriately. Spit is very exposed to winds from the south. During storm events, the spit may be inundated.",
         "name": "Upper Oak Bay Campground",
         "tourism": "camp_site",
-        "water_source": "main",
-        "website": "https://www.wwta.org/sites/oak-bay-county-park/",
         "osm_id": 1472846312,
         "osm_type": "way",
         "id": "osm:way:1472846312",
@@ -83710,21 +83875,11 @@
         "source_url": "https://www.openstreetmap.org/way/1472846312",
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
-          "osm:way:1472846312",
-          "osm:way:1486143177"
+          "osm:way:1472846312"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        }
+        ]
       }
     },
     {
@@ -87609,6 +87764,37 @@
         "source_retrieved_at": "2026-10-29T03:40:19Z",
         "source_ids": [
           "osm:way:1486128810"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.7310863,
+          48.0210631
+        ]
+      },
+      "properties": {
+        "capacity:tents": "1",
+        "description": "Campsite is for human powered boaters. At higher tides, make sure your tent is placed appropriately. Spit is very exposed to winds from the south. During storm events, the spit may be inundated.",
+        "name": "Lower Oak Bay Campground",
+        "tourism": "camp_site",
+        "water_source": "main",
+        "website": "https://www.wwta.org/sites/oak-bay-county-park/",
+        "osm_id": 1486143177,
+        "osm_type": "way",
+        "id": "osm:way:1486143177",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1486143177",
+        "source_retrieved_at": "2026-10-29T03:40:19Z",
+        "source_ids": [
+          "osm:way:1486143177"
         ],
         "sources": [
           "openstreetmap"
@@ -97073,6 +97259,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 134,
+  "duplicatesRemoved": 122,
   "invalidRemoved": 0
 }

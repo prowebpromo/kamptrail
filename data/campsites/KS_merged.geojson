@@ -6705,33 +6705,41 @@
         "source_url": "https://www.openstreetmap.org/way/479632742",
         "source_retrieved_at": "2026-10-29T03:01:48Z",
         "source_ids": [
-          "osm:way:479632742",
+          "osm:way:479632742"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.8469381,
+          38.5934036
+        ]
+      },
+      "properties": {
+        "capacity": "25",
+        "fee": "yes",
+        "internet_access": "no",
+        "name": "Lake Miola Upper Campground",
+        "operator": "City of Paola",
+        "tourism": "camp_site",
+        "osm_id": 479632744,
+        "osm_type": "way",
+        "id": "osm:way:479632744",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/479632744",
+        "source_retrieved_at": "2026-10-29T03:01:48Z",
+        "source_ids": [
           "osm:way:479632744"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:479632744",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:01:48Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/479632744"
-          }
         ]
       }
     },
@@ -16507,6 +16515,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 35,
+  "duplicatesRemoved": 34,
   "invalidRemoved": 0
 }

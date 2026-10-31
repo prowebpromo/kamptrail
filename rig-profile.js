@@ -154,5 +154,5 @@
   }
   function download(p){const blob=new Blob([JSON.stringify(validate(p),null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),a=root.document.createElement('a');a.href=url;a.download='kamptrail-rig-profile.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function open(){init();if(!dialog)build();opener=root.document.activeElement;draft=store.get()||create();render();status(store.status().notice||'Measurements stay on this device. Save a profile to enable matching.');if(!dialog.open)dialog.showModal();$('#kt-rig-name').focus();}
-  return {version:'2.21.2',schemaVersion:1,MAX_BYTES,KEY,validate,parse,create,fromCanonical,toCanonical,toFilters,createStore,init,open,unlink,getProfile:()=>{init();return store.get();},isLinked:()=>linked};
+  return {version:'2.22.0',schemaVersion:1,MAX_BYTES,KEY,validate,parse,create,fromCanonical,toCanonical,toFilters,createStore,init,open,unlink,getProfile:()=>{init();return store.get();},isLinked:()=>linked};
 });

@@ -10868,6 +10868,7 @@
         "caravans": "no",
         "fee": "yes",
         "name": "Ice Lake North",
+        "openfire": "no",
         "operator": "National Park Service",
         "ref": "4D1",
         "reservation": "required",
@@ -10882,34 +10883,10 @@
         "source_url": "https://www.openstreetmap.org/node/3064201400",
         "source_retrieved_at": "2026-10-29T03:43:15Z",
         "source_ids": [
-          "osm:node:3064201400",
-          "osm:node:3064201402"
+          "osm:node:3064201400"
         ],
-        "openfire": "no",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:3064201402",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:43:15Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/3064201402"
-          }
         ]
       }
     },
@@ -10943,6 +10920,42 @@
         "source_retrieved_at": "2026-10-29T03:43:15Z",
         "source_ids": [
           "osm:node:3064201401"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.6330458,
+          44.7201242
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "capacity": "4",
+        "caravans": "no",
+        "fee": "yes",
+        "name": "Ice Lake South",
+        "operator": "National Park Service",
+        "ref": "4D3",
+        "reservation": "required",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.nps.gov/yell/planyourvisit/backcountryhiking.htm",
+        "osm_id": 3064201402,
+        "osm_type": "node",
+        "id": "osm:node:3064201402",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/3064201402",
+        "source_retrieved_at": "2026-10-29T03:43:15Z",
+        "source_ids": [
+          "osm:node:3064201402"
         ],
         "sources": [
           "openstreetmap"
@@ -12888,33 +12901,46 @@
         "source_url": "https://www.openstreetmap.org/node/3064201458",
         "source_retrieved_at": "2026-10-29T03:43:15Z",
         "source_ids": [
-          "osm:node:3064201458",
+          "osm:node:3064201458"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.1061563,
+          44.1431161
+        ]
+      },
+      "properties": {
+        "backcountry": "yes",
+        "capacity": "12",
+        "caravans": "no",
+        "fee": "yes",
+        "name": "North Thorofare",
+        "operator": "National Park Service",
+        "ref": "6T2",
+        "reservation": "required",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.nps.gov/yell/planyourvisit/backcountryhiking.htm",
+        "osm_id": 3064201459,
+        "osm_type": "node",
+        "id": "osm:node:3064201459",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/3064201459",
+        "source_retrieved_at": "2026-10-29T03:43:15Z",
+        "source_ids": [
           "osm:node:3064201459"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:node:3064201459",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:43:15Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/node/3064201459"
-          }
         ]
       }
     },
@@ -28281,22 +28307,11 @@
         "source_url": "https://www.openstreetmap.org/way/1184843592",
         "source_retrieved_at": "2026-10-29T03:43:15Z",
         "source_ids": [
-          "osm:way:1184843592",
-          "osm:way:1184843602"
+          "osm:way:1184843592"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -28505,6 +28520,37 @@
         "source_retrieved_at": "2026-10-29T03:43:15Z",
         "source_ids": [
           "osm:way:1184843601"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.2448486,
+          41.1783169
+        ]
+      },
+      "properties": {
+        "capacity": "9",
+        "caravans": "yes",
+        "name": "North Causeway Campground",
+        "reservation": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "osm_id": 1184843602,
+        "osm_type": "way",
+        "id": "osm:way:1184843602",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1184843602",
+        "source_retrieved_at": "2026-10-29T03:43:15Z",
+        "source_ids": [
+          "osm:way:1184843602"
         ],
         "sources": [
           "openstreetmap"
@@ -30227,6 +30273,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 46,
+  "duplicatesRemoved": 43,
   "invalidRemoved": 0
 }

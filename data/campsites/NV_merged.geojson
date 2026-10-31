@@ -2049,22 +2049,11 @@
         "source_url": "https://www.openstreetmap.org/node/778881295",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:node:778881295",
-          "osm:node:778881431"
+          "osm:node:778881295"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -2088,6 +2077,33 @@
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
           "osm:node:778881316"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.9626866,
+          37.2136533
+        ]
+      },
+      "properties": {
+        "name": "Cordoniz Group Area South",
+        "tourism": "camp_site",
+        "osm_id": 778881431,
+        "osm_type": "node",
+        "id": "osm:node:778881431",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/778881431",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
+          "osm:node:778881431"
         ],
         "sources": [
           "openstreetmap"
@@ -3394,22 +3410,11 @@
         "source_url": "https://www.openstreetmap.org/node/2333791865",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:node:2333791865",
-          "osm:node:2333792012"
+          "osm:node:2333791865"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -3672,6 +3677,36 @@
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
           "osm:node:2333792003"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.4273066,
+          41.8420491
+        ]
+      },
+      "properties": {
+        "name": "Upper Bluster Campground",
+        "operator": "USFS",
+        "source": "openstreetmap",
+        "tourism": "camp_site",
+        "uuid": "sonora_20130605",
+        "website": "https://www.fs.usda.gov/recarea/htnf/recarea/?recid=65606",
+        "osm_id": 2333792012,
+        "osm_type": "node",
+        "id": "osm:node:2333792012",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/node/2333792012",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
+          "osm:node:2333792012"
         ],
         "sources": [
           "openstreetmap"
@@ -5665,33 +5700,10 @@
         "source_url": "https://www.openstreetmap.org/node/3626480821",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:node:3626480821",
-          "osm:way:975055224"
+          "osm:node:3626480821"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:975055224",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:13:24Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/975055224"
-          }
         ]
       }
     },
@@ -19586,33 +19598,10 @@
         "source_url": "https://www.openstreetmap.org/way/42486211",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:way:42486211",
-          "osm:way:42486218"
+          "osm:way:42486211"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:42486218",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "no"
-            },
-            "retrieved_at": "2026-10-29T03:13:24Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/42486218"
-          }
         ]
       }
     },
@@ -19756,6 +19745,38 @@
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
           "osm:way:42486216"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.0111425,
+          37.721029
+        ]
+      },
+      "properties": {
+        "attribution": "Mono County GIS",
+        "capacity": "15",
+        "fee": "no",
+        "name": "Upper Deadman Campground",
+        "reservation": "no",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20598",
+        "osm_id": 42486218,
+        "osm_type": "way",
+        "id": "osm:way:42486218",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/42486218",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
+          "osm:way:42486218"
         ],
         "sources": [
           "openstreetmap"
@@ -20670,22 +20691,40 @@
         "source_url": "https://www.openstreetmap.org/way/42486413",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:way:42486413",
+          "osm:way:42486413"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.9646262,
+          37.6496181
+        ]
+      },
+      "properties": {
+        "addr:street": "Sawmill Cutoff",
+        "attribution": "Mono County GIS",
+        "name": "Old Shady Rest Campground",
+        "tourism": "camp_site",
+        "osm_id": 42486427,
+        "osm_type": "way",
+        "id": "osm:way:42486427",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/42486427",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
           "osm:way:42486427"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -21232,33 +21271,38 @@
         "source_url": "https://www.openstreetmap.org/way/92796519",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:way:92796519",
+          "osm:way:92796519"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.8050501,
+          38.4879843
+        ]
+      },
+      "properties": {
+        "access": "permit",
+        "name": "Highland Lakes Upper Campground",
+        "tourism": "camp_site",
+        "osm_id": 92796526,
+        "osm_type": "way",
+        "id": "osm:way:92796526",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/92796526",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
           "osm:way:92796526"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:92796526",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "access": "permit"
-            },
-            "retrieved_at": "2026-10-29T03:13:24Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/92796526"
-          }
         ]
       }
     },
@@ -25259,11 +25303,14 @@
         ]
       },
       "properties": {
+        "access": "yes",
         "capacity": "17",
+        "charge": "25 USD",
         "fee": "yes",
         "name": "Lower Grays Meadow Campground",
         "operator": "United States Forest Service",
         "reservation": "recommended",
+        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20678",
         "osm_id": 335361749,
@@ -25274,38 +25321,10 @@
         "source_url": "https://www.openstreetmap.org/way/335361749",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:way:335361749",
-          "osm:way:335361783"
+          "osm:way:335361749"
         ],
-        "access": "yes",
-        "charge": "25 USD",
-        "toilets": "yes",
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [
-          "member_fee_disagreement"
-        ],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": "",
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:335361783",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-10-29T03:13:24Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/335361783"
-          }
         ]
       }
     },
@@ -25400,6 +25419,38 @@
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
           "osm:way:335361755"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.2899688,
+          36.7824903
+        ]
+      },
+      "properties": {
+        "capacity": "35",
+        "fee": "yes",
+        "name": "Upper Grays Meadow Campground",
+        "operator": "United States Forest Service",
+        "reservation": "recommended",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20680",
+        "osm_id": 335361783,
+        "osm_type": "way",
+        "id": "osm:way:335361783",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/335361783",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
+          "osm:way:335361783"
         ],
         "sources": [
           "openstreetmap"
@@ -31277,6 +31328,37 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -119.2282393,
+          37.2387772
+        ]
+      },
+      "properties": {
+        "capacity": "44",
+        "fee": "yes",
+        "name": "Billy Creek Upper Campground",
+        "reservation": "recommended",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/sierra/recarea/?recid=45510",
+        "osm_id": 975055224,
+        "osm_type": "way",
+        "id": "osm:way:975055224",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/975055224",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
+          "osm:way:975055224"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -115.112109,
           36.6255038
         ]
@@ -34164,22 +34246,40 @@
         "source_url": "https://www.openstreetmap.org/way/1128043566",
         "source_retrieved_at": "2026-10-29T03:13:24Z",
         "source_ids": [
-          "osm:way:1128043566",
+          "osm:way:1128043566"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.9971068,
+          38.4265527
+        ]
+      },
+      "properties": {
+        "name": "Union Reservoir West Campground",
+        "operator": "USDA Forest Service",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/stanislaus/recreation/camping-cabins/recarea/?recid=14907&actid=29",
+        "osm_id": 1128043568,
+        "osm_type": "way",
+        "id": "osm:way:1128043568",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1128043568",
+        "source_retrieved_at": "2026-10-29T03:13:24Z",
+        "source_ids": [
           "osm:way:1128043568"
         ],
         "sources": [
           "openstreetmap"
-        ],
-        "rating": null,
-        "reviews_count": 0,
-        "amenities": [],
-        "rig_friendly": [],
-        "type": null,
-        "data_conflicts": [],
-        "field_provenance": {
-          "cost": "unknown"
-        },
-        "description": ""
+        ]
       }
     },
     {
@@ -41664,6 +41764,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 28,
+  "duplicatesRemoved": 20,
   "invalidRemoved": 0
 }
