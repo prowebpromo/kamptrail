@@ -129,9 +129,13 @@ class FenceAndHeightRuleTests(unittest.TestCase):
         self.assertEqual(classify({'barrier': 'height_restrictor', 'height': '3.2'}, kind='node')[0], 'row')
         self.assertEqual(classify({'highway': 'service', 'tunnel': 'yes', 'height': '4'})[0], 'row')
         self.assertEqual(classify({'highway': 'service', 'tunnel': 'building_passage', 'height': '4'})[0], 'row')
-        outcome, row = classify({'highway': 'service', 'bridge': 'yes', 'height': '4'})
+        # A plain height on a highway bridge is the structure's height, not a limit on traffic.
+        outcome, entry = classify({'highway': 'motorway', 'bridge': 'yes', 'layer': '1', 'height': '12'})
+        self.assertEqual((outcome, entry['reason'], entry['raw']), ('excluded', 'plain_height_is_bridge_structure_height', '12'))
+        outcome, row = classify({'highway': 'service', 'bridge': 'yes', 'height': '4', 'maxheight': '3.5'})
         self.assertEqual(outcome, 'row')
-        self.assertIn('height_kept_structure_on_highway', row['reasons'])
+        self.assertIn('height_ignored_plain_height_is_bridge_structure_height', row['reasons'])
+        self.assertEqual(row['tags']['height'], '4')
         self.assertEqual(classify({'bridge': 'yes', 'man_made': 'bridge', 'height': '4'})[0], 'excluded')
         self.assertEqual(classify({'railway': 'rail', 'tunnel': 'yes', 'height': '6'})[0], 'excluded')
 
@@ -184,7 +188,10 @@ class UnitlessAndSuspectTests(unittest.TestCase):
         self.assertEqual(assess({'maxheight': "5'0\""})['status'], 'numeric_only')
         self.assertEqual(assess({'maxheight': "4'11\""})['reasons'], ['under_5ft_on_highway'])
         self.assertEqual(assess({'maxheight': "18'0\""})['status'], 'numeric_only')
-        self.assertEqual(assess({'maxheight': "18'1\""})['reasons'], ['over_18ft_on_highway'])
+        # Explicit units above 18 ft are ordinary posted clearances. Only an assumed unit is checked.
+        self.assertEqual(assess({'maxheight': "18'1\""})['status'], 'numeric_only')
+        self.assertEqual(assess({'maxheight': "32'0\""})['status'], 'numeric_only')
+        self.assertEqual(assess({'maxheight': '5.6'})['reasons'], ['over_18ft_on_highway'])
         self.assertEqual(assess({'maxheight': '1.524'})['status'], 'numeric_only')
         self.assertEqual(assess({'maxheight': '1.5'})['status'], 'suspect')
         self.assertEqual(assess({'maxheight': '5.4864'})['status'], 'numeric_only')

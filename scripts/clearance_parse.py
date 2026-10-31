@@ -98,6 +98,9 @@ MAX_HIGHWAY_INCHES = Decimal(18 * 12)
 BARE_SUSPECT_FROM = Decimal(6)
 BARE_FEET_LIKE_TO = Decimal(20)
 EXCLUDED_HEIGHT_REASON = 'plain_height_not_vehicle_path'
+# A plain `height` on a bridge is the structure's own height. It does not limit traffic on the bridge,
+# and a bridge's presence is not evidence about the road below it.
+BRIDGE_HEIGHT_REASON = 'plain_height_is_bridge_structure_height'
 
 
 def value_unit(raw):
@@ -129,8 +132,8 @@ def height_use(context, structure):
     if context.get('highway'):
         if 'tunnel' in structure or 'covered' in structure:
             return True, 'height_kept_tunnel_or_covered_highway'
-        if 'bridge' in structure:
-            return True, 'height_kept_structure_on_highway'
+    if 'bridge' in structure:
+        return False, BRIDGE_HEIGHT_REASON
     return False, EXCLUDED_HEIGHT_REASON
 
 
@@ -193,7 +196,7 @@ def assess(tags, context, structure, restriction_on):
     for key, raw in tags.items():
         if key == 'height':
             if not use_height:
-                reasons.append('height_ignored_' + EXCLUDED_HEIGHT_REASON)
+                reasons.append('height_ignored_' + height_reason)
                 continue
             reasons.append(height_reason)
         keys[key] = raw
@@ -212,7 +215,9 @@ def assess(tags, context, structure, restriction_on):
                 suspect.append('bare_number_likely_feet' if metres <= BARE_FEET_LIKE_TO else 'bare_number_implausible_metres')
         if highway and inches < MIN_HIGHWAY_INCHES:
             suspect.append('under_5ft_on_highway')
-        if highway and inches > MAX_HIGHWAY_INCHES:
+        # The upper bound only checks numbers whose unit is assumed. An explicit value above 18 ft
+        # (for example 20'0") is what the mapper stated, and a high clearance is ordinary.
+        if highway and unit == 'metres_assumed' and inches > MAX_HIGHWAY_INCHES:
             suspect.append('over_18ft_on_highway')
     suspect = sorted(set(suspect))
     plain_numeric = [k for k in numeric if k in PLAIN_KEYS]

@@ -27,7 +27,7 @@ The national dataset is acceptable when all of the following hold. Measurements 
 
 - Geofabrik is blocked from the build sandbox, so nothing was downloaded.
 - The committed data was regenerated offline from the committed version 2 state files with `build_national_clearances.py migrate`. No information was lost. Dropped records are listed in data/clearances/excluded with their raw values. Source dates (retrieved_at, extract_timestamp, PBF sha256) are copied unchanged from each state file.
-- Counts after migration: 56,626 candidates in 1,059 tiles (44.5 MB), 58,611 excluded records, 41,462 comparable candidates, 2,103 suspect candidates, 9 duplicate identities merged.
+- Counts after migration: 56,568 candidates in 1,059 tiles (44.5 MB), 58,669 excluded records, 43,445 comparable candidates, 69 suspect candidates, 9 duplicate identities merged.
 - RI.json is untouched and protected.
 - The next workflow_dispatch run (or the scheduled run) rebuilds each state from a fresh extract with the same code path. A rerun whose content is unchanged commits nothing.
 
@@ -125,15 +125,14 @@ A record whose only height evidence is a plain `height` tag is kept only where t
 
 - barrier=height_restrictor (reason height_kept_height_restrictor)
 - a highway way that is a tunnel or covered (height_kept_tunnel_or_covered_highway)
-- a bridge tag on a highway way (height_kept_structure_on_highway)
 
-Every other plain-height-only record is excluded with reason plain_height_not_vehicle_path. This covers fences, walls, gates, bollards, hedges, kerbs, retaining walls and the rest of the barrier values, plus structure tags with no highway. When `height` sits beside a maxheight key on such an object, the record stays for the maxheight and the height is ignored with reason height_ignored_plain_height_not_vehicle_path. The raw value stays in tags.
+Every other plain-height-only record is excluded. A plain `height` on a bridge (highway or not) is the structure's own height: it does not limit traffic on the bridge, and a bridge's presence is not evidence about the road below. Those records are excluded with reason plain_height_is_bridge_structure_height. Every other one is excluded with reason plain_height_not_vehicle_path. This covers fences, walls, gates, bollards, hedges, kerbs, retaining walls and the rest of the barrier values, plus structure tags with no highway. When `height` sits beside a maxheight key on such an object, the record stays for the maxheight and the height is ignored with reason height_ignored_plain_height_not_vehicle_path. The raw value stays in tags.
 
 In the live builder, objects with only a `height` tag and no road, barrier, railway or structure context (buildings and the like) are skipped. They are counted by object kind in the build status and not listed.
 
 Published counts, in index.json under exclusions: total, by_reason, by_tag (reason, then object tag such as barrier=fence) and by_state, plus a file entry per state. An excluded file lists ids by reason, tag and OSM type. Ids are sorted and delta encoded. Decode: the first entry of ids_delta is absolute and each later entry adds to the previous id. raw[i] indexes values and gives the raw height text. This reproduces the exclusion without storing full records.
 
-After migration: 58,611 excluded (fence 32,845, wall 8,847, gate 5,712, bollard 4,027, retaining_wall 3,885 and the rest). 97 of the 58,708 plain-height-only records were kept under the three rules above.
+After migration: 58,669 excluded. plain_height_not_vehicle_path 58,472 (fence 32,840, wall 8,838, gate 5,712, bollard 4,027, retaining_wall 3,885, hedge 1,206 and the rest). plain_height_is_bridge_structure_height 197, of which 28 are highway bridges (20 motorway, 8 motorway_link) that an earlier draft kept as way_itself, 19 of them comparable. 39 plain-height-only records are kept, all height restrictors or tunnel and covered highways.
 
 ## Units and plausibility
 
@@ -142,9 +141,9 @@ OSM semantics: a bare number is metres. The OSM wiki page Key:maxheight (https:/
 So bare numbers are valid. They are never changed and never relabelled as feet. A record with a bare number carries unit_assumed: metres. A value is flagged plausibility: suspect, with a reason, when:
 
 - a bare number is 6 or more: bare_number_likely_feet from 6 to 20, bare_number_implausible_metres above 20 (for example 55 on Illinois motorways)
-- the value is under 5 ft (under_5ft_on_highway) or over 18 ft (over_18ft_on_highway) on a vehicle highway. Exactly 5 ft and exactly 18 ft are plausible. Footways, cycleways, paths, pedestrian ways and steps are not vehicle highways, and barrier nodes without a highway tag are not checked against the bounds.
+- the value is under 5 ft on a vehicle highway (under_5ft_on_highway), or a number whose unit is assumed reads over 18 ft on a vehicle highway (over_18ft_on_highway). An explicit value above 18 ft, such as 20'0", is what the mapper stated and is an ordinary posted clearance, so it is not flagged. Exactly 5 ft and exactly 18 ft are plausible. Footways, cycleways, paths, pedestrian ways and steps are not vehicle highways, and barrier nodes without a highway tag are not checked against the bounds.
 
-Suspect candidates stay in the data as "value needs checking" and are excluded from comparison. After migration 2,103 candidates are suspect: 2,083 over 18 ft on a highway (mostly explicit feet values such as 18'3"), 81 bare numbers read as likely feet, 10 bare numbers implausible as metres and 1 under 5 ft. A candidate can carry more than one reason.
+Suspect candidates stay in the data as "value needs checking" and are excluded from comparison. After migration 69 candidates are suspect: 54 assumed-unit values over 18 ft on a highway, 53 bare numbers read as likely feet, 7 bare numbers implausible as metres and 1 under 5 ft. A candidate can carry more than one reason.
 
 ## Status and comparability
 
@@ -157,7 +156,7 @@ Suspect candidates stay in the data as "value needs checking" and are excluded f
 | unknown | No usable number: none, default, below_default, unparseable, ranges, other units | false |
 | suspect | A numeric value that failed a plausibility check | false |
 
-Order of precedence: conditional, suspect, numeric/mixed, directional_only, unknown. After migration: numeric_only 41,462, unknown 12,923, suspect 2,103, mixed 44, directional_only 85, conditional 9.
+Order of precedence: conditional, suspect, numeric/mixed, directional_only, unknown. After migration: numeric_only 43,445, unknown 12,915, suspect 69, mixed 44, directional_only 86, conditional 9.
 
 min_inches is the lowest of the numeric plain values (maxheight, maxheight:physical and counted height) and exists only on comparable candidates. A minimum over an empty set does not exist.
 
@@ -168,10 +167,10 @@ Comparison in clearance_parse.compare_to_rig gives below, equal, above or unknow
 Derived from tag evidence only. The evidence used is recorded in applies_to_evidence.
 
 - way_itself: the restriction tag is on the highway way being traveled (evidence tag_on_highway_way and highway=...). A bridge tag alone adds nothing.
-- road_below: the tag is on a highway way that is a tunnel, is covered, or has a negative layer (evidence way_is_tunnel, way_is_covered or way_on_negative_layer). An explicit structure relation would also count. The data holds no relations, so none is used.
+- road_below: the tag is on a highway way that itself passes below something: a tunnel, a covered way or a negative layer (evidence way_is_tunnel, way_is_covered or way_on_negative_layer). The limit applies to traffic on that tagged way, exactly as for way_itself. The label records why the limit exists, not a different road. An explicit structure relation would also count. The data holds no relations, so none is used.
 - unknown: everything else. A barrier node (for example barrier=height_restrictor) is unknown because the dataset does not record which way the node sits on (evidence barrier_node_parent_way_not_recorded). Any object with no highway way is unknown (no_highway_way_evidence).
 
-A bridge's presence alone is never evidence. After migration: way_itself 47,760, road_below 7,351, unknown 1,515.
+A bridge's presence alone is never evidence. After migration: way_itself 47,702, road_below 7,351, unknown 1,515.
 
 ## Data contract for route use (for the later client)
 

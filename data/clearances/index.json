@@ -3,7 +3,8 @@
  "copyright_url": "https://www.openstreetmap.org/copyright",
  "exclusions": {
   "by_reason": {
-   "plain_height_not_vehicle_path": 58611
+   "plain_height_is_bridge_structure_height": 197,
+   "plain_height_not_vehicle_path": 58472
   },
   "by_state": {
    "AK": {
@@ -19,12 +20,15 @@
     "plain_height_not_vehicle_path": 1114
    },
    "CA": {
-    "plain_height_not_vehicle_path": 11102
+    "plain_height_is_bridge_structure_height": 46,
+    "plain_height_not_vehicle_path": 11065
    },
    "CO": {
-    "plain_height_not_vehicle_path": 656
+    "plain_height_is_bridge_structure_height": 2,
+    "plain_height_not_vehicle_path": 655
    },
    "CT": {
+    "plain_height_is_bridge_structure_height": 25,
     "plain_height_not_vehicle_path": 577
    },
    "DC": {
@@ -34,13 +38,16 @@
     "plain_height_not_vehicle_path": 296
    },
    "FL": {
-    "plain_height_not_vehicle_path": 2609
+    "plain_height_is_bridge_structure_height": 12,
+    "plain_height_not_vehicle_path": 2601
    },
    "GA": {
-    "plain_height_not_vehicle_path": 894
+    "plain_height_is_bridge_structure_height": 1,
+    "plain_height_not_vehicle_path": 893
    },
    "HI": {
-    "plain_height_not_vehicle_path": 191
+    "plain_height_is_bridge_structure_height": 1,
+    "plain_height_not_vehicle_path": 190
    },
    "IA": {
     "plain_height_not_vehicle_path": 1453
@@ -49,7 +56,8 @@
     "plain_height_not_vehicle_path": 50
    },
    "IL": {
-    "plain_height_not_vehicle_path": 1662
+    "plain_height_is_bridge_structure_height": 2,
+    "plain_height_not_vehicle_path": 1660
    },
    "IN": {
     "plain_height_not_vehicle_path": 262
@@ -61,25 +69,31 @@
     "plain_height_not_vehicle_path": 139
    },
    "LA": {
-    "plain_height_not_vehicle_path": 147
+    "plain_height_is_bridge_structure_height": 1,
+    "plain_height_not_vehicle_path": 146
    },
    "MA": {
-    "plain_height_not_vehicle_path": 1393
+    "plain_height_is_bridge_structure_height": 12,
+    "plain_height_not_vehicle_path": 1381
    },
    "MD": {
-    "plain_height_not_vehicle_path": 1059
+    "plain_height_is_bridge_structure_height": 2,
+    "plain_height_not_vehicle_path": 1057
    },
    "ME": {
     "plain_height_not_vehicle_path": 156
    },
    "MI": {
-    "plain_height_not_vehicle_path": 5105
+    "plain_height_is_bridge_structure_height": 1,
+    "plain_height_not_vehicle_path": 5104
    },
    "MN": {
-    "plain_height_not_vehicle_path": 267
+    "plain_height_is_bridge_structure_height": 2,
+    "plain_height_not_vehicle_path": 265
    },
    "MO": {
-    "plain_height_not_vehicle_path": 2222
+    "plain_height_is_bridge_structure_height": 11,
+    "plain_height_not_vehicle_path": 2211
    },
    "MS": {
     "plain_height_not_vehicle_path": 185
@@ -88,19 +102,22 @@
     "plain_height_not_vehicle_path": 508
    },
    "NC": {
-    "plain_height_not_vehicle_path": 765
+    "plain_height_is_bridge_structure_height": 3,
+    "plain_height_not_vehicle_path": 762
    },
    "ND": {
     "plain_height_not_vehicle_path": 19
    },
    "NE": {
-    "plain_height_not_vehicle_path": 464
+    "plain_height_is_bridge_structure_height": 1,
+    "plain_height_not_vehicle_path": 463
    },
    "NH": {
     "plain_height_not_vehicle_path": 228
    },
    "NJ": {
-    "plain_height_not_vehicle_path": 307
+    "plain_height_is_bridge_structure_height": 11,
+    "plain_height_not_vehicle_path": 296
    },
    "NM": {
     "plain_height_not_vehicle_path": 227
@@ -109,19 +126,23 @@
     "plain_height_not_vehicle_path": 268
    },
    "NY": {
-    "plain_height_not_vehicle_path": 4119
+    "plain_height_is_bridge_structure_height": 29,
+    "plain_height_not_vehicle_path": 4093
    },
    "OH": {
     "plain_height_not_vehicle_path": 2328
    },
    "OK": {
+    "plain_height_is_bridge_structure_height": 4,
     "plain_height_not_vehicle_path": 504
    },
    "OR": {
-    "plain_height_not_vehicle_path": 947
+    "plain_height_is_bridge_structure_height": 1,
+    "plain_height_not_vehicle_path": 946
    },
    "PA": {
-    "plain_height_not_vehicle_path": 609
+    "plain_height_is_bridge_structure_height": 2,
+    "plain_height_not_vehicle_path": 607
    },
    "SC": {
     "plain_height_not_vehicle_path": 1221
@@ -133,31 +154,57 @@
     "plain_height_not_vehicle_path": 599
    },
    "TX": {
-    "plain_height_not_vehicle_path": 8702
+    "plain_height_is_bridge_structure_height": 11,
+    "plain_height_not_vehicle_path": 8699
    },
    "UT": {
     "plain_height_not_vehicle_path": 222
    },
    "VA": {
-    "plain_height_not_vehicle_path": 2105
+    "plain_height_is_bridge_structure_height": 1,
+    "plain_height_not_vehicle_path": 2104
    },
    "VT": {
-    "plain_height_not_vehicle_path": 128
+    "plain_height_is_bridge_structure_height": 4,
+    "plain_height_not_vehicle_path": 126
    },
    "WA": {
-    "plain_height_not_vehicle_path": 1383
+    "plain_height_is_bridge_structure_height": 4,
+    "plain_height_not_vehicle_path": 1381
    },
    "WI": {
-    "plain_height_not_vehicle_path": 816
+    "plain_height_is_bridge_structure_height": 6,
+    "plain_height_not_vehicle_path": 810
    },
    "WV": {
-    "plain_height_not_vehicle_path": 54
+    "plain_height_is_bridge_structure_height": 2,
+    "plain_height_not_vehicle_path": 52
    },
    "WY": {
     "plain_height_not_vehicle_path": 101
    }
   },
   "by_tag": {
+   "plain_height_is_bridge_structure_height": {
+    "barrier=fence": 5,
+    "barrier=jersey_barrier": 3,
+    "barrier=wall": 9,
+    "highway=cycleway": 1,
+    "highway=footway": 14,
+    "highway=motorway": 20,
+    "highway=motorway_link": 8,
+    "highway=path": 2,
+    "highway=pedestrian": 1,
+    "highway=residential": 6,
+    "highway=secondary": 2,
+    "highway=tertiary": 3,
+    "highway=unclassified": 1,
+    "railway=monorail": 4,
+    "railway=platform": 16,
+    "railway=rail": 6,
+    "structure=bridge": 93,
+    "structure=bridge+covered": 3
+   },
    "plain_height_not_vehicle_path": {
     "barrier=berm": 4,
     "barrier=block": 24,
@@ -171,13 +218,13 @@
     "barrier=council_ring": 2,
     "barrier=cycle_barrier": 5,
     "barrier=debris": 3,
-    "barrier=fence": 32845,
+    "barrier=fence": 32840,
     "barrier=full-height_turnstile": 1,
     "barrier=gate": 5712,
     "barrier=guard_rail": 101,
     "barrier=handrail": 8,
     "barrier=hedge": 1206,
-    "barrier=jersey_barrier": 230,
+    "barrier=jersey_barrier": 227,
     "barrier=kerb": 486,
     "barrier=log": 7,
     "barrier=metal": 1,
@@ -198,14 +245,11 @@
     "barrier=swing_gate": 239,
     "barrier=toll_booth": 19,
     "barrier=traffic_island": 4,
-    "barrier=wall": 8847,
+    "barrier=wall": 8838,
     "barrier=yes": 6,
-    "railway=monorail": 5,
-    "railway=platform": 93,
-    "railway=rail": 6,
+    "railway=monorail": 1,
+    "railway=platform": 77,
     "railway=subway_entrance": 1,
-    "structure=bridge": 93,
-    "structure=bridge+covered": 3,
     "structure=covered": 230,
     "structure=covered+tunnel": 3,
     "structure=tunnel": 236
@@ -237,22 +281,22 @@
     "sha256": "566878281014f4521d3d4801d30f49d50e15548a1b74e960f54c2635d1f52543"
    },
    "CA": {
-    "bytes": 81388,
-    "ids": 11102,
+    "bytes": 82443,
+    "ids": 11111,
     "path": "excluded/CA.json",
-    "sha256": "fde639de419ecd265d1078e7962940d4edf1d6af301e70160db3571af4457a23"
+    "sha256": "3ce65c89290fd7d1a683bf97faf683e1d8ab4250b3c0738e825f9ce61418f731"
    },
    "CO": {
-    "bytes": 8800,
-    "ids": 656,
+    "bytes": 8951,
+    "ids": 657,
     "path": "excluded/CO.json",
-    "sha256": "7220d04f67a0e50136146b80b9e056746579fef93bbf8c054ea650dcbfe44f80"
+    "sha256": "e6b909d45012551218ea8aef80e94c296b5edc85451cc7520f036ed7cd76c3a9"
    },
    "CT": {
-    "bytes": 5660,
-    "ids": 577,
+    "bytes": 6114,
+    "ids": 602,
     "path": "excluded/CT.json",
-    "sha256": "04bf1e205b7d776ec36324b230e337117d806b570c7b7d2fd65580298fe5f941"
+    "sha256": "a7d4c1a056ef6472a3c192eeeb40af49a01d7c215d35a0b5be560ddef8673ac7"
    },
    "DC": {
     "bytes": 2073,
@@ -267,22 +311,22 @@
     "sha256": "e9bb3b1beda90ad0f9d76e1ebc84270eb83dca1da7baa913f762b94dbe5e116c"
    },
    "FL": {
-    "bytes": 19914,
-    "ids": 2609,
+    "bytes": 20140,
+    "ids": 2613,
     "path": "excluded/FL.json",
-    "sha256": "214677a1aff73927f1cae149139af6a0081719064667ba085ad9160a1c58d947"
+    "sha256": "4cbf85151baef9323e111c369091ec4eb9b837c0c1b12e4138860e741d8e0751"
    },
    "GA": {
-    "bytes": 9374,
+    "bytes": 9384,
     "ids": 894,
     "path": "excluded/GA.json",
-    "sha256": "dd1a60273e5d325a4f89fd5c15c4201579d597b816e249dbcf0e2a921a14bd3e"
+    "sha256": "f5eeb5828e1e0d05378fe3099abf9f0ba3d1734d3d8d216ecb6182d9d4f0e0c8"
    },
    "HI": {
-    "bytes": 3286,
+    "bytes": 3296,
     "ids": 191,
     "path": "excluded/HI.json",
-    "sha256": "7f3cc6c4c95b5afbc94110dcbc7dfb4771d06b3e31e7f0045496cb3ec6f6a9ab"
+    "sha256": "b520e6d81f42164725ebe6be1b7dcd8169a1de57f58fe42a95080b35ad99737f"
    },
    "IA": {
     "bytes": 9509,
@@ -297,10 +341,10 @@
     "sha256": "86a0f1f7d378846e11500f388b7ee6247ff3e1b3746b66f0ff21c2d80983ff43"
    },
    "IL": {
-    "bytes": 17217,
+    "bytes": 17227,
     "ids": 1662,
     "path": "excluded/IL.json",
-    "sha256": "7f22fa7065c8238eae7390970319d4e82e4782d83299c5a76ca1da283ae3e14a"
+    "sha256": "0ace1cc2c46ab920022d9641accd165e09faf80bca8033119ffe1145cd44acb4"
    },
    "IN": {
     "bytes": 4070,
@@ -321,22 +365,22 @@
     "sha256": "e60b86ee0c98cbded7f33730a44b7e1a7bd248f54d1942bde4338c9216abf4a9"
    },
    "LA": {
-    "bytes": 2557,
+    "bytes": 2567,
     "ids": 147,
     "path": "excluded/LA.json",
-    "sha256": "cd7ba993341452a0dcbca2c8293d5b755d361c7ea47474c3ff2065995735fd8f"
+    "sha256": "04ee403d334da55a14895a7cb4caad96d7b646fdfcade729c372cb21c27a84d9"
    },
    "MA": {
-    "bytes": 14484,
+    "bytes": 14624,
     "ids": 1393,
     "path": "excluded/MA.json",
-    "sha256": "9994d971373cf5583953a5b60da9e363f04c70813ff16644a219782554ba6dde"
+    "sha256": "85fd61346544d61afa5b99c407f58eea7c91001fe3333bd28c4d46f48c72f739"
    },
    "MD": {
-    "bytes": 11190,
+    "bytes": 11200,
     "ids": 1059,
     "path": "excluded/MD.json",
-    "sha256": "bff37b785b274bbf17d68331f56d40ee36eb8159bba889f1ca388a40ccd0699b"
+    "sha256": "17e875b1d9501a0abac936083d699a6cfa0510da2ed7bdfaa2c21b021cd6a3cf"
    },
    "ME": {
     "bytes": 3207,
@@ -345,22 +389,22 @@
     "sha256": "35e2fd75cb1807d201aff5714c04c9f480b48e3a686bf45186f0c73d7e3a5722"
    },
    "MI": {
-    "bytes": 41146,
+    "bytes": 41156,
     "ids": 5105,
     "path": "excluded/MI.json",
-    "sha256": "d25f78ed485690331f6753d741f415e519f91be43657bafe86a8ee6ab432c9c6"
+    "sha256": "30ccc803ca3dca71a9a622efd3eff5aa9115aa1a8d3c79b523740d7ed2a53e89"
    },
    "MN": {
-    "bytes": 4417,
+    "bytes": 4427,
     "ids": 267,
     "path": "excluded/MN.json",
-    "sha256": "5e2c258dd4c7a1663de369759efaec0f83be6c007e4b570e42d8f9f8a8dec49c"
+    "sha256": "383a0810063aaa06a715e068124edbbd7f990dd709a0828dac757df2b60e026e"
    },
    "MO": {
-    "bytes": 18597,
+    "bytes": 18767,
     "ids": 2222,
     "path": "excluded/MO.json",
-    "sha256": "11f3ab3359cbf693105bbb6237a340bc7ffc81b6760f87fc001842a1c9cd9567"
+    "sha256": "d997ef587062dcede24060bd3075ded8fd515835ddbb133b45f0cccc85d94810"
    },
    "MS": {
     "bytes": 2322,
@@ -375,10 +419,10 @@
     "sha256": "2e1e56d12d578cc4d2fab703059b418e1b93adaabf809177f25cbcacfe651f6b"
    },
    "NC": {
-    "bytes": 8910,
+    "bytes": 8930,
     "ids": 765,
     "path": "excluded/NC.json",
-    "sha256": "a83be46d137d8a71526d3dd83be5af8052aa7136137659185b6d091053bdcc99"
+    "sha256": "dd6616856d47da259796cb8bf9b658cc72178c9908035f1f0fbc7af8e0136abc"
    },
    "ND": {
     "bytes": 1682,
@@ -387,10 +431,10 @@
     "sha256": "83ab7ea70afc4fce0294d94a07a9b2c2e708c2a6ce90a051800d56fb225068c6"
    },
    "NE": {
-    "bytes": 4834,
+    "bytes": 4844,
     "ids": 464,
     "path": "excluded/NE.json",
-    "sha256": "9d31114726f89dcdf961bbe61f68957065716d27fa7656bfeb9d10ead3e877b2"
+    "sha256": "cf3d049255801c3c2add345743923ba80cf02340d27ed318e4128eb1631af8c7"
    },
    "NH": {
     "bytes": 3423,
@@ -399,10 +443,10 @@
     "sha256": "1dbb58874441f305f572c9d20091189347aa5f0a49fc04d73f55a2952aa554da"
    },
    "NJ": {
-    "bytes": 4554,
+    "bytes": 4681,
     "ids": 307,
     "path": "excluded/NJ.json",
-    "sha256": "a3c87b1c7ae6921675d7e75c873df71917698d19546fe9e3a73aa0c58172fefc"
+    "sha256": "8ec1b1c088f9d0e894079811149c221561040a9678ce99703046cdc2b3794885"
    },
    "NM": {
     "bytes": 4739,
@@ -417,10 +461,10 @@
     "sha256": "3b8d4db5bb14cdea65a03b87c4ee50174812269b876dc599c85f9a559be59b31"
    },
    "NY": {
-    "bytes": 32196,
-    "ids": 4119,
+    "bytes": 32764,
+    "ids": 4122,
     "path": "excluded/NY.json",
-    "sha256": "50657da8371a83c43f49553b30db7b395491d2bb85f1892dc6645951e17b6ebf"
+    "sha256": "0fe23fafc27745116830feebf6b79025ea26b23e6430b4df8cce5d3e730955e5"
    },
    "OH": {
     "bytes": 20255,
@@ -429,22 +473,22 @@
     "sha256": "7cb759fc557a09fbb0cdfa07f58e9db5f0147e02ead21d34c40938a61f6654e5"
    },
    "OK": {
-    "bytes": 5925,
-    "ids": 504,
+    "bytes": 6255,
+    "ids": 508,
     "path": "excluded/OK.json",
-    "sha256": "9c8c891c465f807436e28f5c92e583d5bba7aa88c6ab575b3059c2902f3cd36b"
+    "sha256": "6b0ee4dc992be566d462b7d99acec3a931ffa794d239c88b81ee24221e71eda5"
    },
    "OR": {
-    "bytes": 11152,
+    "bytes": 11162,
     "ids": 947,
     "path": "excluded/OR.json",
-    "sha256": "046441d8de04ef1554e0816bd022f73c77b665b4ac5d89121d05efca1971ce15"
+    "sha256": "b100c0f95c729794f0c6f06c1ccf4e956208ecf43d30f4ed75bd189a66125886"
    },
    "PA": {
-    "bytes": 7952,
+    "bytes": 7972,
     "ids": 609,
     "path": "excluded/PA.json",
-    "sha256": "86be67e97e99f208604e0ce939fd22b62f26f4cb63384c8eb9a867fe74e8fd74"
+    "sha256": "b16a130d218e171005f144086d15e1829d90fc5b98de6c79245e6781f7ce035f"
    },
    "SC": {
     "bytes": 10260,
@@ -465,10 +509,10 @@
     "sha256": "79756278ab558d3184a174ab819d7837c0289ff67318830a004cb42c27535de7"
    },
    "TX": {
-    "bytes": 52235,
-    "ids": 8702,
+    "bytes": 52729,
+    "ids": 8710,
     "path": "excluded/TX.json",
-    "sha256": "9b6fbbbab316b76d8f6beb7e10e8e2a07ba0b9e898ac6e73c10928ff9f8090d2"
+    "sha256": "225a81adf2b9a05655a23e16d3c265e37bd9ea38531f3c2f8eac6f33793cbaae"
    },
    "UT": {
     "bytes": 3971,
@@ -477,34 +521,34 @@
     "sha256": "393a52208a7578d686f003af617a54b5ee382a6e1f4f08f3ef077d89193e93c3"
    },
    "VA": {
-    "bytes": 15914,
+    "bytes": 15924,
     "ids": 2105,
     "path": "excluded/VA.json",
-    "sha256": "c7bee1ef47242d0c7cc2fa3fb370d21cf79f3eb643a33e8101144e1f42fbcacb"
+    "sha256": "2c25198bcb5c654be9940b2b2d94870b72d0909e7d19368a62a5926a3d2730f2"
    },
    "VT": {
-    "bytes": 3289,
-    "ids": 128,
+    "bytes": 3588,
+    "ids": 130,
     "path": "excluded/VT.json",
-    "sha256": "6a872387b27a16670fcaf4923f7bb8f57210c6896a1369559a76731f7222b578"
+    "sha256": "9e0225f80d534989288f9fad628c6b1efffea9a5df9a191487baa14501b975f0"
    },
    "WA": {
-    "bytes": 14285,
-    "ids": 1383,
+    "bytes": 14589,
+    "ids": 1385,
     "path": "excluded/WA.json",
-    "sha256": "e1227e2bd60f6c67ddcf0a934385ba9b9ca1bba2228261dcbf0883f76575c9b8"
+    "sha256": "91183dfe8ed11e5246ef316cf568e7f352a0f459775bbaa0a4efe6e9fcb5514f"
    },
    "WI": {
-    "bytes": 9272,
+    "bytes": 9282,
     "ids": 816,
     "path": "excluded/WI.json",
-    "sha256": "daf962491ba648a3c41a0efb568b55a293638e55be5eece34bcb5f919494d794"
+    "sha256": "4c19e0d0a8be9984b9db24d4aa0ea9f6bc4fb1e7098f5cb9a19011f28e87b655"
    },
    "WV": {
-    "bytes": 2057,
+    "bytes": 2067,
     "ids": 54,
     "path": "excluded/WV.json",
-    "sha256": "23a1025d38d47c8cd3d7ea6e4ace5a10071ed77c152fa10c44813413902cce5e"
+    "sha256": "afa332a2369480da7db1773e603014ca6064b9b6137130ad39ba96c26485a00f"
    },
    "WY": {
     "bytes": 1997,
@@ -513,7 +557,7 @@
     "sha256": "bdbe24d0999ee45ee2b7c8c52f1d65f84e7dcff36a14e2a30f8c052d8ec2d182"
    }
   },
-  "total": 58611
+  "total": 58669
  },
  "failures": {},
  "grid": {
@@ -557,7 +601,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 151330181,
    "containment": "census_polygon",
-   "content_sha256": "5caed08f2aff1d5072feeaaca17f8e52a20a8070b56dbecc67393940b1384dde",
+   "content_sha256": "0d595ef76613ac506856bb389dca43de952ef573a8a47d1a765607dea0037bad",
    "extract_candidates": 277,
    "extract_excluded": 67,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -594,7 +638,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 304390023,
    "containment": "census_polygon",
-   "content_sha256": "d88f3909da5422cc402791e31e35330c82962fee5f9606b0a4cce044d25c4863",
+   "content_sha256": "1aba16fd6aecee916e41daf4e175060c7c2bf9b47cc8653a2ba52c66ac90227b",
    "extract_candidates": 640,
    "extract_excluded": 1114,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -612,9 +656,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 1334431999,
    "containment": "census_polygon",
-   "content_sha256": "732bfd7b3b998231a6bde99910e094d0262ab3f3ca99a01394fec79e7c39f097",
-   "extract_candidates": 4381,
-   "extract_excluded": 11102,
+   "content_sha256": "af2ced0d4dafbfd11943ce7f74e4441f0a3e5c0440a6e6e143c5e7be2cca4982",
+   "extract_candidates": 4372,
+   "extract_excluded": 11111,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
@@ -632,9 +676,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 386644200,
    "containment": "census_polygon",
-   "content_sha256": "75e04af6525419f54595342244cda77ea988a30ff088865f0a4fe087d566dc14",
-   "extract_candidates": 583,
-   "extract_excluded": 656,
+   "content_sha256": "bc937f043ef37878de4fbb19e5bc7e498dc9566492cf91dabdc09d8439da937d",
+   "extract_candidates": 582,
+   "extract_excluded": 657,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 44,
@@ -650,9 +694,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 217346052,
    "containment": "census_polygon",
-   "content_sha256": "e232cc30f1eacbde28e7ff105ad168adbfcbf45b13dc00a103c9ef9525b3f35d",
-   "extract_candidates": 912,
-   "extract_excluded": 577,
+   "content_sha256": "e3d3c7c6914d392bda28eb873943690adfdbd5f40fa04fbd78e532f34508df71",
+   "extract_candidates": 887,
+   "extract_excluded": 602,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 7,
@@ -705,9 +749,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 660057777,
    "containment": "census_polygon",
-   "content_sha256": "9749b18d8f01a8bb2cb687d8f7feb255f32d424b4b7432d54c560781be43660f",
-   "extract_candidates": 1257,
-   "extract_excluded": 2609,
+   "content_sha256": "96d20551dae6b71744b926d29c1027973e6938419fd7d1f7c5412af7b3c13fdb",
+   "extract_candidates": 1253,
+   "extract_excluded": 2613,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 59,
@@ -723,7 +767,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 358219304,
    "containment": "census_polygon",
-   "content_sha256": "388b07e369f44d2928066a8524a8047aa1bbd2f73369862f4f2bbe19b05c8a93",
+   "content_sha256": "30d25e8c07e38f9ee00117bea7883c026747e14bb50068ba3ad07ed2e62669fe",
    "extract_candidates": 1446,
    "extract_excluded": 894,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -740,7 +784,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 27613015,
    "containment": "census_polygon",
-   "content_sha256": "ff807e68c559f2238df7cd73e96d5ef0fe29fc4873f18402d12176b501f38dbc",
+   "content_sha256": "68eef98c3b231aeed991963edb328e16834665c53b347be439ed6d350e66ebfa",
    "extract_candidates": 67,
    "extract_excluded": 191,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -757,7 +801,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 134295959,
    "containment": "census_polygon",
-   "content_sha256": "ee4a533f8c0010f33dbdf5a69a78eba5d6dbc2c0b5e96c251b34fa646ef8398f",
+   "content_sha256": "45363acb3a40cbf6b3a6446a3c1324d71d3434ca8c349da2c02c2241554a0aa5",
    "extract_candidates": 271,
    "extract_excluded": 1453,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -793,7 +837,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 362657187,
    "containment": "census_polygon",
-   "content_sha256": "9e4ad8db540f6b2dc6951185c2ffdd90b2a7552295a0daa8a391967ba15b483f",
+   "content_sha256": "fd505527ac5041889df430833cbda50ea9b4fa96c6f045ea1a29778d2285d5bb",
    "extract_candidates": 3052,
    "extract_excluded": 1662,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -813,7 +857,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 201320970,
    "containment": "census_polygon",
-   "content_sha256": "fdd9c3a4cc00d005d17b1cf1668fd312f687c6b4b9c66b8cc4b7448f9c75e673",
+   "content_sha256": "b9f81c255ecd0e1a05a46b0e3d8e6bfdef706421d78f7a96125e74aa15dd2e7e",
    "extract_candidates": 732,
    "extract_excluded": 262,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -869,7 +913,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 147396554,
    "containment": "census_polygon",
-   "content_sha256": "476be1277849304df95979da119e072f02d9c05dc63e8dacd127e9291b5deb21",
+   "content_sha256": "3327f90a0a7535456cb12e65a981477dd08e44a651904d492d842c40eb561899",
    "extract_candidates": 187,
    "extract_excluded": 147,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -888,7 +932,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 311432824,
    "containment": "census_polygon",
-   "content_sha256": "5c47866f49a4518781c0fb782cd7a4d6324a829736d741294bc0a1cda700b27e",
+   "content_sha256": "c4875a5c1cc33beaafcc26b313acce671196b560474f889731bb5926e6abc0de",
    "extract_candidates": 1437,
    "extract_excluded": 1393,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -908,7 +952,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 216193568,
    "containment": "census_polygon",
-   "content_sha256": "9f8c095db50ce80af7cefcbd674a6f1613707adb3cd14c309c01eb0058176805",
+   "content_sha256": "87858a52b3cdf69a5f0b3585d1258244b60652c833b057d6387cf5a07318a9d0",
    "extract_candidates": 884,
    "extract_excluded": 1059,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -946,7 +990,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 316396967,
    "containment": "census_polygon",
-   "content_sha256": "a17c3ade3422f326b387f0221185eb6c056acc486cf0020c3a2bcab64b510e59",
+   "content_sha256": "1c986dc60d18e465b57ecc7a4e4f73608d5c81a5465931b603a095c58562a087",
    "extract_candidates": 1967,
    "extract_excluded": 5105,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -964,7 +1008,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 289941061,
    "containment": "census_polygon",
-   "content_sha256": "21ff8aa439d631c67dfffa08d1bf2f2fa69ad7b0896d8dd18ea968d10c20bf28",
+   "content_sha256": "25b62d287e59c4a9fda247a4cbf0e5bf2f3e22c049e4883542a0953dd7f3155d",
    "extract_candidates": 344,
    "extract_excluded": 267,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -983,7 +1027,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 200248518,
    "containment": "census_polygon",
-   "content_sha256": "75d196ed34210b7ddbfc4e2e2ecbe16c704a7eb435f80f513dcf34e0e16c23e5",
+   "content_sha256": "d6a83516e9aba5b3af56f8c6353b0d0cb26bb122982a1b20b41032784669c75d",
    "extract_candidates": 977,
    "extract_excluded": 2222,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1039,7 +1083,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 430441595,
    "containment": "census_polygon",
-   "content_sha256": "4d1f07aee728043b8c330b8846104044934429d738a6f81cf0898aa0959fb4b4",
+   "content_sha256": "e944da1037bba725eae4b7e613c121035baedeb87504556491e020e1b14b8da1",
    "extract_candidates": 764,
    "extract_excluded": 765,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1058,7 +1102,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 128225666,
    "containment": "census_polygon",
-   "content_sha256": "e1f5c2ede910bfbc9fe0c18698a470e18f53ce5752840851cd90e1af83a6516a",
+   "content_sha256": "81d6ed5c15e3f75935cb86d21d293a76fb9a88df79408d7b39b56bd57eb06154",
    "extract_candidates": 69,
    "extract_excluded": 19,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1075,7 +1119,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 101467749,
    "containment": "census_polygon",
-   "content_sha256": "2ab5adde7dca1e3f583f1cf7e76a2376670c551a81438a41e02f44d498462c5d",
+   "content_sha256": "ebceb72323b40abdc69d53017584f3bbbe56bb7e15f41d1914159052d96457e9",
    "extract_candidates": 104,
    "extract_excluded": 464,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1112,7 +1156,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 164755063,
    "containment": "census_polygon",
-   "content_sha256": "89a851b5c8e41386125f42c450e8fcd3244e9bb607728f134307b8c119c546ad",
+   "content_sha256": "1e2fabc0eb87e2a769b2916446a1b2cd5e3dd01e1aaef089952d2fec8773192b",
    "extract_candidates": 1698,
    "extract_excluded": 307,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1131,7 +1175,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 136709436,
    "containment": "census_polygon",
-   "content_sha256": "d582fe7cee408b76f05e2b70b4532cf1ba3e97de80ae04e5a8cd35888e5fac2d",
+   "content_sha256": "d91e69e220a7b50a5c357f4cae4ba8fa4a8e369557db599a6401b1e5af415cd1",
    "extract_candidates": 268,
    "extract_excluded": 227,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1150,7 +1194,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 124052529,
    "containment": "census_polygon",
-   "content_sha256": "9915008bc8cb0e5f953e754a298467308aac66be8608266664025ef895d627e8",
+   "content_sha256": "9f6a2c1882bfc900d98bf9a38dccfdeb0ccde2302bc3aa8b16c4b23d4fed6509",
    "extract_candidates": 304,
    "extract_excluded": 268,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1169,9 +1213,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 498387684,
    "containment": "census_polygon",
-   "content_sha256": "c6f375eb9b9bb1f5272271f2a463d792f218c094127ad82767f7ffaa10862eb5",
-   "extract_candidates": 3266,
-   "extract_excluded": 4119,
+   "content_sha256": "058344613f041012d7301f0357c51b846112a7aff1c92ad0b894cc24d0510a25",
+   "extract_candidates": 3263,
+   "extract_excluded": 4122,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 48,
@@ -1189,7 +1233,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 326586124,
    "containment": "census_polygon",
-   "content_sha256": "3c5d81ff9afdbec8a67f04934091ac18b00b58f6f3770dff460e390d295f45d8",
+   "content_sha256": "0493ff67c0f83be6b953b2328a94fc030b70f0904d4930f41b12fb2b6ccbe82c",
    "extract_candidates": 1432,
    "extract_excluded": 2328,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1208,9 +1252,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 170015392,
    "containment": "census_polygon",
-   "content_sha256": "3a320c348d77d6f72f4d0bc0ccb0bd46f3dcda93050ba8f6e4f880e2a68ee0f3",
-   "extract_candidates": 3485,
-   "extract_excluded": 504,
+   "content_sha256": "bdaaf2f43d5c16c4cb29ae8e64a4305aaab8f51792b2fa4a9c24e9b194f5e71f",
+   "extract_candidates": 3481,
+   "extract_excluded": 508,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
@@ -1227,7 +1271,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 255082841,
    "containment": "census_polygon",
-   "content_sha256": "d4d5417d41ffce719b5d4117472a7b914f0641d14762636c0ab339e7a688e97c",
+   "content_sha256": "73ec728582f1f8bed874843c5a71f220ab5895f0376f29e0dd495674a7a4d6ca",
    "extract_candidates": 714,
    "extract_excluded": 947,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1246,7 +1290,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 349614847,
    "containment": "census_polygon",
-   "content_sha256": "e1049739c9fb6931e68344745c57019aa9a15a2b84e30c3413d6864fc15fbaaf",
+   "content_sha256": "4d2414849ebfe1312821d066de8e1ad61dbe84d694a35642c1582563c50204d0",
    "extract_candidates": 2797,
    "extract_excluded": 609,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1265,7 +1309,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 165486682,
    "containment": "census_polygon",
-   "content_sha256": "e86c95eadd53d936b4ed85ddf55caf1b3f0b1ed268402733083e857529ff814b",
+   "content_sha256": "1c325c8ad5503d869fd1c6713ec427b615e3d12f1dd6381c4e2b9ef03d0f79fc",
    "extract_candidates": 544,
    "extract_excluded": 1221,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1318,9 +1362,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 726522325,
    "containment": "census_polygon",
-   "content_sha256": "34be71459b50aa51f4b0530367d2c3e801476f44d26c85c81f08bfb475806088",
-   "extract_candidates": 11533,
-   "extract_excluded": 8702,
+   "content_sha256": "c214403aca7f7189ef1485ccd189be5303ac397b5a049b8ecf8684f8f33749e2",
+   "extract_candidates": 11525,
+   "extract_excluded": 8710,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 4,
@@ -1354,7 +1398,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 429230186,
    "containment": "census_polygon",
-   "content_sha256": "1c89ccaf13d887fbe5ef06ff8ddebdab454182e38b15f48d5d5b94aaffeb1323",
+   "content_sha256": "e89a84c9fbcb2d3a2bff2508fb9559a6a354df09e79ba689bc954aa74435736b",
    "extract_candidates": 849,
    "extract_excluded": 2105,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1373,9 +1417,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 46195788,
    "containment": "census_polygon",
-   "content_sha256": "37deb2cba7250424a3cc840fbaeaa8ce264b1d2d1789fd7c5f16e8e240c9d97d",
-   "extract_candidates": 158,
-   "extract_excluded": 128,
+   "content_sha256": "fbe81610385621701e3b6a985a8b95533a7891ead5491402e99fbb59a696795d",
+   "extract_candidates": 156,
+   "extract_excluded": 130,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 5,
@@ -1392,9 +1436,9 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 365305788,
    "containment": "census_polygon",
-   "content_sha256": "b170863bfb48dbb0ef5d4384b4108400bc1e73fc565999a2ffd787e72e88568d",
-   "extract_candidates": 2233,
-   "extract_excluded": 1383,
+   "content_sha256": "7218882c029768a64ca05c31fe84859bd5bbdcc18b2e8a67a68cef82baeafaa3",
+   "extract_candidates": 2231,
+   "extract_excluded": 1385,
    "extract_timestamp": "2026-10-30T21:24:51Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 2,
@@ -1411,7 +1455,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 294998371,
    "containment": "census_polygon",
-   "content_sha256": "e2f7dec2b772345f7ce40ea7cbecfbfc1e0a466117b8caf99e81c11e00d1cdcb",
+   "content_sha256": "ad73914d3bba07ed93451d2a9eee8e5abe99b8aaca69d26187d89bced8ac4b86",
    "extract_candidates": 628,
    "extract_excluded": 816,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1430,7 +1474,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 99241141,
    "containment": "census_polygon",
-   "content_sha256": "c016f30abfc67c966d6a6b03d7487ba36747def84e0a57b2feeaf46c6e901c1e",
+   "content_sha256": "5ef3e232f261419bba628dd4753de170069facfb0b51b61cd3f426de0f58e763",
    "extract_candidates": 99,
    "extract_excluded": 54,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1449,7 +1493,7 @@
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
    "bytes": 95250311,
    "containment": "census_polygon",
-   "content_sha256": "ac9e6dbaefee3bf2a737fe36c43ff7f4b74652277a7e91c212ca285710fdba32",
+   "content_sha256": "ec3fa0a2d06bf06e9822de46f40c84937bc10e6b37ee684c0395745de3b61a39",
    "extract_candidates": 287,
    "extract_excluded": 101,
    "extract_timestamp": "2026-10-30T21:24:51Z",
@@ -1471,8 +1515,8 @@
   },
   "AL": {
    "candidates": 277,
-   "comparable": 159,
-   "suspect": 4
+   "comparable": 160,
+   "suspect": 3
   },
   "AR": {
    "candidates": 66,
@@ -1481,23 +1525,23 @@
   },
   "AZ": {
    "candidates": 640,
-   "comparable": 545,
-   "suspect": 11
+   "comparable": 556,
+   "suspect": 0
   },
   "CA": {
-   "candidates": 4381,
-   "comparable": 3129,
-   "suspect": 21
+   "candidates": 4372,
+   "comparable": 3138,
+   "suspect": 4
   },
   "CO": {
-   "candidates": 583,
+   "candidates": 582,
    "comparable": 278,
-   "suspect": 7
+   "suspect": 6
   },
   "CT": {
-   "candidates": 912,
+   "candidates": 887,
    "comparable": 611,
-   "suspect": 25
+   "suspect": 0
   },
   "DC": {
    "candidates": 141,
@@ -1510,14 +1554,14 @@
    "suspect": 0
   },
   "FL": {
-   "candidates": 1257,
-   "comparable": 981,
-   "suspect": 50
+   "candidates": 1253,
+   "comparable": 1023,
+   "suspect": 6
   },
   "GA": {
    "candidates": 1446,
-   "comparable": 474,
-   "suspect": 13
+   "comparable": 487,
+   "suspect": 0
   },
   "HI": {
    "candidates": 67,
@@ -1526,8 +1570,8 @@
   },
   "IA": {
    "candidates": 271,
-   "comparable": 162,
-   "suspect": 1
+   "comparable": 163,
+   "suspect": 0
   },
   "ID": {
    "candidates": 185,
@@ -1536,13 +1580,13 @@
   },
   "IL": {
    "candidates": 3052,
-   "comparable": 2745,
-   "suspect": 7
+   "comparable": 2746,
+   "suspect": 6
   },
   "IN": {
    "candidates": 732,
-   "comparable": 518,
-   "suspect": 2
+   "comparable": 519,
+   "suspect": 1
   },
   "KS": {
    "candidates": 399,
@@ -1556,18 +1600,18 @@
   },
   "LA": {
    "candidates": 187,
-   "comparable": 154,
-   "suspect": 2
+   "comparable": 156,
+   "suspect": 0
   },
   "MA": {
    "candidates": 1437,
-   "comparable": 1016,
-   "suspect": 5
+   "comparable": 1017,
+   "suspect": 4
   },
   "MD": {
    "candidates": 884,
-   "comparable": 429,
-   "suspect": 5
+   "comparable": 431,
+   "suspect": 3
   },
   "ME": {
    "candidates": 652,
@@ -1576,13 +1620,13 @@
   },
   "MI": {
    "candidates": 1967,
-   "comparable": 1763,
-   "suspect": 5
+   "comparable": 1768,
+   "suspect": 0
   },
   "MN": {
    "candidates": 344,
-   "comparable": 216,
-   "suspect": 3
+   "comparable": 219,
+   "suspect": 0
   },
   "MO": {
    "candidates": 977,
@@ -1606,8 +1650,8 @@
   },
   "ND": {
    "candidates": 69,
-   "comparable": 49,
-   "suspect": 9
+   "comparable": 58,
+   "suspect": 0
   },
   "NE": {
    "candidates": 104,
@@ -1626,43 +1670,43 @@
   },
   "NM": {
    "candidates": 268,
-   "comparable": 235,
-   "suspect": 23
+   "comparable": 252,
+   "suspect": 6
   },
   "NV": {
    "candidates": 304,
-   "comparable": 176,
-   "suspect": 8
+   "comparable": 184,
+   "suspect": 0
   },
   "NY": {
-   "candidates": 3266,
-   "comparable": 2462,
-   "suspect": 9
+   "candidates": 3263,
+   "comparable": 2463,
+   "suspect": 7
   },
   "OH": {
    "candidates": 1432,
-   "comparable": 867,
-   "suspect": 2
+   "comparable": 869,
+   "suspect": 0
   },
   "OK": {
-   "candidates": 3485,
-   "comparable": 3098,
-   "suspect": 321
+   "candidates": 3481,
+   "comparable": 3415,
+   "suspect": 0
   },
   "OR": {
    "candidates": 714,
-   "comparable": 458,
-   "suspect": 1
+   "comparable": 459,
+   "suspect": 0
   },
   "PA": {
    "candidates": 2797,
-   "comparable": 2400,
-   "suspect": 3
+   "comparable": 2402,
+   "suspect": 1
   },
   "SC": {
    "candidates": 544,
-   "comparable": 419,
-   "suspect": 55
+   "comparable": 474,
+   "suspect": 0
   },
   "SD": {
    "candidates": 20,
@@ -1675,9 +1719,9 @@
    "suspect": 9
   },
   "TX": {
-   "candidates": 11533,
-   "comparable": 9771,
-   "suspect": 1420
+   "candidates": 11525,
+   "comparable": 11180,
+   "suspect": 4
   },
   "UT": {
    "candidates": 325,
@@ -1686,23 +1730,23 @@
   },
   "VA": {
    "candidates": 849,
-   "comparable": 540,
-   "suspect": 6
+   "comparable": 543,
+   "suspect": 3
   },
   "VT": {
-   "candidates": 158,
-   "comparable": 152,
+   "candidates": 156,
+   "comparable": 150,
    "suspect": 0
   },
   "WA": {
-   "candidates": 2233,
-   "comparable": 1016,
-   "suspect": 23
+   "candidates": 2231,
+   "comparable": 1037,
+   "suspect": 1
   },
   "WI": {
    "candidates": 628,
-   "comparable": 475,
-   "suspect": 3
+   "comparable": 477,
+   "suspect": 1
   },
   "WV": {
    "candidates": 99,
@@ -1711,8 +1755,8 @@
   },
   "WY": {
    "candidates": 287,
-   "comparable": 241,
-   "suspect": 46
+   "comparable": 287,
+   "suspect": 0
   }
  },
  "states_protected": {
@@ -2037,12 +2081,12 @@
     -118.915506,
     38.344078
    ],
-   "bytes": 23371,
+   "bytes": 23387,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-21-49.json",
    "records": 29,
-   "sha256": "d6067d90aed6dbc667699a7b9b5fc342fd3ca836117b0cda63a3b581971b4bf1",
+   "sha256": "09277ee2ecaf088c8577ce3aabeaeea3b56ed61384bc1cd1803e2c11891618a1",
    "x": 21,
    "y": 49,
    "z": 7
@@ -2292,12 +2336,12 @@
     -109.697689,
     42.913429
    ],
-   "bytes": 61142,
+   "bytes": 61222,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-24-47.json",
    "records": 79,
-   "sha256": "81fbad5bd4a0ecf4d4e9f546ae858bb51ca84e454ca28b506e22aeea495b83d8",
+   "sha256": "84387ae73cd92b4c93972aa638a1368dd8762c16d5096031bb139ff1a4db508e",
    "x": 24,
    "y": 47,
    "z": 7
@@ -2377,12 +2421,12 @@
     -106.878602,
     44.916999
    ],
-   "bytes": 9458,
+   "bytes": 9522,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-25-46.json",
    "records": 13,
-   "sha256": "171f99fd595aca1c1a7fe34348b6ec902f6578deb10e5bd3f65e86a0dffecf18",
+   "sha256": "f49e185a01ae6e356cde27e2d1e58887e892005ec1ee293b215918adb2b6cefb",
    "x": 25,
    "y": 46,
    "z": 7
@@ -2394,12 +2438,12 @@
     -106.961226,
     41.791149
    ],
-   "bytes": 39492,
+   "bytes": 39620,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-25-47.json",
    "records": 55,
-   "sha256": "1cb389b6533057da8d070d36252f912f7ccf5f00a0754c6faee105387b2f7fea",
+   "sha256": "fb91cbc424e74c055e6791665af406e4c7d6e12ad2d5cc056fe2d83674959412",
    "x": 25,
    "y": 47,
    "z": 7
@@ -2513,12 +2557,12 @@
     -104.076001,
     44.543065
    ],
-   "bytes": 44100,
+   "bytes": 44259,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-26-46.json",
    "records": 63,
-   "sha256": "7dd957fb54f234660d61b268c691e5149fba30e04177d44311a901cb65bcccb2",
+   "sha256": "bf295782787d1af4f36fbdceb3d639b46151530538b437d5f98b3fa247cb41d8",
    "x": 26,
    "y": 46,
    "z": 7
@@ -2530,12 +2574,12 @@
     -104.175744,
     42.9775
    ],
-   "bytes": 87627,
+   "bytes": 87928,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-26-47.json",
    "records": 127,
-   "sha256": "7e4da6148da1029113b6f04e79b0f7fb0d58c5b1d07e088cf47308273b029df1",
+   "sha256": "ab59575b54e714735211c12d532510318d7c3f316f30e2b83278181d27b08dd2",
    "x": 26,
    "y": 47,
    "z": 7
@@ -2547,12 +2591,12 @@
     -104.431136,
     38.821192
    ],
-   "bytes": 28267,
+   "bytes": 28283,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-26-49.json",
    "records": 33,
-   "sha256": "365bfff3915848002ad22dbf311ea1e7c7f367c7f7d3e26b0c8019a2683333f5",
+   "sha256": "2dd1c2348940e6d71bc469d9672d420fe77dde9e2e33abb5f9dc9b76d33eb2c8",
    "x": 26,
    "y": 49,
    "z": 7
@@ -2683,12 +2727,12 @@
     -101.274487,
     31.951017
    ],
-   "bytes": 64710,
+   "bytes": 64918,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-27-52.json",
    "records": 77,
-   "sha256": "794cd0dc75cc77d0191e74dc04b29604d12b548f4e4b22309d269cd20e662271",
+   "sha256": "de0eb0f395ee24fd528c90a7755aff6f8bed69db4080d650db5c4166f58536fc",
    "x": 27,
    "y": 52,
    "z": 7
@@ -2785,12 +2829,12 @@
     -98.464503,
     36.441635
    ],
-   "bytes": 112398,
+   "bytes": 112635,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-28-50.json",
    "records": 146,
-   "sha256": "be25e63f1fa3bdf8ac54ac8a127e8f75cbd39aa018b145ea6d5cf6bc4e3cdc3a",
+   "sha256": "edfd4cdcf1e7b0a18c1b9d9bb978e2fc79822010c42712340442d96dac24f9df",
    "x": 28,
    "y": 50,
    "z": 7
@@ -2802,12 +2846,12 @@
     -98.442932,
     31.836185
    ],
-   "bytes": 123983,
+   "bytes": 124345,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-28-52.json",
    "records": 166,
-   "sha256": "6bd09f31564ebf8575f31200feb586a9eca4a09a4e08b76724e223b05c753083",
+   "sha256": "b90af644ef9e2b1613a00c4c54056bbbd02e7bf6abcab396b1a64e6e5d8df91c",
    "x": 28,
    "y": 52,
    "z": 7
@@ -2836,12 +2880,12 @@
     -97.238792,
     48.998978
    ],
-   "bytes": 7645,
+   "bytes": 7789,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-29-43.json",
    "records": 9,
-   "sha256": "5de556e19ce551fb81b7543da8bf5c17fde8501f0efee323f0bf41ae1616c802",
+   "sha256": "ac3697a305e7d37c0959228269278b239e21fd29b2be0b9dff6e08ed94b1bfa7",
    "x": 29,
    "y": 43,
    "z": 7
@@ -2972,12 +3016,12 @@
     -94.840152,
     29.531158
    ],
-   "bytes": 32728,
+   "bytes": 32838,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-30-53.json",
    "records": 44,
-   "sha256": "f70bb3a8b16256aab3595f9541139f551fd20e3395d607806e3efc9e281eb017",
+   "sha256": "3ef8788bb60a48286ef3e7c5494d6ea156395bf365e263dc256c3bdfb1acb048",
    "x": 30,
    "y": 53,
    "z": 7
@@ -3023,12 +3067,12 @@
     -90.08493,
     42.886436
    ],
-   "bytes": 95341,
+   "bytes": 95357,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-31-47.json",
    "records": 120,
-   "sha256": "0d23b5d09c78076fb722e37d0e90985a23dc913d0e923220f0e3cc36fd588733",
+   "sha256": "32741fbb0f530b5e51405034c89b3a11fc3f88ef4329bb27a45e849b15070e1d",
    "x": 31,
    "y": 47,
    "z": 7
@@ -3108,12 +3152,12 @@
     -87.742572,
     44.951468
    ],
-   "bytes": 110899,
+   "bytes": 110930,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-32-46.json",
    "records": 148,
-   "sha256": "dd0e46d230e4a3e70f1171dfe2e80ebaad4e3f99d8a44f6d95fe5532f2ca1cfa",
+   "sha256": "1e70edc71f158565a38c6e0935fddcf1d9822594245c6e342720b6cea3c70b18",
    "x": 32,
    "y": 46,
    "z": 7
@@ -3278,12 +3322,12 @@
     -78.795048,
     38.688178
    ],
-   "bytes": 129764,
+   "bytes": 129779,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-35-49.json",
    "records": 153,
-   "sha256": "3799525bfc37ef3707a1b45e71e974c5e77c5a135b57b60d35ea75a475902afc",
+   "sha256": "7e53b78112aa5f19650dad997a0e7afe34b416889168f2505aea7690c610b4dd",
    "x": 35,
    "y": 49,
    "z": 7
@@ -3295,12 +3339,12 @@
     -81.184723,
     31.869282
    ],
-   "bytes": 21376,
+   "bytes": 21406,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-35-52.json",
    "records": 28,
-   "sha256": "26870801c9cfca20771104f7187cc5a1d0054dbc59fef34e956219c1453c837d",
+   "sha256": "e39943607f90ee77af3e1ddb68f050cbad9443cdfd5471be0912778684f139cc",
    "x": 35,
    "y": 52,
    "z": 7
@@ -3342,16 +3386,16 @@
   {
    "bbox": [
     -75.935404,
-    43.072061,
-    -73.132958,
+    43.083127,
+    -73.140594,
     44.9828
    ],
-   "bytes": 68147,
+   "bytes": 67435,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-37-46.json",
-   "records": 89,
-   "sha256": "8feb3c464fbf0da76d54cb6be4ed31c1ac8145adcfc9ef619bec375bc2cd3c98",
+   "records": 88,
+   "sha256": "d1ee260f0d3b39f3c1cbc7ea4be4b50e7e2111e15cc058b30dd42f19e1df373e",
    "x": 37,
    "y": 46,
    "z": 7
@@ -3465,12 +3509,12 @@
     -122.589014,
     47.041184
    ],
-   "bytes": 73051,
+   "bytes": 73067,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-40-90.json",
    "records": 93,
-   "sha256": "1e7d8992a3d297293aa6a00239a6178cf266b68ae756f53a4fed7742eb3ade9a",
+   "sha256": "adc3f8db83804edd984f574666f8bd02e87eef01a1cd92087a7c5c39c8fa0bc7",
    "x": 40,
    "y": 90,
    "z": 8
@@ -3635,12 +3679,12 @@
     -118.113964,
     35.436034
    ],
-   "bytes": 94175,
+   "bytes": 91942,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-43-101.json",
-   "records": 112,
-   "sha256": "43ecf2ce97be5be3f4ed5ea44353421c4633cfee7651a267c7d5c32f7b7cc213",
+   "records": 109,
+   "sha256": "a681a492f53a03ea2a3d126e1d4f6ec85a6061fe76b67afe15e5b1735a12359c",
    "x": 43,
    "y": 101,
    "z": 8
@@ -3890,12 +3934,12 @@
     -105.488081,
     35.462024
    ],
-   "bytes": 105617,
+   "bytes": 105774,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-52-101.json",
    "records": 142,
-   "sha256": "86cbb4fcf538aa07f134b4dd7f1eab7dd23cb673ebf843cbd97218dab4fd6bcb",
+   "sha256": "a44bace1f084f20b96deb056ae73b640bd1748877ec2e5f4c5d949a542ad5b9b",
    "x": 52,
    "y": 101,
    "z": 8
@@ -3975,12 +4019,12 @@
     -102.655709,
     35.269957
    ],
-   "bytes": 22898,
+   "bytes": 22913,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-54-101.json",
    "records": 30,
-   "sha256": "acccdd9aa22e037011363905bbb2ff16e256f2397e3cc91bc87daceef7cbd5c0",
+   "sha256": "e87b47561b12e9b73f9b59a22b3b3121414bc78d83285dca38738be993935abc",
    "x": 54,
    "y": 101,
    "z": 8
@@ -3992,12 +4036,12 @@
     -103.347115,
     34.180848
    ],
-   "bytes": 4344,
+   "bytes": 4424,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-54-102.json",
    "records": 5,
-   "sha256": "1771a822b3604e8e457a3eb05b096e2fcd5051c602b0130c350141ed593d7650",
+   "sha256": "01876fa8e99a5aeabc39c660166e69bdac3b128a903ae025c33c5e6d188b3d68",
    "x": 54,
    "y": 102,
    "z": 8
@@ -4043,12 +4087,12 @@
     -101.805727,
     32.138912
    ],
-   "bytes": 45078,
+   "bytes": 45391,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-55-103.json",
    "records": 60,
-   "sha256": "c8468aea2a6ce263b2d3d6432c542c14536673501bb98c9da85463d48b036d96",
+   "sha256": "20b071541a0fb4d4396c843e783686930054f7949d2a5364e9d41b0c6bad7e5d",
    "x": 55,
    "y": 103,
    "z": 8
@@ -4077,12 +4121,12 @@
     -99.846338,
     32.793361
    ],
-   "bytes": 34365,
+   "bytes": 34429,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-56-103.json",
    "records": 49,
-   "sha256": "601beba0c5829a1ef2652c4cc274c2b1bf1f94e0586a8ad55342716a4fcf56ed",
+   "sha256": "1906c4e5cbbcf8a715fe09b93fdf49947dea9a77332dc652ee426a86bcc1b0ad",
    "x": 56,
    "y": 103,
    "z": 8
@@ -4111,12 +4155,12 @@
     -98.422999,
     34.246385
    ],
-   "bytes": 47794,
+   "bytes": 47810,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-57-102.json",
    "records": 58,
-   "sha256": "08e5c27a93bb51437eb3306a7b367185535866971d138cca8946549efdac8e4a",
+   "sha256": "323a2d57af065ef1ddf2b7502c1c80d425eee679cf6c21fd91cc8b1f893ae939",
    "x": 57,
    "y": 102,
    "z": 8
@@ -4128,12 +4172,12 @@
     -98.617471,
     32.501771
    ],
-   "bytes": 71780,
+   "bytes": 71841,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-57-103.json",
    "records": 91,
-   "sha256": "df8c6c97b880a9cce3406a87d35d4c149af53c226a72b43167d64d3f97d37a42",
+   "sha256": "79620fc9bf54c9afee00d90ceb8497bba0ad301c85ec80b8e595e9c8bdeda0b8",
    "x": 57,
    "y": 103,
    "z": 8
@@ -4145,12 +4189,12 @@
     -99.283083,
     28.280104
    ],
-   "bytes": 59809,
+   "bytes": 60044,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-57-107.json",
    "records": 80,
-   "sha256": "bef16e962e5a5e9caacc88ed64eda926e7848994fddd1a0d14917081b51ce4cb",
+   "sha256": "76f003c877f6c1fb76c60cc38f343cd3b3b6ece8052832e0fc8417f4b7b7e127",
    "x": 57,
    "y": 107,
    "z": 8
@@ -4196,12 +4240,12 @@
     -97.073152,
     34.304576
    ],
-   "bytes": 125710,
+   "bytes": 125917,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-58-102.json",
    "records": 172,
-   "sha256": "2cd100cfe21b85287f2e0398e8160f8231753a4979cbb1a38fc62565e39174be",
+   "sha256": "8543bb65616260c4ac4ac159bac23fb567743015594a39db8387f5ebf70a1115",
    "x": 58,
    "y": 102,
    "z": 8
@@ -4213,12 +4257,12 @@
     -97.031891,
     29.540325
    ],
-   "bytes": 100260,
+   "bytes": 100308,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-58-106.json",
    "records": 120,
-   "sha256": "5b1bf616020ea5673eb1dc085dfb2a7331e21bc4aad9be65daeabdebb58d5793",
+   "sha256": "9db8f2f6ecf3a3bede7e62c3d2e64fd3744ab3c9f9df8e050d207e4d51a29760",
    "x": 58,
    "y": 106,
    "z": 8
@@ -4264,12 +4308,12 @@
     -95.754074,
     31.936943
    ],
-   "bytes": 41923,
+   "bytes": 41939,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-59-104.json",
    "records": 43,
-   "sha256": "5f671e66537e5bea1af51a09665729c6a3e4c650186ef5ae1c839282e51572d8",
+   "sha256": "3a27ea2efca0907b111856a4b93c5ed29cc7a12ea06e806861f7d4e37062a128",
    "x": 59,
    "y": 104,
    "z": 8
@@ -4281,12 +4325,12 @@
     -95.84043,
     29.40211
    ],
-   "bytes": 4455,
+   "bytes": 4471,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-59-106.json",
    "records": 5,
-   "sha256": "57fa802ae05a7b0ef113862235d7cfc00222dd9102ffe271fc851a2c49eb9c1b",
+   "sha256": "ba12568479ca9350963b179003c25ea4fa5dd9df92805269106857123e89904f",
    "x": 59,
    "y": 106,
    "z": 8
@@ -4349,12 +4393,12 @@
     -94.309161,
     37.340519
    ],
-   "bytes": 75798,
+   "bytes": 75829,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-60-99.json",
    "records": 110,
-   "sha256": "2d85999add182ee9ac0e12a7d23ce64701ce4bd70fdbe809d94e9588d1e70f8f",
+   "sha256": "7eb467e1c3f0a3168d1263d1ac15e1a79f1b016e0c772f5da878001a9dcef66d",
    "x": 60,
    "y": 99,
    "z": 8
@@ -4366,12 +4410,12 @@
     -94.354075,
     35.459923
    ],
-   "bytes": 71110,
+   "bytes": 71285,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-60-101.json",
    "records": 103,
-   "sha256": "97d7ad39710895f43cae64a15f81ce423595835fe3ceb257253c95960655e791",
+   "sha256": "57469b594bc88bee91c1839cead53839ebb16e33af5f82f845aeaff441f39f01",
    "x": 60,
    "y": 101,
    "z": 8
@@ -4383,12 +4427,12 @@
     -94.25938,
     34.206035
    ],
-   "bytes": 60700,
+   "bytes": 60764,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-60-102.json",
    "records": 61,
-   "sha256": "0a6a9e39a4a815c237741f0b081504b2efa4edb16b7a0f414f4db35b6196ecd4",
+   "sha256": "d2ce314f3cde2b2e4a509014f64d182df49804139ad253b3d263e9d321279217",
    "x": 60,
    "y": 102,
    "z": 8
@@ -4400,12 +4444,12 @@
     -94.241928,
     33.145803
    ],
-   "bytes": 84827,
+   "bytes": 85035,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-60-103.json",
    "records": 111,
-   "sha256": "5485731f0a14b38282144167342b5584706a8012c66eb3108baec7e4519ecab8",
+   "sha256": "18fd4d8f1db75b1b7a446375d04eb8d95713580e0f40c3974b5b156d3efbc341",
    "x": 60,
    "y": 103,
    "z": 8
@@ -4553,12 +4597,12 @@
     -92.820118,
     33.613231
    ],
-   "bytes": 16307,
+   "bytes": 16403,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-61-102.json",
    "records": 19,
-   "sha256": "bf6135034156061e00b5fbc02a70d34df990b507c4d80f215b489eb04ba44013",
+   "sha256": "cf881e735edf65e828fc9a914da0a4c0329a338cb5d62354074836baa139f3a1",
    "x": 61,
    "y": 102,
    "z": 8
@@ -4808,12 +4852,12 @@
     -90.022105,
     30.509443
    ],
-   "bytes": 63183,
+   "bytes": 63215,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-63-105.json",
    "records": 86,
-   "sha256": "9e652bf78753ee440bf006021eae0188599e760156267f7445aa0d8bd8904840",
+   "sha256": "d2d9a9d0465442560773b540eb38b10da7f90a0e7d72d465be47be0f7cd37541",
    "x": 63,
    "y": 105,
    "z": 8
@@ -5131,12 +5175,12 @@
     -85.815672,
     35.423531
    ],
-   "bytes": 38058,
+   "bytes": 38073,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-66-101.json",
    "records": 49,
-   "sha256": "b2bd056015021fc0b4c1dd1cb04a8a133f5835740550bb555a9f9ef5dc095f78",
+   "sha256": "c31e1dfe5e361f25449d3d7abeffc8fd1a0c072af7baea49a75c48438a9f419b",
    "x": 66,
    "y": 101,
    "z": 8
@@ -5250,12 +5294,12 @@
     -84.393283,
     35.449123
    ],
-   "bytes": 46875,
+   "bytes": 46920,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-67-101.json",
    "records": 64,
-   "sha256": "4f5aa1fbd40ec0effb36901cf3fbd5f9e37c50363a007e017c4fad9aef3ef3b8",
+   "sha256": "fab5f6a1081cf0e1c9c286e9027d26ab6a3e4c6b09993362bf12f1a6147adb31",
    "x": 67,
    "y": 101,
    "z": 8
@@ -5267,12 +5311,12 @@
     -84.537752,
     33.128402
    ],
-   "bytes": 12522,
+   "bytes": 12612,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-67-103.json",
    "records": 17,
-   "sha256": "c4d9bfd4263a6a7602785d8d09ec5b82eef377127438d77a7f2bec590ae6e164",
+   "sha256": "5a79715e644a26a330ddc16fbf7f7fe4d247aa24fbd40283196563a6fea74863",
    "x": 67,
    "y": 103,
    "z": 8
@@ -5471,12 +5515,12 @@
     -81.573431,
     34.249695
    ],
-   "bytes": 34755,
+   "bytes": 34816,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-69-102.json",
    "records": 47,
-   "sha256": "aa95912433e62f28c55b4458d2ba8b6cd1fcb44295412e435c5f8b7c3cd32542",
+   "sha256": "37b8cedcc2996fd80cb3cafe15979e08a1eec664fa27d7a7d8c5250e30ef9f4c",
    "x": 69,
    "y": 102,
    "z": 8
@@ -5522,12 +5566,12 @@
     -81.564429,
     30.412253
    ],
-   "bytes": 107961,
+   "bytes": 107993,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-69-105.json",
    "records": 138,
-   "sha256": "ebfc97a6a8b961cb8e6313aba0d27e7464c2eb3b7f6eca052acb53d2baf2bff0",
+   "sha256": "c1ccb08f97591999c6a598cf7d693fce65dba7c68096b65d241eb21e47ddae41",
    "x": 69,
    "y": 105,
    "z": 8
@@ -5539,12 +5583,12 @@
     -81.560735,
     29.162548
    ],
-   "bytes": 34204,
+   "bytes": 34220,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-69-106.json",
    "records": 40,
-   "sha256": "7ca551aeb4af6472bf6d1be72d9bf4d5c2e2076b6b1f11312fdfd0a82cd9095e",
+   "sha256": "3d655cdb6807cd7ca550f0e92105c53c11785f28dd8e061d7c0d74766170aefb",
    "x": 69,
    "y": 106,
    "z": 8
@@ -5556,12 +5600,12 @@
     -81.620399,
     28.315783
    ],
-   "bytes": 129568,
+   "bytes": 129678,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-69-107.json",
    "records": 172,
-   "sha256": "72c3b827d84bb5764b2c52d1d37254fd3dd027f3cccf16e52220b0b02246fdf9",
+   "sha256": "53778825c61b567a57ad50665df82877ea0091d631f9c3b9847a5d6d83a8b7af",
    "x": 69,
    "y": 107,
    "z": 8
@@ -5590,12 +5634,12 @@
     -80.160542,
     40.975951
    ],
-   "bytes": 113108,
+   "bytes": 113140,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-70-96.json",
    "records": 154,
-   "sha256": "cdd18ae0aa3f88621cf915c81ca4370028a1e6f71066a4b5d19d9b9a07b27a74",
+   "sha256": "106e77bdcdb6b58c5502d26874f685daf6519c6d40f8a1232fa8ffea16af6dd5",
    "x": 70,
    "y": 96,
    "z": 8
@@ -5641,12 +5685,12 @@
     -80.330901,
     35.445556
    ],
-   "bytes": 98965,
+   "bytes": 99171,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-70-101.json",
    "records": 132,
-   "sha256": "08338b39a59898b93e160905f1e5b66bd7ac586134292a34a4fc59f316df2abc",
+   "sha256": "345262f69fae72f09295bd15740e599b332dc142d9a4026fc13dba7809a474c9",
    "x": 70,
    "y": 101,
    "z": 8
@@ -5658,12 +5702,12 @@
     -80.171593,
     34.242394
    ],
-   "bytes": 124939,
+   "bytes": 125146,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-70-102.json",
    "records": 147,
-   "sha256": "e7f92a8d37d60f94e8d6a67a5d190c7f648c2ef885a8b67d356be53a7b0c21b4",
+   "sha256": "96f56362d4773330a330f1b14f890906f2beae72828278c77702c11ceabb6e6b",
    "x": 70,
    "y": 102,
    "z": 8
@@ -5709,12 +5753,12 @@
     -80.15878,
     26.770173
    ],
-   "bytes": 84833,
+   "bytes": 84895,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-70-108.json",
    "records": 122,
-   "sha256": "292d8b590b358a2fe764936e0602e88e1a9273b0f53a8ed8e3fefa899495e0f6",
+   "sha256": "88b013553505cc8cc6c0720ebb7e59047e68fe397b6405f6af74b93b207cce43",
    "x": 70,
    "y": 108,
    "z": 8
@@ -5777,12 +5821,12 @@
     -78.778864,
     34.208345
    ],
-   "bytes": 33386,
+   "bytes": 33434,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-71-102.json",
    "records": 40,
-   "sha256": "6587c3f0a2365f0dd5e026a1db716a95c36d49f747bcd5673c71b7e43175524e",
+   "sha256": "5f4746d453304db275e9c47a03e247ff8b4ce4224185bdb0438564824dcc0d57",
    "x": 71,
    "y": 102,
    "z": 8
@@ -5794,12 +5838,12 @@
     -79.848942,
     32.920802
    ],
-   "bytes": 28209,
+   "bytes": 28225,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-71-103.json",
    "records": 39,
-   "sha256": "0798514cd7dba8c8469807561342db8f6f6c564f6dfdf0d5ea2527763ed7795a",
+   "sha256": "ba70ba9faeefb5fb0a4acd7365eeeb1c3909447062f99f8302a6cae84aa0a3b2",
    "x": 71,
    "y": 103,
    "z": 8
@@ -5811,12 +5855,12 @@
     -80.066973,
     26.882379
    ],
-   "bytes": 68168,
+   "bytes": 68263,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-71-108.json",
    "records": 92,
-   "sha256": "83c91c602ba757b78a1432dddaa55c0aad35c67eed13a4fbf936e4a81fc960c2",
+   "sha256": "de5338411dbd652a1c084951a14ec14be498e5ea64d536eef8c5b31b3180ab8d",
    "x": 71,
    "y": 108,
    "z": 8
@@ -5845,12 +5889,12 @@
     -77.343662,
     43.068375
    ],
-   "bytes": 58624,
+   "bytes": 56953,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-72-94.json",
-   "records": 72,
-   "sha256": "5970ba2b27855289d941d257210ce48b9a24e7c1e64d51d71cc4f9f647d8ccb1",
+   "records": 70,
+   "sha256": "839a80e39b103557b78378e668bee450a350bc74e6fefd2e8edc4fa6bf38f3de",
    "x": 72,
    "y": 94,
    "z": 8
@@ -6100,12 +6144,12 @@
     -71.738715,
     44.040599
    ],
-   "bytes": 85400,
+   "bytes": 84679,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-76-93.json",
-   "records": 109,
-   "sha256": "688935662e5cfd9689f98c3468a09050c88db7be40e88d782ad707895d753891",
+   "records": 108,
+   "sha256": "b80c5f8e35c0ca83bf550c5a47e80f29d1c6183b4d1c7d7d20a1ca1c3021342a",
    "x": 76,
    "y": 93,
    "z": 8
@@ -6180,17 +6224,17 @@
   },
   {
    "bbox": [
-    -123.280858,
+    -123.107955,
     47.168347,
     -123.10795,
-    47.368929
+    47.16839
    ],
-   "bytes": 2150,
+   "bytes": 1435,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-80-179.json",
-   "records": 2,
-   "sha256": "425068a1497723078486b4ade84e901b45d57f4ef1588ef4a565e2bb50f8c7bf",
+   "records": 1,
+   "sha256": "9fa87dd2a133a7d90da683ff387a06ec869ec30515caaad8a47b350723e9f3b4",
    "x": 80,
    "y": 179,
    "z": 9
@@ -6270,12 +6314,12 @@
     -122.343359,
     47.802722
    ],
-   "bytes": 100983,
+   "bytes": 100997,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-81-178.json",
    "records": 133,
-   "sha256": "85e52953c988aabe5a3eb4c69b4033cacd851897085fb513d9ef0bb42fb13942",
+   "sha256": "8ed438de0c7a354bf20b5406fd0fa8e0ffdd2c8933cd3dde87d456894aad6b54",
    "x": 81,
    "y": 178,
    "z": 9
@@ -6355,12 +6399,12 @@
     -122.365043,
     38.223309
    ],
-   "bytes": 116856,
+   "bytes": 116872,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-81-197.json",
    "records": 138,
-   "sha256": "5d9d063c3a9f615e2e3fbb8366314e50a3bf1338fd5be1c01af0f6f9e3552085",
+   "sha256": "0ba06325db12cf6501f3e9e3ecb8e2bedcda18b70587dc44e0b8a37011801ba4",
    "x": 81,
    "y": 197,
    "z": 9
@@ -6491,12 +6535,12 @@
     -118.841968,
     34.291739
    ],
-   "bytes": 56036,
+   "bytes": 56068,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-86-204.json",
    "records": 67,
-   "sha256": "f511a35f50ab281b7994d43b38f337f1e39350af0d9fee3d6c89e94fc3a46e1a",
+   "sha256": "a658658c57b12924220cbd4bd973d1481bd05d1793a6eddb34f9d3e3597a7329",
    "x": 86,
    "y": 204,
    "z": 9
@@ -6508,12 +6552,12 @@
     -117.422017,
     47.684517
    ],
-   "bytes": 73235,
+   "bytes": 73313,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-88-178.json",
    "records": 90,
-   "sha256": "69218ea2e59591e549c474861f935b98bd2fb0824a6d4a0a7682186c183f4ac9",
+   "sha256": "bdc699517f5ba5f8b3ba44e2f4d2ce31c9d7f5f4de2cdac7d3d70bd0cd0a5af5",
    "x": 88,
    "y": 178,
    "z": 9
@@ -6537,17 +6581,17 @@
   },
   {
    "bbox": [
-    -118.006365,
+    -117.976175,
     33.426575,
     -117.610173,
     33.723669
    ],
-   "bytes": 97130,
+   "bytes": 95453,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-88-205.json",
-   "records": 127,
-   "sha256": "5fe6b121094eea845eaaa52dd8e8676f4d11b2a354abaf79c32906877685b640",
+   "records": 126,
+   "sha256": "1a8d5226a7dd8f9f532318de4d2c62717544eeb2f40cd45787eaa88d9dc27673",
    "x": 88,
    "y": 205,
    "z": 9
@@ -6559,12 +6603,12 @@
     -116.750332,
     47.804479
    ],
-   "bytes": 95496,
+   "bytes": 95623,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-89-178.json",
    "records": 119,
-   "sha256": "6576f7739ab51a83db6afa2890722cc2e3ad6e5bc86d5897280dec1c5cde9a06",
+   "sha256": "90c47ab6bec8847c0d90fdbf7e8c0ed35bd80edadce3b68c93dd8e11b1295ed3",
    "x": 89,
    "y": 178,
    "z": 9
@@ -6593,12 +6637,12 @@
     -116.806065,
     34.287878
    ],
-   "bytes": 108591,
+   "bytes": 105810,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-89-204.json",
-   "records": 147,
-   "sha256": "7bd6961e42fec59d66bc9ba07830097fb6d3c66b68067b9d901f6699ac137364",
+   "records": 143,
+   "sha256": "e39f606bcb7485fd16699e06a63872f7a298d920d71a2c3ee564c329cc3967e3",
    "x": 89,
    "y": 204,
    "z": 9
@@ -6814,12 +6858,12 @@
     -101.954483,
     35.270154
    ],
-   "bytes": 16424,
+   "bytes": 16487,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-110-202.json",
    "records": 23,
-   "sha256": "84c412204bde7c6ef08b19cd2aef696ffeec69301ca335699d7196b0cc9f814c",
+   "sha256": "1a3af9f03a23e956aff020123f8f7c7ed017daf4eb192e2e02b15c4e1cbd3e9f",
    "x": 110,
    "y": 202,
    "z": 9
@@ -6831,12 +6875,12 @@
     -101.956325,
     33.684758
    ],
-   "bytes": 15782,
+   "bytes": 15830,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-110-205.json",
    "records": 19,
-   "sha256": "6ce2f68d641e0aaf619b145a8b8dc834de6f25e891da657ed8564afaf66c8a49",
+   "sha256": "2161ec6fb43dc3f7eb2cad16d3c4c57c61dcf004b2e610853c8229a81ff8c508",
    "x": 110,
    "y": 205,
    "z": 9
@@ -6848,12 +6892,12 @@
     -101.746798,
     34.816408
    ],
-   "bytes": 19831,
+   "bytes": 19879,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-111-203.json",
    "records": 28,
-   "sha256": "0b7aa7ae06889114bc274d3bff890682bac79b6cf66cfe732017a9a79715b11a",
+   "sha256": "5858fa29aa7120a862b9ed3f0dad266bac2c71b9265169111c59ceeadda76270",
    "x": 111,
    "y": 203,
    "z": 9
@@ -6865,12 +6909,12 @@
     -101.708701,
     34.279716
    ],
-   "bytes": 29578,
+   "bytes": 29594,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-111-204.json",
    "records": 41,
-   "sha256": "891424a9dff8c8e8fd0773f6f7a33930b626fc29d2730a84dee3b885dda10a3f",
+   "sha256": "1566289c89f6f25bc33572fa7f005759fa0f77796a7ff220cbe311293b2fb445",
    "x": 111,
    "y": 204,
    "z": 9
@@ -6882,12 +6926,12 @@
     -101.64277,
     33.722724
    ],
-   "bytes": 104650,
+   "bytes": 104698,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-111-205.json",
    "records": 137,
-   "sha256": "deb2127e9a04713a0474ecf15028a496d7335df8d860ee8beb7c053e21a34f48",
+   "sha256": "3871172d373518f26cb5f267cbee78e87fca167a6492fbc918bf8b09e3fc4d1e",
    "x": 111,
    "y": 205,
    "z": 9
@@ -6950,12 +6994,12 @@
     -97.795762,
     36.443271
    ],
-   "bytes": 9391,
+   "bytes": 9422,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-116-200.json",
    "records": 13,
-   "sha256": "eaeb6287198bec7524727f04cb7809b8c920d989aa2066c1ce1176e244efec23",
+   "sha256": "3f52ac733544903c7843e5a2162cf733dea978fdd7f72435477e587d36638c1c",
    "x": 116,
    "y": 200,
    "z": 9
@@ -6984,12 +7028,12 @@
     -97.736015,
     35.203868
    ],
-   "bytes": 33561,
+   "bytes": 33577,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-116-202.json",
    "records": 48,
-   "sha256": "f0b3fe548692b4b4388fee7fe42068d35050fa00ca536f060bf5f98edaccc782",
+   "sha256": "1fb50c070b77526ebcf6de862bb912d3f0bb30723fe0787b30e0722d15c44029",
    "x": 116,
    "y": 202,
    "z": 9
@@ -7001,12 +7045,12 @@
     -97.956081,
     34.883979
    ],
-   "bytes": 63461,
+   "bytes": 63557,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-116-203.json",
    "records": 92,
-   "sha256": "821dcd7d0d1cbcafa99b8034d96b4d9b9b3eaef23fc47dd0013b768319c4eabd",
+   "sha256": "7a185891437d01023dbcfebe769c3bcd7f5599c352c8be8d7f7d8901ea3ecf7b",
    "x": 116,
    "y": 203,
    "z": 9
@@ -7052,12 +7096,12 @@
     -97.746812,
     31.13096
    ],
-   "bytes": 31934,
+   "bytes": 32043,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-116-209.json",
    "records": 43,
-   "sha256": "f1556397cbe3a7af86573aa273cc65e32dc4528e0afa4fd424d81090d11cb099",
+   "sha256": "9ceeb0cac9c0eb6d7f2bf13ecaf997e68b4543079ad9d8ab44029270dcab5be9",
    "x": 116,
    "y": 209,
    "z": 9
@@ -7069,12 +7113,12 @@
     -97.741742,
     30.152463
    ],
-   "bytes": 112756,
+   "bytes": 112883,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-116-211.json",
    "records": 146,
-   "sha256": "63d773dd77264cf8392456e7e17b3197cc5034917e372a73a0073bf08f91ead2",
+   "sha256": "28ff5de448eb8bea7fa9ded68e4bcc14cf508d8d67c57625610850176c330ede",
    "x": 116,
    "y": 211,
    "z": 9
@@ -7103,12 +7147,12 @@
     -97.740706,
     27.672811
    ],
-   "bytes": 20745,
+   "bytes": 20777,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-116-215.json",
    "records": 26,
-   "sha256": "3fec57ef999871cc38488dba380707e17b32840faec390166da8a4ea487ef2e6",
+   "sha256": "5018dd5db8360d117823de2ac2c324343f13e36b7f37f400901ea9aebca1ec14",
    "x": 116,
    "y": 215,
    "z": 9
@@ -7137,12 +7181,12 @@
     -97.034009,
     36.579152
    ],
-   "bytes": 65815,
+   "bytes": 65879,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-117-200.json",
    "records": 95,
-   "sha256": "a8a4c5e95c164239d2f7f74936ee60093ace358a138e689750e3e3a02a312cc7",
+   "sha256": "626214aeb26580c35d2b099811eda975b2326c0c9fba520a005dfe2ee6e7be00",
    "x": 117,
    "y": 200,
    "z": 9
@@ -7154,12 +7198,12 @@
     -97.128964,
     34.882843
    ],
-   "bytes": 24208,
+   "bytes": 24240,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-117-203.json",
    "records": 34,
-   "sha256": "f4ea2fcb3d28a218850fa94a05192ea716ce130e27be2f528f7f7ee0e40a0b0b",
+   "sha256": "3fa48a2429c43ce0ba3af3c27b29f147b32eac5c23e1cb1cfad8bbe45373d19e",
    "x": 117,
    "y": 203,
    "z": 9
@@ -7171,12 +7215,12 @@
     -97.018733,
     32.546287
    ],
-   "bytes": 113303,
+   "bytes": 113509,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-117-207.json",
    "records": 141,
-   "sha256": "1c6584e6f5874f0872b17053309dda501470464bf41bdeae7512756b5b5e753e",
+   "sha256": "963764923bad59a8386afd0adf1f9936527e7771b3b1d1eab0ab530c588276bd",
    "x": 117,
    "y": 207,
    "z": 9
@@ -7188,12 +7232,12 @@
     -97.218247,
     31.358533
    ],
-   "bytes": 111580,
+   "bytes": 111850,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-117-209.json",
    "records": 148,
-   "sha256": "bbc5e0f920b53e62ebf5f17ab15b51696b42afff9369e123daf42e0eaafa7362",
+   "sha256": "16ea552df47856fd4dd4c13916d5c67834bc0368b4f4b14594e6bdffefb40f41",
    "x": 117,
    "y": 209,
    "z": 9
@@ -7205,12 +7249,12 @@
     -97.102426,
     30.1405
    ],
-   "bytes": 55173,
+   "bytes": 55285,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-117-211.json",
    "records": 77,
-   "sha256": "25a29c80099081f7d8d72fba956da5d24671bc893f15d1aab599a82b0bd2bba8",
+   "sha256": "c21c8ddb00012d08732d66a0adae678d6bf149849c5a460559f8f7ea7f2417f6",
    "x": 117,
    "y": 211,
    "z": 9
@@ -7239,12 +7283,12 @@
     -97.405485,
     26.248431
    ],
-   "bytes": 105913,
+   "bytes": 106276,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-117-217.json",
    "records": 142,
-   "sha256": "3bec091ea6c221c5b99fdf7ef3f81303713999bde5d48950924a07236a7b2019",
+   "sha256": "3794d5dd64d1477edfec7029c4e814e08e939bd6a540cd6d78c1ae3d53b1acd9",
    "x": 117,
    "y": 217,
    "z": 9
@@ -7256,12 +7300,12 @@
     -96.340419,
     36.532061
    ],
-   "bytes": 55281,
+   "bytes": 55329,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-200.json",
    "records": 81,
-   "sha256": "8a3e6d4439489ed009fa6b2bc79283a83d7cb5de314e656efa15e3369759d55d",
+   "sha256": "1206fbe1e7669c8b6e8d78b0bdf69cc928ad361e301269c442139a30e03e267f",
    "x": 118,
    "y": 200,
    "z": 9
@@ -7273,12 +7317,12 @@
     -96.384223,
     36.028355
    ],
-   "bytes": 30976,
+   "bytes": 31039,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-201.json",
    "records": 44,
-   "sha256": "2bc59c9079fad157a7c0791e4d836ed9d20b8a27ad6154a6e4613e9d43a9ccfc",
+   "sha256": "17c77fd491eecee5a2f45729548426af81dbb79c63f4deed1c6b141a9c7b0140",
    "x": 118,
    "y": 201,
    "z": 9
@@ -7290,12 +7334,12 @@
     -96.375898,
     35.403212
    ],
-   "bytes": 41614,
+   "bytes": 41630,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-202.json",
    "records": 59,
-   "sha256": "56180874ea1b012d85095ec30c3f983a7ba7d387e4b950b88188e06559ceb9bc",
+   "sha256": "1613b426e398a5d8f83dd60dd44ab717a8252f097bd5dadd1883a0be85a9f84f",
    "x": 118,
    "y": 202,
    "z": 9
@@ -7307,12 +7351,12 @@
     -96.529565,
     34.789775
    ],
-   "bytes": 36614,
+   "bytes": 36644,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-203.json",
    "records": 52,
-   "sha256": "147b8b515fa37d22091d6b25d1cdfa4689721d519cb35526d43cf58d752833dc",
+   "sha256": "f01586f403fe3997b001647802e6e0024440eeba81d6533061a319e3e83a44e8",
    "x": 118,
    "y": 203,
    "z": 9
@@ -7324,12 +7368,12 @@
     -96.320627,
     34.077916
    ],
-   "bytes": 41016,
+   "bytes": 41109,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-204.json",
    "records": 57,
-   "sha256": "46e8932ee653f2a698d7ad2de5be7a3c52a7a759b8ec19ad97b8efd6737bb86c",
+   "sha256": "72354cfe373e16eb0680f14c0ec3ac0b70c016142a82093361b7fc29d33e97c8",
    "x": 118,
    "y": 204,
    "z": 9
@@ -7341,12 +7385,12 @@
     -96.335929,
     32.54717
    ],
-   "bytes": 99988,
+   "bytes": 100441,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-207.json",
    "records": 117,
-   "sha256": "684f274f8feff919db33f6813a8a46fa6a39ea98ce7bd5d617b8f48455a663ca",
+   "sha256": "7c6b3d2df042f12d3fe666739ff51eb05db957ac2298cb969c71c4e793cca2c4",
    "x": 118,
    "y": 207,
    "z": 9
@@ -7358,12 +7402,12 @@
     -96.337779,
     30.747666
    ],
-   "bytes": 36999,
+   "bytes": 37047,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-210.json",
    "records": 51,
-   "sha256": "4bfa4b1cd2dc86867a792a65f35e5ad1737093b756de90d313c8f94d7151c10b",
+   "sha256": "13c19417c40ee13aa5ec86612d300bfc7efbaae2788753d7f4bc2b6703456c27",
    "x": 118,
    "y": 210,
    "z": 9
@@ -7392,12 +7436,12 @@
     -95.645857,
     35.455921
    ],
-   "bytes": 76723,
+   "bytes": 76883,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-119-202.json",
    "records": 106,
-   "sha256": "61b7cde3be97a5805a92cffb46c4c72f002d2429155e168686a55c57e9c6eb20",
+   "sha256": "6729735afe446c6efba0d457023dab1247c3becb77476481c61ebf30b9cfb97a",
    "x": 119,
    "y": 202,
    "z": 9
@@ -7409,12 +7453,12 @@
     -95.720161,
     34.884115
    ],
-   "bytes": 17705,
+   "bytes": 17721,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-119-203.json",
    "records": 25,
-   "sha256": "80870ec60487315cc5d048f29e4194b3bd150c699e6170245bfdd4359c9a253c",
+   "sha256": "d01e46a272153c327d527eb24ef638f33182f5c2d140a6e2f540d888df7d344a",
    "x": 119,
    "y": 203,
    "z": 9
@@ -7443,12 +7487,12 @@
     -95.589412,
     33.133961
    ],
-   "bytes": 30246,
+   "bytes": 30309,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-119-206.json",
    "records": 21,
-   "sha256": "062c6733deeba757ef703007de02c2256edb743099dc7045202fa2bbde28d02b",
+   "sha256": "8af0e38151f61a3c2990fc4f0723cebedd434fc09e70199438dd8b83a0034271",
    "x": 119,
    "y": 206,
    "z": 9
@@ -7477,12 +7521,12 @@
     -96.049435,
     30.663549
    ],
-   "bytes": 38225,
+   "bytes": 38318,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-119-210.json",
    "records": 48,
-   "sha256": "cd5bb0f5e1b385f205eb17909850071f16bd32279d9d3ddc00c6902694518c95",
+   "sha256": "28ae7dff94bb01dbf52cbfb3de065224ba37c3b61372bdb60a0baa040ff73b6c",
    "x": 119,
    "y": 210,
    "z": 9
@@ -7528,12 +7572,12 @@
     -94.922271,
     36.597951
    ],
-   "bytes": 73765,
+   "bytes": 73843,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-120-200.json",
    "records": 107,
-   "sha256": "4022ed19caa604bece3c545580803fb98c96d6206803b01af0bb7c84a86a1149",
+   "sha256": "a53f8bb7e35be3f066c835d621070c164a03551fa8c3e0f18d6781d6b8889943",
    "x": 120,
    "y": 200,
    "z": 9
@@ -7545,12 +7589,12 @@
     -94.934909,
     35.97458
    ],
-   "bytes": 87199,
+   "bytes": 87342,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-120-201.json",
    "records": 128,
-   "sha256": "edbfa3f6643d406382d386ae676894805d7dd523cd4d7fa0a21a2841f5dea23a",
+   "sha256": "129e9a80158b435b1bc3670de48b53eb504ae24c527175cba7a4d2a70175ab63",
    "x": 120,
    "y": 201,
    "z": 9
@@ -7562,12 +7606,12 @@
     -94.949428,
     30.721224
    ],
-   "bytes": 64779,
+   "bytes": 64971,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-120-210.json",
    "records": 82,
-   "sha256": "46834e39dca7fc74eee0b77ac9e1d61def4b4442e31b911216d73a0d03712e2e",
+   "sha256": "ab68a2ec1416a7f53f8d2d8ad357dfda7ea52e24bbdb1a017eb96e7c5771776c",
    "x": 120,
    "y": 210,
    "z": 9
@@ -7596,12 +7640,12 @@
     -94.381742,
     36.560142
    ],
-   "bytes": 24990,
+   "bytes": 25037,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-121-200.json",
    "records": 34,
-   "sha256": "1c514db791bd9ef9f4b2a710c5f888c9433c761b9d199af355660b015a90ea5b",
+   "sha256": "c0b8a82ba7b37a7a2147a6abbe2d3f70c7f8d4a4354c7e84004a032762b0874a",
    "x": 121,
    "y": 200,
    "z": 9
@@ -7647,12 +7691,12 @@
     -94.322844,
     30.055211
    ],
-   "bytes": 30378,
+   "bytes": 30583,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-121-211.json",
    "records": 38,
-   "sha256": "09e5be89657bf7e87a1574e9922088060e86b4c84c140a478d6c8a6df796babe",
+   "sha256": "4fb8d8ce08d008b1c3f4300cd6560595272ab6be0281133cf5ef51fc868f308c",
    "x": 121,
    "y": 211,
    "z": 9
@@ -7885,12 +7929,12 @@
     -89.321823,
     39.887685
    ],
-   "bytes": 129648,
+   "bytes": 129664,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-128-194.json",
    "records": 179,
-   "sha256": "2c9c7e141d9a3bdcb08314fb385630a8b2f1638feaca805833f7ca7e9b3ea3e9",
+   "sha256": "21b94fd925473d2cb768aba62ba96af5748b658fbf375ab7a9fa3017611ade22",
    "x": 128,
    "y": 194,
    "z": 9
@@ -8429,12 +8473,12 @@
     -84.410883,
     42.879421
    ],
-   "bytes": 125694,
+   "bytes": 125710,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-135-188.json",
    "records": 143,
-   "sha256": "5a4a7c1777fbd8a9bea5b716131208fce69c9e3437d1224a473649d1b548a4fd",
+   "sha256": "ecc445895a8ed4904d53fd69d0610b437aa6719d6b44a1e37e079ac5c4b2f80f",
    "x": 135,
    "y": 188,
    "z": 9
@@ -8463,12 +8507,12 @@
     -84.382669,
     39.845808
    ],
-   "bytes": 27529,
+   "bytes": 27545,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-135-194.json",
    "records": 37,
-   "sha256": "3c3067d20894725efae488a969830e733093429be59a498905b2734457d43dab",
+   "sha256": "9f46202f1448d01ebe996800fa4f442a2165baa8000017e230f566de5c4d9b35",
    "x": 135,
    "y": 194,
    "z": 9
@@ -8599,12 +8643,12 @@
     -83.364335,
     33.972102
    ],
-   "bytes": 46879,
+   "bytes": 46894,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-137-204.json",
    "records": 54,
-   "sha256": "2b393c4ec1cccedc0025a12910c85002272f5ca786af0eaf92dbb51f6474fb51",
+   "sha256": "ef0782aaca73d2c9a02479b08a62b9d0f674bbaf35f6f0082fba69b3b699bd36",
    "x": 137,
    "y": 204,
    "z": 9
@@ -8684,12 +8728,12 @@
     -82.279746,
     34.873779
    ],
-   "bytes": 47748,
+   "bytes": 47796,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-138-203.json",
    "records": 55,
-   "sha256": "ea7ab1c740b88a5d7ba881e527bd0cc3d48058fa4d19ad9413c12cf12f9a5562",
+   "sha256": "f97170939ceaf34aa57eead19b7375792fba45574f7a1720f4a662c6dcba05ef",
    "x": 138,
    "y": 203,
    "z": 9
@@ -8735,12 +8779,12 @@
     -81.630699,
     35.333861
    ],
-   "bytes": 105568,
+   "bytes": 105834,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-139-202.json",
    "records": 121,
-   "sha256": "880e6e3b9b65a5db9c0ff2a1655c28e30f78638d540c8307392eec9445245987",
+   "sha256": "5f565b31cd984e44dd20faba5be807fd3565840796308e43c3072ce083b1fffa",
    "x": 139,
    "y": 202,
    "z": 9
@@ -8752,12 +8796,12 @@
     -81.649514,
     34.887638
    ],
-   "bytes": 18024,
+   "bytes": 18040,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-139-203.json",
    "records": 23,
-   "sha256": "2ed6461d74f2d27e9526d8f78752fe233580f9576d10ff41b97ba041d30e29d0",
+   "sha256": "22787de0a81847fae671ce6c2aca3a0a808ec255fbfd32855d8243de89031d58",
    "x": 139,
    "y": 203,
    "z": 9
@@ -8820,12 +8864,12 @@
     -80.865236,
     28.918851
    ],
-   "bytes": 116514,
+   "bytes": 113853,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-140-213.json",
-   "records": 151,
-   "sha256": "a342d09dc82be6c63f2e4c328d44906660e5757fec91c2173a18a7a4358404db",
+   "records": 147,
+   "sha256": "add16f7eeb748b8911cd87c7ac25c95edc5c086912e9350cfc356c0db7ea59ce",
    "x": 140,
    "y": 213,
    "z": 9
@@ -10197,12 +10241,12 @@
     -117.084725,
     33.134993
    ],
-   "bytes": 47105,
+   "bytes": 47120,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-178-412.json",
    "records": 66,
-   "sha256": "44c50018467f670f0e309d6030a6decc8618361633425fa51c10fe445a9be115",
+   "sha256": "2b648d3fd497ae2f29e2b410324cc3231ce72c082e28164219948af1833c8cd3",
    "x": 178,
    "y": 412,
    "z": 10
@@ -10231,12 +10275,12 @@
     -116.935673,
     32.832247
    ],
-   "bytes": 22925,
+   "bytes": 22940,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-179-413.json",
    "records": 31,
-   "sha256": "dfab3119cd54a95734cfea51be5ff5815d69eff01ab28d23f021d61ce32ce5d0",
+   "sha256": "95d5ceed755ebfa4f60d4ffb455049d46c92a9cf45697bca676e9499f5e833d8",
    "x": 179,
    "y": 413,
    "z": 10
@@ -10367,12 +10411,12 @@
     -106.547897,
     31.880122
    ],
-   "bytes": 8663,
+   "bytes": 8711,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-208-416.json",
    "records": 11,
-   "sha256": "fe121b632732c39ea72d68e93c5aef79c669bee2ad1225c982efc1277c06714e",
+   "sha256": "85ec058c92f73dbcd3201ba23f8cb63bc75eaf1ac72213ed38e3e22c59c64df1",
    "x": 208,
    "y": 416,
    "z": 10
@@ -10384,12 +10428,12 @@
     -106.19328,
     31.641283
    ],
-   "bytes": 2608,
+   "bytes": 2639,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-209-417.json",
    "records": 3,
-   "sha256": "2823149dfd9f05777eb0a5d11acf03f42b43e89173882e3e710205fcff0e28d3",
+   "sha256": "9c83898ee0202606790da1308e1909b21fef2462b828fe942d10fdba90c05fb2",
    "x": 209,
    "y": 417,
    "z": 10
@@ -10435,12 +10479,12 @@
     -104.771938,
     39.891997
    ],
-   "bytes": 122415,
+   "bytes": 121650,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-213-388.json",
-   "records": 154,
-   "sha256": "d7810a8975b269daee9a354d8e0dd4044499d33e76084f821c17685ed88a5a00",
+   "records": 153,
+   "sha256": "78b1a2b0cf7ade16befbe9db8c8ced1c7adb46aa8a3796b487e91610b3b61a51",
    "x": 213,
    "y": 388,
    "z": 10
@@ -10469,12 +10513,12 @@
     -101.585812,
     35.323811
    ],
-   "bytes": 83926,
+   "bytes": 83988,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-222-404.json",
    "records": 115,
-   "sha256": "8ff6e8e8f74eab9003e0cdc4cad3c115e83e66d3c310df2eacf46ccbf40ff5d4",
+   "sha256": "a1236eda3b67ed35640c41e9341969a66b8bf84a14bf89d2df1b040022b7980b",
    "x": 222,
    "y": 404,
    "z": 10
@@ -10486,12 +10530,12 @@
     -101.865714,
     35.170573
    ],
-   "bytes": 26681,
+   "bytes": 26697,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-222-405.json",
    "records": 36,
-   "sha256": "f511fc98427327e3c196df74da04c2bf2997a5e59e84e2b666248f9b6d6c50c4",
+   "sha256": "e83a37a5c0060a36f259e9851107894341a1ef0f8a25f08442d4eeae617539b4",
    "x": 222,
    "y": 405,
    "z": 10
@@ -10503,12 +10547,12 @@
     -101.235385,
     35.221689
    ],
-   "bytes": 21594,
+   "bytes": 21642,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-223-404.json",
    "records": 26,
-   "sha256": "488f0e639ac64992d7d6dc44359c43126cd8462912ec06135dcca3ac540dcc32",
+   "sha256": "0d76291ee288a0f3df36cc2fa11bac72098de8f8696b45206eb5cb3f7fbac34f",
    "x": 223,
    "y": 404,
    "z": 10
@@ -10588,12 +10632,12 @@
     -98.085879,
     26.416847
    ],
-   "bytes": 107032,
+   "bytes": 107359,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-232-434.json",
    "records": 141,
-   "sha256": "79e31f2c967a2d9ab2e8399ef18dcb4af9914da13a7b93830c15fbb2014a36a0",
+   "sha256": "eca804fdd32b00488de619440eb5450517d89d9abd657038998e757ef7058e49",
    "x": 232,
    "y": 434,
    "z": 10
@@ -10605,12 +10649,12 @@
     -97.744916,
     30.741885
    ],
-   "bytes": 59907,
+   "bytes": 60003,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-233-420.json",
    "records": 83,
-   "sha256": "5b1dd9cef87ff32d433453e7e2c719ead514bc1993c1f39460546d7c11b05d89",
+   "sha256": "65f72ef72be779ddd687dde57296bcd7e4946a94ca4f25a9d49bc72803a84563",
    "x": 233,
    "y": 420,
    "z": 10
@@ -10622,12 +10666,12 @@
     -97.738699,
     26.409874
    ],
-   "bytes": 72353,
+   "bytes": 72416,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-233-434.json",
    "records": 95,
-   "sha256": "de7e125082946f44ccdb54ac6c84efc83ca047e66b922a1b4a04c7a77146d300",
+   "sha256": "a5abed89a8473e5f76ee43747f239418ac89371a44bcbef7a95b7d7a5e0e04c0",
    "x": 233,
    "y": 434,
    "z": 10
@@ -10636,15 +10680,15 @@
    "bbox": [
     -97.431593,
     35.754176,
-    -97.382609,
+    -97.382926,
     35.927808
    ],
-   "bytes": 25501,
+   "bytes": 22747,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-234-402.json",
-   "records": 36,
-   "sha256": "03521a0e48a8158fcecceff4d8e50a1a49e6d7dcbbe0657f05946cfa50fe0976",
+   "records": 32,
+   "sha256": "596e30bb331a855c6108b4cc22118eb2b799c01ce6a752fb5ceb8911cf808712",
    "x": 234,
    "y": 402,
    "z": 10
@@ -10656,12 +10700,12 @@
     -97.386657,
     35.153451
    ],
-   "bytes": 5502,
+   "bytes": 5518,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-234-405.json",
    "records": 7,
-   "sha256": "20b2b90e4608f81ee763739c439a727c0f7c0537dbc0a28d9d788e6af1b8b0fc",
+   "sha256": "7878995eb0f8207b3b3e69f6256a27ddd4c944a07e3ebbc89576174a0d36f69b",
    "x": 234,
    "y": 405,
    "z": 10
@@ -10673,12 +10717,12 @@
     -97.384976,
     32.946349
    ],
-   "bytes": 7009,
+   "bytes": 7025,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-234-412.json",
    "records": 9,
-   "sha256": "89a3c4468444101ef3634044b2e9e04f87665a55b6274c0a7d3b3a518f003eb1",
+   "sha256": "bb6df2ee8ae3cf46ef853a466e65b7ac2599c8026516d7b03726651c7996933d",
    "x": 234,
    "y": 412,
    "z": 10
@@ -10707,12 +10751,12 @@
     -97.43377,
     30.735656
    ],
-   "bytes": 124865,
+   "bytes": 123021,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-234-420.json",
-   "records": 174,
-   "sha256": "f92354c3f46366c0306cd29305e3a480dc6325051108e6a4916f1071531bde4f",
+   "records": 171,
+   "sha256": "23d31defb649ee03e4d3b85f376a896c0f834cba5ba2f55d3ca9ce73f2447964",
    "x": 234,
    "y": 420,
    "z": 10
@@ -10724,12 +10768,12 @@
     -97.482346,
     28.059467
    ],
-   "bytes": 9860,
+   "bytes": 9875,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-234-428.json",
    "records": 10,
-   "sha256": "ea74cae8b0fb1b947cb8ffbb39e25e32ce1490a6f71fdc185ed0d3d86a5add01",
+   "sha256": "b62ecfffc309bb5a284d553f94f7d5a9fca06256e1f60461c9f0a5693bf9f1c2",
    "x": 234,
    "y": 428,
    "z": 10
@@ -10741,12 +10785,12 @@
     -97.383573,
     27.978255
    ],
-   "bytes": 107617,
+   "bytes": 107729,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-234-429.json",
    "records": 143,
-   "sha256": "267871f1ae3b3ff80b9aa29bb398d0529f17d3aac056db7a7b81efde67648885",
+   "sha256": "285661b567c1f1570aa3ff7098e2b10f3e6b87a9b86232cd58ed96eac2cf7bf0",
    "x": 234,
    "y": 429,
    "z": 10
@@ -10775,12 +10819,12 @@
     -97.046553,
     35.680998
    ],
-   "bytes": 32797,
+   "bytes": 32956,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-235-403.json",
    "records": 46,
-   "sha256": "3438e3ddb9125b5673726719895370a52673cf3bf55df876e006721427c57593",
+   "sha256": "33986f2030a80fd42b69c74fddf72df1023073d30ffcb8bfa00b381554c44255",
    "x": 235,
    "y": 403,
    "z": 10
@@ -10792,12 +10836,12 @@
     -97.053944,
     35.45006
    ],
-   "bytes": 40494,
+   "bytes": 40510,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-235-404.json",
    "records": 55,
-   "sha256": "07ca2c17417ba8ab249c458e5e9a21522f0201c947aa9e909af7acd51cc4a3b3",
+   "sha256": "e9c3a9f5fa45b94c82dba1ff950c19e0d3a62c0752aac849cbebc56c3acdf37f",
    "x": 235,
    "y": 404,
    "z": 10
@@ -10826,12 +10870,12 @@
     -97.082691,
     31.900157
    ],
-   "bytes": 19375,
+   "bytes": 19550,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-235-416.json",
    "records": 24,
-   "sha256": "864f56026ea3a67648828aac008481bcfacb2b09107ee45b6a126dc9f8177874",
+   "sha256": "c650d40d273f81d39b030635151c14c2b743a30292e90856d59a974c2d6176cc",
    "x": 235,
    "y": 416,
    "z": 10
@@ -10911,12 +10955,12 @@
     -96.687991,
     33.361545
    ],
-   "bytes": 37085,
+   "bytes": 37133,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-236-411.json",
    "records": 48,
-   "sha256": "a1d0fc8ce01566acda44faac4ec36c1edb648cd20f74218bdd0728f5c9533e55",
+   "sha256": "d98ce6cbafd8ee9d62647063133aad699d93be150b4754a425c466f6559fcad4",
    "x": 236,
    "y": 411,
    "z": 10
@@ -10928,12 +10972,12 @@
     -96.391109,
     33.707546
    ],
-   "bytes": 12215,
+   "bytes": 12246,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-237-410.json",
    "records": 14,
-   "sha256": "31a40ac64b5826a72339fedf0d3e812d50fcc3e6065a8e880a80881ab7a79930",
+   "sha256": "ce6d398bf80376a09e97f717e930ef3baa4e29dccb3239f99c6c5943771ebf62",
    "x": 237,
    "y": 410,
    "z": 10
@@ -10945,12 +10989,12 @@
     -96.359955,
     33.421584
    ],
-   "bytes": 91449,
+   "bytes": 87374,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-237-411.json",
-   "records": 122,
-   "sha256": "82d2cea30b044f9a8ca34fecd8ee8e15112d4082f63b78bd70e6b49720616308",
+   "records": 117,
+   "sha256": "7715751bb5ba0cb3dfbef58fbfc0f3ebdc9f5411c0294d8f0f57be3accd86f83",
    "x": 237,
    "y": 411,
    "z": 10
@@ -10962,12 +11006,12 @@
     -96.380762,
     33.13031
    ],
-   "bytes": 110017,
+   "bytes": 110175,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-237-412.json",
    "records": 147,
-   "sha256": "5150f5cfbe50e1a2c04227892121ab13ebf4b48db975d5bcdd7e212e4f30f698",
+   "sha256": "4cf2520b87bdfe81c437ad00b695096e67dc348d87a47d4d2c1850f4a4ec16bf",
    "x": 237,
    "y": 412,
    "z": 10
@@ -10979,12 +11023,12 @@
     -96.328625,
     32.842447
    ],
-   "bytes": 60404,
+   "bytes": 60532,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-237-413.json",
    "records": 86,
-   "sha256": "8e728965483c3c6bcb7ca4e482e19aa89c0c853ad5d2a6e379d6fa95329eb150",
+   "sha256": "802bac40da4f3ebabf6efd691c80058ae776fa7850510f4d0aaa3e1657c17303",
    "x": 237,
    "y": 413,
    "z": 10
@@ -10996,12 +11040,12 @@
     -95.993861,
     36.029822
    ],
-   "bytes": 38362,
+   "bytes": 38506,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-238-402.json",
    "records": 54,
-   "sha256": "7690da0cd71ab56b949d975cb46a38a75c620e0fb1eb74dae5f38e68f77d9051",
+   "sha256": "5a60ef6bd3ab513560548b1e4b20d4887dbb1656021fc1e5b539a4e24840dcca",
    "x": 238,
    "y": 402,
    "z": 10
@@ -11047,12 +11091,12 @@
     -96.205766,
     29.761379
    ],
-   "bytes": 5579,
+   "bytes": 5659,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-238-423.json",
    "records": 7,
-   "sha256": "1ec4cb346390f606c6918d3a20cfca45270987700fc983a6d526c9258a030aba",
+   "sha256": "fe16b80a1ffa90970b424c0390bcf7af4462891c5905819a9e609c8804b268a3",
    "x": 238,
    "y": 423,
    "z": 10
@@ -11064,12 +11108,12 @@
     -95.6325,
     36.583329
    ],
-   "bytes": 9628,
+   "bytes": 9644,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-239-400.json",
    "records": 13,
-   "sha256": "1749f8acb0ccc804a6eba6731636256fd44558094dfebc4053b990f8a453d80e",
+   "sha256": "c99458d76dd8e02e22b18a4dc6d5da1690e9e4ff098f29006fe53092d2c26047",
    "x": 239,
    "y": 400,
    "z": 10
@@ -11081,12 +11125,12 @@
     -95.636432,
     36.032518
    ],
-   "bytes": 113837,
+   "bytes": 114207,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-239-402.json",
    "records": 160,
-   "sha256": "ab362a440ac576b3dbcf48362672c2dfb6fcfdbaacaad86a3368ea9250416b43",
+   "sha256": "f15f4a4a950851656786c67c9e64fd7e0e86a7e77c6c97143d1cb8fa79a7cfe7",
    "x": 239,
    "y": 402,
    "z": 10
@@ -11115,12 +11159,12 @@
     -95.631013,
     30.113998
    ],
-   "bytes": 66187,
+   "bytes": 66407,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-239-422.json",
    "records": 90,
-   "sha256": "18ae8b3ef698d7f5f25b64b5fad2cd77dfa5c0aaa4e5b27b010e6ee7db9f8bcc",
+   "sha256": "8fa4f59ade922a2b1da3a14a2042704f6bc2a11eb4b3d79bfe181e9bbdc56f04",
    "x": 239,
    "y": 422,
    "z": 10
@@ -11132,12 +11176,12 @@
     -95.633864,
     29.831694
    ],
-   "bytes": 83853,
+   "bytes": 84212,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-239-423.json",
    "records": 110,
-   "sha256": "51d43f20e617d9665d4b53d88dba93799f855b4d206dd5df6fe6897adbed449b",
+   "sha256": "5099c5bc52d572315b8c77885468ecb82e1e912ff238d316f7e31696974d38eb",
    "x": 239,
    "y": 423,
    "z": 10
@@ -11149,12 +11193,12 @@
     -95.11012,
     30.064688
    ],
-   "bytes": 51245,
+   "bytes": 51416,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-241-422.json",
    "records": 65,
-   "sha256": "361aefe635a2367c47bbda3a9277c216a6062ef02e4053eaa0eb30434bff0ca7",
+   "sha256": "051383ace71a81eb2a6330aa418367fa9584a0aaadd513675b526d42c84aa81d",
    "x": 241,
    "y": 422,
    "z": 10
@@ -12169,12 +12213,12 @@
     -76.302495,
     37.144247
    ],
-   "bytes": 45906,
+   "bytes": 45936,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-294-398.json",
    "records": 61,
-   "sha256": "821a1810b57760ef3e6ce915a5b1110f72a2e9e37f3c67aead4114b6e4cdd861",
+   "sha256": "9c29d3e1be3f7ce2864ce57a796e16c4fe4c4c452cd0b1d103b7f77149efb4fa",
    "x": 294,
    "y": 398,
    "z": 10
@@ -12781,12 +12825,12 @@
     -122.535534,
     45.571685
    ],
-   "bytes": 105857,
+   "bytes": 105872,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-326-732.json",
    "records": 141,
-   "sha256": "4bb1c4c1d8b365ba39d9c6d5a09f8124abd529e7cc1eb03570ac97259ca5627c",
+   "sha256": "bf385ab376ae643726c5d1ff94094f8a3940e6259e21e3f9fa95710b1150e354",
    "x": 326,
    "y": 732,
    "z": 11
@@ -12849,12 +12893,12 @@
     -122.197949,
     37.979505
    ],
-   "bytes": 25897,
+   "bytes": 25929,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-328-790.json",
    "records": 31,
-   "sha256": "799a09455cbd60240e42c74f4df09d86c3e4e041226cd9c83c0020ce62b99878",
+   "sha256": "a03770e0244b432923018fa4d32d95df68406d7ff2e310b95e6ac521906f9264",
    "x": 328,
    "y": 790,
    "z": 11
@@ -13240,12 +13284,12 @@
     -115.136833,
     36.173909
    ],
-   "bytes": 124015,
+   "bytes": 124135,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-368-803.json",
    "records": 167,
-   "sha256": "e59524dbcfed10341beda6a287ed68dfe1d7600f8183b2cc0b284674e41978f9",
+   "sha256": "7dafa04eef58965e35eed8e9a656e780ad010f403c05171a3cab9cec04a5621c",
    "x": 368,
    "y": 803,
    "z": 11
@@ -13291,12 +13335,12 @@
     -111.984877,
     33.701798
    ],
-   "bytes": 26958,
+   "bytes": 26974,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-386-820.json",
    "records": 37,
-   "sha256": "9fcae663f833ad995799bdda6c3f37bcfc8c037091dde681ac2b8ce3847fe588",
+   "sha256": "8ece55e818c422c3b77c46539bcdff2ad9f62d9cf1a8d227c1a96d0d32ca5053",
    "x": 386,
    "y": 820,
    "z": 11
@@ -13342,12 +13386,12 @@
     -106.38985,
     31.923187
    ],
-   "bytes": 71279,
+   "bytes": 71658,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-418-832.json",
    "records": 86,
-   "sha256": "e0d4cf682785cf7aa7b6972832597adf50cc3976627c487ae5e3c88226f04e10",
+   "sha256": "60d575ded9ab8ccc47a226aee54abc6cf1f84f8934642ce6b4425b5237e056c5",
    "x": 418,
    "y": 832,
    "z": 11
@@ -13359,12 +13403,12 @@
     -106.367622,
     31.796202
    ],
-   "bytes": 54403,
+   "bytes": 54498,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-418-833.json",
    "records": 75,
-   "sha256": "07b3a8b69f08a9a5b1f06397d60672c6a3d6172e6355c92475d1f4c7f70eaa3e",
+   "sha256": "98e8eee723ff0ae81bc0f6e3f46ced2f0422303de4e3fc4029eb96599d40d90a",
    "x": 418,
    "y": 833,
    "z": 11
@@ -13376,12 +13420,12 @@
     -106.212936,
     31.876301
    ],
-   "bytes": 7145,
+   "bytes": 7257,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-419-832.json",
    "records": 9,
-   "sha256": "c92b48ca0dc73184744c311654da439b213bb7968293f770d217e168e6ebf6c5",
+   "sha256": "2c02c88b57324385daecd55398f421b33d32c138b047fa9281f57d278aa3377f",
    "x": 419,
    "y": 832,
    "z": 11
@@ -13393,12 +13437,12 @@
     -106.239327,
     31.792767
    ],
-   "bytes": 67925,
+   "bytes": 68021,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-419-833.json",
    "records": 92,
-   "sha256": "69706b3ca29118862edb73228cd2e25e54662c9143ca91ff147b16f3c5d20940",
+   "sha256": "9ef21c81d6dcda01c56a64f4f1f9efb3e34d14a9f6643ae7b4494a4e60b08d42",
    "x": 419,
    "y": 833,
    "z": 11
@@ -13410,12 +13454,12 @@
     -98.620272,
     29.530035
    ],
-   "bytes": 47015,
+   "bytes": 47140,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-462-848.json",
    "records": 60,
-   "sha256": "a90fc9a920a935e2ae96676d4f0ff1a774629cee14d9b9b9379e5759ed12fd69",
+   "sha256": "67fe4c8500f8180dbce49bab2d1b0a0618caff9986310f03b24123dedd8f2ed1",
    "x": 462,
    "y": 848,
    "z": 11
@@ -13495,12 +13539,12 @@
     -97.729058,
     30.448609
    ],
-   "bytes": 60702,
+   "bytes": 60798,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-467-842.json",
    "records": 77,
-   "sha256": "e58991aa29139ec01511ac9d7e420e21b9f12a882eed0fa7eb237c6cd5ff8a6e",
+   "sha256": "5eaedecb8d16aa777cbd9c17d6f36a54681fea57c7cb3b592cc5c4546b06ec91",
    "x": 467,
    "y": 842,
    "z": 11
@@ -13512,12 +13556,12 @@
     -97.566909,
     35.624
    ],
-   "bytes": 24416,
+   "bytes": 24527,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-468-806.json",
    "records": 34,
-   "sha256": "4895c696bb7bbbc37d44cfa1f7cad000fc5180d25870bc2bcd01aa1f48b5dc4a",
+   "sha256": "9b55d5b5ae09ee227023b79237a24db257a208c86a3ef9c6f55783320e933d61",
    "x": 468,
    "y": 806,
    "z": 11
@@ -13529,12 +13573,12 @@
     -97.56023,
     35.595161
    ],
-   "bytes": 70554,
+   "bytes": 70837,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-468-807.json",
    "records": 99,
-   "sha256": "f452236e87960ee054315d6d1ee6dc951c5e244d6cb91553ae7696cfe71d6e60",
+   "sha256": "f9ed4b438a311a4cce98fb0275ef68124423954c9389c5d2e9aeb7cfcd6dcc16",
    "x": 468,
    "y": 807,
    "z": 11
@@ -13546,12 +13590,12 @@
     -97.564965,
     35.460763
    ],
-   "bytes": 52047,
+   "bytes": 52078,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-468-808.json",
    "records": 74,
-   "sha256": "cb77def0aabe6d4ac376762ec8190cb2f1b608782ba35f27a650f888b259e3dc",
+   "sha256": "ae4aa9ed247cb3b25a57c3488176a6cdde9fa1b80abac51bc125bee2c4fd36a1",
    "x": 468,
    "y": 808,
    "z": 11
@@ -13563,12 +13607,12 @@
     -97.599439,
     35.298706
    ],
-   "bytes": 24676,
+   "bytes": 24740,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-468-809.json",
    "records": 35,
-   "sha256": "3753bf3209c70bbd4de316eb9c5d876de8f711c0cdc321f3f977c013fe581a8e",
+   "sha256": "d2d3d5ab63f879a034f72a96e529cc2d8b669a0f5872fb3e0854834845e40184",
    "x": 468,
    "y": 809,
    "z": 11
@@ -13597,12 +13641,12 @@
     -97.571634,
     30.29821
    ],
-   "bytes": 81863,
+   "bytes": 82036,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-468-843.json",
    "records": 114,
-   "sha256": "af476bb0b193b8cd354d17e2467936bf3eab3667049e8c7b5900087641590387",
+   "sha256": "4e5370acb0d305932ac1210a6bdb644c9a272be9865cd92b2c9fc49f99e0b05e",
    "x": 468,
    "y": 843,
    "z": 11
@@ -13614,12 +13658,12 @@
     -97.389457,
     35.739935
    ],
-   "bytes": 28258,
+   "bytes": 28289,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-469-806.json",
    "records": 39,
-   "sha256": "b7eb0456a11405ca1ae20802ff1fd8726194169db8c18913fafdd3d34b5af747",
+   "sha256": "5f7006236aeade627679f043f657a5ef85783a7dee67d714ec1aa8bd2eb12edc",
    "x": 469,
    "y": 806,
    "z": 11
@@ -13631,12 +13675,12 @@
     -97.381786,
     35.459747
    ],
-   "bytes": 102604,
+   "bytes": 102729,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-469-808.json",
    "records": 142,
-   "sha256": "990da5cdb4bfbb0cbe1bbc70ed313ef7e28996ffe1c3eaab041da8bee84c2cc2",
+   "sha256": "601cd2712e501900293602d9de931df27281906ae7cb51ec17d1d5f0344f0812",
    "x": 469,
    "y": 808,
    "z": 11
@@ -13648,12 +13692,12 @@
     -97.417575,
     35.312653
    ],
-   "bytes": 32205,
+   "bytes": 32331,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-469-809.json",
    "records": 43,
-   "sha256": "adeb967329d8ae816d01ff26b1f7efc923386465b09b45ed74076c0d48b74829",
+   "sha256": "c38ea6a099c44fc2d821bdc995bd9b22f03c13bdb9ad87006df2f82e721d9fa8",
    "x": 469,
    "y": 809,
    "z": 11
@@ -13665,12 +13709,12 @@
     -97.379014,
     32.83799
    ],
-   "bytes": 69605,
+   "bytes": 69637,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-469-826.json",
    "records": 94,
-   "sha256": "b4ec5462a9cea21875d8262abeb24ab69c7b35bf517beb8ea64795aac01119eb",
+   "sha256": "bb52505f3c4fc012e076203fd039a904c29e385c2b4c81a96f3410e7ce4e144d",
    "x": 469,
    "y": 826,
    "z": 11
@@ -13682,12 +13726,12 @@
     -97.387917,
     32.694288
    ],
-   "bytes": 69045,
+   "bytes": 69155,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-469-827.json",
    "records": 95,
-   "sha256": "b8e590b59ab765db409c98f0325cb6d4fa6be59ed12ae69824c199ae776b6a1e",
+   "sha256": "0175ad91321ea7a7269f84d2e98866252a23af7264bdc794e1602c796faebeed",
    "x": 469,
    "y": 827,
    "z": 11
@@ -13699,12 +13743,12 @@
     -97.205919,
     33.130995
    ],
-   "bytes": 24223,
+   "bytes": 24349,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-470-824.json",
    "records": 34,
-   "sha256": "98682b8b4b0706722ed35cdb3ec8c783ba3c37e2f1fe236b20cefd39c66391ee",
+   "sha256": "8a5c0da306b86db65b1c1d97d7f4f44bda80b8d279cd65158e8b6c3800f2003f",
    "x": 470,
    "y": 824,
    "z": 11
@@ -13716,12 +13760,12 @@
     -97.223878,
     32.991202
    ],
-   "bytes": 40180,
+   "bytes": 40306,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-470-825.json",
    "records": 53,
-   "sha256": "1fa720760ae2f2f69692269ac8fa799aea3c8c6d8a532d5f0154ceac442d24c3",
+   "sha256": "5c7337500a5656eb7a99f1050c5cb2cc6f51b3dcc9c319bb10ee412386628e3d",
    "x": 470,
    "y": 825,
    "z": 11
@@ -13733,12 +13777,12 @@
     -97.202708,
     32.693813
    ],
-   "bytes": 82160,
+   "bytes": 82268,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-470-827.json",
    "records": 109,
-   "sha256": "d27cb60ee5dcc708a513d858a227bd74ec3971f138f1f3cb717844bd515f3b0d",
+   "sha256": "d13c0528703f3ca0495059ecd75a45d31de1798c9b48fed2b65cc2b667d0f109",
    "x": 470,
    "y": 827,
    "z": 11
@@ -13767,12 +13811,12 @@
     -97.204825,
     31.500005
    ],
-   "bytes": 20639,
+   "bytes": 20783,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-470-835.json",
    "records": 24,
-   "sha256": "3917940405b05f556b6404aeb4e349616b7b23611f791beb0e9c815dd3dc18ff",
+   "sha256": "6d64d4902d538b163087288dc2030e9066b8f5c11c85babb75e29d4d5e09221d",
    "x": 470,
    "y": 835,
    "z": 11
@@ -13801,12 +13845,12 @@
     -97.043445,
     32.692712
    ],
-   "bytes": 73449,
+   "bytes": 73651,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-471-827.json",
    "records": 100,
-   "sha256": "fc2d8f51931d610795a6cd16bad09d369c870c5e97a377c80c592dc0528e92a4",
+   "sha256": "285e9333c9398e3f61a55a21741721c331642d761034951646804427dd8666aa",
    "x": 471,
    "y": 827,
    "z": 11
@@ -13818,12 +13862,12 @@
     -97.069291,
     31.651047
    ],
-   "bytes": 99458,
+   "bytes": 99934,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-471-834.json",
    "records": 130,
-   "sha256": "a6038afb12323cfaa570a4377414fe2506e837d12cef645ffbece311779fe9a3",
+   "sha256": "7291626276885ca27f798df2c361647b33f137be12812a78a5c1d1546700f491",
    "x": 471,
    "y": 834,
    "z": 11
@@ -13835,12 +13879,12 @@
     -97.121091,
     31.506012
    ],
-   "bytes": 48419,
+   "bytes": 48483,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-471-835.json",
    "records": 60,
-   "sha256": "01f9f30560db5b23f86dbccdb962c56fe73d5f32a68efbf20f412201cd83559c",
+   "sha256": "80112383793e04a157718485b1848f5e5de36922c2f5607606a64445dd8e5721",
    "x": 471,
    "y": 835,
    "z": 11
@@ -13852,12 +13896,12 @@
     -96.856969,
     32.69219
    ],
-   "bytes": 63054,
+   "bytes": 63116,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-472-827.json",
    "records": 87,
-   "sha256": "7a508cb67e44c0ebc4392592272aba564f5bd78c6c976934816165ec71369a3c",
+   "sha256": "9a3eaf124c6765ee4c69fc61069d07132c41ca491dcc3ca2b26faf40f2df1a87",
    "x": 472,
    "y": 827,
    "z": 11
@@ -13869,12 +13913,12 @@
     -96.686223,
     32.692102
    ],
-   "bytes": 48107,
+   "bytes": 48186,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-473-827.json",
    "records": 67,
-   "sha256": "66205b7e53ce7d02879aa14e311f728292b7d94bab7cdcbf7a935734a08d5982",
+   "sha256": "5a703c60e7301ac8afc6d77c19824d0ff15ed49e84d02f0ba8b4aa6bf352f390",
    "x": 473,
    "y": 827,
    "z": 11
@@ -13903,12 +13947,12 @@
     -96.172071,
     36.158073
    ],
-   "bytes": 6719,
+   "bytes": 6766,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-476-803.json",
    "records": 9,
-   "sha256": "7164a1aa3fe8a18d8fa50ae17da48d8ba2a542c8797ce43be626216d75ebd37c",
+   "sha256": "3c50468f351da0f8ec3a132db2896037897c0166995819a539715a8f944605bb",
    "x": 476,
    "y": 803,
    "z": 11
@@ -13920,12 +13964,12 @@
     -95.981208,
     36.201192
    ],
-   "bytes": 8615,
+   "bytes": 8662,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-477-802.json",
    "records": 10,
-   "sha256": "3f1855389396dca340fda6fdceea82b2d2e6bc94bb15dae7889a5d0bc0c30af4",
+   "sha256": "9b250ab600a7f60c759945cc1787f4a0bd7347955e8b96fc473c137d60941c92",
    "x": 477,
    "y": 802,
    "z": 11
@@ -13937,12 +13981,12 @@
     -95.82131,
     36.307559
    ],
-   "bytes": 62087,
+   "bytes": 62150,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-478-802.json",
    "records": 89,
-   "sha256": "d9c797eb6b9d9b3a3fc60e9118317143e2f993384beea228d0bf3e576ff1b7ce",
+   "sha256": "a32f8f402d846e2427a6e69f7fd5dee2e4c38a651796744e93cce2093c0e4fdc",
    "x": 478,
    "y": 802,
    "z": 11
@@ -13954,12 +13998,12 @@
     -95.631873,
     36.271494
    ],
-   "bytes": 14346,
+   "bytes": 14394,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-479-802.json",
    "records": 20,
-   "sha256": "e921d8360efdde17a2a7f1831b770d5ba88ddc4fa3c880202097979627b635aa",
+   "sha256": "09a95ed44b51e9b7a7e992d96b00eacbcd3e933db0ac8a28f29b81a08ae17850",
    "x": 479,
    "y": 802,
    "z": 11
@@ -13971,12 +14015,12 @@
     -95.70729,
     36.164921
    ],
-   "bytes": 122347,
+   "bytes": 122541,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-479-803.json",
    "records": 171,
-   "sha256": "3f8a3bb4084ef1f885179820af068d9efb4f6c25038dda7b9fa0931aaeb04764",
+   "sha256": "90a6b9212e1506cce0efcaf93a498480fee3f6e914e24bcd96fb8fa650480de7",
    "x": 479,
    "y": 803,
    "z": 11
@@ -13988,12 +14032,12 @@
     -95.450462,
     30.118852
    ],
-   "bytes": 50326,
+   "bytes": 50374,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-480-844.json",
    "records": 68,
-   "sha256": "af3fa17a0b38a960903f319762228be7e1921851ed101047cb21a0e1b58eca55",
+   "sha256": "5a9a16965bf47da8b8dc66f159726180c9cd2e3c85d2921ca544d09ae11e359a",
    "x": 480,
    "y": 844,
    "z": 11
@@ -14005,12 +14049,12 @@
     -95.454516,
     29.99628
    ],
-   "bytes": 127374,
+   "bytes": 127825,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-480-845.json",
    "records": 172,
-   "sha256": "67f96261aa7b0cae21b6ee8bf118f40b41025e6856702c94efdf6856df3e4c1c",
+   "sha256": "bcb5c78d5c75f581c6d8d1dad710f9b172d0d511d3d3f50e9aaf596501ac90fa",
    "x": 480,
    "y": 845,
    "z": 11
@@ -14022,12 +14066,12 @@
     -95.396716,
     30.127434
    ],
-   "bytes": 44583,
+   "bytes": 44646,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-481-844.json",
    "records": 60,
-   "sha256": "0b1401621313b26dc0b7628a8e0f8751a04e45a6807b32602c2aceaae0cafb71",
+   "sha256": "66b49b3be14dadd74a3ea4c4bb0d8134083933cb1e379decd1df94d9c027abb4",
    "x": 481,
    "y": 844,
    "z": 11
@@ -14039,12 +14083,12 @@
     -95.154205,
     29.684313
    ],
-   "bytes": 76997,
+   "bytes": 77137,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-482-847.json",
    "records": 104,
-   "sha256": "18c3402ffff8966f5bf8cf2bb7efcd89a9cbad249fef88ba6af7141007b575ae",
+   "sha256": "e782671877c971b6b19b8c11e403ac726ef33f5fba73980c325285b2ac89317b",
    "x": 482,
    "y": 847,
    "z": 11
@@ -14056,12 +14100,12 @@
     -94.938028,
     29.81308
    ],
-   "bytes": 92288,
+   "bytes": 92717,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-483-846.json",
    "records": 120,
-   "sha256": "855b4b2a430b87f4c6026bd9a378f3796dfacf7bae1dcc0fe92a38b673fc7406",
+   "sha256": "549b401e0b0a5cda2f2e295b57af75dc233e886f08fd082fe31b446bbaf25383",
    "x": 483,
    "y": 846,
    "z": 11
@@ -14073,12 +14117,12 @@
     -95.029877,
     29.688866
    ],
-   "bytes": 8693,
+   "bytes": 8741,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-483-847.json",
    "records": 11,
-   "sha256": "0aa7f431f467a1a5257604b065c42d1b817254c148dcfa8a049f5057e54c483a",
+   "sha256": "4c2a0bb0a6e21e152de3f02f099ad6c429a47e20eb295af158d0888412a8773a",
    "x": 483,
    "y": 847,
    "z": 11
@@ -14090,12 +14134,12 @@
     -94.04462,
     30.133899
    ],
-   "bytes": 127765,
+   "bytes": 127845,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-488-844.json",
    "records": 168,
-   "sha256": "322d6d81d2376fb3777e489856bf6f4261c4749a2f8b879d7646de8a0801140b",
+   "sha256": "9c1a9f392e4a0a61b524db1b34bddeb75097ee0d8ae2920b69c98045c8e08300",
    "x": 488,
    "y": 844,
    "z": 11
@@ -14107,12 +14151,12 @@
     -94.002191,
     30.13603
    ],
-   "bytes": 10486,
+   "bytes": 10502,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-489-844.json",
    "records": 13,
-   "sha256": "bff39cb9f70813ecb7e489bf5cb0c1dd9c6cea5d2e61ea162d89e76c60249c1d",
+   "sha256": "476c9a6ac5034ec6d8615109910cb3c619e12b18246df1372d964d044cb6d4dc",
    "x": 489,
    "y": 844,
    "z": 11
@@ -14124,12 +14168,12 @@
     -93.885451,
     29.985747
    ],
-   "bytes": 34941,
+   "bytes": 34957,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-489-845.json",
    "records": 48,
-   "sha256": "6e49b870530fe57297c8a2c4ee7d6892057ce581c74ebe12d6603269484db9a9",
+   "sha256": "b5e90c251069096bbaea1ab26c2b8e71b78e54794b3f56a633db83f437129a4e",
    "x": 489,
    "y": 845,
    "z": 11
@@ -14175,12 +14219,12 @@
     -93.164568,
     45.087096
    ],
-   "bytes": 63986,
+   "bytes": 64030,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-493-736.json",
    "records": 83,
-   "sha256": "07359d8443fab67bc9e82e5052bed592d44c7285c7da7e1ebfceab324f9ecc3c",
+   "sha256": "fddcc83244a66dc2f06a30ccc487a1d4018afe6a6c364b72848bef22c9a8ed7e",
    "x": 493,
    "y": 736,
    "z": 11
@@ -14583,12 +14627,12 @@
     -83.164832,
     42.54721
    ],
-   "bytes": 44697,
+   "bytes": 44757,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-550-756.json",
    "records": 63,
-   "sha256": "608151d55d9d5e9e47ed382e3e705114abfc2b58974dad05bc04711dd0593050",
+   "sha256": "7d50fc520e517f89f3bad314221d92081a5db7b4a1ea1d941ad3667f5e5f0fb6",
    "x": 550,
    "y": 756,
    "z": 11
@@ -14685,12 +14729,12 @@
     -80.333758,
     25.781108
    ],
-   "bytes": 17237,
+   "bytes": 17253,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-566-872.json",
    "records": 24,
-   "sha256": "2639ab92f105db96a590838ba474b5ae35a7fd46ad32856a57686384c4aa7c15",
+   "sha256": "39ce1ca1e55851413acb092b162e8b1b7ed77a7f95923415e1965df22d530ee7",
    "x": 566,
    "y": 872,
    "z": 11
@@ -14719,12 +14763,12 @@
     -80.158217,
     25.798897
    ],
-   "bytes": 118880,
+   "bytes": 119152,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-567-872.json",
    "records": 167,
-   "sha256": "a8c22f2c44e4c4fb2977a4e7507c3ee5ae8ddf1329bc6de4027f725f8e19c7af",
+   "sha256": "0767733371455c5d611874abbe94114d6d99741c47123a029b38ced837d9d27d",
    "x": 567,
    "y": 872,
    "z": 11
@@ -14821,12 +14865,12 @@
     -77.000237,
     39.084354
    ],
-   "bytes": 49273,
+   "bytes": 49303,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-585-782.json",
    "records": 70,
-   "sha256": "029ac6a3d84fabfb39bfddbc0727b0368b3594b99429bf102e3a7fc8635024e7",
+   "sha256": "f05bed188444662abcedebea43a44a1d1037ec057c728dbca75456ccc160a98f",
    "x": 585,
    "y": 782,
    "z": 11
@@ -14906,12 +14950,12 @@
     -75.410309,
     40.17008
    ],
-   "bytes": 29615,
+   "bytes": 29631,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-594-774.json",
    "records": 40,
-   "sha256": "6d1e0674cb5a73060a5c3f74954821695889c994c1efde8c47c803662aa3ab2a",
+   "sha256": "7d4b1f972b40d941ab66518472e13d0592815709584a50f7c3d9ea969caf1572",
    "x": 594,
    "y": 774,
    "z": 11
@@ -15382,12 +15426,12 @@
     -73.508931,
     41.112091
    ],
-   "bytes": 75934,
+   "bytes": 56534,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-605-767.json",
-   "records": 97,
-   "sha256": "299fd398505373de4f00381b83307564210fde3fd71d10554544c7bf666e3f0c",
+   "records": 72,
+   "sha256": "9b3b53b4167ff1e2184ed70acc54f9b32f25f75084bfb377f78f690f80b1f1bd",
    "x": 605,
    "y": 767,
    "z": 11
@@ -15552,12 +15596,12 @@
     -122.263275,
     47.698077
    ],
-   "bytes": 94504,
+   "bytes": 94598,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-656-1429.json",
    "records": 123,
-   "sha256": "adb50f94b0f178e858e655b78b1ca952f41d29a631e23ddcad69c8d760530be3",
+   "sha256": "1ca36bd1edd8108a13995a6364a2395e6e7c710b448b9fdd053944e82b0f57e1",
    "x": 656,
    "y": 1429,
    "z": 12
@@ -15671,12 +15715,12 @@
     -122.16874,
     47.635267
    ],
-   "bytes": 88525,
+   "bytes": 87769,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-657-1430.json",
-   "records": 114,
-   "sha256": "265fca924f891a4fa13659323d9959341bca24c44d121ee40e0dbdefc252ad2b",
+   "records": 113,
+   "sha256": "0ff292b5f28e61d64b88227d28db602b3f289d29353709c045fe50ab628d3b1e",
    "x": 657,
    "y": 1430,
    "z": 12
@@ -15960,12 +16004,12 @@
     -118.213953,
     34.086114
    ],
-   "bytes": 128628,
+   "bytes": 127938,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-702-1635.json",
-   "records": 173,
-   "sha256": "ce9f76b5851d839f3d6dbe111090f9e636f6f698523afafd50951a2afaf6b4d4",
+   "records": 172,
+   "sha256": "c7736bddba7c1fedc4c82cd77f8c15648e240711e3fe0dc0d46bf4587ae607b1",
    "x": 702,
    "y": 1635,
    "z": 12
@@ -16096,12 +16140,12 @@
     -112.066311,
     33.4961
    ],
-   "bytes": 37252,
+   "bytes": 37395,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-772-1643.json",
    "records": 47,
-   "sha256": "1aae85c53480a6e4ba3a8921f1c127987e42ee3e3094d56874b4edc1ee3963b9",
+   "sha256": "455faece18364b39943340662fe9ec133c42c51728b713ee3484796be3376a61",
    "x": 772,
    "y": 1643,
    "z": 12
@@ -16130,12 +16174,12 @@
     -98.530911,
     29.531528
    ],
-   "bytes": 31287,
+   "bytes": 31397,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-926-1696.json",
    "records": 42,
-   "sha256": "bc57494b480037d1c519ef6206f756bf7846f1276c13ba3adebcc747b35c20fb",
+   "sha256": "8d7eccb3cfcb1431ccbece980bcd31a3d1e94860a95b37231263ba2b1aeaf7c7",
    "x": 926,
    "y": 1696,
    "z": 12
@@ -16164,12 +16208,12 @@
     -98.437951,
     29.533509
    ],
-   "bytes": 31357,
+   "bytes": 31389,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-927-1696.json",
    "records": 43,
-   "sha256": "d234d61e8b39a2253c4d43dc66973be518c1fdfb1e38af3d3b1a1c4d18b56262",
+   "sha256": "21d3ae823161fd10f9c634946d052ff8375a4cec798f851fe484f9e47d3f02d7",
    "x": 927,
    "y": 1696,
    "z": 12
@@ -16181,12 +16225,12 @@
     -98.437166,
     29.455229
    ],
-   "bytes": 65027,
+   "bytes": 65075,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-927-1697.json",
    "records": 83,
-   "sha256": "b2bca5f047d39d95e357bf415e92d27c06ffc27a193f84c3a9a28b09f7222fa3",
+   "sha256": "9ee33bf891f5cfc66aafe7103f56326ffa2c0839b3dec7f8b98de08e2a8add28",
    "x": 927,
    "y": 1697,
    "z": 12
@@ -16198,12 +16242,12 @@
     -97.822179,
     30.295944
    ],
-   "bytes": 23347,
+   "bytes": 23456,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-934-1686.json",
    "records": 29,
-   "sha256": "f76008e9864547ee1a85981df218e4ccdd81c3364d06c951db06d3b3797ddd56",
+   "sha256": "b2dcc4925cf3e3f014c226789b20988a5f1cd2bdeb7b379190ca6b423feb22d6",
    "x": 934,
    "y": 1686,
    "z": 12
@@ -16215,12 +16259,12 @@
     -97.829359,
     30.221072
    ],
-   "bytes": 19476,
+   "bytes": 19508,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-934-1687.json",
    "records": 25,
-   "sha256": "de07738fc4b6db496423daeddf5c9f7b32c60652bb059dbeed6a77ce2aa140a7",
+   "sha256": "e2610474834f0eb5d77e86b174fedcd4ba24e18dbe02700aceacbc59c0c3238f",
    "x": 934,
    "y": 1687,
    "z": 12
@@ -16232,12 +16276,12 @@
     -97.734235,
     30.292387
    ],
-   "bytes": 84554,
+   "bytes": 84618,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-935-1686.json",
    "records": 113,
-   "sha256": "2e8f5ec2319757d47edb21d43cb9f0ee39bea7ee85831d073d5b052fd582698f",
+   "sha256": "a97c85e2b69b90df17d9832776c4dca864536138c01e5af3df35d5003a5eb34a",
    "x": 935,
    "y": 1686,
    "z": 12
@@ -16249,12 +16293,12 @@
     -97.734894,
     30.219204
    ],
-   "bytes": 29041,
+   "bytes": 29169,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-935-1687.json",
    "records": 38,
-   "sha256": "44de534962feb52f825621a629cfa9a9c7b992c53f93b9b287177e0042c71671",
+   "sha256": "d0c38330d49d53413392e5dffefb83cb5582d569be65cd547d55df9f020e0633",
    "x": 935,
    "y": 1687,
    "z": 12
@@ -16266,12 +16310,12 @@
     -97.661465,
     30.441124
    ],
-   "bytes": 37028,
+   "bytes": 37059,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-936-1684.json",
    "records": 51,
-   "sha256": "7e50a2116ad9ceb96760aad475765951038bd6e61c389c8333d66750e32414a1",
+   "sha256": "48cff94e997081a5a9e669b0a22c1a55c16bd050d81648f9e57f977ae9490eb8",
    "x": 936,
    "y": 1684,
    "z": 12
@@ -16283,12 +16327,12 @@
     -97.654287,
     30.35883
    ],
-   "bytes": 74519,
+   "bytes": 74787,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-936-1685.json",
    "records": 97,
-   "sha256": "2025687c7d78cd6bcc1dd66374ac7345e13a2ebc07157f76371b52d435406966",
+   "sha256": "de84035626f11ec6e7c461c800eb391c33a613ab9e131df5c3177d5cbab5f848",
    "x": 936,
    "y": 1685,
    "z": 12
@@ -16300,12 +16344,12 @@
     -97.582763,
     30.428846
    ],
-   "bytes": 2724,
+   "bytes": 2740,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-937-1684.json",
    "records": 3,
-   "sha256": "7f69b8451cf690edce5d1077a7c989d00e2088b58f27d9bd5a201a38cddd2972",
+   "sha256": "1527f1bf6a4f7d81c476afc9beaf08cbb742acf53041d77a63094fd8015ac33b",
    "x": 937,
    "y": 1684,
    "z": 12
@@ -16317,12 +16361,12 @@
     -97.579616,
     30.369828
    ],
-   "bytes": 21111,
+   "bytes": 21219,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-937-1685.json",
    "records": 29,
-   "sha256": "a0049a906cf5b4b19b6f5b297b66d0e75e8ec2af910b85c6de2424a35a753145",
+   "sha256": "8eb1f5ab812f7536e55f46b74f4019d55e1251f285727840285eb2c98644c821",
    "x": 937,
    "y": 1685,
    "z": 12
@@ -16334,12 +16378,12 @@
     -97.476448,
     35.60367
    ],
-   "bytes": 25071,
+   "bytes": 25167,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-938-1614.json",
    "records": 34,
-   "sha256": "89d155eacd76d7e547e52931a082927a250dacf4416a0fbd327b1b7a4ae4daea",
+   "sha256": "528b45e9c04de046f9d3c8f9f49f6b69cc2982f44df67156aa604f354d6a21cc",
    "x": 938,
    "y": 1614,
    "z": 12
@@ -16351,12 +16395,12 @@
     -97.467409,
     35.529905
    ],
-   "bytes": 104631,
+   "bytes": 105158,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-938-1615.json",
    "records": 145,
-   "sha256": "c47a34f2629c6d0fd6a3c9e2a7658619b92a82556bd6e39cb94c04a04249e378",
+   "sha256": "7fdda6cebb35557bb543781f6f5055e49b545c6de88799f763b2756262d1cdc7",
    "x": 938,
    "y": 1615,
    "z": 12
@@ -16368,12 +16412,12 @@
     -97.424608,
     35.601564
    ],
-   "bytes": 20871,
+   "bytes": 20933,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-939-1614.json",
    "records": 28,
-   "sha256": "3d5025c27d493691dfd9db2df911bf4ba8d728d1554399e69e57ccd1828844c4",
+   "sha256": "b79949d626224cae656925d87a82eaa3ac255700bdff0735d779044b249e4211",
    "x": 939,
    "y": 1614,
    "z": 12
@@ -16385,12 +16429,12 @@
     -97.41566,
     35.522245
    ],
-   "bytes": 16844,
+   "bytes": 16875,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-939-1615.json",
    "records": 23,
-   "sha256": "9bdfceb85679fb3cc39de1e57a54cb233f8d4f750b1315cad0c0b8f03deddfa8",
+   "sha256": "b06f883d239e49b4e1c10e28c8bc2a1716b2a6a60a9713b371c7e103db9df49e",
    "x": 939,
    "y": 1615,
    "z": 12
@@ -16402,12 +16446,12 @@
     -97.295177,
     32.84169
    ],
-   "bytes": 30980,
+   "bytes": 31246,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-940-1652.json",
    "records": 42,
-   "sha256": "31a5c4bf4fd7b6f157917f38559c4c2f8dbb5b6433f4d0d9452fb8097df3d986",
+   "sha256": "33e2c44fe70a02469d61a0f13965dabd88adc32c1cfd8f96aec84a87f9331539",
    "x": 940,
    "y": 1652,
    "z": 12
@@ -16419,12 +16463,12 @@
     -97.297643,
     32.768883
    ],
-   "bytes": 110873,
+   "bytes": 111063,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-940-1653.json",
    "records": 157,
-   "sha256": "8e9a2a5309339cdac2871cb8cd726de160f89b387bcc70719bc3e8373d199fc4",
+   "sha256": "d01e2d1e451ccd4ac77db6c880621cea76d390bd815aea528daf127ed3824be8",
    "x": 940,
    "y": 1653,
    "z": 12
@@ -16436,12 +16480,12 @@
     -97.206066,
     32.840512
    ],
-   "bytes": 53661,
+   "bytes": 53865,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-941-1652.json",
    "records": 73,
-   "sha256": "3acb5d67908db96bfb2b803ec7e41384fc293489ace994383b637201726fb5e1",
+   "sha256": "b1b4a063f3c478d8096c5ce41701549f7c9ed610760bfa8180cd732d8dd43585",
    "x": 941,
    "y": 1652,
    "z": 12
@@ -16453,12 +16497,12 @@
     -97.206501,
     32.763132
    ],
-   "bytes": 45006,
+   "bytes": 45070,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-941-1653.json",
    "records": 62,
-   "sha256": "90cc5a7aa1077143677ff985f6e1fba54f3cef0b250aa30ecd22af9f36b40f2e",
+   "sha256": "b123d4ec9133d87723989ed5b33202cbd2409cfd895fe81d12e39d4bec25eade",
    "x": 941,
    "y": 1653,
    "z": 12
@@ -16470,12 +16514,12 @@
     -97.126217,
     32.989381
    ],
-   "bytes": 10888,
+   "bytes": 10919,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-942-1650.json",
    "records": 15,
-   "sha256": "2072ad7383eeaf1fed904be972683cfdf249147006b4c21087342d9f1e2ede4c",
+   "sha256": "27f60b0b63f88bbfb807aae53ec7997ba034894b9c0471083ab2ebdfb3f55779",
    "x": 942,
    "y": 1650,
    "z": 12
@@ -16487,12 +16531,12 @@
     -97.117269,
     32.840357
    ],
-   "bytes": 51279,
+   "bytes": 51422,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-942-1652.json",
    "records": 68,
-   "sha256": "bc59d2db2bd71aa19ccc779cd2ea2576412c16a2a6cf76fabde4eb1854eb54e3",
+   "sha256": "3866db0a97e2a2f70ac6e4c807e2cc538a6c4c2f9bf97477491a5d367a9a8658",
    "x": 942,
    "y": 1652,
    "z": 12
@@ -16521,12 +16565,12 @@
     -97.034078,
     32.990091
    ],
-   "bytes": 96786,
+   "bytes": 97527,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-943-1650.json",
    "records": 134,
-   "sha256": "767353d191a4622b54e387b93a392db530505af12eaf5559ca85937880c86c90",
+   "sha256": "1177b1de0c7f24079bf1a72d62b4e184fbba737b87ea7aa792b812cce1e2f868",
    "x": 943,
    "y": 1650,
    "z": 12
@@ -16538,12 +16582,12 @@
     -97.03099,
     32.907684
    ],
-   "bytes": 49644,
+   "bytes": 49708,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-943-1651.json",
    "records": 67,
-   "sha256": "be61503dd1ca32df8ee51a6b0464c3a0c361749df1eb08d754eff77ae4bf88ef",
+   "sha256": "978e99043703bed7a6aaba8048a6adbd392064b8f6cb72f3680cd16f203b792f",
    "x": 943,
    "y": 1651,
    "z": 12
@@ -16555,12 +16599,12 @@
     -97.03017,
     32.839236
    ],
-   "bytes": 48922,
+   "bytes": 49064,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-943-1652.json",
    "records": 64,
-   "sha256": "7562e40178d939b73f3de3a6653e32b135a7674424c9c741cd75cde9be012e62",
+   "sha256": "1e977637b5705073bcc6d2d6ee9db6d03049572e76304fae01fb5446dabb23b3",
    "x": 943,
    "y": 1652,
    "z": 12
@@ -16572,12 +16616,12 @@
     -97.037299,
     32.762095
    ],
-   "bytes": 72403,
+   "bytes": 72850,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-943-1653.json",
    "records": 99,
-   "sha256": "69d0982b4b9d184774abd9d426a19f3c3926ed26b7e21d00a8b0fc34ecb73ca1",
+   "sha256": "18b056fb88425621094fd02dbc42fd4b1af8f6ff7b16cc37ba25392d77dc0e65",
    "x": 943,
    "y": 1653,
    "z": 12
@@ -16589,12 +16633,12 @@
     -97.01346,
     33.113791
    ],
-   "bytes": 8558,
+   "bytes": 8604,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-944-1648.json",
    "records": 10,
-   "sha256": "94370ad0d14e13a5614b4ca7072094357ad6477f1ea19f9e2353fdf2af571eab",
+   "sha256": "29d1cc49833b8739e21f839ce5d050e81a1993014e840d7fdd0bdc1e258a1e75",
    "x": 944,
    "y": 1648,
    "z": 12
@@ -16606,12 +16650,12 @@
     -96.943782,
     33.06212
    ],
-   "bytes": 107067,
+   "bytes": 107290,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-944-1649.json",
    "records": 144,
-   "sha256": "4ccd16147f2c52691ca0662a4c93a57354f6ef2ae262e1aefbbe00a1e122e1c0",
+   "sha256": "540337c675541e1c2f7b45cf1897da15ee8d29ee4f1798196530c323915c8d2c",
    "x": 944,
    "y": 1649,
    "z": 12
@@ -16623,12 +16667,12 @@
     -96.962635,
     32.990607
    ],
-   "bytes": 32360,
+   "bytes": 32612,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-944-1650.json",
    "records": 43,
-   "sha256": "f3458b8ce3dd4ee2e7f0a005693327c38c159b08bcbdf018645b81963eee92f7",
+   "sha256": "b57db1b522e4a0b142ff7418c2ca4c6de29db1d7120e6c65b2c89c530b4b61f0",
    "x": 944,
    "y": 1650,
    "z": 12
@@ -16640,12 +16684,12 @@
     -96.93989,
     32.916594
    ],
-   "bytes": 58465,
+   "bytes": 58529,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-944-1651.json",
    "records": 78,
-   "sha256": "b87c29a4d82b3e7de1f071f4db45f09d660cba9b92ec6d8504d49b186f7e8cd0",
+   "sha256": "8bb542edde006338a705fb4d29acae25ee403de136102d42180d07b44b0113e5",
    "x": 944,
    "y": 1651,
    "z": 12
@@ -16657,12 +16701,12 @@
     -96.949778,
     32.840323
    ],
-   "bytes": 52453,
+   "bytes": 52595,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-944-1652.json",
    "records": 71,
-   "sha256": "072dfa66ce2b14b6ed04af153d52a594c711c5146e5811997ad9ecb6c88b9fe5",
+   "sha256": "274e22bded3719420c08823c6efaeb277840c1f7a3d2bfa72ce54360f1bbf142",
    "x": 944,
    "y": 1652,
    "z": 12
@@ -16674,12 +16718,12 @@
     -96.952947,
     32.7653
    ],
-   "bytes": 35578,
+   "bytes": 35813,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-944-1653.json",
    "records": 50,
-   "sha256": "3798c58a40d80bc658d6fb3898522b886bd154ec34d718529cda340aaedf157a",
+   "sha256": "51355675d5c636534e9333f38928ed8809d5ae36c1a1381979dc372f11459d9b",
    "x": 944,
    "y": 1653,
    "z": 12
@@ -16691,12 +16735,12 @@
     -96.855939,
     33.087077
    ],
-   "bytes": 14021,
+   "bytes": 14084,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-945-1648.json",
    "records": 19,
-   "sha256": "2e5466f88c3b79609057c287901c08b96cf960e9cdc15c859b1161a063546396",
+   "sha256": "a1a62886de1da7ba632f36d27c4a01b2126528da78b7282baaecbac59a32ce17",
    "x": 945,
    "y": 1648,
    "z": 12
@@ -16708,12 +16752,12 @@
     -96.855905,
     33.057963
    ],
-   "bytes": 13241,
+   "bytes": 13257,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-945-1649.json",
    "records": 17,
-   "sha256": "87761a8d7b30d899fce92d403883207bc5f718fa8cd6bec1986fb362a8f65c9e",
+   "sha256": "b9eaea15f8c09023594c2573a9622fbcad66cf61ec4027d434c0cc1988255050",
    "x": 945,
    "y": 1649,
    "z": 12
@@ -16725,12 +16769,12 @@
     -96.854444,
     32.990162
    ],
-   "bytes": 92119,
+   "bytes": 92434,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-945-1650.json",
    "records": 122,
-   "sha256": "c8e76cfa7ec6ff1e80e8b1becb70972ef065f00ed7ae6f0a05c9a413207a529e",
+   "sha256": "9bc06764d52ce3e58ba3d125e61dc03fcf719cef0ae499c4f20e39e29cbac2c4",
    "x": 945,
    "y": 1650,
    "z": 12
@@ -16742,12 +16786,12 @@
     -96.853458,
     32.919007
    ],
-   "bytes": 94048,
+   "bytes": 94190,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-945-1651.json",
    "records": 124,
-   "sha256": "169913c38f8e2edfa8040153cbc6473a4136f3b201d11120bdcccd5d04d9c1e5",
+   "sha256": "c594779c935ce9c5ec69f3f8e413f2c3fb9ba9e9ae1b7d9a4024aa5efddcfda2",
    "x": 945,
    "y": 1651,
    "z": 12
@@ -16759,12 +16803,12 @@
     -96.860488,
     32.842573
    ],
-   "bytes": 31496,
+   "bytes": 31560,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-945-1652.json",
    "records": 41,
-   "sha256": "249388bf3f3fa75fb3742e1e533cdab1d19e73cf231854f7e06acbb6496ed1f9",
+   "sha256": "6d74b166f60dd871b3929b129448b06da7437942d755d063e8c596eb0fb2fd08",
    "x": 945,
    "y": 1652,
    "z": 12
@@ -16776,12 +16820,12 @@
     -96.861948,
     32.76791
    ],
-   "bytes": 20442,
+   "bytes": 20458,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-945-1653.json",
    "records": 28,
-   "sha256": "2b9087914d2e6d8ab05cb83e6445943a0e02c3d825cadf1917fa4542b703b18c",
+   "sha256": "686cc31dc5b007c6ae8068803ec9122877c653ff8a843b76fb96e144070d290d",
    "x": 945,
    "y": 1653,
    "z": 12
@@ -16793,12 +16837,12 @@
     -96.76803,
     33.135421
    ],
-   "bytes": 111189,
+   "bytes": 111492,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-946-1648.json",
    "records": 154,
-   "sha256": "7705b25632337a206e17e6c560617782cb60e862f2beccbd3ce6e78d21b49442",
+   "sha256": "0423cb58776f33189d5cd91db5071e3e98e029a3d50ba480a60f01c58b8297ac",
    "x": 946,
    "y": 1648,
    "z": 12
@@ -16810,12 +16854,12 @@
     -96.7675,
     33.06024
    ],
-   "bytes": 55764,
+   "bytes": 55871,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-946-1649.json",
    "records": 74,
-   "sha256": "daf04139d4cc401825d93f82afbe6fa88f4da996f1358f7c5eb6ab9fea1ca9a7",
+   "sha256": "00e49dcdf879492ff02832e7be00431ad3fb3797b97f921806ce80244a1d13b7",
    "x": 946,
    "y": 1649,
    "z": 12
@@ -16827,12 +16871,12 @@
     -96.770432,
     32.969017
    ],
-   "bytes": 37930,
+   "bytes": 37994,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-946-1650.json",
    "records": 47,
-   "sha256": "4f514a87f47e8ce26a5791ce9f054bb4eb857fe3094e0436030d5e7eb985ebeb",
+   "sha256": "4c14575a8e19f410286e516ab8cf8d55fe1cd8d41472b354d296a24f58170954",
    "x": 946,
    "y": 1650,
    "z": 12
@@ -16844,12 +16888,12 @@
     -96.767748,
     32.914041
    ],
-   "bytes": 36237,
+   "bytes": 36269,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-946-1651.json",
    "records": 50,
-   "sha256": "665d734f30f4030a5d3590c71977cb1cb386c92a4136a68cbbe7380ceaa3161f",
+   "sha256": "40ad916012ad42543f44dbe5493a7612cafbda95a11f02a1bb42197a6311f54e",
    "x": 946,
    "y": 1651,
    "z": 12
@@ -16861,12 +16905,12 @@
     -96.769854,
     32.768552
    ],
-   "bytes": 51039,
+   "bytes": 51229,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-946-1653.json",
    "records": 67,
-   "sha256": "5d4ee811ebff50e70f92e1707c7cb01c2aa7d28e10e230f209e26fa1a6979744",
+   "sha256": "40b39856a15aac7a0b26535248e19740cc4043410d29fe26fdd041450c366ed2",
    "x": 946,
    "y": 1653,
    "z": 12
@@ -16878,12 +16922,12 @@
     -96.680701,
     33.137478
    ],
-   "bytes": 23070,
+   "bytes": 23086,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-947-1648.json",
    "records": 30,
-   "sha256": "b99346bc1dc79a06d4a635e39c81e6ec1212c8941de64f88d4a01c0b5010842c",
+   "sha256": "6ac592732412f305155e5e1dd26deb2d0ad649a97a08a139ad06571a9e7ec387",
    "x": 947,
    "y": 1648,
    "z": 12
@@ -16895,12 +16939,12 @@
     -96.681051,
     33.057828
    ],
-   "bytes": 100617,
+   "bytes": 100904,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-947-1649.json",
    "records": 138,
-   "sha256": "326980330b5f0980aab418f49296a832d26224ccb598c6b6c68a3315b5ba12b5",
+   "sha256": "558c19e4ded0b3d5dfb78d46f159d2b84b3ce1d958b4c94c9a63f6da2321e309",
    "x": 947,
    "y": 1649,
    "z": 12
@@ -16912,12 +16956,12 @@
     -96.712348,
     32.987633
    ],
-   "bytes": 64693,
+   "bytes": 64819,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-947-1650.json",
    "records": 85,
-   "sha256": "09765864231d452d798b64b35a1b227f8e21033cb142801336fbcca506e5758f",
+   "sha256": "243087942a8ce9005091fc2a41a64369116661f0959c2b183ef06b8c86487774",
    "x": 947,
    "y": 1650,
    "z": 12
@@ -16929,12 +16973,12 @@
     -96.682837,
     32.91669
    ],
-   "bytes": 43431,
+   "bytes": 43667,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-947-1651.json",
    "records": 61,
-   "sha256": "1842fd1ddd1563304e242fbe6d60d3bfe2d67ff4145b459a11d6b93a8faa2b58",
+   "sha256": "4c4282dc3421ff55d66ed3362f2ba56909f276794ffc10dc569a106849492243",
    "x": 947,
    "y": 1651,
    "z": 12
@@ -16946,12 +16990,12 @@
     -96.681872,
     32.845537
    ],
-   "bytes": 43242,
+   "bytes": 43274,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-947-1652.json",
    "records": 55,
-   "sha256": "2bf30fbd30f50ba58420e790e59d8189bf2c24263a086c8a6aec5aafc1f3a6e8",
+   "sha256": "18503c516cb62537a350050ba3834c9aa50a6e894b4605e4c38a575dbc9452f6",
    "x": 947,
    "y": 1652,
    "z": 12
@@ -16980,12 +17024,12 @@
     -96.064928,
     36.152407
    ],
-   "bytes": 12939,
+   "bytes": 12955,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-954-1606.json",
    "records": 18,
-   "sha256": "d2c5126b488a05f5b8a8dc80760c24f9d1a661fdfe8f6b767215c8d2f9f61e42",
+   "sha256": "43438e9702be1f2a81e68ef547376fba99e256c2d336455d85afa93fe8577c72",
    "x": 954,
    "y": 1606,
    "z": 12
@@ -17014,12 +17058,12 @@
     -95.984453,
     36.09809
    ],
-   "bytes": 29882,
+   "bytes": 30010,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-955-1607.json",
    "records": 42,
-   "sha256": "194eb719756f0b751680e5ff5028d2ccf19dd93add8831855c8264d15604a245",
+   "sha256": "d747bc64fdd34299c86624e414f37de0b78e18dc999b1305d598bb6e70254cae",
    "x": 955,
    "y": 1607,
    "z": 12
@@ -17031,12 +17075,12 @@
     -95.888902,
     36.169353
    ],
-   "bytes": 103979,
+   "bytes": 104137,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-956-1606.json",
    "records": 146,
-   "sha256": "0f2b1383591a1f4f4fc3f949a6161d6c21f0c55b9415f88d7bb9684f909129b2",
+   "sha256": "f49ffd399bb2663ffa47e12760451bdb9a2b1ce428ba5dddd22c8c67ae38b105",
    "x": 956,
    "y": 1606,
    "z": 12
@@ -17065,12 +17109,12 @@
     -95.815304,
     36.169233
    ],
-   "bytes": 56282,
+   "bytes": 56378,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-957-1606.json",
    "records": 78,
-   "sha256": "6bcf33524206c015e4b69d625952988db26f3bf42d68bee8a77cb68d83a252dd",
+   "sha256": "9d3f1e630d249996c095d689030c65c58eba886a82e3ef10c2535fa24a62389c",
    "x": 957,
    "y": 1606,
    "z": 12
@@ -17082,12 +17126,12 @@
     -95.806947,
     36.102356
    ],
-   "bytes": 28126,
+   "bytes": 28157,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-957-1607.json",
    "records": 39,
-   "sha256": "3595155f63b0ee66af744ba9323f75d1e7c369ad18abf6342fd2ef0d6923262a",
+   "sha256": "5c1e2911a4e564edbb3d998f7071df808d964aa5e1bb6488a2c300fa267856f0",
    "x": 957,
    "y": 1607,
    "z": 12
@@ -17099,12 +17143,12 @@
     -95.535066,
     29.832499
    ],
-   "bytes": 50059,
+   "bytes": 50091,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-960-1692.json",
    "records": 65,
-   "sha256": "f00cd205e8f2a4920efe91bab4e228cb10ce58082113c31effcd5dfdb7059d01",
+   "sha256": "fb8673ad159b89d6cd4c70b40ec6f75e7c2c520aeac66914c029102a9c579a5d",
    "x": 960,
    "y": 1692,
    "z": 12
@@ -17116,12 +17160,12 @@
     -95.537723,
     29.761491
    ],
-   "bytes": 40383,
+   "bytes": 40447,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-960-1693.json",
    "records": 55,
-   "sha256": "f69e60df155666504393b6e2aa25d03e3dc0df60b4ae803975538d2012eb510a",
+   "sha256": "92c8ba42aeeaa7de73a2bf09b4552ccec5acb8f695dd0f9b37bdaa492bbcb360",
    "x": 960,
    "y": 1693,
    "z": 12
@@ -17133,12 +17177,12 @@
     -95.538359,
     29.676383
    ],
-   "bytes": 45196,
+   "bytes": 45402,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-960-1694.json",
    "records": 58,
-   "sha256": "891dd4bc9055e497b317d0541a7ec9a50644de9079b8dd5a95066b84b4c44b3d",
+   "sha256": "e3cacb82e969033edfeccfc4849e494f8253ab78543262a328a7664abb93d5f5",
    "x": 960,
    "y": 1694,
    "z": 12
@@ -17150,12 +17194,12 @@
     -95.601851,
     29.607738
    ],
-   "bytes": 20354,
+   "bytes": 20402,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-960-1695.json",
    "records": 28,
-   "sha256": "460272ddd9adf7f57446dac068710a62716dbd8ef699ef0a61562ef5235d3019",
+   "sha256": "feb41152fb802a4753f338c5f17f32e6390a7a25827b43236c53f194f592ef26",
    "x": 960,
    "y": 1695,
    "z": 12
@@ -17167,12 +17211,12 @@
     -95.447797,
     29.838929
    ],
-   "bytes": 90577,
+   "bytes": 90798,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-961-1692.json",
    "records": 115,
-   "sha256": "bd9a6234cc658948fd00b510976c3c4fc230abed368cb6026309c38a4cd571e4",
+   "sha256": "055de1964c6ca57602ce82baa5662667afb1529fc6667bd02df29a3edda195db",
    "x": 961,
    "y": 1692,
    "z": 12
@@ -17184,12 +17228,12 @@
     -95.451404,
     29.765322
    ],
-   "bytes": 98359,
+   "bytes": 98818,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-961-1693.json",
    "records": 133,
-   "sha256": "3815fe9ca4605d388f8b175f5f634317e2aba4c29099fa7f25a36bf41548a8ce",
+   "sha256": "062f906313893b7674712956ccc69b86f8d975a6a75f4a2e8056739e041fd7cf",
    "x": 961,
    "y": 1693,
    "z": 12
@@ -17201,12 +17245,12 @@
     -95.45339,
     29.688128
    ],
-   "bytes": 57657,
+   "bytes": 57956,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-961-1694.json",
    "records": 78,
-   "sha256": "ee6684c924231ac871c3b25e320cfe20d242dffd1cc6d8dd11e3b19a086bf941",
+   "sha256": "eece1dda18771efaee2687b9ef5374e25c3ddeac167f57ba820a6611becd4b58",
    "x": 961,
    "y": 1694,
    "z": 12
@@ -17235,12 +17279,12 @@
     -95.376167,
     29.982427
    ],
-   "bytes": 68556,
+   "bytes": 68916,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-962-1690.json",
    "records": 89,
-   "sha256": "43cab79e817cd721fc93cf040f3537e3f40a89c260ad45e0fc2eac4543f01ffc",
+   "sha256": "366e277987c10cbf4956869fbb53b9fb190de94fc828c75b23b37a47a14d0bac",
    "x": 962,
    "y": 1690,
    "z": 12
@@ -17252,12 +17296,12 @@
     -95.360177,
     29.915682
    ],
-   "bytes": 46188,
+   "bytes": 46551,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-962-1691.json",
    "records": 62,
-   "sha256": "17215c2cd23725871b9df606401ab79f0c1fb65b087087072f9b1222cdfdb048",
+   "sha256": "8fa94c27d28a20f04d968f5aee2a30cf33f826ce605a5baaf87a40b78e60cf14",
    "x": 962,
    "y": 1691,
    "z": 12
@@ -17269,12 +17313,12 @@
     -95.361389,
     29.839444
    ],
-   "bytes": 115822,
+   "bytes": 116029,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-962-1692.json",
    "records": 148,
-   "sha256": "35f6147282e36ca135c091d3a1993b6e9109bb2db502cc99369f7d09dff6fe34",
+   "sha256": "1f2f32daac49dd63bd935f40e931bcf8047fc9f0983b0211c893c582433e19fd",
    "x": 962,
    "y": 1692,
    "z": 12
@@ -17286,12 +17330,12 @@
     -95.361249,
     29.6893
    ],
-   "bytes": 56434,
+   "bytes": 56576,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-962-1694.json",
    "records": 75,
-   "sha256": "abc4dc0c7c36f1a53e2bdbd16bd060b78b26191a18c5a2ebbb84ee9f78a2a80a",
+   "sha256": "6725bf2a22b028c548dc011460727106844287fc84604f86655eb464e3185688",
    "x": 962,
    "y": 1694,
    "z": 12
@@ -17303,12 +17347,12 @@
     -95.36796,
     29.606235
    ],
-   "bytes": 46386,
+   "bytes": 46684,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-962-1695.json",
    "records": 60,
-   "sha256": "402b1d2b56f98d3ab13cdd310b7400da675650b1c473adfc726d0389c6652a11",
+   "sha256": "81ca98505e3f5b4bdd841e2378d4b10e0d6f056681f2a27db56aeda2c615c7ab",
    "x": 962,
    "y": 1695,
    "z": 12
@@ -17320,12 +17364,12 @@
     -95.276152,
     29.987355
    ],
-   "bytes": 55445,
+   "bytes": 55664,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-963-1690.json",
    "records": 72,
-   "sha256": "c5a86dc3aaccb5ddedf2954cf2a3ea8d741ca6d3cea8ef3dafcd97fca29194f3",
+   "sha256": "15934d7c5cc6406157dd3f38395d3f7bbf37bd7b64007e95fefe17073b312a63",
    "x": 963,
    "y": 1690,
    "z": 12
@@ -17337,12 +17381,12 @@
     -95.309001,
     29.9111
    ],
-   "bytes": 35513,
+   "bytes": 35862,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-963-1691.json",
    "records": 47,
-   "sha256": "9932f03be0a6acf967610d0910fc2ae29bdc5c7e48cca7243ce95f5ad66ae7d5",
+   "sha256": "f9a48d0ff0ebe34c888feefcae69e7d3de467c428bf8adc39b877fb875b5120b",
    "x": 963,
    "y": 1691,
    "z": 12
@@ -17354,12 +17398,12 @@
     -95.273043,
     29.76736
    ],
-   "bytes": 107411,
+   "bytes": 107610,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-963-1693.json",
    "records": 145,
-   "sha256": "27e71ef3e5e64c9a591b252ee457f3cf319b1403b4a96cb511571a51c1c34727",
+   "sha256": "3adedd41be706fa5e29614eb42b32a0e4d917a4103b81e3f020db88076a9a610",
    "x": 963,
    "y": 1693,
    "z": 12
@@ -17371,12 +17415,12 @@
     -95.274811,
     29.686316
    ],
-   "bytes": 25751,
+   "bytes": 25811,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-963-1694.json",
    "records": 33,
-   "sha256": "805617664c34ee8e45d6ecdfc1401a5c170ef39285f310158e390413eb84c30a",
+   "sha256": "2b0249bcd487b7617a9eff25396156114748535659cc4d4b4a9fc13dda1314d8",
    "x": 963,
    "y": 1694,
    "z": 12
@@ -17405,12 +17449,12 @@
     -95.186224,
     29.817818
    ],
-   "bytes": 60749,
+   "bytes": 60813,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-964-1692.json",
    "records": 81,
-   "sha256": "d28a76906ce4241fada64de42ef5c4aaa72beaf0c26f4842c3ad8fc77b8d18bc",
+   "sha256": "84e56f7c877f85be5e8dc369b91de975aa2db166f0e2a4c9777af2e19bd96c52",
    "x": 964,
    "y": 1692,
    "z": 12
@@ -17422,12 +17466,12 @@
     -95.196721,
     29.761793
    ],
-   "bytes": 39089,
+   "bytes": 39134,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-964-1693.json",
    "records": 52,
-   "sha256": "9e8a7bd5c367305b57ee7d5371383444f4bd5d810626866c19a3cf081e9f6e94",
+   "sha256": "b1d0a8fd1ed43b1bacc051d2116cba045d2bb38b13e07714929b032f991337cc",
    "x": 964,
    "y": 1693,
    "z": 12
@@ -17439,12 +17483,12 @@
     -95.091403,
     29.833374
    ],
-   "bytes": 47814,
+   "bytes": 48037,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-965-1692.json",
    "records": 58,
-   "sha256": "bb297e6b080665319b7650b34a7fa5d5c2fb8aca189d0238135c3e0969396298",
+   "sha256": "214a4e0af9599a2207dbd6f4ac6a48f062cf87355443991d3641f865276edcbd",
    "x": 965,
    "y": 1692,
    "z": 12
@@ -17456,12 +17500,12 @@
     -95.099577,
     29.756317
    ],
-   "bytes": 32576,
+   "bytes": 32702,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-965-1693.json",
    "records": 44,
-   "sha256": "05bd4affcbbd2d967dbb6bc62110fc6a06134ba64ac3b80bfccc59fec7b0c848",
+   "sha256": "02eb16e7090162013cd5379c76cf7a11ba44b83127eeae6c91a74a69365ddcdf",
    "x": 965,
    "y": 1693,
    "z": 12
@@ -18153,12 +18197,12 @@
     -79.980851,
     40.379466
    ],
-   "bytes": 37545,
+   "bytes": 37561,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-1137-1545.json",
    "records": 53,
-   "sha256": "45fec680ed3abba806054a2cf8e3bf0dd0c5fa41afcfef8aa0d68b0bbb1b905c",
+   "sha256": "06db719c8ec11158363c028701a3954139a57b777f9df0b1fbec99077a509ed3",
    "x": 1137,
    "y": 1545,
    "z": 12
@@ -18595,12 +18639,12 @@
     -73.916573,
     40.71572
    ],
-   "bytes": 103622,
+   "bytes": 102268,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-1206-1540.json",
-   "records": 139,
-   "sha256": "99d82e72ce657995b80439f4c7d2e6f433c3f28e36fff214527046e4b3e77098",
+   "records": 138,
+   "sha256": "0453bc6b5a3dfbe2261ba10f220a021e2400eb4aa4a41f444bc8aafa1a7a438f",
    "x": 1206,
    "y": 1540,
    "z": 12
@@ -18782,12 +18826,12 @@
     -112.034562,
     33.4662
    ],
-   "bytes": 25823,
+   "bytes": 25839,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1546-3287.json",
    "records": 35,
-   "sha256": "a380268a51cd8e68a2520ebbbc10088d698ba8c09fdc2c7b3f25e89bb5053311",
+   "sha256": "c80e861922136adf891f1e4c2b541f5803c4350907191744f0315c91fd11c4b6",
    "x": 1546,
    "y": 3287,
    "z": 13
@@ -18833,12 +18877,12 @@
     -96.811443,
     32.802619
    ],
-   "bytes": 15891,
+   "bytes": 15939,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1892-3305.json",
    "records": 22,
-   "sha256": "fe07b56badf1df760ecb569a25cc924fcc38697d4e1755bdfd62c6a4c84a46b8",
+   "sha256": "702769ad20bd9a5ba360acad9c8d5ee10b196defdc8f18ef6cae73ea011eb847",
    "x": 1892,
    "y": 3305,
    "z": 13
@@ -18867,12 +18911,12 @@
     -96.767256,
     32.803932
    ],
-   "bytes": 120494,
+   "bytes": 120633,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1893-3305.json",
    "records": 159,
-   "sha256": "4cdb748cd6d4b2a68aef52daa2b924538fa250a7e22bae970bef97ba092ecdfe",
+   "sha256": "2e16e2745198a8f3da7c198985cfcfa1015fd302fc5929f7ae8cc89d60d10d65",
    "x": 1893,
    "y": 3305,
    "z": 13
@@ -18884,12 +18928,12 @@
     -96.025494,
     36.159196
    ],
-   "bytes": 9309,
+   "bytes": 9356,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1910-3212.json",
    "records": 11,
-   "sha256": "befa991bd5f180543c4cce99b3d52fc85d4acc535249f93a17f3410a0ff6c534",
+   "sha256": "e242715a2dea00fac31c3b8a5414edbd7d7bfe3f6c5bdc80918f85b05a95da28",
    "x": 1910,
    "y": 3212,
    "z": 13
@@ -18918,12 +18962,12 @@
     -95.97515,
     36.173217
    ],
-   "bytes": 139966,
+   "bytes": 140459,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1911-3212.json",
    "records": 192,
-   "sha256": "ac16e08c464ffa5f332eb474321c430e97e72c4b24a40a7a824235c74439da23",
+   "sha256": "3a42a96ff731c2eeaac2b7fa13f5754c182700974a26faf1dca2ee93ed1f3570",
    "x": 1911,
    "y": 3212,
    "z": 13
@@ -18935,12 +18979,12 @@
     -95.985264,
     36.137622
    ],
-   "bytes": 17064,
+   "bytes": 17080,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1911-3213.json",
    "records": 23,
-   "sha256": "ffc85340a46e2951706f31191f9235283b5aa0205797fa91c0435ba51bdb1787",
+   "sha256": "8289f85db55f7b5b938517e450f4c84ed06ba137e7222ac44f45698435ada453",
    "x": 1911,
    "y": 3213,
    "z": 13
@@ -18952,12 +18996,12 @@
     -95.407538,
     29.761832
    ],
-   "bytes": 26437,
+   "bytes": 26468,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1924-3386.json",
    "records": 36,
-   "sha256": "89b4df1e2b8b4a13d809534cddf8c066fd6e794d20179609435a6eb2f1b3b8b6",
+   "sha256": "870eda8b237b4ca29fef0e20fc0edac8d033d513d6ebd571d3ee5bba65fb85f6",
    "x": 1924,
    "y": 3386,
    "z": 13
@@ -18986,12 +19030,12 @@
     -95.358811,
     29.765259
    ],
-   "bytes": 117293,
+   "bytes": 117372,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1925-3386.json",
    "records": 155,
-   "sha256": "1b4ed1dfa229f1e76d98e90595b380b9009bb1c690b6c0ea2bcebc43f7242eff",
+   "sha256": "a3921d9060819a87531d9fa09d19828eb0fee61b7487e801030ede3aba2d0cec",
    "x": 1925,
    "y": 3386,
    "z": 13
@@ -19003,12 +19047,12 @@
     -95.374443,
     29.726102
    ],
-   "bytes": 42283,
+   "bytes": 42315,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1925-3387.json",
    "records": 56,
-   "sha256": "f4b736dc9e45d8da195f850b26333204dd94e7d5759cbe5c2f8eccb8d6a38ec6",
+   "sha256": "73d6c145b2ca6ca66055828202480e63b5749bd11e1e88b4f688f296e09075c2",
    "x": 1925,
    "y": 3387,
    "z": 13
@@ -19020,12 +19064,12 @@
     -95.317346,
     29.843327
    ],
-   "bytes": 54582,
+   "bytes": 54898,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1926-3384.json",
    "records": 67,
-   "sha256": "bbe7eb961046abc1088e87637bdae940f980ed6c3b2bf09d9e0a4b69dc83190e",
+   "sha256": "3671c57cefdb8f529995088f9f54bb2506bef3358cd18ce8a0575efc41fe18a3",
    "x": 1926,
    "y": 3384,
    "z": 13
@@ -19037,12 +19081,12 @@
     -95.322275,
     29.802075
    ],
-   "bytes": 57403,
+   "bytes": 57465,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1926-3385.json",
    "records": 74,
-   "sha256": "b6fc0caea604ab446de634a1c8dea0d1b64358b547ef5b9528e2a887471131aa",
+   "sha256": "d78a12b8ecfa2394e5942c46290fd60bcd1d399cc592a2478e7a7fb68c779e37",
    "x": 1926,
    "y": 3385,
    "z": 13
@@ -19054,12 +19098,12 @@
     -95.284488,
     29.809797
    ],
-   "bytes": 8086,
+   "bytes": 8117,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1927-3384.json",
    "records": 10,
-   "sha256": "6a070897eb7e84c207a0be17b3156a64b6c835c73dfcd3e64c83cb81ecef089a",
+   "sha256": "d800c22cc4aa13429361d382012d7bbc2aa07e13f7078df3ee6d2f04f44bc960",
    "x": 1927,
    "y": 3384,
    "z": 13
@@ -19071,12 +19115,12 @@
     -95.276266,
     29.802472
    ],
-   "bytes": 20188,
+   "bytes": 20204,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-1927-3385.json",
    "records": 27,
-   "sha256": "607c168914a4e3d01a06f8301db9b9730f47b77f692276d58e5c758373c4029b",
+   "sha256": "840f7c13cac6746b64d099d3cf57c3a0850cf186a4be21cd8a4ae6adcfe2661b",
    "x": 1927,
    "y": 3385,
    "z": 13
@@ -19360,12 +19404,12 @@
     -84.379082,
     33.798121
    ],
-   "bytes": 145217,
+   "bytes": 145262,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-2175-3278.json",
    "records": 214,
-   "sha256": "c6cdce190cde0390b47316532a120a2ce2fa205ee8f16858841ff700de332496",
+   "sha256": "b6ff29c2506d2ceb7fe08516d927a78ea7a256611b6dfad154c7fe653827008e",
    "x": 2175,
    "y": 3278,
    "z": 13
@@ -19530,12 +19574,12 @@
     -73.960627,
     40.780691
    ],
-   "bytes": 48735,
+   "bytes": 48751,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-2412-3078.json",
    "records": 61,
-   "sha256": "1c12c171085c401b6920a9e33e276c6ac0c2716c4f120412fb08e1fd70107a6e",
+   "sha256": "125838964d2f6594e17e71a96de7ff67e53cfcfe8a1b34cad996275fe1f6fd98",
    "x": 2412,
    "y": 3078,
    "z": 13
@@ -19615,12 +19659,12 @@
     -71.058402,
     42.388839
    ],
-   "bytes": 85790,
+   "bytes": 85807,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-2478-3029.json",
    "records": 101,
-   "sha256": "10fefa81f04f477b925cdc33be6f7ae5c133e6a9c0daa1d458802ddb5b335818",
+   "sha256": "7bb3d55788ac84ca835009afe5c60bb66d81846fe8e99c1ab8fb1b23265a3fcb",
    "x": 2478,
    "y": 3029,
    "z": 13
@@ -19731,16 +19775,16 @@
  "totals": {
   "by_status": {
    "conditional": 9,
-   "directional_only": 85,
+   "directional_only": 86,
    "mixed": 44,
-   "numeric_only": 41462,
-   "suspect": 2103,
-   "unknown": 12923
+   "numeric_only": 43445,
+   "suspect": 69,
+   "unknown": 12915
   },
-  "bytes": 44482919,
-  "candidates": 56626,
-  "comparable": 41462,
-  "excluded": 58611,
+  "bytes": 44468668,
+  "candidates": 56568,
+  "comparable": 43445,
+  "excluded": 58669,
   "states_not_built": [],
   "states_with_data": 50,
   "states_with_failures": [],
