@@ -58,11 +58,20 @@ test('five additional exact policy scopes preserve unknown durations, sleeping a
   }
   for(const[state,operator]of [['NE','ndot'],['GA','gdot']])assert.equal(rest.resolvePolicy(policies,{state,operator,facility_kind:'safety_rest_area'},policyNow).policy_id,null);
 });
-test('eight location-only scopes keep every permission unknown',()=>{
-  for(const[state,operator,facility_kind]of [['CA','caltrans','safety_roadside_rest_area'],['IA','iowa_dot','rest_area'],['IN','indot','rest_area_or_welcome_center'],['KS','kdot','rest_area'],['MI','mdot','rest_area_or_welcome_center'],['NV','ndot','rest_area'],['SD','sddot','rest_area'],['WA','wsdot','safety_rest_area']]){
+test('five location-only scopes keep every permission unknown',()=>{
+  for(const[state,operator,facility_kind]of [['CA','caltrans','safety_roadside_rest_area'],['IA','iowa_dot','rest_area'],['IN','indot','rest_area_or_welcome_center'],['KS','kdot','rest_area'],['MI','mdot','rest_area_or_welcome_center']]){
     const p=rest.resolvePolicy(policies,{state,operator,facility_kind},policyNow);
     assert.ok(p.policy_id);assert.deepEqual([p.rules.overnight_parking,p.rules.sleeping_in_vehicle,p.rules.camping],['unknown','unknown','unknown']);assert.equal(p.rules.max_stay_hours,null);assert.deepEqual(p.rules.conditions,[]);
   }
+});
+test('statute-backed WA, SD and NV rules keep sleeping and overnight parking unknown',()=>{
+  const wa=rest.resolvePolicy(policies,{state:'WA',operator:'wsdot',facility_kind:'safety_rest_area'},policyNow);
+  assert.deepEqual([wa.rules.overnight_parking,wa.rules.sleeping_in_vehicle,wa.rules.camping,wa.rules.max_stay_hours],['unknown','unknown','prohibited',8]);
+  const sd=rest.resolvePolicy(policies,{state:'SD',operator:'sddot',facility_kind:'rest_area'},policyNow);
+  assert.deepEqual([sd.rules.overnight_parking,sd.rules.sleeping_in_vehicle,sd.rules.camping,sd.rules.max_stay_hours],['unknown','unknown','prohibited',null]);
+  const nv=rest.resolvePolicy(policies,{state:'NV',operator:'ndot',facility_kind:'rest_area'},policyNow);
+  assert.deepEqual([nv.rules.overnight_parking,nv.rules.sleeping_in_vehicle,nv.rules.camping,nv.rules.max_stay_hours],['unknown','unknown','unknown',18]);
+  assert.ok(nv.rules.conditions.some(c=>c.includes('2-week period')));
 });
 test('new policy sources accept the audited URL and reject other pages or parameters on that publisher',()=>{
   for(let i=2;i<policies.policies.length;i++)for(const suffix of ['?download=1','#fragment','/unreviewed']){

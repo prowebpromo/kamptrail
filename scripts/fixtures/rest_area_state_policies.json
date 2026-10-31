@@ -388,7 +388,7 @@
       "interpretation": "Location source only. The Michigan Department of Transportation rest-area layer is cited because its public page could not be retrieved automatically on 2026-10-31. No overnight parking, sleeping, camping or stay-limit rule was reviewed, so every permission stays unknown."
     },
     {
-      "id": "ndot-rest_area-20261031",
+      "id": "ndot-rest_area-20261031r",
       "scope": {
         "state": "NV",
         "operator": "ndot",
@@ -398,10 +398,22 @@
         "overnight_parking": "unknown",
         "sleeping_in_vehicle": "unknown",
         "camping": "unknown",
-        "max_stay_hours": null,
-        "conditions": []
+        "max_stay_hours": 18,
+        "conditions": [
+          "NAC 408.595: parking, camping or occupancy in a roadside park or safety rest area is limited to 18 hours in any 2-week period. The limit is a combined total across two weeks, not a per-visit allowance.",
+          "A duration limit is not permission to park overnight, sleep or camp. Whether NDOT welcome stations fall within the regulation’s \"safety rest area\" class is not stated."
+        ]
       },
       "sources": [
+        {
+          "url": "https://www.leg.state.nv.us/nac/NAC-408.html",
+          "retrieved_url": "https://www.leg.state.nv.us/nac/NAC-408.html",
+          "retrieved_at": "2026-10-31T17:36:34Z",
+          "sha256": "7497363ffb33f5c9847ad426ca1e84418240ba4cc8ad7f423c860d1c06411ffa",
+          "bytes": 435525,
+          "http_last_modified": "Mon, 13 Apr 2026 21:47:44 GMT",
+          "source_updated_at": null
+        },
         {
           "url": "https://gis.dot.nv.gov/arcgis/rest/services/Applications/511Map/MapServer/5",
           "retrieved_url": "https://gis.dot.nv.gov/arcgis/rest/services/Applications/511Map/MapServer/5/query?where=MAINTAINED_BY+%3D+%27Nevada+DOT%27+AND+STATUS+%3D+%27Open+To+Traffic%27&outFields=%2A&outSR=4326&returnGeometry=true&orderByFields=OBJECTID&f=json",
@@ -412,10 +424,10 @@
           "source_updated_at": null
         }
       ],
-      "interpretation": "Location source only. The Nevada Department of Transportation rest-area layer is cited because its public page could not be retrieved automatically on 2026-10-31. No overnight parking, sleeping, camping or stay-limit rule was reviewed, so every permission stays unknown."
+      "interpretation": "NAC 408.595 limits parking, camping or occupancy to 18 hours in any 2-week period. It neither grants nor prohibits overnight parking, sleeping or camping, so all three stay unknown."
     },
     {
-      "id": "sddot-rest_area-20261031",
+      "id": "sddot-rest_area-20261031r",
       "scope": {
         "state": "SD",
         "operator": "sddot",
@@ -424,11 +436,23 @@
       "rules": {
         "overnight_parking": "unknown",
         "sleeping_in_vehicle": "unknown",
-        "camping": "unknown",
+        "camping": "prohibited",
         "max_stay_hours": null,
-        "conditions": []
+        "conditions": [
+          "SDCL 31-7-15 prohibits camping at SDDOT rest areas within and adjacent to the interstate system. All imported South Dakota rest areas are on I-90 or I-29.",
+          "A violation is a petty offense. No stay limit or overnight parking rule was found."
+        ]
       },
       "sources": [
+        {
+          "url": "https://sdlegislature.gov/api/Statutes/31-7-15.html",
+          "retrieved_url": "https://sdlegislature.gov/api/Statutes/31-7-15.html",
+          "retrieved_at": "2026-10-31T17:36:33Z",
+          "sha256": "1d97af980e053477d35f140c56848707d301a9189c80bef9f9627d2f6cf9b630",
+          "bytes": 2962,
+          "http_last_modified": null,
+          "source_updated_at": null
+        },
         {
           "url": "https://dot.sd.gov/travelers/travelers/rest-areaports-of-entry/",
           "retrieved_url": "https://dot.sd.gov/travelers/travelers/rest-areaports-of-entry/",
@@ -439,10 +463,10 @@
           "source_updated_at": null
         }
       ],
-      "interpretation": "Location source only. This South Dakota Department of Transportation page was captured as the publisher's rest-area reference. It was not reviewed as an overnight parking, sleeping, camping or stay-limit rule, so every permission stays unknown."
+      "interpretation": "SDCL 31-7-15 prohibits camping at interstate rest areas established by SDDOT. It does not address parking or sleeping in a vehicle, so both stay unknown."
     },
     {
-      "id": "wsdot-safety_rest_area-20261031",
+      "id": "wsdot-safety_rest_area-20261031r",
       "scope": {
         "state": "WA",
         "operator": "wsdot",
@@ -451,11 +475,24 @@
       "rules": {
         "overnight_parking": "unknown",
         "sleeping_in_vehicle": "unknown",
-        "camping": "unknown",
-        "max_stay_hours": null,
-        "conditions": []
+        "camping": "prohibited",
+        "max_stay_hours": 8,
+        "conditions": [
+          "RCW 47.38.020: no stopping, standing or parking over 8 hours within a 24-hour period, and no camping or keeping a camp, tent or other sleeping accommodation, except where WSDOT specifically authorizes it.",
+          "WSDOT may designate zones with shorter posted limits. Commercial vehicles may park up to an hour beyond federally mandated rest periods. Disabled vehicles: 48 hours.",
+          "The statute does not name sleeping in a parked vehicle, so that stays unknown."
+        ]
       },
       "sources": [
+        {
+          "url": "https://lawfilesext.leg.wa.gov/law/RCW/RCW%20%2047%20%20TITLE/RCW%20%2047%20.%2038%20%20CHAPTER/RCW%20%2047%20.%2038%20.020.htm",
+          "retrieved_url": "https://lawfilesext.leg.wa.gov/law/RCW/RCW%20%2047%20%20TITLE/RCW%20%2047%20.%2038%20%20CHAPTER/RCW%20%2047%20.%2038%20.020.htm",
+          "retrieved_at": "2026-10-31T17:36:31Z",
+          "sha256": "eb3b7b98ab2f417ce09333c39da7fa7c48b844b1dffce1e9e254dd1bd99e540a",
+          "bytes": 2887,
+          "http_last_modified": "Fri, 12 Jul 2024 21:33:12 GMT",
+          "source_updated_at": null
+        },
         {
           "url": "https://wsdot.wa.gov/travel/safety/rest-areas/home",
           "retrieved_url": "https://wsdot.wa.gov/travel/roads-bridges/rest-areas",
@@ -466,7 +503,7 @@
           "source_updated_at": null
         }
       ],
-      "interpretation": "Location source only. This Washington State Department of Transportation page was captured as the publisher's rest-area reference. It was not reviewed as an overnight parking, sleeping, camping or stay-limit rule, so every permission stays unknown."
+      "interpretation": "RCW 47.38.020 prohibits camping and limits stopping, standing or parking to 8 hours within 24 hours in WSDOT safety rest areas unless WSDOT authorizes otherwise. It does not grant overnight parking or address sleeping in a vehicle, so both stay unknown."
     }
   ]
 }
