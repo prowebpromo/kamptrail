@@ -29,3 +29,14 @@ Alternatives checked the same day and not adopted:
 - OpenCelliD: tower positions, not coverage. Ruled out in `CELL_TOWER_DATA_ASSESSMENT_2026-10-31.md`.
 - CellMapper and carrier coverage maps: no reuse license established, no carrier API.
 - California CPUC mobile data (four carriers, as of December 31, 2024): one state only, so it does not solve the national problem.
+
+## Cross-network API test, 2026-10-31
+
+Single requests to `GET https://bdc.fcc.gov/api/public/map/listAsOfDates` with the documented `username` and `hash_value` headers, an honest User-Agent ("KampTrail coverage importer"), no redirects followed, and only status and declared format recorded:
+
+| Network | UTC time | Result |
+|---|---|---|
+| GitHub Actions runner (`scripts/fcc_network_check.py` on branch `pilot/fcc-check`) | 2026-10-31 15:48:50 | HTTP 403, `text/html` |
+| Owner's home connection (`scripts/fcc_download.py check-local` from draft PR #77) | 2026-10-31 15:54:43 | HTTP 403, `text/html` |
+
+Two unrelated networks returned the same HTML block page, so the denial is not specific to Hostinger or datacenter addresses. An HTML response rather than the API's JSON error suggests the request is stopped before credential validation. The owner's account works in a browser on the Data Download page. Who applies the block and why is unconfirmed and can only be answered by the FCC. Evidence was added to ticket #64052. No further self-serve tests are planned. Repository secrets `FCC_USERNAME` and `FCC_TOKEN` stay in place so the check can rerun when the FCC replies.
