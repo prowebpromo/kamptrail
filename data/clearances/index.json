@@ -1,7 +1,7 @@
 {
  "version": 1,
  "schema": "kamptrail-clearances-2",
- "generated_at": "2026-10-31T21:42:16Z",
+ "generated_at": "2026-10-31T22:13:20Z",
  "license": "ODbL-1.0",
  "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
  "copyright_url": "https://www.openstreetmap.org/copyright",
@@ -14,116 +14,330 @@
  },
  "notice": "Source-reported OSM tags. Coverage is uneven and incomplete. Not a route, passage or safety statement.",
  "totals": {
-  "states_with_data": 4,
-  "records": 1335,
-  "bytes": 653694,
-  "states_not_built": [
-   "AK",
-   "AL",
-   "AR",
-   "AZ",
-   "CA",
-   "CO",
-   "CT",
-   "DC",
-   "FL",
-   "GA",
-   "HI",
-   "IA",
-   "ID",
-   "IL",
-   "IN",
-   "KS",
-   "KY",
-   "LA",
-   "MA",
-   "MD",
-   "ME",
-   "MI",
-   "MN",
-   "MO",
-   "MS",
-   "MT",
-   "NC",
-   "ND",
-   "NE",
-   "NH",
-   "NJ",
-   "NM",
-   "NV",
-   "NY",
-   "OH",
-   "OK",
-   "OR",
-   "PA",
-   "SC",
-   "SD",
-   "TN",
-   "TX",
-   "UT",
-   "VA",
-   "WA",
-   "WI",
-   "WV"
-  ],
-  "states_with_failures": []
+  "states_with_data": 51,
+  "records": 115499,
+  "bytes": 60391157,
+  "states_not_built": [],
+  "states_with_failures": [
+   "RI"
+  ]
  },
  "states": {
   "AK": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 69,
+   "parts": 1,
+   "files": [
+    {
+     "path": "AK.json",
+     "bytes": 37055,
+     "sha256": "5181bba39eed2eda4a3a9120d57a5f5a745a4da1cb2b9ab6499b326f33ad8154",
+     "records": 69
+    }
+   ],
+   "bytes": 37055,
+   "sha256": "5181bba39eed2eda4a3a9120d57a5f5a745a4da1cb2b9ab6499b326f33ad8154",
+   "retrieved_at": "2026-10-31T21:44:17Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "83f7cac046ec6ae04aba8ae9f94951482e9108b5fcb7d77040feaa510fce14c7",
+   "parse_counts": {
+    "numeric": 65,
+    "below_default": 1,
+    "unknown": 1,
+    "unparseable": 2
+   },
+   "quarantined": 4,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 4
+   }
   },
   "AL": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 344,
+   "parts": 1,
+   "files": [
+    {
+     "path": "AL.json",
+     "bytes": 212531,
+     "sha256": "821c95f25b937798c241de90ed59f97d61dfa9d8a7cae3adc2f2ebc32e05c332",
+     "records": 344
+    }
+   ],
+   "bytes": 212531,
+   "sha256": "821c95f25b937798c241de90ed59f97d61dfa9d8a7cae3adc2f2ebc32e05c332",
+   "retrieved_at": "2026-10-31T21:44:20Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "6ffa6b9fb487b64ac660b85c233090a02d6b10cb849fed22e465d9a1deec122e",
+   "parse_counts": {
+    "numeric": 230,
+    "below_default": 3,
+    "unknown": 102,
+    "unparseable": 9
+   },
+   "quarantined": 13,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 6,
+    "outside_requested_state": 4,
+    "boundary_ambiguous": 3
+   }
   },
   "AR": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 158,
+   "parts": 1,
+   "files": [
+    {
+     "path": "AR.json",
+     "bytes": 78231,
+     "sha256": "225c1d8b022a65486cc1df4fe20c0fad34f7745478f8bfe063cd067f9f0b9d97",
+     "records": 158
+    }
+   ],
+   "bytes": 78231,
+   "sha256": "225c1d8b022a65486cc1df4fe20c0fad34f7745478f8bfe063cd067f9f0b9d97",
+   "retrieved_at": "2026-10-31T21:45:00Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "8b97100cd2949c2afe22befe6a707a86cadfa347daa7ed73830a1d2cfd994a6f",
+   "parse_counts": {
+    "numeric": 138,
+    "below_default": 1,
+    "unknown": 16,
+    "unparseable": 3
+   },
+   "quarantined": 44,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 41,
+    "boundary_ambiguous": 3
+   }
   },
   "AZ": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1754,
+   "parts": 2,
+   "files": [
+    {
+     "path": "AZ.json",
+     "bytes": 523862,
+     "sha256": "92a8b69bc91f65199f25acd8880cde1cd10bcc614f28fee0dae8cb463725df14",
+     "records": 1028
+    },
+    {
+     "path": "AZ-2.json",
+     "bytes": 384053,
+     "sha256": "25e6da74b7b5707a31404e00175c5057f43cf1b24ccd6938fc2d6f8e19f17a87",
+     "records": 726
+    }
+   ],
+   "bytes": 907915,
+   "sha256": "b2a90b4f0a98706937f50a3a142defd82720d0db8bdf98e09430be2ab56c1bc1",
+   "retrieved_at": "2026-10-31T21:45:22Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "bbc9e6b8052154d9ac753eb6798f2ca9eab939cb7a13017dcc1fbbd1c7108d1c",
+   "parse_counts": {
+    "numeric": 1661,
+    "below_default": 12,
+    "unknown": 70,
+    "unparseable": 11
+   },
+   "quarantined": 19,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 18,
+    "boundary_ambiguous": 1
+   }
   },
   "CA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 15483,
+   "parts": 15,
+   "files": [
+    {
+     "path": "CA.json",
+     "bytes": 524146,
+     "sha256": "8680ae572cec9b874bdf3afd3896502d7f6daf2d1f3d3ac1f108aedf464ae378",
+     "records": 1340
+    },
+    {
+     "path": "CA-2.json",
+     "bytes": 524109,
+     "sha256": "a38132be7500b53bfce1f52fa066fb176f163b6a11742a3b94158513c61c7da3",
+     "records": 980
+    },
+    {
+     "path": "CA-3.json",
+     "bytes": 524074,
+     "sha256": "6256bd5d72affa8b25ebc15a6b7460498c178c5bfddcd5385ffc271021f0a476",
+     "records": 988
+    },
+    {
+     "path": "CA-4.json",
+     "bytes": 524273,
+     "sha256": "12d80d6deccc88bc77ba02d810f927aec6386aceec423d6b2e505e99203d7271",
+     "records": 1103
+    },
+    {
+     "path": "CA-5.json",
+     "bytes": 524205,
+     "sha256": "f866d8f5a43854e0c994fd147b14610093e47f55d983ac39d875acbb641607ab",
+     "records": 1060
+    },
+    {
+     "path": "CA-6.json",
+     "bytes": 523977,
+     "sha256": "b0ac19835d29e5d25c9ef3dc42a97c3fd54eb015348b9a802be3a9707deb73d2",
+     "records": 1058
+    },
+    {
+     "path": "CA-7.json",
+     "bytes": 523940,
+     "sha256": "51b0ef481651d31f234cdf2e230be22ddfb08dc639b0cf6670577ade88818f76",
+     "records": 1135
+    },
+    {
+     "path": "CA-8.json",
+     "bytes": 523988,
+     "sha256": "1635ca385d07068fb7f87e60fdf644a7f0582cd50ee71b344eda0a035af2cb7d",
+     "records": 1109
+    },
+    {
+     "path": "CA-9.json",
+     "bytes": 524136,
+     "sha256": "4fa2ecad65098cd0e49d5a5bd192a49e91008fdebec23df2a5c755a36492207a",
+     "records": 968
+    },
+    {
+     "path": "CA-10.json",
+     "bytes": 523806,
+     "sha256": "53f5a40a9bc27d6611d5b6c69a733eda291a978793c866dbcb9da191317b82df",
+     "records": 1003
+    },
+    {
+     "path": "CA-11.json",
+     "bytes": 524121,
+     "sha256": "81f5a1e9e5c3e4a2a35fdcd7bfe13373a340d61d7fbed4c5b804589ba986c271",
+     "records": 925
+    },
+    {
+     "path": "CA-12.json",
+     "bytes": 524275,
+     "sha256": "e04217d08139577a7b4d242dca7159d5e802439fafc7f7b59e5849822358be62",
+     "records": 918
+    },
+    {
+     "path": "CA-13.json",
+     "bytes": 524156,
+     "sha256": "92a6861b5a86650c213c5cb01572ad13b1e20ad68342a76c54235fa21fd19cb5",
+     "records": 963
+    },
+    {
+     "path": "CA-14.json",
+     "bytes": 523989,
+     "sha256": "e1d93165af14a1dfe845fddedbda61074d007fc456ba76f7df150bb519db1385",
+     "records": 923
+    },
+    {
+     "path": "CA-15.json",
+     "bytes": 506101,
+     "sha256": "358c8ccd9519c4f4e37cb51bcb57ea569cb9e7e4bb4d2a6c66d35392e146c80f",
+     "records": 1010
+    }
+   ],
+   "bytes": 7843296,
+   "sha256": "5be52da4616ae63393989879af00ad801fb47e3295477cb894fc4aca234fe20e",
+   "retrieved_at": "2026-10-31T21:46:48Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "9ee6cd1fba57f04d3c58bb399b9ac656b7df22f9ea7a1ead52a2a5ca485605ff",
+   "parse_counts": {
+    "numeric": 14200,
+    "below_default": 17,
+    "unknown": 1131,
+    "unparseable": 145
+   },
+   "quarantined": 660,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 648,
+    "outside_requested_state": 1,
+    "boundary_ambiguous": 1,
+    "unsupported_or_incomplete_geometry": 10
+   }
   },
   "CO": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1239,
+   "parts": 2,
+   "files": [
+    {
+     "path": "CO.json",
+     "bytes": 524022,
+     "sha256": "fcd2628bdeabc56f2a3f7bbf702f61db3309b3f33718638c87806fbf7026cdc0",
+     "records": 896
+    },
+    {
+     "path": "CO-2.json",
+     "bytes": 203663,
+     "sha256": "2f1a3e568a56ea46a71d199f9973d44f4851ae34f6024efb95c2d25e65ec557c",
+     "records": 343
+    }
+   ],
+   "bytes": 727685,
+   "sha256": "52cd6c05c9bf0474198f02f4734b0611e6fcb77b8ce6cc00327e874519529fcd",
+   "retrieved_at": "2026-10-31T21:46:34Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "b1a27ee76e26547d2c4deb234d97d14e52557d67036686e65a378fd902c0aa9e",
+   "parse_counts": {
+    "numeric": 926,
+    "below_default": 7,
+    "unknown": 259,
+    "unparseable": 46
+   },
+   "quarantined": 46,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 44,
+    "unsupported_or_incomplete_geometry": 2
+   }
   },
   "CT": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1489,
+   "parts": 2,
+   "files": [
+    {
+     "path": "CT.json",
+     "bytes": 524050,
+     "sha256": "f8ab61c8c764977164d98c2342328274d9295d3e62593c452280795f2becec75",
+     "records": 966
+    },
+    {
+     "path": "CT-2.json",
+     "bytes": 384460,
+     "sha256": "b6036c8ca213853b54c40016c040e1a6811585e3fd87ed217b9eaf7d2192a0ff",
+     "records": 523
+    }
+   ],
+   "bytes": 908510,
+   "sha256": "508078c91e71fbee56faccb2986ff8b357530470c325e1390a9017709e61b086",
+   "retrieved_at": "2026-10-31T21:47:36Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "dda4dc0c0859591e4624755b3568bd0f02d6de72520d02921436afe8ea6910d8",
+   "parse_counts": {
+    "numeric": 1213,
+    "below_default": 2,
+    "unknown": 269,
+    "unparseable": 5
+   },
+   "quarantined": 16,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 7,
+    "boundary_ambiguous": 7,
+    "outside_requested_state": 1,
+    "unsupported_or_incomplete_geometry": 1
+   }
   },
   "DE": {
    "status": "present",
@@ -156,247 +370,1209 @@
    }
   },
   "FL": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 3866,
+   "parts": 4,
+   "files": [
+    {
+     "path": "FL.json",
+     "bytes": 523829,
+     "sha256": "3f388f6ea2ca5c2c8fa8c731ffa9718d715e07c401e9843db3ae37b16fdab6f1",
+     "records": 1137
+    },
+    {
+     "path": "FL-2.json",
+     "bytes": 524255,
+     "sha256": "461b09c813d95dfb3858e0dd8992eb5c124c10bbd8f76e23ca8e14d912290b95",
+     "records": 969
+    },
+    {
+     "path": "FL-3.json",
+     "bytes": 524218,
+     "sha256": "9c962dd3bd90feafe8d120c2a7a8cf494af8d424af18e92ac255a173c3c4b397",
+     "records": 1119
+    },
+    {
+     "path": "FL-4.json",
+     "bytes": 287439,
+     "sha256": "d8b6b7a53d36b8d76e0ae991faf3076d028e8d8a9e6fd2171babb4167e7f21af",
+     "records": 641
+    }
+   ],
+   "bytes": 1859741,
+   "sha256": "da3303b62f2e2591abdc687ebb0f5f069606421a6f7527e35497724aad6ea0f8",
+   "retrieved_at": "2026-10-31T21:49:36Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "44190cfeb81327567128ee1c2d1639384d8ed6f20fe4b2f03c876b75981ccab8",
+   "parse_counts": {
+    "numeric": 3327,
+    "below_default": 10,
+    "unknown": 202,
+    "unparseable": 326
+   },
+   "quarantined": 63,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 59,
+    "unsupported_or_incomplete_geometry": 4
+   }
   },
   "GA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 2340,
+   "parts": 3,
+   "files": [
+    {
+     "path": "GA.json",
+     "bytes": 524262,
+     "sha256": "e262445da4bdf2c84ee8b05956ccea4048bf9c0ffd9d3e21a60b13366625ab20",
+     "records": 1050
+    },
+    {
+     "path": "GA-2.json",
+     "bytes": 523860,
+     "sha256": "cbc8dd9dc8ac48d692ea3d367f4ab170ab8f1f39a383560aae5da72ec086f38f",
+     "records": 892
+    },
+    {
+     "path": "GA-3.json",
+     "bytes": 247391,
+     "sha256": "dbc7ce9873c0f0c2876cd9ab2fc277d9f4f5c4b8417648b928e2870c598f8a0f",
+     "records": 398
+    }
+   ],
+   "bytes": 1295513,
+   "sha256": "fa443358fa592289363b4a2388526fe5c741f003afe3fe0844182a1b5dc49421",
+   "retrieved_at": "2026-10-31T21:50:33Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "43e9abd89451ed091a258b8b86df19f52a70405ba54eb21dfa5fc3dcf9c9f3d8",
+   "parse_counts": {
+    "numeric": 1375,
+    "below_default": 25,
+    "unknown": 925,
+    "unparseable": 13
+   },
+   "quarantined": 47,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 47
+   }
   },
   "HI": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 258,
+   "parts": 1,
+   "files": [
+    {
+     "path": "HI.json",
+     "bytes": 128945,
+     "sha256": "30be1570d3c834de4660e16eff0e1ea88e166daa5d47fb2e5d4ae046ff72790b",
+     "records": 258
+    }
+   ],
+   "bytes": 128945,
+   "sha256": "30be1570d3c834de4660e16eff0e1ea88e166daa5d47fb2e5d4ae046ff72790b",
+   "retrieved_at": "2026-10-31T21:50:41Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "4a1b28d80479da7f6828baec1c3db4800295a1d7208ba4e0d394c1f9bd8e90f3",
+   "parse_counts": {
+    "numeric": 250,
+    "below_default": 0,
+    "unknown": 3,
+    "unparseable": 5
+   },
+   "quarantined": 7,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 7
+   }
   },
   "IA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1724,
+   "parts": 2,
+   "files": [
+    {
+     "path": "IA.json",
+     "bytes": 524279,
+     "sha256": "384eef1ba30ad979280602a913476d9cb73f7657816bff27ff50164c42d4e236",
+     "records": 1248
+    },
+    {
+     "path": "IA-2.json",
+     "bytes": 288192,
+     "sha256": "cd0f8f2c9988389845dc4e006d508ca9da12fb7f09121e2d24769a5a4060d684",
+     "records": 476
+    }
+   ],
+   "bytes": 812471,
+   "sha256": "5da6a86c88d6a327c8181422240414bea0b8d40e23c711ee5006beb2138a7915",
+   "retrieved_at": "2026-10-31T21:51:29Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "b53b08b99396bd244e32384246dc50ff81a6c9b5aafc5f12e33da46441e37d7b",
+   "parse_counts": {
+    "numeric": 1613,
+    "below_default": 0,
+    "unknown": 105,
+    "unparseable": 6
+   },
+   "quarantined": 52,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 42,
+    "outside_requested_state": 6,
+    "boundary_ambiguous": 4
+   }
   },
   "ID": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 235,
+   "parts": 1,
+   "files": [
+    {
+     "path": "ID.json",
+     "bytes": 144651,
+     "sha256": "6081ee399ad0265db30b79c344eb30eb7f2f87da577620342ffe8130f75f19af",
+     "records": 235
+    }
+   ],
+   "bytes": 144651,
+   "sha256": "6081ee399ad0265db30b79c344eb30eb7f2f87da577620342ffe8130f75f19af",
+   "retrieved_at": "2026-10-31T21:51:29Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "e126bdbd12e4491ae56cab2192cde800365ef99d6562e9e8e0fdfcb3abe16297",
+   "parse_counts": {
+    "numeric": 128,
+    "below_default": 6,
+    "unknown": 101,
+    "unparseable": 0
+   },
+   "quarantined": 12,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 12
+   }
   },
   "IL": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 4714,
+   "parts": 5,
+   "files": [
+    {
+     "path": "IL.json",
+     "bytes": 523801,
+     "sha256": "794a13b0b5a75c315c5081d95c07b07bfd94ccc103fa4df6a7b3abb4db8884ea",
+     "records": 1051
+    },
+    {
+     "path": "IL-2.json",
+     "bytes": 523884,
+     "sha256": "5dac0e2bfd810c3d5e7f84e33f8fdcf7dcccaefdfa8912df096741841e78a29e",
+     "records": 1017
+    },
+    {
+     "path": "IL-3.json",
+     "bytes": 524208,
+     "sha256": "7ab8cc480fbd9a80c7d0a678a488d85350b20cb07f849a1f46d86f9cdc75e56a",
+     "records": 1011
+    },
+    {
+     "path": "IL-4.json",
+     "bytes": 524070,
+     "sha256": "45a7263c23ce00cf381604291b433d313babda8038abc0ea6cdadfc97c597852",
+     "records": 920
+    },
+    {
+     "path": "IL-5.json",
+     "bytes": 396072,
+     "sha256": "62bf2d9ed6385b792441efab8c9e4bd4b91cfc617ad70479b04f5e336fba0f4a",
+     "records": 715
+    }
+   ],
+   "bytes": 2492035,
+   "sha256": "e71f00553d52f279dc01cb1920df83e91e8c17bed79e9f9ccd3a90e0e4f7f88e",
+   "retrieved_at": "2026-10-31T21:52:24Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "76978afb841b143ca7f987fbd6bae8a12eb53f4229a26252edeef03b083e0f01",
+   "parse_counts": {
+    "numeric": 4408,
+    "below_default": 13,
+    "unknown": 280,
+    "unparseable": 27
+   },
+   "quarantined": 286,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 271,
+    "outside_requested_state": 10,
+    "boundary_ambiguous": 4,
+    "unsupported_or_incomplete_geometry": 1
+   }
   },
   "IN": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 994,
+   "parts": 2,
+   "files": [
+    {
+     "path": "IN.json",
+     "bytes": 523933,
+     "sha256": "ef04082a682ad5374ff29afadae56b161f5200fa96763ed28eeb2da0e9d6fbe8",
+     "records": 893
+    },
+    {
+     "path": "IN-2.json",
+     "bytes": 55322,
+     "sha256": "48985ade7ef9e68057da6e5b57e090e7326c99d9ab52c5bdf0fcb6b2027a74cc",
+     "records": 101
+    }
+   ],
+   "bytes": 579255,
+   "sha256": "eccb3d7db094522e462e17258caceb823789273c67f6646c797ceb0ee6e5b31d",
+   "retrieved_at": "2026-10-31T21:52:20Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "adec945fe7d44f9da588826f59541027ce056fe00ab142ed72a062b810852182",
+   "parse_counts": {
+    "numeric": 780,
+    "below_default": 3,
+    "unknown": 207,
+    "unparseable": 3
+   },
+   "quarantined": 11,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 8,
+    "outside_requested_state": 1,
+    "boundary_ambiguous": 2
+   }
   },
   "KS": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 587,
+   "parts": 1,
+   "files": [
+    {
+     "path": "KS.json",
+     "bytes": 299386,
+     "sha256": "4806d9c26334190f983f7317bb2d1074b2d2f7ee57909079b25c6e76fded8fd4",
+     "records": 587
+    }
+   ],
+   "bytes": 299386,
+   "sha256": "4806d9c26334190f983f7317bb2d1074b2d2f7ee57909079b25c6e76fded8fd4",
+   "retrieved_at": "2026-10-31T21:53:08Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "f8fb69097d247097425803edb31a15ad04b76f96a4a9534a910e4600bbed5e7b",
+   "parse_counts": {
+    "numeric": 496,
+    "below_default": 2,
+    "unknown": 85,
+    "unparseable": 4
+   },
+   "quarantined": 15,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 13,
+    "outside_requested_state": 2
+   }
   },
   "KY": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 445,
+   "parts": 1,
+   "files": [
+    {
+     "path": "KY.json",
+     "bytes": 243063,
+     "sha256": "391293727168b2ea869ce4567161764f7f9f2e96b8790e2e95af43c2a90889d4",
+     "records": 445
+    }
+   ],
+   "bytes": 243063,
+   "sha256": "391293727168b2ea869ce4567161764f7f9f2e96b8790e2e95af43c2a90889d4",
+   "retrieved_at": "2026-10-31T21:53:25Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "ef49a09b3485cc440b57fb4948658a1263a54fc0e7e800777c0b6752845e36c0",
+   "parse_counts": {
+    "numeric": 369,
+    "below_default": 0,
+    "unknown": 61,
+    "unparseable": 15
+   },
+   "quarantined": 24,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 10,
+    "outside_requested_state": 12,
+    "boundary_ambiguous": 2
+   }
   },
   "LA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 334,
+   "parts": 1,
+   "files": [
+    {
+     "path": "LA.json",
+     "bytes": 179132,
+     "sha256": "5fc5b1392f5a138a0d1262c79869768b47cb05aa0bc8c0ca634ba02435075efa",
+     "records": 334
+    }
+   ],
+   "bytes": 179132,
+   "sha256": "5fc5b1392f5a138a0d1262c79869768b47cb05aa0bc8c0ca634ba02435075efa",
+   "retrieved_at": "2026-10-31T21:53:54Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "22d9e2d84cb525c1efbffd853f16ac6cfdbecc716fceeaa7cfb1d38e96887984",
+   "parse_counts": {
+    "numeric": 303,
+    "below_default": 3,
+    "unknown": 28,
+    "unparseable": 0
+   },
+   "quarantined": 52,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 46,
+    "boundary_ambiguous": 5,
+    "outside_requested_state": 1
+   }
   },
   "MA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 2830,
+   "parts": 4,
+   "files": [
+    {
+     "path": "MA.json",
+     "bytes": 523952,
+     "sha256": "375e59b23cd4982823eaafafa5894b43e55d792ac16c5833617b958276462e8e",
+     "records": 1027
+    },
+    {
+     "path": "MA-2.json",
+     "bytes": 524094,
+     "sha256": "d304c96032fe5365eb295ede6185e76e4078ad26bc40a979d97c505d65e25806",
+     "records": 843
+    },
+    {
+     "path": "MA-3.json",
+     "bytes": 523689,
+     "sha256": "978d8cc8e2a78904729c1d699d591f828c294a315c852afce988171162e1633e",
+     "records": 827
+    },
+    {
+     "path": "MA-4.json",
+     "bytes": 87734,
+     "sha256": "6604074985ae654c4daa16abbc55edc7dda1be5310e11fdaed631db4bca60af9",
+     "records": 133
+    }
+   ],
+   "bytes": 1659469,
+   "sha256": "c5e6284914550c997732db99b44ee34d4bdedb103e400c4591a12aac46f837a9",
+   "retrieved_at": "2026-10-31T21:54:27Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "15fe935b956fea9f899178de58fe27a29bdb23569d81067de2bd16da7db9f5af",
+   "parse_counts": {
+    "numeric": 2386,
+    "below_default": 17,
+    "unknown": 374,
+    "unparseable": 61
+   },
+   "quarantined": 86,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 60,
+    "outside_requested_state": 11,
+    "boundary_ambiguous": 5,
+    "unsupported_or_incomplete_geometry": 10
+   }
   },
   "MD": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1943,
+   "parts": 3,
+   "files": [
+    {
+     "path": "MD.json",
+     "bytes": 523909,
+     "sha256": "77d06fbd102e0bf99737839018a646866669a52864a69d338566b1148e4d9926",
+     "records": 943
+    },
+    {
+     "path": "MD-2.json",
+     "bytes": 524004,
+     "sha256": "cf5b66cabb7a971837e9798a9a956c282a7476fabe61bf3ad687e374a8d50360",
+     "records": 884
+    },
+    {
+     "path": "MD-3.json",
+     "bytes": 66551,
+     "sha256": "56bbcf6ff679868bc71b17dbfe4c64ca8d59312c56d5d3aa3e044d146b273349",
+     "records": 116
+    }
+   ],
+   "bytes": 1114464,
+   "sha256": "f1ce1a2575e88aa7b5b11cf58d528e6958ffde11a1bb7f20370a0e08ebaa66d8",
+   "retrieved_at": "2026-10-31T21:54:44Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "0eef473bcf3d5867b2d8dd20777f2db020c8a2c5f7464d74990a386e7964f4ae",
+   "parse_counts": {
+    "numeric": 1264,
+    "below_default": 16,
+    "unknown": 428,
+    "unparseable": 235
+   },
+   "quarantined": 164,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 143,
+    "outside_requested_state": 13,
+    "boundary_ambiguous": 8
+   }
   },
   "ME": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 808,
+   "parts": 1,
+   "files": [
+    {
+     "path": "ME.json",
+     "bytes": 511318,
+     "sha256": "2fe03cf4fd4d83ee6c66dffc89d682bcf16e108ab3613ef262353959352e9fbe",
+     "records": 808
+    }
+   ],
+   "bytes": 511318,
+   "sha256": "2fe03cf4fd4d83ee6c66dffc89d682bcf16e108ab3613ef262353959352e9fbe",
+   "retrieved_at": "2026-10-31T21:55:21Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "4aaceaae14c7b1288c5e63f83da5eeaa966e949eaa10a313961c1c38f0f8438b",
+   "parse_counts": {
+    "numeric": 766,
+    "below_default": 1,
+    "unknown": 41,
+    "unparseable": 0
+   },
+   "quarantined": 16,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 9,
+    "outside_requested_state": 4,
+    "boundary_ambiguous": 3
+   }
   },
   "MI": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 7072,
+   "parts": 7,
+   "files": [
+    {
+     "path": "MI.json",
+     "bytes": 524058,
+     "sha256": "a3ec2cbed1c006684b3349cec84108791c247a3b9f17a468cc1eaca94997e28c",
+     "records": 1394
+    },
+    {
+     "path": "MI-2.json",
+     "bytes": 524085,
+     "sha256": "07ebd6e3419db76c797a5b048af8f6ccc1ed278aa370d0a14567569c5e7396d0",
+     "records": 1028
+    },
+    {
+     "path": "MI-3.json",
+     "bytes": 523997,
+     "sha256": "37f2f2a71d81805ffb6cfd08841524e6569968fa7f3ff39902c125e4ee6b0614",
+     "records": 1061
+    },
+    {
+     "path": "MI-4.json",
+     "bytes": 524106,
+     "sha256": "6133611d89414eca8c0f95491a802550f57afc187633c9285f04b254daad414a",
+     "records": 1092
+    },
+    {
+     "path": "MI-5.json",
+     "bytes": 524001,
+     "sha256": "f5b0a22fb7591847224bc5bf492a6bdf36c302e7afc7f9337e1d151d9c486598",
+     "records": 1154
+    },
+    {
+     "path": "MI-6.json",
+     "bytes": 524223,
+     "sha256": "2f004bd7c83e03615c78dd24c8fa0a8230df29119c5f8e98a8e4649bbf3c330b",
+     "records": 866
+    },
+    {
+     "path": "MI-7.json",
+     "bytes": 255780,
+     "sha256": "e437a49a09ef51ae01654d8ef43cdf1b2c55b2c1980a40d3077ec2ba1d3342e7",
+     "records": 477
+    }
+   ],
+   "bytes": 3400250,
+   "sha256": "4378fcb24761c0f9ca27a2a22d5407e828c1626b25070f4e6f511f1bf48a7ccd",
+   "retrieved_at": "2026-10-31T21:56:14Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "67702a0b4a74b5106e1e89bb8b6aa927db93c5ca9cdee71e413d8222b62bd269",
+   "parse_counts": {
+    "numeric": 6870,
+    "below_default": 11,
+    "unknown": 187,
+    "unparseable": 8
+   },
+   "quarantined": 39,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 37,
+    "outside_requested_state": 2
+   }
   },
   "MN": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 611,
+   "parts": 1,
+   "files": [
+    {
+     "path": "MN.json",
+     "bytes": 334626,
+     "sha256": "ca731763b3397d0a3486ef3b5858c2d6e86fdf43325d8414d682e2fb4bf25d52",
+     "records": 611
+    }
+   ],
+   "bytes": 334626,
+   "sha256": "ca731763b3397d0a3486ef3b5858c2d6e86fdf43325d8414d682e2fb4bf25d52",
+   "retrieved_at": "2026-10-31T21:56:36Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "e07a6d6344e7deb087ec19e4a05b70f2409534cf67529384fd03993f8dc5a486",
+   "parse_counts": {
+    "numeric": 481,
+    "below_default": 3,
+    "unknown": 119,
+    "unparseable": 10
+   },
+   "quarantined": 65,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 49,
+    "boundary_ambiguous": 3,
+    "outside_requested_state": 13
+   }
   },
   "MO": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 3199,
+   "parts": 4,
+   "files": [
+    {
+     "path": "MO.json",
+     "bytes": 523525,
+     "sha256": "107bb55dc73dd98c3053d4f91e33a553bdfafdb7e278f606fd448b64cd977765",
+     "records": 1089
+    },
+    {
+     "path": "MO-2.json",
+     "bytes": 524027,
+     "sha256": "6561416e292d82e52888c8d7790c26112cdf53826d83b914e075988aa4e2ea4d",
+     "records": 1025
+    },
+    {
+     "path": "MO-3.json",
+     "bytes": 524241,
+     "sha256": "674146585c2029b9f5af034943ddc79199b77e5efaa24cef2cf8c951bb2ec19e",
+     "records": 861
+    },
+    {
+     "path": "MO-4.json",
+     "bytes": 132575,
+     "sha256": "38886225303e1fe20b7cc28a398c0aa63ca1f92a635b75a70ace07d7f5b55677",
+     "records": 224
+    }
+   ],
+   "bytes": 1704368,
+   "sha256": "c12cfa9f80e3107b470335d335bc06b81fc3f53e4101524d8b46d2be851880ad",
+   "retrieved_at": "2026-10-31T21:57:24Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "a674f99d536842a78902901bdc1ebe82a44880619eaa1637940c1bfe2a182325",
+   "parse_counts": {
+    "numeric": 2983,
+    "below_default": 6,
+    "unknown": 182,
+    "unparseable": 28
+   },
+   "quarantined": 85,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 82,
+    "outside_requested_state": 1,
+    "boundary_ambiguous": 2
+   }
   },
   "MS": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1855,
+   "parts": 3,
+   "files": [
+    {
+     "path": "MS.json",
+     "bytes": 524206,
+     "sha256": "b8359336fa8a10c79bb9ec8a38f3a3d6a4891057861fb3cc06a2928cb9ff133e",
+     "records": 688
+    },
+    {
+     "path": "MS-2.json",
+     "bytes": 524233,
+     "sha256": "0300be4ba4ab8e36ac9ce1e552a36dc5ac02aa8f2ace10909e7366c8797d8be5",
+     "records": 1031
+    },
+    {
+     "path": "MS-3.json",
+     "bytes": 84075,
+     "sha256": "4432261aeaaface5dd8e62ed2d93cbeb97e137d1827b3ba2f2da9ac9afe4cc05",
+     "records": 136
+    }
+   ],
+   "bytes": 1132514,
+   "sha256": "5c1d036075490bd55ed0a2cb2a99e980a22c8ea7a9a3ee1144c271a407313540",
+   "retrieved_at": "2026-10-31T21:57:23Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "add6e0ca392b75c2ebab5c9d755ae4d72641807f049b10dcc49babfe562318f6",
+   "parse_counts": {
+    "numeric": 763,
+    "below_default": 2,
+    "unknown": 1090,
+    "unparseable": 2
+   },
+   "quarantined": 9,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 2,
+    "outside_requested_state": 2,
+    "boundary_ambiguous": 5
+   }
   },
   "MT": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 586,
+   "parts": 1,
+   "files": [
+    {
+     "path": "MT.json",
+     "bytes": 274856,
+     "sha256": "e614c769413d8a6213ef9c8b0dd3ddaea09917a81c41f8afcfc7e7cf20b491eb",
+     "records": 586
+    }
+   ],
+   "bytes": 274856,
+   "sha256": "e614c769413d8a6213ef9c8b0dd3ddaea09917a81c41f8afcfc7e7cf20b491eb",
+   "retrieved_at": "2026-10-31T21:58:15Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "9f5f8c7679a60701f34c4d26abfd7929f0c21a5cd104135954348ed13107e350",
+   "parse_counts": {
+    "numeric": 567,
+    "below_default": 0,
+    "unknown": 15,
+    "unparseable": 4
+   },
+   "quarantined": 7,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 5,
+    "outside_requested_state": 2
+   }
   },
   "NC": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1529,
+   "parts": 2,
+   "files": [
+    {
+     "path": "NC.json",
+     "bytes": 524221,
+     "sha256": "e9d92206302fe39dbc180ae87e21e7cf60975ae5057637aef11150f137bc5fd8",
+     "records": 933
+    },
+    {
+     "path": "NC-2.json",
+     "bytes": 346380,
+     "sha256": "7c4d17339602cce531335d68e4381362f1fa57d66ff25bf2747ec96cd902e279",
+     "records": 596
+    }
+   ],
+   "bytes": 870601,
+   "sha256": "d32b12d252795c079c7aeda11f4026ba0baee8aced8e6c386135f39a4a01a205",
+   "retrieved_at": "2026-10-31T21:58:47Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "159768443f82ff2bd2e3c30c3d6dbf45469f364b0ad7fee42d2471d2080b3023",
+   "parse_counts": {
+    "numeric": 1006,
+    "below_default": 10,
+    "unknown": 496,
+    "unparseable": 19
+   },
+   "quarantined": 50,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 25,
+    "boundary_ambiguous": 1,
+    "unsupported_or_incomplete_geometry": 24
+   }
   },
   "ND": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 88,
+   "parts": 1,
+   "files": [
+    {
+     "path": "ND.json",
+     "bytes": 45422,
+     "sha256": "60d059fe950b60505ba0bb19329bea9d85e3bc1a7244e34cb003e5431699625e",
+     "records": 88
+    }
+   ],
+   "bytes": 45422,
+   "sha256": "60d059fe950b60505ba0bb19329bea9d85e3bc1a7244e34cb003e5431699625e",
+   "retrieved_at": "2026-10-31T21:59:02Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "373b41880be33713ca399baea690b554c40b9bc7d1c01658c18826326e157932",
+   "parse_counts": {
+    "numeric": 75,
+    "below_default": 0,
+    "unknown": 11,
+    "unparseable": 2
+   },
+   "quarantined": 3,
+   "quarantine_reasons": {
+    "outside_requested_state": 3
+   }
   },
   "NE": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 568,
+   "parts": 1,
+   "files": [
+    {
+     "path": "NE.json",
+     "bytes": 255134,
+     "sha256": "288ddce82a52eed50a386a9857f6333ecfc48b30dafc0807abb6daf072e85b6d",
+     "records": 568
+    }
+   ],
+   "bytes": 255134,
+   "sha256": "288ddce82a52eed50a386a9857f6333ecfc48b30dafc0807abb6daf072e85b6d",
+   "retrieved_at": "2026-10-31T21:59:46Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "dccae48758802a293564d5e55841b6cfaa80e55108c00cae1bbaa76144621187",
+   "parse_counts": {
+    "numeric": 549,
+    "below_default": 3,
+    "unknown": 12,
+    "unparseable": 4
+   },
+   "quarantined": 14,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 12,
+    "boundary_ambiguous": 2
+   }
   },
   "NH": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 423,
+   "parts": 1,
+   "files": [
+    {
+     "path": "NH.json",
+     "bytes": 223335,
+     "sha256": "7316873ee1e4ab3b0d2ab047caa4fef88d4fae1237f34763b4663de5c2170b1b",
+     "records": 423
+    }
+   ],
+   "bytes": 223335,
+   "sha256": "7316873ee1e4ab3b0d2ab047caa4fef88d4fae1237f34763b4663de5c2170b1b",
+   "retrieved_at": "2026-10-31T21:59:42Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "89e0a2b4b59684ea5b1ad44a8ce561f22b636ae167a3b40f2ae70032ee411e1d",
+   "parse_counts": {
+    "numeric": 380,
+    "below_default": 3,
+    "unknown": 30,
+    "unparseable": 10
+   },
+   "quarantined": 34,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 19,
+    "boundary_ambiguous": 3,
+    "outside_requested_state": 12
+   }
   },
   "NJ": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 2005,
+   "parts": 3,
+   "files": [
+    {
+     "path": "NJ.json",
+     "bytes": 524108,
+     "sha256": "fb8514e4096123600730ba52943acf1738c18a5f642b3c0dc62772d632b51487",
+     "records": 1018
+    },
+    {
+     "path": "NJ-2.json",
+     "bytes": 524254,
+     "sha256": "1bd5ede6727ef91d398c77a8587a796392614fe4b6bb1b750862637f30c0d3ea",
+     "records": 859
+    },
+    {
+     "path": "NJ-3.json",
+     "bytes": 77309,
+     "sha256": "c9527cade0c936bba786c2225596f46555c4d26ac76321f8c899c992ff82314a",
+     "records": 128
+    }
+   ],
+   "bytes": 1125671,
+   "sha256": "7c9cfbd5caa895c414cbcebbb9e21c4b431c2dfa62c726fd8657182591d60b62",
+   "retrieved_at": "2026-10-31T22:00:38Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "924844f42833eb0401de96c1cebb0b81be2db3c7419f44b89cdb6499709d519e",
+   "parse_counts": {
+    "numeric": 1818,
+    "below_default": 1,
+    "unknown": 169,
+    "unparseable": 14
+   },
+   "quarantined": 143,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 24,
+    "outside_requested_state": 73,
+    "boundary_ambiguous": 46
+   }
   },
   "NM": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 495,
+   "parts": 1,
+   "files": [
+    {
+     "path": "NM.json",
+     "bytes": 266081,
+     "sha256": "0252682dd85cd1cd383401f6b1ed41daddf39f8e8cbecf1e04261aebae975dc2",
+     "records": 495
+    }
+   ],
+   "bytes": 266081,
+   "sha256": "0252682dd85cd1cd383401f6b1ed41daddf39f8e8cbecf1e04261aebae975dc2",
+   "retrieved_at": "2026-10-31T22:00:43Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "76897aca6e39c6758ae28bf996748cad98589436275f728647fa3d4c0b8f5a18",
+   "parse_counts": {
+    "numeric": 475,
+    "below_default": 2,
+    "unknown": 7,
+    "unparseable": 11
+   },
+   "quarantined": 18,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 15,
+    "outside_requested_state": 2,
+    "boundary_ambiguous": 1
+   }
   },
   "NV": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 572,
+   "parts": 1,
+   "files": [
+    {
+     "path": "NV.json",
+     "bytes": 319034,
+     "sha256": "0bda8562192a8e09c9832cb052d4e3d97ff70afb599707b6ac2d07b089e06cab",
+     "records": 572
+    }
+   ],
+   "bytes": 319034,
+   "sha256": "0bda8562192a8e09c9832cb052d4e3d97ff70afb599707b6ac2d07b089e06cab",
+   "retrieved_at": "2026-10-31T22:01:33Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "ced51d770434e8794c805392474061f8018a6e3394e92aaca40a623ebc5d6e49",
+   "parse_counts": {
+    "numeric": 452,
+    "below_default": 6,
+    "unknown": 110,
+    "unparseable": 4
+   },
+   "quarantined": 31,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 26,
+    "outside_requested_state": 4,
+    "boundary_ambiguous": 1
+   }
   },
   "NY": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 7385,
+   "parts": 8,
+   "files": [
+    {
+     "path": "NY.json",
+     "bytes": 523599,
+     "sha256": "2bb99e3d3c5e5b1bcfa37058b083f38f13b066c875bccfcc56e1a74d6bcad540",
+     "records": 1143
+    },
+    {
+     "path": "NY-2.json",
+     "bytes": 523779,
+     "sha256": "633633d36ae3684da68180ebe6cbcecbfbed535ce22ce353cfdcf82bd7db4449",
+     "records": 937
+    },
+    {
+     "path": "NY-3.json",
+     "bytes": 524097,
+     "sha256": "d2147399bc4841b2b7426babb8871ad87f323138979d2f9182b61bdc3114ddd7",
+     "records": 951
+    },
+    {
+     "path": "NY-4.json",
+     "bytes": 524146,
+     "sha256": "334a8fbfa2c4786f943eaf4dceec7ec8069eb237e1135918c900d6acfbca9241",
+     "records": 970
+    },
+    {
+     "path": "NY-5.json",
+     "bytes": 523939,
+     "sha256": "d1a79105bbdacb29b6a226118be965764ba77391113030a49ec4a872c8c2d730",
+     "records": 958
+    },
+    {
+     "path": "NY-6.json",
+     "bytes": 523887,
+     "sha256": "d23331cf427c3d6ba72f1fd94d32c1303ced74a3bde26adaca0aad53c6b4e6af",
+     "records": 739
+    },
+    {
+     "path": "NY-7.json",
+     "bytes": 524230,
+     "sha256": "7b89a934396a813f55eda3dd84a4b4df08e13ae8090312d903290c631943d1b7",
+     "records": 837
+    },
+    {
+     "path": "NY-8.json",
+     "bytes": 470573,
+     "sha256": "47dd65c0f6c75c48a004a0f9c6e14b68b2e5411be174ce5db4ef3053471b561b",
+     "records": 850
+    }
+   ],
+   "bytes": 4138250,
+   "sha256": "124b45c8744c0e87e1356cab34a64bbd8ad428f35335a55d27a99045ca3e3a30",
+   "retrieved_at": "2026-10-31T22:02:32Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "4109383b4079928e503c945777166918377fabe12863f55c7bb23d31093e5bed",
+   "parse_counts": {
+    "numeric": 6568,
+    "below_default": 47,
+    "unknown": 690,
+    "unparseable": 66
+   },
+   "quarantined": 189,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 92,
+    "outside_requested_state": 45,
+    "boundary_ambiguous": 48,
+    "unsupported_or_incomplete_geometry": 4
+   }
   },
   "OH": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 3760,
+   "parts": 4,
+   "files": [
+    {
+     "path": "OH.json",
+     "bytes": 523992,
+     "sha256": "de9c2835bc1acd64c6745c2b17da401754704e7e84b32e1a65f411a00a742fb3",
+     "records": 1098
+    },
+    {
+     "path": "OH-2.json",
+     "bytes": 523958,
+     "sha256": "e58819700dbc837b5e0649de2aede502aa8460cc917d9afe006c190c8b4147ec",
+     "records": 1137
+    },
+    {
+     "path": "OH-3.json",
+     "bytes": 524283,
+     "sha256": "239c5bf4b2c05b430b9f2350972ff9cf64e291b21768c7f57e130e3f381e87b0",
+     "records": 924
+    },
+    {
+     "path": "OH-4.json",
+     "bytes": 307711,
+     "sha256": "d8db6475ef1e6406631b00e8847f983ab817effb77cad70c92d70486f8631aff",
+     "records": 601
+    }
+   ],
+   "bytes": 1879944,
+   "sha256": "fddbff0deee531c103be7a8476f1a8c4ff24ad2b3d78d3989e2e7e596f5fa727",
+   "retrieved_at": "2026-10-31T22:02:59Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "204168e61f99285d2c2c7681c791f62fd29657281db4518280dbed5f8ecc48d6",
+   "parse_counts": {
+    "numeric": 3193,
+    "below_default": 13,
+    "unknown": 527,
+    "unparseable": 23
+   },
+   "quarantined": 37,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 31,
+    "outside_requested_state": 5,
+    "boundary_ambiguous": 1
+   }
   },
   "OK": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 3989,
+   "parts": 4,
+   "files": [
+    {
+     "path": "OK.json",
+     "bytes": 524157,
+     "sha256": "b651e7c16104d57dcea3100aa7d19c686df6ba563c19ae33dc8172f02c0ee35a",
+     "records": 1034
+    },
+    {
+     "path": "OK-2.json",
+     "bytes": 524050,
+     "sha256": "a51cbc842951bf5e4af5e89d0cf569944f95368688780aab1df8ed29d707f181",
+     "records": 1053
+    },
+    {
+     "path": "OK-3.json",
+     "bytes": 523985,
+     "sha256": "8c62a72b85e0bda4e47cf505f5319d4dbd8f9ac5018d340265928cee1a95f732",
+     "records": 1081
+    },
+    {
+     "path": "OK-4.json",
+     "bytes": 414938,
+     "sha256": "05e305f8a5aaf443ffd3f5879f26d9e9beec9ca47fbe56909d03f651c429633b",
+     "records": 821
+    }
+   ],
+   "bytes": 1987130,
+   "sha256": "a3328f9042646b40fee432a29347d87510280e3f301d5c7d6a43389dc05075e3",
+   "retrieved_at": "2026-10-31T22:03:56Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "d41499c4a70bc77a932f2aee4ba15fbc9c98c9b68d6ad756ae41e2bde52ff672",
+   "parse_counts": {
+    "numeric": 3923,
+    "below_default": 32,
+    "unknown": 33,
+    "unparseable": 1
+   },
+   "quarantined": 59,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 50,
+    "boundary_ambiguous": 1,
+    "outside_requested_state": 8
+   }
   },
   "OR": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1661,
+   "parts": 2,
+   "files": [
+    {
+     "path": "OR.json",
+     "bytes": 523924,
+     "sha256": "69ce168549812d039c0de2bcfcd65b40a0d101cdfcad1ff6623913fd5fdd0a6f",
+     "records": 1108
+    },
+    {
+     "path": "OR-2.json",
+     "bytes": 311681,
+     "sha256": "2bb9bf9d1b7baafa3f17a2b5a157006534690726452a5178dff49a4fa21c9421",
+     "records": 553
+    }
+   ],
+   "bytes": 835605,
+   "sha256": "019a802ee4e0c3d5c0e94c89e0c79a440ccc4214ea527379b30cf1a80d08b411",
+   "retrieved_at": "2026-10-31T22:04:36Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "f06e436764574e4d33df167c73ba88e67588c73bb529ed883322d870b7e6e04b",
+   "parse_counts": {
+    "numeric": 1392,
+    "below_default": 8,
+    "unknown": 241,
+    "unparseable": 18
+   },
+   "quarantined": 106,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 99,
+    "outside_requested_state": 5,
+    "boundary_ambiguous": 2
+   }
   },
   "PA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 3406,
+   "parts": 4,
+   "files": [
+    {
+     "path": "PA.json",
+     "bytes": 524195,
+     "sha256": "21e9e1872156b813f7264536faf4007f50b33c9ab88840cdc64011bee2b68bca",
+     "records": 1012
+    },
+    {
+     "path": "PA-2.json",
+     "bytes": 523872,
+     "sha256": "696c7748b98c90a4b852014081679078e62b6cdaaec7df8a294e4a24af8bedbe",
+     "records": 936
+    },
+    {
+     "path": "PA-3.json",
+     "bytes": 524128,
+     "sha256": "edb0ec047f1e5acb008cd8e5d9f04212de6859e733dc27376afb9d3163ccc90f",
+     "records": 957
+    },
+    {
+     "path": "PA-4.json",
+     "bytes": 262397,
+     "sha256": "d9929e6561201c070fc633efbcd154137144cc640a3b0655eee74dbd1116cf39",
+     "records": 501
+    }
+   ],
+   "bytes": 1834592,
+   "sha256": "f1e96b289dfab3b4c610137a0b49628f3cb885c5731c91db8157af90d3e8eb53",
+   "retrieved_at": "2026-10-31T22:05:17Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "0f2da6c2fa1cc67c49360e052f394cfdc916530f3038155f78a053fc3d093ece",
+   "parse_counts": {
+    "numeric": 2959,
+    "below_default": 12,
+    "unknown": 365,
+    "unparseable": 62
+   },
+   "quarantined": 193,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 163,
+    "outside_requested_state": 25,
+    "boundary_ambiguous": 5
+   }
   },
   "RI": {
-   "status": "present",
+   "status": "kept_prior",
    "schema": "pilot-1",
    "records": 254,
    "parts": 1,
@@ -412,55 +1588,336 @@
    "sha256": "5c32f4cb33c1159dad135408d7810e5717d4bfa2b8866af77b6d2552d9a706e5",
    "retrieved_at": "2026-10-30T16:30:30Z",
    "extract_timestamp": "2026-10-28T21:21:02Z",
-   "source_sha256": "2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6"
+   "source_sha256": "2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6",
+   "failure": {
+    "reason": "schema_locked",
+    "at": "2026-10-31T22:05:36Z",
+    "prior_records": 254
+   }
   },
   "SC": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1765,
+   "parts": 2,
+   "files": [
+    {
+     "path": "SC.json",
+     "bytes": 524202,
+     "sha256": "9a206e22bc49cf963a7281e43e68652e64685c2ec7242b0bb8ce15efb9c023e5",
+     "records": 1113
+    },
+    {
+     "path": "SC-2.json",
+     "bytes": 372652,
+     "sha256": "5e2964e07ebff1528b4e65702964fbf526c0505be48c25ad6ae51e3b0a8770be",
+     "records": 652
+    }
+   ],
+   "bytes": 896854,
+   "sha256": "b50ed90fff471d280e486abc12f1c58cff4ac7318334777412a32cd2f80f5ff2",
+   "retrieved_at": "2026-10-31T22:06:29Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "b316fa7ee527cb89d248bb8137ff2eee112512be3456828f4c0db08e49c07e5c",
+   "parse_counts": {
+    "numeric": 1694,
+    "below_default": 9,
+    "unknown": 56,
+    "unparseable": 6
+   },
+   "quarantined": 98,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 89,
+    "outside_requested_state": 8,
+    "boundary_ambiguous": 1
+   }
   },
   "SD": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 44,
+   "parts": 1,
+   "files": [
+    {
+     "path": "SD.json",
+     "bytes": 21030,
+     "sha256": "4d4551b13d2722552bfa7305e7f6bbf971b086b72a217eb27713c2821e03db5a",
+     "records": 44
+    }
+   ],
+   "bytes": 21030,
+   "sha256": "4d4551b13d2722552bfa7305e7f6bbf971b086b72a217eb27713c2821e03db5a",
+   "retrieved_at": "2026-10-31T22:06:20Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "05a3bad17ce129aa54e08e95e12f7c69f655077f2c24d910a6027f90f79bd0e1",
+   "parse_counts": {
+    "numeric": 43,
+    "below_default": 0,
+    "unknown": 1,
+    "unparseable": 0
+   },
+   "quarantined": 0,
+   "quarantine_reasons": {}
   },
   "TN": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 2390,
+   "parts": 3,
+   "files": [
+    {
+     "path": "TN.json",
+     "bytes": 523691,
+     "sha256": "a63277523a1d2e16158a482b39539fba884757ae6c240f04f5715ee8744e1f77",
+     "records": 906
+    },
+    {
+     "path": "TN-2.json",
+     "bytes": 523903,
+     "sha256": "87b7c8d87eda1e3286de18b1b7839a8f328fa243f2f92156e2c0e01979b3310e",
+     "records": 1058
+    },
+    {
+     "path": "TN-3.json",
+     "bytes": 226859,
+     "sha256": "a3480a14e02f3d27bd49bc4ca80c96b5e2cef81074cb993a8fb87850104f7b88",
+     "records": 426
+    }
+   ],
+   "bytes": 1274453,
+   "sha256": "1c9087db0d81fcf88e015ff53e582fd16bb7f0bfab41945aa67b80cdc4c1c918",
+   "retrieved_at": "2026-10-31T22:07:30Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "585a6a37b4027e248aedffa5efe02f9822bea51ee9bf070fceac3021c5b98907",
+   "parse_counts": {
+    "numeric": 1039,
+    "below_default": 24,
+    "unknown": 1155,
+    "unparseable": 172
+   },
+   "quarantined": 22,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 11,
+    "outside_requested_state": 7,
+    "boundary_ambiguous": 4
+   }
   },
   "TX": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 20235,
+   "parts": 20,
+   "files": [
+    {
+     "path": "TX.json",
+     "bytes": 523609,
+     "sha256": "9c7356606c0c386828ba50514d000533fe29e294676e50e48f2d3b7106738d3d",
+     "records": 1015
+    },
+    {
+     "path": "TX-2.json",
+     "bytes": 523956,
+     "sha256": "49783218368beeacda229e6adea3950cc9a4b4c0cd05a44172afc4bfb20e5b30",
+     "records": 1019
+    },
+    {
+     "path": "TX-3.json",
+     "bytes": 524207,
+     "sha256": "58a04edf752bf989a41ba81d1dd19cae13097cbefa63fd7c1f858a36287531cc",
+     "records": 1204
+    },
+    {
+     "path": "TX-4.json",
+     "bytes": 524096,
+     "sha256": "cbe355b69de8ef7f411475c1e7e735ab21fdcd135ddcfaa59852db7cf823029f",
+     "records": 1216
+    },
+    {
+     "path": "TX-5.json",
+     "bytes": 523756,
+     "sha256": "65aa54f4811421fcbc80ba62fabd3943043cdaa424393a3fb9a5f450a510baec",
+     "records": 1200
+    },
+    {
+     "path": "TX-6.json",
+     "bytes": 523941,
+     "sha256": "bf1c1637baffa5e233a539b1955967d931a0387be4b9c0ff131d31cbfae49f60",
+     "records": 1159
+    },
+    {
+     "path": "TX-7.json",
+     "bytes": 524193,
+     "sha256": "d2266263b431f54f923359486895ec93da7d1fc0466438fe89718e6f88caaa7a",
+     "records": 1024
+    },
+    {
+     "path": "TX-8.json",
+     "bytes": 523920,
+     "sha256": "59419f4b8829f16f18ebb5438dfe16bc57df18e25803e7e14939c8e3e961a574",
+     "records": 1121
+    },
+    {
+     "path": "TX-9.json",
+     "bytes": 524140,
+     "sha256": "f6f988eee60821953e84c62c19fa420cc488a97abe1ccdf90b8e1e43c894335d",
+     "records": 1089
+    },
+    {
+     "path": "TX-10.json",
+     "bytes": 523925,
+     "sha256": "0ac02c523d7913436b7a3e9f491b293311d23940e6ac2ed475e277a18042b08c",
+     "records": 1080
+    },
+    {
+     "path": "TX-11.json",
+     "bytes": 523642,
+     "sha256": "2e5ece41d78ca7c66b8600ffcd91775422051c0cdd32b95408d944e3aebb4e2c",
+     "records": 1090
+    },
+    {
+     "path": "TX-12.json",
+     "bytes": 523966,
+     "sha256": "48e1d63f81b92be57c8a46fd1816e460005b7d58a4b33d2b6f8335913afd8263",
+     "records": 999
+    },
+    {
+     "path": "TX-13.json",
+     "bytes": 524094,
+     "sha256": "5fa5c6530e391169b22c03a41812f507ea113d35e29008fe707ca1f7fb0dc5d7",
+     "records": 1043
+    },
+    {
+     "path": "TX-14.json",
+     "bytes": 523752,
+     "sha256": "1ef57c51ab6ddab48f7e48e0e17e12f7517a5e89b90cc152d20adba57cdbf7cf",
+     "records": 934
+    },
+    {
+     "path": "TX-15.json",
+     "bytes": 523887,
+     "sha256": "3cd323db246fb36e14acc34c75acf5877bc87daaab8e8b2ef6be7794771713e0",
+     "records": 861
+    },
+    {
+     "path": "TX-16.json",
+     "bytes": 523915,
+     "sha256": "cd5ed4da4d507ceb00179d9ab618d64c6c6a1df12a3669ef166a2d710842457e",
+     "records": 964
+    },
+    {
+     "path": "TX-17.json",
+     "bytes": 524071,
+     "sha256": "d8067b03d457cb23c4a579ed75a1f77c31665623367aff5e7baf2edcf587eb6a",
+     "records": 894
+    },
+    {
+     "path": "TX-18.json",
+     "bytes": 523862,
+     "sha256": "a17b2e5d0f1c0c55832ed6e2306abf370cb3c75152a7b5279bb351bdd4ba883b",
+     "records": 975
+    },
+    {
+     "path": "TX-19.json",
+     "bytes": 524144,
+     "sha256": "0a58c79c5a417f68059cb15241b6aa8d87efe92e25b985871a1a36178a80a8fa",
+     "records": 970
+    },
+    {
+     "path": "TX-20.json",
+     "bytes": 211925,
+     "sha256": "81b218ea8175c878e106e02053f5bd25d4cc9de41b0245106da897bba77161c0",
+     "records": 378
+    }
+   ],
+   "bytes": 10167001,
+   "sha256": "2a2b6e41b014fa4b392895b30be37e85dae5c45a79256b4cec69515cbf45f193",
+   "retrieved_at": "2026-10-31T22:09:02Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "f337c8bd1efd0d3ced6b1c859fe999da305419e8c718e2ad9afcc9e86150fadf",
+   "parse_counts": {
+    "numeric": 19859,
+    "below_default": 43,
+    "unknown": 268,
+    "unparseable": 60
+   },
+   "quarantined": 536,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 513,
+    "outside_requested_state": 19,
+    "boundary_ambiguous": 4
+   }
   },
   "UT": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 547,
+   "parts": 1,
+   "files": [
+    {
+     "path": "UT.json",
+     "bytes": 310158,
+     "sha256": "9cd17f95fbea397316916462394194468e41ab732643483809cbe5f9e13144d5",
+     "records": 547
+    }
+   ],
+   "bytes": 310158,
+   "sha256": "9cd17f95fbea397316916462394194468e41ab732643483809cbe5f9e13144d5",
+   "retrieved_at": "2026-10-31T22:08:49Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "017c0b15a856ccc25be29765b50bc05e2db56f9e5d1ec1d7570e32271d9bb87d",
+   "parse_counts": {
+    "numeric": 460,
+    "below_default": 0,
+    "unknown": 87,
+    "unparseable": 5
+   },
+   "quarantined": 69,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 69
+   }
   },
   "VA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 2954,
+   "parts": 3,
+   "files": [
+    {
+     "path": "VA.json",
+     "bytes": 524132,
+     "sha256": "91b075c246a9d71cd0cab31c3c50384f3aac4de85b229cc598ab35260ae1740f",
+     "records": 1242
+    },
+    {
+     "path": "VA-2.json",
+     "bytes": 523977,
+     "sha256": "f991d8c584f1393428e7df0c80de779666cc21c4f0b7630f7505e734f5f5b4ad",
+     "records": 1001
+    },
+    {
+     "path": "VA-3.json",
+     "bytes": 434419,
+     "sha256": "5be5cc04241604a96246b89b92a454ab042db48b56ef287c00d43ccf01df90c9",
+     "records": 711
+    }
+   ],
+   "bytes": 1482528,
+   "sha256": "f40ddabaf5fbe6e76f7d63d9bff17259a2614bcdd339f9c2641e5b1d41938b02",
+   "retrieved_at": "2026-10-31T22:10:04Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "5c109f7cab3416bae5f066b56914008acb79eb2fe8d537464eb1b2125798c366",
+   "parse_counts": {
+    "numeric": 2670,
+    "below_default": 11,
+    "unknown": 281,
+    "unparseable": 41
+   },
+   "quarantined": 74,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 68,
+    "outside_requested_state": 5,
+    "unsupported_or_incomplete_geometry": 1
+   }
   },
   "VT": {
    "status": "present",
@@ -494,28 +1951,121 @@
    }
   },
   "WA": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 3616,
+   "parts": 4,
+   "files": [
+    {
+     "path": "WA.json",
+     "bytes": 523988,
+     "sha256": "191e1a5e2e3d20eae26257ff6cf10a40cbbd99464a2e9b4fdfe44f86cf1f3906",
+     "records": 1067
+    },
+    {
+     "path": "WA-2.json",
+     "bytes": 523887,
+     "sha256": "9c334b0c957c294861f959ce8e04818eb5752f62dd2bc4a08339c9b3b042f06d",
+     "records": 941
+    },
+    {
+     "path": "WA-3.json",
+     "bytes": 524073,
+     "sha256": "4be14d4d7170178eb90f54c87c9aceeb0a57b9f55f6c2986cac954eee054d59b",
+     "records": 926
+    },
+    {
+     "path": "WA-4.json",
+     "bytes": 392822,
+     "sha256": "ca8b6aadb0b2343236459a000e661bb352a38616c62049f2f052fb61bcd51ae7",
+     "records": 682
+    }
+   ],
+   "bytes": 1964770,
+   "sha256": "d581cc9ab107965e75b00fac9d38fe169640c598c55edd9b8eb58f04b9ad131d",
+   "retrieved_at": "2026-10-31T22:12:17Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "70a057582583438c97f34f1eb441b32c2c1798bf1de3cc92e7dab044af16df65",
+   "parse_counts": {
+    "numeric": 2376,
+    "below_default": 39,
+    "unknown": 1108,
+    "unparseable": 73
+   },
+   "quarantined": 276,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 261,
+    "outside_requested_state": 13,
+    "boundary_ambiguous": 2
+   }
   },
   "WI": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 1444,
+   "parts": 2,
+   "files": [
+    {
+     "path": "WI.json",
+     "bytes": 524082,
+     "sha256": "c47e24e083a6a710eaec12beaae5a56ceb66eaaf32700c4e7255af0e3f095e5b",
+     "records": 1006
+    },
+    {
+     "path": "WI-2.json",
+     "bytes": 221095,
+     "sha256": "7b13aba4c92f723a8eaf7ab8d975b461789194c5bb903eec886ebb025997e7ad",
+     "records": 438
+    }
+   ],
+   "bytes": 745177,
+   "sha256": "1809eb68809e0b6a4eff619803754f00da7e17ab2f704d3e7c5a72969527b031",
+   "retrieved_at": "2026-10-31T22:11:48Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "3db991aff834cb89bd12af0646d33acbd53f0c6c819c5b4ded65842720861d5d",
+   "parse_counts": {
+    "numeric": 955,
+    "below_default": 5,
+    "unknown": 127,
+    "unparseable": 385
+   },
+   "quarantined": 171,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 166,
+    "boundary_ambiguous": 4,
+    "outside_requested_state": 1
+   }
   },
   "WV": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 153,
+   "parts": 1,
+   "files": [
+    {
+     "path": "WV.json",
+     "bytes": 95147,
+     "sha256": "066336f6da6c1d752e6e73965a376aa5b70fe14e6a3721403f34c25889343175",
+     "records": 153
+    }
+   ],
+   "bytes": 95147,
+   "sha256": "066336f6da6c1d752e6e73965a376aa5b70fe14e6a3721403f34c25889343175",
+   "retrieved_at": "2026-10-31T22:12:40Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "423c1884b83938ff787f302a3460993057c4c2a801e2ec55ab51d10d2cb32745",
+   "parse_counts": {
+    "numeric": 146,
+    "below_default": 2,
+    "unknown": 3,
+    "unparseable": 2
+   },
+   "quarantined": 30,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 3,
+    "outside_requested_state": 24,
+    "boundary_ambiguous": 3
+   }
   },
   "WY": {
    "status": "present",
@@ -547,12 +2097,33 @@
    }
   },
   "DC": {
-   "status": "not_built",
-   "records": 0,
-   "parts": 0,
-   "files": [],
-   "bytes": 0,
-   "sha256": null
+   "status": "present",
+   "schema": "kamptrail-clearances-2",
+   "records": 198,
+   "parts": 1,
+   "files": [
+    {
+     "path": "DC.json",
+     "bytes": 118266,
+     "sha256": "989b2a89fdd03efcaf91ef4cbf561a4fc294aad9c2dfbbbcf50dc847e05cbfb4",
+     "records": 198
+    }
+   ],
+   "bytes": 118266,
+   "sha256": "989b2a89fdd03efcaf91ef4cbf561a4fc294aad9c2dfbbbcf50dc847e05cbfb4",
+   "retrieved_at": "2026-10-31T22:13:20Z",
+   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "source_sha256": "e7138ff86839f16f2d0ea54c9271d50ea8c6068857fae99711390ba77900824e",
+   "parse_counts": {
+    "numeric": 179,
+    "below_default": 1,
+    "unknown": 18,
+    "unparseable": 0
+   },
+   "quarantined": 53,
+   "quarantine_reasons": {
+    "no_road_structure_or_barrier_context": 53
+   }
   }
  }
 }
