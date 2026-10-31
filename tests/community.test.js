@@ -75,6 +75,16 @@ test('storage exhaustion rejects the whole upload but still accepts a text revie
  }finally{e.close();}
 });
 
+test('signal radio technology is optional, validated and stored without an unspecified marker',{skip:!capable},async()=>{
+ const e=await env('',18958);try{
+  const withRadio=(radio)=>({...good,observations:JSON.stringify({signals:[{carrier:'att',signal:'weak',environment:'outdoors',...(radio===undefined?{}:{radio})}]})});
+  for(const bad of ['6g','LTE',5,null,''])assert.equal((await e.post(withRadio(bad))).status,422,String(bad));
+  let res=await e.post(withRadio('5g'));assert.equal(res.status,201);let {token}=await res.json();
+  let mine=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();assert.deepEqual(mine.review.observations.signals,[{carrier:'att',signal:'weak',environment:'outdoors',radio:'5g'}]);
+  res=await e.post({...withRadio('unspecified'),display_name:'Other camper'});if(res.status===201){({token}=await res.json());mine=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();assert.ok(!('radio' in mine.review.observations.signals[0]),'unspecified is not stored');}
+ }finally{e.close();}
+});
+
 test('published observations and rating discovery follow moderation, edit, hide, restore and delete',{skip:!capable},async()=>{
  const e=await env('',18957);try{
   const details={access:'moderate',noise:'quiet',shade:'partial',crowding:'sparse',comfort:'comfortable',signals:[{carrier:'verizon',signal:'usable',environment:'inside_rv'}]};

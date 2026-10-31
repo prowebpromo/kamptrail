@@ -146,3 +146,40 @@ test('place review detail renders whole-site seasonal coverage and distinguishes
  assert.match(await render({}),/No published numeric sub-ratings yet. Unreported stays unknown/);
  const unavailable=await render({scores_available:false});assert.match(unavailable,/Seasonal sub-ratings are unavailable/);assert.doesNotMatch(unavailable,/No published numeric sub-ratings yet/);
 });
+
+test('maximum approach difficulty ranks easy < moderate < difficult; unknown and missing never match',()=>{
+ const now=Date.parse('2026-10-29T12:00:00Z');
+ const s=(...values)=>({rating_count:values.length,rating_sum:4*values.length,latest_visit:'2026-10-01',observations:values.map(v=>group(v))});
+ const easy=s({access:'easy'}),moderate=s({access:'moderate'}),difficult=s({access:'difficult'}),missing=s({noise:'quiet'}),unknown=s({access:'unknown'});
+ const m=(site,max)=>D.matchesSummary(site,{observed_access:max},now);
+ assert.equal(m(easy,'difficult'),true);assert.equal(m(moderate,'difficult'),true);assert.equal(m(difficult,'difficult'),true);
+ assert.equal(m(easy,'moderate'),true);assert.equal(m(moderate,'moderate'),true);assert.equal(m(difficult,'moderate'),false);
+ assert.equal(m(easy,'easy'),true);assert.equal(m(moderate,'easy'),false);assert.equal(m(difficult,'easy'),false);
+ for(const max of ['easy','moderate','difficult']){assert.equal(m(missing,max),false,'missing access never matches');assert.equal(m(unknown,max),false,'unrecognised access never matches');}
+ assert.equal(m(easy,'extreme'),false,'an unrecognised maximum matches nothing');
+ assert.equal(D.matchesSummary(missing,{observed_access:''},now),true,'Any does not filter');
+ assert.deepEqual(Object.keys(D.ACCESS_FILTER),['easy','moderate','difficult'],'stored filter values are unchanged');
+ assert.equal(m(s({access:'easy',noise:'noisy'},{access:'moderate',noise:'quiet'}),'moderate'),true);
+ assert.equal(D.matchesSummary(s({access:'moderate',noise:'noisy'}),{observed_access:'difficult',observed_noise:'quiet'},now),false,'conditions still need the same visit');
+});
+
+test('radio technology is optional, validated, described and filterable on the same signal row',()=>{
+ const now=Date.parse('2026-10-29T12:00:00Z');
+ const sig=(radio)=>({carrier:'verizon',signal:'usable',environment:'outdoors',...(radio?{radio}:{})});
+ const mk=(...rows)=>({rating_count:1,rating_sum:4,latest_visit:'2026-10-01',observations:[group({signals:rows})]});
+ assert.equal(D.validSites({a:mk(sig('lte'))}),true);assert.equal(D.validSites({a:mk(sig('5g'))}),true);assert.equal(D.validSites({a:mk(sig())}),true,'old reports stay valid');
+ assert.equal(D.validSites({a:mk(sig('6g'))}),false);assert.equal(D.validSites({a:mk({...sig('lte'),extra:1})}),false);
+ assert.equal(D.matchesSummary(mk(sig('lte')),{observed_carrier:'verizon',observed_radio:'lte'},now),true);
+ assert.equal(D.matchesSummary(mk(sig('lte')),{observed_radio:'5g'},now),false);
+ assert.equal(D.matchesSummary(mk(sig()),{observed_radio:'lte'},now),false,'reports without technology never match a technology filter');
+ assert.equal(D.matchesSummary(mk(sig()),{observed_carrier:'verizon',observed_signal:'usable'},now),true);
+ assert.match(D.describe({signals:[sig('5g')]}),/Verizon: Usable \(Outdoors\) · 5G/);
+ assert.doesNotMatch(D.describe({signals:[sig()]}),/LTE|5G/);assert.doesNotMatch(D.describe({signals:[sig('unspecified')]}),/LTE|5G/);
+ assert.equal(D.active({observed_radio:'lte'}),true);
+});
+
+test('form values include radio only when the visitor named a technology',()=>{
+ const data=new Map([['signal_att','weak'],['environment_att','outdoors'],['radio_att','lte'],['signal_verizon','usable'],['environment_verizon','outdoors'],['radio_verizon','unspecified']]);
+ const prev=global.FormData;global.FormData=function(){return {get:k=>data.get(k)??null};};
+ try{assert.deepEqual(D.formValues({}).signals,[{carrier:'att',signal:'weak',environment:'outdoors',radio:'lte'},{carrier:'verizon',signal:'usable',environment:'outdoors'}]);}finally{global.FormData=prev;}
+});

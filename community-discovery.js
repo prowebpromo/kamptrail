@@ -8,10 +8,11 @@
  const scoreActive=f=>!!f.scoreSeason||scoreAxes(f).length>0;
  const scoreFilterCount=f=>scoreAxes(f).length+Number(!!f.scoreSeason);
  const CARRIERS={att:'AT&T',verizon:'Verizon',tmobile:'T-Mobile',other:t("Other carrier")},SIGNAL={none:t("No service"),weak:t("Weak"),usable:t("Usable"),strong:t("Strong")},ENVIRONMENTS={unspecified:t("Setting not specified"),outdoors:t("Outdoors"),inside_rv:t("Inside RV"),other_vehicle:t("Inside other vehicle")};
+ const RADIOS={unspecified:t("Technology not specified"),lte:'LTE','5g':'5G'},ACCESS_RANK={easy:0,moderate:1,difficult:2},ACCESS_FILTER={easy:t("Easy only"),moderate:t("Up to moderate"),difficult:t("Up to difficult")};
  const SIGNAL_FILTER={none:t("No service reported"),weak:t("Weak or better"),usable:t("Usable or better"),strong:t("Strong")},SIGNAL_LEVEL={none:0,weak:1,usable:2,strong:3};
  const st={sites:new Map(),mode:'idle',checked:null,error:'',pending:null,generation:0};
- const active=f=>scoreActive(f)||+f.minRating>0||+f.minReviews>1||Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
- const conditions=f=>Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal;
+ const active=f=>scoreActive(f)||+f.minRating>0||+f.minReviews>1||Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal||!!f.observed_radio;
+ const conditions=f=>Object.keys(AXES).some(k=>f['observed_'+k])||!!f.observed_carrier||!!f.observed_signal||!!f.observed_radio;
  function matchesSummary(s,f,now=Date.now()){
   if(!active(f))return true;
   if(!s||!Number.isInteger(s.rating_count)||s.rating_count<1)return false;
@@ -21,13 +22,18 @@
   if(!conditions(f))return true;
   return matchingGroups(s,f,now).length>0;
  }
+// Approach is a maximum on a ranked scale. Missing or unrecognised access never matches, so unknown is never easy.
+ function axisMatches(axis,value,wanted){
+  if(axis!=='access')return value===wanted;
+  return Object.hasOwn(ACCESS_RANK,value)&&Object.hasOwn(ACCESS_RANK,wanted)&&ACCESS_RANK[value]<=ACCESS_RANK[wanted];
+ }
  function matchingGroups(s,f,now=Date.now()){
   const cutoff=+f.observedDays>0?new Date(now-(+f.observedDays)*86400000).toISOString().slice(0,10):'0000-00-00';
   return (s.observations||[]).filter(g=>{
    if(g.latest_visit<cutoff)return false;
    const o=g.values||{};
-   if(Object.keys(AXES).some(k=>f['observed_'+k]&&o[k]!==f['observed_'+k]))return false;
-   return !(f.observed_carrier||f.observed_signal)||(o.signals||[]).some(x=>(!f.observed_carrier||x.carrier===f.observed_carrier)&&(!f.observed_signal||(f.observed_signal==='none'?x.signal==='none':SIGNAL_LEVEL[x.signal]>=SIGNAL_LEVEL[f.observed_signal])));
+   if(Object.keys(AXES).some(k=>f['observed_'+k]&&!axisMatches(k,o[k],f['observed_'+k])))return false;
+   return !(f.observed_carrier||f.observed_signal||f.observed_radio)||(o.signals||[]).some(x=>(!f.observed_carrier||x.carrier===f.observed_carrier)&&(!f.observed_radio||x.radio===f.observed_radio)&&(!f.observed_signal||(f.observed_signal==='none'?x.signal==='none':SIGNAL_LEVEL[x.signal]>=SIGNAL_LEVEL[f.observed_signal])));
   });
  }
  const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
@@ -72,7 +78,7 @@
  function validScores(x){return keys(x,Object.keys(SCORES))&&Object.values(x).every(n=>Number.isInteger(n)&&n>=1&&n<=5);}
  function validSites(sites){
   if(!record(sites))return false;
-  return Object.entries(sites).every(([id,s])=>id.length>0&&id.length<=200&&keys(s,['rating_count','rating_sum','latest_visit','observations'])&&Number.isInteger(s.rating_count)&&s.rating_count>0&&Number.isInteger(s.rating_sum)&&s.rating_sum>=s.rating_count&&s.rating_sum<=5*s.rating_count&&validVisit(s.latest_visit)&&Array.isArray(s.observations)&&s.observations.every(g=>keys(g,['count','latest_visit','values'])&&Number.isInteger(g.count)&&g.count>0&&validVisit(g.latest_visit)&&keys(g.values,[...Object.keys(AXES),'signals','scores'])&&Object.keys(g.values).every(k=>k==='signals'||k==='scores'&&validScores(g.values.scores)||has(AXES,k)&&has(AXES[k].values,g.values[k]))&&(!g.values.signals||Array.isArray(g.values.signals)&&g.values.signals.every(x=>keys(x,['carrier','signal','environment'])&&has(CARRIERS,x.carrier)&&has(SIGNAL,x.signal)&&has(ENVIRONMENTS,x.environment))))&&s.observations.reduce((n,g)=>n+g.count,0)<=s.rating_count);
+  return Object.entries(sites).every(([id,s])=>id.length>0&&id.length<=200&&keys(s,['rating_count','rating_sum','latest_visit','observations'])&&Number.isInteger(s.rating_count)&&s.rating_count>0&&Number.isInteger(s.rating_sum)&&s.rating_sum>=s.rating_count&&s.rating_sum<=5*s.rating_count&&validVisit(s.latest_visit)&&Array.isArray(s.observations)&&s.observations.every(g=>keys(g,['count','latest_visit','values'])&&Number.isInteger(g.count)&&g.count>0&&validVisit(g.latest_visit)&&keys(g.values,[...Object.keys(AXES),'signals','scores'])&&Object.keys(g.values).every(k=>k==='signals'||k==='scores'&&validScores(g.values.scores)||has(AXES,k)&&has(AXES[k].values,g.values[k]))&&(!g.values.signals||Array.isArray(g.values.signals)&&g.values.signals.every(x=>keys(x,['carrier','signal','environment','radio'])&&has(CARRIERS,x.carrier)&&has(SIGNAL,x.signal)&&has(ENVIRONMENTS,x.environment)&&(!Object.hasOwn(x,'radio')||has(RADIOS,x.radio)))))&&s.observations.reduce((n,g)=>n+g.count,0)<=s.rating_count);
  }
  // US calendar seasons label the visit month; they do not predict temperatures.
  function season(date){const m=+date.slice(5,7);return m===12||m<=2?'winter':m<=5?'spring':m<=8?'summer':'fall';}
@@ -138,14 +144,14 @@
   const select=(name,options,value)=>{const n=el('select',{name});n.append(el('option',{value:''},t("Not reported")));for(const[k,v]of Object.entries(options))n.append(el('option',{value:k,selected:k===value},v));return n;};
   for(const[k,a]of Object.entries(AXES))set.append(field(a.label,select('observed_'+k,a.values,values[k])));
   set.append(el('p',{class:'kt-fine'},t("Cell signal is your experience on the visit date, not a carrier prediction or a speed measurement. Leave carriers you did not try unreported.")));
-  for(const[k,name]of Object.entries(CARRIERS)){const old=(values.signals||[]).find(x=>x.carrier===k)||{};set.append(field(t('{carrier} signal',{carrier:name}),select('signal_'+k,SIGNAL,old.signal)),field(t('{carrier} setting',{carrier:name}),select('environment_'+k,ENVIRONMENTS,old.environment||'unspecified')));}
+  for(const[k,name]of Object.entries(CARRIERS)){const old=(values.signals||[]).find(x=>x.carrier===k)||{};set.append(field(t('{carrier} signal',{carrier:name}),select('signal_'+k,SIGNAL,old.signal)),field(t('{carrier} setting',{carrier:name}),select('environment_'+k,ENVIRONMENTS,old.environment||'unspecified')),field(t('{carrier} technology',{carrier:name}),select('radio_'+k,RADIOS,old.radio||'unspecified')));}
   const numeric=el('fieldset');numeric.append(el('legend',{},t("Your visit sub-ratings (optional)")),el('p',{class:'kt-fine'},t("Choose a number only for your own visit. These are subjective experiences: 1 is the low end and 5 the high end. Comfort does not establish safety. Leave untried aspects unreported; no score is inferred from your review or condition choices.")));
   for(const[k,a]of Object.entries(SCORES))numeric.append(field(a.label,select('score_'+k,Object.fromEntries([1,2,3,4,5].map(n=>[String(n),t('{number} of 5',{number:n})+(n===1?' — '+a.low:n===5?' — '+a.high:'')])),String(values.scores?.[k]||'')),t('{low} (1) to {high} (5).',{low:a.low,high:a.high.toLowerCase()})));
   form.append(set,numeric);
  }
- function formValues(form){const data=new FormData(form),out={};for(const k of Object.keys(AXES)){const v=data.get('observed_'+k);if(v)out[k]=v;}const signals=[];for(const carrier of Object.keys(CARRIERS)){const signal=data.get('signal_'+carrier);if(signal)signals.push({carrier,signal,environment:data.get('environment_'+carrier)||'unspecified'});}if(signals.length)out.signals=signals;const scores={};for(const k of Object.keys(SCORES)){const v=data.get('score_'+k);if(v)scores[k]=+v;}if(Object.keys(scores).length)out.scores=scores;return out;}
- function describe(o){const text=[];for(const[k,a]of Object.entries(AXES))if(a.values[o?.[k]])text.push(a.label+': '+a.values[o[k]]);for(const s of o?.signals||[])if(CARRIERS[s.carrier]&&SIGNAL[s.signal])text.push(CARRIERS[s.carrier]+': '+SIGNAL[s.signal]+' ('+(ENVIRONMENTS[s.environment]||t("Setting not specified"))+')');for(const[k,a]of Object.entries(SCORES))if(Number.isInteger(o?.scores?.[k]))text.push(a.label+': '+o.scores[k]+t('/5 (visit rating)'));return text.join(' · ');}
- global.KampTrailDiscovery={version:'2.29.1',AXES,MONTHS,validMonthly,monthlyView,SCORES,SEASONS,SCORE_MINIMUM,scoreFilterCount,season,seasonalScores,seasonalText,scoreEvidence,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
+ function formValues(form){const data=new FormData(form),out={};for(const k of Object.keys(AXES)){const v=data.get('observed_'+k);if(v)out[k]=v;}const signals=[];for(const carrier of Object.keys(CARRIERS)){const signal=data.get('signal_'+carrier);if(signal){const row={carrier,signal,environment:data.get('environment_'+carrier)||'unspecified'},radio=data.get('radio_'+carrier);if(radio==='lte'||radio==='5g')row.radio=radio;signals.push(row);}}if(signals.length)out.signals=signals;const scores={};for(const k of Object.keys(SCORES)){const v=data.get('score_'+k);if(v)scores[k]=+v;}if(Object.keys(scores).length)out.scores=scores;return out;}
+ function describe(o){const text=[];for(const[k,a]of Object.entries(AXES))if(a.values[o?.[k]])text.push(a.label+': '+a.values[o[k]]);for(const s of o?.signals||[])if(CARRIERS[s.carrier]&&SIGNAL[s.signal])text.push(CARRIERS[s.carrier]+': '+SIGNAL[s.signal]+' ('+(ENVIRONMENTS[s.environment]||t("Setting not specified"))+')'+(s.radio==='lte'||s.radio==='5g'?' · '+RADIOS[s.radio]:''));for(const[k,a]of Object.entries(SCORES))if(Number.isInteger(o?.scores?.[k]))text.push(a.label+': '+o.scores[k]+t('/5 (visit rating)'));return text.join(' · ');}
+ global.KampTrailDiscovery={version:'2.30.0',AXES,RADIOS,ACCESS_RANK,ACCESS_FILTER,MONTHS,validMonthly,monthlyView,SCORES,SEASONS,SCORE_MINIMUM,scoreFilterCount,season,seasonalScores,seasonalText,scoreEvidence,CARRIERS,SIGNAL,SIGNAL_FILTER,ENVIRONMENTS,active,conditions,matchesSummary,validSites,matches,summary,status,load,observeFields,formValues,describe,matchNote};
  if(typeof module!=='undefined'&&module.exports)module.exports=global.KampTrailDiscovery;
  if(global.addEventListener){global.addEventListener('kamptrail:communitychanged',async()=>{const reload=st.mode!=='idle'||active(global.kamptrailFilters||{}),pending=st.pending;st.generation++;st.sites=new Map();st.checked=null;st.mode='idle';notify();try{await caches.delete(cacheName());}catch{}if(pending)await pending;try{await caches.delete(cacheName());}catch{}if(reload)load(true);});global.addEventListener('focus',()=>{if(active(global.kamptrailFilters||{}))load();});}
 })(typeof window!=='undefined'?window:globalThis);

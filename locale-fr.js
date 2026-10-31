@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.29.1', messages:{
+  global.KampTrailI18nFr = {version:'2.30.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1704,6 +1704,15 @@
   " (end of leg {legs})": " (fin du tronçon {legs})",
   "Terrain ({unit})": "Terrain ({unit})",
   "Spanish interface. Source text, place names and visitor content stay in their original language. Untranslated server or browser messages may appear in English.": "Interface en français. Les textes des sources, les noms de lieux et le contenu des visiteurs restent dans leur langue d’origine. Les messages du serveur ou du navigateur non traduits peuvent apparaître en anglais.",
-  "Freshness date": "Date de référence"
+  "Freshness date": "Date de référence",
+  "Easy only": "Facile seulement",
+  "Up to moderate": "Jusqu’à modéré",
+  "Up to difficult": "Jusqu’à difficile",
+  "Technology not specified": "Technologie non précisée",
+  "{carrier} technology": "Technologie {carrier}",
+  "Reported technology": "Technologie indiquée",
+  "Any technology": "Toute technologie",
+  "Signal levels are ordered visitor categories, not the 1 to 5 bars of other apps. No service means no usable signal. Weak, Usable and Strong roughly cover the low, middle and high ranges. No numeric match is claimed.": "Les niveaux de signal sont des catégories ordonnées selon les visiteurs, et non les barres de 1 à 5 d’autres applis. Aucun service signifie aucun signal utilisable. Faible, Utilisable et Fort couvrent approximativement les plages basse, moyenne et haute. Aucune équivalence numérique n’est revendiquée.",
+  "Approach is a maximum on the visitor's 3-level scale. Up to moderate includes easy and moderate reports. Missing or unknown approach never matches.": "L’accès est un maximum sur l’échelle à 3 niveaux des visiteurs. Jusqu’à modéré inclut les rapports faciles et modérés. Un accès manquant ou inconnu ne correspond jamais."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

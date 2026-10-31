@@ -8,10 +8,10 @@
   const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0,rigLength:0,rigIncludeUnknown:false,hookups:[],minReviews:1,scoreSeason:'',minScore_quietness:0,minScore_shade:0,minScore_comfort:0,observedDays:365,elevationMin:null,elevationMax:null,elevationUnit:'ft',forecastMinC:null,forecastMaxC:null,forecastHours:24,forecastUnit:'F'});
   const state={filters:defaults(),panel:null,button:null};
   function close(){state.panel.style.display='none';state.button.setAttribute('aria-expanded','false');}
-  function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+(window.KampTrailDiscovery?.scoreFilterCount(f)||0)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal)+Number(DataQuality.elevationRange(f).active)+Number(window.KampTrailForecast?.active(f));}
+  function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+(window.KampTrailDiscovery?.scoreFilterCount(f)||0)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal)+Number(!!f.observed_radio)+Number(DataQuality.elevationRange(f).active)+Number(window.KampTrailForecast?.active(f));}
   function apply(origin='manual'){
     const f=state.filters;
-    try{localStorage.setItem('kt_filters_mvp',JSON.stringify({cost:f.cost,type:f.type,rigSize:f.rigSize,amenities:f.amenities,rigLength:f.rigLength,rigIncludeUnknown:f.rigIncludeUnknown,hookups:f.hookups,minRating:f.minRating,minReviews:f.minReviews,scoreSeason:f.scoreSeason,...Object.fromEntries(Object.keys(window.KampTrailDiscovery?.SCORES||{}).map(k=>['minScore_'+k,f['minScore_'+k]||0])),observedDays:f.observedDays,elevationMin:f.elevationMin,elevationMax:f.elevationMax,elevationUnit:f.elevationUnit,forecastMinC:f.forecastMinC,forecastMaxC:f.forecastMaxC,forecastHours:f.forecastHours,forecastUnit:f.forecastUnit,...Object.fromEntries(Object.keys(window.KampTrailDiscovery?.AXES||{}).map(k=>['observed_'+k,f['observed_'+k]||''])),observed_carrier:f.observed_carrier||'',observed_signal:f.observed_signal||''}));}catch{}
+    try{localStorage.setItem('kt_filters_mvp',JSON.stringify({cost:f.cost,type:f.type,rigSize:f.rigSize,amenities:f.amenities,rigLength:f.rigLength,rigIncludeUnknown:f.rigIncludeUnknown,hookups:f.hookups,minRating:f.minRating,minReviews:f.minReviews,scoreSeason:f.scoreSeason,...Object.fromEntries(Object.keys(window.KampTrailDiscovery?.SCORES||{}).map(k=>['minScore_'+k,f['minScore_'+k]||0])),observedDays:f.observedDays,elevationMin:f.elevationMin,elevationMax:f.elevationMax,elevationUnit:f.elevationUnit,forecastMinC:f.forecastMinC,forecastMaxC:f.forecastMaxC,forecastHours:f.forecastHours,forecastUnit:f.forecastUnit,...Object.fromEntries(Object.keys(window.KampTrailDiscovery?.AXES||{}).map(k=>['observed_'+k,f['observed_'+k]||''])),observed_carrier:f.observed_carrier||'',observed_signal:f.observed_signal||'',observed_radio:f.observed_radio||''}));}catch{}
     window.kamptrailFilters=f;
     window.KampTrailData?.updateFilters(f);
     if(window.KampTrailDiscovery?.active(f))window.KampTrailDiscovery.load();
@@ -58,7 +58,7 @@
     Object.assign(state.filters,f);sync();apply('profile');return true;
   }
   window.KampTrailFilters={
-    version:'2.29.1',
+    version:'2.30.0',
     init(map){
       const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
       p.setAttribute('role','region');p.setAttribute('aria-label',t("Campsite filters"));
@@ -135,9 +135,12 @@
         let savedCamper={};try{savedCamper=JSON.parse(localStorage.getItem('kt_filters_mvp')||'{}');}catch{}
         add('minRating',t("Minimum community rating"),[['0',t("Any rating")],['3',t("3+ stars")],['4',t("4+ stars")],['5',t("5 stars")]],'0');
         add('minReviews',t("Minimum published reviews"),[['1',t("1+ reviews")],['3',t("3+ reviews")],['5',t("5+ reviews")]],'1');
-        for(const[k,a]of Object.entries(evidence.AXES))add('observed_'+k,t('Reported {label}',{label:a.label.toLowerCase()}),[['',t("Any / not filtering")],...Object.entries(a.values)]);
+        for(const[k,a]of Object.entries(evidence.AXES))add('observed_'+k,t('Reported {label}',{label:a.label.toLowerCase()}),[['',t("Any / not filtering")],...Object.entries(k==='access'?evidence.ACCESS_FILTER:a.values)]);
         add('observed_carrier',t("Reported carrier"),[['',t("Any carrier")],...Object.entries(evidence.CARRIERS)]);
         add('observed_signal',t("Reported signal"),[['',t("Any signal")],...Object.entries(evidence.SIGNAL_FILTER)]);
+        const signalNote=document.createElement('p');signalNote.className='filter-note';signalNote.textContent=t("Signal levels are ordered visitor categories, not the 1 to 5 bars of other apps. No service means no usable signal. Weak, Usable and Strong roughly cover the low, middle and high ranges. No numeric match is claimed.");set.append(signalNote);
+        add('observed_radio',t("Reported technology"),[['',t("Any technology")],['lte',evidence.RADIOS.lte],['5g',evidence.RADIOS['5g']]]);
+        const accessNote=document.createElement('p');accessNote.className='filter-note';accessNote.textContent=t("Approach is a maximum on the visitor's 3-level scale. Up to moderate includes easy and moderate reports. Missing or unknown approach never matches.");set.append(accessNote);
         add('observedDays',t("Observation age"),[['0',t("Any visit date")],['365',t("Past 12 months")],['90',t("Past 90 days")]],'365');
         add('scoreSeason',t("Numeric rating visit season"),[['',t("All calendar seasons")],...Object.entries(evidence.SEASONS)]);
         for(const[k,a]of Object.entries(evidence.SCORES))add('minScore_'+k,t('Minimum average {aspect} score',{aspect:a.label.toLowerCase()}),[['0',t("Any / not filtering")],['3',t("3+ of 5")],['4',t("4+ of 5")],['5',t("5 of 5")]],'0');
