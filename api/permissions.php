@@ -20,7 +20,7 @@ try {
         $before=isset($in['before'])?kp_int($in['before'],0):0;
         $activity=$in['activity']??null;
         if ($activity!==null && !in_array($activity,KP_ACTIVITIES,true)) kp_fail(422,'invalid_activity','Choose a supported activity.');
-        $result=['ok'=>true,'place_key'=>$key,'place'=>$place,'official'=>kp_official($place,null,$activity??'overnight_occupancy'),'reports_available'=>false,'reports'=>[],'count'=>0,'next_before'=>null];
+        $result=['ok'=>true,'place_key'=>$key,'place'=>$place,'official'=>kp_official($place,null,$activity??'overnight_occupancy'),'reports_available'=>false,'reports'=>[],'count'=>0,'next_before'=>null,'answers'=>null];
         // Official evidence is independent of community database availability and moderation.
         try {
             $pdo=kt_db();
@@ -31,8 +31,9 @@ try {
                 if ($before) {$where.=' AND id<?';$args[]=$before;}
                 $q=$pdo->prepare('SELECT * FROM permission_reports WHERE '.$where.' ORDER BY id DESC LIMIT 11');$q->execute($args);$rows=$q->fetchAll();$more=count($rows)>10;$rows=array_slice($rows,0,10);
                 $result['reports']=array_map(fn($row)=>kp_public($row),$rows);$result['next_before']=$more?(int)end($rows)['id']:null;$result['reports_available']=true;
+                if ($activity===null || $activity==='overnight_occupancy') $result['answers']=kp_answers($pdo,$key);
             }
-        } catch (Throwable $e) { $result['reports']=[];$result['count']=0;$result['next_before']=null;$result['reports_available']=false; }
+        } catch (Throwable $e) { $result['reports']=[];$result['count']=0;$result['next_before']=null;$result['reports_available']=false;$result['answers']=null; }
         kt_json(200,$result);
     }
     // Credentials are checked on every owner operation; a report ID alone grants no access.
@@ -46,6 +47,7 @@ try {
     kp_lock($pdo);
     if ($action==='submit') {
         kp_rate($pdo,'permission_submit',5);$token=bin2hex(random_bytes(32));$place=$data['place'];
+        if (in_array($data['observation'],KP_ANSWERS,true)) kp_answer_once($pdo,kp_place_key($place));
         $q=$pdo->prepare("INSERT INTO permission_reports (owner_hash,place_key,place_kind,place_id,place_name,lng,lat,activity,observation,visited_on,firsthand,display_name,body,authority_role,authority_office,status,version,public_note,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,1,?,?,?,?,'pending',1,'',?,?)");
         $values=[hash('sha256',$token,true),kp_place_key($place),$place['kind'],$place['id'],$place['name'],$place['coordinates'][0],$place['coordinates'][1],$data['activity'],$data['observation'],$data['visited_on'],$data['display_name'],$data['body'],$data['authority_role'],$data['authority_office'],kt_now(),kt_now()];
         foreach ($values as $i=>$value) $q->bindValue($i+1,$value,$i===0?PDO::PARAM_LOB:PDO::PARAM_STR);$q->execute();$id=(int)$pdo->lastInsertId();
@@ -66,6 +68,8 @@ try {
         kt_json(200,['ok'=>true,'id'=>$id,'version'=>$version+1,'status'=>'deleted']);
     }
     if (kp_place_key($data['place'])!==$row['place_key']) kp_fail(422,'place_changed','A report cannot be moved to another place.');
+    // An answer stays an answer and a narrative report stays a report, so edits cannot bypass the duplicate rule.
+    if (in_array($data['observation'],KP_ANSWERS,true)!==in_array($row['observation'],KP_ANSWERS,true)) kp_fail(422,'type_changed','Edit an answer as an answer, or share a separate report.');
     $q=$pdo->prepare("UPDATE permission_reports SET activity=?,observation=?,visited_on=?,display_name=?,body=?,authority_role=?,authority_office=?,public_note='',status='pending',version=version+1,updated_at=? WHERE id=? AND owner_hash=? AND version=? AND status<>'deleted'");
     $values=[$data['activity'],$data['observation'],$data['visited_on'],$data['display_name'],$data['body'],$data['authority_role'],$data['authority_office'],kt_now(),$id,$owner,$version];
     foreach ($values as $i=>$value) $q->bindValue($i+1,$value,$i===9?PDO::PARAM_LOB:PDO::PARAM_STR);$q->execute();

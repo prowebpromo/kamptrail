@@ -4,7 +4,11 @@ require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/permission-evidence.php';
 const KP_VERSION = '005_permissions';
 const KP_ACTIVITIES = ['overnight_occupancy', 'unoccupied_vehicle_parking'];
-const KP_OBSERVATIONS = ['granted_to_me', 'refused_to_me', 'prohibition_sign_seen', 'stayed_without_asking'];
+const KP_OBSERVATIONS = ['granted_to_me', 'refused_to_me', 'prohibition_sign_seen', 'stayed_without_asking', 'stay_allowed', 'stay_not_allowed'];
+// Explicit visitor answers to "Was an overnight stay allowed when you visited?". They are moderated
+// visitor reports, tallied separately, and never change official permission, filters or fees.
+const KP_ANSWERS = ['stay_allowed', 'stay_not_allowed'];
+const KP_ANSWER_WINDOW_DAYS = 30;
 const KP_STATES = ['pending', 'published', 'rejected', 'deleted'];
 final class KpError extends RuntimeException {
     public string $error;
@@ -56,7 +60,10 @@ function kp_validate(array $in): array {
         if (!is_string($in[$key]??null) || !in_array($in[$key],$allowed,true)) kp_fail(422,'invalid_'.$key,'Choose a supported activity and observation.');
         $out[$key]=$in[$key];
     }
-    foreach (['display_name'=>[60,2],'body'=>[3000,20],'authority_role'=>[120,0],'authority_office'=>[120,0]] as $key=>$limits) $out[$key]=kp_text($in[$key]??'',$limits[0],$limits[1]);
+    $answer=in_array($out['observation'],KP_ANSWERS,true);
+    if ($answer && $out['activity']!=='overnight_occupancy') kp_fail(422,'invalid_activity','Visitor answers are about overnight stays only.');
+    foreach (['display_name'=>[60,2],'body'=>$answer?[1000,0]:[3000,20],'authority_role'=>[120,0],'authority_office'=>[120,0]] as $key=>$limits) $out[$key]=kp_text($in[$key]??'',$limits[0],$limits[1]);
+    if ($answer && ($out['authority_role']!=='' || $out['authority_office']!=='')) kp_fail(422,'invalid_fields','A visitor answer does not name an authority.');
     if (in_array($out['observation'],['granted_to_me','refused_to_me'],true) && (mb_strlen($out['authority_role'])<2 || mb_strlen($out['authority_office'])<2)) kp_fail(422,'authority_required','For a grant or refusal, give the person’s role and the office or property they represented. Do not include private contact details.');
     $out['visited_on']=kp_text($in['visited_on']??' ',10,10);
     $date=DateTimeImmutable::createFromFormat('!Y-m-d',$out['visited_on']);
@@ -85,7 +92,25 @@ function kp_rate(PDO $pdo,string $kind,int $limit): void {
     $q->execute([kt_client_hash(),$kind,gmdate('Y-m-d H:i:s',time()-3600)]);
     if ((int)$q->fetchColumn()>=$limit) kp_fail(429,'rate_limit','Too many permission-report requests. Try again in an hour.');
     $pdo->prepare('INSERT INTO permission_events (client_hash,kind,created_at) VALUES (?,?,?)')->execute([kt_client_hash(),$kind,kt_now()]);
-    $pdo->prepare('DELETE FROM permission_events WHERE created_at<?')->execute([gmdate('Y-m-d H:i:s',time()-86400)]);
+    // Per-place answer markers are kept for the duplicate window; ordinary rate events for one day.
+    $pdo->prepare("DELETE FROM permission_events WHERE created_at<? AND kind NOT LIKE 'stay:%'")->execute([gmdate('Y-m-d H:i:s',time()-86400)]);
+    $pdo->prepare("DELETE FROM permission_events WHERE created_at<? AND kind LIKE 'stay:%'")->execute([gmdate('Y-m-d H:i:s',time()-KP_ANSWER_WINDOW_DAYS*86400)]);
+}
+/** One visitor answer per network client per place within the window. Must run inside the write transaction. */
+function kp_answer_once(PDO $pdo,string $placeKey): void {
+    $kind='stay:'.substr(hash('sha256',$placeKey),0,26);
+    $q=$pdo->prepare('SELECT COUNT(*) FROM permission_events WHERE client_hash=? AND kind=? AND created_at>=?');
+    $q->execute([kt_client_hash(),$kind,gmdate('Y-m-d H:i:s',time()-KP_ANSWER_WINDOW_DAYS*86400)]);
+    if ((int)$q->fetchColumn()>0) kp_fail(409,'already_answered','You already answered for this place recently. Open My permission reports to edit your answer.');
+    $pdo->prepare('INSERT INTO permission_events (client_hash,kind,created_at) VALUES (?,?,?)')->execute([kt_client_hash(),$kind,kt_now()]);
+}
+/** Published visitor answers for one place. Counts are visitor reports, not permission. */
+function kp_answers(PDO $pdo,string $placeKey): array {
+    $q=$pdo->prepare("SELECT observation,COUNT(*) AS n,MAX(visited_on) AS latest FROM permission_reports WHERE place_key=? AND status='published' AND activity='overnight_occupancy' AND observation IN ('stay_allowed','stay_not_allowed') GROUP BY observation");
+    $q->execute([$placeKey]);$out=['allowed'=>0,'not_allowed'=>0,'latest_allowed'=>null,'latest_not_allowed'=>null];
+    foreach ($q->fetchAll() as $row) {$k=$row['observation']==='stay_allowed'?'allowed':'not_allowed';$out[$k]=(int)$row['n'];$out['latest_'.$k]=$row['latest'];}
+    $out['disagreement']=$out['allowed']>0 && $out['not_allowed']>0;
+    return $out;
 }
 function kp_audit(PDO $pdo,int $id,string $action,string $from,string $to,int $version,string $actor): void {
     $pdo->prepare('INSERT INTO permission_audit (report_id,action,from_status,to_status,report_version,actor,created_at) VALUES (?,?,?,?,?,?,?)')->execute([$id,$action,$from,$to,$version,$actor,kt_now()]);
