@@ -24,6 +24,20 @@ def exception(**rules):
 
 
 class StatePolicies(unittest.TestCase):
+    def test_indot_facility_pages_tighten_overnight_only(self):
+        self.assertEqual(len(BUNDLE['exceptions']), 16)
+        e = BUNDLE['exceptions'][0]
+        out = resolve('IN', 'indot', 'rest_area_or_welcome_center', facility_id=e['facility_id'], exceptions=BUNDLE['exceptions'])
+        self.assertEqual([out['rules'][k] for k in policy.ACTIVITIES], ['prohibited', 'unknown', 'unknown'])
+        self.assertEqual(out['facility_sources'], 1)
+        self.assertTrue(any('Overnight Parking: No' in c for c in out['rules']['conditions']))
+        other = resolve('IN', 'indot', 'rest_area_or_welcome_center', facility_id='indot:none', exceptions=BUNDLE['exceptions'])
+        self.assertEqual(other['rules']['overnight_parking'], 'unknown')
+        bad = copy.deepcopy(e)
+        bad['sources'][0]['url'] = 'https://www.in.gov/indot/other/page'
+        with self.assertRaises(ValueError):
+            resolve('IN', 'indot', 'rest_area_or_welcome_center', facility_id=e['facility_id'], exceptions=[bad])
+
     def test_duration_and_camping_do_not_imply_other_permissions(self):
         tx = resolve('TX', 'txdot', 'safety_rest_area')
         self.assertEqual(tx['rules']['max_stay_hours'], 24)

@@ -3,6 +3,7 @@ const AxeBuilder=require('@axe-core/playwright').default;
 const source=require('../../data/rest-areas/TX.json');
 const statePolicies=require('../../data/rest-areas/state-policies.json');
 const montana=require('../../data/rest-areas/MT.json');
+const indiana=require('../../data/rest-areas/IN.json');
 test.use({serviceWorkers:'block'});
 const row={...source.records[0],name:'Test rest area <img src=x>',coordinates:[-97.5623,30.9001]},data={...source,records:[row]};
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
@@ -13,6 +14,7 @@ async function setup(page,context,{mobile=false,broken=false,policyBroken=false,
   await page.route('**/data/rest-areas/TX.json',r=>{calls.push(r.request().url());return broken?r.fulfill({status:503,body:'unavailable'}):json(r,data);});
   await page.route('**/data/rest-areas/index.json',r=>json(r,{version:1,regions:regions.map(region=>({region,file:region+'.json',records:1}))}));
   await page.route('**/data/rest-areas/MT.json',r=>json(r,{...montana,records:[{...montana.records[0],coordinates:[-110.8961,47.3498]}]}));
+  await page.route('**/data/rest-areas/IN.json',r=>json(r,{...indiana,records:[indiana.records.find(x=>x.id===statePolicies.exceptions[0].facility_id)]}));
   await page.route('**/data/rest-areas/state-policies.json',r=>policyBroken?r.fulfill({status:503,body:'unavailable'}):json(r,statePolicies));
   const camp={type:'Feature',geometry:{type:'Point',coordinates:[-97.56,30.90]},properties:{id:'camp:rest-test',name:'Nearby test campground',schema_version:3,type:'established',source:'US Forest Service',amenities:[],rig_friendly:[]}};
   await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'TX',count:1}],total_sites:1}));
@@ -61,5 +63,14 @@ test('a second official region shows its own publisher, scoped policy and saved 
   await expect(p).toContainText('does not establish permission to park or sleep overnight');await expect(p).toContainText('overnight parking Allowed');await expect(p).toContainText('camping Prohibited');await expect(p).toContainText('Maximum stay: 12 hours');
   await expect(p.getByRole('link',{name:'Montana Department of Transportation place source',exact:true})).toHaveAttribute('href','https://mdt.mt.gov/travinfo/restarea.aspx');
   await p.getByRole('button',{name:'Save rest-area stop',exact:true}).click();const saved=await page.evaluate(()=>KampTrailTrip.getStops());expect(saved[0].feature.properties.id).toBe('spot:47.34980,-110.89610');expect(saved[0].feature.properties.source).toBe('Montana Department of Transportation');
+  expect(errors).toEqual([]);
+});
+test('an INDOT facility page tightens overnight parking with its own dated link',async({page,context})=>{
+  const site=indiana.records.find(x=>x.id===statePolicies.exceptions[0].facility_id),e=statePolicies.exceptions[0];
+  const {errors}=await setup(page,context,{regions:['TX','IN']});await show(page);await page.evaluate(([lng,lat])=>map.setView([lat,lng],10),site.coordinates);
+  const p=await popup(page);await expect(p).toContainText(site.name);await expect(p).toContainText('overnight parking Prohibited');await expect(p).toContainText('sleeping in a vehicle Unknown');await expect(p).toContainText('camping Unknown');
+  await expect(p).toContainText('"Overnight Parking: No"');
+  await expect(p.getByRole('link',{name:'Facility page checked '+e.sources[0].retrieved_at,exact:true})).toHaveAttribute('href',e.sources[0].url);
+  await expect(p.getByRole('link',{name:'State policy source 1',exact:true})).toBeVisible();
   expect(errors).toEqual([]);
 });

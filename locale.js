@@ -42,6 +42,7 @@
   "Maximum stay: {hours} hours.": "Estancia máxima: {hours} horas.",
   "Current opening and space availability remain unknown. Check posted facility exceptions.": "Se desconocen el funcionamiento actual y las plazas disponibles. Consulta las excepciones publicadas en el lugar.",
   "State policy source {number}": "Fuente de la política estatal {number}",
+  "Facility page checked {date}": "Página del lugar consultada el {date}",
   "Status: {status}.": "Estado: {status}.",
   "hidden": "oculto",
   "Visitor video": "Video de un visitante",

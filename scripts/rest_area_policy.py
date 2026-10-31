@@ -16,6 +16,8 @@ POLICIES = ROOT / 'scripts/fixtures/rest_area_state_policies.json'
 ACTIVITIES = ('overnight_parking', 'sleeping_in_vehicle', 'camping')
 HOSTS = {'www.txdot.gov', 'tcss.legis.texas.gov', 'mdt.mt.gov', 'mca.legmt.gov'}
 # Newly reviewed publishers are accepted only at the exact audited policy URL.
+# INDOT publishes one fact page per facility under this exact path.
+FACILITY_PAGE = re.compile(r'https://www\.in\.gov/indot/resources/maps/welcome-centers-and-rest-areas/[a-z0-9]+(?:-[a-z0-9]+){1,8}')
 EXACT_POLICY_URLS = frozenset(('https://lawfilesext.leg.wa.gov/law/RCW/RCW%20%2047%20%20TITLE/RCW%20%2047%20.%2038%20%20CHAPTER/RCW%20%2047%20.%2038%20.020.htm', 'https://sdlegislature.gov/api/Statutes/31-7-15.html', 'https://www.leg.state.nv.us/nac/NAC-408.html', 'https://dot.ca.gov/programs/design/lap-landscape-architecture-and-community-livability/lap-liv-h-safety-roadside-rest-areas', 'https://gis.iowadot.gov/agshost/rest/services/Hosted/Rest_Areas_All/FeatureServer/1', 'https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/', 'https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Facilities/Rest_Areas/MapServer/0', 'https://gisagomdot.state.mi.us/arcgis/rest/services/MDOT/MdotRestAreaPublic/MapServer/0', 'https://gis.dot.nv.gov/arcgis/rest/services/Applications/511Map/MapServer/5', 'https://dot.sd.gov/travelers/travelers/rest-areaports-of-entry/', 'https://wsdot.wa.gov/travel/safety/rest-areas/home', 'https://floridasturnpike.com/traveler-resources/service-plazas/', 'https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf', 'https://itd.idaho.gov/faqs/rest-areas/', 'https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01', 'https://tripcheck.com/Pages/Rest-Areas-Regulations', 'https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/', 'https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/'))
 
 
@@ -25,7 +27,7 @@ def evidence(sources, now):
     for source in sources:
         url = urlparse(source['url'])
         checked = dt.datetime.fromisoformat(source['retrieved_at'].replace('Z', '+00:00'))
-        if (url.scheme != 'https' or (url.hostname not in HOSTS and source['url'] not in EXACT_POLICY_URLS) or url.username or
+        if (url.scheme != 'https' or (url.hostname not in HOSTS and source['url'] not in EXACT_POLICY_URLS and not FACILITY_PAGE.fullmatch(source['url'])) or url.username or
                 url.password or url.query or url.fragment or checked.tzinfo is None or
                 checked > now or not re.fullmatch('[a-f0-9]{64}', source['sha256'])):
             raise ValueError('Invalid policy evidence')
@@ -64,7 +66,7 @@ def resolve(bundle, *, state, operator, facility_kind, facility_id=None, excepti
     rules = {field: 'unknown' for field in ACTIVITIES}
     rules.update(max_stay_hours=None, conditions=[])
     output = {'rules': rules, 'policy_id': None, 'sources': [],
-              'review_required': [], 'current_opening': 'unknown'}
+              'review_required': [], 'current_opening': 'unknown', 'facility_sources': 0}
     matches = [p for p in bundle['policies'] if p['scope'] == {
         'state': state, 'operator': operator, 'facility_kind': facility_kind}]
     if matches:
@@ -80,7 +82,15 @@ def resolve(bundle, *, state, operator, facility_kind, facility_id=None, excepti
         raise ValueError('Multiple site exceptions require consolidation')
     for exception in applicable:
         evidence(exception['sources'], now)
+        if any(now - dt.datetime.fromisoformat(s['retrieved_at'].replace('Z', '+00:00')) >= dt.timedelta(days=180) for s in exception['sources']):
+            return {**output, 'rules': {**{f: 'unknown' for f in ACTIVITIES}, 'max_stay_hours': None, 'conditions': []},
+                    'policy_id': None, 'sources': []}
+        conditions = exception.get('conditions', [])
+        if not isinstance(conditions, list) or len(conditions) > 4 or not all(isinstance(c, str) and 0 < len(c) <= 500 for c in conditions):
+            raise ValueError('Invalid site conditions')
         output['sources'].extend(copy.deepcopy(exception['sources']))
+        output['facility_sources'] = len(exception['sources'])
+        output['rules']['conditions'] = output['rules']['conditions'] + list(conditions)
         for field, value in exception['rules'].items():
             prior = output['rules'].get(field)
             if field in ACTIVITIES:
