@@ -164,3 +164,46 @@ test('current evidence is cleared at its review deadline without polling and vis
   await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
   await expect.poll(() => sent.length).toBe(2);
 });
+
+test('visitor answers show a labeled dated tally with disagreement and submit an explicit moderated answer', async ({page}) => {
+  const answers = {allowed: 2, not_allowed: 1, latest_allowed: '2026-06-01', latest_not_allowed: '2026-08-15', disagreement: true};
+  const prohibited = {...official, status: 'prohibited', as_of: new Date().toISOString()};
+  const sent = await fixture(page, async (route, data) => {
+    if (data.action === 'read') {await route.fulfill({contentType: 'application/json', body: JSON.stringify(response({answers, official: prohibited}))}); return true;}
+    if (data.action === 'submit') {await route.fulfill({status: 201, contentType: 'application/json', body: JSON.stringify({ok: true, id: 9, token, version: 1, status: 'pending'})}); return true;}
+    return false;
+  });
+  const d = page.getByRole('dialog', {name: 'Overnight permission', exact: true}), tally = d.locator('.kt-stay-answers');
+  await expect(tally).toContainText('2 said allowed (latest visit 2026-06-01) · 1 said not allowed (latest visit 2026-08-15).');
+  await expect(tally).toContainText('Visitors disagree.');
+  await expect(tally).toContainText('The source reports a prohibition. Visitor answers do not override it.');
+  await expect(tally).toContainText('not official permission');
+  await expect(d).toContainText('Source reports: a prohibition for overnight occupancy.');
+  expect((await new AxeBuilder({page}).include('#kt-permissions').analyze()).violations).toEqual([]);
+  await d.getByRole('button', {name: 'Answer: was an overnight stay allowed?', exact: true}).click();
+  const form = page.getByRole('dialog', {name: 'Answer: was an overnight stay allowed?', exact: true});
+  await form.getByLabel('Not allowed').check();
+  await form.getByLabel('Date of your visit').fill('2026-09-01');
+  await form.getByLabel('Public display name').fill('Answer camper');
+  await form.getByLabel(/I confirm this is my own visit/).check();
+  await page.waitForTimeout(3100);
+  await form.getByRole('button', {name: 'Send for moderation', exact: true}).click();
+  await expect(page.getByRole('dialog', {name: 'Visitor answer received', exact: true})).toContainText('pending moderation and is not public');
+  const submit = sent.find(s => s.data.action === 'submit').data;
+  expect(submit).toMatchObject({activity: 'overnight_occupancy', observation: 'stay_not_allowed', visited_on: '2026-09-01', firsthand: true, display_name: 'Answer camper', body: '', authority_role: '', authority_office: ''});
+});
+
+test('a second answer for the same place explains the duplicate rule instead of a version conflict', async ({page}) => {
+  await fixture(page, async (route, data) => {
+    if (data.action === 'submit') {await route.fulfill({status: 409, contentType: 'application/json', body: JSON.stringify({ok: false, error: 'already_answered', message: 'You already answered for this place recently. Open My permission reports to edit your answer.'})}); return true;}
+    return false;
+  });
+  const d = page.getByRole('dialog', {name: 'Overnight permission', exact: true});
+  await d.getByRole('button', {name: 'Answer: was an overnight stay allowed?', exact: true}).click();
+  const form = page.getByRole('dialog', {name: 'Answer: was an overnight stay allowed?', exact: true});
+  await form.getByLabel('Allowed', {exact: true}).check();await form.getByLabel('Date of your visit').fill('2026-09-01');await form.getByLabel('Public display name').fill('Answer camper');await form.getByLabel(/I confirm this is my own visit/).check();
+  await form.getByRole('button', {name: 'Send for moderation', exact: true}).click();
+  await expect(form).toContainText('You already answered for this place recently.');
+  await expect(form.getByRole('button', {name: 'My permission reports', exact: true}).last()).toBeVisible();
+  await expect(form).not.toContainText('changed elsewhere');
+});

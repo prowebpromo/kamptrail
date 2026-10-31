@@ -1124,6 +1124,34 @@
   "Ohio": "Ohio",
   "Oregon": "Oregón",
   "Virginia": "Virginia",
+  "Visitor answer: overnight stay allowed": "Respuesta de visitante: pernoctar permitido",
+  "Visitor answer: overnight stay not allowed": "Respuesta de visitante: pernoctar no permitido",
+  "Visitor answers": "Respuestas de visitantes",
+  "Visitor answers: was an overnight stay allowed?": "Respuestas de visitantes: ¿se permitía pernoctar?",
+  "Visitor answers are unavailable. This is not a zero count.": "Las respuestas de visitantes no están disponibles. No es un recuento de cero.",
+  "No published visitor answers yet.": "Aún no hay respuestas de visitantes publicadas.",
+  "{allowed} said allowed (latest visit {allowedDate}) · {refused} said not allowed (latest visit {refusedDate}).": "{allowed} dijeron que sí estaba permitido (visita más reciente {allowedDate}) · {refused} dijeron que no estaba permitido (visita más reciente {refusedDate}).",
+  "none": "ninguna",
+  "Visitors disagree. Compare visit dates and check current rules before relying on either answer.": "Los visitantes no coinciden. Compara las fechas de visita y consulta las normas vigentes antes de confiar en cualquiera de las respuestas.",
+  "The source reports a prohibition. Visitor answers do not override it.": "La fuente indica una prohibición. Las respuestas de visitantes no la anulan.",
+  "These are moderated visitor reports, not official permission. They never change the source conclusion, filters or fees.": "Son informes moderados de visitantes, no un permiso oficial. Nunca cambian la conclusión de la fuente, los filtros ni las tarifas.",
+  "Answer: was an overnight stay allowed?": "Responder: ¿se permitía pernoctar?",
+  "Edit your visitor answer": "Editar tu respuesta",
+  "Answer only for your own visit. One answer per place; edit it later with your private code.": "Responde solo sobre tu propia visita. Una respuesta por lugar; puedes editarla después con tu código privado.",
+  "When you visited, was an overnight stay allowed?": "Cuando visitaste el lugar, ¿se permitía pernoctar?",
+  "Not allowed": "No permitido",
+  "Date of your visit": "Fecha de tu visita",
+  "Optional note": "Nota opcional",
+  "For example, how you knew: a posted sign or staff. Do not include private contact information.": "Por ejemplo, cómo lo supiste: un letrero o el personal. No incluyas datos de contacto privados.",
+  " I confirm this is my own visit.": " Confirmo que se trata de mi propia visita.",
+  "After moderation your answer, visit date and display name are public. Answers are visitor reports and never change official permission.": "Tras la moderación, tu respuesta, la fecha de visita y tu nombre visible serán públicos. Las respuestas son informes de visitantes y nunca cambian el permiso oficial.",
+  "Visitor answer received": "Respuesta recibida",
+  "Your answer is pending moderation and is not public.": "Tu respuesta está pendiente de moderación y no es pública.",
+  "The code could not be saved on this device. Copy it now to manage your answer.": "No se pudo guardar el código en este dispositivo. Cópialo ahora para gestionar tu respuesta.",
+  "You already answered for this place recently. Open My permission reports to edit your answer.": "Ya respondiste sobre este lugar recientemente. Abre Mis informes de permisos para editar tu respuesta.",
+  "Visitor answers are about overnight stays only.": "Las respuestas de visitantes solo tratan sobre pernoctar.",
+  "A visitor answer does not name an authority.": "Una respuesta de visitante no nombra a una autoridad.",
+  "Edit an answer as an answer, or share a separate report.": "Edita una respuesta como respuesta o comparte un informe aparte.",
   "Offline": "Sin conexión",
   "Stop": "Detener",
   "Source (optional)": "Fuente (opcional)",
@@ -1672,7 +1700,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.23.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
+  global.KampTrailI18n = {version:'2.24.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

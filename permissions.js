@@ -5,6 +5,8 @@
   const API = 'api/permissions.php', STORE = 'kt_permission_owners_v1';
   const activities = {overnight_occupancy: t("Overnight occupancy"), unoccupied_vehicle_parking: t("Unoccupied vehicle parking")};
   const observations = {granted_to_me: t("Permission granted to me"), refused_to_me: t("Permission refused to me"), prohibition_sign_seen: t("Prohibition sign seen"), stayed_without_asking: t("Stayed without asking")};
+  const answers = {stay_allowed: t("Visitor answer: overnight stay allowed"), stay_not_allowed: t("Visitor answer: overnight stay not allowed")};
+  const isAnswer = value => Object.hasOwn(answers, value);
   const state = {dialog: null, body: null, place: null, activity: 'overnight_occupancy', generation: 0, controller: null, focus: null, publicView: null, expiryTimer: null, offlineNotice: null};
   function node(tag, attrs = {}, text) {
     const n = document.createElement(tag);
@@ -23,7 +25,7 @@
   function expirePublic(view, offline = false) {
     if (!state.dialog?.open || state.publicView !== view) return;
     invalidate(); state.publicView = view;
-    view.source.replaceChildren(); view.list.replaceChildren(); view.concerns.replaceChildren(); view.more.hidden = true;
+    view.source.replaceChildren(); view.tallySlot?.replaceChildren(); view.list.replaceChildren(); view.concerns.replaceChildren(); view.more.hidden = true;
     view.summary.replaceChildren(document.createTextNode(offline ? t("Offline: current permission information and reports are unavailable. This is not a zero count or a permission decision.") : t("This permission assessment is no longer current. Reload source evidence and reports before relying on them.")), button(t("Retry"), view.refresh));
   }
   function scheduleExpiry(view, official) {
@@ -120,12 +122,27 @@
   }
   function reportCard(report) {
     const article = node('article', {class: 'kt-permission-card'});
-    article.append(node('h4', {}, `${observations[report.observation] || t("Firsthand observation")} · ${report.display_name || t("Camper")}`));
+    article.append(node('h4', {}, `${observations[report.observation] || answers[report.observation] || t("Firsthand observation")} · ${report.display_name || t("Camper")}`));
     article.append(node('p', {class: 'kt-fine'}, t("{0} · observed {1} · published report submitted {2}", {"0":(activities[report.activity] || t("Activity unspecified")),"1":(report.visited_on || 'unknown'),"2":(String(report.created_at || '').slice(0, 10) || 'unknown')})));
     if (report.authority_role || report.authority_office) article.append(node('p', {}, t("Reported authority: {0}; office or organization: {1}.", {"0":(report.authority_role || t("unspecified")),"1":(report.authority_office || t("unspecified"))})));
-    article.append(node('p', {class:'kt-fine'}, t('Visitor content (original language)')), node('p', {class: 'kt-permission-text', 'data-original-content':'visitor'}, report.body));
+    if (report.body) article.append(node('p', {class:'kt-fine'}, t('Visitor content (original language)')), node('p', {class: 'kt-permission-text', 'data-original-content':'visitor'}, report.body));
     if (report.observation === 'stayed_without_asking') article.append(node('p', {}, t("Staying without asking is not permission.")));
     article.append(button(t("Flag report"), () => flag(report.id))); return article;
+  }
+  // Published visitor answers, kept apart from the source conclusion. Counts never establish permission.
+  function answerSection(tally, official) {
+    const section = node('section', {class: 'kt-stay-answers', 'aria-label': t("Visitor answers")});
+    section.append(node('h3', {}, t("Visitor answers: was an overnight stay allowed?")));
+    if (!tally) {section.append(node('p', {}, t("Visitor answers are unavailable. This is not a zero count."))); return section;}
+    const allowed = Number(tally.allowed) || 0, refused = Number(tally.not_allowed) || 0;
+    if (!allowed && !refused) section.append(node('p', {}, t("No published visitor answers yet.")));
+    else {
+      section.append(node('p', {}, t("{allowed} said allowed (latest visit {allowedDate}) · {refused} said not allowed (latest visit {refusedDate}).", {allowed, refused, allowedDate: tally.latest_allowed || t('none'), refusedDate: tally.latest_not_allowed || t('none')})));
+      if (tally.disagreement) section.append(node('p', {class: 'kt-stay-disagree'}, t("Visitors disagree. Compare visit dates and check current rules before relying on either answer.")));
+    }
+    if (official?.status === 'prohibited') section.append(node('p', {}, t("The source reports a prohibition. Visitor answers do not override it.")));
+    section.append(node('p', {class: 'kt-fine'}, t("These are moderated visitor reports, not official permission. They never change the source conclusion, filters or fees.")));
+    return section;
   }
   function validPlace(place) {
     return place && ['campsite', 'service', 'spot'].includes(place.kind) && typeof place.id === 'string' && place.id.length > 0 && typeof place.name === 'string' && Array.isArray(place.coordinates) && place.coordinates.length === 2 && place.coordinates.every(Number.isFinite) && Math.abs(place.coordinates[0]) <= 180 && Math.abs(place.coordinates[1]) <= 90;
@@ -151,10 +168,12 @@
     const scope = node('select'); for (const [value, label] of Object.entries(activities)) scope.append(node('option', {value, selected: value === selectedActivity}, label));
     scope.onchange = () => open(selectedPlace, scope.value); body.append(field(t("Activity scope"), scope));
     body.append(node('p', {}, t("Source evidence and personal experiences are separate. Reports never automatically establish permission.")));
-    const actions = node('div', {class: 'kt-permission-actions'}); actions.append(button(t("Share firsthand report"), () => edit({place: selectedPlace, activity: selectedActivity})), button(t("My permission reports"), mine)); body.append(actions);
-    const source = node('div'), summary = notice(t("Loading source evidence and published reports…")), list = node('div'), concerns = node('section', {'aria-label': t("Reported concerns")});
-    const more = button(t("Load more reports"), () => load(more.dataset.before)); more.hidden = true; body.append(source, node('h3', {}, t("Published firsthand reports")), summary, concerns, list, more);
-    const view = {source, summary, list, concerns, more, refresh: () => open(selectedPlace, selectedActivity)}; state.publicView = view;
+    const actions = node('div', {class: 'kt-permission-actions'}); actions.append(button(t("Share firsthand report"), () => edit({place: selectedPlace, activity: selectedActivity})));
+    if (selectedActivity === 'overnight_occupancy') actions.append(button(t("Answer: was an overnight stay allowed?"), () => answer({place: selectedPlace})));
+    actions.append(button(t("My permission reports"), mine)); body.append(actions);
+    const source = node('div'), tallySlot = node('div'), summary = notice(t("Loading source evidence and published reports…")), list = node('div'), concerns = node('section', {'aria-label': t("Reported concerns")});
+    const more = button(t("Load more reports"), () => load(more.dataset.before)); more.hidden = true; body.append(source, tallySlot, node('h3', {}, t("Published firsthand reports")), summary, concerns, list, more);
+    const view = {source, summary, list, concerns, more, tallySlot, refresh: () => open(selectedPlace, selectedActivity)}; state.publicView = view;
     const seen = new Set(), concernTypes = new Set();
     async function load(before) {
       more.disabled = true;
@@ -162,6 +181,7 @@
         const out = await request({action: 'read', place: selectedPlace, activity: selectedActivity, ...(before ? {before: Number(before)} : {})}, null, state.controller.signal);
         if (generation !== state.generation) return;
         source.replaceChildren(officialSection(out.official, selectedActivity));
+        if (!before) tallySlot.replaceChildren(...(selectedActivity === 'overnight_occupancy' ? [answerSection(out.reports_available === false ? null : out.answers, out.official)] : []));
         scheduleExpiry(view, out.official);
         if (out.reports_available === false) {
           summary.replaceChildren(document.createTextNode(t("Published reports are unavailable. This is not a zero count or a permission decision.")), button(t("Retry"), () => load(before))); more.hidden = true; return;
@@ -188,6 +208,7 @@
     body.append(show, button(t("Copy code"), async () => {try {await navigator.clipboard.writeText(token); feedback.textContent = t("Code copied.");} catch {feedback.textContent = t("Copy unavailable. Show the code and copy it manually.");}}), feedback);
   }
   function edit(report, token) {
+    if (isAnswer(report.observation)) return answer(report, token);
     const body = shell(token ? t("Edit permission report") : t("Share firsthand permission report")), generation = state.generation, started = Date.now();
     const place = report.place || state.place, activity = report.activity || state.activity;
     body.append(node('h3', {}, place.name), node('p', {}, t("Activity: {activity}", {activity:activities[activity]})));
@@ -223,16 +244,44 @@
       finally {if (generation === state.generation) send.disabled = false;}
     };
   }
+  function answer(report, token) {
+    const body = shell(token ? t("Edit your visitor answer") : t("Answer: was an overnight stay allowed?")), generation = state.generation, started = Date.now(), place = report.place || state.place;
+    body.append(node('h3', {}, place.name), node('p', {}, t("Answer only for your own visit. One answer per place; edit it later with your private code.")));
+    const form = node('form'), group = node('fieldset'); group.append(node('legend', {}, t("When you visited, was an overnight stay allowed?")));
+    for (const [value, label] of [['stay_allowed', t("Allowed")], ['stay_not_allowed', t("Not allowed")]]) {const option = node('label', {class: 'kt-confirm'}); option.append(node('input', {type: 'radio', name: 'observation', value, required: true, checked: report.observation === value}), document.createTextNode(' ' + label)); group.append(option);}
+    form.append(group, field(t("Date of your visit"), node('input', {name: 'visited_on', type: 'date', min: '1900-01-01', max: today(), required: true, value: report.visited_on || ''})), field(t("Public display name"), node('input', {name: 'display_name', minlength: 2, maxlength: 60, required: true, value: report.display_name || '', autocomplete: 'nickname'}), t("A nickname is welcome.")));
+    form.append(field(t("Optional note"), node('textarea', {name: 'body', maxlength: 1000, rows: 3}, report.body || ''), t("For example, how you knew: a posted sign or staff. Do not include private contact information.")));
+    const consent = node('label', {class: 'kt-confirm'}); consent.append(node('input', {type: 'checkbox', name: 'firsthand', required: true}), document.createTextNode(t(" I confirm this is my own visit."))); form.append(consent);
+    form.append(node('p', {}, t("After moderation your answer, visit date and display name are public. Answers are visitor reports and never change official permission.")));
+    const hp = node('input', {name: 'website', tabindex: '-1', autocomplete: 'off', 'aria-hidden': 'true', hidden: true}); form.append(hp);
+    const feedback = notice(''), send = node('button', {type: 'submit', class: 'btn primary'}, token ? t("Save and resubmit") : t("Send for moderation")); form.append(feedback, send);
+    body.append(form, button(t("Back to permission information"), () => open(place, 'overnight_occupancy')));
+    form.onsubmit = async event => {
+      event.preventDefault(); if (!form.reportValidity()) return;
+      const data = new FormData(form), visited = String(data.get('visited_on'));
+      if (visited > today()) {feedback.textContent = t("The observation date cannot be in the future."); return;}
+      const payload = {action: token ? 'edit' : 'submit', place, activity: 'overnight_occupancy', observation: data.get('observation'), visited_on: visited, firsthand: data.get('firsthand') === 'on', display_name: data.get('display_name'), body: data.get('body') || '', authority_role: '', authority_office: '', elapsed_ms: Date.now() - started, website: data.get('website') || '', ...(token ? {id: report.id, version: report.version} : {})};
+      send.disabled = true; feedback.textContent = t("Sending report…");
+      try {
+        const out = await request(payload, token), code = token || out.token;
+        const stored = /^[a-f0-9]{64}$/.test(code) && remember({id: out.id || report.id, token: code, name: place.name});
+        if (generation !== state.generation) return;
+        const done = shell(t("Visitor answer received")); done.append(notice(t("Your answer is pending moderation and is not public.")), node('p', {}, stored ? t("The private management code is saved on this device.") : t("The code could not be saved on this device. Copy it now to manage your answer.")));
+        if (code) codePanel(done, code); done.append(button(t("My permission reports"), mine), button(t("Back to permission information"), () => open(place, 'overnight_occupancy')));
+      } catch (error) {if (generation === state.generation) {mutationError(feedback, error, token); if (error.status === 409 && !token) feedback.append(button(t("My permission reports"), mine));}}
+      finally {if (generation === state.generation) send.disabled = false;}
+    };
+  }
   function mutationError(target, error, token) {
-    target.replaceChildren(document.createTextNode(error.status === 409 ? t("This report changed elsewhere. Your changes have not been saved. Load the latest version before trying again.") : error.message));
-    if (error.status === 409) target.append(button(t("Load latest report"), () => manage(token)));
+    target.replaceChildren(document.createTextNode(error.status === 409 && token ? t("This report changed elsewhere. Your changes have not been saved. Load the latest version before trying again.") : error.message));
+    if (error.status === 409 && token) target.append(button(t("Load latest report"), () => manage(token)));
   }
   async function manage(token) {
     const body = shell(t("Manage permission report")), generation = state.generation; body.append(notice(t("Loading your report…")));
     try {
       const out = await request({action: 'owner'}, token, state.controller.signal); if (generation !== state.generation) return;
       const r = out.report; body.replaceChildren();
-      body.append(node('h3', {}, r.place?.name || t("Your permission report")), node('p', {}, t("Status: {0}. Version {1}.", {"0":(window.KampTrailI18n?.label('reportStatus',r.status)||r.status),"1":(r.version)})), node('p', {}, t("Observed {0} · {1}", {"0":(r.visited_on),"1":(activities[r.activity] || r.activity)})), node('p', {class: 'kt-permission-text'}, r.body));
+      body.append(node('h3', {}, r.place?.name || t("Your permission report")), node('p', {}, t("Status: {0}. Version {1}.", {"0":(window.KampTrailI18n?.label('reportStatus',r.status)||r.status),"1":(r.version)})), node('p', {}, t("Observed {0} · {1}", {"0":(r.visited_on),"1":(answers[r.observation] || activities[r.activity] || r.activity)})), node('p', {class: 'kt-permission-text'}, r.body));
       if (r.public_note) body.append(node('p', {}, t("Moderator note: ") + r.public_note));
       codePanel(body, token);
       if (r.status !== 'deleted') {
@@ -272,5 +321,5 @@
       catch (error) {if (generation === state.generation) {feedback.textContent = error.message; send.disabled = false;}}
     };
   }
-  window.KampTrailPermissions = {version: '2.23.0', open, mine};
+  window.KampTrailPermissions = {version: '2.24.0', open, mine, answerSection};
 })();

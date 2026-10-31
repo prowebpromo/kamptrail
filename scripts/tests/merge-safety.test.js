@@ -168,7 +168,7 @@ test('single-state refresh selects the historical raw filename and guards missin
   }
 });
 
-// ---- 2.23.0 merge identity: positional names stay separate, published IDs stay canonical ----
+// ---- 2.22.0 merge identity: positional names stay separate, published IDs stay canonical ----
 const osmSite = (id, name, lon, lat, extra = {}) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [lon, lat]},
   properties: {id: `osm:way:${id}`, osm_id: id, osm_type: 'way', name, tourism: 'camp_site', source: 'openstreetmap', schema_version: 3, ...extra}});
 

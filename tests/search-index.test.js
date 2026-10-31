@@ -103,7 +103,7 @@ test('malformed or incomplete input fails instead of replacing the national inde
   finally {fs.rmSync(directory,{recursive:true,force:true});}
 });
 
-// ---- 2.23.0 stable listing IDs at the index layer ----
+// ---- 2.22.0 stable listing IDs at the index layer ----
 test('an already published listing keeps its ID and point when a newly separated record merges with it', () => {
   const mk = (id, name, lon, lat, extra = {}) => ({type: 'Feature', geometry: {type: 'Point', coordinates: [lon, lat]}, properties: {id, name, tourism: 'camp_site', schema_version: 3, ...extra}});
   const features = [mk('osm:way:335361783', 'Upper Grays Meadow Campground', -118.2, 36.7741, {osm_id: 335361783, osm_type: 'way'}),

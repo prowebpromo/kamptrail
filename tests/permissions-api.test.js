@@ -101,3 +101,44 @@ test('official reads work without migrated reports; reads never write or create 
   assert.ok(!JSON.parse(before).some(name=>name.startsWith('permission_')));
  }finally{e.close();}
 });
+
+// ---- Visitor answers: explicit, moderated, one per visitor per place, tallied apart from permission ----
+test('visitor answers are moderated, limited to one per place, tallied separately and never change official status',options,async()=>{
+ const e=await env(18996);try{
+  const answer={...good,observation:'stay_allowed',body:'',authority_role:'',authority_office:'',display_name:'Answer camper'};
+  const other={...place,id:'spot:41.00000,-111.00000',coordinates:[-111,41],name:'Second answer spot'};
+  const before=await e.list();assert.deepEqual(before.answers,{allowed:0,not_allowed:0,latest_allowed:null,latest_not_allowed:null,disagreement:false});
+  assert.equal((await e.post({...answer,activity:'unoccupied_vehicle_parking'})).status,422,'answers are about overnight stays only');
+  assert.equal((await e.post({...answer,authority_role:'Manager',authority_office:'Office'})).status,422,'answers do not name an authority');
+  assert.equal((await e.post({...answer,body:'x'.repeat(1001)})).status,422);
+  let r=await e.post(answer);assert.equal(r.status,201);const a=await r.json();
+  r=await e.post({...answer,observation:'stay_not_allowed'});assert.equal(r.status,409,'second answer for the same place from the same visitor');assert.equal((await r.json()).error,'already_answered');
+  r=await e.post({...answer,place:other});assert.equal(r.status,201,'another place is a separate answer');
+  assert.equal((await e.list()).answers.allowed,0,'pending answers are never counted');
+  assert.equal((await e.admin({do:'permission_moderate',id:a.id,version:1,status:'published'})).status,200);
+  let read=await e.list();assert.equal(read.answers.allowed,1);assert.equal(read.answers.latest_allowed,'2020-01-01');assert.equal(read.answers.disagreement,false);
+  assert.equal(read.official.status,'unknown','a visitor answer never changes the source conclusion');
+  r=await e.post({...answer,action:'edit',id:a.id,version:2,observation:'granted_to_me',body:'The duty manager allowed my camper to stay for this one night.',authority_role:'Duty manager',authority_office:'Site office'},a.token);assert.equal(r.status,422,'an answer cannot become a narrative report');assert.equal((await r.json()).error,'type_changed');
+  r=await e.post({...answer,action:'edit',id:a.id,version:2,observation:'stay_not_allowed',visited_on:'2021-05-01'},a.token);assert.equal(r.status,200);
+  assert.equal((await e.list()).answers.not_allowed,0,'an edited answer returns to moderation');
+  await e.admin({do:'permission_moderate',id:a.id,version:3,status:'published'});read=await e.list();
+  assert.equal(read.answers.not_allowed,1);assert.equal(read.answers.allowed,0);assert.equal(read.answers.latest_not_allowed,'2021-05-01');
+  const second=await (await e.post({...good,display_name:'Narrative camper'})).json();await e.admin({do:'permission_moderate',id:second.id,version:1,status:'published'});
+  read=await e.list();assert.equal(read.answers.not_allowed,1,'narrative reports are not counted as answers');assert.equal(read.count,2);
+  assert.match(await e.queue('published'),/VISITOR ANSWER: overnight stay not allowed/);
+  assert.equal((await e.post({action:'read',place,activity:'unoccupied_vehicle_parking'})).status,200);assert.equal((await (await e.post({action:'read',place,activity:'unoccupied_vehicle_parking'})).json()).answers,null);
+ }finally{e.close();}
+});
+test('two visitors who disagree are both counted and the disagreement is visible',options,async()=>{
+ const e=await env(19026);try{
+  const answer={...good,body:'',authority_role:'',authority_office:'',display_name:'Answer camper'};
+  const a=await (await e.post({...answer,observation:'stay_allowed'})).json();
+  const b=await (await e.post({...answer,observation:'stay_not_allowed'},null,{'X-Forwarded-For':'203.0.113.9'})).json().catch(()=>({}));
+  // The PHP dev server sees one client address; a second visitor is simulated by clearing the duplicate marker.
+  e.sql("$p->exec(\"DELETE FROM permission_events WHERE kind LIKE 'stay:%'\");");
+  const c=await (await e.post({...answer,observation:'stay_not_allowed',visited_on:'2022-02-02'})).json();
+  for(const x of [a,c])assert.equal((await e.admin({do:'permission_moderate',id:x.id,version:1,status:'published'})).status,200);
+  const read=await e.list();assert.equal(read.answers.allowed,1);assert.equal(read.answers.not_allowed,1);assert.equal(read.answers.disagreement,true);assert.equal(read.official.status,'unknown');
+  assert.equal(b.error,'already_answered','a forwarded-for header does not create a second visitor');
+ }finally{e.close();}
+});
