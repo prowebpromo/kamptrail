@@ -11,6 +11,7 @@ The live 2.25.0 check on 2026-10-31 showed these six strings in English with Fre
 ## Change
 
 - `route-clearance.js`: the six strings go through `t()`. No catalogue text changed.
+- The "Height tag unavailable" fallback also goes through `t()`, found by independent review. Validated clearance data always carries a `maxheight` tag (`clearances.js` allows only `maxheight` keys and requires at least one), so this fallback cannot appear with valid data. It is translated as a defensive measure and has no browser test.
 - `tests/browser/route-clearance.spec.js`: a French case asserts the translated dialog name, Close button and no-match line, and the absence of the English introduction. It fails on 2.25.0 code and passes with this change. The three existing English cases are unchanged.
 - Version 2.25.1, service worker cache `kt-v56`, so returning visitors receive the corrected script.
 
