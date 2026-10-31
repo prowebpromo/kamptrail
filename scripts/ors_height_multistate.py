@@ -27,6 +27,7 @@ UNDER, OVER = 0.4, 0.2
 MIN_TEST, MAX_TEST = 2.3, 4.2
 MOTOR = 'motorway|trunk|primary|secondary|tertiary|unclassified|residential|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link'
 SEED = 20261031
+DEADLINE_S = 40 * 60
 
 
 def parse_height(value):
@@ -43,18 +44,18 @@ def parse_height(value):
     return None
 
 
-def overpass_retry(p, query, tries=4):
+def overpass_retry(p, query, tries=3):
     for attempt in range(tries):
         try:
             return p.overpass(query)
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as e:
             if attempt == tries - 1:
                 raise
-            time.sleep(10 * (attempt + 1))
+            time.sleep(5 * (attempt + 1))
 
 
 def candidates(p, state):
-    q = (f'[out:json][timeout:120];area["ISO3166-2"="{state}"]->.s;'
+    q = (f'[out:json][timeout:90];area["ISO3166-2"="{state}"]->.s;'
          f'way(area.s)[highway~"^({MOTOR})$"][maxheight];out body geom;')
     data = overpass_retry(p, q)
     out = []
@@ -118,9 +119,13 @@ def main(out_dir):
     os.makedirs(out_dir, exist_ok=True)
     p = Pilot(key)
     rng = random.Random(SEED)
+    t0 = time.time()
     report = {'started': now(), 'states': STATES, 'under_m': UNDER, 'over_m': OVER, 'seed': SEED, 'rows': [], 'state_notes': {}}
     try:
         for state in STATES:
+            if time.time() - t0 > DEADLINE_S:
+                report['error'] = 'time budget reached; later states not tested'
+                break
             try:
                 pool = candidates(p, state)
             except Exception as e:
@@ -130,7 +135,7 @@ def main(out_dir):
             report['state_notes'][state] = f'{len(pool)} eligible mapped restrictions'
             got = 0
             for c in pool[:CANDIDATES_PER_STATE]:
-                if got >= PER_STATE:
+                if got >= PER_STATE or time.time() - t0 > DEADLINE_S:
                     break
                 try:
                     row = test_one(p, state, c)
@@ -139,6 +144,8 @@ def main(out_dir):
                 except Exception as e:
                     row = {'state': state, 'way': c['id'], 'validated': False, 'error': f'{type(e).__name__}'}
                 report['rows'].append(row)
+                with open(os.path.join(out_dir, 'multistate-partial.json'), 'w') as f:
+                    f.write(json.dumps(report).replace(key, '***'))
                 got += 1 if row.get('validated') else 0
                 time.sleep(3)
     except RuntimeError as e:
