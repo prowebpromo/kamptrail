@@ -368,16 +368,12 @@
         "capacity:tents": "33",
         "caravans": "yes",
         "dog": "leashed",
-        "drinking_water": "yes",
         "group_only": "no",
-        "internet_access": "no",
-        "laundry_service": "no",
         "name": "OAK RIDGE CAMPGROUND",
         "opening_hours": "Mar-Nov",
         "operator": "National Park Service",
         "operator:wikipedia": "en:National Park Service",
         "reservation": "required",
-        "shower": "yes",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/prwi/planyourvisit/oakridge.htm",
@@ -420,7 +416,11 @@
             "fields": {
               "access": "permit",
               "charge": "26 USD/day",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "laundry_service": "no",
+              "shower": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -442,14 +442,11 @@
         "backcountry": "no",
         "capacity": "30",
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "no",
         "name": "HURRICANE CAMPGROUND",
         "opening_hours": "Apr 15-Oct 31 07:00-22:00",
         "operator": "United States Department of Agriculture",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recreation/camping-cabins/recarea/?recid=73771&actid=29",
         "id": "ridb:233308",
@@ -489,7 +486,10 @@
             "source_record_id": "osm:way:808163406",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -1479,20 +1479,15 @@
         "capacity:pitches": "165",
         "capacity:tents": "165",
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "no",
-        "internet_access": "no",
         "name": "MATHEWS ARM CAMPGROUND",
         "operator": "National Park Service",
         "operator:short": "NPS",
         "operator:type": "public",
         "operator:wikidata": "Q308439",
         "operator:wikipedia": "en:National Park Service",
-        "sanitary_dump_station": "yes",
-        "shower": "no",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/mathews-arm-campground.htm",
         "id": "ridb:232432",
@@ -1532,7 +1527,12 @@
             "source_record_id": "osm:way:224194057",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "sanitary_dump_station": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -2065,7 +2065,6 @@
         "capacity:cabins": "13",
         "caravans": "no",
         "group_only": "no",
-        "internet_access": "no",
         "name": "Cabin Camp 3",
         "opening_hours": "Apr-Nov",
         "operator": "National Park Service",
@@ -2116,7 +2115,8 @@
             "fields": {
               "access": "permit",
               "charge": "35 USD/day",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -2449,17 +2449,13 @@
         "camp_site": "standard",
         "caravans": "yes",
         "dog": "yes",
-        "drinking_water": "yes",
-        "internet_access": "no",
         "name": "Loft Mountain Campground",
         "nudism": "no",
         "opening_hours": "May-Oct 24/7; Nov-Apr Closed",
         "operator": "National Park Service",
         "phone": "+1 540 999 3500",
         "reservation": "yes",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/loft-mountain-campground.htm",
         "id": "ridb:232433",
@@ -2501,7 +2497,11 @@
             "fields": {
               "access": "yes",
               "charge": "30 USD",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -3663,7 +3663,11 @@
             "source_record_id": "osm:node:732432507",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -3673,7 +3677,11 @@
             "source_record_id": "osm:node:732432510",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -3683,7 +3691,11 @@
             "source_record_id": "osm:node:732432513",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -3693,7 +3705,11 @@
             "source_record_id": "osm:node:2442127652",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -10812,7 +10828,11 @@
             "source_record_id": "osm:node:7856588900",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "internet_access": "no",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -17460,7 +17480,10 @@
             "source_record_id": "osm:way:1459962041",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "customers"
+              "internet_access": "yes",
+              "internet_access:fee": "customers",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -18462,7 +18485,6 @@
         "reservation": "required",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 14130133106,
         "osm_type": "node",
@@ -18494,7 +18516,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permissive",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "internet_access": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -24121,7 +24146,6 @@
         "camp_site": "standard",
         "capacity": "48",
         "caravans": "yes",
-        "drinking_water": "yes",
         "fee": "yes",
         "group_only": "yes",
         "name": "Lake Fairfax Large Group Campground",
@@ -24136,7 +24160,6 @@
         "payment:visa_debit": "yes",
         "power_supply": "no",
         "reservation": "recommended",
-        "sanitary_dump_station": "yes",
         "shower": "no",
         "static_caravans": "no",
         "tents": "yes",
@@ -24174,7 +24197,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "bbq": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "power_supply": "no",
+              "shower": "no"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -24185,7 +24212,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "bbq": "yes",
+              "drinking_water": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -25611,7 +25644,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -26488,7 +26522,6 @@
         "addr:city": "Riverdale",
         "addr:postcode": "20737",
         "addr:state": "MD",
-        "bbq": "yes",
         "capacity": "174",
         "caravans": "yes",
         "leisure": "park",
@@ -26498,7 +26531,6 @@
         "operator:type": "public",
         "operator:wikidata": "Q308439",
         "reservation": "required",
-        "sanitary_dump_station": "customers",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/gree/planyourvisit/campground.htm",
@@ -26532,7 +26564,9 @@
             "source_record_id": "osm:way:759770891",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "bbq": "yes",
+              "fee": "yes",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -35217,7 +35251,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1163510164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1163510164"
+          }
+        ]
       }
     },
     {
@@ -37004,7 +37050,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "drinking_water": "yes",
+              "fee": "no",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,

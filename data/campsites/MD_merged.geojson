@@ -26,7 +26,6 @@
         "operator": "National Park Service",
         "phone": "+1 877 444 6777",
         "reservation": "required",
-        "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/cato/planyourvisit/owens-creek-campground.htm",
@@ -70,7 +69,8 @@
             "fields": {
               "access": "customers",
               "charge": "30 USD/night",
-              "fee": "yes"
+              "fee": "yes",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -302,7 +302,6 @@
         "cabins": "yes",
         "caravans": "no",
         "email": "CATO_Camp_Manager@nps.gov",
-        "internet_access": "no",
         "name": "CAMP MISTY MOUNT",
         "opening_hours": "May-Oct",
         "operator": "National Park Service",
@@ -344,7 +343,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:874693866",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/874693866"
+          }
+        ]
       }
     },
     {
@@ -11516,7 +11527,6 @@
         "camp_site": "standard",
         "capacity": "48",
         "caravans": "yes",
-        "drinking_water": "yes",
         "fee": "yes",
         "group_only": "yes",
         "name": "Lake Fairfax Large Group Campground",
@@ -11531,7 +11541,6 @@
         "payment:visa_debit": "yes",
         "power_supply": "no",
         "reservation": "recommended",
-        "sanitary_dump_station": "yes",
         "shower": "no",
         "static_caravans": "no",
         "tents": "yes",
@@ -11569,7 +11578,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "bbq": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "power_supply": "no",
+              "shower": "no"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -11580,7 +11593,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "bbq": "yes",
+              "drinking_water": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -12477,7 +12496,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -13633,7 +13653,9 @@
             "source_record_id": "osm:way:759755281",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -13643,7 +13665,9 @@
             "source_record_id": "osm:way:759755282",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -13665,7 +13689,6 @@
         "addr:city": "Riverdale",
         "addr:postcode": "20737",
         "addr:state": "MD",
-        "bbq": "yes",
         "capacity": "174",
         "caravans": "yes",
         "leisure": "park",
@@ -13675,7 +13698,6 @@
         "operator:type": "public",
         "operator:wikidata": "Q308439",
         "reservation": "required",
-        "sanitary_dump_station": "customers",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/gree/planyourvisit/campground.htm",
@@ -13709,7 +13731,9 @@
             "source_record_id": "osm:way:759770891",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "bbq": "yes",
+              "fee": "yes",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -19192,7 +19216,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1163510164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1163510164"
+          }
+        ]
       }
     },
     {

@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.30.0', messages:{
+  global.KampTrailI18nFr = {version:'2.31.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1713,6 +1713,32 @@
   "Reported technology": "Technologie indiquée",
   "Any technology": "Toute technologie",
   "Signal levels are ordered visitor categories, not the 1 to 5 bars of other apps. No service means no usable signal. Weak, Usable and Strong roughly cover the low, middle and high ranges. No numeric match is claimed.": "Les niveaux de signal sont des catégories ordonnées selon les visiteurs, et non les barres de 1 à 5 d’autres applis. Aucun service signifie aucun signal utilisable. Faible, Utilisable et Fort couvrent approximativement les plages basse, moyenne et haute. Aucune équivalence numérique n’est revendiquée.",
-  "Approach is a maximum on the visitor's 3-level scale. Up to moderate includes easy and moderate reports. Missing or unknown approach never matches.": "L’accès est un maximum sur l’échelle à 3 niveaux des visiteurs. Jusqu’à modéré inclut les rapports faciles et modérés. Un accès manquant ou inconnu ne correspond jamais."
+  "Approach is a maximum on the visitor's 3-level scale. Up to moderate includes easy and moderate reports. Missing or unknown approach never matches.": "L’accès est un maximum sur l’échelle à 3 niveaux des visiteurs. Jusqu’à modéré inclut les rapports faciles et modérés. Un accès manquant ou inconnu ne correspond jamais.",
+  "reported": "signalé",
+  "source says no": "la source indique non",
+  "sources disagree": "les sources divergent",
+  "value not recognized": "valeur non reconnue",
+  "survey date {date}": "date de vérification {date}",
+  "updated {date}": "mis à jour le {date}",
+  "OpenStreetMap element {ref}": "Élément OpenStreetMap {ref}",
+  "Forest Service site record: {name}": "Fiche de site du Service des forêts : {name}",
+  "{source} listing record": "Fiche propre de {source}",
+  "whole mapped element": "tout l’élément cartographié",
+  "this listing's own record": "fiche propre de ce lieu",
+  "site record": "fiche du site",
+  "{count} of {total} campsite records, not every site": "{count} sur {total} fiches d’emplacement, pas tous les emplacements",
+  "value “{value}”": "valeur « {value} »",
+  "Survey: {date}.": "Vérification : {date}.",
+  "Retrieved: {date}.": "Récupéré : {date}.",
+  "Tags describe this mapped element only. A retrieval date is not a survey date.": "Les balises décrivent uniquement cet élément cartographié. Une date de récupération n’est pas une date de vérification.",
+  "Merged elements, not used for this listing ({count})": "Éléments fusionnés, non utilisés pour ce lieu ({count})",
+  "These observations belong to other records merged into this listing, such as a single site or a duplicate outline. They are not used for this listing's amenities or filters.": "Ces observations appartiennent à d’autres fiches fusionnées avec ce lieu, comme un seul emplacement ou un contour en double. Elles ne sont pas utilisées pour les équipements ni les filtres de ce lieu.",
+  "A campsite length or hookup filter is on. Recreation.gov campsite-record amenities do not count toward amenity filters then, because they are not linked to the campsite that fits.": "Un filtre de longueur ou de branchements est actif. Les équipements des fiches d’emplacement Recreation.gov ne comptent alors pas pour les filtres d’équipements, car ils ne sont pas liés à l’emplacement qui convient.",
+  "Amenity evidence:": "Preuves d’équipements :",
+  "No amenity source for this listing.": "Aucune source d’équipements pour ce lieu.",
+  "Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence.": "Les filtres d’équipements ne retiennent que les preuves listées ici, avec la portée indiquée. Inconnu ne signifie pas absent.",
+  "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Les filtres d’équipements n’utilisent que les preuves affichées dans chaque fiche : l’élément OpenStreetMap propre au lieu, les fiches de site du Service des forêts et les fiches d’emplacement Recreation.gov. Avec un filtre de longueur ou de branchements actif, les équipements des fiches d’emplacement ne comptent que s’ils sont liés à l’emplacement qui convient, ce qui n’est pas le cas de ces fiches.",
+  "different site ({type}), not this campground": "autre site ({type}), pas ce camping",
+  "type unknown": "type inconnu"
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -80,7 +80,8 @@ test('amenity and rig filters persist and match only reported data',async({page,
   await page.locator('#filters').click();
   await page.locator('[name="f-amenity"][value="toilet"]').check();
   await expect(page.locator('#filter-badge')).toHaveText('1');
-  expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.amenities.includes('toilet')))).toBe(true);
+  // 2.31.0: every visible listing's popup evidence reports toilets, and every listing it reports for is visible.
+  expect(await page.evaluate(()=>{const shown=new Set(KampTrailData.getVisibleCampsites().map(s=>s.properties.id)),all=KampTrailData.getVisibleCampsites({...KampTrailData.getCurrentFilters(),amenities:[]});return all.every(s=>shown.has(s.properties.id)===(DataQuality.amenityEvidence(s.properties).amenities.toilet.status==='present'));})).toBe(true);
   await page.locator('#f-rig').selectOption('tent');
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.rig_friendly.includes('tent')))).toBe(true);
   await page.reload({waitUntil:'domcontentloaded'});

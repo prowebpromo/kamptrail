@@ -323,6 +323,30 @@
     }).join('');
     return `<details class="kt-usfs-site"><summary>${esc(t("Forest Service site record says…"))}</summary>${facilities}<p class="kt-fine">${esc(t("Free text written by the Forest Service and matched by Recreation.gov facility ID.")+(separate?" "+t("Kept separate from the Recreation.gov records above."):"")+" "+t("Blank or ambiguous wording is unknown, never a statement of absence. Not current availability."))}</p><p class="kt-fine">${esc(t("Data retrieved {date}. CC BY 4.0.",{date:data.source.retrieved}))} <a href="${DataQuality.USFS_SITE_URL}" target="_blank" rel="noopener noreferrer">${esc(t("Forest Service source layer"))}</a></p></details>`;
   }
+  // R8 (2.31.0): the amenity evidence the filters use, with source, scope and date for every statement.
+  // Amenity filters match only what this block shows, at the scope it states.
+  function osmRef(id){const m=String(id||'').match(/^osm:(node|way|relation|unknown):([^:]+)/);return m?`${m[1]}/${m[2]}`:String(id||'');}
+  function osmLink(id,text){const m=String(id||'').match(/^osm:(node|way|relation):([0-9]+)$/);return m?`<a href="https://www.openstreetmap.org/${m[1]}/${m[2]}" target="_blank" rel="noopener noreferrer">${esc(text)}</a>`:esc(text);}
+  const day=d=>typeof d==='string'&&/^\d{4}-\d\d-\d\d/.test(d)?d.slice(0,10):null;
+  function amenityEvidenceText(p){
+    const e=DataQuality.amenityEvidence(p),rig=DataQuality.campsiteRigActive(window.kamptrailFilters);
+    const labels={toilet:t("Toilets"),water:t("Drinking water"),dump:t("Dump station"),shower:t("Showers")};
+    const status={present:t("reported"),absent:t("source says no"),conflict:t("sources disagree"),unrecognized:t("value not recognized"),unknown:t("unknown")};
+    const when=r=>{const d=day(r.date);if(!d)return t("date unknown");return r.source==='osm'?t("survey date {date}",{date:d}):r.source==='usfs'?t("updated {date}",{date:d}):d;};
+    const who=r=>r.source==='osm'?osmLink(r.record,t("OpenStreetMap element {ref}",{ref:osmRef(r.record)})):r.source==='ridb'?esc(t('Recreation.gov facility {id}',{id:r.record.slice(5)})):r.source==='usfs'?esc(r.name?t("Forest Service site record: {name}",{name:r.name}):t("Forest Service site record")):esc(t("{source} listing record",{source:r.label||r.record}));
+    const scope=r=>r.scope==='element'?t("whole mapped element"):r.scope==='listing_record'?t("this listing's own record"):r.scope==='site_record'?t("site record"):r.scope==='other_site_record'?t("different site ({type}), not this campground",{type:r.type||t("type unknown")}):t("{count} of {total} campsite records, not every site",{count:r.count,total:r.total});
+    const part=r=>`${who(r)} <span class="kt-muted">(${esc(scope(r))}${r.value!=null&&r.source!=='ridb'?` · ${esc(t("value “{value}”",{value:String(r.value).slice(0,120)}))}`:''} · ${esc(when(r))})</span>`;
+    const rows=DataQuality.FILTER_AMENITIES.map(a=>{
+      const x=e.amenities[a],refs=[...x.positive,...x.negative,...x.conflict,...(x.status==='unrecognized'?x.other:[]),...x.elsewhere];
+      return `<li data-amenity="${a}" data-status="${x.status}"><strong>${esc(labels[a])}:</strong> ${esc(status[x.status])}${refs.length?`: ${refs.map(part).join('; ')}`:''}</li>`;
+    }).join('');
+    const osm=e.sources.find(s=>s.source==='osm');
+    const osmBlock=osm?`<p class="kt-fine kt-osm-amenities">${osmLink(osm.record,t("OpenStreetMap element {ref}",{ref:osmRef(osm.record)}))}: <span class="kt-usfs-text">${esc(Object.entries(osm.tags).map(([k,v])=>`${k}=${v}`).join(', '))}</span>. ${esc(t("Survey: {date}.",{date:day(osm.date)||t("date unknown")}))} ${esc(t("Retrieved: {date}.",{date:day(osm.retrieved)||t("date unknown")}))} ${esc(t("Tags describe this mapped element only. A retrieval date is not a survey date."))}</p>`:'';
+    const members=e.members.length?`<details class="kt-amenity-members"><summary>${esc(t("Merged elements, not used for this listing ({count})",{count:e.members.length}))}</summary><ul>${e.members.map(m=>`<li data-member="${esc(m.source_record_id)}">${/^osm:/.test(m.source_record_id)?osmLink(m.source_record_id,t("OpenStreetMap element {ref}",{ref:osmRef(m.source_record_id)})):esc(t("{source} listing record",{source:m.source||m.source_record_id}))}: <span class="kt-usfs-text">${esc(Object.entries(m.fields).map(([k,v])=>`${k}=${v}`).join(', '))}</span> <span class="kt-muted">(${esc(t("Survey: {date}.",{date:day(m.observed_at)||t("date unknown")}))} ${esc(t("Retrieved: {date}.",{date:day(m.retrieved_at)||t("date unknown")}))})</span></li>`).join('')}</ul><p class="kt-fine">${esc(t("These observations belong to other records merged into this listing, such as a single site or a duplicate outline. They are not used for this listing's amenities or filters."))}</p></details>`:'';
+    const rigNote=rig&&DataQuality.FILTER_AMENITIES.some(a=>e.amenities[a].positive.some(r=>r.scope==='campsite_records'))?`<p class="kt-fine">${esc(t("A campsite length or hookup filter is on. Recreation.gov campsite-record amenities do not count toward amenity filters then, because they are not linked to the campsite that fits."))}</p>`:'';
+    if(e.state==='no_source')return `<div class="kt-amenity-evidence" data-state="no_source"><strong>${t("Amenity evidence:")}</strong> ${esc(t("No amenity source for this listing."))}${members}</div>`;
+    return `<div class="kt-amenity-evidence" data-state="evidence"><strong>${t("Amenity evidence:")}</strong><ul>${rows}</ul>${osmBlock}<p class="kt-fine">${esc(t("Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence."))}</p>${rigNote}${members}</div>`;
+  }
   function popupLayout(){
     const size=state.map?.getSize?.()||{},width=Number.isFinite(size.x)?size.x:390,height=Number.isFinite(size.y)?size.y:400;
     return {width:Math.max(100,Math.min(300,width-70)),height:Math.max(80,Math.min(360,height-160))};
@@ -352,7 +376,7 @@
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
       ${DataQuality.elevationInfo(site)?`<p class="kt-fine">${t("Interpolated terrain from ")}<a href="${DataQuality.ELEVATION_SOURCE}" target="_blank" rel="noopener noreferrer">USGS 3DEP</a>${t(". Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grade or RV clearance.")}</p>`:''}
       <div><strong>${t("Access reported:")}</strong> ${esc(p.access_label || p.access || t("Not verified"))}</div>
-      <div><strong>${t("Amenities reported:")}</strong> ${p.amenities.length?p.amenities.map(value=>esc(uiLabel('amenity',value))).join(', '):t("Not verified")}</div>
+      ${amenityEvidenceText(p)}
       ${ridbAmenitiesText(p)}
       ${usfsSiteText(p)}
       <!-- Bundled road_difficulty holds surface labels with no attributable source, so it is not shown. Approach difficulty comes only from dated visitor reports. -->
@@ -491,7 +515,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.30.0',
+    version:'2.31.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -520,6 +544,8 @@
       if(!state.searchIndexPromise)state.searchIndexPromise=fetchJSON('data/campsites/search-index.json').then(d=>{if(d.version!==1||!Array.isArray(d.sites))throw new Error('Search index unavailable');return d;}).catch(e=>{state.searchIndexPromise=null;throw e;});
       return state.searchIndexPromise;
     },
+    // Read-only render of one listing's popup markup, for tests and the evidence fixture.
+    popupHTML:site=>popup(site),
     getDefaultFilters:defaults,
     getCurrentFilters:()=>window.kamptrailFilters || defaults(),
     updateFilters(filters){window.kamptrailFilters={...defaults(),...filters};updateMarkers();requestForecast();},

@@ -6,13 +6,15 @@ const record=(extra={})=>({cn:'5005.1',name:'Pine Campground',type:'CAMPGROUND',
 const payload=()=>({version:1,source:{...source},facilities:{'100':{records:[record()],conflicts:[]}}});
 const feature=(props={})=>({type:'Feature',geometry:{type:'Point',coordinates:[-75,43]},properties:{id:'usfs:100',name:'Pine Campground',schema_version:3,description:'A campground with camping.',fee_status:'unknown',amenities:[],legacy_ids:['ridb:100'],...props}});
 
-test('Forest Service evidence joins exact Recreation.gov identities only and never touches amenities, fees or filters',()=>{
+test('Forest Service evidence joins exact Recreation.gov identities only, never touches amenities or fees, and feeds filters at its scope',()=>{
   for(const props of [{id:'ridb:100',legacy_ids:[]},{id:'usfs:100',legacy_ids:['ridb:100']},{id:'osm:way:100',legacy_ids:['ridb:100'],osm_id:100,tourism:'camp_site'}]){
     const f=Q.normalizeFeature(feature(props));const before=structuredClone(f.properties);Q.attachUSFSSiteAmenities(f,payload());
     assert.ok(f.properties.usfs_site_evidence);assert.deepEqual(f.properties.amenities,before.amenities);
     for(const key of ['fee_status','cost','access_status','camping_classification'])assert.deepEqual(f.properties[key],before[key]);
     assert.equal(f.properties.ridb_amenity_evidence,undefined,'kept apart from the Recreation.gov amenity evidence');
-    assert.equal(Q.applyFilters([f],{amenities:['water']}).length,0);assert.equal(Q.applyFilters([f],{amenities:['toilet']}).length,0);
+    // 2.31.0: an explicit Forest Service class is campground-wide filter evidence the popup shows, with its date.
+    assert.equal(Q.applyFilters([f],{amenities:['water']}).length,1);assert.equal(Q.applyFilters([f],{amenities:['toilet']}).length,1);assert.equal(Q.applyFilters([f],{amenities:['dump']}).length,0);
+    const e=Q.amenityEvidence(f.properties);assert.equal(e.amenities.toilet.positive[0].scope,'site_record');assert.equal(e.amenities.toilet.positive[0].date,'2026-08-05');
   }
   for(const id of ['usfs:100','osm:node:100','ridb:0100','RIDB:100','ridb:100x','ridb:1000']){
     const f=Q.normalizeFeature(feature({id,legacy_ids:[]}));Q.attachUSFSSiteAmenities(f,payload());assert.equal(f.properties.usfs_site_evidence,undefined,id);

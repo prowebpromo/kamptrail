@@ -28,7 +28,7 @@
     }});
     return p=>{const ids=grid.get(Math.floor(p[0]/CELL)+','+Math.floor(p[1]/CELL))||[];let best=null;for(const id of ids){const s=segments[id],d=segmentDistance(p,s.a,s.b);if(d.distance<=radius&&(!best||d.distance<best.distance))best={distance:d.distance,leg:s.leg,progress:s.progress+s.length*d.t};}return best;};
   }
-  function indexFeature(row){const m=row.m||{};return{type:'Feature',geometry:{type:'Point',coordinates:[row.lng,row.lat]},properties:{forecastStates:Array.isArray(row.states)?row.states:[],elevation:m.e||null,id:row.id,legacy_ids:Array.isArray(row.legacy_ids)?row.legacy_ids:[],name:row.name,fee_status:m.f||'unknown',type:m.t||'unknown',amenities:Array.isArray(m.a)?m.a:[],rig_friendly:Array.isArray(m.r)?m.r:[],road_difficulty:m.d||null,open_status:typeof m.o==='string'?m.o.trim().toLowerCase():null,rating:Number.isFinite(m.q)?m.q:null,rv_sigs:Array.isArray(m.g)?m.g:[]}};}
+  function indexFeature(row){const m=row.m||{};return{type:'Feature',geometry:{type:'Point',coordinates:[row.lng,row.lat]},properties:{forecastStates:Array.isArray(row.states)?row.states:[],elevation:m.e||null,id:row.id,legacy_ids:Array.isArray(row.legacy_ids)?row.legacy_ids:[],name:row.name,fee_status:m.f||'unknown',type:m.t||'unknown',amenities:Array.isArray(m.a)?m.a:[],amenity_filter:{g:Array.isArray(m.a)?m.a:[],s:Array.isArray(m.s)?m.s:[]},rig_friendly:Array.isArray(m.r)?m.r:[],road_difficulty:m.d||null,open_status:typeof m.o==='string'?m.o.trim().toLowerCase():null,rating:Number.isFinite(m.q)?m.q:null,rv_sigs:Array.isArray(m.g)?m.g:[]}};}
   function find(sites,route,radius,filters={},exclude=[]){const near=corridor(route,radius),skip=new Set(exclude),out=[];for(const row of sites){if(skip.has(row.id)||!Number.isFinite(row.lng)||!Number.isFinite(row.lat))continue;const hit=near([row.lng,row.lat]);if(!hit)continue;const feature=indexFeature(row);out.push({row,feature,...hit});}const accepted=global.DataQuality?new Set(DataQuality.applyFilters(out.map(x=>x.feature),filters)):null;return out.filter(x=>!accepted||accepted.has(x.feature)).sort((a,b)=>a.leg-b.leg||a.progress-b.progress||a.distance-b.distance||a.row.name.localeCompare(b.row.name));}
   const cacheName=()=>`kamptrail:${new URL('./',location.href).href}:routes-v1`;
   const key=points=>points.map(p=>p.map(v=>+v.toFixed(5)).join(',')).join(';');
@@ -123,7 +123,7 @@
     const unchanged=()=>{const now=global.KampTrailTrip?.getStops?.().map(x=>x.feature).filter(Boolean);return !now||tripKey(now)===originalKey;};
     const stillCurrent=()=>view===st.view&&st.dialog.open;
     async function search(){if(!index||!stillCurrent())return;const run=++searchRun;list.replaceChildren();shown=0;more.hidden=true;
-      if(use.checked&&(activeFilters(filters)&&index.filter_version!==1||global.KampTrailDiscovery?.active(filters)&&index.community_version!==1||DataQuality.elevationRange(filters).active&&index.elevation_version!==1)){status.textContent=t("Filter details are unavailable in this saved catalogue. Reconnect and retry the catalogue.");status.append(button(t("Retry catalogue"),()=>load(true)));return;}
+      if(use.checked&&(activeFilters(filters)&&index.filter_version!==1||filters.amenities?.length&&index.amenity_version!==1||global.KampTrailDiscovery?.active(filters)&&index.community_version!==1||DataQuality.elevationRange(filters).active&&index.elevation_version!==1)){status.textContent=t("Filter details are unavailable in this saved catalogue. Reconnect and retry the catalogue.");status.append(button(t("Retry catalogue"),()=>load(true)));return;}
       evidence.textContent=global.KampTrailDiscovery?.active(filters)&&use.checked?global.KampTrailDiscovery.status():'';
       const forecast=global.KampTrailForecast,weatherActive=use.checked&&forecast?.active(filters);
       let weatherCandidates=[];
@@ -157,5 +157,5 @@
     global.addEventListener?.('kamptrail:discoveryupdated',search);st.dialog.addEventListener('close',()=>global.removeEventListener?.('kamptrail:discoveryupdated',search),{once:true});if(global.KampTrailDiscovery?.active(filters))global.KampTrailDiscovery.load();
     radius.onchange=search;use.onchange=search;sort.onchange=search;let timer;terms.oninput=()=>{clearTimeout(timer);timer=setTimeout(search,200);};await load();
   }
-  global.KampTrailRoutes={version:'2.30.0',calculate,open,validRoute,indexFeature,find,serviceOrder,corridor,simplify,segmentDistance,miles,key,MAX_STOPS};
+  global.KampTrailRoutes={version:'2.31.0',calculate,open,validRoute,indexFeature,find,serviceOrder,corridor,simplify,segmentDistance,miles,key,MAX_STOPS};
 })(typeof window!=='undefined'?window:globalThis);

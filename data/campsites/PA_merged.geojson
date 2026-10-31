@@ -853,12 +853,8 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "IVES RUN",
         "name:signed": "no",
-        "power_supply": "yes",
-        "sanitary_dump_station": "no",
-        "toilets": "yes;no",
         "tourism": "caravan_site",
         "website": "https://www.recreation.gov/camping/campgrounds/233523",
         "id": "ridb:233523",
@@ -898,7 +894,11 @@
             "source_record_id": "osm:node:1520003718",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "no",
+              "toilets": "yes;no"
             },
             "retrieved_at": "2026-10-29T03:32:01Z",
             "source_updated_at": null,
@@ -1996,15 +1996,9 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "Lazy K Campground",
-        "openfire": "yes",
         "phone": "+16103678576",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://lazykcamping.com/",
         "osm_id": 385475250,
@@ -2036,7 +2030,13 @@
             "source_record_id": "osm:way:1233144105",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:32:01Z",
             "source_updated_at": null,
@@ -20987,7 +20987,6 @@
         "addr:state": "PA",
         "addr:street": "Lynch Road",
         "capacity:caravans": "419",
-        "check_date": "2023-05-02",
         "fee": "yes",
         "name": "Spring Gulch RV Campground",
         "opening_hours": "Mar 23-Nov 5 00:00-24:00",
@@ -21031,7 +21030,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "private",
-              "fee": "yes"
+              "check_date": "2023-05-02",
+              "fee": "yes",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:32:01Z",
             "source_updated_at": null,
@@ -27049,15 +27051,9 @@
       "properties": {
         "cabins": "yes",
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "Paradise Stream Family Campground",
-        "openfire": "yes",
         "phone": "+17177892117",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.campparadisestream.com/",
         "osm_id": 995342541,
@@ -27090,7 +27086,13 @@
             "source_record_id": "osm:way:1236413773",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:32:01Z",
             "source_updated_at": null,

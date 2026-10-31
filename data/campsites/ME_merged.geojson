@@ -208,19 +208,13 @@
         "backcountry": "yes",
         "caravans": "no",
         "dog": "no",
-        "drinking_water": "no",
         "group_only": "no",
-        "internet_access": "no",
         "name": "DUCK HARBOR CAMPGROUND",
         "nudism": "no",
         "opening_hours": "May 15-Oct 15 open",
         "operator": "National Park Service",
-        "power_supply": "no",
         "reservation": "required",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/acad/planyourvisit/duckharbor.htm",
         "id": "ridb:264293",
@@ -254,7 +248,24 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:858219307",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no",
+              "internet_access": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/858219307"
+          }
+        ]
       }
     },
     {
@@ -8041,7 +8052,6 @@
         "operator": "Hidden Valley Nature Center",
         "toilets": "yes",
         "tourism": "camp_site",
-        "water_source": "no",
         "osm_id": 8593746799,
         "osm_type": "node",
         "id": "osm:node:8593746799",
@@ -8071,7 +8081,9 @@
             "source_record_id": "osm:node:8593748531",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes",
+              "water_source": "no"
             },
             "retrieved_at": "2026-10-29T03:04:46Z",
             "source_updated_at": null,

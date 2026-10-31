@@ -277,7 +277,6 @@
       "properties": {
         "backcountry": "yes",
         "capacity": "40",
-        "drinking_water": "no",
         "group_only": "yes",
         "name": "POTOMAC GROUP CAMPGROUND",
         "nudism": "no",
@@ -317,7 +316,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:818939421",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/818939421"
+          }
+        ]
       }
     },
     {
@@ -5598,7 +5609,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3579245387",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no",
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3579245387"
+          }
+        ]
       }
     },
     {
@@ -11642,7 +11666,6 @@
         ]
       },
       "properties": {
-        "check_date": "2024-09-01",
         "name": "Tent Cabins",
         "tourism": "camp_site",
         "osm_id": 5145584029,
@@ -11668,7 +11691,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5145798121",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "check_date": "2024-09-01"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5145798121"
+          }
+        ]
       }
     },
     {
@@ -13481,7 +13516,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "Lakewood campground",
         "tourism": "camp_site",
         "osm_id": 5781799257,
@@ -13516,6 +13550,7 @@
             "source_record_id": "osm:way:1300537514",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -16238,7 +16273,6 @@
       "properties": {
         "backcountry": "yes",
         "name": "Long Pond Site 2",
-        "sanitary_dump_station": "no",
         "tourism": "camp_site",
         "osm_id": 7556835565,
         "osm_type": "node",
@@ -16264,7 +16298,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7556835777",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7556835777"
+          }
+        ]
       }
     },
     {
@@ -21218,8 +21264,6 @@
         "addr:housenumber": "237",
         "addr:street": "Salmon Point Road",
         "name": "Quinte's Isle Campark",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tourism": "camp_site",
         "osm_id": 8513483997,
         "osm_type": "node",
@@ -21249,7 +21293,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:226260264",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/226260264"
+          }
+        ]
       }
     },
     {
@@ -38910,7 +38967,9 @@
             "source_record_id": "osm:node:12150160016",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access": "no",
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -39072,7 +39131,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12240126543",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "shelter"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12240126543"
+          }
+        ]
       }
     },
     {
@@ -74028,7 +74099,11 @@
             "source_record_id": "osm:way:977966060",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74193,7 +74268,11 @@
             "source_record_id": "osm:way:977966064",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74203,7 +74282,11 @@
             "source_record_id": "osm:way:977966065",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74274,7 +74357,11 @@
             "source_record_id": "osm:way:977966067",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74284,7 +74371,11 @@
             "source_record_id": "osm:way:977966068",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74401,7 +74492,11 @@
             "source_record_id": "osm:way:977966071",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74472,7 +74567,11 @@
             "source_record_id": "osm:way:977966073",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74542,7 +74641,11 @@
             "source_record_id": "osm:way:977966077",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74612,7 +74715,11 @@
             "source_record_id": "osm:way:977966076",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "firepit": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,

@@ -53,7 +53,9 @@ test('a matched campground shows the Forest Service text, credit and date apart 
   await expect(ridb).not.toContainText('Forest Service');await expect(section).not.toContainText('mentioned in');
   expect(await popup.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
   expect(await page.evaluate(()=>KampTrailData.getCampsiteById('ridb:123').properties.amenities)).toEqual([]);
-  expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['water']});return KampTrailData.getVisibleCampsites().length;})).toBe(0);
+  // 2.31.0: an explicit Forest Service class is filter evidence the popup shows. Ambiguous "Yes" restroom text is not.
+  expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['water']});return KampTrailData.getVisibleCampsites().length;})).toBe(1);
+  expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['shower']});return KampTrailData.getVisibleCampsites().length;})).toBe(0);
   expect(errors).toEqual([]);
 });
 test('the separation sentence appears only when a Recreation.gov amenity section is rendered',async({page,context})=>{

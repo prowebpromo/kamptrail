@@ -965,12 +965,10 @@
       },
       "properties": {
         "campsites": "30",
-        "drinking_water": "yes",
         "name": "BIRCH LAKE CAMPGROUND",
         "operator": "USDA National Forest",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:233841",
         "schema_version": 3,
@@ -1002,7 +1000,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1239433092",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1239433092"
+          }
+        ]
       }
     },
     {
@@ -1057,12 +1068,10 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "FLOUR LAKE CAMPGROUND",
         "operator": "USFS",
         "reservation": "yes",
         "reservation:website": "https://www.recreation.gov/camping/campgrounds/232429",
-        "toilets": "vault",
         "tourism": "camp_site",
         "website": "https://flourlakecampground.com/",
         "id": "ridb:232429",
@@ -1096,7 +1105,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1159184655",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "toilets": "vault"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1159184655"
+          }
+        ]
       }
     },
     {
@@ -1450,14 +1472,12 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "EAST BEARSKIN LAKE CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:short": "USFS",
         "operator:type": "public",
         "operator:wikidata": "Q1891156",
         "reservation": "accepted",
-        "toilets": "vault",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/superior/recreation/camping-cabins/recarea/?recid=36977&actid=29",
         "website:reservation": "https://www.recreation.gov/camping/campgrounds/233165",
@@ -1492,7 +1512,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:162329157",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "toilets": "vault"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/162329157"
+          }
+        ]
       }
     },
     {
@@ -4933,7 +4966,6 @@
         "capacity:tents": "0",
         "caravans": "yes",
         "food": "snacks",
-        "internet_access": "no",
         "name": "Lebanon Hills Campground West Loop",
         "nudism": "no",
         "operator": "Dakota County Parks",
@@ -4959,7 +4991,6 @@
         "drinking_water": "yes",
         "phone": "+16514807773",
         "power_supply": "yes",
-        "sauna": "no",
         "shower": "yes",
         "toilets": "yes",
         "website": "https://dakotacountymn.gov/parks/parks-trails/lebanon-hills/lebanon-hills-campground",
@@ -4981,7 +5012,38 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:1060578773",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "internet_access": "no",
+              "power_supply": "yes",
+              "sanitary_dump_station": "no",
+              "sauna": "no",
+              "shower": "yes",
+              "swimming_pool": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1060578773"
+          },
+          {
+            "source_record_id": "osm:node:14090677596",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no",
+              "sanitary_dump_station": "no",
+              "swimming_pool": "no"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/14090677596"
+          }
+        ]
       }
     },
     {
@@ -7166,7 +7228,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7190655031",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7190655031"
+          }
+        ]
       }
     },
     {
@@ -13491,7 +13566,35 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3382298425",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3382298425"
+          },
+          {
+            "source_record_id": "osm:node:3382298426",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3382298426"
+          }
+        ]
       }
     },
     {
@@ -13641,7 +13744,35 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3383868596",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383868596"
+          },
+          {
+            "source_record_id": "osm:node:3383868602",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383868602"
+          }
+        ]
       }
     },
     {
@@ -13692,7 +13823,35 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3383868598",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383868598"
+          },
+          {
+            "source_record_id": "osm:node:3383868601",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383868601"
+          }
+        ]
       }
     },
     {
@@ -13823,7 +13982,60 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3383868604",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383868604"
+          },
+          {
+            "source_record_id": "osm:node:3383872417",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383872417"
+          },
+          {
+            "source_record_id": "osm:node:3383872418",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383872418"
+          },
+          {
+            "source_record_id": "osm:node:12843275090",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843275090"
+          }
+        ]
       }
     },
     {
@@ -13873,7 +14085,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3383872420",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383872420"
+          }
+        ]
       }
     },
     {
@@ -13924,7 +14151,35 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3383872422",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383872422"
+          },
+          {
+            "source_record_id": "osm:node:3383872423",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3383872423"
+          }
+        ]
       }
     },
     {
@@ -20214,7 +20469,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3388728298",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "amenity": "toilets",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3388728298"
+          }
+        ]
       }
     },
     {
@@ -20301,7 +20571,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3388728318",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3388728318"
+          }
+        ]
       }
     },
     {
@@ -20388,7 +20672,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3388728321",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3388728321"
+          }
+        ]
       }
     },
     {
@@ -23497,7 +23795,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3394742777",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3394742777"
+          }
+        ]
       }
     },
     {
@@ -39219,7 +39531,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3969731164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3969731164"
+          }
+        ]
       }
     },
     {
@@ -39648,7 +39974,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3969764377",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3969764377"
+          }
+        ]
       }
     },
     {
@@ -39773,7 +40113,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3969764224",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3969764224"
+          }
+        ]
       }
     },
     {
@@ -39936,7 +40290,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3969764228",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3969764228"
+          }
+        ]
       }
     },
     {
@@ -40023,7 +40391,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3969764231",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3969764231"
+          }
+        ]
       }
     },
     {
@@ -40149,7 +40531,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3969764235",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3969764235"
+          }
+        ]
       }
     },
     {
@@ -40427,7 +40823,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3969764445",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3969764445"
+          }
+        ]
       }
     },
     {
@@ -41519,13 +41929,8 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "KOA - Hayward",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 4486938990,
         "osm_type": "node",
@@ -41551,7 +41956,23 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:735298937",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/735298937"
+          }
+        ]
       }
     },
     {
@@ -42974,7 +43395,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10830947862",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10830947862"
+          }
+        ]
       }
     },
     {
@@ -43093,7 +43528,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12839113448",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12839113448"
+          }
+        ]
       }
     },
     {
@@ -43140,7 +43589,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9611785829",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9611785829"
+          }
+        ]
       }
     },
     {
@@ -43217,7 +43680,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9611821010",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9611821010"
+          }
+        ]
       }
     },
     {
@@ -52508,7 +52985,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "25 USD",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -53582,7 +54063,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "20 USD",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -53995,7 +54480,11 @@
             "source_record_id": "osm:way:1134826235",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -64623,7 +65112,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9611836617",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9611836617"
+          }
+        ]
       }
     },
     {
@@ -75218,7 +75721,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9693931551",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9693931551"
+          }
+        ]
       }
     },
     {
@@ -75265,7 +75782,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9693931553",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9693931553"
+          }
+        ]
       }
     },
     {
@@ -78455,7 +78986,33 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10780930459",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10780930459"
+          },
+          {
+            "source_record_id": "osm:node:12843318524",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318524"
+          }
+        ]
       }
     },
     {
@@ -78538,7 +79095,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10780930471",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10780930471"
+          }
+        ]
       }
     },
     {
@@ -78585,7 +79156,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10780930484",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10780930484"
+          }
+        ]
       }
     },
     {
@@ -78633,7 +79218,33 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10780930486",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10780930486"
+          },
+          {
+            "source_record_id": "osm:node:10780930489",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10780930489"
+          }
+        ]
       }
     },
     {
@@ -78716,7 +79327,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10780939708",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10780939708"
+          }
+        ]
       }
     },
     {
@@ -85212,7 +85837,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10830947877",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10830947877"
+          }
+        ]
       }
     },
     {
@@ -94275,7 +94914,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12839155161",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12839155161"
+          }
+        ]
       }
     },
     {
@@ -94358,7 +95011,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12839155164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12839155164"
+          }
+        ]
       }
     },
     {
@@ -95085,7 +95752,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843275095",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843275095"
+          }
+        ]
       }
     },
     {
@@ -95132,7 +95813,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843275097",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843275097"
+          }
+        ]
       }
     },
     {
@@ -95179,7 +95874,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843275099",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843275099"
+          }
+        ]
       }
     },
     {
@@ -95227,7 +95936,33 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318501",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318501"
+          },
+          {
+            "source_record_id": "osm:node:12843318502",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318502"
+          }
+        ]
       }
     },
     {
@@ -95275,7 +96010,33 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318504",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318504"
+          },
+          {
+            "source_record_id": "osm:node:12843318505",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318505"
+          }
+        ]
       }
     },
     {
@@ -95322,7 +96083,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318507",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318507"
+          }
+        ]
       }
     },
     {
@@ -95369,7 +96144,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318509",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318509"
+          }
+        ]
       }
     },
     {
@@ -95488,7 +96277,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318513",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318513"
+          }
+        ]
       }
     },
     {
@@ -95546,7 +96349,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "no"
+              "fee": "no",
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -95635,7 +96441,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318518",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318518"
+          }
+        ]
       }
     },
     {
@@ -95682,7 +96502,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318520",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318520"
+          }
+        ]
       }
     },
     {
@@ -95729,7 +96563,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12843318522",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12843318522"
+          }
+        ]
       }
     },
     {
@@ -96715,7 +97563,11 @@
             "source_record_id": "osm:node:12892202045",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -96725,7 +97577,11 @@
             "source_record_id": "osm:node:12892202046",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -96833,7 +97689,11 @@
             "source_record_id": "osm:node:12899395390",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -96896,7 +97756,11 @@
             "source_record_id": "osm:node:12899400347",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97159,7 +98023,11 @@
             "source_record_id": "osm:node:12899435329",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97262,7 +98130,11 @@
             "source_record_id": "osm:node:12899453519",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97325,7 +98197,11 @@
             "source_record_id": "osm:node:12899453521",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97596,7 +98472,11 @@
             "source_record_id": "osm:node:12902326410",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97779,7 +98659,11 @@
             "source_record_id": "osm:node:12902326415",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97842,7 +98726,11 @@
             "source_record_id": "osm:node:12902326417",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97905,7 +98793,11 @@
             "source_record_id": "osm:node:12902326419",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97969,7 +98861,11 @@
             "source_record_id": "osm:node:12902326421",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -97979,7 +98875,11 @@
             "source_record_id": "osm:node:12902326422",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -98042,7 +98942,11 @@
             "source_record_id": "osm:node:12902326424",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -98658,7 +99562,11 @@
             "source_record_id": "osm:node:12903309970",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -98761,7 +99669,11 @@
             "source_record_id": "osm:node:12903309978",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -98864,7 +99776,11 @@
             "source_record_id": "osm:node:12907590525",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -98967,7 +99883,11 @@
             "source_record_id": "osm:node:12907590528",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -99070,7 +99990,11 @@
             "source_record_id": "osm:node:12907963442",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -99134,7 +100058,11 @@
             "source_record_id": "osm:node:12907963444",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -99144,7 +100072,11 @@
             "source_record_id": "osm:node:12907963445",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,

@@ -198,7 +198,6 @@
       },
       "properties": {
         "capacity": "5",
-        "internet_access": "no",
         "name": "Big Rock Campground",
         "operator": "National Forest Service",
         "tourism": "camp_site",
@@ -241,6 +240,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "no",
+              "internet_access": "no",
               "internet_access:fee": "no"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -260,10 +260,8 @@
         ]
       },
       "properties": {
-        "internet_access": "no",
         "name": "Bear Heaven Campground",
         "operator": "USDA Forest Service",
-        "sanitary_dump_station": "no",
         "tourism": "camp_site",
         "wheelchair": "no",
         "id": "ridb:239752",
@@ -304,7 +302,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "5 USD/day",
-              "fee": "yes"
+              "fee": "yes",
+              "internet_access": "no",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -1887,19 +1887,14 @@
       "properties": {
         "camp_site": "basic",
         "caravans": "yes",
-        "drinking_water": "no",
         "fixme": "website says no toilets. which is correct?",
         "group_only": "no",
         "name": "Red Creek Campground",
         "nudism": "no",
         "opening_hours": "Apr-Dec: 00:00-24:00; Jan-Mar: closed",
-        "power_supply": "no",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mnf/recreation/natureviewing/recarea/?recid=7003&actid=63",
         "id": "ridb:239774",
@@ -1941,7 +1936,12 @@
             "fields": {
               "access": "yes",
               "charge": "11 USD",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -14659,7 +14659,10 @@
             "source_record_id": "osm:way:1459962041",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "customers"
+              "internet_access": "yes",
+              "internet_access:fee": "customers",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -15682,7 +15685,6 @@
         "reservation": "required",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 14130133106,
         "osm_type": "node",
@@ -15714,7 +15716,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permissive",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "internet_access": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -26561,7 +26566,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1163510164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access": "no"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1163510164"
+          }
+        ]
       }
     },
     {
@@ -29081,7 +29098,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "drinking_water": "yes",
+              "fee": "no",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,

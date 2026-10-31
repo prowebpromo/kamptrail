@@ -6,12 +6,16 @@ const group=(changes={})=>({reported:1,negative:0,unknown:0,conflict:0,qualifier
 const payload=()=>({version:1,source:{...source},facilities:{'100':{sites:3,amenities:{toilet:group(),drinking_water:group({qualifiers:{peak_season:1}}),dump:group({qualifiers:{}}),picnic_table:group({reported:0,negative:1,qualifiers:{}})}}}});
 const feature=(props={})=>({type:'Feature',geometry:{type:'Point',coordinates:[-75,43]},properties:{id:'usfs:100',name:'Pine Campground',schema_version:3,description:'A campground with camping.',fee_status:'unknown',amenities:[],legacy_ids:['ridb:100'],...props}});
 
-test('evidence joins exact primary/legacy identities without amenity, service, fee or permission promotion',()=>{
+test('evidence joins exact primary/legacy identities without amenity, service, fee or permission promotion, and filters keep record scope',()=>{
   for(const props of [{id:'ridb:100',legacy_ids:[]},{id:'usfs:100',legacy_ids:['ridb:100']},{id:'osm:way:100',legacy_ids:['ridb:100'],osm_id:100,tourism:'camp_site'}]){
     const f=Q.normalizeFeature(feature(props));const before=structuredClone(f.properties);Q.attachRIDBAmenities(f,payload());
     assert.ok(f.properties.ridb_amenity_evidence);assert.deepEqual(f.properties.amenities,before.amenities);
     for(const key of ['fee_status','cost','access_status','camping_classification'])assert.deepEqual(f.properties[key],before[key]);
-    assert.equal(Q.applyFilters([f],{amenities:['water']}).length,0);assert.equal(Q.applyFilters([f],{amenities:['dump']}).length,0);
+    // 2.31.0: the filters use what the popup shows, at its scope: some campsite records, never every site.
+    assert.equal(Q.applyFilters([f],{amenities:['water']}).length,1);assert.equal(Q.applyFilters([f],{amenities:['dump']}).length,1);assert.equal(Q.applyFilters([f],{amenities:['shower']}).length,0);
+    assert.deepEqual(Q.amenityFilterSets(f.properties),{g:[],s:['toilet','water','dump']});
+    // A length filter is matched on one campsite. Counts are not joined to that campsite, so they cannot combine with it.
+    assert.equal(Q.applyFilters([{...f,properties:{...f.properties,rv_sigs:[[40,0,3]]}}],{amenities:['water'],rigLength:30}).length,0);
   }
   for(const id of ['usfs:100','osm:node:100','ridb:0100','RIDB:100','ridb:100x']){
     const f=Q.normalizeFeature(feature({id,legacy_ids:[]}));Q.attachRIDBAmenities(f,payload());assert.equal(f.properties.ridb_amenity_evidence,undefined);
