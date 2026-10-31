@@ -4,7 +4,13 @@ Updated October 30, 2026, after the live 2.20 verification and the owner's revis
 
 ## Current release and accounting
 
-Live release on October 31, 2026: **2.22.0**, source `6b54e7f2e435230a2c53f27403119cdc390d508a` (PR #123), following 2.21.2 (PR #122, fee and access provenance). The [2.22 parity check](2026-10-31-parity-2.22-live.md) owns the current score and the remaining-gap list: **89.9/100**, 98 of 109 weighted points, **13/13 must-haves complete**. No scored row changed between 2.20 and 2.22. The remaining 11 points are 7 buildable now and 4 blocked externally. The earlier 2.20 verification and its 89.4 sensitivity result remain historical.
+Live release on October 31, 2026: **2.24.0**, source `47db64ed570fb8cff67d8dc9ea2b0ae32c3bc246` (PR #126, visitor overnight-stay answers), following 2.23.0 (`95387557`, PR #125, official rest areas in five states) and 2.22.0 (`6b54e7f2`, PR #123). Candidate 2.25.0 (PR #127) adds the French interface.
+
+Score at 2.24.0: **90.8/100**, 99 of 109 weighted points, **13/13 must-haves complete**, 61 scored rows. The only scored change since the [2.22 parity check](2026-10-31-parity-2.22-live.md) is "Overnight allowed voting" (could), which moved from no to yes after its predefined criterion was met live (`docs/OVERNIGHT_ANSWERS_2.24.0.md`). The 2.23.0 rest-area expansion and the 2.25.0 French interface leave their rows partial. Excluded full-product features (accounts and sync, social messaging, groups and events, notifications, native navigation) stay outside the 109-point denominator.
+
+Remaining 10 points: overnight places, amenities, cell coverage and tower rows, router-gated rows (rig routing, low clearance), and the could-level partials. Reasons each remaining condition, amenity and filter row did not move are in `docs/PACKAGE5_AUDIT_2026-10-31.md`. The cell-tower source assessment is in `docs/CELL_TOWER_DATA_ASSESSMENT_2026-10-31.md`. FCC modeled coverage stays parked. The RV router feasibility gate still comes before national clearance expansion. A 96.3 figure, if cited, is conditional arithmetic on unbuilt work, not a forecast.
+
+Pending dates: physical-phone offline acceptance on November 2, 2026, 3:00 to 3:20 pm Eastern. USFS fee-recheck backstop on November 23 (existing task, not duplicated).
 
 ## Revised sequence and gates
 

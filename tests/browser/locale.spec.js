@@ -46,3 +46,19 @@ test('Spanish current rig and single camping-care checklist keep names and canon
   const profile=await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_rig_profile_v1')));expect(profile.name).toBe('Original rig words');expect(profile.rig.heightMm).toBe(3048);expect(profile.displayUnits.length).toBe('ft');await rig.locator('#kt-rig-close').click();
   await page.locator('#about-data').click();const care=page.locator('#kt-camping-care');await care.locator('summary').click();await expect(care).toContainText('moja y remueve las brasas');await expect(care.locator('time')).toHaveAttribute('datetime','2026-10-30');expect(await page.locator('#kt-camping-care').count()).toBe(1);await expect(page.locator('#land-guidance')).toHaveCount(0);
 });
+test('French loads its separate catalogue, keeps place names, and falls back to labeled English when the file is missing',async({page,context})=>{
+  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+  await page.addInitScript(()=>{if(!localStorage.getItem('kt_language'))localStorage.setItem('kt_language','fr');localStorage.setItem('kt_last_position',JSON.stringify({lat:42.65,lng:-73.75,zoom:8}));});
+  const french=page.waitForRequest(r=>r.url().includes('locale-fr.js?v='));
+  await page.goto('/');await french;await page.waitForFunction(()=>KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await expect(page.locator('html')).toHaveAttribute('lang','fr');await expect(page.locator('#kt-language')).toHaveValue('fr');
+  await expect(page.locator('.leaflet-control-zoom-in')).toHaveAccessibleName('Zoom avant');await expect(page.locator('#kt-language-scope')).toBeVisible();await expect(page.locator('#kt-language-scope')).toContainText('Interface en français');
+  const name=await page.evaluate(()=>{const site=KampTrailData.getAllCampsites()[0];KampTrailData.focusCampsite(site.properties.id);return site.properties.name;});
+  await expect(page.locator('.leaflet-popup')).toContainText(name);
+  await page.locator('#filters').click();await expect(page.locator('#kt-f-close')).toHaveAccessibleName('Fermer les filtres');await page.locator('#kt-f-close').click();
+  await page.locator('#kt-language').selectOption('en');await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.locator('#kt-language-scope')).toBeHidden();
+  const english=await page.context().newPage();const loaded=[];english.on('request',r=>{if(r.url().includes('locale-fr.js'))loaded.push(r.url());});
+  await english.goto('/');await english.waitForFunction(()=>window.KampTrailI18n);expect(loaded).toEqual([]);await english.close();
+  await page.route('**/locale-fr.js*',r=>r.fulfill({status:404,body:'missing'}));await page.evaluate(()=>localStorage.setItem('kt_language','fr'));await page.reload();
+  await page.waitForFunction(()=>window.KampTrailI18n);await expect(page.locator('#kt-language-scope')).toContainText('French text could not be loaded');await expect(page.locator('.leaflet-control-zoom-in')).toHaveAccessibleName('Zoom in');
+});

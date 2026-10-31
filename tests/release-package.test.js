@@ -15,7 +15,10 @@ test('release keeps runtime versions, handshake and first-party asset URLs consi
   assert.ok(html.includes(`<meta name="kamptrail-version" content="${version}">`));
   assert.ok(html.includes(`>v${version}</a>`));
   const scripts=[...html.matchAll(/<script src="([^"/]+\.js)(\?[^"]*)?"/g)];
-  const runtimeFiles=fs.readdirSync(root).filter(file=>file.endsWith('.js')&&!file.endsWith('.spec.js')&&!['service-worker.js','playwright.config.js'].includes(file)).sort();
+  const runtimeFiles=fs.readdirSync(root).filter(file=>file.endsWith('.js')&&!file.endsWith('.spec.js')&&!['service-worker.js','playwright.config.js','locale-fr.js'].includes(file)).sort();
+  // The French catalogue loads only when French is selected; locale.js requests it with the same version.
+  assert.match(fs.readFileSync(path.join(root,'locale.js'),'utf8'),new RegExp(`const FR_VERSION = '${version.replaceAll('.','\\.')}'`));
+  assert.match(fs.readFileSync(path.join(root,'locale-fr.js'),'utf8'),new RegExp(`version:'${version.replaceAll('.','\\.')}'`));
   assert.deepEqual(scripts.map(([,file])=>file).sort(),runtimeFiles,'Every first-party runtime module is declared exactly once in the page');
   for(const file of ['app.js','data-loader.js','data-quality.js','permissions.js','rest-areas.js','rig-profile.js','route-elevation.js','clearances.js'])assert.ok(runtimeFiles.includes(file),`Required runtime module: ${file}`);
   for(const [,file,query]of scripts){
@@ -64,7 +67,7 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.equal(require('../data-quality.js').validRIDBAmenities(amenities),true);
   assert.equal(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'),fs.readFileSync(path.join(root,'data/campsites/ridb-amenities.json'),'utf8'));
   assert.ok(!fs.existsSync(path.join(out,'data/campsites/ridb-amenities-audit.json')),'Build audit is not a runtime dependency');
-  assert.ok(fs.existsSync(path.join(out,'locale.js')));
+  assert.ok(fs.existsSync(path.join(out,'locale.js')));assert.ok(fs.existsSync(path.join(out,'locale-fr.js')));
   assert.ok(fs.existsSync(path.join(out,'api','permissions.php')));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(permissionDir,'official.json'),'utf8')),JSON.parse(fs.readFileSync(path.join(root,'data','permissions','official.json'),'utf8')),'Packaged evidence matches the reviewed source records');
   const htaccess=fs.readFileSync(path.join(out,'.htaccess'),'utf8');
