@@ -220,8 +220,9 @@ class CampsiteMerger {
       amenities: [...new Set([...list(primary.amenities), ...(secondary.id === primary.id ? list(secondary.amenities) : [])])],
       rig_friendly: [...new Set([...list(primary.rig_friendly), ...list(secondary.rig_friendly)])],
       // Missing classifications remain unknown. Do not infer dispersed camping from geometry type.
+      // A listing type describes the record that carries it. A different absorbed record never lends its type.
       type: ['established', 'dispersed', 'backcountry', 'rv_park'].includes(primary.type)
-        ? primary.type : (['established', 'dispersed', 'backcountry', 'rv_park'].includes(secondary.type) ? secondary.type : null),
+        ? primary.type : (secondary.id === primary.id && ['established', 'dispersed', 'backcountry', 'rv_park'].includes(secondary.type) ? secondary.type : null),
       sources: [...new Set([
         ...list(primary.sources), primary.source,
         ...list(secondary.sources), secondary.source

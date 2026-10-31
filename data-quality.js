@@ -148,7 +148,10 @@
     // State loading normalizes merged records again. A retained source tag cannot
     // resolve an existing disagreement with another source.
     if (p.fee_conflict) {p.fee_status = 'unknown'; p.cost = null; p.fee_text = null;}
-    p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other'].includes(raw.type) ? raw.type : (osm ? 'established' : 'other');
+    // The Campground default needs the record's own campsite tag. A Recreation.gov record that only
+    // inherited tourism=* from an absorbed OSM element in a snapshot merge does not own that tag.
+    const ownTourism = osm && !(raw.facility_id != null && raw.osm_id == null);
+    p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other'].includes(raw.type) ? raw.type : (ownTourism ? 'established' : 'other');
     if (ridb && !osm && p.camping_classification === 'unverified_camping_record') p.type = 'other';
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
     // Amenity ownership (R8). Tags count only on the listing's own OSM element.
