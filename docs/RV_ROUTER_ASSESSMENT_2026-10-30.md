@@ -71,6 +71,38 @@ For each approved test, send the same public waypoints with explicit costing and
 
 No live endpoint/key is embedded here. A trial runner belongs with the provider adapter once the account/terms and fixture gates pass, rather than an arbitrary-URL script that could send secrets or certify unvalidated coordinates. Existing native/browser regression checks remain release gates after that implementation.
 
+## Addendum, 2026-10-31: hosted openrouteservice pilot
+
+The October 30 shortlist missed HeiGIT's hosted openrouteservice Standard plan. The owner preferred a no-cost option over the $20/month Stadia trial, so a bounded $0 pilot ran on that plan.
+
+Plan facts checked 2026-10-31:
+- The plans page lists Directions at 2,000 requests per day and 40 per minute, marked with an asterisk for further restrictions.
+- A HeiGIT reply on the openrouteservice forum (2026-10-12) says commercial use is allowed on the Standard plan and route results are licensed CC BY-SA 4.0. The terms page did not load, so this is not yet a contractual reading. Saved routes and GPX exports would need attribution, and possibly share-alike terms if redistributed.
+- Rig restrictions exist only on `driving-hgv`, and only with a `vehicle_type` (hgv, bus, agricultural, delivery, forestry, goods). There is no RV type. `driving-car` takes no dimensions.
+- The openrouteservice.org website showed a shutdown notice while the API stayed up. Treat that as a reliability signal.
+- Stadia's free plan states "Commercial use not allowed", so it fits a private test only.
+
+Pilot: `scripts/ors_router_pilot.py` on branch `pilot/ors-router`, run from GitHub Actions with the owner's key as a repository secret. Engine 9.10.0, graph 2026-09-21, OSM data 2026-09-13. 18 directions requests in total. No production change.
+
+| Test | Result |
+|---|---|
+| Corridor validation | A car route between points about 260 m either side of Blackstone Street (OSM way 1212627497, maxheight 9'4" = 2.8448 m) crossed the restricted segment, 535.7 m |
+| Height boundary, run 41214017804 | **8 of 8 pass.** Under both `hgv` and `bus`, in both directions, a 2.5 m vehicle took the same 535.7 m path through the segment. A 3.0 m vehicle avoided it, 1,393.7 m |
+| Truck-only roads, run 41213724901 | **3 of 3 excluded.** A 2.0 m, 3.5 t vehicle under `hgv` and `bus` avoided Rhode Island roads tagged `hgv=no` with no dimension limits that the car control drove: Cobble Hill Road 1,939.5 m by car vs 4,279.0 m, Woodbine Street 1,632.8 m vs 4,501.5 m, Natick Avenue 1,514.4 m vs 2,416.6 m |
+
+The second run's truck-only step did not start because the Overpass lookup returned HTTP 502. That is a failure of the OpenStreetMap query service, not openrouteservice, and the first run already measured the behavior.
+
+What this establishes:
+- On this one mapped 9'4" segment, both profiles let the 2.5 m vehicle through and detoured the 3.0 m vehicle, in both directions. One segment in one state is not a validated pass rate.
+- The tested profiles can reject roads open to a private RV.
+- The pilot did not evaluate whether the detours suit an RV, and a router cannot avoid a low clearance that is not mapped in OpenStreetMap. It establishes no general safety claim.
+- The repeat truck-only test added no evidence about openrouteservice.
+
+Recommendation after outside review, 2026-10-31, pending owner decision:
+1. The car route stays KampTrail's only route, labeled so RV dimensions are plainly not enforced. Mapped clearances stay a separate display where data exists. No openrouteservice truck or bus profile is offered as an RV mode on this evidence.
+2. Next step at no cost: repeat the paired height test against 20 to 30 mapped restrictions across several states to establish a pass rate.
+3. Only if that holds is an opt-in beta considered, worded as avoiding height limits recorded in OpenStreetMap, possibly avoiding roads open to RVs, and not knowing unmapped clearances. Never "RV safe".
+
 ## Sources checked October 30, 2026
 
 - [Valhalla API reference](https://valhalla.github.io/valhalla/api/route/api-reference/): costing, dimensions, restriction flags, truck defaults.
@@ -83,3 +115,4 @@ No live endpoint/key is embedded here. A trial runner belongs with the provider 
 - [Hostinger supported server capabilities](https://www.hostinger.com/support/which-server-capabilities-are-supported-at-hostinger/).
 
 This is a documentation-only assessment. No API, route mode, rig fields, graph, production data or deployment configuration changed.
+- [openrouteservice plans](https://openrouteservice.org/plans/), [HeiGIT forum reply on commercial use and CC BY-SA](https://ask.openrouteservice.org/t/free-plan-in-an-app-with-a-paid-tier-license-cc-by-sa-4-0-personal-data-and-attribution-questions/8079), [routing options](https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/routing-options), checked 2026-10-31.
