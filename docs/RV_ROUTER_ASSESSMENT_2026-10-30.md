@@ -98,7 +98,7 @@ What this establishes:
 - The pilot did not evaluate whether the detours suit an RV, and a router cannot avoid a low clearance that is not mapped in OpenStreetMap. It establishes no general safety claim.
 - The repeat truck-only test added no evidence about openrouteservice.
 
-Owner decision, 2026-10-31, after outside review:
+Recommendation after outside review, 2026-10-31, pending owner decision:
 1. The car route stays KampTrail's only route, labeled so RV dimensions are plainly not enforced. Mapped clearances stay a separate display where data exists. No openrouteservice truck or bus profile is offered as an RV mode on this evidence.
 2. Next step at no cost: repeat the paired height test against 20 to 30 mapped restrictions across several states to establish a pass rate.
 3. Only if that holds is an opt-in beta considered, worded as avoiding height limits recorded in OpenStreetMap, possibly avoiding roads open to RVs, and not knowing unmapped clearances. Never "RV safe".
