@@ -59,10 +59,10 @@ test('only an exact identity duplicate fills an unreported state from an explici
   const nearby=point({osm_id:72,osm_type:'node',tourism:'camp_site','addr:state':'TX'});
   assert.equal(quality.cleanAndDedupeGeoJSON({features:[missing,nearby]},{state:'OK'}).features[0].properties.state,null);
 });
-test('normalization is idempotent and keeps explicit facts merged into legacy RIDB',()=>{
+test('normalization is idempotent and withholds nearby OSM fees from legacy RIDB',()=>{
   const result=quality.cleanAndDedupeGeoJSON({features:[point({facility_id:1,cost:0}),point({osm_id:7,tourism:'camp_site',fee:'no',toilets:'yes'})]});
   const twice=quality.cleanAndDedupeGeoJSON(result);
-  assert.equal(twice.features[0].properties.fee_status,'free');assert.deepEqual(twice.features[0].properties.amenities,['toilet']);
+  assert.equal(twice.features[0].properties.fee_status,'unknown');assert.deepEqual(twice.features[0].properties.amenities,['toilet']);
 });
 test('placeholder matching keeps real Demotte and Greatest campground names',()=>{
   assert.ok(normalize({name:'Demotte Campground'}));assert.ok(normalize({name:'Greatest Lake'}));

@@ -59,5 +59,5 @@
     }
     return `${REPO}/issues/new?${p}`;
   }
-  window.KampTrailShare = {version: '2.21.1', linkFor, share, parse, issueUrl, REPO};
+  window.KampTrailShare = {version: '2.21.2', linkFor, share, parse, issueUrl, REPO};
 })();

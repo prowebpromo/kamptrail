@@ -14,19 +14,27 @@ const path = require('path');
 const crypto = require('crypto');
 
 const osmIdentity = p => /^osm:(?:node|way|relation|unknown):/.test(String(p.id || ''));
-const ownedOsmFields = ['fee', 'charge', 'fee:conditional', 'access', 'fee_status', 'cost', 'fee_text', 'fee_source', 'fee_checked', 'fee_evidence'];
+const osmTag = k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k);
+const ownedOsmField = k => osmTag(k) || ['osm_id','osm_type','fee_status','cost','fee_text','fee_source','fee_source_record_id','fee_checked','fee_evidence','fee_evidence_records','fee_conflict'].includes(k);
 
-// Name/proximity matching is not proof that a second OSM element's tags apply
-// to the retained element. Keep those observations available for identity review.
-function osmFieldRecords(...properties) {
+// Retain observations on their source element. A proximity match grants no
+// ownership of a member's tags, including when the retained record is RIDB.
+function memberEvidence(primary, secondary) {
   const records = new Map();
-  for (const p of properties) {
-    for (const r of Array.isArray(p.unverified_osm_field_records) ? p.unverified_osm_field_records : []) records.set(JSON.stringify(r), r);
-    if (!osmIdentity(p)) continue;
-    const fields = Object.fromEntries(ownedOsmFields.filter(k => Object.hasOwn(p, k)).map(k => [k, p[k]]));
-    const r = {source_record_id: p.id, fields, retrieved_at: p.source_retrieved_at || null, source_updated_at: p.osm_timestamp || null};
-    records.set(JSON.stringify(r), r);
+  for (const p of [primary, secondary]) for (const r of Array.isArray(p.member_evidence) ? p.member_evidence : []) {
+    if (r && /^osm:(node|way|relation|unknown):/.test(r.source_record_id) && r.fields && typeof r.fields === 'object') records.set(r.source_record_id, r);
   }
+  if (osmIdentity(secondary) && secondary.id !== primary.id) {
+    const fields = Object.fromEntries(Object.keys(secondary).filter(k => osmTag(k) && secondary[k] != null && secondary[k] !== '').map(k => [k, secondary[k]]));
+    if (Object.keys(fields).length && !records.has(secondary.id)) {
+      const match = secondary.id.match(/^osm:(node|way|relation):([0-9]+)$/);
+      records.set(secondary.id, {source_record_id: secondary.id, source: 'OpenStreetMap contributors', fields,
+        retrieved_at: secondary.source_retrieved_at || null, source_updated_at: secondary.osm_timestamp || null,
+        source_url: match ? `https://www.openstreetmap.org/${match[1]}/${match[2]}` : null});
+    }
+  }
+  // Source snapshots fail visibly rather than silently dropping provenance.
+  if (records.size > 128) throw new Error('Too many OSM member evidence records; identity review required');
   return [...records.values()];
 }
 
@@ -196,20 +204,26 @@ class CampsiteMerger {
       description: (primary.description?.length > secondary.description?.length)
         ? primary.description : (secondary.description || primary.description || '')
     };
-    if (osmIdentity(primary) && osmIdentity(secondary) && primary.id !== secondary.id) {
-      for (const key of ownedOsmFields) {
+    if (osmIdentity(secondary) && primary.id !== secondary.id) {
+      const evidence = memberEvidence(primary, secondary);
+      for (const key of Object.keys(merged)) if (ownedOsmField(key)) {
         if (Object.hasOwn(primary, key)) merged[key] = primary[key];
         else delete merged[key];
       }
-      merged.unverified_osm_field_records = osmFieldRecords(primary, secondary);
+      if (evidence.length) merged.member_evidence = evidence;
       merged.field_provenance.cost = primaryCost !== null ? (primary.field_provenance?.cost || 'source-reported') : 'unknown';
-      const feeKind = p => /^(?:no|0|false)$/i.test(String(p.fee)) ? 'free' : /^(?:yes|true)$/i.test(String(p.fee)) ? 'paid' : null;
-      if (primary.fee_conflict || secondary.fee_conflict || (feeKind(primary) && feeKind(secondary) && feeKind(primary) !== feeKind(secondary))) {
-        merged.fee_conflict = true;
-        merged.fee_status = 'unknown';
-        merged.cost = null;
-        merged.fee_text = null;
+      const feeKeys = ['fee','charge','fee:conditional'];
+      if (feeKeys.some(k => primary[k] != null) && feeKeys.some(k => secondary[k] != null)
+          && feeKeys.some(k => String(primary[k] ?? '') !== String(secondary[k] ?? ''))) {
+        merged.data_conflicts = [...new Set([...merged.data_conflicts, 'member_fee_disagreement'])];
       }
+      // Preserve the old first-donor access exclusion without claiming that
+      // the recipient itself carries that access tag. This is an admission hold.
+      const donor = evidence.find(e => e.fields.access != null && e.fields.access !== '');
+      if (primary.access_hold) merged.access_hold = primary.access_hold;
+      else if (!primary.access && donor && /^(private|no|military)$/i.test(String(donor.fields.access).trim())) {
+        merged.access_hold = {value: String(donor.fields.access).trim().toLowerCase(), source_record_id: donor.source_record_id};
+      } else delete merged.access_hold;
     }
     return merged;
   }
