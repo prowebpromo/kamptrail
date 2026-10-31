@@ -2,7 +2,7 @@
 (function (root) {
   'use strict';
   const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
-  const VERSION = '2.25.0';
+  const VERSION = '2.25.1';
   const categories = Object.freeze({
     dump: {label: t("Dump station"), letter: 'D', color: '#6b3fa0'},
     water: {label: t("Water fill"), letter: 'W', color: '#1f6fb2'},
