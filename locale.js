@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.29.1';
+  const FR_VERSION = '2.30.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -1720,7 +1720,16 @@
   " (end of leg {legs})": " (fin del tramo {legs})",
   "Terrain ({unit})": "Terreno ({unit})",
   "Spanish interface. Source text, place names and visitor content stay in their original language. Untranslated server or browser messages may appear in English.": "Interfaz en español. Los textos de las fuentes, los nombres de lugares y el contenido de visitantes conservan su idioma original. Los mensajes del servidor o navegador que no estén traducidos pueden aparecer en inglés.",
-  "Freshness date": "Fecha de referencia"
+  "Freshness date": "Fecha de referencia",
+  "Easy only": "Solo fácil",
+  "Up to moderate": "Hasta moderado",
+  "Up to difficult": "Hasta difícil",
+  "Technology not specified": "Tecnología no especificada",
+  "{carrier} technology": "Tecnología de {carrier}",
+  "Reported technology": "Tecnología indicada",
+  "Any technology": "Cualquier tecnología",
+  "Signal levels are ordered visitor categories, not the 1 to 5 bars of other apps. No service means no usable signal. Weak, Usable and Strong roughly cover the low, middle and high ranges. No numeric match is claimed.": "Los niveles de señal son categorías ordenadas según los visitantes, no las barras de 1 a 5 de otras apps. Sin servicio significa que no hay señal utilizable. Débil, Utilizable y Fuerte abarcan aproximadamente los rangos bajo, medio y alto. No se afirma ninguna equivalencia numérica.",
+  "Approach is a maximum on the visitor's 3-level scale. Up to moderate includes easy and moderate reports. Missing or unknown approach never matches.": "El acceso es un máximo en la escala de 3 niveles de los visitantes. Hasta moderado incluye informes fáciles y moderados. Un acceso ausente o desconocido nunca coincide."
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);
@@ -1763,7 +1772,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.29.1', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.30.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
