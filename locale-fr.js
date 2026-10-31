@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.26.0', messages:{
+  global.KampTrailI18nFr = {version:'2.27.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1640,6 +1640,17 @@
   "Type: {type}": "Type : {type}",
   "Hookups: {hookups}": "Raccordements : {hookups}",
   "Amenities: {amenities}": "Équipements : {amenities}",
+  "Cell coverage:": "Couverture cellulaire :",
+  "Camper signal reports are what visitors experienced on the visit date, not a prediction.": "Les rapports de signal des campeurs décrivent ce que les visiteurs ont constaté à la date de leur visite, pas une prévision.",
+  "visit {date}": "visite {date}",
+  "{count} report": "{count} rapport",
+  "{count} reports": "{count} rapports",
+  "No camper signal reports yet.": "Aucun rapport de signal de campeur pour l’instant.",
+  "Check carrier coverage (FCC map)": "Vérifier la couverture des opérateurs (carte de la FCC)",
+  "Copy coordinates": "Copier les coordonnées",
+  "On the FCC map, choose Mobile Broadband and search near {coords}. It shows coverage modeled by each carrier, not a guarantee of service.": "Sur la carte de la FCC, choisissez Mobile Broadband et cherchez près de {coords}. Elle montre la couverture modélisée par chaque opérateur, pas une garantie de service.",
+  "Coordinates copied.": "Coordonnées copiées.",
+  "Copy unavailable. Coordinates: {coords}": "Copie impossible. Coordonnées : {coords}",
   "How was your stay? A dated review helps other campers. Nothing is sent unless you submit the review form.": "Comment s’est passé votre séjour ? Un avis daté aide les autres campeurs. Rien n’est envoyé tant que vous ne soumettez pas le formulaire d’avis.",
   "Write a review for {name}": "Rédiger un avis sur {name}",
   "Dismiss": "Ignorer",

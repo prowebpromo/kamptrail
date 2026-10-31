@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.26.0';
+  const FR_VERSION = '2.27.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -1656,6 +1656,17 @@
   "Type: {type}": "Tipo: {type}",
   "Hookups: {hookups}": "Conexiones: {hookups}",
   "Amenities: {amenities}": "Servicios: {amenities}",
+  "Cell coverage:": "Cobertura celular:",
+  "Camper signal reports are what visitors experienced on the visit date, not a prediction.": "Los informes de señal de campistas reflejan lo que vivieron los visitantes en la fecha de su visita, no una predicción.",
+  "visit {date}": "visita {date}",
+  "{count} report": "{count} informe",
+  "{count} reports": "{count} informes",
+  "No camper signal reports yet.": "Todavía no hay informes de señal de campistas.",
+  "Check carrier coverage (FCC map)": "Consultar la cobertura de operadores (mapa de la FCC)",
+  "Copy coordinates": "Copiar coordenadas",
+  "On the FCC map, choose Mobile Broadband and search near {coords}. It shows coverage modeled by each carrier, not a guarantee of service.": "En el mapa de la FCC, elige Mobile Broadband y busca cerca de {coords}. Muestra la cobertura modelada por cada operador, no una garantía de servicio.",
+  "Coordinates copied.": "Coordenadas copiadas.",
+  "Copy unavailable. Coordinates: {coords}": "No se pudo copiar. Coordenadas: {coords}",
   "How was your stay? A dated review helps other campers. Nothing is sent unless you submit the review form.": "¿Qué tal tu estancia? Una reseña con fecha ayuda a otros campistas. No se envía nada a menos que envíes el formulario de reseña.",
   "Write a review for {name}": "Escribir una reseña de {name}",
   "Dismiss": "Descartar",
@@ -1719,7 +1730,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.26.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.27.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
