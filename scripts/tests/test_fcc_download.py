@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 import urllib.error
 import zipfile
 
@@ -62,6 +63,38 @@ class WorkerTests(unittest.TestCase):
             result = fcc.download(data, path)
             self.assertEqual(len(result['sha256']), 64)
             self.assertTrue(zipfile.is_zipfile(path))
+
+    def test_denials_keep_status_and_only_an_allowlisted_format(self):
+        for status, media, label in [(401, 'application/json; charset=utf-8', 'JSON'),
+                                     (403, 'TEXT/HTML', 'HTML'),
+                                     (403, 'text/secret-marker', 'other/unspecified')]:
+            with self.subTest(status=status, media=media):
+                body = io.BytesIO(b'secret-marker')
+                opener = mock.Mock()
+                opener.open.side_effect = urllib.error.HTTPError(
+                    'https://example.invalid/secret-marker', status, 'secret-marker',
+                    {'Content-Type': media}, body)
+                with self.assertRaises(fcc.SafeError) as err:
+                    fcc.request('listAsOfDates', ('user@example.invalid', 'secret-marker'), opener)
+                self.assertIn(f'HTTP {status}; declared response format: {label}.', str(err.exception))
+                self.assertNotIn('secret-marker', str(err.exception))
+                self.assertTrue(body.closed)
+
+    def test_local_check_uses_one_request_and_no_credential_files(self):
+        dates = {'data': [{'as_of_date': '2025-12-31', 'data_type': 'availability'}],
+                 'status': 'successful', 'status_code': 200}
+        response = io.BytesIO(json.dumps(dates).encode())
+        response.getcode = lambda: 200
+        with mock.patch.object(fcc.sys, 'argv', ['fcc', '--spec-verified', 'check-local']), \
+                mock.patch.object(fcc, 'secure_dir', side_effect=AssertionError), \
+                mock.patch.object(fcc, 'reserve_request', side_effect=AssertionError), \
+                mock.patch.object(fcc, 'prompt_credentials', return_value=('a', 'secret-marker')), \
+                mock.patch.object(fcc, 'request', return_value=response) as req, \
+                mock.patch('sys.stdout', new_callable=io.StringIO) as output:
+            fcc.main()
+        req.assert_called_once_with('listAsOfDates', ('a', 'secret-marker'))
+        self.assertIn('Authentication succeeded', output.getvalue())
+        self.assertNotIn('secret-marker', output.getvalue())
 
     def test_schema_errors_identify_only_the_field_not_the_value(self):
         with tempfile.TemporaryDirectory() as tmp:

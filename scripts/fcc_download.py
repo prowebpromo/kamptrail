@@ -5,7 +5,6 @@ API paths and header names must be checked against the current FCC public API
 specification before production use. This worker is deliberately not web-routed.
 """
 import argparse
-import fcntl
 import time
 import datetime as dt
 import getpass
@@ -40,6 +39,8 @@ def outside_public(path):
     return resolved
 
 def secure_dir(path):
+    if os.name != 'posix':
+        raise SafeError('Private file operations require Unix. Use check-local for a one-request test.')
     raw = Path(path).expanduser().absolute()
     if any(p.is_symlink() for p in [raw, *raw.parents]):
         raise SafeError('Private storage must not use symbolic links.')
@@ -89,12 +90,9 @@ def load_credentials(directory):
     except Exception:
         raise SafeError('Private credentials are missing or invalid.') from None
 
-def setup(directory):
+def prompt_credentials():
     if not sys.stdin.isatty():
-        raise SafeError('Run setup in an interactive private terminal. Piped credential entry is disabled.')
-    path = directory / 'credentials.json'
-    if path.exists() or path.is_symlink():
-        raise SafeError('Credentials already exist. Remove them privately before rotating.')
+        raise SafeError('Use an interactive private terminal. Piped credential entry is disabled.')
     # getpass otherwise falls back to echoed input on an unsuitable terminal.
     with warnings.catch_warnings():
         warnings.simplefilter('error', getpass.GetPassWarning)
@@ -102,12 +100,20 @@ def setup(directory):
         token = getpass.getpass('FCC Public Map Data API token (hidden): ').strip()
     if not all(v and len(v) <= 512 and not re.search(r'[\x00-\x20\x7f]', v) for v in (username, token)):
         raise SafeError('Credential input is invalid.')
+    return username, token
+
+def setup(directory):
+    path = directory / 'credentials.json'
+    if path.exists() or path.is_symlink():
+        raise SafeError('Credentials already exist. Remove them privately before rotating.')
+    username, token = prompt_credentials()
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
     with os.fdopen(fd, 'w') as stream:
         json.dump({'username': username, 'token': token}, stream)
     print('Credentials saved privately. Values are never printed.')
 
 def reserve_request(directory):
+    import fcntl  # The one-shot Windows check never uses Unix private storage or its lock.
     fd = os.open(directory / 'request.lock', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)
     with os.fdopen(fd, 'r+') as stream:
         fcntl.flock(stream, fcntl.LOCK_EX)
@@ -139,11 +145,16 @@ def request(path, credentials, opener=None):
     try:
         return (opener or urllib.request.build_opener(NoRedirect())).open(req, timeout=90)
     except urllib.error.HTTPError as exc:
-        # Never read, print, stringify or log upstream bodies/headers/URLs.
+        # Return only fixed format labels. Never emit raw upstream headers or bodies.
         code = exc.code
-        exc.close()
+        try:
+            media = (exc.headers or {}).get('Content-Type', '').split(';', 1)[0].strip().lower()
+        finally:
+            exc.close()
         if code in (401, 403):
-            raise SafeError('FCC denied authentication or access. Verify API enablement and credentials privately.') from None
+            kind = {'application/json': 'JSON', 'application/problem+json': 'JSON',
+                    'text/html': 'HTML'}.get(media, 'other/unspecified')
+            raise SafeError(f'HTTP {code}; declared response format: {kind}. FCC authentication unconfirmed.') from None
         if code == 429:
             raise SafeError('FCC rate limit reached. Stop and retry later.') from None
         raise SafeError('FCC returned an HTTP error. No response details were logged.') from None
@@ -198,11 +209,12 @@ def download(response, destination):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--private-dir', required=True, help='Owned mode-700 directory outside repo/web root')
+    parser.add_argument('--private-dir', help='Owned mode-700 directory outside repo/web root (Unix)')
     parser.add_argument('--spec-verified', action='store_true', help='Confirm paths/headers against current official public API specification')
     sub = parser.add_subparsers(dest='action', required=True)
     sub.add_parser('setup')
     sub.add_parser('check')
+    sub.add_parser('check-local', help='Use hidden prompts for one dates request; saves no credentials (Windows or Unix)')
     listing = sub.add_parser('list')
     listing.add_argument('--as-of', required=True, type=dt.date.fromisoformat)
     dl = sub.add_parser('download')
@@ -210,18 +222,35 @@ def main():
     dl.add_argument('--format', choices=('1', '2'), default='2')
     dl.add_argument('--as-of', required=True, type=dt.date.fromisoformat)
     args = parser.parse_args()
-    directory = secure_dir(args.private_dir)
+    if args.action == 'check-local':
+        if args.private_dir:
+            parser.error('check-local does not use private storage')
+    else:
+        if not args.private_dir:
+            parser.error('--private-dir is required for private-storage commands')
+        directory = secure_dir(args.private_dir)
     if args.action == 'setup':
         return setup(directory)
     if not args.spec_verified:
         raise SafeError('Verify the current official API specification before network access. No request was sent.')
-    credentials = load_credentials(directory)
-    reserve_request(directory)
-    if args.action == 'check':
-        dates = read_json(request('listAsOfDates', credentials))
-        if not dates['data']:
-            raise SafeError('FCC returned no filing dates. Authentication is not confirmed.')
-        print('FCC authentication check succeeded. No credentials or upstream content were printed.')
+    if args.action == 'check-local':
+        credentials = prompt_credentials()
+    else:
+        credentials = load_credentials(directory)
+        reserve_request(directory)
+    if args.action in ('check', 'check-local'):
+        stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+        print(f'FCC dates request: {stamp}', flush=True)
+        response = request('listAsOfDates', credentials)
+        if response.getcode() != 200:
+            response.close()
+            raise SafeError('Unexpected HTTP success status. Authentication is unconfirmed.')
+        dates = read_json(response)
+        if not any(isinstance(row, dict) and row.get('data_type') == 'availability'
+                   and isinstance(row.get('as_of_date'), str)
+                   and re.fullmatch(r'\d{4}-\d{2}-\d{2}', row['as_of_date']) for row in dates['data']):
+            raise SafeError('No availability filing date recognized. Authentication is unconfirmed.')
+        print('HTTP 200; FCC availability filing dates received. Authentication succeeded.')
     elif args.action == 'list':
         value = read_json(request(f'downloads/listAvailabilityData/{args.as_of}', credentials))
         # Retain metadata privately; do not echo arbitrary upstream fields to logs.
