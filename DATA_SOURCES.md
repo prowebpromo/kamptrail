@@ -15,6 +15,7 @@ The code's MIT license does not replace these data or third-party software licen
 | Forecast and elevation | National Weather Service API (api.weather.gov) | US government data. US locations only |
 | Topo and satellite basemaps | USGS The National Map (basemap.nationalmap.gov) | Public domain |
 | Service discovery | OpenStreetMap contributors: dated Geofabrik state extracts and retained legacy Overpass records, delivered by `data/services/index.json` | ODbL. Saved coverage and source dates are shown; hours, RV fit, overnight permission and potability are not verified |
+| Low-clearance heights | OpenStreetMap contributors: dated Geofabrik state extracts processed by `scripts/build_national_clearances.py` into `data/clearances/` (Rhode Island pilot plus national refresh) | ODbL 1.0 with attribution and share-alike for the derived height database. Raw tag text, parse status and dates are kept; a mapped height does not establish legal access, clearance on the driven road or safe passage |
 
 ## Agency campsites, RV details, routing, offline maps (2.4.0)
 
