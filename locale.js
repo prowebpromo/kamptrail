@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.29.0';
+  const FR_VERSION = '2.29.1';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -42,6 +42,7 @@
   "Maximum stay: {hours} hours.": "Estancia máxima: {hours} horas.",
   "Current opening and space availability remain unknown. Check posted facility exceptions.": "Se desconocen el funcionamiento actual y las plazas disponibles. Consulta las excepciones publicadas en el lugar.",
   "State policy source {number}": "Fuente de la política estatal {number}",
+  "Facility page checked {date}": "Página del lugar consultada el {date}",
   "Status: {status}.": "Estado: {status}.",
   "hidden": "oculto",
   "Visitor video": "Video de un visitante",
@@ -1762,7 +1763,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.29.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.29.1', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

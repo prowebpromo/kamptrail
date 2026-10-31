@@ -29,16 +29,18 @@
   const policyHosts=new Set(['www.txdot.gov','tcss.legis.texas.gov','mdt.mt.gov','mca.legmt.gov']);
   // New publishers are scoped to the exact reviewed URL, not every page on their domain.
   const exactPolicyUrls=new Set(["https://lawfilesext.leg.wa.gov/law/RCW/RCW%20%2047%20%20TITLE/RCW%20%2047%20.%2038%20%20CHAPTER/RCW%20%2047%20.%2038%20.020.htm","https://sdlegislature.gov/api/Statutes/31-7-15.html","https://www.leg.state.nv.us/nac/NAC-408.html","https://dot.ca.gov/programs/design/lap-landscape-architecture-and-community-livability/lap-liv-h-safety-roadside-rest-areas","https://gis.iowadot.gov/agshost/rest/services/Hosted/Rest_Areas_All/FeatureServer/1","https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/","https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Facilities/Rest_Areas/MapServer/0","https://gisagomdot.state.mi.us/arcgis/rest/services/MDOT/MdotRestAreaPublic/MapServer/0","https://gis.dot.nv.gov/arcgis/rest/services/Applications/511Map/MapServer/5","https://dot.sd.gov/travelers/travelers/rest-areaports-of-entry/","https://wsdot.wa.gov/travel/safety/rest-areas/home","https://floridasturnpike.com/traveler-resources/service-plazas/","https://files.dfm.idaho.gov/dfm-admin-website/rules/current/39/390350.pdf","https://itd.idaho.gov/faqs/rest-areas/","https://codes.ohio.gov/ohio-administrative-code/rule-5501:2-4-01","https://tripcheck.com/Pages/Rest-Areas-Regulations","https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section30/","https://law.lis.virginia.gov/admincode/title24/agency30/chapter51/section10/"]);
-  const unknownPolicy=()=>({policy_id:null,rules:{overnight_parking:'unknown',sleeping_in_vehicle:'unknown',camping:'unknown',max_stay_hours:null,conditions:[]},sources:[],review_required:[],current_opening:'unknown'});
+  // INDOT publishes one fact page per facility under this exact path.
+  const facilityPage=/^https:\/\/www\.in\.gov\/indot\/resources\/maps\/welcome-centers-and-rest-areas\/[a-z0-9]+(?:-[a-z0-9]+){1,8}$/;
+  const unknownPolicy=()=>({policy_id:null,rules:{overnight_parking:'unknown',sleeping_in_vehicle:'unknown',camping:'unknown',max_stay_hours:null,conditions:[]},sources:[],review_required:[],current_opening:'unknown',facility_sources:0});
   function policySources(sources,now){
     check(Array.isArray(sources)&&sources.length>0&&sources.length<=8,'missing policy sources');
-    for(const s of sources){let u;try{u=new URL(s.url);}catch{check(false,'invalid policy URL');}check(u.protocol==='https:'&&(policyHosts.has(u.hostname)||exactPolicyUrls.has(s.url))&&!u.username&&!u.password&&!u.port&&!u.search&&!u.hash&&/^[a-f0-9]{64}$/.test(s.sha256)&&utc(s.retrieved_at)&&Date.parse(s.retrieved_at)<=now,'invalid policy evidence');}
+    for(const s of sources){let u;try{u=new URL(s.url);}catch{check(false,'invalid policy URL');}check(u.protocol==='https:'&&(policyHosts.has(u.hostname)||exactPolicyUrls.has(s.url)||facilityPage.test(s.url))&&!u.username&&!u.password&&!u.port&&!u.search&&!u.hash&&/^[a-f0-9]{64}$/.test(s.sha256)&&utc(s.retrieved_at)&&Date.parse(s.retrieved_at)<=now,'invalid policy evidence');}
   }
   function validatePolicies(bundle,now=Date.now()){
     check(bundle?.version===1&&Array.isArray(bundle.policies)&&bundle.policies.length<=50,'invalid state policies');const ids=new Set(),scopes=new Set();
     for(const p of bundle.policies){const s=p.scope,key=JSON.stringify([s?.state,s?.operator,s?.facility_kind]);check(typeof p.id==='string'&&p.id.length<=100&&!ids.has(p.id)&&s&&/^[A-Z]{2}$/.test(s.state)&&/^[a-z_]{2,40}$/.test(s.operator)&&/^[a-z_]{2,40}$/.test(s.facility_kind)&&Object.keys(s).length===3&&!scopes.has(key),'invalid policy scope');ids.add(p.id);scopes.add(key);policySources(p.sources,now);check(p.rules&&activities.every(a=>['allowed','prohibited','unknown'].includes(p.rules[a]))&&(p.rules.max_stay_hours===null||Number.isFinite(p.rules.max_stay_hours)&&p.rules.max_stay_hours>0&&p.rules.max_stay_hours<=168)&&Array.isArray(p.rules.conditions)&&p.rules.conditions.length<=12&&p.rules.conditions.every(c=>typeof c==='string'&&c.length<=500),'invalid policy rules');}
     check(bundle.exceptions===undefined||Array.isArray(bundle.exceptions)&&bundle.exceptions.length<=1000,'invalid facility exceptions');const exceptions=new Set();
-    for(const e of bundle.exceptions||[]){check(e&&typeof e.facility_id==='string'&&e.facility_id.length<=100&&/^[A-Z]{2}$/.test(e.state)&&typeof e.operator==='string'&&typeof e.facility_kind==='string'&&!exceptions.has(e.facility_id),'ambiguous facility exception');exceptions.add(e.facility_id);policySources(e.sources,now);check(e.rules&&Object.keys(e.rules).every(k=>activities.includes(k)?['allowed','prohibited','unknown'].includes(e.rules[k]):k==='max_stay_hours'&&(e.rules[k]===null||Number.isFinite(e.rules[k])&&e.rules[k]>0&&e.rules[k]<=168)),'invalid exception rules');}
+    for(const e of bundle.exceptions||[]){check(e&&typeof e.facility_id==='string'&&e.facility_id.length<=100&&/^[A-Z]{2}$/.test(e.state)&&typeof e.operator==='string'&&typeof e.facility_kind==='string'&&!exceptions.has(e.facility_id),'ambiguous facility exception');exceptions.add(e.facility_id);policySources(e.sources,now);check(e.rules&&Object.keys(e.rules).every(k=>activities.includes(k)?['allowed','prohibited','unknown'].includes(e.rules[k]):k==='max_stay_hours'&&(e.rules[k]===null||Number.isFinite(e.rules[k])&&e.rules[k]>0&&e.rules[k]<=168))&&(e.conditions===undefined||Array.isArray(e.conditions)&&e.conditions.length<=4&&e.conditions.every(c=>typeof c==='string'&&c.length>0&&c.length<=500)),'invalid exception rules');}
     return bundle;
   }
   function resolvePolicy(bundle,scope,now=Date.now()){
@@ -47,7 +49,7 @@
     if(p&&!fresh(p.sources))return result;
     if(p)result={...result,policy_id:p.id,rules:JSON.parse(JSON.stringify(p.rules)),sources:p.sources.slice()};
     const e=(bundle.exceptions||[]).find(e=>e.facility_id===scope.facility_id&&['state','operator','facility_kind'].every(k=>e[k]===scope[k]));
-    if(e){if(!fresh(e.sources))return unknownPolicy();result.sources.push(...e.sources);for(const [field,value]of Object.entries(e.rules)){const old=result.rules[field];if((old==='prohibited'&&value==='allowed')||(field==='max_stay_hours'&&old!==null&&value>old)){result.rules[field]=field==='max_stay_hours'?null:'unknown';result.review_required.push(field);}else result.rules[field]=value;}}
+    if(e){if(!fresh(e.sources))return unknownPolicy();result.sources.push(...e.sources);result.facility_sources=e.sources.length;result.rules.conditions=result.rules.conditions.concat(e.conditions||[]);for(const [field,value]of Object.entries(e.rules)){const old=result.rules[field];if((old==='prohibited'&&value==='allowed')||(field==='max_stay_hours'&&old!==null&&value>old)){result.rules[field]=field==='max_stay_hours'?null:'unknown';result.review_required.push(field);}else result.rules[field]=value;}}
     return result;
   }
   // This exact catalogue has already established TxDOT safety-rest-area scope.
@@ -103,7 +105,7 @@
       box.append(el('h2',r.name),el('p',describe(r,d)));
       if(d.region==='TX')box.append(link(t("TxDOT place source"),r.source_url),' · ',link(t("TxDOT duration source"),POLICY));
       else{box.append(link(t('{0} place source',{"0":t(REGIONS[d.region].publisher)}),r.source_url));if(d.source.url!==r.source_url)box.append(' · ',link(t('{0} location data',{"0":t(REGIONS[d.region].publisher)}),d.source.url));}
-      const policy=policyFor(r,d);if(policy.sources.length){const sources=el('p');sources.className='kt-rest-policy-sources';policy.sources.forEach((s,i)=>{if(i)sources.append(' · ');sources.append(link(t('State policy source {number}',{number:i+1}),s.url));});box.append(sources);}
+      const policy=policyFor(r,d);if(policy.sources.length){const sources=el('p');sources.className='kt-rest-policy-sources';const state=policy.sources.length-policy.facility_sources;policy.sources.forEach((s,i)=>{if(i)sources.append(' · ');sources.append(link(i<state?t('State policy source {number}',{number:i+1}):t('Facility page checked {date}',{date:s.retrieved_at.slice(0,10)}),s.url));});box.append(sources);}
       const actions=el('div');actions.className='kt-popup-actions';
       actions.append(button(t("Save rest-area stop"),()=>{const f=feature(r,d);global.KampTrailTrip?.addStop(f.properties.id,f);}),button(t("Overnight permission"),()=>global.KampTrailPermissions?.open(place(r))));box.append(actions);return box;
     }
@@ -147,6 +149,6 @@
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
     return layer;
   }
-  const api={version:'2.29.0',REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
+  const api={version:'2.29.1',REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailRestAreas=api;
 })(typeof window!=='undefined'?window:globalThis);
