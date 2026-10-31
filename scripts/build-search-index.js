@@ -13,7 +13,12 @@ function featureIds(feature) {
   return [...new Set([p.id, ...(p.legacy_ids || [])].filter(id => id != null && id !== '').map(String))];
 }
 
-function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null) {
+function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null, amenitySidecars = {}) {
+  // Amenity evidence is attached exactly as the map attaches it, so search and route filters match the popup.
+  const attachAmenities = feature => {
+    if (amenitySidecars.ridb) quality.attachRIDBAmenities(feature, amenitySidecars.ridb);
+    if (amenitySidecars.usfs) quality.attachUSFSSiteAmenities(feature, amenitySidecars.usfs);
+  };
   const input = [];
   const stateById = new Map();
   for (const {state, geojson} of collections) {
@@ -25,6 +30,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
       const feature = quality.normalizeFeature(raw, {state});
       if (!feature) continue;
       if(siteDetails)quality.attachSiteDetails(feature,siteDetails);
+      attachAmenities(feature);
       input.push(feature);
       for (const id of featureIds(feature)) {
         if (!stateById.has(id)) stateById.set(id, new Set());
@@ -36,6 +42,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
   const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
+    attachAmenities(feature);
     const states = new Set();
     for (const id of featureIds(feature)) {
       for (const state of stateById.get(id) || []) states.add(state);
@@ -43,7 +50,10 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (!states.size) throw new Error(`No source snapshot found for ${feature.properties.id}`);
     const [lng, lat] = feature.geometry.coordinates;
     const p=feature.properties,m={f:p.fee_status,t:p.type};
-    if(p.amenities?.length)m.a=p.amenities;
+    // a: amenities with campground-wide evidence. s: amenities named on individual Recreation.gov campsite records.
+    const amenity=quality.amenityFilterSets?quality.amenityFilterSets(p):{g:p.amenities||[],s:[]};
+    if(amenity.g.length)m.a=amenity.g;
+    if(amenity.s.length)m.s=amenity.s;
     if(p.rig_friendly?.length)m.r=p.rig_friendly;
     if(p.road_difficulty)m.d=p.road_difficulty;
     if(typeof p.open_status==='string'&&p.open_status.trim()&&p.open_status.trim().toLowerCase()!=='none')m.o=p.open_status.trim().toLowerCase().slice(0,80);
@@ -53,7 +63,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states:[...states].sort(),lat,lng,m};
   });
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
-  return {version:1, filter_version:1, community_version:1, elevation_version:1, sites};
+  return {version:1, filter_version:1, community_version:1, elevation_version:1, amenity_version:1, sites};
 }
 
 function readElevationSnapshots(directory){
@@ -106,6 +116,8 @@ function buildFromDirectory(directory) {
   }
   const detailsFile=path.join(directory,'ridb-sites.json');
   const siteDetails=fs.existsSync(detailsFile)?JSON.parse(fs.readFileSync(detailsFile,'utf8')).facilities:null;
+  const sidecar=(name,valid)=>{const file=path.join(directory,name);if(!fs.existsSync(file))return null;const data=JSON.parse(fs.readFileSync(file,'utf8'));if(!valid(data))throw new Error('Invalid amenity evidence: '+name);return data;};
+  const amenitySidecars={ridb:sidecar('ridb-amenities.json',DataQuality.validRIDBAmenities),usfs:sidecar('usfs-site-amenities.json',DataQuality.validUSFSSiteAmenities)};
   // Agency records (USFS, BLM) load beside each state snapshot, so search must index them too.
   return buildSearchIndex(files.map(name => {
     const state = name.slice(0,2);
@@ -116,7 +128,7 @@ function buildFromDirectory(directory) {
       if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
     }
     return {state, geojson};
-  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory));
+  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory),amenitySidecars);
 }
 
 if (require.main === module) {

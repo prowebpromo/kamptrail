@@ -8796,8 +8796,6 @@
         "addr:state": "IN",
         "addr:street": "South 900 East",
         "capacity": "18",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "access": "customers",
         "sources": [
           "openstreetmap"
@@ -8811,7 +8809,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:850354495",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:59:44Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850354495"
+          }
+        ]
       }
     },
     {
@@ -9861,7 +9872,6 @@
           "osm:way:973377831",
           "osm:way:973377832"
         ],
-        "power_supply": "no",
         "sources": [
           "openstreetmap"
         ],
@@ -9874,7 +9884,40 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:973377830",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "no",
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T02:59:44Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/973377830"
+          },
+          {
+            "source_record_id": "osm:way:973377831",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "sanitary_dump_station": "customers"
+            },
+            "retrieved_at": "2026-10-29T02:59:44Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/973377831"
+          },
+          {
+            "source_record_id": "osm:way:973377832",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T02:59:44Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/973377832"
+          }
+        ]
       }
     },
     {

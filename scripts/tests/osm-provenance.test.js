@@ -20,7 +20,10 @@ for(const f of fixtures.filter(f=>f.kind!=='synthetic_index_layer'))test('Claude
  const p=kept.properties, keys=['fee','charge','fee:conditional','charge:conditional','access','osm_id','osm_type'];
  assert.deepEqual(Object.fromEntries(keys.filter(k=>p[k]!=null).map(k=>[k,p[k]])),f.expected.snapshot_fields);
  assert.deepEqual(p.access_hold||null,f.expected.access_hold);
- assert.deepEqual((p.member_evidence||[]).map(e=>({source_record_id:e.source_record_id,fields:e.fields,retrieved_at:e.retrieved_at})),f.expected.member_evidence);
+ // 2.31.0 also retains amenity tags on their member element. These fixtures pin the fee and access part.
+ const feeAccess=k=>/(^|:)(fee|charge)(:|$)/.test(k)||/^access(:|$)/.test(k),pick=o=>Object.fromEntries(Object.entries(o).filter(([k])=>feeAccess(k)));
+ assert.deepEqual((p.member_evidence||[]).map(e=>({source_record_id:e.source_record_id,fields:pick(e.fields),retrieved_at:e.retrieved_at})).filter(e=>Object.keys(e.fields).length),f.expected.member_evidence);
+ for(const e of p.member_evidence||[])for(const [k,v] of Object.entries(e.fields))if(!feeAccess(k)){assert.match(k,DQ.OSM_AMENITY_TAG);const donor=inputs.find(i=>i.properties.id===e.source_record_id);assert.equal(String(donor.properties[k]),String(v),e.source_record_id+' '+k);}
  const n=DQ.normalizeFeature(kept);
  if(f.expected.normalized.rejected)assert.equal(n,null);
  else{assert.ok(n);for(const k of ['fee_status','cost','access_status'])assert.equal(n.properties[k],f.expected.normalized[k],k);}

@@ -180,7 +180,6 @@
       },
       "properties": {
         "camping:tents": "yes",
-        "drinking_water": "no",
         "name": "Turnipseed Campground",
         "permanent_camping": "no",
         "tourism": "camp_site",
@@ -224,6 +223,7 @@
             "fields": {
               "access": "customers",
               "charge": "5 USD",
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
@@ -789,7 +789,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "McDougle Camp",
         "operator": "National Forest Service",
         "tourism": "camp_site",
@@ -825,7 +824,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:6282190586",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6282190586"
+          }
+        ]
       }
     },
     {
@@ -923,14 +934,11 @@
       },
       "properties": {
         "capacity": "21",
-        "drinking_water": "no",
         "fixme": "the extent of this is a guess",
         "internet_access": "no",
         "name": "Pine Glen Recreation Area",
         "operator": "United States Forest Service",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/alabama/recreation/camping-cabins/recarea/?recid=30159",
         "id": "ridb:243219",
@@ -971,7 +979,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "3 USD/night",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
             "source_updated_at": null,
@@ -1835,9 +1846,6 @@
         "backcountry": "yes",
         "drinking_water": "no",
         "internet_access": "no",
-        "openfire": "yes",
-        "picnic_table": "yes",
-        "sanitary_dump_station": "yes",
         "static_caravans": "no",
         "tents": "yes",
         "wheelchair": "no",
@@ -1863,7 +1871,11 @@
             "source_record_id": "osm:node:2462387598",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
             "source_updated_at": null,
@@ -7430,7 +7442,6 @@
         "caravans": "yes",
         "fee": "yes",
         "name": "Blackwater River State Park Campground",
-        "sanitary_dump_station": "yes",
         "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 13317770830,
@@ -7464,7 +7475,8 @@
             "source_record_id": "osm:way:495985131",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
             "source_updated_at": null,
@@ -10589,7 +10601,8 @@
             "source_record_id": "osm:way:538788393",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
             "source_updated_at": null,

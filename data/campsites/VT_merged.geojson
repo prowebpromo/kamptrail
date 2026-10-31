@@ -54,13 +54,9 @@
       },
       "properties": {
         "alt_name": "Mount Moosalamoo Campground",
-        "bbq": "yes",
         "capacity:tents": "19",
-        "drinking_water": "yes",
         "name": "MOOSALAMOO CAMPGROUND",
         "operator": "USFS",
-        "picnic_table": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "url": "https://www.recreation.gov/camping/campgrounds/256347",
         "website": "https://www.fs.usda.gov/recarea/gmfl/recreation/recarea/?recid=64907&actid=29",
@@ -101,7 +97,11 @@
             "source_record_id": "osm:way:360962323",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "bbq": "yes",
+              "drinking_water": "yes",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:38:31Z",
             "source_updated_at": null,
@@ -206,7 +206,6 @@
       "properties": {
         "fixme": "Reservations can be made for select sites at recreation.gov. Reservations must be made at least 4 days in advance.  All other sites are first come, first served.. Camping Fee: $15.00 per site per night. water = None",
         "name": "CHITTENDEN BROOK CAMPGROUND",
-        "toilets": "vault",
         "tourism": "camp_site",
         "id": "ridb:251609",
         "source": "recreation.gov",
@@ -239,7 +238,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3250302410",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "toilets": "vault"
+            },
+            "retrieved_at": "2026-10-29T03:38:31Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3250302410"
+          }
+        ]
       }
     },
     {
@@ -2700,7 +2711,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "Lakewood campground",
         "tourism": "camp_site",
         "osm_id": 5781799257,
@@ -2735,6 +2745,7 @@
             "source_record_id": "osm:way:1300537514",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:38:31Z",

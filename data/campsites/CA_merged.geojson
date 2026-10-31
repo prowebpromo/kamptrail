@@ -1491,11 +1491,9 @@
         ]
       },
       "properties": {
-        "drinking_water": "no",
         "name": "Azalea Cove Campground",
         "operator": "United States Forest Service",
         "reservation": "no",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r05/eldorado/recreation/azalea-cove-campground",
         "id": "ridb:236539",
@@ -1536,7 +1534,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -1884,8 +1884,6 @@
         "internet_access": "no",
         "name": "Lower Pines Campground",
         "operator": "Yosemite National Park",
-        "power_supply": "no",
-        "sanitary_dump_station": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232450",
         "wheelchair": "limited",
@@ -1928,7 +1926,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "customers",
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -1948,7 +1948,6 @@
       },
       "properties": {
         "capacity": "12",
-        "drinking_water": "no",
         "name": "KCL Campground",
         "operator": "Bureau of Land Management",
         "tourism": "camp_site",
@@ -1990,6 +1989,7 @@
             "source_record_id": "osm:way:199264854",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -2053,7 +2053,6 @@
       },
       "properties": {
         "description": "<h2>Overview</h2>\nThis campground, located 17 miles north of Weaverville, CA, off Highway 2, is situated on the Stuart Fork Arm of Trinity Lake. Minersville is one of the more popular campgrounds on Trinity Lake due to its easy access to the lake and scenic views. At 2,400 foot elevation, it is nestled in a stand of mixed conifers and deciduous trees. <br/>\n<br/>\nTrinity Lake is one of three Forest Service-managed lakes in the Shasta-Trinity National Recreation Area, offering excellent opportunities for houseboating, water skiing, tubing and wakeboarding.<h2>Recreation</h2>\nThe area offers excellent opportunities for fishing, kayaking, hiking and wildlife viewing. Directly adjacent to the campground is the Minersville Boat Ramp. Informal mooring of boats is possible off some of the campsites.<br/><br/> \n\nRainbow trout are abundant, and brown and brook trout are common. This is a good lake for a float tube and excellent fly fishing.<br/><br/>\n\nThe area offers wonderful wildlife viewing opportunities. Hikers can access the 4-mile Trinity Lakeshore Trail at nearby Clark Springs Campground.<h2>Facilities</h2>\nThe first section of the campground is well-developed with paved, level parking aprons and amenities. The second section is mostly walk-in with good privacy between campsites, and more primitive with a wilderness feel.  \n \nThere are six walk-in campsites (four single, two double). In addition, there are two accessible campsites 8 & 4 . Sites have picnic tables and campfire rings with grills.  \n\nTwo flush toilets and one vault toilet are available. Drinking water is provided, and bear-proof containers are available. Showers are available at the neighboring Bushy Tail Campground.<h2>Natural Features</h2>\nMinersville Campground is noted for a \"campground with a view.\" Many campsites are located on the bank of Trinity Lake with views of the Trinity Alps, noted for their \nscenic views and alpine environment.<br/><br/> \n\nThe Trinity Alps are situated within the Klamath Mountains, which lies between the Pacific Coast Ranges to the west and the Cascade Range farther to the east.",
-        "drinking_water": "no",
         "motor_vehicle:conditional": "yes @ (1 May-31 Oct)",
         "name": "MINERSVILLE CAMPGROUND",
         "operator": "Shasta Recreation Company",
@@ -2097,6 +2096,7 @@
             "source_record_id": "osm:way:958242002",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -2382,7 +2382,6 @@
       },
       "properties": {
         "capacity:caravans": "74",
-        "drinking_water": "untreated",
         "ele": "2094",
         "gnis:feature_id": "1652975",
         "name": "HEART BAR CAMPGROUND",
@@ -2427,6 +2426,7 @@
             "fields": {
               "access": "yes",
               "charge": "30",
+              "drinking_water": "untreated",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -4096,14 +4096,9 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "LOST CLAIM",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234761",
         "id": "ridb:234761",
@@ -4136,7 +4131,23 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1316027694",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1316027694"
+          }
+        ]
       }
     },
     {
@@ -4277,12 +4288,9 @@
       },
       "properties": {
         "camp_site": "basic",
-        "drinking_water": "no",
         "name": "Sugar Spring Campground",
         "operator": "Mendocino National Forest",
-        "picnic_table": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mendocino/recarea/?recid=25278",
         "id": "ridb:242397",
@@ -4322,7 +4330,10 @@
             "source_record_id": "osm:way:1303313580",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -4343,11 +4354,9 @@
       "properties": {
         "camp_site": "basic",
         "name": "Horse Springs Campground",
-        "openfire": "permit",
         "operator": "USFS",
         "reservation": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=26245",
         "id": "ridb:249746",
@@ -4381,7 +4390,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2381890276",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "permit",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2381890276"
+          }
+        ]
       }
     },
     {
@@ -4486,7 +4508,6 @@
         "dog": "leashed",
         "name": "Mokelumne Campground",
         "source": "recreation.gov",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78531",
         "id": "ridb:236516",
@@ -4519,7 +4540,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3608364001",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3608364001"
+          }
+        ]
       }
     },
     {
@@ -4591,14 +4624,11 @@
         "old_name": "Traer Agua",
         "operator": "BLM",
         "phone": "+1 760-252-6000",
-        "power_supply": "no",
         "protect_class": "6",
         "protection_title": "BLM Limited Vehicle Use",
-        "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "caravan_site",
         "type": "established",
-        "water_point": "no",
         "website": "https://www.blm.gov/visit/search-details/274437/1",
         "id": "ridb:274437",
         "source": "recreation.gov",
@@ -4636,7 +4666,10 @@
             "source_record_id": "osm:relation:10337514",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "fee": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "water_point": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -5004,10 +5037,8 @@
         "cabins": "no",
         "caravans": "yes",
         "dog": "leashed",
-        "drinking_water": "yes",
         "name": "Pardoes Point Campground",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78518",
         "id": "ridb:236547",
@@ -5047,7 +5078,9 @@
             "source_record_id": "osm:node:8974561394",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -5070,7 +5103,6 @@
         "name": "Kirkwood Campground",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78527",
         "id": "ridb:236514",
@@ -5109,7 +5141,8 @@
             "source_record_id": "osm:way:1550256143",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -5549,7 +5582,6 @@
       },
       "properties": {
         "camp_site": "standard",
-        "drinking_water": "no",
         "horse": "yes",
         "name": "Dixie Glade Campground",
         "operator": "Mendocino National Forest",
@@ -5592,6 +5624,7 @@
             "source_record_id": "osm:way:1301032238",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "May-Sep"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -7300,7 +7333,6 @@
         "dog": "leashed",
         "name": "Caples Lake Campground",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78524",
         "id": "ridb:236512",
@@ -7340,7 +7372,8 @@
             "source_record_id": "osm:way:1550255987",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -8373,13 +8406,9 @@
       },
       "properties": {
         "caravans": "no",
-        "drinking_water": "yes",
         "name": "SUMMIT LAKE NORTH",
         "note": "area is approx",
-        "power_supply": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:234041",
         "source": "recreation.gov",
@@ -8413,7 +8442,22 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:918439587",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/918439587"
+          }
+        ]
       }
     },
     {
@@ -10150,9 +10194,7 @@
         "group_only": "yes",
         "name": "MASTERSON GROUP CAMPGROUND",
         "operator": "USFS",
-        "picnic_table": "yes",
         "reservation": "required",
-        "toilets": "yes",
         "tourism": "camp_site",
         "water": "yes",
         "website": "https://www.fs.usda.gov/recarea/mendocino/recreation/camping-cabins/recarea/?recid=25268",
@@ -10195,7 +10237,9 @@
             "fields": {
               "access": "yes",
               "charge": "75 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -10215,7 +10259,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "yes",
         "name": "GRAY PINE GROUP CAMPGROUND",
         "operator": "Mendocino National Forest",
@@ -10260,6 +10303,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "75 USD",
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -10706,7 +10750,6 @@
         "capacity": "54",
         "caravans": "yes",
         "cost": null,
-        "drinking_water": "yes",
         "name": "ALPINE VIEW CAMPGROUND",
         "operator": "Shasta-Trinity National Forest",
         "reservation": "available",
@@ -10752,6 +10795,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access:conditional": "yes @ (18 May-15 Sep)",
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -10772,10 +10816,7 @@
       },
       "properties": {
         "name": "ACKERMAN CAMPGROUND",
-        "picnic_table": "yes",
-        "sanitary_dump_station": "customers",
         "source": "recreation.gov",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/stnf/recarea/?recid=6473",
         "id": "ridb:233346",
@@ -10814,7 +10855,10 @@
             "source_record_id": "osm:way:958304757",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "picnic_table": "yes",
+              "sanitary_dump_station": "customers",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -12101,7 +12145,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "DIRT FLAT",
         "tents": "yes",
         "tourism": "camp_site",
@@ -12136,7 +12179,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:413964717",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/413964717"
+          }
+        ]
       }
     },
     {
@@ -12277,13 +12332,10 @@
       "properties": {
         "capacity": "3",
         "caravans": "no",
-        "drinking_water": "yes",
         "group_only": "yes",
         "name": "SHADY COVE GROUP CAMPGROUND",
-        "picnic_table": "yes",
         "reservation": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=26289",
         "id": "ridb:233952",
@@ -12323,7 +12375,10 @@
             "source_record_id": "osm:node:5112039521",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -14077,7 +14132,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "OAK BOTTOM CAMPGROUND",
         "opening_hours": "May 15-Oct 15",
         "operator": "Six Rivers National Forest",
@@ -14124,6 +14178,7 @@
             "fields": {
               "access": "yes",
               "charge": "10 USD",
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -14694,7 +14749,6 @@
       "properties": {
         "dog": "leashed",
         "name": "Middle Fork Cosumnes Campground",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78515",
         "id": "ridb:236510",
@@ -14734,7 +14788,8 @@
             "source_record_id": "osm:node:8975074657",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -14755,7 +14810,6 @@
       "properties": {
         "dog": "leashed",
         "name": "Sugar Pine Point Campground",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78517",
         "id": "ridb:236511",
@@ -14795,7 +14849,8 @@
             "source_record_id": "osm:node:8974561395",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -15353,7 +15408,6 @@
         "dog": "leashed",
         "name": "White Azalea Campground",
         "source": "recreation.gov",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78532",
         "id": "ridb:236550",
@@ -15392,7 +15446,8 @@
             "source_record_id": "osm:node:3608364007",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "fee": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -16426,7 +16481,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "no",
         "horse": "yes",
         "name": "Green Springs Campground",
         "operator": "Mendocino National Forest",
@@ -16471,6 +16525,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "drinking_water": "no",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -16849,9 +16904,7 @@
         "backcountry": "no",
         "camp_site": "standard",
         "caravans": "no",
-        "drinking_water": "no",
         "name": "Hobo Campground",
-        "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sequoia/recarea/?recid=79713",
@@ -16892,7 +16945,9 @@
             "source_record_id": "osm:way:489193357",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -16954,13 +17009,9 @@
       },
       "properties": {
         "caravans": "yes",
-        "check_date": "2024-05-20",
-        "drinking_water": "yes",
         "name": "South Fork Rec Campground",
         "payment:credit_cards": "yes",
-        "power_supply": "no",
         "reservation": "no",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sequoia/recarea/?recid=79857",
         "id": "ridb:242655",
@@ -17001,7 +17052,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "12 USD",
-              "fee": "yes"
+              "check_date": "2024-05-20",
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -17958,14 +18013,9 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "name": "Pines Campground",
         "operator": "United States Forest Service",
-        "sanitary_dump_station": "no",
-        "toilets": "yes",
-        "toilets:disposal": "pitlatrine",
         "tourism": "camp_site",
-        "water_point": "no",
         "website": "https://www.fs.usda.gov/recarea/stanislaus/recarea/?recid=14939",
         "id": "ridb:245528",
         "source": "recreation.gov",
@@ -18004,7 +18054,12 @@
             "source_record_id": "osm:node:3454477033",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "sanitary_dump_station": "no",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine",
+              "water_point": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -18066,7 +18121,6 @@
       },
       "properties": {
         "name": "Hull Creek Campground",
-        "openfire": "yes",
         "operator": "Stanislaus National Forest",
         "tents": "yes",
         "tourism": "camp_site",
@@ -18108,7 +18162,8 @@
             "source_record_id": "osm:node:1990616015",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "openfire": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -19729,7 +19784,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "Domingo Springs Campground",
         "tents": "yes",
         "tourism": "camp_site",
@@ -19771,6 +19825,7 @@
             "source_record_id": "osm:way:972942621",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -19948,12 +20003,10 @@
       "properties": {
         "camp_site": "standard",
         "caravans": "yes",
-        "drinking_water": "yes",
         "impromptu": "yes",
         "name": "Applewhite Campground",
         "operator": "USFS",
         "reservation": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:249634",
         "source": "recreation.gov",
@@ -19986,7 +20039,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:397516589",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/397516589"
+          }
+        ]
       }
     },
     {
@@ -20000,13 +20066,10 @@
       },
       "properties": {
         "camp_site": "basic",
-        "drinking_water": "no",
         "impromptu": "yes",
         "name": "Stockton Flats Yellow Post Sites",
-        "openfire": "permit",
         "operator": "US Forest Service",
         "reservation": "no",
-        "toilets": "no",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=34161",
         "id": "ridb:249674",
@@ -20046,7 +20109,10 @@
             "source_record_id": "osm:node:9847165963",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "openfire": "permit",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -20116,7 +20182,6 @@
         "operator": "USFS",
         "source": "recreation.gov",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:249725",
         "schema_version": 3,
@@ -20154,7 +20219,8 @@
             "source_record_id": "osm:way:370927494",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -20218,14 +20284,10 @@
         "capacity": "19",
         "capacity:tents": "19",
         "description": "<p>This family campground has 19 single-family campsites. All sites are first-come-first-serve basis (no reservations). Holcomb Valley campground is located approximately 5 miles north of Big Bear Lake off Forest Service Road 3N16. Although this campground is open year round, vehicle access will be based on road conditions. Please contact the <a href=\"http://www.fs.usda.gov/detail/sbnf/?cid=FSBDEV7_007796\" rel=\"nofollow\">Big Bear Discovery Center</a> for current road conditions.</p><p>Each family campsite accommodates a maximum of 8 people. Amenities include a picnic table, 1 fire ring, bear boxes and vault toilets. There is no water available. A campground host is on site during mid May through October.</p>",
-        "drinking_water": "no",
         "name": "Holcomb Valley Campground",
         "note": "8 person per site maximum, holiday fee is $28. extra vehicle $8 per night, no water available.",
         "operator": "USFS",
-        "power_supply": "no",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=26385",
@@ -20266,7 +20328,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "$27",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -20989,7 +21055,6 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "no",
         "name": "Goldhill Camping Area",
         "operator": "Los Padres National Forest",
         "reservation": "no",
@@ -21032,6 +21097,7 @@
             "source_record_id": "osm:way:1347244768",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -21326,7 +21392,6 @@
         "camp_site": "standard",
         "capacity": "23",
         "cost": null,
-        "drinking_water": "no",
         "horse": "yes",
         "name": "Mattole Campground",
         "operator": "Bureau of Land Management",
@@ -21369,6 +21434,7 @@
             "source_record_id": "osm:way:714978812",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -21392,7 +21458,6 @@
         "capacity": "9",
         "caravans": "yes",
         "cost": null,
-        "drinking_water": "no",
         "name": "Tolkan Campground",
         "operator": "Bureau of Land Management",
         "tents": "yes",
@@ -21434,6 +21499,7 @@
             "source_record_id": "osm:way:714995772",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -21839,7 +21905,6 @@
       "properties": {
         "dog": "leashed",
         "name": "Woods Lake Campground",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78528",
         "id": "ridb:270947",
@@ -21879,7 +21944,8 @@
             "source_record_id": "osm:node:429261192",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -22296,7 +22362,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "no",
         "name": "JUMBO ROCKS CAMPGROUND",
         "tourism": "camp_site",
         "wikidata": "Q63635594",
@@ -22331,7 +22396,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:206524425",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/206524425"
+          }
+        ]
       }
     },
     {
@@ -22454,7 +22531,6 @@
         "alt_name": "Cooper Gulch Day Use Area",
         "capacity": "5",
         "cost": null,
-        "drinking_water": "yes",
         "name": "COOPER GULCH CAMPGROUND",
         "operator": "Shasta Recreation Company for USFS",
         "reservation": "yes",
@@ -22497,6 +22573,7 @@
             "source_record_id": "osm:way:1212410909",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -37947,7 +38024,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2673090670",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "no"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2673090670"
+          }
+        ]
       }
     },
     {
@@ -41918,7 +42007,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5170448018",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no",
+              "openfire": "permit",
+              "toilets": "no"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5170448018"
+          }
+        ]
       }
     },
     {
@@ -50364,7 +50467,9 @@
             "source_record_id": "osm:node:5112035704",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -50425,7 +50530,9 @@
             "source_record_id": "osm:node:5112038190",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -50435,7 +50542,9 @@
             "source_record_id": "osm:node:5112038195",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -50445,7 +50554,9 @@
             "source_record_id": "osm:node:5144274023",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -50850,7 +50961,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5170401871",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no",
+              "openfire": "permit",
+              "toilets": "no"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5170401871"
+          }
+        ]
       }
     },
     {
@@ -53107,7 +53232,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1134389248",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1134389248"
+          }
+        ]
       }
     },
     {
@@ -55577,7 +55715,6 @@
         "fee": "yes",
         "name": "Cole Creek Campground",
         "operator": "California State Parks",
-        "shower": "yes",
         "tourism": "camp_site",
         "osm_id": 6478672971,
         "osm_type": "node",
@@ -55610,7 +55747,8 @@
             "source_record_id": "osm:way:1424686168",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "shower": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -74949,7 +75087,24 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9622811331",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "bbq": "yes",
+              "drinking_water": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9622811331"
+          }
+        ]
       }
     },
     {
@@ -94117,10 +94272,7 @@
         "lacounty:bld_id": "345626857540",
         "name": "Malibu Creek Campground",
         "permanent_camping": "no",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
         "start_date": "1948",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.parks.ca.gov/?page_id=614",
         "osm_id": 23646816,
@@ -94152,7 +94304,10 @@
             "source_record_id": "osm:way:460160638",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -122007,8 +122162,6 @@
         "internet_access": "wlan",
         "name": "Santa Barbara Sunrise RV Park",
         "phone": "+1 805-966-9954",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tourism": "caravan_site",
         "website": "https://santabarbararv.com/",
         "osm_id": 626793815,
@@ -122034,7 +122187,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:731530963",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/731530963"
+          }
+        ]
       }
     },
     {
@@ -131094,8 +131260,11 @@
             "source_record_id": "osm:way:912627493",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes",
-              "internet_access:fee": "customers"
+              "internet_access:fee": "customers",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -139808,7 +139977,6 @@
         "operator": "US Bureau of Land Management",
         "permanent_camping": "yes @ (Sep 15-Apr 15)",
         "power_supply": "no",
-        "sanitary_dump_station": "yes",
         "tents": "no",
         "tourism": "caravan_site",
         "water_point": "no",
@@ -139841,7 +140009,10 @@
             "source_record_id": "osm:way:1178201889",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes @ (Sep 15-Apr 15)"
+              "fee": "yes @ (Sep 15-Apr 15)",
+              "power_supply": "no",
+              "sanitary_dump_station": "yes",
+              "water_point": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -139930,7 +140101,9 @@
             "source_record_id": "osm:way:1178201892",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes @ (Sep 15-Apr 15)"
+              "fee": "yes @ (Sep 15-Apr 15)",
+              "power_supply": "no",
+              "water_point": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,

@@ -4825,7 +4825,6 @@
       "properties": {
         "caravans": "no",
         "description": "<p>Several walk in campsites along the <a href=\"http://www.fs.usda.gov/recarea/rogue-siskiyou/recreation/recarea/?recid=74294\" rel=\"nofollow\">Illinois River</a>. <a href=\"http://www.fs.usda.gov/recarea/rogue-siskiyou/recreation/recarea/?recid=77743\" rel=\"nofollow\">River Bench Day Use</a> and Campground are located on a lower river terrace, within a forested setting. Must hike down one of two access trails to use.</p><h2>Facilities</h2><ul><li>8 walk in campsites with picnic tables, and fire pits</li><li>No drinking water</li><li>Vault toilet within walking distance</li><li>No garbage disposal - Please pack it out</li></ul>",
-        "drinking_water": "no",
         "name": "River Bench Campground",
         "tents": "yes",
         "tourism": "camp_site",
@@ -4866,6 +4865,7 @@
             "source_record_id": "osm:node:9670896212",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -5420,7 +5420,6 @@
       "properties": {
         "capacity": "10",
         "caravans": "yes",
-        "drinking_water": "no",
         "group_only": "no",
         "name": "Post Pile Campground",
         "operator": "BLM",
@@ -5463,6 +5462,7 @@
             "source_record_id": "osm:way:714346650",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -7342,7 +7342,6 @@
       "properties": {
         "capacity": "10",
         "caravans": "yes",
-        "drinking_water": "no",
         "group_only": "no",
         "name": "Stillwater Campground",
         "operator": "BLM",
@@ -7385,6 +7384,7 @@
             "source_record_id": "osm:way:714346635",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -7405,7 +7405,6 @@
       },
       "properties": {
         "capacity": "20",
-        "drinking_water": "yes",
         "name": "Chimney Rock Campground",
         "operator": "BLM",
         "tourism": "camp_site",
@@ -7447,6 +7446,7 @@
             "source_record_id": "osm:way:692059162",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -7901,7 +7901,6 @@
       "properties": {
         "area": "yes",
         "capacity": "7",
-        "drinking_water": "no",
         "name": "MUD LAKE CAMPGROUND",
         "tents": "yes",
         "tourism": "camp_site",
@@ -7943,6 +7942,7 @@
             "source_record_id": "osm:way:1558881722",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -8988,8 +8988,6 @@
         "internet_access": "no",
         "name": "Hyatt Lake Recreation Area",
         "operator": "Bureau of Land Management",
-        "power_supply": "no",
-        "sanitary_dump_station": "yes",
         "tourism": "camp_site",
         "id": "ridb:250031",
         "source": "recreation.gov",
@@ -9029,7 +9027,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -13967,10 +13967,6 @@
         "dog": "leashed",
         "name": "Ainsworth Campground",
         "ownership": "Oregon State Parks",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 1596375040,
         "osm_type": "node",
@@ -14002,7 +13998,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
-              "sanitary_dump_station:fee": "yes"
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "sanitary_dump_station:fee": "yes",
+              "shower": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -26220,7 +26220,11 @@
             "source_record_id": "osm:node:6877061237",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "drinking_water": "no",
+              "picnic_table": "no",
+              "power_supply": "no",
+              "shower": "no"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -32822,7 +32826,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7130263032",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7130263032"
+          },
+          {
+            "source_record_id": "osm:node:7130263033",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7130263033"
+          }
+        ]
       }
     },
     {
@@ -51742,7 +51768,6 @@
         "payment:credit_cards": "yes",
         "reservation": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/search-details/262754/1",
         "osm_id": 10025626978,
@@ -51775,7 +51800,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -52424,7 +52450,9 @@
             "source_record_id": "osm:way:1185181240",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -67617,6 +67645,7 @@
             "source_record_id": "osm:way:1558881720",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -67627,6 +67656,7 @@
             "source_record_id": "osm:way:1558881721",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -70165,7 +70195,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:767455264",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/767455264"
+          }
+        ]
       }
     },
     {
@@ -70300,7 +70342,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:767455309",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/767455309"
+          }
+        ]
       }
     },
     {
@@ -81424,7 +81478,9 @@
             "source_record_id": "osm:way:1538417245",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -81434,7 +81490,9 @@
             "source_record_id": "osm:way:1538417246",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -81525,7 +81583,9 @@
             "source_record_id": "osm:way:1538417249",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,

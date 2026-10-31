@@ -786,7 +786,6 @@
           "osm:way:1004215386",
           "osm:way:1004215387"
         ],
-        "toilets": "yes",
         "water": "faucet",
         "type": "established",
         "cost": null,
@@ -810,7 +809,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1004215386",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:14:06Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1004215386"
+          }
+        ]
       }
     },
     {

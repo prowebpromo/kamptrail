@@ -2177,24 +2177,17 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "no",
         "internet_access": "no",
         "mobile_reception": "no",
         "mobile_reception:strength": "none",
         "name": "ABRAM'S CREEK CAMPGROUND",
         "nudism": "no",
         "official_name": "Abrams Creek Campground",
-        "openfire": "yes",
-        "picnic_table": "yes",
-        "power_supply": "no",
         "reservation": "yes",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "source": "recreation.gov",
         "start_date": "2023-04-28",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "wikidata": "Q63564338",
         "id": "ridb:273847",
@@ -2235,7 +2228,14 @@
             "fields": {
               "access": "yes",
               "charge": "30 USD",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -3255,14 +3255,11 @@
         "name": "COSBY CAMPGROUND",
         "nudism": "no",
         "official_name": "Cosby Campground",
-        "openfire": "yes",
         "reservation": "yes",
-        "shower": "no",
         "source": "recreation.gov",
         "start_date": "2023-04-07",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "wheelchair": "yes",
         "wikidata": "Q63565054",
@@ -3304,7 +3301,10 @@
             "fields": {
               "access": "yes",
               "charge": "30 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -6949,22 +6949,15 @@
         "capacity:tents": "12",
         "caravans": "no",
         "dog": "yes",
-        "drinking_water": "yes",
         "fee": "yes",
         "mobile_reception": "limited",
         "mobile_reception:strength": "issues",
         "name": "Big Creek Campground",
         "nudism": "no",
-        "openfire": "yes",
-        "picnic_table": "yes",
-        "power_supply": "no",
         "reservation": "yes",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "start_date": "2023-04-07",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site;caravan_site",
         "osm_id": 2366027152,
         "osm_type": "node",
@@ -7003,7 +6996,14 @@
             "fields": {
               "access": "yes",
               "charge": "30 USD",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7522,7 +7522,8 @@
             "source_record_id": "osm:node:3561199064",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7532,7 +7533,8 @@
             "source_record_id": "osm:node:3561199066",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7542,7 +7544,8 @@
             "source_record_id": "osm:node:3561199067",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7552,7 +7555,8 @@
             "source_record_id": "osm:node:3561199068",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7562,7 +7566,8 @@
             "source_record_id": "osm:node:3561199071",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7572,7 +7577,8 @@
             "source_record_id": "osm:node:3561199072",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7582,7 +7588,8 @@
             "source_record_id": "osm:node:3561199073",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7592,7 +7599,8 @@
             "source_record_id": "osm:node:3561199074",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7602,7 +7610,8 @@
             "source_record_id": "osm:node:3561199075",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7612,7 +7621,8 @@
             "source_record_id": "osm:node:3561199076",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7622,7 +7632,8 @@
             "source_record_id": "osm:node:3561199077",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7632,7 +7643,8 @@
             "source_record_id": "osm:node:3561199078",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7642,7 +7654,8 @@
             "source_record_id": "osm:node:3561199079",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7652,7 +7665,8 @@
             "source_record_id": "osm:node:3561199080",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7662,7 +7676,8 @@
             "source_record_id": "osm:node:3561199081",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7719,7 +7734,8 @@
             "source_record_id": "osm:node:3561199069",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -7729,7 +7745,8 @@
             "source_record_id": "osm:node:3561199070",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "sanitary_dump_station": "customers"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -8254,7 +8271,6 @@
         "name": "Blue Ridge Parkway Tent",
         "opening_hours": "24/7",
         "operator": "USA",
-        "power_supply": "no",
         "tourism": "camp_site",
         "osm_id": 4315873393,
         "osm_type": "node",
@@ -8279,7 +8295,19 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4315900089",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "no"
+            },
+            "retrieved_at": "2026-10-29T03:35:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4315900089"
+          }
+        ]
       }
     },
     {
@@ -15827,7 +15855,6 @@
         ]
       },
       "properties": {
-        "check_date": "2022-10-21",
         "name": "Cherokee Landing Campground",
         "tourism": "camp_site",
         "osm_id": 10119391786,
@@ -15858,7 +15885,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10119743548",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "check_date": "2022-10-21"
+            },
+            "retrieved_at": "2026-10-29T03:35:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10119743548"
+          }
+        ]
       }
     },
     {
@@ -19694,7 +19733,8 @@
             "source_record_id": "osm:node:12928809456",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "check_date": "2025-09-09"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -20401,7 +20441,10 @@
             "fields": {
               "access": "permit",
               "charge": "10$ Per night",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,
@@ -20969,7 +21012,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13393433640",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes",
+              "picnic_table": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:35:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13393433640"
+          }
+        ]
       }
     },
     {
@@ -21072,7 +21128,6 @@
         "camp_site": "basic",
         "caravans": "no",
         "name": "Piney River Campsite 1",
-        "openfire": "yes",
         "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
@@ -21099,7 +21154,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13533751546",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "openfire": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:35:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13533751546"
+          }
+        ]
       }
     },
     {
@@ -26399,7 +26466,9 @@
             "source_record_id": "osm:way:701921547",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:35:24Z",
             "source_updated_at": null,

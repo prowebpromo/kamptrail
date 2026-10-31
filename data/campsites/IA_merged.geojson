@@ -12739,7 +12739,10 @@
             "source_record_id": "osm:node:11701123969",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "drinking_water": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:00:45Z",
             "source_updated_at": null,
@@ -13054,7 +13057,6 @@
         "addr:street": "Quinlan Avenue",
         "name": "Latitudes RV Resort",
         "phone": "+1 515-890-7043",
-        "power_supply": "yes",
         "tourism": "caravan_site",
         "website": "https://www.latitudesrvresort.com",
         "osm_id": 13259718417,
@@ -13081,7 +13083,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1445211401",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:00:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1445211401"
+          }
+        ]
       }
     },
     {
@@ -13686,6 +13700,7 @@
             "fields": {
               "access": "yes",
               "charge": "$10/night",
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:00:45Z",
@@ -20567,7 +20582,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1014932178",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:00:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1014932178"
+          }
+        ]
       }
     },
     {
