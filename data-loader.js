@@ -246,13 +246,13 @@
     const rows=[];
     for(const g of s.observations||[])for(const x of g.values?.signals||[]){
       if(!d.CARRIERS[x.carrier]||!d.SIGNAL[x.signal])continue;
-      rows.push({carrier:d.CARRIERS[x.carrier],signal:d.SIGNAL[x.signal],setting:(d.ENVIRONMENTS||{})[x.environment]||'',visit:g.latest_visit,count:g.count});
+      rows.push({carrier:d.CARRIERS[x.carrier],signal:d.SIGNAL[x.signal],setting:(d.ENVIRONMENTS||{})[x.environment]||'',radio:(x.radio==='lte'||x.radio==='5g')&&d.RADIOS?d.RADIOS[x.radio]:'',visit:g.latest_visit,count:g.count});
     }
     return rows.sort((a,b)=>b.visit.localeCompare(a.visit)||a.carrier.localeCompare(b.carrier));
   }
   function coverageHTML(p,lat,lng,siteId){
     const rows=signalReports(p).slice(0,6);
-    const list=rows.length?`<ul class="kt-signal-list">${rows.map(r=>`<li>${esc(r.carrier)}: ${esc(r.signal)}${r.setting?` (${esc(r.setting)})`:''} · ${esc(t("visit {date}",{date:r.visit}))} · ${esc(t(r.count===1?"{count} report":"{count} reports",{count:r.count}))}</li>`).join('')}</ul>`:`<p class="kt-fine">${t("No camper signal reports yet.")}</p>`;
+    const list=rows.length?`<ul class="kt-signal-list">${rows.map(r=>`<li>${esc(r.carrier)}: ${esc(r.signal)}${r.radio?` · ${esc(r.radio)}`:''}${r.setting?` (${esc(r.setting)})`:''} · ${esc(t("visit {date}",{date:r.visit}))} · ${esc(t(r.count===1?"{count} report":"{count} reports",{count:r.count}))}</li>`).join('')}</ul>`:`<p class="kt-fine">${t("No camper signal reports yet.")}</p>`;
     return `<div class="kt-coverage"><strong>${t("Cell coverage:")}</strong>
       <p class="kt-fine">${t("Camper signal reports are what visitors experienced on the visit date, not a prediction.")}</p>${list}
       <p><a href="${FCC_MAP}" target="_blank" rel="noopener noreferrer">${t("Check carrier coverage (FCC map)")}</a>
@@ -355,7 +355,7 @@
       <div><strong>${t("Amenities reported:")}</strong> ${p.amenities.length?p.amenities.map(value=>esc(uiLabel('amenity',value))).join(', '):t("Not verified")}</div>
       ${ridbAmenitiesText(p)}
       ${usfsSiteText(p)}
-      ${p.road_difficulty?`<div><strong>${t("Road:")}</strong> ${esc(p.road_difficulty)}</div>`:''}
+      <!-- Bundled road_difficulty holds surface labels with no attributable source, so it is not shown. Approach difficulty comes only from dated visitor reports. -->
       ${p.rig_friendly.length?`<div><strong>${t("Rig types reported:")}</strong> ${p.rig_friendly.map(value=>esc(uiLabel('rig',value))).join(', ')}</div>`:''}
       ${rvText(p)}
       ${window.KampTrailDiscovery?.summary(p)?`<div><strong>${t("Community rating:")}</strong> ${esc(t("{0}/5 · {1} published {2} · latest visit {3}",{'0':(window.KampTrailDiscovery.summary(p).rating_sum/window.KampTrailDiscovery.summary(p).rating_count).toFixed(1),'1':window.KampTrailDiscovery.summary(p).rating_count,'2':t(window.KampTrailDiscovery.summary(p).rating_count===1?'review':'reviews'),'3':window.KampTrailDiscovery.summary(p).latest_visit}))}</div>`:''}
@@ -491,7 +491,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.29.1',
+    version:'2.30.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){

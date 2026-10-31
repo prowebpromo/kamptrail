@@ -13,6 +13,7 @@ const KO_SCORE_MINIMUM=3;
 const KO_CARRIERS=['att','verizon','tmobile','other'];
 const KO_SIGNAL=['none','weak','usable','strong'];
 const KO_ENVIRONMENTS=['unspecified','outdoors','inside_rv','other_vehicle'];
+const KO_RADIOS=['unspecified','lte','5g'];
 function ko_ready(PDO $pdo): bool {return in_array(KO_VERSION,kt_applied_migrations($pdo),true);}
 function ko_validate($raw): array {
     if ($raw==='') return [];
@@ -41,10 +42,12 @@ function ko_validate($raw): array {
     if(!is_array($signals)||!array_is_list($signals)||count($signals)>4)kc_error(422,'Report each carrier at most once.');
     $seen=[];$outSignals=[];
     foreach($signals as $row){
-        if(!is_array($row)||array_diff(array_keys($row),['carrier','signal','environment']))kc_error(422,'Invalid carrier observation.');
-        $carrier=$row['carrier']??'';$signal=$row['signal']??'';$environment=$row['environment']??'unspecified';
-        if(!in_array($carrier,KO_CARRIERS,true)||isset($seen[$carrier])||!in_array($signal,KO_SIGNAL,true)||!in_array($environment,KO_ENVIRONMENTS,true))kc_error(422,'Choose a listed carrier, signal and setting.');
-        $seen[$carrier]=true;$outSignals[]=['carrier'=>$carrier,'signal'=>$signal,'environment'=>$environment];
+        if(!is_array($row)||array_diff(array_keys($row),['carrier','signal','environment','radio']))kc_error(422,'Invalid carrier observation.');
+        $carrier=$row['carrier']??'';$signal=$row['signal']??'';$environment=$row['environment']??'unspecified';$radio=array_key_exists('radio',$row)?$row['radio']:'unspecified';
+        if(!in_array($carrier,KO_CARRIERS,true)||isset($seen[$carrier])||!in_array($signal,KO_SIGNAL,true)||!in_array($environment,KO_ENVIRONMENTS,true)||!in_array($radio,KO_RADIOS,true))kc_error(422,'Choose a listed carrier, signal, setting and technology.');
+        $seen[$carrier]=true;$entry=['carrier'=>$carrier,'signal'=>$signal,'environment'=>$environment];
+        if($radio!=='unspecified')$entry['radio']=$radio;
+        $outSignals[]=$entry;
     }
     usort($outSignals,fn($a,$b)=>strcmp($a['carrier'],$b['carrier']));
     if($outSignals)$out['signals']=$outSignals;
@@ -162,9 +165,10 @@ function ko_conditions(array $details): array {
     $signals=[];
     foreach(is_array($details['signals']??null)?$details['signals']:[] as $row){
         if(!is_array($row))continue;
-        $carrier=$row['carrier']??null;$signal=$row['signal']??null;$environment=$row['environment']??'unspecified';
-        if(!in_array($carrier,KO_CARRIERS,true)||isset($signals[$carrier])||!in_array($signal,KO_SIGNAL,true)||!in_array($environment,KO_ENVIRONMENTS,true))continue;
+        $carrier=$row['carrier']??null;$signal=$row['signal']??null;$environment=$row['environment']??'unspecified';$radio=array_key_exists('radio',$row)?$row['radio']:'unspecified';
+        if(!in_array($carrier,KO_CARRIERS,true)||isset($signals[$carrier])||!in_array($signal,KO_SIGNAL,true)||!in_array($environment,KO_ENVIRONMENTS,true)||!in_array($radio,KO_RADIOS,true))continue;
         $signals[$carrier]=['carrier'=>$carrier,'signal'=>$signal,'environment'=>$environment];
+        if($radio!=='unspecified')$signals[$carrier]['radio']=$radio;
     }
     if($signals){ksort($signals);$out['signals']=array_values($signals);}
     return $out;
