@@ -9,7 +9,10 @@
   // operator and facility class whose state policy may apply, and plausible state bounds.
   const REGIONS={
     TX:{name:'Texas',operator:'txdot',facility_kind:'safety_rest_area',publisher:'Texas Department of Transportation',list:LIST,id:/^txdot:[a-f0-9]{24}$/,place:detail,bbox:[-107,25,-93,37]},
-    ID:{name:'Idaho',operator:'itd',facility_kind:'safety_rest_area',publisher:'Idaho Transportation Department',list:'https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/Assets/FeatureServer/5',id:/^itd:[a-f0-9-]{1,64}$/,place:u=>u==='https://itd.idaho.gov/faqs/rest-areas/',bbox:[-117.3,41.9,-111,49.1]}
+    ID:{name:'Idaho',operator:'itd',facility_kind:'safety_rest_area',publisher:'Idaho Transportation Department',list:'https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/Assets/FeatureServer/5',id:/^itd:[a-f0-9-]{1,64}$/,place:u=>u==='https://itd.idaho.gov/faqs/rest-areas/',bbox:[-117.3,41.9,-111,49.1]},
+    MT:{name:'Montana',operator:'mdt',facility_kind:'rest_area',publisher:'Montana Department of Transportation',list:'https://services1.arcgis.com/dKlvxNSUvl36IGMp/arcgis/rest/services/Montana_Rest_Areas/FeatureServer/0',id:/^mdt:[a-z0-9-]{1,64}$/,place:u=>u==='https://mdt.mt.gov/travinfo/restarea.aspx',bbox:[-116.1,44.3,-104,49.1]},
+    FL:{name:'Florida',operator:'florida_turnpike',facility_kind:'turnpike_service_plaza',publisher:"Florida's Turnpike Enterprise",list:'https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/TurnpikeBaseData/FeatureServer/0',id:/^florida_turnpike:[a-z0-9-]{1,64}$/,place:u=>u==='https://floridasturnpike.com/traveler-resources/service-plazas/',bbox:[-87.7,24.4,-79.9,31.1]},
+    OH:{name:'Ohio',operator:'odot',facility_kind:'rest_area_or_roadside_park',publisher:'Ohio Department of Transportation',list:'https://tims.dot.state.oh.us/ags/rest/services/Assets/ODOT_Facilities/MapServer/0',id:/^odot:[a-z0-9-]{1,64}$/,place:u=>u==='https://tims.dot.state.oh.us/ags/rest/services/Assets/ODOT_Facilities/MapServer/0',bbox:[-84.9,38.3,-80.4,42.4]}
   };
   const regionNames=regions=>regions.map(r=>t(REGIONS[r].name)).join(', ');
   const check=(ok,msg)=>{if(!ok)throw new Error('Official rest areas: '+msg);};
@@ -91,7 +94,7 @@
       const box=el('div');box.className='kt-rest-popup';box.dataset.restAreaId=r.id;box.tabIndex=0;box.setAttribute('role','region');box.setAttribute('aria-label',t("Rest-area source details"));box.style.maxHeight=Math.max(80,Math.min(360,map.getSize().y-160))+'px';
       box.append(el('h2',r.name),el('p',describe(r,d)));
       if(d.region==='TX')box.append(link(t("TxDOT place source"),r.source_url),' · ',link(t("TxDOT duration source"),POLICY));
-      else box.append(link(t('{0} place source',{"0":t(REGIONS[d.region].publisher)}),r.source_url),' · ',link(t('{0} location data',{"0":t(REGIONS[d.region].publisher)}),d.source.url));
+      else{box.append(link(t('{0} place source',{"0":t(REGIONS[d.region].publisher)}),r.source_url));if(d.source.url!==r.source_url)box.append(' · ',link(t('{0} location data',{"0":t(REGIONS[d.region].publisher)}),d.source.url));}
       const policy=policyFor(r,d);if(policy.sources.length){const sources=el('p');sources.className='kt-rest-policy-sources';policy.sources.forEach((s,i)=>{if(i)sources.append(' · ');sources.append(link(t('State policy source {number}',{number:i+1}),s.url));});box.append(sources);}
       const actions=el('div');actions.className='kt-popup-actions';
       actions.append(button(t("Save rest-area stop"),()=>{const f=feature(r,d);global.KampTrailTrip?.addStop(f.properties.id,f);}),button(t("Overnight permission"),()=>global.KampTrailPermissions?.open(place(r))));box.append(actions);return box;
@@ -136,6 +139,6 @@
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
     return layer;
   }
-  const api={version:'2.22.0',REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
+  const api={version:'2.23.0',REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailRestAreas=api;
 })(typeof window!=='undefined'?window:globalThis);

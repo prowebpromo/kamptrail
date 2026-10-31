@@ -1112,6 +1112,11 @@
   "Zoom to level 6 or closer. Official rest-area coverage: {0}. Overnight permission is unknown.": "Acerca el mapa al nivel 6 o más. Cobertura oficial de áreas de descanso: {0}. El permiso para pernoctar es desconocido.",
   "{0} official rest-area location{1} in this view. Coverage: {2}; other states are not covered. Overnight permission and current opening are unknown.": "{0} ubicaciones oficiales de áreas de descanso en esta vista. Cobertura: {2}; otros estados no están incluidos. El permiso para pernoctar y la apertura actual son desconocidos.",
   "Unavailable now: {0}.": "No disponible ahora: {0}.",
+  "Texas Department of Transportation": "Departamento de Transporte de Texas",
+  "Idaho Transportation Department": "Departamento de Transporte de Idaho",
+  "Montana Department of Transportation": "Departamento de Transporte de Montana",
+  "Florida's Turnpike Enterprise": "Florida's Turnpike Enterprise",
+  "Ohio Department of Transportation": "Departamento de Transporte de Ohio",
   "Texas": "Texas",
   "Idaho": "Idaho",
   "Montana": "Montana",
@@ -1667,7 +1672,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.22.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
+  global.KampTrailI18n = {version:'2.23.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

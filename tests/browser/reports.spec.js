@@ -71,7 +71,7 @@ test('About the data shows source freshness, and a failed refresh run is visibly
   for(const source of sources.filter(source=>source.retired_by)){
     await expect(table.getByRole('rowheader',{name:source.label,exact:true})).toHaveCount(0);
   }
-  await expect(table.getByRole('rowheader',{name:'Official rest-area locations (TxDOT Texas pilot)'})).toBeVisible();
+  await expect(table.getByRole('rowheader',{name:'Official state rest-area locations'})).toBeVisible();
   await expect(table.getByRole('rowheader',{name:'Expanded service extracts (Geofabrik/OpenStreetMap)'})).toBeVisible();
   const extracts=savedHealth.sources.services_extracts;
   if(Array.isArray(extracts.coverage_states)){

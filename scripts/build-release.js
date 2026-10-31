@@ -20,12 +20,22 @@ const files=['index.html','locale.js','how-to.html','app.js','app.css','manifest
   const elevationRoot=path.join(root,'data','campsites','elevation');
   if(await fs.stat(elevationRoot).then(s=>s.isDirectory()).catch(()=>false))await fs.cp(elevationRoot,path.join(out,'data','campsites','elevation'),{recursive:true,filter:source=>{const rel=path.relative(elevationRoot,source).split(path.sep).join('/');return rel===''||rel==='index.json'||rel==='snapshots'||/^snapshots\/[a-f0-9]{24}(?:\/[A-Z]{2}\.json)?$/.test(rel);}});
   await fs.mkdir(path.join(out,'data','services'),{recursive:true});await fs.copyFile(path.join(root,'data','services','services.json'),path.join(out,'data','services','services.json'));
-  const restPath=path.join(root,'data','rest-areas','TX.json');
-  if(await fs.realpath(restPath)!==restPath)throw new Error('Official rest-area release must not follow symlinks');
-  const restRaw=await fs.readFile(restPath);
-  if(restRaw.length>512*1024)throw new Error('Official rest-area catalogue exceeds release bound');
-  require('../rest-areas.js').validate(JSON.parse(restRaw));
-  await fs.mkdir(path.join(out,'data','rest-areas'),{recursive:true});await fs.writeFile(path.join(out,'data','rest-areas','TX.json'),restRaw);
+  // Every region in the manifest ships only after it validates against its reviewed publisher.
+  const restDir=path.join(root,'data','rest-areas'),restIndexPath=path.join(restDir,'index.json');
+  if(await fs.realpath(restIndexPath)!==restIndexPath)throw new Error('Official rest-area release must not follow symlinks');
+  const restIndexRaw=await fs.readFile(restIndexPath);if(restIndexRaw.length>16*1024)throw new Error('Official rest-area index exceeds release bound');
+  const restIndex=require('../rest-areas.js').validateIndex(JSON.parse(restIndexRaw));
+  await fs.mkdir(path.join(out,'data','rest-areas'),{recursive:true});
+  for(const region of restIndex.regions){
+    const restPath=path.join(restDir,region.file);
+    if(await fs.realpath(restPath)!==restPath)throw new Error('Official rest-area release must not follow symlinks');
+    const restRaw=await fs.readFile(restPath);
+    if(restRaw.length>512*1024)throw new Error('Official rest-area catalogue exceeds release bound');
+    const catalogue=require('../rest-areas.js').validate(JSON.parse(restRaw));
+    if(catalogue.region!==region.region||catalogue.records.length!==region.records)throw new Error('Official rest-area index does not match its catalogue');
+    await fs.writeFile(path.join(out,'data','rest-areas',region.file),restRaw);
+  }
+  await fs.writeFile(path.join(out,'data','rest-areas','index.json'),restIndexRaw);
   const statePolicyPath=path.join(root,'data','rest-areas','state-policies.json');
   if(await fs.realpath(statePolicyPath)!==statePolicyPath)throw new Error('State policies must not follow symlinks');
   const statePolicyRaw=await fs.readFile(statePolicyPath);if(statePolicyRaw.length>64*1024)throw new Error('State policies exceed release bound');

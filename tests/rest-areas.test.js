@@ -63,3 +63,31 @@ test('new policy sources accept the audited URL and reject other pages or parame
     const bad=structuredClone(policies);bad.policies[i].sources[0].url+=suffix;assert.throws(()=>rest.validatePolicies(bad,policyNow));
   }
 });
+
+// ---- Official locations beyond Texas ----
+const index=JSON.parse(fs.readFileSync('data/rest-areas/index.json','utf8'));
+const region=code=>Object.assign(structuredClone(JSON.parse(fs.readFileSync(`data/rest-areas/${code}.json`,'utf8'))),{state_policies:policies});
+test('every published region validates against its exact publisher and inherits only its own scoped policy',()=>{
+  rest.validateIndex(index);assert.ok(index.regions.some(x=>x.region==='TX'));
+  for(const {region:code} of index.regions){
+    const d=region(code),g=rest.REGIONS[code];rest.validate(d);
+    assert.equal(d.records.length,index.regions.find(x=>x.region===code).records);
+    for(const r of d.records){
+      assert.equal(r.permission,'unknown');assert.equal(r.state,code);
+      const p=rest.policyFor(r,d,policyNow),expected=policies.policies.find(x=>x.scope.state===code&&x.scope.operator===g.operator&&x.scope.facility_kind===g.facility_kind);
+      assert.equal(p.policy_id,expected?expected.id:null);
+      for(const a of ['overnight_parking','sleeping_in_vehicle','camping'])assert.equal(p.rules[a],expected?expected.rules[a]:'unknown');
+    }
+    if(code!=='TX'){const text=rest.describe(d.records[0],d,policyNow);assert.match(text,/does not establish permission to park or sleep overnight/);assert.match(text,new RegExp(g.publisher));}
+  }
+});
+test('region manifest and catalogues reject unreviewed regions, borrowed scopes and permission claims',()=>{
+  for(const bad of [{version:1,regions:[{region:'ZZ',file:'ZZ.json'}]},{version:1,regions:[{region:'TX',file:'../x.json'}]},{version:1,regions:[{region:'TX',file:'TX.json'},{region:'TX',file:'TX.json'}]},{version:1,regions:[]}])assert.throws(()=>rest.validateIndex(bad));
+  const other=index.regions.find(x=>x.region!=='TX');if(!other)return;const code=other.region;
+  const mutations=[d=>{d.operator='txdot';},d=>{d.facility_kind='rest_area_x';},d=>{d.source.url='https://example.com/rest';},d=>{d.records[0].permission='allowed';},d=>{d.records[0].state='TX';},d=>{d.records[0].source_url='https://evil.example/';},d=>{d.records[0].coordinates=[-97.5,30.9];},d=>{d.records.push(d.records[0]);},d=>{d.records[0].source_updated_at='2026-02-30T00:00:00Z';},d=>{d.duration_context={maximum_hours:24};}];
+  for(const m of mutations){const d=region(code);m(d);assert.throws(()=>rest.validate(d));}
+});
+test('a saved rest-area stop keeps its coordinate identity in every region',()=>{
+  for(const {region:code} of index.regions){const d=region(code),r=d.records[0],f=rest.feature(r,d);assert.equal(f.properties.id,rest.place(r).id);assert.match(f.properties.id,/^spot:-?\d+\.\d{5},-?\d+\.\d{5}$/);assert.equal(f.properties.source,rest.REGIONS[code].publisher);}
+  const tx=region('TX');assert.equal(rest.feature(tx.records[0],tx).properties.source,'Texas Department of Transportation');
+});

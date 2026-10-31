@@ -1,0 +1,118 @@
+{
+ "release": "2.23.0",
+ "checked_at": "2026-10-31",
+ "regions": [
+  {
+   "state": "FL",
+   "records": 8,
+   "new_in_this_release": true,
+   "source": "https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/TurnpikeBaseData/FeatureServer/0",
+   "retrieved_at": "2026-10-31T12:26:35Z",
+   "policy_id": "florida_turnpike-turnpike_service_plaza-20261030",
+   "policy": {
+    "overnight_parking": "prohibited",
+    "sleeping_in_vehicle": "unknown",
+    "camping": "unknown",
+    "max_stay_hours": null
+   },
+   "records_with_source_update_date": 8,
+   "source_rows": 8,
+   "in_scope_query": 8,
+   "excluded_by_scope": 0
+  },
+  {
+   "state": "ID",
+   "records": 27,
+   "new_in_this_release": true,
+   "source": "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/Assets/FeatureServer/5",
+   "retrieved_at": "2026-10-31T12:27:09Z",
+   "policy_id": "itd-safety_rest_area-20261030",
+   "policy": {
+    "overnight_parking": "unknown",
+    "sleeping_in_vehicle": "unknown",
+    "camping": "prohibited",
+    "max_stay_hours": null
+   },
+   "records_with_source_update_date": 27,
+   "source_rows": 28,
+   "in_scope_query": 28,
+   "excluded_by_scope": 0
+  },
+  {
+   "state": "MT",
+   "records": 49,
+   "new_in_this_release": true,
+   "source": "https://services1.arcgis.com/dKlvxNSUvl36IGMp/arcgis/rest/services/Montana_Rest_Areas/FeatureServer/0",
+   "retrieved_at": "2026-10-31T12:26:32Z",
+   "policy_id": "mdt-rest-area-20261030",
+   "policy": {
+    "overnight_parking": "allowed",
+    "sleeping_in_vehicle": "unknown",
+    "camping": "prohibited",
+    "max_stay_hours": 12
+   },
+   "records_with_source_update_date": 49,
+   "source_rows": 79,
+   "in_scope_query": 49,
+   "excluded_by_scope": 30
+  },
+  {
+   "state": "OH",
+   "records": 86,
+   "new_in_this_release": true,
+   "source": "https://tims.dot.state.oh.us/ags/rest/services/Assets/ODOT_Facilities/MapServer/0",
+   "retrieved_at": "2026-10-31T12:26:39Z",
+   "policy_id": "odot-rest_area_or_roadside_park-20261030",
+   "policy": {
+    "overnight_parking": "unknown",
+    "sleeping_in_vehicle": "unknown",
+    "camping": "prohibited",
+    "max_stay_hours": null
+   },
+   "records_with_source_update_date": 0,
+   "source_rows": 484,
+   "in_scope_query": 86,
+   "excluded_by_scope": 398
+  },
+  {
+   "state": "TX",
+   "records": 78,
+   "new_in_this_release": false,
+   "source": "https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list.html",
+   "retrieved_at": "2026-10-30T13:11:18Z",
+   "policy_id": "txdot-safety-rest-area-20261030",
+   "policy": {
+    "overnight_parking": "unknown",
+    "sleeping_in_vehicle": "unknown",
+    "camping": "unknown",
+    "max_stay_hours": 24
+   },
+   "records_with_source_update_date": 0
+  }
+ ],
+ "not_imported": [
+  {
+   "state": "OR",
+   "scope": "odot safety_rest_area",
+   "reason": "The only agency-adjacent layer (34 records) sits on a personal ODOT staff account with no description or copyright, and 25 of its sites are managed by the Oregon Travel Information Council, not ODOT. Publisher and scope are not established."
+  },
+  {
+   "state": "VA",
+   "scope": "vdot rest_area",
+   "reason": "VDOT publishes an HTML list of 41 facilities (30 rest areas, 11 welcome centers) with no coordinates. No VDOT location layer was found. Coordinates would require unofficial geocoding."
+  },
+  {
+   "state": "MT",
+   "scope": "mdt rest_area",
+   "reason": "16 MDT-listed rest areas maintained by cities, tribes or others and 14 parking-only areas are outside the MDT rest-area scope and were not imported.",
+   "records": 30
+  }
+ ],
+ "rejected": [
+  {
+   "state": "ID",
+   "name": "Lost Trail Pass",
+   "reason": "Point falls in Montana by Census geometry; the Idaho policy cannot apply."
+  }
+ ]
+}

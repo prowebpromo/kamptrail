@@ -28,16 +28,79 @@ UA = 'KampTrail rest-area importer (+https://github.com/prowebpromo/kamptrail)'
 # Exact reviewed scopes. The operator and facility_kind must match a reviewed policy scope in
 # data/rest-areas/state-policies.json. min/max bound the expected record count so a changed or
 # truncated source keeps the prior catalogue.
+def slug(value):
+    return re.sub(r'[^a-z0-9]+', '-', str(value or '').lower()).strip('-')[:64]
+
+
+def us_date(value):
+    match = re.fullmatch(r'(\d{1,2})/(\d{1,2})/(\d{4})', str(value or '').strip())
+    if not match:
+        return None
+    month, day, year = map(int, match.groups())
+    try:
+        return dt.datetime(year, month, day, tzinfo=dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
+    except ValueError:
+        return None
+
+
+def join(*parts):
+    return ', '.join(str(p).strip() for p in parts if p not in (None, '') and str(p).strip())
+
+
+# Exact reviewed scopes. The operator and facility_kind must match a reviewed policy scope in
+# data/rest-areas/state-policies.json. min/max bound the expected record count so a changed or
+# truncated source keeps the prior catalogue. Each mapper reads only the agency's own fields.
 REGIONS = {
     'ID': {
         'operator': 'itd', 'facility_kind': 'safety_rest_area',
         'publisher': 'Idaho Transportation Department',
         'layer': 'https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/Assets/FeatureServer/5',
-        'info_url': 'https://itd.idaho.gov/faqs/rest-areas/',
-        'id_field': 'GlobalID', 'name_field': 'FacilityName',
-        'location_fields': [('CommonRoadName', ''), ('CountyName', ' County')], 'milepost_field': None,
-        'updated_field': 'ServiceLastUpdatedUTC', 'where': '1=1', 'min': 20, 'max': 60,
+        'info_url': 'https://itd.idaho.gov/faqs/rest-areas/', 'where': '1=1', 'min': 20, 'max': 60,
         'bbox': (-117.3, 41.9, -111.0, 49.1),
+        'native_id': lambda a: str(a.get('GlobalID') or '').strip('{}').lower(),
+        'name': lambda a: a.get('FacilityName'),
+        'location': lambda a: join(a.get('CommonRoadName'), a.get('CountyName') and f"{a['CountyName']} County"),
+        'milepost': lambda a: None, 'updated': lambda a: epoch_iso(a.get('ServiceLastUpdatedUTC')),
+    },
+    'MT': {
+        'operator': 'mdt', 'facility_kind': 'rest_area',
+        'publisher': 'Montana Department of Transportation',
+        'layer': 'https://services1.arcgis.com/dKlvxNSUvl36IGMp/arcgis/rest/services/Montana_Rest_Areas/FeatureServer/0',
+        'info_url': 'https://mdt.mt.gov/travinfo/restarea.aspx',
+        # Only rest areas MDT itself maintains. City, tribal and other-run sites and parking-only pull-offs are a different scope.
+        'where': "CLASS = 'ADA Access Rest Area' AND ST_MAINT = 'State Maintained'", 'min': 30, 'max': 80,
+        'bbox': (-116.1, 44.3, -104.0, 49.1),
+        'native_id': lambda a: slug(a.get('RA_NAME')),
+        'name': lambda a: a.get('RA_NAME'),
+        'location': lambda a: join(a.get('SIGN_RT'), a.get('AVAILABLE')),
+        'milepost': lambda a: None if a.get('RA_RP') in (None, '') else f"{float(a['RA_RP']):g}",
+        'updated': lambda a: epoch_iso(a.get('EditDate')),
+    },
+    'FL': {
+        'operator': 'florida_turnpike', 'facility_kind': 'turnpike_service_plaza',
+        'publisher': "Florida's Turnpike Enterprise",
+        'layer': 'https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/TurnpikeBaseData/FeatureServer/0',
+        'info_url': 'https://floridasturnpike.com/traveler-resources/service-plazas/', 'where': '1=1', 'min': 6, 'max': 12,
+        'bbox': (-87.7, 24.4, -79.9, 31.1),
+        'native_id': lambda a: slug(a.get('MP_NAME')),
+        'name': lambda a: a.get('Plaza_Name') and f"{a['Plaza_Name']} Service Plaza",
+        'location': lambda a: "Florida's Turnpike",
+        'milepost': lambda a: (re.match(r'\s*(\d+(?:\.\d+)?)\b', str(a.get('MP_NAME') or '')) or [None, None])[1],
+        'updated': lambda a: us_date(a.get('DATEDATE')),
+    },
+    'OH': {
+        'operator': 'odot', 'facility_kind': 'rest_area_or_roadside_park',
+        'publisher': 'Ohio Department of Transportation',
+        'layer': 'https://tims.dot.state.oh.us/ags/rest/services/Assets/ODOT_Facilities/MapServer/0',
+        'info_url': 'https://tims.dot.state.oh.us/ags/rest/services/Assets/ODOT_Facilities/MapServer/0',
+        # TYPE_CODE 355 is ODOT's rest-area facility type (interstate, state-route and US-route rest areas and roadside parks).
+        'where': 'TYPE_CODE = 355', 'min': 60, 'max': 120, 'collapse_identical': True,
+        'bbox': (-84.9, 38.3, -80.4, 42.4),
+        'native_id': lambda a: slug(a.get('SITE_CD')),
+        'name': lambda a: a.get('FACILITY_NAME'),
+        'location': lambda a: join(join(a.get('ROUTE_NBR'), a.get('DIRECTION')).replace(', ', ' '), a.get('COUNTY') and f"{a['COUNTY']} County"),
+        'milepost': lambda a: None if a.get('MILE_MARKER') in (None, '') else str(a['MILE_MARKER']),
+        'updated': lambda a: None,
     },
 }
 
@@ -91,13 +154,13 @@ def parse(region, cfg, raw, boundaries=None):
     features = data['features']
     if not cfg['min'] <= len(features) <= cfg['max']:
         raise ValueError(f'{region}: unexpected official count {len(features)}; prior catalogue retained')
-    records, rejected, seen = [], [], set()
+    records, rejected, by_id = [], [], {}
     west, south, east, north = cfg['bbox']
     for feature in features:
         attrs, geom = feature.get('attributes') or {}, feature.get('geometry') or {}
-        native = str(attrs.get(cfg['id_field']) or '').strip().strip('{}').lower()
-        name = clean(attrs.get(cfg['name_field']), 200)
-        if not re.fullmatch(r'[a-z0-9-]{1,64}', native) or not name:
+        native = cfg['native_id'](attrs)
+        name = clean(cfg['name'](attrs), 200)
+        if not re.fullmatch(r'[a-z0-9-]{1,64}', native or '') or not name:
             rejected.append({'reason': 'missing_identity_or_name', 'name': name or None})
             continue
         try:
@@ -109,15 +172,16 @@ def parse(region, cfg, raw, boundaries=None):
             rejected.append({'reason': 'outside_state_bounds', 'name': name, 'coordinates': [lng, lat]})
             continue
         identity = f"{cfg['operator']}:{native}"
-        if identity in seen:
-            raise ValueError('Duplicate official identity')
-        seen.add(identity)
-        location = ', '.join(v + suffix for v, suffix in ((clean(attrs.get(f), 200), sfx) for f, sfx in cfg['location_fields']) if v)
-        milepost = clean(attrs.get(cfg['milepost_field']), 60) if cfg.get('milepost_field') else ''
-        records.append({'id': identity, 'name': name, 'coordinates': [round(lng, 6), round(lat, 6)],
-                        'location': location, 'milepost': milepost or None, 'source_url': cfg['info_url'],
-                        'state': region, 'permission': 'unknown',
-                        'source_updated_at': epoch_iso(attrs.get(cfg['updated_field'])) if cfg.get('updated_field') else None})
+        milepost = clean(cfg['milepost'](attrs), 60)
+        row = {'id': identity, 'name': name, 'coordinates': [round(lng, 6), round(lat, 6)],
+               'location': clean(cfg['location'](attrs), 800), 'milepost': milepost or None, 'source_url': cfg['info_url'],
+               'state': region, 'permission': 'unknown', 'source_updated_at': cfg['updated'](attrs)}
+        if identity in by_id:
+            if cfg.get('collapse_identical') and by_id[identity] == row:
+                continue
+            raise ValueError('Conflicting duplicate official identity')
+        by_id[identity] = row
+        records.append(row)
     if boundaries is not None:
         assignments = boundaries.classify_many([r['coordinates'] for r in records])
         kept = []
