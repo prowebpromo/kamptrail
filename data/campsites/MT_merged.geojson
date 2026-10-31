@@ -522,12 +522,9 @@
       },
       "properties": {
         "camp_site": "standard",
-        "drinking_water": "yes",
         "ele": "1768",
         "name": "Jumping Creek Campground",
         "operator": "US Forest Service",
-        "sanitary_dump_station": "no",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lcnf/recarea/?recid=61550",
         "id": "ridb:242553",
@@ -567,7 +564,10 @@
             "source_record_id": "osm:way:768973255",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "sanitary_dump_station": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -2397,14 +2397,12 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "DEVIL CREEK CAMPGROUND",
         "reservation": "yes",
         "reservation:website": "https://www.recreation.gov/camping/devil-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=113390",
         "sites": "14",
         "tents": "yes",
         "tourism": "camp_site",
-        "waste_disposal": "no",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=66330",
         "id": "ridb:234791",
         "source": "recreation.gov",
@@ -2443,7 +2441,9 @@
             "source_record_id": "osm:way:1237624206",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "waste_disposal": "no"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -2694,12 +2694,9 @@
         "capacity:pitches": "10",
         "caravans": "yes",
         "description": "<p>Flint Creek Campground covers 3 acres in southwest Montana 3 miles west of Georgetown Lake.</p>",
-        "drinking_water": "yes",
         "name": "Flint Creek Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "toilets": "yes",
-        "toilets:disposal": "pitlatrine",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/beaverhead-deerlodge/recreation/flint-creek-campground",
         "id": "ridb:10074124",
@@ -2738,7 +2735,10 @@
             "source_record_id": "osm:node:12335590201",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -3197,7 +3197,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "internet_access": "no",
         "name": "LOST JOHNNY POINT CAMPGROUND",
         "operator": "Flathead National Forest",
@@ -3205,7 +3204,6 @@
         "reservation": "yes",
         "reservation:website": "https://www.recreation.gov/camping/campgrounds/234789",
         "sites": "21",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=66414",
         "id": "ridb:234789",
@@ -3245,7 +3243,9 @@
             "source_record_id": "osm:way:295391328",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -8878,15 +8878,11 @@
       },
       "properties": {
         "capacity:caravans": "6",
-        "drinking_water": "no",
         "maxstay": "16 days",
         "name": "Palisades Campground",
         "operator": "USFS",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/custergallatin/recarea/?recid=60861",
         "id": "ridb:239846",
@@ -8926,7 +8922,11 @@
             "source_record_id": "osm:way:918481349",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "drinking_water": "no",
+              "fee": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -10913,20 +10913,14 @@
         ]
       },
       "properties": {
-        "bin": "no",
         "capacity:pitches": "7",
         "caravans": "yes",
         "contact:phone": "+1-406-821-3913",
         "description": "<p>Crazy Creek Campground hosts 7 sites with picnic tables, fire rings, vault toilet and a well with hand pump for water. There is no garbage service so Pack it in/Pack it out. Campground can accommodate trailers under 26 feet.</p>",
-        "drinking_water": "yes",
-        "firepit": "yes",
         "name": "Crazy Creek Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "picnic_table": "yes",
         "reservation": "no",
-        "toilets": "yes",
-        "toilets:disposal": "pitlatrine",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/crazy-creek-campground",
         "id": "ridb:241839",
@@ -10965,7 +10959,13 @@
             "source_record_id": "osm:node:12133164850",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "bin": "no",
+              "drinking_water": "yes",
+              "fee": "yes",
+              "firepit": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -10988,16 +10988,11 @@
         "caravans": "yes",
         "contact:phone": "+1-406-821-3913",
         "description": "<p>Three Frogs Campground is a newly reconstructed campground and features 16 small trailer campsites and 4 walk-in tent sites. The campground offers accessible vault toilets, picnic tables, fire rings, water and garbage service, and gravel surfaced roads. Some campsites are also equipped with tent pads. Can accommodate trailers to 30' lengths.</p>",
-        "drinking_water": "yes",
-        "firepit": "yes",
         "name": "Three Frogs Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "picnic_table": "yes",
         "reservation": "no",
         "tents": "yes",
-        "toilets": "yes",
-        "toilets:disposal": "pitlatrine",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/three-frogs-campground",
         "id": "ridb:241815",
@@ -11036,7 +11031,12 @@
             "source_record_id": "osm:node:5280506520",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "firepit": "yes",
+              "picnic_table": "yes",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -12965,23 +12965,15 @@
         ]
       },
       "properties": {
-        "bin": "no",
         "capacity:pitches": "6",
         "caravans": "yes",
         "description": "<p>Located on the banks of Skalkaho Creek, Black Bear Campground hosts 6 sites with picnic tables, fire rings, and a vault toilet. There is no garbage service so Pack it in/Pack it out. Campground can accommodate RV's or trailers to 50'.</p>",
-        "drinking_water": "no",
-        "firepit": "yes",
         "motorhome": "yes",
         "name": "Black Bear Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "picnic_table": "yes",
-        "power_supply": "no",
         "sewer_hookup": "no",
-        "toilets": "yes",
-        "toilets:disposal": "pitlatrine",
         "tourism": "camp_site",
-        "water_hookup": "no",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/black-bear-campground",
         "id": "ridb:10071730",
         "source": "recreation.gov",
@@ -13019,7 +13011,15 @@
             "source_record_id": "osm:node:5846261185",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "drinking_water": "no",
+              "fee": "no",
+              "firepit": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "toilets": "yes",
+              "toilets:disposal": "pitlatrine",
+              "water_hookup": "no"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,

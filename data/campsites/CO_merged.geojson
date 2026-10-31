@@ -795,21 +795,14 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "yes",
         "mobile_reception": "limited",
         "mobile_reception:strength": "low",
         "name": "ELK CREEK CAMPGROUND",
         "nudism": "no",
-        "openfire": "yes",
         "operator": "National Parks Service",
-        "picnic_table": "yes",
-        "power_supply": "yes",
         "reservation": "recommended",
-        "sanitary_dump_station": "yes",
-        "shower": "no",
         "static_caravans": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:234053",
         "source": "recreation.gov",
@@ -849,7 +842,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -1059,7 +1059,6 @@
       },
       "properties": {
         "name": "ALVARADO CAMPGROUND",
-        "power_supply": "no",
         "tourism": "caravan_site",
         "id": "ridb:234105",
         "source": "recreation.gov",
@@ -1092,7 +1091,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:784290664",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "no"
+            },
+            "retrieved_at": "2026-10-29T02:53:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/784290664"
+          }
+        ]
       }
     },
     {
@@ -3808,7 +3819,6 @@
       },
       "properties": {
         "capacity:pitches": "25",
-        "drinking_water": "yes",
         "name": "KENOSHA PASS CAMPGROUND",
         "operator": "US Forest Service",
         "reservation": "yes",
@@ -3824,8 +3834,6 @@
           "osm:way:429412013",
           "osm:way:1149569625"
         ],
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
         "type": "established",
         "cost": null,
         "fee_status": "unknown",
@@ -3854,7 +3862,10 @@
             "source_record_id": "osm:way:429412013",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -3864,6 +3875,7 @@
             "source_record_id": "osm:way:1149569625",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -4869,11 +4881,9 @@
         "addr:street": "Highway 150",
         "caravans": "yes",
         "contact:website": "http://www.recreation.gov/camping/Pinyon_Flats_Campground",
-        "drinking_water": "yes",
         "name": "Pinon Flats Campground",
         "operator": "USFS",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:234685",
         "source": "recreation.gov",
@@ -4913,7 +4923,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -5668,15 +5680,10 @@
       "properties": {
         "camp_site": "standard",
         "capacity:pitches": "18",
-        "drinking_water": "no",
         "maxstay": "14",
         "name": "Rainbow Lakes Campground",
         "operator": "Vista Recreation",
-        "power_supply": "no",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/arp/recarea/?recid=28324",
         "id": "ridb:241183",
@@ -5716,7 +5723,12 @@
             "source_record_id": "osm:way:322675676",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -6313,23 +6325,15 @@
         ]
       },
       "properties": {
-        "bbq": "yes",
         "caravans": "yes",
         "dog": "leashed",
-        "drinking_water": "no",
         "email": "brdvis@fs.fed.us",
         "maxstay": "14 days",
         "name": "Meeker Park Overflow Campground",
-        "openfire": "yes",
         "operator": "US Forest Service",
         "phone": "+1-303-541-2500",
-        "picnic_table": "yes",
-        "power_supply": "no",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/activity/arp/recreation/camping-cabins/?recid=28024&actid=29",
         "id": "ridb:241175",
@@ -6370,7 +6374,15 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "bbq": "yes",
+              "drinking_water": "no",
+              "fee": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8382,7 +8394,10 @@
             "source_record_id": "osm:way:1533353372",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access:fee": "customers"
+              "internet_access:fee": "customers",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8504,7 +8519,8 @@
             "source_record_id": "osm:node:386267997",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8514,7 +8530,8 @@
             "source_record_id": "osm:node:386268006",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8609,7 +8626,8 @@
             "source_record_id": "osm:node:12983071042",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8619,7 +8637,8 @@
             "source_record_id": "osm:node:12983071043",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8629,7 +8648,8 @@
             "source_record_id": "osm:node:12983071044",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8723,7 +8743,8 @@
             "source_record_id": "osm:node:12983071033",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8733,7 +8754,8 @@
             "source_record_id": "osm:node:12983071034",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -8791,7 +8813,8 @@
             "source_record_id": "osm:node:12983071039",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -9024,7 +9047,8 @@
             "source_record_id": "osm:node:412054481",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -16470,7 +16494,8 @@
             "source_record_id": "osm:node:10977588085",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -18004,12 +18029,8 @@
       "properties": {
         "caravans": "no",
         "description": "Individual campsite. Marked with metal arrowhead on post.",
-        "drinking_water": "no",
         "name": "Sandbeach Lake campsite 1",
-        "power_supply": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "no",
         "tourism": "camp_site",
         "osm_id": 5673747195,
         "osm_type": "node",
@@ -18035,7 +18056,22 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5673747198",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no",
+              "power_supply": "no",
+              "shower": "no",
+              "toilets": "no"
+            },
+            "retrieved_at": "2026-10-29T02:53:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5673747198"
+          }
+        ]
       }
     },
     {
@@ -50352,7 +50388,6 @@
         "internet_access": "no",
         "name": "Rippling Brook River Camp 1",
         "operator": "Dinosaur National Monument",
-        "power_supply": "no",
         "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
@@ -50385,7 +50420,8 @@
             "source_record_id": "osm:node:12983070914",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "power_supply": "no"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,

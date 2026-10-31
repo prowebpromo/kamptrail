@@ -11685,7 +11685,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1319634913",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:28:09Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1319634913"
+          }
+        ]
       }
     },
     {

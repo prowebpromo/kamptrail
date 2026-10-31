@@ -792,8 +792,6 @@
         "mobile_reception": "no",
         "name": "Black Bear Campground",
         "operator": "US Forest Service",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
         "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6602&actid=29",
         "id": "ridb:249093",
@@ -833,7 +831,9 @@
             "source_record_id": "osm:way:851627952",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -1274,7 +1274,6 @@
       "properties": {
         "name": "QUARTZ CREEK CAMPGROUND",
         "operator": "U.S. Forest Service",
-        "toilets": "yes",
         "tourism": "caravan_site",
         "id": "ridb:233909",
         "source": "recreation.gov",
@@ -1313,7 +1312,8 @@
             "source_record_id": "osm:node:2705169107",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -1669,14 +1669,12 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "email": "easterninterior@blm.gov",
         "fixme": "boundary is approximate",
         "name": "Cripple Creek Campground",
         "operator": "U.S. Bureau of Land Management",
         "phone": "+1 907 474 2200",
         "reservation": "no",
-        "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/cripple-creek-campground",
@@ -1717,7 +1715,9 @@
             "source_record_id": "osm:way:616174785",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -3509,11 +3509,8 @@
       },
       "properties": {
         "backcountry": "no",
-        "bbq": "yes",
         "capacity": "19",
         "caravans": "yes",
-        "drinking_water": "yes",
-        "fireplace": "yes",
         "group_only": "no",
         "internet_access": "no",
         "name": "LAST CHANCE CAMPGROUND",
@@ -3521,7 +3518,6 @@
         "operator": "United States Forest Service",
         "phone": "+1-877-444-6777",
         "reservation": "yes",
-        "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232330",
@@ -3557,7 +3553,22 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:840370810",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "bbq": "yes",
+              "drinking_water": "yes",
+              "fireplace": "yes",
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/840370810"
+          }
+        ]
       }
     },
     {
@@ -5674,19 +5685,14 @@
         ]
       },
       "properties": {
-        "bbq": "yes",
         "capacity": "10",
-        "drinking_water": "no",
-        "fireplace": "yes",
         "internet_access": "no",
         "name": "SIGNAL CREEK CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
         "phone": "+1-877-444-6777",
         "reservation": "yes",
-        "sanitary_dump_station": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "washing_machine": "no",
         "website": "https://www.recreation.gov/camping/campgrounds/232141",
@@ -5722,7 +5728,23 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:840370815",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "bbq": "yes",
+              "drinking_water": "no",
+              "fireplace": "yes",
+              "sanitary_dump_station": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/840370815"
+          }
+        ]
       }
     },
     {
@@ -8404,10 +8426,6 @@
         "mobile_reception": "no",
         "name": "WILLIWAW CAMPGROUND",
         "operator": "US Forest Service",
-        "picnic_table": "yes",
-        "power_supply": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6604&actid=29",
@@ -8449,7 +8467,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "picnic_table": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -17001,15 +17023,12 @@
       },
       "properties": {
         "capacity": "57",
-        "drinking_water": "yes",
         "fee": "yes",
         "fixme": "boundary is approximate",
         "large_vehicles": "yes",
         "mobile_reception": "yes",
         "name": "Eagle River Campground",
         "operator": "State of Alaska Department of Natural Resources",
-        "power_supply": "no",
-        "sanitary_dump_station": "yes",
         "tourism": "camp_site",
         "website": "https://lifetimeadventure.net/eagle-river-campground/",
         "osm_id": 7610338480,
@@ -17046,7 +17065,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -20447,7 +20469,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "picnic_table": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -20638,7 +20665,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "picnic_table": "no",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -27994,8 +28026,6 @@
           "osm:way:758445778",
           "osm:way:758445782"
         ],
-        "drinking_water": "no",
-        "toilets": "yes",
         "sources": [
           "openstreetmap"
         ],
@@ -28015,7 +28045,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "20 USD",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -28026,7 +28061,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "20 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,

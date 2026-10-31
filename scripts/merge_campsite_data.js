@@ -14,7 +14,12 @@ const path = require('path');
 const crypto = require('crypto');
 
 const osmIdentity = p => /^osm:(?:node|way|relation|unknown):/.test(String(p.id || ''));
-const osmTag = k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k);
+// Amenity-type OSM tags and survey dates describe the element that carries them.
+// A merge never moves them onto the retained record (R8, 2.31.0).
+const AMENITY_TAG = /^(?:toilets?|drinking_water|shower|sanitary_dump_station|power_supply|bin|openfire|fireplace|firepit|fire_pit|picnic_table|bbq|water_point|waste_disposal|waste_basket|hot_water|water_tap|water_hookup|water_supply|water_source|camp_site:fire|camp_site:water|amenity:shower|check_date)(?::|$)/;
+const amenityTag = k => AMENITY_TAG.test(k);
+const feeAccessTag = k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k);
+const osmTag = k => feeAccessTag(k) || amenityTag(k);
 const ownedOsmField = k => osmTag(k) || ['osm_id','osm_type','fee_status','cost','fee_text','fee_source','fee_source_record_id','fee_checked','fee_evidence','fee_evidence_records','fee_conflict'].includes(k);
 
 // Retain observations on their source element. A proximity match grants no
@@ -211,7 +216,8 @@ class CampsiteMerger {
       rating: primaryRating ?? secondaryRating,
       reviews_count: Math.max(number(primary.reviews_count) ?? 0, number(secondary.reviews_count) ?? 0),
       cost: primaryCost ?? secondaryCost,
-      amenities: [...new Set([...list(primary.amenities), ...list(secondary.amenities)])],
+      // A separate record's amenity list stays with that record. Only the same record seen twice unions.
+      amenities: [...new Set([...list(primary.amenities), ...(secondary.id === primary.id ? list(secondary.amenities) : [])])],
       rig_friendly: [...new Set([...list(primary.rig_friendly), ...list(secondary.rig_friendly)])],
       // Missing classifications remain unknown. Do not infer dispersed camping from geometry type.
       type: ['established', 'dispersed', 'backcountry', 'rv_park'].includes(primary.type)

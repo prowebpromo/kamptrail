@@ -855,7 +855,6 @@
         "internet_access": "no",
         "motor_vehicle": "yes",
         "name": "Dub Patton Campground",
-        "openfire": "yes",
         "operator": "US Army Corps of Engineers",
         "tents": "yes",
         "tourism": "camp_site",
@@ -896,7 +895,8 @@
             "source_record_id": "osm:node:5645872378",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "openfire": "yes"
             },
             "retrieved_at": "2026-10-29T03:09:21Z",
             "source_updated_at": null,

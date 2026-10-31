@@ -2521,7 +2521,6 @@
         "name": "CROOK CAMPGROUND",
         "operator": "USFS",
         "source": "recreation.gov",
-        "toilets": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130603",
         "wheelchair": "no",
@@ -2555,7 +2554,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2330847179",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2330847179"
+          }
+        ]
       }
     },
     {
@@ -3926,7 +3937,6 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "no",
         "internet_access": "no",
         "name": "Burnt Corral Campground",
@@ -3967,7 +3977,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:11727080",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/11727080"
+          }
+        ]
       }
     },
     {
@@ -3983,14 +4005,11 @@
         "camp_site": "basic",
         "capacity": "3",
         "description:en": "Dispersed camping area with limited amenities. No potable water is available on-site.",
-        "drinking_water": "no",
         "ele": "341",
         "maxstay": "14 days",
         "name": "Margies Cove West Campground",
         "operator": "Bureau of Land Management",
         "operator:short": "BLM",
-        "picnic_table": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "url": "https://www.blm.gov/visit/margies-cove-west-campground",
         "id": "ridb:261714",
@@ -4024,7 +4043,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:6069610328",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "no",
+              "picnic_table": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6069610328"
+          }
+        ]
       }
     },
     {
@@ -4207,7 +4240,6 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "yes",
         "ele": "584",
         "group_only": "yes",
         "internet_access": "no",
@@ -4215,10 +4247,7 @@
         "nudism": "no",
         "operator": "USFS",
         "reservation": "required",
-        "sanitary_dump_station": "no",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/tonto/recarea/?recid=35741",
         "id": "ridb:266136",
@@ -4252,7 +4281,22 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:263839966",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "sanitary_dump_station": "no",
+              "shower": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/263839966"
+          }
+        ]
       }
     },
     {
@@ -4588,22 +4632,15 @@
       },
       "properties": {
         "backcountry": "no",
-        "bbq": "yes",
         "capacity": "206",
         "caravans": "yes",
         "contact:website": "https://www.fs.usda.gov/recarea/tonto/recarea/?recid=35727",
         "dog": "yes",
-        "drinking_water": "yes",
         "motor_vehicle": "yes",
         "name": "Cholla Campground",
-        "openfire": "yes",
         "operator": "USFS",
-        "picnic_table": "yes",
         "reservation": "yes",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "id": "ridb:249312",
         "source": "recreation.gov",
@@ -4636,7 +4673,25 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1019356212",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "bbq": "yes",
+              "drinking_water": "yes",
+              "openfire": "yes",
+              "picnic_table": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1019356212"
+          }
+        ]
       }
     },
     {
@@ -5455,7 +5510,6 @@
       "properties": {
         "backcountry": "no",
         "caravans": "yes",
-        "drinking_water": "yes",
         "group_only": "yes",
         "horse": "yes",
         "internet_access": "no",
@@ -5504,6 +5558,7 @@
             "source_record_id": "osm:way:462858429",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -5839,7 +5894,6 @@
         "caravans": "yes",
         "name": "LYNX CAMPGROUND",
         "reservation": "required",
-        "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/prescott/recarea/?recid=67181",
@@ -5875,7 +5929,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:715905586",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/715905586"
+          }
+        ]
       }
     },
     {
@@ -6146,7 +6212,6 @@
         ]
       },
       "properties": {
-        "drinking_water": "yes",
         "ele": "1058",
         "name": "Fourmile Canyon Campground",
         "operator": "Bureau of Land Management",
@@ -6189,6 +6254,7 @@
             "source_record_id": "osm:node:4638327084",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -13617,7 +13683,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4540049775",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "shower": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4540049775"
+          }
+        ]
       }
     },
     {
@@ -18975,7 +19054,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9552912228",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "sanitary_dump_station": "no"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9552912228"
+          }
+        ]
       }
     },
     {
@@ -23759,7 +23850,9 @@
             "source_record_id": "osm:node:10938387259",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
             "source_updated_at": null,
@@ -30017,7 +30110,6 @@
       "properties": {
         "backcountry": "yes",
         "caravans": "no",
-        "drinking_water": "May-Oct: yes; Jan-Apr,Nov-Dec: no",
         "group_only": "no",
         "internet_access": "no",
         "leisure": "park",
@@ -30029,10 +30121,7 @@
         "operator:wikidata": "Q308439",
         "operator:wikipedia": "en:National Park Service",
         "reservation": "no",
-        "sanitary_dump_station": "no",
-        "shower": "no",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/grca/planyourvisit/campsite-information.htm",
         "osm_id": 13378627667,
@@ -30058,7 +30147,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1014985804",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "May-Oct: yes; Jan-Apr,Nov-Dec: no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1014985804"
+          }
+        ]
       }
     },
     {

@@ -69,6 +69,31 @@
     }
     return [...records.values()].sort((a,b)=>(Date.parse(b.retrieved_at)||0)-(Date.parse(a.retrieved_at)||0)).slice(0,24);
   }
+  // Amenity ownership (R8, 2.31.0). The same key set guards snapshot merging in scripts/merge_campsite_data.js.
+  const OSM_ELEMENT = /^osm:(?:node|way|relation|unknown):/;
+  const OSM_AMENITY_TAG = /^(?:toilets?|drinking_water|shower|sanitary_dump_station|power_supply|bin|openfire|fireplace|firepit|fire_pit|picnic_table|bbq|water_point|waste_disposal|waste_basket|hot_water|water_tap|water_hookup|water_supply|water_source|camp_site:fire|camp_site:water|amenity:shower|check_date)(?::|$)/;
+  const OSM_AMENITY_FIELDS = {toilet:['toilets'], water:['drinking_water'], dump:['sanitary_dump_station'], fire_ring:['fireplace'], picnic_table:['picnic_table'], shower:['shower']};
+  const MAX_AMENITY_MEMBERS = 128;
+  // Attributed observations from merged member elements: element id, source, dates and the element's own tags.
+  function amenityMembers(previous, memberEvidence, ownId) {
+    const records = new Map(), list = v => Array.isArray(v) ? v : [];
+    const add = r => {
+      if (!r || typeof r.source_record_id !== 'string' || r.source_record_id === ownId || r.source_record_id.length > 240 || !r.fields || typeof r.fields !== 'object') return;
+      const fields = {};
+      for (const key of Object.keys(r.fields).sort()) if ((OSM_AMENITY_TAG.test(key) || key === 'amenities') && r.fields[key] != null && r.fields[key] !== '') fields[key] = String(r.fields[key]).slice(0, 200);
+      if (!Object.keys(fields).length || records.has(r.source_record_id)) return;
+      records.set(r.source_record_id, {source_record_id:r.source_record_id, source:typeof r.source === 'string' ? r.source.slice(0, 160) : null, source_url:evidenceURL(r.source_url), retrieved_at:evidenceDate(r.retrieved_at), source_updated_at:evidenceDate(r.source_updated_at), observed_at:evidenceDate(fields.check_date) ? fields.check_date : null, fields});
+    };
+    list(previous).forEach(add);
+    for (const e of list(memberEvidence)) if (e && OSM_ELEMENT.test(e.source_record_id || '')) add(e);
+    return [...records.values()].sort((a, b) => a.source_record_id < b.source_record_id ? -1 : a.source_record_id > b.source_record_id ? 1 : 0).slice(0, MAX_AMENITY_MEMBERS);
+  }
+  // A merged record's own amenity observation, kept as member evidence on the retained listing.
+  function ownAmenityObservation(q) {
+    if (q.osm_amenity_tags) return {source_record_id:q.id, source:'OpenStreetMap contributors', source_url:q.source_url, retrieved_at:q.source_retrieved_at, fields:q.osm_amenity_tags};
+    if (q.amenity_record && q.amenities?.length) return {source_record_id:q.id, source:q.amenity_record.source, retrieved_at:q.amenity_record.retrieved_at, fields:{amenities:q.amenities.join(';')}};
+    return null;
+  }
   function normalizeFeature(feature, options = {}) {
     const ll = getLatLng(feature);
     if (!ll) return null;
@@ -126,17 +151,28 @@
     p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other'].includes(raw.type) ? raw.type : (osm ? 'established' : 'other');
     if (ridb && !osm && p.camping_classification === 'unverified_camping_record') p.type = 'other';
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
-    p.amenity_negatives = Array.isArray(raw.amenity_negatives) ? [...raw.amenity_negatives] : [];
+    // Amenity ownership (R8). Tags count only on the listing's own OSM element.
+    // A host that merely inherited tourism=* from an absorbed element is not that element.
+    const ownOsm = osm && OSM_ELEMENT.test(p.id) && raw.osm_id != null;
+    p.amenity_negatives = raw._kt_normalized && Array.isArray(raw.amenity_negatives) ? [...new Set(raw.amenity_negatives.filter(a => typeof a === 'string'))] : [];
     p.amenities = !legacyRIDB && Array.isArray(raw.amenities) ? [...new Set(raw.amenities.filter(a => typeof a === 'string').map(a => aliases[a] || a))] : [];
+    // A record's own amenity list, outside OSM tags, keeps its own source attribution.
+    p.amenity_record = !ownOsm && !legacyRIDB && p.amenities.length ? {source:(raw._kt_normalized && raw.amenity_record?.source) || sources[0] || p.id.split(':')[0], source_record_id:p.id, retrieved_at:evidenceDate(raw.source_retrieved_at)} : null;
+    p.osm_amenity_tags = null;
     // OSM tags retain explicit yes/no values. Missing tags are unknown.
-    if (osm) {
-      const tags = {toilet:['toilets'], water:['drinking_water'], dump:['sanitary_dump_station'], fire_ring:['fireplace'], picnic_table:['picnic_table'], shower:['shower']};
-      for (const [amenity, names] of Object.entries(tags)) {
+    if (ownOsm) {
+      const own = {};
+      for (const key of Object.keys(raw).sort()) if (OSM_AMENITY_TAG.test(key) && raw[key] != null && raw[key] !== '') own[key] = String(raw[key]).slice(0, 200);
+      if (Object.keys(own).length) p.osm_amenity_tags = own;
+      for (const [amenity, names] of Object.entries(OSM_AMENITY_FIELDS)) {
         if (names.some(tag => String(raw[tag]).toLowerCase() === 'yes')) p.amenities.push(amenity);
         if (names.some(tag => String(raw[tag]).toLowerCase() === 'no')) {p.amenity_negatives.push(amenity);p.amenities = p.amenities.filter(a => a !== amenity);}
       }
       p.amenities = [...new Set(p.amenities)];
-    }
+      p.amenity_negatives = [...new Set(p.amenity_negatives)];
+    } else if (!p.amenity_record) {p.amenities = []; p.amenity_negatives = [];}
+    // Observations from other merged elements stay attributed to those elements and are never used here.
+    p.amenity_members = amenityMembers(raw._kt_normalized ? raw.amenity_members : null, raw.member_evidence, p.id);
     p.rig_friendly = !legacyRIDB && Array.isArray(raw.rig_friendly) ? [...new Set(raw.rig_friendly.filter(v => typeof v === 'string').map(v => v === 'RV' ? 'rv' : v))] : [];
     if (osm) {
       if (raw.tents === 'yes') p.rig_friendly.push('tent');
@@ -201,8 +237,12 @@
     else if (!blockedFee && q.fee_status === 'conditional' && p.fee_status !== 'conditional' && !p.fee_conflict) adopt();
     else if (p.fee_status !== 'unknown' && q.fee_status !== 'unknown' && p.fee_status !== q.fee_status && !(charged(p.fee_status) && charged(q.fee_status)) && !(p.fee_status === 'conditional' || q.fee_status === 'conditional')) {p.fee_status='unknown'; p.cost=null; p.fee_conflict=true; p.fee_text=null;}
     if (!blockedFee && p.cost === null && q.cost !== null && !p.fee_conflict && p.fee_status === q.fee_status) p.cost=q.cost;
-    p.amenity_negatives = [...new Set([...(p.amenity_negatives || []), ...(q.amenity_negatives || [])])];
-    p.amenities = [...new Set([...p.amenities,...q.amenities])].filter(a => !p.amenity_negatives.includes(a));
+    // Amenity ownership (R8): another record's amenities never become this listing's own.
+    // They are kept as attributed member evidence. The same record seen twice (two state files) is identical.
+    if (p.id === q.id) {
+      p.amenity_negatives = [...new Set([...(p.amenity_negatives || []), ...(q.amenity_negatives || [])])];
+      p.amenities = [...new Set([...p.amenities,...q.amenities])].filter(a => !p.amenity_negatives.includes(a));
+    } else p.amenity_members = amenityMembers([...(p.amenity_members || []), ...[ownAmenityObservation(q)].filter(Boolean), ...(q.amenity_members || [])], null, p.id);
     p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];
     // Repeated state/source rows never add counts to exact facility summaries.
     if(checkedRIDBAmenities(q.ridb_amenity_evidence)){
@@ -381,6 +421,104 @@
     }
     return feature;
   }
+  // One evidence model drives both the popup and the amenity filters (R8, 2.31.0).
+  // Scopes: element (the listing's own OSM element), listing_record (the listing's own source record),
+  // site_record (a Forest Service Recreation Site record for this facility) and campsite_records
+  // (individual Recreation.gov campsite records; some sites, never every site). Dates are observation
+  // dates when the source has one, otherwise null ("date unknown"). A build or rebuild date is never used.
+  const FILTER_AMENITIES = ['toilet','water','dump','shower'];
+  const RIDB_FILTER_KEYS = {toilet:'toilet', water:'drinking_water', dump:'dump', shower:'shower'};
+  const USFS_FILTER = {toilet:{field:'toilet', yes:['flush','vault_or_pit'], no:['no_toilet']}, water:{field:'water', yes:['drinking_water'], no:['no_drinking_water','no_water']}};
+  const CAMPGROUND_SCOPES = new Set(['element','listing_record','site_record']);
+  function amenityEvidence(p) {
+    const amenities = Object.fromEntries(FILTER_AMENITIES.map(a => [a, {positive:[], negative:[], conflict:[], other:[]}]));
+    const sources = [];
+    if (!p) return {state:'no_source', sources, amenities, members:[]};
+    if (p.osm_amenity_tags && OSM_ELEMENT.test(p.id)) {
+      const tags = p.osm_amenity_tags, date = evidenceDate(tags.check_date) ? tags.check_date : null;
+      const base = {source:'osm', record:p.id, scope:'element', date, retrieved:evidenceDate(p.source_retrieved_at)};
+      sources.push({...base, tags});
+      for (const a of FILTER_AMENITIES) {
+        const value = tags[OSM_AMENITY_FIELDS[a][0]];
+        if (value == null) continue;
+        const v = String(value).trim().toLowerCase();
+        amenities[a][v === 'yes' ? 'positive' : v === 'no' ? 'negative' : 'other'].push({...base, value:String(value)});
+      }
+    }
+    if (p.amenity_record && Array.isArray(p.amenities) && p.amenities.length) {
+      const base = {source:'record', label:p.amenity_record.source, record:p.id, scope:'listing_record', date:null, retrieved:p.amenity_record.retrieved_at || null};
+      sources.push({...base, values:[...p.amenities]});
+      for (const a of p.amenities) if (amenities[a]) amenities[a].positive.push(base);
+      for (const a of p.amenity_negatives || []) if (amenities[a]) amenities[a].negative.push(base);
+    }
+    const ridb = checkedRIDBAmenities(p.ridb_amenity_evidence) ? p.ridb_amenity_evidence : null;
+    if (ridb) for (const [fid, rec] of Object.entries(ridb.facilities)) {
+      if (!rec.sites) continue;
+      const base = {source:'ridb', record:'ridb:'+fid, scope:'campsite_records', date:null, retrieved:ridb.source.original_retrieved_at || null, total:rec.sites};
+      sources.push(base);
+      for (const a of FILTER_AMENITIES) {
+        const g = rec.amenities[RIDB_FILTER_KEYS[a]];
+        if (!g) continue;
+        if (g.reported) amenities[a].positive.push({...base, count:g.reported});
+        if (g.negative) amenities[a].negative.push({...base, count:g.negative});
+        if (g.conflict) amenities[a].conflict.push({...base, count:g.conflict});
+        if (g.unknown) amenities[a].other.push({...base, count:g.unknown});
+      }
+    }
+    const usfs = checkedUSFSSiteAmenities(p.usfs_site_evidence) ? p.usfs_site_evidence : null;
+    if (usfs) for (const [fid, facility] of Object.entries(usfs.facilities)) {
+      for (const r of facility.records) sources.push({source:'usfs', record:'ridb:'+fid, scope:'site_record', name:r.name, type:r.type, date:r.updated || null, retrieved:usfs.source.retrieved});
+      for (const [a, rule] of Object.entries(USFS_FILTER)) {
+        for (const r of facility.records) {
+          const item = r[rule.field];
+          if (!item) continue;
+          const ref = {source:'usfs', record:'ridb:'+fid, scope:'site_record', name:r.name, type:r.type, date:r.updated || null, retrieved:usfs.source.retrieved, value:item.text};
+          // Records for one ID that disagree give no label, so they give no filter evidence either.
+          if (facility.conflicts.includes(rule.field)) amenities[a].conflict.push(ref);
+          else amenities[a][rule.yes.includes(item.class) ? 'positive' : rule.no.includes(item.class) ? 'negative' : 'other'].push(ref);
+        }
+      }
+    }
+    for (const a of FILTER_AMENITIES) {
+      const x = amenities[a], wide = list => list.some(e => CAMPGROUND_SCOPES.has(e.scope));
+      // A campground-wide statement that disagrees with any other statement is a contradiction.
+      // Different Recreation.gov campsite records may differ without contradicting each other.
+      const contradicted = x.positive.length && x.negative.length && (wide(x.positive) || wide(x.negative));
+      x.status = contradicted || (x.conflict.length && x.conflict.some(e => e.source === 'usfs')) ? 'conflict'
+        : x.positive.length ? 'present' : x.negative.length ? 'absent' : x.conflict.length ? 'conflict' : x.other.length ? 'unrecognized' : 'unknown';
+    }
+    return {state:sources.length ? 'evidence' : 'no_source', sources, amenities, members:Array.isArray(p.amenity_members) ? p.amenity_members : []};
+  }
+  // Filterable amenities: g at campground scope, s only on individual campsite records.
+  function amenityFilterSets(p) {
+    const f = p?.amenity_filter;
+    if (f && Array.isArray(f.g) && Array.isArray(f.s)) return f;
+    const e = amenityEvidence(p), g = [], s = [];
+    for (const a of FILTER_AMENITIES) {
+      const x = e.amenities[a];
+      if (x.status !== 'present') continue;
+      if (x.positive.some(r => CAMPGROUND_SCOPES.has(r.scope))) g.push(a);
+      if (x.positive.some(r => r.scope === 'campsite_records')) s.push(a);
+    }
+    return {g, s};
+  }
+  // A length or hookup filter is matched on one Recreation.gov campsite. Amenity counts are not joined
+  // to particular campsites, so campsite-record amenities cannot satisfy an amenity filter alongside it.
+  const campsiteRigActive = filters => +filters?.rigLength > 0 || (Array.isArray(filters?.hookups) && filters.hookups.length > 0);
+  function amenityMatches(p, wanted, filters = {}) {
+    if (!Array.isArray(wanted) || !wanted.length) return true;
+    const f = amenityFilterSets(p), rig = campsiteRigActive(filters);
+    return wanted.every(a => f.g.includes(a) || (!rig && f.s.includes(a)));
+  }
+  // Why a listing is or is not included for one amenity filter. Used by the published fixture and tests.
+  function amenityFilterReason(p, amenity, filters = {}) {
+    const e = amenityEvidence(p), x = e.amenities[amenity];
+    if (!x) return {included:false, reason:'not_a_filter_amenity'};
+    if (amenityMatches(p, [amenity], filters)) return {included:true, reason:'evidence', sources:[...new Set(x.positive.map(r => r.source + ':' + r.scope))].sort()};
+    if (e.state === 'no_source') return {included:false, reason:'no_amenity_source'};
+    if (x.status === 'present') return {included:false, reason:'campsite_records_with_rig_filter'};
+    return {included:false, reason:{unknown:'no_statement_for_this_amenity', absent:'explicit_negative', conflict:'sources_disagree', unrecognized:'unrecognized_value'}[x.status]};
+  }
   // Attach Recreation.gov site-level summaries (RV lengths, hookups) to a campground.
   function attachSiteDetails(feature, table) {
     const p = feature && feature.properties;
@@ -485,7 +623,7 @@
       if (filters.rigSize && filters.rigSize !== 'all' && !p.rig_friendly.includes(filters.rigSize)) return false;
       // No UI sets this. The bundled value is an unattributed surface label (paved, gravel, dirt), never visitor approach difficulty.
       if (filters.roadDifficulty && filters.roadDifficulty !== 'all' && p.road_difficulty !== filters.roadDifficulty) return false;
-      if (Array.isArray(filters.amenities) && !filters.amenities.every(a => p.amenities.includes(a))) return false;
+      if (Array.isArray(filters.amenities) && filters.amenities.length && !amenityMatches(p, filters.amenities, filters)) return false;
       if (global.KampTrailDiscovery?.active(filters)) {if(!global.KampTrailDiscovery.matches(p,filters))return false;} else if(+filters.minRating>0)return false;
       // Rig length: a campground matches only if at least one site reports an RV-type length that fits.
       // Rig length and hookups must be satisfied by the same campsite, never by different sites in one campground.
@@ -522,6 +660,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.30.0',mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.30.0',FILTER_AMENITIES,OSM_AMENITY_TAG,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

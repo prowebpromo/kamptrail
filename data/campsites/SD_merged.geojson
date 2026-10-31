@@ -643,9 +643,7 @@
       "properties": {
         "addr:city": "Rochford",
         "addr:state": "SD",
-        "drinking_water": "no",
         "name": "Black Fox Campground",
-        "toilets": "vault",
         "tourism": "camp_site",
         "id": "ridb:253807",
         "source": "recreation.gov",
@@ -685,7 +683,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "16 USD",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "vault"
             },
             "retrieved_at": "2026-10-29T03:34:41Z",
             "source_updated_at": null,

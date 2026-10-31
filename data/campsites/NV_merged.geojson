@@ -182,7 +182,6 @@
         "capacity": "9",
         "cost": null,
         "dog": "leashed",
-        "drinking_water": "yes",
         "horse": "no",
         "name": "Bird Creek Campground",
         "operator": "US Forest Service",
@@ -224,6 +223,7 @@
             "source_record_id": "osm:way:1236741631",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:13:24Z",
@@ -7383,7 +7383,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1134389248",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:13:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1134389248"
+          }
+        ]
       }
     },
     {
@@ -30115,8 +30128,11 @@
             "source_record_id": "osm:way:912627493",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "yes",
               "fee": "yes",
-              "internet_access:fee": "customers"
+              "internet_access:fee": "customers",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T03:13:24Z",
             "source_updated_at": null,

@@ -7064,7 +7064,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "no"
+              "fee": "no",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,
@@ -7075,7 +7076,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "no"
+              "fee": "no",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,
@@ -7217,7 +7219,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "no"
+              "fee": "no",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,
@@ -7228,7 +7231,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "no"
+              "fee": "no",
+              "openfire": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,
@@ -11458,7 +11462,9 @@
             "source_record_id": "osm:way:433010765",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,
@@ -11468,7 +11474,9 @@
             "source_record_id": "osm:way:433010766",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,
@@ -11478,7 +11486,9 @@
             "source_record_id": "osm:way:433010767",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,
@@ -11531,7 +11541,9 @@
             "source_record_id": "osm:way:433010769",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:27:06Z",
             "source_updated_at": null,

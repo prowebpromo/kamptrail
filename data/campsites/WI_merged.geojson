@@ -1272,10 +1272,8 @@
       },
       "properties": {
         "capacity": "9",
-        "drinking_water": "no",
         "name": "Horseshoe Lake Recreation Area",
         "reservation": "no",
-        "toilets": "vault",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/cnnf/recreation/camping-cabins/recarea/?recid=82793&actid=29",
         "id": "ridb:10074567",
@@ -1315,7 +1313,9 @@
             "source_record_id": "osm:node:2247687247",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "toilets": "vault"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -3464,7 +3464,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7190655031",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:42:25Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7190655031"
+          }
+        ]
       }
     },
     {
@@ -9364,13 +9377,8 @@
       },
       "properties": {
         "caravans": "yes",
-        "drinking_water": "yes",
         "name": "KOA - Hayward",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
-        "shower": "yes",
         "tents": "yes",
-        "toilets": "yes",
         "tourism": "camp_site",
         "osm_id": 4486938990,
         "osm_type": "node",
@@ -9396,7 +9404,23 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:735298937",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "drinking_water": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "shower": "yes",
+              "toilets": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:42:25Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/735298937"
+          }
+        ]
       }
     },
     {
@@ -15327,7 +15351,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "25 USD",
-              "fee": "yes"
+              "drinking_water": "no",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -16137,7 +16165,11 @@
             "source_record_id": "osm:way:1134826235",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "drinking_water": "yes",
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -26660,7 +26692,11 @@
             "source_record_id": "osm:node:12892202045",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -26670,7 +26706,11 @@
             "source_record_id": "osm:node:12892202046",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -26778,7 +26818,11 @@
             "source_record_id": "osm:node:12899395390",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -26841,7 +26885,11 @@
             "source_record_id": "osm:node:12899400347",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27104,7 +27152,11 @@
             "source_record_id": "osm:node:12899435329",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27207,7 +27259,11 @@
             "source_record_id": "osm:node:12899453519",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27270,7 +27326,11 @@
             "source_record_id": "osm:node:12899453521",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27541,7 +27601,11 @@
             "source_record_id": "osm:node:12902326410",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27724,7 +27788,11 @@
             "source_record_id": "osm:node:12902326415",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27787,7 +27855,11 @@
             "source_record_id": "osm:node:12902326417",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27850,7 +27922,11 @@
             "source_record_id": "osm:node:12902326419",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27914,7 +27990,11 @@
             "source_record_id": "osm:node:12902326421",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27924,7 +28004,11 @@
             "source_record_id": "osm:node:12902326422",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -27987,7 +28071,11 @@
             "source_record_id": "osm:node:12902326424",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -28408,7 +28496,11 @@
             "source_record_id": "osm:node:12902859593",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -28786,7 +28878,11 @@
             "source_record_id": "osm:node:12903309970",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -28889,7 +28985,11 @@
             "source_record_id": "osm:node:12903309978",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -28992,7 +29092,11 @@
             "source_record_id": "osm:node:12907590525",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -29095,7 +29199,11 @@
             "source_record_id": "osm:node:12907590528",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -29198,7 +29306,11 @@
             "source_record_id": "osm:node:12907963442",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -29262,7 +29374,11 @@
             "source_record_id": "osm:node:12907963444",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -29272,7 +29388,11 @@
             "source_record_id": "osm:node:12907963445",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,
@@ -29805,7 +29925,11 @@
             "source_record_id": "osm:node:12909711002",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "bin": "no",
+              "fee": "no",
+              "openfire": "yes",
+              "shower": "no",
+              "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:42:25Z",
             "source_updated_at": null,

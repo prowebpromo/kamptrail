@@ -1116,7 +1116,6 @@
         "capacity": "18",
         "internet_access": "no",
         "name": "LAKE WEDINGTON",
-        "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "caravan_site",
         "id": "ridb:234586",
@@ -1156,7 +1155,8 @@
             "source_record_id": "osm:way:368988012",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "10.00"
+              "fee": "10.00",
+              "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -9754,6 +9754,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "check_date": "2025-03-08",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -9765,6 +9766,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "check_date": "2025-03-08",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -10210,7 +10212,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "bbq": "yes",
+              "bin": "no",
+              "drinking_water": "no",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -10221,7 +10228,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "bbq": "yes",
+              "bin": "no",
+              "drinking_water": "no",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -10328,7 +10340,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "bbq": "yes",
+              "bin": "no",
+              "drinking_water": "no",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -10339,7 +10356,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "bbq": "yes",
+              "bin": "no",
+              "drinking_water": "no",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -10350,7 +10372,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "bbq": "yes",
+              "bin": "no",
+              "drinking_water": "no",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -10361,7 +10388,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "bbq": "yes",
+              "bin": "no",
+              "drinking_water": "no",
+              "fee": "yes",
+              "picnic_table": "yes",
+              "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -11987,7 +12019,6 @@
         "name": "Campground D",
         "operator": "Devils Den State Park",
         "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tents": "yes",
         "tourism": "caravan_site",
         "osm_id": 412180134,
@@ -12022,7 +12053,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "32",
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,

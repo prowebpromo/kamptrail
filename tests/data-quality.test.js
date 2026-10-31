@@ -62,7 +62,11 @@ test('only an exact identity duplicate fills an unreported state from an explici
 test('normalization is idempotent and withholds nearby OSM fees from legacy RIDB',()=>{
   const result=quality.cleanAndDedupeGeoJSON({features:[point({facility_id:1,cost:0}),point({osm_id:7,tourism:'camp_site',fee:'no',toilets:'yes'})]});
   const twice=quality.cleanAndDedupeGeoJSON(result);
-  assert.equal(twice.features[0].properties.fee_status,'unknown');assert.deepEqual(twice.features[0].properties.amenities,['toilet']);
+  assert.equal(twice.features[0].properties.fee_status,'unknown');
+  // R8: the nearby OSM element's toilets tag stays attributed to that element and is not the RIDB listing's.
+  const p=twice.features[0].properties;assert.deepEqual(p.amenities,[]);assert.equal(p.osm_amenity_tags,null);
+  assert.deepEqual(p.amenity_members.map(m=>[m.source_record_id,m.fields.toilets]),[[result.features[0].properties.legacy_ids.find(id=>id.startsWith('osm:')),'yes']]);
+  assert.equal(quality.applyFilters(twice.features,{amenities:['toilet']}).length,0);assert.equal(quality.amenityEvidence(p).state,'no_source');
 });
 test('placeholder matching keeps real Demotte and Greatest campground names',()=>{
   assert.ok(normalize({name:'Demotte Campground'}));assert.ok(normalize({name:'Greatest Lake'}));
@@ -74,7 +78,9 @@ test('invalid coordinates do not reach Leaflet; anonymous valid records get stab
 });
 test('aliases agree with filter vocabulary without promoting unknown rigs',()=>{
   const site=normalize({schema_version:3,amenities:['toilets','fire_rings','picnic_tables'],rig_friendly:['RV'],road_difficulty:'paved'});
-  assert.equal(quality.applyFilters([site],{amenities:['toilet','fire_ring','picnic_table'],rigSize:'rv',roadDifficulty:'paved'}).length,1);
+  assert.deepEqual([...site.properties.amenities].sort(),['fire_ring','picnic_table','toilet']);
+  assert.equal(quality.applyFilters([site],{amenities:['toilet'],rigSize:'rv',roadDifficulty:'paved'}).length,1);
+  assert.equal(site.properties.amenity_record.source_record_id,site.properties.id,'own list keeps its own record attribution');
   assert.equal(quality.applyFilters([site],{rigSize:'big_rig'}).length,0);
 });
 
@@ -130,7 +136,12 @@ test('a previously conflicting record keeps the fee unknown in either merge orde
 });
 test('conflicting water reports do not advertise a verified water amenity',()=>{
   const result=quality.cleanAndDedupeGeoJSON({features:[point({osm_id:1,tourism:'camp_site',drinking_water:'yes'}),point({osm_id:2,tourism:'camp_site',drinking_water:'no'})]});
-  assert.ok(!result.features[0].properties.amenities.includes('water'));
+  // R8: each element keeps its own report. The kept element says yes. The merged element's "no" stays
+  // visible as attributed member evidence and is never assigned to, or used against, the kept element.
+  const p=result.features[0].properties;
+  assert.deepEqual(p.amenities,['water']);assert.deepEqual(p.amenity_negatives,[]);
+  assert.deepEqual(p.amenity_members.map(m=>[m.source_record_id,m.fields.drinking_water]),[[result.features[0].properties.legacy_ids.find(id=>id!==p.id&&id.startsWith('osm:')),'no']]);
+  assert.equal(quality.amenityEvidence(p).amenities.water.status,'present');
 });
 
 test('MVP excludes explicit private/prohibited camping access while retaining commercial customer and permit records',()=>{

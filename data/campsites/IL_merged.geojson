@@ -612,11 +612,8 @@
         "name": "Dam West Campground",
         "operator": "US Army Corps of Engineers",
         "permanent_camping": "no",
-        "power_supply": "yes",
-        "sanitary_dump_station": "yes",
         "tents": "yes",
         "tourism": "caravan_site",
-        "water_point": "yes",
         "id": "ridb:233483",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -654,7 +651,10 @@
             "source_record_id": "osm:way:1108044726",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "power_supply": "yes",
+              "sanitary_dump_station": "yes",
+              "water_point": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:59Z",
             "source_updated_at": null,
