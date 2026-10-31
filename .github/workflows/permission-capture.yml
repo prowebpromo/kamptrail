@@ -1,0 +1,22 @@
+name: Permission source capture
+# Read-only capture of official pages for rest-area permission review. No commits.
+on:
+  push:
+    branches: [pilot/permission-capture]
+permissions:
+  contents: read
+jobs:
+  capture:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - run: python3 scripts/capture_permission_sources.py "$RUNNER_TEMP/cap"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: permission-capture
+          path: ${{ runner.temp }}/cap
+          retention-days: 30
