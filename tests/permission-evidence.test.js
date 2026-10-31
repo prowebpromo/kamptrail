@@ -29,6 +29,13 @@ test('builder consumes actual validated service shard identity and separates mat
  assert.equal(B.build(dir).places,2);const out=path.join(dir,'api/_data/permissions');assert.equal(fs.readdirSync(out).filter(x=>/^[a-f0-9]{2}\.json$/.test(x)).length,256);
  for(const kind of ['campsite','service']){const key=`${kind}:${row.id}`,bucket=JSON.parse(fs.readFileSync(path.join(out,B.hash(key).slice(0,2)+'.json'),'utf8'));assert.equal(bucket.places[key].kind,kind);}
  assert.equal(fs.readFileSync(path.join(out,'.htaccess'),'utf8'),'Require all denied\n');
+ // Preempt one writer after its temporary bytes exist, then run a second
+ // complete writer against the same catalogue before the first can rename.
+ const write=fs.writeFileSync;let interleaved=false;
+ fs.writeFileSync=function(file,...args){const result=write.call(fs,file,...args);if(!interleaved&&String(file).startsWith(out+path.sep)&&String(file).endsWith('.tmp')){interleaved=true;assert.equal(B.build(dir).places,2);}return result;};
+ try{assert.equal(B.build(dir).places,2);}finally{fs.writeFileSync=write;}
+ assert.equal(interleaved,true);assert.equal(fs.readdirSync(out).filter(x=>x.endsWith('.tmp')).length,0);
+ for(const name of fs.readdirSync(out).filter(x=>x.endsWith('.json')))assert.equal(JSON.parse(fs.readFileSync(path.join(out,name),'utf8')).version,1);
  fs.appendFileSync(path.join(dir,'data/services',db.manifest.shards[0].url),' ');assert.throws(()=>B.build(dir),/integrity/);
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });

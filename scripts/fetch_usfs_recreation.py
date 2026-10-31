@@ -208,8 +208,8 @@ def coordinates(row):
 def restriction_qualification(text):
     """Restrictions can qualify an existing free fee, never establish one.
 
-    General descriptions are not fee inputs. Preserve all their text as context
-    rather than extracting an apparently free sentence from another campground.
+    General narrative is context; only self_description_fee's narrow named
+    campground statement can fill an otherwise empty structured fee field.
     Ignore permits for ancillary activities when they do not concern camping.
     """
     clauses = re.split(r'(?<=[.!?;])\s+', fee_text.clean(text))
@@ -293,6 +293,85 @@ def applicable_fee_review(row, retrieved):
     return review
 
 
+STANDARD_NIGHTLY_FEE = re.compile(
+    r'^Standard\s+Fees?\s*:?\s*[1-9]\d{0,3}(?:\.\d{1,2})?\s+per\s+night\s*(?:[.!]|$)', re.I)
+SELF_NO_FEE_CAMPGROUND = re.compile(
+    r'^(?:The\s+)?(?P<name>[\w\u2019\x27 -]{1,100}?)\s+is\s+a\s+'
+    r'(?:developed\s+)?(?:no-fee|fee-free)\s+campground'
+    r'(?:\s+where\s+reservations\s+are\s+not\s+required)?\s*(?:[.!]|$)', re.I)
+DESCRIPTION_SCOPE_BLOCKER = re.compile(
+    r'\b(?:formerly|previously|historically|used\s+to|no\s+longer|not\s+true|incorrect|'
+    r'nearby|another\s+campground|other\s+campgrounds?|day[ -]use\s+only)\b', re.I)
+DESCRIPTION_REMAINDER_RISK = re.compile(
+    r'\b(?:fees?|free|charges?|charged|charging|costs?|paid|payments?|pay|paying|rates?|prices?|pricing|'
+    r'reservations?|permits?|passes?|waiv\w*|winter|summer|spring|fall|autumn|seasons?|seasonal|'
+    r'formerly|previously|historically|historical|only|except|unless|until|during|before|after|'
+    r'false|incorrect|inaccurate|untrue|wrong|applies|superseded|revoked|invalid|obsolete|outdated|unreliable)\b'
+    r'|\$|\bno\s+longer\b|\bnot\s+(?:accurate|correct|applicable|valid|current)\b'
+    r'|\b(?:it|this|that|the\s+preceding|the\s+above)\b[^.!?]{0,80}\b(?:not|never)\b', re.I)
+STANDARD_DISCOUNT_CLAUSES = frozenset((
+    'interagency passes accepted', 'senior passes save 50%',
+))
+# Only this audited non-fee narrative is understood by this source adapter.
+# Novel trailing prose could revoke or qualify the opening statement without
+# using any known fee keyword, so changed wording must remain unknown.
+AUDITED_NO_FEE_CONTEXT = frozenset((
+    "Located along the Rio Chama Wild & Scenic River, the developed campground offers a great place "
+    "for families, groups, or RVs to come camp on the river's edge. "
+    "Uses: camping, hiking, fishing, and river access. Facilities: This site offers two group sites "
+    "with two picnic tables and fire rings, and one vault toilet and trash bin. "
+    "Special Instructions: Smaller RVs (up to 20 feet) can be accommodated at some sites. "
+    "No drinking water is available. Forest Road 151 is not recommended for travel when wet.",
+))
+
+
+def self_description_fee(row):
+    """A narrowly scoped self-description may fill an empty fee field.
+
+    Never classify arbitrary narrative: require the opening named campground
+    statement, no contrary/adjacent/historical context and no source fee text.
+    Retain the full description as context and classify only the exact sentence.
+    """
+    if fee_text.clean(row.get('feedescription')):
+        return None
+    text = fee_text.clean(row.get('recareadescription'))
+    if DESCRIPTION_SCOPE_BLOCKER.search(text) or NO_ONSITE.search(text):
+        return None
+    match = SELF_NO_FEE_CAMPGROUND.match(text)
+    if not match:
+        return None
+    subject = match['name'].casefold().strip()
+    name = fee_text.clean(row.get('recareaname')).casefold()
+    if not re.match(re.escape(subject) + r'\s+campground(?:\b|$)', name):
+        return None
+    # Do not silently discard a later camping charge, permit/season exception,
+    # negation, or amount. Rejection is conservative, not positive inference.
+    remainder = text[match.end():].strip()
+    if remainder and remainder not in AUDITED_NO_FEE_CONTEXT:
+        return None
+    if (DESCRIPTION_REMAINDER_RISK.search(remainder) or
+            fee_text.classify(remainder)[0] in ('paid', 'conditional') or
+            fee_text.required_pass(text) or fee_text.SEASONAL_FREE.search(text) or
+            fee_text.SEASON_BEFORE_FREE.search(text) or
+            re.search(r'\b(?:not|never|only|unless|except|until|during|after|before|winter|summer|season)\b',
+                      re.sub(r'\bwhere reservations are not required\b', '', match.group(0), flags=re.I), re.I)):
+        return None
+    sentence = match.group(0)
+    return sentence if fee_text.classify(sentence) == ('free', 0) else None
+
+
+def standard_nightly_fee(text):
+    """Recognize a positive nightly fee without inventing its currency."""
+    match = STANDARD_NIGHTLY_FEE.match(text)
+    if not match:
+        return False
+    remainder = text[match.end():].strip()
+    # Only the two observed affirmative discount clauses are understood. An
+    # unparsed remainder might waive/negate the charge, so it stays unknown.
+    clauses = [v.strip().casefold() for v in re.split(r'[.;]', remainder) if v.strip()]
+    return all(clause in STANDARD_DISCOUNT_CLAUSES for clause in clauses)
+
+
 def to_feature(row, retrieved):
     if secondary_rejection(row):
         return None
@@ -306,8 +385,14 @@ def to_feature(row, retrieved):
     url = row.get('recareaurl') or f'https://www.fs.usda.gov/recarea/{rid}'
     wording = fee_text.clean(row.get('feedescription'))
     status, cost = fee_text.classify(wording)
-    base_status, base_cost = status, cost
+    if status == 'unknown' and standard_nightly_fee(wording):
+        status, cost = 'paid', None
+    description_statement = self_description_fee(row)
     source_field = 'feedescription'
+    if status == 'unknown' and description_statement:
+        status, cost = 'free', 0
+        wording, source_field = description_statement, 'recareadescription'
+    base_status, base_cost = status, cost
     qualification = restriction_qualification(row.get('restrictions'))
     if status == 'free' and qualification:
         status, cost = 'conditional', None
@@ -316,7 +401,8 @@ def to_feature(row, retrieved):
         text = fee_text.clean(row.get(field))
         if not text:
             continue
-        classification_text = text if field == 'feedescription' else ''
+        classification_text = text if field == 'feedescription' else (
+            description_statement if field == 'recareadescription' and source_field == field else '')
         evidence.append({
             'source': 'US Forest Service', 'source_field': field, 'source_record_id': str(rid),
             'source_url': url, 'query_url': URL, 'retrieved_at': retrieved,
