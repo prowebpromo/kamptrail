@@ -4,6 +4,21 @@ This package builds source-reported OpenStreetMap height tags for the 50 states 
 
 Nothing here claims that a road, bridge or tunnel is passable, that a tag is current, or that a state is complete.
 
+## Acceptance criterion (written before the fix)
+
+The national dataset is acceptable when all of the following hold. Measurements behind it are in docs/CLEARANCE_NATIONAL_REVIEW.md.
+
+1. Records are called clearance candidates in data, manifest and docs. No file calls them verified clearances.
+2. No candidate exists only because of a plain `height` tag on a fence, wall, gate, bollard or similar non-road object. Every exclusion keeps its raw value and a reason code, with counts by reason, tag and state and a compact excluded-id record per state.
+3. Bare numbers are read as metres per OSM semantics. No value is changed or relabelled as feet. Suspect values are flagged and stay visible.
+4. Every candidate has a status (numeric_only, mixed, directional_only, conditional, unknown, suspect) and a `comparable` flag. Only fully numeric, non-suspect, unconditional candidates are comparable. Equality with rig height is never clear. An empty set has no minimum.
+5. `applies_to` comes from tag evidence only, with the evidence recorded. A bridge alone is never evidence.
+6. One OSM identity appears once. A viewport that crosses a state or tile edge still loads it.
+7. RI is protected, not failed, and is not downloaded.
+8. Each tile file is at most 512 KiB. The manifest lists bbox, bytes, records and sha256 per tile. A city view loads a bounded number of tiles.
+9. Two builds from the same input are byte-identical. A rerun on unchanged data rewrites no file and makes no dataset commit.
+10. `npm run test:python` and `npm test` pass. The client does not read national data, and scripts/build-release.js still packages only the RI pilot.
+
 ## Status of this build
 
 Overpass and Geofabrik were both unreachable from the build sandbox. Every request ended in a connection reset at the sandbox proxy. No other route to the sites was tried. So no new state was built here.

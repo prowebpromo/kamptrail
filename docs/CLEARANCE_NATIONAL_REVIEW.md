@@ -22,9 +22,9 @@ By object tag (barrier value, or structure when there is no barrier):
 | barrier=swing_gate | 239 | osm:node:10218605014 |
 | barrier=jersey_barrier | 230 | osm:node:10127559822 |
 | structure=bridge (no barrier) | 176 | osm:way:1003684310 |
-| all other barrier values | 2,501 | mound, guard_rail, cable_barrier, city_wall, block, toll_booth, chain and about 30 more |
+| all other values | 504 | mound 123, guard_rail 101, cable_barrier 54, tunnel with covered 34, city_wall 28, block 24 and about 30 more |
 
-The earlier fence figure was 32,844 and this run finds 32,845. Wall matches at 8,847. Only 3 of the barrier=fence/wall/gate/bollard/retaining_wall records have a highway tag. Only 727 records (tunnel, covered, bridge) have a structure tag and no barrier, and about 100 of those sit on a highway way.
+The earlier fence figure was 32,844 and this run finds 32,845. Wall matches at 8,847. Only 5 of the fence, wall, gate, bollard and retaining_wall records also carry a highway tag. 727 records (tunnel 287, covered 264, bridge 176) have a structure tag and no barrier, and 85 of those sit on a highway way.
 
 Remaining after removing these: 56,537 records, of which 43,432 have a maxheight style value that parses as a number. The 43,700 figure in the brief is close to that numeric group.
 
