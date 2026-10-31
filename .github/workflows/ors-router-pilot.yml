@@ -1,0 +1,40 @@
+name: ORS rig-routing pilot
+
+# Bounded, read-only pilot of hosted openrouteservice. Runs only from the
+# pilot branch or by hand. No commits, no publication, no production change.
+on:
+  push:
+    branches: [pilot/ors-router]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kamptrail-ors-pilot
+  cancel-in-progress: false
+
+jobs:
+  pilot:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Run pilot
+        env:
+          ORS_API_KEY: ${{ secrets.ORS_API_KEY }}
+        run: |
+          set -o pipefail
+          python3 scripts/ors_router_pilot.py "$RUNNER_TEMP/ors-pilot"
+          cat "$RUNNER_TEMP/ors-pilot/summary.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ors-pilot-${{ github.run_id }}
+          path: ${{ runner.temp }}/ors-pilot
+          retention-days: 90
+          if-no-files-found: warn
