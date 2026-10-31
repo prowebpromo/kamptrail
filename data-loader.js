@@ -302,12 +302,12 @@
     const data=p.usfs_site_evidence;
     if(!DataQuality.validUSFSSiteAmenities(data))return '';
     const labels={
-      water:{drinking_water:t("Drinking water stated"),no_drinking_water:t("Not for drinking, per the text"),no_water:t("No water stated")},
-      toilet:{flush:t("Flush toilets stated"),vault_or_pit:t("Vault, pit or similar toilets stated"),no_toilet:t("No toilets stated"),nearby_only:t("Restrooms stated as nearby only")}
+      water:{drinking_water:t("Drinking water stated"),no_drinking_water:t("Not for drinking, per the text"),no_water:t("Text says no water")},
+      toilet:{flush:t("Flush toilets stated"),vault_or_pit:t("Vault, pit or similar toilets stated"),no_toilet:t("Text says no toilets"),nearby_only:t("Restrooms stated as nearby only")}
     };
     const qualifiers={hand_pump:t("hand pump"),seasonal:t("seasonal"),accessible:t("accessible feature")};
     const heads={water:t("Water (Forest Service text):"),toilet:t("Restrooms (Forest Service text):")};
-    const entries=Object.entries(data.facilities);
+    const entries=Object.entries(data.facilities),separate=DataQuality.validRIDBAmenities(p.ridb_amenity_evidence);
     const facilities=entries.map(([fid,facility])=>{
       const records=facility.records.map(r=>{
         const lines=['water','toilet'].filter(field=>r[field]).map(field=>{
@@ -321,7 +321,7 @@
       }).join('');
       return `${entries.length>1?`<p><a href="https://www.recreation.gov/camping/campgrounds/${encodeURIComponent(fid)}" target="_blank" rel="noopener noreferrer">${esc(t('Recreation.gov facility {id}',{id:fid}))}</a></p>`:''}${records}`;
     }).join('');
-    return `<details class="kt-usfs-site"><summary>${esc(t("Forest Service site record says…"))}</summary>${facilities}<p class="kt-fine">${esc(t("Free text written by the Forest Service and matched by Recreation.gov facility ID. Kept separate from the Recreation.gov records above. Blank or ambiguous wording is unknown, never a statement of absence. Not current availability."))}</p><p class="kt-fine">${esc(t("Data retrieved {date}. CC BY 4.0.",{date:data.source.retrieved}))} <a href="${DataQuality.USFS_SITE_URL}" target="_blank" rel="noopener noreferrer">${esc(t("Forest Service source layer"))}</a></p></details>`;
+    return `<details class="kt-usfs-site"><summary>${esc(t("Forest Service site record says…"))}</summary>${facilities}<p class="kt-fine">${esc(t("Free text written by the Forest Service and matched by Recreation.gov facility ID.")+(separate?" "+t("Kept separate from the Recreation.gov records above."):"")+" "+t("Blank or ambiguous wording is unknown, never a statement of absence. Not current availability."))}</p><p class="kt-fine">${esc(t("Data retrieved {date}. CC BY 4.0.",{date:data.source.retrieved}))} <a href="${DataQuality.USFS_SITE_URL}" target="_blank" rel="noopener noreferrer">${esc(t("Forest Service source layer"))}</a></p></details>`;
   }
   function popupLayout(){
     const size=state.map?.getSize?.()||{},width=Number.isFinite(size.x)?size.x:390,height=Number.isFinite(size.y)?size.y:400;

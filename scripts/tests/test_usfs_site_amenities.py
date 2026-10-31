@@ -63,7 +63,19 @@ class WaterClasses(unittest.TestCase):
             self.assertEqual(W(text)[0], 'unknown', text)
 
 
+    def test_shut_off_and_turned_off_are_outages(self):
+        for text in ('Potable water shut off after Labor Day', 'Drinking water available. Water is shut off October-May.',
+                     'Drinking water is turned off for the season'):
+            self.assertEqual(W(text), ('unknown', []), text)
+
+
 class ToiletClasses(unittest.TestCase):
+    def test_negated_or_closed_toilets_are_not_a_type(self):
+        for text in ('Flush toilets not available', 'Not flush', 'Vault toilets closed for season', 'No vault toilets',
+                     'Vault toilet temporarily closed', 'Flush toilets shut off'):
+            self.assertEqual(T(text), ('unknown', []), text)
+        self.assertEqual(T('pit toilet, not ADA accessible'), ('vault_or_pit', []))
+
     def test_flush(self):
         for text in ('Flush toilet(s)', 'Flush', 'Flush Toilets', 'Indoor flush toilet.', '2 builidings with flushing toilets and wash basins.'):
             self.assertEqual(T(text)[0], 'flush', text)
@@ -105,23 +117,55 @@ class JoinAndConflicts(unittest.TestCase):
         self.assertEqual(record['toilet']['class'], 'vault_or_pit')
 
     def test_exact_text_is_kept_and_blank_or_null_is_dropped(self):
-        rows = [row('1', '100', ' Yes ', 'null'), row('2', '200', None, '   '), row('3', '300', 'None', None)]
+        rows = [row('1', '100', ' Potable water, ask host ', 'null'), row('2', '200', None, '   '), row('3', '300', 'Water available', None)]
         facilities, stats = usfs.build(usfs.used_rows(rows), {'100', '200', '300'})
-        self.assertEqual(facilities['100']['records'][0]['water'], {'text': 'Yes', 'class': 'unknown'})
+        self.assertEqual(facilities['100']['records'][0]['water'], {'text': 'Potable water, ask host', 'class': 'drinking_water'})
         self.assertNotIn('toilet', facilities['100']['records'][0])
-        self.assertEqual(facilities['300']['records'][0]['water'], {'text': 'None', 'class': 'unknown'})
+        self.assertEqual(facilities['300']['records'][0]['water'], {'text': 'Water available', 'class': 'unknown'})
         self.assertNotIn('200', facilities, 'a match with no statement shows nothing')
         self.assertEqual((stats['matched_facilities'], stats['facilities_with_statements']), (3, 2))
 
+    def test_off_topic_unclassified_text_is_missing_but_explicit_answers_stay(self):
+        rows = [row('1', '100', 'Yes', 'Reservations can be made at Recreation.gov.'), row('2', '200', 'No', 'Flush'),
+                row('3', '300', 'Hand pump', 'Yes'), row('4', '400', 'Water available', 'Restrooms Available.')]
+        facilities, _ = usfs.build(usfs.used_rows(rows), {'100', '200', '300', '400'})
+        self.assertNotIn('100', facilities)
+        self.assertNotIn('300', facilities)
+        self.assertEqual(facilities['200']['records'][0]['water']['class'], 'no_water')
+        self.assertEqual(facilities['200']['records'][0]['toilet']['class'], 'flush')
+        self.assertEqual(facilities['400']['records'][0]['toilet']['text'], 'Restrooms Available.')
+
+    def test_over_limit_text_is_truncated_with_an_ellipsis(self):
+        long = 'Potable water ' + 'x' * 700
+        record = usfs.build(usfs.used_rows([row('1', '100', long, 'Vault toilet', season_description='s' * 700, public_site_name='n' * 200)]), {'100'})[0]['100']['records'][0]
+        self.assertEqual(len(record['water']['text']), 600)
+        self.assertTrue(record['water']['text'].endswith('\u2026'))
+        self.assertEqual(record['water']['class'], 'drinking_water')
+        self.assertEqual(len(record['season']['description']), 600)
+        self.assertEqual(len(record['name']), 160)
+
+    def test_too_many_records_or_facilities_fail_the_build(self):
+        many = [row(str(n), '100', 'Potable water') for n in range(26)]
+        with self.assertRaises(ValueError):
+            usfs.build(usfs.used_rows(many), {'100'})
+        usfs.build(usfs.used_rows(many[:25]), {'100'})
+        saved = usfs.LIMITS['facilities']
+        usfs.LIMITS['facilities'] = 2
+        try:
+            with self.assertRaises(ValueError):
+                usfs.build(usfs.used_rows([row(str(n), str(n), 'Potable water') for n in range(1, 4)]), {'1', '2', '3'})
+        finally:
+            usfs.LIMITS['facilities'] = saved
+
     def test_season_text_is_context_and_never_a_water_class(self):
-        rows = [row('1', '100', 'Yes', 'Vault', open_season='May - Sep', season_description='Closed in winter')]
+        rows = [row('1', '100', 'Water available', 'Vault', open_season='May - Sep', season_description='Closed in winter')]
         record = usfs.build(usfs.used_rows(rows), {'100'})[0]['100']['records'][0]
         self.assertEqual(record['season'], {'open_season': 'May - Sep', 'description': 'Closed in winter'})
         self.assertEqual(record['water']['class'], 'unknown')
         self.assertNotIn('qualifiers', record['water'])
 
     def test_dates_come_from_the_record_fields(self):
-        record = usfs.build(usfs.used_rows([row('1', '100', 'Yes', infra_last_update=0, edw_last_modify=None)]), {'100'})[0]['100']['records'][0]
+        record = usfs.build(usfs.used_rows([row('1', '100', 'Water available', infra_last_update=0, edw_last_modify=None)]), {'100'})[0]['100']['records'][0]
         self.assertEqual((record['updated'], record['edw_modified']), ('1970-01-01', None))
 
     def test_disagreeing_classes_are_a_conflict_and_unknown_does_not_count(self):
@@ -182,6 +226,26 @@ class MainGuards(unittest.TestCase):
         self.assertEqual(self.run_build(self.rows(40)), 1)
         self.assertEqual(self.out.read_text(), saved)
         self.assertEqual(self.run_build(self.rows(90)), 0, 'a small change is accepted')
+
+    def test_over_limit_facility_keeps_the_saved_file(self):
+        self.assertEqual(self.run_build(self.rows(50)), 0)
+        saved = self.out.read_text()
+        over = self.rows(50) + [row(f'z{n}', '7', 'Potable water') for n in range(26)]
+        self.assertEqual(self.run_build(over), 1)
+        self.assertEqual(self.out.read_text(), saved)
+
+    def test_built_file_passes_the_client_validator(self):
+        import shutil
+        import subprocess
+        node = shutil.which('node')
+        if not node:
+            self.skipTest('node is not installed')
+        rows = self.rows(50)
+        rows[0]['water_availability'] = 'Potable water ' + 'x' * 700
+        self.assertEqual(self.run_build(rows), 0)
+        root = Path(__file__).resolve().parents[2]
+        script = "const q=require('./data-quality.js');process.exit(q.validUSFSSiteAmenities(JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')))?0:1)"
+        self.assertEqual(subprocess.run([node, '-e', script, str(self.out)], cwd=root).returncode, 0)
 
     def test_out_of_range_counts_keep_the_saved_file(self):
         self.assertEqual(self.run_build(self.rows(50)), 0)

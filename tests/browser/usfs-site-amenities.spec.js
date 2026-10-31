@@ -3,14 +3,14 @@ const ridbSource=require('../../data/campsites/ridb-amenities.json').source;
 const usfsSource=require('../../data/campsites/usfs-site-amenities.json').source;
 test.use({serviceWorkers:'block',viewport:{width:390,height:844}});
 const LAYER='https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecInfraRecreationSites_02/MapServer/0';
-async function open(page,context,{facility,name}){
+async function open(page,context,{facility,name,ridbFacility='123'}){
   const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   const json=(r,data)=>r.fulfill({contentType:'application/json',body:JSON.stringify(data)});
   const usfs={version:1,source:{...usfsSource,retrieved:'2026-10-31'},facilities:{'123':{conflicts:[],records:[{cn:'5005.1',name:'Pine <img src=x> Campground',type:'CAMPGROUND',
     water:{text:'Yes, drinking water is available from a hand pump',class:'drinking_water',qualifiers:['hand_pump']},toilet:{text:'Yes',class:'unknown'},
     season:{open_season:'05/15 - 09/30',description:'Water off in winter'},updated:'2026-08-05',edw_modified:'2026-08-06'}]}}};
-  const ridb={version:1,source:ridbSource,facilities:{'123':{sites:2,amenities:{toilet:{reported:1,negative:0,unknown:1,conflict:0,qualifiers:{seasonal:1}}}}}};
+  const ridb={version:1,source:ridbSource,facilities:{[ridbFacility]:{sites:2,amenities:{toilet:{reported:1,negative:0,unknown:1,conflict:0,qualifiers:{seasonal:1}}}}}};
   const camp={type:'Feature',geometry:{type:'Point',coordinates:[-75.1,43]},properties:{id:`ridb:${facility}`,facility_id:facility,name,schema_version:3,type:'established',amenities:[],rig_friendly:[]}};
   await page.route('**/data/campsites/index.json',r=>json(r,{states:[{state:'NY',count:1}],total_sites:1}));
   await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
@@ -23,7 +23,8 @@ async function open(page,context,{facility,name}){
   await page.goto('/');
   await evidenceRequested;
   await page.waitForFunction(id=>KampTrailData.getCampsiteById(id),`ridb:${facility}`);
-  if(facility==='123')await page.waitForFunction(()=>{const p=KampTrailData.getCampsiteById('ridb:123').properties;return p.usfs_site_evidence&&p.ridb_amenity_evidence;});
+  if(ridbFacility!=='123')await page.evaluate(()=>{window.__noRidb=true;});
+  if(facility==='123')await page.waitForFunction(()=>{const p=KampTrailData.getCampsiteById('ridb:123').properties;return p.usfs_site_evidence&&(p.ridb_amenity_evidence||window.__noRidb);});
   else await page.waitForTimeout(500);
   await page.evaluate(id=>KampTrailData.focusCampsite(id),`ridb:${facility}`);
   return page.locator('.kt-site-popup');
@@ -42,6 +43,7 @@ test('a matched campground shows the Forest Service text, credit and date apart 
   await expect(section).toContainText('No normalized label: the wording is ambiguous.');
   await expect(section).toContainText('Source: USDA Forest Service Recreation Site record, updated 2026-08-05.');
   await expect(section).toContainText('Data retrieved 2026-10-31. CC BY 4.0.');
+  await expect(section).toContainText('Kept separate from the Recreation.gov records above.');
   await expect(section).toContainText('Season text on this record (context only, not about water or restrooms): Open season: 05/15 - 09/30; Season description: Water off in winter');
   await expect(section.getByRole('link',{name:'Forest Service source layer'})).toHaveAttribute('href',LAYER);
   // The Recreation.gov campsite-record section stays separate and unchanged.
@@ -53,6 +55,13 @@ test('a matched campground shows the Forest Service text, credit and date apart 
   expect(await page.evaluate(()=>KampTrailData.getCampsiteById('ridb:123').properties.amenities)).toEqual([]);
   expect(await page.evaluate(()=>{KampTrailData.updateFilters({amenities:['water']});return KampTrailData.getVisibleCampsites().length;})).toBe(0);
   expect(errors).toEqual([]);
+});
+test('the separation sentence appears only when a Recreation.gov amenity section is rendered',async({page,context})=>{
+  const popup=await open(page,context,{facility:'123',name:'Pine Campground',ridbFacility:'777'});
+  await expect(popup.locator('.kt-ridb-amenities')).toHaveCount(0);
+  const section=popup.locator('.kt-usfs-site');await section.locator('summary').click();
+  await expect(section).toContainText('Free text written by the Forest Service');
+  await expect(section).not.toContainText('Kept separate');await expect(section).not.toContainText('above');
 });
 test('an unmatched campground shows nothing from the Forest Service layer',async({page,context})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));

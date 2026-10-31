@@ -39,6 +39,8 @@ ROWS_RANGE = (1500, 8000)
 MATCH_RANGE = (300, 2000)
 MATCH_KEEP = 0.8  # fail if matches drop below this share of the saved file
 ID_PATTERN = re.compile(r'[1-9][0-9]*')
+# Same limits data-quality.js enforces when the page validates the file.
+LIMITS = {'text': 600, 'name': 160, 'type': 80, 'cn': 40, 'records': 25, 'facilities': 3000}
 
 # ---------------------------------------------------------------- normalization
 SPACE = re.compile(r'\s+')
@@ -58,7 +60,7 @@ def fold(text):
 
 # Statements about a current outage or limited condition are never turned into a class.
 WATER_TEMPORARY = re.compile(r"\b(currently|temporar|non-?functioning|not (operational|working|functioning)|discontinued|damaged|"
-                             r"off ?line|off for the|unavailable|periods of|winter|summer)")
+                             r"off ?line|off for the|unavailable|periods of|winter|summer|shut off|turned off)")
 WATER_NEGATIVE = re.compile(
     r"\bno (drinking|potable) water\b|\bnon-? ?potable\b|\bnot potable\b|\bno potable\b"
     r"|\b(drinking|potable) water (is |are )?not (provided|available)\b|\bpotable water not available\b"
@@ -105,6 +107,11 @@ TOILET_VAULT = re.compile(r"\bvault\b|\bpit\b|\bouthouses?\b|\bcomposting\b|\bco
 TOILET_NEARBY = re.compile(r"\bavailable nearby\b|\bnearby\b")
 ACCESSIBLE = re.compile(r"\baccessible\b")
 NOT_ACCESSIBLE = re.compile(r"\b(not|non-?) ?(ada )?accessible\b")
+# A negated, closed or outage statement is never a toilet type.
+TOILET_NEGATED = re.compile(r"\b(not|no|never|without)\b|\b(closed|closure|unavailable|out of order|non-?functioning|"
+                            r"temporar\w*|currently|shut off|turned off|discontinued|removed|damaged|decommissioned)\b")
+TOILET_TOPIC = re.compile(r"\b(toilets?|restrooms?|latrines?|outhouses?|privy|privies|vault)\b")
+WATER_TOPIC = re.compile(r"\b(water|potable)\b")
 
 
 def classify_toilet(text):
@@ -116,6 +123,8 @@ def classify_toilet(text):
     stripped = t.strip(' .!')
     if TOILET_NONE.fullmatch(stripped):
         return 'no_toilet', []
+    if TOILET_NEGATED.search(NOT_ACCESSIBLE.sub(' ', t)):
+        return 'unknown', []
     flush, vault, nearby = bool(TOILET_FLUSH.search(t)), bool(TOILET_VAULT.search(t)), bool(TOILET_NEARBY.search(t))
     if nearby:
         # Only a bare statement that restrooms are available nearby is a class. A type plus a nearby place is mixed.
@@ -147,12 +156,22 @@ def rows_digest(rows):
     return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
 
 
-def statement(text, classifier):
+def fit(value, limit):
+    """Truncate over-long agency text with an ellipsis so the page validator accepts it."""
+    if value is None or len(value) <= limit:
+        return value
+    return value[:limit - 1].rstrip() + '\u2026'
+
+
+def statement(text, classifier, topic):
+    """Quote text only when it is about the topic or explicitly classified. Off-topic unclassified text is missing."""
     text = clean_text(text)
     if text is None:
         return None
     kind, qualifiers = classifier(text)
-    item = {'text': text, 'class': kind}
+    if kind == 'unknown' and not topic.search(fold(text)):
+        return None
+    item = {'text': fit(text, LIMITS['text']), 'class': kind}
     if qualifiers:
         item['qualifiers'] = qualifiers
     return item
@@ -166,11 +185,13 @@ def build(rows, wanted):
         if not isinstance(rid, str) or rid not in wanted or not ID_PATTERN.fullmatch(rid):
             continue
         matched.add(rid)
+        if len(str(row['site_cn'])) > LIMITS['cn']:
+            raise ValueError(f"site_cn over {LIMITS['cn']} characters: {row['site_cn']}")
         record = {'cn': str(row['site_cn']),
-                  'name': clean_text(row.get('public_site_name')) or clean_text(row.get('site_name')),
-                  'type': clean_text(row.get('site_type'))}
-        water = statement(row.get('water_availability'), classify_water)
-        toilet = statement(row.get('restroom_availability'), classify_toilet)
+                  'name': fit(clean_text(row.get('public_site_name')) or clean_text(row.get('site_name')), LIMITS['name']),
+                  'type': fit(clean_text(row.get('site_type')), LIMITS['type'])}
+        water = statement(row.get('water_availability'), classify_water, WATER_TOPIC)
+        toilet = statement(row.get('restroom_availability'), classify_toilet, TOILET_TOPIC)
         if water:
             record['water'] = water
         if toilet:
@@ -178,7 +199,7 @@ def build(rows, wanted):
         if not water and not toilet:
             continue
         season = {key: clean_text(row.get(field)) for key, field in (('open_season', 'open_season'), ('description', 'season_description'))}
-        season = {k: v for k, v in season.items() if v}
+        season = {k: fit(v, LIMITS['text']) for k, v in season.items() if v}
         if season:
             record['season'] = season
         record['updated'] = iso_day(row.get('infra_last_update'))
@@ -190,6 +211,11 @@ def build(rows, wanted):
             classes = {r[field]['class'] for r in facility['records'] if field in r} - {'unknown'}
             if len(classes) > 1:
                 facility['conflicts'].append(field)
+    if len(facilities) > LIMITS['facilities']:
+        raise ValueError(f"{len(facilities)} facilities exceed the page limit of {LIMITS['facilities']}")
+    for fid, facility in facilities.items():
+        if len(facility['records']) > LIMITS['records']:
+            raise ValueError(f"Facility {fid} has {len(facility['records'])} records; the page limit is {LIMITS['records']}")
     ordered = {fid: facilities[fid] for fid in sorted(facilities, key=int)}
     stats = {'matched_facilities': len(matched), 'facilities_with_statements': len(ordered),
              'records': sum(len(f['records']) for f in ordered.values())}
@@ -280,7 +306,11 @@ def main(argv=None):
         print(f'Forest Service rows out of range: {len(rows)}; saved file kept.', file=sys.stderr)
         return 1
     wanted = catalogue_facilities(args.index)
-    facilities, stats = build(rows, wanted)
+    try:
+        facilities, stats = build(rows, wanted)
+    except ValueError as error:
+        print(f'{error}; saved file kept.', file=sys.stderr)
+        return 1
     out = Path(args.out)
     if not MATCH_RANGE[0] <= stats['matched_facilities'] <= MATCH_RANGE[1]:
         print(f"Catalogue matches out of range: {stats['matched_facilities']}; saved file kept.", file=sys.stderr)

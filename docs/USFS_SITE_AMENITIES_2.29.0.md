@@ -51,6 +51,10 @@ Text is lowercased and whitespace-folded for matching only. The quoted text is t
 | Restroom | `nearby_only` | Restrooms are stated as available nearby, with no toilet type. |
 | Restroom | `unknown` | "Yes", "Toilet (2)", "Restrooms Available.", "Portable toilet(s)", "Flush & Vault" (mixed types), booking boilerplate, blank, `null`. |
 
+A restroom statement that is negated, closed or an outage ("Flush toilets not available", "Not flush", "Vault toilets closed for season") is never a toilet class. Water text that says water is "shut off" or "turned off" is unknown.
+
+Unclassified text must be about its topic to be quoted. Restroom text that never mentions toilet, restroom, latrine, outhouse, privy or vault, and water text that never mentions water or potable, is treated as missing. A text that is explicitly classified ("No", "Flush", "Pit") is kept. Over-limit text is cut with an ellipsis at the page validator's limits (text 600, name 160, type 80). The build fails and keeps the saved file if a facility has more than 25 records or there are more than 3,000 facilities. The weekly step also runs the client validator on the built file and restores the saved file if it fails.
+
 Restroom qualifier `accessible` is kept only when the text says accessible and does not say "not ADA accessible". Season text is never read for a water or restroom class. A water `seasonal` qualifier needs the word in the water text itself.
 
 ## Measured on the 2026-10-31 snapshot
@@ -60,12 +64,12 @@ Counted over the 2,163 catalogue Recreation.gov IDs (2,020 primary, 143 alias-on
 | Measure | Count |
 | --- | ---: |
 | Distinct catalogue IDs matched | 735 (713 by primary ID, 22 by alias only) |
-| Matched IDs with a water or restroom statement | 691 (696 records) |
-| IDs whose water text gains something the Recreation.gov amenity file lacks (any water text where it reports no drinking water) or whose restroom text does the same for toilets | 659 (638 by primary ID) |
+| Matched IDs with a water or restroom statement | 685 (690 records) |
+| IDs whose water text gains something the Recreation.gov amenity file lacks (any water text where it reports no drinking water) or whose restroom text does the same for toilets | 653 (632 by primary ID) |
 | Same, counting only an explicit normalized class | 639 (618 by primary ID) |
 | Matched IDs where Recreation.gov reports drinking water and the Forest Service says no water or no drinking water | 0 |
 
-Water, by facility: 436 `drinking_water`, 54 `no_drinking_water`, 78 `no_water`, 73 text left `unknown`, 49 with no water text, 1 conflict (ID 251845). Restrooms, by facility: 558 `vault_or_pit`, 94 `flush`, 2 `no_toilet`, 0 `nearby_only`, 35 text left `unknown`, 1 with no restroom text, 1 conflict (ID 234257). The conflicts are a Forest Service record pair that says flush toilets in one and vault toilets in the other, and a pair where one record says water can be treated or filtered and another says drinking water is available from faucets.
+Water, by facility: 436 `drinking_water`, 54 `no_drinking_water`, 78 `no_water`, 32 text left `unknown`, 84 with no water text, 1 conflict (ID 251845). Restrooms, by facility: 558 `vault_or_pit`, 94 `flush`, 2 `no_toilet`, 0 `nearby_only`, 21 text left `unknown`, 9 with no restroom text, 1 conflict (ID 234257). The conflicts are a Forest Service record pair that says flush toilets in one and vault toilets in the other, and a pair where one record says water can be treated or filtered and another says drinking water is available from faucets.
 
 The "gain" counts compare against the Recreation.gov file at the time of this release. A different gain definition produces a different number. The 0 contradictions check holds under every definition tried.
 

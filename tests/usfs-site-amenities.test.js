@@ -56,6 +56,12 @@ test('validator rejects malformed source, class, qualifier, text, date and confl
   assert.equal(Q.validUSFSSiteAmenities(unknownOnly),true,'an unknown class does not disagree');
 });
 
+test('weekly workflow validates the built file with the client validator and restores the saved file on failure',()=>{
+  const step=fs.readFileSync('.github/workflows/fetch-campsite-data.yml','utf8').split('- name: Refresh Forest Service site water and restroom statements')[1].split('- name:')[0];
+  assert.match(step,/build_usfs_site_amenities\.py/);assert.match(step,/validUSFSSiteAmenities/);assert.match(step,/cp "\$saved" data\/campsites\/usfs-site-amenities\.json/);
+  assert.ok(step.indexOf('validUSFSSiteAmenities')<step.indexOf('record usfs_sites US fresh'));
+});
+
 test('committed Forest Service file validates, is dated and keeps agency text apart from classes',()=>{
   const data=JSON.parse(fs.readFileSync('data/campsites/usfs-site-amenities.json','utf8'));
   assert.equal(Q.validUSFSSiteAmenities(data),true);
