@@ -1,0 +1,22 @@
+name: USFS amenity probe
+# Read-only download of USFS Recreation Site attributes for an amenity audit. No commits.
+on:
+  push:
+    branches: [pilot/usfs-amenity-probe]
+permissions:
+  contents: read
+jobs:
+  probe:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - run: python3 scripts/probe_usfs_amenities.py "$RUNNER_TEMP/usfs.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: usfs-amenity-probe
+          path: ${{ runner.temp }}/usfs.json
+          retention-days: 30
