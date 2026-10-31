@@ -5,6 +5,13 @@
   const LIST='https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-list.html';
   const POLICY='https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html';
   const detail=u=>typeof u==='string'&&/^https:\/\/www\.txdot\.gov\/discover\/rest-areas-travel-information-centers\/safety-rest-area-list\/[a-z0-9-]+\.html$/.test(u);
+  // Reviewed official location publishers. Each region names the exact agency source, the
+  // operator and facility class whose state policy may apply, and plausible state bounds.
+  const REGIONS={
+    TX:{name:'Texas',operator:'txdot',facility_kind:'safety_rest_area',publisher:'Texas Department of Transportation',list:LIST,id:/^txdot:[a-f0-9]{24}$/,place:detail,bbox:[-107,25,-93,37]},
+    ID:{name:'Idaho',operator:'itd',facility_kind:'safety_rest_area',publisher:'Idaho Transportation Department',list:'https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/Assets/FeatureServer/5',id:/^itd:[a-f0-9-]{1,64}$/,place:u=>u==='https://itd.idaho.gov/faqs/rest-areas/',bbox:[-117.3,41.9,-111,49.1]}
+  };
+  const regionNames=regions=>regions.map(r=>t(REGIONS[r].name)).join(', ');
   const check=(ok,msg)=>{if(!ok)throw new Error('Official rest areas: '+msg);};
   const utc=s=>typeof s==='string'&&/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(s)&&Number.isFinite(Date.parse(s))&&new Date(s).toISOString()===s.replace('Z','.000Z');
   const activities=['overnight_parking','sleeping_in_vehicle','camping'],policyAge=180*86400000;
@@ -34,7 +41,7 @@
   }
   // This exact catalogue has already established TxDOT safety-rest-area scope.
   // State alone or a guessed OSM operator never establishes agency membership.
-  function policyFor(r,d,now=Date.now()){return resolvePolicy(d.state_policies,{state:r.state,operator:'txdot',facility_kind:'safety_rest_area',facility_id:r.id},now);}
+  function policyFor(r,d,now=Date.now()){const g=REGIONS[d.region||'TX'];return resolvePolicy(d.state_policies,{state:r.state,operator:g.operator,facility_kind:g.facility_kind,facility_id:r.id},now);}
   function policyDescription(result){
     if(!result.sources.length)return t('State rest-area policy unavailable or older than 180 days. Overnight parking, sleeping and camping permission remain unknown.');
     const label=s=>s==='allowed'?t('Allowed'):s==='prohibited'?t('Prohibited'):t('Unknown');
@@ -45,20 +52,34 @@
   }
   function source(s,url,now){check(s&&s.url===url&&/^[a-f0-9]{64}$/.test(s.sha256)&&utc(s.retrieved_at)&&Date.parse(s.retrieved_at)<=now+300000&&s.source_updated_at===null,'invalid source evidence');}
   function validate(d,now=Date.now()){
-    check(d&&d.version===1&&d.region==='TX'&&Array.isArray(d.records)&&d.records.length>0&&d.records.length<=1000,'invalid catalogue');
-    source(d.source,LIST,now);check(d.duration_context?.maximum_hours===24,'invalid duration context');source(d.duration_context.source,POLICY,now);
-    const ids=new Set();
+    const g=REGIONS[d?.region];
+    check(d&&d.version===1&&g&&Array.isArray(d.records)&&d.records.length>0&&d.records.length<=1000,'invalid catalogue');
+    source(d.source,g.list,now);
+    if(d.region==='TX'){check(d.duration_context?.maximum_hours===24,'invalid duration context');source(d.duration_context.source,POLICY,now);}
+    else check(d.operator===g.operator&&d.facility_kind===g.facility_kind&&d.publisher===g.publisher&&d.duration_context===undefined,'invalid catalogue scope');
+    const ids=new Set(),[w,south,e,north]=g.bbox;
     for(const r of d.records){
-      check(r&&/^txdot:[a-f0-9]{24}$/.test(r.id)&&!ids.has(r.id),'duplicate or invalid identity');ids.add(r.id);
-      check(r.state==='TX'&&r.permission==='unknown'&&Array.isArray(r.coordinates)&&r.coordinates.length===2&&r.coordinates.every(Number.isFinite)&&r.coordinates[0]>=-107&&r.coordinates[0]<=-93&&r.coordinates[1]>=25&&r.coordinates[1]<=37,'invalid place or unsupported permission claim');
-      check(detail(r.source_url)&&typeof r.name==='string'&&r.name.length>0&&new TextEncoder().encode(r.name).length<=200&&typeof r.location==='string'&&new TextEncoder().encode(r.location).length<=800&&(r.milepost===null||typeof r.milepost==='string'&&r.milepost.length<=60),'invalid source row');
+      check(r&&g.id.test(r.id)&&!ids.has(r.id),'duplicate or invalid identity');ids.add(r.id);
+      check(r.state===d.region&&r.permission==='unknown'&&Array.isArray(r.coordinates)&&r.coordinates.length===2&&r.coordinates.every(Number.isFinite)&&r.coordinates[0]>=w&&r.coordinates[0]<=e&&r.coordinates[1]>=south&&r.coordinates[1]<=north,'invalid place or unsupported permission claim');
+      check(g.place(r.source_url)&&typeof r.name==='string'&&r.name.length>0&&new TextEncoder().encode(r.name).length<=200&&typeof r.location==='string'&&new TextEncoder().encode(r.location).length<=800&&(r.milepost===null||typeof r.milepost==='string'&&r.milepost.length<=60),'invalid source row');
+      check(r.source_updated_at===undefined||r.source_updated_at===null||utc(r.source_updated_at)&&Date.parse(r.source_updated_at)<=now+300000,'invalid record update date');
     }
     return d;
   }
+  // The region manifest lists only reviewed regions, each at most once.
+  function validateIndex(index){
+    check(index?.version===1&&Array.isArray(index.regions)&&index.regions.length>0&&index.regions.length<=Object.keys(REGIONS).length,'invalid rest-area index');const seen=new Set();
+    for(const x of index.regions){check(x&&REGIONS[x.region]&&x.file===x.region+'.json'&&!seen.has(x.region),'invalid rest-area region');seen.add(x.region);}
+    return index;
+  }
   function coordinate5(x){const n=Math.sign(x)*Math.floor(Math.abs(x)*1e5+.5)/1e5;return(n===0?0:n).toFixed(5);}
   function place(r){const c=r.coordinates.map(x=>Number(coordinate5(x)));return{kind:'spot',id:`spot:${coordinate5(c[1])},${coordinate5(c[0])}`,name:r.name,coordinates:c};}
-  function describe(r,d,now=Date.now()){return t("{0}{1}. TxDOT location list retrieved {2}; source update date not supplied. TxDOT describes a visitor stay limit of up to 24 hours (duration source retrieved {3}). A time limit does not establish permission to sleep overnight.", {"0":(r.location),"1":(r.milepost?t(" \u00b7 Milepost ")+r.milepost:''),"2":(d.source.retrieved_at),"3":(d.duration_context.source.retrieved_at)})+' '+policyDescription(policyFor(r,d,now));}
-  function feature(r,d){const p=place(r);return{type:'Feature',geometry:{type:'Point',coordinates:p.coordinates},properties:{id:p.id,name:r.name,type:'spot',source:'Texas Department of Transportation',rest_area_source_id:r.id,rest_area_source_url:r.source_url,rest_area_evidence:describe(r,d)}};}
+  function describe(r,d,now=Date.now()){
+    const policy=' '+policyDescription(policyFor(r,d,now));
+    if((d.region||'TX')==='TX')return t("{0}{1}. TxDOT location list retrieved {2}; source update date not supplied. TxDOT describes a visitor stay limit of up to 24 hours (duration source retrieved {3}). A time limit does not establish permission to sleep overnight.", {"0":(r.location),"1":(r.milepost?t(" \u00b7 Milepost ")+r.milepost:''),"2":(d.source.retrieved_at),"3":(d.duration_context.source.retrieved_at)})+policy;
+    return t("{0}{1}. {2} location list retrieved {3}; record updated {4}. A listed location does not establish permission to park or sleep overnight.",{"0":r.location,"1":r.milepost?t(" \u00b7 Milepost ")+r.milepost:'',"2":t(REGIONS[d.region].publisher),"3":d.source.retrieved_at,"4":r.source_updated_at||t('date not supplied')})+policy;
+  }
+  function feature(r,d){const p=place(r);return{type:'Feature',geometry:{type:'Point',coordinates:p.coordinates},properties:{id:p.id,name:r.name,type:'spot',source:REGIONS[d.region].publisher,rest_area_source_id:r.id,rest_area_source_url:r.source_url,rest_area_evidence:describe(r,d)}};}
   function within(c,b){const lng=((c[0]+540)%360)-180,w=((b.west+540)%360)-180,e=((b.east+540)%360)-180;return c[1]>=b.south&&c[1]<=b.north&&(b.east-b.west>=360||(w<=e?lng>=w&&lng<=e:lng>=w||lng<=e));}
   function init(map){
     const L=global.L,layer=L.layerGroup();let data=null,pending=null,controller=null,control,status,view=0;
@@ -68,35 +89,45 @@
     const button=(label,action)=>{const b=el('button',label);b.type='button';b.onclick=action;return b;};
     function popup(r,d){
       const box=el('div');box.className='kt-rest-popup';box.dataset.restAreaId=r.id;box.tabIndex=0;box.setAttribute('role','region');box.setAttribute('aria-label',t("Rest-area source details"));box.style.maxHeight=Math.max(80,Math.min(360,map.getSize().y-160))+'px';
-      box.append(el('h2',r.name),el('p',describe(r,d)),link(t("TxDOT place source"),r.source_url),' · ',link(t("TxDOT duration source"),POLICY));
+      box.append(el('h2',r.name),el('p',describe(r,d)));
+      if(d.region==='TX')box.append(link(t("TxDOT place source"),r.source_url),' · ',link(t("TxDOT duration source"),POLICY));
+      else box.append(link(t('{0} place source',{"0":t(REGIONS[d.region].publisher)}),r.source_url),' · ',link(t('{0} location data',{"0":t(REGIONS[d.region].publisher)}),d.source.url));
       const policy=policyFor(r,d);if(policy.sources.length){const sources=el('p');sources.className='kt-rest-policy-sources';policy.sources.forEach((s,i)=>{if(i)sources.append(' · ');sources.append(link(t('State policy source {number}',{number:i+1}),s.url));});box.append(sources);}
       const actions=el('div');actions.className='kt-popup-actions';
       actions.append(button(t("Save rest-area stop"),()=>{const f=feature(r,d);global.KampTrailTrip?.addStop(f.properties.id,f);}),button(t("Overnight permission"),()=>global.KampTrailPermissions?.open(place(r))));box.append(actions);return box;
     }
+    async function readJSON(url,limit,signal){
+      const response=await global.fetch(url,{cache:'no-store',signal});check(response.ok,'source unavailable');check(Number(response.headers.get('content-length'))<=limit,'response exceeds bound');
+      const reader=response.body.getReader(),chunks=[];let size=0;
+      while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>limit){await reader.cancel();throw new Error('Official rest-area response exceeds bound');}chunks.push(value);}
+      const bytes=new Uint8Array(size);let offset=0;for(const c of chunks){bytes.set(c,offset);offset+=c.byteLength;}return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
+    }
     async function load(force=false){
       if(data&&!force)return data;if(pending)return pending;
       controller=new AbortController();const timer=global.setTimeout(()=>controller.abort(),20000);
-      pending=(async()=>{const response=await global.fetch('data/rest-areas/TX.json',{cache:'no-store',signal:controller.signal});check(response.ok,'source unavailable');check(Number(response.headers.get('content-length'))<=512*1024,'response exceeds bound');
-        const reader=response.body.getReader(),chunks=[];let size=0;
-        while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>512*1024){await reader.cancel();throw new Error('Official rest-area response exceeds bound');}chunks.push(value);}
-        const bytes=new Uint8Array(size);let offset=0;for(const c of chunks){bytes.set(c,offset);offset+=c.byteLength;}const catalogue=validate(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes)));
+      pending=(async()=>{const signal=controller.signal,index=validateIndex(await readJSON('data/rest-areas/index.json',16*1024,signal));
+        // One unavailable region never hides the others; its locations stay explicitly missing.
+        const catalogues=[],missing=[];
+        for(const x of index.regions){try{catalogues.push(validate(await readJSON('data/rest-areas/'+x.file,512*1024,signal)));}catch(error){if(signal.aborted)throw error;missing.push(x.region);}}
+        check(catalogues.length>0,'no region available');
         // An unavailable policy cannot prevent use of the independently sourced locations.
-        try{const pr=await global.fetch('data/rest-areas/state-policies.json',{cache:'no-store',signal:controller.signal});check(pr.ok,'state policy unavailable');const reader=pr.body.getReader(),pieces=[];let length=0;while(true){const {done,value}=await reader.read();if(done)break;length+=value.byteLength;if(length>64*1024){await reader.cancel();throw new Error('State policy exceeds bound');}pieces.push(value);}const body=new Uint8Array(length);let pos=0;for(const piece of pieces){body.set(piece,pos);pos+=piece.byteLength;}catalogue.state_policies=validatePolicies(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(body)));}catch{catalogue.state_policies=null;}
-        data=catalogue;return data;
+        let policies=null;try{policies=validatePolicies(await readJSON('data/rest-areas/state-policies.json',64*1024,signal));}catch{policies=null;}
+        for(const c of catalogues)c.state_policies=policies;
+        data={catalogues,missing,regions:catalogues.map(c=>c.region).sort(),rows:catalogues.flatMap(c=>c.records.map(r=>({r,d:c})))};return data;
       })().finally(()=>{global.clearTimeout(timer);pending=null;controller=null;});return pending;
     }
     async function redraw(force=false){
       const current=++view;if(control)control.hidden=!active();if(!active())return;
       if(global.navigator.onLine===false){layer.clearLayers();status.textContent=t("Offline: reconnect to load official rest-area locations. Current opening and overnight permission are unknown.");return;}
-      if(map.getZoom()<6){layer.clearLayers();status.textContent=t("Zoom to level 6 or closer. Official rest-area pilot covers Texas only. Overnight permission is unknown.");return;}
+      if(map.getZoom()<6){layer.clearLayers();status.textContent=t("Zoom to level 6 or closer. Official rest-area coverage: {0}. Overnight permission is unknown.",{"0":regionNames(data?.regions||Object.keys(REGIONS))});return;}
       status.textContent=t("Loading official rest-area locations…");
       try{
         const d=await load(force);if(current!==view||!active()||global.navigator.onLine===false)return;
-        const b=map.getBounds(),bounds={south:b.getSouth(),west:b.getWest(),north:b.getNorth(),east:b.getEast()},rows=d.records.filter(r=>within(r.coordinates,bounds));
-        status.textContent=t("{0} official rest-area location{1} in this view. Texas pilot only; other regions are not covered. TxDOT list retrieved {2}. Overnight permission and current opening are unknown.", {"0":(rows.length),"1":(rows.length===1?'':'s'),"2":(d.source.retrieved_at.slice(0,10))});
+        const b=map.getBounds(),bounds={south:b.getSouth(),west:b.getWest(),north:b.getNorth(),east:b.getEast()},rows=d.rows.filter(x=>within(x.r.coordinates,bounds));
+        status.textContent=t("{0} official rest-area location{1} in this view. Coverage: {2}; other states are not covered. Overnight permission and current opening are unknown.",{"0":rows.length,"1":rows.length===1?'':'s',"2":regionNames(d.regions)})+(d.missing.length?' '+t("Unavailable now: {0}.",{"0":regionNames(d.missing)}):'');
         // Hold marker replacement while any popup is open, as with campsite discovery.
         if(map._popup?.isOpen?.())return;
-        layer.clearLayers();for(const r of rows){const marker=L.marker([r.coordinates[1],r.coordinates[0]],{title:r.name,keyboard:true,icon:L.divIcon({className:'kt-rest-icon',html:'<span>R</span>',iconSize:[26,26],iconAnchor:[13,13]})});marker.ktRestAreaId=r.id;marker.bindPopup(()=>popup(r,d),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(marker);}
+        layer.clearLayers();for(const {r,d} of rows){const marker=L.marker([r.coordinates[1],r.coordinates[0]],{title:r.name,keyboard:true,icon:L.divIcon({className:'kt-rest-icon',html:'<span>R</span>',iconSize:[26,26],iconAnchor:[13,13]})});marker.ktRestAreaId=r.id;marker.bindPopup(()=>popup(r,d),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(marker);}
       }catch(error){if(current===view&&active()){layer.clearLayers();status.textContent=t("Official rest-area catalogue unavailable. Missing locations and overnight permission remain unknown. Reconnect and retry.");}}
     }
     const widget=L.control({position:'bottomright'});widget.onAdd=()=>{control=el('div');control.className='kt-rest-control';control.hidden=true;status=el('p');status.setAttribute('role','status');status.setAttribute('aria-live','polite');control.append(el('strong',t("Official rest areas")),status,button(t("Retry official rest areas"),()=>redraw(true)));L.DomEvent.disableClickPropagation(control);L.DomEvent.disableScrollPropagation(control);return control;};widget.addTo(map);
@@ -105,6 +136,6 @@
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
     return layer;
   }
-  const api={version:'2.22.0',validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
+  const api={version:'2.22.0',REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailRestAreas=api;
 })(typeof window!=='undefined'?window:globalThis);
