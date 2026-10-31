@@ -15,6 +15,11 @@ const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app
     const raw=await fs.readFile(amenityPath);if(raw.length>2*1024*1024||!require('../data-quality.js').validRIDBAmenities(JSON.parse(raw)))throw new Error('Invalid optional RIDB amenity evidence');
     await fs.writeFile(path.join(out,'data','campsites','ridb-amenities.json'),raw);
   }
+  const usfsPath=path.join(root,'data','campsites','usfs-site-amenities.json');
+  if(await fs.stat(usfsPath).then(s=>s.isFile()).catch(()=>false)){
+    const raw=await fs.readFile(usfsPath);if(raw.length>2*1024*1024||!require('../data-quality.js').validUSFSSiteAmenities(JSON.parse(raw)))throw new Error('Invalid optional Forest Service site evidence');
+    await fs.writeFile(path.join(out,'data','campsites','usfs-site-amenities.json'),raw);
+  }
   // The runtime loads this index and its state files separately from merged snapshots.
   await fs.cp(path.join(root,'data','campsites','agency'),path.join(out,'data','campsites','agency'),{recursive:true});
   const elevationRoot=path.join(root,'data','campsites','elevation');

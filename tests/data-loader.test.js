@@ -89,7 +89,7 @@ test('delayed amenity evidence refreshes after popup close without replacing ope
 test('transient state failure is visible and explicit retry succeeds',async()=>{
   let attempts=0;
   const h=harness(async url=>{
-    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json')||url.endsWith('ridb-amenities.json'))return response({});
+    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json')||url.endsWith('ridb-amenities.json')||url.endsWith('usfs-site-amenities.json'))return response({});
     attempts++;
     return attempts===1?{ok:false,status:503}:response({type:'FeatureCollection',features:[feature({id:'NY-1',facility_id:123})]});
   });
@@ -302,4 +302,38 @@ test('Spanish amenity details retain exact counts, qualifiers, original place wo
   await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));
   const p=h.api.getAllCampsites()[0].properties,markup=h.cluster.layers[0].html;
   assert.match(markup,/Original publisher Campground &lt;img src=x&gt;/);assert.match(markup,/Los registros de parcelas de Recreation.gov indican/);assert.match(markup,/mencionado en 1 de 2 registros/);assert.match(markup,/bomba manual: 1 registros/);assert.match(markup,/negativo explícito: 1 registros/);assert.match(markup,/fecha de recuperación desconocida/);assert.match(markup,/2026-10-30/);assert.ok(markup.includes('https://www.recreation.gov/camping/campgrounds/123'));assert.equal(p.fee_status,'unknown');assert.deepEqual(Array.from(p.amenities),[]);assert.equal(h.context.DataQuality.applyFilters([h.api.getAllCampsites()[0]],{amenities:['water']}).length,0);
+});
+
+const usfsPayload=()=>{
+  const rec=(extra={})=>({cn:'5005.1',name:'Pine <b>Campground</b>',type:'CAMPGROUND',water:{text:'Yes, drinking water is available from a hand pump',class:'drinking_water',qualifiers:['hand_pump']},toilet:{text:'Yes',class:'unknown'},season:{open_season:'05/15 - 09/30',description:'Water off in winter'},updated:'2026-08-05',edw_modified:'2026-08-06',...extra});
+  return {version:1,source:{name:'USDA Forest Service Recreation Site record',layer_url:'https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecInfraRecreationSites_02/MapServer/0',license:'CC BY 4.0',basis:'saved_download',retrieved:'2026-10-31',rows_sha256:'c'.repeat(64)},
+    facilities:{'123':{records:[rec()],conflicts:[]},'456':{records:[rec({cn:'1',water:{text:'Potable Water',class:'drinking_water'}}),rec({cn:'2',water:{text:'No water is available',class:'no_water'}})],conflicts:['water']}}};
+};
+test('Forest Service site statements show exact text, credit and dates apart from Recreation.gov records, with no label when ambiguous or conflicting',async()=>{
+  const rows=[feature({name:'Matched Campground',facility_id:'123',schema_version:3}),feature({name:'Conflicted Campground',facility_id:'456',schema_version:3}),feature({name:'Unmatched Campground',facility_id:'789',schema_version:3})];
+  rows[1].geometry.coordinates=[-75.12,43.01];rows[2].geometry.coordinates=[-75.14,43.02];
+  const h=harness(async url=>new Response(JSON.stringify(url.endsWith('usfs-site-amenities.json')?usfsPayload():url.endsWith('_merged.geojson')?{type:'FeatureCollection',features:rows}:{})),{caches:cacheStorage(),location:{href:'https://example.test/kamptrail/'}});
+  await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));
+  const by=Object.fromEntries(h.api.getAllCampsites().map(f=>[f.properties.name,f.properties]));
+  const htmlFor=name=>h.cluster.layers.find(l=>l.html.includes(`>${name}</h2>`)).html;
+  const matched=htmlFor('Matched Campground');
+  assert.ok(by['Matched Campground'].usfs_site_evidence);assert.equal(by['Matched Campground'].ridb_amenity_evidence,undefined);assert.equal(by['Matched Campground'].amenities.length,0);
+  assert.match(matched,/Forest Service site record says/);assert.match(matched,/“Yes, drinking water is available from a hand pump”/);
+  assert.match(matched,/Normalized: Drinking water stated, hand pump/);assert.match(matched,/“Yes”/);assert.match(matched,/No normalized label: the wording is ambiguous\./);
+  assert.match(matched,/Source: USDA Forest Service Recreation Site record, updated 2026-08-05\./);assert.match(matched,/Data retrieved 2026-10-31\. CC BY 4\.0\./);
+  assert.match(matched,/Season text on this record \(context only, not about water or restrooms\): Open season: 05\/15 - 09\/30; Season description: Water off in winter/);
+  assert.ok(!matched.includes('<b>'));assert.match(matched,/Pine &lt;b&gt;Campground/);assert.ok(!/Recreation\.gov campsite records report/.test(matched),'no merge with Recreation.gov counts');
+  const conflicted=htmlFor('Conflicted Campground');
+  assert.match(conflicted,/Forest Service records for this ID disagree/);assert.doesNotMatch(conflicted,/Normalized: /);assert.match(conflicted,/“Potable Water”/);assert.match(conflicted,/“No water is available”/);
+  const unmatched=htmlFor('Unmatched Campground');assert.doesNotMatch(unmatched,/Forest Service site record says|kt-usfs-site/);assert.equal(by['Unmatched Campground'].usfs_site_evidence,undefined);
+  h.api.updateFilters({amenities:['water']});assert.equal(h.api.getVisibleCampsites().length,0);
+});
+test('Spanish Forest Service statements keep the agency text in English and translate only interface words',async()=>{
+  const translations={Intl,Date,localStorage:{getItem:()=> 'es'}};translations.window=translations;vm.runInNewContext(fs.readFileSync('locale.js','utf8'),translations);
+  const row=feature({name:'Matched Campground',facility_id:'123',schema_version:3});
+  const h=harness(async url=>new Response(JSON.stringify(url.endsWith('usfs-site-amenities.json')?usfsPayload():url.endsWith('_merged.geojson')?{type:'FeatureCollection',features:[row]}:{})),{KampTrailI18n:translations.KampTrailI18n,caches:cacheStorage(),location:{href:'https://example.test/kamptrail/'}});
+  await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));
+  const html=h.cluster.layers[0].html;
+  assert.match(html,/El registro del sitio del Servicio Forestal indica/);assert.match(html,/“Yes, drinking water is available from a hand pump”/);assert.match(html,/Normalizado: Agua potable indicada, bomba manual/);
+  assert.match(html,/actualizado 2026-08-05/);assert.match(html,/Datos descargados 2026-10-31/);
 });
