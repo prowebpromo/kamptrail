@@ -17,11 +17,11 @@ import time
 import urllib.error
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from ors_router_pilot import Pilot, street_chain, passes_through, length, now  # noqa: E402
+from ors_router_pilot import Pilot, street_chain, passes_through, length, now, distance_to_line  # noqa: E402
 
-STATES = ('US-NY', 'US-MA', 'US-PA', 'US-OH', 'US-IL', 'US-GA', 'US-CO', 'US-CA', 'US-OR', 'US-WA')
+STATES = tuple(os.environ.get('ORS_STATES', 'US-NY,US-MA,US-PA,US-OH,US-IL,US-GA,US-CO,US-CA,US-OR,US-WA').split(','))
 PER_STATE = 3                  # validated corridors wanted per state
-CANDIDATES_PER_STATE = 8       # attempts per state
+CANDIDATES_PER_STATE = int(os.environ.get('ORS_CANDIDATES', '8'))
 PROFILES = ('hgv', 'bus')
 UNDER, OVER = 0.4, 0.2
 MIN_TEST, MAX_TEST = 2.3, 4.2
@@ -84,6 +84,9 @@ def test_one(p, state, c):
     for i in range(min(len(a_opts), len(b_opts))):
         a, b = a_opts[i][1], b_opts[i][1]
         ctl = p.route(f"{state} {c['id']} car control", 'driving-car', [a, b])
+        row.setdefault('control_attempts', []).append({'status': ctl['status'], 'a': a, 'b': b, 'distance_m': ctl.get('distance_m'),
+            'miss_m': [round(distance_to_line(pt, ctl['line']), 1) for pt in (c['line'][0], c['line'][-1])] if ctl.get('line') else None,
+            'error': (ctl.get('error') or '')[:200]})
         if ctl['status'] == 200 and passes_through(ctl['line'], [c['line'][0], c['line'][-1]]):
             corridor = (a, b)
             row['control_distance_m'] = ctl['distance_m']
