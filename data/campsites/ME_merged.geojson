@@ -11,17 +11,12 @@
         ]
       },
       "properties": {
-        "access": "customers",
-        "charge": "20 USD",
-        "fee": "yes",
         "name": "Wild River Campground",
         "operator": "Pro-Sport, Inc.",
         "payment:cash": "yes",
         "payment:cheque": "yes",
         "phone": "+1-603-726-7737",
         "tourism": "camp_site",
-        "osm_id": 744437964,
-        "osm_type": "way",
         "id": "ridb:239405",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -53,7 +48,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:744437964",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "customers",
+              "charge": "20 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/744437964"
+          }
+        ]
       }
     },
     {
@@ -110,8 +119,6 @@
       "properties": {
         "name": "HASTINGS CAMPGROUND",
         "tourism": "camp_site",
-        "osm_id": 400804588,
-        "osm_type": "way",
         "id": "ridb:232176",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -216,8 +223,6 @@
         "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/acad/planyourvisit/duckharbor.htm",
-        "osm_id": 858219307,
-        "osm_type": "way",
         "id": "ridb:264293",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3387,7 +3392,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5431,7 +5435,6 @@
         ]
       },
       "properties": {
-        "access": "customers",
         "name": "Katahdin Shadows Campground",
         "tourism": "camp_site",
         "osm_id": 7176626097,
@@ -5455,7 +5458,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5463,7 +5465,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:833343568",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "customers"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/833343568"
+          }
+        ]
       }
     },
     {
@@ -5773,7 +5787,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6888,7 +6901,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -8046,7 +8058,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -8054,7 +8065,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8593748531",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8593748531"
+          }
+        ]
       }
     },
     {
@@ -9167,7 +9190,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9218,7 +9240,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9497,7 +9518,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10983,7 +11003,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11054,7 +11073,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11346,7 +11364,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12013,7 +12030,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17111,7 +17127,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -17403,7 +17418,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -20431,7 +20445,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

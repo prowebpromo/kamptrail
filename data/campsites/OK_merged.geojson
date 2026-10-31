@@ -1911,8 +1911,6 @@
         "operator:wikidata": "Q1049334",
         "operator:wikipedia": "en:United States Army Corps of Engineers",
         "tourism": "camp_site",
-        "osm_id": 9395313370,
-        "osm_type": "node",
         "id": "ridb:233666",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4439,8 +4437,6 @@
         "operator": "National Park Service",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234048",
-        "osm_id": 13127375771,
-        "osm_type": "node",
         "id": "ridb:234048",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5267,7 +5263,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6381,7 +6376,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6630,7 +6624,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6670,7 +6663,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9778,7 +9770,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10606,7 +10597,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11670,7 +11660,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11793,7 +11782,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13057,7 +13045,6 @@
         "email": "mingorv@sbcglobal.net",
         "fax": "+1-918-836-7371",
         "internet_access": "wlan",
-        "internet_access:fee": "yes",
         "landuse": "residential",
         "name": "Mingo RV Park",
         "phone": "+1-918-832-8824",
@@ -13082,14 +13069,25 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:2715197",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "internet_access:fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:28:09Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/2715197"
+          }
+        ]
       }
     },
     {
@@ -19235,7 +19233,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -19243,7 +19240,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1076876418",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:28:09Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1076876418"
+          }
+        ]
       }
     },
     {
@@ -22088,7 +22097,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -22096,7 +22104,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1377930538",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:28:09Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1377930538"
+          }
+        ]
       }
     },
     {
@@ -22516,7 +22536,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

@@ -6,11 +6,12 @@ const AxeBuilder=require('@axe-core/playwright').default;
 test.use({serviceWorkers:'block'});
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
 const full='No camping fee. '+('Additional source context. '.repeat(25))+'An Adventure Pass is required. <script>doNotRun()</script>';
-async function fixture(page,context,{mobile=false,unknown=false,openStatus=null,reviewed=false}={}){
+async function fixture(page,context,{mobile=false,unknown=false,openStatus=null,reviewed=false,member=false}={}){
  if(mobile)await page.setViewportSize({width:390,height:844});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
  const record={source:'US Forest Service',source_field:'feedescription',source_record_id:'123',source_url:'https://www.fs.usda.gov/visit/example',query_url:'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query',retrieved_at:'2026-10-29',source_updated_at:null,text:full,classification_text:full,sha256:'a'.repeat(64)};
  const feature={type:'Feature',geometry:{type:'Point',coordinates:[-108.7,39.33]},properties:{id:'usfs:123',name:'Evidence Test Campground',camping_activity:'Campground Camping',schema_version:3,open_status:openStatus,fee_status:unknown?'unknown':'conditional',cost:null,fee_text:unknown?null:full,fee_source:'US Forest Service',fee_checked:'2026-10-29',fee_evidence_records:unknown?[]:[record],amenities:[],rig_friendly:[]}};
+ if(member)feature.properties.member_evidence=[{source_record_id:'osm:way:999',fields:{fee:'no',access:'permit'},retrieved_at:'2026-10-01T00:00:00Z',source_url:'https://www.openstreetmap.org/way/999'}];
  if(reviewed){
   const fee={...record,source_field:'official_page.Fee Site and Info',query_url:null,text:'No fees are required for this site',classification_text:'No fees are required for this site',evidence_kind:'maintained_official_page_observation'};
   const access={...fee,source_field:'official_page.Camping and access',text:'RVs up to 25 feet. Closed in winter. A nearby picnic site costs $5.',classification_text:'',evidence_kind:'maintained_official_page_context',sha256:'b'.repeat(64)};
@@ -56,4 +57,13 @@ test('route cards show retained closure status before fee information and leave 
   const notice=cards.nth(i).locator('.kt-closure-notice');await expect(notice).toContainText('Agency reports: '+status+'.');expect(await notice.evaluate(e=>e.previousElementSibling.tagName)).toBe('H3');
  }
  await expect(cards.nth(2).locator('.kt-closure-notice')).toHaveCount(0);expect(errors).toEqual([]);
+});
+
+test('member evidence discloses separate identity without granting free camping',async({page,context})=>{
+ const {box,errors}=await fixture(page,context,{unknown:true,member:true});
+ await expect(box).toContainText('Separate mapped element');
+ await expect(box).toContainText("It does not establish this campsite's fee or access.");
+ await expect(box).toContainText('Retrieved 2026-10-01');
+ expect(await page.evaluate(()=>KampTrailData.getCampsiteById('usfs:123').properties.fee_status)).toBe('unknown');
+ await context.setOffline(true);await expect(box).toContainText('fee=no');expect(errors).toEqual([]);
 });

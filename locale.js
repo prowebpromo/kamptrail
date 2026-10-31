@@ -6,6 +6,8 @@
   let language = 'en';
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   const es = {
+  "Separate mapped element": "Elemento cartográfico separado",
+  "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Este informe pertenece a un elemento cartográfico separado. No confirma la tarifa ni el acceso de este camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "No se pudo comprobar el almacenamiento sin conexión. Vuelve a conectarte e inténtalo de nuevo antes de viajar.",
   "None saved": "Ninguno guardado",
   "Topo map tiles: {0} cached entries. Only the saved areas and zoom levels are available.": "Mapa Topo: {0} teselas almacenadas. Solo están disponibles las zonas y los niveles de zoom guardados.",
@@ -1651,7 +1653,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.21.1', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
+  global.KampTrailI18n = {version:'2.21.2', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

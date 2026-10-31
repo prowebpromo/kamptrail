@@ -11,7 +11,6 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "horse": "yes",
         "leisure": "horse_riding",
         "name": "ROUND BOTTOM HORSE CAMP",
@@ -19,8 +18,6 @@
         "source": "recreation.gov",
         "sport": "equestrian",
         "tourism": "camp_site",
-        "osm_id": 2454879859,
-        "osm_type": "node",
         "id": "ridb:232483",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/232483",
@@ -51,7 +48,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2454879859",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2454879859"
+          }
+        ]
       }
     },
     {
@@ -237,7 +246,6 @@
         "caravans": "yes",
         "dog": "leashed",
         "drinking_water": "yes",
-        "fee": "yes",
         "group_only": "no",
         "name": "CEDAR POINT CAMPGROUND",
         "nudism": "no",
@@ -254,8 +262,6 @@
         "toilets": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/nfsnc/recreation/camping-cabins/recarea/?recid=48470&actid=29",
-        "osm_id": 408052573,
-        "osm_type": "way",
         "id": "ridb:233312",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -287,7 +293,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:408052573",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/408052573"
+          }
+        ]
       }
     },
     {
@@ -426,7 +444,6 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "horse": "yes",
         "leisure": "horse_riding",
         "name": "CATALOOCHEE HORSE CAMP",
@@ -434,8 +451,6 @@
         "source": "recreation.gov",
         "sport": "equestrian",
         "tourism": "camp_site",
-        "osm_id": 2366425070,
-        "osm_type": "node",
         "id": "ridb:232482",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/232482",
@@ -466,7 +481,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2366425070",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2366425070"
+          }
+        ]
       }
     },
     {
@@ -481,8 +508,6 @@
       "properties": {
         "name": "ARROWHEAD CAMPGROUND",
         "tourism": "camp_site",
-        "osm_id": 226556285,
-        "osm_type": "way",
         "id": "ridb:233910",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -697,8 +722,6 @@
       "properties": {
         "name": "KUYKENDALL GROUP CAMP",
         "tourism": "camp_site",
-        "osm_id": 494010120,
-        "osm_type": "way",
         "id": "ridb:231994",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -914,8 +937,6 @@
         "name": "Curtis Creek Campground",
         "operator": "Pisgah National Forest",
         "tourism": "camp_site",
-        "osm_id": 1185087163,
-        "osm_type": "way",
         "id": "ridb:265043",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1172,12 +1193,9 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "backcountry": "no",
         "caravans": "yes",
-        "charge": "30 USD",
         "drinking_water": "yes",
-        "fee": "yes",
         "internet_access": "no",
         "mobile_reception": "limited",
         "mobile_reception:strength": "issues",
@@ -1198,8 +1216,6 @@
         "tourism": "camp_site",
         "wheelchair": "yes",
         "wikidata": "Q63564672",
-        "osm_id": 1107154604,
-        "osm_type": "way",
         "id": "ridb:273848",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/273848",
@@ -1230,7 +1246,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1107154604",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "charge": "30 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1107154604"
+          }
+        ]
       }
     },
     {
@@ -1285,12 +1315,9 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "backcountry": "no",
         "caravans": "yes",
-        "charge": "30 USD",
         "drinking_water": "yes",
-        "fee": "yes",
         "internet_access": "no",
         "mobile_reception": "no",
         "mobile_reception:strength": "none",
@@ -1308,8 +1335,6 @@
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/233284",
         "wikidata": "Q63564924",
-        "osm_id": 1107154603,
-        "osm_type": "way",
         "id": "ridb:233284",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/233284",
@@ -1340,7 +1365,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1107154603",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "charge": "30 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1107154603"
+          }
+        ]
       }
     },
     {
@@ -1355,12 +1394,9 @@
       "properties": {
         "capacity": "15",
         "description": "<h2>Overview</h2>\n<p>Rocky Bluff Campground offers solitude in a wooded setting located just 3 miles south of the quaint town of Hot Springs and the majestic French Broad River.  The campground is conviently located off of NC Scenic Byway 209 in the Spring Creek Gorge Area.  </p>\n<h2>Recreation</h2>\n<p>Recreation opportunities abound in and around the Hot Springs area. Located on the Appalachian District of the Pisgah National Forest, Rocky Bluff Campground itself is host to three different trail heads. If you are looking for longer-distance hiking opportunities, the famous Appalachian Trail runs right through the town of Hot Springs. Other popular recreation in the area include white water rafting, kayaking, tubing and fishing on the French Broad River. </p>\n<h2>Facilities</h2>\n<p>The campground offers 18 rustic campsites that are designed for passenger car and tent camping. Accessories include picnic tables, tent pads, lantern posts and campfire rings with grills. There are potable water sites located throughout the campground.  <strong>As of 2023, Restroom building is closed and porta-johns are available. </strong></p>\n<h2>Natural Features</h2>\n<p>Rocky Bluff Campground located near Spring Creek, a <a href=\"https://www.hotspringsnc.org/wp-content/uploads/Spring_Creek_Map.pdf\" rel=\"nofollow\">North Carolina Mountain Heritage Trout Water</a> . Winding it's way through deciduous oak forests, stocked with Brook, Brown and Rainbow trout, this creek is touted as a trout angler's paradise, making Rocky Bluff a perfect destination for your fishing camp. </p>\n\n<h2>Nearby Attractions</h2>\n<p>Hot Springs has been a well-known relaxation destination for centuries. The natural hot springs are a main draw for the town, along with the abundance of recreation. Visitors can also find several restaurants, art galleries, shopping, live music and festivals here. </p>\n",
-        "fee": "yes",
         "name": "Rocky Bluff Campground",
         "operator": "US Forest Service",
         "tourism": "camp_site",
-        "osm_id": 2735461075,
-        "osm_type": "node",
         "id": "ridb:264886",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1392,7 +1428,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2735461075",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2735461075"
+          }
+        ]
       }
     },
     {
@@ -1494,8 +1542,6 @@
         "name": "BADIN LAKE CAMPGROUND",
         "operator": "USFS",
         "tourism": "camp_site",
-        "osm_id": 463287214,
-        "osm_type": "way",
         "id": "ridb:233911",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1752,14 +1798,11 @@
       "properties": {
         "addr:state": "NC",
         "description": "<p>RV and tent camping, campground host on site. Flush toilets and shower are available. Picnic shelter on site.</p>",
-        "fee": "yes",
         "name": "Mortimer Campground",
         "note": "Open Season:  April 1 Water:  Drinking Water Restroom:  Flush",
         "operator": "US Forest Service, Grandfather Ranger District",
         "phone": "+1-828-652-2144",
         "tourism": "camp_site",
-        "osm_id": 4733083627,
-        "osm_type": "node",
         "id": "ridb:265052",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1790,7 +1833,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4733083627",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4733083627"
+          }
+        ]
       }
     },
     {
@@ -2435,11 +2490,8 @@
       "properties": {
         "capacity": "14",
         "description": "<p><strong>This site is not maintained but can still be used. </strong>Campers must hike in to the developed areas, and all sites are primitive. No electric hook ups, no toilets, no running water available. </p>",
-        "fee": "no",
         "name": "Boone Fork Campground",
         "tourism": "camp_site",
-        "osm_id": 4733074323,
-        "osm_type": "node",
         "id": "ridb:265059",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2470,7 +2522,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4733074323",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4733074323"
+          }
+        ]
       }
     },
     {
@@ -2530,15 +2594,12 @@
         "addr:postcode": "28714",
         "addr:state": "NC",
         "addr:street": "Black Mountain Campground Road",
-        "fee": "yes",
         "name": "BLACK MOUNTAIN CAMPGROUND",
         "note": "Open Season: April 10, 2015 Usage: Heavy Closest Towns: Burnsville Water: Drinking Water Restroom: Flush toilets and showers",
         "operator": "Cradle of Forestry In America Campground Division",
         "phone": "+1-828-689-9694",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/nfsnc/recarea/?recid=48522",
-        "osm_id": 1097402405,
-        "osm_type": "way",
         "id": "ridb:273780",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2570,7 +2631,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1097402405",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1097402405"
+          }
+        ]
       }
     },
     {
@@ -2583,9 +2656,7 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "caravans": "yes",
-        "fee": "yes",
         "mobile_reception": "no",
         "name": "SMOKEMONT CAMPGROUND",
         "operator": "National Park Service",
@@ -2594,8 +2665,6 @@
         "tents": "yes",
         "tourism": "camp_site",
         "wikidata": "Q63565238",
-        "osm_id": 233908081,
-        "osm_type": "way",
         "id": "ridb:232486",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2627,7 +2696,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:233908081",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/233908081"
+          }
+        ]
       }
     },
     {
@@ -2893,12 +2975,9 @@
       },
       "properties": {
         "capacity": "13",
-        "fee": "no",
         "name": "Wolf Ford Horse Camp",
         "operator": "US Forest Service",
         "tourism": "camp_site",
-        "osm_id": 453509860,
-        "osm_type": "way",
         "id": "ridb:10011396",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2930,7 +3009,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:453509860",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "no"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/453509860"
+          }
+        ]
       }
     },
     {
@@ -3153,13 +3244,10 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "name": "CATALOOCHEE GROUP CAMP",
         "official_name": "Cataloochee Group Camp",
         "source": "recreation.gov",
         "tourism": "camp_site",
-        "osm_id": 2366427510,
-        "osm_type": "node",
         "id": "ridb:232434",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/232434",
@@ -3190,7 +3278,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2366427510",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2366427510"
+          }
+        ]
       }
     },
     {
@@ -3535,7 +3635,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4177,7 +4276,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -7433,11 +7531,9 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "backcountry": "no",
         "capacity:tents": "12",
         "caravans": "no",
-        "charge": "30 USD",
         "dog": "yes",
         "drinking_water": "yes",
         "fee": "yes",
@@ -7476,15 +7572,30 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
-        "data_conflicts": [],
+        "data_conflicts": [
+          "member_fee_disagreement"
+        ],
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1107154599",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "charge": "30 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1107154599"
+          }
+        ]
       }
     },
     {
@@ -7843,7 +7954,6 @@
         ]
       },
       "properties": {
-        "fee": "yes",
         "name": "Yonah Mountain Campground",
         "tourism": "camp_site",
         "osm_id": 2780575385,
@@ -7863,7 +7973,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -7871,7 +7980,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:369315599",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/369315599"
+          }
+        ]
       }
     },
     {
@@ -8188,7 +8309,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -11119,7 +11239,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -11162,7 +11281,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -12518,7 +12636,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -18780,7 +18897,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -22460,7 +22576,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -26659,7 +26774,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -29817,7 +29931,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -32309,7 +32422,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -32317,7 +32429,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12928809456",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12928809456"
+          }
+        ]
       }
     },
     {
@@ -32797,7 +32921,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -32805,7 +32928,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13256996752",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "charge": "10$ Per night",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13256996752"
+          }
+        ]
       }
     },
     {
@@ -39494,7 +39631,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -40665,7 +40801,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -40673,7 +40808,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:701921547",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/701921547"
+          }
+        ]
       }
     },
     {
@@ -42155,7 +42302,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -42278,7 +42424,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -44135,7 +44280,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -47849,7 +47993,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -48726,7 +48869,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -49302,7 +49444,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -49342,7 +49483,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -49384,7 +49524,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -57437,7 +57576,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],
@@ -57511,7 +57649,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "data_conflicts": [],

@@ -221,7 +221,6 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "boundary": "protected_area",
         "landuse": "recreation_ground",
         "massgis:ARTICLE97": "9",
@@ -263,8 +262,6 @@
         "protected": "perpetuity",
         "tourism": "camp_site",
         "type": null,
-        "osm_id": 16106729,
-        "osm_type": "relation",
         "id": "ridb:248072",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -295,7 +292,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:16106729",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:06:32Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/16106729"
+          }
+        ]
       }
     },
     {
@@ -355,7 +364,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -825,7 +833,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1432,7 +1439,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2059,7 +2065,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2106,7 +2111,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4121,7 +4125,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6378,7 +6381,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6386,7 +6388,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:29747657",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "restricted"
+            },
+            "retrieved_at": "2026-10-29T03:06:32Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/29747657"
+          }
+        ]
       }
     },
     {
@@ -8739,7 +8753,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -8780,7 +8793,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

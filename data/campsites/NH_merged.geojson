@@ -11,17 +11,12 @@
         ]
       },
       "properties": {
-        "access": "customers",
-        "charge": "20 USD",
-        "fee": "yes",
         "name": "Wild River Campground",
         "operator": "Pro-Sport, Inc.",
         "payment:cash": "yes",
         "payment:cheque": "yes",
         "phone": "+1-603-726-7737",
         "tourism": "camp_site",
-        "osm_id": 744437964,
-        "osm_type": "way",
         "id": "ridb:239405",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -53,7 +48,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:744437964",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "customers",
+              "charge": "20 USD",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:14:06Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/744437964"
+          }
+        ]
       }
     },
     {
@@ -486,18 +495,14 @@
         ]
       },
       "properties": {
-        "access": "permit",
         "addr:city": "Waterville Valley",
         "addr:postcode": "03215",
         "addr:state": "NH",
         "addr:street": "Tripoli Road",
-        "fee": "yes",
         "internet_access": "no",
         "name": "OSCEOLA VISTA CAMPGROUND",
         "operator": "National Forest",
         "tourism": "camp_site",
-        "osm_id": 1125191110,
-        "osm_type": "way",
         "id": "ridb:232308",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -529,7 +534,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1125191110",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:14:06Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1125191110"
+          }
+        ]
       }
     },
     {
@@ -757,8 +775,6 @@
         "operator": "US Forest Service",
         "phone": "+1 603 536 6100",
         "tourism": "camp_site",
-        "osm_id": 1004215386,
-        "osm_type": "way",
         "id": "ridb:232177",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -849,13 +865,9 @@
         ]
       },
       "properties": {
-        "charge": "24 USD/night",
-        "fee": "yes",
         "fixme": "Some sites can now be reserved online through recreation.gov. Any site not listed on recreation.gov is operated on a first-come, first-served policy. toilets = Flush Toilet. water = Faucet",
         "name": "RUSSELL POND CAMPGROUND",
         "tourism": "camp_site",
-        "osm_id": 1125191111,
-        "osm_type": "way",
         "id": "ridb:273778",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -887,7 +899,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1125191111",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "charge": "24 USD/night",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:14:06Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1125191111"
+          }
+        ]
       }
     },
     {
@@ -1177,7 +1202,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1600,7 +1624,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -1647,7 +1670,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2407,7 +2429,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2595,7 +2616,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2666,7 +2686,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -2709,7 +2728,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3367,7 +3385,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -3754,7 +3771,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4211,7 +4227,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -4255,7 +4270,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5789,7 +5803,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6608,7 +6621,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6652,7 +6664,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6827,7 +6838,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -6989,7 +6999,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12502,7 +12511,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -12602,7 +12610,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

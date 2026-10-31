@@ -1,0 +1,5610 @@
+{
+ "frozen_commit": "ef1a132ce4a30ca0b33bc0871d7500c8773d8d26",
+ "generated_with": "build_fixtures.js, KT_PROVENANCE=s2",
+ "fixtures": [
+  {
+   "fixture_id": "A-osm:node:10905810387",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "IA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1174046862",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:10905810387",
+     "tags": {
+      "access": "private",
+      "name": "Ingawanis Adventure Base",
+      "osm_id": 10905810387,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1174046862",
+     "tags": {
+      "access": "private",
+      "fee": "yes",
+      "name": "Ingawanis Adventure Base",
+      "osm_id": 1174046862,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "private",
+     "osm_id": 10905810387,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "access": "private",
+     "osm_id": 10905810387,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1174046862",
+      "fields": {
+       "access": "private",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:00:45Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:11017359935",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "WA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:relation:14600180",
+     "value": "no",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:11017359935",
+     "tags": {
+      "name": "Sandy Camp",
+      "osm_id": 11017359935,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:relation:14600180",
+     "tags": {
+      "fee": "no",
+      "name": "Sandy Camp",
+      "osm_id": 14600180,
+      "osm_type": "relation",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 11017359935,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:11017359935 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 11017359935,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:relation:14600180",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T03:40:19Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:relation:14600180 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:1107288682",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1292634807",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "charge",
+     "donor": "osm:way:1292634807",
+     "value": "35 USD/night",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:1107288682",
+     "tags": {
+      "name": "Burnt Rancheria Campground",
+      "osm_id": 1107288682,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1292634807",
+     "tags": {
+      "charge": "35 USD/night",
+      "fee": "yes",
+      "name": "Burnt Rancheria Campground",
+      "osm_id": 1292634807,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "35 USD/night",
+     "osm_id": 1107288682,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:1107288682 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 1107288682,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1292634807",
+      "fields": {
+       "charge": "35 USD/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1292634807 :: charge=35 USD/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:12671020366",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "IL",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:760586141",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:12671020366",
+     "tags": {
+      "name": "Questing Hills Equistrain Campground",
+      "osm_id": 12671020366,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:760586141",
+     "tags": {
+      "fee": "yes",
+      "name": "Questing Hills Equestrian Campground",
+      "osm_id": 760586141,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 12671020366,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:12671020366 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 12671020366,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:760586141",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:58:59Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:760586141 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:12843318514",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "MN",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:node:12843318515",
+     "value": "no",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:node:12843318515",
+     "value": "permit",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:12843318514",
+     "tags": {
+      "name": "Saganaga Lake #13",
+      "osm_id": 12843318514,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:12843318515",
+     "tags": {
+      "access": "permit",
+      "fee": "no",
+      "name": "Saganaga Lake #12",
+      "osm_id": 12843318515,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "access": "permit",
+     "osm_id": 12843318514,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "permit",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:12843318514 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 12843318514,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:12843318515",
+      "fields": {
+       "access": "permit",
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T03:08:26Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:12843318515 :: access=permit; fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:12983070913",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CO",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:node:12983070914",
+     "value": "permit",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:12983070913",
+     "tags": {
+      "name": "Rippling Brook River Camp 1",
+      "osm_id": 12983070913,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:12983070914",
+     "tags": {
+      "access": "permit",
+      "name": "Rippling Brook River Camp 2",
+      "osm_id": 12983070914,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "access": "permit",
+     "osm_id": 12983070913,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "permit",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 12983070913,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:12983070914",
+      "fields": {
+       "access": "permit"
+      },
+      "retrieved_at": "2026-10-29T02:53:12Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:12983070914 :: access=permit [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:1596375040",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "OR",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1185241047",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:1596375040",
+     "tags": {
+      "name": "Ainsworth Campground",
+      "osm_id": 1596375040,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1185241047",
+     "tags": {
+      "fee": "yes",
+      "name": "Ainsworth Campground",
+      "osm_id": 1185241047,
+      "osm_type": "way",
+      "sanitary_dump_station:fee": "yes",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 1596375040,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:1596375040 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 1596375040,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1185241047",
+      "fields": {
+       "fee": "yes",
+       "sanitary_dump_station:fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:29:55Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1185241047 :: fee=yes; sanitary_dump_station:fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:1922410822",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "UT",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:relation:15524671",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:relation:15524671",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:1922410822",
+     "tags": {
+      "name": "Little Mill Campground",
+      "osm_id": 1922410822,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:14119851944",
+     "tags": {
+      "name": "Little Mill Campground",
+      "osm_id": 14119851944,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:relation:15524671",
+     "tags": {
+      "access": "yes",
+      "fee": "yes",
+      "name": "Little Mill Campground",
+      "osm_id": 15524671,
+      "osm_type": "relation",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "yes",
+     "osm_id": 1922410822,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:1922410822 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 1922410822,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:relation:15524671",
+      "fields": {
+       "access": "yes",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:37:36Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:relation:15524671 :: access=yes; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:2332493731",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "NM",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1289006722",
+     "value": "no",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:way:1289006722",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:2332493731",
+     "tags": {
+      "name": "James Canyon Campground",
+      "osm_id": 2332493731,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1289006722",
+     "tags": {
+      "access": "yes",
+      "fee": "no",
+      "name": "James Canyon Campground",
+      "osm_id": 1289006722,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "access": "yes",
+     "osm_id": 2332493731,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:2332493731 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 2332493731,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1289006722",
+      "fields": {
+       "access": "yes",
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T03:19:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1289006722 :: access=yes; fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:2366027152",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "NC",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "charge",
+     "donor": "osm:way:1107154599",
+     "value": "30 USD",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:way:1107154599",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:2366027152",
+     "tags": {
+      "fee": "yes",
+      "name": "Big Creek Campground",
+      "osm_id": 2366027152,
+      "osm_type": "node",
+      "tourism": "camp_site;caravan_site"
+     }
+    },
+    {
+     "id": "osm:way:1107154599",
+     "tags": {
+      "access": "yes",
+      "charge": "30 USD",
+      "fee": "yes",
+      "name": "Big Creek Campground",
+      "osm_id": 1107154599,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "30 USD",
+     "access": "yes",
+     "osm_id": 2366027152,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:2366027152 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 2366027152,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1107154599",
+      "fields": {
+       "access": "yes",
+       "charge": "30 USD",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:25:26Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [
+     "member_fee_disagreement"
+    ],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:2366027152 :: fee=yes",
+      "osm:way:1107154599 :: access=yes; charge=30 USD; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:2462384222",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "AL",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:node:2462387598",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:2462384222",
+     "tags": {
+      "name": "Backcountry 1",
+      "osm_id": 2462384222,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462384236",
+     "tags": {
+      "name": "Backcountry 2",
+      "osm_id": 2462384236,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462384974",
+     "tags": {
+      "name": "Backcountry 3",
+      "osm_id": 2462384974,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462384976",
+     "tags": {
+      "name": "Backcountry 4",
+      "osm_id": 2462384976,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462384980",
+     "tags": {
+      "name": "Backcountry 5",
+      "osm_id": 2462384980,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462387570",
+     "tags": {
+      "name": "Backcountry 11",
+      "osm_id": 2462387570,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462387592",
+     "tags": {
+      "name": "Backcountry 9",
+      "osm_id": 2462387592,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462387594",
+     "tags": {
+      "name": "Backcountry 8",
+      "osm_id": 2462387594,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462387598",
+     "tags": {
+      "fee": "yes",
+      "name": "Backcountry 6",
+      "osm_id": 2462387598,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:2462387602",
+     "tags": {
+      "name": "Backcountry 10",
+      "osm_id": 2462387602,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 2462384222,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:2462384222 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 2462384222,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:2462387598",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:46:11Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:2462387598 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:2780575385",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "GA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:369315599",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:2780575385",
+     "tags": {
+      "name": "Yonah Mountain Campground",
+      "osm_id": 2780575385,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:369315599",
+     "tags": {
+      "fee": "yes",
+      "name": "Yonah Mountain Campground",
+      "osm_id": 369315599,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 2780575385,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:2780575385 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 2780575385,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:369315599",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:56:22Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:369315599 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:2918151787",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "MI",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1192760853",
+     "value": "no",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:2918151787",
+     "tags": {
+      "name": "Rock Harbor",
+      "osm_id": 2918151787,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1192760853",
+     "tags": {
+      "fee": "no",
+      "name": "Rock Harbor",
+      "osm_id": 1192760853,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 2918151787,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:2918151787 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 2918151787,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1192760853",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T03:07:26Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1192760853 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:2937772756",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "MI",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:way:816734282",
+     "value": "customers",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:2937772756",
+     "tags": {
+      "name": "Timber Trails RV Park",
+      "osm_id": 2937772756,
+      "osm_type": "node",
+      "tourism": "caravan_site"
+     }
+    },
+    {
+     "id": "osm:way:816734282",
+     "tags": {
+      "access": "customers",
+      "name": "Timber Trails RV Park",
+      "osm_id": 816734282,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "access": "customers",
+     "osm_id": 2937772756,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "customers",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 2937772756,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:816734282",
+      "fields": {
+       "access": "customers"
+      },
+      "retrieved_at": "2026-10-29T03:07:26Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:816734282 :: access=customers [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:3593021106",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "UT",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:node:5093450269",
+     "value": "permit",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:3593021106",
+     "tags": {
+      "name": "Campsite 1",
+      "osm_id": 3593021106,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:5093450269",
+     "tags": {
+      "access": "permit",
+      "name": "Campsite 2",
+      "osm_id": 5093450269,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "access": "permit",
+     "osm_id": 3593021106,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "permit",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 3593021106,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:5093450269",
+      "fields": {
+       "access": "permit"
+      },
+      "retrieved_at": "2026-10-29T03:37:36Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:5093450269 :: access=permit [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:385475250",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "PA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1233144105",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:385475250",
+     "tags": {
+      "name": "Lazy K Campground",
+      "osm_id": 385475250,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1233144105",
+     "tags": {
+      "fee": "yes",
+      "name": "Lazy-K Campground",
+      "osm_id": 1233144105,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 385475250,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:385475250 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 385475250,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1233144105",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:32:01Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1233144105 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:4345184689",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "AR",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1419287980",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:way:1419287980",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:4345184689",
+     "tags": {
+      "name": "Quarry Park",
+      "osm_id": 4345184689,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1419287980",
+     "tags": {
+      "access": "yes",
+      "fee": "yes",
+      "name": "Quarry Park",
+      "osm_id": 1419287980,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "yes",
+     "osm_id": 4345184689,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:4345184689 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 4345184689,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1419287980",
+      "fields": {
+       "access": "yes",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:50:05Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1419287980 :: access=yes; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:5254954348",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:node:5254954349",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "charge",
+     "donor": "osm:node:5254954349",
+     "value": "$250",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:node:5254954349",
+     "value": "permissive",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:5254954348",
+     "tags": {
+      "name": "Group Camp Site #2",
+      "osm_id": 5254954348,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:5254954349",
+     "tags": {
+      "access": "permissive",
+      "charge": "$250",
+      "fee": "yes",
+      "name": "Group Camp Site #3",
+      "osm_id": 5254954349,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:5254954350",
+     "tags": {
+      "name": "Group Camp Site #4",
+      "osm_id": 5254954350,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:5254954351",
+     "tags": {
+      "name": "Group Camp Site #1",
+      "osm_id": 5254954351,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "$250",
+     "access": "permissive",
+     "osm_id": 5254954348,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "permissive",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:5254954348 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 5254954348,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:5254954349",
+      "fields": {
+       "access": "permissive",
+       "charge": "$250",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:5254954349 :: access=permissive; charge=$250; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:5421693475",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "IA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1272558231",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:5421693475",
+     "tags": {
+      "name": "Twisted Oak Campground",
+      "osm_id": 5421693475,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1272558231",
+     "tags": {
+      "fee": "yes",
+      "name": "Twisted Oak Campground",
+      "osm_id": 1272558231,
+      "osm_type": "way",
+      "tourism": "caravan_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 5421693475,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:5421693475 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 5421693475,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1272558231",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:00:45Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1272558231 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:5781799257",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "NY",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1300537514",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:5781799257",
+     "tags": {
+      "name": "Lakewood campground",
+      "osm_id": 5781799257,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1300537514",
+     "tags": {
+      "fee": "yes",
+      "name": "Lakewood Campground",
+      "osm_id": 1300537514,
+      "osm_type": "way",
+      "tourism": "caravan_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 5781799257,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:5781799257 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 5781799257,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1300537514",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:20:01Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1300537514 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:5788666453",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "ID",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "charge",
+     "donor": "osm:node:13897969223",
+     "value": "54",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:node:13897969223",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:5788666453",
+     "tags": {
+      "name": "Whitetail Campground",
+      "osm_id": 5788666453,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:13897969223",
+     "tags": {
+      "access": "yes",
+      "charge": "54",
+      "name": "Whitetail Campground A",
+      "osm_id": 13897969223,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:13897970168",
+     "tags": {
+      "access": "yes",
+      "charge": "54",
+      "name": "Whitetail Campground B",
+      "osm_id": 13897970168,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "charge": "54",
+     "access": "yes",
+     "osm_id": 5788666453,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 5788666453,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:13897969223",
+      "fields": {
+       "access": "yes",
+       "charge": "54"
+      },
+      "retrieved_at": "2026-10-29T02:58:04Z"
+     },
+     {
+      "source_record_id": "osm:node:13897970168",
+      "fields": {
+       "access": "yes",
+       "charge": "54"
+      },
+      "retrieved_at": "2026-10-29T02:58:04Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:13897969223 :: access=yes; charge=54 [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:13897970168 :: access=yes; charge=54 [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:5828450502",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CO",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:616476211",
+     "value": "no",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:5828450502",
+     "tags": {
+      "name": "Dispersed Camping",
+      "osm_id": 5828450502,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:616476211",
+     "tags": {
+      "fee": "no",
+      "name": "Dispersed Camping",
+      "osm_id": 616476211,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 5828450502,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:5828450502 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 5828450502,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:616476211",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T02:53:12Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:616476211 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:6369246655",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "GA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:680239647",
+     "value": "no",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:way:680239647",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:6369246655",
+     "tags": {
+      "name": "Rush Creek Campground",
+      "osm_id": 6369246655,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:680239647",
+     "tags": {
+      "access": "yes",
+      "fee": "no",
+      "name": "Rush Creek Campground",
+      "osm_id": 680239647,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "access": "yes",
+     "osm_id": 6369246655,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:6369246655 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 6369246655,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:680239647",
+      "fields": {
+       "access": "yes",
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T02:56:22Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:680239647 :: access=yes; fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:7157761509",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "MN",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:592156327",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:7157761509",
+     "tags": {
+      "name": "Perrot State Park Campground",
+      "osm_id": 7157761509,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:592156327",
+     "tags": {
+      "fee": "yes",
+      "name": "Perrot State Park Campground",
+      "osm_id": 592156327,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 7157761509,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:7157761509 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 7157761509,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:592156327",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:08:26Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:592156327 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:7176626097",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "ME",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:way:833343568",
+     "value": "customers",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:7176626097",
+     "tags": {
+      "name": "Katahdin Shadows Campground",
+      "osm_id": 7176626097,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:833343568",
+     "tags": {
+      "access": "customers",
+      "name": "Katahdin Shadows Campground",
+      "osm_id": 833343568,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "access": "customers",
+     "osm_id": 7176626097,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "customers",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 7176626097,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:833343568",
+      "fields": {
+       "access": "customers"
+      },
+      "retrieved_at": "2026-10-29T03:04:46Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:833343568 :: access=customers [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:7486715212",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "MN",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:244588682",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "charge",
+     "donor": "osm:way:244588682",
+     "value": "16 USD",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:7486715212",
+     "tags": {
+      "name": "West Seelye Bay  Campground",
+      "osm_id": 7486715212,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:244588682",
+     "tags": {
+      "charge": "16 USD",
+      "fee": "yes",
+      "name": "East Seelye Bay Campground",
+      "osm_id": 244588682,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:244588685",
+     "tags": {
+      "name": "West Seelye Bay Campground",
+      "osm_id": 244588685,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "16 USD",
+     "osm_id": 7486715212,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:7486715212 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 7486715212,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:244588682",
+      "fields": {
+       "charge": "16 USD",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:08:26Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:244588682 :: charge=16 USD; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:7610338480",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "AK",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:way:523991079",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:7610338480",
+     "tags": {
+      "charge": "$20",
+      "fee": "yes",
+      "name": "Eagle River Campground",
+      "osm_id": 7610338480,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:523991079",
+     "tags": {
+      "access": "yes",
+      "fee": "yes",
+      "name": "Eagle River Campground",
+      "osm_id": 523991079,
+      "osm_type": "way",
+      "tourism": "caravan_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "$20",
+     "access": "yes",
+     "osm_id": 7610338480,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:7610338480 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "$20",
+     "osm_id": 7610338480,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:523991079",
+      "fields": {
+       "access": "yes",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:47:12Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [
+     "member_fee_disagreement"
+    ],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:7610338480 :: fee=yes",
+      "osm:way:523991079 :: access=yes; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:7779439134",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CO",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:node:7779439136",
+     "value": "permit",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:7779439134",
+     "tags": {
+      "fee": "yes",
+      "name": "Thunder Lake CS #1",
+      "osm_id": 7779439134,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:7779439135",
+     "tags": {
+      "fee": "yes",
+      "name": "Thunder Lake CS #2",
+      "osm_id": 7779439135,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:7779439136",
+     "tags": {
+      "access": "permit",
+      "fee": "yes",
+      "name": "Thunder Lake CS #3",
+      "osm_id": 7779439136,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "permit",
+     "osm_id": 7779439134,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "permit",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:7779439134 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 7779439134,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:7779439135",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:53:12Z"
+     },
+     {
+      "source_record_id": "osm:node:7779439136",
+      "fields": {
+       "access": "permit",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:53:12Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:7779439134 :: fee=yes",
+      "osm:node:7779439135 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:7779439136 :: access=permit; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:8021890291",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "FL",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:549386043",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:way:549386043",
+     "value": "private",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:8021890291",
+     "tags": {
+      "name": "Naval Air Station Key West Campground",
+      "osm_id": 8021890291,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:549386043",
+     "tags": {
+      "access": "private",
+      "fee": "yes",
+      "internet_access:fee": "no",
+      "name": "Naval Air Station Key West Campground",
+      "osm_id": 549386043,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "private",
+     "osm_id": 8021890291,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 8021890291,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:549386043",
+      "fields": {
+       "access": "private",
+       "fee": "yes",
+       "internet_access:fee": "no"
+      },
+      "retrieved_at": "2026-10-29T02:55:27Z"
+     }
+    ],
+    "access_hold": {
+     "value": "private",
+     "source_record_id": "osm:way:549386043"
+    },
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:8397841888",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:node:8397841889",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:8397841888",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Lone Pine #1",
+      "osm_id": 8397841888,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8397841889",
+     "tags": {
+      "access": "yes",
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Lone Pine #2",
+      "osm_id": 8397841889,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8397841890",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Lone Pine #3",
+      "osm_id": 8397841890,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8397841891",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Lone Pine #4",
+      "osm_id": 8397841891,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8397841892",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Lone Pine #5",
+      "osm_id": 8397841892,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8397841893",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Lone Pine #6",
+      "osm_id": 8397841893,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8397841894",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Lone Pine #7",
+      "osm_id": 8397841894,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "$20/night",
+     "access": "yes",
+     "osm_id": 8397841888,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:8397841888 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "$20/night",
+     "osm_id": 8397841888,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:8397841889",
+      "fields": {
+       "access": "yes",
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8397841890",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8397841891",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8397841892",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8397841893",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8397841894",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:8397841888 :: fee=yes",
+      "osm:node:8397841889 :: access=yes; charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8397841890 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8397841891 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8397841892 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8397841893 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8397841894 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:8417081500",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:node:8417081512",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:8417081500",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #1",
+      "osm_id": 8417081500,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081501",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #2",
+      "osm_id": 8417081501,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081504",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #3",
+      "osm_id": 8417081504,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081505",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #4",
+      "osm_id": 8417081505,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081506",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #5",
+      "osm_id": 8417081506,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081507",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #7",
+      "osm_id": 8417081507,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081508",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #8",
+      "osm_id": 8417081508,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081509",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #9",
+      "osm_id": 8417081509,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081510",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #10",
+      "osm_id": 8417081510,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8417081512",
+     "tags": {
+      "access": "yes",
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #11",
+      "osm_id": 8417081512,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:8421103911",
+     "tags": {
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #6",
+      "osm_id": 8421103911,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:10981309019",
+     "tags": {
+      "access": "yes",
+      "charge": "$20/night",
+      "fee": "yes",
+      "name": "Skunk Creek #12",
+      "osm_id": 10981309019,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "$20/night",
+     "access": "yes",
+     "osm_id": 8417081500,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:8417081500 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "charge": "$20/night",
+     "osm_id": 8417081500,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:8417081501",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081504",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081505",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081506",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081507",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081508",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081509",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081510",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8417081512",
+      "fields": {
+       "access": "yes",
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:8421103911",
+      "fields": {
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     },
+     {
+      "source_record_id": "osm:node:10981309019",
+      "fields": {
+       "access": "yes",
+       "charge": "$20/night",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:8417081500 :: fee=yes",
+      "osm:node:8417081501 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081504 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081505 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081506 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081507 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081508 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081509 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081510 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8417081512 :: access=yes; charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:8421103911 :: charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:10981309019 :: access=yes; charge=$20/night; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:9180786234",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "AK",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:node:13131564114",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:9180786234",
+     "tags": {
+      "fee": "no",
+      "name": "Heritage Falls Campsite South",
+      "osm_id": 9180786234,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:13131564114",
+     "tags": {
+      "access": "yes",
+      "fee": "no",
+      "name": "Heritage Falls Campsite North",
+      "osm_id": 13131564114,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "access": "yes",
+     "osm_id": 9180786234,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9180786234 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9180786234,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:13131564114",
+      "fields": {
+       "access": "yes",
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T02:47:12Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9180786234 :: fee=no",
+      "osm:node:13131564114 :: access=yes; fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:9689158668",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "AK",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:node:14099939720",
+     "value": "no",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:9689158668",
+     "tags": {
+      "access": "yes",
+      "name": "Twin Falls North Campsite",
+      "osm_id": 9689158668,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:14099939720",
+     "tags": {
+      "access": "yes",
+      "fee": "no",
+      "name": "Twin Falls South Campsite",
+      "osm_id": 14099939720,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "access": "yes",
+     "osm_id": 9689158668,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9689158668 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "access": "yes",
+     "osm_id": 9689158668,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:14099939720",
+      "fields": {
+       "access": "yes",
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T02:47:12Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:14099939720 :: access=yes; fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:node:9970863588",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CT",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:964648648",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:node:9970863588",
+     "tags": {
+      "name": "Montauk County Park RV Campground",
+      "osm_id": 9970863588,
+      "osm_type": "node",
+      "tourism": "caravan_site"
+     }
+    },
+    {
+     "id": "osm:way:964648648",
+     "tags": {
+      "fee": "yes",
+      "name": "Montauk County Park RV Campground",
+      "osm_id": 964648648,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 9970863588,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9970863588 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9970863588,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:964648648",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:53:59Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:964648648 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:1062744164",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "NY",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:way:1062961186",
+     "value": "private",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:1062744164",
+     "tags": {
+      "name": "Site 1A",
+      "osm_id": 1062744164,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1062744165",
+     "tags": {
+      "name": "Site 1B",
+      "osm_id": 1062744165,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1062961186",
+     "tags": {
+      "access": "private",
+      "name": "Site 4A",
+      "osm_id": 1062961186,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1062961187",
+     "tags": {
+      "access": "private",
+      "name": "Site 5A",
+      "osm_id": 1062961187,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1062961197",
+     "tags": {
+      "access": "private",
+      "name": "Site 10",
+      "osm_id": 1062961197,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1062961198",
+     "tags": {
+      "access": "private",
+      "name": "Site 11",
+      "osm_id": 1062961198,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "access": "private",
+     "osm_id": 1062744164,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 1062744164,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1062961186",
+      "fields": {
+       "access": "private"
+      },
+      "retrieved_at": "2026-10-29T03:20:01Z"
+     },
+     {
+      "source_record_id": "osm:way:1062961187",
+      "fields": {
+       "access": "private"
+      },
+      "retrieved_at": "2026-10-29T03:20:01Z"
+     },
+     {
+      "source_record_id": "osm:way:1062961197",
+      "fields": {
+       "access": "private"
+      },
+      "retrieved_at": "2026-10-29T03:20:01Z"
+     },
+     {
+      "source_record_id": "osm:way:1062961198",
+      "fields": {
+       "access": "private"
+      },
+      "retrieved_at": "2026-10-29T03:20:01Z"
+     }
+    ],
+    "access_hold": {
+     "value": "private",
+     "source_record_id": "osm:way:1062961186"
+    },
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:23646816",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:460160638",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:23646816",
+     "tags": {
+      "name": "Malibu Creek Campground",
+      "osm_id": 23646816,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:460160638",
+     "tags": {
+      "fee": "yes",
+      "name": "Malibu Creek Campground",
+      "osm_id": 460160638,
+      "osm_type": "way",
+      "tourism": "caravan_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 23646816,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:23646816 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 23646816,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:460160638",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:460160638 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:259289402",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "NM",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1266999095",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:way:1266999095",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:259289402",
+     "tags": {
+      "name": "Pine Springs Campground",
+      "osm_id": 259289402,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1266999095",
+     "tags": {
+      "access": "yes",
+      "fee": "yes",
+      "name": "Pine Springs Campground",
+      "osm_id": 1266999095,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "yes",
+     "osm_id": 259289402,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:259289402 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 259289402,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1266999095",
+      "fields": {
+       "access": "yes",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:19:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1266999095 :: access=yes; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:322133776",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "CA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:322133783",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:322133776",
+     "tags": {
+      "name": "Port San Luis RV Campground",
+      "osm_id": 322133776,
+      "osm_type": "way",
+      "tourism": "caravan_site"
+     }
+    },
+    {
+     "id": "osm:way:322133783",
+     "tags": {
+      "fee": "yes",
+      "name": "Port San Luis RV Campground",
+      "osm_id": 322133783,
+      "osm_type": "way",
+      "tourism": "caravan_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 322133776,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:322133776 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 322133776,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:322133783",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T02:52:02Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:322133783 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:364973410",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "PA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "access",
+     "donor": "osm:way:1029939158",
+     "value": "private",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:364973410",
+     "tags": {
+      "fee": "yes",
+      "name": "Spring Gulch RV Campground",
+      "osm_id": 364973410,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1029939158",
+     "tags": {
+      "access": "private",
+      "fee": "yes",
+      "name": "Spring Gulch RV Campground",
+      "osm_id": 1029939158,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "private",
+     "osm_id": 364973410,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 364973410,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1029939158",
+      "fields": {
+       "access": "private",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:32:01Z"
+     }
+    ],
+    "access_hold": {
+     "value": "private",
+     "source_record_id": "osm:way:1029939158"
+    },
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:713214431",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "TX",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:891765129",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:713214431",
+     "tags": {
+      "name": "Site: GS, Loop: Bear Creek",
+      "osm_id": 713214431,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891765129",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 30, Loop: Bear Creek",
+      "osm_id": 891765129,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891765744",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 29, Loop: Bear Creek",
+      "osm_id": 891765744,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891870360",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 28, Loop: Bear Creek",
+      "osm_id": 891870360,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891870933",
+     "tags": {
+      "fee": "no",
+      "name": "Site: 27, Loop: Bear Creek",
+      "osm_id": 891870933,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891871723",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 26, Loop: Bear Creek",
+      "osm_id": 891871723,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891873391",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 40, Loop: Bear Creek",
+      "osm_id": 891873391,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891874182",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 39, Loop: Bear Creek",
+      "osm_id": 891874182,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891875048",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 38, Loop: Bear Creek",
+      "osm_id": 891875048,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891876035",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 37, Loop: Bear Creek",
+      "osm_id": 891876035,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891876995",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 36, Loop: Bear Creek",
+      "osm_id": 891876995,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891877702",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 34, Loop: Bear Creek",
+      "osm_id": 891877702,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891878335",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 35, Loop: Bear Creek",
+      "osm_id": 891878335,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891878734",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 33, Loop: Bear Creek",
+      "osm_id": 891878734,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891879373",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 32, Loop: Bear Creek",
+      "osm_id": 891879373,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:891880107",
+     "tags": {
+      "fee": "yes",
+      "name": "Site: 31, Loop: Bear Creek",
+      "osm_id": 891880107,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 713214431,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:713214431 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 713214431,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:891765129",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891765744",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891870360",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891870933",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891871723",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891873391",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891874182",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891875048",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891876035",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891876995",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891877702",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891878335",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891878734",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891879373",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     },
+     {
+      "source_record_id": "osm:way:891880107",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:36:27Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:891765129 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891765744 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891870360 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891870933 :: fee=no [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891871723 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891873391 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891874182 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891875048 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891876035 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891876995 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891877702 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891878335 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891878734 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891879373 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:way:891880107 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:737899403",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "UT",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:737899414",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:737899403",
+     "tags": {
+      "access": "permit",
+      "name": "Group Area 7",
+      "osm_id": 737899403,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:737899414",
+     "tags": {
+      "access": "permit",
+      "fee": "yes",
+      "name": "Group Area 8",
+      "osm_id": 737899414,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "permit",
+     "osm_id": 737899403,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "permit",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:737899403 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "access": "permit",
+     "osm_id": 737899403,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:737899414",
+      "fields": {
+       "access": "permit",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:37:36Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "permit",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:737899414 :: access=permit; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:744169316",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "MD",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:744170055",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    },
+    {
+     "field": "access",
+     "donor": "osm:way:744170055",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:744169316",
+     "tags": {
+      "name": "Martinak State Park Camp Loop B",
+      "osm_id": 744169316,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:744170055",
+     "tags": {
+      "access": "yes",
+      "fee": "yes",
+      "name": "Martinak State Park Camp Loop A",
+      "osm_id": 744170055,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "yes",
+     "osm_id": 744169316,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "allowed",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:744169316 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 744169316,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:744170055",
+      "fields": {
+       "access": "yes",
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:05:40Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:744170055 :: access=yes; fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:759770890",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "MD",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:759770891",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:759770890",
+     "tags": {
+      "name": "Greenbelt Park Campground",
+      "osm_id": 759770890,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:759770891",
+     "tags": {
+      "fee": "yes",
+      "name": "Greenbelt Park Campground",
+      "osm_id": 759770891,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 759770890,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:759770890 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 759770890,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:759770891",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:05:40Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:759770891 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "A-osm:way:995342541",
+   "kind": "audited",
+   "synthetic": false,
+   "state_replayed": "PA",
+   "description": "Replay of the frozen snapshot merge chain for this record, kept element first, absorbed elements in merge order.",
+   "inherited_fields": [
+    {
+     "field": "fee",
+     "donor": "osm:way:1236413773",
+     "value": "yes",
+     "recommendation": "preserve_as_separately_attributed_evidence"
+    }
+   ],
+   "inputs": [
+    {
+     "id": "osm:way:995342541",
+     "tags": {
+      "name": "Paradise Stream Family Campground",
+      "osm_id": 995342541,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:way:1236413773",
+     "tags": {
+      "fee": "yes",
+      "name": "Paradise Stream Family Campground",
+      "osm_id": 1236413773,
+      "osm_type": "way",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 995342541,
+     "osm_type": "way"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:995342541 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 995342541,
+     "osm_type": "way"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:way:1236413773",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-29T03:32:01Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:way:1236413773 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S01",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Primary without fee, secondary fee=no",
+   "note": "Kept record must stay unknown. The secondary value is kept only as attributed evidence.",
+   "inputs": [
+    {
+     "id": "osm:node:9000001",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000001,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000002",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000002,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9000001,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000001 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9000001,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000002",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000002 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S02",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Reverse order: primary fee=no, secondary without fee",
+   "note": "Kept record is free from its own tag.",
+   "inputs": [
+    {
+     "id": "osm:node:9000002",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000002,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000001",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000001,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9000002,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000002 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9000002,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000002 :: fee=no"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S03",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Conflicting fees: primary fee=yes, secondary fee=no",
+   "note": "Kept record stays paid from its own tag. The disagreement is recorded, not resolved.",
+   "inputs": [
+    {
+     "id": "osm:node:9000003",
+     "tags": {
+      "fee": "yes",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000003,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000004",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000004,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 9000003,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000003 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 9000003,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000004",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [
+     "member_fee_disagreement"
+    ],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000003 :: fee=yes",
+      "osm:node:9000004 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S04",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Conflicting fees, reverse order",
+   "note": "Kept record stays free from its own tag. The disagreement is recorded.",
+   "inputs": [
+    {
+     "id": "osm:node:9000004",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000004,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000003",
+     "tags": {
+      "fee": "yes",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000003,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9000004,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000004 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9000004,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000003",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [
+     "member_fee_disagreement"
+    ],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000004 :: fee=no",
+      "osm:node:9000003 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S05",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Ancillary-only charges on secondary",
+   "note": "Ancillary service fees never classify camping and are not copied.",
+   "inputs": [
+    {
+     "id": "osm:node:9000005",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000005,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000006",
+     "tags": {
+      "internet_access:fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000006,
+      "osm_type": "node",
+      "parking:fee": "no",
+      "shower:fee": "yes",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "osm_id": 9000005,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9000005,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000006",
+      "fields": {
+       "shower:fee": "yes",
+       "parking:fee": "no",
+       "internet_access:fee": "no"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000006 :: internet_access:fee=no; parking:fee=no; shower:fee=yes [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S06",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Ancillary fee on the kept element itself",
+   "note": "A free parking tag does not make camping free.",
+   "inputs": [
+    {
+     "id": "osm:node:9000007",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000007,
+      "osm_type": "node",
+      "parking:fee": "no",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "osm_id": 9000007,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9000007,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   }
+  },
+  {
+   "fixture_id": "S07",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "charge=0 without fee",
+   "note": "charge=0 alone does not establish free camping.",
+   "inputs": [
+    {
+     "id": "osm:node:9000008",
+     "tags": {
+      "charge": "0",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000008,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "charge": "0",
+     "osm_id": 9000008,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "charge": "0",
+     "osm_id": 9000008,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   }
+  },
+  {
+   "fixture_id": "S08",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "fee=donation",
+   "note": "A donation tag does not establish free camping.",
+   "inputs": [
+    {
+     "id": "osm:node:9000009",
+     "tags": {
+      "fee": "donation",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000009,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "donation",
+     "osm_id": 9000009,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "donation",
+     "osm_id": 9000009,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   }
+  },
+  {
+   "fixture_id": "S09",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Seasonal paid fee in the fee value",
+   "note": "Must not become conditional (\"Free with conditions\").",
+   "inputs": [
+    {
+     "id": "osm:node:9000010",
+     "tags": {
+      "fee": "yes @ (May-Sep)",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000010,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes @ (May-Sep)",
+     "osm_id": 9000010,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes @ (May-Sep)",
+     "osm_id": 9000010,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   }
+  },
+  {
+   "fixture_id": "S10",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "fee=yes with free off-season conditional",
+   "note": "Paid base fee stays paid, not \"Free with conditions\".",
+   "inputs": [
+    {
+     "id": "osm:node:9000011",
+     "tags": {
+      "fee": "yes",
+      "fee:conditional": "no @ (Nov-Mar)",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000011,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "fee:conditional": "no @ (Nov-Mar)",
+     "osm_id": 9000011,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000011 :: fee=yes; fee:conditional=no @ (Nov-Mar)"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "fee:conditional": "no @ (Nov-Mar)",
+     "osm_id": 9000011,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000011 :: fee=yes; fee:conditional=no @ (Nov-Mar)"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S11",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Repeat merge: same secondary merged twice",
+   "note": "Evidence stays single and attributed. No duplicate entries.",
+   "inputs": [
+    {
+     "id": "osm:node:9000012",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000012,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000013",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000013,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000013",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000013,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9000012,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000012 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9000012,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000013",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000013 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S12",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Repeat merge with a third member",
+   "note": "Both members are recorded with their own values. Kept record stays unknown.",
+   "inputs": [
+    {
+     "id": "osm:node:9000014",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000014,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000015",
+     "tags": {
+      "fee": "yes",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000015,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000016",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000016,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "osm_id": 9000014,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000014 :: fee=yes"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9000014,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000015",
+      "fields": {
+       "fee": "yes"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     },
+     {
+      "source_record_id": "osm:node:9000016",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000015 :: fee=yes [Recorded on a merged member element. Not used to classify this record.]",
+      "osm:node:9000016 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S13",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Restrictive borrowed access",
+   "note": "Held: exclusion stays, attributed to the owner element, pending review.",
+   "inputs": [
+    {
+     "id": "osm:node:9000017",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000017,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000018",
+     "tags": {
+      "access": "private",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000018,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "access": "private",
+     "osm_id": 9000017,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9000017,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000018",
+      "fields": {
+       "access": "private"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": {
+     "value": "private",
+     "source_record_id": "osm:node:9000018"
+    },
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   }
+  },
+  {
+   "fixture_id": "S14",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Non-restrictive borrowed access",
+   "note": "Kept record access becomes unknown. The value is attributed evidence.",
+   "inputs": [
+    {
+     "id": "osm:node:9000019",
+     "tags": {
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000019,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    },
+    {
+     "id": "osm:node:9000020",
+     "tags": {
+      "access": "permit",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000020,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "access": "permit",
+     "osm_id": 9000019,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "permit",
+     "exclusion_reason": null,
+     "fee_evidence_sources": []
+    }
+   },
+   "expected": {
+    "snapshot_fields": {
+     "osm_id": 9000019,
+     "osm_type": "node"
+    },
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000020",
+      "fields": {
+       "access": "permit"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "unknown",
+     "cost": null,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000020 :: access=permit [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S15",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Cross-source: RIDB primary absorbs OSM fee=no",
+   "note": "RIDB record keeps its own paid fee and must not inherit the OSM identity.",
+   "inputs": [
+    {
+     "id": "ridb:990001",
+     "tags": {
+      "cost": 20,
+      "facility_id": 990001,
+      "fee_status": "paid",
+      "name": "Synthetic Test Campground"
+     }
+    },
+    {
+     "id": "osm:node:9000021",
+     "tags": {
+      "fee": "no",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000021,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "no",
+     "osm_id": 9000021,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "free",
+     "cost": 0,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000021 :: fee=no"
+     ]
+    }
+   },
+   "expected": {
+    "snapshot_fields": {},
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000021",
+      "fields": {
+       "fee": "no"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "fee_status": "paid",
+     "cost": 20,
+     "access_status": "unknown",
+     "exclusion_reason": null,
+     "fee_evidence_sources": [
+      "osm:node:9000021 :: fee=no [Recorded on a merged member element. Not used to classify this record.]"
+     ]
+    }
+   }
+  },
+  {
+   "fixture_id": "S16",
+   "kind": "synthetic",
+   "synthetic": true,
+   "title": "Cross-source: RIDB primary with unknown fee absorbs OSM fee=yes",
+   "note": "RIDB record stays unknown. OSM identity, fee and access stay with the OSM element. Restrictive access is held.",
+   "inputs": [
+    {
+     "id": "ridb:990002",
+     "tags": {
+      "cost": null,
+      "facility_id": 990002,
+      "fee_status": "unknown",
+      "name": "Synthetic Test Campground"
+     }
+    },
+    {
+     "id": "osm:node:9000022",
+     "tags": {
+      "access": "no",
+      "fee": "yes",
+      "name": "Synthetic Test Campground",
+      "osm_id": 9000022,
+      "osm_type": "node",
+      "tourism": "camp_site"
+     }
+    }
+   ],
+   "current": {
+    "snapshot_fields": {
+     "fee": "yes",
+     "access": "no",
+     "osm_id": 9000022,
+     "osm_type": "node"
+    },
+    "member_evidence": [],
+    "access_hold": null,
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "snapshot_fields": {},
+    "member_evidence": [
+     {
+      "source_record_id": "osm:node:9000022",
+      "fields": {
+       "fee": "yes",
+       "access": "no"
+      },
+      "retrieved_at": "2026-10-30T00:00:00Z"
+     }
+    ],
+    "access_hold": {
+     "value": "no",
+     "source_record_id": "osm:node:9000022"
+    },
+    "data_conflicts": [],
+    "normalized": {
+     "rejected": true
+    }
+   }
+  },
+  {
+   "fixture_id": "S17",
+   "kind": "synthetic_index_layer",
+   "synthetic": true,
+   "title": "Index-layer member adoption of access and fee",
+   "note": "data-quality.js mergeFeatures adopts another member's access and fee when the canonical record is unknown. The repair keeps the behavior but records whose value it is.",
+   "inputs": [
+    {
+     "id": "osm:node:9000031",
+     "tags": {}
+    },
+    {
+     "id": "osm:node:9000032",
+     "tags": {
+      "access": "permit",
+      "fee": "yes"
+     }
+    }
+   ],
+   "current": [
+    {
+     "id": "osm:node:9000031",
+     "legacy_ids": [
+      "osm:node:9000031",
+      "osm:node:9000032"
+     ],
+     "fee_status": "paid",
+     "access_status": "permit",
+     "access_source_record_id": null
+    }
+   ],
+   "expected": [
+    {
+     "id": "osm:node:9000031",
+     "legacy_ids": [
+      "osm:node:9000031",
+      "osm:node:9000032"
+     ],
+     "fee_status": "paid",
+     "access_status": "permit",
+     "access_source_record_id": "osm:node:9000032"
+    }
+   ]
+  }
+ ]
+}

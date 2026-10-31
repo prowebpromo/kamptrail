@@ -607,8 +607,6 @@
         "source_ref": "https://www.recreation.gov/camping/campgrounds/232662?tab=info",
         "tourism": "camp_site",
         "website": "https://www.swl.usace.army.mil/Missions/Recreation/Arkansas-River/Arkansas-River-Recreation/",
-        "osm_id": 1442811091,
-        "osm_type": "way",
         "id": "ridb:232662",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1116,14 +1114,11 @@
       },
       "properties": {
         "capacity": "18",
-        "fee": "10.00",
         "internet_access": "no",
         "name": "LAKE WEDINGTON",
         "sanitary_dump_station": "no",
         "tents": "yes",
         "tourism": "caravan_site",
-        "osm_id": 368988012,
-        "osm_type": "way",
         "id": "ridb:234586",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1155,7 +1150,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:368988012",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "10.00"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/368988012"
+          }
+        ]
       }
     },
     {
@@ -3482,8 +3489,6 @@
         "name": "Ozark Campground",
         "operator": "US National Park Service",
         "tourism": "camp_site",
-        "osm_id": 4285104560,
-        "osm_type": "node",
         "id": "ridb:233120",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4328,8 +4333,6 @@
       "properties": {
         "name": "Daisy State Park",
         "tourism": "camp_site",
-        "osm_id": 941066426,
-        "osm_type": "way",
         "id": "ridb:247835",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5190,9 +5193,7 @@
         ]
       },
       "properties": {
-        "access": "yes",
         "caravans": "yes",
-        "fee": "yes",
         "name": "Quarry Park",
         "operator": "United State Corps of Engineers",
         "tents": "yes",
@@ -5213,7 +5214,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -5221,7 +5221,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1419287980",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1419287980"
+          }
+        ]
       }
     },
     {
@@ -9727,7 +9740,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -9735,7 +9747,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12645956729",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12645956729"
+          },
+          {
+            "source_record_id": "osm:node:12645956732",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "yes",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12645956732"
+          }
+        ]
       }
     },
     {
@@ -10160,7 +10196,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10168,7 +10203,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13022033875",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13022033875"
+          },
+          {
+            "source_record_id": "osm:node:13022033876",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13022033876"
+          }
+        ]
       }
     },
     {
@@ -10255,7 +10314,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -10263,7 +10321,53 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13022033881",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13022033881"
+          },
+          {
+            "source_record_id": "osm:node:13022033882",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13022033882"
+          },
+          {
+            "source_record_id": "osm:node:13022033883",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13022033883"
+          },
+          {
+            "source_record_id": "osm:node:13022033884",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "access": "permit",
+              "fee": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13022033884"
+          }
+        ]
       }
     },
     {
@@ -11880,7 +11984,6 @@
         "capacity": "6",
         "fee": "16.00",
         "internet_access": "no",
-        "internet_access:fee": "no",
         "name": "Campground D",
         "operator": "Devils Den State Park",
         "power_supply": "yes",
@@ -11903,15 +12006,29 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
-        "data_conflicts": [],
+        "data_conflicts": [
+          "member_fee_disagreement"
+        ],
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:412180135",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "fee": "32",
+              "internet_access:fee": "no"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/412180135"
+          }
+        ]
       }
     },
     {
@@ -13884,7 +14001,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,
@@ -13928,7 +14044,6 @@
         ],
         "rating": null,
         "reviews_count": 0,
-        "cost": null,
         "amenities": [],
         "rig_friendly": [],
         "type": null,

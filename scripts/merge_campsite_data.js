@@ -13,6 +13,31 @@ const fs = require('fs').promises;
 const path = require('path');
 const crypto = require('crypto');
 
+const osmIdentity = p => /^osm:(?:node|way|relation|unknown):/.test(String(p.id || ''));
+const osmTag = k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k);
+const ownedOsmField = k => osmTag(k) || ['osm_id','osm_type','fee_status','cost','fee_text','fee_source','fee_source_record_id','fee_checked','fee_evidence','fee_evidence_records','fee_conflict'].includes(k);
+
+// Retain observations on their source element. A proximity match grants no
+// ownership of a member's tags, including when the retained record is RIDB.
+function memberEvidence(primary, secondary) {
+  const records = new Map();
+  for (const p of [primary, secondary]) for (const r of Array.isArray(p.member_evidence) ? p.member_evidence : []) {
+    if (r && /^osm:(node|way|relation|unknown):/.test(r.source_record_id) && r.fields && typeof r.fields === 'object') records.set(r.source_record_id, r);
+  }
+  if (osmIdentity(secondary) && secondary.id !== primary.id) {
+    const fields = Object.fromEntries(Object.keys(secondary).filter(k => osmTag(k) && secondary[k] != null && secondary[k] !== '').map(k => [k, secondary[k]]));
+    if (Object.keys(fields).length && !records.has(secondary.id)) {
+      const match = secondary.id.match(/^osm:(node|way|relation):([0-9]+)$/);
+      records.set(secondary.id, {source_record_id: secondary.id, source: 'OpenStreetMap contributors', fields,
+        retrieved_at: secondary.source_retrieved_at || null, source_updated_at: secondary.osm_timestamp || null,
+        source_url: match ? `https://www.openstreetmap.org/${match[1]}/${match[2]}` : null});
+    }
+  }
+  // Source snapshots fail visibly rather than silently dropping provenance.
+  if (records.size > 128) throw new Error('Too many OSM member evidence records; identity review required');
+  return [...records.values()];
+}
+
 class CampsiteMerger {
   constructor() {
     this.DISTANCE_THRESHOLD_METERS = 500; // Consider campsites within 500m as duplicates
@@ -148,7 +173,7 @@ class CampsiteMerger {
     const primaryRating = number(primary.rating, 5), secondaryRating = number(secondary.rating, 5);
     const conflicts = [...list(primary.data_conflicts), ...list(secondary.data_conflicts)];
     if (primaryCost !== null && secondaryCost !== null && primaryCost !== secondaryCost) conflicts.push('cost');
-    return {
+    const merged = {
       ...secondary,
       ...primary,
       name: primary.name || primary.Name || secondary.name || secondary.Name || 'Unnamed campsite',
@@ -179,6 +204,28 @@ class CampsiteMerger {
       description: (primary.description?.length > secondary.description?.length)
         ? primary.description : (secondary.description || primary.description || '')
     };
+    if (osmIdentity(secondary) && primary.id !== secondary.id) {
+      const evidence = memberEvidence(primary, secondary);
+      for (const key of Object.keys(merged)) if (ownedOsmField(key)) {
+        if (Object.hasOwn(primary, key)) merged[key] = primary[key];
+        else delete merged[key];
+      }
+      if (evidence.length) merged.member_evidence = evidence;
+      merged.field_provenance.cost = primaryCost !== null ? (primary.field_provenance?.cost || 'source-reported') : 'unknown';
+      const feeKeys = ['fee','charge','fee:conditional'];
+      if (feeKeys.some(k => primary[k] != null) && feeKeys.some(k => secondary[k] != null)
+          && feeKeys.some(k => String(primary[k] ?? '') !== String(secondary[k] ?? ''))) {
+        merged.data_conflicts = [...new Set([...merged.data_conflicts, 'member_fee_disagreement'])];
+      }
+      // Preserve the old first-donor access exclusion without claiming that
+      // the recipient itself carries that access tag. This is an admission hold.
+      const donor = evidence.find(e => e.fields.access != null && e.fields.access !== '');
+      if (primary.access_hold) merged.access_hold = primary.access_hold;
+      else if (!primary.access && donor && /^(private|no|military)$/i.test(String(donor.fields.access).trim())) {
+        merged.access_hold = {value: String(donor.fields.access).trim().toLowerCase(), source_record_id: donor.source_record_id};
+      } else delete merged.access_hold;
+    }
+    return merged;
   }
 
   /**
