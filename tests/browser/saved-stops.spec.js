@@ -95,3 +95,36 @@ test('deployment smoke does not accept unavailable source totals as a zero count
   await page.evaluate(()=>{window.KampTrailData={getStateTotals:()=>({})};});
   await expect(checkSourceListingCount(page)).rejects.toThrow('Source catalogue totals unavailable');
 });
+test('after-stay prompt shows only for past dated campsite stops, opens the review form and stays dismissed',async({page})=>{
+  await scaffold(page);
+  const day=n=>{const d=new Date();d.setDate(d.getDate()+n);const p=x=>String(x).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;};
+  await page.evaluate(({past,future})=>{
+    localStorage.setItem('kt_trip',JSON.stringify([
+      {id:'ridb:1',feature:testCurrent,note:'',arrive:past,depart:past},
+      {id:'ridb:2',feature:{...testCurrent,properties:{...testCurrent.properties,id:'ridb:2',name:'Future Camp'}},note:'',arrive:future,depart:future},
+      {id:'ridb:3',feature:{...testCurrent,properties:{...testCurrent.properties,id:'ridb:3',name:'Undated Camp'}},note:'',arrive:'',depart:''}]));
+    window.KampTrailData.getCampsiteById=id=>({...testCurrent,properties:{...testCurrent.properties,id,name:{'ridb:1':'Saved Camp','ridb:2':'Future Camp','ridb:3':'Undated Camp'}[id]}});
+    window.reviewOpened=[];window.KampTrailCommunity={open:site=>reviewOpened.push(site.properties.id)};
+  },{past:day(-1),future:day(3)});
+  await init(page);await page.locator('#trip').click();
+  const prompts=page.locator('.kt-stay-prompt');
+  await expect(prompts).toHaveCount(1);
+  await page.getByRole('button',{name:'Write a review for Saved Camp'}).click();
+  expect(await page.evaluate(()=>reviewOpened)).toEqual(['ridb:1']);
+  await page.getByRole('button',{name:'Dismiss the review reminder for Saved Camp'}).click();
+  await expect(prompts).toHaveCount(0);
+  expect(await page.evaluate(()=>Object.keys(JSON.parse(localStorage.getItem('kt_stay_prompts_v1')))))
+    .toEqual([`ridb:1|${day(-1)}`]);
+  await page.reload();await scaffold(page);
+  await page.evaluate(()=>{window.KampTrailCommunity={open(){}};});
+  await init(page);await page.locator('#trip').click();
+  await expect(page.locator('.kt-stay-prompt')).toHaveCount(0);
+});
+test('after-stay prompt survives corrupted reminder storage',async({page})=>{
+  await scaffold(page);
+  await page.evaluate(()=>{const d=new Date(Date.now()-86400000),p=x=>String(x).padStart(2,'0'),v=`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+    localStorage.setItem('kt_trip',JSON.stringify([{id:'ridb:1',feature:testCurrent,note:'',arrive:v,depart:v}]));localStorage.setItem('kt_stay_prompts_v1','{not json');});
+  await init(page);await page.locator('#trip').click();
+  await expect(page.locator('.kt-stay-prompt')).toHaveCount(1);
+  expect(await page.evaluate(()=>testErrors)).toEqual([]);
+});

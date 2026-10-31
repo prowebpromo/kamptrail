@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.25.1';
+  const FR_VERSION = '2.26.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -1656,6 +1656,10 @@
   "Type: {type}": "Tipo: {type}",
   "Hookups: {hookups}": "Conexiones: {hookups}",
   "Amenities: {amenities}": "Servicios: {amenities}",
+  "How was your stay? A dated review helps other campers. Nothing is sent unless you submit the review form.": "¿Qué tal tu estancia? Una reseña con fecha ayuda a otros campistas. No se envía nada a menos que envíes el formulario de reseña.",
+  "Write a review for {name}": "Escribir una reseña de {name}",
+  "Dismiss": "Descartar",
+  "Dismiss the review reminder for {name}": "Descartar el recordatorio de reseña de {name}",
   "Include unknown length: {value}": "Incluir longitud desconocida: {value}",
   "Yes": "Sí",
   "No": "No",
@@ -1715,7 +1719,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.25.1', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.26.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
