@@ -111,6 +111,8 @@ test('after-stay prompt shows only for past dated campsite stops, opens the revi
   await expect(prompts).toHaveCount(1);
   await page.getByRole('button',{name:'Write a review for Saved Camp'}).click();
   expect(await page.evaluate(()=>reviewOpened)).toEqual(['ridb:1']);
+  await expect(page.locator('#kt-trip-drawer')).toHaveAttribute('aria-hidden','true');
+  await page.locator('#trip').click();
   await page.getByRole('button',{name:'Dismiss the review reminder for Saved Camp'}).click();
   await expect(prompts).toHaveCount(0);
   expect(await page.evaluate(()=>Object.keys(JSON.parse(localStorage.getItem('kt_stay_prompts_v1')))))

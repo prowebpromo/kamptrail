@@ -84,7 +84,7 @@
   function stayPrompt(stop,site,label){
     const box=document.createElement('div');box.className='kt-stay-prompt';
     const text=document.createElement('p');text.textContent=t("How was your stay? A dated review helps other campers. Nothing is sent unless you submit the review form.");
-    const write=button(t("Write a review"),()=>{if(window.KampTrailCommunity)KampTrailCommunity.open(site);});write.setAttribute('aria-label',t("Write a review for {name}",{name:label}));
+    const write=button(t("Write a review"),()=>{if(!window.KampTrailCommunity)return;close();KampTrailCommunity.open(site);});write.setAttribute('aria-label',t("Write a review for {name}",{name:label}));
     const later=button(t("Dismiss"),()=>{dismissStay(stop);box.remove();});later.setAttribute('aria-label',t("Dismiss the review reminder for {name}",{name:label}));
     box.append(text,write,later);return box;
   }

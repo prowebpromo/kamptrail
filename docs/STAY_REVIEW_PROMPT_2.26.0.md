@@ -19,3 +19,7 @@ Three checklist rows (crowds, noise and shade filters, seasonal sub-scores, revi
 
 - Only visitors who save stops and enter dates see the prompt. Its effect on review volume is unmeasured until real submissions arrive.
 - The French text has had no native-speaker review.
+
+## Fix in 2.28.0
+
+Live verification of 2.27.0 on 2026-10-31 found that "Write a review" opened the review form on top of the saved-stops drawer. The first Escape then closed the hidden drawer instead of the form, and focus was lost after the second. The prompt now closes the drawer before opening the review form, as the route clearance button already does. The browser test asserts the drawer closes.
