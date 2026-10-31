@@ -20,7 +20,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ors_router_pilot import Pilot, street_chain, passes_through, length, now, distance_to_line  # noqa: E402
 
 STATES = tuple(os.environ.get('ORS_STATES', 'US-NY,US-MA,US-PA,US-OH,US-IL,US-GA,US-CO,US-CA,US-OR,US-WA').split(','))
-PER_STATE = 3                  # validated corridors wanted per state
+PER_STATE = 2                  # validated height corridors wanted per state
+TRUCK_PER_STATE = 1            # validated hgv=no roads checked per state
 CANDIDATES_PER_STATE = int(os.environ.get('ORS_CANDIDATES', '5'))
 PROFILES = ('hgv', 'bus')
 UNDER, OVER = 0.4, 0.2
@@ -112,6 +113,38 @@ def test_one(p, state, c):
     return row
 
 
+def truck_only(p, state, rng):
+    """One road per state tagged hgv=no with no dimension limits: does a small vehicle under hgv/bus avoid it?"""
+    q = (f'[out:json][timeout:90];area["ISO3166-2"="{state}"]->.s;'
+         f'way(area.s)[highway~"^(primary|secondary|tertiary|unclassified|residential)$"]["hgv"="no"];out body geom 400;')
+    data = overpass_retry(p, q)
+    skip = ('maxheight', 'maxheight:physical', 'maxweight', 'maxwidth', 'maxlength', 'access', 'motor_vehicle', 'motorcar', 'oneway')
+    pool = []
+    for el in data.get('elements', []):
+        tags = el.get('tags') or {}
+        line = [[g['lon'], g['lat']] for g in el.get('geometry') or []]
+        if not any(k in tags for k in skip) and len(line) >= 3 and 300 <= length(line) <= 3000:
+            pool.append((el['id'], tags, line))
+    rng.shuffle(pool)
+    rows = []
+    for wid, tags, line in pool[:4]:
+        if len([r for r in rows if r.get('car_uses_way')]) >= TRUCK_PER_STATE:
+            break
+        a, b = line[0], line[-1]
+        sample = [line[len(line) // 4], line[len(line) // 2], line[3 * len(line) // 4]]
+        car = p.route(f'{state} truck-only control {wid}', 'driving-car', [a, b])
+        row = {'state': state, 'way': wid, 'name': tags.get('name'), 'highway': tags.get('highway'), 'length_m': round(length(line)),
+               'car_uses_way': car['status'] == 200 and passes_through(car['line'], sample, 12), 'car_distance_m': car.get('distance_m')}
+        if row['car_uses_way']:
+            for vt in PROFILES:
+                r = p.route(f'{state} {vt} small {wid}', 'driving-hgv', [a, b],
+                            {'vehicle_type': vt, 'profile_params': {'restrictions': {'height': 2.0, 'width': 2.0, 'length': 6.0, 'weight': 3.5}}})
+                row[f'{vt}_uses_way'] = r['status'] == 200 and passes_through(r['line'], sample, 12)
+                row[f'{vt}_distance_m'] = r.get('distance_m')
+        rows.append(row)
+    return rows, len(pool)
+
+
 def main(out_dir):
     key = os.environ.get('ORS_API_KEY', '').strip()
     if not key:
@@ -151,6 +184,14 @@ def main(out_dir):
                     f.write(json.dumps(report).replace(key, '***'))
                 got += 1 if row.get('validated') else 0
                 time.sleep(3)
+            try:
+                trows, tpool = truck_only(p, state, rng)
+                report.setdefault('truck_rows', []).extend(trows)
+                report['state_notes'][state] += f'; {tpool} eligible hgv=no roads'
+            except RuntimeError:
+                raise
+            except Exception as e:
+                report['state_notes'][state] += f'; truck-only query failed: {type(e).__name__}'
     except RuntimeError as e:
         report['error'] = str(e)
     tested = [r for r in report['rows'] if r.get('validated')]
@@ -175,6 +216,11 @@ def main(out_dir):
         fails = [f"{c['profile']} {c['height_m']} m {c['direction']} {'crossed' if c['crossed'] else 'avoided'} (HTTP {c['status']})" for c in r['checks'] if not c['pass']]
         lines.append(f"- {r['state']} way {r['way']} {r.get('name')} maxheight {r['maxheight']} ({r['limit_m']} m): "
                      f"{'PASS' if r['pass'] else 'FAIL: ' + '; '.join(fails)}")
+    trows = [r for r in report.get('truck_rows', []) if r.get('car_uses_way')]
+    excluded = [r for r in trows if not all(r.get(f'{vt}_uses_way') for vt in PROFILES)]
+    lines += ['', f"Truck-only roads: {len(excluded)} of {len(trows)} validated hgv=no roads avoided by a small vehicle under hgv or bus."]
+    for r in trows:
+        lines.append(f"- {r['state']} way {r['way']} {r.get('name')} ({r['highway']}, {r['length_m']} m): car {r.get('car_distance_m')} m, hgv uses={r.get('hgv_uses_way')} {r.get('hgv_distance_m')} m, bus uses={r.get('bus_uses_way')} {r.get('bus_distance_m')} m")
     if report.get('error'):
         lines += ['', f"Stopped early: {report['error']}"]
     md = '\n'.join(lines) + '\n'
