@@ -61,9 +61,9 @@ class StatePolicies(unittest.TestCase):
         self.assertEqual(result['review_required'], ['camping', 'max_stay_hours'])
 
     def test_statute_backed_scopes_keep_unstated_activities_unknown(self):
-        expected = {('WA', 'wsdot', 'safety_rest_area'): ('unknown', 'unknown', 'prohibited', 8),
+        expected = {('WA', 'wsdot', 'safety_rest_area'): ('unknown', 'unknown', 'unknown', None),
                     ('SD', 'sddot', 'rest_area'): ('unknown', 'unknown', 'prohibited', None),
-                    ('NV', 'ndot', 'rest_area'): ('unknown', 'unknown', 'unknown', 18)}
+                    ('NV', 'ndot', 'rest_area'): ('unknown', 'unknown', 'unknown', None)}
         for (state, operator, kind), want in expected.items():
             with self.subTest(state=state):
                 r = resolve(state, operator, kind)['rules']

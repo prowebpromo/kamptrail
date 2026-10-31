@@ -398,7 +398,7 @@
         "overnight_parking": "unknown",
         "sleeping_in_vehicle": "unknown",
         "camping": "unknown",
-        "max_stay_hours": 18,
+        "max_stay_hours": null,
         "conditions": [
           "NAC 408.595: parking, camping or occupancy in a roadside park or safety rest area is limited to 18 hours in any 2-week period. The limit is a combined total across two weeks, not a per-visit allowance.",
           "A duration limit is not permission to park overnight, sleep or camp. Whether NDOT welcome stations fall within the regulation’s \"safety rest area\" class is not stated."
@@ -424,7 +424,7 @@
           "source_updated_at": null
         }
       ],
-      "interpretation": "NAC 408.595 limits parking, camping or occupancy to 18 hours in any 2-week period. It neither grants nor prohibits overnight parking, sleeping or camping, so all three stay unknown."
+      "interpretation": "NAC 408.595 limits parking, camping or occupancy to 18 hours in any 2-week period. That is a rolling total, recorded as a condition rather than a per-visit stay limit. It neither grants nor prohibits overnight parking, sleeping or camping, so all three stay unknown."
     },
     {
       "id": "sddot-rest_area-20261031r",
@@ -439,7 +439,7 @@
         "camping": "prohibited",
         "max_stay_hours": null,
         "conditions": [
-          "SDCL 31-7-15 prohibits camping at SDDOT rest areas within and adjacent to the interstate system. All imported South Dakota rest areas are on I-90 or I-29.",
+          "SDCL 31-7-15 prohibits camping at SDDOT rest areas within and adjacent to the interstate system. Every imported South Dakota rest area has an I-90 or I-29 route code. A non-interstate site would fall outside this statute.",
           "A violation is a petty offense. No stay limit or overnight parking rule was found."
         ]
       },
@@ -475,11 +475,12 @@
       "rules": {
         "overnight_parking": "unknown",
         "sleeping_in_vehicle": "unknown",
-        "camping": "prohibited",
-        "max_stay_hours": 8,
+        "camping": "unknown",
+        "max_stay_hours": null,
         "conditions": [
-          "RCW 47.38.020: no stopping, standing or parking over 8 hours within a 24-hour period, and no camping or keeping a camp, tent or other sleeping accommodation, except where WSDOT specifically authorizes it.",
-          "WSDOT may designate zones with shorter posted limits. Commercial vehicles may park up to an hour beyond federally mandated rest periods. Disabled vehicles: 48 hours.",
+          "RCW 47.38.020: except where WSDOT specifically authorizes it, no stopping, standing or parking any vehicle for more than 8 hours within a 24-hour period, and no camping or maintaining a camp, tent, or other sleeping accommodation or facility.",
+          "Camping is recorded as unknown, not prohibited, because the statute allows department authorization. Check posted signs.",
+          "WSDOT may designate zones with shorter posted limits. Commercial vehicles may park up to an hour beyond federally mandated rest periods. Except where WSDOT specifically authorizes it, disabled vehicles may stay no more than 48 hours.",
           "The statute does not name sleeping in a parked vehicle, so that stays unknown."
         ]
       },
@@ -503,7 +504,7 @@
           "source_updated_at": null
         }
       ],
-      "interpretation": "RCW 47.38.020 prohibits camping and limits stopping, standing or parking to 8 hours within 24 hours in WSDOT safety rest areas unless WSDOT authorizes otherwise. It does not grant overnight parking or address sleeping in a vehicle, so both stay unknown."
+      "interpretation": "RCW 47.38.020 restricts camping and limits stopping, standing or parking to 8 hours within 24 hours, both subject to WSDOT authorization. Following the 2026-10-30 convention, the authorization exception is not flattened into a blanket prohibition: every field stays unknown and the rule is shown as a condition."
     }
   ]
 }

@@ -64,13 +64,13 @@ test('five location-only scopes keep every permission unknown',()=>{
     assert.ok(p.policy_id);assert.deepEqual([p.rules.overnight_parking,p.rules.sleeping_in_vehicle,p.rules.camping],['unknown','unknown','unknown']);assert.equal(p.rules.max_stay_hours,null);assert.deepEqual(p.rules.conditions,[]);
   }
 });
-test('statute-backed WA, SD and NV rules keep sleeping and overnight parking unknown',()=>{
+test('statute-backed WA, SD and NV rules keep exceptions and rolling limits as conditions',()=>{
   const wa=rest.resolvePolicy(policies,{state:'WA',operator:'wsdot',facility_kind:'safety_rest_area'},policyNow);
-  assert.deepEqual([wa.rules.overnight_parking,wa.rules.sleeping_in_vehicle,wa.rules.camping,wa.rules.max_stay_hours],['unknown','unknown','prohibited',8]);
+  assert.deepEqual([wa.rules.overnight_parking,wa.rules.sleeping_in_vehicle,wa.rules.camping,wa.rules.max_stay_hours],['unknown','unknown','unknown',null]);assert.ok(wa.rules.conditions.some(c=>c.includes('8 hours within a 24-hour period')));
   const sd=rest.resolvePolicy(policies,{state:'SD',operator:'sddot',facility_kind:'rest_area'},policyNow);
   assert.deepEqual([sd.rules.overnight_parking,sd.rules.sleeping_in_vehicle,sd.rules.camping,sd.rules.max_stay_hours],['unknown','unknown','prohibited',null]);
   const nv=rest.resolvePolicy(policies,{state:'NV',operator:'ndot',facility_kind:'rest_area'},policyNow);
-  assert.deepEqual([nv.rules.overnight_parking,nv.rules.sleeping_in_vehicle,nv.rules.camping,nv.rules.max_stay_hours],['unknown','unknown','unknown',18]);
+  assert.deepEqual([nv.rules.overnight_parking,nv.rules.sleeping_in_vehicle,nv.rules.camping,nv.rules.max_stay_hours],['unknown','unknown','unknown',null]);
   assert.ok(nv.rules.conditions.some(c=>c.includes('2-week period')));
 });
 test('new policy sources accept the audited URL and reject other pages or parameters on that publisher',()=>{
