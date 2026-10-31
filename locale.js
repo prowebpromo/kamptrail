@@ -1105,6 +1105,25 @@
   "{0} road segments. Select a road for source vehicle and seasonal details.": "{0} tramos de carretera. Selecciona uno para consultar datos de vehículos y temporadas de la fuente.",
   "{0}{1}. TxDOT location list retrieved {2}; source update date not supplied. TxDOT describes a visitor stay limit of up to 24 hours (duration source retrieved {3}). A time limit does not establish permission to sleep overnight. Overnight permission, current opening and space availability are unknown.": "{0}{1}. Lista de ubicaciones de TxDOT consultada el {2}; no se proporcionó fecha de actualización de la fuente. TxDOT describe un límite de estancia de hasta 24 horas (fuente de duración consultada el {3}). Un límite de tiempo no establece permiso para dormir de noche. El permiso para pernoctar, el funcionamiento actual y la disponibilidad de plazas son desconocidos.",
   "{0} official rest-area location{1} in this view. Texas pilot only; other regions are not covered. TxDOT list retrieved {2}. Overnight permission and current opening are unknown.": "Áreas de descanso oficiales en esta vista: {0}. Piloto solo de Texas; no cubre otras regiones. Lista de TxDOT consultada el {2}. El permiso para pernoctar y el funcionamiento actual son desconocidos.",
+  "{0}{1}. {2} location list retrieved {3}; record updated {4}. A listed location does not establish permission to park or sleep overnight.": "{0}{1}. Lista de ubicaciones de {2} obtenida el {3}; registro actualizado el {4}. Una ubicación publicada no establece permiso para estacionar ni dormir durante la noche.",
+  "date not supplied": "fecha no proporcionada",
+  "{0} place source": "Fuente del lugar: {0}",
+  "{0} location data": "Datos de ubicación: {0}",
+  "Zoom to level 6 or closer. Official rest-area coverage: {0}. Overnight permission is unknown.": "Acerca el mapa al nivel 6 o más. Cobertura oficial de áreas de descanso: {0}. El permiso para pernoctar es desconocido.",
+  "{0} official rest-area location{1} in this view. Coverage: {2}; other states are not covered. Overnight permission and current opening are unknown.": "{0} ubicaciones oficiales de áreas de descanso en esta vista. Cobertura: {2}; otros estados no están incluidos. El permiso para pernoctar y la apertura actual son desconocidos.",
+  "Unavailable now: {0}.": "No disponible ahora: {0}.",
+  "Texas Department of Transportation": "Departamento de Transporte de Texas",
+  "Idaho Transportation Department": "Departamento de Transporte de Idaho",
+  "Montana Department of Transportation": "Departamento de Transporte de Montana",
+  "Florida's Turnpike Enterprise": "Florida's Turnpike Enterprise",
+  "Ohio Department of Transportation": "Departamento de Transporte de Ohio",
+  "Texas": "Texas",
+  "Idaho": "Idaho",
+  "Montana": "Montana",
+  "Florida": "Florida",
+  "Ohio": "Ohio",
+  "Oregon": "Oregón",
+  "Virginia": "Virginia",
   "Offline": "Sin conexión",
   "Stop": "Detener",
   "Source (optional)": "Fuente (opcional)",
@@ -1653,7 +1672,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.22.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
+  global.KampTrailI18n = {version:'2.23.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
