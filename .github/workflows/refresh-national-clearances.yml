@@ -2,7 +2,9 @@ name: Refresh national clearance data
 
 # Monthly OSM height-tag refresh for the 50 states and DC. One Geofabrik extract per job,
 # at most two at a time, a pause before each download, retries with backoff, and guards that
-# keep the previous file when a fetch fails or a state shrinks sharply. See docs/CLEARANCE_NATIONAL.md.
+# keep the previous data when a fetch fails or a state shrinks sharply. RI is protected and never downloaded.
+# Output is spatial tiles of clearance candidates. A run with unchanged data rewrites nothing and commits nothing.
+# See docs/CLEARANCE_NATIONAL.md.
 # Weekday only: the schedule fires on Tuesdays and the gate step lets only the first Tuesday through.
 on:
   schedule:
@@ -14,10 +16,6 @@ on:
         required: true
         default: 'ALL'
         type: string
-      allow_schema_change:
-        description: 'Replace a pilot-format file (RI) with the national format. Only after the client reads it.'
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -58,11 +56,11 @@ jobs:
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os, sys
           sys.path.insert(0, 'scripts')
-          from build_national_clearances import ALL_REGIONS
+          from build_national_clearances import BUILD_REGIONS
           wanted = os.environ['STATES_INPUT'].split()
-          states = list(ALL_REGIONS) if wanted == ['ALL'] else wanted
-          if not states or any(s not in ALL_REGIONS for s in states):
-              raise SystemExit('Use ALL or valid uppercase state codes separated by spaces')
+          states = list(BUILD_REGIONS) if wanted == ['ALL'] else wanted
+          if not states or any(s not in BUILD_REGIONS for s in states):
+              raise SystemExit('Use ALL or valid uppercase state codes separated by spaces. RI is protected and not built.')
           print('run=true')
           print('states=' + json.dumps(states))
           PY
@@ -93,10 +91,9 @@ jobs:
       - name: Build one state
         env:
           CLEARANCE_STATE: ${{ matrix.state }}
-          ALLOW_SCHEMA_CHANGE: ${{ inputs.allow_schema_change && '--allow-schema-change' || '' }}
         run: |
           python -u scripts/build_national_clearances.py build --state "$CLEARANCE_STATE" --pause 10 \
-            --stage "$RUNNER_TEMP/stage" --scratch "$RUNNER_TEMP/pbf" $ALLOW_SCHEMA_CHANGE
+            --stage "$RUNNER_TEMP/stage" --scratch "$RUNNER_TEMP/pbf"
       - name: Keep the staged state and its status, including a failure
         if: always()
         uses: actions/upload-artifact@v4
@@ -143,7 +140,7 @@ jobs:
           import json, sys
           d = json.load(open(sys.argv[1]))
           print(f"Updated {len(d['updated_states'])} states. Failed or kept prior: {', '.join(d['failed']) or 'none'}.")
-          print(f"Totals: {d['totals']['records']} records in {d['totals']['states_with_data']} states, {d['totals']['bytes']} bytes.")
+          print(f"Totals: {d['totals']['candidates']} clearance candidates in {d['totals']['states_with_data']} states, {d['totals']['tiles']} tiles, {d['totals']['bytes']} bytes. Files written: {d['files_written']}.")
           PY
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Verify hashes and the existing client contract
@@ -162,7 +159,7 @@ jobs:
             exit 0
           fi
           git commit -m 'Refresh national OSM clearance data'
-          # Only this workflow writes data/clearances (plus the reviewed pilot file), so rebase and retry.
+          # Only this workflow writes data/clearances. Unchanged tiles are not rewritten, so unchanged data stages nothing.
           for attempt in 1 2 3 4 5; do
             if git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"; then exit 0; fi
             echo "Push rejected (attempt $attempt); rebasing on the latest branch"
