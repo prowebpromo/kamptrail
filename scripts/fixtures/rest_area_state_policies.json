@@ -251,6 +251,222 @@
         }
       ],
       "interpretation": "Only the explicit activity facts are classified. Sleeping, current opening, capacity and every qualified duration remain unknown unless separately established."
+    },
+    {
+      "id": "caltrans-safety_roadside_rest_area-20261031",
+      "scope": {
+        "state": "CA",
+        "operator": "caltrans",
+        "facility_kind": "safety_roadside_rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://dot.ca.gov/programs/design/lap-landscape-architecture-and-community-livability/lap-liv-h-safety-roadside-rest-areas",
+          "retrieved_url": "https://dot.ca.gov/programs/design/lap-landscape-architecture-and-community-livability/lap-liv-h-safety-roadside-rest-areas",
+          "retrieved_at": "2026-10-31T16:28:54Z",
+          "sha256": "8fc33f8b7ccb7e0557d064cf928de578f4a77e2a53c1caa48a4c614fa2eb5731",
+          "bytes": 37810,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. This Caltrans, Division of Maintenance page was captured as the publisher's rest-area reference. It was not reviewed as an overnight parking, sleeping, camping or stay-limit rule, so every permission stays unknown."
+    },
+    {
+      "id": "iowa_dot-rest_area-20261031",
+      "scope": {
+        "state": "IA",
+        "operator": "iowa_dot",
+        "facility_kind": "rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://gis.iowadot.gov/agshost/rest/services/Hosted/Rest_Areas_All/FeatureServer/1",
+          "retrieved_url": "https://gis.iowadot.gov/agshost/rest/services/Hosted/Rest_Areas_All/FeatureServer/1/query?where=facility_type+%3D+%27Rest+Area%27&outFields=%2A&outSR=4326&returnGeometry=true&orderByFields=objectid&f=json",
+          "retrieved_at": "2026-10-31T16:28:34Z",
+          "sha256": "3f014d8c6ca16965e1768542d5beb9eeba260d357309574590cda04b7b81b9c0",
+          "bytes": null,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. The Iowa Department of Transportation rest-area layer is cited because its public page could not be retrieved automatically on 2026-10-31. No overnight parking, sleeping, camping or stay-limit rule was reviewed, so every permission stays unknown."
+    },
+    {
+      "id": "indot-rest_area_or_welcome_center-20261031",
+      "scope": {
+        "state": "IN",
+        "operator": "indot",
+        "facility_kind": "rest_area_or_welcome_center"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/",
+          "retrieved_url": "https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/",
+          "retrieved_at": "2026-10-31T16:28:56Z",
+          "sha256": "92092e150e863ecfe34cf7d3591ab467af36c3d708fe80876cad8a7c1c3dc91f",
+          "bytes": 231402,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. This Indiana Department of Transportation page was captured as the publisher's rest-area reference. It was not reviewed as an overnight parking, sleeping, camping or stay-limit rule, so every permission stays unknown."
+    },
+    {
+      "id": "kdot-rest_area-20261031",
+      "scope": {
+        "state": "KS",
+        "operator": "kdot",
+        "facility_kind": "rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Facilities/Rest_Areas/MapServer/0",
+          "retrieved_url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Facilities/Rest_Areas/MapServer/0/query?where=1%3D1&outFields=%2A&outSR=4326&returnGeometry=true&orderByFields=OBJECTID&f=json",
+          "retrieved_at": "2026-10-31T16:28:42Z",
+          "sha256": "e72430471f3d78b9d8d27a8b49a8f269404233bfd1c4c520873ef617074ec547",
+          "bytes": null,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. The Kansas Department of Transportation rest-area layer is cited because its public page could not be retrieved automatically on 2026-10-31. No overnight parking, sleeping, camping or stay-limit rule was reviewed, so every permission stays unknown."
+    },
+    {
+      "id": "mdot-rest_area_or_welcome_center-20261031",
+      "scope": {
+        "state": "MI",
+        "operator": "mdot",
+        "facility_kind": "rest_area_or_welcome_center"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://gisagomdot.state.mi.us/arcgis/rest/services/MDOT/MdotRestAreaPublic/MapServer/0",
+          "retrieved_url": "https://gisagomdot.state.mi.us/arcgis/rest/services/MDOT/MdotRestAreaPublic/MapServer/0/query?where=Status+%3D+%27Open%27&outFields=%2A&outSR=4326&returnGeometry=true&orderByFields=OBJECTID&f=json",
+          "retrieved_at": "2026-10-31T16:28:45Z",
+          "sha256": "577dea699f10262d8f3ad578613bd86aed5bf73f3f34bda1dbda2b000f174d32",
+          "bytes": null,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. The Michigan Department of Transportation rest-area layer is cited because its public page could not be retrieved automatically on 2026-10-31. No overnight parking, sleeping, camping or stay-limit rule was reviewed, so every permission stays unknown."
+    },
+    {
+      "id": "ndot-rest_area-20261031",
+      "scope": {
+        "state": "NV",
+        "operator": "ndot",
+        "facility_kind": "rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://gis.dot.nv.gov/arcgis/rest/services/Applications/511Map/MapServer/5",
+          "retrieved_url": "https://gis.dot.nv.gov/arcgis/rest/services/Applications/511Map/MapServer/5/query?where=MAINTAINED_BY+%3D+%27Nevada+DOT%27+AND+STATUS+%3D+%27Open+To+Traffic%27&outFields=%2A&outSR=4326&returnGeometry=true&orderByFields=OBJECTID&f=json",
+          "retrieved_at": "2026-10-31T16:28:48Z",
+          "sha256": "d216f625d2861ad78167d8a91e36be8aee4539585299951a334e4c888fb47aae",
+          "bytes": null,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. The Nevada Department of Transportation rest-area layer is cited because its public page could not be retrieved automatically on 2026-10-31. No overnight parking, sleeping, camping or stay-limit rule was reviewed, so every permission stays unknown."
+    },
+    {
+      "id": "sddot-rest_area-20261031",
+      "scope": {
+        "state": "SD",
+        "operator": "sddot",
+        "facility_kind": "rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://dot.sd.gov/travelers/travelers/rest-areaports-of-entry/",
+          "retrieved_url": "https://dot.sd.gov/travelers/travelers/rest-areaports-of-entry/",
+          "retrieved_at": "2026-10-31T16:28:57Z",
+          "sha256": "067f4ba15a9854c5666e4aa8aaf158102449516e70c735e80a8d376df058c4d2",
+          "bytes": 70046,
+          "http_last_modified": null,
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. This South Dakota Department of Transportation page was captured as the publisher's rest-area reference. It was not reviewed as an overnight parking, sleeping, camping or stay-limit rule, so every permission stays unknown."
+    },
+    {
+      "id": "wsdot-safety_rest_area-20261031",
+      "scope": {
+        "state": "WA",
+        "operator": "wsdot",
+        "facility_kind": "safety_rest_area"
+      },
+      "rules": {
+        "overnight_parking": "unknown",
+        "sleeping_in_vehicle": "unknown",
+        "camping": "unknown",
+        "max_stay_hours": null,
+        "conditions": []
+      },
+      "sources": [
+        {
+          "url": "https://wsdot.wa.gov/travel/safety/rest-areas/home",
+          "retrieved_url": "https://wsdot.wa.gov/travel/roads-bridges/rest-areas",
+          "retrieved_at": "2026-10-31T16:28:57Z",
+          "sha256": "70b9d684179b77c6b6c33493bfd8a24a773359154e3bdaf4deb7cc4cb6ef52ca",
+          "bytes": 191649,
+          "http_last_modified": "Fri, 30 Oct 2026 22:59:29 GMT",
+          "source_updated_at": null
+        }
+      ],
+      "interpretation": "Location source only. This Washington State Department of Transportation page was captured as the publisher's rest-area reference. It was not reviewed as an overnight parking, sleeping, camping or stay-limit rule, so every permission stays unknown."
     }
   ]
 }

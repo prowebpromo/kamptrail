@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import rest_area_policy as policy
 
 BUNDLE = json.loads(policy.POLICIES.read_text())
-NOW = dt.datetime(2026, 10, 31, tzinfo=dt.timezone.utc)
+NOW = dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc)
 
 
 def resolve(state='MT', operator='mdt', kind='rest_area', **kwargs):
@@ -60,6 +60,19 @@ class StatePolicies(unittest.TestCase):
         self.assertIsNone(result['rules']['max_stay_hours'])
         self.assertEqual(result['review_required'], ['camping', 'max_stay_hours'])
 
+    def test_location_only_scopes_keep_every_permission_unknown(self):
+        scopes = [('CA', 'caltrans', 'safety_roadside_rest_area'), ('IA', 'iowa_dot', 'rest_area'),
+                  ('IN', 'indot', 'rest_area_or_welcome_center'), ('KS', 'kdot', 'rest_area'),
+                  ('MI', 'mdot', 'rest_area_or_welcome_center'), ('NV', 'ndot', 'rest_area'),
+                  ('SD', 'sddot', 'rest_area'), ('WA', 'wsdot', 'safety_rest_area')]
+        for state, operator, kind in scopes:
+            with self.subTest(state=state):
+                p = resolve(state, operator, kind)
+                self.assertEqual([p['rules'][a] for a in ('overnight_parking', 'sleeping_in_vehicle', 'camping')], ['unknown'] * 3)
+                self.assertIsNone(p['rules']['max_stay_hours'])
+                self.assertEqual(p['rules']['conditions'], [])
+                self.assertTrue(p['sources'])
+
     def test_five_additions_keep_qualified_durations_and_sleeping_unknown(self):
         expected = {
             ('FL', 'florida_turnpike', 'turnpike_service_plaza'): ('prohibited', 'unknown'),
@@ -68,7 +81,7 @@ class StatePolicies(unittest.TestCase):
             ('OR', 'odot', 'safety_rest_area'): ('unknown', 'prohibited'),
             ('VA', 'vdot', 'rest_area'): ('prohibited', 'prohibited'),
         }
-        self.assertEqual(len(BUNDLE['policies']), 7)
+        self.assertEqual(len(BUNDLE['policies']), 15)
         for (state, operator, kind), (parking, camping) in expected.items():
             with self.subTest(state=state):
                 p = resolve(state, operator, kind)
@@ -82,7 +95,7 @@ class StatePolicies(unittest.TestCase):
                 self.assertIsNone(resolve(state, operator, 'unmatched_class')['policy_id'])
                 self.assertTrue(all(source['source_updated_at'] is None for source in p['sources']))
         self.assertIsNone(resolve('NE', 'ndot', 'safety_rest_area')['policy_id'])
-        self.assertIsNone(resolve('WA', 'wsdot', 'safety_rest_area')['policy_id'])
+        self.assertIsNone(resolve('GA', 'gdot', 'safety_rest_area')['policy_id'])
 
     def test_new_source_publishers_require_exact_audited_url(self):
         for index in range(2, len(BUNDLE['policies'])):
