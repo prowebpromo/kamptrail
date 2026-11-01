@@ -144,4 +144,10 @@ Determinism: two replays gave identical snapshot digests. The rebuilt `search-in
 
 ## Tests
 
-See the report on the branch head commit.
+- `npm test`: 459 of 459 pass, including the new `tests/tourism-type-admission.test.js` (8 tests).
+- `npm run test:python`: 363 tests OK, 9 skipped.
+- Browser specs: features, discovery, saved-stops, fee-evidence, amenity-evidence, usfs-site-amenities, ridb-amenities, locale, routes and app give 61 passed and 1 failed. The failure is the known `app.spec.js` mobile map height (493 vs >500).
+- `node scripts/verify-tourism-type-admission.js --baseline=<origin/main>`:
+  - 47 listed deltas: 45 index type labels and 2 snapshot type fields.
+  - 0 unexpected deltas, 36,290 saved ids and aliases checked, access holds 4 to 4.
+  - A deliberate unlisted edit makes it fail.
