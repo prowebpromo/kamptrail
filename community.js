@@ -80,13 +80,15 @@
     if(legacyAddress(body,site))return;
     const actions=el('div',{class:'kt-community-actions'});actions.append(button(t("Write a review"),()=>edit({campsite_id:publishedId(site.properties.id),campsite_name:name})),button(t("My reviews"),mine));body.append(actions);
     const seasonal=el('section',{class:'kt-seasonal-scores','aria-label':t("Seasonal visit sub-ratings")});seasonal.append(el('h4',{},t("Seasonal visit sub-ratings")),el('p',{class:'kt-fine'},t("Subjective 1–5 scores explicitly entered for published visits. An average needs at least 3 ratings per aspect and season. Counts are ratings, not distinct campers. US calendar seasons combine years; visit dates do not establish current conditions or safety.")));const scores=el('p',{class:'kt-seasonal-values'},t("Loading seasonal sub-ratings…"));seasonal.append(scores);
-    const summary=message(t("Loading reviews…")),monthly=el('div'),list=el('div',{class:'kt-review-list'});body.append(summary,seasonal,monthly,list);
+    const siteScores=el('section',{class:'kt-site-scores','aria-label':t("Visit sub-rating averages")});siteScores.append(el('h4',{},t("Visit sub-rating averages")),el('p',{class:'kt-fine'},t("All published visits with an explicit 1–5 score for each aspect. An average appears only from 3 ratings. Crowds and fullness: 5 is more crowded or fuller. Other aspects: 5 is the better experience. Categorical noise and crowding reports are counted separately and never converted to scores.")));const siteValues=el('p',{class:'kt-site-score-values'},t("Loading visit sub-ratings…"));siteScores.append(siteValues);
+    const summary=message(t("Loading reviews…")),monthly=el('div'),list=el('div',{class:'kt-review-list'});body.append(summary,siteScores,seasonal,monthly,list);
     const more=button(t("Load more reviews"),()=>load(more.dataset.before));more.hidden=true;body.append(more);
     async function load(before){
       more.disabled=true;
       try{const res=await fetch(API+'?site='+encodeURIComponent(site.properties.id)+(before?'&before='+before:''));const out=await res.json();if(!res.ok)throw new Error();if(view!==st.view)return;
         summary.textContent=out.count?t("{0}/5 from {1} published {2}.", {"0":(out.average),"1":(out.count),"2":(out.count===1?t("review"):t("reviews"))}):t("No published reviews yet. Been here? Share your experience.");
         scores.textContent=out.scores_available===false||!out.seasonal_scores?t("Seasonal sub-ratings are unavailable."):window.KampTrailDiscovery?.seasonalText(out.seasonal_scores)||t("Seasonal sub-ratings are unavailable.");
+        siteValues.textContent=out.scores_available===false||!out.site_scores?t("Visit sub-rating averages are unavailable."):window.KampTrailDiscovery?.siteScoresText(out.site_scores)||t("Visit sub-rating averages are unavailable.");
         monthDetails(monthly,out.monthly,monthly.querySelector('select')?.value||'');
         for(const r of out.reviews){
           const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},t("Visited {0}{1} · submitted {2}", {"0":(r.visited_on),"1":(r.rig?' · '+r.rig:''),"2":(String(r.created_at).slice(0,10))})),el('p',{class:'kt-review-text'},r.body));
@@ -96,7 +98,7 @@
           article.append(button(t("Report review"),()=>report(r.id)));list.append(article);
         }
         more.hidden=!out.next_before;more.dataset.before=out.next_before||'';
-      }catch{if(view===st.view){if(!monthly.hasChildNodes?.())monthly.append(el('p',{class:'kt-fine'},t('Visit-month summaries are unavailable until reviews reload.')));if(!before)scores.textContent=t("Seasonal sub-ratings are unavailable.");summary.replaceChildren(document.createTextNode(navigator.onLine?t("Reviews could not be loaded."):t("Reviews and photos need an internet connection.")),button(t("Retry"),()=>load(before)));}}
+      }catch{if(view===st.view){if(!monthly.hasChildNodes?.())monthly.append(el('p',{class:'kt-fine'},t('Visit-month summaries are unavailable until reviews reload.')));if(!before){scores.textContent=t("Seasonal sub-ratings are unavailable.");siteValues.textContent=t("Visit sub-rating averages are unavailable.");}summary.replaceChildren(document.createTextNode(navigator.onLine?t("Reviews could not be loaded."):t("Reviews and photos need an internet connection.")),button(t("Retry"),()=>load(before)));}}
       finally{more.disabled=false;}
     }
     await load();

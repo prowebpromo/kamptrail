@@ -32,7 +32,7 @@ try {
         $hasObservations=ko_ready($pdo);
         $q=$pdo->prepare("SELECT r.id,r.display_name,r.rating,r.body,r.visited_on,r.rig,r.created_at,r.updated_at,".($hasObservations?"o.details":"NULL")." AS observation_details FROM community_reviews r ".($hasObservations?"LEFT JOIN community_observations o ON o.review_id=r.id ":"")."WHERE r.campsite_id IN ($in) AND r.status='published'".($before?' AND r.id < ?':'').' ORDER BY r.id DESC LIMIT 11');$q->execute($before?array_merge($ids,[$before]):$ids);$rows=$q->fetchAll();$more=count($rows)>10;$rows=array_slice($rows,0,10);
         foreach ($rows as &$r) {$r['id']=(int)$r['id'];$r['rating']=(int)$r['rating'];$r['observations']=$r['observation_details']?(json_decode($r['observation_details'],true)?:[]):[];$r['video']=ko_video($r['observations']);$r['observations']=ko_conditions($r['observations']);unset($r['observation_details']);$r['photos']=kc_photo_rows($pdo,$r['id']);}unset($r);
-        kt_json(200,['ok'=>true,'count'=>(int)$stats['count'],'average'=>$stats['average']===null?null:round((float)$stats['average'],1),'scores_available'=>$hasObservations,'seasonal_scores'=>(object)ko_site_seasonal($pdo,$ids),'score_minimum'=>KO_SCORE_MINIMUM,'reviews'=>$rows,'next_before'=>$more?(int)end($rows)['id']:null,'monthly'=>ko_monthly($pdo,$ids),'photos_available'=>extension_loaded('gd') && class_exists('finfo'),'limits'=>['photos'=>3,'bytes_per_photo'=>KT_PHOTO_INPUT_LIMIT,'pixels_per_photo'=>KT_PHOTO_PIXEL_LIMIT]]);
+        kt_json(200,['ok'=>true,'count'=>(int)$stats['count'],'average'=>$stats['average']===null?null:round((float)$stats['average'],1),'scores_available'=>$hasObservations,'seasonal_scores'=>(object)ko_site_seasonal($pdo,$ids),'site_scores'=>(object)ko_site_score_summary($pdo,$ids),'score_minimum'=>KO_SCORE_MINIMUM,'reviews'=>$rows,'next_before'=>$more?(int)end($rows)['id']:null,'monthly'=>ko_monthly($pdo,$ids),'photos_available'=>extension_loaded('gd') && class_exists('finfo'),'limits'=>['photos'=>3,'bytes_per_photo'=>KT_PHOTO_INPUT_LIMIT,'pixels_per_photo'=>KT_PHOTO_PIXEL_LIMIT]]);
     }
     kc_origin();
     if ((int)($_SERVER['CONTENT_LENGTH']??0)>20000000) kc_error(413,'This upload is too large. Attach at most three photos, 6 MB each.');
@@ -60,7 +60,7 @@ try {
         $pdo->prepare("UPDATE community_reviews SET status='deleted',body='',display_name='',rig='',visited_on='',public_note=NULL,updated_at=? WHERE id=?")->execute([kt_now(),$id]);
         ko_save($pdo,$id,[]);ko_changed($pdo);kc_audit($pdo,$id,'author_delete',$old['status'],'deleted','author');$pdo->commit();kt_json(200,['ok'=>true,'status'=>'deleted']);
     }
-    $v=kc_validate($in);$observations=ko_validate($in['observations']??'');
+    $v=kc_validate($in);$observations=ko_bind_season(ko_validate($in['observations']??''),$v['visited_on'],true);
     $video=array_key_exists('youtube_video',$in)?ko_video_id($in['youtube_video']):null;
     if($video!==null&&$video!=='')$observations['video_id']=$video;
     if ($observations && !ko_ready($pdo)) kc_error(503,'Camper observations are temporarily unavailable. Please try again later.');
@@ -78,7 +78,7 @@ try {
     }
     $photos=kc_photos();
     kc_lock($pdo);kc_rate($pdo,$old?'manage':'submit',$old?20:5);
-    if($old){$fresh=kc_row($pdo,(int)$old['id']);if(!$fresh||$fresh['status']==='deleted'){$pdo->rollBack();kc_error(409,'This review changed. Reload it before editing.');}$old=$fresh;if(!array_key_exists('observations',$in))$observations=ko_read($pdo,(int)$old['id']);}
+    if($old){$fresh=kc_row($pdo,(int)$old['id']);if(!$fresh||$fresh['status']==='deleted'){$pdo->rollBack();kc_error(409,'This review changed. Reload it before editing.');}$old=$fresh;if(!array_key_exists('observations',$in))$observations=ko_bind_season(ko_read($pdo,(int)$old['id']),$v['visited_on'],false);}
     // Older clients omit the video field: preserve it even if they replace observations. Empty explicitly removes it.
     if($old&&$video===null){$prior=ko_read($pdo,(int)$old['id']);if(isset($prior['video_id']))$observations['video_id']=$prior['video_id'];}
     if($video!==null){unset($observations['video_id']);if($video!=='')$observations['video_id']=$video;}

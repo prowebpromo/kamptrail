@@ -8,7 +8,11 @@ const KO_AXES=[
     'crowding'=>['sparse','moderate','crowded'],
     'comfort'=>['comfortable','concerns'],
 ];
-const KO_SCORE_AXES=['quietness','shade','comfort'];
+// Optional 1-5 visit scores. quietness, noise_day, noise_night, shade, cleanliness and comfort: 5 is the
+// better experience. crowds (perceived crowding) and fullness (share of camping spaces occupied): 5 is more
+// crowded or fuller. None is derived from the categorical noise, crowding or shade fields.
+const KO_SCORE_AXES=['quietness','shade','comfort','noise_day','noise_night','cleanliness','crowds','fullness'];
+const KO_SEASONS=['winter','spring','summer','fall'];
 const KO_SCORE_MINIMUM=3;
 const KO_CARRIERS=['att','verizon','tmobile','other'];
 const KO_SIGNAL=['none','weak','usable','strong'];
@@ -20,7 +24,7 @@ function ko_validate($raw): array {
     if (!is_string($raw) || strlen($raw)>4096) kc_error(422,'Invalid camper observations.');
     try {$in=json_decode($raw,true,16,JSON_THROW_ON_ERROR);}catch(Throwable $e){kc_error(422,'Invalid camper observations.');}
     if (!is_array($in) || array_is_list($in) && $in!==[]) kc_error(422,'Invalid camper observations.');
-    if (array_diff(array_keys($in),array_merge(array_keys(KO_AXES),['signals','scores']))) kc_error(422,'Unknown camper observation field.');
+    if (array_diff(array_keys($in),array_merge(array_keys(KO_AXES),['signals','scores','season']))) kc_error(422,'Unknown camper observation field.');
     $out=[];
     foreach(KO_AXES as $key=>$allowed){
         $value=$in[$key]??'';
@@ -37,6 +41,11 @@ function ko_validate($raw): array {
             $clean[$axis]=$scores[$axis];
         }
         if($clean)$out['scores']=$clean;
+    }
+    // The rated season is checked against the visit date by ko_bind_season.
+    if(array_key_exists('season',$in)&&$in['season']!==''){
+        if(!is_string($in['season'])||!in_array($in['season'],KO_SEASONS,true))kc_error(422,'Choose a listed season.');
+        $out['season']=$in['season'];
     }
     $signals=$in['signals']??[];
     if(!is_array($signals)||!array_is_list($signals)||count($signals)>4)kc_error(422,'Report each carrier at most once.');
@@ -119,14 +128,47 @@ function ko_monthly(PDO $pdo,string|array $site): array {
 }
 
 // Calendar visit seasons for US listings, across years; never infer climate or scores.
-function ko_season(string $date): string {
+// Keep identical to season() and allowedSeasons() in community-discovery.js (parity test in tests/discovery.test.js).
+function ko_valid_date($date): bool {
+    if(!is_string($date)||!preg_match('/^\d{4}-\d{2}-\d{2}$/D',$date)||$date<'1900-01-01')return false;
+    $parsed=DateTimeImmutable::createFromFormat('!Y-m-d',$date);
+    return $parsed!==false&&$parsed->format('Y-m-d')===$date;
+}
+function ko_season($date): ?string {
+    if(!ko_valid_date($date))return null;
     $month=(int)substr($date,5,2);
     return $month===12||$month<=2?'winter':($month<=5?'spring':($month<=8?'summer':'fall'));
+}
+// The visit date's season first, then the adjacent seasons a stay may have crossed into.
+function ko_allowed_seasons($date): array {
+    $season=ko_season($date);if($season===null)return [];
+    $i=array_search($season,KO_SEASONS,true);
+    return [$season,KO_SEASONS[($i+3)%4],KO_SEASONS[($i+1)%4]];
+}
+// Season a group's scores describe: the visitor-confirmed season, or the visit date's. No date, no season.
+function ko_rated_season(array $values,$date): ?string {
+    $allowed=ko_allowed_seasons($date);if(!$allowed)return null;
+    $chosen=$values['season']??null;
+    return is_string($chosen)&&in_array($chosen,$allowed,true)?$chosen:$allowed[0];
+}
+// A season is kept only with numeric scores and only when it is the visit date's season or adjacent to it.
+// Strict mode rejects a submitted mismatch; otherwise (stored observations after a date edit) it is dropped.
+function ko_bind_season(array $observations,$date,bool $strict): array {
+    if(!array_key_exists('season',$observations))return $observations;
+    $allowed=ko_allowed_seasons($date);
+    if(!in_array($observations['season'],$allowed,true)){
+        if($strict)kc_error(422,'Choose the season of your visit date or the adjacent season your stay crossed into.');
+        unset($observations['season']);
+    }
+    // The visit date's own season is implied, so it is not stored and follows later date edits.
+    if(empty($observations['scores'])||($observations['season']??null)===($allowed[0]??null))unset($observations['season']);
+    return $observations;
 }
 function ko_seasonal(iterable $groups): array {
     $out=[];
     foreach($groups as $g){
-        $date=$g['latest_visit'];$season=ko_season($date);$count=(int)$g['count'];
+        $date=$g['latest_visit'];$season=ko_rated_season($g['values'],$date);$count=(int)$g['count'];
+        if($season===null)continue;
         foreach(KO_SCORE_AXES as $axis){
             $value=$g['values']['scores'][$axis]??null;
             if(!is_int($value)||$value<1||$value>5||$count<1)continue;
@@ -144,6 +186,35 @@ function ko_site_seasonal(PDO $pdo,string|array $site): array {
     $q=$pdo->prepare("SELECT o.details,r.visited_on FROM community_reviews r JOIN community_observations o ON o.review_id=r.id WHERE r.campsite_id IN ($in) AND r.status='published'");$q->execute($ids);
     $groups=(function()use($q){foreach($q as $r)yield ['values'=>ko_conditions(json_decode($r['details'],true)?:[]),'count'=>1,'latest_visit'=>$r['visited_on']];})();
     return ko_seasonal($groups);
+}
+// Whole-site averages per axis. An average is published only from KO_SCORE_MINIMUM explicit ratings; below that
+// only the count is returned. Ratings without a usable visit date still count here but never in a season.
+function ko_site_scores(iterable $groups): array {
+    $acc=[];
+    foreach($groups as $g){
+        $count=(int)$g['count'];$date=$g['latest_visit'];if($count<1)continue;
+        foreach(KO_SCORE_AXES as $axis){
+            $value=$g['values']['scores'][$axis]??null;
+            if(!is_int($value)||$value<1||$value>5)continue;
+            $r=$acc[$axis]??['count'=>0,'sum'=>0,'first_visit'=>null,'latest_visit'=>null];
+            $r['count']+=$count;$r['sum']+=$value*$count;
+            if(ko_valid_date($date)){$r['first_visit']=$r['first_visit']===null?$date:min($r['first_visit'],$date);$r['latest_visit']=$r['latest_visit']===null?$date:max($r['latest_visit'],$date);}
+            $acc[$axis]=$r;
+        }
+    }
+    $out=[];
+    foreach(KO_SCORE_AXES as $axis)if(isset($acc[$axis])){
+        $r=$acc[$axis];
+        $out[$axis]=['count'=>$r['count'],'average'=>$r['count']>=KO_SCORE_MINIMUM?round($r['sum']/$r['count'],1):null,'first_visit'=>$r['first_visit'],'latest_visit'=>$r['latest_visit']];
+    }
+    return $out;
+}
+function ko_site_score_summary(PDO $pdo,string|array $site): array {
+    if(!ko_ready($pdo))return [];
+    $ids=is_array($site)?array_values($site):[$site];$in=implode(',',array_fill(0,count($ids),'?'));
+    $q=$pdo->prepare("SELECT o.details,r.visited_on FROM community_reviews r JOIN community_observations o ON o.review_id=r.id WHERE r.campsite_id IN ($in) AND r.status='published'");$q->execute($ids);
+    $groups=(function()use($q){foreach($q as $r)yield ['values'=>ko_conditions(json_decode($r['details'],true)?:[]),'count'=>1,'latest_visit'=>$r['visited_on']];})();
+    return ko_site_scores($groups);
 }
 
 // External media is metadata only. Never fetch or accept an arbitrary embed URL.
@@ -163,7 +234,7 @@ function ko_conditions(array $details): array {
     foreach(KO_AXES as $axis=>$allowed)if(is_string($details[$axis]??null)&&in_array($details[$axis],$allowed,true))$out[$axis]=$details[$axis];
     $scores=[];$storedScores=is_array($details['scores']??null)?$details['scores']:[];
     foreach(KO_SCORE_AXES as $axis){$n=$storedScores[$axis]??null;if(is_int($n)&&$n>=1&&$n<=5)$scores[$axis]=$n;}
-    if($scores)$out['scores']=$scores;
+    if($scores){$out['scores']=$scores;if(in_array($details['season']??null,KO_SEASONS,true))$out['season']=$details['season'];}
     $signals=[];
     foreach(is_array($details['signals']??null)?$details['signals']:[] as $row){
         if(!is_array($row))continue;
