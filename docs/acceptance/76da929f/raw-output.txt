@@ -1,0 +1,25 @@
+publish: 41322396746 completed/success
+release.json: {"source_commit":"76da929f56eafbe20844b6b55e6596baf6f67af4"}
+version: kamptrail-version" content="2.34.0
+index sha256: 83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a
+identity-hosts sha256: 9f83fc564ec2240a13412cc49950782966e0ffa9c12915b3022214381eed4e58
+national clearance index: 404
+RI clearance: 200
+== desktop reversed
+reversed {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]} ms 291337
+== mobile seed7
+seed7 {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]} ms 303730
+== saved stops and cached visit
+PASS order NC>TN visit 1: stored id stays ridb:232479 (ridb:232479)
+PASS order NC>TN visit 1: saved stop opens osm:way:1107154601 Cosby Campground
+PASS order NC>TN visit 2: stored id stays ridb:232479 (ridb:232479)
+PASS order NC>TN visit 2: saved stop opens osm:way:1107154601 Cosby Campground
+PASS order TN>NC visit 1: stored id stays ridb:232479 (ridb:232479)
+PASS order TN>NC visit 1: saved stop opens osm:way:1107154601 Cosby Campground
+PASS order TN>NC visit 2: stored id stays ridb:232479 (ridb:232479)
+PASS order TN>NC visit 2: saved stop opens osm:way:1107154601 Cosby Campground
+online  [["ridb:232479","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"],["osm:way:1107154601","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"]]
+offline [["ridb:232479","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"],["osm:way:1107154601","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"]] {"hosts":"published","shown":0}
+PASS cached offline visit in reversed order gives the same identity and toilet claim
+SUMMARY PASSED (0)
+ACCEPT-DONE
