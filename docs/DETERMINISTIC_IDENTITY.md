@@ -119,3 +119,32 @@ With the host file present, at every loading checkpoint (after each state load, 
 6. Stored ids are not rewritten. `search-index.json`, `coordinate-index.json`, `identity-hosts.json` and all listing data stay byte-identical to main.
 
 Measured by `scripts/check-partial-identity.js` in Chromium against the real app served from the branch worktree, with the host file served. Scope: each of the 50 states loaded alone, and each of the 102 state pairs that share a multi-state listing, in both orders (204 runs, 408 checkpoints).
+
+## Measured before and after (Chromium, host file served)
+
+Server: `PORT=8797 node scripts/serve.js` started from this worktree (process cwd checked with `readlink /proc/<pid>/cwd`). Browser: Chrome for Testing 153 via Playwright. A checkpoint is one state load. Raw: `docs/identity/before-2.34.0-partial-load.json` and `docs/identity/after-2.35.0-partial-*.json`.
+
+| Scenario | Checkpoints | 2.34.0 checkpoints with a wrong merge | 2.34.0 wrong merges / wrong resolutions (sum) | 2.35.0 wrong merges / wrong resolutions / unresolved |
+|---|---|---|---|---|
+| Each of 50 states alone | 50 | 1 (NV) | 1 / 3 | 0 / 0 / 0 |
+| 102 state pairs sharing a multi-state listing, both orders (204 runs) | 408 | 10 (every checkpoint with NV loaded and CA not: NV>AZ, NV>OR and NV>UT after each state, AZ>NV, OR>NV, UT>NV and NV>CA after NV) | 10 / 30 | 0 / 0 / 0 |
+
+The only defect found on 2.34.0 was Bird Creek: one listing `ridb:234209` holding `usfs:65184`, with `usfs:65184`, `osm:way:1236741631` and `ridb:234209` all resolving to it. No other pair of index owners merged at any checkpoint.
+
+2.35.0 full-load census against `search-index.json` (all 33,370 listings, with every checkpoint along the way checked as above):
+
+| Order | Checkpoints with a wrong merge or resolution | Differences from the index (missing, split, canonical id, source-id set) |
+|---|---|---|
+| Default | 0 of 50 | 0 |
+| Reversed | 0 of 50 | 0 |
+| Random, seed 1 | 0 of 50 | 0 |
+| Random, seed 2 | 0 of 50 | 0 |
+| Host file 404 during all 50 loads (seed 3), then served and retried | 0 wrong merges, 0 wrong resolutions during the fallback | after retry: hosts `published`, 0 wrong merges, 0 wrong resolutions, 0 unresolved of 36,290 ids, 0 differences from the index |
+
+## Fix
+
+`cleanAndDedupeGeoJSON` takes a new option, `ownerOnly`. When it is set and `previousHosts` is present, a proximity same-name candidate is skipped unless both records have the same index owner (the record's published host, else its own id). A record whose host has not loaded therefore stays its own marker, or joins only its own owner's records. Same-id joins (one record in two state files) are unchanged. `data-loader.js` sets `ownerOnly` only on the options built from a valid `identity-hosts.json`. The index build (`scripts/build-search-index.js`) does not set it, so the build output cannot change. The fallback without the host file still passes `radiusMeters:-1` and is unchanged.
+
+At full load the result equals 2.33.0: every multi-record listing in the index is formed from records that all share one owner, and the index's own election (preferred ids, previous hosts) still picks the host among them.
+
+No stored id is rewritten. `search-index.json`, `coordinate-index.json`, `identity-hosts.json` and every listing file are byte-identical to main `041ff76c`.

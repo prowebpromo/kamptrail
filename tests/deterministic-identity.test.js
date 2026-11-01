@@ -173,7 +173,7 @@ test('owner-only joins: same-name records of different index owners stay apart, 
     assert.deepEqual(got,[['osm:way:1',['ridb:2']],['usfs:3',[]]]);
   }
   // The same record in two state files still joins by its id.
-  assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt('usfs:3','A',-100,40),pt('usfs:3','A',-100,40)]},browser).features.length,1);
+  assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt('usfs:3','Aspen Campground',-100,40),pt('usfs:3','Aspen Campground',-100,40)]},browser).features.length,1);
 });
 
 test('Bird Creek Campground: NV alone keeps usfs:65184 and the OSM/RIDB listing apart; both orders converge',async()=>{
