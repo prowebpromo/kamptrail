@@ -109,7 +109,7 @@ test('moderated visitor reports display separately and the report form posts to 
 const riPilot=require('../../data/clearances/RI.json');
 for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
   test(`${viewport.name}: Rhode Island keeps its pilot records, and is unknown only when RI.json is missing or invalid`,async({page,context})=>{
-    await page.setViewportSize(viewport);let mode='valid',riCalls=0;
+    test.setTimeout(90000);await page.setViewportSize(viewport);let mode='valid',riCalls=0;
     await page.route('**/data/clearances/RI.json',r=>{riCalls++;if(mode==='missing')return r.fulfill({status:404,body:'missing'});const d=structuredClone(riPilot);if(mode==='invalid')d.source.sha256='bad';return r.fulfill({contentType:'application/json',body:JSON.stringify(d)});});
     const {errors}=await setup(page,context,{zoom:12});
     await page.evaluate(()=>map.setView([41.8240,-71.4128],13));await show(page);const control=page.locator('.kt-clearance-control');
@@ -119,9 +119,15 @@ for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',wi
     const popup=await openCandidate(page,first);await expect(popup).toContainText('Rhode Island pilot record');await expect(popup.locator('.kt-clearance-verdict')).toContainText('Not compared with your rig height');
     await expect(popup).toContainText(riPilot.source.extract_timestamp);await expect(popup.locator('.kt-odbl')).toContainText('Open Database Licence');
     await page.getByRole('button',{name:'Close popup',exact:true}).click();
+    const reopen=async()=>{await page.goto('/');await page.waitForLoadState('load');await page.waitForFunction(()=>window.KampTrailClearances&&window.map);await page.evaluate(()=>map.setView([41.8240,-71.4128],13));await show(page);};
+    const clearSaved=()=>page.evaluate(async()=>{for(const k of await caches.keys())if(k.endsWith(':clearance-v1'))await caches.delete(k);});
     for(const m of ['missing','invalid']){
-      mode=m;await page.reload();await page.waitForFunction(()=>window.KampTrailClearances&&window.map);await page.evaluate(()=>map.setView([41.8240,-71.4128],13));await show(page);
+      // As in 2.34.0, a failed source read uses the validated saved copy, labelled as a saved snapshot.
+      mode=m;await reopen();await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
+      // With no valid saved copy, Rhode Island is unknown.
+      await clearSaved();await reopen();
       await expect(control).toContainText('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');await expect(control).not.toContainText('pilot records with raw tags');
+      mode='valid';await reopen();await expect(control).toContainText(/Rhode Island: [1-9]\d* pilot records/);await expect(control).not.toContainText('Saved snapshot');
     }
     expect(errors).toEqual([]);
   });

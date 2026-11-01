@@ -39,7 +39,13 @@ The national manifest protects RI (states_protected), so it holds no RI candidat
 - Route: RI segments scan the pilot records. result.dataset.ri_pilot records use and dates.
 - Pilot records are schema 1. They carry no reviewed status, comparable flag or applies_to. They are shown with raw tags and dates as "needs checking", never compared with a rig height, and always unresolved on a route, even with an exact way id. This matches the 2.34.0 pilot behaviour, which made no rig comparison.
 - RI is shown as unknown only when RI.json is missing or fails validation. Tests: tests/clearances.test.js (committed file validates, missing and invalid files reject), tests/route-clearance.test.js (valid pilot covers RI, missing, invalid and tampered pilot mark RI segments ri_pilot_unavailable) and tests/browser/clearances.spec.js (desktop and mobile, valid, missing and invalid).
-- Not carried over: the 2.34.0 pilot's offline Cache Storage snapshot of RI.json. Pilot records are held in memory only.
+- Offline copy, restored to match 2.34.0:
+  - Store: Cache Storage `kamptrail:<scope>:clearance-v1`, keyed by the absolute RI.json URL. A copy is written only after validatePilot passes. The service worker already keeps that cache on activate and never intercepts data/clearances/.
+  - Read: the saved copy is size-bounded and run through validatePilot again before use. A copy that fails validation is not shown, and RI is reported unknown.
+  - Refresh: fetches use cache no-store with a 15-second deadline. A failed or late refresh keeps the in-memory copy, or else uses the saved copy. Removing the layer cancels the request and uses neither. Retry and the online event force a refresh. Going offline relabels the in-memory copy as saved.
+  - Labels: the status line says "Saved snapshot. Rhode Island: N pilot records ... (extract date)". The popup's date line starts "Saved snapshot." and keeps the original extract, download and edit dates. A refresh never makes the saved copy look new.
+  - Offline with no manifest: an RI view still shows the saved RI copy and says national data is unavailable. Views outside RI say the data is unavailable and show nothing.
+  - Tests: tests/clearances.test.js (cache name and key, the stored copy unchanged, offline read with label and original dates, corrupt, invalid or absent copy, refresh failure and deadline fallback, cancel, and a map-layer harness offline with no manifest). tests/browser/clearances.spec.js has desktop and mobile runs with the service worker controlling and the context offline, including a tampered saved copy becoming unknown.
 
 ## Road-association data contract (for R11)
 
