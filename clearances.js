@@ -116,8 +116,8 @@
     const subtle=env.crypto?.subtle;check(!!subtle,'integrity check unavailable');
     return Array.from(new Uint8Array(await subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
   }
-  async function readBounded(url,max,env=global,signal){
-    const r=await env.fetch(url,{cache:'no-cache',credentials:'same-origin',signal});
+  async function readBounded(url,max,env=global,signal,cache='no-cache'){
+    const r=await env.fetch(url,{cache,credentials:'same-origin',signal});
     check(r.ok,'source unavailable');check(!(Number(r.headers.get('content-length'))>max),'response exceeds bound');
     if(!r.body?.getReader){const b=new Uint8Array(await r.arrayBuffer());check(b.byteLength<=max,'response exceeds bound');return b;}
     const reader=r.body.getReader(),chunks=[];let size=0;
@@ -128,7 +128,7 @@
 
   // Rhode Island pilot (RI.json, version 1). The national dataset protects RI until it is rebuilt under schema 3, so the
   // client keeps reading the shipped pilot there. Validation rules are those of the 2.34.0 pilot client, unchanged.
-  const PILOT='data/clearances/RI.json',PILOT_BOX=[-72,40.9,-70.9,42.1],PILOT_SOURCE='https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf';
+  const PILOT_DEADLINE_MS=15000,PILOT='data/clearances/RI.json',PILOT_BOX=[-72,40.9,-70.9,42.1],PILOT_SOURCE='https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf';
   const PILOT_KEYS=['maxheight','maxheight:physical','maxheight:conditional','maxheight:forward','maxheight:backward','maxheight:lanes'];
   const PILOT_CONTEXT=['name','ref','highway','bridge','tunnel','barrier','access','source:maxheight','maxheight:signed','source:maxheight:physical'];
   const exactUtc=s=>utc(s)&&new Date(s).toISOString()===s.replace('Z','.000Z');
@@ -183,13 +183,35 @@
       })().finally(()=>inflight.delete(entry.path));
       inflight.set(entry.path,job);return job;
     }
-    let pilot=null,pilotPending=null;
-    async function loadPilot(){
-      if(pilot)return pilot;if(pilotPending)return pilotPending;
-      pilotPending=readBounded(url(PILOT),MAX_TILE_BYTES,env).then(b=>{const d=validatePilot(decode(b));pilot={source:d.source,candidates:pilotCandidates(d)};return pilot;}).finally(()=>{pilotPending=null;});
+    // Same dated offline copy as the 2.34.0 pilot client: Cache Storage kamptrail:<scope>:clearance-v1, keyed by the absolute
+    // RI.json URL, written only after validation and validated again on read. A failed or late refresh uses the copy in
+    // memory or the saved copy, labelled as a saved snapshot. Removing the layer cancels the request without using either.
+    let pilot=null,pilotPending=null,pilotController=null;
+    const scope=()=>env.location?.href?new env.URL('./',env.location.href).href:'';
+    const pilotKey=()=>env.location?.href?new env.URL(PILOT,env.location.href).href:url(PILOT);
+    const pilotCache=()=>`kamptrail:${scope()}:clearance-v1`;
+    const pack=(d,saved)=>({source:d.source,candidates:pilotCandidates(d),saved});
+    async function loadPilot({force=false}={}){
+      if(pilot&&!force)return pilot;
+      if(pilotPending){if(pilotController?.signal.aborted){try{await pilotPending;}catch{}return loadPilot({force});}return pilotPending;}
+      const ctl=new AbortController();pilotController=ctl;let timedOut=false;
+      const timer=(env.setTimeout||setTimeout)(()=>{timedOut=true;ctl.abort();},PILOT_DEADLINE_MS);
+      pilotPending=(async()=>{
+        try{
+          const d=validatePilot(decode(await readBounded(url(PILOT),MAX_TILE_BYTES,env,ctl.signal,'no-store')));pilot=pack(d,false);
+          try{const cache=await env.caches.open(pilotCache());await cache.put(pilotKey(),new Response(JSON.stringify(d),{headers:{'content-type':'application/json'}}));}catch{}
+          return pilot;
+        }catch(error){
+          if(ctl.signal.aborted&&!timedOut)throw error;
+          if(pilot){pilot={...pilot,saved:true};return pilot;}
+          try{const hit=await(await env.caches.open(pilotCache())).match(pilotKey());if(hit){const b=await readBounded(null,MAX_TILE_BYTES,{fetch:async()=>hit});pilot=pack(validatePilot(decode(b)),true);return pilot;}}catch{}
+          throw error;
+        }
+      })().finally(()=>{(env.clearTimeout||clearTimeout)(timer);pilotPending=null;if(pilotController===ctl)pilotController=null;});
       return pilotPending;
     }
-    return {loadManifest,loadTile,loadPilot,get manifest(){return manifest;}};
+    const cancelPilot=()=>pilotController?.abort();
+    return {loadManifest,loadTile,loadPilot,cancelPilot,pilotCacheName:pilotCache,get manifest(){return manifest;}};
   }
   function validReport(r){
     return plain(r)&&Number.isSafeInteger(r.id)&&r.id>0&&finite(r.lat)&&finite(r.lng)&&Math.abs(r.lat)<=90&&Math.abs(r.lng)<=180&&str(r.posted,40)&&parseHundredths(r.posted)?.hundredths===r.hundredths
@@ -231,7 +253,7 @@
     return c.tags[key]+(value===null?t(' (numeric limit unknown)'):t(' (about {value} m)',{value:value.toFixed(2)}));
   }
   function sourceLink(c){return`https://www.openstreetmap.org/${c.osm_type}/${c.osm_id}`;}
-  function sourceDates(m,c,pilotSource){const s=c.pilot?pilotSource:m?.sources?.[c.state];return s?t('OpenStreetMap extract {extract}; downloaded {retrieved}. Object last edited {edited}. These dates are not an inspection.',{extract:s.extract_timestamp,retrieved:s.retrieved_at,edited:c.edited_at}):t('Object last edited {edited}. Extract date unknown.',{edited:c.edited_at});}
+  function sourceDates(m,c,pilot){const s=c.pilot?pilot?.source:m?.sources?.[c.state];return (c.pilot&&pilot?.saved?t('Saved snapshot. '):'')+(s?t('OpenStreetMap extract {extract}; downloaded {retrieved}. Object last edited {edited}. These dates are not an inspection.',{extract:s.extract_timestamp,retrieved:s.retrieved_at,edited:c.edited_at}):t('Object last edited {edited}. Extract date unknown.',{edited:c.edited_at}));}
   function attributionNode(doc){
     const p=doc.createElement('p');p.className='kt-odbl';p.append(ATTRIBUTION+' ');
     const a=doc.createElement('a');a.href=COPYRIGHT_URL;a.target='_blank';a.rel='noopener noreferrer';a.textContent=t('OpenStreetMap copyright and licence');p.append(a);return p;
@@ -283,7 +305,7 @@
     const el=(tag,text)=>{const n=doc.createElement(tag);if(text)n.textContent=text;return n;};
     const link=(label,url)=>{const a=el('a',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;};
     const credit=`<a href="${COPYRIGHT_URL}" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors, ODbL</a>`;
-    function popup(c,m,pilotSource){
+    function popup(c,m,pilot){
       const box=el('div');box.className='kt-clearance-popup';box.tabIndex=0;box.setAttribute('role','region');box.setAttribute('aria-label',t('Clearance candidate details'));box.style.maxHeight=Math.max(80,Math.min(380,map.getSize().y-160))+'px';
       const cmp=compare(c,rigHeight());const verdict=el('p',comparisonText(cmp));verdict.className='kt-clearance-verdict kt-clearance-'+(cmp.conflict?'conflict':cmp.relation);
       box.append(el('h2',c.context.name||c.context.ref||t('Clearance candidate')),verdict,el('p',stateText(c)));
@@ -291,7 +313,7 @@
       box.append(el('p',appliesText(c)),el('p',t('Map view only: not matched to any route.')));
       if(c.reasons.length)box.append(el('p',t('Source flags: {reasons}',{reasons:c.reasons.join(', ')})));
       if(Object.keys(c.context).length){const dl=el('dl');for(const [k,v] of Object.entries(c.context))dl.append(el('dt',k),el('dd',v));box.append(dl);}
-      box.append(el('p',sourceDates(m,c,pilotSource)),link(t('OpenStreetMap source object'),sourceLink(c)),' · ',link(t('OSM height-tag guidance'),'https://wiki.openstreetmap.org/wiki/Key:maxheight'),attributionNode(doc));
+      box.append(el('p',sourceDates(m,c,pilot)),link(t('OpenStreetMap source object'),sourceLink(c)),' · ',link(t('OSM height-tag guidance'),'https://wiki.openstreetmap.org/wiki/Key:maxheight'),attributionNode(doc));
       const report=el('button',t('Report a different posted clearance'));report.type='button';const p0=points(c)[0];report.onclick=()=>{map.closePopup();openReportForm({lat:p0[1],lng:p0[0],osm_ref:c.id});};box.append(report);
       return box;
     }
@@ -303,22 +325,25 @@
       return box;
     }
     const colour=c=>{const cmp=compare(c,rigHeight());return cmp.conflict?'#b3261e':cmp.relation==='above'?'#1f5f99':cmp.state==='unknown'?'#5c5c5c':'#9a6200';};
-    async function redraw(){
-      const current=++view;controller?.abort();controller=null;if(control)control.hidden=!active();if(!active()){map.attributionControl?.removeAttribution(credit);return;}
+    async function redraw(forcePilot=false){
+      const current=++view;controller?.abort();controller=null;if(control)control.hidden=!active();if(!active()){store.cancelPilot();map.attributionControl?.removeAttribution(credit);return;}
       map.attributionControl?.addAttribution(credit);
       const b=map.getBounds(),bbox=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()],zoom=map.getZoom();
       if(zoom<MIN_ZOOM){if(!map._popup?.isOpen?.())layer.clearLayers();select.replaceChildren();select.disabled=openButton.disabled=true;status.textContent=t('Zoom to level {zoom} or closer to load clearance candidates. Nothing is loaded at this zoom; hazards here are unknown.',{zoom:MIN_ZOOM});return;}
       status.textContent=t('Loading clearance candidates…');controller=new AbortController();const signal=controller.signal;
       try{
-        const m=await store.loadManifest();if(current!==view)return;
-        const plan=tilesForView(m,bbox,zoom);
+        let m=null,manifestFailed=false;try{m=await store.loadManifest();}catch{manifestFailed=true;}if(current!==view)return;
+        const riView=intersects(PILOT_BOX,bbox);
+        if(manifestFailed&&!riView)throw new Error('manifest unavailable');
+        const plan=m?tilesForView(m,bbox,zoom):{ok:true,tiles:[]};
         if(!plan.ok){if(!map._popup?.isOpen?.())layer.clearLayers();select.replaceChildren();select.disabled=openButton.disabled=true;status.textContent=t('This view needs too much clearance data. Zoom in further; hazards here are unknown.');return;}
         let failed=0;const seen=new Map();
         await Promise.all(plan.tiles.map(e=>store.loadTile(e,signal).then(d=>{for(const c of d.candidates)if(intersects(bboxOf(c),bbox))seen.set(c.id,c);}).catch(()=>{failed++;})));
-        let regionNote='';const protectedStates=Object.keys(m.states_protected||{});
-        if(pilotNeeded(m,bbox)){
-          try{pilotData=await store.loadPilot();let added=0;for(const c of pilotData.candidates)if(!seen.has(c.id)&&intersects(bboxOf(c),bbox)){seen.set(c.id,c);added++;}regionNote=' '+t('Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.',{count:added,date:pilotData.source.extract_timestamp.slice(0,10)});}
-          catch{regionNote=' '+t('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');}
+        let regionNote=manifestFailed?' '+t('National clearance data unavailable; outside Rhode Island this view is unknown.'):'';const protectedStates=Object.keys(m?.states_protected||{});
+        // The pilot is read while the manifest protects RI, or when the manifest cannot be read at all (for example offline).
+        if(riView&&(manifestFailed||pilotNeeded(m,bbox))){
+          try{pilotData=await store.loadPilot({force:forcePilot});if(current!==view||!active())return;let added=0;for(const c of pilotData.candidates)if(!seen.has(c.id)&&intersects(bboxOf(c),bbox)){seen.set(c.id,c);added++;}regionNote+=' '+(pilotData.saved?t('Saved snapshot. '):'')+t('Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.',{count:added,date:pilotData.source.extract_timestamp.slice(0,10)});}
+          catch{if(current!==view||!active())return;regionNote+=' '+t('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');}
         }
         const others=protectedStates.filter(x=>x!=='RI');if(others.length)regionNote+=' '+t('Not in this dataset: {states}.',{states:others.join(', ')});
         let reportsNote='';
@@ -332,7 +357,7 @@
         for(const c of rows){
           const o={color:colour(c),weight:5,opacity:.9,dashArray:state(c)==='comparable'?null:'6 5'};
           const item=c.geometry.type==='LineString'?L.polyline(c.geometry.coordinates.map(p=>[p[1],p[0]]),o):L.circleMarker([c.geometry.coordinates[1],c.geometry.coordinates[0]],{...o,radius:7});
-          item.ktClearanceId=c.id;item.bindPopup(()=>popup(c,m,pilotData?.source),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(item);
+          item.ktClearanceId=c.id;const shownPilot=c.pilot?pilotData:null;item.bindPopup(()=>popup(c,m,shownPilot),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(item);
         }
         for(const r of reports){const item=L.circleMarker([r.lat,r.lng],{color:'#6b2f8f',weight:3,radius:8,fillOpacity:.15});item.ktClearanceId='report:'+r.id;item.bindPopup(()=>reportPopup(r),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70))});layer.addLayer(item);}
         const listed=[...rows.slice(0,LIST_LIMIT).map(c=>[c.id,`${c.context.name||c.context.ref||t('Source object')} · ${c.id}`]),...reports.map(r=>['report:'+r.id,t('Visitor report {value}',{value:r.posted})])];
@@ -348,7 +373,7 @@
       const label=el('label',t('Clearance candidate in view'));select=el('select');select.setAttribute('aria-label',t('Clearance candidate in view'));select.disabled=true;label.append(select);
       openButton=el('button',t('Open selected candidate'));openButton.type='button';openButton.disabled=true;
       openButton.onclick=()=>{const item=layer.getLayers().find(l=>l.ktClearanceId===select.value);if(item){item.openPopup();global.setTimeout(()=>map.getContainer().querySelector('.kt-clearance-popup')?.focus(),0);}};
-      const retry=el('button',t('Retry clearance data'));retry.type='button';retry.onclick=()=>redraw();
+      const retry=el('button',t('Retry clearance data'));retry.type='button';retry.onclick=()=>redraw(true);
       const report=el('button',t('Report a posted clearance'));report.type='button';report.onclick=()=>{const c=map.getCenter();openReportForm({lat:c.lat,lng:c.lng,osm_ref:null});};
       control.append(el('strong',t('Clearance candidates')),status,label,openButton,retry,report,attributionNode(doc));
       L.DomEvent.disableClickPropagation(control);L.DomEvent.disableScrollPropagation(control);return control;
@@ -358,7 +383,8 @@
     let timer;map.on('moveend',()=>{global.clearTimeout(timer);timer=global.setTimeout(()=>redraw(),180);});
     map.on('popupclose',()=>global.setTimeout(()=>{if(!map._popup?.isOpen?.()&&active())redraw();},0));
     global.addEventListener?.('kamptrail:rigprofilechanged',()=>{if(active())redraw();});
-    global.addEventListener?.('online',()=>{if(active())redraw();});
+    global.addEventListener?.('online',()=>{if(active())redraw(true);});
+    global.addEventListener?.('offline',()=>{if(active()&&pilotData)pilotData={...pilotData,saved:true};if(active())redraw();});
     return layer;
   }
   const api={version:VERSION,SCHEMA,MANIFEST,MIN_ZOOM,MAX_VIEW_TILES,MAX_VIEW_BYTES,MAX_TILE_BYTES,ATTRIBUTION,COPYRIGHT_URL,LICENSE_URL,parseHeight,parseHundredths,rigHundredths,state,compare,

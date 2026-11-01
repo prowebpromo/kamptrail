@@ -1836,7 +1836,7 @@
   "Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.": "Rhode Island : {count} enregistrements pilotes avec étiquettes brutes seulement (extrait {date}); non comparés.",
   "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.": "Les données pilotes du Rhode Island sont absentes ou ont échoué à la validation; le Rhode Island est inconnu.",
   "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown": "les données pilotes du Rhode Island sont absentes ou ont échoué à la validation; le Rhode Island est inconnu",
-  "Rhode Island uses the pilot extract of {date}. Its records show raw tags only and stay unresolved.": "Le Rhode Island utilise l’extrait pilote du {date}. Ses enregistrements montrent seulement des étiquettes brutes et restent non résolus."
-
+  "Rhode Island uses the pilot extract of {date}. Its records show raw tags only and stay unresolved.": "Le Rhode Island utilise l’extrait pilote du {date}. Ses enregistrements montrent seulement des étiquettes brutes et restent non résolus.",
+  "National clearance data unavailable; outside Rhode Island this view is unknown.": "Données nationales de dégagement indisponibles; hors du Rhode Island, cette vue est inconnue."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

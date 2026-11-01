@@ -96,7 +96,7 @@
   for(const r of ranges)r.length_m=Math.round(lengthOf(s,r.from,r.to));
   const rows=[...found.values()].sort((a,b)=>a.nearest_segment-b.nearest_segment||a.id.localeCompare(b.id));
   const by=x=>rows.filter(x).length;
-  return {schema:SCHEMA,dataset:{schema:m.schema,attribution:m.attribution,copyright_url:m.copyright_url,sources:m.sources,not_in_dataset:Object.keys(m.states_protected),ri_pilot:pilot?{used:true,extract_timestamp:pilot.source.extract_timestamp,retrieved_at:pilot.source.retrieved_at}:{used:false,needed:riSegments.length>0}},
+  return {schema:SCHEMA,dataset:{schema:m.schema,attribution:m.attribution,copyright_url:m.copyright_url,sources:m.sources,not_in_dataset:Object.keys(m.states_protected),ri_pilot:pilot?{used:true,saved:!!pilot.saved,extract_timestamp:pilot.source.extract_timestamp,retrieved_at:pilot.source.retrieved_at}:{used:false,needed:riSegments.length>0}},
    rig_height_mm:Number.isSafeInteger(rigMm)?rigMm:null,search_radius_m:RADIUS,
    association_method:s.waySet||s.nodeSet?'exact_osm_identity':'none',
    association_limits:s.waySet||s.nodeSet?'Only candidates whose OSM way or node id is in the route identity lists are on the route. Segments without ids stay unresolved.':'The route carries no OSM way or node ids, so no candidate can be tied to the driven road. All nearby candidates are unresolved.',

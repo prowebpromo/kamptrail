@@ -109,3 +109,57 @@ test('Rhode Island pilot: the committed RI.json validates and its records are ne
   const bad=structuredClone(d);bad.region='MA';await assert.rejects(C.createStore(serve(JSON.stringify(bad))).loadPilot(),/invalid pilot/);
   const off=structuredClone(d);off.records[0].metres.maxheight=1;await assert.rejects(C.createStore(serve(JSON.stringify(off))).loadPilot(),/differs from raw source/);
 });
+
+// RI offline copy: same cache, key, validation and labelling as the 2.34.0 pilot client.
+function cacheEnv({online=true,stored=null,hang=false}={}){
+  const pilotRaw=fs.readFileSync(path.join(root,'data/clearances/RI.json')),stores=new Map(),timers=new Map(),requests=[];let next=0;
+  if(stored!==null)stores.set('kamptrail:https://kamptrail.com/:clearance-v1',new Map([['https://kamptrail.com/data/clearances/RI.json',stored]]));
+  const env={crypto:globalThis.crypto,URL,location:{href:'https://kamptrail.com/'},
+    caches:{open:async name=>{if(!stores.has(name))stores.set(name,new Map());const m=stores.get(name);return {put:async(k,r)=>{m.set(k,await r.text());},match:async k=>m.has(k)?new Response(m.get(k)):undefined};}},
+    setTimeout:(fn,ms)=>{const id=++next;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id),
+    fetch:async(u,{signal}={})=>{requests.push(u);if(!env.online)throw new TypeError('Failed to fetch');if(env.hang)return new Promise((_,rej)=>signal.addEventListener('abort',()=>rej(new Error('aborted'))));return u.endsWith('RI.json')?new Response(pilotRaw):new Response(manifestRaw);}};
+  env.online=online;env.hang=hang;
+  return {env,stores,timers,requests,pilotRaw,saved:()=>stores.get('kamptrail:https://kamptrail.com/:clearance-v1')?.get('https://kamptrail.com/data/clearances/RI.json'),deadline(){const e=[...timers].find(([,t])=>t.ms===15000);assert.ok(e,'pilot request has a 15 s deadline');timers.delete(e[0]);e[1].fn();}};
+}
+const tick=()=>new Promise(r=>setImmediate(r));
+test('RI offline copy: a validated online read is saved under the 2.34.0 cache name and key, then used offline with a saved-snapshot label',async()=>{
+  const h=cacheEnv(),fresh=await C.createStore(h.env).loadPilot();
+  assert.equal(fresh.saved,false);assert.equal(fresh.candidates.length,254);
+  assert.equal(C.createStore(h.env).pilotCacheName(),'kamptrail:https://kamptrail.com/:clearance-v1');
+  assert.deepEqual(JSON.parse(h.saved()),JSON.parse(h.pilotRaw),'the validated file is stored unchanged');
+  const off=cacheEnv({online:false,stored:h.saved()}),cached=await C.createStore(off.env).loadPilot();
+  assert.equal(cached.saved,true);assert.equal(cached.candidates.length,254);assert.equal(cached.source.extract_timestamp,'2026-10-28T21:21:02Z');assert.equal(cached.source.retrieved_at,'2026-10-30T16:30:30Z');
+  const c=cached.candidates[0];assert.match(C.sourceDates(null,c,cached),/^Saved snapshot\. OpenStreetMap extract 2026-10-28T21:21:02Z; downloaded 2026-10-30T16:30:30Z\./);
+  assert.doesNotMatch(C.sourceDates(null,c,fresh),/Saved snapshot/);
+});
+test('RI offline copy is validated on read; a corrupt saved copy, or none, leaves RI unknown',async()=>{
+  const d=JSON.parse(fs.readFileSync(path.join(root,'data/clearances/RI.json')));d.source.sha256='bad';
+  await assert.rejects(C.createStore(cacheEnv({online:false,stored:JSON.stringify(d)}).env).loadPilot(),/Failed to fetch/);
+  await assert.rejects(C.createStore(cacheEnv({online:false,stored:'{not json'}).env).loadPilot(),/Failed to fetch/);
+  await assert.rejects(C.createStore(cacheEnv({online:false}).env).loadPilot(),/Failed to fetch/);
+  const bad=cacheEnv();bad.env.fetch=async()=>new Response(JSON.stringify(d));await assert.rejects(C.createStore(bad.env).loadPilot(),/invalid source evidence/);assert.equal(bad.saved(),undefined,'an invalid file is never saved');
+});
+test('RI refresh: a failed or late refresh keeps the in-memory copy and its original dates; a cold deadline uses the saved copy; cancelling uses neither',async()=>{
+  const h=cacheEnv(),store=C.createStore(h.env);await store.loadPilot();
+  h.env.online=false;const kept=await store.loadPilot({force:true});assert.equal(kept.saved,true);assert.equal(kept.source.retrieved_at,'2026-10-30T16:30:30Z');
+  h.env.online=true;h.env.hang=true;const late=store.loadPilot({force:true});await tick();h.deadline();assert.equal((await late).saved,true);
+  const cold=cacheEnv({hang:true,stored:h.saved()}),p=C.createStore(cold.env).loadPilot();await tick();cold.deadline();assert.equal((await p).saved,true);
+  const cancel=cacheEnv({hang:true,stored:h.saved()}),s2=C.createStore(cancel.env),q=s2.loadPilot();await tick();s2.cancelPilot();await assert.rejects(q,/aborted/);
+});
+test('map layer: an offline RI view with no manifest still shows the saved RI copy, labelled; elsewhere the view is unknown',async()=>{
+  const h=cacheEnv();await C.createStore(h.env).loadPilot();const saved=h.saved();
+  const vm=require('node:vm');const events=new Map();let control,bounds=[-71.45,41.78,-71.38,41.85];
+  class Element{constructor(tag){this.tag=tag;this.children=[];this.style={};}append(...n){this.children.push(...n);}replaceChildren(...n){this.children=n;}setAttribute(){}get textContent(){return this._t??'';}set textContent(v){this._t=v;}}
+  const env=cacheEnv({online:false,stored:saved}).env;
+  Object.assign(env,{TextEncoder,TextDecoder,Response,AbortController,Map,Set,Date,document:{createElement:t=>new Element(t)},addEventListener:(n,f)=>events.set('g:'+n,f)});
+  env.setTimeout=(fn)=>{setImmediate(fn);return 1;};env.clearTimeout=()=>{};
+  const layer={rows:[],clearLayers(){this.rows=[];},addLayer(i){this.rows.push(i);},getLayers(){return this.rows;}};
+  env.L={layerGroup:()=>layer,control:()=>({addTo(){control=this.onAdd();}}),DomEvent:{disableClickPropagation(){},disableScrollPropagation(){}},polyline:()=>({bindPopup(){return this;}}),circleMarker:()=>({bindPopup(){return this;}})};
+  const map={hasLayer:()=>true,on:(n,f)=>n.split(' ').forEach(x=>events.set(x,f)),getZoom:()=>13,getBounds:()=>({getWest:()=>bounds[0],getSouth:()=>bounds[1],getEast:()=>bounds[2],getNorth:()=>bounds[3]}),getSize:()=>({x:390,y:700}),getContainer:()=>({querySelector:()=>null}),attributionControl:{addAttribution(){},removeAttribution(){}}};
+  env.window=env;vm.createContext(env);vm.runInContext(fs.readFileSync(path.join(root,'clearances.js'),'utf8'),env);env.KampTrailClearances.init(map);
+  events.get('overlayadd')({layer});for(let i=0;i<20;i++)await tick();
+  const status=control.children[1].textContent;
+  assert.match(status,/Saved snapshot\. Rhode Island: \d+ pilot records with raw tags only \(extract 2026-10-28\); not compared\./);assert.match(status,/National clearance data unavailable/);assert.ok(layer.rows.length>0);
+  bounds=[-105.1,39.9,-105,40];events.get('overlayadd')({layer});for(let i=0;i<20;i++)await tick();
+  assert.match(control.children[1].textContent,/Clearance candidates unavailable/);assert.equal(layer.rows.length,0);
+});

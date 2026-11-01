@@ -1852,8 +1852,8 @@
   "Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.": "Rhode Island: {count} registros piloto solo con etiquetas originales (extracto {date}); no se comparan.",
   "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.": "Faltan los datos piloto de Rhode Island o no superaron la validación; Rhode Island es desconocido.",
   "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown": "faltan los datos piloto de Rhode Island o no superaron la validación; Rhode Island es desconocido",
-  "Rhode Island uses the pilot extract of {date}. Its records show raw tags only and stay unresolved.": "Rhode Island usa el extracto piloto del {date}. Sus registros muestran solo etiquetas originales y quedan sin resolver."
-
+  "Rhode Island uses the pilot extract of {date}. Its records show raw tags only and stay unresolved.": "Rhode Island usa el extracto piloto del {date}. Sus registros muestran solo etiquetas originales y quedan sin resolver.",
+  "National clearance data unavailable; outside Rhode Island this view is unknown.": "Datos nacionales de gálibo no disponibles; fuera de Rhode Island esta vista es desconocida."
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);

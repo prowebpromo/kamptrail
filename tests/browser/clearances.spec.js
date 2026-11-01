@@ -126,3 +126,31 @@ for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',wi
     expect(errors).toEqual([]);
   });
 }
+test.describe('RI offline copy with the service worker in control',()=>{
+  test.use({serviceWorkers:'allow'});
+  for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+    test(`${viewport.name}: an offline RI view uses the saved, validated RI.json with its original dates and a saved-snapshot label`,async({page,context})=>{
+      test.setTimeout(120000);await page.setViewportSize(viewport);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+      await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
+      await page.addInitScript(()=>{if(sessionStorage.getItem('kt-ri-seeded'))return;sessionStorage.setItem('kt-ri-seeded','1');localStorage.setItem('kt_last_position',JSON.stringify({lat:41.824,lng:-71.4128,zoom:13}));});
+      await page.goto('/');await page.waitForFunction(()=>window.KampTrailClearances&&window.map);
+      await page.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}));});
+      await show(page);const control=page.locator('.kt-clearance-control');
+      await expect(control).toContainText(/Rhode Island: [1-9]\d* pilot records with raw tags only \(extract 2026-10-28\); not compared/);await expect(control).not.toContainText('Saved snapshot');
+      await expect.poll(()=>page.evaluate(async()=>{const k=(await caches.keys()).find(n=>n.endsWith(':clearance-v1'));return !!k&&!!(await (await caches.open(k)).match(new URL('data/clearances/RI.json',location.href).href));})).toBe(true);
+      await context.setOffline(true);await page.reload();await page.waitForFunction(()=>window.KampTrailClearances&&window.map);
+      expect(await page.evaluate(()=>!!navigator.serviceWorker.controller&&!navigator.onLine)).toBe(true);
+      await show(page);
+      await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records with raw tags only \(extract 2026-10-28\); not compared/);
+      await expect(control).toContainText('National clearance data unavailable; outside Rhode Island this view is unknown.');
+      const first=await control.getByLabel('Clearance candidate in view').locator('option').first().getAttribute('value');
+      const popup=await openCandidate(page,first);await expect(popup).toContainText('Saved snapshot. OpenStreetMap extract 2026-10-28T21:21:02Z; downloaded 2026-10-30T16:30:30Z.');await expect(popup).toContainText('Rhode Island pilot record');
+      await page.getByRole('button',{name:'Close popup',exact:true}).click();
+      // A tampered saved copy fails validation on read and RI becomes unknown.
+      await page.evaluate(async()=>{const k=(await caches.keys()).find(n=>n.endsWith(':clearance-v1')),c=await caches.open(k),u=new URL('data/clearances/RI.json',location.href).href,d=await (await c.match(u)).json();d.source.sha256='bad';await c.put(u,new Response(JSON.stringify(d),{headers:{'content-type':'application/json'}}));});
+      await page.reload();await page.waitForFunction(()=>window.KampTrailClearances&&window.map);await show(page);
+      await expect(control).toContainText('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');
+      await context.setOffline(false);expect(errors).toEqual([]);
+    });
+  }
+});
