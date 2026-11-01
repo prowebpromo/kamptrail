@@ -102,11 +102,12 @@ function ko_monthly_groups(array $groups, ?string $today=null): array {
     $out['months']=(object)$months;
     return $out;
 }
-function ko_monthly(PDO $pdo,string $site): array {
+function ko_monthly(PDO $pdo,string|array $site): array {
+    $ids=is_array($site)?array_values($site):[$site];$in=implode(',',array_fill(0,count($ids),'?'));
     if(!ko_ready($pdo))return ['version'=>1,'available'=>false,'reason'=>'unavailable'];
-    // All published rows for this exact identity, independent of the ten-review page.
-    $q=$pdo->prepare("SELECT r.visited_on,o.details FROM community_reviews r LEFT JOIN community_observations o ON o.review_id=r.id WHERE r.status='published' AND r.campsite_id=?");
-    $q->execute([$site]);$groups=[];
+    // All published rows for every published id of this listing, independent of the ten-review page.
+    $q=$pdo->prepare("SELECT r.visited_on,o.details FROM community_reviews r LEFT JOIN community_observations o ON o.review_id=r.id WHERE r.status='published' AND r.campsite_id IN ($in)");
+    $q->execute($ids);$groups=[];
     foreach($q as $row){
         $details=$row['details']===null?null:json_decode($row['details'],true);
         if(is_array($details))$row['details']=json_encode(ko_monthly_conditions($details),JSON_THROW_ON_ERROR);
@@ -137,9 +138,10 @@ function ko_seasonal(iterable $groups): array {
     }
     return $out;
 }
-function ko_site_seasonal(PDO $pdo,string $site): array {
+function ko_site_seasonal(PDO $pdo,string|array $site): array {
     if(!ko_ready($pdo))return [];
-    $q=$pdo->prepare("SELECT o.details,r.visited_on FROM community_reviews r JOIN community_observations o ON o.review_id=r.id WHERE r.campsite_id=? AND r.status='published'");$q->execute([$site]);
+    $ids=is_array($site)?array_values($site):[$site];$in=implode(',',array_fill(0,count($ids),'?'));
+    $q=$pdo->prepare("SELECT o.details,r.visited_on FROM community_reviews r JOIN community_observations o ON o.review_id=r.id WHERE r.campsite_id IN ($in) AND r.status='published'");$q->execute($ids);
     $groups=(function()use($q){foreach($q as $r)yield ['values'=>ko_conditions(json_decode($r['details'],true)?:[]),'count'=>1,'latest_visit'=>$r['visited_on']];})();
     return ko_seasonal($groups);
 }

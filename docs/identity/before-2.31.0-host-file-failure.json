@@ -1,0 +1,94 @@
+{
+ "checked_at": "2026-11-01T05:00:38.674Z",
+ "index_sites": 33370,
+ "host_map": "served",
+ "scenarios": {
+  "fail:missing:reversed": {
+   "order": "WY,WI,WV,WA,VA,VT,UT,TX,TN,SD,SC,RI,PA,OR,OK,OH,ND,NC,NY,NM,NJ,NH,NV,NE,MT,MO,MS,MN,MI,MA,MD,ME,LA,KY,KS,IA,IN,IL,ID,HI,GA,FL,DE,CT,CO,CA,AR,AZ,AK,AL",
+   "host_file": "missing",
+   "fallback": {
+    "host_status_during_load": "none (2.31.0)",
+    "listings_shown": 33370,
+    "ids_shown": 33370,
+    "wrong_merges": 2,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [
+      [
+       "ridb:234209",
+       [
+        "osm:way:1236741631",
+        "usfs:65184"
+       ]
+      ],
+      [
+       "osm:way:352429507",
+       [
+        "ridb:232821",
+        "usfs:45432"
+       ]
+      ]
+     ],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 2
+   },
+   "reconcile": null,
+   "after_reconcile": null
+  },
+  "fail:missing:seed:1": {
+   "order": "TN,NH,MS,MT,ND,WA,SD,VT,OR,FL,NV,SC,ME,NC,OH,LA,RI,IA,MA,NM,AL,OK,NY,KS,PA,MO,HI,WI,MD,MN,UT,KY,CO,AK,ID,AR,VA,TX,DE,CT,AZ,WV,IN,GA,CA,WY,MI,IL,NE,NJ",
+   "host_file": "missing",
+   "fallback": {
+    "host_status_during_load": "none (2.31.0)",
+    "listings_shown": 33370,
+    "ids_shown": 33370,
+    "wrong_merges": 2,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [
+      [
+       "ridb:234209",
+       [
+        "osm:way:1236741631",
+        "usfs:65184"
+       ]
+      ],
+      [
+       "osm:way:352429507",
+       [
+        "ridb:232821",
+        "usfs:45432"
+       ]
+      ]
+     ],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 2
+   },
+   "reconcile": null,
+   "after_reconcile": null
+  },
+  "fail:missing:default": {
+   "order": "AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY",
+   "host_file": "missing",
+   "fallback": {
+    "host_status_during_load": "none (2.31.0)",
+    "listings_shown": 33370,
+    "ids_shown": 33370,
+    "wrong_merges": 0,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 0
+   },
+   "reconcile": null,
+   "after_reconcile": null
+  }
+ }
+}

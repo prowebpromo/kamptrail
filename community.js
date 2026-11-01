@@ -42,9 +42,11 @@
     });
     box.append(play,notice);return box;
   }
+  // New reviews are keyed to the listing's published index id. Reads cover every published id of the listing.
+  const publishedId=id=>String(window.KampTrailData?.publishedId?.(id) ?? id);
   function legacyAddress(body,site){
     if(location.hostname!=='prowebpromo.github.io')return false;
-    const href='https://kamptrail.com/'+(site?'#site='+encodeURIComponent(site.properties.id):'');
+    const href='https://kamptrail.com/'+(site?'#site='+encodeURIComponent(publishedId(site.properties.id)):'');
     body.append(el('p',{},t("Reviews and photos are hosted at kamptrail.com. Open the current app to read, contribute or manage a review.")),el('a',{href,target:'_blank',rel:'noopener noreferrer'},t("Open KampTrail reviews")));
     return true;
   }
@@ -76,7 +78,7 @@
     st.focus=document.activeElement;st.site=site;const name=site.properties.name,body=shell(t("Reviews and photos"));const view=st.view;
     body.append(el('h3',{},name),el('p',{class:'kt-fine'},t("Firsthand camper experiences. Reviews and photos are checked by a moderator before publication. They do not verify current fees, access or road conditions.")));
     if(legacyAddress(body,site))return;
-    const actions=el('div',{class:'kt-community-actions'});actions.append(button(t("Write a review"),()=>edit({campsite_id:site.properties.id,campsite_name:name})),button(t("My reviews"),mine));body.append(actions);
+    const actions=el('div',{class:'kt-community-actions'});actions.append(button(t("Write a review"),()=>edit({campsite_id:publishedId(site.properties.id),campsite_name:name})),button(t("My reviews"),mine));body.append(actions);
     const seasonal=el('section',{class:'kt-seasonal-scores','aria-label':t("Seasonal visit sub-ratings")});seasonal.append(el('h4',{},t("Seasonal visit sub-ratings")),el('p',{class:'kt-fine'},t("Subjective 1–5 scores explicitly entered for published visits. An average needs at least 3 ratings per aspect and season. Counts are ratings, not distinct campers. US calendar seasons combine years; visit dates do not establish current conditions or safety.")));const scores=el('p',{class:'kt-seasonal-values'},t("Loading seasonal sub-ratings…"));seasonal.append(scores);
     const summary=message(t("Loading reviews…")),monthly=el('div'),list=el('div',{class:'kt-review-list'});body.append(summary,seasonal,monthly,list);
     const more=button(t("Load more reviews"),()=>load(more.dataset.before));more.hidden=true;body.append(more);
@@ -146,5 +148,5 @@
     const f=el('form'),code=el('input',{name:'code',required:true,pattern:'[a-f0-9]{64}',autocomplete:'off',spellcheck:false});f.append(field(t("Restore a private management code"),code),el('button',{type:'submit',class:'btn'},t("Open my review")));f.onsubmit=e=>{e.preventDefault();manage(code.value.trim());};body.append(f);
   }
   function report(id,photo){const body=shell(photo?t("Report a photo"):t("Report a review")),f=el('form');const reason=el('textarea',{name:'reason',required:true,minlength:10,maxlength:1000,rows:4});f.append(field(t("What is the problem?"),reason,t("Examples: private information, harassment, copied content, or a misleading campsite claim. A moderator will review the report.")));const msg=message(''),send=el('button',{class:'btn',type:'submit'},t("Send report"));f.append(msg,send);body.append(f);f.onsubmit=async e=>{e.preventDefault();send.disabled=true;const data=new FormData(f);data.set('action','report');data.set('review_id',id);if(photo)data.set('photo_id',photo);try{const out=await request(data);body.replaceChildren(message(t(out.message)),button(t("Close"),()=>st.dialog.close()));}catch(err){msg.textContent=err.message;send.disabled=false;}};}
-  window.KampTrailCommunity={version:'2.31.0',open,mine};
+  window.KampTrailCommunity={version:'2.33.0',open,mine};
 })();

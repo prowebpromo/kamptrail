@@ -293,3 +293,22 @@ test('a video replacement during moderation rendering cannot borrow the displaye
   assert.equal((await e.admin({do:'community_review',review_id:id,status:'published'})).status,200,'Fresh inspection of B can be approved');
  }finally{e.close();}
 });
+
+// 2.33.0 deterministic identity: a review stored under a legacy id of a listing still attaches to that
+// listing when it is read by its index id, and the stored id itself is kept unchanged.
+test('reviews keyed to a legacy id attach to the same listing and keep their stored id',{skip:!capable},async()=>{
+ const e=await env('',18977);try{
+  const legacy={...good,campsite_id:'ridb:232479',campsite_name:'Cosby Campground',observations:JSON.stringify({noise:'quiet'})};
+  const res=await e.post(legacy);assert.equal(res.status,201);const {id,token}=await res.json();
+  await e.admin({do:'community_review',review_id:id,status:'published'});
+  for(const site of ['osm:way:1107154601','ridb:232479']){
+   const out=await e.get('/api/community.php?site='+encodeURIComponent(site));
+   assert.equal(out.count,1,site+' finds the review');assert.equal(out.reviews[0].id,id);assert.equal(out.monthly.condition_reports,1,site+' monthly');
+  }
+  // A different listing does not see it.
+  assert.equal((await e.get('/api/community.php?site=usfs%3A20680')).count,0);
+  const mine=await(await fetch(e.base+'/api/community.php',{headers:{Authorization:'Bearer '+token}})).json();
+  assert.equal(mine.review.campsite_id,'ridb:232479','the stored id is not rewritten');
+  assert.ok((await e.get('/api/community-discovery.php')).sites['ridb:232479'],'discovery reports it under its stored id; the client maps aliases');
+ }finally{e.close();}
+});

@@ -36,9 +36,18 @@
   function getSite(stop) {
     // A saved service may share an OSM identity with a campground; keep its service evidence.
     if(stop.feature?.properties?.type==='service')return valid(stop.feature)?stop.feature:null;
+    // Any published id (canonical or alias) finds its listing. The saved id itself is never
+    // rewritten: which member a browser shows can depend on which states have loaded.
     const current=window.KampTrailData?.getCampsiteById(stop.id);
-    if(valid(current)) { stop.feature=clone(current);stop.id=String(current.properties.id); }
+    if(valid(current)) stop.feature=clone(current);
     return valid(stop.feature) ? stop.feature : null;
+  }
+  // A new stop saves the listing's published index id, so it does not depend on load order.
+  const savedId = site => String(site.properties.type==='service'||site.properties.type==='imported'?site.properties.id:(window.KampTrailData?.publishedId?.(site.properties.id) ?? site.properties.id));
+  function sameListing(stop,site){
+    const ids=new Set([String(site.properties.id),...(site.properties.legacy_ids||[]).map(String),savedId(site)]);
+    if(ids.has(stop.id))return true;
+    const current=getSite(stop);return !!current&&current.properties.type!=='service'&&site.properties.type!=='service'&&String(current.properties.id)===String(site.properties.id);
   }
   const latLng = site => [site.geometry.coordinates[1], site.geometry.coordinates[0]];
   const pt = ([lat,lng]) => `${+lat.toFixed(6)},${+lng.toFixed(6)}`;
@@ -143,7 +152,7 @@
     finally{st.driveBusy=false;btn.disabled=false;btn.textContent=t("Calculate road route");}
   }
   function insertAfter(feature,index){
-    if(!valid(feature))return;const id=String(feature.properties.id);if(st.stops.some(x=>x.id===id)){open();return;}
+    if(!valid(feature))return;const id=savedId(feature);if(st.stops.some(x=>sameListing(x,feature))){open();return;}
     st.stops.splice(Math.min(st.stops.length,index+1),0,{id,feature:clone(feature),note:'',arrive:'',depart:''});save();render();drawRoute();open();
   }
   function viewRoadRoute(){const drive=currentDrive();if(!drive?.raw)return;close();st.showRoute=true;drawRoute();const padding=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--route-fit-padding'));st.map.fitBounds(L.latLngBounds(drive.raw.geometry.coordinates.map(([lng,lat])=>[lat,lng])),{padding:[padding,padding],maxZoom:12});}
@@ -197,7 +206,7 @@
   }
   function render() {
     if(!st.el)return;
-    // Canonical aliases can resolve to the same source record after a migration.
+    // Only an exact repeat of a saved id is collapsed. Different saved ids are kept as saved.
     const seen=new Set();st.stops=st.stops.filter(stop=>{getSite(stop);if(seen.has(stop.id))return false;seen.add(stop.id);return true;});
     const badge=document.getElementById('trip-count');if(badge)badge.textContent=`(${st.stops.length})`;
     st.el.querySelector('.kt-saved-note').textContent=st.storageAvailable?t("Saved on this device. Confirm current access before traveling."):t("Browser storage is unavailable. Changes are available only while this page stays open.");
@@ -361,7 +370,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.31.0',
+    version:'2.33.0',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;
@@ -394,8 +403,8 @@
     addStop(id,snapshot) {
       const site=window.KampTrailData?.getCampsiteById(id) || snapshot;
       if(!valid(site)){notify(t("That campsite has not loaded yet. Try again after its listing loads."));return;}
-      const key=String(site.properties.id);
-      if(st.stops.some(stop=>{getSite(stop);return stop.id===key;})){open();return;}
+      const key=savedId(site);
+      if(st.stops.some(stop=>sameListing(stop,site))){open();return;}
       st.stops.push({id:key,feature:clone(site),note:'',arrive:'',depart:''});save();render();drawRoute();open();
     },
     toggle(){st.open?close():open();},

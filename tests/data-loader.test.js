@@ -93,7 +93,7 @@ test('delayed amenity evidence refreshes after popup close without replacing ope
 test('transient state failure is visible and explicit retry succeeds',async()=>{
   let attempts=0;
   const h=harness(async url=>{
-    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json')||url.endsWith('ridb-amenities.json')||url.endsWith('usfs-site-amenities.json'))return response({});
+    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json')||url.endsWith('ridb-amenities.json')||url.endsWith('usfs-site-amenities.json')||url.endsWith('identity-hosts.json'))return response({});
     attempts++;
     return attempts===1?{ok:false,status:503}:response({type:'FeatureCollection',features:[feature({id:'NY-1',facility_id:123})]});
   });
@@ -107,7 +107,7 @@ test('transient state failure is visible and explicit retry succeeds',async()=>{
 test('same-state concurrent loads share one request and markers escape untrusted content',async()=>{
   let requests=0;
   const h=harness(async url=>{
-    if(url.endsWith('index.json'))return response({});
+    if(url.endsWith('index.json')||url.endsWith('identity-hosts.json'))return response({});
     requests++;
     await new Promise(r=>setTimeout(r,5));
     return response({type:'FeatureCollection',features:[feature({name:'<img src=x onerror=alert(1)>',osm_id:1,tourism:'camp_site'})]});

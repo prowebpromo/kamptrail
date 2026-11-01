@@ -60,7 +60,7 @@
       const data = new FormData(f);
       const body = {kind: target.kind, details: data.get('details'), source: data.get('source'), contact_email: data.get('contact_email'), website: data.get('website'), firsthand: data.get('firsthand') === 'on', elapsed_ms: Date.now() - st.openedAt};
       if (isNew) Object.assign(body, {campsite_name: data.get('campsite_name'), lat: +target.lat.toFixed(6), lng: +target.lng.toFixed(6), problems: ['new']});
-      else { const [lng, lat] = target.site.geometry.coordinates; Object.assign(body, {campsite_id: target.site.properties.id, campsite_name: target.site.properties.name, lat, lng, problems: data.getAll('problems')}); }
+      else { const [lng, lat] = target.site.geometry.coordinates; Object.assign(body, {campsite_id: String(window.KampTrailData?.publishedId?.(target.site.properties.id) ?? target.site.properties.id), campsite_name: target.site.properties.name, lat, lng, problems: data.getAll('problems')}); }
       send.disabled = true; msg.textContent = t("Sending…"); msg.className = 'kt-report-msg';
       let res, out = {};
       try { res = await fetch(API + 'submit.php', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)}); out = await res.json().catch(() => ({})); }
@@ -114,5 +114,5 @@
     if (!d.open) d.showModal();
     d.querySelector(target.kind === 'new_place' ? '[name="campsite_name"]' : '[name="problems"]')?.focus();
   }
-  window.KampTrailContrib = {version: '2.31.0', open, showReports, reports};
+  window.KampTrailContrib = {version: '2.33.0', open, showReports, reports};
 })();

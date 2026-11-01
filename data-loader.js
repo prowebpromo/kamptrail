@@ -73,7 +73,7 @@
       const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
       if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
       const relative = target.pathname.slice(scope.pathname.length);
-      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/ridb-amenities.json':'amenityEvidence','data/campsites/usfs-site-amenities.json':'usfsSiteEvidence','data/campsites/search-index.json':'search'};
+      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/ridb-amenities.json':'amenityEvidence','data/campsites/usfs-site-amenities.json':'usfsSiteEvidence','data/campsites/search-index.json':'search','data/campsites/identity-hosts.json':'identityHosts'};
       if (!relative.endsWith('.geojson') && !kinds[relative]) return null;
       return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:kinds[relative]==='index', kind:kinds[relative]||'geojson'};
     } catch { return null; }
@@ -85,6 +85,7 @@
     if (target?.kind === 'amenityEvidence') return DataQuality.validRIDBAmenities(data);
     if (target?.kind === 'usfsSiteEvidence') return DataQuality.validUSFSSiteAmenities(data);
     if (target?.kind === 'search') return data?.version===1 && Array.isArray(data.sites);
+    if (target?.kind === 'identityHosts') return DataQuality.validIdentityHosts(data);
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
   async function fetchJSON(url) {
@@ -173,18 +174,59 @@
       }finally{elevationTasks.delete(code);attachLoadedElevations();}
     })();elevationTasks.set(code,task);return task;
   }
-  function mergeLoaded(features,stateCode) {
-    const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode}));
-    incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
-    if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
-    if(state.amenityDetails)incoming.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
-    if(state.usfsDetails)incoming.forEach(f=>DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails));
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, {state:stateCode});
+  // Listing identity follows the published search index (docs/DETERMINISTIC_IDENTITY.md).
+  // Every load rebuilds the catalogue from each loaded state's own records in the index build's
+  // order (states alphabetically, records in file order), with the index's canonical hosts.
+  // The result for a set of loaded states never depends on load order or response timing.
+  const stateInputs=new Map(),shownIds=new Set();
+  let identity=null; // {preferredIds,previousHosts,aliases} from identity-hosts.json, or null when unavailable.
+  let identityTask=null,identityTried=0,identityTimer=null;
+  async function loadIdentityHosts(){
+    identityTried=Date.now();
+    try{const data=await fetchJSON('data/campsites/identity-hosts.json');if(!DataQuality.validIdentityHosts(data))throw new Error('Invalid identity hosts');identity={...DataQuality.identityOptions(data),aliases:data.hosts};}
+    catch(err){console.warn('Listing identity hosts unavailable; nearby records stay separate until they load.',err.message);}
+    finally{identityTask=null;}
+    if(identity){
+      clearTimeout(identityTimer);
+      // Reconcile once: records shown separately join their published listing. Every id shown or
+      // stored meanwhile is one of that listing's own published ids, so it keeps resolving to it.
+      if(stateInputs.size){rebuildCatalogue();updateMarkers();}
+    } else scheduleIdentityRetry();
+    return !!identity;
+  }
+  function ensureIdentity(force=false){
+    if(identity)return Promise.resolve(true);
+    if(!identityTask&&(force||Date.now()-identityTried>=15000))identityTask=loadIdentityHosts();
+    return identityTask||Promise.resolve(false);
+  }
+  function scheduleIdentityRetry(){clearTimeout(identityTimer);identityTimer=setTimeout(()=>ensureIdentity(true),30000);identityTimer?.unref?.();}
+  window.addEventListener?.('online',()=>ensureIdentity(true));
+  function identityOptions(){
+    if(identity)return identity;
+    // Fallback without the published hosts: no proximity merge, so no merge the index would not
+    // make and no host election that depends on load order. The same record seen in two state files
+    // still joins by its id. Nearby records of one place can show as separate markers until the
+    // host file arrives. docs/DETERMINISTIC_IDENTITY.md
+    return {radiusMeters:-1};
+  }
+  function attachSidecars(f){
+    if(state.siteDetails)DataQuality.attachSiteDetails(f,state.siteDetails);
+    if(state.amenityDetails)DataQuality.attachRIDBAmenities(f,state.amenityDetails);
+    if(state.usfsDetails)DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails);
+  }
+  function rebuildCatalogue(){
+    const input=[];
+    for(const code of [...stateInputs.keys()].sort())for(const f of stateInputs.get(code)){attachSidecars(f);input.push(f);}
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},identityOptions());
     state.allCampsites=cleaned.features;
-    if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
-    if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
-    if(state.usfsDetails)state.allCampsites.forEach(f=>DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails));
+    for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
+  }
+  function mergeLoaded(features,stateCode) {
+    const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode})).filter(Boolean);
+    incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
+    stateInputs.set(stateCode,incoming);
+    rebuildCatalogue();
   }
   async function loadAgencyIndex() {
     try{const data=await fetchJSON('data/campsites/agency/index.json');if(Array.isArray(data?.states)){state.agencyStates=new Set(data.states);state.agencyCounts=data.counts&&typeof data.counts==='object'?data.counts:{};}}
@@ -210,6 +252,7 @@
   }
   async function loadState(code,{retry=false}={}) {
     if(!STATE_BOUNDS[code])return;
+    ensureIdentity(retry);
     if(state.loadedStates.has(code))return loadElevation(code,retry);
     if(state.loading.has(code))return state.loading.get(code);
     const last=state.failed.get(code);
@@ -515,7 +558,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.31.0',
+    version:'2.33.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -527,15 +570,20 @@
       map.on('zoomend',layoutOverview);
       map.on('moveend',()=>{syncMode();clearTimeout(timer);timer=setTimeout(onView,250);});
       // Optional evidence must not delay the map when its request is slow or unavailable.
+      // Sidecar evidence attaches before deduplication, as in the index build, so arrival rebuilds.
       loadAmenityDetails().then(()=>{
-        if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
+        if(state.amenityDetails&&stateInputs.size)rebuildCatalogue();
         updateMarkers();
       });
       loadUSFSSiteDetails().then(()=>{
-        if(state.usfsDetails)state.allCampsites.forEach(f=>DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails));
+        if(state.usfsDetails&&stateInputs.size)rebuildCatalogue();
         updateMarkers();
       });
-      await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex()]);
+      // Identity hosts load beside the other small metadata; failure falls back without blocking.
+      // Identity hosts are awaited at most 3 s beside the other metadata. A slow or failed file never
+      // blocks the map: listings load in the no-merge fallback and reconcile when the file arrives.
+      const hosts=ensureIdentity(true);
+      await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex(),Promise.race([hosts,new Promise(r=>{const t=setTimeout(r,3000);t?.unref?.();})])]);
       if(state.overview&&map.hasLayer(state.overview))map.removeLayer(state.overview);state.overview=null;
       await onView();
     },
@@ -550,7 +598,19 @@
     getCurrentFilters:()=>window.kamptrailFilters || defaults(),
     updateFilters(filters){window.kamptrailFilters={...defaults(),...filters};updateMarkers();requestForecast();},
     getAllCampsites:()=>state.allCampsites,
-    getCampsiteById(id){const key=String(id);return state.allCampsites.find(s=>s.properties.id===key||s.properties.legacy_ids?.includes(key));},
+    // Any id ever published (canonical or legacy) finds its listing, also while only some of its states are loaded.
+    // Every published id of one listing: its index id first, then its legacy ids.
+    identityIds(id){const key=String(id),host=api.publishedId(key);return [...new Set([host,...(identity?.aliases[host]||[]),key])];},
+    getCampsiteById(id){
+      const key=String(id),wanted=[key,...api.identityIds(key)];
+      for(const want of wanted){const site=state.allCampsites.find(s=>s.properties.id===want||s.properties.legacy_ids?.includes(want));if(site)return site;}
+      return undefined;
+    },
+    // The listing's id in the published index. A listing shown before all its states load can carry a member's own id.
+    publishedId(id){const key=String(id);return identity?.previousHosts.get(key)||key;},
+    getIdentityStatus:()=>({hosts:identity?'published':'fallback',shown:shownIds.size}),
+    // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
+    async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
     getLoadedStates:()=>[...state.loadedStates],
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,
@@ -655,7 +715,7 @@
       if(kind==='alerts'){window.KampTrailEnvironment?.openAlerts(lat,lng);return;}
       if(kind==='environment'){window.KampTrailEnvironment?.showNear(lat,lng);return;}
       if(kind==='roads'){window.KampTrailMVUM?.showNear(lat,lng);return;}
-      if(kind==='permissions'){window.KampTrailPermissions?.open({kind:'campsite',id:String(site.properties.id),name:site.properties.name,coordinates:[lng,lat]});return;}
+      if(kind==='permissions'){window.KampTrailPermissions?.open({kind:'campsite',id:api.publishedId(site.properties.id),name:site.properties.name,coordinates:[lng,lat]});return;}
       if(kind==='reviews'){window.KampTrailCommunity?.open(site);return;}
       if(kind==='share'){window.KampTrailShare?.share({site:site.properties.id},site.properties.name);return;}
       if(kind==='fix'){if(window.KampTrailContrib)KampTrailContrib.open({kind:'correction',site});else if(window.KampTrailShare)window.open(KampTrailShare.issueUrl('fix',site),'_blank','noopener');return;}
