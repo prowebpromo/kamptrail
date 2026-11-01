@@ -27,3 +27,22 @@ Results are filled in below once measured.
 - Fallback when the host file fails validation or cannot be fetched or read from cache: see criterion 3.
 - Ids are never rewritten. `getCampsiteById` finds a listing by any published id, including while only some of its states are loaded. Saved stops keep their stored id and only refresh the location snapshot. New stops, share links, correction reports, review submissions and permission reports use `KampTrailData.publishedId` (the index id). The review API reads published reviews by every published id of a listing (`kc_site_ids`), and `KampTrailDiscovery.summary` does the same on the client. Stored `campsite_id` values are not changed.
 - No change to `search-index.json` or to any listing id, coordinate, fee, access, amenity or rig value.
+
+## Stored references and what was not inspected
+
+Ids stored anywhere are kept as stored. Nothing in this package rewrites or migrates a stored id. Zero published reviews does not show that pending submissions or other references are absent, so no reference is assumed absent.
+
+Inspected in code and covered by tests:
+- Saved stops (`localStorage` `kt_trip`): the stored id is kept and the stop resolves through `getCampsiteById`. 2.31.0 rewrote it to whichever id the browser showed; that rewrite is removed (`trip-planner.js` `getSite`).
+- Share links `#site=`: any published id opens the listing; new links carry the index id.
+- Reviews (`community_reviews.campsite_id`, any status): stored id kept. Published reads cover every published id of the listing (`kc_site_ids`, community test). New reviews send the index id.
+- Corrections (`submissions.campsite_id`) and GitHub correction links: new ones send the index id; stored rows are untouched.
+- Permission reports (`permission_reports.place_key/place_id`): new ones send the index id. The server checks place ids against `api/_data/permissions`, which `scripts/build-permissions.js` builds from index canonical ids only, so 2.31.0 browsers that showed a legacy id could not have stored one there.
+- Camper discovery summaries: matched through every published id of a listing.
+
+Not inspected (no access from this branch):
+- The production MySQL database: pending, rejected and hidden reviews, `submissions` rows, permission reports and their audit rows, and their `campsite_id`/`place_id` values. How many are keyed to a legacy or browser-only id is unknown. The read path above covers published reviews under any published id. Moderator views (`api/admin.php`) show the stored id as stored.
+- Saved stops and saved permission-report codes in visitors' browsers.
+- Share links already sent, and links in GitHub issues.
+- Ids that browsers showed on 2.31.0 or earlier but that were never in a published index. A listing can only show an id its own records carry, and every record id is canonical or legacy in the current index, so such ids resolve for the current catalogue. Ids from listings removed from the catalogue since are not covered by this package.
+- Other agents' branches (`fix/rig-tag-ownership`, `candidate/tourism-type-admission`). If either changes which records publish, `identity-hosts.json` must be rebuilt with the index (the index build writes it, and a unit test fails when they differ).
