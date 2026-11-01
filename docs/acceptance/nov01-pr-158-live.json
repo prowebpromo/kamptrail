@@ -1,0 +1,49 @@
+{
+  "pr": 158,
+  "pr_head_sha": "a27bb87efe7057f959ac4a99a0aff583bc82ad8c",
+  "merge_sha": "041ff76c47cbc002ef38aa29e39a508337e2bf91",
+  "ci": {
+    "full_regression": 41303852717,
+    "lighthouse_pull_request": 41303852685,
+    "lighthouse_push": 41303849126,
+    "conclusion": "success",
+    "exact_head_verified": true
+  },
+  "hostinger_publish_run": 41305696938,
+  "hostinger_publish_job": 124845501565,
+  "hostinger_publish_status": "success",
+  "acceptance_marker_commit": "7394e249a25c8692f039fea3e4f51fdcc83827bf",
+  "production_acceptance_run": 41307106486,
+  "production_acceptance_job": 124849644264,
+  "production_acceptance_status": "success",
+  "desktop_and_mobile": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "mobile": false,
+      "release_sha": "041ff76c47cbc002ef38aa29e39a508337e2bf91",
+      "version": "2.34.0",
+      "index_sha256": "83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a",
+      "listings": 33370,
+      "national_clearance_index_status": 404,
+      "exact_facility_popup_verified": true,
+      "javascript_errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mobile": true,
+      "release_sha": "041ff76c47cbc002ef38aa29e39a508337e2bf91",
+      "version": "2.34.0",
+      "index_sha256": "83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a",
+      "listings": 33370,
+      "national_clearance_index_status": 404,
+      "exact_facility_popup_verified": true,
+      "javascript_errors": []
+    }
+  ]
+}
