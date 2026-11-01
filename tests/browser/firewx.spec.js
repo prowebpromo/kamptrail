@@ -172,7 +172,7 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
     });
 
     test('warnings and watches stay separate from fire perimeters and smoke, in layer, panel and look', async ({ page, context }) => {
-      const s = await setup(page, context, { cases: 'mixed' });
+      const s = await setup(page, context, { cases: 'polygon' });
       await enable(page, 'Fire perimeters (NIFC)');
       await expect(page.locator('[data-environment=fire]')).toContainText('1 reported perimeters');
       await enable(page, 'Smoke plumes (NOAA)');
