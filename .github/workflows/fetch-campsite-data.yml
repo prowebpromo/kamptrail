@@ -279,23 +279,10 @@ jobs:
           set -euo pipefail
           npm ci
           pip install -r requirements.txt pyyaml
-          # Every id in the last committed index must still resolve to the same listing.
-          git show HEAD:data/campsites/search-index.json > "$RUNNER_TEMP/previous-search-index.json"
-          node scripts/check-id-continuity.js "$RUNNER_TEMP/previous-search-index.json" data/campsites/search-index.json data/campsites/withdrawn.json
-          npm test
-          python -m unittest discover -s scripts/tests -p 'test_*.py'
-      - name: Keep refreshed data for review when verification fails
-        if: ${{ failure() && steps.verify_refresh.outcome == 'failure' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: unverified-refresh-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            data/campsites
-            data/opencampingmap
-            data/sources
-            data/rest-areas
-          retention-days: 14
+          # Continuity against the last committed index, then npm test and the Python suite.
+          bash scripts/verify-refresh.sh HEAD
       - name: Commit successful source and snapshot updates
+        id: commit_refresh
         shell: bash
         run: |
           set -euo pipefail
@@ -313,12 +300,32 @@ jobs:
               fi
               if git push; then exit 0; fi
               echo "Push rejected (attempt $attempt); rebasing on the latest main"
-              git pull --rebase origin main
+              git fetch origin main
+              git rebase origin/main
+              # The rebased tree combines this refresh with newer main and has never been tested.
+              # Verify it again, against the new main's published index, before the next push.
+              bash scripts/verify-refresh.sh origin/main
               sleep $((attempt * 5))
             done
             echo 'Could not push the refreshed data after 5 attempts' >&2
             exit 1
           fi
+      - name: Keep the unverified refresh for review when verification fails
+        if: ${{ failure() && (steps.verify_refresh.outcome == 'failure' || steps.commit_refresh.outcome == 'failure') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: unverified-refresh-${{ github.run_id }}-${{ github.run_attempt }}
+          # Every path the commit step stages, so the exact failing refresh state is kept.
+          path: |
+            data/campsites
+            data/opencampingmap
+            data/poi_dump_water_propane.geojson
+            data/services
+            data/sources
+            data/health.json
+            data/rest-areas
+            docs/REST_AREAS_PILOT_2.15.json
+          retention-days: 14
   agencies:
     if: ${{ inputs.source == 'agency' }}
     runs-on: ubuntu-latest

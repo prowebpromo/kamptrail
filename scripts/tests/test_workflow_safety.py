@@ -84,7 +84,8 @@ class WorkflowSafetyTests(unittest.TestCase):
         # Preserve RIDB duplicate cleanup and the existing serialized rebase/retry owner.
         self.assertIn('rm -f "data/campsites/${state}(1).geojson"', OWNER.read_text())
         self.assertIn('git add -A data/campsites', OWNER.read_text())
-        self.assertIn('git pull --rebase origin main', OWNER.read_text())
+        # The serialized rebase/retry owner is kept, and every rebase is re-verified (see below).
+        self.assertIn('git rebase origin/main', OWNER.read_text())
 
     def test_elevation_uses_owner_lock_and_selected_branch(self):
         workflow = yaml.safe_load(OWNER.read_text())
@@ -201,23 +202,107 @@ class WorkflowSafetyTests(unittest.TestCase):
         self.assertIn('    branches: [main]', release)
         self.assertNotIn('download-artifact', release)
 
+    def _fetch_data_steps(self):
+        steps = yaml.safe_load(OWNER.read_text())['jobs']['fetch-data']['steps']
+        return {step.get('name'): step for step in steps}, [step.get('name') for step in steps]
+
     def test_scheduled_refresh_is_tested_before_it_commits(self):
         # A push by this workflow does not trigger the test workflow. The refreshed tree must pass
-        # npm test and the Python suite in the same job, before the commit step, or nothing lands.
-        text = OWNER.read_text()
-        job = text[text.index('\n  fetch-data:'):text.index('\n  agencies:')]
-        verify = job.index('- name: Verify the refreshed tree before committing')
-        commit = job.index('- name: Commit successful source and snapshot updates')
-        self.assertLess(verify, commit)
-        step = job[verify:job.index('- name:', verify + 1)]
-        self.assertIn('npm test', step)
-        self.assertIn('node scripts/check-id-continuity.js', step)
-        self.assertIn("python -m unittest discover -s scripts/tests -p 'test_*.py'", step)
-        self.assertIn('set -euo pipefail', step)
-        self.assertNotIn('continue-on-error', step)
-        commit_step = job[commit:]
-        self.assertNotRegex(commit_step.split('\n      - ')[0], r'if:\s*\$\{\{\s*always\(\)')
-        self.assertIn('setup-php', job[:verify])
+        # continuity, npm test and the Python suite in the same job, before the commit step.
+        steps, order = self._fetch_data_steps()
+        verify = steps['Verify the refreshed tree before committing']
+        commit = steps['Commit successful source and snapshot updates']
+        self.assertLess(order.index(verify['name']), order.index(commit['name']))
+        self.assertIn('bash scripts/verify-refresh.sh HEAD', verify['run'])
+        self.assertIn('set -euo pipefail', verify['run'])
+        for step in (verify, commit):
+            self.assertNotIn('continue-on-error', step)
+            self.assertNotIn('if', step)
+        self.assertLess(next(i for i, n in enumerate(order) if n is None and 'setup-php' in str(steps.get(n))) if False else 0, 1)
+        self.assertTrue(any('setup-php' in str(s.get('uses', '')) for s in yaml.safe_load(OWNER.read_text())['jobs']['fetch-data']['steps'][:order.index(verify['name'])]))
+        script = (ROOT / 'scripts' / 'verify-refresh.sh').read_text()
+        for needed in ('node scripts/check-id-continuity.js', 'npm test',
+                       "python -m unittest discover -s scripts/tests -p 'test_*.py'", 'set -euo pipefail'):
+            self.assertIn(needed, script)
+
+    def test_every_rebase_is_verified_before_the_next_push(self):
+        commit = self._fetch_data_steps()[0]['Commit successful source and snapshot updates']['run']
+        self.assertNotIn('git pull --rebase', commit)
+        lines = [line.strip() for line in commit.splitlines()]
+        rebases = [i for i, line in enumerate(lines) if line.startswith('git rebase')]
+        self.assertTrue(rebases)
+        for i in rebases:
+            rest = lines[i + 1:]
+            verify = next(j for j, line in enumerate(rest) if line.startswith('bash scripts/verify-refresh.sh origin/main'))
+            pushes = [j for j, line in enumerate(rest) if 'git push' in line]
+            self.assertTrue(all(j > verify for j in pushes), 'a push can follow the rebase before verification')
+
+    def test_failure_artifact_keeps_every_path_the_commit_stages(self):
+        steps, _ = self._fetch_data_steps()
+        commit = steps['Commit successful source and snapshot updates']
+        artifact = steps['Keep the unverified refresh for review when verification fails']
+        staged = set()
+        for line in commit['run'].splitlines():
+            line = line.strip()
+            if line.startswith('git add '):
+                staged.update(t for t in line.split()[2:] if not t.startswith('-'))
+        kept = {line.strip() for line in artifact['with']['path'].splitlines() if line.strip()}
+        self.assertEqual(staged - kept, set())
+        self.assertEqual(artifact['with']['retention-days'], 14)
+        self.assertIn('steps.commit_refresh.outcome', artifact['if'])
+        self.assertIn('steps.verify_refresh.outcome', artifact['if'])
+
+    def _run_commit_step(self, concurrent_change):
+        """Run the workflow's real commit-step shell in throwaway repositories.
+
+        The refresh changes data/campsites/x. Meanwhile main gains a commit. The stub verifier fails only
+        when data/campsites/x is 'refreshed' and the validator is 'strict', so an untested combination of
+        the two must never reach the remote."""
+        run = self._fetch_data_steps()[0]['Commit successful source and snapshot updates']['run']
+        run = run.replace('sleep $((attempt * 5))', 'true')
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            g = lambda cwd, *a: subprocess.run(['git', *a], cwd=cwd, check=True, capture_output=True, text=True)
+            g(tmp, 'init', '-q', '--bare', '-b', 'main', 'remote.git')
+            seed = tmp / 'seed'
+            g(tmp, 'clone', '-q', str(tmp / 'remote.git'), 'seed')
+            for d in ('data/campsites', 'data/opencampingmap', 'data/services', 'data/sources', 'data/rest-areas', 'docs', 'scripts'):
+                (seed / d).mkdir(parents=True)
+            # Every path the real commit step stages must exist, as it does in the workflow.
+            for f in ('data/opencampingmap/k', 'data/services/k', 'data/sources/k', 'data/rest-areas/k',
+                      'data/poi_dump_water_propane.geojson', 'data/health.json', 'docs/REST_AREAS_PILOT_2.15.json'):
+                (seed / f).write_text('k\n')
+            (seed / 'data' / 'campsites' / 'x').write_text('old\n')
+            (seed / 'data' / 'campsites' / 'keep').write_text('k\n')
+            (seed / 'validator').write_text('lenient\n')
+            (seed / 'scripts' / 'verify-refresh.sh').write_text(
+                'set -e\nif [ "$(cat data/campsites/x)" = refreshed ] && [ "$(cat validator)" = strict ]; then echo FAIL; exit 1; fi\n')
+            for c in (('config', 'user.email', 't@t'), ('config', 'user.name', 't'), ('add', '-A'), ('commit', '-qm', 'seed'), ('push', '-q', 'origin', 'main')):
+                g(seed, *c)
+            refresh = tmp / 'refresh'
+            g(tmp, 'clone', '-q', str(tmp / 'remote.git'), 'refresh')
+            (refresh / 'data' / 'campsites' / 'x').write_text('refreshed\n')
+            other = tmp / 'other'
+            g(tmp, 'clone', '-q', str(tmp / 'remote.git'), 'other')
+            for c in (('config', 'user.email', 'o@o'), ('config', 'user.name', 'o')):
+                g(other, *c)
+            (other / concurrent_change[0]).write_text(concurrent_change[1])
+            g(other, 'add', '-A'); g(other, 'commit', '-qm', 'concurrent main change'); g(other, 'push', '-q', 'origin', 'main')
+            env = {**os.environ, 'RUNNER_TEMP': str(tmp / 'runner'), 'SERVICES_BATCH': 'test'}
+            (tmp / 'runner').mkdir()
+            result = subprocess.run(['bash', '-c', run], cwd=refresh, env=env, capture_output=True, text=True)
+            remote_x = g(tmp, '--git-dir', str(tmp / 'remote.git'), 'show', 'main:data/campsites/x').stdout.strip()
+            return result, remote_x
+
+    def test_rebased_tree_that_fails_verification_is_never_pushed(self):
+        result, remote_x = self._run_commit_step(('validator', 'strict\n'))
+        self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(remote_x, 'old')
+
+    def test_rebased_tree_that_passes_verification_is_pushed(self):
+        result, remote_x = self._run_commit_step(('unrelated', 'u\n'))
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(remote_x, 'refreshed')
 
     def test_exactly_one_data_schedule(self):
         scheduled = [file.name for file in WORKFLOWS.glob('fetch-*.yml')

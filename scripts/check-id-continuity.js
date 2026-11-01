@@ -7,8 +7,18 @@
 const fs = require('fs');
 
 function hostMap(index) {
-  const map = new Map();
-  for (const site of index.sites || []) for (const id of [site.id, ...(site.legacy_ids || [])]) map.set(id, site.id);
+  // Collect every host claiming each id first, so a conflict is found whatever the row order.
+  const hosts = new Map();
+  for (const site of index.sites || []) for (const id of new Set([site.id, ...(site.legacy_ids || [])])) {
+    if (!hosts.has(id)) hosts.set(id, new Set());
+    hosts.get(id).add(site.id);
+  }
+  const map = new Map(), conflicts = [];
+  for (const [id, set] of hosts) {
+    if (set.size > 1) conflicts.push({id, hosts: [...set].sort()});
+    else map.set(id, [...set][0]);
+  }
+  map.conflicts = conflicts;
   return map;
 }
 
@@ -29,7 +39,9 @@ function check(previous, next, withdrawn) {
     if (after.has(id)) { if (after.get(id) !== host) moved.push({id, from: host, to: after.get(id)}); }
     else if (retired.get(id) !== host) lost.push({id, host});
   }
-  return {previous_ids: before.size, next_ids: after.size, lost, moved};
+  // An id claimed by two listings cannot resolve to one place. Fail in either index.
+  const conflicts = [...before.conflicts.map(c => ({index: 'previous', ...c})), ...after.conflicts.map(c => ({index: 'new', ...c}))];
+  return {previous_ids: before.size, next_ids: after.size, lost, moved, conflicts};
 }
 
 if (require.main === module) {
@@ -38,10 +50,11 @@ if (require.main === module) {
   const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
   const withdrawn = withdrawnPath && fs.existsSync(withdrawnPath) ? read(withdrawnPath) : null;
   const result = check(read(prevPath), read(nextPath), withdrawn);
-  console.log(`Previous published ids: ${result.previous_ids}. New: ${result.next_ids}. No longer resolving: ${result.lost.length}. Moved to another listing: ${result.moved.length}.`);
+  console.log(`Previous published ids: ${result.previous_ids}. New: ${result.next_ids}. No longer resolving: ${result.lost.length}. Moved to another listing: ${result.moved.length}. Claimed by more than one listing: ${result.conflicts.length}.`);
+  for (const x of result.conflicts.slice(0, 50)) console.log(`  conflict (${x.index}) ${x.id} claimed by ${x.hosts.join(', ')}`);
   for (const x of result.lost.slice(0, 50)) console.log(`  lost  ${x.id} (was ${x.host})`);
   for (const x of result.moved.slice(0, 50)) console.log(`  moved ${x.id} ${x.from} -> ${x.to}`);
-  process.exit(result.lost.length || result.moved.length ? 1 : 0);
+  process.exit(result.lost.length || result.moved.length || result.conflicts.length ? 1 : 0);
 }
 
 module.exports = {check, hostMap, withdrawnMap};

@@ -34,3 +34,18 @@ test('new listings never fail the check', () => {
   const r = check(index([{id: 'a'}]), index([{id: 'a'}, {id: 'b'}]), null);
   assert.equal(r.lost.length + r.moved.length, 0);
 });
+
+test('an id claimed by two listings fails in either row order and in either index', () => {
+  const clean = index([{id: 'a', legacy_ids: ['x']}, {id: 'b'}]);
+  for (const sites of [[{id: 'a', legacy_ids: ['x']}, {id: 'b', legacy_ids: ['x']}], [{id: 'b', legacy_ids: ['x']}, {id: 'a', legacy_ids: ['x']}]]) {
+    const r = check(clean, index(sites), null);
+    assert.deepEqual(r.conflicts, [{index: 'new', id: 'x', hosts: ['a', 'b']}]);
+  }
+  // A canonical id reused as another listing's legacy id is also a conflict.
+  assert.equal(check(clean, index([{id: 'a'}, {id: 'b', legacy_ids: ['a']}]), null).conflicts.length, 1);
+  assert.equal(check(index([{id: 'a', legacy_ids: ['x']}, {id: 'b', legacy_ids: ['x']}]), clean, null).conflicts[0].index, 'previous');
+});
+
+test('an id repeated within one listing is not a conflict', () => {
+  assert.equal(check(index([{id: 'a', legacy_ids: ['a', 'x']}]), index([{id: 'a', legacy_ids: ['a', 'x']}]), null).conflicts.length, 0);
+});
