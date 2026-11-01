@@ -159,15 +159,58 @@ class RetentionTests(unittest.TestCase):
     def test_workflow_keeps_positive_captures_under_a_unique_name_without_overwrite(self):
         text = (SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text()
         self.assertIn("if: steps.window.outputs.positive == 'true'", text)
-        block = text[text.index('Keep capture that contains a real fire alert'):]
+        block = text[text.index('Keep capture that contains a real fire alert'):text.index('preserve-first-positive:')]
         self.assertIn('nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}', block)
         self.assertIn('overwrite: false', block)
         self.assertIn('retention-days: 90', block)
-        self.assertNotIn('git commit', text)
-        self.assertIn('contents: read', text)
         ordinary = text[text.index('Keep seven-day capture'):text.index('Keep capture that contains')]
         self.assertIn('nws-fire-weather-window-${{ github.run_id }}', ordinary)
 
+    def test_capture_job_stays_read_only_and_only_the_first_positive_is_committed(self):
+        import yaml
+        wf = yaml.safe_load((SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text())
+        self.assertEqual(wf['permissions'], {'contents': 'read'})
+        capture = wf['jobs']['capture']
+        self.assertNotIn('permissions', capture)
+        self.assertNotIn('git commit', json.dumps(capture))
+        keep = wf['jobs']['preserve-first-positive']
+        self.assertEqual(keep['needs'], 'capture')
+        self.assertEqual(keep['if'], "needs.capture.outputs.positive == 'true'")
+        self.assertEqual(keep['permissions'], {'contents': 'write', 'pull-requests': 'write'})
+        self.assertEqual(keep['env']['BRANCH'], 'fire-weather/first-positive-capture')
+        self.assertEqual(keep['env']['ARTIFACT'], 'nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}')
+        steps = json.dumps(keep['steps'])
+        self.assertIn('git ls-remote --exit-code --heads origin', steps)  # skip once a first positive is kept
+        self.assertIn('hashlib.sha256(data).hexdigest() != f[', steps)    # bytes verified against the manifest
+        self.assertNotIn('--force', steps)
+        self.assertNotIn('push origin main', steps)
+        self.assertIn('git push origin \\"HEAD:refs/heads/$BRANCH\\"', steps)
+        self.assertIn('gh pr create --base main', steps)
+
+    def test_preserve_step_rejects_changed_bytes_and_non_positive_captures(self):
+        import re, subprocess, sys as _sys, yaml
+        wf = yaml.safe_load((SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text())
+        run = next(s['run'] for s in wf['jobs']['preserve-first-positive']['steps'] if 'Verify every file' in s.get('name', ''))
+        check = re.search(r"<<'PY'\n(.*?)\n\s*PY\n", run, re.S).group(1)
+        check = '\n'.join(line[10:] if line.startswith(' ' * 10) else line for line in check.split('\n'))
+        def attempt(positive, tamper):
+            out = tempfile.mkdtemp()
+            data = b'{"features":[{"properties":{"event":"Red Flag Warning"}}]}'
+            Path(out, 'alerts').mkdir()
+            Path(out, 'alerts/red-flag-warning-p1.json').write_bytes(data)
+            Path(out, 'manifest.json').write_text(json.dumps({'positive': positive, 'files': [
+                {'file': 'alerts/red-flag-warning-p1.json', 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}]}))
+            if tamper:
+                Path(out, 'alerts/red-flag-warning-p1.json').write_bytes(data.replace(b'Red', b'Rex'))
+            return subprocess.run([_sys.executable, '-c', check, out], capture_output=True, text=True).returncode
+        self.assertEqual(attempt(True, False), 0)
+        self.assertNotEqual(attempt(True, True), 0)
+        self.assertNotEqual(attempt(False, False), 0)
+        # The real capture script's output, with a real-shaped positive response, passes the same check.
+        real = tempfile.mkdtemp()
+        self.capture(real, FakeNws({'event=Red+Flag+Warning': (200, rfw_page(), {})}))
+        self.assertTrue(json.loads(Path(real, 'manifest.json').read_text())['positive'])
+        self.assertEqual(subprocess.run([_sys.executable, '-c', check, real], capture_output=True, text=True).returncode, 0)
 
 if __name__ == '__main__':
     unittest.main()
