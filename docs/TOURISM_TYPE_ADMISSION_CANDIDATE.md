@@ -19,7 +19,7 @@ The seven pending facilities include one record for multiple seasonal camps, thr
 
 - [Independent evidence for all 31 withdrawals and ten lodging proposals](candidates/tourism-independent-source-review.json), including retained paths, review findings, published source links and lodging exceptions. Shaw House has a reported closure. The White Mountains entry covers multiple cabins. A listing type does not establish availability.
 - [Prior label and evidence for the 51 held descriptions, four additional cases and 27 own names](candidates/tourism-type-review.json).
-- [Record ledger](candidates/tourism-type-admission.json) and [CSV](candidates/tourism-type-admission.csv), regenerated from main and the candidate. Each change requires separate review.
+- Generated local ledgers are `docs/candidates/tourism-type-admission.json` and `docs/candidates/tourism-type-admission.csv`. The replay creates both. Each change requires separate review.
 - [Retired facilities and all their aliases](../data/campsites/withdrawn.json). Opening an old share link or a saved stop shows a persistent facility notice with an official source link. The saved ID is unchanged.
 
 ## Ownership and identity
@@ -36,4 +36,4 @@ Pending or rejected reviews, photos, corrections, permissions, shared links outs
 
 ## Remote source checkpoint and local build
 
-The review branch is a source checkpoint. The final state snapshots, three index files and regenerated per-record ledgers were built in the review worktree. Rebuild before using or comparing a map from the branch. Automatic approval review rejected transmission of the generated state data to GitHub. The source checkpoint therefore cannot be merged as a built release. The expected final search-index SHA-256 is `370e42268e41ec027a4d89b9214084f240cc2bbc054632920690d9670b837740`.
+The review branch is a source checkpoint. The review branch retains main a8785f98’s 50 state snapshots and three indexes. Its search index contains 33,370 listings (SHA-256 `83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a`), and its separate withdrawn.json contains the nine reviewed notices. The package builder rejects this combination. The corrected snapshots, three index files and regenerated per-record ledgers were built in the review worktree. Rebuild before using or comparing a map from the branch. Automatic approval review rejected transmission of the generated state data to GitHub. The source checkpoint therefore cannot be merged as a built release. The expected final search-index SHA-256 is `370e42268e41ec027a4d89b9214084f240cc2bbc054632920690d9670b837740`.
