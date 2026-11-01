@@ -106,7 +106,7 @@
   const d=el('dialog');d.id='kt-route-clearance';d.setAttribute('aria-labelledby','kt-route-clearance-title');
   const h=el('h2',t('Clearance candidates along route'));h.id='kt-route-clearance-title';
   const close=el('button',t('Close'));close.type='button';close.onclick=()=>d.close();
-  const intro=el('p',t('Searches OpenStreetMap clearance candidates within about 100 m of the calculated route. A candidate counts as on the driven road only when the route carries the same OSM way or node id. Nearby candidates without that evidence stay unresolved: they may be on another road, another level or another direction. Segments without data, and any unmapped hazards, are unknown. No result means a route is clear.'));
+  const intro=el('p',t('Searches OpenStreetMap clearance candidates within about 100 m of the calculated route. A candidate counts as on the driven road only when the route carries the same OSM way or node id. Nearby candidates without that evidence stay unresolved: they may be on another road, another level or another direction. Segments without data, and any unmapped hazards, are unknown. Nothing here means a route is clear.'));
   const status=el('p',t('Loading clearance candidates…'));status.setAttribute('role','status');
   const list=el('div');d.append(close,h,intro,status,list);if(C?.attributionNode)d.append(C.attributionNode(doc));doc.body.append(d);d.showModal();
   let stale=false;const invalidate=()=>{stale=true;status.textContent=t('The route, itinerary or rig height changed. Close and search the current route again.');list.replaceChildren();};
