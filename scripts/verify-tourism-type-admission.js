@@ -69,7 +69,10 @@ for(const [id,b] of B){const a=A.get(id);
   if(a.m.f!==b.m.f){if(listed(id,'fee_status',b.m.f,a.m.f))deltas.push({id,field:'fee_status'});else fail('index_fee_not_listed',id,{before:b.m.f,after:a.m.f});}
   if(a.name!==b.name)fail('index_name_changed',id);
   if(JSON.stringify(a.m.r||[])!==JSON.stringify(b.m.r||[]))fail('index_rig_metadata_changed',id,{before:b.m.r,after:a.m.r});
-  if(JSON.stringify(a.states)!==JSON.stringify(b.states)&&!listed(id,'snapshot_states',b.states,a.states))fail('index_states_not_listed',id);
+  if(JSON.stringify(a.states)!==JSON.stringify(b.states)){
+    if(listed(id,'snapshot_states',b.states,a.states))deltas.push({id,field:'snapshot_states',from:b.states,to:a.states});
+    else fail('index_states_not_listed',id);
+  }
   const rest=s=>JSON.stringify({...s,m:{...s.m,t:0,f:0,a:0,s:0},lat:0,lng:0,legacy_ids:0,states:0});
   if(rest(a)!==rest(b))fail('index_other_field',id);
   const amen=s=>JSON.stringify([s.m.a||[],s.m.s||[]]);if(amen(a)!==amen(b))fail('amenity_filter_metadata_changed',id);}

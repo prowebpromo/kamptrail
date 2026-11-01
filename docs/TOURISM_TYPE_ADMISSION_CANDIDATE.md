@@ -37,3 +37,16 @@ Pending or rejected reviews, photos, corrections, permissions, shared links outs
 ## Remote source checkpoint and local build
 
 The review branch is a source checkpoint. The review branch retains main a8785f98’s 50 state snapshots and three indexes. Its search index contains 33,370 listings (SHA-256 `83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a`), and its separate withdrawn.json contains the nine reviewed notices. The package builder rejects this combination. The corrected snapshots, three index files and regenerated per-record ledgers were built in the review worktree. Rebuild before using or comparing a map from the branch. Automatic approval review rejected transmission of the generated state data to GitHub. The source checkpoint therefore cannot be merged as a built release. The expected final search-index SHA-256 is `370e42268e41ec027a4d89b9214084f240cc2bbc054632920690d9670b837740`.
+
+## Local acceptance, November 1
+
+| Check | Result |
+| --- | --- |
+| Retained-input replay | Two runs produced the same SHA-256 manifest digest `cd970cbd495be53b6271812b6f51a3b235e1a2ea98791434bfbf5e2b7162bbca` for 50 state snapshots, the search, coordinate and identity-host indexes, and withdrawn.json. |
+| Catalogue and identity | 33,370 → 33,361 listings. All 36,290 former canonical and legacy IDs resolve to the same host or its withdrawal notice. Zero moved hosts or newly published facilities. The 734-record ledger reports zero unexpected deltas. |
+| Index differences | 61 type changes, nine withdrawals, three state-file loading hints. Campground → lodging 8, Campground → Other 21, Dispersed → Other 5, Other → Campground 23, Other → Dispersed 4. The two additional UT loading hints affect ridb:10068990 and ridb:245164. The new KY and VA hints affect ridb:249902. These identify state files, not a geographic reclassification. |
+| Source ownership | 703 inherited tourism fields moved to member evidence. The replay restored the retained facility’s own mapped Other type on 202 rows and marked 45 copied descriptions. No surviving listing changed fee, access, rig, amenity, point, or alias. All four restrictive holds stayed active. |
+| Raw admission | Three formerly rejected raw rows now qualify with access unknown. Axolotl Cabin (ridb:251354), White Mountains cabins (ridb:252494) and Westwater Group Site (ridb:10012141) were already published through agency records. |
+| Regression suites | All 101 targeted tests passed. Full configured Node suite ran serially with 425 passed and 64 skipped. Python had 388 passed and nine skipped. No failures. PHP CLI was unavailable for the Node run. |
+| Package | Locally rebuilt package search, identity and withdrawal files match the reviewed bytes. The only packaged clearance file is RI.json. The remote source checkpoint correctly fails before packaging until its catalogue is rebuilt. |
+| Legacy UI | Chromium desktop and mobile opened all 14 retired canonical and legacy IDs, 28/28. All four saved-trip cases passed for old string IDs and saved feature snapshots. Repeated against a deliberately stale 2.34.0 search index with the same 32/32 result. |
