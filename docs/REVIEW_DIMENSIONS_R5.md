@@ -54,7 +54,7 @@ Unchanged and not converted: the categorical `crowding`, `noise`, `shade`, `acce
 
 ## Proof
 
-Tested commit: `8609a2a229eb9ed913f410e51776bec54cb89865` on branch `feat/review-dimensions-r5`, based on main `023d444d`. Run on 2026-11-01 in the agent workspace (PHP 8.3.6 with pdo_sqlite, gd and mbstring, Node 22, Chromium 1243). This doc commit changes no code.
+Tested commit: `d9069f07a5cf457b598e0c75a7e9654a63eb51dc` on branch `feat/review-dimensions-r5`, rebased onto main `76da929f` (PR #160). Run on 2026-11-01 in the agent workspace (PHP 8.3.6 with pdo_sqlite, gd and mbstring, Node 22, Chromium 1243). The commit that updates this section changes no code. An earlier run at `8609a2a2` on main `023d444d` gave the same results for this package.
 
 ### Staging harness (owner decision 1)
 
@@ -81,9 +81,11 @@ Server: the app and API were served by the harness's own `php -S 127.0.0.1:18940
 
 | Suite | Result | Failures |
 |---|---|---|
-| `npm test` (KT_REQUIRE_PHP=1) | 430 of 475 pass | 44 "Claude provenance" cases and "committed Forest Service file validates…". All 45 fail the same way on main `023d444d` (bot data refresh). |
-| `npm run test:python` | 397 pass, 9 skipped, 2 fail | `test_usfs_fee_rechecks…nov29…` and `test_usfs_site_amenities…snapshot_record_counts`. Both also fail on main `023d444d`. |
-| Browser: community, discovery, locale, campsite-videos, upgrade, reports, app, review-dimensions-staging | 36 of 38 pass | `app.spec.js` mobile map height (493 vs >500, known). `locale.spec.js` French fallback hits its 45 s total limit after all its assertions pass. It also fails on main `023d444d` (46.2 s on one of three base runs) and passes when run alone. |
+| `npm test` (KT_REQUIRE_PHP=1) | 482 of 482 pass | none |
+| `npm run test:python` | 404 run, OK, 9 skipped | none |
+| `tests/review-dimensions.test.js` | 6 of 6 pass | none |
+| `tests/browser/review-dimensions-staging.spec.js` | desktop and mobile pass | none |
+| Browser: community, discovery, locale, campsite-videos, upgrade, reports, app, review-dimensions-staging | 36 of 38 pass | `app.spec.js` mobile map height (known). `locale.spec.js` French fallback reaches its 45 s total limit after all its assertions pass. Both also fail on main `76da929f`, run from a separate worktree on its own `PORT=8802` server. |
 
 ### Not covered here
 
