@@ -319,6 +319,10 @@
     await ensureSiteIndex();
     const entry = campsiteIndex.find(s => s.id === target.site);
     if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
+    if (!entry && !KampTrailData.getCampsiteById(target.site)) {
+      const w = (await KampTrailData.loadWithdrawn()).get(String(target.site));
+      if (w) { if (Array.isArray(w.coordinates)) map.setView([w.coordinates[1], w.coordinates[0]], 12); showToast(t("{name} is no longer listed in campsite search. Its camping classification could not be verified from its own source record. Check {source} before you go.", {name:w.name, source:w.source_url || t("the land manager")}), 'info', 12000); return; }
+    }
     if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?t("That campsite does not match your filters or has unknown or expired evidence. Change filters to view it."):t("That shared campsite could not be found. It may have been removed from the catalogue."), 'error');
   }
   addEventListener('hashchange', () => openSharedLink().catch(() => {}));

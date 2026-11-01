@@ -177,6 +177,8 @@
   "Backcountry": "Zona remota",
   "Overnight parking": "Estacionamiento nocturno",
   "Other / unspecified": "Otro / sin especificar",
+  "{name} is no longer listed in campsite search. Its camping classification could not be verified from its own source record. Check {source} before you go.": "{name} ya no aparece en la búsqueda de campings. Su clasificación como camping no pudo verificarse con su propio registro de origen. Consulta {source} antes de ir.",
+  "the land manager": "el responsable del terreno",
   "Lookout, cabin or other lodging": "Mirador, cabaña u otro alojamiento",
   "Approximate terrain elevation": "Altitud aproximada del terreno",
   "Elevation units": "Unidades de altitud",

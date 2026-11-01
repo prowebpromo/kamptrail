@@ -555,6 +555,8 @@
     updateFilters(filters){window.kamptrailFilters={...defaults(),...filters};updateMarkers();requestForecast();},
     getAllCampsites:()=>state.allCampsites,
     getCampsiteById(id){const key=String(id);return state.allCampsites.find(s=>s.properties.id===key||s.properties.legacy_ids?.includes(key));},
+    // Listings withdrawn from campsite discovery keep a resolvable legacy entry explaining why (data/campsites/withdrawn.json).
+    loadWithdrawn(){if(!state.withdrawnPromise)state.withdrawnPromise=fetchJSON('data/campsites/withdrawn.json').then(d=>d?.version===1&&Array.isArray(d.listings)?new Map(d.listings.filter(w=>typeof w?.id==='string').flatMap(w=>[w.id,...(Array.isArray(w.legacy_ids)?w.legacy_ids:[])].map(k=>[String(k),w]))):new Map()).catch(()=>new Map());return state.withdrawnPromise;},
     getLoadedStates:()=>[...state.loadedStates],
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,

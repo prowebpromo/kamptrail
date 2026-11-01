@@ -161,6 +161,8 @@
   "Backcountry": "Arrière-pays",
   "Overnight parking": "Stationnement de nuit",
   "Other / unspecified": "Autre / non précisé",
+  "{name} is no longer listed in campsite search. Its camping classification could not be verified from its own source record. Check {source} before you go.": "{name} n’apparaît plus dans la recherche de campings. Son classement comme camping n’a pas pu être vérifié dans son propre registre source. Consultez {source} avant de partir.",
+  "the land manager": "le gestionnaire du terrain",
   "Lookout, cabin or other lodging": "Tour de guet, cabane ou autre hébergement",
   "Approximate terrain elevation": "Altitude approximative du terrain",
   "Elevation units": "Unités d’altitude",
