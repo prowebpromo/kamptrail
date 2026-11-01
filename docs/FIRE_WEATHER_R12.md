@@ -119,3 +119,5 @@ Run on the rebase onto main `a6dd9e5e`, own server on port 8821 with cwd `/home/
 - `firewx.spec.js` and `environment.spec.js`, desktop and mobile: 44 of 44 passed.
 
 Round 2 results (rebased onto main `ba7dfb7c`, own server on port 8831 with cwd `/home/claude/wt-r12`): `npm test` 503 of 503, `npm run test:python` 440 ran OK with 9 skipped, `firewx.spec.js` plus `environment.spec.js` on desktop and mobile 48 of 48.
+
+Round 3 results (owner 15-minute decision; main still `ba7dfb7c`, own server on port 8841 with cwd `/home/claude/wt-r12`): `npm test` 503 of 503, `npm run test:python` 440 ran OK with 9 skipped, `firewx.spec.js` plus `environment.spec.js` on desktop and mobile 48 of 48.
