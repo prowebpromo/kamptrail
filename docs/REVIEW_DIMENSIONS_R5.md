@@ -85,13 +85,13 @@ A published review without a usable visit date reaches the discovery page as a g
 
 ## Proof
 
-Tested commit: `d9069f07a5cf457b598e0c75a7e9654a63eb51dc` on branch `feat/review-dimensions-r5`, rebased onto main `76da929f` (PR #160). Run on 2026-11-01 in the agent workspace (PHP 8.3.6 with pdo_sqlite, gd and mbstring, Node 22, Chromium 1243). The commit that updates this section changes no code. An earlier run at `8609a2a2` on main `023d444d` gave the same results for this package.
+Tested commit: `a7ca5cc4b5adeb20abea591e506dcdb14bfc4f3b` on branch `feat/review-dimensions-r5`, rebased onto main `a6dd9e5e` (2.35.0), with both PR #162 review fixes. Run on 2026-11-01 in the agent workspace (PHP 8.3.6 with pdo_sqlite, gd and mbstring, Node 22, Chromium 1243). The commit that records these results changes no code. Earlier runs at `8609a2a2` (main `023d444d`) and `d9069f07` (main `76da929f`) covered the package before the review fixes.
 
 ### Staging harness (owner decision 1)
 
 `tests/helpers/php-harness.js` starts `php -S` on this checkout with a disposable SQLite file (or `KT_TEST_MYSQL_DSN` in CI), a test-only moderator, and the real `api/community.php`, `api/community-discovery.php` and `api/admin.php`. It never contacts production. The browser spec loads the app from that same PHP server, so the form posts to the real endpoints. No app endpoint is mocked. Only third-party https tiles are stubbed.
 
-### API and unit proof: `tests/review-dimensions.test.js`, 6 of 6 pass
+### API and unit proof: `tests/review-dimensions.test.js`, 8 of 8 pass
 
 1. Each new dimension submits alone, and bad values are rejected (0, 6, 2.5, string, boolean, categorical keys used as scores, unknown season). Pending reviews are invisible. The moderation queue shows every new axis. Publication shows them. Author edit returns to pending. Hide, reject and restore work. A legacy client edit keeps stored scores. Clearing a score removes it, and delete removes it.
 2. Threshold: 2 ratings give a count with a null average and "insufficient evidence". 3 ratings give 3.0/5 and 4.7/5. Hiding one drops back to 2. A review without the axis is not a qualifying rating. The client never shows an average below 3.
@@ -102,7 +102,7 @@ Tested commit: `d9069f07a5cf457b598e0c75a7e9654a63eb51dc` on branch `feat/review
 
 The existing `tests/community.test.js`, `tests/discovery.test.js` and `tests/locale.test.js` pass. `tests/discovery.test.js` was updated to count the new form fields.
 
-### Browser proof: `tests/browser/review-dimensions-staging.spec.js`, 2 of 2 pass
+### Browser proof: `tests/browser/review-dimensions-staging.spec.js`, 4 of 4 pass
 
 Desktop 1440x1000 and mobile 390x844. Each run fills crowds, fullness, day and night quietness and cleanliness in the real form. It checks that the season field is disabled before a date, that it shows the derived season and adjacent choices, and that the posted payload is exact. It selects winter for a 2026-03-01 boundary stay, submits through the real API and moderates through the real admin endpoint. After 2 published ratings it sees "insufficient evidence · 2 explicit ratings". A third pending rating does not change that. After the third is published it sees 3.0/5 and 4.7/5. It also checks the "Season rated: Winter" line, no horizontal overflow and an axe scan with no violations.
 
@@ -110,13 +110,17 @@ Server: the app and API were served by the harness's own `php -S 127.0.0.1:18940
 
 ### Suites at the tested commit
 
+Tests 7 and 8 of the API file and the two mixed-date browser runs are the review-finding regressions listed above.
+
 | Suite | Result | Failures |
 |---|---|---|
-| `npm test` (KT_REQUIRE_PHP=1) | 482 of 482 pass | none |
+| `npm test` (KT_REQUIRE_PHP=1) | 486 of 486 pass | none |
 | `npm run test:python` | 404 run, OK, 9 skipped | none |
-| `tests/review-dimensions.test.js` | 6 of 6 pass | none |
-| `tests/browser/review-dimensions-staging.spec.js` | desktop and mobile pass | none |
-| Browser: community, discovery, locale, campsite-videos, upgrade, reports, app, review-dimensions-staging | 36 of 38 pass | `app.spec.js` mobile map height (known). `locale.spec.js` French fallback reaches its 45 s total limit after all its assertions pass. Both also fail on main `76da929f`, run from a separate worktree on its own `PORT=8802` server. |
+| `tests/review-dimensions.test.js` | 8 of 8 pass | none |
+| `tests/browser/review-dimensions-staging.spec.js` | 4 of 4 pass (R5 flow and mixed dates, each on desktop and mobile) | none |
+| Browser: community, discovery, locale, campsite-videos, upgrade, reports, app, review-dimensions-staging | 38 of 40 pass | `app.spec.js` mobile map height (known). `locale.spec.js` French fallback reaches its 45 s total limit. Main `a6dd9e5e`, run in parallel from its own worktree on its own `PORT=8802` server, failed the same two tests: 34 of 36 pass. |
+
+Servers: the staging spec used the harness's own `php -S 127.0.0.1:18940` from `/home/claude/wt-r5`. The other specs used `PORT=8800 node scripts/serve.js` from `/home/claude/wt-r5`. The cwd of each was checked by process.
 
 ### Not covered here
 
