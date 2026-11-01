@@ -54,12 +54,16 @@ function checkpoint(page, loaded) {
     const ownersOf = f => { const o = new Set(); for (const x of [f.properties.id, ...(f.properties.legacy_ids || [])]) o.add(owner.get(x) ?? ('?' + x)); return o; };
     const wrongMerges = [];
     for (const f of all) { const o = ownersOf(f); if (o.size > 1 || [...o].some(x => x.startsWith('?'))) wrongMerges.push({id: f.properties.id, ids: [f.properties.id, ...(f.properties.legacy_ids || [])], owners: [...o]}); }
+    // Same result as KampTrailData.getCampsiteById (first listing, in catalogue order, holding the first of
+    // [id, ...identityIds(id)] that any listing holds), with an index instead of a scan per id.
+    const first = new Map(); all.forEach(f => { for (const x of [f.properties.id, ...(f.properties.legacy_ids || [])]) if (!first.has(x)) first.set(x, f); });
+    const resolve = x => { for (const w of [String(x), ...KampTrailData.identityIds(x)]) { const f = first.get(w); if (f) return f; } return undefined; };
     const wrongResolutions = [], unresolved = []; let checked = 0;
     for (const [id, s] of sites) {
       if (!s.states.some(c => set.has(c))) continue;
       for (const x of s.ids) {
         checked++;
-        const f = KampTrailData.getCampsiteById(x);
+        const f = resolve(x);
         if (!f) { if (s.states.every(c => set.has(c))) unresolved.push(x); continue; }
         const o = ownersOf(f);
         if (o.size !== 1 || !o.has(id)) wrongResolutions.push({id: x, owner: id, got: f.properties.id, got_ids: [f.properties.id, ...(f.properties.legacy_ids || [])]});

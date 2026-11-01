@@ -1,0 +1,24 @@
+{
+ "checked_at": "2026-11-01T16:57:40.709Z",
+ "base_url": "http://127.0.0.1:8797",
+ "app_version": "2.35.0",
+ "index_sites": 33370,
+ "states": 50,
+ "state_pairs": 102,
+ "scenarios": {
+  "single": {
+   "summary": {
+    "runs": 50,
+    "checkpoints": 50,
+    "checkpoints_with_wrong_merge": 0,
+    "checkpoints_with_wrong_resolution": 0,
+    "max_wrong_merges": 0,
+    "max_wrong_resolutions": 0,
+    "total_wrong_merges": 0,
+    "total_wrong_resolutions": 0,
+    "total_unresolved": 0
+   },
+   "with_findings": []
+  }
+ }
+}
