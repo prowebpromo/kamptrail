@@ -276,7 +276,6 @@ class CampsiteMerger {
     // Listing type describes the record that carries it. A different absorbed record never lends its type
     // (tourism-type-admission candidate, group B). The same record seen twice still fills a missing type.
     if (secondary.id !== primary.id && merged.type === secondary.type && merged.type !== primary.type) merged.type = null;
-    ownClassification(merged, primary, secondary);
     if (osmIdentity(secondary) && primary.id !== secondary.id) {
       const evidence = memberEvidence(primary, secondary);
       for (const key of Object.keys(merged)) if (ownedOsmField(key)) {
@@ -298,6 +297,8 @@ class CampsiteMerger {
         merged.access_hold = {value: String(donor.fields.access).trim().toLowerCase(), source_record_id: donor.source_record_id};
       } else delete merged.access_hold;
     }
+    // After member evidence is rebuilt, so the attributed tourism value is kept on its member.
+    ownClassification(merged, primary, secondary);
     return merged;
   }
 
