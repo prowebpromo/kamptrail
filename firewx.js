@@ -130,7 +130,7 @@
     article.dataset.alertId = alert.id; article.dataset.shape = shape.state; article.dataset.status = alert.status;
     article.dataset.kind = alert.event === EVENTS[0] ? 'warning' : 'watch';
     const bounds = shape.geometry && global.L ? L.geoJSON({ type: 'Feature', geometry: shape.geometry, properties: {} }).getBounds() : null;
-    article.append(node('h3', eventLabel(alert.event)));
+    article.append(node('h2', eventLabel(alert.event)));
     if (alert.status === 'upcoming') article.append(node('p', t('Not yet in effect. Begins {0}.', { 0: stamp(alert.onset) }), 'kt-firewx-upcoming'));
     if (alert.headline) { article.append(node('p', t('Original source text (publisher language)'), 'kt-fine'), node('p', alert.headline)); }
     article.append(node('p', t('Issued {0} · effective {1} · expires {2}', { 0: stamp(alert.sent), 1: stamp(alert.effective), 2: stamp(alert.expires) })));

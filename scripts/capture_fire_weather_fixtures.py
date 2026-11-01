@@ -101,6 +101,29 @@ def capture_zones(out, manifest, zones, fetch, sleep):
         sleep(PAUSE_SECONDS)
 
 
+def fire_features(out, manifest):
+    """Count saved features whose event is a Red Flag Warning or Fire Weather Watch. Read from the saved bytes, never from a summary."""
+    count = 0
+    for entry in manifest['files']:
+        if entry['kind'] != 'nws-alerts' or entry.get('event') not in EVENTS:
+            continue
+        try:
+            data = json.loads(open(os.path.join(out, entry['file']), 'rb').read())
+        except (OSError, ValueError):
+            continue
+        count += sum(1 for f in data.get('features', []) if (f.get('properties') or {}).get('event') in EVENTS)
+    return count
+
+
+def existing_positive(out):
+    """True when out already holds a capture that contains a real fire alert. Such a capture is never replaced."""
+    try:
+        with open(os.path.join(out, 'manifest.json'), encoding='utf-8') as handle:
+            return bool(json.load(handle).get('positive'))
+    except (OSError, ValueError):
+        return False
+
+
 def main(argv=None, fetch=get, sleep=time.sleep, now=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--out', required=True)
@@ -108,6 +131,9 @@ def main(argv=None, fetch=get, sleep=time.sleep, now=None):
     parser.add_argument('--zone', action='append', help='zone path such as fire/COZ214')
     args = parser.parse_args(argv)
     now = (now or datetime.now(timezone.utc)).replace(microsecond=0)
+    if existing_positive(args.out):
+        print('Refusing to write: %s already holds a capture with a real fire alert.' % args.out, file=sys.stderr)
+        return 2
     start = (now - timedelta(days=args.days)).strftime('%Y-%m-%dT%H:%M:%SZ')
     end = now.strftime('%Y-%m-%dT%H:%M:%SZ')
     manifest = {'captured_by': 'scripts/capture_fire_weather_fixtures.py', 'user_agent': USER_AGENT,
@@ -117,12 +143,14 @@ def main(argv=None, fetch=get, sleep=time.sleep, now=None):
         capture_zones(args.out, manifest, args.zone or DEFAULT_ZONES, fetch, sleep)
     except Stop as stop:
         manifest['stopped'] = str(stop)
+    manifest['fire_alert_features'] = fire_features(args.out, manifest)
+    manifest['positive'] = manifest['fire_alert_features'] > 0
     with open(os.path.join(args.out, 'manifest.json'), 'w', encoding='utf-8') as handle:
         json.dump(manifest, handle, indent=1)
         handle.write('\n')
     counts = {f['event']: f.get('feature_count') for f in manifest['files'] if f['kind'] == 'nws-alerts'}
     print(json.dumps({'window': manifest['window'], 'alert_pages': counts, 'zones': sum(f['kind'] == 'nws-zone' for f in manifest['files']),
-                      'stopped': manifest.get('stopped')}))
+                      'fire_alert_features': manifest['fire_alert_features'], 'positive': manifest['positive'], 'stopped': manifest.get('stopped')}))
     return 1 if manifest.get('stopped') else 0
 
 

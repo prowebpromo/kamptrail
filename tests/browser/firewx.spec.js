@@ -198,20 +198,20 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       expect(s.errors).toEqual([]);
     });
 
-    test('Spanish and French show translated labels, event names and states', async ({ page, context }) => {
-      await setup(page, context, { lang: 'es', cases: 'empty' });
-      await enable(page, 'Alertas de clima de incendio (NWS)'); await open(page);
-      await expect(panel(page).locator('summary')).toHaveText('Alertas de clima de incendio');
-      await expect(panel(page)).toContainText('No se devolvieron advertencias de bandera roja');
-      await page.close();
-      const fr = await context.newPage(); await fr.setViewportSize(view.size);
-      await fr.addInitScript(([l]) => { localStorage.setItem('kt_last_position', JSON.stringify({ lat: l.lat, lng: l.lng, zoom: 9 })); localStorage.setItem('kt_language', 'fr'); }, [centre]);
-      await fr.goto('/', { waitUntil: 'domcontentloaded' });
-      await fr.waitForFunction(() => window.KampTrailFireWeather && window.KampTrailData && !KampTrailData.getLoadStatus().loading);
-      await enable(fr, 'Alertes météo d’incendie (NWS)'); await open(fr);
-      await expect(fr.locator('.kt-firewx-control summary')).toHaveText('Alertes météo d’incendie');
-      await expect(fr.locator('.kt-firewx-control')).toContainText('Aucun avertissement de drapeau rouge');
-    });
+    for (const [lang, label, title, empty] of [['es', 'Alertas de clima de incendio (NWS)', 'Alertas de clima de incendio', 'No se devolvieron advertencias de bandera roja'], ['fr', 'Alertes météo d’incendie (NWS)', 'Alertes météo d’incendie', 'Aucun avertissement de drapeau rouge']]) {
+      test(`${lang} shows translated layer, panel and empty state`, async ({ page, context }) => {
+        await setup(page, context, { lang, cases: 'empty' });
+        await enable(page, label); await open(page);
+        await expect(panel(page).locator('summary')).toHaveText(title);
+        await expect(panel(page)).toContainText(empty);
+        expect(await noOverflow(page)).toBe(true);
+      });
+      test(`${lang} shows translated event names on a polygon alert`, async ({ page, context }) => {
+        await setup(page, context, { lang, cases: 'polygon' });
+        await enable(page, label); await open(page);
+        await expect(card(page, 'urn:synthetic:polygon').getByRole('heading', { name: lang === 'es' ? 'Advertencia de bandera roja' : 'Avertissement de drapeau rouge' })).toBeVisible();
+      });
+    }
   });
 }
 

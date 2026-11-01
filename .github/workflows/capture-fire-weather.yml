@@ -59,6 +59,8 @@ jobs:
             echo '```'
             echo "Each file in manifest.json carries its URL, retrieval time, byte count and SHA-256."
           } >> "$GITHUB_STEP_SUMMARY"
+          positive=$(python3 -c "import json,sys;print('true' if json.load(open(sys.argv[1])).get('positive') else 'false')" "$RUNNER_TEMP/fire-weather-window/manifest.json")
+          echo "positive=$positive" >> "$GITHUB_OUTPUT"
       - name: Keep seven-day capture
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -66,3 +68,15 @@ jobs:
           path: ${{ runner.temp }}/fire-weather-window
           retention-days: 90
           if-no-files-found: error
+      # The first authentic Red Flag Warning or Fire Weather Watch must survive. This artifact name is unique per run,
+      # no step overwrites it, and a later empty run uploads only to the ordinary name above. Keep it by downloading it
+      # into tests/fixtures/fire-weather/captured/ before retention ends. The manifest holds URL, UTC time and SHA-256.
+      - name: Keep capture that contains a real fire alert
+        if: steps.window.outputs.positive == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/fire-weather-window
+          retention-days: 90
+          if-no-files-found: error
+          overwrite: false

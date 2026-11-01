@@ -51,13 +51,22 @@ Real capture, `tests/fixtures/fire-weather/captured/`, made 2026-11-01 from this
 - Red Flag Warning: HTTP 200, 0 alerts. Fire Weather Watch: HTTP 200, 0 alerts. A control event (Small Craft Advisory, limit 1) returned an alert, which shows the query and the real property schema work. A separate check on 2026-10-31 (`docs/FIRE_WEATHER_CAPTURE.md`, branch `docs/fire-weather-seven-day-check`) found none either.
 - Three real fire-zone geometries: `fire/COZ214`, `fire/CAZ281`, `fire/NMZ104`.
 
-Consequence: no real Red Flag Warning or Fire Weather Watch existed in the seven-day window, so no real polygon or zone-only alert could be captured. Nothing was invented and presented as a capture.
+What the empty capture shows: the `/alerts` endpoint, queried with the URLs in the manifest at the recorded times, returned HTTP 200 and an empty feature list for each fire event. It verifies the no-alert state and nothing more. It says nothing about how a real fire-alert record looks or is handled, and real zone geometry does not close that gap. The positive-alert fixture requirement stays open. No claim is made about fire alerts across the country, only about what this endpoint returned for these queries.
+
+Nothing was invented and presented as a capture.
+
+Candidate archives: none identified. No third-party archive (for example IEM VTEC) is used as the contract's NWS `/alerts` capture. If an authentic archived NWS `/alerts` response turns up, list it here with its provenance for the owner to decide.
 
 Synthetic, `tests/fixtures/fire-weather/synthetic/cases.json`, built by `build-synthetic.js` and labelled `SYNTHETIC` in the file, in every alert id (`urn:synthetic:`) and in every headline. The alerts are invented. The only real content is the zone geometry, thinned. A test regenerates the file and fails on any difference. Cases: polygon, zone_only, mixed, expired, cancelled, updated, empty, geometry_failure, partial_zones. Stale is produced by the specs by ageing `retrieved_at`.
 
 A real non-fire alert from the control capture, with only its event rewritten inside a test, checks that the PHP normaliser accepts the real NWS alert schema. That rewrite is marked synthetic in the test.
 
-Capture workflow: `.github/workflows/capture-fire-weather.yml` now also runs the seven-day capture on its existing schedule and keeps it as an artifact for 90 days. When a real Red Flag Warning or Fire Weather Watch appears, the next run captures it with its hash. Promote it to `captured/` by hand, then add a case.
+Capture workflow: `.github/workflows/capture-fire-weather.yml` now also runs the seven-day capture on its existing schedule and keeps it as an artifact for 90 days. Retention rule: the script marks a capture `positive` only when its saved bytes contain a Red Flag Warning or Fire Weather Watch feature. A positive capture is uploaded as `nws-fire-weather-POSITIVE-<run_id>-<attempt>` with `overwrite: false`, a name no later run reuses, so an empty run cannot replace it. The script also refuses to write into a directory that already holds a positive capture. Artifacts expire after 90 days, so download the first one into `captured/` promptly. Tests in `scripts/tests/test_capture_fire_weather_fixtures.py` cover the rule. A captured file is never edited.
+
+## Readiness and parity credit
+
+- Code readiness: built and unit tested against synthetic alerts and real zone geometry. Browser results are below.
+- Parity credit: none claimed. The positive-alert fixture requirement is open, and `features.csv` is not edited.
 
 ## Tests
 

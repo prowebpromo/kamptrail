@@ -115,5 +115,59 @@ class CaptureFixtureTests(unittest.TestCase):
         self.assertEqual(seen['User-agent'], cap.USER_AGENT)
 
 
+def rfw_page():
+    feature = {'type': 'Feature', 'geometry': None, 'properties': {'id': 'urn:t:1', 'event': 'Red Flag Warning'}}
+    return json.dumps({'type': 'FeatureCollection', 'features': [feature]}).encode()
+
+
+class RetentionTests(unittest.TestCase):
+    def capture(self, out, fake):
+        return cap.main(['--out', out], fetch=fake, sleep=lambda s: None, now=NOW)
+
+    def test_empty_capture_is_not_positive_and_a_real_fire_alert_is(self):
+        empty = tempfile.mkdtemp()
+        self.capture(empty, FakeNws())
+        m = json.loads(Path(empty, 'manifest.json').read_text())
+        self.assertEqual((m['positive'], m['fire_alert_features']), (False, 0))
+        hit = tempfile.mkdtemp()
+        self.capture(hit, FakeNws({'event=Red+Flag+Warning': (200, rfw_page(), {})}))
+        m = json.loads(Path(hit, 'manifest.json').read_text())
+        self.assertEqual((m['positive'], m['fire_alert_features']), (True, 1))
+
+    def test_non_fire_events_never_make_a_capture_positive(self):
+        out = tempfile.mkdtemp()
+        self.capture(out, FakeNws({'Small+Craft': (200, page(3), {})}))
+        self.assertFalse(json.loads(Path(out, 'manifest.json').read_text())['positive'])
+
+    def test_a_later_empty_run_never_overwrites_a_positive_capture(self):
+        out = tempfile.mkdtemp()
+        self.assertEqual(self.capture(out, FakeNws({'event=Red+Flag+Warning': (200, rfw_page(), {})})), 0)
+        before = {str(p.relative_to(out)): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(out).rglob('*') if p.is_file()}
+        fake = FakeNws()
+        self.assertEqual(self.capture(out, fake), 2)
+        self.assertEqual(fake.urls, [], 'no request is made when the target holds a positive capture')
+        after = {str(p.relative_to(out)): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(out).rglob('*') if p.is_file()}
+        self.assertEqual(before, after)
+
+    def test_positive_is_judged_from_saved_bytes_not_from_a_summary(self):
+        out = tempfile.mkdtemp()
+        self.capture(out, FakeNws({'event=Fire+Weather+Watch': (200, rfw_page().replace(b'Red Flag Warning', b'Fire Weather Watch'), {})}))
+        saved = Path(out, 'alerts/fire-weather-watch-p1.json').read_bytes()
+        self.assertEqual(hashlib.sha256(saved).hexdigest(), [f for f in json.loads(Path(out, 'manifest.json').read_text())['files'] if f.get('event') == 'Fire Weather Watch'][0]['sha256'])
+        self.assertTrue(json.loads(Path(out, 'manifest.json').read_text())['positive'])
+
+    def test_workflow_keeps_positive_captures_under_a_unique_name_without_overwrite(self):
+        text = (SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text()
+        self.assertIn("if: steps.window.outputs.positive == 'true'", text)
+        block = text[text.index('Keep capture that contains a real fire alert'):]
+        self.assertIn('nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}', block)
+        self.assertIn('overwrite: false', block)
+        self.assertIn('retention-days: 90', block)
+        self.assertNotIn('git commit', text)
+        self.assertIn('contents: read', text)
+        ordinary = text[text.index('Keep seven-day capture'):text.index('Keep capture that contains')]
+        self.assertIn('nws-fire-weather-window-${{ github.run_id }}', ordinary)
+
+
 if __name__ == '__main__':
     unittest.main()
