@@ -32,11 +32,15 @@ async function scenario(browser, name, plan, watch, delay = null) {
   await page.waitForTimeout(1500);
   const result = await page.evaluate(async ([plan, watch]) => {
     for (const step of plan) await KampTrailData.loadStates(step);
+    // A state request that timed out under test load is retried once, as the app's retry does. Recorded below.
+    const failedFirst = KampTrailData.getLoadStatus().failedStates.map(f => f.state);
+    if (failedFirst.length) await KampTrailData.loadStates(failedFirst);
+    const failedAfterRetry = KampTrailData.getLoadStatus().failedStates.map(f => f.state);
     const loaded = KampTrailData.getLoadedStates().sort(), all = KampTrailData.getAllCampsites(), by = new Map();
     for (const f of all) for (const id of [f.properties.id, ...(f.properties.legacy_ids || [])]) if (!by.has(id)) by.set(id, f);
     const T = new Set(DataQuality.applyFilters(all, {rigSize:'tent'}).map(f => f.properties.id)), R = new Set(DataQuality.applyFilters(all, {rigSize:'trailer'}).map(f => f.properties.id));
     const parse = html => { const d = new DOMParser().parseFromString(html, 'text/html').querySelector('.kt-rig-evidence'); return d ? d.textContent.replace(/\s+/g, ' ').trim() : ''; };
-    return {loaded, rows:watch.map(([id, ids]) => {
+    return {loaded, failed_first:failedFirst, failed_after_retry:failedAfterRetry, rows:watch.map(([id, ids]) => {
       const f = ids.map(i => by.get(i)).find(Boolean);
       if (!f) return {id, found:false};
       const p = f.properties;
@@ -75,7 +79,7 @@ async function scenario(browser, name, plan, watch, delay = null) {
       identity_stable:identityVariants <= 1, rig_and_filter_stable:rigVariants <= 1, matches_fixture:!fixtureMismatch.length, fixture_mismatch_runs:fixtureMismatch, missing_runs:missing,
       variants:variants.length > 1 ? seen.filter(x => x.found).map(x => ({run:x.run, browser_id:x.browser_id, identities:x.identities, rig_line:x.rig_line, tents:x.tents, trailers:x.trailers})) : undefined};
   });
-  const summary = {listings:listings.length, multi_state_listings:multi.length, scenarios:runs.length, affected_states:allStates, delayed_state:delayed,
+  const summary = {state_retries:runs.filter(r => r.failed_first.length).map(r => ({run:r.name, failed_first:r.failed_first, failed_after_retry:r.failed_after_retry})), listings:listings.length, multi_state_listings:multi.length, scenarios:runs.length, affected_states:allStates, delayed_state:delayed,
     stable:listings.filter(l => l.stable).length, identity_unstable:listings.filter(l => !l.identity_stable).map(l => l.id), rig_or_filter_unstable:listings.filter(l => !l.rig_and_filter_stable).map(l => l.id),
     fixture_mismatch:listings.filter(l => !l.matches_fixture).map(l => l.id), missing:listings.filter(l => l.missing_runs.length).map(l => l.id),
     browser_id_differs_from_index:listings.filter(l => l.browser_ids.some(b => b !== l.id)).map(l => [l.id, l.browser_ids])};
