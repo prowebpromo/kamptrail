@@ -38,9 +38,10 @@ async function submit(page,{crowds,fullness,visited,season,expectSeasons}){
  const response=page.waitForResponse(r=>r.url().includes('/api/community.php')&&r.request().method()==='POST');
  await d.getByRole('button',{name:'Send for review',exact:true}).click();const res=await response;expect(res.status()).toBe(201);
  await expect(page.getByRole('dialog',{name:'Review received'})).toContainText('waiting for moderation');
- return (await res.json()).id;
+ const id=(await res.json()).id;await reopen(page);return id;
 }
-async function reopen(page){await page.getByRole('dialog',{name:'Review received'}).getByRole('button',{name:'Close',exact:true}).click();await page.locator('.leaflet-popup').getByRole('button',{name:'Reviews and photos',exact:true}).click();return page.getByRole('region',{name:'Visit sub-rating averages'});}
+// Close whatever the community dialog shows and reopen the site's reviews, which reloads them from the API.
+async function reopen(page){await page.locator('#kt-community').getByRole('button',{name:'Close',exact:true}).first().click();await page.locator('.leaflet-popup').getByRole('button',{name:'Reviews and photos',exact:true}).click();const region=page.getByRole('region',{name:'Visit sub-rating averages'});await expect(region.locator('.kt-site-score-values')).not.toHaveText('Loading visit sub-ratings…');return region;}
 
 for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
  test(`${viewport.name}: new dimensions submit, moderate and publish an average only at 3 ratings`,async({page,context})=>{
