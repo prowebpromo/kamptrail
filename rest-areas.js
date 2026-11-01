@@ -115,19 +115,28 @@
       while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>limit){await reader.cancel();throw new Error('Official rest-area response exceeds bound');}chunks.push(value);}
       const bytes=new Uint8Array(size);let offset=0;for(const c of chunks){bytes.set(c,offset);offset+=c.byteLength;}return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
     }
+    // Every request gets its own deadline, so one slow region cannot discard regions that already arrived.
+    // The master controller still cancels everything when the layer is hidden or the device goes offline.
+    async function readBounded(url,limit,master){
+      const own=new AbortController(),stop=()=>own.abort(),timer=global.setTimeout(stop,api.requestTimeoutMs);master.signal.addEventListener('abort',stop);
+      try{return await readJSON(url,limit,own.signal);}finally{global.clearTimeout(timer);master.signal.removeEventListener('abort',stop);}
+    }
     async function load(force=false){
       if(data&&!force)return data;if(pending)return pending;
-      controller=new AbortController();const timer=global.setTimeout(()=>controller.abort(),20000);
-      pending=(async()=>{const signal=controller.signal,index=validateIndex(await readJSON('data/rest-areas/index.json',16*1024,signal));
-        // One unavailable region never hides the others; its locations stay explicitly missing.
-        const catalogues=[],missing=[];
-        for(const x of index.regions){try{catalogues.push(validate(await readJSON('data/rest-areas/'+x.file,512*1024,signal)));}catch(error){if(signal.aborted)throw error;missing.push(x.region);}}
+      const master=controller=new AbortController(),prior=data;
+      pending=(async()=>{
+        // A retry reloads only the regions that are missing and keeps everything already validated.
+        const wanted=prior&&prior.missing.length?prior.missing:prior?[]:null;
+        const files=wanted?wanted.map(region=>({region,file:region+'.json'})):validateIndex(await readBounded('data/rest-areas/index.json',16*1024,master)).regions;
+        // One unavailable region never hides the others; its locations stay explicitly missing and retryable.
+        const catalogues=prior?prior.catalogues.slice():[],missing=[];
+        for(const x of files){try{catalogues.push(validate(await readBounded('data/rest-areas/'+x.file,512*1024,master)));}catch(error){if(master.signal.aborted)throw error;missing.push(x.region);}}
         check(catalogues.length>0,'no region available');
         // An unavailable policy cannot prevent use of the independently sourced locations.
-        let policies=null;try{policies=validatePolicies(await readJSON('data/rest-areas/state-policies.json',64*1024,signal));}catch{policies=null;}
+        let policies=prior?.policies||null;if(!policies){try{policies=validatePolicies(await readBounded('data/rest-areas/state-policies.json',64*1024,master));}catch{policies=null;}}
         for(const c of catalogues)c.state_policies=policies;
-        data={catalogues,missing,regions:catalogues.map(c=>c.region).sort(),rows:catalogues.flatMap(c=>c.records.map(r=>({r,d:c})))};return data;
-      })().finally(()=>{global.clearTimeout(timer);pending=null;controller=null;});return pending;
+        data={catalogues,missing,policies,regions:catalogues.map(c=>c.region).sort(),rows:catalogues.flatMap(c=>c.records.map(r=>({r,d:c})))};return data;
+      })().finally(()=>{pending=null;if(controller===master)controller=null;});return pending;
     }
     async function redraw(force=false){
       const current=++view;if(control)control.hidden=!active();if(!active())return;
@@ -137,7 +146,7 @@
       try{
         const d=await load(force);if(current!==view||!active()||global.navigator.onLine===false)return;
         const b=map.getBounds(),bounds={south:b.getSouth(),west:b.getWest(),north:b.getNorth(),east:b.getEast()},rows=d.rows.filter(x=>within(x.r.coordinates,bounds));
-        status.textContent=t("{0} official rest-area location{1} in this view. Coverage: {2}; other states are not covered. Overnight permission and current opening are unknown.",{"0":rows.length,"1":rows.length===1?'':'s',"2":regionNames(d.regions)})+(d.missing.length?' '+t("Unavailable now: {0}.",{"0":regionNames(d.missing)}):'');
+        status.textContent=t("{0} official rest-area location{1} in this view. Coverage: {2}; other states are not covered. Overnight permission and current opening are unknown.",{"0":rows.length,"1":rows.length===1?'':'s',"2":regionNames(d.regions)})+(d.missing.length?' '+t("Unavailable now: {0}.",{"0":regionNames(d.missing)})+' '+t("Select Retry official rest areas to load them."):'');
         // Hold marker replacement while any popup is open, as with campsite discovery.
         if(map._popup?.isOpen?.())return;
         layer.clearLayers();for(const {r,d} of rows){const marker=L.marker([r.coordinates[1],r.coordinates[0]],{title:r.name,keyboard:true,icon:L.divIcon({className:'kt-rest-icon',html:'<span>R</span>',iconSize:[26,26],iconAnchor:[13,13]})});marker.ktRestAreaId=r.id;marker.bindPopup(()=>popup(r,d),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(marker);}
@@ -149,6 +158,6 @@
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
     return layer;
   }
-  const api={version:'2.35.0',REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
+  const api={version:'2.35.0',requestTimeoutMs:20000,REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailRestAreas=api;
 })(typeof window!=='undefined'?window:globalThis);
