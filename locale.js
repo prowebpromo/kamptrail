@@ -1785,7 +1785,8 @@
   "Season rated: {0}": "Temporada valorada: {0}",
   "Visit sub-rating averages": "Promedios de las subvaloraciones de visitas",
   "All published visits with an explicit 1–5 score for each aspect. An average appears only from 3 ratings. Crowds and fullness: 5 is more crowded or fuller. Other aspects: 5 is the better experience. Categorical noise and crowding reports are counted separately and never converted to scores.": "Todas las visitas publicadas con una puntuación explícita de 1 a 5 en cada aspecto. Un promedio solo aparece a partir de 3 valoraciones. Afluencia y ocupación: 5 es más gente o más lleno. Otros aspectos: 5 es la mejor experiencia. Los informes por categorías de ruido y afluencia se cuentan aparte y nunca se convierten en puntuaciones.",
-  "Loading visit sub-ratings…": "Cargando subvaloraciones de visitas…"
+  "Loading visit sub-ratings…": "Cargando subvaloraciones de visitas…",
+  "visit date not reported": "fecha de visita no indicada"
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);

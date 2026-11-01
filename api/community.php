@@ -60,7 +60,9 @@ try {
         $pdo->prepare("UPDATE community_reviews SET status='deleted',body='',display_name='',rig='',visited_on='',public_note=NULL,updated_at=? WHERE id=?")->execute([kt_now(),$id]);
         ko_save($pdo,$id,[]);ko_changed($pdo);kc_audit($pdo,$id,'author_delete',$old['status'],'deleted','author');$pdo->commit();kt_json(200,['ok'=>true,'status'=>'deleted']);
     }
-    $v=kc_validate($in);$observations=ko_bind_season(ko_validate($in['observations']??''),$v['visited_on'],true);
+    $v=kc_validate($in);$observations=ko_validate($in['observations']??'',$present);
+    // Reject a submitted season that is neither the visit date's nor adjacent. Final binding follows the edit merge.
+    if(isset($observations['season']))ko_bind_season($observations,$v['visited_on'],true);
     $video=array_key_exists('youtube_video',$in)?ko_video_id($in['youtube_video']):null;
     if($video!==null&&$video!=='')$observations['video_id']=$video;
     if ($observations && !ko_ready($pdo)) kc_error(503,'Camper observations are temporarily unavailable. Please try again later.');
@@ -78,7 +80,7 @@ try {
     }
     $photos=kc_photos();
     kc_lock($pdo);kc_rate($pdo,$old?'manage':'submit',$old?20:5);
-    if($old){$fresh=kc_row($pdo,(int)$old['id']);if(!$fresh||$fresh['status']==='deleted'){$pdo->rollBack();kc_error(409,'This review changed. Reload it before editing.');}$old=$fresh;if(!array_key_exists('observations',$in))$observations=ko_bind_season(ko_read($pdo,(int)$old['id']),$v['visited_on'],false);}
+    if($old){$fresh=kc_row($pdo,(int)$old['id']);if(!$fresh||$fresh['status']==='deleted'){$pdo->rollBack();kc_error(409,'This review changed. Reload it before editing.');}$old=$fresh;if(!array_key_exists('observations',$in))$observations=ko_read($pdo,(int)$old['id']);else $observations=ko_merge_edit($observations,ko_read($pdo,(int)$old['id']),$present);}
     // Older clients omit the video field: preserve it even if they replace observations. Empty explicitly removes it.
     if($old&&$video===null){$prior=ko_read($pdo,(int)$old['id']);if(isset($prior['video_id']))$observations['video_id']=$prior['video_id'];}
     if($video!==null){unset($observations['video_id']);if($video!=='')$observations['video_id']=$video;}
@@ -92,6 +94,7 @@ try {
         foreach ($remove as $photo) kc_delete_photo($pdo,$photo,$id);
         $pdo->prepare("UPDATE community_photos SET status='pending' WHERE review_id=? AND status<>'deleted'")->execute([$id]);
     }
+    $observations=ko_bind_season($observations,$v['visited_on'],false);
     ko_save($pdo,$id,$observations);kc_save_photos($pdo,$id,$photos);kc_audit($pdo,$id,$old?'author_edit':'submit',$old?$old['status']:'new','pending','author');ko_changed($pdo);$pdo->commit();
     kt_json($old?200:201,['ok'=>true,'id'=>$id,'token'=>$token,'status'=>'pending']);
 } catch (Throwable $e) {

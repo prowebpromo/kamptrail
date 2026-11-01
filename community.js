@@ -43,6 +43,7 @@
     box.append(play,notice);return box;
   }
   // New reviews are keyed to the listing's published index id. Reads cover every published id of the listing.
+  const visit=d=>window.KampTrailDiscovery?.visitLabel?.(d)??(d||t("visit date not reported"));
   const publishedId=id=>String(window.KampTrailData?.publishedId?.(id) ?? id);
   function legacyAddress(body,site){
     if(location.hostname!=='prowebpromo.github.io')return false;
@@ -91,8 +92,8 @@
         siteValues.textContent=out.scores_available===false||!out.site_scores?t("Visit sub-rating averages are unavailable."):window.KampTrailDiscovery?.siteScoresText(out.site_scores)||t("Visit sub-rating averages are unavailable.");
         monthDetails(monthly,out.monthly,monthly.querySelector('select')?.value||'');
         for(const r of out.reviews){
-          const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},t("Visited {0}{1} · submitted {2}", {"0":(r.visited_on),"1":(r.rig?' · '+r.rig:''),"2":(String(r.created_at).slice(0,10))})),el('p',{class:'kt-review-text'},r.body));
-          const observed=window.KampTrailDiscovery?.describe(r.observations);if(observed)article.append(el('p',{class:'kt-observation'},t("Reported on ")+r.visited_on+' · '+observed));
+          const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},t("Visited {0}{1} · submitted {2}", {"0":(visit(r.visited_on)),"1":(r.rig?' · '+r.rig:''),"2":(String(r.created_at).slice(0,10))})),el('p',{class:'kt-review-text'},r.body));
+          const observed=window.KampTrailDiscovery?.describe(r.observations);if(observed)article.append(el('p',{class:'kt-observation'},t("Reported on ")+visit(r.visited_on)+' · '+observed));
           if(r.photos.length){const gallery=el('div',{class:'kt-photo-grid'});r.photos.forEach(p=>gallery.append(image(p,r)));article.append(gallery);}
           const video=videoCard(r,site.properties.id,view);if(video)article.append(video);
           article.append(button(t("Report review"),()=>report(r.id)));list.append(article);
@@ -131,7 +132,7 @@
     const msg=message(''),send=el('button',{type:'submit',class:'btn primary'},token?t("Save and resubmit"):t("Send for review"));f.append(msg,send);body.append(f,button(t("My reviews"),mine));
     f.onsubmit=async e=>{e.preventDefault();const chosen=[...files.files],remaining=(review.photos||[]).filter(p=>!new FormData(f).getAll('remove_photos[]').includes(String(p.id))).length;
       if(chosen.length+remaining>3||chosen.some(f=>f.size>6291456)){msg.textContent=t("Use at most 3 photos total, each 6 MB or smaller.");return;}
-      const data=new FormData(f);if(!chosen.length)data.delete('photos[]');data.set('action',token?'edit':'submit');data.set('campsite_id',review.campsite_id);data.set('campsite_name',review.campsite_name);data.set('elapsed_ms',Date.now()-st.opened);data.set('observations',JSON.stringify(window.KampTrailDiscovery?.formValues(f)||{}));send.disabled=true;msg.textContent=t("Sending…");
+      const data=new FormData(f);if(!chosen.length)data.delete('photos[]');data.set('action',token?'edit':'submit');data.set('campsite_id',review.campsite_id);data.set('campsite_name',review.campsite_name);data.set('elapsed_ms',Date.now()-st.opened);data.set('observations',JSON.stringify(window.KampTrailDiscovery?.formValues(f,{edit:!!token})||{}));send.disabled=true;msg.textContent=t("Sending…");
       try{const out=await request(data,token);window.dispatchEvent(new CustomEvent('kamptrail:communitychanged'));const code=token||out.token;const stored=remember({token:code,name:review.campsite_name,at:new Date().toISOString()});urls.splice(0).forEach(URL.revokeObjectURL);const done=shell(t("Review received"));done.append(message(t('Thanks. Your review, photos and optional video are waiting for moderation.')),el('p',{class:'kt-fine'},stored?t("Your management code is saved on this device."):t("This browser could not save the code. Copy it now so you can manage your review.")));codePanel(done,code);done.append(button(t("My reviews"),mine));}
       catch(err){msg.textContent=err.message;msg.classList.add('is-error');}finally{send.disabled=false;}
     };

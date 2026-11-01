@@ -12,6 +12,10 @@ const KO_AXES=[
 // better experience. crowds (perceived crowding) and fullness (share of camping spaces occupied): 5 is more
 // crowded or fuller. None is derived from the categorical noise, crowding or shade fields.
 const KO_SCORE_AXES=['quietness','shade','comfort','noise_day','noise_night','cleanliness','crowds','fullness'];
+// Fields added in R5. Forms released before R5 never send them, so an edit that omits them keeps the stored
+// value and only an explicit null (or '') clears one. Pre-R5 fields keep their original meaning: every form
+// shows them, so an edit that omits one reports it as not observed. See docs/REVIEW_DIMENSIONS_R5.md.
+const KO_R5_SCORE_AXES=['noise_day','noise_night','cleanliness','crowds','fullness'];
 const KO_SEASONS=['winter','spring','summer','fall'];
 const KO_SCORE_MINIMUM=3;
 const KO_CARRIERS=['att','verizon','tmobile','other'];
@@ -19,7 +23,8 @@ const KO_SIGNAL=['none','weak','usable','strong'];
 const KO_ENVIRONMENTS=['unspecified','outdoors','inside_rv','other_vehicle'];
 const KO_RADIOS=['unspecified','lte','5g'];
 function ko_ready(PDO $pdo): bool {return in_array(KO_VERSION,kt_applied_migrations($pdo),true);}
-function ko_validate($raw): array {
+function ko_validate($raw,?array &$present=null): array {
+    $present=['scores'=>[],'season'=>false];
     if ($raw==='') return [];
     if (!is_string($raw) || strlen($raw)>4096) kc_error(422,'Invalid camper observations.');
     try {$in=json_decode($raw,true,16,JSON_THROW_ON_ERROR);}catch(Throwable $e){kc_error(422,'Invalid camper observations.');}
@@ -37,13 +42,16 @@ function ko_validate($raw): array {
         if(!is_object($shape->scores??null)||!is_array($scores)||(array_is_list($scores)&&$scores!==[])||array_diff(array_keys($scores),KO_SCORE_AXES))kc_error(422,'Invalid camper sub-ratings.');
         $clean=[];
         foreach(KO_SCORE_AXES as $axis)if(array_key_exists($axis,$scores)){
+            $present['scores'][]=$axis;
+            if($scores[$axis]===null)continue;
             if(!is_int($scores[$axis])||$scores[$axis]<1||$scores[$axis]>5)kc_error(422,'Sub-ratings must be whole numbers from 1 to 5.');
             $clean[$axis]=$scores[$axis];
         }
         if($clean)$out['scores']=$clean;
     }
     // The rated season is checked against the visit date by ko_bind_season.
-    if(array_key_exists('season',$in)&&$in['season']!==''){
+    if(array_key_exists('season',$in))$present['season']=true;
+    if(array_key_exists('season',$in)&&$in['season']!==''&&$in['season']!==null){
         if(!is_string($in['season'])||!in_array($in['season'],KO_SEASONS,true))kc_error(422,'Choose a listed season.');
         $out['season']=$in['season'];
     }
@@ -61,6 +69,17 @@ function ko_validate($raw): array {
     usort($outSignals,fn($a,$b)=>strcmp($a['carrier'],$b['carrier']));
     if($outSignals)$out['signals']=$outSignals;
     return $out;
+}
+// Edit merge: keep stored R5 fields the request did not mention. Explicit nulls were recorded in $present.
+function ko_merge_edit(array $new,array $stored,array $present): array {
+    $kept=[];
+    foreach(KO_R5_SCORE_AXES as $axis){
+        $n=$stored['scores'][$axis]??null;
+        if(!in_array($axis,$present['scores'],true)&&!isset($new['scores'][$axis])&&is_int($n)&&$n>=1&&$n<=5)$kept[$axis]=$n;
+    }
+    if($kept){$scores=($new['scores']??[])+$kept;$new['scores']=[];foreach(KO_SCORE_AXES as $axis)if(isset($scores[$axis]))$new['scores'][$axis]=$scores[$axis];}
+    if(!$present['season']&&!isset($new['season'])&&in_array($stored['season']??null,KO_SEASONS,true))$new['season']=$stored['season'];
+    return $new;
 }
 function ko_read(PDO $pdo,int $id): array {
     if(!ko_ready($pdo))return [];

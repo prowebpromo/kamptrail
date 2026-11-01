@@ -143,7 +143,7 @@
       card.append(el('p',t("{0} · about {1} mi from route · leg {2}", {"0":(fee(p)),"1":(match.distance.toFixed(1)),"2":(match.leg+1)})));
       if(DataQuality.elevationInfo(feature)||use.checked&&DataQuality.elevationRange(filters).active)card.append(el('p',DataQuality.elevationText(feature,filters.elevationUnit||'ft')+t(". Interpolated terrain; not road grade or RV clearance."),'kt-fine'));
       if(use.checked&&global.KampTrailForecast?.active(filters))card.append(el('p',global.KampTrailForecast.describe(feature,filters),'kt-fine kt-forecast-evidence'));
-      const community=global.KampTrailDiscovery?.summary(p);if(community)card.append(el('p',t("{0}/5 · {1} published {2} · latest visit {3}", {"0":((community.rating_sum/community.rating_count).toFixed(1)),"1":(community.rating_count),"2":(community.rating_count===1?t("review"):t("reviews")),"3":(community.latest_visit)}),'kt-fine'));
+      const community=global.KampTrailDiscovery?.summary(p);if(community)card.append(el('p',t("{0}/5 · {1} published {2} · latest visit {3}", {"0":((community.rating_sum/community.rating_count).toFixed(1)),"1":(community.rating_count),"2":(community.rating_count===1?t("review"):t("reviews")),"3":(global.KampTrailDiscovery.visitLabel?.(community.latest_visit)??community.latest_visit)}),'kt-fine'));
       const matched=use.checked?global.KampTrailDiscovery?.matchNote(p,filters):'';if(matched)card.append(el('p',matched,'kt-fine'));
       if(filters.rigLength>0&&use.checked&&!DataQuality.matchingSites(p,+filters.rigLength,filters.hookups||[],false))card.append(el('p',t("RV length not documented."),'kt-fine'));
       const note=el('p',null,'kt-fine'),actions=el('div',null,'kt-community-actions');

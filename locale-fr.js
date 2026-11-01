@@ -1769,6 +1769,7 @@
   "Season rated: {0}": "Saison notée : {0}",
   "Visit sub-rating averages": "Moyennes des sous-notes de visite",
   "All published visits with an explicit 1–5 score for each aspect. An average appears only from 3 ratings. Crowds and fullness: 5 is more crowded or fuller. Other aspects: 5 is the better experience. Categorical noise and crowding reports are counted separately and never converted to scores.": "Toutes les visites publiées avec une note explicite de 1 à 5 pour chaque aspect. Une moyenne n’apparaît qu’à partir de 3 notes. Affluence et remplissage : 5 signifie plus de monde ou plus plein. Autres aspects : 5 est la meilleure expérience. Les observations par catégorie sur le bruit et l’affluence sont comptées à part et jamais converties en notes.",
-  "Loading visit sub-ratings…": "Chargement des sous-notes de visite…"
+  "Loading visit sub-ratings…": "Chargement des sous-notes de visite…",
+  "visit date not reported": "date de visite non indiquée"
 }};
 })(typeof window !== 'undefined' ? window : globalThis);
