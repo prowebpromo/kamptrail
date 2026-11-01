@@ -59,3 +59,10 @@ Not inspected (no access from this branch):
 - Share links already sent, and links in GitHub issues.
 - Ids that browsers showed on 2.31.0 or earlier but that were never in a published index. A listing can only show an id its own records carry, and every record id is canonical or legacy in the current index, so such ids resolve for the current catalogue. Ids from listings removed from the catalogue since are not covered by this package.
 - Other agents' branches (`fix/rig-tag-ownership`, `candidate/tourism-type-admission`). If either changes which records publish, `identity-hosts.json` must be rebuilt with the index (the index build writes it, and a unit test fails when they differ).
+
+## Tests (HEAD of this branch)
+
+- `npm test`: 459/459 pass, including `tests/deterministic-identity.test.js` (index election for the measured cases in both orders, Cosby's own toilet evidence, delayed and parallel loads, fallback, alias resolution, late sidecars) and a community API test showing a review stored under `ridb:232479` is found through `osm:way:1107154601`, stored id unchanged.
+- `npm run test:python`: pass.
+- Browser (`CHROMIUM_PATH` set to the installed Chromium): `tests/browser/identity.spec.js` passes 3/3. It covers 4 loading orders and 2 delayed-response runs on real NC, TN, CA and NV data; every loaded listing's id and source-id set is checked against the index, along with popup claims and amenity and rig filter outcomes for the measured cases; a second offline visit served by the service worker cache, in the other order; and saved stops, share links, a review summary and a correction submitted through a legacy id. Across 16 related specs, 92 passed. The one other failure is the known `app.spec.js` mobile map height (493 vs >500).
+- `npm run build`: passes. `search-index.json` and `coordinate-index.json` are byte-identical to main, and the release contains `identity-hosts.json`.
