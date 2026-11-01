@@ -1,0 +1,448 @@
+{
+ "checked_at": "2026-11-01T17:49:48.945Z",
+ "base_url": "http://127.0.0.1:8797",
+ "app_version": "2.35.0",
+ "index_sites": 33370,
+ "states": 50,
+ "state_pairs": 102,
+ "scenarios": {
+  "fail:seed:3": {
+   "order": "FL>NY>MO>PA>OK>AL>NV>SC>WI>OH>ND>NJ>TN>NM>MI>ME>AK>CT>MD>LA>NH>VT>VA>WA>TX>NE>RI>NC>GA>KS>KY>OR>HI>IA>CO>MS>MT>AR>MN>DE>WY>SD>IN>IL>AZ>CA>UT>MA>ID>WV",
+   "host_file": "404 then served",
+   "wrong_merges_during_fallback": 0,
+   "wrong_resolutions_during_fallback": 0,
+   "status_after_retry": "published",
+   "after_retry": {
+    "listings": 33370,
+    "ids_checked": 36290,
+    "wrong_merges": 0,
+    "wrong_resolutions": 0,
+    "unresolved": 0,
+    "examples": {
+     "wrong_merges": [],
+     "wrong_resolutions": [],
+     "unresolved": []
+    }
+   },
+   "census": {
+    "compared": 33370,
+    "listings": 33370,
+    "differences": 0,
+    "counts": {
+     "missing": 0,
+     "split": 0,
+     "canonical": 0,
+     "source_ids": 0
+    },
+    "examples": {
+     "missing": [],
+     "split": [],
+     "canonical": [],
+     "source_ids": []
+    }
+   },
+   "checkpoints": [
+    {
+     "after": "FL",
+     "listings": 825,
+     "ids_checked": 825,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 0
+    },
+    {
+     "after": "NY",
+     "listings": 2691,
+     "ids_checked": 2709,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 0
+    },
+    {
+     "after": "MO",
+     "listings": 3599,
+     "ids_checked": 3622,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 1
+    },
+    {
+     "after": "PA",
+     "listings": 3986,
+     "ids_checked": 3999,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 1
+    },
+    {
+     "after": "OK",
+     "listings": 4475,
+     "ids_checked": 4500,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 1
+    },
+    {
+     "after": "AL",
+     "listings": 4770,
+     "ids_checked": 4796,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 2
+    },
+    {
+     "after": "NV",
+     "listings": 5750,
+     "ids_checked": 5993,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 2
+    },
+    {
+     "after": "SC",
+     "listings": 6039,
+     "ids_checked": 6286,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 4
+    },
+    {
+     "after": "WI",
+     "listings": 7519,
+     "ids_checked": 7787,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 4
+    },
+    {
+     "after": "OH",
+     "listings": 8100,
+     "ids_checked": 8371,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 4
+    },
+    {
+     "after": "ND",
+     "listings": 8244,
+     "ids_checked": 8515,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 4
+    },
+    {
+     "after": "NJ",
+     "listings": 8326,
+     "ids_checked": 8596,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 4
+    },
+    {
+     "after": "TN",
+     "listings": 9152,
+     "ids_checked": 9451,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 4
+    },
+    {
+     "after": "NM",
+     "listings": 10053,
+     "ids_checked": 10359,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 4
+    },
+    {
+     "after": "MI",
+     "listings": 11405,
+     "ids_checked": 11696,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 6
+    },
+    {
+     "after": "ME",
+     "listings": 11981,
+     "ids_checked": 12275,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 6
+    },
+    {
+     "after": "AK",
+     "listings": 12620,
+     "ids_checked": 12936,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 6
+    },
+    {
+     "after": "CT",
+     "listings": 12631,
+     "ids_checked": 12947,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 6
+    },
+    {
+     "after": "MD",
+     "listings": 13146,
+     "ids_checked": 13471,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 6
+    },
+    {
+     "after": "LA",
+     "listings": 13304,
+     "ids_checked": 13631,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 8
+    },
+    {
+     "after": "NH",
+     "listings": 13569,
+     "ids_checked": 13895,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 8
+    },
+    {
+     "after": "VT",
+     "listings": 13583,
+     "ids_checked": 13901,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 9
+    },
+    {
+     "after": "VA",
+     "listings": 14002,
+     "ids_checked": 14344,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 9
+    },
+    {
+     "after": "WA",
+     "listings": 16563,
+     "ids_checked": 16925,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 9
+    },
+    {
+     "after": "TX",
+     "listings": 18278,
+     "ids_checked": 18632,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 9
+    },
+    {
+     "after": "NE",
+     "listings": 18493,
+     "ids_checked": 18847,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 9
+    },
+    {
+     "after": "RI",
+     "listings": 18558,
+     "ids_checked": 18912,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 9
+    },
+    {
+     "after": "NC",
+     "listings": 19038,
+     "ids_checked": 19376,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 9
+    },
+    {
+     "after": "GA",
+     "listings": 19229,
+     "ids_checked": 19555,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 10
+    },
+    {
+     "after": "KS",
+     "listings": 19451,
+     "ids_checked": 19777,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 10
+    },
+    {
+     "after": "KY",
+     "listings": 19778,
+     "ids_checked": 20096,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 10
+    },
+    {
+     "after": "OR",
+     "listings": 21942,
+     "ids_checked": 22304,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 11
+    },
+    {
+     "after": "HI",
+     "listings": 21991,
+     "ids_checked": 22353,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 11
+    },
+    {
+     "after": "IA",
+     "listings": 22293,
+     "ids_checked": 22655,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 11
+    },
+    {
+     "after": "CO",
+     "listings": 23921,
+     "ids_checked": 24305,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 11
+    },
+    {
+     "after": "MS",
+     "listings": 23981,
+     "ids_checked": 24366,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 11
+    },
+    {
+     "after": "MT",
+     "listings": 25205,
+     "ids_checked": 25696,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 12
+    },
+    {
+     "after": "AR",
+     "listings": 25336,
+     "ids_checked": 25823,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 14
+    },
+    {
+     "after": "MN",
+     "listings": 26554,
+     "ids_checked": 27037,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 14
+    },
+    {
+     "after": "DE",
+     "listings": 26554,
+     "ids_checked": 27037,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 14
+    },
+    {
+     "after": "WY",
+     "listings": 27413,
+     "ids_checked": 27950,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 14
+    },
+    {
+     "after": "SD",
+     "listings": 27608,
+     "ids_checked": 28141,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 14
+    },
+    {
+     "after": "IN",
+     "listings": 27793,
+     "ids_checked": 28326,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 14
+    },
+    {
+     "after": "IL",
+     "listings": 27874,
+     "ids_checked": 28403,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 14
+    },
+    {
+     "after": "AZ",
+     "listings": 29070,
+     "ids_checked": 29613,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 16
+    },
+    {
+     "after": "CA",
+     "listings": 32869,
+     "ids_checked": 33241,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 20
+    },
+    {
+     "after": "UT",
+     "listings": 34500,
+     "ids_checked": 34938,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 20
+    },
+    {
+     "after": "MA",
+     "listings": 34569,
+     "ids_checked": 35007,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 20
+    },
+    {
+     "after": "ID",
+     "listings": 35898,
+     "ids_checked": 36255,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 24
+    },
+    {
+     "after": "WV",
+     "listings": 35959,
+     "ids_checked": 36290,
+     "wrong_merges": 0,
+     "wrong_resolutions": 0,
+     "unresolved": 26
+    }
+   ]
+  }
+ }
+}
