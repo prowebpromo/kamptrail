@@ -49,6 +49,7 @@
   ]);
   // Also guard a cold single-state load and identity-host fallback, before the parent state arrives.
   const WITHDRAWN_IDS = new Set(['ridb:237765', 'ridb:244404', 'usfs:18814', 'ridb:245273', 'usfs:5889', 'ridb:246536', 'usfs:65003', 'ridb:247835', 'osm:way:941066426', 'ridb:247915', 'osm:relation:13942065', 'ridb:247922', 'ridb:248072', 'ridb:248261']);
+  const isWithdrawnId = id => WITHDRAWN_IDS.has(String(id));
   const DON_CARTER_ELEMENT = 'osm:way:456269017'; // independently published listing in NC
   const discoverable = p => p.camping_classification === 'campsite' || p.camping_classification === 'published_pending_review';
   const ACCOMMODATION_NAME = /\b(?:cabins?|lodges?|lookouts?|guard\s+stations?|hotels?|motels?|chalets?|yurts?|huts?|houses?|bunkhouses?)\s*$/i;
@@ -920,6 +921,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.35.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,withheldMembers,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.35.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,withheldMembers,isWithdrawnId,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

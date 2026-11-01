@@ -636,6 +636,28 @@
     // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
     async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
     // Listings withdrawn from campsite discovery keep a resolvable legacy entry explaining why (data/campsites/withdrawn.json).
+    async openWithdrawn(id){
+      if(!DataQuality.isWithdrawnId(id))return false;
+      const withdrawn=(await api.loadWithdrawn()).get(String(id));
+      if(!withdrawn)return false;
+        const [lng,lat] = withdrawn.coordinates;
+        const panel = document.createElement('section');
+        panel.className = 'kt-withdrawn-listing';
+        const heading = document.createElement('h2');
+        heading.textContent = withdrawn.name;
+        const notice = document.createElement('p');
+        notice.textContent = t("This place was removed from campsite search after an evidence review. Check the facility record for camping details and current availability.");
+        panel.append(heading,notice);
+        if (/^ridb:\d+$/.test(withdrawn.id)) {
+          const link = document.createElement('a');
+          link.href = 'https://www.recreation.gov/camping/campgrounds/' + withdrawn.id.slice(5);
+          link.textContent = t("View facility record on Recreation.gov");
+          panel.append(link);
+        }
+        state.map.setView([lat,lng],12);
+        L.popup().setLatLng([lat,lng]).setContent(panel).openOn(state.map);
+      return true;
+    },
     loadWithdrawn(){
       if(!state.withdrawnPromise)state.withdrawnPromise=fetchJSON('data/campsites/withdrawn.json').then(data=>{
         if(data?.version!==1||!Array.isArray(data.listings))throw new Error('Invalid withdrawn listings');

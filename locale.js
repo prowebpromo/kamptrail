@@ -179,6 +179,7 @@
   "Other / unspecified": "Otro / sin especificar",
   "This previously listed location is under review. Its record does not establish the camping type at this point.": "Este lugar ya figuraba en el catálogo y está en revisión. La ficha no confirma el tipo de acampada en este punto.",
   "Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified.": "La ficha de esta instalación en Recreation.gov describe la acampada. No se ha verificado el tipo de acampada.",
+  "Removed from campsite search. Open the saved facility record for details.": "Se retiró de la búsqueda de campings. Abre la ficha guardada para ver los detalles.",
   "This place was removed from campsite search after an evidence review. Check the facility record for camping details and current availability.": "Este lugar se retiró de la búsqueda de campings tras revisar las fuentes. Consulta la ficha de la instalación para conocer las opciones de acampada y la disponibilidad actual.",
   "View facility record on Recreation.gov": "Ver la ficha de la instalación en Recreation.gov",
   "the land manager": "el responsable del terreno",
