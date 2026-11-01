@@ -151,6 +151,7 @@ const slim = r => ({...r, checkpoints: r.checkpoints.map(c => c.wrong_merges || 
       result.scenarios[name] = await runFail(browser, order.filter(keep));
     } else throw new Error('unknown scenario ' + name);
     const s = result.scenarios[name];
+    if (out) fs.writeFileSync(out, JSON.stringify(result, null, 1) + '\n');
     console.error(name, JSON.stringify(s.summary || {wrong_merges: s.wrong_merges_during_fallback, wrong_resolutions: s.wrong_resolutions_during_fallback, status: s.status_after_retry}), s.census ? JSON.stringify(s.census.counts) : '', `${Math.round((Date.now() - t0) / 1000)} s`);
   }
   await browser.close();
