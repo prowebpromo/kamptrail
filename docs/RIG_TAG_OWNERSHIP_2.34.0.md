@@ -93,8 +93,8 @@ Why not move inherited values to member evidence in the index normalizer: that c
 
 - New: `tests/rig-ownership.test.js` (merge guard, own-element reading, members unused, negatives, Recreation.gov conflict, index, fixture recompute, provenance-debt guard) and `tests/browser/rig-evidence.spec.js` (popup rig evidence and filter agreement in English, Spanish and French).
 - New strings have Spanish (`locale.js`) and French (`locale-fr.js`) entries.
-- `npm test`: 458 of 458 pass. `npm run test:python`: 363 OK, 9 skipped.
-- Browser: `features`, `amenity-evidence`, `rig-evidence`, `discovery`, `rig-profile`, `locale` pass. `app.spec.js` fails only on the known mobile map height (493 vs >500). `locale.spec.js` French fallback closed its page once under shared load and passed on rerun.
+- `npm test`: 468 of 468 pass (one guard test failed first on a stale version regex after the renumber, fixed and rerun). `npm run test:python`: 397 OK, 9 skipped.
+- Browser, served from this worktree on 127.0.0.1:8795: `features`, `amenity-evidence`, `discovery`, `rig-profile`, `locale`, `identity`, `saved-stops`, `rig-evidence` pass (56 of 57 with `app.spec.js`). `app.spec.js` fails only on the known mobile map height (493 vs >500).
 - `npm run build` (search index, services, permissions, release) succeeds and leaves committed data unchanged.
 
 Release 2.34.0, service-worker cache `kt-v67`.

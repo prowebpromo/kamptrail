@@ -99,10 +99,10 @@ test('provenance debt guard: campsite client code never reads operator, and webs
     assert.doesNotMatch(src,/\b(?:p|props|properties|site\.properties|feature\.properties)\??\.operator\b|\[['"]operator['"]\]/,file+' reads operator');
     const web=[...src.matchAll(/\b(?:p|props|properties|site\.properties|feature\.properties)\??\.website\b|\[['"]website['"]\]/g)];
     // Known fallbacks after source_url: the popup link and the fee-evidence panel. Each carries a provenance-debt comment.
-    if(file==='data-loader.js'||file==='spot-info.js'){assert.equal(web.length,1,file+' reads website once');assert.match(src,/[Pp]rovenance debt \(2\.32\.0\)/);assert.match(src,/source_url\s*\|\|\s*(?:p|properties)\.website/);}
+    if(file==='data-loader.js'||file==='spot-info.js'){assert.equal(web.length,1,file+' reads website once');assert.match(src,/[Pp]rovenance debt \(2\.34\.0\)/);assert.match(src,/source_url\s*\|\|\s*(?:p|properties)\.website/);}
     else assert.equal(web.length,0,file+' reads website');
   }
   // Both read sites use normalized source_url first. Every published listing has one, so website is never reached.
   const dq=fs.readFileSync(path.join(__dirname,'../data-quality.js'),'utf8');
-  assert.match(dq,/[Pp]rovenance debt \(2\.32\.0\)/);
+  assert.match(dq,/[Pp]rovenance debt \(2\.34\.0\)/);
 });
