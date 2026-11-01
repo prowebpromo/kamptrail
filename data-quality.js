@@ -229,12 +229,12 @@
     const fid = raw.facility_id != null ? String(raw.facility_id) : null;
     const overnightSites = ridb && fid ? Math.max(options.siteDetails?.[fid]?.t || 0, options.amenityDetails?.facilities?.[fid]?.sites || 0, raw._kt_normalized && Number.isInteger(raw.ridb_overnight_sites) ? raw.ridb_overnight_sites : 0) : 0;
     const classification = classifyCampingRecord(borrowedWording ? {...raw, description:''} : raw, name, {osm, ridb, overnightSites});
-    if (raw.source === 'recreation.gov' && raw.id === 'ridb:' + fid && !classification.exclusion_reason && REVIEWED_RECORDS.has(raw.id+'|'+name+'|'+raw.source_retrieved_at)) {
-      if (REVIEWED_CAMPING.has(raw.id)) {
+    if (raw.source === 'recreation.gov' && raw.id === 'ridb:' + fid && !classification.exclusion_reason) {
+      if (REVIEWED_CAMPING.has(raw.id) && REVIEWED_RECORDS.has(raw.id+'|'+name+'|'+raw.source_retrieved_at)) {
         classification.camping_classification = 'campsite';
         classification.camping_evidence = 'reviewed_own_facility_record';
         classification.camping_evidence_record_id = raw.id;
-      } else if (PENDING_ADMISSION.has(raw.id)) {
+      } else if (PENDING_ADMISSION.has(raw.id) || REVIEWED_CAMPING.has(raw.id)) {
         classification.camping_classification = 'published_pending_review';
         classification.camping_evidence = 'previously_published_pending_adjudication';
       }
@@ -453,7 +453,7 @@
     }
     // Provenance debt (2.34.0): website is still filled from another record here. No campsite UI reads it (see data-loader.js).
     if (!p.description && q.description && p.id !== q.id) p.description_source_record_id = q.description_source_record_id || q.id;
-    for (const key of ['description','website','source_url','road_difficulty','rating','stay_limit','open_status','season','restrictions','camping_activity']) if (p[key] == null || p[key] === '') p[key]=q[key] ?? p[key];
+    for (const key of ['description','website','source_url','road_difficulty','rating','stay_limit','open_status','season','restrictions']) if (p[key] == null || p[key] === '') p[key]=q[key] ?? p[key];
     return primary;
   }
   // A state's complete snapshot must support camping before another state's

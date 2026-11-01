@@ -66,7 +66,7 @@ for(const [id,b] of B){const a=A.get(id);
   if(JSON.stringify(a.states)!==JSON.stringify(b.states)&&!listed(id,'legacy_ids'))fail('index_states_not_listed',id);
   const rest=s=>JSON.stringify({...s,m:{...s.m,t:0,f:0,a:0,s:0},lat:0,lng:0,legacy_ids:0,states:0});
   if(rest(a)!==rest(b))fail('index_other_field',id);
-  const amen=s=>JSON.stringify([s.m.a||[],s.m.s||[]]);if(amen(a)!==amen(b)&&!listed(id,'publication'))deltas.push({id,field:'amenity_filter_metadata (follows the listing kept)'});}
+  const amen=s=>JSON.stringify([s.m.a||[],s.m.s||[]]);if(amen(a)!==amen(b))fail('amenity_filter_metadata_changed',id);}
 for(const [id] of A)if(!B.has(id)){if(listed(id,'publication','not published','published'))deltas.push({id,field:'publication',to:'published'});else fail('index_listing_added_not_listed',id);}
 for(const r of ledger.records)for(const c of r.changes){
   if(c.field==='publication'&&c.to!=='published'&&A.has(r.canonical_id))fail('ledger_withdrawal_not_applied',r.canonical_id);
@@ -79,10 +79,22 @@ const resolve=s=>{const m=new Map();for(const x of s)m.set(x.id,x.id);for(const 
 const rb=resolve(ib.sites),ra=resolve(ia.sites);let checked=0;const moved=[];
 for(const [id,h] of rb){checked++;const now=ra.get(id);
   if(now===h)continue;
-  if(now===undefined&&wIds.has(id)){if(!listed(h,'publication')&&!listed(h,'legacy_ids'))fail('withdrawn_not_in_ledger',id);continue;}
-  if(now!==undefined&&(listed(h,'legacy_ids')||listed(h,'publication')||listed(now,'publication'))){moved.push({id,before:h,after:now});continue;}
+  if(now===undefined&&wIds.get(id)===h){if(!listed(h,'publication')&&!listed(h,'legacy_ids'))fail('withdrawn_not_in_ledger',id);continue;}
+  if(now!==undefined)moved.push({id,before:h,after:now});
   fail('saved_link_resolution',id,{before:h,after:now??null});}
 for(const w of W.listings){if(A.has(w.id))fail('withdrawn_still_published',w.id);if(!B.has(w.id))fail('withdrawn_was_not_published',w.id);if(!listed(w.id,'publication'))fail('withdrawn_not_in_ledger',w.id);}
+// Independent review decisions are fixed separately from the mechanically generated delta ledger.
+const review=read(path.join(root,'docs/candidates/tourism-independent-source-review.json')).records;
+const types=read(path.join(root,'docs/candidates/tourism-type-review.json'));
+for(const [id,r] of Object.entries(review)){
+  const type=A.get(id)?.m.t;
+  if(r.proposal==='discovery withdrawal'){
+    if(r.evidence_result==='insufficient_in_retained_row'){if(type!==undefined||!wIds.has(id))fail('missing_reviewed_withdrawal',id);}
+    else if(type!=='other')fail('reviewed_or_pending_admission',id,{type});
+  } else if(r.evidence_result.startsWith('lodging_supported')){if(type!=='lodging')fail('reviewed_lodging',id,{type});}
+  else if(type!==B.get(id).m.t)fail('lodging_conflict_not_held',id,{type});
+}
+for(const [id,r] of Object.entries(types))if(r.decision==='hold_current_other' && (A.get(id)?.m.t!=='other'||B.get(id)?.m.t!=='other'))fail('description_only_upgrade',id);
 // 5. Access holds and per-row access, fees and coordinates in the normalized catalogue.
 const holds={before:0,after:0};
 for(const st of states){read(path.join(baseline,`data/campsites/${st}_merged.geojson`)).features.forEach(f=>{if(f.properties.access_hold)holds.before++;});read(path.join(root,`data/campsites/${st}_merged.geojson`)).features.forEach(f=>{if(f.properties.access_hold)holds.after++;});}

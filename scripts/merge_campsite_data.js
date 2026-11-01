@@ -52,6 +52,9 @@ function memberEvidence(primary, secondary) {
 // evidence. A description copied from another record is marked with that record's id.
 function ownClassification(merged, primary, secondary) {
   if (secondary.id === primary.id) return;
+  for(const field of ['tourism','camping_activity']){
+    if(Object.hasOwn(primary,field))merged[field]=primary[field];else delete merged[field];
+  }
   // A description copied from a different record is that record's wording. It is marked so it never
   // classifies the retained listing. The text itself is unchanged.
   const own = primary.description_source_record_id || null;

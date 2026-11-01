@@ -16,6 +16,8 @@ const read=H.read;
 // Baseline groups from the revision 1 measurement (same baseline, same definitions).
 const v1=read(path.join(root,'scripts/tourism-type-admission/ledger-v1-groups.json'));
 const web=read(path.join(root,'scripts/tourism-type-admission/website-links.json'));
+const typeReview=read(path.join(root,'docs/candidates/tourism-type-review.json'));
+const independent=read(path.join(root,'docs/candidates/tourism-independent-source-review.json')).records;
 const rec=arg('reconcile')?read(path.resolve(arg('reconcile'))):null;
 // Catalogues and identities.
 const base=H.catalogue(DQb,BI).features,cand=H.catalogue(DQn,NI).features;
@@ -40,7 +42,7 @@ const rowAdmission=new Map();
 // Fields compared per listing. Every difference becomes a listed change.
 const FIELDS=['type','camping_classification','fee_status','cost','access','access_status','name'];
 const listing=f=>f&&{type:f.properties.type,camping_classification:f.properties.camping_classification,camping_evidence:f.properties.camping_evidence,fee_status:f.properties.fee_status,cost:f.properties.cost,access:f.properties.access,access_status:f.properties.access_status,name:f.properties.name,coordinates:f.geometry.coordinates,legacy_ids:[...(f.properties.legacy_ids||[])].filter(x=>x!==f.properties.id).sort()};
-const all=new Set([...v1.affected,...web.map(w=>w.host_published_as).filter(Boolean),...v1.surfaced]);
+const all=new Set([...Object.keys(typeReview),...Object.keys(independent),...v1.affected,...web.map(w=>w.host_published_as).filter(Boolean),...v1.surfaced]);
 for(const id of rowAdmission.keys())all.add(id);
 for(const [id,f] of B){const n=N.get(id);if(!n){all.add(id);continue;}const a=listing(f),b=listing(n);if(JSON.stringify(a)!==JSON.stringify(b))all.add(id);}
 for(const id of N.keys())if(!B.has(id))all.add(id);
@@ -74,11 +76,11 @@ for(const id of [...all].sort()){
   const browserVals=[brAll.get(id)??null,brRev.get(id)??null,...Object.values(lo)];
   const savedAfter=n?(RN.get(id)===id&&(bi?.legacy_ids||[]).every(a=>RN.get(a)===id||withdrawn.has(a))):withdrawn.has(id)||RN.has(id);
   const typeEv=n?.properties.type_evidence||null;
-  records.push({canonical_id:id,name:p.name,states:st,groups:groupsOf(id),
+  records.push({canonical_id:id,name:p.name,states:st,groups:groupsOf(id),review:typeReview[id]?.decision||independent[id]?.evidence_result||null,
     own_source_evidence:ev?{facility_id:fid,structured_classification:ev.structured,overnight_campsite_records:ev.overnight,overnight_none:ev.overnight_none||null,descriptive_wording:ev.descriptive,accommodation:ev.accommodation}:{note:'not a Recreation.gov facility'},
     borrowed_evidence:v1.borrowed[id]||[],
     website_identity:web.find(w=>w.host_published_as===id||w.host===id)||null,
-    identity_basis:n?.properties.camping_evidence_record_id?{kind:'exact_identity',record_id:n.properties.camping_evidence_record_id,rule:'same Recreation.gov facility id (data-quality.js mergeFeatures)'}:{kind:'own_record',record_id:id},
+    identity_basis:n?.properties.camping_evidence_record_id&&n.properties.camping_evidence_record_id!==id?{kind:'exact_identity',record_id:n.properties.camping_evidence_record_id,rule:'same Recreation.gov facility id (data-quality.js mergeFeatures)'}:{kind:'own_record',record_id:id},
     current:{status:b?'published':'not published',type:bf?.type??null,camping_evidence:bf?.camping_evidence??null},
     proposed:{status:n?'published':(withdrawn.has(id)?'withdrawn (legacy page kept)':'not published'),type:nf?.type??null,camping_evidence:nf?.camping_evidence??null,type_evidence:typeEv,camping_evidence_record_id:n?.properties.camping_evidence_record_id||null},
     changes,
