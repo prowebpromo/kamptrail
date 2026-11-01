@@ -687,10 +687,15 @@ class CommittedDataTests(unittest.TestCase):
         self.assertEqual(sum(t['records'] for t in index['tiles']), index['totals']['candidates'])
         self.assertLessEqual(max(t['bytes'] for t in index['tiles']), 512 * 1024)
 
-    def test_release_packaging_still_ships_only_the_ri_pilot(self):
+    def test_release_packages_the_manifest_and_listed_tiles_only(self):
+        # R10 client release: the builder, schema and client pass together, so the national tiles ship.
+        # The release copies each tile the manifest lists after a bytes and sha256 check, and nothing else.
         text = (SCRIPTS / 'build-release.js').read_text()
-        self.assertIn("'data','clearances','RI.json'", text)
-        self.assertNotIn('tiles', text)
+        self.assertIn("path.join(root,'data','clearances')", text)
+        self.assertIn('clearanceIndex.tiles', text)
+        self.assertIn('checksum mismatch', text)
+        self.assertNotIn("'data','clearances','RI.json'", text)
+        self.assertNotIn("'excluded'", text)
         ri = json.loads((national.DEFAULT_DIR / 'RI.json').read_text())
         self.assertEqual(ri['version'], 1)
 

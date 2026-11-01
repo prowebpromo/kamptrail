@@ -80,7 +80,7 @@ test('built release contains agency index dependencies and supports a custom-dom
     assert.ok(fs.existsSync(path.join(out,asset)),`Missing page dependency: ${url}`);
   }
   // The contributions API ships its public entry points and private helpers, never configuration.
-  for(const file of ['rig-profile.js','route-elevation.js','api/route-elevation.php','api/_lib/route-elevation.php','rest-areas.js','data/rest-areas/index.json','data/rest-areas/TX.json','data/rest-areas/ID.json','data/rest-areas/MT.json','data/rest-areas/FL.json','data/rest-areas/OH.json','data/rest-areas/state-policies.json','clearances.js','data/clearances/RI.json','services.js','data/services/index.json','forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','data/campsites/identity-hosts.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
+  for(const file of ['rig-profile.js','route-elevation.js','api/route-elevation.php','api/_lib/route-elevation.php','rest-areas.js','data/rest-areas/index.json','data/rest-areas/TX.json','data/rest-areas/ID.json','data/rest-areas/MT.json','data/rest-areas/FL.json','data/rest-areas/OH.json','data/rest-areas/state-policies.json','clearances.js','data/clearances/index.json','api/clearance-reports.php','api/_lib/clearance-reports.php','services.js','data/services/index.json','forecast.js','api/forecast.php','api/_lib/forecast.php','data/campsites/coordinate-index.json','data/campsites/identity-hosts.json','environment.js','api/environment.php','api/_lib/environment.php','routes.js','api/route.php','api/_lib/routing.php','data/health.json','community.js','community-discovery.js','api/community-discovery.php','api/_lib/observations.php','api/community.php','api/photo.php','api/_lib/community.php','api/_lib/community-admin.php','api/health.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/bootstrap.php','api/_lib/migrations.php','api/.htaccess','api/_lib/.htaccess'])
     assert.ok(fs.existsSync(path.join(out,file)),`Missing API file: ${file}`);
   const services=JSON.parse(fs.readFileSync(path.join(out,'data/services/index.json'),'utf8'));
   assert.equal(services.version,2);let serviceTotal=0;
@@ -88,6 +88,13 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.equal(serviceTotal,services.total);
   assert.ok(!fs.existsSync(path.join(out,'data/sources/services')),'Raw and canonical pipeline sources must stay outside browser release');
   assert.match(fs.readFileSync(path.join(out,'api/_lib/.htaccess'),'utf8'),/Require all denied/);
+  // Clearance data: exactly the manifest and the tiles it lists, byte-identical and hash-checked. No pilot, excluded-id or doc files.
+  const clearanceManifest=JSON.parse(fs.readFileSync(path.join(out,'data/clearances/index.json'),'utf8'));
+  const shipped=fs.readdirSync(path.join(out,'data/clearances'),{recursive:true}).map(f=>f.split(path.sep).join('/')).filter(f=>fs.statSync(path.join(out,'data/clearances',f)).isFile()).sort();
+  assert.deepEqual(shipped,['index.json',...clearanceManifest.tiles.map(e=>e.path)].sort(),'Only files the clearance client reads are packaged');
+  for(const e of clearanceManifest.tiles){const raw=fs.readFileSync(path.join(out,'data/clearances',e.path));assert.equal(raw.length,e.bytes);assert.equal(require('node:crypto').createHash('sha256').update(raw).digest('hex'),e.sha256);}
+  const summary=JSON.parse(fs.readFileSync(path.join(root,'dist/clearance-package.json'),'utf8'));assert.equal(summary.files,shipped.length);
+  assert.equal(summary.bytes,shipped.reduce((n,f)=>n+fs.statSync(path.join(out,'data/clearances',f)).size,0));
   const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
   for(const file of walk(out)){
     assert.ok(!/kamptrail-config|\.env$|private[\/]/.test(file),`Configuration must not be packaged: ${file}`);
