@@ -106,3 +106,23 @@ test('moderated visitor reports display separately and the report form posts to 
   expect(sent.kind).toBe('clearance');expect(sent.clearance).toEqual({posted:`12'9"`,observed_on:'2026-10-20',direction:'one_direction',osm_ref:null});expect(sent.firsthand).toBe(true);
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_reports_v1'))[0].kind)).toBe('clearance');
 });
+const riPilot=require('../../data/clearances/RI.json');
+for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+  test(`${viewport.name}: Rhode Island keeps its pilot records, and is unknown only when RI.json is missing or invalid`,async({page,context})=>{
+    await page.setViewportSize(viewport);let mode='valid',riCalls=0;
+    await page.route('**/data/clearances/RI.json',r=>{riCalls++;if(mode==='missing')return r.fulfill({status:404,body:'missing'});const d=structuredClone(riPilot);if(mode==='invalid')d.source.sha256='bad';return r.fulfill({contentType:'application/json',body:JSON.stringify(d)});});
+    const {errors}=await setup(page,context,{zoom:12});
+    await page.evaluate(()=>map.setView([41.8240,-71.4128],13));await show(page);const control=page.locator('.kt-clearance-control');
+    await expect(control).toContainText(/Rhode Island: [1-9]\d* pilot records with raw tags only \(extract 2026-10-28\); not compared/);
+    await expect(control).not.toContainText('Not in this dataset');expect(riCalls).toBe(1);
+    const first=await control.getByLabel('Clearance candidate in view').locator('option').first().getAttribute('value');
+    const popup=await openCandidate(page,first);await expect(popup).toContainText('Rhode Island pilot record');await expect(popup.locator('.kt-clearance-verdict')).toContainText('Not compared with your rig height');
+    await expect(popup).toContainText(riPilot.source.extract_timestamp);await expect(popup.locator('.kt-odbl')).toContainText('Open Database Licence');
+    await page.getByRole('button',{name:'Close popup',exact:true}).click();
+    for(const m of ['missing','invalid']){
+      mode=m;await page.reload();await page.waitForFunction(()=>window.KampTrailClearances&&window.map);await page.evaluate(()=>map.setView([41.8240,-71.4128],13));await show(page);
+      await expect(control).toContainText('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');await expect(control).not.toContainText('pilot records with raw tags');
+    }
+    expect(errors).toEqual([]);
+  });
+}

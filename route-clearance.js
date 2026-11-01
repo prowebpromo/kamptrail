@@ -5,8 +5,9 @@
  const t=(key,params={})=>(typeof window!=='undefined'?window.KampTrailI18n:globalThis.KampTrailI18n)?.t(key,params)??String(key).replace(/\{([a-zA-Z0-9_]+)\}/g,(token,name)=>Object.hasOwn(params,name)?String(params[name]):token);
  const VERSION='2.35.0',SCHEMA='kamptrail-route-clearance-1',RADIUS=100,CHUNK=64;
  const MAX_ROUTE_TILES=96,MAX_ROUTE_BYTES=12*1024*1024,MAX_FOUND=2000,BUDGET=20000000;
- // The RI pilot is protected and not in the national dataset yet, so a route there has no data.
- const NOT_IN_DATASET={RI:[-71.907,41.095,-71.088,42.019]};
+ // RI is protected in the national dataset; the client reads the RI pilot file there instead.
+ // Only when that file is missing or invalid are RI segments reported as missing.
+ const PILOT_REGION=[-72,40.9,-70.9,42.1];
  const ID=/^[1-9][0-9]{0,15}$/;
  const coord=p=>Array.isArray(p)&&p.length>=2&&Number.isFinite(p[0])&&Number.isFinite(p[1])&&Math.abs(p[0])<=180&&Math.abs(p[1])<=90;
  function xy(p,lat){return [p[0]*111320*Math.cos(lat*Math.PI/180),p[1]*111320];}
@@ -71,26 +72,31 @@
   let bytes=0,loaded=[],skipped=[];
   for(const n of order){if(loaded.length<MAX_ROUTE_TILES&&bytes+n.entry.bytes<=MAX_ROUTE_BYTES){loaded.push(n);bytes+=n.entry.bytes;}else skipped.push(n);}
   for(const n of skipped)for(const i of n.segments)mark(i,'route_tile_budget');
-  for(let i=0;i<s.coords.length-1;i++)for(const [region,box] of Object.entries(NOT_IN_DATASET))if(hit(segBox(s,i),box))mark(i,'region_not_in_dataset:'+region);
-  const found=new Map(),budget={left:BUDGET};let failed=0;
+  const found=new Map(),budget={left:BUDGET};let failed=0,pilot=null;
+  const scan=(list,segments,chunks)=>{for(const c of list){
+     if(found.has(c.id))continue;const pts=C.points(c),cb=C.bboxOf(c);let best=Infinity,nearest=-1;const near=[];
+     for(const ch of chunks){if(!hit(ch.box,cb))continue;for(let i=ch.from;i<ch.to;i++){if(--budget.left<0)throw Error('Search limit reached');if(!hit(segBox(s,i),cb))continue;const d=segmentMetres(s.coords[i],s.coords[i+1],pts,budget);if(d<=RADIUS)near.push(i);if(d<best){best=d;nearest=i;}}}
+     if(best>RADIUS)continue;
+     const a=c.pilot?{association:'unresolved',evidence:['ri_pilot_applies_to_not_assessed']}:associate(c,s,near),cmp=C.compare(c,rigMm);
+     found.set(c.id,{candidate:c,id:c.id,osm_type:c.osm_type,osm_id:c.osm_id,distance_m:Math.round(best),nearest_segment:nearest,leg:legOf(s,nearest),association:a.association,association_evidence:a.evidence,direction:direction(c,a.association),state:C.state(c),status:c.status,applies_to:c.applies_to,comparison:cmp,route_conflict:a.association==='on_route'&&cmp.conflict,...(c.pilot?{source:'ri_pilot'}:{})});
+     if(found.size>MAX_FOUND)throw Error('Search limit reached');
+  }};
+  const riSegments=[];if(Object.hasOwn(m.states_protected||{},'RI'))for(let i=0;i<s.coords.length-1;i++)if(hit(segBox(s,i),PILOT_REGION))riSegments.push(i);
   for(let k=0;k<loaded.length;k+=4){
    await Promise.all(loaded.slice(k,k+4).map(async n=>{
     let doc;try{doc=await data.loadTile(n.entry);}catch{failed++;for(const i of n.segments)mark(i,'tile_failed_integrity');return;}
-    for(const c of doc.candidates){
-     if(found.has(c.id))continue;const pts=C.points(c),cb=C.bboxOf(c);let best=Infinity,nearest=-1;const near=[];
-     for(const ch of n.chunks){if(!hit(ch.box,cb))continue;for(let i=ch.from;i<ch.to;i++){if(--budget.left<0)throw Error('Search limit reached');if(!hit(segBox(s,i),cb))continue;const d=segmentMetres(s.coords[i],s.coords[i+1],pts,budget);if(d<=RADIUS)near.push(i);if(d<best){best=d;nearest=i;}}}
-     if(best>RADIUS)continue;
-     const a=associate(c,s,near),cmp=C.compare(c,rigMm);
-     found.set(c.id,{candidate:c,id:c.id,osm_type:c.osm_type,osm_id:c.osm_id,distance_m:Math.round(best),nearest_segment:nearest,leg:legOf(s,nearest),association:a.association,association_evidence:a.evidence,direction:direction(c,a.association),state:C.state(c),status:c.status,applies_to:c.applies_to,comparison:cmp,route_conflict:a.association==='on_route'&&cmp.conflict});
-     if(found.size>MAX_FOUND)throw Error('Search limit reached');
-    }
+    scan(doc.candidates,n.segments,n.chunks);
    }));
+  }
+  if(riSegments.length){
+   try{pilot=await data.loadPilot();scan(pilot.candidates,riSegments,s.chunks.filter(ch=>riSegments.some(i=>i>=ch.from&&i<ch.to)));}
+   catch(e){if(/Search limit/.test(e?.message))throw e;for(const i of riSegments)mark(i,'ri_pilot_unavailable');}
   }
   const ranges=[];for(const i of [...missing.keys()].sort((a,b)=>a-b)){const r=missing.get(i),last=ranges.at(-1);if(last&&last.to===i&&last.reason===r)last.to=i+1;else ranges.push({from:i,to:i+1,reason:r});}
   for(const r of ranges)r.length_m=Math.round(lengthOf(s,r.from,r.to));
   const rows=[...found.values()].sort((a,b)=>a.nearest_segment-b.nearest_segment||a.id.localeCompare(b.id));
   const by=x=>rows.filter(x).length;
-  return {schema:SCHEMA,dataset:{schema:m.schema,attribution:m.attribution,copyright_url:m.copyright_url,sources:m.sources,not_in_dataset:Object.keys(m.states_protected)},
+  return {schema:SCHEMA,dataset:{schema:m.schema,attribution:m.attribution,copyright_url:m.copyright_url,sources:m.sources,not_in_dataset:Object.keys(m.states_protected),ri_pilot:pilot?{used:true,extract_timestamp:pilot.source.extract_timestamp,retrieved_at:pilot.source.retrieved_at}:{used:false,needed:riSegments.length>0}},
    rig_height_mm:Number.isSafeInteger(rigMm)?rigMm:null,search_radius_m:RADIUS,
    association_method:s.waySet||s.nodeSet?'exact_osm_identity':'none',
    association_limits:s.waySet||s.nodeSet?'Only candidates whose OSM way or node id is in the route identity lists are on the route. Segments without ids stay unresolved.':'The route carries no OSM way or node ids, so no candidate can be tied to the driven road. All nearby candidates are unresolved.',
@@ -132,12 +138,13 @@
    if(s.not_on_route){const other=section(t('Nearby, on a different road (exact OSM id)'),'other');for(const x of r.candidates.filter(x=>x.association==='not_on_route'))entry(x,other);}
    const miss=section(t('Route segments without clearance data'),'missing');
    if(!r.missing.length)miss.append(el('p',t('Data loaded for every segment. Unmapped hazards are still unknown.')));
-   for(const m of r.missing)miss.append(el('p',t('Segments {from} to {to} (about {km} km): {reason}.',{from:m.from,to:m.to,km:(m.length_m/1000).toFixed(1),reason:m.reason.startsWith('region_not_in_dataset')?t('{region} is not in this dataset yet',{region:m.reason.split(':')[1]}):m.reason==='tile_failed_integrity'?t('data failed its integrity check'):t('too much data for one route check')})));
+   for(const m of r.missing)miss.append(el('p',t('Segments {from} to {to} (about {km} km): {reason}.',{from:m.from,to:m.to,km:(m.length_m/1000).toFixed(1),reason:m.reason==='ri_pilot_unavailable'?t('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown'):m.reason==='tile_failed_integrity'?t('data failed its integrity check'):t('too much data for one route check')})));
    const dates=Object.entries(r.dataset.sources).map(([k,v])=>`${k} ${v.extract_timestamp.slice(0,10)}`);
+   if(r.dataset.ri_pilot.used)list.append(el('p',t('Rhode Island uses the pilot extract of {date}. Its records show raw tags only and stay unresolved.',{date:r.dataset.ri_pilot.extract_timestamp})));
    list.append(el('p',t('OSM extract dates by state: {dates}.',{dates:dates.length>8?dates.slice(0,8).join(', ')+' …':dates.join(', ')})));
   }).catch(()=>{if(!stale)status.textContent=t('Clearance data is unavailable or the search could not be completed. No clearance conclusion is possible.');});
   return d;
  }
- const api={version:VERSION,SCHEMA,RADIUS,MAX_ROUTE_TILES,MAX_ROUTE_BYTES,NOT_IN_DATASET,analyze,load,open,distance,nearBounds,routeShape,associate};
+ const api={version:VERSION,SCHEMA,RADIUS,MAX_ROUTE_TILES,MAX_ROUTE_BYTES,PILOT_REGION,analyze,load,open,distance,nearBounds,routeShape,associate};
  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.KampTrailRouteClearance=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -9,7 +9,7 @@ function candidate(id,type,coords,over={}){
     plausibility:'ok',reasons:[],applies_to:type==='way'?'way_itself':'unknown',applies_to_evidence:type==='way'?['tag_on_highway_way','highway=secondary']:['barrier_node_parent_way_not_recorded'],...over};
   if(!c.comparable){delete c.min_inches;delete c.min_metres;}return c;
 }
-function dataset(candidates,{corrupt=false,extraTile=null}={}){
+function dataset(candidates,{corrupt=false,extraTile=null,pilot=null}={}){
   const files=new Map(),tiles=[];
   const add=(name,list,x)=>{const xs=list.flatMap(c=>c.geometry.type==='Point'?[c.geometry.coordinates]:c.geometry.coordinates);const bbox=[Math.min(...xs.map(p=>p[0])),Math.min(...xs.map(p=>p[1])),Math.max(...xs.map(p=>p[0])),Math.max(...xs.map(p=>p[1]))];
     const doc={version:3,schema:'kamptrail-clearances-3',kind:'clearance_candidates',license:'ODbL-1.0',attribution:ATTR,tile:{z:12,x,y:1,part:1,parts:1},bbox,candidates:list};
@@ -17,7 +17,7 @@ function dataset(candidates,{corrupt=false,extraTile=null}={}){
   add('a',candidates,10);if(extraTile)add('b',extraTile,11);
   if(corrupt){const k='data/clearances/'+tiles[0].path,b=Buffer.from(files.get(k));b[b.length-3]^=1;files.set(k,b);}
   const manifest={version:3,schema:'kamptrail-clearances-3',kind:'clearance_candidates_manifest',license:'ODbL-1.0',copyright_url:'https://www.openstreetmap.org/copyright',attribution:ATTR,tiles,states_protected:{RI:{status:'protected'}},sources:{CO:{extract_timestamp:'2026-10-30T00:00:00Z',retrieved_at:'2026-10-31T00:00:00Z'}}};
-  files.set('data/clearances/index.json',Buffer.from(JSON.stringify(manifest)));
+  files.set('data/clearances/index.json',Buffer.from(JSON.stringify(manifest)));if(pilot)files.set('data/clearances/RI.json',pilot);
   return {crypto:globalThis.crypto,KampTrailClearances:C,fetch:async u=>files.has(u)?new Response(files.get(u)):new Response('missing',{status:404})};
 }
 // Route along y=40 from x=-105 to x=-104.99, two segments, driving OSM ways 500 and 501.
@@ -70,7 +70,7 @@ test('missing data stays visible: failed integrity, protected RI and empty resul
   const bad=await R.analyze(route(),{env:dataset([onRoad],{corrupt:true})});
   assert.equal(bad.tiles.failed,1);assert.deepEqual(bad.missing.map(m=>[m.from,m.to,m.reason]),[[0,1,'tile_failed_integrity']]);assert.equal(bad.candidates.length,0);assert.equal(bad.route_clear,false);
   const ri={geometry:{type:'LineString',coordinates:[[-71.45,41.81],[-71.44,41.81]]}};
-  const r=await R.analyze(ri,{env:dataset([onRoad])});assert.equal(r.missing[0].reason,'region_not_in_dataset:RI');assert.equal(r.summary.missing_segments,1);
+  const r=await R.analyze(ri,{env:dataset([onRoad])});assert.equal(r.missing[0].reason,'ri_pilot_unavailable');assert.equal(r.summary.missing_segments,1);
   const empty=await R.analyze({geometry:{type:'LineString',coordinates:[[-100,35],[-99.99,35]]}},{env:dataset([onRoad])});
   assert.equal(empty.candidates.length,0);assert.equal(empty.missing.length,0);assert.equal(empty.route_clear,false);
 });
@@ -79,3 +79,22 @@ test('invalid route identity is rejected rather than guessed',async()=>{
   await assert.rejects(R.analyze({geometry:{type:'LineString',coordinates:[[0,0]]}},{env:dataset([onRoad])}),/Invalid route/);
 });
 test('distance helper still measures points and crossings',()=>{const r=[[-71,41],[-70.99,41]],budget={left:1000};assert.ok(R.distance(r,[[-70.995,41]],budget)<1);assert.equal(R.distance(r,[[-70.995,40.999],[-70.995,41.001]],budget),0);assert.ok(R.distance(r,[[-70.995,41.01]],budget)>100);});
+
+const fs=require('node:fs'),pilotRaw=fs.readFileSync(require('node:path').join(__dirname,'../data/clearances/RI.json')),pilotData=JSON.parse(pilotRaw);
+const riRecord=pilotData.records.find(r=>r.geometry.type==='LineString'&&r.metres.maxheight),riPt=riRecord.geometry.coordinates[0];
+const riRoute={geometry:{type:'LineString',coordinates:[riPt,[riPt[0]+.00002,riPt[1]]]}};
+test('Rhode Island: a valid RI.json supplies pilot records on routes; they are raw tags, never compared or tied to the road',async()=>{
+  const r=await R.analyze({...riRoute,osm:{way_ids:[riRecord.osm_id]}},{env:dataset([onRoad],{pilot:pilotRaw}),rigMm:10000});
+  assert.equal(r.missing.length,0,'RI is covered by the pilot, not reported missing');assert.equal(r.dataset.ri_pilot.used,true);assert.equal(r.dataset.ri_pilot.extract_timestamp,pilotData.source.extract_timestamp);
+  const x=r.candidates.find(c=>c.id===riRecord.id);assert.ok(x);assert.equal(x.source,'ri_pilot');
+  assert.equal(x.association,'unresolved','even an exact way id does not associate an unreviewed pilot record');assert.equal(x.comparison.compared,false);assert.equal(x.route_conflict,false);
+  assert.deepEqual(x.candidate.tags,riRecord.tags,'raw tags preserved');
+});
+test('Rhode Island is unknown only when RI.json is missing or fails validation',async()=>{
+  const missing=await R.analyze(riRoute,{env:dataset([onRoad])});assert.deepEqual(missing.missing.map(m=>m.reason),['ri_pilot_unavailable']);assert.equal(missing.candidates.length,0);
+  const bad=structuredClone(pilotData);bad.source.sha256='bad';
+  const invalid=await R.analyze(riRoute,{env:dataset([onRoad],{pilot:Buffer.from(JSON.stringify(bad))})});assert.deepEqual(invalid.missing.map(m=>m.reason),['ri_pilot_unavailable']);assert.equal(invalid.candidates.length,0);
+  const tampered=structuredClone(pilotData);tampered.records[0].metres.maxheight=99;
+  assert.deepEqual((await R.analyze(riRoute,{env:dataset([onRoad],{pilot:Buffer.from(JSON.stringify(tampered))})})).missing.map(m=>m.reason),['ri_pilot_unavailable']);
+  const outside=await R.analyze(route(),{env:dataset([onRoad])});assert.equal(outside.dataset.ri_pilot.needed,false,'routes outside RI never request the pilot');
+});

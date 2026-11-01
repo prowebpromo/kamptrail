@@ -125,6 +125,44 @@
     const out=new Uint8Array(size);let pos=0;for(const c of chunks){out.set(c,pos);pos+=c.byteLength;}return out;
   }
   const decode=b=>JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(b));
+
+  // Rhode Island pilot (RI.json, version 1). The national dataset protects RI until it is rebuilt under schema 3, so the
+  // client keeps reading the shipped pilot there. Validation rules are those of the 2.34.0 pilot client, unchanged.
+  const PILOT='data/clearances/RI.json',PILOT_BOX=[-72,40.9,-70.9,42.1],PILOT_SOURCE='https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf';
+  const PILOT_KEYS=['maxheight','maxheight:physical','maxheight:conditional','maxheight:forward','maxheight:backward','maxheight:lanes'];
+  const PILOT_CONTEXT=['name','ref','highway','bridge','tunnel','barrier','access','source:maxheight','maxheight:signed','source:maxheight:physical'];
+  const exactUtc=s=>utc(s)&&new Date(s).toISOString()===s.replace('Z','.000Z');
+  function validatePilot(d,now=Date.now()){
+    const ck=(ok,msg)=>{if(!ok)throw new Error('Reported height tags: '+msg);};
+    ck(plain(d)&&d.version===1&&d.region==='RI'&&Array.isArray(d.records)&&d.records.length>0&&d.records.length<=MAX_TILE_RECORDS,'invalid pilot');
+    const s=d.source;
+    ck(plain(s)&&s.kind==='geofabrik'&&s.url===PILOT_SOURCE&&(s.resolved_url===PILOT_SOURCE||/^https:\/\/download\.geofabrik\.de\/north-america\/us\/rhode-island-\d{6}\.osm\.pbf$/.test(s.resolved_url))&&/^[a-f0-9]{64}$/.test(s.sha256)&&Number.isSafeInteger(s.bytes)&&s.bytes>0&&s.bytes<=2*1024**3&&s.license==='ODbL-1.0'&&s.copyright_url===COPYRIGHT_URL&&exactUtc(s.retrieved_at)&&exactUtc(s.extract_timestamp)&&Date.parse(s.extract_timestamp)<=Date.parse(s.retrieved_at)&&Date.parse(s.retrieved_at)<=now+300000,'invalid source evidence');
+    ck(s.resolved_url===PILOT_SOURCE||s.resolved_url.endsWith(s.extract_timestamp.slice(2,10).replaceAll('-','')+'.osm.pbf'),'resolved extract date mismatch');
+    const ids=new Set();let vertices=0;
+    for(const r of d.records){
+      ck(plain(r)&&['node','way'].includes(r.osm_type)&&/^[1-9][0-9]*$/.test(r.osm_id)&&r.id===`osm:${r.osm_type}:${r.osm_id}`&&!ids.has(r.id)&&r.state==='RI'&&Number.isSafeInteger(r.osm_version)&&r.osm_version>0&&exactUtc(r.edited_at)&&Date.parse(r.edited_at)<=Date.parse(s.extract_timestamp),'invalid identity/date');ids.add(r.id);
+      ck(plain(r.geometry)&&r.geometry.type===(r.osm_type==='node'?'Point':'LineString')&&Array.isArray(r.geometry.coordinates),'invalid geometry');
+      const ps=r.geometry.type==='Point'?[r.geometry.coordinates]:r.geometry.coordinates;vertices+=ps.length;
+      ck((r.osm_type==='node'||ps.length>=2)&&vertices<=50000&&ps.every(p=>Array.isArray(p)&&p.length===2&&p.every(finite)&&p[0]>=-72&&p[0]<=-70.9&&p[1]>=40.9&&p[1]<=42.1),'invalid pilot coordinates');
+      ck(plain(r.tags)&&Object.keys(r.tags).length>0&&Object.entries(r.tags).every(([k,v])=>PILOT_KEYS.includes(k)&&str(v)),'invalid source tags');
+      ck(plain(r.context)&&Object.entries(r.context).every(([k,v])=>PILOT_CONTEXT.includes(k)&&str(v)),'invalid context');
+      ck(!!r.context.highway||r.context.barrier==='height_restrictor','no highway or height-restrictor context');
+      ck(plain(r.metres)&&Object.keys(r.metres).every(k=>['maxheight','maxheight:physical'].includes(k)&&Object.hasOwn(r.tags,k)),'invalid normalized fields');
+      for(const k of ['maxheight','maxheight:physical']){
+        if(!Object.hasOwn(r.tags,k)){ck(!Object.hasOwn(r.metres,k),'invented height');continue;}
+        const expected=parseHeight(r.tags[k]),value=r.metres[k];
+        ck(expected===null?value===null:finite(value)&&Math.abs(value-expected)<1e-9,'height differs from raw source');
+      }
+    }
+    return d;
+  }
+  // Pilot records were never reviewed for status, comparability or applies_to, so they are shown with their raw tags
+  // and are never compared with a rig height or tied to a road.
+  function pilotCandidates(d){
+    return d.records.map(r=>({id:r.id,osm_type:r.osm_type,osm_id:r.osm_id,osm_version:r.osm_version,edited_at:r.edited_at,state:'RI',geometry:r.geometry,tags:{...r.tags},context:{...r.context},
+      status:'pilot_unreviewed',comparable:false,applies_to:'unknown',applies_to_evidence:['ri_pilot_schema_1_not_assessed'],reasons:['ri_pilot_not_reviewed_under_schema_3'],structure:[],pilot:true}));
+  }
+  const pilotNeeded=(m,bbox)=>Object.hasOwn(m.states_protected||{},'RI')&&intersects(PILOT_BOX,bbox);
   // Manifest and tile access with size, sha256, schema and identity checks. Tiles that fail are never shown.
   function createStore(env=global,base=''){
     let manifest=null,pending=null;const tiles=new Map(),inflight=new Map();let held=0;
@@ -145,7 +183,13 @@
       })().finally(()=>inflight.delete(entry.path));
       inflight.set(entry.path,job);return job;
     }
-    return {loadManifest,loadTile,get manifest(){return manifest;}};
+    let pilot=null,pilotPending=null;
+    async function loadPilot(){
+      if(pilot)return pilot;if(pilotPending)return pilotPending;
+      pilotPending=readBounded(url(PILOT),MAX_TILE_BYTES,env).then(b=>{const d=validatePilot(decode(b));pilot={source:d.source,candidates:pilotCandidates(d)};return pilot;}).finally(()=>{pilotPending=null;});
+      return pilotPending;
+    }
+    return {loadManifest,loadTile,loadPilot,get manifest(){return manifest;}};
   }
   function validReport(r){
     return plain(r)&&Number.isSafeInteger(r.id)&&r.id>0&&finite(r.lat)&&finite(r.lng)&&Math.abs(r.lat)<=90&&Math.abs(r.lng)<=180&&str(r.posted,40)&&parseHundredths(r.posted)?.hundredths===r.hundredths
@@ -161,6 +205,7 @@
   // Display only, to the nearest tenth of an inch. Comparison uses whole millimetres.
   const inches=h=>{const tenths=Math.round(Math.abs(h)/10),ft=Math.floor(tenths/120),inch=(tenths-ft*120)/10;return ft?`${ft}'${inch}"`:`${inch}"`;};
   function stateText(c){
+    if(c.pilot)return t('Rhode Island pilot record: raw source tags only. Not reviewed for comparison, so it is not compared with your rig height.');
     if(state(c)==='comparable')return t('Numeric tag; can be compared with your rig height.');
     if(c.status==='suspect')return t('Value needs checking: it failed a plausibility check and is not compared.');
     if(c.status==='unknown')return t('Unknown: no usable number. Not compared.');
@@ -186,7 +231,7 @@
     return c.tags[key]+(value===null?t(' (numeric limit unknown)'):t(' (about {value} m)',{value:value.toFixed(2)}));
   }
   function sourceLink(c){return`https://www.openstreetmap.org/${c.osm_type}/${c.osm_id}`;}
-  function sourceDates(m,c){const s=m?.sources?.[c.state];return s?t('OpenStreetMap extract {extract}; downloaded {retrieved}. Object last edited {edited}. These dates are not an inspection.',{extract:s.extract_timestamp,retrieved:s.retrieved_at,edited:c.edited_at}):t('Object last edited {edited}. Extract date unknown.',{edited:c.edited_at});}
+  function sourceDates(m,c,pilotSource){const s=c.pilot?pilotSource:m?.sources?.[c.state];return s?t('OpenStreetMap extract {extract}; downloaded {retrieved}. Object last edited {edited}. These dates are not an inspection.',{extract:s.extract_timestamp,retrieved:s.retrieved_at,edited:c.edited_at}):t('Object last edited {edited}. Extract date unknown.',{edited:c.edited_at});}
   function attributionNode(doc){
     const p=doc.createElement('p');p.className='kt-odbl';p.append(ATTRIBUTION+' ');
     const a=doc.createElement('a');a.href=COPYRIGHT_URL;a.target='_blank';a.rel='noopener noreferrer';a.textContent=t('OpenStreetMap copyright and licence');p.append(a);return p;
@@ -233,12 +278,12 @@
 
   function init(map){
     const L=global.L,doc=global.document,layer=L.layerGroup(),store=createStore();
-    let control,status,select,openButton,view=0,controller=null,rows=[],reports=[];
+    let control,status,select,openButton,view=0,controller=null,rows=[],reports=[],pilotData=null;
     const active=()=>map.hasLayer(layer);
     const el=(tag,text)=>{const n=doc.createElement(tag);if(text)n.textContent=text;return n;};
     const link=(label,url)=>{const a=el('a',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;};
     const credit=`<a href="${COPYRIGHT_URL}" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors, ODbL</a>`;
-    function popup(c,m){
+    function popup(c,m,pilotSource){
       const box=el('div');box.className='kt-clearance-popup';box.tabIndex=0;box.setAttribute('role','region');box.setAttribute('aria-label',t('Clearance candidate details'));box.style.maxHeight=Math.max(80,Math.min(380,map.getSize().y-160))+'px';
       const cmp=compare(c,rigHeight());const verdict=el('p',comparisonText(cmp));verdict.className='kt-clearance-verdict kt-clearance-'+(cmp.conflict?'conflict':cmp.relation);
       box.append(el('h2',c.context.name||c.context.ref||t('Clearance candidate')),verdict,el('p',stateText(c)));
@@ -246,7 +291,7 @@
       box.append(el('p',appliesText(c)),el('p',t('Map view only: not matched to any route.')));
       if(c.reasons.length)box.append(el('p',t('Source flags: {reasons}',{reasons:c.reasons.join(', ')})));
       if(Object.keys(c.context).length){const dl=el('dl');for(const [k,v] of Object.entries(c.context))dl.append(el('dt',k),el('dd',v));box.append(dl);}
-      box.append(el('p',sourceDates(m,c)),link(t('OpenStreetMap source object'),sourceLink(c)),' · ',link(t('OSM height-tag guidance'),'https://wiki.openstreetmap.org/wiki/Key:maxheight'),attributionNode(doc));
+      box.append(el('p',sourceDates(m,c,pilotSource)),link(t('OpenStreetMap source object'),sourceLink(c)),' · ',link(t('OSM height-tag guidance'),'https://wiki.openstreetmap.org/wiki/Key:maxheight'),attributionNode(doc));
       const report=el('button',t('Report a different posted clearance'));report.type='button';const p0=points(c)[0];report.onclick=()=>{map.closePopup();openReportForm({lat:p0[1],lng:p0[0],osm_ref:c.id});};box.append(report);
       return box;
     }
@@ -270,18 +315,24 @@
         if(!plan.ok){if(!map._popup?.isOpen?.())layer.clearLayers();select.replaceChildren();select.disabled=openButton.disabled=true;status.textContent=t('This view needs too much clearance data. Zoom in further; hazards here are unknown.');return;}
         let failed=0;const seen=new Map();
         await Promise.all(plan.tiles.map(e=>store.loadTile(e,signal).then(d=>{for(const c of d.candidates)if(intersects(bboxOf(c),bbox))seen.set(c.id,c);}).catch(()=>{failed++;})));
+        let regionNote='';const protectedStates=Object.keys(m.states_protected||{});
+        if(pilotNeeded(m,bbox)){
+          try{pilotData=await store.loadPilot();let added=0;for(const c of pilotData.candidates)if(!seen.has(c.id)&&intersects(bboxOf(c),bbox)){seen.set(c.id,c);added++;}regionNote=' '+t('Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.',{count:added,date:pilotData.source.extract_timestamp.slice(0,10)});}
+          catch{regionNote=' '+t('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');}
+        }
+        const others=protectedStates.filter(x=>x!=='RI');if(others.length)regionNote+=' '+t('Not in this dataset: {states}.',{states:others.join(', ')});
         let reportsNote='';
         try{reports=(await loadReports(bbox,global,signal)).reports;}catch{reports=[];reportsNote=' '+t('Visitor reports unavailable.');}
         if(current!==view||!active())return;
         rows=[...seen.values()].sort((a,b)=>{const r=x=>{const c=compare(x,rigHeight());return c.conflict?0:c.state==='needs_checking'?1:c.state==='unknown'?2:3;};return r(a)-r(b)||a.id.localeCompare(b.id);});
         const conflicts=rows.filter(c=>compare(c,rigHeight()).conflict).length,unresolved=rows.filter(c=>state(c)!=='comparable').length;
-        status.textContent=t('{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown. {reports} visitor reports.',{count:rows.length,conflicts,unresolved,reports:reports.length})+(failed?' '+t('{failed} data tiles failed their integrity check and are not shown; that area is unknown.',{failed}):'')+reportsNote+' '+t('Unmapped hazards are unknown.')+(Object.keys(m.states_protected).length?' '+t('Not in this dataset: {states}.',{states:Object.keys(m.states_protected).join(', ')}):'');
+        status.textContent=t('{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown. {reports} visitor reports.',{count:rows.length,conflicts,unresolved,reports:reports.length})+(failed?' '+t('{failed} data tiles failed their integrity check and are not shown; that area is unknown.',{failed}):'')+reportsNote+' '+t('Unmapped hazards are unknown.')+regionNote;
         if(map._popup?.isOpen?.())return;
         layer.clearLayers();select.replaceChildren();
         for(const c of rows){
           const o={color:colour(c),weight:5,opacity:.9,dashArray:state(c)==='comparable'?null:'6 5'};
           const item=c.geometry.type==='LineString'?L.polyline(c.geometry.coordinates.map(p=>[p[1],p[0]]),o):L.circleMarker([c.geometry.coordinates[1],c.geometry.coordinates[0]],{...o,radius:7});
-          item.ktClearanceId=c.id;item.bindPopup(()=>popup(c,m),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(item);
+          item.ktClearanceId=c.id;item.bindPopup(()=>popup(c,m,pilotData?.source),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(item);
         }
         for(const r of reports){const item=L.circleMarker([r.lat,r.lng],{color:'#6b2f8f',weight:3,radius:8,fillOpacity:.15});item.ktClearanceId='report:'+r.id;item.bindPopup(()=>reportPopup(r),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70))});layer.addLayer(item);}
         const listed=[...rows.slice(0,LIST_LIMIT).map(c=>[c.id,`${c.context.name||c.context.ref||t('Source object')} · ${c.id}`]),...reports.map(r=>['report:'+r.id,t('Visitor report {value}',{value:r.posted})])];
@@ -312,6 +363,6 @@
   }
   const api={version:VERSION,SCHEMA,MANIFEST,MIN_ZOOM,MAX_VIEW_TILES,MAX_VIEW_BYTES,MAX_TILE_BYTES,ATTRIBUTION,COPYRIGHT_URL,LICENSE_URL,parseHeight,parseHundredths,rigHundredths,state,compare,
     validateManifest,validateTile,validateCandidate,tilesForView,intersects,bboxOf,points,sha256Hex,readBounded,createStore,loadReports,validReport,
-    stateText,comparisonText,appliesText,heightText,sourceLink,sourceDates,attributionNode,openReportForm,init};
+    validatePilot,pilotCandidates,pilotNeeded,PILOT,PILOT_BOX,stateText,comparisonText,appliesText,heightText,sourceLink,sourceDates,attributionNode,openReportForm,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailClearances=api;
 })(typeof window!=='undefined'?window:globalThis);

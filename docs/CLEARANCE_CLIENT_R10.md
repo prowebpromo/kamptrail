@@ -29,7 +29,17 @@ clearances.js (map layer and shared core)
 route-clearance.js (route context, the road-association contract)
 
 - analyze(route, {rigMm}) loads only the tiles whose bbox meets a route segment (at most 96 tiles, 12 MiB). It finds candidates within 100 m and assigns each an association from exact OSM identity only.
-- Segments are listed as missing when their tile failed integrity, the route budget ran out, or they cross a region not in the dataset (RI).
+- Segments are listed as missing when their tile failed integrity or the route budget ran out. Rhode Island segments are missing only when RI.json is missing or fails validation (reason ri_pilot_unavailable).
+
+## Rhode Island
+
+The national manifest protects RI (states_protected), so it holds no RI candidates. Production already serves data/clearances/RI.json, so the client keeps reading it for RI and the release keeps packaging it.
+
+- Map: when the view meets the RI box and the manifest protects RI, the store loads RI.json (at most 512 KiB) and validates it with the 2.34.0 pilot rules, unchanged (validatePilot). The status line reports the pilot record count and extract date.
+- Route: RI segments scan the pilot records. result.dataset.ri_pilot records use and dates.
+- Pilot records are schema 1. They carry no reviewed status, comparable flag or applies_to. They are shown with raw tags and dates as "needs checking", never compared with a rig height, and always unresolved on a route, even with an exact way id. This matches the 2.34.0 pilot behaviour, which made no rig comparison.
+- RI is shown as unknown only when RI.json is missing or fails validation. Tests: tests/clearances.test.js (committed file validates, missing and invalid files reject), tests/route-clearance.test.js (valid pilot covers RI, missing, invalid and tampered pilot mark RI segments ri_pilot_unavailable) and tests/browser/clearances.spec.js (desktop and mobile, valid, missing and invalid).
+- Not carried over: the 2.34.0 pilot's offline Cache Storage snapshot of RI.json. Pilot records are held in memory only.
 
 ## Road-association data contract (for R11)
 
@@ -81,7 +91,7 @@ This reuses the moderated corrections path. No new public write endpoint was add
 
 ## Production package
 
-scripts/build-release.js copies data/clearances/index.json and each tile it lists after a bytes and SHA-256 check and the client's own validateTile. It fails on any tile file that is not in the manifest. It no longer packages RI.json or data/clearances/excluded. dist/clearance-package.json records the totals. tests/release-package.test.js asserts the shipped set equals the manifest plus its tiles.
+scripts/build-release.js copies data/clearances/index.json and each tile it lists after a bytes and SHA-256 check and the client's own validateTile. It fails on any tile file that is not in the manifest. It packages RI.json after validatePilot. It never packages data/clearances/excluded. dist/clearance-package.json records the totals. tests/release-package.test.js asserts the shipped set equals the manifest plus its tiles.
 
 Built package, data/clearances only: 1,060 files, 44,856,509 bytes (index.json 387,841 bytes plus 1,059 tiles listed in it, 44,468,668 bytes). Manifest sha256 ccc58b0561e80dabddf14574fd89e1f76f1ae011dda6a56db5cb26e08e38d273. New API files: api/clearance-reports.php and api/_lib/clearance-reports.php. RI.json and data/clearances/excluded are not packaged.
 
@@ -97,7 +107,7 @@ Per-view payloads with the client's gating (tilesForView, raw bytes): NYC z12 9 
 
 ## Owner decisions
 
-- RI: the national dataset protects RI and the client no longer reads RI.json, so Rhode Island shows no candidates and route segments there are listed as missing. The release gate in docs/CLEARANCE_NATIONAL.md (rebuild RI under schema 3) is now open.
+- RI: the client keeps reading and packaging RI.json while the manifest protects RI (coordinator instruction, 2026-11-01). Rebuilding RI under schema 3 would make RI records comparable and road-associable. That is the open release gate in docs/CLEARANCE_NATIONAL.md.
 - Route identity: no candidate can be on_route until the router returns OSM node or way ids (see the contract). Choose the R11 provider path for that.
-- Visitor reports appear only when a moderator sets status applied. Confirm that mapping, or ask for a dedicated published state.
+- Visitor reports: status applied means published (kept for now, coordinator instruction 2026-11-01). Owner decision pending: keep applied as the publish state, or add a dedicated published state.
 - The package adds 44.9 MB of static tiles to the deploy. They are fetched only per view from zoom 10.

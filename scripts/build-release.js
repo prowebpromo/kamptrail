@@ -64,6 +64,12 @@ const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app
   const strayTiles=(await fs.readdir(path.join(clearanceRoot,'tiles'))).filter(name=>!clearanceIndex.tiles.some(e=>e.path==='tiles/'+name));
   if(strayTiles.length)throw new Error(`Clearance tiles not in the manifest: ${strayTiles.slice(0,5).join(', ')}`);
   await fs.writeFile(path.join(out,'data','clearances','index.json'),clearanceIndexRaw);
+  // RI is protected in the national manifest, so the client reads the shipped RI pilot there. It ships only when valid.
+  const pilotPath=path.join(clearanceRoot,'RI.json');
+  if(await fs.realpath(pilotPath)!==pilotPath)throw new Error('Height-tag pilot must not follow symlinks');
+  const pilotRaw=await fs.readFile(pilotPath);if(pilotRaw.length>512*1024)throw new Error('Height-tag pilot exceeds release bound');
+  clearanceModule.validatePilot(JSON.parse(pilotRaw));
+  await fs.writeFile(path.join(out,'data','clearances','RI.json'),pilotRaw);clearanceFiles.push('data/clearances/RI.json');clearanceBytes+=pilotRaw.length;
   await fs.writeFile(path.join(root,'dist','clearance-package.json'),JSON.stringify({files:clearanceFiles.length,bytes:clearanceBytes,manifest_sha256:crypto.createHash('sha256').update(clearanceIndexRaw).digest('hex')},null,1)+'\n');
   const serviceRoot=path.join(root,'data','services'),serviceRaw=await fs.readFile(path.join(serviceRoot,'index.json'));
   async function copyServiceGeneration(raw,expectedId){

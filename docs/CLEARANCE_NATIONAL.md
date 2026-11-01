@@ -1,6 +1,6 @@
 # National OSM clearance candidates (R10, data side)
 
-This package builds source-reported OpenStreetMap height tags for the 50 states and DC. It is the data half of R10. It adds no map layer, no route matching and no rerouting. Those come in later client releases. The Rhode Island pilot file and its client are unchanged. Update (R10 client, docs/CLEARANCE_CLIENT_R10.md): the client now reads these tiles and scripts/build-release.js packages the manifest and every listed tile after a bytes and sha256 check. RI.json is no longer packaged.
+This package builds source-reported OpenStreetMap height tags for the 50 states and DC. It is the data half of R10. It adds no map layer, no route matching and no rerouting. Those come in later client releases. The Rhode Island pilot file and its client are unchanged. Update (R10 client, docs/CLEARANCE_CLIENT_R10.md): the client now reads these tiles and scripts/build-release.js packages the manifest and every listed tile after a bytes and sha256 check. RI.json is still packaged and read for RI while RI is protected.
 
 Nothing here claims that a road, bridge or tunnel is passable, that a tag is current, or that a state is complete.
 

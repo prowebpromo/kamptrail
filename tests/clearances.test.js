@@ -94,3 +94,18 @@ test('visitor reports: only well-formed published rows pass, and they never carr
   for(const bad of [{hundredths:15301},{posted:'12 ft'},{direction:'north'},{osm_ref:'way:12'},{lat:95},{observed_on:'yesterday'}])assert.equal(C.validReport({...r,...bad}),false,JSON.stringify(bad));
   assert.doesNotMatch(fs.readFileSync(path.join(root,'clearances.js'),'utf8').match(/function reportPopup[\s\S]*?return box;/)[0],/compare\(/);
 });
+
+test('Rhode Island pilot: the committed RI.json validates and its records are never comparable',async()=>{
+  const raw=fs.readFileSync(path.join(root,'data/clearances/RI.json')),d=JSON.parse(raw);
+  assert.equal(C.validatePilot(d),d);assert.equal(d.records.length,254);
+  const list=C.pilotCandidates(d);assert.equal(list.length,254);
+  for(const c of list){assert.equal(C.state(c),'needs_checking');assert.equal(C.compare(c,1000).compared,false);assert.equal(C.compare(c,1000).conflict,false);assert.equal(c.applies_to,'unknown');}
+  assert.match(C.stateText(list[0]),/Rhode Island pilot record/);
+  assert.ok(manifest.states_protected.RI,'RI remains protected in the national manifest');
+  assert.equal(C.pilotNeeded(manifest,[-71.5,41.7,-71.3,41.9]),true);assert.equal(C.pilotNeeded(manifest,[-105,40,-104.9,40.1]),false);
+  const serve=body=>({crypto:globalThis.crypto,fetch:async u=>u.endsWith('RI.json')?(body===null?new Response('',{status:404}):new Response(body)):new Response(manifestRaw)});
+  assert.equal((await C.createStore(serve(raw)).loadPilot()).candidates.length,254);
+  await assert.rejects(C.createStore(serve(null)).loadPilot(),/source unavailable/);
+  const bad=structuredClone(d);bad.region='MA';await assert.rejects(C.createStore(serve(JSON.stringify(bad))).loadPilot(),/invalid pilot/);
+  const off=structuredClone(d);off.records[0].metres.maxheight=1;await assert.rejects(C.createStore(serve(JSON.stringify(off))).loadPilot(),/differs from raw source/);
+});
