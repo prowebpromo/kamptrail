@@ -51,6 +51,15 @@ for(const id of [...all].sort()){
     const lost=bf.legacy_ids.filter(x=>!nf.legacy_ids.includes(x)),gained=nf.legacy_ids.filter(x=>!bf.legacy_ids.includes(x));
     if(lost.length||gained.length)changes.push({field:'legacy_ids',removed:lost,added:gained,resolves_now_to:Object.fromEntries(lost.map(x=>[x,RN.get(x)??(withdrawn.has(x)?'withdrawn.json':null)])),separate_review:true});
     if(bf.camping_evidence!==nf.camping_evidence)changes.push({field:'camping_evidence',from:bf.camping_evidence,to:nf.camping_evidence,separate_review:true});}
+  if(!b&&!n){ // Not a listing on either side (an absorbed element that stays absorbed).
+    const host=RN.get(id)??null,hb=RB.get(id)??null;
+    records.push({canonical_id:id,name:null,states:[],groups:groupsOf(id),own_source_evidence:{note:'absorbed element, not a listing before or after'},borrowed_evidence:[],website_identity:null,
+      identity_basis:{kind:'alias',record_id:host},current:{status:hb?`alias of ${hb}`:'not published',type:null},proposed:{status:host?`alias of ${host}`:'not published',type:null},
+      changes:hb!==host?[{field:'alias_host',from:hb,to:host,separate_review:true}]:[],
+      identity:{index_id_before:hb,index_id_after:host,legacy_ids_before:[],legacy_ids_after:[],browser_all_states:brAll.get(id)??null,browser_reverse:brRev.get(id)??null,browser_own_states_every_order:{},depends_on_load_order:(brAll.get(id)??null)!==(brRev.get(id)??null),depends_on_deterministic_identity_package:(brAll.get(id)??null)!==(brRev.get(id)??null),saved_link_resolves_after:!!host||withdrawn.has(id)},
+      contributions:{published_reviews:0,published_observations:0,published_photos:0}});
+    continue;
+  }
   const p=(n||b).properties;
   const st=ni?.states||bi?.states||[];
   const lo=st.length>1?orders(st,id):{};
