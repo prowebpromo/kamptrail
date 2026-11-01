@@ -36,14 +36,16 @@ test('saved location can be viewed even when its source region is not loaded',as
   expect(await page.evaluate(()=>document.getElementById('app').inert)).toBe(false);
 });
 
-test('legacy stop recovery waits for the data loader and migrates an alias safely',async({page})=>{
+test('legacy stop recovery waits for the data loader and resolves an alias without rewriting it',async({page})=>{
   await scaffold(page,null);await page.evaluate(()=>localStorage.setItem('kt_trip',JSON.stringify(['CA-001'])));await init(page);
   expect(await page.evaluate(()=>testLoads)).toEqual([]);
   await page.evaluate(()=>{KampTrailData.getLoadStatus=()=>({totalSites:1,loadedStates:['NY'],loading:false});window.dispatchEvent(new Event('kamptrail:dataupdated'));});
   await expect.poll(()=>page.evaluate(()=>testLoads.length)).toBe(1);
   await page.evaluate(site=>{testCurrent=site;window.dispatchEvent(new Event('kamptrail:dataupdated'));},site);
   await page.locator('#trip').click();await expect(page.locator('#kt-trip-list')).toContainText('Saved Camp');
-  expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].id)).toBe('ridb:1');
+  // 2.33.0: the stored id is kept; the listing it resolves to is shown.
+  expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].id)).toBe('CA-001');
+  expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].feature.properties.id)).toBe('ridb:1');
 });
 
 test('mobile dialog closes with Escape, restores focus, and stays above the app',async({page})=>{
