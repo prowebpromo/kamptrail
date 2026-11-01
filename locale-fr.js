@@ -161,6 +161,7 @@
   "Backcountry": "Arrière-pays",
   "Overnight parking": "Stationnement de nuit",
   "Other / unspecified": "Autre / non précisé",
+  "Lookout, cabin or other lodging": "Tour de guet, cabane ou autre hébergement",
   "Approximate terrain elevation": "Altitude approximative du terrain",
   "Elevation units": "Unités d’altitude",
   "Feet (ft)": "Pieds (ft)",

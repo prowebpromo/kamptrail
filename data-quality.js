@@ -12,7 +12,9 @@
   function isPlaceholder(name) {
     return !String(name || '').trim() || /^(?:sample|test|demo|fake|dummy|placeholder)(?:\s+(?:campsite|campground|site|data|meadow))?\s*\d*$/i.test(String(name).trim()) || /^(?:unknown campsite|unnamed site(?: \(osm\))?|tbd|coming soon|lorem ipsum)$/i.test(String(name).trim());
   }
-  function classifyCampingRecord(raw, name, {osm = false, ridb = false} = {}) {
+  // Accommodation named by the record's own name (fire lookouts, cabins, houses). Not a campground.
+  const ACCOMMODATION_NAME = /\b(?:cabins?|lodges?|lookouts?|guard\s+stations?|hotels?|motels?|chalets?|yurts?|huts?|houses?|bunkhouses?)\b/i;
+  function classifyCampingRecord(raw, name, {osm = false, ridb = false, overnightSites = 0} = {}) {
     const access = String(raw.access || '').trim().toLowerCase();
     const accessInfo = {
       yes: ['allowed', 'Access allowed (source reported)'],
@@ -31,20 +33,26 @@
     const intro = String(raw.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().replace(/^overview\s*/i, '').split(/(?<=[.!?])\s+/)[0].slice(0, 600);
     const campingIntro = /\b(?:campgrounds?|campsites?|(?:tent|rv|recreational vehicle)\s+camping|camping\s+(?:area|site|facility|grounds))\b/i.test(intro);
     const campingName = /\b(?:campgrounds?|campsites?|camping|(?:rv|recreational vehicle|trailer)\s+(?:parks?|sites?|camp)|(?:group|horse|equestrian|primitive|tent|backcountry)\s+camp(?:s|\s+sites?)?)\b/i.test(name);
+    // A Recreation.gov record's own facility type (derived from FacilityTypeDescription at import) counts
+    // only when the same facility also lists its own overnight campsite records (ridb-sites.json).
+    const ridbOvernight = ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(raw.type) && Number.isInteger(overnightSites) && overnightSites > 0;
+    const accommodation = ridbOvernight && !campingName && !campingIntro && ACCOMMODATION_NAME.test(name) ? name.match(ACCOMMODATION_NAME)[0].toLowerCase() : null;
     let exclusion_reason = null;
     if (['private', 'no', 'military'].includes(access)) exclusion_reason = `access_${access}`;
     else if (/^(yes|true|1)$/i.test(String(raw.disused || raw.abandoned || '')) || raw['disused:tourism'] || raw['abandoned:tourism'] || String(raw.camping).toLowerCase() === 'no' || /\b(?:camping (?:is )?(?:not (?:allowed|permitted)|prohibited)|no overnight camping)\b/i.test(intro)) exclusion_reason = 'camping_not_operating_or_prohibited';
     // An explicit campsite tag is stronger evidence than a facility's ambiguous name.
     // Do not infer public access from private ownership, a business name, or a fee.
-    else if (!explicitlyCamping && !campingName) {
+    else if (!explicitlyCamping && !campingName && !ridbOvernight) {
       if (/\b(?:ranger\s+(?:district|station)|(?:naval|air\s*force|military)\s+(?:air\s+)?(?:base|station)|(?:district|administrative|forest|ranger|supervisor(?:s)?)\s+office|visitor\s+(?:center|centre)|information\s+(?:center|centre)|contact\s+station|headquarters)\b/i.test(name)) exclusion_reason = 'administrative_facility';
       else if (/\b(?:day[ -]?use|picnic|pavilions?|shelters?|boat\s+(?:launch|ramp)|launch\s+ramp)\b/i.test(name)) exclusion_reason = 'day_use_facility';
       else if (/\b(?:cabins?|lodges?|lookouts?|guard\s+stations?|hotels?|motels?|chalets?|yurts?|huts?)\b/i.test(name)) exclusion_reason = 'lodging_or_lookout';
     }
     return {
       access: access || null, access_status, access_label, exclusion_reason,
-      camping_evidence: agencyCamping ? 'agency_camping_activity' : explicitlyCamping ? 'osm_campsite_tag' : campingName ? 'camping_facility_name' : campingIntro ? 'source_intro_camping' : ridb ? 'ridb_activity_listing' : 'source_listing',
-      camping_classification: explicitlyCamping || campingName || campingIntro ? 'campsite' : 'unverified_camping_record'
+      camping_evidence: agencyCamping ? 'agency_camping_activity' : explicitlyCamping ? 'osm_campsite_tag' : campingName ? 'camping_facility_name' : campingIntro ? 'source_intro_camping' : ridbOvernight ? 'ridb_facility_type_overnight_sites' : ridb ? 'ridb_activity_listing' : 'source_listing',
+      camping_classification: explicitlyCamping || campingName || campingIntro || ridbOvernight ? 'campsite' : 'unverified_camping_record',
+      ...(accommodation ? {accommodation} : {}),
+      ...(campingName ? {camping_name_text:name} : campingIntro ? {camping_intro_text:intro.slice(0, 300)} : {})
     };
   }
   // Keep full, attributable source wording when records are reconciled.
@@ -97,13 +105,21 @@
   function normalizeFeature(feature, options = {}) {
     const ll = getLatLng(feature);
     if (!ll) return null;
-    const raw = feature.properties || {};
+    const given = feature.properties || {};
+    // Classification ownership (tourism-type-admission candidate). tourism=* classifies only the OSM element that
+    // carries it. A record without its own osm_id holds it only because a snapshot merge copied it from an
+    // absorbed element (older snapshots, cached offline copies). It is ignored here, at index and browser level.
+    const raw = given.tourism != null && given.osm_id == null ? (({tourism, ...rest}) => rest)(given) : given;
+    // Wording copied from a different record in a snapshot merge never classifies this one.
+    const borrowedWording = typeof raw.description_source_record_id === 'string' && raw.description_source_record_id !== raw.id;
     const name = String(raw.name || raw.Name || raw.title || raw.site_name || raw.location_name || '').trim();
     if (isPlaceholder(name)) return null;
     const sources = [...new Set([...(Array.isArray(raw.sources) ? raw.sources : []), raw.source, raw.provider].filter(Boolean).map(String))];
     const ridb = raw.facility_id != null || sources.some(s => /recreation\.gov|\bridb\b/i.test(s));
     const osm = raw.osm_id != null || raw.tourism === 'camp_site' || raw.tourism === 'caravan_site';
-    const classification = classifyCampingRecord(raw, name, {osm, ridb});
+    // Own overnight campsite records (ridb-sites.json). An in-memory re-normalization reuses the attached count.
+    const overnightSites = ridb && raw.facility_id != null ? (options.siteDetails ? options.siteDetails[String(raw.facility_id)]?.t : raw._kt_normalized ? raw.site_count : 0) : 0;
+    const classification = classifyCampingRecord(borrowedWording ? {...raw, description:''} : raw, name, {osm, ridb, overnightSites});
     // A held inherited restriction blocks admission until identity review. It
     // is not a statement about the kept element's own public-access tags.
     if (classification.exclusion_reason || (raw.access_hold && /^(private|no|military)$/.test(raw.access_hold.value))) return null;
@@ -148,11 +164,24 @@
     // State loading normalizes merged records again. A retained source tag cannot
     // resolve an existing disagreement with another source.
     if (p.fee_conflict) {p.fee_status = 'unknown'; p.cost = null; p.fee_text = null;}
-    // The Campground default needs the record's own campsite tag. A Recreation.gov record that only
-    // inherited tourism=* from an absorbed OSM element in a snapshot merge does not own that tag.
-    const ownTourism = osm && !(raw.facility_id != null && raw.osm_id == null);
-    p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other'].includes(raw.type) ? raw.type : (ownTourism ? 'established' : 'other');
+    // The Campground default needs the record's own campsite tag (osm is now own-tag only, see raw above).
+    p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other', 'lodging'].includes(raw.type) ? raw.type : (osm ? 'established' : 'other');
     if (ridb && !osm && p.camping_classification === 'unverified_camping_record') p.type = 'other';
+    // Reservable accommodation keeps its own kind. A fire lookout or cabin is never shown as a campground.
+    if (p.accommodation) p.type = 'lodging';
+    else delete p.accommodation;
+    // A Recreation.gov record whose own facility type names no camping kind is classified from its own
+    // wording (name, then the first description sentence). The wording is kept as attributed evidence.
+    p.type_evidence = null;
+    const wording = p.camping_name_text || p.camping_intro_text;
+    if (ridb && !osm && raw.type === 'other' && wording && p.camping_classification === 'campsite') {
+      const kind = /\b(?:dispersed|primitive|yellow\s+post)\b/i.test(wording) ? 'dispersed' : /\bbackcountry\b/i.test(wording) ? 'backcountry' : 'established';
+      p.type = kind;
+      p.type_evidence = {kind:'descriptive_wording', source:'Recreation.gov', source_record_id:p.id, field:p.camping_name_text ? 'FacilityName' : 'FacilityDescription', value:wording, retrieved_at:evidenceDate(raw.source_retrieved_at)};
+    } else if (ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(raw.type)) {
+      p.type_evidence = {kind:'structured_classification', source:'Recreation.gov', source_record_id:p.id, field:'FacilityTypeDescription (mapped at import)', value:raw.type, retrieved_at:evidenceDate(raw.source_retrieved_at)};
+    }
+    delete p.camping_name_text; delete p.camping_intro_text;
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
     // Amenity ownership (R8). Tags count only on the listing's own OSM element.
     // A host that merely inherited tourism=* from an absorbed element is not that element.
@@ -230,7 +259,11 @@
     p.sources = [...new Set([...(p.sources || []), ...(q.sources || [])])];
     p.fee_evidence_records=mergeFeeEvidence(p.fee_evidence_records, blockedFee ? (q.fee_evidence_records||[]).map(r=>({...r,classification_use:'not_used',qualification_text:r.qualification_text || 'Recorded on an unverified merged OSM element. Not used to classify this record.'})) : q.fee_evidence_records);
     if (!blockedAccess && p.access_status === 'unknown' && q.access_status !== 'unknown') {p.access=q.access;p.access_status=q.access_status;p.access_label=q.access_label;p.access_source_record_id=q.access_source_record_id||q.id;}
-    if (p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;if(p.type==='other')p.type=q.type;}
+    // Camping classification moves only between exact identities: the same record, or the same Recreation.gov
+    // facility id published by an agency (blm-facility:N for ridb:N). A name and distance match is candidate
+    // matching only and never classifies or publishes another record. Type never moves with it.
+    const exactIdentity = p.id === q.id || (p.facility_id != null && q.facility_id != null && String(p.facility_id) === String(q.facility_id));
+    if (exactIdentity && p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;p.camping_evidence_record_id=q.id;}
     // Preserve known facts, but do not hide conflicts between sources.
     if (p.fee_conflict || q.fee_conflict) {p.fee_conflict=true; p.fee_status='unknown'; p.cost=null; p.fee_text=null;}
     const adopt = () => {p.fee_status=q.fee_status; p.cost=q.cost; p.fee_source_record_id=q.fee_source_record_id||q.id; for (const k of ['fee_text','fee_source','fee_checked','fee_evidence']) p[k]=q[k] ?? null; p.fee_source=p.fee_source || (q.sources||[])[0] || q.id.split(':')[0];};

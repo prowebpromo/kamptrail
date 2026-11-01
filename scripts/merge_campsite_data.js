@@ -45,7 +45,7 @@ function memberEvidence(primary, secondary) {
 
 // Classification ownership (tourism-type-admission candidate). tourism=* classifies the element that carries
 // it. A distinct absorbed record never lends it to the retained record. It stays on that member's attributed
-// evidence. A description taken from another record is marked, so it never counts as the listing's own wording.
+// evidence. A description copied from another record is marked with that record's id.
 const CLASSIFICATION_TAG = k => k === 'tourism';
 function ownClassification(merged, primary, secondary) {
   if (secondary.id === primary.id) return;
@@ -66,9 +66,12 @@ function ownClassification(merged, primary, secondary) {
       merged.member_evidence = list;
     }
   }
+  // A description copied from a different record is that record's wording. It is marked so it never
+  // classifies the retained listing. The text itself is unchanged.
+  const own = primary.description_source_record_id || null;
   if (merged.description && merged.description !== (primary.description || '') && merged.description === secondary.description) {
     merged.description_source_record_id = secondary.description_source_record_id || secondary.id;
-  } else if (primary.description_source_record_id) merged.description_source_record_id = primary.description_source_record_id;
+  } else if (own) merged.description_source_record_id = own;
   else delete merged.description_source_record_id;
 }
 

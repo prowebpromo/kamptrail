@@ -174,12 +174,13 @@
     })();elevationTasks.set(code,task);return task;
   }
   function mergeLoaded(features,stateCode) {
-    const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode}));
+    const options={state:stateCode,...(state.siteDetails?{siteDetails:state.siteDetails}:{})};
+    const incoming=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options));
     incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
     if(state.amenityDetails)incoming.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
     if(state.usfsDetails)incoming.forEach(f=>DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails));
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, {state:stateCode});
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...state.allCampsites,...incoming]}, options);
     state.allCampsites=cleaned.features;
     if(state.siteDetails)state.allCampsites.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
     if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));

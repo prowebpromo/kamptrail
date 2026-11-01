@@ -176,7 +176,7 @@
       const details = document.createElement('p');
       const rigLen = +((window.kamptrailFilters || {}).rigLength || 0);
       const cost = p.fee_status === 'free' ? t("Reported free") : p.fee_status === 'conditional' ? t("Free with conditions") : p.fee_status === 'paid' ? (Number.isFinite(p.cost) ? t("Reported ${amount}", {amount:p.cost}) : t("Paid · amount unknown")) : t("Fee unknown");
-      details.textContent = `${cost} · ${p.type === 'established' ? t("Campground") : ({dispersed:t('Dispersed'),backcountry:t('Backcountry'),parking:t('Overnight parking')}[p.type] || p.type || t("Type unknown"))} · ${p.state || t("State not reported")}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? t(" · RV fit not documented") : ''}`;
+      details.textContent = `${cost} · ${p.type === 'established' ? t("Campground") : ({dispersed:t('Dispersed'),backcountry:t('Backcountry'),parking:t('Overnight parking'),lodging:t('Lookout, cabin or other lodging')}[p.type] || p.type || t("Type unknown"))} · ${p.state || t("State not reported")}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? t(" · RV fit not documented") : ''}`;
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = t("View on map"); view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
       const trip = document.createElement('button'); trip.textContent = t("Save stop"); trip.onclick = () => KampTrailTrip.addStop(p.id);

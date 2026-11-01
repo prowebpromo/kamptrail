@@ -26,8 +26,10 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (geojson?.type !== 'FeatureCollection' || !Array.isArray(geojson.features)) {
       throw new Error(`${state} is not a GeoJSON FeatureCollection`);
     }
-    for (const raw of quality.publicationCandidates(geojson.features,{state})) {
-      const feature = quality.normalizeFeature(raw, {state});
+    // Own overnight campsite records corroborate a Recreation.gov record's own facility type.
+    const options = {state, ...(siteDetails ? {siteDetails} : {})};
+    for (const raw of quality.publicationCandidates(geojson.features,options)) {
+      const feature = quality.normalizeFeature(raw, options);
       if (!feature) continue;
       if(siteDetails)quality.attachSiteDetails(feature,siteDetails);
       attachAmenities(feature);
@@ -39,7 +41,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     }
   }
 
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {})});
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);
