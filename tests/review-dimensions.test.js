@@ -26,7 +26,7 @@ test('new score axes are optional, validated, moderated, published, edited and r
   // Pending reviews are invisible everywhere.
   let v=await view();assert.deepEqual(v.site_scores,{});assert.deepEqual(v.seasonal_scores,{});assert.deepEqual((await e.get('/api/community-discovery.php')).sites,{});
   // The moderation queue shows each new axis with the review it belongs to.
-  const queue=await e.moderationQueue(ids.crowds.id);for(const axis of NEW)assert.match(queue,new RegExp('&quot;'+axis+'&quot;|"'+axis+'"'),axis+' in queue');
+  const queue=await e.moderationQueue(Math.max(...NEW.map(a=>ids[a].id)));for(const axis of NEW)assert.match(queue,new RegExp('&quot;'+axis+'&quot;|"'+axis+'"'),axis+' in queue');
   for(const axis of NEW)await e.publish(ids[axis].id);
   v=await view();
   for(const axis of NEW){assert.equal(v.site_scores[axis].count,1,axis);assert.equal(v.site_scores[axis].average,null,axis+': one rating never publishes an average');}
