@@ -124,3 +124,9 @@ The verifier fails on any snapshot, index or catalogue difference not listed in 
 - The rebuild is deterministic (digest `cc48b3f3...cb6f`, two independent replays). The verifier reports 0 unexpected deltas, 36,290 saved ids checked and 4 access holds unchanged.
 - Rig metadata, fees, access, aliases and coordinates are unchanged.
 
+## Tests
+
+- `npm test`: 466 of 466 pass, including `tests/tourism-type-admission.test.js` (15 tests).
+- `npm run test:python`: 363 OK, 9 skipped.
+- Browser specs (features, discovery, saved-stops, fee-evidence, amenity-evidence, usfs-site-amenities, ridb-amenities, locale, routes, rig-profile, app): 68 passed, 1 failed. The failure is the known `app.spec.js` mobile map height (493 vs >500).
+
