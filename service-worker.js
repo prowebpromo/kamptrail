@@ -51,7 +51,7 @@ self.addEventListener('fetch',event=>{
   if(request.method==='GET' && request.url.startsWith(TOPO_TILES)) {event.respondWith(savedTile(request));return;}
   if(request.method!=='GET' || url.origin!==self.location.origin || !url.href.startsWith(self.registration.scope))return;
   if(request.mode==='navigate') {event.respondWith(navigation(request));return;}
-  if(url.pathname.endsWith('.geojson') || url.pathname.endsWith('/data/campsites/index.json') || url.pathname.endsWith('/data/campsites/search-index.json') || url.pathname.endsWith('/data/campsites/identity-hosts.json') || url.pathname.endsWith('/data/campsites/ridb-sites.json') || url.pathname.endsWith('/data/campsites/agency/index.json') || url.pathname.endsWith('/data/services/services.json') || url.pathname.endsWith('/data/health.json')) {
+  if(url.pathname.endsWith('.geojson') || url.pathname.endsWith('/data/campsites/index.json') || url.pathname.endsWith('/data/campsites/search-index.json') || url.pathname.endsWith('/data/campsites/withdrawn.json') || url.pathname.endsWith('/data/campsites/identity-hosts.json') || url.pathname.endsWith('/data/campsites/ridb-sites.json') || url.pathname.endsWith('/data/campsites/agency/index.json') || url.pathname.endsWith('/data/services/services.json') || url.pathname.endsWith('/data/health.json')) {
     event.respondWith(visitedData(request,event));return;
   }
   if(/\.(js|css|png|svg|webp|jpg|jpeg|ico|json)$/.test(url.pathname))event.respondWith(asset(request));
@@ -94,6 +94,7 @@ async function visitedData(request,event) {
     const path=new URL(request.url).pathname;
     const valid=path.endsWith('.geojson') ? data?.type==='FeatureCollection' && Array.isArray(data.features)
       : path.endsWith('search-index.json') ? data?.version===1 && Array.isArray(data.sites)
+      : path.endsWith('withdrawn.json') ? data?.version===1 && Array.isArray(data.listings) && data.listings.every(w=>typeof w?.id==='string' && Array.isArray(w.legacy_ids) && Array.isArray(w.coordinates) && w.coordinates.length===2 && w.coordinates.every(Number.isFinite))
       : path.endsWith('identity-hosts.json') ? data?.version===1 && !!data.hosts && typeof data.hosts==='object' && !Array.isArray(data.hosts)
       : path.endsWith('agency/index.json') ? data?.version===1 && Array.isArray(data.states)
       : path.endsWith('ridb-sites.json') ? [1,2].includes(data?.version) && data.facilities && typeof data.facilities==='object'

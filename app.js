@@ -320,9 +320,27 @@
     // A link to any published id, canonical or legacy, opens the same listing. The link is not rewritten.
     const entry = campsiteIndex.find(s => s.id === target.site) || campsiteIndex.find(s => s.legacy_ids?.includes(target.site));
     if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
-    if (!entry && !KampTrailData.getCampsiteById(target.site)) {
-      const w = (await KampTrailData.loadWithdrawn()).get(String(target.site));
-      if (w) { if (Array.isArray(w.coordinates)) map.setView([w.coordinates[1], w.coordinates[0]], 12); showToast(t("{name} is no longer listed in campsite search. Its camping classification could not be verified from its own source record. Check {source} before you go.", {name:w.name, source:w.source_url || t("the land manager")}), 'info', 12000); return; }
+    if (!entry) {
+      const withdrawn = (await KampTrailData.loadWithdrawn()).get(String(target.site));
+      if (withdrawn) {
+        const [lng,lat] = withdrawn.coordinates;
+        const panel = document.createElement('section');
+        panel.className = 'kt-withdrawn-listing';
+        const heading = document.createElement('h2');
+        heading.textContent = withdrawn.name;
+        const notice = document.createElement('p');
+        notice.textContent = t("This place was removed from campsite search after an evidence review. Check the facility record for camping details and current availability.");
+        panel.append(heading,notice);
+        if (/^ridb:\d+$/.test(withdrawn.id)) {
+          const link = document.createElement('a');
+          link.href = 'https://www.recreation.gov/camping/campgrounds/' + withdrawn.id.slice(5);
+          link.textContent = t("View facility record on Recreation.gov");
+          panel.append(link);
+        }
+        map.setView([lat,lng],12);
+        L.popup().setLatLng([lat,lng]).setContent(panel).openOn(map);
+        return;
+      }
     }
     if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?t("That campsite does not match your filters or has unknown or expired evidence. Change filters to view it."):t("That shared campsite could not be found. It may have been removed from the catalogue."), 'error');
   }

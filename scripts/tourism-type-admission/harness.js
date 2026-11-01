@@ -15,25 +15,31 @@ function inputs(root){
   const idx=read(path.join(dir,'search-index.json')).sites;
   return {dir,states,collections,idx,details:read(path.join(dir,'ridb-sites.json')).facilities,ridb:read(path.join(dir,'ridb-amenities.json')),usfs:read(path.join(dir,'usfs-site-amenities.json'))};
 }
-// Index build (canonical identity) and browser build (data-loader.js L182: no preferredIds/previousHosts).
-function catalogue(DQ,I,{browser=false,statesOrder=null}={}){
+// Rebuild the selected states using the index's own candidates, sidecars and final host election.
+// The actual browser loader is independently exercised by scripts/check-browser-identity.js.
+function catalogue(DQ,I,{browser=false,statesOrder=I.collections}={}){
   const attach=f=>{DQ.attachSiteDetails(f,I.details);DQ.attachRIDBAmenities(f,I.ridb);DQ.attachUSFSSiteAmenities(f,I.usfs);};
-  if(!browser){
-    const input=[],stateById=new Map();
-    for(const {state,geojson} of I.collections){const o={state,siteDetails:I.details,amenityDetails:I.ridb};for(const raw of DQ.publicationCandidates(geojson.features,o)){const f=DQ.normalizeFeature(raw,o);if(!f)continue;attach(f);input.push(f);
-      for(const id of [f.properties.id,...(f.properties.legacy_ids||[])]){if(!stateById.has(id))stateById.set(id,new Set());stateById.get(id).add(state);}}}
-    const preferredIds=new Set(I.idx.map(s=>s.id)),previousHosts=new Map();for(const s of I.idx)for(const a of s.legacy_ids||[])previousHosts.set(a,s.id);
-    const wm=DQ.withheldMembers?new Set(I.collections.flatMap(c=>[...DQ.withheldMembers(c.geojson.features,{state:c.state,siteDetails:I.details,amenityDetails:I.ridb})])):undefined;
-    const out=DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{preferredIds,previousHosts,siteDetails:I.details,amenityDetails:I.ridb,withheldMembers:wm,publishedPoints:new Map(I.idx.map(s=>[s.id,[s.lng,s.lat]]))}).features;out.forEach(attach);
-    return {features:out,stateById};
+  const input=[],stateById=new Map(),withheldMembers=new Set();
+  for(const {state,geojson} of [...statesOrder].sort((a,b)=>a.state.localeCompare(b.state))){
+    const options={state,siteDetails:I.details,amenityDetails:I.ridb};
+    for(const id of DQ.withheldMembers?.(geojson.features,options)||[])withheldMembers.add(id);
+    for(const raw of DQ.publicationCandidates(geojson.features,options)){
+      const f=DQ.normalizeFeature(raw,options);if(!f)continue;
+      attach(f);input.push(f);
+      for(const id of [f.properties.id,...(f.properties.legacy_ids||[])]){
+        if(!stateById.has(id))stateById.set(id,new Set());stateById.get(id).add(state);
+      }
+    }
   }
-  // Browser: states merged one at a time into the running catalogue, as mergeLoaded does.
-  let all=[];const wm=new Set();
-  for(const {state,geojson} of (statesOrder||I.collections)){
-    const o={state,siteDetails:I.details,amenityDetails:I.ridb};if(DQ.withheldMembers){for(const x of DQ.withheldMembers(geojson.features,o))wm.add(x);o.withheldMembers=wm;}const incoming=DQ.publicationCandidates(geojson.features,o).map(raw=>DQ.normalizeFeature(raw,o));
-    incoming.forEach(attach);
-    all=DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...all,...incoming]},o).features;all.forEach(attach);
+  const preferredIds=new Set(),previousHosts=new Map();
+  for(const row of I.idx){
+    if(!browser||row.legacy_ids.length)preferredIds.add(row.id);
+    for(const id of row.legacy_ids)previousHosts.set(id,row.id);
   }
-  return {features:all};
+  const options={preferredIds,previousHosts,withheldMembers,siteDetails:I.details,amenityDetails:I.ridb};
+  if(!browser)options.publishedPoints=new Map(I.idx.map(s=>[s.id,[s.lng,s.lat]]));
+  const features=DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},options).features;
+  features.forEach(attach);
+  return {features,stateById};
 }
 module.exports={loadDQ,inputs,catalogue,read};

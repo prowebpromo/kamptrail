@@ -436,6 +436,8 @@
       ${p.stay_limit?`<div><strong>${t("Stay limit:")}</strong> ${esc(p.stay_limit)}</div>`:''}
       ${p.reservable?`<div class="kt-fine">${t("Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.")}</div>`:''}
       <div><strong>${t("Type:")}</strong> ${esc(uiLabel('type',p.type))}</div>
+      ${p.camping_classification==='published_pending_review'?'<p class="kt-fine">'+esc(t("This previously listed location is under review. Its record does not establish the camping type at this point."))+'</p>':''}
+      ${p.camping_evidence==='reviewed_own_facility_record'?'<p class="kt-fine">'+esc(t("Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified."))+'</p>':''}
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
@@ -634,7 +636,18 @@
     // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
     async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
     // Listings withdrawn from campsite discovery keep a resolvable legacy entry explaining why (data/campsites/withdrawn.json).
-    loadWithdrawn(){if(!state.withdrawnPromise)state.withdrawnPromise=fetchJSON('data/campsites/withdrawn.json').then(d=>d?.version===1&&Array.isArray(d.listings)?new Map(d.listings.filter(w=>typeof w?.id==='string').flatMap(w=>[w.id,...(Array.isArray(w.legacy_ids)?w.legacy_ids:[])].map(k=>[String(k),w]))):new Map()).catch(()=>new Map());return state.withdrawnPromise;},
+    loadWithdrawn(){
+      if(!state.withdrawnPromise)state.withdrawnPromise=fetchJSON('data/campsites/withdrawn.json').then(data=>{
+        if(data?.version!==1||!Array.isArray(data.listings))throw new Error('Invalid withdrawn listings');
+        const records=new Map();
+        for(const w of data.listings){
+          if(typeof w?.id!=='string'||!Array.isArray(w.legacy_ids)||!Array.isArray(w.coordinates)||w.coordinates.length!==2||!w.coordinates.every(Number.isFinite))throw new Error('Invalid withdrawn entry');
+          for(const id of [w.id,...w.legacy_ids])records.set(id,w);
+        }
+        return records;
+      }).catch(()=>{state.withdrawnPromise=null;return new Map();});
+      return state.withdrawnPromise;
+    },
     getLoadedStates:()=>[...state.loadedStates],
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,

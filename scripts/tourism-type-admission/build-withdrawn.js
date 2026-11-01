@@ -17,7 +17,7 @@ const listings=base.filter(f=>!live.has(f.properties.id)).map(f=>{const p=f.prop
   const aliases=(s?.legacy_ids||[]).filter(a=>!live.has(a)).sort();
   return {id:p.id,legacy_ids:aliases,name:p.name,states:s?.states||[],coordinates:f.geometry.coordinates,source_url:p.source_url||null,
     reason:'no_own_camping_classification',
-    explanation:'The listing\'s own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.',
+    explanation:'The listing did not meet the reviewed campsite-discovery admission criteria. Consult the facility record for camping details and current availability.',
     previous_classification:{camping_evidence:p.camping_evidence,type:p.type}};}).sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
 const out={version:1,note:'Withdrawn from campsite discovery by the tourism-type-admission candidate. Old links resolve to this entry.',listings};
 fs.writeFileSync(path.join(NI.dir,'withdrawn.json'),JSON.stringify(out,null,1)+'\n');

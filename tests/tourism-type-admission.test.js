@@ -15,7 +15,7 @@ test('snapshot merge: tourism of a distinct absorbed element stays on that membe
   assert.equal(out.tourism,undefined);
   const e=out.member_evidence.find(r=>r.source_record_id==='osm:way:9');
   assert.equal(e.fields.tourism,'camp_site');assert.equal(e.source,'OpenStreetMap contributors');
-  assert.equal(out.tents,'yes','rig keys are outside this change');
+  assert.equal(out.tents,undefined);assert.equal(e.fields.tents,'yes','2.34.0 member ownership');
 });
 test('snapshot merge: the record\'s own tourism and the same record seen twice are kept',()=>{
   const m=new CampsiteMerger();
@@ -69,6 +69,10 @@ test('a fire lookout with its own overnight record keeps its accommodation type,
   assert.ok(f,'not removed for being a lookout');
   assert.equal(f.properties.type,'lodging');assert.equal(f.properties.kt_accommodation,'lookout');
   assert.equal(DQ.normalizeFeature(pt({...ridb,name:'PICKETT BUTTE LOOKOUT'}),{siteDetails:{}}),null,'no own camping or overnight evidence: unchanged exclusion');
+});
+test('a lodging word inside a recreation site name does not classify the site as lodging',()=>{
+  const f=DQ.normalizeFeature(pt({...ridb,name:'Pink House Recreation Site'}),{siteDetails:sites});
+  assert.equal(f.properties.type,'established');
 });
 test('an OSM accommodation tag is not the classifier\'s accommodation kind',()=>{
   const f=DQ.normalizeFeature(pt({...osmEl,accommodation:'camping',name:'North Tongue River Campground'}));

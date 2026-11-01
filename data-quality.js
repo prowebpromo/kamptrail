@@ -13,7 +13,45 @@
     return !String(name || '').trim() || /^(?:sample|test|demo|fake|dummy|placeholder)(?:\s+(?:campsite|campground|site|data|meadow))?\s*\d*$/i.test(String(name).trim()) || /^(?:unknown campsite|unnamed site(?: \(osm\))?|tbd|coming soon|lorem ipsum)$/i.test(String(name).trim());
   }
   // Accommodation named by the record's own name (fire lookouts, cabins, houses). Not a campground.
-  const ACCOMMODATION_NAME = /\b(?:cabins?|lodges?|lookouts?|guard\s+stations?|hotels?|motels?|chalets?|yurts?|huts?|houses?|bunkhouses?)\b/i;
+  // Candidate decisions are keyed to prior published facilities. Evidence and source dates are in
+  // docs/candidates/tourism-independent-source-review.json. These sets never admit a new listing.
+  const REVIEWED_CAMPING = new Set(['ridb:10068990', 'ridb:237148', 'ridb:243218', 'ridb:243702', 'ridb:245164', 'ridb:245165', 'ridb:249627', 'ridb:249642', 'ridb:249674', 'ridb:249741', 'ridb:249752', 'ridb:249902', 'ridb:255188', 'ridb:255232', 'ridb:255239']);
+  const PENDING_ADMISSION = new Set(['ridb:10049041', 'ridb:240871', 'ridb:240903', 'ridb:241301', 'ridb:243195', 'ridb:244320', 'ridb:244321']);
+  // Pin the reviewed retrievals. A subsequent source refresh is evaluated afresh.
+  const REVIEWED_RECORDS = new Set([
+    "ridb:10049041|Morrow Bridge and Midway Seasonal Camps|2026-10-29T03:32:57Z",
+    "ridb:10068990|Willow Creek Transfer Camp|2026-10-29T02:57:25Z",
+    "ridb:10068990|Willow Creek Transfer Camp|2026-10-29T03:36:53Z",
+    "ridb:237148|Gateway Boat Camp|2026-10-29T02:57:25Z",
+    "ridb:237148|Gateway Boat Camp|2026-10-29T03:10:59Z",
+    "ridb:240871|Enduro Camp|2026-10-29T03:03:23Z",
+    "ridb:240903|Sugar Creek Hunter Camp|2026-10-29T03:03:23Z",
+    "ridb:241301|Bear Creek Lake Recreation Area|2026-10-29T02:48:25Z",
+    "ridb:243195|McDougle Camp|2026-10-29T02:45:26Z",
+    "ridb:243218|Coleman Lake Recreation Area|2026-10-29T02:45:26Z",
+    "ridb:243702|Head O' Boulder Forest Camp|2026-10-29T03:28:33Z",
+    "ridb:244320|Bowman Lake Area|2026-10-29T03:06:41Z",
+    "ridb:244321|Condon Lakes West|2026-10-29T03:06:41Z",
+    "ridb:245164|Hunter Creek Transfer Camp|2026-10-29T02:57:25Z",
+    "ridb:245164|Hunter Creek Transfer Camp|2026-10-29T03:36:53Z",
+    "ridb:245165|Bear Creek Transfer Camp|2026-10-29T02:57:25Z",
+    "ridb:249627|Joe Elliot Yellow Post Sites|2026-10-29T02:50:45Z",
+    "ridb:249642|Coon Creek Yellow Post Sites|2026-10-29T02:50:45Z",
+    "ridb:249674|Stockton Flats Yellow Post Sites|2026-10-29T02:50:45Z",
+    "ridb:249741|Thomas Hunting Grounds Yellow Post Sites|2026-10-29T02:50:45Z",
+    "ridb:249752|Clark's Ranch Yellow Post Site|2026-10-29T02:50:45Z",
+    "ridb:249902|Wolf Gap Recreation Area|2026-10-29T03:01:56Z",
+    "ridb:249902|Wolf Gap Recreation Area|2026-10-29T03:38:40Z",
+    "ridb:249902|Wolf Gap Recreation Area|2026-10-29T03:40:29Z",
+    "ridb:255188|Spring Recreation Site|2026-10-29T03:28:33Z",
+    "ridb:255232|Mica Bay Boater Park|2026-10-29T02:57:25Z",
+    "ridb:255239|McKay's Bend Recreation Site|2026-10-29T02:57:25Z"
+  ]);
+  // Also guard a cold single-state load and identity-host fallback, before the parent state arrives.
+  const WITHDRAWN_IDS = new Set(['ridb:237765', 'ridb:244404', 'usfs:18814', 'ridb:245273', 'usfs:5889', 'ridb:246536', 'usfs:65003', 'ridb:247835', 'osm:way:941066426', 'ridb:247915', 'osm:relation:13942065', 'ridb:247922', 'ridb:248072', 'ridb:248261']);
+  const DON_CARTER_ELEMENT = 'osm:way:456269017'; // independently published listing in NC
+  const discoverable = p => p.camping_classification === 'campsite' || p.camping_classification === 'published_pending_review';
+  const ACCOMMODATION_NAME = /\b(?:cabins?|lodges?|lookouts?|guard\s+stations?|hotels?|motels?|chalets?|yurts?|huts?|houses?|bunkhouses?)\s*$/i;
   function classifyCampingRecord(raw, name, {osm = false, ridb = false, overnightSites = 0} = {}) {
     const access = String(raw.access || '').trim().toLowerCase();
     const accessInfo = {
@@ -35,9 +73,10 @@
     const campingName = /\b(?:campgrounds?|campsites?|camping|(?:rv|recreational vehicle|trailer)\s+(?:parks?|sites?|camp)|(?:group|horse|equestrian|primitive|tent|backcountry)\s+camp(?:s|\s+sites?)?)\b/i.test(name);
     // A Recreation.gov record's own facility type (derived from FacilityTypeDescription at import) counts
     // only when the same facility also lists its own overnight campsite records (ridb-sites.json).
-    const ownType = raw._kt_normalized && typeof raw.ridb_facility_type === 'string' ? raw.ridb_facility_type : raw.type;
+    const ownRIDB = /^recreation\.gov$/i.test(raw.source || '');
+    const ownType = ownRIDB ? (raw._kt_normalized ? raw.ridb_facility_type : raw.type) : null;
     const ridbOvernight = ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(ownType) && Number.isInteger(overnightSites) && overnightSites > 0;
-    const accommodation = ridbOvernight && !campingName && !campingIntro && ACCOMMODATION_NAME.test(name) ? name.match(ACCOMMODATION_NAME)[0].toLowerCase() : null;
+    const accommodation = (ridbOvernight || (agencyCamping && raw.facility_id != null && overnightSites > 0)) && !campingName && !campingIntro && !/\bscreen\s+cabins?\b/i.test(name) && ACCOMMODATION_NAME.test(name) ? name.match(ACCOMMODATION_NAME)[0].toLowerCase() : null;
     let exclusion_reason = null;
     if (['private', 'no', 'military'].includes(access)) exclusion_reason = `access_${access}`;
     else if (/^(yes|true|1)$/i.test(String(raw.disused || raw.abandoned || '')) || raw['disused:tourism'] || raw['abandoned:tourism'] || String(raw.camping).toLowerCase() === 'no' || /\b(?:camping (?:is )?(?:not (?:allowed|permitted)|prohibited)|no overnight camping)\b/i.test(intro)) exclusion_reason = 'camping_not_operating_or_prohibited';
@@ -189,6 +228,16 @@
     const fid = raw.facility_id != null ? String(raw.facility_id) : null;
     const overnightSites = ridb && fid ? Math.max(options.siteDetails?.[fid]?.t || 0, options.amenityDetails?.facilities?.[fid]?.sites || 0, raw._kt_normalized && Number.isInteger(raw.ridb_overnight_sites) ? raw.ridb_overnight_sites : 0) : 0;
     const classification = classifyCampingRecord(borrowedWording ? {...raw, description:''} : raw, name, {osm, ridb, overnightSites});
+    if (raw.source === 'recreation.gov' && raw.id === 'ridb:' + fid && !classification.exclusion_reason && REVIEWED_RECORDS.has(raw.id+'|'+name+'|'+raw.source_retrieved_at)) {
+      if (REVIEWED_CAMPING.has(raw.id)) {
+        classification.camping_classification = 'campsite';
+        classification.camping_evidence = 'reviewed_own_facility_record';
+        classification.camping_evidence_record_id = raw.id;
+      } else if (PENDING_ADMISSION.has(raw.id)) {
+        classification.camping_classification = 'published_pending_review';
+        classification.camping_evidence = 'previously_published_pending_adjudication';
+      }
+    }
     // A held inherited restriction blocks admission until identity review. It
     // is not a statement about the kept element's own public-access tags.
     if (classification.exclusion_reason || (raw.access_hold && /^(private|no|military)$/.test(raw.access_hold.value))) return null;
@@ -198,7 +247,7 @@
     // Kept so re-normalization (index dedupe, browser state merges) reaches the same classification.
     if (overnightSites > 0) p.ridb_overnight_sites = overnightSites; else delete p.ridb_overnight_sites;
     // The Recreation.gov record's own import type, kept apart from the listing type shown.
-    if (ridb && raw.facility_id != null) p.ridb_facility_type = raw._kt_normalized && typeof raw.ridb_facility_type === 'string' ? raw.ridb_facility_type : (typeof raw.type === 'string' ? raw.type : null);
+    if (ridb && raw.facility_id != null) p.ridb_facility_type = /^recreation\.gov$/i.test(raw.source || '') ? (raw._kt_normalized ? raw.ridb_facility_type : raw.type) : null;
     p.legacy_ids = [...new Set([...(Array.isArray(raw.legacy_ids) ? raw.legacy_ids : []), raw.id].filter(v => v != null && v !== '').map(String))];
     const coordKey = `${ll.lon.toFixed(6)},${ll.lat.toFixed(6)}`;
     if (ridb && raw.facility_id != null) p.id = `ridb:${raw.facility_id}`;
@@ -253,6 +302,20 @@
       p.type_evidence = {kind:'descriptive_wording', source:'Recreation.gov', source_record_id:p.id, field:'FacilityName', value:wording, retrieved_at:evidenceDate(raw.source_retrieved_at)};
     } else if (ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(p.ridb_facility_type)) {
       p.type_evidence = {kind:'structured_classification', source:'Recreation.gov', source_record_id:p.id, field:'FacilityTypeDescription (mapped at import)', value:p.ridb_facility_type, retrieved_at:evidenceDate(raw.source_retrieved_at)};
+    }
+    if (classification.kt_accommodation) {
+      const agency = raw.source === 'Bureau of Land Management';
+      p.type_evidence = {kind:'lodging_name_with_overnight_records',source:agency?raw.source:'Recreation.gov',
+        source_record_id:agency?'blm-facility:'+fid:p.id,field:agency?'name':'FacilityName',value:name,
+        overnight_facility_id:fid,overnight_sites:overnightSites,retrieved_at:evidenceDate(raw.source_retrieved_at)};
+    } else if (raw.source === 'Bureau of Land Management' && raw.camping_activity && fid) {
+      p.type_evidence = {kind:'agency_layer_membership',source:raw.source,source_record_id:'blm-facility:'+fid,
+        field:'BLM layer 8 camping_activity',value:raw.camping_activity,retrieved_at:null};
+    }
+    // Existing admission and own confirmed overnight camping do not determine the campsite type.
+    if (['reviewed_own_facility_record','previously_published_pending_adjudication'].includes(p.camping_evidence)) {
+      p.type = 'other';
+      p.type_evidence = null;
     }
     delete p.camping_name_text; delete p.camping_intro_text;
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
@@ -330,6 +393,13 @@
     const feeDonor = q.fee_source_record_id || q.id, accessDonor = q.access_source_record_id || q.id;
     const blockedFee = /^osm:(?:node|way|relation|unknown):/.test(feeDonor) && p.id !== feeDonor;
     const blockedAccess = /^osm:(?:node|way|relation|unknown):/.test(accessDonor) && p.id !== accessDonor;
+    // Keep tourism attributed to every separate element, including members of the absorbed row.
+    const tourismMembers = [...(p.tourism_members || []),...(q.tourism_members || [])];
+    for(const e of [...(p.member_evidence || []),...(q.member_evidence || [])]){
+      if(e.fields?.tourism && e.source_record_id !== p.id)tourismMembers.push({source_record_id:e.source_record_id,source_url:e.source_url,retrieved_at:e.retrieved_at,tourism:e.fields.tourism});
+    }
+    if(distinctOsm && q.tourism)tourismMembers.push({source_record_id:q.id,source_url:q.source_url,retrieved_at:q.source_retrieved_at||null,tourism:q.tourism});
+    if(tourismMembers.length)p.tourism_members=[...new Map(tourismMembers.map(e=>[e.source_record_id+'|'+e.tourism,e])).values()];
     if (distinctOsm) {
       // Retain the secondary report for review without granting its fee/access
       // to the canonical element merely because names and coordinates matched.
@@ -478,7 +548,8 @@
     for (const id of options.withheldMembers || []) withheld.add(id);
     // An element that is already its own published listing keeps it (saved links and reviews are keyed by it).
     for (const id of options.preferredIds || []) withheld.delete(id);
-    return {type:'FeatureCollection',features:features.filter(f => f.properties.camping_classification === 'campsite' && !withheld.has(f.properties.id))};
+    withheld.delete(DON_CARTER_ELEMENT);
+    return {type:'FeatureCollection',features:features.filter(f => discoverable(f.properties) && !withheld.has(f.properties.id) && !WITHDRAWN_IDS.has(f.properties.id))};
   }
   const RIDB_AMENITY_URL='https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip';
   const RIDB_AMENITY_KEYS=['toilet','drinking_water','shower','dump','picnic_table','fire_fixture','grill','trash_collection','food_locker','tent_pad','grill_or_fire_ring'];
