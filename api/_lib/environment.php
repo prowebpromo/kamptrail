@@ -5,6 +5,10 @@ require_once __DIR__ . '/bootstrap.php';
 const KE_FIRE = 'https://services3.arcgis.com/T4QMspbfLg3qTGWY/ArcGIS/rest/services/WFIGS_Interagency_Perimeters_Current/FeatureServer/0/query';
 const KE_ALERTS = 'https://api.weather.gov/alerts/active';
 const KE_SMOKE = 'https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/NOAA_Satellite_Smoke_Detection_(v1)/FeatureServer/0/query';
+const KE_ZONE_BASE = 'https://api.weather.gov/zones/';
+const KE_FIREWX_EVENTS = ['Red Flag Warning', 'Fire Weather Watch'];
+const KE_FIREWX_MAX_BYTES = 8388608;
+const KE_ZONE_PATTERN = '/^(fire|forecast|county)\/[A-Z]{2}[CZ]\d{3}$/D';
 const KE_MAX_BYTES = 4194304;
 const KE_MAX_FEATURES = 500;
 const KE_MAX_COORDINATES = 60000;
@@ -21,9 +25,15 @@ final class KeException extends RuntimeException {
 /** Parse before any cache or upstream access. Inputs never select a host or URL. */
 function ke_query(array $input): array {
     $kind = $input['kind'] ?? null;
-    if (!is_string($kind) || !in_array($kind, ['fire', 'smoke', 'alerts'], true)) throw new KeException('invalid_query', 400);
-    $allowed = $kind === 'alerts' ? ['kind', 'lat', 'lng'] : ['kind', 'bbox'];
+    if (!is_string($kind) || !in_array($kind, ['fire', 'smoke', 'alerts', 'firewx', 'zone'], true)) throw new KeException('invalid_query', 400);
+    $allowed = $kind === 'alerts' ? ['kind', 'lat', 'lng'] : ($kind === 'firewx' ? ['kind'] : ($kind === 'zone' ? ['kind', 'zone'] : ['kind', 'bbox']));
     if (array_diff(array_keys($input), $allowed)) throw new KeException('invalid_query', 400);
+    // Fire-weather alerts are one fixed national query. A zone is a fixed NWS path, never a caller URL.
+    if ($kind === 'firewx') return ['kind' => $kind];
+    if ($kind === 'zone') {
+        if (!is_string($input['zone'] ?? null) || !preg_match(KE_ZONE_PATTERN, $input['zone'])) throw new KeException('invalid_query', 400);
+        return ['kind' => $kind, 'zone' => $input['zone']];
+    }
     if ($kind === 'alerts') {
         $lat = ke_number($input['lat'] ?? null); $lng = ke_number($input['lng'] ?? null);
         if (abs($lat) > 90 || abs($lng) > 180) throw new KeException('invalid_query', 400);
@@ -47,20 +57,29 @@ function ke_number($value): float {
 
 /** Transport has no URL override, follows no redirects, and caps bytes before decoding. */
 function ke_http(string $base, array $query): array {
-    if (!in_array($base, [KE_FIRE, KE_ALERTS, KE_SMOKE], true) || !function_exists('curl_init')) throw new KeException('upstream_unavailable');
-    $url = $base . '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986);
-    $body = ''; $oversized = false;
+    $zone = str_starts_with($base, KE_ZONE_BASE) && preg_match(KE_ZONE_PATTERN, substr($base, strlen(KE_ZONE_BASE)));
+    if ((!$zone && !in_array($base, [KE_FIRE, KE_ALERTS, KE_SMOKE], true)) || !function_exists('curl_init')) throw new KeException('upstream_unavailable');
+    $url = $query ? $base . '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986) : $base;
+    $limit = $zone || ($base === KE_ALERTS && isset($query['event'])) ? KE_FIREWX_MAX_BYTES : KE_MAX_BYTES;
+    $body = ''; $oversized = false; $GLOBALS['ke_upstream_meta'] = ['max_age' => null, 'retry_after' => null];
     $ch = curl_init($url);
     curl_setopt_array($ch, [CURLOPT_FOLLOWLOCATION => false, CURLOPT_CONNECTTIMEOUT => 4, CURLOPT_TIMEOUT => 12,
         CURLOPT_PROTOCOLS => CURLPROTO_HTTPS, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2,
         CURLOPT_USERAGENT => 'KampTrail/1.0 (https://kamptrail.com; public environment context)',
         CURLOPT_HTTPHEADER => ['Accept: application/geo+json, application/json'],
-        CURLOPT_WRITEFUNCTION => static function ($handle, string $chunk) use (&$body, &$oversized): int {
-            if (strlen($body) + strlen($chunk) > KE_MAX_BYTES) { $oversized = true; return 0; }
+        // Honor the upstream caching and rate-limit headers (NWS sends Cache-Control and Retry-After).
+        CURLOPT_HEADERFUNCTION => static function ($handle, string $line): int {
+            if (preg_match('/^cache-control:.*\bmax-age=(\d{1,9})/i', $line, $m)) $GLOBALS['ke_upstream_meta']['max_age'] = (int)$m[1];
+            if (preg_match('/^retry-after:\s*(\d{1,5})\s*$/i', $line, $m)) $GLOBALS['ke_upstream_meta']['retry_after'] = (int)$m[1];
+            return strlen($line);
+        },
+        CURLOPT_WRITEFUNCTION => static function ($handle, string $chunk) use (&$body, &$oversized, $limit): int {
+            if (strlen($body) + strlen($chunk) > $limit) { $oversized = true; return 0; }
             $body .= $chunk; return strlen($chunk);
         }]);
     $ok = curl_exec($ch); $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
     if ($oversized) throw new KeException('zoom_in', 422);
+    if ($status === 429 || ($status === 503 && $GLOBALS['ke_upstream_meta']['retry_after'] !== null)) throw new KeException('rate_limited', 503);
     if ($ok === false || $status !== 200) throw new KeException('upstream_unavailable');
     $data = json_decode($body, true, 32);
     if (!is_array($data) || isset($data['error'])) throw new KeException('upstream_unavailable');
@@ -117,6 +136,31 @@ function ke_smoke_fetch(array $query, callable $http, int $now): array {
     return [$raw, ['name' => 'NOAA HMS satellite smoke', 'url' => 'https://www.ospo.noaa.gov/products/land/hms.html', 'observation_date' => substr($date, 0, 10)]];
 }
 
+/** Round to ~10 m and thin very dense rings (zone borders) so overlay payloads stay small. Rings stay closed. */
+function ke_simplify_geometry(array $geometry, int $maxRingPoints = 1500): array {
+    $polygons = ($geometry['type'] ?? '') === 'Polygon' ? [$geometry['coordinates'] ?? []] : ($geometry['coordinates'] ?? []);
+    foreach ($polygons as $i => $polygon) {
+        if (!is_array($polygon)) continue;
+        foreach ($polygon as $j => $ring) {
+            if (!is_array($ring)) continue;
+            $points = [];
+            foreach ($ring as $point) {
+                if (!is_array($point) || !isset($point[0], $point[1]) || !is_numeric($point[0]) || !is_numeric($point[1])) { $points[] = $point; continue; }
+                $rounded = [round((float)$point[0], 4), round((float)$point[1], 4)];
+                if (!$points || $points[count($points) - 1] !== $rounded) $points[] = $rounded;
+            }
+            if (count($points) > $maxRingPoints) {
+                $step = (int)ceil(count($points) / $maxRingPoints); $thin = [];
+                foreach ($points as $k => $point) if ($k % $step === 0) $thin[] = $point;
+                $thin[] = $points[0];
+                $points = $thin;
+            }
+            $polygons[$i][$j] = $points;
+        }
+    }
+    return ['type' => $geometry['type'], 'coordinates' => ($geometry['type'] ?? '') === 'Polygon' ? $polygons[0] : $polygons];
+}
+
 /** Only polygon geometries can enter a viewport overlay; null is valid for NWS zones. */
 function ke_geometry($geometry, bool $allowNull, int &$coordinateCount): ?array {
     if ($geometry === null && $allowNull) return null;
@@ -143,6 +187,36 @@ function ke_geometry($geometry, bool $allowNull, int &$coordinateCount): ?array 
     return ['type' => $geometry['type'], 'coordinates' => $geometry['type'] === 'Polygon' ? $clean[0] : $clean];
 }
 
+/** Zone paths such as "fire/COZ214" from NWS affectedZones URLs. Anything else is dropped. */
+function ke_zone_paths($zones): array {
+    $paths = [];
+    foreach (is_array($zones) ? $zones : [] as $url) {
+        if (is_string($url) && str_starts_with($url, KE_ZONE_BASE) && preg_match(KE_ZONE_PATTERN, substr($url, strlen(KE_ZONE_BASE))) && !in_array(substr($url, strlen(KE_ZONE_BASE)), $paths, true)) $paths[] = substr($url, strlen(KE_ZONE_BASE));
+    }
+    return $paths;
+}
+
+/** Red Flag Warnings and Fire Weather Watches only. Cancel messages are kept so the client can retire the alerts they reference. */
+function ke_firewx_properties(array $p, int $now): ?array {
+    if (($p['status'] ?? '') !== 'Actual' || !in_array($p['messageType'] ?? '', ['Alert', 'Update', 'Cancel'], true)) return null;
+    if (!in_array($p['event'] ?? '', KE_FIREWX_EVENTS, true)) return null;
+    $expires = ke_date($p['expires'] ?? null); $ends = ke_date($p['ends'] ?? null);
+    if ($expires === null && $ends === null) throw new KeException('upstream_unavailable');
+    $cancel = $p['messageType'] === 'Cancel';
+    if (!$cancel && (($expires !== null && strtotime($expires) <= $now) || ($ends !== null && strtotime($ends) <= $now))) return null;
+    $references = [];
+    foreach (is_array($p['references'] ?? null) ? array_slice($p['references'], 0, 20) : [] as $ref) {
+        $id = is_array($ref) ? ke_text($ref['identifier'] ?? null, 500) : null;
+        if ($id !== null && $id !== '') $references[] = $id;
+    }
+    $zones = ke_zone_paths($p['affectedZones'] ?? []);
+    $props = ['id' => ke_text($p['id'] ?? null, 500), 'name' => ke_text($p['event'], 100), 'source_updated_at' => ke_date($p['sent'] ?? null)];
+    foreach (['event', 'headline', 'areaDesc', 'severity', 'messageType', 'status'] as $key) $props[$key] = ke_text($p[$key] ?? null, 2000);
+    foreach (['sent', 'effective', 'onset', 'expires', 'ends'] as $key) $props[$key] = ke_date($p[$key] ?? null);
+    $props['references'] = $references; $props['zone_count'] = count($zones); $props['zones'] = array_slice($zones, 0, 60);
+    return $props;
+}
+
 /** Reject incomplete datasets instead of returning a reassuring partial/empty result. */
 function ke_normalize(string $kind, array $data, int $now): array {
     if (($data['type'] ?? '') !== 'FeatureCollection' || !is_array($data['features'] ?? null)) throw new KeException('upstream_unavailable');
@@ -162,6 +236,11 @@ function ke_normalize(string $kind, array $data, int $now): array {
             $props = ['id' => ke_text($feature['id'] ?? $p['id'] ?? null, 500), 'name' => ke_text($p['event'] ?? null), 'source_updated_at' => ke_date($p['sent'] ?? null)];
             foreach (['event', 'headline', 'description', 'instruction', 'severity', 'areaDesc', 'response', 'status', 'messageType'] as $key) $props[$key] = ke_text($p[$key] ?? null, in_array($key, ['description', 'instruction'], true) ? 16000 : 2000);
             foreach (['sent', 'effective', 'onset', 'expires', 'ends'] as $key) $props[$key] = ke_date($p[$key] ?? null);
+        } elseif ($kind === 'firewx') {
+            $props = ke_firewx_properties($p, $now);
+            if ($props === null) continue;
+        } elseif ($kind === 'zone') {
+            $props = ['id' => ke_text($p['id'] ?? null, 12), 'name' => ke_text($p['name'] ?? null, 200), 'state' => ke_text($p['state'] ?? null, 2)];
         } elseif ($kind === 'fire') {
             $acres = $p['poly_GISAcres'] ?? null;
             $props = ['id' => ke_text($p['poly_IRWINID'] ?? $feature['id'] ?? $p['OBJECTID'] ?? null),
@@ -172,7 +251,9 @@ function ke_normalize(string $kind, array $data, int $now): array {
         } else {
             $props = ke_smoke_properties($feature);
         }
-        $out[] = ['type' => 'Feature', 'geometry' => ke_geometry($feature['geometry'] ?? null, $kind === 'alerts', $coordinateCount), 'properties' => $props];
+        $geometry = $feature['geometry'] ?? null;
+        if (in_array($kind, ['firewx', 'zone'], true) && is_array($geometry) && in_array($geometry['type'] ?? '', ['Polygon', 'MultiPolygon'], true)) $geometry = ke_simplify_geometry($geometry);
+        $out[] = ['type' => 'Feature', 'geometry' => ke_geometry($geometry, $kind === 'alerts' || $kind === 'firewx', $coordinateCount), 'properties' => $props];
     }
     return ['type' => 'FeatureCollection', 'features' => $out];
 }
@@ -192,10 +273,28 @@ function ke_fetch(array $query, callable $http, int $now): array {
         // /alerts/active rejects a limit parameter; response byte/feature caps still apply locally.
         $raw = $http(KE_ALERTS, ['point' => $query['lat'] . ',' . $query['lng'], 'status' => 'actual']);
         $source = ['name' => 'National Weather Service active alerts', 'url' => 'https://www.weather.gov/alerts'];
+    } elseif ($kind === 'firewx') {
+        $raw = $http(KE_ALERTS, ['event' => implode(',', KE_FIREWX_EVENTS), 'status' => 'actual']);
+        $source = ['name' => 'National Weather Service active alerts', 'url' => 'https://www.weather.gov/fire/'];
+    } elseif ($kind === 'zone') {
+        $feature = $http(KE_ZONE_BASE . $query['zone'], []);
+        if (($feature['type'] ?? '') !== 'Feature' || ($feature['properties']['id'] ?? '') !== substr($query['zone'], strpos($query['zone'], '/') + 1)) throw new KeException('upstream_unavailable');
+        $feature['geometry'] ??= null;
+        if ($feature['geometry'] === null) throw new KeException('upstream_unavailable');
+        $raw = ['type' => 'FeatureCollection', 'features' => [$feature]];
+        $source = ['name' => 'National Weather Service zone', 'url' => 'https://www.weather.gov/'];
     } else {
         [$raw, $source] = ke_smoke_fetch($query, $http, $now);
     }
     return ['ok' => true, 'version' => 1, 'kind' => $kind, 'retrieved_at' => gmdate('c', $now), 'source' => $source, 'partial' => false, 'data' => ke_normalize($kind, $raw, $now)];
+}
+
+/** Server cache lifetime. Never shorter than the app floor, never longer than a cap, and it follows upstream max-age inside that range. */
+function ke_ttl(string $kind, ?int $maxAge): int {
+    if ($kind === 'smoke') return 900;
+    if ($kind === 'zone') return min(86400, max(3600, $maxAge ?? 0));
+    if ($kind === 'firewx') return min(600, max(300, $maxAge ?? 0));
+    return 300;
 }
 
 /** Fixed hash slots bound data AND lock files. No user-controlled path/config/database. */
@@ -212,12 +311,17 @@ function ke_cached(array $query, string $directory, callable $fetch, int $now): 
         $path = $directory . '/' . (hexdec(substr($key, 0, 6)) % KE_CACHE_SLOTS) . '.json';
         if (is_link($path)) throw new KeException('cache_unavailable', 503);
         $cached = is_file($path) && filesize($path) <= 2100000 ? json_decode((string)@file_get_contents($path), true) : null;
-        $ttl = $query['kind'] === 'smoke' ? 900 : 300;
-        if (is_array($cached) && ($cached['key'] ?? '') === $key && is_int($cached['at'] ?? null) && $cached['at'] <= $now && $now - $cached['at'] < (isset($cached['error']) ? 30 : $ttl)) {
+        $ttl = ke_ttl($query['kind'], is_int($cached['max_age'] ?? null) ? $cached['max_age'] : null);
+        if (is_array($cached) && ($cached['key'] ?? '') === $key && is_int($cached['at'] ?? null) && $cached['at'] <= $now && $now - $cached['at'] < (isset($cached['error']) ? (is_int($cached['retry_after'] ?? null) ? max(30, min($cached['retry_after'], 600)) : 30) : $ttl)) {
             if (isset($cached['error'])) throw new KeException($cached['error'], $cached['status']);
             if (is_array($cached['value'] ?? null)) {
                 $value = $cached['value'];
                 // An alert can expire during its five-minute cache lifetime.
+                if ($query['kind'] === 'firewx') $value['data']['features'] = array_values(array_filter($value['data']['features'] ?? [], static function (array $f) use ($now): bool {
+                    $p = $f['properties'];
+                    if (($p['messageType'] ?? '') === 'Cancel') return true;
+                    return ($p['expires'] === null || strtotime($p['expires']) > $now) && ($p['ends'] === null || strtotime($p['ends']) > $now);
+                }));
                 if ($query['kind'] === 'alerts') $value['data']['features'] = array_values(array_filter($value['data']['features'] ?? [], static function (array $f) use ($now): bool {
                     $p = $f['properties'];
                     return strtotime($p['expires']) > $now && ($p['ends'] === null || strtotime($p['ends']) > $now);
@@ -230,10 +334,11 @@ function ke_cached(array $query, string $directory, callable $fetch, int $now): 
         if ($now - $last < 2) throw new KeException('busy', 503);
         rewind($lock); ftruncate($lock, 0); fwrite($lock, (string)$now); fflush($lock);
         try {
+            $GLOBALS['ke_upstream_meta'] = ['max_age' => null, 'retry_after' => null];
             $value = $fetch($query, $now);
-            $entry = ['key' => $key, 'at' => $now, 'value' => $value];
+            $entry = ['key' => $key, 'at' => $now, 'value' => $value, 'max_age' => $GLOBALS['ke_upstream_meta']['max_age'] ?? null];
         } catch (KeException $e) {
-            $entry = ['key' => $key, 'at' => $now, 'error' => $e->reason, 'status' => $e->status];
+            $entry = ['key' => $key, 'at' => $now, 'error' => $e->reason, 'status' => $e->status, 'retry_after' => $GLOBALS['ke_upstream_meta']['retry_after'] ?? null];
             $value = null;
         }
         $encoded = json_encode($entry, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

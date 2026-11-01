@@ -45,3 +45,24 @@ jobs:
           path: ${{ runner.temp }}/fire-weather
           retention-days: 90
           if-no-files-found: error
+      - name: Capture seven-day alert history with provenance
+        id: window
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/capture_fire_weather_fixtures.py --out "$RUNNER_TEMP/fire-weather-window" | tee "$RUNNER_TEMP/window.json"
+          {
+            echo "### NWS seven-day fixture capture"
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/window.json"
+            echo '```'
+            echo "Each file in manifest.json carries its URL, retrieval time, byte count and SHA-256."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep seven-day capture
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: nws-fire-weather-window-${{ github.run_id }}
+          path: ${{ runner.temp }}/fire-weather-window
+          retention-days: 90
+          if-no-files-found: error

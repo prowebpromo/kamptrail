@@ -241,3 +241,19 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 .kt-usfs-site[open] {max-height:280px;overflow:auto;overflow-wrap:anywhere;}
 .kt-usfs-site ul {padding-left:18px;}
 .kt-usfs-text {white-space:pre-line;}
+
+/* R12 fire-weather alerts. Own tokens and shapes, never the fire-perimeter or smoke colors. Warning is solid, watch is dashed. */
+:root{--firewx-warning:#b3261e;--firewx-watch:#7a4a00;--firewx-stroke:3;--firewx-opacity:.2;--firewx-gap:8px;--firewx-width:300px;--firewx-height:34dvh;--firewx-font:12px;--firewx-key:14px}
+.kt-firewx-control{max-width:min(var(--firewx-width),calc(100vw - var(--firewx-gap)*4));padding:var(--firewx-gap);background:var(--environment-bg);color:var(--c-text);border:1px solid var(--c-border);border-radius:var(--environment-radius);font-size:var(--firewx-font);line-height:1.5;margin-top:var(--firewx-gap)}
+.kt-firewx-control summary{font-weight:700;cursor:pointer}
+.kt-firewx-body{max-height:var(--firewx-height);overflow:auto;overscroll-behavior:contain;overflow-wrap:anywhere}
+.kt-firewx-body p{margin:var(--firewx-gap) 0}
+.kt-firewx-body .btn{margin:var(--firewx-gap) var(--firewx-gap) 0 0}
+.kt-firewx-alert{border-top:1px solid var(--c-border);padding:var(--firewx-gap) 0}
+.kt-firewx-alert h3{margin:0;font-size:1.1em}
+.kt-firewx-alert[data-kind=warning] h3{border-left:6px solid var(--firewx-warning);padding-left:var(--firewx-gap)}
+.kt-firewx-alert[data-kind=watch] h3{border-left:6px dashed var(--firewx-watch);padding-left:var(--firewx-gap)}
+.kt-firewx-stale,.kt-firewx-fixture{font-weight:700;padding:4px var(--firewx-gap);border:2px solid currentColor;border-radius:4px}
+.kt-firewx-stale{color:#7a4a00}.kt-firewx-fixture{color:#4a3b8c}
+.kt-firewx-key{list-style:none;padding:0;margin:var(--firewx-gap) 0}.kt-firewx-key li{display:flex;align-items:center;gap:var(--firewx-gap)}
+.kt-firewx-key i{width:var(--firewx-key);height:var(--firewx-key);display:inline-block;border:3px solid var(--firewx-warning)}.kt-firewx-key i.kt-firewx-key-watch{border:3px dashed var(--firewx-watch)}

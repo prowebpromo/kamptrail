@@ -1,0 +1,1930 @@
+{
+ "fixture": {
+  "synthetic": true,
+  "label": "SYNTHETIC: alerts are invented for edge-case coverage. Zone geometry is real NWS data, thinned.",
+  "reference_time": "2026-11-01T15:00:00Z",
+  "derived_from": [
+   {
+    "file": "captured/zones/fire_COZ214.json",
+    "url": "https://api.weather.gov/zones/fire/COZ214",
+    "retrieved_at": "2026-11-01T14:46:33Z",
+    "sha256": "0c817bceedcf6afa179857150fad08f156002e91f0aac018715d8896591eec6b"
+   },
+   {
+    "file": "captured/zones/fire_CAZ281.json",
+    "url": "https://api.weather.gov/zones/fire/CAZ281",
+    "retrieved_at": "2026-11-01T14:46:34Z",
+    "sha256": "8f0efc4c5a1bcd790377b4ba851a2d9bcd7adf9e46537bb584a1c3f72728fc89"
+   },
+   {
+    "file": "captured/zones/fire_NMZ104.json",
+    "url": "https://api.weather.gov/zones/fire/NMZ104",
+    "retrieved_at": "2026-11-01T14:46:36Z",
+    "sha256": "9272cc7021d99f18bd421b25fc845b9faea6ff932cf3ea2a3032910bd3e788fd"
+   }
+  ]
+ },
+ "cases": {
+  "polygon": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -105.3748,
+          39.13
+         ],
+         [
+          -105.329,
+          38.8684
+         ],
+         [
+          -105.3291,
+          38.6972
+         ],
+         [
+          -105.5804,
+          38.6959
+         ],
+         [
+          -105.889,
+          38.6951
+         ],
+         [
+          -105.9654,
+          38.699
+         ],
+         [
+          -105.9473,
+          38.7195
+         ],
+         [
+          -105.9478,
+          38.7428
+         ],
+         [
+          -105.9409,
+          38.7657
+         ],
+         [
+          -105.9301,
+          38.7787
+         ],
+         [
+          -105.9148,
+          38.7907
+         ],
+         [
+          -105.9116,
+          38.8132
+         ],
+         [
+          -105.9325,
+          38.8327
+         ],
+         [
+          -105.9415,
+          38.8543
+         ],
+         [
+          -105.9258,
+          38.8718
+         ],
+         [
+          -105.947,
+          38.8837
+         ],
+         [
+          -105.9706,
+          38.8832
+         ],
+         [
+          -105.9746,
+          38.8965
+         ],
+         [
+          -105.9725,
+          38.9092
+         ],
+         [
+          -105.9929,
+          39.2237
+         ],
+         [
+          -105.8771,
+          39.3191
+         ],
+         [
+          -105.7622,
+          39.4039
+         ],
+         [
+          -105.6149,
+          39.2343
+         ],
+         [
+          -105.5518,
+          39.2007
+         ],
+         [
+          -105.5254,
+          39.1866
+         ],
+         [
+          -105.5085,
+          39.1781
+         ],
+         [
+          -105.4912,
+          39.1696
+         ],
+         [
+          -105.4729,
+          39.175
+         ],
+         [
+          -105.467,
+          39.1635
+         ],
+         [
+          -105.4576,
+          39.1498
+         ],
+         [
+          -105.4398,
+          39.1353
+         ],
+         [
+          -105.4242,
+          39.1089
+         ],
+         [
+          -105.4089,
+          39.0957
+         ],
+         [
+          -105.3912,
+          39.1002
+         ],
+         [
+          -105.3682,
+          39.097
+         ],
+         [
+          -105.374,
+          39.1219
+         ],
+         [
+          -105.3748,
+          39.13
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "urn:synthetic:polygon",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 1",
+       "areaDesc": "Synthetic polygon area",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 0,
+       "zones": []
+      }
+     }
+    ]
+   }
+  },
+  "zone_only": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+       "id": "urn:synthetic:zone-only",
+       "name": "Fire Weather Watch",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Fire Weather Watch",
+       "headline": "SYNTHETIC Fire Weather Watch (zone only)",
+       "areaDesc": "Synthetic zone-only area",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T18:00:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 2,
+       "zones": [
+        "fire/CAZ281",
+        "fire/NMZ104"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "mixed": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -105.3748,
+          39.13
+         ],
+         [
+          -105.329,
+          38.8684
+         ],
+         [
+          -105.3291,
+          38.6972
+         ],
+         [
+          -105.5804,
+          38.6959
+         ],
+         [
+          -105.889,
+          38.6951
+         ],
+         [
+          -105.9654,
+          38.699
+         ],
+         [
+          -105.9473,
+          38.7195
+         ],
+         [
+          -105.9478,
+          38.7428
+         ],
+         [
+          -105.9409,
+          38.7657
+         ],
+         [
+          -105.9301,
+          38.7787
+         ],
+         [
+          -105.9148,
+          38.7907
+         ],
+         [
+          -105.9116,
+          38.8132
+         ],
+         [
+          -105.9325,
+          38.8327
+         ],
+         [
+          -105.9415,
+          38.8543
+         ],
+         [
+          -105.9258,
+          38.8718
+         ],
+         [
+          -105.947,
+          38.8837
+         ],
+         [
+          -105.9706,
+          38.8832
+         ],
+         [
+          -105.9746,
+          38.8965
+         ],
+         [
+          -105.9725,
+          38.9092
+         ],
+         [
+          -105.9929,
+          39.2237
+         ],
+         [
+          -105.8771,
+          39.3191
+         ],
+         [
+          -105.7622,
+          39.4039
+         ],
+         [
+          -105.6149,
+          39.2343
+         ],
+         [
+          -105.5518,
+          39.2007
+         ],
+         [
+          -105.5254,
+          39.1866
+         ],
+         [
+          -105.5085,
+          39.1781
+         ],
+         [
+          -105.4912,
+          39.1696
+         ],
+         [
+          -105.4729,
+          39.175
+         ],
+         [
+          -105.467,
+          39.1635
+         ],
+         [
+          -105.4576,
+          39.1498
+         ],
+         [
+          -105.4398,
+          39.1353
+         ],
+         [
+          -105.4242,
+          39.1089
+         ],
+         [
+          -105.4089,
+          39.0957
+         ],
+         [
+          -105.3912,
+          39.1002
+         ],
+         [
+          -105.3682,
+          39.097
+         ],
+         [
+          -105.374,
+          39.1219
+         ],
+         [
+          -105.3748,
+          39.13
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "urn:synthetic:polygon",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 1",
+       "areaDesc": "Synthetic polygon area",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 0,
+       "zones": []
+      }
+     },
+     {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+       "id": "urn:synthetic:zone-only",
+       "name": "Fire Weather Watch",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Fire Weather Watch",
+       "headline": "SYNTHETIC Fire Weather Watch (zone only)",
+       "areaDesc": "Synthetic zone-only area",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T18:00:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 2,
+       "zones": [
+        "fire/CAZ281",
+        "fire/NMZ104"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "expired": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+       "id": "urn:synthetic:expired",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 3",
+       "areaDesc": "Synthetic area 3",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-01T14:59:00Z",
+       "ends": "2026-11-01T14:59:00Z",
+       "references": [],
+       "zone_count": 0,
+       "zones": []
+      }
+     },
+     {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+       "id": "urn:synthetic:ended-early",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 4",
+       "areaDesc": "Synthetic area 4",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-01T14:55:00Z",
+       "references": [],
+       "zone_count": 0,
+       "zones": []
+      }
+     },
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -105.3748,
+          39.13
+         ],
+         [
+          -105.329,
+          38.8684
+         ],
+         [
+          -105.3291,
+          38.6972
+         ],
+         [
+          -105.5804,
+          38.6959
+         ],
+         [
+          -105.889,
+          38.6951
+         ],
+         [
+          -105.9654,
+          38.699
+         ],
+         [
+          -105.9473,
+          38.7195
+         ],
+         [
+          -105.9478,
+          38.7428
+         ],
+         [
+          -105.9409,
+          38.7657
+         ],
+         [
+          -105.9301,
+          38.7787
+         ],
+         [
+          -105.9148,
+          38.7907
+         ],
+         [
+          -105.9116,
+          38.8132
+         ],
+         [
+          -105.9325,
+          38.8327
+         ],
+         [
+          -105.9415,
+          38.8543
+         ],
+         [
+          -105.9258,
+          38.8718
+         ],
+         [
+          -105.947,
+          38.8837
+         ],
+         [
+          -105.9706,
+          38.8832
+         ],
+         [
+          -105.9746,
+          38.8965
+         ],
+         [
+          -105.9725,
+          38.9092
+         ],
+         [
+          -105.9929,
+          39.2237
+         ],
+         [
+          -105.8771,
+          39.3191
+         ],
+         [
+          -105.7622,
+          39.4039
+         ],
+         [
+          -105.6149,
+          39.2343
+         ],
+         [
+          -105.5518,
+          39.2007
+         ],
+         [
+          -105.5254,
+          39.1866
+         ],
+         [
+          -105.5085,
+          39.1781
+         ],
+         [
+          -105.4912,
+          39.1696
+         ],
+         [
+          -105.4729,
+          39.175
+         ],
+         [
+          -105.467,
+          39.1635
+         ],
+         [
+          -105.4576,
+          39.1498
+         ],
+         [
+          -105.4398,
+          39.1353
+         ],
+         [
+          -105.4242,
+          39.1089
+         ],
+         [
+          -105.4089,
+          39.0957
+         ],
+         [
+          -105.3912,
+          39.1002
+         ],
+         [
+          -105.3682,
+          39.097
+         ],
+         [
+          -105.374,
+          39.1219
+         ],
+         [
+          -105.3748,
+          39.13
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "urn:synthetic:polygon",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 1",
+       "areaDesc": "Synthetic polygon area",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 0,
+       "zones": []
+      }
+     }
+    ]
+   }
+  },
+  "cancelled": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -105.3748,
+          39.13
+         ],
+         [
+          -105.329,
+          38.8684
+         ],
+         [
+          -105.3291,
+          38.6972
+         ],
+         [
+          -105.5804,
+          38.6959
+         ],
+         [
+          -105.889,
+          38.6951
+         ],
+         [
+          -105.9654,
+          38.699
+         ],
+         [
+          -105.9473,
+          38.7195
+         ],
+         [
+          -105.9478,
+          38.7428
+         ],
+         [
+          -105.9409,
+          38.7657
+         ],
+         [
+          -105.9301,
+          38.7787
+         ],
+         [
+          -105.9148,
+          38.7907
+         ],
+         [
+          -105.9116,
+          38.8132
+         ],
+         [
+          -105.9325,
+          38.8327
+         ],
+         [
+          -105.9415,
+          38.8543
+         ],
+         [
+          -105.9258,
+          38.8718
+         ],
+         [
+          -105.947,
+          38.8837
+         ],
+         [
+          -105.9706,
+          38.8832
+         ],
+         [
+          -105.9746,
+          38.8965
+         ],
+         [
+          -105.9725,
+          38.9092
+         ],
+         [
+          -105.9929,
+          39.2237
+         ],
+         [
+          -105.8771,
+          39.3191
+         ],
+         [
+          -105.7622,
+          39.4039
+         ],
+         [
+          -105.6149,
+          39.2343
+         ],
+         [
+          -105.5518,
+          39.2007
+         ],
+         [
+          -105.5254,
+          39.1866
+         ],
+         [
+          -105.5085,
+          39.1781
+         ],
+         [
+          -105.4912,
+          39.1696
+         ],
+         [
+          -105.4729,
+          39.175
+         ],
+         [
+          -105.467,
+          39.1635
+         ],
+         [
+          -105.4576,
+          39.1498
+         ],
+         [
+          -105.4398,
+          39.1353
+         ],
+         [
+          -105.4242,
+          39.1089
+         ],
+         [
+          -105.4089,
+          39.0957
+         ],
+         [
+          -105.3912,
+          39.1002
+         ],
+         [
+          -105.3682,
+          39.097
+         ],
+         [
+          -105.374,
+          39.1219
+         ],
+         [
+          -105.3748,
+          39.13
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "urn:synthetic:to-cancel",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 5",
+       "areaDesc": "Synthetic area 5",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 0,
+       "zones": []
+      }
+     },
+     {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+       "id": "urn:synthetic:cancel-message",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC cancellation",
+       "areaDesc": "Synthetic area 6",
+       "severity": "Severe",
+       "messageType": "Cancel",
+       "status": "Actual",
+       "sent": "2026-11-01T14:50:00Z",
+       "effective": "2026-11-01T14:50:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-01T14:50:00Z",
+       "ends": null,
+       "references": [
+        "urn:synthetic:to-cancel"
+       ],
+       "zone_count": 0,
+       "zones": []
+      }
+     }
+    ]
+   }
+  },
+  "updated": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -105.3748,
+          39.13
+         ],
+         [
+          -105.329,
+          38.8684
+         ],
+         [
+          -105.3291,
+          38.6972
+         ],
+         [
+          -105.5804,
+          38.6959
+         ],
+         [
+          -105.889,
+          38.6951
+         ],
+         [
+          -105.9654,
+          38.699
+         ],
+         [
+          -105.9473,
+          38.7195
+         ],
+         [
+          -105.9478,
+          38.7428
+         ],
+         [
+          -105.9409,
+          38.7657
+         ],
+         [
+          -105.9301,
+          38.7787
+         ],
+         [
+          -105.9148,
+          38.7907
+         ],
+         [
+          -105.9116,
+          38.8132
+         ],
+         [
+          -105.9325,
+          38.8327
+         ],
+         [
+          -105.9415,
+          38.8543
+         ],
+         [
+          -105.9258,
+          38.8718
+         ],
+         [
+          -105.947,
+          38.8837
+         ],
+         [
+          -105.9706,
+          38.8832
+         ],
+         [
+          -105.9746,
+          38.8965
+         ],
+         [
+          -105.9725,
+          38.9092
+         ],
+         [
+          -105.9929,
+          39.2237
+         ],
+         [
+          -105.8771,
+          39.3191
+         ],
+         [
+          -105.7622,
+          39.4039
+         ],
+         [
+          -105.6149,
+          39.2343
+         ],
+         [
+          -105.5518,
+          39.2007
+         ],
+         [
+          -105.5254,
+          39.1866
+         ],
+         [
+          -105.5085,
+          39.1781
+         ],
+         [
+          -105.4912,
+          39.1696
+         ],
+         [
+          -105.4729,
+          39.175
+         ],
+         [
+          -105.467,
+          39.1635
+         ],
+         [
+          -105.4576,
+          39.1498
+         ],
+         [
+          -105.4398,
+          39.1353
+         ],
+         [
+          -105.4242,
+          39.1089
+         ],
+         [
+          -105.4089,
+          39.0957
+         ],
+         [
+          -105.3912,
+          39.1002
+         ],
+         [
+          -105.3682,
+          39.097
+         ],
+         [
+          -105.374,
+          39.1219
+         ],
+         [
+          -105.3748,
+          39.13
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "urn:synthetic:original",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC original",
+       "areaDesc": "Synthetic area 7",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 0,
+       "zones": []
+      }
+     },
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -105.3748,
+          39.13
+         ],
+         [
+          -105.329,
+          38.8684
+         ],
+         [
+          -105.3291,
+          38.6972
+         ],
+         [
+          -105.5804,
+          38.6959
+         ],
+         [
+          -105.889,
+          38.6951
+         ],
+         [
+          -105.9654,
+          38.699
+         ],
+         [
+          -105.9473,
+          38.7195
+         ],
+         [
+          -105.9478,
+          38.7428
+         ],
+         [
+          -105.9409,
+          38.7657
+         ],
+         [
+          -105.9301,
+          38.7787
+         ],
+         [
+          -105.9148,
+          38.7907
+         ],
+         [
+          -105.9116,
+          38.8132
+         ],
+         [
+          -105.9325,
+          38.8327
+         ],
+         [
+          -105.9415,
+          38.8543
+         ],
+         [
+          -105.9258,
+          38.8718
+         ],
+         [
+          -105.947,
+          38.8837
+         ],
+         [
+          -105.9706,
+          38.8832
+         ],
+         [
+          -105.9746,
+          38.8965
+         ],
+         [
+          -105.9725,
+          38.9092
+         ],
+         [
+          -105.9929,
+          39.2237
+         ],
+         [
+          -105.8771,
+          39.3191
+         ],
+         [
+          -105.7622,
+          39.4039
+         ],
+         [
+          -105.6149,
+          39.2343
+         ],
+         [
+          -105.5518,
+          39.2007
+         ],
+         [
+          -105.5254,
+          39.1866
+         ],
+         [
+          -105.5085,
+          39.1781
+         ],
+         [
+          -105.4912,
+          39.1696
+         ],
+         [
+          -105.4729,
+          39.175
+         ],
+         [
+          -105.467,
+          39.1635
+         ],
+         [
+          -105.4576,
+          39.1498
+         ],
+         [
+          -105.4398,
+          39.1353
+         ],
+         [
+          -105.4242,
+          39.1089
+         ],
+         [
+          -105.4089,
+          39.0957
+         ],
+         [
+          -105.3912,
+          39.1002
+         ],
+         [
+          -105.3682,
+          39.097
+         ],
+         [
+          -105.374,
+          39.1219
+         ],
+         [
+          -105.3748,
+          39.13
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "urn:synthetic:update",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC update replaces original",
+       "areaDesc": "Synthetic area 8",
+       "severity": "Severe",
+       "messageType": "Update",
+       "status": "Actual",
+       "sent": "2026-11-01T14:55:00Z",
+       "effective": "2026-11-01T14:55:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [
+        "urn:synthetic:original"
+       ],
+       "zone_count": 0,
+       "zones": []
+      }
+     }
+    ]
+   }
+  },
+  "empty": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": []
+   }
+  },
+  "geometry_failure": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+       "id": "urn:synthetic:zone-fail",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 9",
+       "areaDesc": "Synthetic zone-only area, zone fetch fails",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 1,
+       "zones": [
+        "fire/COZ214"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "partial_zones": {
+   "ok": true,
+   "version": 1,
+   "kind": "firewx",
+   "partial": false,
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service active alerts",
+    "url": "https://www.weather.gov/fire/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+       "id": "urn:synthetic:partial",
+       "name": "Red Flag Warning",
+       "source_updated_at": "2026-11-01T14:00:00Z",
+       "event": "Red Flag Warning",
+       "headline": "SYNTHETIC Red Flag Warning 10",
+       "areaDesc": "Synthetic partly resolved area",
+       "severity": "Severe",
+       "messageType": "Alert",
+       "status": "Actual",
+       "sent": "2026-11-01T14:00:00Z",
+       "effective": "2026-11-01T14:00:00Z",
+       "onset": "2026-11-01T14:30:00Z",
+       "expires": "2026-11-02T01:00:00Z",
+       "ends": "2026-11-02T01:00:00Z",
+       "references": [],
+       "zone_count": 2,
+       "zones": [
+        "fire/CAZ281",
+        "fire/COZ214"
+       ]
+      }
+     }
+    ]
+   }
+  }
+ },
+ "zones": {
+  "fire/COZ214": {
+   "ok": true,
+   "version": 1,
+   "kind": "zone",
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service zone",
+    "url": "https://www.weather.gov/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -105.3748,
+          39.13
+         ],
+         [
+          -105.329,
+          38.8684
+         ],
+         [
+          -105.3291,
+          38.6972
+         ],
+         [
+          -105.5804,
+          38.6959
+         ],
+         [
+          -105.889,
+          38.6951
+         ],
+         [
+          -105.9654,
+          38.699
+         ],
+         [
+          -105.9473,
+          38.7195
+         ],
+         [
+          -105.9478,
+          38.7428
+         ],
+         [
+          -105.9409,
+          38.7657
+         ],
+         [
+          -105.9301,
+          38.7787
+         ],
+         [
+          -105.9148,
+          38.7907
+         ],
+         [
+          -105.9116,
+          38.8132
+         ],
+         [
+          -105.9325,
+          38.8327
+         ],
+         [
+          -105.9415,
+          38.8543
+         ],
+         [
+          -105.9258,
+          38.8718
+         ],
+         [
+          -105.947,
+          38.8837
+         ],
+         [
+          -105.9706,
+          38.8832
+         ],
+         [
+          -105.9746,
+          38.8965
+         ],
+         [
+          -105.9725,
+          38.9092
+         ],
+         [
+          -105.9929,
+          39.2237
+         ],
+         [
+          -105.8771,
+          39.3191
+         ],
+         [
+          -105.7622,
+          39.4039
+         ],
+         [
+          -105.6149,
+          39.2343
+         ],
+         [
+          -105.5518,
+          39.2007
+         ],
+         [
+          -105.5254,
+          39.1866
+         ],
+         [
+          -105.5085,
+          39.1781
+         ],
+         [
+          -105.4912,
+          39.1696
+         ],
+         [
+          -105.4729,
+          39.175
+         ],
+         [
+          -105.467,
+          39.1635
+         ],
+         [
+          -105.4576,
+          39.1498
+         ],
+         [
+          -105.4398,
+          39.1353
+         ],
+         [
+          -105.4242,
+          39.1089
+         ],
+         [
+          -105.4089,
+          39.0957
+         ],
+         [
+          -105.3912,
+          39.1002
+         ],
+         [
+          -105.3682,
+          39.097
+         ],
+         [
+          -105.374,
+          39.1219
+         ],
+         [
+          -105.3748,
+          39.13
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "COZ214",
+       "name": "Central and Southeast Park County",
+       "state": "CO"
+      }
+     }
+    ]
+   }
+  },
+  "fire/CAZ281": {
+   "ok": true,
+   "version": 1,
+   "kind": "zone",
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service zone",
+    "url": "https://www.weather.gov/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -122.3376,
+          42.0087
+         ],
+         [
+          -122.3482,
+          41.7483
+         ],
+         [
+          -122.3521,
+          41.6667
+         ],
+         [
+          -122.3429,
+          41.593
+         ],
+         [
+          -122.335,
+          41.5282
+         ],
+         [
+          -122.3337,
+          41.4574
+         ],
+         [
+          -122.3414,
+          41.4206
+         ],
+         [
+          -122.3684,
+          41.3969
+         ],
+         [
+          -122.3884,
+          41.3832
+         ],
+         [
+          -122.4086,
+          41.3751
+         ],
+         [
+          -122.4451,
+          41.3675
+         ],
+         [
+          -122.493,
+          41.3639
+         ],
+         [
+          -122.5456,
+          41.3636
+         ],
+         [
+          -122.561,
+          41.4156
+         ],
+         [
+          -122.5897,
+          41.4643
+         ],
+         [
+          -122.637,
+          41.5205
+         ],
+         [
+          -122.7148,
+          41.5917
+         ],
+         [
+          -122.7843,
+          41.6645
+         ],
+         [
+          -122.8141,
+          41.7026
+         ],
+         [
+          -122.8421,
+          41.7766
+         ],
+         [
+          -122.8546,
+          41.8304
+         ],
+         [
+          -122.8604,
+          41.9144
+         ],
+         [
+          -122.84,
+          42.0034
+         ],
+         [
+          -122.8175,
+          42.0036
+         ],
+         [
+          -122.7924,
+          42.0041
+         ],
+         [
+          -122.7523,
+          42.0041
+         ],
+         [
+          -122.6535,
+          42.0048
+         ],
+         [
+          -122.5239,
+          42.0079
+         ],
+         [
+          -122.4444,
+          42.0084
+         ],
+         [
+          -122.3774,
+          42.0095
+         ],
+         [
+          -122.3376,
+          42.0087
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "CAZ281",
+       "name": "Central Siskiyou County Including Shasta Valley",
+       "state": "CA"
+      }
+     }
+    ]
+   }
+  },
+  "fire/NMZ104": {
+   "ok": true,
+   "version": 1,
+   "kind": "zone",
+   "retrieved_at": "2026-11-01T15:00:00Z",
+   "source": {
+    "name": "National Weather Service zone",
+    "url": "https://www.weather.gov/"
+   },
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -103.0017,
+          36.9999
+         ],
+         [
+          -103.0019,
+          36.5004
+         ],
+         [
+          -103.0417,
+          35.8141
+         ],
+         [
+          -103.3753,
+          35.6667
+         ],
+         [
+          -103.637,
+          35.3607
+         ],
+         [
+          -104.1358,
+          35.2157
+         ],
+         [
+          -105.2848,
+          35.2163
+         ],
+         [
+          -104.7749,
+          35.4384
+         ],
+         [
+          -104.4152,
+          35.7218
+         ],
+         [
+          -104.3637,
+          35.794
+         ],
+         [
+          -104.3672,
+          35.8302
+         ],
+         [
+          -104.3771,
+          35.8413
+         ],
+         [
+          -104.3796,
+          35.8691
+         ],
+         [
+          -104.3617,
+          35.89
+         ],
+         [
+          -104.3446,
+          35.9136
+         ],
+         [
+          -104.3486,
+          35.929
+         ],
+         [
+          -104.3451,
+          35.9554
+         ],
+         [
+          -104.3546,
+          35.9869
+         ],
+         [
+          -104.3621,
+          36.0196
+         ],
+         [
+          -104.377,
+          36.0673
+         ],
+         [
+          -104.4013,
+          36.105
+         ],
+         [
+          -104.418,
+          36.1454
+         ],
+         [
+          -104.4198,
+          36.1676
+         ],
+         [
+          -104.4344,
+          36.1906
+         ],
+         [
+          -104.4325,
+          36.2187
+         ],
+         [
+          -104.0091,
+          36.262
+         ],
+         [
+          -103.982,
+          36.4954
+         ],
+         [
+          -103.9085,
+          36.506
+         ],
+         [
+          -103.8494,
+          36.5144
+         ],
+         [
+          -103.8495,
+          36.5775
+         ],
+         [
+          -103.7862,
+          36.605
+         ],
+         [
+          -103.7618,
+          36.6572
+         ],
+         [
+          -103.7954,
+          36.7079
+         ],
+         [
+          -103.7868,
+          36.7701
+         ],
+         [
+          -103.8026,
+          36.8266
+         ],
+         [
+          -103.7993,
+          36.8508
+         ],
+         [
+          -103.8028,
+          36.9118
+         ],
+         [
+          -103.8179,
+          36.9973
+         ],
+         [
+          -103.0017,
+          36.9999
+         ]
+        ]
+       ]
+      },
+      "properties": {
+       "id": "NMZ104",
+       "name": "Northeast Plains",
+       "state": "NM"
+      }
+     }
+    ]
+   }
+  }
+ }
+}

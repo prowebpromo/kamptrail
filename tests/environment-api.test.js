@@ -27,7 +27,13 @@ test('environment transport is fixed HTTPS, bounded, no redirects or fixture byp
     assert.match(code, /CURLOPT_FOLLOWLOCATION => false/);
     assert.match(code, /CURLOPT_PROTOCOLS => CURLPROTO_HTTPS/);
     assert.match(code, /CURLOPT_SSL_VERIFYPEER => true/);
-    assert.match(code, /strlen\(\$body\) \+ strlen\(\$chunk\) > KE_MAX_BYTES/);
+    assert.match(code, /strlen\(\$body\) \+ strlen\(\$chunk\) > \$limit/);
+    assert.match(code, /\$limit = .*KE_FIREWX_MAX_BYTES : KE_MAX_BYTES/);
+    // NWS asks for an app-identifying User-Agent. A project URL is enough, and no personal address belongs in it.
+    const agent = code.match(/CURLOPT_USERAGENT => '([^']+)'/)[1];
+    assert.match(agent, /^KampTrail\/1\.0 \(https:\/\/kamptrail\.com/);
+    assert.doesNotMatch(agent, /@/);
+    assert.match(code, /CURLOPT_HEADERFUNCTION/);
     assert.doesNotMatch(code, /getenv\(|kt_config\(|kt_db\(/);
 });
 
@@ -185,6 +191,107 @@ test('environment cache expires without stale fallback, caches failures, bounds 
         for($i=0;$i<100;$i++) ke_cached(['kind'=>'alerts','lat'=>$i/100,'lng'=>0],$dir,$fetch,3000+2*$i);
         check(count(glob($dir.'/*.json'))<=KE_CACHE_SLOTS);
         check(count(scandir($dir))<=KE_CACHE_SLOTS+3);
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+const fixtures = path.join(root, 'tests/fixtures/fire-weather');
+const captured = (name) => JSON.stringify(fs.readFileSync(path.join(fixtures, 'captured', name), 'utf8'));
+
+test('fire-weather queries accept only the fixed national query and a strict zone path', { skip: !capable }, () => {
+    php(`
+    check(ke_query(['kind'=>'firewx'])===['kind'=>'firewx']);
+    check(ke_query(['kind'=>'zone','zone'=>'fire/COZ214'])===['kind'=>'zone','zone'=>'fire/COZ214']);
+    foreach([['kind'=>'firewx','bbox'=>'1,2,3,4'],['kind'=>'firewx','url'=>'https://example.com'],['kind'=>'zone'],['kind'=>'zone','zone'=>'../alerts'],['kind'=>'zone','zone'=>'fire/coz214'],['kind'=>'zone','zone'=>'marine/COZ214'],['kind'=>'zone','zone'=>'fire/COZ214/x'],['kind'=>'zone','zone'=>['fire/COZ214']],['kind'=>'zone','zone'=>"fire/COZ214\n"]] as $q) rejects(fn()=>ke_query($q),'invalid_query');
+    // Transport refuses any base that is not a fixed source or a validated zone path.
+    rejects(fn()=>ke_http('https://api.weather.gov/zones/fire/../../alerts',[]),'upstream_unavailable');
+    rejects(fn()=>ke_http('https://example.com/',[]),'upstream_unavailable');
+    `);
+});
+
+test('fire-weather normalizer keeps polygon, zone-only and cancel messages, drops expired, test and other events', { skip: !capable }, () => {
+    php(`
+    $now=strtotime('2026-11-01T15:00:00Z');
+    $base=['status'=>'Actual','messageType'=>'Alert','event'=>'Red Flag Warning','headline'=>'Red Flag Warning issued','areaDesc'=>'Test area','severity'=>'Severe','sent'=>'2026-11-01T14:00:00Z','effective'=>'2026-11-01T14:00:00Z','onset'=>'2026-11-01T16:00:00Z','expires'=>'2026-11-02T03:00:00Z','ends'=>'2026-11-02T03:00:00Z','description'=>'long text','instruction'=>'do not include','id'=>'urn:a:1','affectedZones'=>['https://api.weather.gov/zones/fire/COZ214','https://api.weather.gov/zones/fire/COZ214','https://example.com/zones/fire/COZ215','https://api.weather.gov/zones/fire/../x']];
+    $mk=function(array $over,$geometry=null) use($base){return ['type'=>'Feature','id'=>'x','geometry'=>$geometry,'properties'=>array_merge($base,$over)];};
+    $collection['features']=[
+      $mk(['id'=>'urn:a:1'],$polygon),
+      $mk(['id'=>'urn:a:2','event'=>'Fire Weather Watch']),
+      $mk(['id'=>'urn:a:3','expires'=>'2026-11-01T14:59:59Z','ends'=>null]),
+      $mk(['id'=>'urn:a:4','status'=>'Test']),
+      $mk(['id'=>'urn:a:5','event'=>'Small Craft Advisory']),
+      $mk(['id'=>'urn:a:6','messageType'=>'Cancel','expires'=>'2026-11-01T14:00:00Z','ends'=>null,'references'=>[['identifier'=>'urn:a:1'],['identifier'=>7]]]),
+      $mk(['id'=>'urn:a:7','messageType'=>'Ack']),
+    ];
+    $out=ke_normalize('firewx',$collection,$now)['features'];
+    check(array_column(array_column($out,'properties'),'id')===['urn:a:1','urn:a:2','urn:a:6'], json_encode(array_column(array_column($out,'properties'),'id')));
+    check($out[0]['geometry']['type']==='Polygon' && $out[1]['geometry']===null);
+    check($out[1]['properties']['zones']===['fire/COZ214'] && $out[1]['properties']['zone_count']===1);
+    check(!array_key_exists('description',$out[0]['properties']) && !array_key_exists('instruction',$out[0]['properties']));
+    check($out[2]['properties']['messageType']==='Cancel' && $out[2]['properties']['references']===['urn:a:1']);
+    $collection['features']=[$mk(['expires'=>null,'ends'=>null])];
+    rejects(fn()=>ke_normalize('firewx',$collection,$now),'upstream_unavailable');
+    $collection['features']=[$mk([],['type'=>'Point','coordinates'=>[1,2]])];
+    rejects(fn()=>ke_normalize('firewx',$collection,$now),'upstream_unavailable');
+    $collection['features']=[];
+    check(ke_normalize('firewx',$collection,$now)['features']===[]);
+    `);
+});
+
+test('real captured empty NWS responses and the real alert schema pass through the fire-weather normalizer', { skip: !capable }, () => {
+    php(`
+    $now=strtotime('2026-11-01T15:00:00Z');
+    $raw=json_decode(${captured('alerts/red-flag-warning-p1.json')},true);
+    $result=ke_fetch(['kind'=>'firewx'],function($url,$q)use($raw){check($url===KE_ALERTS);check($q===['event'=>'Red Flag Warning,Fire Weather Watch','status'=>'actual']);return $raw;},$now);
+    check($result['ok']===true && $result['kind']==='firewx' && $result['data']['features']===[] && $result['partial']===false);
+    // A real, non-fire alert is excluded. The same real record with only its event rewritten is a SYNTHETIC test input.
+    $real=json_decode(${captured('alerts/small-craft-advisory-p1.json')},true);
+    check(ke_normalize('firewx',$real,$now)['features']===[]);
+    $real['features'][0]['properties']['event']='Red Flag Warning';
+    $real['features'][0]['properties']['expires']='2026-11-02T03:00:00Z'; $real['features'][0]['properties']['ends']=null;
+    $real['features'][0]['properties']['affectedZones']=['https://api.weather.gov/zones/fire/COZ214'];
+    $out=ke_normalize('firewx',$real,$now)['features'];
+    check(count($out)===1 && $out[0]['properties']['zones']===['fire/COZ214'] && $out[0]['geometry']===null);
+    `);
+});
+
+test('real captured NWS zone geometry resolves, is simplified under budget, and mismatches are refused', { skip: !capable }, () => {
+    php(`
+    $now=strtotime('2026-11-01T15:00:00Z');
+    foreach([['fire/COZ214',${captured('zones/fire_COZ214.json')}],['fire/CAZ281',${captured('zones/fire_CAZ281.json')}],['fire/NMZ104',${captured('zones/fire_NMZ104.json')}]] as [$zone,$body]){
+      $raw=json_decode($body,true);
+      $result=ke_fetch(['kind'=>'zone','zone'=>$zone],function($url,$q)use($zone,$raw){check($url===KE_ZONE_BASE.$zone && $q===[]);return $raw;},$now);
+      $g=$result['data']['features'][0]['geometry']; check(in_array($g['type'],['Polygon','MultiPolygon'],true));
+      $rings=$g['type']==='Polygon'?$g['coordinates']:array_merge(...$g['coordinates']);
+      foreach($rings as $ring){check(count($ring)>=4 && count($ring)<=1501 && $ring[0]===$ring[count($ring)-1]);}
+      check($result['data']['features'][0]['properties']['id']===substr($zone,5));
+    }
+    $raw=json_decode(${captured('zones/fire_COZ214.json')},true);
+    rejects(fn()=>ke_fetch(['kind'=>'zone','zone'=>'fire/COZ999'],fn($u,$q)=>$raw,$now),'upstream_unavailable');
+    $raw['geometry']=null;
+    rejects(fn()=>ke_fetch(['kind'=>'zone','zone'=>'fire/COZ214'],fn($u,$q)=>$raw,$now),'upstream_unavailable');
+    `);
+});
+
+test('fire-weather cache follows upstream max-age within bounds, drops expired alerts but keeps cancels, and honors Retry-After', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-firewx-'));
+    try {
+        php(`
+        check(ke_ttl('firewx',null)===300 && ke_ttl('firewx',30)===300 && ke_ttl('firewx',450)===450 && ke_ttl('firewx',99999)===600);
+        check(ke_ttl('zone',null)===3600 && ke_ttl('zone',1051363)===86400 && ke_ttl('zone',7200)===7200);
+        check(ke_ttl('alerts',9999)===300 && ke_ttl('smoke',null)===900);
+        $dir=${JSON.stringify(directory)}; $q=['kind'=>'firewx'];
+        $feature=fn($id,$type,$exp)=>['properties'=>['id'=>$id,'messageType'=>$type,'expires'=>$exp,'ends'=>null]];
+        $fetch=static fn($qq,$now)=>['data'=>['features'=>[$feature('a','Alert',gmdate('c',2820)),$feature('b','Alert',gmdate('c',9000)),$feature('c','Cancel',gmdate('c',2000))]]];
+        $ids=fn($r)=>array_column(array_column($r['data']['features'],'properties'),'id');
+        check($ids(ke_cached($q,$dir,$fetch,2800))===['a','b','c']);
+        check($ids(ke_cached($q,$dir,$fetch,2821))===['b','c']);
+        // Rate limited upstream: failure is cached for Retry-After (bounded), then retried.
+        $calls=0; $limited=function($qq,$now)use(&$calls){$calls++;$GLOBALS['ke_upstream_meta']=['max_age'=>null,'retry_after'=>120];throw new KeException('rate_limited',503);};
+        $dir2=${JSON.stringify(directory + '/b')};
+        rejects(fn()=>ke_cached($q,$dir2,$limited,5000),'rate_limited'); check($calls===1);
+        rejects(fn()=>ke_cached($q,$dir2,$limited,5100),'rate_limited'); check($calls===1);
+        ke_cached($q,$dir2,$fetch,5121); 
         `);
     } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });

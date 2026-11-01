@@ -1,0 +1,181 @@
+'use strict';
+const test = require('node:test'), assert = require('node:assert/strict'), vm = require('node:vm'), fs = require('node:fs'), path = require('node:path'), crypto = require('node:crypto');
+const fx = require('./fixtures/fire-weather/load.js');
+const root = path.resolve(__dirname, '..');
+function load() {
+  const c = { window: {}, URLSearchParams, Date, Object, Number, String, Set, Map, Array, JSON, Math, Error, matchMedia: () => ({ matches: false }) };
+  c.window = c; c.globalThis = c; vm.createContext(c);
+  for (const f of ['environment.js', 'firewx.js']) vm.runInContext(fs.readFileSync(path.join(root, f), 'utf8'), c);
+  return { fw: c.KampTrailFireWeather, env: c.KampTrailEnvironment };
+}
+const { fw, env } = load();
+const NOW = fx.reference;                       // every fixture is evaluated at its own reference time
+const ids = list => Array.from(list, a => a.id);
+const feat = (over = {}, geometry = null) => ({ type: 'Feature', geometry, properties: { id: 'x', event: 'Red Flag Warning', messageType: 'Alert', expires: new Date(NOW + 3600000).toISOString(), ends: null, ...over } });
+
+test('parsing: polygon and zone-only synthetic payloads validate and keep geometry null for zone-only alerts', () => {
+  for (const name of ['polygon', 'zone_only', 'mixed', 'empty', 'expired', 'cancelled', 'updated', 'geometry_failure', 'partial_zones']) assert.doesNotThrow(() => fw.validate(fx.payload(name), NOW), name);
+  const { alerts } = fw.select(fx.payload('mixed').data.features, NOW);
+  const byId = Object.fromEntries(alerts.map(a => [a.id, a]));
+  assert.equal(byId['urn:synthetic:polygon'].geometry.type, 'Polygon');
+  assert.equal(byId['urn:synthetic:zone-only'].geometry, null);
+  assert.deepEqual(byId['urn:synthetic:zone-only'].zones, ['fire/CAZ281', 'fire/NMZ104']);
+});
+
+test('parsing: malformed, partial, wrong-kind, future and oversize snapshots are rejected', () => {
+  const good = fx.payload('polygon');
+  const bad = [
+    { ...good, partial: true }, { ...good, kind: 'fire' }, { ...good, ok: false }, { ...good, version: 2 }, { ...good, retrieved_at: 'nope' },
+    { ...good, retrieved_at: new Date(NOW + 120000).toISOString() },
+    { ...good, data: { type: 'FeatureCollection', features: new Array(501).fill(good.data.features[0]) } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({ event: 'Special Weather Statement' })] } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({ id: '' })] } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({ messageType: 'Ack' })] } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({ expires: null, ends: null })] } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({ zones: ['../etc/passwd'] })] } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({ zones: new Array(61).fill('fire/COZ214') })] } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({}, { type: 'Point', coordinates: [1, 2] })] } },
+    { ...good, data: { type: 'FeatureCollection', features: [feat({}, { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [2, 2]]] })] } },
+    null,
+  ];
+  for (const b of bad) assert.throws(() => fw.validate(b, NOW), JSON.stringify(b)?.slice(0, 80));
+});
+
+test('expiry: expired alerts and alerts whose event ended early are never active', () => {
+  const { alerts, hidden } = fw.select(fx.payload('expired').data.features, NOW);
+  assert.deepEqual(ids(alerts), ['urn:synthetic:polygon']);
+  assert.equal(hidden.expired, 2);
+  const f = [feat({ id: 'a', expires: new Date(NOW + 1000).toISOString() })];
+  assert.equal(fw.select(f, NOW).alerts.length, 1);
+  assert.equal(fw.select(f, NOW + 1000).alerts.length, 0, 'expires exactly now is expired');
+  assert.equal(fw.select(f, NOW + 5000).hidden.expired, 1);
+  assert.equal(fw.select([feat({ id: 'b', expires: null, ends: new Date(NOW - 1).toISOString() })], NOW).alerts.length, 0);
+});
+
+test('cancellation and updates: cancelled and superseded alerts are hidden and counted', () => {
+  const c = fw.select(fx.payload('cancelled').data.features, NOW);
+  assert.deepEqual(ids(c.alerts), []); assert.equal(c.hidden.cancelled, 1);
+  const u = fw.select(fx.payload('updated').data.features, NOW);
+  assert.deepEqual(ids(u.alerts), ['urn:synthetic:update']); assert.equal(u.hidden.superseded, 1);
+  // A Cancel message is never itself an alert, even if its own expiry is in the future.
+  const only = fw.select([feat({ id: 'k', messageType: 'Cancel', references: ['gone'] })], NOW);
+  assert.equal(only.alerts.length, 0);
+  // Same id sent twice keeps the later message.
+  const dup = fw.select([feat({ id: 'd', sent: '2026-11-01T10:00:00Z', headline: 'old' }), feat({ id: 'd', sent: '2026-11-01T12:00:00Z', headline: 'new' })], NOW);
+  assert.equal(dup.alerts.length, 1); assert.equal(dup.alerts[0].headline, 'new');
+});
+
+test('status: a watch with a future onset is "upcoming", warnings sort before watches, empty stays empty', () => {
+  const m = fw.select(fx.payload('mixed').data.features, NOW);
+  assert.deepEqual(ids(m.alerts), ['urn:synthetic:polygon', 'urn:synthetic:zone-only']);
+  assert.equal(m.alerts[0].status, 'active'); assert.equal(m.alerts[1].status, 'upcoming');
+  const e = fw.select(fx.payload('empty').data.features, NOW);
+  assert.deepEqual([e.alerts.length, e.hidden.cancelled + e.hidden.expired + e.hidden.superseded], [0, 0]);
+});
+
+test('zone resolution: only zone-only alerts request zones, within a budget, and resolved zones draw as one multipolygon', () => {
+  const { alerts } = fw.select(fx.payload('mixed').data.features, NOW);
+  const cache = new Map();
+  assert.deepEqual(Array.from(fw.neededZones(alerts, cache, NOW)), ['fire/CAZ281', 'fire/NMZ104']);   // the polygon alert asks for nothing
+  assert.equal(fw.neededZones(alerts, cache, NOW, 1).length, 1);
+  const zoneAlert = alerts[1];
+  assert.equal(fw.resolveShape(zoneAlert, cache, NOW).state, 'pending');
+  cache.set('fire/CAZ281', { geometry: fw.validateZone(fx.zone('fire/CAZ281'), 'fire/CAZ281'), at: NOW });
+  let shape = fw.resolveShape(zoneAlert, cache, NOW);
+  assert.equal(shape.state, 'partial'); assert.equal(shape.resolved, 1);
+  cache.set('fire/NMZ104', { geometry: fw.validateZone(fx.zone('fire/NMZ104'), 'fire/NMZ104'), at: NOW });
+  shape = fw.resolveShape(zoneAlert, cache, NOW);
+  assert.equal(shape.state, 'zones'); assert.equal(shape.geometry.type, 'MultiPolygon'); assert.equal(shape.geometry.coordinates.length, 2);
+  assert.equal(fw.neededZones(alerts, cache, NOW).length, 0, 'resolved zones are not requested again');
+  assert.equal(fw.resolveShape(alerts[0], cache, NOW).state, 'polygon');
+  assert.equal(fw.resolveShape({ ...zoneAlert, zones: [], zoneCount: 0 }, cache, NOW).state, 'none');
+  // Zone responses must match the requested id and carry a polygon.
+  assert.throws(() => fw.validateZone(fx.zone('fire/CAZ281'), 'fire/COZ214'));
+  assert.throws(() => fw.validateZone({ ...fx.zone('fire/CAZ281'), kind: 'fire' }, 'fire/CAZ281'));
+  assert.throws(() => fw.validateZone({ ...fx.zone('fire/CAZ281'), data: { type: 'FeatureCollection', features: [] } }, 'fire/CAZ281'));
+});
+
+test('geometry-fetch failure: the alert stays in the list, is labelled unavailable, and is retried only after the retry window', () => {
+  const { alerts } = fw.select(fx.payload('geometry_failure').data.features, NOW);
+  assert.equal(alerts.length, 1);
+  const cache = new Map([['fire/COZ214', { geometry: null, at: NOW }]]);
+  const shape = fw.resolveShape(alerts[0], cache, NOW);
+  assert.equal(shape.state, 'unavailable'); assert.equal(shape.geometry, null);
+  assert.deepEqual(Array.from(fw.neededZones(alerts, cache, NOW + 60000)), [], 'recent failure is not hammered');
+  assert.deepEqual(Array.from(fw.neededZones(alerts, cache, NOW + 11 * 60000)), ['fire/COZ214'], 'retried after 10 minutes');
+  assert.equal(fw.resolveShape(alerts[0], cache, NOW + 11 * 60000).state, 'pending');
+  // Partial: one of two zones resolved.
+  const p = fw.select(fx.payload('partial_zones').data.features, NOW).alerts[0];
+  const mixed = new Map([['fire/CAZ281', { geometry: fw.validateZone(fx.zone('fire/CAZ281'), 'fire/CAZ281'), at: NOW }], ['fire/COZ214', { geometry: null, at: NOW }]]);
+  const partial = fw.resolveShape(p, mixed, NOW);
+  assert.deepEqual([partial.state, partial.resolved, partial.total], ['partial', 1, 2]);
+  // More zones than the payload carried can never be called complete.
+  const truncated = fw.resolveShape({ ...p, zoneCount: 5 }, new Map([['fire/CAZ281', mixed.get('fire/CAZ281')], ['fire/COZ214', mixed.get('fire/CAZ281')]]), NOW);
+  assert.equal(truncated.state, 'partial');
+});
+
+test('stale data: fresh within 15 minutes, labelled stale after, refused after 6 hours', () => {
+  const at = ms => ({ ...fx.payload('polygon'), retrieved_at: new Date(NOW - ms).toISOString() });
+  assert.equal(fw.freshness(at(0), NOW), 'fresh');
+  assert.equal(fw.freshness(at(fw.FRESH_MS), NOW), 'fresh');
+  assert.equal(fw.freshness(at(fw.FRESH_MS + 1000), NOW), 'stale');
+  assert.doesNotThrow(() => fw.validate(at(fw.STALE_MAX_MS), NOW));
+  assert.throws(() => fw.validate(at(fw.STALE_MAX_MS + 1000), NOW));
+  // Stale data never revives an expired alert: expiry is judged against the clock, not the retrieval time.
+  const old = fx.payload('polygon'); assert.equal(fw.select(old.data.features, NOW + 24 * 3600000).alerts.length, 0);
+});
+
+test('environment bridge: firewx and zone queries are fixed, and age is not enforced on them but is on point alerts', () => {
+  assert.equal(env.query('firewx', null), 'api/environment.php?kind=firewx');
+  assert.equal(env.query('zone', 'fire/COZ214'), 'api/environment.php?kind=zone&zone=fire%2FCOZ214');
+  assert.ok(!env.query('zone', 'fire/COZ214').includes('https'));
+  const old = fx.payload('polygon', Date.now() - 3 * 3600000);
+  assert.doesNotThrow(() => env.validate(old, 'firewx'));
+  assert.throws(() => env.validate({ ...old, kind: 'alerts' }, 'alerts'));
+  const bad = fx.payload('polygon', Date.now()); bad.data.features[0].geometry = { type: 'Point', coordinates: [1, 2] };
+  assert.throws(() => env.validate(bad, 'firewx'));
+  assert.doesNotThrow(() => env.validate(fx.payload('zone_only', Date.now()), 'firewx'));
+  assert.equal(typeof env.request, 'function');
+});
+
+test('fixtures: captured files match their recorded SHA-256 and URL, are real NWS data, and the synthetic file is labelled and reproducible', () => {
+  const dir = path.join(__dirname, 'fixtures/fire-weather'), manifest = JSON.parse(fs.readFileSync(path.join(dir, 'captured/manifest.json'), 'utf8'));
+  assert.ok(manifest.files.length >= 6); assert.match(manifest.user_agent, /kamptrail\.com/); assert.doesNotMatch(manifest.user_agent, /@/);
+  assert.match(manifest.window.start, /^\d{4}-\d\d-\d\dT/); assert.equal((Date.parse(manifest.window.end) - Date.parse(manifest.window.start)) / 86400000, 7);
+  for (const f of manifest.files) {
+    const bytes = fs.readFileSync(path.join(dir, 'captured', f.file));
+    assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), f.sha256, f.file);
+    assert.equal(bytes.length, f.bytes); assert.match(f.url, /^https:\/\/api\.weather\.gov\//); assert.match(f.retrieved_at, /Z$/); assert.equal(f.http_status, 200);
+  }
+  // The seven-day NWS record held no fire alerts. That empty answer is the real capture, and it is not shown as current.
+  for (const event of ['Red Flag Warning', 'Fire Weather Watch']) {
+    const f = manifest.files.find(x => x.event === event); assert.ok(f, event); assert.equal(f.feature_count, 0);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'captured', f.file), 'utf8')).features.length, 0);
+    assert.ok(f.url.includes('start=') && f.url.includes('end='));
+  }
+  assert.equal(fx.file.fixture.synthetic, true); assert.match(fx.file.fixture.label, /^SYNTHETIC/);
+  assert.equal(require('./fixtures/fire-weather/build-synthetic.js').text, fs.readFileSync(path.join(dir, 'synthetic/cases.json'), 'utf8'));
+  for (const name of fx.names) assert.equal(fx.payload(name).fixture.synthetic, true);
+  for (const c of Object.values(fx.file.cases)) for (const f of c.data.features) assert.match(f.properties.id, /^urn:synthetic:/);
+});
+
+test('server never emits a fixture marker, and the client labels any payload that carries one', () => {
+  assert.doesNotMatch(fs.readFileSync(path.join(root, 'api/_lib/environment.php'), 'utf8'), /fixture/i);
+  const src = fs.readFileSync(path.join(root, 'firewx.js'), 'utf8');
+  assert.match(src, /d\.fixture \? node\('p', d\.fixture\.synthetic/);
+});
+
+test('locale: every fire-weather string has matching Spanish and French entries', () => {
+  const src = fs.readFileSync(path.join(root, 'firewx.js'), 'utf8');
+  const keys = new Set([fw.LABEL]); for (const m of src.matchAll(/t\('((?:[^'\\]|\\.)*)'/g)) keys.add(m[1]);
+  keys.delete('firewx'); keys.delete('zone');
+  const c = { window: {}, Intl, Date, localStorage: { getItem: () => null, setItem() {} } }; c.window = c;
+  const frSrc = fs.readFileSync(path.join(root, 'locale-fr.js'), 'utf8'); vm.runInNewContext(frSrc, c);
+  const fr = c.KampTrailI18nFr.messages;
+  const es = (() => { const x = { window: {}, Intl, Date, localStorage: { getItem: () => 'es', setItem() {} } }; x.window = x; vm.runInNewContext(fs.readFileSync(path.join(root, 'locale.js'), 'utf8'), x); return x.KampTrailI18n; })();
+  const holes = x => (x.match(/\{[a-zA-Z0-9_]+\}/g) || []).sort().join();
+  for (const k of keys) {
+    const spanish = es.t(k); assert.notEqual(spanish, k, 'es missing: ' + k); assert.equal(holes(spanish), holes(k), 'es placeholders: ' + k);
+    assert.ok(fr[k] && fr[k] !== k, 'fr missing: ' + k); assert.equal(holes(fr[k]), holes(k), 'fr placeholders: ' + k);
+  }
+});
