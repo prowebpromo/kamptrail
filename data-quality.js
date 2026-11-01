@@ -50,6 +50,12 @@
   // Also guard a cold single-state load and identity-host fallback, before the parent state arrives.
   const WITHDRAWN_IDS = new Set(['ridb:237765', 'ridb:244404', 'usfs:18814', 'ridb:245273', 'usfs:5889', 'ridb:246536', 'usfs:65003', 'ridb:247835', 'osm:way:941066426', 'ridb:247915', 'osm:relation:13942065', 'ridb:247922', 'ridb:248072', 'ridb:248261']);
   const isWithdrawnId = id => WITHDRAWN_IDS.has(String(id));
+  // These two canonical hosts began qualifying on their own higher-precision point in this
+  // candidate. Preserve the published point used by saved links and exact-key elevation.
+  const PUBLISHED_HOST_POINTS = new Map([
+    ['ridb:251354',[-111.871389,45.240556]],
+    ['ridb:252494',[-147.243361,65.427497]]
+  ]);
   const DON_CARTER_ELEMENT = 'osm:way:456269017'; // independently published listing in NC
   const discoverable = p => p.camping_classification === 'campsite' || p.camping_classification === 'published_pending_review';
   const ACCOMMODATION_NAME = /\b(?:cabins?|lodges?|lookouts?|guard\s+stations?|hotels?|motels?|chalets?|yurts?|huts?|houses?|bunkhouses?)\s*$/i;
@@ -538,7 +544,7 @@
     // unverified source records solely when an explicit diagnostic caller asks.
     // A published listing keeps its published point when its own record now qualifies where another copy
     // supplied the point before (tourism-type-admission candidate). Coordinates change only by review.
-    if (options.publishedPoints) for (const f of features) {const pt=options.publishedPoints.get(f.properties.id);if(pt&&(pt[0]!==f.geometry.coordinates[0]||pt[1]!==f.geometry.coordinates[1]))f.geometry={type:'Point',coordinates:[pt[0],pt[1]]};}
+    for (const f of features) {const pt=options.publishedPoints?.get(f.properties.id) || PUBLISHED_HOST_POINTS.get(f.properties.id);if(pt&&(pt[0]!==f.geometry.coordinates[0]||pt[1]!==f.geometry.coordinates[1]))f.geometry={type:'Point',coordinates:[pt[0],pt[1]]};}
     if (options.includeUnverified) return {type:'FeatureCollection',features};
     // An element absorbed into an unclassified host stays withheld with that host (tourism-type-admission
     // candidate). It never publishes on its own because its host lost a borrowed classification. It needs its

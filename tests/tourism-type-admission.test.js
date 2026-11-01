@@ -169,3 +169,17 @@ test('review dispositions guard every held description and unreviewed website ma
   assert.equal(linked.filter(w=>w.facility_id_matches).length,44);
   assert.equal(linked.filter(w=>w.exact).length,0);
 });
+
+test('lodging host geometry keeps its published point even on identity fallback',()=>{
+  const source=[
+    ['251354','Axolotl Cabin',[-111.8713889,45.2405556],[-111.871389,45.240556]],
+    ['252494','White Mountains National Recreation Area - Alaska Cabins',[-147.2433611,65.4274972],[-147.243361,65.427497]]
+  ];
+  for(const [id,name,point,expected] of source){
+    const row=pt({...ridb,id:'ridb:'+id,facility_id:id,name},point);
+    for(const identity of [{},{radiusMeters:-1}]){
+      const f=DQ.cleanAndDedupeGeoJSON({features:[row]},{...identity,siteDetails:{[id]:{t:1}}}).features[0];
+      assert.deepEqual(f.geometry.coordinates,expected,id);
+    }
+  }
+});
