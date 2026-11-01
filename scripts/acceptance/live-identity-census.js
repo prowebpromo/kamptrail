@@ -2,10 +2,14 @@
 'use strict';
 // Live identity census: every listing in the published search index must resolve in the browser to the same
 // canonical id and the same source-id set (id plus legacy_ids), with no wrong merges, after loading every state.
-// Exit 0 only on zero mismatches. Exit 1 on any mismatch, 2 on a script or browser error.
-// Usage: INDEX_FILE=<index.json> [BASE=https://kamptrail.com] [MOBILE=1] [CHROMIUM_PATH=...] node live-identity-census.js <reversed|seed:N|default|delayed:ST>
+// Unexpected browser ids, unmatched browser listings and unequal listing counts are mismatches too.
+// With EXPECTED_SHA set, release.json must report that source_commit at the start and the end of the run.
+// Exit 0 only on zero mismatches. Exit 1 on any mismatch or release change, 2 on a script or browser error.
+// Usage: INDEX_FILE=<index.json> [EXPECTED_SHA=<sha>] [BASE=https://kamptrail.com] [MOBILE=1] [CHROMIUM_PATH=...] node live-identity-census.js <reversed|seed:N|default|delayed:ST>
 const {chromium} = require('playwright');
 const fs = require('fs');
+const {compare} = require('./census-compare');
+const EXPECTED_SHA = process.env.EXPECTED_SHA || null;
 
 const scenario = process.argv[2] || 'reversed';
 const BASE = process.env.BASE || 'https://kamptrail.com';
@@ -36,39 +40,33 @@ function seedShuffle(list, seed) {
     await page.goto(`${BASE}/?n=${Date.now()}`, {waitUntil: 'domcontentloaded', timeout: 90000});
     await page.waitForFunction(() => window.KampTrailData && KampTrailData.getIdentityStatus?.().hosts === 'published', null, {timeout: 90000});
     const meta = await page.evaluate(() => ({version: KampTrailData.version, states: Object.keys(KampTrailData.getStateBounds())}));
-    const release = await page.evaluate(async () => (await fetch('/release.json?n=' + Date.now(), {cache: 'no-store'})).json());
+    const readRelease = () => page.evaluate(async () => (await fetch('/release.json?n=' + Date.now(), {cache: 'no-store'})).json());
+    const release = await readRelease();
     const order = scenario === 'reversed' ? [...meta.states].reverse()
       : scenario.startsWith('seed:') ? seedShuffle(meta.states, Number(scenario.split(':')[1]))
       : meta.states;
     if (delayed) await page.evaluate(all => KampTrailData.loadStates(all), order);
     else for (const st of order) await page.evaluate(st => KampTrailData.loadStates([st]), st);
     const loadStatus = await page.evaluate(() => KampTrailData.getLoadStatus());
-    const result = await page.evaluate(idx => {
-      const all = KampTrailData.getAllCampsites(), byId = new Map();
-      all.forEach((f, i) => { for (const id of new Set([f.properties.id, ...(f.properties.legacy_ids || [])])) byId.set(id, (byId.get(id) || []).concat(i)); });
-      const owner = new Map(); idx.forEach(([, ids], k) => ids.forEach(x => owner.set(x, k)));
-      const out = {missing: [], split: [], canonical: [], sourceSet: [], wrongMerge: []};
-      for (const [id, ids] of idx) {
-        const hit = new Set(); ids.forEach(x => (byId.get(x) || []).forEach(i => hit.add(i)));
-        if (!hit.size) { out.missing.push(id); continue; }
-        if (hit.size > 1) { out.split.push(id); continue; }
-        const f = all[[...hit][0]], got = [...new Set([f.properties.id, ...(f.properties.legacy_ids || [])])].sort();
-        if (f.properties.id !== id) out.canonical.push(`${id}->${f.properties.id}`);
-        if (JSON.stringify(got) !== JSON.stringify(ids)) out.sourceSet.push(`${id}: ${got.join('|')} vs ${ids.join('|')}`);
-      }
-      for (const f of all) { const owners = new Set([f.properties.id, ...(f.properties.legacy_ids || [])].map(x => owner.get(x))); if (owners.size > 1) out.wrongMerge.push(f.properties.id); }
-      return {features: all.length, ...out};
-    }, expected);
-    const mismatches = result.missing.length + result.split.length + result.canonical.length + result.sourceSet.length + result.wrongMerge.length;
+    const browserListings = await page.evaluate(() => KampTrailData.getAllCampsites().map(f => [f.properties.id, [f.properties.id, ...(f.properties.legacy_ids || [])]]));
+    const result = compare(expected, browserListings);
+    const releaseEnd = await readRelease();
+    const releaseProblems = [];
+    if (EXPECTED_SHA && release.source_commit !== EXPECTED_SHA) releaseProblems.push(`start source_commit ${release.source_commit} is not ${EXPECTED_SHA}`);
+    if (EXPECTED_SHA && releaseEnd.source_commit !== EXPECTED_SHA) releaseProblems.push(`end source_commit ${releaseEnd.source_commit} is not ${EXPECTED_SHA}`);
+    if (release.source_commit !== releaseEnd.source_commit) releaseProblems.push('release changed during the run');
     const record = {
-      start, end: new Date().toISOString(), scenario, base: BASE, release, version: meta.version,
+      start, end: new Date().toISOString(), scenario, base: BASE, expected_sha: EXPECTED_SHA, release, release_end: releaseEnd, release_problems: releaseProblems,
+      version: meta.version,
       browser: {executable: process.env.CHROMIUM_PATH || 'playwright bundled', version: browser.version()},
       viewport_runtime: page.viewportSize(), mobile_emulation: MOBILE,
       state_order: order, failed_states: loadStatus.failedStates,
-      expected_listings: expected.length, browser_features: result.features, mismatches,
+      expected_listings: result.expected_listings, browser_features: result.browser_features, count_differs: result.count_differs,
+      mismatches: result.mismatches,
       missing: result.missing, split: result.split, canonical_differs: result.canonical,
-      source_set_differs: result.sourceSet, wrong_merges: result.wrongMerge, page_errors: pageErrors,
-      result: mismatches === 0 && !loadStatus.failedStates.length ? 'PASS' : 'FAIL'
+      source_set_differs: result.sourceSet, wrong_merges: result.wrongMerge, unexpected_ids: result.unexpected,
+      unmatched_browser_listings: result.unmatched, page_errors: pageErrors,
+      result: result.mismatches === 0 && !loadStatus.failedStates.length && !releaseProblems.length ? 'PASS' : 'FAIL'
     };
     console.log(JSON.stringify(record, null, 1));
     process.exitCode = record.result === 'PASS' ? 0 : 1;

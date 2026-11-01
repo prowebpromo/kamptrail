@@ -29,7 +29,10 @@ before(async () => {
   // One stub serves both check names. STUB_<NAME> chooses its behaviour; the default passes.
   const stub = `
     const mode = process.env['STUB_' + require('path').basename(process.argv[1], '.js').replace(/-/g, '_').toUpperCase()] || 'pass';
-    if (mode === 'pass') { console.log(JSON.stringify({result: 'PASS'})); }
+    const release = {source_commit: process.env.EXPECTED_SHA};
+    if (mode === 'pass') { console.log(JSON.stringify({result: 'PASS', release})); }
+    else if (mode === 'wrong-release') { console.log(JSON.stringify({result: 'PASS', release: {source_commit: 'c'.repeat(40)}})); }
+    else if (mode === 'no-release') { console.log(JSON.stringify({result: 'PASS'})); }
     else if (mode === 'mismatch') { console.log(JSON.stringify({result: 'FAIL', mismatches: 1, missing: ['x:1']})); process.exitCode = 1; }
     else if (mode === 'error') { throw new Error('stub script error'); }
     else if (mode === 'timeout') { setTimeout(() => {}, 60000); }
@@ -85,6 +88,15 @@ test('missing, unparsable or non-PASS output fails even when the script exits 0'
     const r = await run({STUB_LIVE_SAVED_STOP_REOPEN: mode});
     assert.notEqual(r.status, 0, mode);
     assert.match(r.log, /missing, empty or non-PASS result/, mode);
+  }
+});
+
+test('a step result from another release fails the run, even when it says PASS', async () => {
+  for (const mode of ['wrong-release', 'no-release']) {
+    const r = await run({STUB_LIVE_IDENTITY_CENSUS: mode});
+    assert.notEqual(r.status, 0, mode);
+    assert.match(r.log, /wrong release/, mode);
+    assert.doesNotMatch(r.log, /end PASS/, mode);
   }
 });
 

@@ -4,12 +4,14 @@
 // across reloads and reopen the right place from the trip panel ("View on map"), including offline from the
 // service-worker cache. Flow adapted from Codex's audit pilot (docs/audits/76da929f/offline-saved-stop.cjs on
 // branch audit/codex-handoff-20261101). Exit 0 on PASS, 1 on any failed assertion, 2 on a script error.
-// Usage: [BASE=https://kamptrail.com] [MOBILE=1] [CHROMIUM_PATH=...] node live-saved-stop-reopen.js
+// With EXPECTED_SHA set, release.json must report that source_commit at the start and the end of the run.
+// Usage: [EXPECTED_SHA=<sha>] [BASE=https://kamptrail.com] [MOBILE=1] [CHROMIUM_PATH=...] node live-saved-stop-reopen.js
 const {chromium} = require('playwright');
 const assert = require('node:assert/strict');
 
 const BASE = process.env.BASE || 'https://kamptrail.com';
 const MOBILE = process.env.MOBILE === '1';
+const EXPECTED_SHA = process.env.EXPECTED_SHA || null;
 const LEGACY = 'ridb:232479', HOST = 'osm:way:1107154601', NAME = 'Cosby Campground';
 
 (async () => {
@@ -29,7 +31,9 @@ const LEGACY = 'ridb:232479', HOST = 'osm:way:1107154601', NAME = 'Cosby Campgro
     const snap = () => page.evaluate(() => ({stored: JSON.parse(localStorage.getItem('kt_trip')).map(s => s.id), stops: KampTrailTrip.getStops().map(s => [s.id, s.feature?.properties.id, s.feature?.properties.name]), controlled: !!navigator.serviceWorker.controller, online: navigator.onLine, hosts: KampTrailData.getIdentityStatus().hosts}));
     await page.goto(`${BASE}/?n=${Date.now()}`, {waitUntil: 'domcontentloaded', timeout: 90000});
     await ready();
+    record.expected_sha = EXPECTED_SHA;
     record.release = await page.evaluate(async () => (await fetch('/release.json?n=' + Date.now(), {cache: 'no-store'})).json());
+    if (EXPECTED_SHA) assert.equal(record.release.source_commit, EXPECTED_SHA, 'deployed source_commit at start');
     record.version = await page.evaluate(() => KampTrailData.version);
     await page.evaluate(() => navigator.serviceWorker.ready);
     await page.reload({waitUntil: 'domcontentloaded'}); await ready();
@@ -56,6 +60,10 @@ const LEGACY = 'ridb:232479', HOST = 'osm:way:1107154601', NAME = 'Cosby Campgro
     assert.deepEqual(record.offline.stored, record.online.stored, 'stored id unchanged offline');
     assert.deepEqual(record.offline.stops, record.online.stops, 'same resolution offline');
     record.popup = (await page.locator('.leaflet-popup-content').first().innerText()).slice(0, 300);
+    await context.setOffline(false);
+    record.release_end = await page.evaluate(async () => (await fetch('/release.json?n=' + Date.now(), {cache: 'no-store'})).json());
+    assert.equal(record.release_end.source_commit, record.release.source_commit, 'release changed during the run');
+    if (EXPECTED_SHA) assert.equal(record.release_end.source_commit, EXPECTED_SHA, 'deployed source_commit at end');
     record.result = 'PASS';
     await context.close();
   } catch (e) {

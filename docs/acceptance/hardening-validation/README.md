@@ -14,3 +14,12 @@ The two passing runs record the release, browser and version, runtime viewport a
 The runner's failure modes (script error, timeout, missing, unparsable or FAIL output with exit 0, wrong deployed SHA) are proven offline by `tests/acceptance-runner.test.js` in npm test.
 
 The full census was not rerun for this hardening, per the owner. The 76da929f census evidence is in ../76da929f/.
+
+## Review fixes (Codex, PR #161 at 1540080b)
+
+| Finding | Fix | Regression test |
+|---|---|---|
+| The census passed with expected [A] and browser [A, extra]: two browser features, zero mismatches. | The comparison moved to `scripts/acceptance/census-compare.js`. It fails on browser ids the index does not publish, on browser listings matched to no index listing, and on unequal listing counts, as well as the existing missing, split, canonical, source-set and wrong-merge checks. | `tests/census-compare.test.js`: exact match passes; [A] against [A, extra] fails with count_differs and the extra id listed; an unpublished id inside a matched listing fails; a duplicate browser listing fails as a split and a count difference; plus the existing difference types. |
+| A deployment change during a run could pass unnoticed. | With `EXPECTED_SHA` (exported by the runner), each browser script reads `release.json` at the start and the end, and fails if either `source_commit` differs from it or from the other. The runner also rejects any step result whose `release.source_commit` is not the requested SHA, even when the step says PASS. | `tests/acceptance-runner.test.js`: a PASS result from another release, and a PASS result with no release, both fail the run. |
+
+The earlier evidence in this folder was produced before these fixes and is kept unchanged.

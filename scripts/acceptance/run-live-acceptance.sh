@@ -2,7 +2,8 @@
 # Live identity and saved-stop acceptance. Any failing step fails the whole run:
 # - every step runs under set -euo pipefail, so no exit code is masked;
 # - every browser step has a time limit (STEP_TIMEOUT seconds, default 1200), and a timeout fails the run;
-# - every step must leave a JSON result whose "result" is "PASS"; a missing, empty or unparsable result fails.
+# - every step must leave a JSON result whose "result" is "PASS"; a missing, empty or unparsable result fails;
+# - every step result must report release.source_commit equal to the expected SHA; any other value fails.
 # Usage: scripts/acceptance/run-live-acceptance.sh <expected-merge-sha> <out-dir>
 # Optional env: BASE (default https://kamptrail.com), CHROMIUM_PATH, STEP_TIMEOUT,
 #   ACCEPTANCE_SCRIPTS (directory of the check scripts; tests point it at stubs).
@@ -26,8 +27,10 @@ check() {
     const fs = require("fs"); const file = process.argv[1];
     let r; try { r = JSON.parse(fs.readFileSync(file, "utf8")); } catch (e) { console.error("unreadable result: " + e.message); process.exit(1); }
     if (!r || r.result !== "PASS") { console.error("result is not PASS: " + JSON.stringify(r && r.result)); process.exit(1); }
-  ' "$out/$name.json"; then
-    log "step $name FAILED (missing, empty or non-PASS result)"; return 1
+    const sha = r.release && r.release.source_commit;
+    if (sha !== process.argv[2]) { console.error("result release.source_commit " + JSON.stringify(sha) + " is not " + process.argv[2]); process.exit(1); }
+  ' "$out/$name.json" "$expected"; then
+    log "step $name FAILED (missing, empty or non-PASS result, or wrong release)"; return 1
   fi
   log "step $name PASS"
 }
@@ -39,7 +42,7 @@ curl -sf "$base/data/campsites/search-index.json?n=$RANDOM" -o "$out/search-inde
 curl -sf "$base/data/campsites/identity-hosts.json?n=$RANDOM" -o "$out/identity-hosts.json"
 sha256sum "$out/search-index.json" "$out/identity-hosts.json" | tee -a "$out/log.txt"
 log "national clearance manifest HTTP $(curl -s -o /dev/null -w '%{http_code}' "$base/data/clearances/index.json?n=$RANDOM")"
-export INDEX_FILE="$out/search-index.json" BASE="$base"
+export INDEX_FILE="$out/search-index.json" BASE="$base" EXPECTED_SHA="$expected"
 check census-desktop-reversed node "$scripts/live-identity-census.js" reversed
 check census-mobile-seed7 env MOBILE=1 node "$scripts/live-identity-census.js" seed:7
 check saved-stop-desktop node "$scripts/live-saved-stop-reopen.js"
