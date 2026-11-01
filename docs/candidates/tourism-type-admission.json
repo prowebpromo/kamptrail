@@ -25,6 +25,7 @@
   "camping_evidence:\"osm_campsite_tag\"->\"camping_facility_name\"": 540,
   "type:\"other\"->\"established\"": 64,
   "camping_evidence:\"agency_camping_activity\"->\"ridb_facility_type_overnight_sites\"": 22,
+  "row_admission:\"rejected\"->\"admitted\"": 3,
   "publication:\"published\"->\"withdrawn from campsite discovery\"": 31,
   "type:\"other\"->\"dispersed\"": 14,
   "type:\"established\"->\"lodging\"": 10,
@@ -968,7 +969,7 @@
     "type": null
    },
    "proposed": {
-    "status": "not published",
+    "status": "withheld with its withdrawn host",
     "type": null
    },
    "changes": [
@@ -1786,7 +1787,7 @@
     "type": null
    },
    "proposed": {
-    "status": "not published",
+    "status": "withheld with its withdrawn host",
     "type": null
    },
    "changes": [
@@ -2686,6 +2687,14 @@
      "field": "camping_evidence",
      "from": "agency_camping_activity",
      "to": "ridb_facility_type_overnight_sites",
+     "separate_review": true
+    },
+    {
+     "field": "row_admission",
+     "state": "UT",
+     "from": "rejected",
+     "to": "admitted",
+     "note": "snapshot row normalization (own-record classification). The listing outcome is in the other changes.",
      "separate_review": true
     }
    ],
@@ -63003,6 +63012,14 @@
      "from": "agency_camping_activity",
      "to": "ridb_facility_type_overnight_sites",
      "separate_review": true
+    },
+    {
+     "field": "row_admission",
+     "state": "MT",
+     "from": "rejected",
+     "to": "admitted",
+     "note": "snapshot row normalization (own-record classification). The listing outcome is in the other changes.",
+     "separate_review": true
     }
    ],
    "identity": {
@@ -68043,6 +68060,14 @@
      "field": "camping_evidence",
      "from": "agency_camping_activity",
      "to": "ridb_facility_type_overnight_sites",
+     "separate_review": true
+    },
+    {
+     "field": "row_admission",
+     "state": "AK",
+     "from": "rejected",
+     "to": "admitted",
+     "note": "snapshot row normalization (own-record classification). The listing outcome is in the other changes.",
      "separate_review": true
     }
    ],
