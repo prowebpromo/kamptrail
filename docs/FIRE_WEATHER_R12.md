@@ -74,16 +74,21 @@ Durable-capture change (workflow, its tests and this document only): `npm run te
 
 Run 2026-11-01 in `/home/claude/wt-r12`.
 
-Passed (72 Node tests across 7 files, 10 Python tests):
+First pass, before the full suites, passed 72 Node tests across 7 files and 10 Python tests:
 
 - `tests/firewx.test.js` (12): parsing, malformed and partial payloads, expiry, cancellation and update, upcoming status, zone resolution and budget, geometry-fetch failure and retry window, stale labelling and the 6-hour limit, the environment bridge, fixture hashes and the synthetic label, and Spanish and French coverage with matching placeholders.
 - `tests/environment-api.test.js` (14, PHP): fixed query validation, strict zone paths, normaliser behaviour, real captured empty responses and real zone geometry, cache TTL from upstream `max-age`, expiry re-filtering with Cancel retained, and Retry-After handling. Also checks the User-Agent has no `@`.
 - `tests/environment.test.js`, `tests/locale.test.js`, `tests/release-package.test.js`, `tests/service-worker.test.js`, `tests/offline-readiness.test.js`.
 - `scripts/tests/test_capture_fire_weather_fixtures.py` (5) and the existing `test_capture_fire_weather.py`.
 
-Not run:
+Full suites at 4c45554f, rebased onto main 76da929f, on a server started from this worktree (port 8811, cwd checked):
 
-- `tests/browser/firewx.spec.js` (written, desktop and mobile, 12 tests per viewport plus one offline test) and the fire, smoke and environment browser specs. The shared heavy lock was held for about two hours by another agent's `check-partial-identity.js` job, so the queued Playwright run never started. The spec has not executed and is unverified.
-- The full `npm test` and `npm run test:python` suites, for the same reason. The package.json test list does include `tests/firewx.test.js`.
+- `npm test`: 493/493.
+- `npm run test:python`: 414 run, OK, 9 skipped.
+- `tests/browser/firewx.spec.js`: 31/31, desktop and mobile, at 4c45554f.
+- `tests/browser/environment.spec.js`: 7/7. It covers the smoke layer, and `firewx.spec.js` checks separation from smoke and perimeters.
+- `locale.spec.js` and `app.spec.js`: 20 passed, 1 failed. The failure is the known `app.spec.js` mobile map height (493 against more than 500), which also fails on main.
+- These three files ran on the commit before the last test-only edit to `firewx.spec.js`.
+- Fixes these runs revealed: alert headings are `h2` (axe flagged a skipped level), the Spanish and French spec is split into separate tests, and the panel opens by keyboard because the expanded layers control intercepted clicks.
 
 Run the browser spec with `PORT=<free> node scripts/serve.js` from this worktree, then `BASE_URL=http://127.0.0.1:<port> CHROMIUM_PATH=<chrome> npx playwright test tests/browser/firewx.spec.js tests/browser/environment.spec.js`.
