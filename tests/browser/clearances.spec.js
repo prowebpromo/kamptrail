@@ -195,18 +195,19 @@ test.describe('RI saved label after the connection drops, without a reload',()=>
   for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
     test(`${viewport.name}: the same tab relabels the RI copy as a saved snapshot when it goes offline`,async({page,context})=>{
       await page.setViewportSize(viewport);
-      await page.route('**/data/clearances/RI.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(riPilot)}));
+      // Routed requests ignore offline emulation, so the mock fails while offline as the network would.
+      let offline=false;await page.route('**/data/clearances/RI.json',r=>offline?r.abort('internetdisconnected'):r.fulfill({contentType:'application/json',body:JSON.stringify(riPilot)}));
       const {errors}=await setup(page,context,{zoom:12});await page.evaluate(()=>map.setView([41.8240,-71.4128],13));await show(page);const control=page.locator('.kt-clearance-control');
       await expect(control).toContainText(/Rhode Island: [1-9]\d* pilot records/);await expect(control).not.toContainText('Saved snapshot');
       const first=await control.getByLabel('Clearance candidate in view').locator('option').first().getAttribute('value');
       let popup=await openCandidate(page,first);await expect(popup).not.toContainText('Saved snapshot');await page.getByRole('button',{name:'Close popup',exact:true}).click();
-      await context.setOffline(true);
+      offline=true;await context.setOffline(true);
       await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
       popup=await openCandidate(page,first);await expect(popup).toContainText('Saved snapshot. OpenStreetMap extract '+riPilot.source.extract_timestamp);
       await page.getByRole('button',{name:'Close popup',exact:true}).click();
       // A further redraw offline keeps the label: the store, not only the screen, holds the saved status.
       await control.getByRole('button',{name:'Retry clearance data'}).click();await expect(control).not.toContainText('Loading clearance candidates');await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
-      await context.setOffline(false);await expect(control).not.toContainText('Saved snapshot');expect(errors).toEqual([]);
+      offline=false;await context.setOffline(false);await expect(control).not.toContainText('Saved snapshot');expect(errors).toEqual([]);
     });
   }
 });
