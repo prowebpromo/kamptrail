@@ -93,17 +93,25 @@ This reuses the moderated corrections path. No new public write endpoint was add
 
 scripts/build-release.js copies data/clearances/index.json and each tile it lists after a bytes and SHA-256 check and the client's own validateTile. It fails on any tile file that is not in the manifest. It packages RI.json after validatePilot. It never packages data/clearances/excluded. dist/clearance-package.json records the totals. tests/release-package.test.js asserts the shipped set equals the manifest plus its tiles.
 
-Built package, data/clearances only: 1,060 files, 44,856,509 bytes (index.json 387,841 bytes plus 1,059 tiles listed in it, 44,468,668 bytes). Manifest sha256 ccc58b0561e80dabddf14574fd89e1f76f1ae011dda6a56db5cb26e08e38d273. New API files: api/clearance-reports.php and api/_lib/clearance-reports.php. RI.json and data/clearances/excluded are not packaged.
+Built package, data/clearances only: 1,061 files, 44,975,574 bytes (index.json 387,841 bytes, RI.json 119,065 bytes, and the 1,059 tiles listed in the manifest, 44,468,668 bytes). Manifest sha256 ccc58b0561e80dabddf14574fd89e1f76f1ae011dda6a56db5cb26e08e38d273. New API files: api/clearance-reports.php and api/_lib/clearance-reports.php. data/clearances/excluded is not packaged.
 
 Per-view payloads with the client's gating (tilesForView, raw bytes): NYC z12 9 tiles 619 KB, NYC z10 41 tiles 2.17 MB, Chicago z10 29 tiles 1.70 MB, Los Angeles z12 7 tiles 404 KB, Wyoming I-80 z10 2 tiles 128 KB. Below z10 nothing is requested.
 
 ## Results
 
-- Unit: tests/clearances.test.js and tests/route-clearance.test.js, 18 tests. They cover below, equal and above rig height, each status, empty set, directional and conditional, unit handling (feet and inches, metric, millimetre rig), manifest and tile integrity (all 1,059 committed tiles validate against bytes, sha256 and client schema, and tampered tiles are rejected), zoom gating and the view budget, attribution, report validation and road association. Road association cases: no ids, exact way ids, parallel road, incomplete ids, road_below, applies_to unknown, barrier node ids, directional and conditional on the driven road, failed tile, RI, empty result and malformed identity.
-- PHP harness: tests/api.test.js, 7 of 7, including the two new clearance-report tests on an isolated SQLite database.
-- npm test: 476 tests, 431 pass, 45 fail. 44 are the known "Claude provenance" cases from main 023d444d. 1 is tests/usfs-site-amenities.test.js (retrieved date 2026-11-01 against an expected 2026-10-31), from the same bot data refresh. This branch changes no data file against 023d444d.
-- npm run test:python: 399 tests, 2 fail, both from the bot refresh of USFS data (test_usfs_site_amenities retrieved date, test_usfs_fee_rechecks fee_status). test_national_clearances passes 78 of 78.
-- Browser (desktop 1440x1000 and mobile 390x844, Chromium 1243, server PORT=8812 node scripts/serve.js with cwd /home/claude/wt-r10): clearances.spec.js 5 of 5, route-clearance.spec.js 4 of 4, routes.spec.js 6 of 6.
+Tested on the branch rebased onto origin/main 76da929f (PR #160 merged). npm test and test:python ran at 48a08909. Browser specs ran at f2b37c2a, which differs from 48a08909 only in tests/browser/clearances.spec.js. Baseline: a detached worktree at 76da929f (/home/claude/wt-r10-base) ran the same commands.
+
+| Suite | Branch | 76da929f baseline |
+|---|---|---|
+| npm test | 486 of 486 pass | 476 of 476 pass |
+| npm run test:python | 404 run, 0 failures, 9 skipped | 404 run, 0 failures, 9 skipped |
+| clearances.spec.js (desktop and mobile) | 7 of 7 | 4 of 4 (old RI pilot spec) |
+| route-clearance.spec.js (desktop and mobile) | 4 of 4 | 4 of 4 (old spec) |
+| routes.spec.js | 6 of 6 | 6 of 6 |
+
+No failures remain, so no baseline comparison of failures is needed. Branch browser runs used PORT=8812 node scripts/serve.js with cwd /home/claude/wt-r10. Baseline runs used port 8813 with cwd /home/claude/wt-r10-base. Chromium 1243 via CHROMIUM_PATH.
+
+Coverage: unit tests cover below, equal and above rig height, each status, empty set, directional and conditional, unit handling, manifest and tile integrity (all 1,059 committed tiles), zoom gating, attribution, visitor-report validation, road association (no ids, exact ids, parallel road, incomplete ids, road_below, applies_to unknown, barrier nodes) and RI (valid, missing, invalid and tampered pilot). The PHP harness covers clearance-report submission, moderation, applied-only publication, unpublishing and migration gating on isolated SQLite.
 
 ## Owner decisions
 
