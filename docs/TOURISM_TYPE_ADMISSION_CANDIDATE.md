@@ -58,3 +58,7 @@ A separate pre-existing issue occurs when Nevada loads before California and the
 Independent Chromium forward-desktop and reverse-mobile runs each ended at 33,361 after 50 states, with zero missing/extra/duplicate hosts, wrong member sets or type, rig and point mismatches. The reversed run reproduced the Bird Creek exception at 28 intermediate steps. [Independent review and hash record](candidates/TOURISM_INDEPENDENT_REVIEW.md).
 
 A supplemental isolated PHP 8.3.6 run with SQLite, GD and mbstring passed all 76 selected PHP-related tests with no skips. These results supplement the default local Node suite above.
+
+The full Python suite was repeated on the isolated built candidate with the repository-pinned CPython 3.12.16 forecast environment and hash-pinned pyosmium 4.3.2. All 397 tests passed with zero skips in 113.603 seconds, including the native forecast and clearance/services parser tests skipped by the default runtime.
+
+The full configured Node suite was then repeated serially with the isolated PHP runtime on the same built candidate. Direct TAP capture reported 489/489 passed, zero skipped, failed or cancelled, and exit code 0. MySQL/Docker integration was outside this local suite.
