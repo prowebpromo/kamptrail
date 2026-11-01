@@ -196,11 +196,12 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       await expect(card(page, 'urn:synthetic:original')).toHaveCount(0);
     });
 
-    test('a response past its upstream freshness deadline is labelled stale though it is only seconds old', async ({ page, context }) => {
-      await setup(page, context, { deadlineSeconds: -5 });
+    test('a response past its upstream max-age is not Stale before 15 minutes, and always shows its age', async ({ page, context }) => {
+      await setup(page, context, { deadlineSeconds: -5, ageMinutes: 2 });
       await enable(page); await open(page);
       await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
-      await expect(panel(page).locator('.kt-firewx-stale')).toContainText('Stale: retrieved');
+      await expect(panel(page).locator('.kt-firewx-stale')).toHaveCount(0);
+      await expect(panel(page).locator('.kt-firewx-age')).toHaveText('Updated 2 min ago');
     });
 
     test('stale data is labelled stale and still lists the alert', async ({ page, context }) => {
@@ -209,6 +210,7 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       await expect(panel(page).locator('.kt-firewx-stale')).toContainText('Stale: retrieved');
       await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
       await expect(panel(page).locator('[data-firewx-status]')).toContainText('Stale.');
+      await expect(panel(page).locator('.kt-firewx-age')).toHaveText('Updated 30 min ago');
     });
 
     test('a failed refresh keeps the last alerts labelled stale, and a first failure shows an unavailable message', async ({ page, context }) => {
@@ -271,6 +273,7 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       test(`${lang} shows translated event names on a polygon alert`, async ({ page, context }) => {
         await setup(page, context, { lang, cases: 'polygon' });
         await enable(page, label); await open(page);
+        await expect(panel(page).locator('.kt-firewx-age')).toHaveText(lang === 'es' ? 'Actualizado hace menos de un minuto' : 'Mis à jour il y a moins d’une minute');
         await expect(card(page, 'urn:synthetic:polygon').getByRole('heading', { name: lang === 'es' ? 'Advertencia de bandera roja' : 'Avertissement de drapeau rouge' })).toBeVisible();
       });
     }

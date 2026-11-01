@@ -55,10 +55,10 @@
     return f.geometry;
   }
 
-  /** Stale once the upstream freshness deadline (fresh_until, from max-age or Expires) has passed, however long polling waits before the next fetch.
-    The 15 minute rule still applies to payloads that carry no deadline. */
-const pastDeadline = (holder, now) => { const at = time(holder?.fresh_until); return holder?.stale === true || (at != null && now > at); };
-  const freshness = (d, now = Date.now()) => pastDeadline(d, now) || now - time(d.retrieved_at) > FRESH_MS ? 'stale' : 'fresh';
+  /** Stale means more than 15 minutes since the last good retrieval (owner decision, 2026-11-01). The proxy's fresh_until and stale fields
+    are recorded upstream metadata and do not drive this label. */
+  const freshness = (d, now = Date.now()) => now - time(d.retrieved_at) > FRESH_MS ? 'stale' : 'fresh';
+  const ageMinutes = (value, now) => Math.max(0, Math.floor((now - time(value)) / 60000));
   const endOf = p => { const ends = [time(p.expires), time(p.ends)].filter(n => n != null); return ends.length ? Math.min(...ends) : null; };
 
   /** Ids a snapshot says are replaced or cancelled: its own references plus the server's list, which also covers messages that have since expired. */
@@ -117,7 +117,7 @@ const pastDeadline = (holder, now) => { const at = time(holder?.fresh_until); re
       polygons.push(...(e.geometry.type === 'Polygon' ? [e.geometry.coordinates] : e.geometry.coordinates));
     }
     const total = Math.max(alert.zoneCount, alert.zones.length);
-    const stale = alert.zones.some(z => { const e = cache.get(z); return e?.geometry && pastDeadline({ fresh_until: e.freshUntil, stale: e.stale }, now); });
+    const stale = alert.zones.some(z => { const e = cache.get(z); return e?.geometry && now - e.at > FRESH_MS; });
     const geometry = polygons.length ? { type: 'MultiPolygon', coordinates: polygons } : null;
     if (!resolved) return { state: pending ? 'pending' : 'unavailable', geometry: null, resolved, total };
     return { state: resolved === total && !pending ? 'zones' : 'partial', geometry, resolved, total, stale };
@@ -150,7 +150,7 @@ const pastDeadline = (holder, now) => { const at = time(holder?.fresh_until); re
     if (alert.ends && alert.ends !== alert.expires) article.append(node('p', t('Event ends {0}', { 0: stamp(alert.ends) })));
     if (alert.areaDesc) article.append(node('p', alert.areaDesc));
     article.append(node('p', shapeNote(shape), 'kt-fine'));
-    if (shape.stale) article.append(node('p', t('Zone shape is past its source freshness date and may be out of date.'), 'kt-fine kt-firewx-stale-zone'));
+    if (shape.stale) article.append(node('p', t('Zone shape was retrieved more than 15 minutes ago and may be out of date.'), 'kt-fine kt-firewx-stale-zone'));
     if (bounds?.isValid() && st.map) { const show = node('button', t('Show on map'), 'btn'); show.type = 'button'; show.onclick = () => st.map.fitBounds(bounds, { maxZoom: 9, padding: [24, 24] }); article.append(show); }
     article.append(node('p', t('Source: {0}', { 0: SOURCE.name }), 'kt-fine'), sourceLink());
     return article;
@@ -175,6 +175,8 @@ const pastDeadline = (holder, now) => { const at = time(holder?.fresh_until); re
     const fixture = d.fixture ? node('p', d.fixture.synthetic ? t('Synthetic test data, not a current alert.') : t('Historical captured test data, not a current alert.'), 'kt-firewx-fixture') : null;
     if (fixture) st.banner.append(fixture);
     st.banner.append(node('p', t('National Weather Service · retrieved {0}', { 0: stamp(d.retrieved_at) })));
+    const minutes = ageMinutes(d.retrieved_at, now);
+    st.banner.append(node('p', minutes < 1 ? t('Updated less than a minute ago') : t('Updated {0} min ago', { 0: minutes }), 'kt-firewx-age'));
     if (kind === 'stale' || st.failed) st.banner.append(node('p', t('Stale: retrieved {0}. These alerts may have changed or ended. Check the NWS source.', { 0: stamp(d.retrieved_at) }), 'kt-firewx-stale'));
     const { alerts, hidden } = select(d.data.features, now, st.retired);
     const features = [];
@@ -205,7 +207,7 @@ const pastDeadline = (holder, now) => { const at = time(holder?.fresh_until); re
       try {
         const d = await global.KampTrailEnvironment.request('zone', zone, signal);
         if (seq !== st.seq) return;
-        st.zones.set(zone, { geometry: validateZone(d, zone), at: Date.now(), freshUntil: d.fresh_until || null, stale: d.stale === true });
+        st.zones.set(zone, { geometry: validateZone(d, zone), at: Date.now() });
       } catch {
         if (seq !== st.seq) return;
         if (global.KampTrailEnvironment.retryAfterMs() > 0) return;   // rate limited: ask for nothing more until Retry-After
@@ -278,5 +280,5 @@ const pastDeadline = (holder, now) => { const at = time(holder?.fresh_until); re
     return { [LABEL]: st.group };
   }
 
-  global.KampTrailFireWeather = { version: '2.35.0', LABEL, EVENTS, FRESH_MS, STALE_MAX_MS, ZONE_BUDGET, init, refresh, render, validate, validateZone, freshness, select, retiredIds, usableSnapshot, neededZones, resolveShape };
+  global.KampTrailFireWeather = { version: '2.35.0', LABEL, EVENTS, FRESH_MS, STALE_MAX_MS, ZONE_BUDGET, init, refresh, render, validate, validateZone, freshness, ageMinutes, select, retiredIds, usableSnapshot, neededZones, resolveShape };
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1774,6 +1774,8 @@
   "Source: {0}": "Source : {0}",
   "Synthetic test data, not a current alert.": "Données de test synthétiques, pas une alerte en vigueur.",
   "Historical captured test data, not a current alert.": "Données de test historiques capturées, pas une alerte en vigueur.",
-  "Zone shape is past its source freshness date and may be out of date.": "La forme de la zone a dépassé sa date de fraîcheur à la source et peut être périmée."
+  "Zone shape was retrieved more than 15 minutes ago and may be out of date.": "La forme de la zone a été obtenue il y a plus de 15 minutes et peut être périmée.",
+  "Updated {0} min ago": "Mis à jour il y a {0} min",
+  "Updated less than a minute ago": "Mis à jour il y a moins d’une minute"
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

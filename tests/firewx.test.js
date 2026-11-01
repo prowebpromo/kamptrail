@@ -272,22 +272,29 @@ test('retired history from the proxy hides an alert for a client that never saw 
   assert.deepEqual(ids(fw.select(response2.data.features, NOW).alerts), ['A']);
 });
 
-test('freshness: past the upstream deadline a retained response is labelled stale even inside the polling window', () => {
+test('freshness: Stale means more than 15 minutes since the last good retrieval, whatever the upstream max-age or Expires said', () => {
+  const MIN = 60000;
   const at = (deadlineSeconds, extra = {}) => ({ ...fx.payload('polygon'), retrieved_at: new Date(NOW).toISOString(), fresh_until: new Date(NOW + deadlineSeconds * 1000).toISOString(), ...extra });
   for (const [seconds, label] of [[60, 'max-age=60'], [0, 'max-age=0'], [-500, 'Expires in the past']]) {
     const d = at(seconds);
-    if (seconds > 0) assert.equal(fw.freshness(d, NOW + seconds * 1000 - 1), 'fresh', label + ' before deadline');
-    assert.equal(fw.freshness(d, NOW + Math.max(seconds, 0) * 1000 + 1000), 'stale', label + ' after deadline, well inside 15 minutes');
+    assert.equal(fw.freshness(d, NOW + 2 * MIN), 'fresh', label + ' two minutes after retrieval, past the upstream deadline');
+    assert.equal(fw.freshness(d, NOW + 15 * MIN), 'fresh', label + ' at exactly 15 minutes');
+    assert.equal(fw.freshness(d, NOW + 15 * MIN + 1), 'stale', label + ' just after 15 minutes');
   }
-  assert.equal(fw.freshness(at(600), NOW + 599000), 'fresh');
-  assert.equal(fw.freshness(at(600, { stale: true }), NOW), 'stale', 'server label wins');
-  // A payload with no deadline keeps the 15 minute rule.
-  assert.equal(fw.freshness(fx.payload('polygon'), NOW + 14 * 60000), 'fresh');
-  // Zones: a retained zone shape past its deadline is flagged on the alert.
+  // The proxy's recorded metadata does not drive the label in either direction.
+  assert.equal(fw.freshness(at(600, { stale: true }), NOW + MIN), 'fresh');
+  assert.equal(fw.freshness(at(99999), NOW + 16 * MIN), 'stale');
+  assert.equal(fw.freshness(fx.payload('polygon'), NOW + 14 * MIN), 'fresh');
+  // Retrieval age shown to the reader.
+  assert.equal(fw.ageMinutes(new Date(NOW).toISOString(), NOW + 30000), 0);
+  assert.equal(fw.ageMinutes(new Date(NOW).toISOString(), NOW + 7 * MIN + 59000), 7);
+  assert.equal(fw.ageMinutes(new Date(NOW).toISOString(), NOW - MIN), 0, 'a clock skew never shows a negative age');
+  // Zones use the same rule, from the client's last good retrieval of the zone.
   const alert = fw.select(fx.payload('zone_only').data.features, NOW).alerts[0];
-  const geom = fw.validateZone(fx.zone('fire/CAZ281'), 'fire/CAZ281'), geom2 = fw.validateZone(fx.zone('fire/NMZ104'), 'fire/NMZ104');
-  const cache = new Map([['fire/CAZ281', { geometry: geom, at: NOW, freshUntil: new Date(NOW + 60000).toISOString() }], ['fire/NMZ104', { geometry: geom2, at: NOW, freshUntil: null }]]);
-  assert.notEqual(fw.resolveShape(alert, cache, NOW).stale, true);
-  assert.equal(fw.resolveShape(alert, cache, NOW + 61000).stale, true);
-  assert.equal(fw.resolveShape(alert, new Map([['fire/CAZ281', { geometry: geom, at: NOW, stale: true }], ['fire/NMZ104', { geometry: geom2, at: NOW }]]), NOW).stale, true);
+  const g1 = fw.validateZone(fx.zone('fire/CAZ281'), 'fire/CAZ281'), g2 = fw.validateZone(fx.zone('fire/NMZ104'), 'fire/NMZ104');
+  const cache = new Map([['fire/CAZ281', { geometry: g1, at: NOW }], ['fire/NMZ104', { geometry: g2, at: NOW }]]);
+  assert.notEqual(fw.resolveShape(alert, cache, NOW + 15 * MIN).stale, true);
+  assert.equal(fw.resolveShape(alert, cache, NOW + 15 * MIN + 1).stale, true);
+  const old = new Map([['fire/CAZ281', { geometry: g1, at: NOW, freshUntil: new Date(NOW - 1e6).toISOString(), stale: true }], ['fire/NMZ104', { geometry: g2, at: NOW }]]);
+  assert.notEqual(fw.resolveShape(alert, old, NOW + MIN).stale, true, 'proxy metadata alone does not flag a zone');
 });
