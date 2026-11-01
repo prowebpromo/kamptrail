@@ -96,3 +96,80 @@ A saved stop stored as `ridb:232479` kept that stored id across reloads in both 
 This closes the identity exception recorded for 2.31.0 (`docs/AMENITY_OWNERSHIP_2.31.0.md`).
 
 Before merge, a separate agent reviewed commit 1fa0a252 from a fresh checkout with its own whole-catalogue script and recommended merge. The merged head e8b6d4fd differs from it only by raising the CI job limit from 15 to 25 minutes.
+
+# Partial-load identity (2.35.0)
+
+Branch `fix/partial-load-identity`, from main `041ff76c` (2.34.0, service-worker cache `kt-v67`). Release 2.35.0, cache `kt-v68`.
+
+## Defect
+
+Live on 2.34.0 with `identity-hosts.json` present. Bird Creek Campground has two separately published index listings about 400 m apart: `usfs:65184` (NV only, no legacy ids) and `osm:way:1236741631` (CA and NV, legacy `ridb:234209`). With only NV loaded the browser showed one listing `ridb:234209` with legacy ids `[ridb:234209, usfs:65184]`, and `getCampsiteById` returned it for both `usfs:65184` and `osm:way:1236741631`. After CA also loaded, in either order, both resolved correctly.
+
+Cause: the proximity same-name match in `cleanAndDedupeGeoJSON` prefers a candidate that is the record's published host, but when that host has not loaded it falls back to the first same-name candidate in range (`first`), which can belong to another index owner. 2.33.0 acceptance compared only listings whose states had all loaded, so it never looked at this checkpoint. A visitor near Ely, NV may never load CA.
+
+## Acceptance criterion
+
+With the host file present, at every loading checkpoint (after each state load, any set of states, any order):
+
+1. No wrong merge: no browser listing holds ids (id plus `legacy_ids`) of more than one index owner, and every id it holds is published.
+2. No wrong resolution: every published id of a listing with at least one loaded state either resolves to nothing (its record is not loaded yet) or resolves to a listing whose ids all belong to its own index owner.
+3. Every published id of a listing whose states have all loaded resolves.
+4. A record whose index host has not loaded stays its own marker, or joins only records of its own index owner. It never borrows another owner.
+5. 2.33.0 criteria still hold: full-load census equals the index in any order, and the host-file failure fallback makes no wrong merge and converges after retry.
+6. Stored ids are not rewritten. `search-index.json`, `coordinate-index.json`, `identity-hosts.json` and all listing data stay byte-identical to main.
+
+Measured by `scripts/check-partial-identity.js` in Chromium against the real app served from the branch worktree, with the host file served. Scope: each of the 50 states loaded alone, and each of the 102 state pairs that share a multi-state listing, in both orders (204 runs, 408 checkpoints).
+
+## Measured before and after (Chromium, host file served)
+
+Server: `PORT=8797 node scripts/serve.js` started from this worktree (process cwd checked with `readlink /proc/<pid>/cwd`). Browser: Chrome for Testing 153 via Playwright. A checkpoint is one state load. Raw: `docs/identity/before-2.34.0-partial-load.json` and `docs/identity/after-2.35.0-partial-*.json`.
+
+| Scenario | Checkpoints | 2.34.0 checkpoints with a wrong merge | 2.34.0 wrong merges / wrong resolutions (sum) | 2.35.0 wrong merges / wrong resolutions / unresolved |
+|---|---|---|---|---|
+| Each of 50 states alone | 50 | 1 (NV) | 1 / 3 | 0 / 0 / 0 |
+| 102 state pairs sharing a multi-state listing, both orders (204 runs) | 408 | 10 (every checkpoint with NV loaded and CA not: NV>AZ, NV>OR and NV>UT after each state, AZ>NV, OR>NV, UT>NV and NV>CA after NV) | 10 / 30 | 0 / 0 / 0 |
+
+The only defect found on 2.34.0 was Bird Creek: one listing `ridb:234209` holding `usfs:65184`, with `usfs:65184`, `osm:way:1236741631` and `ridb:234209` all resolving to it. No other pair of index owners merged at any checkpoint.
+
+### Bird Creek at the previously failing checkpoint (`node scripts/check-bird-creek-checkpoints.js`)
+
+Run on 2026-11-01 in Chrome 153.0.8010.12, service workers blocked, `/api/**` answered 404, host file served. 2.34.0 from a 76da929f checkout on port 8821 (UTC 18:25:40 to 18:25:53). 2.35.0 from this branch on port 8822 (UTC 18:25:54 to 18:26:06). Each server's cwd was checked. Raw: `docs/identity/bird-creek-checkpoints-2.34.0.json`, `docs/identity/bird-creek-checkpoints-2.35.0.json`.
+
+Expected, from `search-index.json`: two listings. `usfs:65184` (NV, ids `usfs:65184`) and `osm:way:1236741631` (CA and NV, ids `osm:way:1236741631`, `ridb:234209`). The `ridb:234209` record is in the NV file, and the `osm:way:1236741631` record is in the CA file.
+
+| Version | Order | Checkpoint | Bird Creek listings in the browser (id: id set) | `usfs:65184` resolves to | `osm:way:1236741631` resolves to | `ridb:234209` resolves to | Result |
+|---|---|---|---|---|---|---|---|
+| 2.34.0 | NV>CA | after NV | `ridb:234209`: `ridb:234209`, `usfs:65184` | `ridb:234209` (wrong listing) | `ridb:234209` (merged with `usfs:65184`) | `ridb:234209` (merged with `usfs:65184`) | FAIL, 1 wrong merge, 3 wrong resolutions |
+| 2.34.0 | NV>CA | after CA | `osm:way:1236741631`: `osm:way:1236741631`, `ridb:234209`. `usfs:65184`: `usfs:65184` | `usfs:65184` | `osm:way:1236741631` | `osm:way:1236741631` | PASS |
+| 2.35.0 | NV>CA | after NV | `ridb:234209`: `ridb:234209`. `usfs:65184`: `usfs:65184` | `usfs:65184` | `ridb:234209` (own listing, CA host not yet loaded) | `ridb:234209` | PASS, no merge across listings |
+| 2.35.0 | NV>CA | after CA | `osm:way:1236741631`: `osm:way:1236741631`, `ridb:234209`. `usfs:65184`: `usfs:65184` | `usfs:65184` | `osm:way:1236741631` | `osm:way:1236741631` | PASS, matches the index |
+| both | CA>NV | after CA | `osm:way:1236741631`: `osm:way:1236741631` | not loaded (NV) | `osm:way:1236741631` | `osm:way:1236741631` | PASS, partial id set until NV loads |
+| both | CA>NV | after NV | as after NV>CA | `usfs:65184` | `osm:way:1236741631` | `osm:way:1236741631` | PASS, matches the index |
+
+Rule applied at every checkpoint: a published id may resolve only to a browser listing whose ids all belong to that id's index listing, and no browser listing may mix two index listings. A listing whose states have not all loaded may still show under a member id (`ridb:234209` before CA) or with a partial id set. That is recorded, not counted as a failure. Once all its states have loaded, the canonical id and full id set must match the index.
+
+2.35.0 full-load census against `search-index.json` (all 33,370 listings, with every checkpoint along the way checked as above):
+
+| Order | Checkpoints with a wrong merge or resolution | Differences from the index (missing, split, canonical id, source-id set) |
+|---|---|---|
+| Default | 0 of 50 | 0 |
+| Reversed | 0 of 50 | 0 |
+| Random, seed 1 | 0 of 50 | 0 |
+| Random, seed 2 | 0 of 50 | 0 |
+| Host file 404 during all 50 loads (seed 3), then served and retried | 0 wrong merges, 0 wrong resolutions during the fallback | after retry: hosts `published`, 0 wrong merges, 0 wrong resolutions, 0 unresolved of 36,290 ids, 0 differences from the index |
+
+## Fix
+
+`cleanAndDedupeGeoJSON` takes a new option, `ownerOnly`. When it is set and `previousHosts` is present, a proximity same-name candidate is skipped unless both records have the same index owner (the record's published host, else its own id). A record whose host has not loaded therefore stays its own marker, or joins only its own owner's records. Same-id joins (one record in two state files) are unchanged. `data-loader.js` sets `ownerOnly` only on the options built from a valid `identity-hosts.json`. The index build (`scripts/build-search-index.js`) does not set it, so the build output cannot change. The fallback without the host file still passes `radiusMeters:-1` and is unchanged.
+
+At full load the result equals 2.33.0: every multi-record listing in the index is formed from records that all share one owner, and the index's own election (preferred ids, previous hosts) still picks the host among them.
+
+No stored id is rewritten. `search-index.json`, `coordinate-index.json`, `identity-hosts.json` and every listing file are byte-identical to main `041ff76c`.
+
+## Tests (2.35.0)
+
+- At the PR head after rebasing onto main 76da929f: `npm test` 478/478, `npm run test:python` 404 run, OK, 9 skipped.
+- Before the rebase, `npm test`: 471 tests. The new `tests/deterministic-identity.test.js` cases cover the general rule (synthetic same-name records of two owners, the host arriving in either input order, same-id joins, and the index-build path still merging without `ownerOnly`) and Bird Creek on real NV and CA data in both orders, with every listing holding one index owner after each load. A first full run found two errors of my own (a version string and a fixture name), both fixed. Rerunning the two files afterwards passed 13/13.
+- `npm run test:python`: pass.
+- Browser, on the 8797 worktree server (`identity`, `saved-stops`, `features`, `discovery`, `amenity-evidence`, `rig-profile`, `rest-areas`, `app`): 57 passed, 1 failed. The failure is the known `app.spec.js` mobile map height (493 vs >500). `identity.spec.js` includes the two new partial-load tests, NV before CA and CA before NV.
+- `npm run build`: passes. The release has `identity-hosts.json`, cache `kt-v68` and version 2.35.0. `search-index.json`, `coordinate-index.json` and `identity-hosts.json` hashes equal main's.
