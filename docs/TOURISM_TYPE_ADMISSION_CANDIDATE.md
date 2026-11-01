@@ -31,7 +31,7 @@ Structured facility type is not available offline. Missing: the raw `FacilityTyp
 
 All 45 are Recreation.gov listings whose own structured type is `other`, and none has its own overnight campsite records.
 
-- 31 stay published on their own descriptive wording, with attribution: 30 Campground (29 from FacilityName, 1 from the description) and 1 Dispersed (`ridb:255262` Wolf Flats, "a dispersed, undeveloped camping area").
+- 31 stay published on their own descriptive wording, with attribution: 30 Campground (27 from FacilityName, 3 from the description) and 1 Dispersed (`ridb:255262` Wolf Flats, "a dispersed, undeveloped camping area").
 - 14 are withdrawn, because no own source supports camping. Their earlier classification was borrowed.
 
 The proposal was not forced to 31 and 14. It came out that way under the rules.
@@ -95,7 +95,7 @@ Rig keys (`tents`, `caravans`, `motorhome`) belong to 2.32.0. They are read exac
 ## Identity and contributions
 
 - All 36,290 baseline ids and aliases resolve to the same listing, or to a `withdrawn.json` entry. 0 move host.
-- Browser runtime identity (data-loader.js L182) is reported per record: all states, reversed order, and every order of the record's own states. Records with `depends_on_load_order` are listed in the ledger. They wait on fix/deterministic-browser-identity, which lands before this candidate deploys. L182 is not changed here.
+- Browser runtime identity (data-loader.js L182) is reported per record: all states, reversed order, and every order of the record's own states. 93 of the 734 records depend on load order (`depends_on_load_order`), 25 of them in groups A, B, C, W or the OSM elements. None of the 43 promotions does. They wait on fix/deterministic-browser-identity, which lands before this candidate deploys. L182 is not changed here.
 - Contributions: production reports 0 published reviews, so 0 observations and 0 photos.
 - Not inspected: pending and rejected reviews, pending photos, `api/submit.php` corrections, permission observations, external bookmarks and shared links. Withdrawn ids stay resolvable for that reason.
 
@@ -116,3 +116,11 @@ The verifier fails on any snapshot, index or catalogue difference not listed in 
 3. Approve the new type "Lookout, cabin or other lodging" (10 listings).
 4. Add raw `FacilityTypeDescription` and `LastUpdatedDate` to the RIDB import, as proposed above.
 5. Is the website exact-identity rule acceptable for 2.32.0 rig ownership?
+
+## Results
+
+- 33,370 listings before, 33,339 after: 31 withdrawn, 0 newly published.
+- Type changes: other to established 64, other to dispersed 14, established to lodging 10, established to dispersed 1.
+- The rebuild is deterministic (digest `cc48b3f3...cb6f`, two independent replays). The verifier reports 0 unexpected deltas, 36,290 saved ids checked and 4 access holds unchanged.
+- Rig metadata, fees, access, aliases and coordinates are unchanged.
+
