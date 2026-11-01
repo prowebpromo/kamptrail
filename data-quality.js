@@ -35,7 +35,8 @@
     const campingName = /\b(?:campgrounds?|campsites?|camping|(?:rv|recreational vehicle|trailer)\s+(?:parks?|sites?|camp)|(?:group|horse|equestrian|primitive|tent|backcountry)\s+camp(?:s|\s+sites?)?)\b/i.test(name);
     // A Recreation.gov record's own facility type (derived from FacilityTypeDescription at import) counts
     // only when the same facility also lists its own overnight campsite records (ridb-sites.json).
-    const ridbOvernight = ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(raw.type) && Number.isInteger(overnightSites) && overnightSites > 0;
+    const ownType = raw._kt_normalized && typeof raw.ridb_facility_type === 'string' ? raw.ridb_facility_type : raw.type;
+    const ridbOvernight = ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(ownType) && Number.isInteger(overnightSites) && overnightSites > 0;
     const accommodation = ridbOvernight && !campingName && !campingIntro && ACCOMMODATION_NAME.test(name) ? name.match(ACCOMMODATION_NAME)[0].toLowerCase() : null;
     let exclusion_reason = null;
     if (['private', 'no', 'military'].includes(access)) exclusion_reason = `access_${access}`;
@@ -120,7 +121,7 @@
     // Own overnight campsite records (ridb-sites.json). An in-memory re-normalization reuses the attached count.
     // Both Recreation.gov sidecars count the facility's own TypeOfUse=Overnight campsite records.
     const fid = raw.facility_id != null ? String(raw.facility_id) : null;
-    const overnightSites = ridb && fid ? Math.max(options.siteDetails?.[fid]?.t || 0, options.amenityDetails?.facilities?.[fid]?.sites || 0, raw._kt_normalized ? raw.site_count || 0 : 0) : 0;
+    const overnightSites = ridb && fid ? Math.max(options.siteDetails?.[fid]?.t || 0, options.amenityDetails?.facilities?.[fid]?.sites || 0, raw._kt_normalized && Number.isInteger(raw.ridb_overnight_sites) ? raw.ridb_overnight_sites : 0) : 0;
     const classification = classifyCampingRecord(borrowedWording ? {...raw, description:''} : raw, name, {osm, ridb, overnightSites});
     // A held inherited restriction blocks admission until identity review. It
     // is not a statement about the kept element's own public-access tags.
@@ -128,6 +129,10 @@
     const legacyRIDB = ridb && !(Number(raw.schema_version) >= 3) && !raw._kt_normalized;
     // Snapshot membership is a loading hint, not evidence of a site's state.
     const p = {...raw, ...classification, name, sources, state: raw.state || raw['addr:state'] || null};
+    // Kept so re-normalization (index dedupe, browser state merges) reaches the same classification.
+    if (overnightSites > 0) p.ridb_overnight_sites = overnightSites; else delete p.ridb_overnight_sites;
+    // The Recreation.gov record's own import type, kept apart from the listing type shown.
+    if (ridb && raw.facility_id != null) p.ridb_facility_type = raw._kt_normalized && typeof raw.ridb_facility_type === 'string' ? raw.ridb_facility_type : (typeof raw.type === 'string' ? raw.type : null);
     p.legacy_ids = [...new Set([...(Array.isArray(raw.legacy_ids) ? raw.legacy_ids : []), raw.id].filter(v => v != null && v !== '').map(String))];
     const coordKey = `${ll.lon.toFixed(6)},${ll.lat.toFixed(6)}`;
     if (ridb && raw.facility_id != null) p.id = `ridb:${raw.facility_id}`;
@@ -176,12 +181,12 @@
     // wording (name, then the first description sentence). The wording is kept as attributed evidence.
     p.type_evidence = null;
     const wording = p.camping_name_text || p.camping_intro_text;
-    if (ridb && !osm && raw.type === 'other' && wording && p.camping_classification === 'campsite') {
+    if (ridb && !osm && p.ridb_facility_type === 'other' && wording && p.camping_classification === 'campsite') {
       const kind = /\b(?:dispersed|primitive|yellow\s+post)\b/i.test(wording) ? 'dispersed' : /\bbackcountry\b/i.test(wording) ? 'backcountry' : 'established';
       p.type = kind;
       p.type_evidence = {kind:'descriptive_wording', source:'Recreation.gov', source_record_id:p.id, field:p.camping_name_text ? 'FacilityName' : 'FacilityDescription', value:wording, retrieved_at:evidenceDate(raw.source_retrieved_at)};
-    } else if (ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(raw.type)) {
-      p.type_evidence = {kind:'structured_classification', source:'Recreation.gov', source_record_id:p.id, field:'FacilityTypeDescription (mapped at import)', value:raw.type, retrieved_at:evidenceDate(raw.source_retrieved_at)};
+    } else if (ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(p.ridb_facility_type)) {
+      p.type_evidence = {kind:'structured_classification', source:'Recreation.gov', source_record_id:p.id, field:'FacilityTypeDescription (mapped at import)', value:p.ridb_facility_type, retrieved_at:evidenceDate(raw.source_retrieved_at)};
     }
     delete p.camping_name_text; delete p.camping_intro_text;
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
