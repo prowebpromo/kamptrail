@@ -5,6 +5,15 @@
   "output_digest": "66ee9f6a5b5c59a75f3bd0a896d965623ba31932e8cc618edca5d4da50668b4e"
  },
  "summary": {
+  "state_retries": [
+   {
+    "run": "default_batch",
+    "failed_first": [
+     "WA"
+    ],
+    "failed_after_retry": []
+   }
+  ],
   "listings": 245,
   "multi_state_listings": 40,
   "scenarios": 84,
@@ -45,58 +54,11 @@
    "WY"
   ],
   "delayed_state": "ID",
-  "stable": 199,
+  "stable": 245,
   "identity_unstable": [],
   "rig_or_filter_unstable": [],
   "fixture_mismatch": [],
-  "missing": [
-   "osm:way:830825704",
-   "ridb:10072883",
-   "ridb:232018",
-   "ridb:232038",
-   "ridb:232051",
-   "ridb:232059",
-   "ridb:232074",
-   "ridb:232081",
-   "ridb:232082",
-   "ridb:232096",
-   "ridb:232099",
-   "ridb:232118",
-   "ridb:232120",
-   "ridb:232162",
-   "ridb:232298",
-   "ridb:232315",
-   "ridb:232466",
-   "ridb:232799",
-   "ridb:232853",
-   "ridb:232855",
-   "ridb:232857",
-   "ridb:233297",
-   "ridb:233818",
-   "ridb:233861",
-   "ridb:233866",
-   "ridb:234017",
-   "ridb:234018",
-   "ridb:234021",
-   "ridb:234022",
-   "ridb:234025",
-   "ridb:234026",
-   "ridb:234709",
-   "ridb:234784",
-   "ridb:238879",
-   "ridb:238898",
-   "ridb:238900",
-   "ridb:251362",
-   "ridb:256348",
-   "ridb:273910",
-   "ridb:273911",
-   "ridb:273917",
-   "ridb:273926",
-   "ridb:273950",
-   "ridb:274004",
-   "ridb:274051",
-   "ridb:274091"
-  ],
+  "missing": [],
   "browser_id_differs_from_index": []
  },
  "listings": [
@@ -1089,14 +1051,12 @@
    "browser_ids": [
     "osm:way:830825704"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "osm:way:859344792",
@@ -1205,14 +1165,12 @@
    "browser_ids": [
     "ridb:10072883"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:10074570",
@@ -1336,14 +1294,12 @@
    "browser_ids": [
     "ridb:232018"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232028",
@@ -1370,14 +1326,12 @@
    "browser_ids": [
     "ridb:232038"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232040",
@@ -1420,14 +1374,12 @@
    "browser_ids": [
     "ridb:232051"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232059",
@@ -1438,14 +1390,12 @@
    "browser_ids": [
     "ridb:232059"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232074",
@@ -1456,14 +1406,12 @@
    "browser_ids": [
     "ridb:232074"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232081",
@@ -1474,14 +1422,12 @@
    "browser_ids": [
     "ridb:232081"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232082",
@@ -1492,14 +1438,12 @@
    "browser_ids": [
     "ridb:232082"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232096",
@@ -1510,14 +1454,12 @@
    "browser_ids": [
     "ridb:232096"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232097",
@@ -1544,14 +1486,12 @@
    "browser_ids": [
     "ridb:232099"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232118",
@@ -1562,14 +1502,12 @@
    "browser_ids": [
     "ridb:232118"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232120",
@@ -1580,14 +1518,12 @@
    "browser_ids": [
     "ridb:232120"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232141",
@@ -1614,14 +1550,12 @@
    "browser_ids": [
     "ridb:232162"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "default_batch"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232298",
@@ -1632,14 +1566,12 @@
    "browser_ids": [
     "ridb:232298"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232315",
@@ -1650,14 +1582,12 @@
    "browser_ids": [
     "ridb:232315"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232324",
@@ -1780,14 +1710,12 @@
    "browser_ids": [
     "ridb:232466"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232473",
@@ -1846,14 +1774,12 @@
    "browser_ids": [
     "ridb:232799"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232830",
@@ -1880,14 +1806,12 @@
    "browser_ids": [
     "ridb:232853"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232855",
@@ -1898,14 +1822,12 @@
    "browser_ids": [
     "ridb:232855"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:232857",
@@ -1916,14 +1838,12 @@
    "browser_ids": [
     "ridb:232857"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:233125",
@@ -2031,14 +1951,12 @@
    "browser_ids": [
     "ridb:233297"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:233306",
@@ -2161,14 +2079,12 @@
    "browser_ids": [
     "ridb:233818"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:233834",
@@ -2228,14 +2144,12 @@
    "browser_ids": [
     "ridb:233861"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:233866",
@@ -2246,14 +2160,12 @@
    "browser_ids": [
     "ridb:233866"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:233899",
@@ -2312,14 +2224,12 @@
    "browser_ids": [
     "ridb:234017"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:234018",
@@ -2330,14 +2240,12 @@
    "browser_ids": [
     "ridb:234018"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:234021",
@@ -2348,14 +2256,12 @@
    "browser_ids": [
     "ridb:234021"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:234022",
@@ -2366,14 +2272,12 @@
    "browser_ids": [
     "ridb:234022"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:234025",
@@ -2384,14 +2288,12 @@
    "browser_ids": [
     "ridb:234025"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:234026",
@@ -2402,14 +2304,12 @@
    "browser_ids": [
     "ridb:234026"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:234029",
@@ -2713,14 +2613,12 @@
    "browser_ids": [
     "ridb:234709"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:234714",
@@ -2827,14 +2725,12 @@
    "browser_ids": [
     "ridb:234784"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:236512",
@@ -2960,14 +2856,12 @@
    "browser_ids": [
     "ridb:238879"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:238898",
@@ -2978,14 +2872,12 @@
    "browser_ids": [
     "ridb:238898"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:238900",
@@ -2996,14 +2888,12 @@
    "browser_ids": [
     "ridb:238900"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:239007",
@@ -3485,14 +3375,12 @@
    "browser_ids": [
     "ridb:251362"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:251437",
@@ -3632,14 +3520,12 @@
    "browser_ids": [
     "ridb:256348"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:257030",
@@ -3908,14 +3794,12 @@
    "browser_ids": [
     "ridb:273910"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:273911",
@@ -3926,14 +3810,12 @@
    "browser_ids": [
     "ridb:273911"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:273917",
@@ -3944,14 +3826,12 @@
    "browser_ids": [
     "ridb:273917"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:273926",
@@ -3962,14 +3842,12 @@
    "browser_ids": [
     "ridb:273926"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:273950",
@@ -3980,14 +3858,12 @@
    "browser_ids": [
     "ridb:273950"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:274004",
@@ -3998,14 +3874,12 @@
    "browser_ids": [
     "ridb:274004"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:274051",
@@ -4016,14 +3890,12 @@
    "browser_ids": [
     "ridb:274051"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:274091",
@@ -4034,14 +3906,12 @@
    "browser_ids": [
     "ridb:274091"
    ],
-   "stable": false,
+   "stable": true,
    "identity_stable": true,
    "rig_and_filter_stable": true,
    "matches_fixture": true,
    "fixture_mismatch_runs": [],
-   "missing_runs": [
-    "delayed_ID"
-   ]
+   "missing_runs": []
   },
   {
    "id": "ridb:274260",

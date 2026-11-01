@@ -1,6 +1,6 @@
 # Rig-tag ownership repair (2.34.0)
 
-Release 2.34.0 applies the 2.31.0 amenity ownership rule to rig suitability. The audit is `docs/RIG_TAG_OWNERSHIP_AUDIT.md`.
+Release 2.34.0 applies the 2.31.0 amenity ownership rule to rig suitability. The audit is `docs/RIG_TAG_OWNERSHIP_AUDIT.md`. It was first built as 2.32.0 on 2.31.0 and is rebased on main 16fcc1b (2.33.0, deterministic browser identity), keeping main's identity code (`identity-hosts.json`, the per-load catalogue rebuild, stored ids not rewritten) unchanged.
 
 ## Rule
 
@@ -24,7 +24,8 @@ node scripts/verify-rig-ownership.js --baseline=<origin/main checkout> --report=
 
 - `verify-osm-provenance.js`: all assertions true. Fee changes 0, access changes 0, held exclusions 4, listing count 33,370.
 - 44 of 50 snapshots changed. 1,003 rows moved 829 tag instances to member evidence (tents 209, caravans 205, capacity 118, backcountry 72, group_only 68, static_caravans 39, capacity:pitches 26, capacity:tents 24, horse 23, capacity:caravans 20, motorhome 18, capacity:persons 6, capacity:cabins 1). `coordinate-index.json` is unchanged. `search-index.json` changed only in `m.r` (237 listings).
-- Determinism: a second rebuild in a separate fresh checkout produced identical SHA-256 for all 50 snapshots, `search-index.json` and `coordinate-index.json`. `search-index.json`: `83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a`. Verifier output digest: `66ee9f6a5b5c59a75f3bd0a896d965623ba31932e8cc618edca5d4da50668b4e`.
+- After the rebase, the replay on 2.33.0 reproduced the 50 snapshots and `search-index.json` byte for byte. `identity-hosts.json` is rebuilt by the index build and changes only its `index_sha256`. Its 2,747 host entries are identical to main.
+- Determinism: a second rebuild in a separate fresh checkout produced identical SHA-256 for all 50 snapshots, `search-index.json`, `coordinate-index.json` and `identity-hosts.json` (`9f83fc564ec2240a13412cc49950782966e0ffa9c12915b3022214381eed4e58`). `search-index.json`: `83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a`. Verifier output digest: `66ee9f6a5b5c59a75f3bd0a896d965623ba31932e8cc618edca5d4da50668b4e`.
 
 ## Verifier
 
@@ -61,7 +62,9 @@ All counts are over the 33,370 published listings. They match the audit.
 
 ## Browser identity and load order
 
-`data-loader.js` L182 merges loaded states without the index's `preferredIds`/`previousHosts`. This is pre-existing and not changed here. 2 changed listings are elected under another canonical id in the browser: `usfs:24878` shows as `osm:way:334210652` and `usfs:9461` as `osm:relation:19325196`. The load-order result is in `docs/RIG_TAG_LOAD_ORDER_2.34.0.md`: rig suitability and filtering change with load order for 18 of the 245 affected listings, because the browser elects the absorbed OSM element as host in the reversed order. Source identities never change. Deployment waits for the separate identity fix.
+On 2.33.0 the browser elects the index's canonical hosts from `identity-hosts.json`. `docs/RIG_TAG_LOAD_ORDER_2.34.0.md`: across 84 scenarios all 245 affected listings keep the same source identities, rig line and Tents and Trailers outcome, and match the fixture. `usfs:24878` and `usfs:9461` now match the index. Before the rebase, 18 listings varied with load order and these 2 always differed.
+
+The verifier also fails if `identity-hosts.json` is not the one derived from the committed index, or if its host membership differs from main.
 
 ## Provenance debt
 
@@ -84,7 +87,7 @@ Why not move inherited values to member evidence in the index normalizer: that c
 | Borrowed listing type (`mergeFeatures` near L223/L230: `other` to `established` 92, `other` to `dispersed` 6) | 98 listings |
 | L230 promotion: listings published only because a merged record is classified as a campsite | 38 listings (the brief said 43) |
 | Operator and website values themselves | 374 and 325 |
-| 18 Recreation.gov listings whose absorbed OSM element links the same facility by `website` | treated as members, so they lose Tents 18, Trailers 15, RV 2 |
+| 18 Recreation.gov listings whose absorbed OSM element links the same facility by `website` | kept as members as built, so they lose Tents 18, Trailers 15, RV 2. The owner has not decided whether that link counts as identity. |
 
 ## Tests
 
