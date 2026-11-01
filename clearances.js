@@ -3,7 +3,7 @@
 (function(global){
   'use strict';
   const t=(key,params={})=>global.KampTrailI18n?.t(key,params)??String(key).replace(/\{([a-zA-Z0-9_]+)\}/g,(token,name)=>Object.hasOwn(params,name)?String(params[name]):token);
-  const VERSION='2.35.0',SCHEMA='kamptrail-clearances-3',MANIFEST='data/clearances/index.json',REPORTS='api/clearance-reports.php';
+  const VERSION='2.36.0',SCHEMA='kamptrail-clearances-3',MANIFEST='data/clearances/index.json',REPORTS='api/clearance-reports.php';
   const MIN_ZOOM=10,MAX_MANIFEST_BYTES=1024*1024,MAX_TILE_BYTES=512*1024,MAX_TILE_RECORDS=2000,MAX_TILES=4096;
   const MAX_VIEW_TILES=64,MAX_VIEW_BYTES=4*1024*1024,MEMORY_BYTES=12*1024*1024,LIST_LIMIT=200;
   const ATTRIBUTION='Contains information from OpenStreetMap, © OpenStreetMap contributors, available under the Open Database Licence (ODbL) 1.0.';

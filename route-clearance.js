@@ -3,7 +3,7 @@
 (function(root){
  'use strict';
  const t=(key,params={})=>(typeof window!=='undefined'?window.KampTrailI18n:globalThis.KampTrailI18n)?.t(key,params)??String(key).replace(/\{([a-zA-Z0-9_]+)\}/g,(token,name)=>Object.hasOwn(params,name)?String(params[name]):token);
- const VERSION='2.35.0',SCHEMA='kamptrail-route-clearance-1',RADIUS=100,CHUNK=64;
+ const VERSION='2.36.0',SCHEMA='kamptrail-route-clearance-1',RADIUS=100,CHUNK=64;
  const MAX_ROUTE_TILES=96,MAX_ROUTE_BYTES=12*1024*1024,MAX_FOUND=2000,BUDGET=20000000;
  // RI is protected in the national dataset; the client reads the RI pilot file there instead.
  // Only when that file is missing or invalid are RI segments reported as missing.
