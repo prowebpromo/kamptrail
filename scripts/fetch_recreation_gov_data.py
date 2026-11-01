@@ -154,6 +154,12 @@ class RIDBFetcher:
                 }
             }
 
+            # Keep source field names and values on the original facility for citation.
+            # An omitted field, a null, and an empty string remain distinguishable.
+            for field in ('FacilityTypeDescription', 'LastUpdatedDate'):
+                if field in facility:
+                    feature['properties'][field] = facility[field]
+
             features.append(feature)
             site_counter += 1
 
