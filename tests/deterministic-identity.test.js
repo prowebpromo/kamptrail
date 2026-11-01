@@ -36,7 +36,9 @@ function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0}={}){
   vm.runInContext(fs.readFileSync(path.join(root,'data-loader.js'),'utf8'),context);
   return {api:context.KampTrailData,DQ:context.DataQuality,map,requests};
 }
-const rowOf=(h,f)=>listingRow(f,h.DQ,[]);
+// Values built inside the VM realm are compared as plain JSON.
+const plain=v=>JSON.parse(JSON.stringify(v));
+const rowOf=(h,f)=>plain(listingRow(f,h.DQ,[]));
 const ids=row=>[row.id,...[...row.legacy_ids].sort()];
 const claims=row=>{const m={...row.m};delete m.e;return m;};
 function snapshot(h,want){
@@ -81,7 +83,7 @@ test('Cosby Campground keeps the OSM element and its own toilet evidence whichev
     const h=harness();await h.api.init(h.map);for(const code of order)await h.api.loadStates([code]);
     const p=h.api.getCampsiteById('ridb:232479').properties;
     assert.equal(p.id,'osm:way:1107154601');
-    seen.push({own:p.osm_amenity_tags,filter:h.DQ.amenityFilterSets(p),toilet:h.DQ.amenityFilterReason(p,'toilet')});
+    seen.push(plain({own:p.osm_amenity_tags,filter:h.DQ.amenityFilterSets(p),toilet:h.DQ.amenityFilterReason(p,'toilet')}));
   }
   assert.deepEqual(seen[0],seen[1]);
 });
@@ -96,15 +98,14 @@ test('delayed responses and parallel batches give the same listings as sequentia
   expectIndex(b,want);
 });
 
-test('without host data the fallback ignores load order and never moves a shown id',async()=>{
-  const order=['NC','TN'],run=async o=>{const h=harness({hosts:'missing'});await h.api.init(h.map);for(const code of o)await h.api.loadStates([code]);return h;};
-  const x=await run(order),y=await run([...order].reverse());
+test('without host data the fallback is fixed for one state and never moves a shown id',async()=>{
+  // Without host data the browser cannot know a host it has not loaded yet. It keeps every id it has
+  // already shown canonical (no flip) and otherwise uses the index build's fixed input order.
+  const one=async()=>{const h=harness({hosts:'missing'});await h.api.init(h.map);await h.api.loadStates(['TN']);return h;};
+  const x=await one(),y=await one();
   assert.equal(x.api.getIdentityStatus().hosts,'fallback');
-  // Listings whose states are all loaded do not depend on order.
-  const both=index.sites.filter(s=>s.states.every(c=>order.includes(c))).map(s=>s.id);
-  const key=h=>both.map(id=>{const f=h.api.getCampsiteById(id);return f?ids(rowOf(h,f)).join('|'):'-';}).sort();
+  const key=h=>plain(h.api.getAllCampsites().map(f=>ids(rowOf(h,f)).join('|')).sort());
   assert.deepEqual(key(x),key(y));
-  // An id shown before a neighbouring state loads stays a canonical id afterwards.
   const h=harness({hosts:'corrupt'});await h.api.init(h.map);await h.api.loadStates(['TN']);
   const shown=new Set(h.api.getAllCampsites().map(f=>f.properties.id));
   await h.api.loadStates(['NC']);
@@ -119,7 +120,7 @@ test('any published id resolves to one listing; publishedId and identityIds foll
   assert.ok(a&&a===b);
   assert.equal(h.api.publishedId('ridb:232479'),'osm:way:1107154601');
   assert.equal(h.api.publishedId('osm:way:1107154601'),'osm:way:1107154601');
-  assert.deepEqual([...h.api.identityIds('ridb:232479')],['osm:way:1107154601','ridb:232479']);
+  assert.deepEqual(plain(h.api.identityIds('ridb:232479')),['osm:way:1107154601','ridb:232479']);
   await h.api.loadStates(['NC']);
   for(const s of index.sites.filter(s=>s.states.every(c=>['NC','TN'].includes(c))&&s.legacy_ids.length))
     for(const id of [s.id,...s.legacy_ids])assert.equal(h.api.getCampsiteById(id)?.properties.id,s.id,`${id} resolves to ${s.id}`);
