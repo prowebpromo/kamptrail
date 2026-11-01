@@ -5,6 +5,8 @@ const{execFileSync,spawnSync}=require('node:child_process');
 const H=require('./helpers/php-harness.js');
 const D=require('../community-discovery.js');
 const NEW=['crowds','fullness','noise_day','noise_night','cleanliness'];
+// Swap in a FormData stub for formValues, then restore Node's own FormData, which the harness uses to post.
+const withForm=(values,fn)=>{const native=global.FormData;global.FormData=class{get(k){return values[k]??null;}};try{return fn();}finally{global.FormData=native;}};
 const site='usfs:r5-dimensions';
 const base={action:'submit',campsite_id:site,campsite_name:'R5 dimensions fixture',display_name:'Harness camper',rating:'4',body:'Firsthand harness visit report for the review dimensions.',visited_on:'2026-07-10',rig:'',firsthand:'1',elapsed_ms:'8000'};
 const obs=(o,extra={})=>({...base,...extra,observations:JSON.stringify(o)});
@@ -43,7 +45,7 @@ test('new score axes are optional, validated, moderated, published, edited and r
   // Legacy clients that omit observations keep the stored scores.
   assert.equal((await e.post({...base,action:'edit'},ids.fullness.token)).status,200);assert.deepEqual((await e.own(ids.fullness.token)).observations.scores,{fullness:4});
   // Clearing a score removes it; deleting removes the review and its observations.
-  assert.equal((await e.post(obs({},{action:'edit'}),ids.cleanliness.token)).status,200);assert.deepEqual((await e.own(ids.cleanliness.token)).observations,[]);
+  assert.equal((await e.post(obs({scores:{cleanliness:null}},{action:'edit'}),ids.cleanliness.token)).status,200);assert.deepEqual((await e.own(ids.cleanliness.token)).observations,[]);
   await e.publish(ids.cleanliness.id);await e.publish(ids.fullness.id);v=await view();assert.equal(v.site_scores.cleanliness,undefined);
   assert.equal((await e.post({action:'delete'},ids.noise_day.token)).status,200);v=await view();assert.equal(v.site_scores.noise_day,undefined);assert.deepEqual((await e.own(ids.noise_day.token)).observations,[]);
  }finally{e.close();}
@@ -92,6 +94,8 @@ test('season comes from the visit date, a boundary stay can pick the adjacent se
   // A published visit with no usable date: counted in the whole-site count, never in a season.
   e.sql(`$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?,?,'Undated fixture','Fixture',4,'Legacy undated disposable fixture','','','published','2026-10-01','2026-10-01')")->execute([hash('sha256','undated'),${JSON.stringify(site)}]);$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)')->execute([$p->lastInsertId(),'{"scores":{"crowds":5,"fullness":5},"season":"summer"}']);`);
   v=await view();assert.equal(v.site_scores.crowds.count,4);assert.equal(v.site_scores.fullness.count,1);
+  const mixed=await e.get('/api/community-discovery.php');assert.ok(mixed.sites[site].observations.some(g=>g.latest_visit==='')&&mixed.sites[site].observations.some(g=>g.latest_visit!==''),'page mixes dated and undated groups');
+  assert.equal(D.validSites(mixed.sites),true,'a page with an undated group is accepted');assert.deepEqual(D.seasonalScores(mixed.sites[site].observations),v.seasonal_scores,'client seasons match the server and skip the undated group');
   const seasonal=Object.values(v.seasonal_scores).reduce((n,s)=>n+(s.crowds?.count||0),0);assert.equal(seasonal,3,'undated rating adds no seasonal contribution, even with a stored season');assert.equal(v.seasonal_scores.summer.fullness,undefined);
   assert.equal(D.season(''),null);assert.deepEqual(D.allowedSeasons(''),[]);assert.deepEqual(D.seasonalScores([{values:{scores:{crowds:5},season:'summer'},count:3,latest_visit:''}]),{});
   // A submission cannot omit the visit date.
@@ -141,14 +145,77 @@ test('the review form confirms the derived season, offers boundary choices, and 
  assert.match(numeric.children.find(x=>x.attrs?.class==='kt-fine kt-season-note').textContent,/2026-03-01 falls in Spring/);
  date.value='';date.listeners.input();assert.equal(season.disabled,true);assert.equal(season.children.length,1);assert.equal(season.children[0].attrs.value,'');
  date.value='2026-07-04';date.listeners.change();assert.deepEqual(season.children.map(o=>o.attrs.value),['summer','spring','fall']);
- const data=v=>{global.FormData=class{get(k){return v[k]??null;}};return D.formValues({});};
- try{
+ const data=v=>withForm(v,()=>D.formValues({}));
+ {
   assert.deepEqual(data({score_crowds:'4',score_fullness:'2',score_season:'winter',visited_on:'2026-03-01'}),{scores:{crowds:4,fullness:2},season:'winter'},'boundary choice is sent');
   assert.deepEqual(data({score_crowds:'4',score_season:'spring',visited_on:'2026-03-01'}),{scores:{crowds:4}},'a confirmed visit-date season is implied, not sent');
   assert.deepEqual(data({observed_crowding:'crowded',score_season:'spring'}),{crowding:'crowded'},'no season without a score; no score from crowding');
   assert.deepEqual(data({score_noise_day:'5',score_noise_night:'1',score_cleanliness:'3'}),{scores:{noise_day:5,noise_night:1,cleanliness:3}});
- }finally{delete global.FormData;}
+ }
  assert.match(D.describe({scores:{crowds:4},season:'winter'}),/Crowds \(how crowded it felt\): 4\/5 \(visit rating\) · Season rated: Winter/);
  // Filters keep their existing aspects until the direction-aware filter package.
  assert.deepEqual(D.FILTER_SCORES,['quietness','shade','comfort']);assert.equal(D.matchesSummary({rating_count:3,rating_sum:12,latest_visit:'2026-07-01',observations:[{count:3,latest_visit:'2026-07-01',values:{scores:{crowds:5}}}]},{minScore_crowds:1}),true,'no crowds filter exists yet');
+});
+
+test('an edit from an older open form keeps R5 scores and season; the current form clears them only explicitly',{skip:!H.capable},async()=>{
+ const e=await H.start({port:18935});try{
+  const full={noise:'quiet',crowding:'moderate',signals:[{carrier:'verizon',signal:'usable',environment:'outdoors'}],scores:{quietness:3,shade:2,crowds:4,fullness:2,noise_day:3,noise_night:5,cleanliness:4},season:'winter'};
+  const r=await(await e.post(obs(full,{visited_on:'2026-03-01'}))).json();await e.publish(r.id);
+  assert.deepEqual((await e.own(r.token)).observations,full);
+  // A tab opened before R5 sends only the fields its form shows. Changed values apply; R5 fields stay.
+  const old={noise:'mixed',signals:[{carrier:'verizon',signal:'strong',environment:'outdoors'}],scores:{quietness:5}};
+  assert.equal((await e.post(obs(old,{action:'edit',visited_on:'2026-03-01'}),r.token)).status,200);
+  let own=await e.own(r.token);assert.equal(own.status,'pending','an edit still returns to moderation');
+  assert.deepEqual(own.observations,{noise:'mixed',scores:{quietness:5,crowds:4,fullness:2,noise_day:3,noise_night:5,cleanliness:4},season:'winter',signals:[{carrier:'verizon',signal:'strong',environment:'outdoors'}]},'pre-R5 fields follow the old form; R5 scores and season are kept');
+  // A pre-R5 form with no scores at all also keeps them.
+  assert.equal((await e.post(obs({noise:'mixed'},{action:'edit',visited_on:'2026-03-01'}),r.token)).status,200);
+  own=await e.own(r.token);assert.deepEqual(own.observations.scores,{crowds:4,fullness:2,noise_day:3,noise_night:5,cleanliness:4});assert.equal(own.observations.season,'winter');
+  // A kept boundary season still follows the date rule: moving the visit to July drops it, scores stay.
+  assert.equal((await e.post(obs({noise:'mixed'},{action:'edit',visited_on:'2026-07-15'}),r.token)).status,200);
+  own=await e.own(r.token);assert.equal(own.observations.season,undefined);assert.equal(own.observations.scores.crowds,4);
+  assert.equal((await e.post(obs({noise:'mixed'},{action:'edit',visited_on:'2026-03-01'}),r.token)).status,200);
+  // The current form names every score and the season. Null clears one deliberately; everything else is unchanged.
+  const values={observed_noise:'mixed',visited_on:'2026-03-01',score_season:'winter'};for(const[k,n]of Object.entries({crowds:4,fullness:2,noise_day:3,noise_night:5,cleanliness:4}))values['score_'+k]=String(n);
+  const payload=withForm(values,()=>D.formValues({},{edit:true}));
+  assert.deepEqual(payload.scores,{quietness:null,shade:null,comfort:null,noise_day:3,noise_night:5,cleanliness:4,crowds:4,fullness:2});assert.equal(payload.season,'winter');
+  payload.scores.crowds=null;payload.season=null;
+  assert.equal((await e.post(obs(payload,{action:'edit',visited_on:'2026-03-01'}),r.token)).status,200);
+  own=await e.own(r.token);assert.deepEqual(own.observations,{noise:'mixed',scores:{fullness:2,noise_day:3,noise_night:5,cleanliness:4}},'crowds and season cleared, other fields unchanged');
+  // Explicit nulls for every score clear them all; a confirmed date season sends null and stores nothing.
+  assert.equal((await e.post(obs({noise:'mixed',scores:Object.fromEntries(D.FILTER_SCORES.concat(['noise_day','noise_night','cleanliness','crowds','fullness']).map(k=>[k,null])),season:null},{action:'edit',visited_on:'2026-03-01'}),r.token)).status,200);
+  assert.deepEqual((await e.own(r.token)).observations,{noise:'mixed'});
+  // A submitted non-adjacent season is still rejected on edit; new reviews send only chosen values.
+  assert.equal((await e.post(obs({scores:{crowds:2},season:'fall'},{action:'edit',visited_on:'2026-03-01'}),r.token)).status,422);
+  assert.deepEqual(withForm({score_crowds:'2',visited_on:'2026-03-01',score_season:'spring'},()=>D.formValues({})),{scores:{crowds:2}});
+ }finally{e.close();}
+});
+
+test('undated discovery groups are valid, add no season and match only "any visit date"; dated groups still render',()=>{
+ const now=Date.parse('2026-10-29T12:00:00Z');
+ const dated={count:3,latest_visit:'2026-07-01',values:{noise:'quiet',scores:{crowds:3}}},blank={count:2,latest_visit:'',values:{noise:'noisy',scores:{crowds:5},season:'summer'}},nul={...blank,latest_visit:null};
+ const s={rating_count:5,rating_sum:20,latest_visit:'2026-07-01',observations:[dated,blank]};
+ assert.equal(D.validSites({a:s}),true);assert.equal(D.validSites({a:{...s,observations:[dated,nul]}}),true);
+ assert.equal(D.validSites({a:{rating_count:2,rating_sum:8,latest_visit:'',observations:[blank]}}),true,'a site with only undated reviews is valid');
+ for(const bad of ['2026-02-30','2026-7-1','undated',0])assert.equal(D.validSites({a:{...s,observations:[{...blank,latest_visit:bad}]}}),false,String(bad));
+ assert.deepEqual(D.seasonalScores(s.observations),{summer:{crowds:{count:3,sum:9,first_visit:'2026-07-01',latest_visit:'2026-07-01'}}},'undated group adds nothing to any season');
+ assert.equal(D.matchesSummary(s,{observed_noise:'noisy',observedDays:0},now),true,'undated report matches any visit date');
+ assert.equal(D.matchesSummary(s,{observed_noise:'noisy',observedDays:365},now),false,'undated report never meets an age limit');
+ assert.equal(D.matchesSummary(s,{observed_noise:'quiet',observedDays:365},now),true,'dated report still matches');
+ assert.equal(D.visitLabel(''),'visit date not reported');assert.equal(D.visitLabel('2026-07-01'),'2026-07-01');
+ class Element{
+  constructor(tag){this.tag=tag;this.attrs={};this.children=[];this._text='';this.dataset={};}
+  setAttribute(k,v){this.attrs[k]=String(v);}append(...items){this.children.push(...items);}addEventListener(){}showModal(){this.open=true;}
+  replaceChildren(...items){this._text='';this.children=items;}set textContent(x){this._text=String(x);this.children=[];}get textContent(){return this._text+this.children.map(x=>typeof x==='string'?x:x.textContent).join(' ');}
+  querySelector(selector){for(const x of this.children){if((selector.startsWith('.')?x.attrs?.class?.split(' ').includes(selector.slice(1)):x.tag===selector))return x;const found=x.querySelector?.(selector);if(found)return found;}return null;}
+ }
+ const vm=require('node:vm'),fs=require('node:fs');
+ return(async()=>{
+  const document={body:new Element('body'),activeElement:new Element('button'),createElement:tag=>new Element(tag),createTextNode:text=>({textContent:text})},window={KampTrailDiscovery:D};
+  const out={ok:true,count:2,average:4,next_before:null,scores_available:true,score_minimum:3,seasonal_scores:{summer:{crowds:{count:1,sum:3,first_visit:'2026-07-01',latest_visit:'2026-07-01'}}},site_scores:{crowds:{count:2,average:null,first_visit:'2026-07-01',latest_visit:'2026-07-01'}},reviews:[{id:2,rating:4,display_name:'Undated',body:'Undated legacy visit body.',visited_on:'',rig:'',created_at:'2020-01-02',photos:[],observations:{noise:'noisy',scores:{crowds:5}}},{id:1,rating:4,display_name:'Dated',body:'Dated visit body.',visited_on:'2026-07-01',rig:'',created_at:'2026-07-02',photos:[],observations:{noise:'quiet',scores:{crowds:3}}}]};
+  vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'../community.js'),'utf8'),{window,document,location:{hostname:'example.test'},navigator:{onLine:true},fetch:async()=>({ok:true,json:async()=>out}),Date});
+  await window.KampTrailCommunity.open({properties:{id:'qa:undated',name:'Undated fixture'}});await new Promise(r=>setTimeout(r,0));
+  const text=document.body.textContent;
+  assert.match(text,/Visited visit date not reported/);assert.match(text,/Reported on visit date not reported · Noise: Noisy/);assert.match(text,/Visited 2026-07-01/);assert.match(text,/Dated visit body/);
+  assert.match(text,/Crowds \(how crowded it felt\): insufficient evidence · 2 explicit ratings/);assert.match(text,/4\/5 from 2 published reviews/);
+ })();
 });
