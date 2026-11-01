@@ -93,7 +93,7 @@ test('delayed amenity evidence refreshes after popup close without replacing ope
 test('transient state failure is visible and explicit retry succeeds',async()=>{
   let attempts=0;
   const h=harness(async url=>{
-    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json')||url.endsWith('ridb-amenities.json')||url.endsWith('usfs-site-amenities.json'))return response({});
+    if(url.endsWith('index.json')||url.endsWith('ridb-sites.json')||url.endsWith('ridb-amenities.json')||url.endsWith('usfs-site-amenities.json')||url.endsWith('identity-hosts.json'))return response({});
     attempts++;
     return attempts===1?{ok:false,status:503}:response({type:'FeatureCollection',features:[feature({id:'NY-1',facility_id:123})]});
   });
