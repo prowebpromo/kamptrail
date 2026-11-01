@@ -35,6 +35,29 @@ Unchanged and not converted: the categorical `crowding`, `noise`, `shade`, `acce
 - The review dialog shows a "Visit sub-rating averages" panel. Below 3 ratings it shows "insufficient evidence" with the count. The client also refuses to show an average below 3 even if a server sends one.
 - Counts are ratings, not distinct campers.
 
+### Edit wire convention
+
+The `observations` JSON on an edit (`action=edit`) is read field by field:
+
+| Field | Absent | `null` or `""` | Value |
+|---|---|---|---|
+| R5 fields: `scores.noise_day`, `scores.noise_night`, `scores.cleanliness`, `scores.crowds`, `scores.fullness`, `season` | keep the stored value | clear it | set it |
+| Pre-R5 fields: `access`, `noise`, `shade`, `crowding`, `comfort`, `signals`, `scores.quietness`, `scores.shade`, `scores.comfort` | not reported (cleared), as before | not reported | set it |
+
+- Pre-R5 fields keep their original meaning because every released form shows them. Forms released before R5 never show the R5 fields, so their silence is not a choice.
+- The current client sends every score and `season` on edits, each as a value or `null` (`formValues(form,{edit:true})`). New reviews still send only chosen values.
+- An edit request with no `observations` field at all keeps every stored observation, as before.
+- A kept season still follows the date rule. If the edited date makes it non-adjacent, it is dropped. It is also dropped when no score remains. A submitted non-adjacent season is rejected with 422.
+
+### Undated reviews
+
+A published review without a usable visit date reaches the discovery page as a group with `latest_visit` `""`. A site with only undated reviews has a site `latest_visit` of `""`. The client accepts both. Such a group:
+
+- adds no seasonal contribution
+- matches a condition filter only with "Any visit date", never with an age limit
+- counts in the whole-site rating and score counts
+- shows as "visit date not reported" in the review list and result cards
+
 ### Out of scope here (packages B and C)
 
 - R6 filters: the filter panel keeps only the original three numeric score filters (`FILTER_SCORES`). Direction-aware crowds and fullness filters come in package B or C.
@@ -42,15 +65,23 @@ Unchanged and not converted: the categorical `crowding`, `noise`, `shade`, `acce
 
 ## Files
 
-- `api/_lib/observations.php`: new axes, season validation and binding, `ko_site_scores`.
-- `api/community.php`: binds the season to the visit date on submit and edit, returns `site_scores`.
-- `community-discovery.js`: new score labels, season field, averages text, season parity functions.
-- `community.js`: averages panel in the review dialog.
+- `api/_lib/observations.php`: new axes, season validation and binding, `ko_merge_edit`, `ko_site_scores`.
+- `api/community.php`: merges edits with stored R5 fields, binds the season to the visit date, returns `site_scores`.
+- `community-discovery.js`: new score labels, season field, edit payload with explicit nulls, undated groups, averages text, season parity functions.
+- `community.js`: averages panel in the review dialog, undated visit label.
+- `app.js`, `routes.js`: undated visit label in result and route cards.
 - `filters.js`: filter list limited to the original three aspects.
 - `locale.js`, `locale-fr.js`: Spanish and French for every new string.
 - `tests/helpers/php-harness.js`: reusable isolated PHP and database harness.
 - `tests/review-dimensions.test.js`: API and unit proof.
 - `tests/browser/review-dimensions-staging.spec.js`: browser proof against the harness.
+
+## Review findings (PR #162, Codex, at 477bb6b8)
+
+| Finding | Fix | Test |
+|---|---|---|
+| An edit from an older open tab sends only the fields its form knows, so it erased the R5 scores and the confirmed season. | `ko_merge_edit` keeps stored R5 fields the request omits. An explicit `null` clears one. The current client sends every score and the season on edit. Convention above. | `tests/review-dimensions.test.js` "an edit from an older open form keeps R5 scores and season…": an old-form edit keeps all five R5 scores and the season while its own fields change. A current-form edit clears crowds and the season and leaves the rest unchanged. All-null clears all. A non-adjacent season is still rejected. A new review sends no nulls. Fails on the pre-fix server. |
+| A discovery page with both dated and undated reviews made the client reject the whole page. | `validSites` accepts `""` or `null` visit dates for groups and sites. Undated groups add no season and never meet an age limit. The review list and cards show "visit date not reported". | Unit: "undated discovery groups are valid…" (validation, seasons, age matching, label, dialog render). API: the season test now checks that a real mixed discovery page is accepted and its seasons match the server. Browser: "mixed dated and undated reviews load in the dialog and in camper filters", desktop and mobile. `validSites` on the pre-fix client returns false for the same page. |
 
 ## Proof
 
