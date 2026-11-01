@@ -40,9 +40,11 @@ async function verify(browser, mobile, expected) {
     assert.equal(info.version,'2.34.0'); assert.equal(info.rig,info.version); assert.equal(info.nationalStatus,404);
     await page.evaluate(([x,y])=>map.setView([y,x],11,{animate:false}),info.site.xy);
     const layers=page.getByRole('button',{name:'Map layers',exact:true});
-    await layers.focus(); await layers.press('Enter');
+    if (mobile) await layers.click(); else await page.locator('.leaflet-control-layers').hover();
     const toggle=page.getByLabel('Official rest areas',{exact:true});
-    await toggle.waitFor({state:'visible'}); await toggle.focus(); await toggle.press('Space');
+    await toggle.waitFor({state:'visible'});
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    await toggle.check();
     assert(await toggle.isChecked());
     const pin=page.getByTitle(info.site.name,{exact:true});
     await pin.waitFor({state:'attached', timeout:45000});

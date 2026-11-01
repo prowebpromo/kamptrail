@@ -4,6 +4,7 @@ on:
     branches: [audit/codex-handoff-20261101]
     paths:
       - docs/acceptance/nov01-smoke-deployment.txt
+      - scripts/audits/nov01/production_smoke.cjs
 permissions:
   contents: read
 jobs:
