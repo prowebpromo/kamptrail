@@ -204,8 +204,8 @@ test.describe('RI saved label after the connection drops, without a reload',()=>
       await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
       popup=await openCandidate(page,first);await expect(popup).toContainText('Saved snapshot. OpenStreetMap extract '+riPilot.source.extract_timestamp);
       await page.getByRole('button',{name:'Close popup',exact:true}).click();
-      // Panning offline keeps the label: the store, not only the screen, holds the saved status.
-      await page.evaluate(()=>map.panBy([5,5],{animate:false}));await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
+      // A further redraw offline keeps the label: the store, not only the screen, holds the saved status.
+      await control.getByRole('button',{name:'Retry clearance data'}).click();await expect(control).not.toContainText('Loading clearance candidates');await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
       await context.setOffline(false);await expect(control).not.toContainText('Saved snapshot');expect(errors).toEqual([]);
     });
   }
