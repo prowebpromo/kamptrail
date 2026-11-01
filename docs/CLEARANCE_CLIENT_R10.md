@@ -105,19 +105,20 @@ Per-view payloads with the client's gating (tilesForView, raw bytes): NYC z12 9 
 
 ## Results
 
-Tested on the branch rebased onto origin/main 76da929f (PR #160 merged). npm test and test:python ran at 48a08909. Browser specs ran at f2b37c2a, which differs from 48a08909 only in tests/browser/clearances.spec.js. Baseline: a detached worktree at 76da929f (/home/claude/wt-r10-base) ran the same commands.
+Branch rebased onto origin/main 76da929f (PR #160 merged).
 
-| Suite | Branch | 76da929f baseline |
-|---|---|---|
-| npm test | 486 of 486 pass | 476 of 476 pass |
-| npm run test:python | 404 run, 0 failures, 9 skipped | 404 run, 0 failures, 9 skipped |
-| clearances.spec.js (desktop and mobile) | 7 of 7 | 4 of 4 (old RI pilot spec) |
-| route-clearance.spec.js (desktop and mobile) | 4 of 4 | 4 of 4 (old spec) |
-| routes.spec.js | 6 of 6 | 6 of 6 |
+RI offline copy round. npm test ran at 034242a9. Browser specs ran at 3323cde6, which differs from 034242a9 only in tests/browser/clearances.spec.js. Heavy jobs ran through /home/claude/heavy.sh. Server: PORT=8812 node scripts/serve.js, PID 1042, cwd /home/claude/wt-r10. Chromium 1243 via CHROMIUM_PATH.
 
-No failures remain, so no baseline comparison of failures is needed. Branch browser runs used PORT=8812 node scripts/serve.js with cwd /home/claude/wt-r10. Baseline runs used port 8813 with cwd /home/claude/wt-r10-base. Chromium 1243 via CHROMIUM_PATH.
+| Suite | Result |
+|---|---|
+| npm test | 490 of 490 pass |
+| clearances.spec.js (desktop and mobile, includes RI pilot, RI fallback to the saved copy, and RI offline with the service worker controlling) | 9 of 9 |
+| route-clearance.spec.js (desktop and mobile) | 4 of 4 |
+| routes.spec.js | 6 of 6 |
 
-Coverage: unit tests cover below, equal and above rig height, each status, empty set, directional and conditional, unit handling, manifest and tile integrity (all 1,059 committed tiles), zoom gating, attribution, visitor-report validation, road association (no ids, exact ids, parallel road, incomplete ids, road_below, applies_to unknown, barrier nodes) and RI (valid, missing, invalid and tampered pilot). The PHP harness covers clearance-report submission, moderation, applied-only publication, unpublishing and migration gating on isolated SQLite.
+Previous round on the rebased branch at 48a08909, before the offline copy: npm test 486 of 486, test:python 404 run with 0 failures and 9 skipped. A 76da929f baseline worktree also had no failures (npm test 476 of 476, test:python 404, browser 16 of 16), so there are no failures to attribute to main. test:python was not rerun this round. No Python file changed after 48a08909.
+
+Coverage: unit tests cover below, equal and above rig height, each status, empty set, directional and conditional, unit handling, manifest and tile integrity (all 1,059 committed tiles), zoom gating, attribution, visitor-report validation, road association (no ids, exact ids, parallel road, incomplete ids, road_below, applies_to unknown, barrier nodes), RI (valid, missing, invalid and tampered pilot) and the RI offline copy (cache name and key, validation on read, saved-snapshot labels, refresh failure, deadline and cancel). The PHP harness covers clearance-report submission, moderation, applied-only publication, unpublishing and migration gating on isolated SQLite.
 
 ## Owner decisions
 
