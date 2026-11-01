@@ -409,6 +409,9 @@
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
     const closure=['closed','temporarily closed'].includes(status)?status:null;
+    // Rig and amenity provenance debt (2.32.0): operator and website may be inherited from a merged record and are
+    // not yet guarded. The popup never shows operator. source_url is normalized from the listing's own record and is
+    // set for every published listing, so the inherited website below is never reached. tests/rig-ownership.test.js pins this.
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
     const layout=popupLayout();

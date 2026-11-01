@@ -2555,13 +2555,10 @@
         "addr:postcode": "30506",
         "addr:state": "GA",
         "addr:street": "Toto Creek Park Road",
-        "backcountry": "no",
         "cabins": "no",
         "camp_site": "standard",
-        "caravans": "no",
         "name": "Toto Creek Campground",
         "phone": "+1-770-945-9531",
-        "tents": "yes",
         "tourism": "camp_site",
         "type": "established",
         "website": "https://www.recreation.gov/camping/campgrounds/255286?tab=campsites",
@@ -2601,10 +2598,13 @@
             "source_record_id": "osm:relation:13941087",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "no",
               "drinking_water": "yes",
               "fee": "yes",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes",
               "washing_machine": "no"
             },
@@ -3499,7 +3499,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:347989059",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:56:22Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/347989059"
+          }
+        ]
       }
     },
     {
@@ -4379,9 +4391,7 @@
           "osm:node:2462387598",
           "osm:node:2462387602"
         ],
-        "backcountry": "yes",
         "drinking_water": "no",
-        "static_caravans": "no",
         "tents": "yes",
         "wheelchair": "no",
         "caravans": "no",
@@ -4406,12 +4416,15 @@
             "source_record_id": "osm:node:2462387598",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "drinking_water": "no",
               "fee": "yes",
               "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:56:22Z",
             "source_updated_at": null,
@@ -5510,7 +5523,6 @@
       "properties": {
         "access": "destination",
         "backcountry": "yes",
-        "capacity:persons": "6",
         "name": "Primitive 1",
         "tourism": "camp_site",
         "osm_id": 3448813843,
@@ -5543,6 +5555,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "destination",
+              "backcountry": "yes",
+              "capacity:persons": "6",
               "drinking_water": "no",
               "openfire": "yes",
               "picnic_table": "no",
@@ -5601,7 +5615,8 @@
             "source_record_id": "osm:node:3448813846",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "destination"
+              "access": "destination",
+              "backcountry": "yes"
             },
             "retrieved_at": "2026-10-29T02:56:22Z",
             "source_updated_at": null,
@@ -20670,7 +20685,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11964661085",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:56:22Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11964661085"
+          },
+          {
+            "source_record_id": "osm:node:11964661086",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:56:22Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11964661086"
+          }
+        ]
       }
     },
     {
@@ -25066,7 +25103,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "customers",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "no"
             },
             "retrieved_at": "2026-10-29T02:56:22Z",
             "source_updated_at": null,

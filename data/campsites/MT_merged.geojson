@@ -2396,12 +2396,10 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "DEVIL CREEK CAMPGROUND",
         "reservation": "yes",
         "reservation:website": "https://www.recreation.gov/camping/devil-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=113390",
         "sites": "14",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=66330",
         "id": "ridb:234791",
@@ -2441,8 +2439,10 @@
             "source_record_id": "osm:way:1237624206",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "waste_disposal": "no"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
@@ -2691,8 +2691,6 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "10",
-        "caravans": "yes",
         "description": "<p>Flint Creek Campground covers 3 acres in southwest Montana 3 miles west of Georgetown Lake.</p>",
         "name": "Flint Creek Campground",
         "operator": "United States Forest Service",
@@ -2735,6 +2733,8 @@
             "source_record_id": "osm:node:12335590201",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "10",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "toilets": "yes",
@@ -5691,10 +5691,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "SPRING HILL CAMPGROUND",
         "operator": "Beaverhead-Deerlodge National Forest, Pintler Ranger District",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:234008",
         "source": "recreation.gov",
@@ -5727,7 +5725,20 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1213387943",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1213387943"
+          }
+        ]
       }
     },
     {
@@ -6460,7 +6471,6 @@
         ]
       },
       "properties": {
-        "capacity": "32",
         "name": "Emerald Lake Campground",
         "operator": "US Forest Service",
         "tourism": "camp_site",
@@ -6501,6 +6511,7 @@
             "source_record_id": "osm:node:3993639489",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "32",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
@@ -8888,12 +8899,10 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "6",
         "maxstay": "16 days",
         "name": "Palisades Campground",
         "operator": "USFS",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/custergallatin/recarea/?recid=60861",
         "id": "ridb:239846",
@@ -8933,10 +8942,12 @@
             "source_record_id": "osm:way:918481349",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:caravans": "6",
               "drinking_water": "no",
               "fee": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
@@ -10552,10 +10563,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "EMERY BAY CAMPGROUND",
         "operator": "NFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:234484",
         "source": "recreation.gov",
@@ -10595,8 +10604,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "fee": "yes",
-              "internet_access": "no"
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:11:42Z",
             "source_updated_at": null,
@@ -10924,8 +10935,6 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "7",
-        "caravans": "yes",
         "contact:phone": "+1-406-821-3913",
         "description": "<p>Crazy Creek Campground hosts 7 sites with picnic tables, fire rings, vault toilet and a well with hand pump for water. There is no garbage service so Pack it in/Pack it out. Campground can accommodate trailers under 26 feet.</p>",
         "name": "Crazy Creek Campground",
@@ -10971,6 +10980,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bin": "no",
+              "capacity:pitches": "7",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "firepit": "yes",
@@ -10995,15 +11006,12 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "20",
-        "caravans": "yes",
         "contact:phone": "+1-406-821-3913",
         "description": "<p>Three Frogs Campground is a newly reconstructed campground and features 16 small trailer campsites and 4 walk-in tent sites. The campground offers accessible vault toilets, picnic tables, fire rings, water and garbage service, and gravel surfaced roads. Some campsites are also equipped with tent pads. Can accommodate trailers to 30' lengths.</p>",
         "name": "Three Frogs Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/three-frogs-campground",
         "id": "ridb:241815",
@@ -11042,10 +11050,13 @@
             "source_record_id": "osm:node:5280506520",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "20",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "firepit": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
             },
@@ -11507,7 +11518,6 @@
         ]
       },
       "properties": {
-        "capacity": "10",
         "name": "M-K Campground",
         "operator": "Forest Service",
         "tourism": "camp_site",
@@ -11543,7 +11553,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:256669915",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "10"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/256669915"
+          }
+        ]
       }
     },
     {
@@ -12976,10 +12998,7 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "6",
-        "caravans": "yes",
         "description": "<p>Located on the banks of Skalkaho Creek, Black Bear Campground hosts 6 sites with picnic tables, fire rings, and a vault toilet. There is no garbage service so Pack it in/Pack it out. Campground can accommodate RV's or trailers to 50'.</p>",
-        "motorhome": "yes",
         "name": "Black Bear Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
@@ -13022,9 +13041,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bin": "no",
+              "capacity:pitches": "6",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
               "firepit": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
@@ -27216,7 +27238,20 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8301666356",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "30"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8301666356"
+          }
+        ]
       }
     },
     {
@@ -30836,7 +30871,64 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12066517579",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "11",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517579"
+          },
+          {
+            "source_record_id": "osm:node:12066517580",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "12",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517580"
+          },
+          {
+            "source_record_id": "osm:node:12066517581",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "25",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517581"
+          },
+          {
+            "source_record_id": "osm:node:12066517588",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "11",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517588"
+          },
+          {
+            "source_record_id": "osm:node:12066517590",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "6",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517590"
+          }
+        ]
       }
     },
     {
@@ -30881,7 +30973,75 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12066517583",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "15",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517583"
+          },
+          {
+            "source_record_id": "osm:node:12066517584",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "6",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517584"
+          },
+          {
+            "source_record_id": "osm:node:12066517585",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "15",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517585"
+          },
+          {
+            "source_record_id": "osm:node:12066517586",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "14",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517586"
+          },
+          {
+            "source_record_id": "osm:node:12066517587",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "8",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517587"
+          },
+          {
+            "source_record_id": "osm:node:12066517589",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "10",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12066517589"
+          }
+        ]
       }
     },
     {
@@ -32606,7 +32766,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12187614230",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12187614230"
+          },
+          {
+            "source_record_id": "osm:node:12187614231",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12187614231"
+          }
+        ]
       }
     },
     {

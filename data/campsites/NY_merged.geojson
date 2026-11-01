@@ -95,14 +95,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "no",
-        "group_only": "no",
         "name": "CAMP GATEWAY - STATEN ISLAND",
         "opening_hours": "closed",
         "operator": "National Park Service",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234715",
         "id": "ridb:234715",
@@ -136,7 +132,22 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:988355889",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "no",
+              "caravans": "no",
+              "group_only": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/988355889"
+          }
+        ]
       }
     },
     {
@@ -275,14 +286,10 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
-        "capacity": "40",
-        "group_only": "yes",
         "name": "POTOMAC GROUP CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234476",
         "id": "ridb:234476",
@@ -322,7 +329,11 @@
             "source_record_id": "osm:way:818939421",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "drinking_water": "no"
+              "backcountry": "yes",
+              "capacity": "40",
+              "drinking_water": "no",
+              "group_only": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -2935,7 +2946,51 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:1596688824",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "7",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1596688824"
+          },
+          {
+            "source_record_id": "osm:node:1596719307",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "6",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1596719307"
+          },
+          {
+            "source_record_id": "osm:node:10243632774",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "7",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10243632774"
+          }
+        ]
       }
     },
     {
@@ -2981,7 +3036,65 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:1596679948",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "3",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1596679948"
+          },
+          {
+            "source_record_id": "osm:node:1596681500",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1596681500"
+          },
+          {
+            "source_record_id": "osm:node:1596683613",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "6",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1596683613"
+          },
+          {
+            "source_record_id": "osm:node:1596684071",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "6",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1596684071"
+          }
+        ]
       }
     },
     {
@@ -10426,7 +10539,37 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4606997185",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "7",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4606997185"
+          },
+          {
+            "source_record_id": "osm:node:4606997186",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4606997186"
+          }
+        ]
       }
     },
     {
@@ -15838,7 +15981,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:6956355945",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6956355945"
+          },
+          {
+            "source_record_id": "osm:node:6956355946",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6956355946"
+          }
+        ]
       }
     },
     {
@@ -16301,9 +16466,20 @@
         "description": "",
         "member_evidence": [
           {
+            "source_record_id": "osm:node:7556835566",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7556835566"
+          },
+          {
             "source_record_id": "osm:node:7556835777",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "sanitary_dump_station": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -17442,7 +17618,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7717710115",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7717710115"
+          }
+        ]
       }
     },
     {
@@ -18193,7 +18381,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7814282969",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7814282969"
+          }
+        ]
       }
     },
     {
@@ -18720,7 +18920,12 @@
             "source_record_id": "osm:node:13063456626",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "backcountry": "yes",
+              "capacity:tents": "2",
+              "caravans": "no",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -19784,7 +19989,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7947257248",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7947257248"
+          }
+        ]
       }
     },
     {
@@ -19823,7 +20040,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7947257252",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7947257252"
+          }
+        ]
       }
     },
     {
@@ -20193,6 +20422,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -20204,6 +20434,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -20215,6 +20446,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -20512,7 +20744,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8330277163",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8330277163"
+          }
+        ]
       }
     },
     {
@@ -20552,7 +20796,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8330277165",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8330277165"
+          }
+        ]
       }
     },
     {
@@ -20592,7 +20848,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8330277167",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8330277167"
+          }
+        ]
       }
     },
     {
@@ -22511,7 +22779,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9127012274",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9127012274"
+          }
+        ]
       }
     },
     {
@@ -22725,6 +23005,7 @@
             "source_record_id": "osm:node:9142590540",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -23485,6 +23766,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -28060,6 +28342,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -28714,6 +28997,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -28772,6 +29056,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -28783,6 +29068,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -29028,7 +29314,23 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12954752486",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12954752486"
+          }
+        ]
       }
     },
     {
@@ -29932,7 +30234,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10937759051",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10937759051"
+          }
+        ]
       }
     },
     {
@@ -38350,7 +38664,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12087350796",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12087350796"
+          },
+          {
+            "source_record_id": "osm:node:12087350797",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12087350797"
+          }
+        ]
       }
     },
     {
@@ -38390,7 +38726,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12087370592",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12087370592"
+          },
+          {
+            "source_record_id": "osm:node:12087370593",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12087370593"
+          }
+        ]
       }
     },
     {
@@ -38967,6 +39325,8 @@
             "source_record_id": "osm:node:12150160016",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "1",
               "internet_access": "no",
               "internet_access:fee": "no",
               "sanitary_dump_station": "no"
@@ -39137,7 +39497,8 @@
             "source_record_id": "osm:node:12240126543",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "amenity": "shelter"
+              "amenity": "shelter",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -39309,7 +39670,8 @@
             "source_record_id": "osm:node:12323660241",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "backcountry": "yes"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -39319,7 +39681,8 @@
             "source_record_id": "osm:node:12323660242",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "backcountry": "yes"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -40098,7 +40461,23 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12954752488",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12954752488"
+          }
+        ]
       }
     },
     {
@@ -40141,7 +40520,23 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12954752490",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12954752490"
+          }
+        ]
       }
     },
     {
@@ -40315,7 +40710,37 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12954752496",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12954752496"
+          },
+          {
+            "source_record_id": "osm:node:12954752497",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12954752497"
+          }
+        ]
       }
     },
     {
@@ -40652,7 +41077,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13055177115",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13055177115"
+          }
+        ]
       }
     },
     {
@@ -40748,7 +41185,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13055177119",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13055177119"
+          },
+          {
+            "source_record_id": "osm:node:13055177120",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13055177120"
+          }
+        ]
       }
     },
     {
@@ -40843,7 +41302,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13055177124",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13055177124"
+          }
+        ]
       }
     },
     {
@@ -40883,7 +41354,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13055177127",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13055177127"
+          },
+          {
+            "source_record_id": "osm:node:13055177129",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13055177129"
+          }
+        ]
       }
     },
     {
@@ -40922,7 +41415,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13055177130",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13055177130"
+          }
+        ]
       }
     },
     {
@@ -41001,6 +41506,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -41058,6 +41564,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -41115,6 +41622,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -41206,6 +41714,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74099,10 +74608,16 @@
             "source_record_id": "osm:way:977966060",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74268,10 +74783,16 @@
             "source_record_id": "osm:way:977966064",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74282,10 +74803,16 @@
             "source_record_id": "osm:way:977966065",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74357,10 +74884,16 @@
             "source_record_id": "osm:way:977966067",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74371,10 +74904,16 @@
             "source_record_id": "osm:way:977966068",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74492,10 +75031,16 @@
             "source_record_id": "osm:way:977966071",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74567,10 +75112,16 @@
             "source_record_id": "osm:way:977966073",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74641,10 +75192,16 @@
             "source_record_id": "osm:way:977966077",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -74715,10 +75272,16 @@
             "source_record_id": "osm:way:977966076",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "9",
+              "capacity:tents": "3",
+              "caravans": "no",
               "fee": "yes",
               "firepit": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets:disposal": "pitlatrine"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
@@ -82935,7 +83498,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1236053623",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity:caravans": "64",
+              "capacity:tents": "6"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1236053623"
+          }
+        ]
       }
     },
     {
@@ -84178,7 +84754,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1258822661",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1258822661"
+          }
+        ]
       }
     },
     {

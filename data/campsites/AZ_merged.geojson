@@ -449,12 +449,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
-        "horse": "designated",
         "name": "GROOM CREEK HORSE CAMP",
         "operator": "United States Forest Service",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:234759",
         "schema_version": 3,
@@ -486,7 +483,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:820267019",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "horse": "designated",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/820267019"
+          }
+        ]
       }
     },
     {
@@ -1436,13 +1447,10 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
-        "group_only": "yes",
         "name": "EAGLE RIDGE GROUP CAMPGROUND",
         "operator": "United States Forest Service",
         "reservation": "required",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130603",
         "website": "https://www.fs.usda.gov/recarea/prescott/recarea/?recid=75329",
@@ -1476,7 +1484,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:819664855",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "group_only": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/819664855"
+          }
+        ]
       }
     },
     {
@@ -2517,7 +2539,6 @@
         ]
       },
       "properties": {
-        "group_only": "yes",
         "name": "CROOK CAMPGROUND",
         "operator": "USFS",
         "source": "recreation.gov",
@@ -2560,6 +2581,7 @@
             "source_record_id": "osm:node:2330847179",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "group_only": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -3935,13 +3957,9 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
-        "group_only": "no",
         "name": "Burnt Corral Campground",
         "nudism": "no",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130702",
@@ -3982,8 +4000,12 @@
             "source_record_id": "osm:relation:11727080",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
-              "internet_access": "no"
+              "group_only": "no",
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
             "source_updated_at": null,
@@ -4003,7 +4025,6 @@
       },
       "properties": {
         "camp_site": "basic",
-        "capacity": "3",
         "description:en": "Dispersed camping area with limited amenities. No potable water is available on-site.",
         "ele": "341",
         "maxstay": "14 days",
@@ -4049,6 +4070,7 @@
             "source_record_id": "osm:node:6069610328",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "3",
               "drinking_water": "no",
               "picnic_table": "yes",
               "toilets": "yes"
@@ -4238,15 +4260,11 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "ele": "584",
-        "group_only": "yes",
         "name": "GRAPEVINE GROUP CAMPGROUND",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/tonto/recarea/?recid=35741",
         "id": "ridb:266136",
@@ -4286,10 +4304,14 @@
             "source_record_id": "osm:way:263839966",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
+              "group_only": "yes",
               "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -4357,11 +4379,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "POTATO PATCH CAMPGROUND",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130603",
         "website": "https://www.recreation.gov/camping/campgrounds/270420?tab=info",
@@ -4402,7 +4422,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permissive",
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
             "source_updated_at": null,
@@ -4631,16 +4653,12 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "206",
-        "caravans": "yes",
         "contact:website": "https://www.fs.usda.gov/recarea/tonto/recarea/?recid=35727",
         "dog": "yes",
         "motor_vehicle": "yes",
         "name": "Cholla Campground",
         "operator": "USFS",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:249312",
         "source": "recreation.gov",
@@ -4679,12 +4697,16 @@
             "source_record_id": "osm:way:1019356212",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
               "bbq": "yes",
+              "capacity": "206",
+              "caravans": "yes",
               "drinking_water": "yes",
               "openfire": "yes",
               "picnic_table": "yes",
               "sanitary_dump_station": "yes",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -5508,15 +5530,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
-        "group_only": "yes",
-        "horse": "yes",
         "name": "FRAZIER GROUP CAMPGROUND",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130702",
         "website": "https://www.fs.usda.gov/recarea/tonto/recarea/?recid=35751",
@@ -5557,9 +5574,14 @@
             "source_record_id": "osm:way:462858429",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
-              "internet_access": "no"
+              "group_only": "yes",
+              "horse": "yes",
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
             "source_updated_at": null,
@@ -5890,11 +5912,8 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "name": "LYNX CAMPGROUND",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/prescott/recarea/?recid=67181",
         "wheelchair": "yes",
@@ -5935,7 +5954,10 @@
             "source_record_id": "osm:way:715905586",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "sanitary_dump_station": "no"
+              "backcountry": "no",
+              "caravans": "yes",
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
             "source_updated_at": null,
@@ -13689,7 +13711,9 @@
             "source_record_id": "osm:node:4540049775",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -18061,7 +18085,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7752527974",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7752527974"
+          }
+        ]
       }
     },
     {
@@ -18104,7 +18140,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7752527977",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7752527977"
+          }
+        ]
       }
     },
     {
@@ -30122,9 +30170,6 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
-        "caravans": "no",
-        "group_only": "no",
         "leisure": "park",
         "name": "Cottonwood Campground",
         "nudism": "no",
@@ -30134,7 +30179,6 @@
         "operator:wikidata": "Q308439",
         "operator:wikipedia": "en:National Park Service",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/grca/planyourvisit/campsite-information.htm",
         "osm_id": 13378627667,
@@ -30166,10 +30210,14 @@
             "source_record_id": "osm:way:1014985804",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "May-Oct: yes; Jan-Apr,Nov-Dec: no",
+              "group_only": "no",
               "internet_access": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:48:13Z",
@@ -49430,7 +49478,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1568399982",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity:caravans": "26"
+            },
+            "retrieved_at": "2026-10-29T02:48:13Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1568399982"
+          }
+        ]
       }
     },
     {

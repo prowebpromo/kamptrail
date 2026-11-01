@@ -1113,9 +1113,7 @@
         ]
       },
       "properties": {
-        "capacity": "18",
         "name": "LAKE WEDINGTON",
-        "tents": "yes",
         "tourism": "caravan_site",
         "id": "ridb:234586",
         "source": "recreation.gov",
@@ -1154,9 +1152,11 @@
             "source_record_id": "osm:way:368988012",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "18",
               "fee": "10.00",
               "internet_access": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -3485,7 +3485,6 @@
         ]
       },
       "properties": {
-        "capacity": "31",
         "name": "Ozark Campground",
         "operator": "US National Park Service",
         "tourism": "camp_site",
@@ -3520,7 +3519,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4285104560",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "31"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4285104560"
+          }
+        ]
       }
     },
     {
@@ -5193,10 +5204,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Quarry Park",
         "operator": "United State Corps of Engineers",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 4345184689,
         "osm_type": "node",
@@ -5228,7 +5237,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -9754,8 +9765,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "check_date": "2025-03-08",
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -9766,8 +9780,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "check_date": "2025-03-08",
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -10214,9 +10231,13 @@
               "access": "permit",
               "bbq": "yes",
               "bin": "no",
+              "capacity:tents": "1",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
               "picnic_table": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -10230,9 +10251,13 @@
               "access": "permit",
               "bbq": "yes",
               "bin": "no",
+              "capacity:tents": "1",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
               "picnic_table": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -10342,9 +10367,13 @@
               "access": "permit",
               "bbq": "yes",
               "bin": "no",
+              "capacity:tents": "1",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
               "picnic_table": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -10358,9 +10387,13 @@
               "access": "permit",
               "bbq": "yes",
               "bin": "no",
+              "capacity:tents": "1",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
               "picnic_table": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -10374,9 +10407,13 @@
               "access": "permit",
               "bbq": "yes",
               "bin": "no",
+              "capacity:tents": "1",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
               "picnic_table": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -10390,9 +10427,13 @@
               "access": "permit",
               "bbq": "yes",
               "bin": "no",
+              "capacity:tents": "1",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
               "picnic_table": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
@@ -12052,11 +12093,13 @@
             "source_record_id": "osm:way:412180135",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "45",
               "fee": "32",
               "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:50:05Z",
             "source_updated_at": null,
@@ -14042,7 +14085,33 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1095291032",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "22",
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1095291032"
+          },
+          {
+            "source_record_id": "osm:way:1095291033",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "16",
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1095291033"
+          }
+        ]
       }
     },
     {
@@ -14085,7 +14154,21 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1095291035",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "22",
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1095291035"
+          }
+        ]
       }
     },
     {

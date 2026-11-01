@@ -1628,7 +1628,8 @@
             "source_record_id": "osm:node:12240126543",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "amenity": "shelter"
+              "amenity": "shelter",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:53:59Z",
             "source_updated_at": null,

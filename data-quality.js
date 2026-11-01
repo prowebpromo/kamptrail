@@ -262,6 +262,8 @@
     if (ridb && raw.facility_id != null) p.source_url = `https://www.recreation.gov/camping/campgrounds/${encodeURIComponent(raw.facility_id)}`;
     else if (osm && raw.osm_id != null && /^(node|way|relation)$/.test(raw.osm_type || '')) p.source_url = `https://www.openstreetmap.org/${raw.osm_type}/${raw.osm_id}`;
     else p.source_url = raw.source_url || raw.website || raw.url || null;
+    // Provenance debt (2.32.0): raw.website and raw.operator can be inherited from an absorbed element in a snapshot.
+    // They are kept as-is pending an owner decision. Only a record without its own source link falls back to website.
     p.attributes_unverified = legacyRIDB || !!raw.attributes_unverified;
     // Only validated sidecar metadata survives normalization; source elevation tags are not equivalent.
     p.elevation = raw._kt_normalized ? elevationInfo({...feature,properties:raw}) : null;
@@ -333,6 +335,7 @@
       if(!checkedUSFSSiteAmenities(a))attachUSFSSiteAmenities(primary,b);
       else if(a.source.rows_sha256===b.source.rows_sha256)attachUSFSSiteAmenities(primary,{version:1,source:a.source,facilities:{...b.facilities,...a.facilities}});
     }
+    // Provenance debt (2.32.0): website is still filled from another record here. No campsite UI reads it (see data-loader.js).
     for (const key of ['description','website','source_url','road_difficulty','rating','stay_limit','open_status','season','restrictions','camping_activity']) if (p[key] == null || p[key] === '') p[key]=q[key] ?? p[key];
     return primary;
   }

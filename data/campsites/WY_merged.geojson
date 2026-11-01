@@ -1611,12 +1611,10 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "ele": "2271",
         "name": "Warren Bridge Campground",
         "operator": "BLM",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:14720",
         "schema_version": 3,
@@ -1654,7 +1652,9 @@
             "source_record_id": "osm:node:1183476492",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -2727,15 +2727,11 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
         "camp_site": "standard",
-        "caravans": "no",
         "motor_vehicle": "yes",
         "name": "Cave Falls Campground",
         "note": "pit toilets, water from artisian well",
         "reservation": "no",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:239007",
         "source": "recreation.gov",
@@ -2774,9 +2770,13 @@
             "source_record_id": "osm:way:1185551384",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "no",
               "drinking_water": "yes",
               "internet_access": "no",
               "openfire": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "washing_machine": "no"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
@@ -6890,7 +6890,11 @@
             "source_record_id": "osm:node:3064201412",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "8",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -6949,7 +6953,11 @@
             "source_record_id": "osm:node:3064201413",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "8",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -7631,7 +7639,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9941394724",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9941394724"
+          }
+        ]
       }
     },
     {
@@ -7756,7 +7776,11 @@
             "source_record_id": "osm:node:3064201085",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "6",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -8943,8 +8967,12 @@
             "source_record_id": "osm:node:3064201132",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "6",
+              "caravans": "no",
               "fee": "yes",
-              "openfire": "no"
+              "openfire": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -9226,8 +9254,12 @@
             "source_record_id": "osm:node:3064201347",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "6",
+              "caravans": "no",
               "fee": "yes",
-              "openfire": "no"
+              "openfire": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -9361,8 +9393,12 @@
             "source_record_id": "osm:node:3064201351",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
+              "caravans": "no",
               "fee": "yes",
-              "openfire": "no"
+              "openfire": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -9894,7 +9930,11 @@
             "source_record_id": "osm:node:3064201369",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "12",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -14163,7 +14203,11 @@
             "source_record_id": "osm:node:3064201493",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "8",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -15883,7 +15927,11 @@
             "source_record_id": "osm:node:3064201540",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "12",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -16123,7 +16171,11 @@
             "source_record_id": "osm:node:3064201547",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "12",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -16183,7 +16235,11 @@
             "source_record_id": "osm:node:3064201549",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "12",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -16462,7 +16518,11 @@
             "source_record_id": "osm:node:3064201558",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "12",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -25659,9 +25719,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Reno Campground 2",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 516776905,
         "osm_type": "way",
@@ -25692,9 +25750,11 @@
             "source_record_id": "osm:way:516776906",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "power_supply": "yes",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",

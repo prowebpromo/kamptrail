@@ -305,7 +305,6 @@
         ]
       },
       "properties": {
-        "capacity": "58",
         "description": "<h2>Overview</h2>\nMorris Hill is a peaceful, rustic campground for groups of family and friends. The family campground is a family-friendly destination perched on a ridge above Lake Moomaw. Kids can have fun at the playground while older generations sit back and relax in the shade. The group sites accommodate up the 25 guests with space for up to eight tents.  Campers can enjoy the wonders of camping with simple pleasures like s'mores on the campfire, berry picking in the woods, and watching for waterfowl and wildlife like deer. The convenient location near Lake Moomaw and sandy swim beaches, a fishing pier, boat ramp, and hiking and biking trails makes Morris Hill a popular spot. <h2>Recreation</h2>\nAn inviting swimming beach at Coles Point attracts many visitors. About less than a mile from the campground is a fishing pier where anglers seek brown and rainbow trout, bass and crappie. Back Creek is also nice for trout fishing. Hikers enjoy the Morris Hill Bike Trail and Fortney Loop Trail.<h2>Facilities</h2>\nFamily Campground: Most sites will fit any size RV. Campsite amenities include flush toilets, hot showers, a playground and drinking water. Group Sites: There is no water or electricity.  Two fully accessible vault toilets, picnic tables and a group grill are on each group site. Coles Point Boat Ramp, the nearest boat ramp to Morris, is less than two miles away.<h2>Natural Features</h2>\nThe campground sits on a ridge overlooking Lake Moomaw. It is about a half-mile from the south end of the lake. Lake Moomaw, which flows from the Jackson River, is a cold-water 2,530-acre lake with an inviting swimming beach. \n<br/><br/>\nMorris Hill is part of the George Washington and Jefferson National Forests which spans across Virginia and parts of West Virginia and Kentucky. These forests protect 40 species of trees that are mostly Appalachian hardwood and mixed pine-hardwood forests, 60 species of mammals and 200 species of birds.\n<h2>Nearby Attractions</h2>\nHead downstream of the Jackson River for fly fishing, canoeing, rafting and kayaking. A half hour east of the lake is Hot Springs, Virginia, a quaint village known as a rural resort town.\n<h2>Charges & Cancellations</h2>\n<p>Due to Covid-19 restrictions group camping will not be open this season. We apologize for any inconvenience. Please visit www.cdc.gov for the latest information on the virus. </p>\n",
         "name": "MORRIS HILL CAMPGROUND",
         "tourism": "camp_site",
@@ -345,6 +344,7 @@
             "source_record_id": "osm:way:814665410",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "58",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -364,17 +364,12 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "67",
-        "capacity:tents": "33",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "OAK RIDGE CAMPGROUND",
         "opening_hours": "Mar-Nov",
         "operator": "National Park Service",
         "operator:wikipedia": "en:National Park Service",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/prwi/planyourvisit/oakridge.htm",
         "id": "ridb:233379",
@@ -415,12 +410,17 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "capacity:pitches": "67",
+              "capacity:tents": "33",
+              "caravans": "yes",
               "charge": "26 USD/day",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "laundry_service": "no",
-              "shower": "yes"
+              "shower": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -439,14 +439,9 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "30",
-        "caravans": "yes",
-        "group_only": "no",
         "name": "HURRICANE CAMPGROUND",
         "opening_hours": "Apr 15-Oct 31 07:00-22:00",
         "operator": "United States Department of Agriculture",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recreation/camping-cabins/recarea/?recid=73771&actid=29",
         "id": "ridb:233308",
@@ -486,9 +481,14 @@
             "source_record_id": "osm:way:808163406",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity": "30",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -1474,20 +1474,12 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity:caravans": "165",
-        "capacity:pitches": "165",
-        "capacity:tents": "165",
-        "caravans": "yes",
-        "group_only": "no",
         "name": "MATHEWS ARM CAMPGROUND",
         "operator": "National Park Service",
         "operator:short": "NPS",
         "operator:type": "public",
         "operator:wikidata": "Q308439",
         "operator:wikipedia": "en:National Park Service",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/mathews-arm-campground.htm",
         "id": "ridb:232432",
@@ -1527,11 +1519,19 @@
             "source_record_id": "osm:way:224194057",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity:caravans": "165",
+              "capacity:pitches": "165",
+              "capacity:tents": "165",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "sanitary_dump_station": "yes",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -2062,9 +2062,6 @@
       "properties": {
         "addr:unit": "A,B",
         "cabins": "yes",
-        "capacity:cabins": "13",
-        "caravans": "no",
-        "group_only": "no",
         "name": "Cabin Camp 3",
         "opening_hours": "Apr-Nov",
         "operator": "National Park Service",
@@ -2072,8 +2069,6 @@
         "operator:wikipedia": "en:National Park Service",
         "reservation": "required",
         "smoking": "outside",
-        "static_caravans": "no",
-        "tents": "no",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/10007130?tab=campsites",
         "id": "ridb:10007130",
@@ -2114,9 +2109,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "capacity:cabins": "13",
+              "caravans": "no",
               "charge": "35 USD/day",
               "fee": "yes",
-              "internet_access": "no"
+              "group_only": "no",
+              "internet_access": "no",
+              "static_caravans": "no",
+              "tents": "no"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -2445,9 +2445,7 @@
         "addr:postcode": "22932",
         "addr:state": "VA",
         "addr:street": "Loft Mountain Road",
-        "backcountry": "no",
         "camp_site": "standard",
-        "caravans": "yes",
         "dog": "yes",
         "name": "Loft Mountain Campground",
         "nudism": "no",
@@ -2455,7 +2453,6 @@
         "operator": "National Park Service",
         "phone": "+1 540 999 3500",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/loft-mountain-campground.htm",
         "id": "ridb:232433",
@@ -2496,11 +2493,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "charge": "30 USD",
               "drinking_water": "yes",
               "fee": "yes",
               "internet_access": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -2814,7 +2814,6 @@
         ]
       },
       "properties": {
-        "capacity": "20",
         "description": "<h2>Overview</h2>\nRaccoon Branch Campground, nestled at the base of Dickey Knob, offers scenic mountain views, hiking trail access from campsites and cool mountain streams. Campers can access Dickey Creek and the Raccoon Branch from the campground. The most notable time to visit is fall, when the trees boast gorgeous fall foliage. \n<br/><br/>\nWith a location just 11 miles from Interstate 81, the beautiful campground is easily reached by drivers heading out from one of the surrounding cities. <h2>Recreation</h2>\nThe beautiful Dickey Knob Trail takes hikers through a Wilderness to the top of Dickey Knob for spectacular views of Sugar Grove and Rye Valley. The creek provides a setting for wading and fishing.<h2>Facilities</h2>\n<p>Every site accommodates RV or tent camping and five campsites have electric hookups. Perks of the campground include flush toilets, drinking water, paved roads and spurs and a dump station.  There are no showers.   A volunteer host is onsite to welcome visitors and offer advice on the region.</p>\n<h2>Natural Features</h2>\nThe campground is at an elevation of 2,880 ft., along a large grassy area, surrounded by pines, hardwoods and rhododendrons. Perched in the Appalachian Mountains, Raccoon Branch is part of the Mount Rogers National Recreation Area, a 200,000-acre stretch of designated wilderness areas. \n<h2>Nearby Attractions</h2>\nHike the Appalachian Trail, which extends more than 2,175 miles throughout the Appalachian Mountains across 14 states. The trail was designated as the first National Scenic Trail.   The Virginia Creeper Trail, Hungry Mother State Park and Grayson Highlands State Park are nearby.",
         "name": "RACCOON BRANCH CAMPGROUND",
         "operator": "Mount Rogers National Recreation Area",
@@ -2855,6 +2854,7 @@
             "source_record_id": "osm:way:971791283",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "20",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -3663,10 +3663,14 @@
             "source_record_id": "osm:node:732432507",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -3677,10 +3681,14 @@
             "source_record_id": "osm:node:732432510",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -3691,10 +3699,14 @@
             "source_record_id": "osm:node:732432513",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -3705,10 +3717,14 @@
             "source_record_id": "osm:node:2442127652",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -6984,7 +7000,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4439928480",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4439928480"
+          },
+          {
+            "source_record_id": "osm:node:4439928520",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4439928520"
+          }
+        ]
       }
     },
     {
@@ -7026,7 +7066,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10934376515",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10934376515"
+          },
+          {
+            "source_record_id": "osm:node:11368993777",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11368993777"
+          }
+        ]
       }
     },
     {
@@ -9874,7 +9938,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9181475742",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
+              "group_only": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9181475742"
+          }
+        ]
       }
     },
     {
@@ -10828,10 +10907,14 @@
             "source_record_id": "osm:node:7856588900",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -17480,6 +17563,7 @@
             "source_record_id": "osm:way:1459962041",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:caravans": "2",
               "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
@@ -18516,9 +18600,15 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permissive",
+              "capacity:caravans": "10",
+              "capacity:persons": "25",
+              "capacity:tents": "20",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
               "internet_access": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -24144,8 +24234,6 @@
         "access": "yes",
         "bbq": "yes",
         "camp_site": "standard",
-        "capacity": "48",
-        "caravans": "yes",
         "fee": "yes",
         "group_only": "yes",
         "name": "Lake Fairfax Large Group Campground",
@@ -24199,9 +24287,12 @@
               "access": "yes",
               "bbq": "yes",
               "fee": "yes",
+              "group_only": "yes",
               "openfire": "yes",
               "power_supply": "no",
-              "shower": "no"
+              "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -24213,12 +24304,17 @@
             "fields": {
               "access": "yes",
               "bbq": "yes",
+              "capacity": "48",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "yes",
               "openfire": "yes",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
-              "shower": "yes"
+              "shower": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -25644,8 +25740,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity:caravans": "30",
+              "caravans": "yes",
               "fee": "yes",
-              "power_supply": "no"
+              "power_supply": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -26522,8 +26622,6 @@
         "addr:city": "Riverdale",
         "addr:postcode": "20737",
         "addr:state": "MD",
-        "capacity": "174",
-        "caravans": "yes",
         "leisure": "park",
         "name": "Greenbelt Park Campground",
         "operator": "National Park Service",
@@ -26531,7 +26629,6 @@
         "operator:type": "public",
         "operator:wikidata": "Q308439",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/gree/planyourvisit/campground.htm",
         "osm_id": 759770890,
@@ -26565,8 +26662,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity": "174",
+              "caravans": "yes",
               "fee": "yes",
-              "sanitary_dump_station": "customers"
+              "sanitary_dump_station": "customers",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -30020,7 +30120,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:941483571",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941483571"
+          },
+          {
+            "source_record_id": "osm:way:941483572",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941483572"
+          }
+        ]
       }
     },
     {
@@ -35257,7 +35379,8 @@
             "source_record_id": "osm:way:1163510164",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
             "source_updated_at": null,
@@ -36500,7 +36623,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1390989443",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1390989443"
+          }
+        ]
       }
     },
     {
@@ -37050,10 +37185,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "capacity:persons": "3",
+              "caravans": "no",
               "drinking_water": "yes",
               "fee": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "no",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:39:23Z",
@@ -37496,8 +37635,6 @@
           "osm:way:1319634830",
           "osm:way:1560919175"
         ],
-        "caravans": "no",
-        "tents": "yes",
         "sources": [
           "openstreetmap"
         ],
@@ -37510,7 +37647,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1319634830",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "no",
+              "group_only": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1319634830"
+          },
+          {
+            "source_record_id": "osm:way:1560919175",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1560919175"
+          }
+        ]
       }
     },
     {
@@ -40462,7 +40623,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1499197178",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1499197178"
+          }
+        ]
       }
     },
     {

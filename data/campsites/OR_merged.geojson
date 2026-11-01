@@ -1183,7 +1183,6 @@
         ]
       },
       "properties": {
-        "capacity": "7",
         "name": "Twin Springs Campground",
         "payment:cash": "yes",
         "tourism": "camp_site",
@@ -1224,6 +1223,7 @@
             "source_record_id": "osm:node:6585727685",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "7",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -2687,7 +2687,6 @@
         ]
       },
       "properties": {
-        "capacity": "8",
         "name": "Rattlesnake Canyon Campground",
         "operator": "BLM",
         "tourism": "camp_site",
@@ -2722,7 +2721,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5406408140",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "8"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5406408140"
+          }
+        ]
       }
     },
     {
@@ -4070,10 +4081,7 @@
         ]
       },
       "properties": {
-        "capacity": "44",
-        "caravans": "yes",
         "name": "LAVA LAKE CAMPGROUND",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/deschutes/recarea/?recid=38894",
         "id": "ridb:251448",
@@ -4113,7 +4121,10 @@
             "source_record_id": "osm:way:714333970",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "capacity": "44",
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -4823,10 +4834,8 @@
         ]
       },
       "properties": {
-        "caravans": "no",
         "description": "<p>Several walk in campsites along the <a href=\"http://www.fs.usda.gov/recarea/rogue-siskiyou/recreation/recarea/?recid=74294\" rel=\"nofollow\">Illinois River</a>. <a href=\"http://www.fs.usda.gov/recarea/rogue-siskiyou/recreation/recarea/?recid=77743\" rel=\"nofollow\">River Bench Day Use</a> and Campground are located on a lower river terrace, within a forested setting. Must hike down one of two access trails to use.</p><h2>Facilities</h2><ul><li>8 walk in campsites with picnic tables, and fire pits</li><li>No drinking water</li><li>Vault toilet within walking distance</li><li>No garbage disposal - Please pack it out</li></ul>",
         "name": "River Bench Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/rogue-siskiyou/recarea/?recid=70634",
         "id": "ridb:266477",
@@ -4865,8 +4874,10 @@
             "source_record_id": "osm:node:9670896212",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -4927,7 +4938,6 @@
         ]
       },
       "properties": {
-        "capacity": "4",
         "name": "Devil's Canyon Campground",
         "tourism": "camp_site",
         "id": "ridb:10322469",
@@ -4961,7 +4971,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1023898993",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "4"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1023898993"
+          }
+        ]
       }
     },
     {
@@ -5429,12 +5451,8 @@
         ]
       },
       "properties": {
-        "capacity": "10",
-        "caravans": "yes",
-        "group_only": "no",
         "name": "Post Pile Campground",
         "operator": "BLM",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:10039245",
         "source": "recreation.gov",
@@ -5473,8 +5491,12 @@
             "source_record_id": "osm:way:714346650",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "10",
+              "caravans": "yes",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "group_only": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -6702,7 +6724,6 @@
         ]
       },
       "properties": {
-        "capacity": "15",
         "name": "RILEY HORSE CAMPGROUND",
         "operator": "US Forest Service",
         "tourism": "camp_site",
@@ -6744,6 +6765,7 @@
             "source_record_id": "osm:way:636092320",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "15",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -7205,7 +7227,6 @@
         ]
       },
       "properties": {
-        "capacity": "6",
         "name": "Jackman Park Campground",
         "operator": "BLM",
         "tourism": "camp_site",
@@ -7247,6 +7268,7 @@
             "source_record_id": "osm:way:705917080",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "6",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -7351,12 +7373,8 @@
         ]
       },
       "properties": {
-        "capacity": "10",
-        "caravans": "yes",
-        "group_only": "no",
         "name": "Stillwater Campground",
         "operator": "BLM",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:10001666",
         "source": "recreation.gov",
@@ -7395,8 +7413,12 @@
             "source_record_id": "osm:way:714346635",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "10",
+              "caravans": "yes",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "group_only": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -7415,7 +7437,6 @@
         ]
       },
       "properties": {
-        "capacity": "20",
         "name": "Chimney Rock Campground",
         "operator": "BLM",
         "tourism": "camp_site",
@@ -7457,6 +7478,7 @@
             "source_record_id": "osm:way:692059162",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "20",
               "drinking_water": "yes",
               "fee": "yes"
             },
@@ -7911,9 +7933,7 @@
       },
       "properties": {
         "area": "yes",
-        "capacity": "7",
         "name": "MUD LAKE CAMPGROUND",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/wallowa-whitman/recarea/?recid=52561",
         "id": "ridb:233236",
@@ -7953,8 +7973,10 @@
             "source_record_id": "osm:way:1558881722",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "7",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -9853,7 +9875,6 @@
         ]
       },
       "properties": {
-        "capacity": "36",
         "name": "South Steens Campground",
         "operator": "BLM",
         "tourism": "camp_site",
@@ -9895,6 +9916,7 @@
             "source_record_id": "osm:way:705917092",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "36",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -10231,7 +10253,6 @@
         "addr:postcode": "97108",
         "addr:state": "OR",
         "addr:street": "Upper Nestucca River Road",
-        "group_only": "yes",
         "name": "Rocky Bend Group Campground",
         "nohousenumber": "yes",
         "operator": "United States Forest Service",
@@ -10269,7 +10290,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1414183865",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1414183865"
+          }
+        ]
       }
     },
     {
@@ -10644,9 +10677,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "INDIAN FORD CAMPGROUND",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/deschutes/recarea/?recid=38612",
         "id": "ridb:267082",
@@ -10686,7 +10717,9 @@
             "source_record_id": "osm:way:714335966",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -13112,7 +13145,6 @@
       },
       "properties": {
         "access": "yes",
-        "capacity:caravans": "31",
         "charge": "20 USD (Single Cmapsite);40 USD (Group Campsite)",
         "fee": "yes",
         "name": "Whittaker Creek Recreation Site",
@@ -13157,6 +13189,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity:caravans": "31",
               "charge": "20 USD (Single Campsite;40 USD (Group Campsite)",
               "fee": "yes"
             },
@@ -13973,8 +14006,6 @@
       },
       "properties": {
         "camp_site": "serviced",
-        "capacity:caravans": "42",
-        "caravans": "yes",
         "dog": "leashed",
         "name": "Ainsworth Campground",
         "ownership": "Oregon State Parks",
@@ -14008,6 +14039,8 @@
             "source_record_id": "osm:way:1185241047",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:caravans": "42",
+              "caravans": "yes",
               "fee": "yes",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
@@ -14032,12 +14065,8 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "17",
-        "capacity:tents": "17",
-        "caravans": "yes",
         "name": "Eagle Creek Campground",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 1596375042,
         "osm_type": "node",
@@ -14063,7 +14092,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1187069919",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity:caravans": "17",
+              "capacity:tents": "17",
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1187069919"
+          }
+        ]
       }
     },
     {
@@ -26232,10 +26276,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "no",
               "picnic_table": "no",
               "power_supply": "no",
-              "shower": "no"
+              "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -30916,7 +30964,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7781638514",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7781638514"
+          }
+        ]
       }
     },
     {
@@ -32843,7 +32906,10 @@
             "source_record_id": "osm:node:7130263032",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "drinking_water": "yes"
+              "caravans": "no",
+              "drinking_water": "yes",
+              "group_only": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -32853,7 +32919,10 @@
             "source_record_id": "osm:node:7130263033",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "drinking_water": "yes"
+              "caravans": "no",
+              "drinking_water": "yes",
+              "group_only": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -33718,7 +33787,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7511452337",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7511452337"
+          }
+        ]
       }
     },
     {
@@ -34147,7 +34228,8 @@
             "source_record_id": "osm:node:7549740687",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "backcountry": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -34633,7 +34715,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7622685841",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7622685841"
+          }
+        ]
       }
     },
     {
@@ -38901,7 +38995,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8165272064",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8165272064"
+          }
+        ]
       }
     },
     {
@@ -39472,7 +39578,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8165272839",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8165272839"
+          }
+        ]
       }
     },
     {
@@ -41415,7 +41533,6 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
         "name": "Lower Dry Gulch Campsite",
         "tourism": "camp_site",
         "osm_id": 8215189348,
@@ -41441,7 +41558,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8215189349",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8215189349"
+          }
+        ]
       }
     },
     {
@@ -41480,7 +41609,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8215189351",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8215189351"
+          }
+        ]
       }
     },
     {
@@ -41547,7 +41688,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8215189354",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8215189354"
+          }
+        ]
       }
     },
     {
@@ -46753,7 +46906,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9776177148",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
+              "group_only": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9776177148"
+          }
+        ]
       }
     },
     {
@@ -48113,7 +48281,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9776362121",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9776362121"
+          }
+        ]
       }
     },
     {
@@ -51772,13 +51953,11 @@
       },
       "properties": {
         "access": "yes",
-        "caravans": "no",
         "fee": "yes",
         "name": "Three Bears Campground",
         "operator": "Bureau of Land Management",
         "payment:credit_cards": "yes",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/search-details/262754/1",
         "osm_id": 10025626978,
@@ -51811,7 +51990,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -52461,6 +52642,7 @@
             "source_record_id": "osm:way:1185181240",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "68",
               "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
@@ -53457,7 +53639,9 @@
             "source_record_id": "osm:node:11065888267",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -53467,7 +53651,9 @@
             "source_record_id": "osm:node:11065888268",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -53477,7 +53663,9 @@
             "source_record_id": "osm:node:11065888269",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -53487,7 +53675,9 @@
             "source_record_id": "osm:node:11065888270",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -53497,7 +53687,9 @@
             "source_record_id": "osm:node:11065888271",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -53507,7 +53699,9 @@
             "source_record_id": "osm:node:11065888272",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -67617,12 +67811,10 @@
       "properties": {
         "alt_name": "Anthony Lakes Campground",
         "area": "yes",
-        "capacity:tents": "5",
         "caravans": "yes",
         "drinking_water": "yes",
         "fee": "yes",
         "name": "Anthony Lake Campground",
-        "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/wallowa-whitman/recarea/?recid=52199",
@@ -67657,8 +67849,12 @@
             "source_record_id": "osm:way:1558881720",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:tents": "5",
+              "caravans": "no",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -67668,8 +67864,12 @@
             "source_record_id": "osm:way:1558881721",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:tents": "7",
+              "caravans": "no",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -70213,7 +70413,9 @@
             "source_record_id": "osm:way:767455264",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "sanitary_dump_station": "no"
+              "caravans": "yes",
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -70360,7 +70562,9 @@
             "source_record_id": "osm:way:767455309",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "sanitary_dump_station": "no"
+              "caravans": "yes",
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -78319,7 +78523,6 @@
         "caravans": "no",
         "charge": "30 USD/night",
         "fee": "yes",
-        "group_only": "yes",
         "name": "Oak Slope Campground",
         "operator": "Jackson County Parks",
         "static_caravans": "no",
@@ -78363,8 +78566,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "charge": "175 USD/night",
-              "fee": "yes"
+              "fee": "yes",
+              "group_only": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
             "source_updated_at": null,
@@ -81490,8 +81697,10 @@
             "source_record_id": "osm:way:1538417245",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -81502,8 +81711,10 @@
             "source_record_id": "osm:way:1538417246",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
@@ -81595,8 +81806,10 @@
             "source_record_id": "osm:way:1538417249",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:29:55Z",
