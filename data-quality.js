@@ -360,6 +360,9 @@
     }
     // The public MVP lists evidence-supported camping locations only. Retain
     // unverified source records solely when an explicit diagnostic caller asks.
+    // A published listing keeps its published point when its own record now qualifies where another copy
+    // supplied the point before (tourism-type-admission candidate). Coordinates change only by review.
+    if (options.publishedPoints) for (const f of features) {const pt=options.publishedPoints.get(f.properties.id);if(pt&&(pt[0]!==f.geometry.coordinates[0]||pt[1]!==f.geometry.coordinates[1]))f.geometry={type:'Point',coordinates:[pt[0],pt[1]]};}
     if (options.includeUnverified) return {type:'FeatureCollection',features};
     // An element absorbed into an unclassified host stays withheld with that host (tourism-type-admission
     // candidate). It never publishes on its own because its host lost a borrowed classification. It needs its

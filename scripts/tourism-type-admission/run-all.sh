@@ -4,6 +4,10 @@
 set -uo pipefail
 cd "$(dirname "$0")/../.."
 BASE="$1"; OUT="$2"; mkdir -p "$OUT"
+# Identity hints (preferred ids, alias hosts, published points) come from the released index, never from a
+# previous candidate rebuild, so every rebuild starts from the same seed.
+cp "$BASE/data/campsites/search-index.json" data/campsites/search-index.json
+cp "$BASE/data/campsites/coordinate-index.json" data/campsites/coordinate-index.json
 echo "== replay merges"
 node -e '
 const {CampsiteMerger,loadStateSources,saveMergedData}=require("./scripts/merge_campsite_data");const fs=require("fs"),path=require("path");
