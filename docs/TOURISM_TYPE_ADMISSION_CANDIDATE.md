@@ -90,7 +90,31 @@ Measured scope across the catalogue:
 - All 50 states loaded: 10 listings differ, for example `usfs:26736` shows as `osm:way:244588682` (in MN, not MI).
 - Single-state loads: 11 listings differ, and 174 listing-state pairs cannot be found because their host row is in another state.
 
-The 104 records:
+Deterministic browser host election is its own package, built by another agent on a separate branch. This candidate only reports it.
+
+Load-order dependence, measured by loading each record's own states in every order and all 50 states in reverse. The browser canonical id of 12 of the 104 records depends on load order:
+
+| Index id | Order that keeps it | Other order elects |
+| --- | --- | --- |
+| `osm:node:12546710572` | IL then MO | `ridb:232604` |
+| `osm:way:1175125858` | MD then VA | `ridb:10007130` |
+| `osm:way:146028510` | VA then WV | `ridb:232006` |
+| `osm:way:1517725355` | ID then MT | `ridb:234421` |
+| `ridb:10069432` | ID then OR | `osm:node:9359572844` |
+| `ridb:10072881` | OH first | `osm:way:849430082` |
+| `ridb:10076892` | OH then WV | `osm:way:1187436959` |
+| `ridb:10278188` | NM then TX | `osm:node:9170786474` |
+| `ridb:234586` | AR first | `osm:way:368988012` |
+| `ridb:236715` | KY then TN | `osm:way:670629346` |
+| `ridb:247835` | AR then TX | `osm:way:941066426` |
+| `ridb:247915` | GA then NC | `osm:relation:13942065` |
+
+- In either order, the saved link resolves to the same place, because the other id is that listing's alias.
+- `trip-planner.js` L40 rewrites a saved stop's id to the id the browser elected. A review written from the popup (`community.js` L79) then keys `campsite_id` on the browser id, not the index id.
+- 0 published reviews exist today, so nothing is split yet.
+- These 12 are the same records as the 4 blanket-guard alias losses, the 3 surfacings and 5 others. Any later A change should wait for the host-election package.
+
+The 104 records, alphabetical load:
 
 - 92 resolve to the same id in the browser.
 - 12 multi-state records return no hit when only a non-host state is loaded. Examples: `ridb:234586` when only MO or TX is loaded, where `osm:way:368988012` shows instead. They resolve once the host state loads.
