@@ -1,0 +1,602 @@
+{
+ "checked_at": "2026-11-01T00:37:06.628Z",
+ "index_sites": 33370,
+ "host_map": "served",
+ "scenarios": {
+  "default": {
+   "order": "AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY",
+   "listings": 33370,
+   "counts": {
+    "canonical": 10,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [
+     {
+      "shown": "osm:node:2304190971",
+      "index": "usfs:6427",
+      "name": "Lower Jones Valley Campground"
+     },
+     {
+      "shown": "osm:node:2333792012",
+      "index": "usfs:65606",
+      "name": "Upper Bluster Campground"
+     },
+     {
+      "shown": "osm:way:335361783",
+      "index": "usfs:20680",
+      "name": "Upper Grays Meadow Campground"
+     },
+     {
+      "shown": "osm:way:975055224",
+      "index": "usfs:45510",
+      "name": "Billy Creek Upper Campground"
+     },
+     {
+      "shown": "osm:way:636944592",
+      "index": "usfs:12476",
+      "name": "Halfmoon West Campground"
+     }
+    ],
+    "source_ids": [],
+    "claims": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  "reversed": {
+   "order": "WY,WI,WV,WA,VA,VT,UT,TX,TN,SD,SC,RI,PA,OR,OK,OH,ND,NC,NY,NM,NJ,NH,NV,NE,MT,MO,MS,MN,MI,MA,MD,ME,LA,KY,KS,IA,IN,IL,ID,HI,GA,FL,DE,CT,CO,CA,AR,AZ,AK,AL",
+   "listings": 33370,
+   "counts": {
+    "canonical": 178,
+    "source_ids": 0,
+    "claims": 6,
+    "missing": 2,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [
+     {
+      "shown": "ridb:247011",
+      "index": "usfs:9834",
+      "name": "Wolverine ATV Trailhead/Campground"
+     },
+     {
+      "shown": "ridb:236578",
+      "index": "osm:way:1241571096",
+      "name": "Oaks Park Campground"
+     },
+     {
+      "shown": "ridb:252159",
+      "index": "usfs:23038",
+      "name": "Cold Springs Campground"
+     },
+     {
+      "shown": "ridb:247184",
+      "index": "osm:way:224915020",
+      "name": "Bear River Campground"
+     },
+     {
+      "shown": "osm:way:1074320173",
+      "index": "ridb:232210",
+      "name": "Alpine North Loop"
+     }
+    ],
+    "source_ids": [],
+    "claims": [
+     {
+      "id": "ridb:10150488",
+      "shown": {
+       "f": "unknown",
+       "t": "other",
+       "o": "closed"
+      },
+      "index": {
+       "f": "unknown",
+       "t": "established",
+       "o": "closed"
+      }
+     },
+     {
+      "id": "ridb:10074574",
+      "shown": {
+       "f": "paid",
+       "t": "other"
+      },
+      "index": {
+       "f": "paid",
+       "t": "established"
+      }
+     },
+     {
+      "id": "ridb:10048852",
+      "shown": {
+       "f": "unknown",
+       "t": "established"
+      },
+      "index": {
+       "f": "unknown",
+       "t": "other"
+      }
+     },
+     {
+      "id": "ridb:10023205",
+      "shown": {
+       "f": "free",
+       "t": "other",
+       "o": "closed"
+      },
+      "index": {
+       "f": "free",
+       "t": "established",
+       "o": "closed"
+      }
+     },
+     {
+      "id": "ridb:10069654",
+      "shown": {
+       "f": "paid",
+       "t": "other",
+       "o": "open"
+      },
+      "index": {
+       "f": "paid",
+       "t": "established",
+       "o": "open"
+      }
+     }
+    ],
+    "missing": [
+     "usfs:65184",
+     "usfs:45432"
+    ],
+    "extra": []
+   }
+  },
+  "seed:1": {
+   "order": "TN,NH,MS,MT,ND,WA,SD,VT,OR,FL,NV,SC,ME,NC,OH,LA,RI,IA,MA,NM,AL,OK,NY,KS,PA,MO,HI,WI,MD,MN,UT,KY,CO,AK,ID,AR,VA,TX,DE,CT,AZ,WV,IN,GA,CA,WY,MI,IL,NE,NJ",
+   "listings": 33370,
+   "counts": {
+    "canonical": 142,
+    "source_ids": 0,
+    "claims": 3,
+    "missing": 2,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [
+     {
+      "shown": "ridb:251724",
+      "index": "osm:node:5857313093",
+      "name": "DENNIS COVE CAMPGROUND"
+     },
+     {
+      "shown": "ridb:232488",
+      "index": "osm:way:1107154597",
+      "name": "CADES COVE CAMPGROUND"
+     },
+     {
+      "shown": "ridb:240629",
+      "index": "osm:node:5857291950",
+      "name": "Dam Creek Walk-In Campground and Picnic Area"
+     },
+     {
+      "shown": "ridb:232479",
+      "index": "osm:way:1107154601",
+      "name": "COSBY CAMPGROUND"
+     },
+     {
+      "shown": "ridb:240610",
+      "index": "osm:node:5857284941",
+      "name": "Big Oak Cove Campground"
+     }
+    ],
+    "source_ids": [],
+    "claims": [
+     {
+      "id": "ridb:10069654",
+      "shown": {
+       "f": "paid",
+       "t": "other",
+       "o": "open"
+      },
+      "index": {
+       "f": "paid",
+       "t": "established",
+       "o": "open"
+      }
+     },
+     {
+      "id": "ridb:237803",
+      "shown": {
+       "f": "paid",
+       "t": "established"
+      },
+      "index": {
+       "f": "paid",
+       "t": "other"
+      }
+     },
+     {
+      "id": "ridb:10048852",
+      "shown": {
+       "f": "unknown",
+       "t": "established"
+      },
+      "index": {
+       "f": "unknown",
+       "t": "other"
+      }
+     }
+    ],
+    "missing": [
+     "usfs:65184",
+     "usfs:45432"
+    ],
+    "extra": []
+   }
+  },
+  "seed:2": {
+   "order": "OH,CT,NY,NV,VA,IL,MD,ID,PA,VT,SD,ME,OR,GA,IA,HI,AR,NM,MI,WI,WY,NE,NC,WV,DE,KY,TN,MO,WA,KS,MA,OK,NH,FL,AK,TX,NJ,LA,MS,CA,AZ,UT,IN,AL,MN,CO,MT,ND,SC,RI",
+   "listings": 33369,
+   "counts": {
+    "canonical": 62,
+    "source_ids": 0,
+    "claims": 3,
+    "missing": 2,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [
+     {
+      "shown": "ridb:234715",
+      "index": "osm:way:988355889",
+      "name": "CAMP GATEWAY - STATEN ISLAND"
+     },
+     {
+      "shown": "ridb:234209",
+      "index": "osm:way:1236741631",
+      "name": "Bird Creek Campground"
+     },
+     {
+      "shown": "ridb:250877",
+      "index": "osm:way:140968959",
+      "name": "Red Rock Canyon Campground"
+     },
+     {
+      "shown": "osm:node:1423184190",
+      "index": "ridb:245565",
+      "name": "Mill Creek Campground"
+     },
+     {
+      "shown": "osm:node:2333792012",
+      "index": "usfs:65606",
+      "name": "Upper Bluster Campground"
+     }
+    ],
+    "source_ids": [],
+    "claims": [
+     {
+      "id": "ridb:249858",
+      "shown": {
+       "f": "paid",
+       "t": "established",
+       "o": "open"
+      },
+      "index": {
+       "f": "paid",
+       "t": "other",
+       "o": "open"
+      }
+     },
+     {
+      "id": "ridb:10150488",
+      "shown": {
+       "f": "unknown",
+       "t": "other",
+       "o": "closed"
+      },
+      "index": {
+       "f": "unknown",
+       "t": "established",
+       "o": "closed"
+      }
+     },
+     {
+      "id": "ridb:10048852",
+      "shown": {
+       "f": "unknown",
+       "t": "established"
+      },
+      "index": {
+       "f": "unknown",
+       "t": "other"
+      }
+     }
+    ],
+    "missing": [
+     "usfs:65184",
+     "usfs:45432"
+    ],
+    "extra": []
+   }
+  },
+  "pairs": {
+   "combos": 127,
+   "runs": 254,
+   "listings_checked": 18676,
+   "counts": {
+    "canonical": 174,
+    "source_ids": 0,
+    "claims": 6,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": [
+    {
+     "order": [
+      "VT",
+      "NY"
+     ],
+     "counts": {
+      "canonical": 2,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "ridb:256347",
+        "index": "osm:way:360962323",
+        "name": "MOOSALAMOO CAMPGROUND"
+       },
+       {
+        "shown": "ridb:251609",
+        "index": "osm:node:3250302410",
+        "name": "CHITTENDEN BROOK CAMPGROUND"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    },
+    {
+     "order": [
+      "WV",
+      "VA",
+      "MD"
+     ],
+     "counts": {
+      "canonical": 1,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "ridb:239774",
+        "index": "osm:way:1236754323",
+        "name": "Red Creek Campground"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    },
+    {
+     "order": [
+      "PA",
+      "NY"
+     ],
+     "counts": {
+      "canonical": 2,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "ridb:233523",
+        "index": "osm:node:1520003718",
+        "name": "IVES RUN"
+       },
+       {
+        "shown": "ridb:248331",
+        "index": "osm:way:572976438",
+        "name": "Milton Loop Campground"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    },
+    {
+     "order": [
+      "MO",
+      "IL"
+     ],
+     "counts": {
+      "canonical": 1,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "ridb:232604",
+        "index": "osm:node:12546710572",
+        "name": "HIGHWAY K"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    },
+    {
+     "order": [
+      "NM",
+      "TX"
+     ],
+     "counts": {
+      "canonical": 1,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "osm:node:2332493815",
+        "index": "usfs:34214",
+        "name": "Upper Fir Group Campground"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    },
+    {
+     "order": [
+      "TX",
+      "NM"
+     ],
+     "counts": {
+      "canonical": 8,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "osm:node:2332493732",
+        "index": "ridb:271519",
+        "name": "Johnson Mesa Campground"
+       },
+       {
+        "shown": "osm:node:2332493737",
+        "index": "ridb:241360",
+        "name": "La Sombra Campground"
+       },
+       {
+        "shown": "osm:node:2332493739",
+        "index": "ridb:241361",
+        "name": "Las Petacas Campground"
+       },
+       {
+        "shown": "osm:node:2332493740",
+        "index": "ridb:249174",
+        "name": "Links Tract Campground"
+       },
+       {
+        "shown": "osm:node:2332493815",
+        "index": "usfs:34214",
+        "name": "Upper Fir Group Campground"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    },
+    {
+     "order": [
+      "NC",
+      "GA"
+     ],
+     "counts": {
+      "canonical": 1,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "osm:relation:13942065",
+        "index": "ridb:247915",
+        "name": "River Forks"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    },
+    {
+     "order": [
+      "WV",
+      "VA"
+     ],
+     "counts": {
+      "canonical": 10,
+      "source_ids": 0,
+      "claims": 0,
+      "missing": 0,
+      "extra": 0
+     },
+     "examples": {
+      "canonical": [
+       {
+        "shown": "ridb:239764",
+        "index": "osm:way:641812739",
+        "name": "Laurel Fork Campground"
+       },
+       {
+        "shown": "ridb:239756",
+        "index": "osm:node:5854802654",
+        "name": "Big Rock Campground"
+       },
+       {
+        "shown": "ridb:239752",
+        "index": "osm:way:350647661",
+        "name": "Bear Heaven Campground"
+       },
+       {
+        "shown": "ridb:239762",
+        "index": "osm:node:5854827726",
+        "name": "Island Campground"
+       },
+       {
+        "shown": "ridb:239769",
+        "index": "osm:way:1112480750",
+        "name": "Pocahontas Campground"
+       }
+      ],
+      "source_ids": [],
+      "claims": [],
+      "missing": [],
+      "extra": []
+     }
+    }
+   ]
+  }
+ },
+ "code": "2.31.0 (main 358e07e2)"
+}

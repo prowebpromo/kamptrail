@@ -9,7 +9,7 @@ const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
   await fs.cp(path.join(root,'media','how-to'),path.join(out,'media','how-to'),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});
-  for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','ridb-sites.json','coordinate-index.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
+  for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','identity-hosts.json','ridb-sites.json','coordinate-index.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
   const amenityPath=path.join(root,'data','campsites','ridb-amenities.json');
   if(await fs.stat(amenityPath).then(s=>s.isFile()).catch(()=>false)){
     const raw=await fs.readFile(amenityPath);if(raw.length>2*1024*1024||!require('../data-quality.js').validRIDBAmenities(JSON.parse(raw)))throw new Error('Invalid optional RIDB amenity evidence');

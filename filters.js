@@ -58,7 +58,7 @@
     Object.assign(state.filters,f);sync();apply('profile');return true;
   }
   window.KampTrailFilters={
-    version:'2.31.0',
+    version:'2.33.0',
     init(map){
       const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
       p.setAttribute('role','region');p.setAttribute('aria-label',t("Campsite filters"));

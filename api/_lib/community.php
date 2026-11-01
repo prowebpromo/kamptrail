@@ -16,6 +16,31 @@ function kc_db(): PDO {
 }
 function kc_error(int $code, string $message): never { kt_json($code, ['ok'=>false, 'message'=>$message]); }
 function kc_string($value, int $limit): string { return is_scalar($value) ? kt_text($value, $limit) : ''; }
+// Every published id of one listing (canonical first, then legacy ids), from identity-hosts.json.
+// Reviews are stored under the id the camper's browser sent; reading them by every published id keeps
+// a review keyed to a legacy id attached to the same listing. Stored ids are never rewritten.
+function kc_site_ids(string $site, ?string $file = null): array {
+    static $maps = [];
+    $file = $file ?? dirname(__DIR__, 2) . '/data/campsites/identity-hosts.json';
+    if (!array_key_exists($file, $maps)) {
+        $maps[$file] = null;
+        $raw = is_file($file) && filesize($file) <= 4000000 ? @file_get_contents($file) : false;
+        $data = is_string($raw) ? json_decode($raw, true) : null;
+        if (is_array($data) && ($data['version'] ?? null) === 1 && is_array($data['hosts'] ?? null)) {
+            $hosts = [];
+            foreach ($data['hosts'] as $id => $aliases) if (is_string($id) && is_array($aliases)) foreach ($aliases as $alias) if (is_string($alias)) $hosts[$alias] = $id;
+            $maps[$file] = ['hosts' => $hosts, 'aliases' => $data['hosts']];
+        }
+    }
+    $map = $maps[$file];
+    if (!$map) return [$site];
+    $host = $map['hosts'][$site] ?? $site;
+    $ids = [$host];
+    foreach ($map['aliases'][$host] ?? [] as $alias) if (is_string($alias)) $ids[] = $alias;
+    if (!in_array($site, $ids, true)) $ids[] = $site;
+    return array_values(array_unique($ids));
+}
+function kc_in(array $ids): string { return implode(',', array_fill(0, count($ids), '?')); }
 function kc_owner(): string {
     $header = (string)($_SERVER['HTTP_AUTHORIZATION'] ?? '');
     return preg_match('/^Bearer ([a-f0-9]{64})$/D', $header, $m) ? hash('sha256', $m[1]) : '';

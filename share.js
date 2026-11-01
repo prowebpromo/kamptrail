@@ -3,9 +3,11 @@
   'use strict';
   const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
   const REPO = 'https://github.com/prowebpromo/kamptrail';
+  // Links carry the listing's id in the published index, whichever member this browser shows.
+  const publishedId = id => String(window.KampTrailData?.publishedId?.(id) ?? id);
   function baseUrl() { return location.href.split('#')[0].split('?')[0]; }
   function linkFor(target) {
-    let hash=target.site!=null?'site='+encodeURIComponent(String(target.site)):Array.isArray(target.spot)?'spot='+target.spot[0].toFixed(5)+','+target.spot[1].toFixed(5):'';
+    let hash=target.site!=null?'site='+encodeURIComponent(publishedId(target.site)):Array.isArray(target.spot)?'spot='+target.spot[0].toFixed(5)+','+target.spot[1].toFixed(5):'';
     const f=target.elevation||window.kamptrailFilters||{},range=window.DataQuality?.elevationRange(f);
     if(hash&&range?.active&&range.valid){if(range.min!==null)hash+='&emin='+range.min;if(range.max!==null)hash+='&emax='+range.max;hash+='&eunit='+(f.elevationUnit==='m'?'m':'ft');}
     const forecast=target.forecast||window.kamptrailFilters||{},bounds=window.KampTrailForecast?.range(forecast);
@@ -53,11 +55,12 @@
       const props = site.properties, [lng, lat] = site.geometry.coordinates;
       p.set('template', 'campsite-correction.yml');
       p.set('title', `Correction: ${String(props.name || '').slice(0, 80)}`);
-      p.set('campsite', `${props.name} (${props.id})`);
-      p.set('link', linkFor({site: props.id}));
+      const id = publishedId(props.id);
+      p.set('campsite', `${props.name} (${id})`);
+      p.set('link', linkFor({site: id}));
       p.set('coordinates', `${lat.toFixed(5)}, ${lng.toFixed(5)}`);
     }
     return `${REPO}/issues/new?${p}`;
   }
-  window.KampTrailShare = {version: '2.31.0', linkFor, share, parse, issueUrl, REPO};
+  window.KampTrailShare = {version: '2.33.0', linkFor, share, parse, issueUrl, REPO};
 })();

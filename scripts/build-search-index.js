@@ -145,6 +145,10 @@ if (require.main === module) {
     const temporary = output + '.tmp';
     fs.writeFileSync(temporary, JSON.stringify(result) + '\n');
     fs.renameSync(temporary, output);
+    // Canonical hosts for the browser, so the map elects the same listing ids as this index.
+    const hosts=path.join(directory,'identity-hosts.json');
+    fs.writeFileSync(hosts+'.tmp',JSON.stringify(require('./build-identity-hosts.js').identityHosts(fs.readFileSync(output,'utf8')))+'\n');
+    fs.renameSync(hosts+'.tmp',hosts);
     const identity=path.join(directory,'coordinate-index.json');
     fs.writeFileSync(identity+'.tmp',JSON.stringify(coordinateIndex(result.sites))+'\n');
     fs.renameSync(identity+'.tmp',identity);
