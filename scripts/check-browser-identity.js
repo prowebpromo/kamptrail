@@ -150,7 +150,7 @@ function compare(h, order, onlyIds = null) {
       const order = o === 'default' ? ALL : o === 'reversed' ? [...ALL].reverse() : shuffled(ALL, +o.split(':')[1]);
       result.scenarios[name] = await fallbackRun(order, mode);
       const r = result.scenarios[name];
-      console.error(name, JSON.stringify({wrong: r.fallback.wrong_merges, flips: r.fallback.flips, dup: r.fallback.index_listings_with_duplicate_markers, reconcile: r.reconcile.shown_ids_resolving_elsewhere, after: r.after_reconcile.counts}));
+      console.error(name, JSON.stringify({wrong: r.fallback.wrong_merges, flips: r.fallback.flips, dup: r.fallback.index_listings_with_duplicate_markers, reconcile: r.reconcile?.shown_ids_resolving_elsewhere ?? null, after: r.after_reconcile?.counts ?? null}));
       continue;
     }
     if (name === 'pairs') {
