@@ -211,6 +211,7 @@ class WorkflowSafetyTests(unittest.TestCase):
         self.assertLess(verify, commit)
         step = job[verify:job.index('- name:', verify + 1)]
         self.assertIn('npm test', step)
+        self.assertIn('node scripts/check-id-continuity.js', step)
         self.assertIn("python -m unittest discover -s scripts/tests -p 'test_*.py'", step)
         self.assertIn('set -euo pipefail', step)
         self.assertNotIn('continue-on-error', step)

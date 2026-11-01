@@ -279,6 +279,9 @@ jobs:
           set -euo pipefail
           npm ci
           pip install -r requirements.txt pyyaml
+          # Every id in the last committed index must still resolve to the same listing.
+          git show HEAD:data/campsites/search-index.json > "$RUNNER_TEMP/previous-search-index.json"
+          node scripts/check-id-continuity.js "$RUNNER_TEMP/previous-search-index.json" data/campsites/search-index.json data/campsites/withdrawn.json
           npm test
           python -m unittest discover -s scripts/tests -p 'test_*.py'
       - name: Keep refreshed data for review when verification fails
