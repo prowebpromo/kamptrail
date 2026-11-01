@@ -106,7 +106,7 @@ async function fallbackRun(order, mode) {
     for (const id of now.keys()) if (!shownAt.has(id)) shownAt.set(id, true);
     maxListings = Math.max(maxListings, now.size);
   };
-  const status = h.api.getIdentityStatus().hosts;
+  const status = h.api.getIdentityStatus?.().hosts || 'none (2.31.0)';
   for (const code of order) { await h.api.loadStates([code]); step(); }
   const fallback = {host_status_during_load: status, listings_shown: maxListings, ids_shown: shownAt.size, wrong_merges: wrong.size, flips: flips.length, unknown_record_ids: unknown.size,
     examples: {wrong: [...wrong].slice(0, 5), flips: flips.slice(0, 5)}};
@@ -115,6 +115,7 @@ async function fallbackRun(order, mode) {
   fallback.index_listings_with_duplicate_markers = [...byOwner.values()].filter(n => n > 1).length;
   // The file arrives: retry, reconcile once, and every id shown during the fallback still resolves to its index listing.
   h.hostState.mode = 'served';
+  if (!h.api.retryIdentity) return {order: order.join(','), host_file: mode, fallback, reconcile: null, after_reconcile: null};
   for (let i = 0; i < 3 && h.api.getIdentityStatus().hosts !== 'published'; i++) await h.api.retryIdentity();
   // Only ids of listings whose states are all loaded can be expected to resolve to the index listing now.
   const loadedSet = new Set(order), complete = id => indexById.get(owner.get(id))?.states.every(c => loadedSet.has(c));
