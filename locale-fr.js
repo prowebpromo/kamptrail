@@ -1108,6 +1108,7 @@
   "Zoom to level 6 or closer. Official rest-area coverage: {0}. Overnight permission is unknown.": "Zoomez au niveau 6 ou plus. Couverture officielle des aires de repos : {0}. L’autorisation de passer la nuit est inconnue.",
   "{0} official rest-area location{1} in this view. Coverage: {2}; other states are not covered. Overnight permission and current opening are unknown.": "Emplacements officiels d’aires de repos dans cette vue : {0}. Couverture : {2} ; les autres États ne sont pas couverts. L’autorisation de passer la nuit et l’ouverture actuelle sont inconnues.",
   "Unavailable now: {0}.": "Indisponible actuellement : {0}.",
+  "Select Retry official rest areas to load them.": "Sélectionnez « Réessayer les aires de repos officielles » pour les charger.",
   "Texas Department of Transportation": "Département des Transports du Texas",
   "Idaho Transportation Department": "Département des Transports de l’Idaho",
   "Montana Department of Transportation": "Département des Transports du Montana",
