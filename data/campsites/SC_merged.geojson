@@ -1588,7 +1588,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:347989059",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:33:45Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/347989059"
+          }
+        ]
       }
     },
     {
@@ -2621,7 +2633,6 @@
       "properties": {
         "access": "destination",
         "backcountry": "yes",
-        "capacity:persons": "6",
         "name": "Primitive 1",
         "tourism": "camp_site",
         "osm_id": 3448813843,
@@ -2654,6 +2665,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "destination",
+              "backcountry": "yes",
+              "capacity:persons": "6",
               "drinking_water": "no",
               "openfire": "yes",
               "picnic_table": "no",
@@ -2712,7 +2725,8 @@
             "source_record_id": "osm:node:3448813846",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "destination"
+              "access": "destination",
+              "backcountry": "yes"
             },
             "retrieved_at": "2026-10-29T03:33:45Z",
             "source_updated_at": null,

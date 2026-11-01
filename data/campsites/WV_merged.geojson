@@ -137,7 +137,6 @@
         ]
       },
       "properties": {
-        "capacity": "14",
         "description": "<p>Located along the Laurel Fork River between <a href=\"https://www.fs.usda.gov/recarea/mnf/recarea/?recid=12367\" rel=\"nofollow\">Laurel Fork North and South Wilderness</a> areas, this primitive campground offers visitors a nice camping opportunity in the Middle Mountain area  on the site of an old Civilian Conservation Corps location.</p><p>Day hiking and backpacking opportunities are available leaving from this campground as well through the <a href=\"https://www.fs.usda.gov/recarea/mnf/recarea/?recid=12367\" rel=\"nofollow\">Laurel Fork North and South Wilderness</a>.</p>",
         "name": "Laurel Fork Campground",
         "operator": "Monongahela National Forest",
@@ -178,6 +177,7 @@
             "source_record_id": "osm:way:641812739",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "14",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -197,7 +197,6 @@
         ]
       },
       "properties": {
-        "capacity": "5",
         "name": "Big Rock Campground",
         "operator": "National Forest Service",
         "tourism": "camp_site",
@@ -239,6 +238,7 @@
             "source_record_id": "osm:node:5854802654",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "5",
               "fee": "no",
               "internet_access": "no",
               "internet_access:fee": "no"
@@ -1357,7 +1357,6 @@
         ]
       },
       "properties": {
-        "capacity": "8",
         "description": "<p>With a convenient location just off State Route 92 this campground is great for families and outdoor enthusiasts. <a href=\"https://www.fs.usda.gov/recarea/mnf/recarea/?recid=77599\" rel=\"nofollow\">Two Lick Trailhead</a> is located within the campground and providing easy and accessible access. Also each campsite is furnished with a fire ring, picnic table, and lantern ring.</p>",
         "name": "Pocahontas Campground",
         "operator": "National Forest Service",
@@ -1398,6 +1397,7 @@
             "source_record_id": "osm:way:1112480750",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "8",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -1886,15 +1886,11 @@
       },
       "properties": {
         "camp_site": "basic",
-        "caravans": "yes",
         "fixme": "website says no toilets. which is correct?",
-        "group_only": "no",
         "name": "Red Creek Campground",
         "nudism": "no",
         "opening_hours": "Apr-Dec: 00:00-24:00; Jan-Mar: closed",
         "reservation": "no",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mnf/recreation/natureviewing/recarea/?recid=7003&actid=63",
         "id": "ridb:239774",
@@ -1935,12 +1931,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "charge": "11 USD",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -2133,7 +2133,6 @@
         ]
       },
       "properties": {
-        "capacity": "28",
         "name": "Tea Creek Campground",
         "operator": "National Forest Service",
         "tourism": "camp_site",
@@ -2174,6 +2173,7 @@
             "source_record_id": "osm:node:5854822431",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "28",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -14659,6 +14659,7 @@
             "source_record_id": "osm:way:1459962041",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:caravans": "2",
               "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
@@ -15716,9 +15717,15 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permissive",
+              "capacity:caravans": "10",
+              "capacity:persons": "25",
+              "capacity:tents": "20",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
               "internet_access": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -22977,7 +22984,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:941483571",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941483571"
+          },
+          {
+            "source_record_id": "osm:way:941483572",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941483572"
+          }
+        ]
       }
     },
     {
@@ -26572,7 +26601,8 @@
             "source_record_id": "osm:way:1163510164",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -27911,7 +27941,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1390989443",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1390989443"
+          }
+        ]
       }
     },
     {
@@ -29098,10 +29140,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "capacity:persons": "3",
+              "caravans": "no",
               "drinking_water": "yes",
               "fee": "no",
               "openfire": "yes",
               "picnic_table": "yes",
+              "tents": "no",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
@@ -29417,8 +29463,6 @@
           "osm:way:1319634830",
           "osm:way:1560919175"
         ],
-        "caravans": "no",
-        "tents": "yes",
         "sources": [
           "openstreetmap"
         ],
@@ -29431,7 +29475,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1319634830",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "no",
+              "group_only": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1319634830"
+          },
+          {
+            "source_record_id": "osm:way:1560919175",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1560919175"
+          }
+        ]
       }
     },
     {
@@ -31751,7 +31819,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1499197178",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1499197178"
+          }
+        ]
       }
     },
     {

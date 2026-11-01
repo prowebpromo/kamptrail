@@ -205,16 +205,12 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
-        "caravans": "no",
         "dog": "no",
-        "group_only": "no",
         "name": "DUCK HARBOR CAMPGROUND",
         "nudism": "no",
         "opening_hours": "May 15-Oct 15 open",
         "operator": "National Park Service",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/acad/planyourvisit/duckharbor.htm",
         "id": "ridb:264293",
@@ -254,11 +250,15 @@
             "source_record_id": "osm:way:858219307",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "no",
+              "group_only": "no",
               "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:04:46Z",
@@ -3410,7 +3410,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4987104744",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4987104744"
+          }
+        ]
       }
     },
     {
@@ -6919,7 +6931,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7826480074",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7826480074"
+          },
+          {
+            "source_record_id": "osm:node:7826480075",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7826480075"
+          }
+        ]
       }
     },
     {
@@ -11011,7 +11045,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12001795790",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12001795790"
+          }
+        ]
       }
     },
     {

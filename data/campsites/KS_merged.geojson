@@ -5080,8 +5080,11 @@
             "source_record_id": "osm:node:7552476429",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
               "internet_access": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:01:48Z",
             "source_updated_at": null,
@@ -10372,7 +10375,6 @@
         ]
       },
       "properties": {
-        "group_only": "yes",
         "name": "Scout and Youth Campground",
         "tourism": "camp_site",
         "osm_id": 1327963491,
@@ -10401,7 +10403,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1524226715",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:01:48Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1524226715"
+          }
+        ]
       }
     },
     {
@@ -11618,7 +11632,6 @@
         ]
       },
       "properties": {
-        "group_only": "yes",
         "name": "Outlet Park C Loop Campground",
         "tourism": "camp_site",
         "osm_id": 1380094696,
@@ -11644,7 +11657,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1380094701",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:01:48Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1380094701"
+          }
+        ]
       }
     },
     {

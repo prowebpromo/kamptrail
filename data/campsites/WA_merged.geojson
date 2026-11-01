@@ -138,10 +138,7 @@
       },
       "properties": {
         "area": "yes",
-        "capacity:tents": "17",
-        "caravans": "yes",
         "name": "Moss Creek campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232799",
         "id": "ridb:232799",
@@ -181,8 +178,11 @@
             "source_record_id": "osm:way:425653468",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:tents": "17",
+              "caravans": "yes",
               "charge": "20 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -332,12 +332,8 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "2",
-        "capacity:tents": "7",
-        "caravans": "yes",
         "name": "Snowberry Bowl Campground",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/snowberry-bowl-campground",
         "id": "ridb:273926",
@@ -377,8 +373,12 @@
             "source_record_id": "osm:way:1485491682",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:caravans": "2",
+              "capacity:tents": "7",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -566,7 +566,6 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "15",
         "description": "<p>Campground is located along the shore of the Hamma Hamma River. Evergreen conifers and hardwoods provide lots of shade. The <a href=\"http://www.fs.usda.gov/recarea/olympic/recarea/?recid=48037\" rel=\"nofollow\">Living Legacy Trail</a> leaves from a trailhead in the campground. The first 1/4 mile is accessible and overlooks the Hamma Hamma River.</p><p>There are 15 campsites that will accomodate tents, trailers, and RV's up to 21 feet in length. Tables, fire rings, paved road, and accessible vault toilets are available. Toilet access surface is compact gravel. </p>",
         "name": "Hamma Hamma Campground",
         "operator": "Olympic National Forest",
@@ -608,6 +607,7 @@
             "source_record_id": "osm:way:1558553549",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "15",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -627,11 +627,8 @@
         ]
       },
       "properties": {
-        "capacity": "60",
-        "caravans": "yes",
         "name": "LOWER FALLS CAMPGROUND",
         "operator": "U.S. Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31590",
         "id": "ridb:250032",
@@ -671,8 +668,11 @@
             "source_record_id": "osm:way:368378373",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "60",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -692,10 +692,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Verlot Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -739,8 +736,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -764,10 +764,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Turlo Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -811,8 +808,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -1004,11 +1004,8 @@
         ]
       },
       "properties": {
-        "capacity": "14",
-        "caravans": "yes",
         "name": "CAYUSE HORSE CAMP",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/cayuse-horse-camp",
         "id": "ridb:233818",
@@ -1048,6 +1045,9 @@
             "source_record_id": "osm:way:1482682093",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "14",
+              "caravans": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -1067,11 +1067,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Money Creek Campground",
         "operator": "USFS",
         "reservation": "recommended",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/mbs/recreation/money-creek-campground",
         "id": "ridb:232074",
@@ -1111,8 +1109,10 @@
             "source_record_id": "osm:way:179561687",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -1220,7 +1220,6 @@
         "addr:postcode": "98241",
         "addr:state": "WA",
         "addr:street": "Mountain Loop Highway",
-        "capacity": "13",
         "name": "Clear Creek Campground",
         "operator": "United States Forest Service",
         "operator:short": "USFS",
@@ -1264,6 +1263,7 @@
             "source_record_id": "osm:node:4951424034",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "13",
               "fee": "no",
               "internet_access": "no"
             },
@@ -1284,10 +1284,8 @@
         ]
       },
       "properties": {
-        "capacity:tents": "3",
         "name": "Finner Creek Campground",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/finner-creek-campground",
         "id": "ridb:10072883",
@@ -1327,8 +1325,10 @@
             "source_record_id": "osm:node:3809520896",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:tents": "3",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -1608,16 +1608,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity:persons": "30",
-        "caravans": "no",
         "dog": "yes",
-        "group_only": "yes",
         "name": "ICICLE GROUP CAMPGROUND",
         "operator": "US Forest Service",
         "reservation": "required",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/icicle-group-campground",
         "id": "ridb:234784",
@@ -1657,13 +1651,19 @@
             "source_record_id": "osm:way:961733679",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity:persons": "30",
+              "caravans": "no",
               "charge": "100 USD",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "yes",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -1851,10 +1851,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Gold Basin Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -1898,8 +1895,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -2091,12 +2091,8 @@
         ]
       },
       "properties": {
-        "capacity:tents": "5",
-        "caravans": "no",
         "name": "Graham Harbor Campground",
         "operator": "USFS",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/graham-harbor-campground",
         "id": "ridb:273910",
@@ -2136,8 +2132,12 @@
             "source_record_id": "osm:node:5715866313",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:tents": "5",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -2283,11 +2283,8 @@
         ]
       },
       "properties": {
-        "caravans": "no",
         "name": "SAWMILL FLAT CAMPGROUND",
         "operator": "US Forest Service",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/sawmill-flat-campground",
         "id": "ridb:234022",
@@ -2327,7 +2324,10 @@
             "source_record_id": "osm:way:1463212815",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -2391,7 +2391,6 @@
       "properties": {
         "name": "BUCK CREEK CAMPGROUND",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/mbs/recreation/buck-creek-campground",
         "id": "ridb:233861",
@@ -2432,6 +2431,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -2493,10 +2493,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "HELLS CROSSING CAMPGROUND",
         "operator": "United States Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/hells-crossing-campground",
         "id": "ridb:234018",
@@ -2536,8 +2534,10 @@
             "source_record_id": "osm:way:1482678111",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -3136,11 +3136,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "12",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Park Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -3184,8 +3180,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "capacity": "12",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -3209,10 +3209,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "100",
         "dog": "leashed",
-        "group_only": "no",
         "name": "La Wis Wis Campground",
         "operator": "Hoodoo Recreation Services",
         "owner": "U.S. Forest Service",
@@ -3257,8 +3254,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "capacity": "100",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -3455,10 +3455,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Silver Fir Campground",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "wheelchair": "limited",
         "id": "ridb:232099",
@@ -3499,10 +3497,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:wheelchair": "yes"
             },
@@ -3523,14 +3523,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Silver Springs Campground",
         "operator": "United States Forest Service",
         "reservation": "recommended",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=18090",
         "wheelchair": "yes",
@@ -3572,8 +3568,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -3581,6 +3580,7 @@
               "sauna": "no",
               "shower": "no",
               "swimming_pool": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -3600,10 +3600,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Red Bridge Campground ",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -3647,8 +3644,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -3714,10 +3714,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Nineteenmile Campground",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/nineteenmile-campground",
         "id": "ridb:274091",
@@ -3757,8 +3755,10 @@
             "source_record_id": "osm:way:1484732715",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -3946,10 +3946,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Panorama Point Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -3993,8 +3990,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -4102,10 +4102,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "HALFWAY FLAT CAMPGROUND",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/halfway-flat-campground",
         "id": "ridb:256348",
@@ -4145,8 +4143,10 @@
             "source_record_id": "osm:way:1482679230",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -4208,16 +4208,11 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
         "camp_site": "standard",
-        "capacity": "173",
-        "caravans": "yes",
         "dog": "no",
-        "group_only": "no",
         "name": "COUGAR ROCK CAMPGROUND",
         "operator": "National Park Service",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232466",
         "id": "ridb:232466",
@@ -4258,12 +4253,17 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "backcountry": "no",
+              "capacity": "173",
+              "caravans": "yes",
               "charge": "20 USD",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -4493,9 +4493,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Peterson Prairie Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31878",
         "id": "ridb:232895",
@@ -4535,8 +4533,10 @@
             "source_record_id": "osm:way:1551156309",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -4769,11 +4769,8 @@
         ]
       },
       "properties": {
-        "caravans": "no",
         "name": "Lucerne Campground",
         "operator": "Okanogan-Wenatchee National Forest",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/refrigerator-harbor-campground",
         "id": "ridb:273917",
@@ -4814,8 +4811,11 @@
             "source_record_id": "osm:node:3902568461",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -4826,8 +4826,11 @@
             "source_record_id": "osm:node:3902568473",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -4931,11 +4934,8 @@
         ]
       },
       "properties": {
-        "capacity": "20",
-        "caravans": "yes",
         "name": "Brown Creek Campground",
         "operator": "U.S. Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/olympic/recreation/brown-creek-campground",
         "wheelchair": "yes",
@@ -4976,8 +4976,11 @@
             "source_record_id": "osm:way:1485526490",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "20",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -5039,12 +5042,8 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "15",
-        "caravans": "yes",
         "name": "Windy Point Campground",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/windy-point-campground",
         "id": "ridb:234026",
@@ -5084,8 +5083,12 @@
             "source_record_id": "osm:way:1390221379",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity": "15",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -5189,14 +5192,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Swift Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=74986",
         "id": "ridb:233297",
@@ -5237,12 +5236,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -5695,11 +5698,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Klahowya Campground",
         "operator": "National Park Service",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/poi/238879",
         "wheelchair": "yes",
@@ -5740,9 +5741,11 @@
             "source_record_id": "osm:way:1428130365",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:wheelchair": "yes"
             },
@@ -5764,7 +5767,6 @@
       },
       "properties": {
         "camp_site": "standard",
-        "caravans": "yes",
         "name": "Troublesome Creek Campground",
         "note": "Drinking water is temporarily unavailable (as of 2021-09-10); will hopefully be restored at a later date.",
         "opening_hours": "May 27-Sep 19 Mo-Su,PH",
@@ -5772,7 +5774,6 @@
         "quiet_time": "22:00-08:00",
         "reservation": "recommended",
         "reservation:website": "https://www.recreation.gov/camping/campgrounds/232315",
-        "tents": "yes",
         "tourism": "camp_site",
         "type": "established",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/recarea/?recid=17958",
@@ -5812,6 +5813,7 @@
             "source_record_id": "osm:relation:13200212",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "charge": "28 USD/night",
               "drinking_water": "no",
               "fee": "yes",
@@ -5819,6 +5821,7 @@
               "picnic_table": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes",
               "waste_disposal": "no"
             },
@@ -5881,10 +5884,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Dog Lake Campground",
         "operator": "USDA Forest Service",
         "reservation": "no",
@@ -5928,9 +5928,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "charge": "8 USD",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -5996,10 +5999,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Shannon Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -6043,8 +6043,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -6068,12 +6071,9 @@
         ]
       },
       "properties": {
-        "capacity": "10",
-        "caravans": "yes",
         "name": "Red Mountain Campground",
         "operator": "US Forest Service",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/red-mountain-campground",
         "id": "ridb:273950",
@@ -6113,8 +6113,11 @@
             "source_record_id": "osm:way:1089522076",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "10",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -6604,9 +6607,7 @@
         ]
       },
       "properties": {
-        "capacity:tents": "14",
         "name": "Oklahoma campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31860",
         "id": "ridb:232800",
@@ -6646,8 +6647,10 @@
             "source_record_id": "osm:node:3827236124",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:tents": "14",
               "charge": "20 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -6666,14 +6669,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Hause Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/hause-creek-campground",
         "id": "ridb:234017",
@@ -6714,12 +6713,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -6800,11 +6803,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "16",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Willows Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -6848,8 +6847,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "capacity": "16",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "openfire": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
@@ -6957,9 +6960,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Takhlakh Lake Campground ",
-        "tents": "yes",
         "tourism": "camp_site",
         "url": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31432",
         "id": "ridb:232861",
@@ -6999,10 +7000,12 @@
             "source_record_id": "osm:way:749238704",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -7065,11 +7068,8 @@
       },
       "properties": {
         "camp_site": "standard",
-        "capacity": "49",
-        "caravans": "yes",
         "name": "KANER FLAT CAMPGROUND",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/kaner-flat-campground",
         "id": "ridb:251362",
@@ -7109,8 +7109,11 @@
             "source_record_id": "osm:way:1482676836",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "49",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -7219,10 +7222,8 @@
         "addr:postcode": "98826",
         "addr:state": "WA",
         "addr:street": "Chiwawa River Fs 6200 Road",
-        "caravans": "yes",
         "name": "Chiwawa Horse Camp",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/chiwawa-horse-camp",
         "id": "ridb:274051",
@@ -7261,8 +7262,10 @@
             "source_record_id": "osm:way:1483058309",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -7324,12 +7327,9 @@
         ]
       },
       "properties": {
-        "capacity": "34",
-        "caravans": "yes",
         "name": "WISH POOSH CAMPGROUND",
         "operator": "US Forest Service",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/wish-poosh-campground",
         "id": "ridb:234709",
@@ -7369,8 +7369,11 @@
             "source_record_id": "osm:way:1089522085",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "34",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -7600,11 +7603,8 @@
         ]
       },
       "properties": {
-        "capacity": "16",
-        "caravans": "yes",
         "name": "Collins Campground",
         "operator": "US Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/olympic/recarea/?recid=47809",
         "id": "ridb:238900",
@@ -7644,8 +7644,11 @@
             "source_record_id": "osm:node:8956025082",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "16",
+              "caravans": "yes",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -7664,10 +7667,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Adams Fork Campground",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232857",
         "id": "ridb:232857",
@@ -7707,7 +7708,9 @@
             "source_record_id": "osm:way:1525582119",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -7726,9 +7729,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Boulder Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -7772,8 +7773,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -7887,11 +7890,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "12",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "PLEASANT VALLEY CAMPGROUND",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -7935,8 +7934,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "capacity": "12",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -7960,9 +7963,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Panther Creek campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/giffordpinchot/recreation/campground-panther-creek",
         "id": "ridb:233103",
@@ -8002,7 +8003,9 @@
             "source_record_id": "osm:way:642508404",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -8149,13 +8152,9 @@
       },
       "properties": {
         "area": "yes",
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "yes",
-        "group_only": "no",
         "name": "Douglas Fir Campground",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17580",
         "wheelchair": "yes",
@@ -8196,11 +8195,15 @@
             "source_record_id": "osm:way:958045685",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:wheelchair": "yes"
             },
@@ -8599,9 +8602,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Iron Creek Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:232853",
         "source": "recreation.gov",
@@ -8640,8 +8641,10 @@
             "source_record_id": "osm:node:1891129106",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "charge": "24 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -8660,10 +8663,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "Horseshoe Cove Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
@@ -8707,8 +8707,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
@@ -8732,10 +8735,7 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
         "camp_site": "standard",
-        "capacity:tents": "27",
-        "caravans": "yes",
         "motor_vehicle": "yes",
         "name": "Beckler River Campground",
         "opening_hours": "May-Sep: 06:00-22:00",
@@ -8744,7 +8744,6 @@
         "reservation": "recommended",
         "seasonal": "yes",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/mbs/recreation/beckler-river-campground",
         "wheelchair": "yes",
@@ -8784,12 +8783,16 @@
             "source_record_id": "osm:node:823624860",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
               "bin": "yes",
+              "capacity:tents": "27",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "openfire": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -8810,9 +8813,7 @@
       },
       "properties": {
         "area": "yes",
-        "caravans": "yes",
         "name": "Tower Rock Campground ",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31448",
         "id": "ridb:232855",
@@ -8852,8 +8853,10 @@
             "source_record_id": "osm:way:431144949",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "charge": "22 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -9040,9 +9043,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Falls View Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/olympic/recarea/?recid=47829",
         "id": "ridb:238903",
@@ -9083,8 +9084,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "no",
+              "caravans": "yes",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -9275,12 +9278,8 @@
         ]
       },
       "properties": {
-        "capacity:tents": "5",
-        "caravans": "no",
         "name": "Graham Harbor Creek Campground",
         "operator": "USFS",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/graham-harbor-creek-campground",
         "id": "ridb:273911",
@@ -9320,8 +9319,12 @@
             "source_record_id": "osm:node:5715852185",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:tents": "5",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -10269,8 +10272,6 @@
       },
       "properties": {
         "camp_site": "serviced",
-        "capacity:caravans": "42",
-        "caravans": "yes",
         "dog": "leashed",
         "name": "Ainsworth Campground",
         "ownership": "Oregon State Parks",
@@ -10304,6 +10305,8 @@
             "source_record_id": "osm:way:1185241047",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:caravans": "42",
+              "caravans": "yes",
               "fee": "yes",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
@@ -10328,12 +10331,8 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "17",
-        "capacity:tents": "17",
-        "caravans": "yes",
         "name": "Eagle Creek Campground",
         "operator": "USFS",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 1596375042,
         "osm_type": "node",
@@ -10359,7 +10358,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1187069919",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity:caravans": "17",
+              "capacity:tents": "17",
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1187069919"
+          }
+        ]
       }
     },
     {
@@ -12601,7 +12615,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -12612,7 +12627,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -14244,13 +14260,17 @@
             "source_record_id": "osm:node:5197422186",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "no",
               "internet_access": "no",
               "openfire": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
-              "shower": "no"
+              "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -15313,7 +15333,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -15324,7 +15345,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -22431,10 +22453,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "no",
               "picnic_table": "no",
               "power_supply": "no",
-              "shower": "no"
+              "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -23830,7 +23856,33 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5354210553",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity": "1",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5354210553"
+          },
+          {
+            "source_record_id": "osm:node:5354210556",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity": "1",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5354210556"
+          }
+        ]
       }
     },
     {
@@ -25011,11 +25063,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "capacity:persons": "6",
+              "caravans": "no",
               "drinking_water": "no",
               "openfire": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -26235,12 +26292,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "no",
               "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
-              "shower": "no"
+              "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -27274,7 +27335,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7781638514",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7781638514"
+          }
+        ]
       }
     },
     {
@@ -28977,9 +29053,13 @@
             "source_record_id": "osm:node:6582363201",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "no",
               "power_supply": "no",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -29182,8 +29262,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "caravans": "no",
               "openfire": "yes",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -30769,6 +30853,8 @@
             "source_record_id": "osm:node:12197323434",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -31371,7 +31457,8 @@
             "source_record_id": "osm:node:7549740687",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "backcountry": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -32012,7 +32099,11 @@
             "source_record_id": "osm:node:13048801441",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
               "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -32195,7 +32286,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7755045185",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7755045185"
+          },
+          {
+            "source_record_id": "osm:node:7755045285",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7755045285"
+          }
+        ]
       }
     },
     {
@@ -37382,7 +37495,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9085208656",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9085208656"
+          }
+        ]
       }
     },
     {
@@ -38545,7 +38670,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "caravans": "no",
               "openfire": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -42009,6 +42138,7 @@
             "source_record_id": "osm:relation:14600180",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "fee": "no",
               "toilets": "no"
             },
@@ -46840,7 +46970,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -46851,7 +46982,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -46941,7 +47073,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -47308,7 +47441,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12901337714",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12901337714"
+          }
+        ]
       }
     },
     {
@@ -48925,7 +49070,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13046356202",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13046356202"
+          }
+        ]
       }
     },
     {
@@ -50265,6 +50422,7 @@
             "source_record_id": "osm:relation:7929847",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "22",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -52375,7 +52533,6 @@
       },
       "properties": {
         "access": "yes",
-        "backcountry": "no",
         "caravans": "yes",
         "name": "Willow Landing Campground",
         "tents": "yes",
@@ -52415,6 +52572,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -66259,7 +66419,9 @@
             "source_record_id": "osm:way:767455264",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "sanitary_dump_station": "no"
+              "caravans": "yes",
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -66406,7 +66568,9 @@
             "source_record_id": "osm:way:767455309",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "sanitary_dump_station": "no"
+              "caravans": "yes",
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -66993,9 +67157,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Twin Harbors State Park - Westside Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 830825704,
         "osm_type": "way",
@@ -67026,10 +67188,12 @@
             "source_record_id": "osm:way:830828002",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -71276,11 +71440,24 @@
             "source_record_id": "osm:way:1079686547",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "sanitary_dump_station": "customers"
+              "caravans": "yes",
+              "sanitary_dump_station": "customers",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/1079686547"
+          },
+          {
+            "source_record_id": "osm:way:1079686548",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1079686548"
           }
         ]
       }
@@ -89187,6 +89364,9 @@
             "source_record_id": "osm:way:1498035630",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -89197,6 +89377,9 @@
             "source_record_id": "osm:way:1498035631",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -91099,8 +91282,10 @@
             "source_record_id": "osm:way:1538417245",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -91111,8 +91296,10 @@
             "source_record_id": "osm:way:1538417246",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -91204,8 +91391,10 @@
             "source_record_id": "osm:way:1538417249",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
@@ -91769,8 +91958,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "backcountry": "yes",
+              "capacity:tents": "2",
+              "caravans": "no",
               "fee": "yes",
-              "openfire": "yes"
+              "horse": "yes",
+              "openfire": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,

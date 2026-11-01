@@ -2,7 +2,7 @@
 (function(root){
  'use strict';
   const t = (key, params = {}) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params, name) ? String(params[name]) : token);
- const VERSION = '2.33.0', RADIUS=100, ASSET='data/clearances/RI.json';
+ const VERSION = '2.34.0', RADIUS=100, ASSET='data/clearances/RI.json';
  const coord=p=>Array.isArray(p)&&p.length>=2&&Number.isFinite(p[0])&&Number.isFinite(p[1])&&Math.abs(p[0])<=180&&Math.abs(p[1])<=90;
  function xy(p,lat){return [p[0]*111320*Math.cos(lat*Math.PI/180),p[1]*111320];}
  function pointSegment(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],d=dx*dx+dy*dy,t=d?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/d)):0;return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy);}

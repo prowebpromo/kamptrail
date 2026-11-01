@@ -221,19 +221,13 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "12",
-        "caravans": "yes",
         "ele": "2206",
-        "group_only": "no",
-        "horse": "yes",
         "leisure": "firepit",
         "name": "Iron Creek Campground",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1975&actid=29",
@@ -273,10 +267,16 @@
             "source_record_id": "osm:node:2333697974",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity": "12",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
+              "group_only": "no",
+              "horse": "yes",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -296,12 +296,10 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "RIO DE LAS VACAS CAMPGROUND",
         "operator": "USFS",
         "reservation": "required",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.recreation.gov/camping/campgrounds/251437",
@@ -341,8 +339,10 @@
             "source_record_id": "osm:node:2332493797",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -887,17 +887,13 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
-        "caravans": "no",
         "ele": "2052",
-        "group_only": "no",
         "name": "Black Canyon Campground - Lower",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
         "sites": "3",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1994&actid=29",
@@ -939,10 +935,14 @@
             "source_record_id": "osm:node:2332493688",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "no",
+              "group_only": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "vault"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -953,10 +953,14 @@
             "source_record_id": "osm:node:2332493689",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "no",
+              "group_only": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "vault"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -2304,8 +2308,6 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
-        "caravans": "yes",
         "contact:campendium": "http://www.campendium.com/chosa-campground",
         "image": "http://www.nps.gov/common/uploads/cropped_image/primary/B5F856BB-0F22-2401-EE8F10DDA63B8B30.jpg",
         "name": "Chosa Campground",
@@ -2313,7 +2315,6 @@
         "parking": "yes",
         "reservation": "no",
         "surface": "dirt",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/places/gumo_chosa_campground_blm.htm",
         "id": "ridb:10278188",
@@ -2354,6 +2355,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
               "internet_access": "cellular",
@@ -2361,6 +2364,7 @@
               "picnic_table": "no",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "no",
               "waste_basket": "yes"
             },
@@ -2807,17 +2811,12 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "10",
-        "caravans": "yes",
         "ele": "1953",
-        "group_only": "no",
         "name": "Apache Creek Campground",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1984&actid=29",
@@ -2857,11 +2856,16 @@
             "source_record_id": "osm:way:747965972",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
               "bbq": "yes",
+              "capacity": "10",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
+              "group_only": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -3098,19 +3102,13 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "7",
-        "caravans": "no",
         "dog": "yes",
         "ele": "1691",
-        "group_only": "no",
-        "horse": "no",
         "name": "Forks Campground",
         "nudism": "no",
         "operator": "USFS",
         "reservation": "no",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1990&actid=29",
@@ -3150,9 +3148,15 @@
             "source_record_id": "osm:way:746692166",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity": "7",
+              "caravans": "no",
               "fee": "no",
+              "group_only": "no",
+              "horse": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -8096,8 +8100,6 @@
         "name": "James Canyon Campground",
         "operator": "USFS",
         "reservation": "no",
-        "static_caravans": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lincoln/recarea/?recid=34174",
         "osm_id": 2332493731,
@@ -8134,6 +8136,8 @@
               "drinking_water": "no",
               "fee": "no",
               "picnic_table": "yes",
+              "static_caravans": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -9290,7 +9294,6 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
         "name": "La Junta Canyon",
         "tourism": "camp_site",
         "osm_id": 2333697978,
@@ -9318,7 +9321,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13253442548",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13253442548"
+          }
+        ]
       }
     },
     {
@@ -9679,7 +9694,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2442094073",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2442094073"
+          }
+        ]
       }
     },
     {
@@ -16325,7 +16352,49 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12119213220",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213220"
+          },
+          {
+            "source_record_id": "osm:node:12119213221",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213221"
+          },
+          {
+            "source_record_id": "osm:node:12119213223",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213223"
+          },
+          {
+            "source_record_id": "osm:node:12119213224",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213224"
+          }
+        ]
       }
     },
     {
@@ -16367,7 +16436,49 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12119213232",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213232"
+          },
+          {
+            "source_record_id": "osm:node:12119213234",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213234"
+          },
+          {
+            "source_record_id": "osm:node:12119213236",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213236"
+          },
+          {
+            "source_record_id": "osm:node:12119213239",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213239"
+          }
+        ]
       }
     },
     {
@@ -16406,7 +16517,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12119213241",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119213241"
+          }
+        ]
       }
     },
     {
@@ -16451,7 +16574,79 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12119227837",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119227837"
+          },
+          {
+            "source_record_id": "osm:node:12119227838",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119227838"
+          },
+          {
+            "source_record_id": "osm:node:12119227839",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119227839"
+          },
+          {
+            "source_record_id": "osm:node:12119227841",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119227841"
+          },
+          {
+            "source_record_id": "osm:node:12119227842",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119227842"
+          },
+          {
+            "source_record_id": "osm:node:12119227843",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119227843"
+          },
+          {
+            "source_record_id": "osm:node:12119227845",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:19:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12119227845"
+          }
+        ]
       }
     },
     {
@@ -17933,7 +18128,6 @@
         "group_only": "no",
         "name": "Group site 2",
         "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 13141822352,
         "osm_type": "node",
@@ -17965,7 +18159,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "capacity:persons": "20",
+              "capacity:tents": "5",
+              "caravans": "no",
+              "fee": "yes",
+              "group_only": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -19335,11 +19535,9 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "13",
         "caravans": "no",
         "name": "Pine Springs Campground",
         "operator": "National Park Service",
-        "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 259289402,
@@ -19378,7 +19576,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "capacity:caravans": "13",
+              "caravans": "yes",
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "no"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -28586,7 +28788,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "capacity:persons": "10-30",
+              "capacity:tents": "5",
+              "caravans": "no",
+              "fee": "yes",
+              "group_only": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,

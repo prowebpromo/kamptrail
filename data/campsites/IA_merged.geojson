@@ -12364,7 +12364,6 @@
         "name": "Ingawanis Adventure Base",
         "operator": "BSA",
         "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 10905810387,
         "osm_type": "node",
@@ -12397,8 +12396,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "private",
+              "caravans": "no",
               "fee": "yes",
-              "internet_access": "wlan"
+              "group_only": "yes",
+              "internet_access": "wlan",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:00:45Z",
             "source_updated_at": null,
@@ -12740,8 +12743,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "backcountry": "yes",
+              "caravans": "no",
               "drinking_water": "yes",
               "picnic_table": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:00:45Z",
@@ -13699,10 +13706,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "no",
               "charge": "$10/night",
               "drinking_water": "yes",
               "fee": "yes",
-              "internet_access": "no"
+              "internet_access": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:00:45Z",
             "source_updated_at": null,

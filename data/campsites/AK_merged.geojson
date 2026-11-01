@@ -263,9 +263,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "West Fork Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:274260",
         "source": "recreation.gov",
@@ -304,8 +302,10 @@
             "source_record_id": "osm:way:430531631",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "fee": "yes",
-              "internet_access": "no"
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -786,7 +786,6 @@
         ]
       },
       "properties": {
-        "capacity": "13",
         "large_vehicles": "discouraged",
         "mobile_reception": "no",
         "name": "Black Bear Campground",
@@ -830,6 +829,7 @@
             "source_record_id": "osm:way:851627952",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "13",
               "fee": "yes",
               "internet_access": "no",
               "power_supply": "no",
@@ -1668,14 +1668,12 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "email": "easterninterior@blm.gov",
         "fixme": "boundary is approximate",
         "name": "Cripple Creek Campground",
         "operator": "U.S. Bureau of Land Management",
         "phone": "+1 907 474 2200",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/cripple-creek-campground",
         "id": "ridb:274261",
@@ -1715,9 +1713,11 @@
             "source_record_id": "osm:way:616174785",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -3508,16 +3508,11 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "19",
-        "caravans": "yes",
-        "group_only": "no",
         "name": "LAST CHANCE CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
         "phone": "+1-877-444-6777",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232330",
         "wheelchair": "yes",
@@ -3558,11 +3553,16 @@
             "source_record_id": "osm:way:840370810",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
               "bbq": "yes",
+              "capacity": "19",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fireplace": "yes",
+              "group_only": "no",
               "internet_access": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -5685,13 +5685,11 @@
         ]
       },
       "properties": {
-        "capacity": "10",
         "name": "SIGNAL CREEK CAMPGROUND",
         "nudism": "no",
         "operator": "United States Forest Service",
         "phone": "+1-877-444-6777",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232141",
         "id": "ridb:232141",
@@ -5732,10 +5730,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity": "10",
               "drinking_water": "no",
               "fireplace": "yes",
               "internet_access": "no",
               "sanitary_dump_station": "no",
+              "tents": "yes",
               "toilets": "yes",
               "washing_machine": "no",
               "wood_available": "yes"
@@ -7105,7 +7105,6 @@
         "addr:housenumber": "MP 82.1",
         "addr:state": "AK",
         "addr:street": "Taylor Highway",
-        "capacity": "18",
         "description": "<p>This hosted Campground is located at milepost 82.1 of the Taylor Highway, near Chicken. The Campground is operated by the BLM and offers 24 camping sites, 18 of which are pull-through sites. </p>\n\n<p>An iron ranger fee-payment box sits near the entrance. Visitors can also pay fees using the Scan & Pay app on a mobile phone. Because there is no cell phone reception at the site, you will need to download the required <a href=\"https://www.recreation.gov/mobile-app\" rel=\"nofollow\">Recreation.gov mobile app</a> prior to traveling to the Campground, selecting the Scan & Pay option.  </p>\n\n<p>In the 1930s and 1940s, this was the site of Lassen airstrip. Year-round air service replaced winter-only sleds delivering equipment and fuel to mining camps on Jack Wade Creek.</p>\n",
         "name": "Walker Fork Campground",
         "note": "boundary is approximate",
@@ -7143,7 +7142,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:295165500",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "18"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/295165500"
+          }
+        ]
       }
     },
     {
@@ -8418,14 +8429,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity": "60",
-        "caravans": "yes",
         "large_vehicles": "yes",
         "mobile_reception": "no",
         "name": "WILLIWAW CAMPGROUND",
         "operator": "US Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6604&actid=29",
         "id": "ridb:232324",
@@ -8466,12 +8473,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "capacity": "60",
+              "caravans": "yes",
               "fee": "yes",
               "internet_access": "no",
               "picnic_table": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
-              "shower": "no"
+              "shower": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -17065,6 +17076,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity": "57",
               "drinking_water": "yes",
               "fee": "yes",
               "power_supply": "no",
@@ -17679,7 +17691,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "backcountry": "yes",
+              "caravans": "no",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -17765,6 +17781,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
@@ -20213,7 +20230,6 @@
         "note": "Multiple basic campsites in the area.",
         "operator": "Chugach State Park",
         "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 11810571792,
         "osm_type": "node",
@@ -20245,7 +20261,11 @@
             "source_record_id": "osm:node:13131564112",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "backcountry": "yes",
+              "caravans": "no",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,
@@ -20469,11 +20489,13 @@
             "fields": {
               "access": "yes",
               "amenity": "parking",
+              "caravans": "yes",
               "fee": "no",
               "picnic_table": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
@@ -20665,11 +20687,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "fee": "no",
               "picnic_table": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
@@ -28044,12 +28068,16 @@
             "source_record_id": "osm:way:758445778",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "charge": "20 USD",
               "drinking_water": "no",
               "fee": "yes",
+              "group_only": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
@@ -28060,11 +28088,15 @@
             "source_record_id": "osm:way:758445782",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "charge": "20 USD",
               "fee": "yes",
+              "group_only": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
-              "shower": "no"
+              "shower": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:47:12Z",
             "source_updated_at": null,

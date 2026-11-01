@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.33.0', messages:{
+  global.KampTrailI18nFr = {version:'2.34.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1739,6 +1739,11 @@
   "Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence.": "Les filtres d’équipements ne retiennent que les preuves listées ici, avec la portée indiquée. Inconnu ne signifie pas absent.",
   "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Les filtres d’équipements n’utilisent que les preuves affichées dans chaque fiche : l’élément OpenStreetMap propre au lieu, les fiches de site du Service des forêts et les fiches d’emplacement Recreation.gov. Avec un filtre de longueur ou de branchements actif, les équipements des fiches d’emplacement ne comptent que s’ils sont liés à l’emplacement qui convient, ce qui n’est pas le cas de ces fiches.",
   "different site ({type}), not this campground": "autre site ({type}), pas ce camping",
-  "type unknown": "type inconnu"
+  "type unknown": "type inconnu",
+  "Recreation.gov facility {id}: {count} of {total} campsite records list RV or trailer equipment": "Installation {id} de Recreation.gov : {count} des {total} fiches d’emplacement indiquent un équipement camping-car ou caravane",
+  "Merged elements, rig tags not used for this listing ({count})": "Éléments fusionnés, attributs de véhicule non utilisés pour ce lieu ({count})",
+  "These rig tags belong to other records merged into this listing, such as a separate loop or a duplicate outline. They are not used for this listing's rig types or filters.": "Ces attributs de véhicule appartiennent à d’autres fiches fusionnées dans ce lieu, comme une autre boucle ou un contour en double. Ils ne servent ni aux types de véhicule ni aux filtres de ce lieu.",
+  "No rig source for this listing.": "Aucune source de types de véhicule pour ce lieu.",
+  "Tents and Trailers filters match only the rig types each popup reports from the listing's own sources. Sources that disagree never match.": "Les filtres Tentes et Caravanes ne retiennent que les types de véhicule que chaque fiche indique d’après les sources propres du lieu. Des sources divergentes ne comptent jamais."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);
