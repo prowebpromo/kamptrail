@@ -1,0 +1,3451 @@
+{
+ "version": 1,
+ "decided": "2026-11-01 08:16 and 08:18 (owner)",
+ "evidence": {
+  "file": "docs/tourism/ridb-facility-evidence-2026-11-01.json",
+  "sha256": "ec8da8c2c93ae75e3267ca42c7beeab8040d86965da4bcb98776dfc9ccd760b5",
+  "run": "https://github.com/prowebpromo/kamptrail/actions/runs/41350953975",
+  "retrieved_at": "2026-11-01T21:14:28Z"
+ },
+ "baseline_commit": "f84a5b4b6cb23641d0ef263e10fe077751cc1c14",
+ "observed_fields": "observed.* copied from the evidence file; derived.*, decision and action computed by this script; current.* from the baseline catalogue; candidate.* from this build",
+ "by_decision": {
+  "keep_discoverable_pending_withdrawal_review": 9,
+  "deferred_label_held": 26,
+  "approved_upgrade": 27,
+  "approved_lodging": 8,
+  "approved_lodging_rejection": 2
+ },
+ "problems": [],
+ "records": [
+  {
+   "id": "ridb:237765",
+   "group": "withdrawal_9",
+   "name": "Kirkwood Ranch",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Kirkwood Ranch",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -116.497783,
+     45.56779
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record describes a historic ranch and museum. Historic bunk houses do not establish campsites. Fresh record adds no campsite or type evidence.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:244404",
+   "group": "withdrawal_9",
+   "name": "Wakeley Lake Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Wakeley Lake Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -84.509175,
+     44.633085
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record only describes recreation areas near this part of the forest. The Dispersed label came from the matched USFS record usfs:18814, which is candidate evidence only.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:245273",
+   "group": "withdrawal_9",
+   "name": "Buckhorn",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Buckhorn",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -114.886628,
+     44.162487
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record says only 'This is a great recreation area.' The Campground label came from the matched USFS record usfs:5889.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:246536",
+   "group": "withdrawal_9",
+   "name": "Bingo",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Bingo",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -72.9137,
+     43.875356
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record only links a general forest camping guide. The Campground label came from the matched USFS record usfs:65003.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:247835",
+   "group": "withdrawal_9",
+   "name": "Daisy State Park",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Daisy State Park",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -93.74295328,
+     34.23217194
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record says only that the area is part of Greeson Lake. The absorbed OSM element osm:way:941066426 is a separate element and stays withheld with its host.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:247915",
+   "group": "withdrawal_9",
+   "name": "River Forks",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "River Forks",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -83.904533,
+     34.288295
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record says only that the area is part of Lake Sidney Lanier. The absorbed OSM relation osm:relation:13942065 and its website are not evidence about this record.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:247922",
+   "group": "withdrawal_9",
+   "name": "Don Carter State Park",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Don Carter State Park",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -83.7419459,
+     34.3895525
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record says only that the area is part of Lake Sidney Lanier. The separately published OSM listing osm:way:456269017 stays discoverable under its own id.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:248072",
+   "group": "withdrawal_9",
+   "name": "Scusset Beach State Reservation",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Scusset Beach State Reservation",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -70.505148,
+     41.777929
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record says only that the area is part of Cape Cod Canal, with no campground details.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:248261",
+   "group": "withdrawal_9",
+   "name": "Potato Hills Central",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Potato Hills Central",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -95.32412,
+     34.6250312
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "source_intro_camping"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "proposed_withdrawal_pending_review",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "keep_discoverable_pending_withdrawal_review",
+   "action": "stays listed, pending-review notice, label held",
+   "reason": "Own record identifies the facility as part of Sardis Lake. The campground wording in the merged row is marked as copied from another record and does not classify this one.",
+   "recommendation": {
+    "action": "withdraw",
+    "label": null
+   }
+  },
+  {
+   "id": "ridb:10049041",
+   "group": "downgrade_22",
+   "name": "Morrow Bridge and Midway Seasonal Camps",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Morrow Bridge and Midway Seasonal Camps",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -82.4203,
+     33.98959
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "previously_published_pending_adjudication",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "One record describes two seasonal primitive hunting camps. The point does not distinguish them and no own field gives a type.",
+   "recommendation": {
+    "action": "keep_pending_admission",
+    "label": "other"
+   }
+  },
+  {
+   "id": "ridb:10068990",
+   "group": "downgrade_22",
+   "name": "Willow Creek Transfer Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Willow Creek Transfer Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -115.134433,
+     43.625972
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes 3 large camping units with picnic tables, fire rings and a restroom. Keeping the published label is not an upgrade.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:237148",
+   "group": "downgrade_22",
+   "name": "Gateway Boat Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Gateway Boat Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -115.16465,
+     48.9970333
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record calls itself a campground with 5 sites, tables and fire rings.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:240871",
+   "group": "downgrade_22",
+   "name": "Enduro Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Enduro Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -93.0146443,
+     30.998339
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "previously_published_pending_adjudication",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record names a camp and describes restrooms only. No site count, overnight use or type.",
+   "recommendation": {
+    "action": "keep_pending_admission",
+    "label": "other"
+   }
+  },
+  {
+   "id": "ridb:240903",
+   "group": "downgrade_22",
+   "name": "Sugar Creek Hunter Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Sugar Creek Hunter Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -92.792,
+     32.962
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "published_pending_review",
+    "evidence": "previously_published_pending_adjudication",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record repeats its Hunter Camp name only. The Dispersed label came from a matched USFS record.",
+   "recommendation": {
+    "action": "keep_pending_admission",
+    "label": "other"
+   }
+  },
+  {
+   "id": "ridb:241301",
+   "group": "downgrade_22",
+   "name": "Bear Creek Lake Recreation Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Bear Creek Lake Recreation Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -90.6938167,
+     34.7122167
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "previously_published_pending_adjudication",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record is an area containing three campgrounds. The area point is not one campground.",
+   "recommendation": {
+    "action": "keep_pending_admission",
+    "label": "other"
+   }
+  },
+  {
+   "id": "ridb:243195",
+   "group": "downgrade_22",
+   "name": "McDougle Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "McDougle Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -87.35,
+     34.34
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "previously_published_pending_adjudication",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record repeats its name only.",
+   "recommendation": {
+    "action": "keep_pending_admission",
+    "label": "other"
+   }
+  },
+  {
+   "id": "ridb:243218",
+   "group": "downgrade_22",
+   "name": "Coleman Lake Recreation Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Coleman Lake Recreation Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -85.56203439,
+     33.78408702
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes 39 campsites with water and electrical hookups and bathhouses.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:243702",
+   "group": "downgrade_22",
+   "name": "Head O' Boulder Forest Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Head O' Boulder Forest Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -118.6923,
+     44.754881
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes a rustic camp with a few sites at a trailhead. Weakest of the kept labels.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:244320",
+   "group": "downgrade_22",
+   "name": "Bowman Lake Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Bowman Lake Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -85.94,
+     43.889444
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "published_pending_review",
+    "evidence": "previously_published_pending_adjudication",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record covers a 1,513-acre area with several landowners. The four campsites it names are not typed and the point is the area.",
+   "recommendation": {
+    "action": "keep_pending_admission",
+    "label": "other"
+   }
+  },
+  {
+   "id": "ridb:244321",
+   "group": "downgrade_22",
+   "name": "Condon Lakes West",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Condon Lakes West",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -85.900061,
+     43.757958
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "published_pending_review",
+    "evidence": "previously_published_pending_adjudication",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record lists camping as one activity in a wider area. No campsite is identified.",
+   "recommendation": {
+    "action": "keep_pending_admission",
+    "label": "other"
+   }
+  },
+  {
+   "id": "ridb:245164",
+   "group": "downgrade_22",
+   "name": "Hunter Creek Transfer Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Hunter Creek Transfer Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -115.132042,
+     43.423767
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record calls it a campground with 3 single units and 1 multi-family unit.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:245165",
+   "group": "downgrade_22",
+   "name": "Bear Creek Transfer Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Bear Creek Transfer Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -114.900558,
+     43.727218
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes 6 campsites with picnic tables and fire rings.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:249627",
+   "group": "downgrade_22",
+   "name": "Joe Elliot Yellow Post Sites",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Joe Elliot Yellow Post Sites",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -117.55283,
+     34.219066
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own name is a Yellow Post site and the record describes two remote first-come sites on a high-clearance road. The approved FacilityName rule maps 'yellow post' to Dispersed. Changes the published Campground label, so it needs approval.",
+   "recommendation": {
+    "action": "relabel",
+    "label": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249642",
+   "group": "downgrade_22",
+   "name": "Coon Creek Yellow Post Sites",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Coon Creek Yellow Post Sites",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -116.766367,
+     34.150479
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own name is Yellow Post Sites and the record describes 19 first-come individual sites with no restrooms or water.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249674",
+   "group": "downgrade_22",
+   "name": "Stockton Flats Yellow Post Sites",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Stockton Flats Yellow Post Sites",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -117.59064,
+     34.296807
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own name is Yellow Post Sites and the record says the sites lack developed-campground amenities. Changes the published Campground label, so it needs approval.",
+   "recommendation": {
+    "action": "relabel",
+    "label": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249741",
+   "group": "downgrade_22",
+   "name": "Thomas Hunting Grounds Yellow Post Sites",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Thomas Hunting Grounds Yellow Post Sites",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -117.005479,
+     34.128422
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own name is Yellow Post Sites and the record describes five remote sites without developed-campground amenities.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249752",
+   "group": "downgrade_22",
+   "name": "Clark's Ranch Yellow Post Site",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Clark's Ranch Yellow Post Site",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -116.97729,
+     34.183998
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own name is a Yellow Post Site and the record describes a single remote site without developed-campground amenities.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249902",
+   "group": "downgrade_22",
+   "name": "Wolf Gap Recreation Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Wolf Gap Recreation Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -78.68909,
+     38.924545
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record invites visitors to stay at its campsites.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:255188",
+   "group": "downgrade_22",
+   "name": "Spring Recreation Site",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-09-03",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Spring Recreation Site",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -117.2388,
+     44.37688
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes RV and tent camping sites and calls the site a campground.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:255232",
+   "group": "downgrade_22",
+   "name": "Mica Bay Boater Park",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-05-14",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Mica Bay Boater Park",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -116.859166,
+     47.594722
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record calls itself a boat-in campground with 16 tent units.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:255239",
+   "group": "downgrade_22",
+   "name": "McKay's Bend Recreation Site",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-06-05",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "McKay's Bend Recreation Site",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -116.726944,
+     46.4975
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "reviewed_own_facility_record",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes developed camping for RVs and tents, with 14 full-hookup RV sites.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:237191",
+   "group": "downgrade_4",
+   "name": "Camp 32",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Camp 32",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -115.194631,
+     48.835156
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "source_intro_camping",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record calls it a campground with 8 sites, potable water and vault toilets.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:243219",
+   "group": "downgrade_4",
+   "name": "Pine Glen Recreation Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Pine Glen Recreation Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -85.60182112,
+     33.72521825
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "source_intro_camping",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes 21 campsites with grills and sanitary facilities.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:255262",
+   "group": "downgrade_4",
+   "name": "Wolf Flats Recreation Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-09-15",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Wolf Flats Recreation Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -111.60732,
+     43.59955
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "source_intro_camping",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record calls it a dispersed, undeveloped camping area. That contradicts the published Campground label. Other is the conservative alternative if descriptions may not set a type.",
+   "recommendation": {
+    "action": "relabel",
+    "label": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:260547",
+   "group": "downgrade_4",
+   "name": "Priest Hole Recreation Site",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-09-04",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Priest Hole Recreation Site",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -120.271366,
+     44.739287
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "source_intro_camping",
+    "type_evidence": "held_published_label",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "deferred_label_held",
+   "action": "label held, review pending",
+   "reason": "Own record describes 14 drive-in campsites with fire rings and tables, plus a separate walk-in dispersed area.",
+   "recommendation": {
+    "action": "keep_current_label",
+    "label": "established"
+   }
+  },
+  {
+   "id": "ridb:10007101",
+   "group": "upgrade_27",
+   "name": "Large Vehicle Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Large Vehicle Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -109.562713,
+     42.818212
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10048852",
+   "group": "upgrade_27",
+   "name": "Miller Flat Reservoir Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Miller Flat Reservoir Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -111.249677,
+     39.522732
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10060062",
+   "group": "upgrade_27",
+   "name": "Campo Alto Group Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Campo Alto Group Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -119.2041667,
+     34.83333333
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10068183",
+   "group": "upgrade_27",
+   "name": "Little Duck Campsite on Grand Island",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Little Duck Campsite on Grand Island",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -86.6453806,
+     46.4835
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10070265",
+   "group": "upgrade_27",
+   "name": "Wildcat Creek Campground #2 Upper",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Wildcat Creek Campground #2 Upper",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -83.626111,
+     34.832222
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10072074",
+   "group": "upgrade_27",
+   "name": "Home Gulch Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Home Gulch Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -112.7244444,
+     47.61583333
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10072265",
+   "group": "upgrade_27",
+   "name": "Smith Lake Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Smith Lake Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -116.264,
+     48.77878
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10078445",
+   "group": "upgrade_27",
+   "name": "Fulford Cave Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Fulford Cave Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -106.6588889,
+     39.49194444
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10078676",
+   "group": "upgrade_27",
+   "name": "Godman Campground/Trailhead",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Godman Campground/Trailhead",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -117.786291,
+     46.099718
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10078697",
+   "group": "upgrade_27",
+   "name": "Conrad Crossing Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Conrad Crossing Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -115.415957,
+     47.158576
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10134443",
+   "group": "upgrade_27",
+   "name": "Muchwater Dispersed Campground and Recreation Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Muchwater Dispersed Campground and Recreation Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -114.848297,
+     47.309883
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "dispersed"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Dispersed",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10134448",
+   "group": "upgrade_27",
+   "name": "Deer Creek Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Deer Creek Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -115.370753,
+     47.354653
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10134449",
+   "group": "upgrade_27",
+   "name": "Peninsula Dispersed Campground and Recreation Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Peninsula Dispersed Campground and Recreation Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -114.905233,
+     47.326428
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "dispersed"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Dispersed",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10278932",
+   "group": "upgrade_27",
+   "name": "Muleshoe Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-10-05",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Muleshoe Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -119.96704,
+     44.80732
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:240676",
+   "group": "upgrade_27",
+   "name": "Table Meadows Campground",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Table Meadows Campground",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -115.62175,
+     45.93763
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:247937",
+   "group": "upgrade_27",
+   "name": "Dworshak State Park- Three Meadows Group Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Dworshak State Park- Three Meadows Group Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -116.29919477,
+     46.60428229
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:248513",
+   "group": "upgrade_27",
+   "name": "Granite Lake Rv Park",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Granite Lake Rv Park",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -117.04347115,
+     46.42412416
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:256895",
+   "group": "upgrade_27",
+   "name": "Bitter Creek Overlook Camping Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Bitter Creek Overlook Camping Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -109.108704,
+     39.156677
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:257133",
+   "group": "upgrade_27",
+   "name": "Rock Castle Camping Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Rock Castle Camping Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -109.289501,
+     38.59855
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:261695",
+   "group": "upgrade_27",
+   "name": "Edson Creek Camping",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Edson Creek Camping",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -124.410274,
+     42.815155
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:262649",
+   "group": "upgrade_27",
+   "name": "North Table Rock Camping Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-10-13",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "North Table Rock Camping Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -109.0374,
+     41.940763
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:262654",
+   "group": "upgrade_27",
+   "name": "Pine Creek Camping Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Pine Creek Camping Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -108.86,
+     42.45
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:262772",
+   "group": "upgrade_27",
+   "name": "Ft. Meade Horse Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Ft. Meade Horse Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -103.47297,
+     44.3725
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:262796",
+   "group": "upgrade_27",
+   "name": "Horse Mountain Primitive Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Horse Mountain Primitive Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -124.068866,
+     40.105909
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "dispersed"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Dispersed",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:265204",
+   "group": "upgrade_27",
+   "name": "Wolf Ford Horse Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Wolf Ford Horse Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -82.73869,
+     35.377193
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:272101",
+   "group": "upgrade_27",
+   "name": "Jericho Campground and Picnic Area",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Jericho Campground and Picnic Area",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -112.367053,
+     39.686978
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "established"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Campground",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:273835",
+   "group": "upgrade_27",
+   "name": "North Fork Primitive Camp",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Facility",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "North Fork Primitive Camp",
+    "enabled": true,
+    "reservable": false,
+    "point": [
+     -120.05697,
+     37.61342
+    ],
+    "campsites_overnight": 0,
+    "campsites_total": 0,
+    "by_type_of_use": {},
+    "by_campsite_type": {}
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "name_kind": "dispersed"
+   },
+   "current": {
+    "label": "other",
+    "classification": "campsite",
+    "evidence": "camping_facility_name"
+   },
+   "candidate": {
+    "label": "dispersed",
+    "classification": "campsite",
+    "evidence": "camping_facility_name",
+    "type_evidence": "descriptive_wording",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": null
+   },
+   "decision": "approved_upgrade",
+   "action": "Other → Dispersed",
+   "reason": null,
+   "recommendation": null
+  },
+  {
+   "id": "ridb:10344823",
+   "group": "lodging_10",
+   "name": "Coldfoot Cabin",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-06-17",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Coldfoot Cabin",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -150.182928,
+     67.2536848
+    ],
+    "campsites_overnight": 1,
+    "campsites_total": 1,
+    "by_type_of_use": {
+     "Overnight": 1
+    },
+    "by_campsite_type": {
+     "CABIN NONELECTRIC": 1
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": null,
+    "accommodation": "cabin",
+    "overnight_records": 1
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "Coldfoot Cabin's own campsite page shows two bedrooms with bunk beds.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:233178",
+   "group": "lodging_10",
+   "name": "SHAW HOUSE",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-09-11",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "SHAW HOUSE",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -109.961709093,
+     31.931233885
+    ],
+    "campsites_overnight": 1,
+    "campsites_total": 1,
+    "by_type_of_use": {
+     "Overnight": 1
+    },
+    "by_campsite_type": {
+     "CABIN ELECTRIC": 1
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "ridb_facility_type_overnight_sites",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": {
+     "status": "temporarily closed",
+     "notice_date": "2026-09-10",
+     "excerpt": "Shaw House is temporarily closed.",
+     "source_record_id": "ridb:233178",
+     "retrieved_at": "2026-10-29T02:47:24Z"
+    },
+    "accommodation": "house",
+    "overnight_records": 1
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "The retained facility describes Shaw House as a rentable historic stone cabin. A dated notice in that same record reports temporary closure after fire damage. Do not infer availability.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:234149",
+   "group": "lodging_10",
+   "name": "PICKETT BUTTE LOOKOUT",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "PICKETT BUTTE LOOKOUT",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -122.8547,
+     42.943699
+    ],
+    "campsites_overnight": 1,
+    "campsites_total": 1,
+    "by_type_of_use": {
+     "Overnight": 1
+    },
+    "by_campsite_type": {
+     "CABIN NONELECTRIC": 1
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "ridb_facility_type_overnight_sites",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": null,
+    "accommodation": "lookout",
+    "overnight_records": 1
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "Pickett Butte's facility record describes a one-room structure and seasonal lodging use.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:234159",
+   "group": "lodging_10",
+   "name": "SNOW CAMP LOOKOUT",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-07-07",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "SNOW CAMP LOOKOUT",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -124.165,
+     42.344
+    ],
+    "campsites_overnight": 1,
+    "campsites_total": 1,
+    "by_type_of_use": {
+     "Overnight": 1
+    },
+    "by_campsite_type": {
+     "CABIN NONELECTRIC": 1
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "ridb_facility_type_overnight_sites",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": null,
+    "accommodation": "lookout",
+    "overnight_records": 1
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "Snow Camp's record describes guests staying in the rebuilt lookout cabin.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:234185",
+   "group": "lodging_10",
+   "name": "DRAKE PEAK LOOKOUT",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "DRAKE PEAK LOOKOUT",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -120.15783,
+     42.30056
+    ],
+    "campsites_overnight": 1,
+    "campsites_total": 1,
+    "by_type_of_use": {
+     "Overnight": 1
+    },
+    "by_campsite_type": {
+     "CABIN NONELECTRIC": 1
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "osm_campsite_tag"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "ridb_facility_type_overnight_sites",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": null,
+    "accommodation": "lookout",
+    "overnight_records": 1
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "Drake Peak's record describes overnight lodging in the former lookout cabin.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:234745",
+   "group": "lodging_10",
+   "name": "DESOLATION GRAY CANYONS SCREEN CABINS",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-06-27",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "DESOLATION GRAY CANYONS SCREEN CABINS",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -109.9416667,
+     39.8336111
+    ],
+    "campsites_overnight": 4,
+    "campsites_total": 4,
+    "by_type_of_use": {
+     "Overnight": 4
+    },
+    "by_campsite_type": {
+     "CABIN NONELECTRIC": 4
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity",
+    "type_evidence": "agency_layer_membership",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": 4
+   },
+   "decision": "approved_lodging_rejection",
+   "action": "stays Campground",
+   "reason": "All four reservations are structurally labelled cabin. Each unit's official instructions say it is a gathering place and visitors should sleep in their own tent or trailer.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:251352",
+   "group": "lodging_10",
+   "name": "Henneberry House",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-08-10",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Henneberry House",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -112.7902778,
+     45.0763889
+    ],
+    "campsites_overnight": 1,
+    "campsites_total": 1,
+    "by_type_of_use": {
+     "Overnight": 1
+    },
+    "by_campsite_type": {
+     "CABIN ELECTRIC": 1
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "ridb_facility_type_overnight_sites",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": null,
+    "accommodation": "house",
+    "overnight_records": 1
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "The facility describes a historic cabin that sleeps eight people.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:251354",
+   "group": "lodging_10",
+   "name": "Axolotl Cabin",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-07-28",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Axolotl Cabin",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -111.8713889,
+     45.2405556
+    ],
+    "campsites_overnight": 1,
+    "campsites_total": 1,
+    "by_type_of_use": {
+     "Overnight": 1
+    },
+    "by_campsite_type": {
+     "CABIN ELECTRIC": 1
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "ridb_facility_type_overnight_sites",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": null,
+    "accommodation": "cabin",
+    "overnight_records": 1
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "Axolotl's facility describes a cabin for visitors.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:252494",
+   "group": "lodging_10",
+   "name": "White Mountains National Recreation Area - Alaska Cabins",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-08-03",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "White Mountains National Recreation Area - Alaska Cabins",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -147.2433611,
+     65.4274972
+    ],
+    "campsites_overnight": 15,
+    "campsites_total": 15,
+    "by_type_of_use": {
+     "Overnight": 15
+    },
+    "by_campsite_type": {
+     "CABIN NONELECTRIC": 15
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": true
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "lodging",
+    "classification": "campsite",
+    "evidence": "ridb_facility_type_overnight_sites",
+    "type_evidence": "lodging_name_with_overnight_records",
+    "closure_notice": null,
+    "accommodation": "cabins",
+    "overnight_records": 15
+   },
+   "decision": "approved_lodging",
+   "action": "Campground → Lodging",
+   "reason": "This is a group of public-use cabins across the recreation area. Its own record describes the cabins and cabin permits. Do not imply the map point gives a particular cabin location.",
+   "recommendation": null
+  },
+  {
+   "id": "ridb:255240",
+   "group": "lodging_10",
+   "name": "Pink House Recreation Site",
+   "observed": {
+    "status": "ok",
+    "facility_type_description": "Campground",
+    "last_updated": "2026-02-25",
+    "retrieved_at": "2026-11-01T21:14:28Z",
+    "facility_name": "Pink House Recreation Site",
+    "enabled": true,
+    "reservable": true,
+    "point": [
+     -116.348055,
+     46.502222
+    ],
+    "campsites_overnight": 20,
+    "campsites_total": 20,
+    "by_type_of_use": {
+     "Overnight": 20
+    },
+    "by_campsite_type": {
+     "RV ELECTRIC": 16,
+     "TENT ONLY NONELECTRIC": 4
+    }
+   },
+   "derived": {
+    "record_empty": false,
+    "identity_confirmed": true,
+    "point_distance_m": 0,
+    "cabin_records_only": false
+   },
+   "current": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity"
+   },
+   "candidate": {
+    "label": "established",
+    "classification": "campsite",
+    "evidence": "agency_camping_activity",
+    "type_evidence": "agency_layer_membership",
+    "closure_notice": null,
+    "accommodation": null,
+    "overnight_records": 20
+   },
+   "decision": "approved_lodging_rejection",
+   "action": "stays Campground",
+   "reason": "The BLM facility's fee record distinguishes RV full hookups and tent camping. Its official page describes the campground and tent and RV sites. House is part of a proper name here.",
+   "recommendation": null
+  }
+ ]
+}
