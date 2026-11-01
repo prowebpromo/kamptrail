@@ -316,11 +316,11 @@
     if(target.elevation)KampTrailFilters.setElevationFilters(target.elevation);
     if(target.forecast)KampTrailFilters.setForecastFilters(target.forecast);
     if (target.spot) { map.setView(target.spot, 13); KampTrailLayers.openSpot(L.latLng(target.spot[0], target.spot[1])); return; }
+    if (DataQuality.isWithdrawnId(target.site) && await KampTrailData.openWithdrawn(target.site)) return;
     await ensureSiteIndex();
     // A link to any published id, canonical or legacy, opens the same listing. The link is not rewritten.
     const entry = campsiteIndex.find(s => s.id === target.site) || campsiteIndex.find(s => s.legacy_ids?.includes(target.site));
     if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
-    if (!entry && await KampTrailData.openWithdrawn(target.site)) return;
     if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?t("That campsite does not match your filters or has unknown or expired evidence. Change filters to view it."):t("That shared campsite could not be found. It may have been removed from the catalogue."), 'error');
   }
   addEventListener('hashchange', () => openSharedLink().catch(() => {}));
