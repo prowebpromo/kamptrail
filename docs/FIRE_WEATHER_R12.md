@@ -1,6 +1,6 @@
 # Fire-weather alert overlay (R12)
 
-Branch `feat/fire-weather-r12`, built from main `023d444d`. No version bump, no PR.
+Branch `feat/fire-weather-r12`, rebased onto main `76da929f`. No version bump.
 
 ## Criterion
 
@@ -61,7 +61,7 @@ Synthetic, `tests/fixtures/fire-weather/synthetic/cases.json`, built by `build-s
 
 A real non-fire alert from the control capture, with only its event rewritten inside a test, checks that the PHP normaliser accepts the real NWS alert schema. That rewrite is marked synthetic in the test.
 
-Capture workflow: `.github/workflows/capture-fire-weather.yml` now also runs the seven-day capture on its existing schedule and keeps it as an artifact for 90 days. Retention rule: the script marks a capture `positive` only when its saved bytes contain a Red Flag Warning or Fire Weather Watch feature. A positive capture is uploaded as `nws-fire-weather-POSITIVE-<run_id>-<attempt>` with `overwrite: false`, a name no later run reuses, so an empty run cannot replace it. The script also refuses to write into a directory that already holds a positive capture. Every positive capture stays a separate artifact for 90 days. The first one is also kept permanently: the `preserve-first-positive` job checks every saved file's byte count and SHA-256 against `manifest.json`, commits the files unchanged to `tests/fixtures/fire-weather/captured/first-positive/` on the branch `fire-weather/first-positive-capture` with a `PROVENANCE.txt` (run link, artifact name, sha256sum), and opens a pull request for review. It never pushes to main and never force-pushes. Once that branch exists, later positive runs skip the job and stay artifacts only. The capture job itself stays read-only. Only the preserve job gets `contents: write` and `pull-requests: write`. A pull request opened with the workflow token does not start CI, so CI is rerun on it before review. The empty capture stays a separate fixture. Tests in `scripts/tests/test_capture_fire_weather_fixtures.py` cover the rule, including a changed byte and a non-positive manifest being rejected. A captured file is never edited.
+Capture workflow: `.github/workflows/capture-fire-weather.yml` now also runs the seven-day capture on its existing schedule and keeps it as an artifact for 90 days. Retention rule: the script marks a capture `positive` only when its saved bytes contain a Red Flag Warning or Fire Weather Watch feature. A positive capture is uploaded as `nws-fire-weather-POSITIVE-<run_id>-<attempt>` with `overwrite: false`, a name no later run reuses, so an empty run cannot replace it. The script also refuses to write into a directory that already holds a positive capture. Every positive capture stays a separate artifact for 90 days. The first one is also kept permanently: the `preserve-first-positive` job checks every saved file's byte count and SHA-256 against `manifest.json`, commits the files unchanged to `tests/fixtures/fire-weather/captured/first-positive/` on the branch `fire-weather/first-positive-capture` with a `PROVENANCE.txt` (run link, artifact name, sha256sum), and opens a pull request for review. It never pushes to main and never force-pushes. Once that branch exists, later positive runs skip the job and stay artifacts only. The capture job itself stays read-only. Only the preserve job gets `contents: write` and `pull-requests: write`. A pull request opened with the workflow token does not start CI, so CI is rerun on it before review. If the repository does not allow Actions to create pull requests, that last step fails after the push, and the branch still keeps the capture. The PR is then opened by hand. The empty capture stays a separate fixture. Tests in `scripts/tests/test_capture_fire_weather_fixtures.py` cover the rule, including a changed byte and a non-positive manifest being rejected. A captured file is never edited.
 
 ## Readiness and parity credit
 
@@ -69,6 +69,8 @@ Capture workflow: `.github/workflows/capture-fire-weather.yml` now also runs the
 - Parity credit: none claimed. The positive-alert fixture requirement is open, and `features.csv` is not edited.
 
 ## Tests
+
+Durable-capture change (workflow, its tests and this document only): `npm run test:python` 416 run, OK, 9 skipped, including 12 capture tests. A changed byte and a non-positive manifest are rejected, and the real capture script's positive output passes. The results below are from 4c45554f and cover all app code.
 
 Run 2026-11-01 in `/home/claude/wt-r12`.
 
