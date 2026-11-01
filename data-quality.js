@@ -265,7 +265,7 @@
     // facility id published by an agency (blm-facility:N for ridb:N). A name and distance match is candidate
     // matching only and never classifies or publishes another record. Type never moves with it.
     const exactIdentity = p.id === q.id || (p.facility_id != null && q.facility_id != null && String(p.facility_id) === String(q.facility_id));
-    if (exactIdentity && p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;p.camping_evidence_record_id=q.id;}
+    if (exactIdentity && p.camping_classification === 'unverified_camping_record' && q.camping_classification === 'campsite') {p.camping_classification=q.camping_classification;p.camping_evidence=q.camping_evidence;p.camping_evidence_record_id=(q.legacy_ids||[]).find(x=>x!==q.id&&!/^ridb:/.test(x))||q.id;}
     // Preserve known facts, but do not hide conflicts between sources.
     if (p.fee_conflict || q.fee_conflict) {p.fee_conflict=true; p.fee_status='unknown'; p.cost=null; p.fee_text=null;}
     const adopt = () => {p.fee_status=q.fee_status; p.cost=q.cost; p.fee_source_record_id=q.fee_source_record_id||q.id; for (const k of ['fee_text','fee_source','fee_checked','fee_evidence']) p[k]=q[k] ?? null; p.fee_source=p.fee_source || (q.sources||[])[0] || q.id.split(':')[0];};
