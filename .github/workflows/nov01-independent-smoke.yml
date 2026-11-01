@@ -1,0 +1,24 @@
+name: Independent November 1 production smoke
+on:
+  push:
+    branches: [audit/codex-handoff-20261101]
+    paths:
+      - docs/acceptance/nov01-smoke-deployment.txt
+permissions:
+  contents: read
+jobs:
+  actual-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verify public release and actual facility on desktop and mobile
+        run: node scripts/audits/nov01/production_smoke.cjs "$(cat docs/acceptance/nov01-smoke-deployment.txt)"
