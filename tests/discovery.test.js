@@ -125,7 +125,8 @@ test('score forms retain explicit saved numbers and never derive them from quali
  assert.deepEqual(read({}),{});
  const el=(tag,attrs={},text)=>({tag,attrs,text,children:[],append(...nodes){this.children.push(...nodes);}}),form=el('form'),field=(label,input,hint)=>({label,input,hint});
  e.D.observeFields(form,{observations:{noise:'quiet',scores:{quietness:4,comfort:1}}},el,field);
- const fields=form.children[1].children.filter(x=>x.input);assert.equal(fields.length,3);
+ const fields=form.children[1].children.filter(x=>x.input);assert.deepEqual(fields.map(x=>x.input.attrs.name),['score_quietness','score_shade','score_comfort','score_noise_day','score_noise_night','score_cleanliness','score_crowds','score_fullness','score_season']);
+ for(const x of fields.slice(3,8))assert.equal(x.input.children.filter(o=>o.attrs.selected).length,0,x.input.attrs.name+' stays unreported');
  assert.equal(fields[0].input.attrs.name,'score_quietness');assert.equal(fields[0].input.children.find(x=>x.attrs.selected).attrs.value,'4');assert.equal(fields[1].input.children.filter(x=>x.attrs.selected).length,0);assert.equal(fields[2].input.children.find(x=>x.attrs.selected).attrs.value,'1');assert.match(fields[0].hint,/Very noisy \(1\) to very quiet \(5\)/);
 });
 test('seasonal cache validation rejects invalid calendar dates and inflated observation counts',()=>{
