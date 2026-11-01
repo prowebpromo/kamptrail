@@ -1,4 +1,5 @@
 import hashlib
+import os
 import json
 import sys
 import tempfile
@@ -158,7 +159,7 @@ class RetentionTests(unittest.TestCase):
 
     def test_workflow_keeps_positive_captures_under_a_unique_name_without_overwrite(self):
         text = (SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text()
-        self.assertIn("if: steps.window.outputs.positive == 'true'", text)
+        self.assertIn("if: always() && steps.window.outputs.positive == 'true'", text)
         block = text[text.index('Keep capture that contains a real fire alert'):text.index('preserve-first-positive:')]
         self.assertIn('nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}', block)
         self.assertIn('overwrite: false', block)
@@ -175,7 +176,7 @@ class RetentionTests(unittest.TestCase):
         self.assertNotIn('git commit', json.dumps(capture))
         keep = wf['jobs']['preserve-first-positive']
         self.assertEqual(keep['needs'], 'capture')
-        self.assertEqual(keep['if'], "needs.capture.outputs.positive == 'true'")
+        self.assertEqual(keep['if'], "always() && needs.capture.outputs.positive == 'true'")
         self.assertEqual(keep['permissions'], {'contents': 'write', 'pull-requests': 'write'})
         self.assertEqual(keep['env']['BRANCH'], 'fire-weather/first-positive-capture')
         self.assertEqual(keep['env']['ARTIFACT'], 'nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}')
@@ -211,6 +212,99 @@ class RetentionTests(unittest.TestCase):
         self.capture(real, FakeNws({'event=Red+Flag+Warning': (200, rfw_page(), {})}))
         self.assertTrue(json.loads(Path(real, 'manifest.json').read_text())['positive'])
         self.assertEqual(subprocess.run([_sys.executable, '-c', check, real], capture_output=True, text=True).returncode, 0)
+
+
+class StoppedAfterPositiveTests(unittest.TestCase):
+    def run_stopped(self, stopper):
+        out = tempfile.mkdtemp()
+        fake = FakeNws({'event=Red+Flag+Warning': (200, rfw_page(), {}), stopper[0]: stopper[1]})
+        code = cap.main(['--out', out], fetch=fake, sleep=lambda s: None, now=NOW)
+        return out, code, json.loads(Path(out, 'manifest.json').read_text())
+
+    def check_kept(self, out, code, manifest):
+        self.assertEqual(code, 1, 'a stopped run still exits non-zero so the job is visible as failed')
+        self.assertTrue(manifest['positive'])
+        self.assertEqual(manifest['fire_alert_features'], 1)
+        self.assertTrue(manifest['stopped'])
+        for entry in manifest['files']:
+            self.assertEqual(hashlib.sha256(Path(out, entry['file']).read_bytes()).hexdigest(), entry['sha256'])
+        self.assertTrue(any(f.get('event') == 'Red Flag Warning' for f in manifest['files']))
+
+    def test_429_on_the_next_event_keeps_the_positive_capture(self):
+        self.check_kept(*self.run_stopped(('Fire+Weather+Watch', cap.Stop('429 Retry-After=60'))))
+
+    def test_503_while_fetching_zones_keeps_the_positive_capture(self):
+        out, code, manifest = self.run_stopped(('/zones/fire/COZ214', cap.Stop('503')))
+        self.check_kept(out, code, manifest)
+
+    def test_a_network_error_also_keeps_what_was_saved(self):
+        out, code, manifest = self.run_stopped(('Small+Craft', urllib.error.URLError('reset')))
+        self.check_kept(out, code, manifest)
+        self.assertIn('URLError', manifest['stopped'])
+
+    def test_workflow_still_uploads_and_preserves_after_a_stop(self):
+        import yaml
+        wf = yaml.safe_load((SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text())
+        steps = {s.get('name'): s for s in wf['jobs']['capture']['steps']}
+        window = steps['Capture seven-day alert history with provenance']
+        self.assertEqual(window['if'], 'always()')
+        self.assertIn('PIPESTATUS[0]', window['run'])
+        self.assertNotIn('set -euo pipefail', window['run'].split('tee')[0])
+        for name in ('Keep seven-day capture', 'Keep capture that contains a real fire alert'):
+            self.assertTrue(steps[name]['if'].startswith('always()'), name)
+        self.assertIn("steps.window.outputs.rc != '0'", steps['Fail the job if the capture was stopped by a rate limit']['if'])
+        names = list(steps)
+        self.assertLess(names.index('Keep capture that contains a real fire alert'), names.index('Fail the job if the capture was stopped by a rate limit'))
+        keep = wf['jobs']['preserve-first-positive']
+        self.assertEqual(keep['if'], "always() && needs.capture.outputs.positive == 'true'")
+
+
+class AcceptedFixtureProtectionTests(unittest.TestCase):
+    def test_preserve_job_skips_when_the_fixture_exists_on_main_and_never_overwrites(self):
+        import yaml
+        wf = yaml.safe_load((SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text())
+        job = wf['jobs']['preserve-first-positive']
+        self.assertEqual(job['env']['DEST'], 'tests/fixtures/fire-weather/captured/first-positive')
+        self.assertEqual(job['steps'][0]['with']['ref'], 'main')
+        existing = next(s for s in job['steps'] if s.get('id') == 'existing')['run']
+        self.assertIn('git ls-remote --exit-code --heads origin "$BRANCH"', existing)
+        self.assertIn('elif [ -e "$DEST" ]', existing)
+        self.assertIn('kept=true', existing.split('elif [ -e "$DEST" ]')[1].split('else')[0])
+        commit = next(s for s in job['steps'] if 'Verify every file' in s.get('name', ''))['run']
+        self.assertIn('[ ! -e "$DEST" ]', commit)
+        self.assertLess(commit.index('[ ! -e "$DEST" ]'), commit.index('cp -a'))
+        for step in job['steps'][2:]:
+            self.assertEqual(step['if'], "steps.existing.outputs.kept == 'false'")
+
+    def test_shell_logic_with_a_real_repository(self):
+        import subprocess, yaml
+        wf = yaml.safe_load((SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text())
+        existing = next(s for s in wf['jobs']['preserve-first-positive']['steps'] if s.get('id') == 'existing')['run']
+        def kept(dest_exists, branch_exists):
+            root = tempfile.mkdtemp()
+            remote = Path(root, 'remote.git')
+            subprocess.run(['git', 'init', '-q', '--bare', str(remote)], check=True)
+            work = Path(root, 'work')
+            subprocess.run(['git', 'init', '-q', str(work)], check=True)
+            subprocess.run(['git', '-C', str(work), 'remote', 'add', 'origin', str(remote)], check=True)
+            subprocess.run(['git', '-C', str(work), '-c', 'user.name=t', '-c', 'user.email=t@t', 'commit', '-q', '--allow-empty', '-m', 'x'], check=True)
+            if branch_exists:
+                subprocess.run(['git', '-C', str(work), 'push', '-q', 'origin', 'HEAD:refs/heads/fire-weather/first-positive-capture'], check=True)
+            else:
+                subprocess.run(['git', '-C', str(work), 'push', '-q', 'origin', 'HEAD:refs/heads/main'], check=True)
+            dest = work / 'tests/fixtures/fire-weather/captured/first-positive'
+            if dest_exists:
+                dest.mkdir(parents=True)
+            output = Path(root, 'out')
+            env = {'BRANCH': 'fire-weather/first-positive-capture', 'DEST': 'tests/fixtures/fire-weather/captured/first-positive', 'ARTIFACT': 'a',
+                   'GITHUB_OUTPUT': str(output), 'GITHUB_STEP_SUMMARY': str(Path(root, 'sum')), 'PATH': os.environ['PATH'], 'HOME': root}
+            subprocess.run(['bash', '-c', existing], cwd=work, env=env, check=True)
+            return 'kept=true' in output.read_text()
+        self.assertFalse(kept(False, False))
+        self.assertTrue(kept(False, True), 'branch exists')
+        self.assertTrue(kept(True, False), 'review branch deleted, fixture merged on main')
+        self.assertTrue(kept(True, True))
+
 
 if __name__ == '__main__':
     unittest.main()

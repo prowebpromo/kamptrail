@@ -20,7 +20,7 @@
   const time = value => { const n = Date.parse(value); return Number.isFinite(n) ? n : null; };
   const text = value => typeof value === 'string' ? value : '';
   const node = (tag, content, cls) => { const n = document.createElement(tag); if (content != null) n.textContent = content; if (cls) n.className = cls; return n; };
-  const st = { map: null, group: null, enabled: false, data: null, failed: false, zones: new Map(), seq: 0, controller: null, timer: null, tick: null, control: null, status: null, list: null, banner: null, renderer: null };
+  const st = { retired: new Set(), map: null, group: null, enabled: false, data: null, failed: false, zones: new Map(), seq: 0, controller: null, timer: null, tick: null, control: null, status: null, list: null, banner: null, renderer: null };
 
   function geometryOk(g) {
     const check = global.KampTrailEnvironment?.validGeometry;
@@ -43,6 +43,8 @@
       if (p.zones != null && (!Array.isArray(p.zones) || p.zones.length > 60 || !p.zones.every(z => typeof z === 'string' && ZONE_PATTERN.test(z)))) throw new Error('Invalid zones');
       if (p.references != null && (!Array.isArray(p.references) || !p.references.every(r => typeof r === 'string'))) throw new Error('Invalid references');
     }
+    const retired = d.data.retired;
+    if (retired != null && (!Array.isArray(retired) || retired.length > MAX_FEATURES || !retired.every(id => typeof id === 'string'))) throw new Error('Invalid retired list');
     return d;
   }
 
@@ -56,9 +58,16 @@
   const freshness = (d, now = Date.now()) => now - time(d.retrieved_at) <= FRESH_MS ? 'fresh' : 'stale';
   const endOf = p => { const ends = [time(p.expires), time(p.ends)].filter(n => n != null); return ends.length ? Math.min(...ends) : null; };
 
-  /** Which alerts are current. Cancelled, superseded and expired alerts are counted, never returned as active. */
-  function select(features, now = Date.now()) {
-    const cancelled = new Set(), superseded = new Set(), latest = new Map();
+  /** Ids a snapshot says are replaced or cancelled: its own references plus the server's list, which also covers messages that have since expired. */
+  function retiredIds(d) {
+    const ids = new Set(Array.isArray(d.data.retired) ? d.data.retired : []);
+    for (const f of d.data.features) for (const id of f.properties.references || []) ids.add(id);
+    return ids;
+  }
+  /** Which alerts are current. Cancelled, superseded and expired alerts are counted, never returned as active.
+      `retired` carries ids retired by earlier snapshots, so a replacement that later expires or leaves the feed cannot revive the original. */
+  function select(features, now = Date.now(), retired = []) {
+    const cancelled = new Set(), superseded = new Set(retired), latest = new Map();
     for (const f of features) {
       const p = f.properties;
       for (const id of p.references || []) (p.messageType === 'Cancel' ? cancelled : superseded).add(id);
@@ -144,9 +153,17 @@
 
   function setStatus(message) { if (st.status) st.status.textContent = message; }
 
+  /** The snapshot, or null once it is more than six hours past its retrieval. Applied on every render, not only when fetching. */
+  const usableSnapshot = (d, now = Date.now()) => d && now - time(d.retrieved_at) <= STALE_MAX_MS ? d : null;
+
   function render(now = Date.now()) {
     if (!st.control) return;
     st.group.clearLayers(); st.list.replaceChildren(); st.banner.replaceChildren();
+    if (st.data && !usableSnapshot(st.data, now)) {
+      st.data = null; st.failed = false;
+      setStatus(t('Fire weather alerts are unavailable. No alerts or shapes are shown. Check the NWS source.'));
+      return;
+    }
     const d = st.data;
     if (!d) return;
     const kind = freshness(d, now);
@@ -154,7 +171,7 @@
     if (fixture) st.banner.append(fixture);
     st.banner.append(node('p', t('National Weather Service · retrieved {0}', { 0: stamp(d.retrieved_at) })));
     if (kind === 'stale' || st.failed) st.banner.append(node('p', t('Stale: retrieved {0}. These alerts may have changed or ended. Check the NWS source.', { 0: stamp(d.retrieved_at) }), 'kt-firewx-stale'));
-    const { alerts, hidden } = select(d.data.features, now);
+    const { alerts, hidden } = select(d.data.features, now, st.retired);
     const features = [];
     for (const a of alerts) {
       const shape = resolveShape(a, st.zones, now);
@@ -177,7 +194,7 @@
 
   // ---- loading ---------------------------------------------------------------------------------------------------
   async function loadZones(seq, signal) {
-    const { alerts } = select(st.data.data.features, Date.now());
+    const { alerts } = select(st.data.data.features, Date.now(), st.retired);
     for (const zone of neededZones(alerts, st.zones)) {
       if (seq !== st.seq || !st.enabled || !navigator.onLine) return;
       try {
@@ -186,6 +203,7 @@
         st.zones.set(zone, { geometry: validateZone(d, zone), at: Date.now() });
       } catch {
         if (seq !== st.seq) return;
+        if (global.KampTrailEnvironment.retryAfterMs() > 0) return;   // rate limited: ask for nothing more until Retry-After
         st.zones.set(zone, { geometry: null, at: Date.now() });   // geometry failure: the alert stays listed
       }
       render();
@@ -202,6 +220,7 @@
     try {
       const d = validate(await global.KampTrailEnvironment.request('firewx', null, controller.signal));
       if (seq !== st.seq || !st.enabled) return;
+      for (const id of retiredIds(d)) st.retired.add(id);
       st.data = d; st.failed = false; render();
       await loadZones(seq, controller.signal);
     } catch {
@@ -210,7 +229,8 @@
       if (st.data && Date.now() - time(st.data.retrieved_at) <= STALE_MAX_MS) { render(); setStatus(t('Could not refresh. Showing alerts retrieved {0}. Stale.', { 0: stamp(st.data.retrieved_at) })); }
       else { st.data = null; render(); setStatus(t('Fire weather alerts are unavailable. No alerts or shapes are shown. Check the NWS source.')); }
     } finally { clearTimeout(timeout); }
-    if (seq === st.seq && st.enabled) st.timer = setTimeout(refresh, REFRESH_MS);
+    // Poll every five minutes, or at the upstream Retry-After if that is later. Never earlier than Retry-After.
+    if (seq === st.seq && st.enabled) st.timer = setTimeout(refresh, Math.max(REFRESH_MS, global.KampTrailEnvironment.retryAfterMs()));
   }
 
   function panel() {
@@ -253,5 +273,5 @@
     return { [LABEL]: st.group };
   }
 
-  global.KampTrailFireWeather = { version: '2.34.0', LABEL, EVENTS, FRESH_MS, STALE_MAX_MS, ZONE_BUDGET, init, refresh, validate, validateZone, freshness, select, neededZones, resolveShape };
+  global.KampTrailFireWeather = { version: '2.35.0', LABEL, EVENTS, FRESH_MS, STALE_MAX_MS, ZONE_BUDGET, init, refresh, render, validate, validateZone, freshness, select, retiredIds, usableSnapshot, neededZones, resolveShape };
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -289,12 +289,53 @@ test('fire-weather cache follows upstream max-age within bounds, drops expired a
         $ids=fn($r)=>array_column(array_column($r['data']['features'],'properties'),'id');
         check($ids(ke_cached($q,$dir,$fetch,2800))===['a','b','c']);
         check($ids(ke_cached($q,$dir,$fetch,2821))===['b','c']);
-        // Rate limited upstream: failure is cached for Retry-After (bounded), then retried.
-        $calls=0; $limited=function($qq,$now)use(&$calls){$calls++;$GLOBALS['ke_upstream_meta']=['max_age'=>null,'retry_after'=>120];throw new KeException('rate_limited',503);};
-        $dir2=${JSON.stringify(directory + '/b')};
-        rejects(fn()=>ke_cached($q,$dir2,$limited,5000),'rate_limited'); check($calls===1);
-        rejects(fn()=>ke_cached($q,$dir2,$limited,5100),'rate_limited'); check($calls===1);
-        ke_cached($q,$dir2,$fetch,5121); 
+        // Rate limited upstream: the failure is held until Retry-After, with no cap, and it blocks every NWS key.
+        $calls=0; $limited=function($qq,$now)use(&$calls){$calls++;throw new KeException('rate_limited',503,7200);};
+        $dir2=${JSON.stringify(directory + '/b')}; $zone=['kind'=>'zone','zone'=>'fire/COZ214'];
+        try{ke_cached($q,$dir2,$limited,5000);check(false);}catch(KeException $e){check($e->reason==='rate_limited' && $e->retryAfter===7200);}
+        check($calls===1);
+        foreach([5100,8600,12199] as $t){ try{ke_cached($q,$dir2,$limited,$t);check(false);}catch(KeException $e){check($e->reason==='rate_limited' && $e->retryAfter===12200-$t, "t=$t got ".$e->retryAfter);} }
+        // A different NWS key is blocked too, without any upstream call. 7200 s is well past the 600 s alert cap.
+        $zoneCalls=0; $zoneFetch=function($qq,$now)use(&$zoneCalls){$zoneCalls++;return ['ok'=>true];};
+        rejects(fn()=>ke_cached($zone,$dir2,$zoneFetch,9000),'rate_limited'); check($zoneCalls===0);
+        // A non-NWS key is unaffected.
+        ke_cached(['kind'=>'fire','bbox'=>[-110,35,-105,40]],$dir2,$zoneFetch,9000); check($zoneCalls===1);
+        check($calls===1);
+        // At the deadline the request goes through again.
+        ke_cached($q,$dir2,$fetch,12200); 
+        // Retry-After and Expires headers are read exactly, as seconds or as an HTTP date.
+        $GLOBALS['ke_upstream_meta']=['max_age'=>null,'retry_until'=>null,'expires'=>null];
+        ke_note_header("Retry-After: 120\r\n",1000); check($GLOBALS['ke_upstream_meta']['retry_until']===1120);
+        ke_note_header("retry-after: Thu, 01 Jan 2026 00:10:00 GMT\r\n",1000); check($GLOBALS['ke_upstream_meta']['retry_until']===strtotime('2026-01-01T00:10:00Z'));
+        ke_note_header("Retry-After: 99999999\r\n",1000); check($GLOBALS['ke_upstream_meta']['retry_until']===100000999);
+        ke_note_header("Retry-After: junk\r\n",1000); check($GLOBALS['ke_upstream_meta']['retry_until']===100000999);
+        ke_note_header("Cache-Control: public, max-age=451, s-maxage=9\r\n",1000); check($GLOBALS['ke_upstream_meta']['max_age']===451);
+        ke_note_header("Expires: Thu, 01 Jan 2026 00:10:00 GMT\r\n",1000); check($GLOBALS['ke_upstream_meta']['expires']===strtotime('2026-01-01T00:10:00Z'));
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('a message that replaced or cancelled an alert keeps it retired after the message expires or leaves the feed', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-retired-'));
+    try {
+        php(`
+        $now=strtotime('2026-11-01T15:00:00Z');
+        $mk=fn($id,$type,$exp,$refs)=>['type'=>'Feature','geometry'=>null,'properties'=>['status'=>'Actual','messageType'=>$type,'event'=>'Red Flag Warning','headline'=>'h','id'=>$id,'sent'=>'2026-11-01T14:00:00Z','expires'=>$exp,'ends'=>null,'references'=>array_map(fn($r)=>['identifier'=>$r],$refs)]];
+        // The Update has already expired and is dropped. The original is still unexpired.
+        $collection['features']=[$mk('orig','Alert','2026-11-02T03:00:00Z',[]),$mk('upd','Update','2026-11-01T14:30:00Z',['orig']),$mk('gone','Alert','2026-11-02T03:00:00Z',[]),$mk('cx','Cancel','2026-11-01T14:30:00Z',['gone'])];
+        $data=ke_normalize('firewx',$collection,$now);
+        $ids=array_column(array_column($data['features'],'properties'),'id');
+        check($ids===['orig','gone','cx'], json_encode($ids));
+        check($data['retired']===['orig','gone'], json_encode($data['retired']));
+        // Cached copy: the Update is live at fetch time, then expires inside the cache window. The original stays retired.
+        $dir=${JSON.stringify(directory)}; $q=['kind'=>'firewx'];
+        $collection['features']=[$mk('orig','Alert','2026-11-02T03:00:00Z',[]),$mk('upd','Update','2026-11-01T15:02:00Z',['orig'])];
+        $fetch=fn($qq,$n)=>['ok'=>true,'data'=>ke_normalize('firewx',$collection,$n)];
+        $first=ke_cached($q,$dir,$fetch,$now);
+        check(array_column(array_column($first['data']['features'],'properties'),'id')===['orig','upd']);
+        $later=ke_cached($q,$dir,$fetch,$now+200);
+        check(array_column(array_column($later['data']['features'],'properties'),'id')===['orig'], 'update dropped');
+        check(in_array('orig',$later['data']['retired'],true), json_encode($later['data']['retired']));
         `);
     } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });

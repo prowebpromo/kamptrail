@@ -9,6 +9,8 @@ const KE_ZONE_BASE = 'https://api.weather.gov/zones/';
 const KE_FIREWX_EVENTS = ['Red Flag Warning', 'Fire Weather Watch'];
 const KE_FIREWX_MAX_BYTES = 8388608;
 const KE_ZONE_PATTERN = '/^(fire|forecast|county)\/[A-Z]{2}[CZ]\d{3}$/D';
+const KE_DEFAULT_RETRY_SECONDS = 60;
+const KE_NWS_KINDS = ['alerts', 'firewx', 'zone'];
 const KE_MAX_BYTES = 4194304;
 const KE_MAX_FEATURES = 500;
 const KE_MAX_COORDINATES = 60000;
@@ -17,8 +19,10 @@ const KE_CACHE_SLOTS = 32;
 final class KeException extends RuntimeException {
     public string $reason;
     public int $status;
-    public function __construct(string $reason, int $status = 502) {
-        parent::__construct($reason); $this->reason = $reason; $this->status = $status;
+    /** Seconds the client must wait before asking again, when the upstream said so. */
+    public ?int $retryAfter;
+    public function __construct(string $reason, int $status = 502, ?int $retryAfter = null) {
+        parent::__construct($reason); $this->reason = $reason; $this->status = $status; $this->retryAfter = $retryAfter;
     }
 }
 
@@ -55,31 +59,44 @@ function ke_number($value): float {
     return $n;
 }
 
+/** Reads the caching and rate-limit headers NWS sends. Retry-After (seconds or HTTP date) and Expires are kept exactly. */
+function ke_note_header(string $line, int $now): void {
+    if (preg_match('/^cache-control:.*\bmax-age=(\d{1,9})/i', $line, $m)) $GLOBALS['ke_upstream_meta']['max_age'] = (int)$m[1];
+    if (preg_match('/^retry-after:\s*(.+?)\s*$/i', $line, $m)) {
+        $until = preg_match('/^\d{1,9}$/', $m[1]) ? $now + (int)$m[1] : strtotime($m[1]);
+        if ($until !== false && $until > 0) $GLOBALS['ke_upstream_meta']['retry_until'] = $until;
+    }
+    if (preg_match('/^expires:\s*(.+?)\s*$/i', $line, $m) && ($when = strtotime($m[1])) !== false) $GLOBALS['ke_upstream_meta']['expires'] = $when;
+}
+
 /** Transport has no URL override, follows no redirects, and caps bytes before decoding. */
 function ke_http(string $base, array $query): array {
     $zone = str_starts_with($base, KE_ZONE_BASE) && preg_match(KE_ZONE_PATTERN, substr($base, strlen(KE_ZONE_BASE)));
     if ((!$zone && !in_array($base, [KE_FIRE, KE_ALERTS, KE_SMOKE], true)) || !function_exists('curl_init')) throw new KeException('upstream_unavailable');
     $url = $query ? $base . '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986) : $base;
     $limit = $zone || ($base === KE_ALERTS && isset($query['event'])) ? KE_FIREWX_MAX_BYTES : KE_MAX_BYTES;
-    $body = ''; $oversized = false; $GLOBALS['ke_upstream_meta'] = ['max_age' => null, 'retry_after' => null];
+    $body = ''; $oversized = false; $GLOBALS['ke_upstream_meta'] = ['max_age' => null, 'retry_until' => null, 'expires' => null];
     $ch = curl_init($url);
     curl_setopt_array($ch, [CURLOPT_FOLLOWLOCATION => false, CURLOPT_CONNECTTIMEOUT => 4, CURLOPT_TIMEOUT => 12,
         CURLOPT_PROTOCOLS => CURLPROTO_HTTPS, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2,
         CURLOPT_USERAGENT => 'KampTrail/1.0 (https://kamptrail.com; public environment context)',
         CURLOPT_HTTPHEADER => ['Accept: application/geo+json, application/json'],
         // Honor the upstream caching and rate-limit headers (NWS sends Cache-Control and Retry-After).
-        CURLOPT_HEADERFUNCTION => static function ($handle, string $line): int {
-            if (preg_match('/^cache-control:.*\bmax-age=(\d{1,9})/i', $line, $m)) $GLOBALS['ke_upstream_meta']['max_age'] = (int)$m[1];
-            if (preg_match('/^retry-after:\s*(\d{1,5})\s*$/i', $line, $m)) $GLOBALS['ke_upstream_meta']['retry_after'] = (int)$m[1];
-            return strlen($line);
-        },
+        CURLOPT_HEADERFUNCTION => static function ($handle, string $line): int { ke_note_header($line, time()); return strlen($line); },
         CURLOPT_WRITEFUNCTION => static function ($handle, string $chunk) use (&$body, &$oversized, $limit): int {
             if (strlen($body) + strlen($chunk) > $limit) { $oversized = true; return 0; }
             $body .= $chunk; return strlen($chunk);
         }]);
     $ok = curl_exec($ch); $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
     if ($oversized) throw new KeException('zoom_in', 422);
-    if ($status === 429 || ($status === 503 && $GLOBALS['ke_upstream_meta']['retry_after'] !== null)) throw new KeException('rate_limited', 503);
+    $meta = &$GLOBALS['ke_upstream_meta'];
+    // Cache-Control max-age wins. Without it, the Expires header sets the freshness deadline.
+    if ($meta['max_age'] === null && $meta['expires'] !== null) $meta['max_age'] = max(0, $meta['expires'] - time());
+    if ($status === 429 || ($status === 503 && $meta['retry_until'] !== null)) {
+        $until = $meta['retry_until'] ?? time() + KE_DEFAULT_RETRY_SECONDS;
+        throw new KeException('rate_limited', 503, max(1, $until - time()));
+    }
+    unset($meta);
     if ($ok === false || $status !== 200) throw new KeException('upstream_unavailable');
     $data = json_decode($body, true, 32);
     if (!is_array($data) || isset($data['error'])) throw new KeException('upstream_unavailable');
@@ -196,6 +213,15 @@ function ke_zone_paths($zones): array {
     return $paths;
 }
 
+/** Alert ids a fire-weather message says it replaces or cancels, read before any expiry filtering. */
+function ke_firewx_references($feature): array {
+    $p = is_array($feature) ? ($feature['properties'] ?? null) : null;
+    if (!is_array($p) || ($p['status'] ?? '') !== 'Actual' || !in_array($p['messageType'] ?? '', ['Alert', 'Update', 'Cancel'], true) || !in_array($p['event'] ?? '', KE_FIREWX_EVENTS, true)) return [];
+    $ids = [];
+    foreach (is_array($p['references'] ?? null) ? array_slice($p['references'], 0, 20) : [] as $ref) if (is_array($ref) && is_string($ref['identifier'] ?? null) && $ref['identifier'] !== '') $ids[] = ke_text($ref['identifier'], 500);
+    return $ids;
+}
+
 /** Red Flag Warnings and Fire Weather Watches only. Cancel messages are kept so the client can retire the alerts they reference. */
 function ke_firewx_properties(array $p, int $now): ?array {
     if (($p['status'] ?? '') !== 'Actual' || !in_array($p['messageType'] ?? '', ['Alert', 'Update', 'Cancel'], true)) return null;
@@ -223,8 +249,9 @@ function ke_normalize(string $kind, array $data, int $now): array {
     $features = $data['features'];
     if (count($features) > KE_MAX_FEATURES || !empty($data['exceededTransferLimit']) || !empty($data['properties']['exceededTransferLimit']) || !empty($data['pagination']['next'])) throw new KeException('zoom_in', 422);
     foreach (['numberMatched', 'totalFeatures'] as $total) if (isset($data[$total]) && is_numeric($data[$total]) && (int)$data[$total] > count($features)) throw new KeException('zoom_in', 422);
-    $out = []; $coordinateCount = 0;
+    $out = []; $coordinateCount = 0; $retired = [];
     foreach ($features as $feature) {
+        if ($kind === 'firewx') foreach (ke_firewx_references($feature) as $id) $retired[] = $id;
         if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature' || !is_array($feature['properties'] ?? null)) throw new KeException('upstream_unavailable');
         $p = $feature['properties'];
         if ($kind === 'alerts') {
@@ -255,7 +282,10 @@ function ke_normalize(string $kind, array $data, int $now): array {
         if (in_array($kind, ['firewx', 'zone'], true) && is_array($geometry) && in_array($geometry['type'] ?? '', ['Polygon', 'MultiPolygon'], true)) $geometry = ke_simplify_geometry($geometry);
         $out[] = ['type' => 'Feature', 'geometry' => ke_geometry($geometry, $kind === 'alerts' || $kind === 'firewx', $coordinateCount), 'properties' => $props];
     }
-    return ['type' => 'FeatureCollection', 'features' => $out];
+    $result = ['type' => 'FeatureCollection', 'features' => $out];
+    // Ids named by any Update or Cancel, including messages dropped for being expired. The client keeps them retired.
+    if ($kind === 'firewx') $result['retired'] = array_slice(array_values(array_unique($retired)), 0, KE_MAX_FEATURES);
+    return $result;
 }
 
 function ke_fetch(array $query, callable $http, int $now): array {
@@ -312,16 +342,24 @@ function ke_cached(array $query, string $directory, callable $fetch, int $now): 
         if (is_link($path)) throw new KeException('cache_unavailable', 503);
         $cached = is_file($path) && filesize($path) <= 2100000 ? json_decode((string)@file_get_contents($path), true) : null;
         $ttl = ke_ttl($query['kind'], is_int($cached['max_age'] ?? null) ? $cached['max_age'] : null);
-        if (is_array($cached) && ($cached['key'] ?? '') === $key && is_int($cached['at'] ?? null) && $cached['at'] <= $now && $now - $cached['at'] < (isset($cached['error']) ? (is_int($cached['retry_after'] ?? null) ? max(30, min($cached['retry_after'], 600)) : 30) : $ttl)) {
-            if (isset($cached['error'])) throw new KeException($cached['error'], $cached['status']);
+        if (is_array($cached) && ($cached['key'] ?? '') === $key && is_int($cached['at'] ?? null) && $cached['at'] <= $now && (isset($cached['error']) ? $now < ($cached['retry_until'] ?? $cached['at'] + 30) : $now - $cached['at'] < $ttl)) {
+            if (isset($cached['error'])) throw new KeException($cached['error'], $cached['status'], isset($cached['retry_until']) ? max(1, $cached['retry_until'] - $now) : null);
             if (is_array($cached['value'] ?? null)) {
                 $value = $cached['value'];
                 // An alert can expire during its five-minute cache lifetime.
-                if ($query['kind'] === 'firewx') $value['data']['features'] = array_values(array_filter($value['data']['features'] ?? [], static function (array $f) use ($now): bool {
-                    $p = $f['properties'];
-                    if (($p['messageType'] ?? '') === 'Cancel') return true;
-                    return ($p['expires'] === null || strtotime($p['expires']) > $now) && ($p['ends'] === null || strtotime($p['ends']) > $now);
-                }));
+                // A message that expires or is dropped here may have replaced or cancelled another alert. What it
+                // retired stays retired, so the older alert can never become active again after its replacement is gone.
+                if ($query['kind'] === 'firewx') {
+                    $retired = is_array($value['data']['retired'] ?? null) ? $value['data']['retired'] : [];
+                    $value['data']['features'] = array_values(array_filter($value['data']['features'] ?? [], static function (array $f) use ($now, &$retired): bool {
+                        $p = $f['properties'];
+                        if (($p['messageType'] ?? '') === 'Cancel') return true;
+                        $live = ($p['expires'] === null || strtotime($p['expires']) > $now) && ($p['ends'] === null || strtotime($p['ends']) > $now);
+                        if (!$live) foreach (is_array($p['references'] ?? null) ? $p['references'] : [] as $id) $retired[] = $id;
+                        return $live;
+                    }));
+                    $value['data']['retired'] = array_slice(array_values(array_unique($retired)), 0, KE_MAX_FEATURES);
+                }
                 if ($query['kind'] === 'alerts') $value['data']['features'] = array_values(array_filter($value['data']['features'] ?? [], static function (array $f) use ($now): bool {
                     $p = $f['properties'];
                     return strtotime($p['expires']) > $now && ($p['ends'] === null || strtotime($p['ends']) > $now);
@@ -329,16 +367,29 @@ function ke_cached(array $query, string $directory, callable $fetch, int $now): 
                 return $value;
             }
         }
+        // A rate-limit answer from NWS blocks every NWS request until its Retry-After time, whatever the key.
+        $blockPath = $directory . '/nws-retry-until';
+        if (in_array($query['kind'], KE_NWS_KINDS, true) && !is_link($blockPath) && is_file($blockPath)) {
+            $until = (int)@file_get_contents($blockPath);
+            if ($until > $now) throw new KeException('rate_limited', 503, $until - $now);
+        }
         // A global reservation also limits repeated unique cache misses and failures.
         rewind($lock); $last = (int)stream_get_contents($lock);
         if ($now - $last < 2) throw new KeException('busy', 503);
         rewind($lock); ftruncate($lock, 0); fwrite($lock, (string)$now); fflush($lock);
         try {
-            $GLOBALS['ke_upstream_meta'] = ['max_age' => null, 'retry_after' => null];
+            $GLOBALS['ke_upstream_meta'] = ['max_age' => null, 'retry_until' => null, 'expires' => null];
             $value = $fetch($query, $now);
             $entry = ['key' => $key, 'at' => $now, 'value' => $value, 'max_age' => $GLOBALS['ke_upstream_meta']['max_age'] ?? null];
         } catch (KeException $e) {
-            $entry = ['key' => $key, 'at' => $now, 'error' => $e->reason, 'status' => $e->status, 'retry_after' => $GLOBALS['ke_upstream_meta']['retry_after'] ?? null];
+            $entry = ['key' => $key, 'at' => $now, 'error' => $e->reason, 'status' => $e->status];
+            if ($e->reason === 'rate_limited') {
+                $entry['retry_until'] = $now + ($e->retryAfter ?? KE_DEFAULT_RETRY_SECONDS);
+                if (in_array($query['kind'], KE_NWS_KINDS, true) && !is_link($blockPath)) {
+                    $previous = is_file($blockPath) ? (int)@file_get_contents($blockPath) : 0;
+                    @file_put_contents($blockPath, (string)max($previous, $entry['retry_until'])); @chmod($blockPath, 0600);
+                }
+            }
             $value = null;
         }
         $encoded = json_encode($entry, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
@@ -346,7 +397,7 @@ function ke_cached(array $query, string $directory, callable $fetch, int $now): 
         if (strlen($encoded) > 2097152) throw new KeException('zoom_in', 422);
         if (@file_put_contents($path, $encoded) === false) throw new KeException('cache_unavailable', 503);
         @chmod($path, 0600);
-        if ($value === null) throw new KeException($entry['error'], $entry['status']);
+        if ($value === null) throw new KeException($entry['error'], $entry['status'], isset($entry['retry_until']) ? max(1, $entry['retry_until'] - $now) : null);
         return $value;
     } finally { flock($lock, LOCK_UN); fclose($lock); }
 }

@@ -40,6 +40,7 @@ const toCancel = alert({ id: 'urn:synthetic:to-cancel', geometry: polygon('fire_
 cases.cancelled = payload([toCancel, alert({ id: 'urn:synthetic:cancel-message', p: { messageType: 'Cancel', sent: at(-10), effective: at(-10), expires: at(-10), ends: null, references: [toCancel.properties.id], headline: 'SYNTHETIC cancellation' } })]);
 const original = alert({ id: 'urn:synthetic:original', p: { headline: 'SYNTHETIC original' }, geometry: polygon('fire_COZ214.json') });
 cases.updated = payload([original, alert({ id: 'urn:synthetic:update', geometry: polygon('fire_COZ214.json'), p: { messageType: 'Update', sent: at(-5), effective: at(-5), references: [original.properties.id], headline: 'SYNTHETIC update replaces original' } })]);
+cases.original_only = payload([original]);   // the feed after the Update in `updated` has expired and left it
 cases.empty = payload([]);
 cases.geometry_failure = payload([alert({ id: 'urn:synthetic:zone-fail', p: { zones: ['fire/COZ214'], zone_count: 1, areaDesc: 'Synthetic zone-only area, zone fetch fails' } })]);
 cases.partial_zones = payload([alert({ id: 'urn:synthetic:partial', p: { zones: ['fire/CAZ281', 'fire/COZ214'], zone_count: 2, areaDesc: 'Synthetic partly resolved area' } })]);

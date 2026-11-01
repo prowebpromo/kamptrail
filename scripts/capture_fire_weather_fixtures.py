@@ -141,8 +141,8 @@ def main(argv=None, fetch=get, sleep=time.sleep, now=None):
     try:
         capture_events(args.out, manifest, start, end, fetch, sleep)
         capture_zones(args.out, manifest, args.zone or DEFAULT_ZONES, fetch, sleep)
-    except Stop as stop:
-        manifest['stopped'] = str(stop)
+    except Exception as stop:  # a rate limit or network error must not lose pages already saved: write the manifest regardless
+        manifest['stopped'] = ('%s: %s' % (type(stop).__name__, stop)) if not isinstance(stop, Stop) else str(stop)
     manifest['fire_alert_features'] = fire_features(args.out, manifest)
     manifest['positive'] = manifest['fire_alert_features'] > 0
     with open(os.path.join(args.out, 'manifest.json'), 'w', encoding='utf-8') as handle:

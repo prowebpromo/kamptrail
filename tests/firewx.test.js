@@ -179,3 +179,83 @@ test('locale: every fire-weather string has matching Spanish and French entries'
     assert.ok(fr[k] && fr[k] !== k, 'fr missing: ' + k); assert.equal(holes(fr[k]), holes(k), 'fr placeholders: ' + k);
   }
 });
+
+test('replacement history: an alert replaced by an Update stays retired after the Update expires or leaves the feed', () => {
+  const original = feat({ id: 'orig', expires: new Date(NOW + 9 * 3600000).toISOString() });
+  const update = feat({ id: 'upd', messageType: 'Update', references: ['orig'], expires: new Date(NOW + 3600000).toISOString() });
+  const first = { ...fx.payload('polygon'), data: { type: 'FeatureCollection', features: [original, update] } };
+  assert.deepEqual(ids(fw.select(first.data.features, NOW).alerts), ['upd'], 'replaced while both are in the feed');
+  const memory = fw.retiredIds(first);
+  assert.ok(memory.has('orig'));
+  // 1. The Update has expired, so it is gone from the next snapshot. The original is still unexpired.
+  const later = [original];
+  assert.deepEqual(ids(fw.select(later, NOW + 2 * 3600000).alerts), ['orig'], 'without memory the original would come back (the defect)');
+  assert.deepEqual(ids(fw.select(later, NOW + 2 * 3600000, memory).alerts), [], 'with memory it stays retired');
+  assert.equal(fw.select(later, NOW + 2 * 3600000, memory).hidden.superseded, 1);
+  // 2. The server's own retired list does the same for a client that never saw the Update.
+  const fromServer = { ...first, data: { type: 'FeatureCollection', features: [original], retired: ['orig'] } };
+  assert.doesNotThrow(() => fw.validate(fromServer, NOW));
+  assert.deepEqual(ids(fw.select(fromServer.data.features, NOW, fw.retiredIds(fromServer)).alerts), []);
+  // 3. A chain A -> B -> C leaves only C, and a cancelled alert stays cancelled when its Cancel message leaves.
+  const chain = [feat({ id: 'A' }), feat({ id: 'B', messageType: 'Update', references: ['A'] }), feat({ id: 'C', messageType: 'Update', references: ['A', 'B'] })];
+  assert.deepEqual(ids(fw.select(chain, NOW).alerts), ['C']);
+  const cancelGone = fw.retiredIds({ data: { features: [feat({ id: 'k', messageType: 'Cancel', references: ['A'] })] } });
+  assert.deepEqual(ids(fw.select([feat({ id: 'A' })], NOW, cancelGone).alerts), []);
+  // 4. Malformed retired lists are refused.
+  for (const bad of [{}, 'orig', [1], new Array(501).fill('x')]) assert.throws(() => fw.validate({ ...first, data: { type: 'FeatureCollection', features: [], retired: bad } }, NOW));
+});
+
+test('six-hour cutoff is applied to what is already on screen, judged by the clock', () => {
+  const d = fx.payload('polygon');
+  assert.equal(fw.usableSnapshot(d, NOW + fw.STALE_MAX_MS), d, 'exactly six hours is still usable (and labelled stale)');
+  assert.equal(fw.usableSnapshot(d, NOW + fw.STALE_MAX_MS + 1), null, 'one millisecond later it is not');
+  assert.equal(fw.usableSnapshot(null, NOW), null);
+  assert.equal(fw.freshness(d, NOW + fw.STALE_MAX_MS), 'stale');
+  const src = fs.readFileSync(path.join(root, 'firewx.js'), 'utf8');
+  const render = src.slice(src.indexOf('function render(now'), src.indexOf('const { alerts, hidden }'));
+  assert.match(render, /!usableSnapshot\(st\.data, now\)/);
+  assert.match(render, /st\.data = null/);
+  assert.match(src, /st\.tick = setInterval\(\(\) => render\(\), 60000\)/, 'the tick renders without fetching');
+});
+
+test('client honors Retry-After exactly: no refetch before it, no cap, no fixed 2.1 second retry', async () => {
+  const calls = [];
+  function envWith(response) {
+    const c = { window: {}, URLSearchParams, Date, Object, Number, String, Set, Map, Promise, JSON, Error, AbortController, setTimeout, clearTimeout, navigator: { onLine: true } };
+    c.window = c; c.globalThis = c;
+    c.fetch = async url => { calls.push(Date.now()); return response(); };
+    vm.createContext(c); vm.runInContext(fs.readFileSync(path.join(root, 'environment.js'), 'utf8'), c);
+    return c.KampTrailEnvironment;
+  }
+  const res = (status, retryAfter) => ({ status, ok: status < 400, headers: { get: h => h === 'Retry-After' ? retryAfter : null }, text: async () => '{}' });
+  const signal = new AbortController().signal;
+  // A Retry-After far beyond any cap: one request, then nothing until it passes.
+  let e = envWith(() => res(503, '7200'));
+  await assert.rejects(e.request('firewx', null, signal), /Rate limited/);
+  assert.equal(calls.length, 1);
+  assert.ok(e.retryAfterMs() > 7199000 && e.retryAfterMs() <= 7200000, String(e.retryAfterMs()));
+  await assert.rejects(e.request('zone', 'fire/COZ214', signal), /Rate limited/);
+  assert.equal(calls.length, 1, 'no second request while Retry-After is pending');
+  // A short Retry-After is waited out exactly once, not shortened to the old 2.1 second retry and not stretched past it.
+  calls.length = 0;
+  e = envWith(() => res(503, '1'));
+  const t0 = Date.now();
+  await assert.rejects(e.request('firewx', null, signal), /unavailable/);
+  assert.equal(calls.length, 2);
+  const gap = calls[1] - calls[0];
+  assert.ok(gap >= 990 && gap < 1600, 'gap ' + gap);
+  // HTTP-date form, and a 429 without a retry retry.
+  calls.length = 0;
+  e = envWith(() => res(503, new Date(Date.now() + 3600000).toUTCString()));
+  await assert.rejects(e.request('firewx', null, signal), /Rate limited/);
+  assert.ok(e.retryAfterMs() > 3590000 && e.retryAfterMs() <= 3600000);
+  calls.length = 0;
+  e = envWith(() => res(429, '90'));
+  await assert.rejects(e.request('firewx', null, signal));
+  assert.equal(calls.length, 1); assert.ok(e.retryAfterMs() > 89000);
+  // Without a header the previous behaviour stays: one retry after 2.1 seconds.
+  calls.length = 0;
+  e = envWith(() => res(503, null));
+  await assert.rejects(e.request('firewx', null, signal));
+  assert.equal(calls.length, 2); assert.ok(calls[1] - calls[0] >= 2090);
+});

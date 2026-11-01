@@ -42,19 +42,26 @@ jobs:
             python3 -c "import json,sys;d=json.load(open(sys.argv[1]));print(f\"Retrieved {d['retrieved_at']}: {d['alerts']} alerts, {d.get('with_polygon',0)} with polygon, {d.get('zone_only',0)} zone-only, {d.get('zone_geometries_saved',0)} zone geometries saved.\")" "$RUNNER_TEMP/fire-weather/summary.json"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Keep samples
-        if: steps.capture.outputs.alerts != '0'
+        if: steps.capture.outcome == 'success' && steps.capture.outputs.alerts != '0'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: nws-fire-weather-${{ github.run_id }}
           path: ${{ runner.temp }}/fire-weather
           retention-days: 90
           if-no-files-found: error
+      # Runs even if the active-alert step failed. A rate limit that stops the script after positive pages were saved
+      # does not fail this step: the exit code is kept in the rc output and the job fails in the last step, after the uploads.
       - name: Capture seven-day alert history with provenance
         id: window
+        if: always()
         shell: bash
         run: |
-          set -euo pipefail
+          set -uo pipefail
           python3 scripts/capture_fire_weather_fixtures.py --out "$RUNNER_TEMP/fire-weather-window" | tee "$RUNNER_TEMP/window.json"
+          rc=${PIPESTATUS[0]}
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          [ -f "$RUNNER_TEMP/fire-weather-window/manifest.json" ] || { echo "positive=false" >> "$GITHUB_OUTPUT"; exit 1; }
+          set -e
           {
             echo "### NWS seven-day fixture capture"
             echo
@@ -66,6 +73,7 @@ jobs:
           positive=$(python3 -c "import json,sys;print('true' if json.load(open(sys.argv[1])).get('positive') else 'false')" "$RUNNER_TEMP/fire-weather-window/manifest.json")
           echo "positive=$positive" >> "$GITHUB_OUTPUT"
       - name: Keep seven-day capture
+        if: always() && steps.window.outputs.rc != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: nws-fire-weather-window-${{ github.run_id }}
@@ -75,7 +83,7 @@ jobs:
       # Every positive capture is kept under a name unique to its run and attempt, and nothing overwrites it.
       # The first one is also committed durably by preserve-first-positive below. Later ones stay separate artifacts.
       - name: Keep capture that contains a real fire alert
-        if: steps.window.outputs.positive == 'true'
+        if: always() && steps.window.outputs.positive == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}
@@ -83,13 +91,19 @@ jobs:
           retention-days: 90
           if-no-files-found: error
           overwrite: false
+      - name: Fail the job if the capture was stopped by a rate limit
+        if: always() && steps.window.outputs.rc != '' && steps.window.outputs.rc != '0'
+        shell: bash
+        run: |
+          echo "Capture stopped (exit code ${{ steps.window.outputs.rc }}). Saved files were still uploaded." >> "$GITHUB_STEP_SUMMARY"
+          exit 1
 
   # Keeps the first authentic positive capture beyond artifact retention. It commits the files byte for byte,
   # after checking each SHA-256 against the manifest, to a branch of its own and opens a pull request.
   # If that branch already exists, the first positive capture is already kept and this job changes nothing.
   preserve-first-positive:
     needs: capture
-    if: needs.capture.outputs.positive == 'true'
+    if: always() && needs.capture.outputs.positive == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -111,6 +125,10 @@ jobs:
           if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
             echo "kept=true" >> "$GITHUB_OUTPUT"
             echo "The first positive capture is already on $BRANCH. This run stays a separate artifact ($ARTIFACT)." >> "$GITHUB_STEP_SUMMARY"
+          elif [ -e "$DEST" ]; then
+            # The review branch is deleted after merge. The accepted fixture on main is what protects it then.
+            echo "kept=true" >> "$GITHUB_OUTPUT"
+            echo "$DEST already exists on main. It is never overwritten. This run stays a separate artifact ($ARTIFACT)." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "kept=false" >> "$GITHUB_OUTPUT"
           fi
@@ -138,6 +156,7 @@ jobs:
                   sys.exit('hash or size mismatch: ' + f['file'])
           print('verified', len(manifest['files']), 'files')
           PY
+          [ ! -e "$DEST" ] || { echo "$DEST exists; refusing to overwrite" >&2; exit 1; }
           git switch -c "$BRANCH"
           mkdir -p "$DEST"
           cp -a "$src"/. "$DEST"/

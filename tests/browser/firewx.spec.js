@@ -9,15 +9,15 @@ const centre = { lat: (Math.min(...ring.map(p => p[1])) + Math.max(...ring.map(p
 const smokePolygon = { type: 'Polygon', coordinates: [[[centre.lng - .1, centre.lat - .1], [centre.lng + .1, centre.lat - .1], [centre.lng + .1, centre.lat + .1], [centre.lng - .1, centre.lat - .1]]] };
 
 /* Every response is a labelled fixture rebased to the browser clock, so it never reads as a historical alert. */
-async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes = 0, zoneFail = false, firewxStatus = 200, zoom = 9 } = {}) {
-  const s = { requested: [], zones: [], errors: [], cases, firewxStatus, zoneFail, ageMinutes };
+async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes = 0, zoneFail = false, firewxStatus = 200, zoom = 9, retryAfter = null } = {}) {
+  const s = { requested: [], zones: [], errors: [], cases, firewxStatus, zoneFail, ageMinutes, retryAfter };
   page.on('pageerror', e => s.errors.push(e.message));
   await context.route(/^https:\/\//, r => r.fulfill({ contentType: 'image/png', body: pixel }));
   await context.route('**/api/environment.php?**', r => {
     const u = new URL(r.request().url()), kind = u.searchParams.get('kind'), now = Date.now();
     s.requested.push(kind);
     if (kind === 'firewx') {
-      if (s.firewxStatus !== 200) return r.fulfill({ status: s.firewxStatus, contentType: 'application/json', body: '{"ok":false}' });
+      if (s.firewxStatus !== 200) return r.fulfill({ status: s.firewxStatus, contentType: 'application/json', headers: s.retryAfter ? { 'Retry-After': String(s.retryAfter) } : {}, body: '{"ok":false}' });
       const body = fx.payload(s.cases, now); body.retrieved_at = new Date(now - s.ageMinutes * 60000).toISOString();
       return r.fulfill({ contentType: 'application/json', body: JSON.stringify(body) });
     }
@@ -139,6 +139,52 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       await panel(page).getByRole('button', { name: 'Refresh fire weather alerts' }).click();
       await expect(card(page, 'urn:synthetic:update')).toBeVisible();
       await expect(card(page, 'urn:synthetic:original')).toHaveCount(0);
+    });
+
+    test('a replaced alert stays retired when its Update leaves the feed', async ({ page, context }) => {
+      const s = await setup(page, context, { cases: 'updated' });
+      await enable(page); await open(page);
+      await expect(card(page, 'urn:synthetic:update')).toBeVisible();
+      await expect(card(page, 'urn:synthetic:original')).toHaveCount(0);
+      s.cases = 'original_only';
+      await panel(page).getByRole('button', { name: 'Refresh fire weather alerts' }).click();
+      await expect(panel(page).locator('[data-firewx-status]')).toContainText('0 current alerts');
+      await expect(card(page, 'urn:synthetic:original')).toHaveCount(0);
+      await expect(card(page, 'urn:synthetic:update')).toHaveCount(0);
+      await expect(page.locator('path.kt-firewx-shape')).toHaveCount(0);
+    });
+
+    test('alerts are removed on the next render tick six hours after the last good retrieval, with no new fetch', async ({ page, context }) => {
+      const s = await setup(page, context);
+      await enable(page); await open(page);
+      await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
+      const before = s.requested.filter(k => k === 'firewx').length;
+      await page.clock.setFixedTime(Date.now() + 6 * 3600000 - 60000);
+      await page.evaluate(() => KampTrailFireWeather.render());
+      await expect(card(page, 'urn:synthetic:polygon')).toHaveCount(1);
+      await page.clock.setFixedTime(Date.now() + 2 * 60000 + 6 * 3600000);
+      await page.evaluate(() => KampTrailFireWeather.render());
+      await expect(panel(page).locator('.kt-firewx-alert')).toHaveCount(0);
+      await expect(page.locator('path.kt-firewx-shape')).toHaveCount(0);
+      await expect(panel(page).locator('[data-firewx-status]')).toContainText('Fire weather alerts are unavailable');
+      expect(s.requested.filter(k => k === 'firewx').length).toBe(before);
+    });
+
+    test('a long Retry-After stops further fire-weather requests until it passes', async ({ page, context }) => {
+      const s = await setup(page, context);
+      await enable(page); await open(page);
+      await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
+      s.firewxStatus = 503; s.retryAfter = 7200;
+      const refresh = panel(page).getByRole('button', { name: 'Refresh fire weather alerts' });
+      await refresh.click();
+      await expect(panel(page).locator('.kt-firewx-stale')).toBeVisible({ timeout: 20000 });
+      const seen = s.requested.filter(k => k === 'firewx').length;
+      s.firewxStatus = 200;
+      await refresh.click(); await refresh.click();
+      await page.waitForTimeout(500);
+      expect(s.requested.filter(k => k === 'firewx').length).toBe(seen);
+      await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
+      await expect(panel(page).locator('.kt-firewx-stale')).toBeVisible();
     });
 
     test('stale data is labelled stale and still lists the alert', async ({ page, context }) => {
