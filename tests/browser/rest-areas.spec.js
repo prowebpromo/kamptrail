@@ -79,10 +79,10 @@ test('an INDOT facility page tightens overnight parking with its own dated link'
   expect(errors).toEqual([]);
 });
 
-test('a region that misses its own deadline never discards regions that already arrived, and can be retried',async({page,context})=>{
+for(const mobile of [false,true])test.describe(mobile?'mobile':'desktop',()=>{if(mobile)test.use({isMobile:true,hasTouch:true,viewport:{width:390,height:844}});test('a region that misses its own deadline never discards regions that already arrived, and can be retried ('+(mobile?'mobile':'desktop')+')',async({page,context})=>{
   const site=indiana.records.find(x=>x.id===statePolicies.exceptions[0].facility_id),nevada=require('../../data/rest-areas/NV.json'),e=statePolicies.exceptions[0];
   await page.clock.install();
-  const {errors}=await setup(page,context,{regions:['TX','IN','NV','MT']});
+  const {errors}=await setup(page,context,{mobile,regions:['TX','IN','NV','MT']});
   let release,nvCalls=0,held;const gate=new Promise(r=>{release=r;}),started=new Promise(r=>{held=r;});
   await page.unroute('**/data/rest-areas/index.json');
   await page.route('**/data/rest-areas/index.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({version:1,regions:['IN','NV','MT','TX'].map(region=>({region,file:region+'.json',records:1}))})}));
@@ -102,4 +102,4 @@ test('a region that misses its own deadline never discards regions that already 
   await expect(c).not.toContainText('Unavailable now');await expect(c).toContainText('Nevada');
   await page.getByTitle(site.name,{exact:true}).click();await expect(page.locator('.kt-rest-popup')).toContainText(site.name);
   expect(errors).toEqual([]);
-});
+});});
