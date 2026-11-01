@@ -1,0 +1,22 @@
+{
+  "source_tree": "9c32dec4179a1037a304e9b5b1ad06eefdfc11b3",
+  "maintenance_parent": "041ff76c47cbc002ef38aa29e39a508337e2bf91",
+  "candidate_parent": "735d5afd35ddbbd8b3219e9f106e291dabd8314a",
+  "baseline_listings": 33370,
+  "rebuilt_listings": 33361,
+  "retired": 9,
+  "published_ids_compared": 36290,
+  "missing": [],
+  "host_moved": [],
+  "files_hashed": 54,
+  "index_sha256": "370e42268e41ec027a4d89b9214084f240cc2bbc054632920690d9670b837740",
+  "aggregate_sha256": "cd970cbd495be53b6271812b6f51a3b235e1a2ea98791434bfbf5e2b7162bbca",
+  "replay_digests": [
+    "cd970cbd495be53b6271812b6f51a3b235e1a2ea98791434bfbf5e2b7162bbca",
+    "cd970cbd495be53b6271812b6f51a3b235e1a2ea98791434bfbf5e2b7162bbca"
+  ],
+  "recorded_deltas": 73,
+  "unexpected_deltas": 0,
+  "snapshot_rows_checked_for_raw_fields": 64280,
+  "raw_field_leaks": []
+}
