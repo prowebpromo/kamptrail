@@ -1,0 +1,1967 @@
+{
+  "utc": "2026-11-01T11:36:48.934971+00:00",
+  "initial_marker": "a8785f981e58f745fbd57e34763b630ab73fe7d2",
+  "final_marker": "a8785f981e58f745fbd57e34763b630ab73fe7d2",
+  "release": "2.34.0",
+  "live_index_matches_release_git": true,
+  "index": {
+    "before_sha256": "7f0d331a8292e75833f129f3ba86579c993af28a8b2b194472a062d0fa6ad895",
+    "after_sha256": "83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a",
+    "rows": [
+      33370,
+      33370
+    ],
+    "unique_ids": [
+      33370,
+      33370
+    ],
+    "removed_ids": [],
+    "added_ids": [],
+    "row_order_unchanged": true,
+    "other_top_level_fields_unchanged": true,
+    "changed_count": 237,
+    "changed_beyond_rig": [],
+    "changed": [
+      {
+        "id": "osm:node:10025626978",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:11810571792",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:12671020366",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:12983070913",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:13141822352",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:13317770830",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:13378627667",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:13393436072",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:1596375040",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:1596375042",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:1611371103",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:1621190105",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:1827174025",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:1922410822",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:2332493731",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:2332493734",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:2366027152",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:2918151787",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:2951707170",
+        "before": [
+          "tent",
+          "rv"
+        ],
+        "after": [
+          "tent"
+        ]
+      },
+      {
+        "id": "osm:node:3202508524",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:3387884027",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:4345184689",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:4391442215",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:4486938990",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:5673747195",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:5788666453",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:6496051705",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:7418543226",
+        "before": [
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:node:7711935108",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:8417081500",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:node:8828800470",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:relation:21277840",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:1190746264",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:1319627962",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:1376181555",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": [
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:197950100",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:260686310",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:335204985",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:335204987",
+        "before": [
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:427305526",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:479816844",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:516776905",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:624150541",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:636092321",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:679336587",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": [
+          "tent"
+        ]
+      },
+      {
+        "id": "osm:way:700835597",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:733654657",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:747157383",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:759770890",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:783373080",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:783373085",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:801475598",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:830825704",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "osm:way:859344792",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": [
+          "tent",
+          "trailer"
+        ]
+      },
+      {
+        "id": "osm:way:862879196",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": [
+          "tent"
+        ]
+      },
+      {
+        "id": "osm:way:995342541",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:10001666",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:10039245",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:10072881",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:10072883",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:10074570",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:10078442",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:10278188",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:14720",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:202082",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:231875",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:231900",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232018",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232028",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232038",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232040",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232050",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232051",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232059",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232074",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232081",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232082",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232096",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232097",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232099",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232118",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232120",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232141",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232162",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232298",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232315",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232324",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232330",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232335",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232358",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232432",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232445",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232458",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232466",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232473",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232486",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232515",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232799",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232830",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232853",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232855",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:232857",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233125",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233162",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233170",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233185",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233236",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233284",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233297",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233306",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233308",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233312",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233345",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233379",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233483",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233588",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233818",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233834",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233839",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233841",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233861",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233866",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233899",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233952",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:233968",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234017",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234018",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234021",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234022",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234025",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234026",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234029",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234030",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234041",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234053",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234059",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234150",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234254",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234265",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234308",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234311",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234476",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234574",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234586",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234616",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234619",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234643",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234653",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234685",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234709",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234714",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234736",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234737",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234759",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234761",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234762",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:234784",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:236512",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:236514",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:236547",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:237190",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:238258",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:238340",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:238350",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:238879",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:238898",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:238900",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:239007",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:239840",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:239846",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:239944",
+        "before": [
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:239945",
+        "before": [
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:240665",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:241130",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:241175",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:241301",
+        "before": [
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:242362",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:242397",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:242613",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:242655",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:243219",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:244321",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:244742",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:245539",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:245568",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:247762",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:248959",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249254",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249312",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249627",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249634",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249725",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249733",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249746",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249916",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:249962",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:251362",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:251437",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:251448",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:251720",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:251845",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:252786",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:255232",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:255239",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:255286",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:256348",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:257030",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:257351",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:257396",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:257404",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:262790",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:262792",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:264293",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:266135",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:266136",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:266477",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:267082",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:270420",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:272179",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:272245",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:273847",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:273848",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:273910",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:273911",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:273917",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:273926",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:273950",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:274004",
+        "before": [
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:274051",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:274091",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:274260",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:274261",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "ridb:274437",
+        "before": [
+          "tent",
+          "trailer"
+        ],
+        "after": []
+      },
+      {
+        "id": "usfs:24878",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "usfs:26883",
+        "before": [
+          "tent",
+          "trailer",
+          "rv"
+        ],
+        "after": []
+      },
+      {
+        "id": "usfs:80159",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      },
+      {
+        "id": "usfs:9461",
+        "before": [
+          "tent"
+        ],
+        "after": []
+      }
+    ],
+    "rig_counts_before": {
+      "rv": 242,
+      "tent": 5963,
+      "trailer": 2989
+    },
+    "rig_counts_after": {
+      "rv": 187,
+      "tent": 5783,
+      "trailer": 2848
+    }
+  },
+  "clearance_files": [
+    "data/clearances/RI.json"
+  ],
+  "client_files_scanned": 37,
+  "national_client_references": [],
+  "live_national_manifest_http": 404,
+  "live_vs_package": [
+    {
+      "path": "index.html",
+      "http": 200,
+      "sha256": "30de5043c24c173ec211c2a13baa9617c0f422fcd3a44efc6d9dfbcd4b4688f5",
+      "matches_package": true
+    },
+    {
+      "path": "service-worker.js",
+      "http": 200,
+      "sha256": "844d06fb30b7847f14753fbe2f4ff9e7b89520991541a214b26666643a0631bd",
+      "matches_package": true
+    },
+    {
+      "path": "app.js",
+      "http": 200,
+      "sha256": "9bdec886ae3aa8b45fcae455bdc9d97a92b6637a9550e2f551f0aac1ac4ead48",
+      "matches_package": true
+    },
+    {
+      "path": "data-quality.js",
+      "http": 200,
+      "sha256": "da58bd1133925877c435d5edfdc3637bc74fcf91a736fec9ea82cf88a0f1de1a",
+      "matches_package": true
+    },
+    {
+      "path": "data-loader.js",
+      "http": 200,
+      "sha256": "d1d0c8adf24f75d17638e5e432696ee6c4442c41872a519fb09eef2104578941",
+      "matches_package": true
+    },
+    {
+      "path": "filters.js",
+      "http": 200,
+      "sha256": "e073fd32d0884052167591f3921f3e4877f3ce5e8736b77ec68c4a30df413b7f",
+      "matches_package": true
+    },
+    {
+      "path": "clearances.js",
+      "http": 200,
+      "sha256": "2be9e7c43295eb0de001486920c4a3d6637f88ccc5103f776a8676081f38d1e7",
+      "matches_package": true
+    },
+    {
+      "path": "route-clearance.js",
+      "http": 200,
+      "sha256": "dc9c93766f242478db90beedfebd4f9920711493868702189ca00bca62a1589d",
+      "matches_package": true
+    },
+    {
+      "path": "data/clearances/RI.json",
+      "http": 200,
+      "sha256": "5c32f4cb33c1159dad135408d7810e5717d4bfa2b8866af77b6d2552d9a706e5",
+      "matches_package": true
+    },
+    {
+      "path": "data/campsites/identity-hosts.json",
+      "http": 200,
+      "sha256": "9f83fc564ec2240a13412cc49950782966e0ffa9c12915b3022214381eed4e58",
+      "matches_package": true
+    }
+  ],
+  "pass": true
+}
