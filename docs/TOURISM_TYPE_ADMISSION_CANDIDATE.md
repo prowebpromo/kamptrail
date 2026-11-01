@@ -1,153 +1,118 @@
-# Tourism, type and admission candidate
+# Tourism, type and admission candidate (revision 2)
 
-Candidate only. Nothing here is merged, versioned or released. The owner reviews the listing changes first.
+Candidate only. Nothing here is merged, versioned or released. Every listed change is flagged `separate_review` in the ledger. Branch `candidate/tourism-type-admission`, baseline origin/main `afdfb3f9` (2.31.0). No rig key is read differently (see "Rig keys").
 
-Branch `candidate/tourism-type-admission`, from origin/main `afdfb3f9` (live 2.31.0). It changes no rig key (`tents`, `caravans`, `motorhome`, `rig_friendly`), so it can be rebased onto 2.32.0.
+Ledger: `docs/candidates/tourism-type-admission.json` and `.csv` (version 2, one deduplicated record per id). It covers groups A, B, C, the website-linked set W and the three OSM elements, plus every other listing whose type, publication or evidence changes. Final counts are in the ledger header (`venn`, `change_kinds`, `proposed_by_evidence`). This document explains the rules behind them.
 
-Per-record table: `docs/candidates/tourism-type-admission.json` and `.csv`. There are 104 records, one per listing whose outcome a group rule decides. The JSON also holds the blanket-guard measurement, the Venn counts, the proposal and the L182 identity scope.
+## Policy implemented
 
-## The three groups, re-measured
+A listing is classified only from its own record or from a record with a verified exact identity. Evidence from a different OSM element never classifies a listing. The policy holds at every layer that merges records:
 
-All counts are over the 33,370 published listings. The baseline rebuild reproduces the committed `search-index.json` byte for byte.
-
-### A. Inherited `tourism`
-
-- Cause: `scripts/merge_campsite_data.js` L213 (`...secondary` under `...primary`). It copies `tourism=*` from an absorbed OSM element onto the Recreation.gov host. Only fee, charge, access and amenity keys are guarded (L22-23, L246-249). None of the 4,495 raw Recreation.gov rows carries `tourism`. 703 snapshot rows inherit it, every one from a named member.
-- Effect, three rules:
-  - `data-quality.js` L105 makes such a row `osm`.
-  - L151 then defaults its missing type to `established` (Campground).
-  - L30 counts the tag as `osm_campsite_tag` camping evidence, which publishes it (L309).
-- 667 published listings carry an inherited tag. For 606 of them nothing visible depends on it.
-- Blanket guard (drop inherited `tourism` before classification). The audit numbers are confirmed:
-  - 25 listings unpublished.
-  - 3 absorbed elements surface under their own ids: `osm:way:368988012` (now an alias of `ridb:234586`), `osm:relation:13942065` (of `ridb:247915`) and `osm:way:941066426` (of `ridb:247835`).
-  - 32 type labels shift: 30 Campground to Other, 2 to Dispersed (`ridb:249674`, `ridb:244321`, through the L230 promotion).
-  - Not in the audit: 4 aliases detach (`ridb:232604`, `ridb:10007130`, `ridb:232006`, `ridb:234421`) and 5 listings would then rest on the L230 promotion.
-  - The 61 listings with a changed outcome are this union.
-
-### B. Borrowed type
-
-- The audit placed this in `data-quality.js` near L223. It is in fact `scripts/merge_campsite_data.js` L223-224: the snapshot merge falls back to `secondary.type`.
-- 2 listings:
-  - `ridb:10076131` Carr Lake Campsites: own type `other`, lent `established` by `ridb:273356`.
-  - `ridb:248261` Potato Hills Central: own type `other`, lent by `ridb:233590`.
-- Both stay published on their own evidence (facility name and own description).
-
-### C. Index-level promotion (`data-quality.js` L230)
-
-- 38 listings are published today only because `mergeFeatures` promotes an unverified record when a merged record is a campsite:
-  - 26 by a Forest Service record matched on name and distance.
-  - 12 by the same facility id (`blm-facility:N` for `ridb:N`, an exact identity).
-- 5 more would depend on it under the blanket A guard, which makes 43 in all. The audit's 43 counted both.
-- No other C listing's type was copied from the promoter, because host type `other` was already overwritten.
-
-## Overlaps
-
-| Set | Listings |
-| --- | ---: |
-| A (carries inherited tourism) | 667 |
-| A with an outcome change | 61 |
-| B | 2 |
-| C (38 now + 5 after A guard) | 43 |
-| A∩B | 0 |
-| B∩C | 0 |
-| A∩C | 5 (`ridb:249674`, `ridb:244321`, `ridb:250031`, `ridb:233931`, `ridb:252280`) |
-| A∩B∩C | 0 |
-| A only / B only / C only | 662 / 2 / 38 |
-| A∪B∪C | 707 |
-| Records in the table (A outcome ∪ B ∪ C) | 104 |
-
-## Implemented on the branch
-
-1. `data-quality.js` L151-154: the Campground default needs the record's own campsite tag. A Recreation.gov row without its own `osm_id` that inherited `tourism` defaults to `other`, its own type. Admission does not change.
-2. `scripts/merge_campsite_data.js` L244-246: a different absorbed record never lends its type. The same record seen twice still fills a missing type.
-
-Result: 45 listings change type, all Campground to Other (43 group A, 2 group B). The list is under `proposal` in the JSON. 11 of the 43 are among the 25 that a blanket guard would unpublish.
-
-Nothing is newly published or unpublished. IDs, coordinates, aliases and legacy_ids, fees, access, access holds (4), admission and the coordinate index are unchanged. Only the MI and OK snapshots change, each one `type` field to `null`.
-
-Not implemented, because the evidence does not settle them (see the open questions):
-
-- The 25 unpublications.
-- The 3 surfacings.
-- Any change to L230.
-
-## Saved links, aliases and contributions
-
-- Saved stops (`kt_trip` in localStorage) store the listing id and resolve through `getCampsiteById` (`data-loader.js` L553), matching `id` or `legacy_ids`.
-- Community reviews and observations are keyed by `community_reviews.campsite_id`. Photos join through `review_id`.
-- All 36,290 index ids and aliases resolve to the same listing as before.
-- Production `api/community-discovery.php` (read 2026-10-31) reports 0 published reviews. That means 0 published observations and 0 published photos for any id.
-- Not checked: pending or rejected reviews, and `api/submit.php` corrections. These need database access. The repo has no local contribution data.
-- Type-only changes do not touch identity. A saved stop keeps a stale cached `feature` copy until the listing loads again.
-
-## Identity caveat (data-loader.js L182, not fixed here)
-
-`mergeLoaded` dedupes in the browser without `preferredIds` or `previousHosts`, so the browser can elect a different canonical id than `search-index.json`.
-
-Measured scope across the catalogue:
-
-- All 50 states loaded: 10 listings differ, for example `usfs:26736` shows as `osm:way:244588682` (in MN, not MI).
-- Single-state loads: 11 listings differ, and 174 listing-state pairs cannot be found because their host row is in another state.
-
-Deterministic browser host election is its own package, built by another agent on a separate branch. This candidate only reports it.
-
-Load-order dependence, measured by loading each record's own states in every order and all 50 states in reverse. The browser canonical id of 12 of the 104 records depends on load order:
-
-| Index id | Order that keeps it | Other order elects |
+| Layer | File | Rule |
 | --- | --- | --- |
-| `osm:node:12546710572` | IL then MO | `ridb:232604` |
-| `osm:way:1175125858` | MD then VA | `ridb:10007130` |
-| `osm:way:146028510` | VA then WV | `ridb:232006` |
-| `osm:way:1517725355` | ID then MT | `ridb:234421` |
-| `ridb:10069432` | ID then OR | `osm:node:9359572844` |
-| `ridb:10072881` | OH first | `osm:way:849430082` |
-| `ridb:10076892` | OH then WV | `osm:way:1187436959` |
-| `ridb:10278188` | NM then TX | `osm:node:9170786474` |
-| `ridb:234586` | AR first | `osm:way:368988012` |
-| `ridb:236715` | KY then TN | `osm:way:670629346` |
-| `ridb:247835` | AR then TX | `osm:way:941066426` |
-| `ridb:247915` | GA then NC | `osm:relation:13942065` |
+| Snapshot merge | `scripts/merge_campsite_data.js` `ownClassification` | `tourism` of a distinct absorbed element is removed from the retained record. It is kept on that member's `member_evidence[].fields`, with element id, source and dates. A different record never lends its type. A description copied from another record is marked `description_source_record_id`. |
+| Index and browser normalization | `data-quality.js` `normalizeFeature` | `tourism` on a record without its own `osm_id` is ignored. This covers old snapshots and offline copies. Copied description text never classifies. |
+| Index and browser reconciliation | `data-quality.js` `mergeFeatures` (was L230) | Camping classification moves only between exact identities: the same record, or the same Recreation.gov facility id published by an agency (`blm-facility:N` for `ridb:N`). A name match within 300 m is candidate matching only. It still merges the identity (alias kept), but it never classifies or publishes. Type is never copied from the other record. |
+| Publication | `data-quality.js` `cleanAndDedupeGeoJSON`, `withheldMembers` | An OSM element absorbed into a host that is not a classified campsite is withheld with that host. This applies across state files and in the browser. It never publishes on its own because its host lost a borrowed classification. An element that was already its own published listing keeps it. |
 
-- In either order, the saved link resolves to the same place, because the other id is that listing's alias.
-- `trip-planner.js` L40 rewrites a saved stop's id to the id the browser elected. A review written from the popup (`community.js` L79) then keys `campsite_id` on the browser id, not the index id.
-- 0 published reviews exist today, so nothing is split yet.
-- These 12 are the same records as the 4 blanket-guard alias losses, the 3 surfacings and 5 others. Any later A change should wait for the host-election package.
+The browser runs the same code (`data-loader.js` `mergeLoaded` passes the sidecars and the withheld set). Tests prove this at both layers: `tests/tourism-type-admission.test.js`, "runtime merging never restores borrowed classification" and the snapshot-merge tests.
 
-The 104 records, alphabetical load:
+## Own-source evidence, three kinds kept apart
 
-- 92 resolve to the same id in the browser.
-- 12 multi-state records return no hit when only a non-host state is loaded. Examples: `ridb:234586` when only MO or TX is loaded, where `osm:way:368988012` shows instead. They resolve once the host state loads.
-- None differs once its host state is loaded.
-- The per-record values are in `identity`.
+| Kind | Where it lives offline | Used for |
+| --- | --- | --- |
+| Structured classification | Recreation.gov `type` in `data/campsites/{ST}.geojson`. It is mapped from RIDB `FacilityTypeDescription` by `scripts/fetch_recreation_gov_data.py` L114-122. The raw value is not kept. Also Forest Service `site_type` (`usfs-site-amenities.json`) and BLM layer 8 membership. | Campground, Dispersed or Backcountry only together with the facility's own overnight campsite records. Otherwise it is shown as evidence only. |
+| Overnight campsite records | `ridb-sites.json` `t` and `ridb-amenities.json` `sites`, both from the RIDB full export (Campsites, TypeOfUse=Overnight), sha `13afd4dc...`, retrieved 2026-10-30. | Corroborates the structured type: evidence `ridb_facility_type_overnight_sites`. |
+| Descriptive wording | Own FacilityName, then the first sentence of the own FacilityDescription. | Classifies a facility whose structured type is `other`. The ledger stores `type_evidence` {kind, field, value, record id, date}. "Dispersed", "primitive" or "yellow post" in the wording gives Dispersed. |
 
-## Migration plan
+Structured facility type is not available offline. Missing: the raw `FacilityTypeDescription` and its RIDB `LastUpdatedDate` for each facility. Proposal: write `facility_type_description` and `facility_last_updated` in `convert_to_geojson` (`scripts/fetch_recreation_gov_data.py`), or read `Facilities.csv` from the export in `scripts/build_ridb_sites.py` and add an `ft` field to `ridb-sites.json`. It was not downloaded here. Missing classification is never shown as camping being unavailable. The withdrawal message says "Camping may still be available. It is not verified."
 
-1. Review the 45 type relabels in the table.
-2. Merge after 2.32.0, rebase, then replay with `node scripts/verify-osm-provenance.js --baseline=<main> --report=<out> --remerge` and `node scripts/build-search-index.js`.
-3. Run `node scripts/verify-tourism-type-admission.js --baseline=<main>`. It lists every delta against `proposal` and fails on anything else. It also fails on index bytes that do not rebuild identically, and on any admission, fee, access, hold or saved-link change.
-4. Bump the service-worker cache so offline devices drop old snapshots.
-5. If the owner later unpublishes any of the 25 or separates a surfaced element, add the old id to the kept listing's `legacy_ids` before publishing.
+## 1. The 45 relabels of revision 1
 
-Determinism: two replays gave identical snapshot digests. The rebuilt `search-index.json` is `52d657cb...e53f`. The verifier output digest is `e64305fa...e12f`.
+All 45 are Recreation.gov listings whose own structured type is `other`, and none has its own overnight campsite records.
+
+- 31 stay published on their own descriptive wording, with attribution: 30 Campground (29 from FacilityName, 1 from the description) and 1 Dispersed (`ridb:255262` Wolf Flats, "a dispersed, undeveloped camping area").
+- 14 are withdrawn, because no own source supports camping. Their earlier classification was borrowed.
+
+The proposal was not forced to 31 and 14. It came out that way under the rules.
+
+## 2. The 25 borrowed-tag-only listings
+
+- 14 have their own structured type `established` and their own overnight records:
+  - 11 stay Campground, for example `ridb:232662` (41 records) and `ridb:234761` (also USFS `CAMPGROUND`).
+  - 3 fire lookouts stay published as "Lookout, cabin or other lodging": `ridb:234149`, `ridb:234159`, `ridb:234185`. They are never called a campground and are not removed for being lookouts.
+- 11 have neither and are withdrawn.
+
+The withdrawal applies to campsite discovery only. Each withdrawn listing has an entry in `data/campsites/withdrawn.json` with id, aliases, point, own source link and the reason. A shared `#site=` link opens a notice that explains the unverified classification (Spanish and French included). The 4 restrictive-access holds are unchanged.
+
+## 3. The three absorbed OSM elements
+
+| Element | Host | Finding | Outcome |
+| --- | --- | --- | --- |
+| `osm:way:368988012` Lake Wedington (`caravan_site`, capacity 18) | `ridb:234586` | Same name, 26 m. A representation of the same facility. The host qualifies on its own (25 overnight records). | Stays an alias of `ridb:234586`. Not published separately. |
+| `osm:relation:13942065` River Forks | `ridb:247915` (withdrawn) | Same name, 130 m. The element's website is Hall County, so no Recreation.gov id, and identity is not verified. | Withheld with its host. It resolves through the host's `withdrawn.json` entry. Publishing it separately needs owner review. |
+| `osm:way:941066426` Daisy State Park | `ridb:247835` (withdrawn) | Same name, 94 m. No identifier. | Same as River Forks. |
+
+The same check found `osm:way:456269017` Don Carter State Park. It is already its own published listing in NC and stays published. Its GA host `ridb:247922` is withdrawn.
+
+## 4. The 43 L230 promotions
+
+| Rule | Count | Outcome |
+| --- | ---: | --- |
+| Exact identity, same facility id (`blm-facility:N` for `ridb:N`), promoted now | 12 | All stay published. 10 also have own overnight records. 2 (`ridb:262781`, `ridb:273310`) qualify only through the exact identity and show their own type, Campground. |
+| Exact identity, same facility id, only after the A guard | 2 | Published on own overnight records (`ridb:250031`, `ridb:252280`). |
+| Name within 300 m only, promoted now | 26 | 9 stay published on their own structured type and overnight records, for example `ridb:232421` (also USFS `CAMPGROUND`), `ridb:233178` Shaw House (lodging). 17 are withdrawn. |
+| Name within 300 m only, only after the A guard | 3 | 1 published on own evidence (`ridb:233931`). 2 withdrawn (`ridb:244321`, `ridb:249674`). |
+
+12 + 2 + 26 + 3 = 43. All 43 are reconciled per record in the ledger. Every name-only promoter stays an alias, so its identity merge is kept apart from classification. `ridb:232162` Trout Pond is the one name-only case whose own RIDB description links the same Forest Service record id (`recid=73999`). It is published on its own records and does not need that link.
+
+## 5. Count reconciliation with the 2.32.0 audit
+
+Both counts come from the same baseline. `count_reconciliation` in the ledger has the ids.
+
+- **Inherited tourism, 592 against 667.**
+  - 2.32.0 counts a published canonical record whose `tourism` differs from its own row: 592.
+  - Revision 1 counted a listing if any of its ids, alias included, has a snapshot row with tourism it does not own: 667 = the 592 plus 75 more.
+  - Of the 75, 69 have a canonical record that carries its own tag, while an alias row inherited one (for example `osm:way:160222816`). The other 6 have a canonical record with no tourism at all (for example `ridb:265238`).
+  - Snapshot rows affected: 703.
+- **Borrowed type, 98 against 2.** These are different layers.
+  - 2.32.0 compares the published type with the host's own record normalized alone: 98 (other to established 92, other to dispersed 6).
+  - By cause: 57 come from the inherited tag making L151 default to Campground (for example `ridb:243195`), 39 from L230 copying the promoter's type (for example `ridb:243218`), and 2 from the snapshot merge (`ridb:10076131`, `ridb:248261`, the revision 1 count).
+  - Of the 39 index-layer cases, 38 are group C and 1 is `ridb:255118`, the same facility id as `blm-facility:255118`.
+  - The candidate applies the policy at all three.
+- **L230 promotion:** 38 now in both audits. 43 includes the 5 that depend on it only after the A guard.
+- **Website-linked members.**
+  - Rule: an exact identity holds only when the absorbed element's own `website` names a Recreation.gov facility id equal to the host's (`/camping/campgrounds/N`, `/camping/poi/N` or `facilityId=N`).
+  - A legacy `parkId` or a slug URL is not exact. A website alone never classifies.
+  - Measured: 51 hosts have a recreation.gov member website. 44 are exact, 6 have a legacy parkId only, and 1 has no id.
+  - The 18 in the 2.32.0 doc are the subset that loses rig data (rig tags yes). I count 22 exact or no-id hosts with such tags, 21 of them exact.
+  - The 2.32.0 doc gives no id list, so the 18 could not be matched id for id. All 51 are in the ledger as group W with their basis. This exact-identity rule does not change any rig data here.
+
+## Rig keys
+
+Rig keys (`tents`, `caravans`, `motorhome`) belong to 2.32.0. They are read exactly as before: the old "host holds a campsite tag" test now reads that tag from the member's attributed evidence (`kt_rig_osm`). The verifier fails on any change in the rig metadata `m.r`.
+
+## Identity and contributions
+
+- All 36,290 baseline ids and aliases resolve to the same listing, or to a `withdrawn.json` entry. 0 move host.
+- Browser runtime identity (data-loader.js L182) is reported per record: all states, reversed order, and every order of the record's own states. Records with `depends_on_load_order` are listed in the ledger. They wait on fix/deterministic-browser-identity, which lands before this candidate deploys. L182 is not changed here.
+- Contributions: production reports 0 published reviews, so 0 observations and 0 photos.
+- Not inspected: pending and rejected reviews, pending photos, `api/submit.php` corrections, permission observations, external bookmarks and shared links. Withdrawn ids stay resolvable for that reason.
+
+## Rebuild and verification
+
+```
+bash scripts/tourism-type-admission/run-all.sh <origin/main checkout> <out>
+```
+
+This replays every state merge, rebuilds the index (identity hints seeded from the released index), writes `withdrawn.json` and the ledger, rebuilds a second time and compares digests, then runs `scripts/verify-tourism-type-admission.js`.
+
+The verifier fails on any snapshot, index or catalogue difference not listed in the ledger, and on any change to the following: fee, access, holds, coordinates, aliases, rig metadata, sidecars or raw inputs. It also fails on a withdrawal without a legacy entry, or an index that does not rebuild byte for byte.
 
 ## Open questions for the owner
 
-1. The 25 listings whose only campsite tag is borrowed: unpublish, keep, or admit on the Recreation.gov record itself? 14 have own type `established`. 3 are lookouts (`ridb:234149`, `ridb:234159`, `ridb:234185`).
-2. If any are unpublished, should the 3 absorbed elements publish under their own ids (with the ridb id kept as an alias), or stay absorbed?
-3. Is L230 promotion acceptable?
-   - 12 cases rest on the same facility id.
-   - 26 rest only on a name and 300 m match with a Forest Service record.
-   - Should the promoter's type keep overwriting `other`?
-4. Should the snapshot merge stop copying `tourism` altogether? This is not done here, to stay clear of the rig-key change.
-5. L182: give the browser merge the index's identity hints, as a separate change.
-
-## Tests
-
-- `npm test`: 459 of 459 pass, including the new `tests/tourism-type-admission.test.js` (8 tests).
-- `npm run test:python`: 363 tests OK, 9 skipped.
-- Browser specs: features, discovery, saved-stops, fee-evidence, amenity-evidence, usfs-site-amenities, ridb-amenities, locale, routes and app give 61 passed and 1 failed. The failure is the known `app.spec.js` mobile map height (493 vs >500).
-- `node scripts/verify-tourism-type-admission.js --baseline=<origin/main>`:
-  - 47 listed deltas: 45 index type labels and 2 snapshot type fields.
-  - 0 unexpected deltas, 36,290 saved ids and aliases checked, access holds 4 to 4.
-  - A deliberate unlisted edit makes it fail.
+1. Approve the 31 withdrawals listed in `withdrawn.json`, or keep any with wording evidence the rules do not accept.
+2. Should River Forks and Daisy State Park publish as their own OSM listings after identity review?
+3. Approve the new type "Lookout, cabin or other lodging" (10 listings).
+4. Add raw `FacilityTypeDescription` and `LastUpdatedDate` to the RIDB import, as proposed above.
+5. Is the website exact-identity rule acceptable for 2.32.0 rig ownership?
