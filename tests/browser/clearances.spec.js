@@ -32,7 +32,8 @@ async function setup(page,context,{rig=ft(13,6),zoom=15,tamper=false,reports=[]}
   await page.route('**/data/campsites/index.json',r=>json(r,{states:[],total_sites:0}));
   await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
   await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:1,facilities:{}}));
-  await page.addInitScript(({zoom,p})=>{localStorage.setItem('kt_last_position',JSON.stringify({lat:40.001,lng:-104.999,zoom}));if(p)localStorage.setItem('kt_rig_profile_v1',JSON.stringify(p));},{zoom,p:rig?profile(rig):null});
+  // Seed once per tab, so a reload keeps the profile the test changed.
+  await page.addInitScript(({zoom,p})=>{if(sessionStorage.getItem('kt-test-seeded'))return;sessionStorage.setItem('kt-test-seeded','1');localStorage.setItem('kt_last_position',JSON.stringify({lat:40.001,lng:-104.999,zoom}));if(p)localStorage.setItem('kt_rig_profile_v1',JSON.stringify(p));},{zoom,p:rig?profile(rig):null});
   await page.goto('/');await page.waitForFunction(()=>window.KampTrailClearances&&window.map);return {calls,errors};
 }
 async function show(page){
