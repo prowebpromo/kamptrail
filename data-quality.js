@@ -88,6 +88,72 @@
     for (const e of list(memberEvidence)) if (e && OSM_ELEMENT.test(e.source_record_id || '')) add(e);
     return [...records.values()].sort((a, b) => a.source_record_id < b.source_record_id ? -1 : a.source_record_id > b.source_record_id ? 1 : 0).slice(0, MAX_AMENITY_MEMBERS);
   }
+  // Rig suitability ownership (2.32.0). The same key set guards snapshot merging in scripts/merge_campsite_data.js.
+  // tents, caravans and motorhome are read only from the listing's own OSM element. Other elements' rig tags,
+  // and other records' rig lists, are kept as attributed member evidence and never used.
+  const OSM_RIG_TAG = /^(?:tents|caravans|motorhome|capacity|backcountry|group_only|static_caravans|horse|maxlength|maxtents)(?::|$)/;
+  const RIG_CATEGORIES = {tent:'tents', trailer:'caravans', rv:'motorhome'};
+  function rigMembers(previous, memberEvidence, ownId) {
+    const records = new Map(), list = v => Array.isArray(v) ? v : [];
+    const add = r => {
+      if (!r || typeof r.source_record_id !== 'string' || r.source_record_id === ownId || r.source_record_id.length > 240 || !r.fields || typeof r.fields !== 'object') return;
+      const fields = {};
+      for (const key of Object.keys(r.fields).sort()) if ((OSM_RIG_TAG.test(key) || key === 'rig_friendly') && r.fields[key] != null && r.fields[key] !== '') fields[key] = String(r.fields[key]).slice(0, 200);
+      if (!Object.keys(fields).length || records.has(r.source_record_id)) return;
+      records.set(r.source_record_id, {source_record_id:r.source_record_id, source:typeof r.source === 'string' ? r.source.slice(0, 160) : null, source_url:evidenceURL(r.source_url), retrieved_at:evidenceDate(r.retrieved_at), source_updated_at:evidenceDate(r.source_updated_at), fields});
+    };
+    list(previous).forEach(add);
+    for (const e of list(memberEvidence)) if (e && OSM_ELEMENT.test(e.source_record_id || '')) add(e);
+    return [...records.values()].sort((a, b) => a.source_record_id < b.source_record_id ? -1 : a.source_record_id > b.source_record_id ? 1 : 0).slice(0, MAX_AMENITY_MEMBERS);
+  }
+  // A merged record's own rig observation, kept as member evidence on the retained listing.
+  function ownRigObservation(q) {
+    if (q.osm_rig_tags) return {source_record_id:q.id, source:'OpenStreetMap contributors', source_url:q.source_url, retrieved_at:q.source_retrieved_at, fields:q.osm_rig_tags};
+    if (q.rig_record && q.rig_friendly?.length) return {source_record_id:q.id, source:q.rig_record.source, retrieved_at:q.rig_record.retrieved_at, fields:{rig_friendly:q.rig_friendly.join(';')}};
+    return null;
+  }
+  // Rig evidence for one listing: its own OSM element, its own record's list and, as a check only, its own
+  // Recreation.gov campsite records. Recreation.gov never adds a category. It can only contradict an own tag.
+  function rigEvidence(p) {
+    const categories = Object.fromEntries(Object.keys(RIG_CATEGORIES).map(c => [c, {positive:[], negative:[], other:[], conflict:[], status:'unknown'}]));
+    const members = Array.isArray(p?.rig_members) ? p.rig_members : [];
+    if (!p) return {state:'no_source', categories, members};
+    const own = p.osm_rig_tags && OSM_ELEMENT.test(p.id) ? p.osm_rig_tags : null;
+    const fromTags = !!p.osm_rig_tags || Object.hasOwn(p, 'rig_record');
+    let any = false;
+    if (own) for (const [c, key] of Object.entries(RIG_CATEGORIES)) {
+      if (own[key] == null) continue;
+      any = true;
+      const v = String(own[key]).trim().toLowerCase(), ref = {source:'osm', record:p.id, key, value:String(own[key]), retrieved:evidenceDate(p.source_retrieved_at)};
+      categories[c][v === 'yes' ? 'positive' : v === 'no' ? 'negative' : 'other'].push(ref);
+    }
+    const listed = Array.isArray(p.rig_friendly) ? p.rig_friendly : [];
+    if (p.rig_record) for (const c of listed) if (categories[c]) {any = true; categories[c].positive.push({source:'record', label:p.rig_record.source, record:p.id, retrieved:p.rig_record.retrieved_at || null});}
+    // An index row carries only its published categories (no evidence fields). They stand as given.
+    if (!fromTags) for (const c of listed) if (categories[c] && !categories[c].positive.length) {any = true; categories[c].positive.push({source:'index', record:p.id});}
+    // Recreation.gov campsite records with RV-type equipment counts. Zero RV-type sites of a non-zero total
+    // contradicts an own trailer or motorhome yes. It is shown as a conflict and neither value is picked.
+    const check = p.facility_id != null ? {fid:String(p.facility_id), t:p.site_count, r:p.rv_sites} : p.ridb_rig_check;
+    const total = Number.isInteger(check?.t) ? check.t : 0, rv = Number.isInteger(check?.r) ? check.r : 0;
+    if (own && total > 0) for (const c of ['trailer', 'rv']) {
+      if (categories[c].positive.some(r => r.source === 'osm') && rv === 0) categories[c].conflict.push({source:'ridb', record:'ridb:' + check.fid, count:rv, total});
+    }
+    for (const x of Object.values(categories)) {
+      x.status = x.conflict.length || (x.positive.length && x.negative.length) ? 'conflict' : x.positive.length ? 'present' : x.negative.length ? 'absent' : x.other.length ? 'unrecognized' : 'unknown';
+    }
+    return {state:any ? 'evidence' : 'no_source', categories, members};
+  }
+  // Rig categories a listing matches in filters: present evidence only. A conflict never matches.
+  function rigFilterSet(p) {
+    const e = rigEvidence(p);
+    return Object.keys(RIG_CATEGORIES).filter(c => e.categories[c].status === 'present');
+  }
+  const rigMatches = (p, category) => rigFilterSet(p).includes(category);
+  // Plain-text rig line, as the popup states it. Used by the published fixture.
+  function rigLine(p) {
+    const e = rigEvidence(p), labels = {tent:'Tents', trailer:'Trailers and caravans', rv:'RV'}, status = {present:'reported', absent:'source says no', conflict:'sources disagree', unrecognized:'value not recognized'};
+    return Object.keys(RIG_CATEGORIES).filter(c => e.categories[c].status !== 'unknown').map(c => labels[c] + ': ' + status[e.categories[c].status]).join('; ');
+  }
   // A merged record's own amenity observation, kept as member evidence on the retained listing.
   function ownAmenityObservation(q) {
     if (q.osm_amenity_tags) return {source_record_id:q.id, source:'OpenStreetMap contributors', source_url:q.source_url, retrieved_at:q.source_retrieved_at, fields:q.osm_amenity_tags};
@@ -173,13 +239,23 @@
     } else if (!p.amenity_record) {p.amenities = []; p.amenity_negatives = [];}
     // Observations from other merged elements stay attributed to those elements and are never used here.
     p.amenity_members = amenityMembers(raw._kt_normalized ? raw.amenity_members : null, raw.member_evidence, p.id);
-    p.rig_friendly = !legacyRIDB && Array.isArray(raw.rig_friendly) ? [...new Set(raw.rig_friendly.filter(v => typeof v === 'string').map(v => v === 'RV' ? 'rv' : v))] : [];
-    if (osm) {
-      if (raw.tents === 'yes') p.rig_friendly.push('tent');
-      if (raw.caravans === 'yes') p.rig_friendly.push('trailer');
-      if (raw.motorhome === 'yes') p.rig_friendly.push('rv');
-      p.rig_friendly = [...new Set(p.rig_friendly)];
+    // Rig ownership (2.32.0). tents, caravans and motorhome count only on the listing's own OSM element.
+    // A host that inherited tourism=* or a rig tag from an absorbed element is not that element.
+    p.osm_rig_tags = null;
+    if (ownOsm) {
+      const tags = {};
+      for (const key of Object.keys(raw).sort()) if (Object.values(RIG_CATEGORIES).includes(key) && raw[key] != null && raw[key] !== '') tags[key] = String(raw[key]).slice(0, 200);
+      if (Object.keys(tags).length) p.osm_rig_tags = tags;
+      p.rig_friendly = Object.entries(RIG_CATEGORIES).filter(([, key]) => String(raw[key]).toLowerCase() === 'yes').map(([c]) => c);
+      p.rig_negatives = Object.entries(RIG_CATEGORIES).filter(([, key]) => String(raw[key]).toLowerCase() === 'no').map(([c]) => c);
+      delete p.rig_record;
+    } else {
+      // A non-OSM record's own rig list (an agency record) keeps its own source attribution.
+      p.rig_friendly = !legacyRIDB && Array.isArray(raw.rig_friendly) ? [...new Set(raw.rig_friendly.filter(v => typeof v === 'string').map(v => v === 'RV' ? 'rv' : v))] : [];
+      p.rig_negatives = [];
+      p.rig_record = p.rig_friendly.length ? {source:(raw._kt_normalized && raw.rig_record?.source) || sources[0] || p.id.split(':')[0], source_record_id:p.id, retrieved_at:evidenceDate(raw.source_retrieved_at)} : null;
     }
+    p.rig_members = rigMembers(raw._kt_normalized ? raw.rig_members : null, raw.member_evidence, p.id);
     p.road_difficulty = !legacyRIDB && typeof raw.road_difficulty === 'string' ? raw.road_difficulty : null;
     p.rating = !legacyRIDB && validNumber(raw.rating) && raw.rating >= 0 && raw.rating <= 5 ? raw.rating : null;
     p.reviews_count = p.rating !== null && Number.isInteger(raw.reviews_count) && raw.reviews_count >= 0 ? raw.reviews_count : 0;
@@ -243,7 +319,9 @@
       p.amenity_negatives = [...new Set([...(p.amenity_negatives || []), ...(q.amenity_negatives || [])])];
       p.amenities = [...new Set([...p.amenities,...q.amenities])].filter(a => !p.amenity_negatives.includes(a));
     } else p.amenity_members = amenityMembers([...(p.amenity_members || []), ...[ownAmenityObservation(q)].filter(Boolean), ...(q.amenity_members || [])], null, p.id);
-    p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];
+    // Rig ownership (2.32.0): another record's rig values never become this listing's own.
+    if (p.id === q.id) p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];
+    else p.rig_members = rigMembers([...(p.rig_members || []), ...[ownRigObservation(q)].filter(Boolean), ...(q.rig_members || [])], null, p.id);
     // Repeated state/source rows never add counts to exact facility summaries.
     if(checkedRIDBAmenities(q.ridb_amenity_evidence)){
       const a=p.ridb_amenity_evidence,b=q.ridb_amenity_evidence;
@@ -546,8 +624,20 @@
     return {included:false, reason:{unknown:'no_statement_for_this_amenity', absent:'explicit_negative', conflict:'sources_disagree', unrecognized:'unrecognized_value'}[x.status]};
   }
   // Attach Recreation.gov site-level summaries (RV lengths, hookups) to a campground.
+  // An OSM-hosted listing joined to a Recreation.gov facility by an exact ridb: alias keeps that facility's
+  // RV-type site count beside its own rig tags, so a disagreement shows as a conflict (2.32.0). It adds no category.
+  function attachRigCheck(feature, table) {
+    const p = feature && feature.properties;
+    if (!p || p.facility_id != null || !table || !p.osm_rig_tags || !OSM_ELEMENT.test(p.id)) return feature;
+    for (const fid of ridbFacilityIds(p).sort()) {
+      const rec = table[fid];
+      if (rec && typeof rec === 'object' && Number.isInteger(rec.t) && rec.t > 0 && Number.isInteger(rec.r)) {p.ridb_rig_check = {fid, t:rec.t, r:rec.r}; break;}
+    }
+    return feature;
+  }
   function attachSiteDetails(feature, table) {
     const p = feature && feature.properties;
+    if (p && p.facility_id == null) return attachRigCheck(feature, table);
     if (!p || p.facility_id == null || !table) return feature;
     const rec = table[String(p.facility_id)];
     if (!rec || typeof rec !== 'object') return feature;
@@ -646,7 +736,7 @@
       if(elevation.active){const e=elevationInfo(site);if(!elevation.valid||!e||(elevation.min!==null&&e.m<elevation.min)||(elevation.max!==null&&e.m>elevation.max))return false;}
       if (filters.cost && filters.cost !== 'all' && p.fee_status !== filters.cost) return false;
       if (filters.type && filters.type !== 'all' && p.type !== filters.type) return false;
-      if (filters.rigSize && filters.rigSize !== 'all' && !p.rig_friendly.includes(filters.rigSize)) return false;
+      if (filters.rigSize && filters.rigSize !== 'all' && !rigMatches(p, filters.rigSize)) return false;
       // No UI sets this. The bundled value is an unattributed surface label (paved, gravel, dirt), never visitor approach difficulty.
       if (filters.roadDifficulty && filters.roadDifficulty !== 'all' && p.road_difficulty !== filters.roadDifficulty) return false;
       if (Array.isArray(filters.amenities) && filters.amenities.length && !amenityMatches(p, filters.amenities, filters)) return false;
@@ -686,6 +776,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.33.0',FILTER_AMENITIES,OSM_AMENITY_TAG,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.33.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

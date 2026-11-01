@@ -21,7 +21,9 @@ function listingRow(feature, quality = DataQuality, states = []) {
   const amenity=quality.amenityFilterSets?quality.amenityFilterSets(p):{g:p.amenities||[],s:[]};
   if(amenity.g.length)m.a=amenity.g;
   if(amenity.s.length)m.s=amenity.s;
-  if(p.rig_friendly?.length)m.r=p.rig_friendly;
+  // r: rig categories with present own-source evidence, exactly what the Tents and Trailers filters match (2.34.0).
+  const rig=quality.rigFilterSet?quality.rigFilterSet(p):(p.rig_friendly||[]);
+  if(rig.length)m.r=rig;
   if(p.road_difficulty)m.d=p.road_difficulty;
   if(typeof p.open_status==='string'&&p.open_status.trim()&&p.open_status.trim().toLowerCase()!=='none')m.o=p.open_status.trim().toLowerCase().slice(0,80);
   if(p.rating!==null)m.q=p.rating;
@@ -60,6 +62,8 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);
+    // Rig conflict check for an OSM host joined to a Recreation.gov facility by alias, as the map attaches it.
+    if(siteDetails&&quality.attachRigCheck)quality.attachRigCheck(feature,siteDetails);
     const states = new Set();
     for (const id of featureIds(feature)) {
       for (const state of stateById.get(id) || []) states.add(state);
