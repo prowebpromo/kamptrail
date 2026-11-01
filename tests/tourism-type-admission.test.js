@@ -95,14 +95,18 @@ test('L233: a name and distance match never classifies or publishes another reco
   assert.ok(out[0].properties.legacy_ids.includes('usfs:3'),'the identity merge is kept separately');
   assert.equal(DQ.cleanAndDedupeGeoJSON({features:[host,agency]}).features.length,0);
 });
-test('L233: the same facility id published by an agency is an exact identity and may classify, never retype',()=>{
+test('L233: the same facility id published by an agency is an exact identity and may classify, never lend its type',()=>{
   const host=DQ.normalizeFeature(pt({...ridb,type:'other',name:'Honeydew Creek'}),{siteDetails:{}});
   const blm=DQ.normalizeFeature(pt({id:'blm-facility:1',facility_id:'1',name:'Honeydew Creek',type:'established',camping_activity:'BLM camping facility',source:'Bureau of Land Management',schema_version:3}));
   const out=DQ.cleanAndDedupeGeoJSON({features:[host,blm]}).features;
   assert.equal(out.length,1);
   assert.equal(out[0].properties.camping_classification,'campsite');
   assert.equal(out[0].properties.camping_evidence_record_id,'blm-facility:1');
-  assert.equal(out[0].properties.type,'other');
+  assert.equal(out[0].properties.type,'other','own type other stays other');
+  // An own Recreation.gov campground type shows once camping is confirmed by the exact identity.
+  const own=DQ.normalizeFeature(pt({...ridb,type:'established',name:'Honeydew Creek'}),{siteDetails:{}});
+  const out2=DQ.cleanAndDedupeGeoJSON({features:[own,blm]}).features;
+  assert.equal(out2[0].properties.type,'established');assert.equal(out2[0].properties.type_evidence.confirmed_by,'blm-facility:1');
 });
 test('ledger: every proposed change is listed, attributed and flagged for separate review',()=>{
   const pkg=JSON.parse(fs.readFileSync(path.join(__dirname,'../docs/candidates/tourism-type-admission.json'),'utf8'));
