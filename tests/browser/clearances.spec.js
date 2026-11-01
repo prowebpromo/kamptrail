@@ -22,7 +22,7 @@ function dataset(list){
 }
 const profile=heightMm=>({format:'kamptrail-rig-profile',schemaVersion:1,id:'50c56c9d-7bbc-4d5e-8d4b-84049e903313',name:'Test rig',createdAt:'2026-10-30T12:00:00.000Z',updatedAt:'2026-10-30T12:00:00.000Z',displayUnits:{length:'ft',weight:'lb'},rig:{category:'all',travelLengthMm:null,campsiteFitLengthMm:null,heightMm,widthMm:null,weightKg:null},campsite:{cost:'all',type:'all',amenities:[],hookups:[],includeUnknownLength:false}});
 async function setup(page,context,{rig=ft(13,6),zoom=15,tamper=false,reports=[]}={}){
-  const calls={manifest:0,tiles:0,reports:0},errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const calls={manifest:0,tiles:0,reports:0,ri:0},errors=[];page.on('request',r=>{if(r.url().includes('/data/clearances/RI.json'))calls.ri++;});page.on('pageerror',e=>errors.push(e.message));
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   const {tile,manifest}=dataset([low,suspect]);
   await page.route('**/data/clearances/index.json',r=>{calls.manifest++;return r.fulfill({contentType:'application/json',body:JSON.stringify(manifest)});});
@@ -48,7 +48,7 @@ for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',wi
     expect(calls.manifest+calls.tiles).toBe(0);await show(page);
     const control=page.locator('.kt-clearance-control');
     await expect(control).toContainText('2 clearance candidates in view: 1 conflict with your rig height, 1 need checking or unknown');
-    await expect(control).toContainText('Unmapped hazards are unknown');await expect(control).toContainText('Not in this dataset: RI');
+    await expect(control).toContainText('Unmapped hazards are unknown');await expect(control).not.toContainText('Rhode Island');expect(calls.ri).toBe(0);// RI.json is read only for views that touch RI
     await expect(control.locator('.kt-odbl')).toContainText('Open Database Licence');
     await expect(control.getByRole('link',{name:'OpenStreetMap copyright and licence'})).toHaveAttribute('href','https://www.openstreetmap.org/copyright');
     await expect(page.locator('.leaflet-control-attribution')).toContainText('© OpenStreetMap contributors, ODbL');
