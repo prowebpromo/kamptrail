@@ -31,10 +31,17 @@ const brAll=ord(DQn,NI,NI.collections),brRev=ord(DQn,NI,[...NI.collections].reve
 const byState=new Map(NI.collections.map(c=>[c.state,c])),cache=new Map();
 const perms=a=>a.length<=1?[a]:a.flatMap((x,i)=>perms([...a.slice(0,i),...a.slice(i+1)]).map(p=>[x,...p]));
 const orders=(states,id)=>{const o={};for(const p of perms(states)){const k=p.join('>');if(!cache.has(k))cache.set(k,ord(DQn,NI,p.map(s=>byState.get(s))));o[k]=cache.get(k).get(id)??null;}return o;};
+// Per snapshot row admission (normalizeFeature returns a record or null), baseline code and data versus candidate.
+const rowAdmission=new Map();
+{const sd=BI.details,ad=BI.ridb,DQo=DQb,DQc=DQn;
+ BI.collections.forEach((c,ci)=>{const nc=NI.collections[ci];c.geojson.features.forEach((f,i)=>{const g=nc.geojson.features[i];if(!g||g.properties.id!==f.properties.id)return;
+   const a=!!DQo.normalizeFeature(f,{state:c.state}),b=!!DQc.normalizeFeature(g,{state:c.state,siteDetails:sd,amenityDetails:ad});
+   if(a!==b){const l=rowAdmission.get(f.properties.id)||[];l.push({state:c.state,from:a?'admitted':'rejected',to:b?'admitted':'rejected'});rowAdmission.set(f.properties.id,l);}});});}
 // Fields compared per listing. Every difference becomes a listed change.
 const FIELDS=['type','camping_classification','fee_status','cost','access','access_status','name'];
 const listing=f=>f&&{type:f.properties.type,camping_classification:f.properties.camping_classification,camping_evidence:f.properties.camping_evidence,fee_status:f.properties.fee_status,cost:f.properties.cost,access:f.properties.access,access_status:f.properties.access_status,name:f.properties.name,coordinates:f.geometry.coordinates,legacy_ids:[...(f.properties.legacy_ids||[])].filter(x=>x!==f.properties.id).sort()};
 const all=new Set([...v1.affected,...web.map(w=>w.host_published_as).filter(Boolean),...v1.surfaced]);
+for(const id of rowAdmission.keys())all.add(id);
 for(const [id,f] of B){const n=N.get(id);if(!n){all.add(id);continue;}const a=listing(f),b=listing(n);if(JSON.stringify(a)!==JSON.stringify(b))all.add(id);}
 for(const id of N.keys())if(!B.has(id))all.add(id);
 const groupsOf=id=>[v1.A.includes(id)&&'A',v1.B.includes(id)&&'B',v1.C.includes(id)&&'C',web.some(w=>w.host_published_as===id)&&'W',v1.surfaced.includes(id)&&'OSM3'].filter(Boolean);
@@ -54,12 +61,13 @@ for(const id of [...all].sort()){
   if(!b&&!n){ // Not a listing on either side (an absorbed element that stays absorbed).
     const host=RN.get(id)??null,hb=RB.get(id)??null;
     records.push({canonical_id:id,name:null,states:[],groups:groupsOf(id),own_source_evidence:{note:'absorbed element, not a listing before or after'},borrowed_evidence:[],website_identity:null,
-      identity_basis:{kind:'alias',record_id:host},current:{status:hb?`alias of ${hb}`:'not published',type:null},proposed:{status:host?`alias of ${host}`:'not published',type:null},
-      changes:hb!==host?[{field:'alias_host',from:hb,to:host,separate_review:true}]:[],
+      identity_basis:{kind:'alias',record_id:host},current:{status:hb?`alias of ${hb}`:'not published',type:null},proposed:{status:host?`alias of ${host}`:(withdrawn.has(id)||[...withdrawn.values()].some(w=>w.legacy_ids.includes(id))?'withheld with its withdrawn host':'not published'),type:null},
+      changes:[...(hb!==host?[{field:'alias_host',from:hb,to:host,separate_review:true}]:[]),...(rowAdmission.get(id)||[]).map(r=>({field:'row_admission',state:r.state,from:r.from,to:r.to,separate_review:true}))],
       identity:{index_id_before:hb,index_id_after:host,legacy_ids_before:[],legacy_ids_after:[],browser_all_states:brAll.get(id)??null,browser_reverse:brRev.get(id)??null,browser_own_states_every_order:{},depends_on_load_order:(brAll.get(id)??null)!==(brRev.get(id)??null),depends_on_deterministic_identity_package:(brAll.get(id)??null)!==(brRev.get(id)??null),saved_link_resolves_after:!!host||withdrawn.has(id)},
       contributions:{published_reviews:0,published_observations:0,published_photos:0}});
     continue;
   }
+  for(const r of rowAdmission.get(id)||[])changes.push({field:'row_admission',state:r.state,from:r.from,to:r.to,note:'snapshot row normalization (own-record classification). The listing outcome is in the other changes.',separate_review:true});
   const p=(n||b).properties;
   const st=ni?.states||bi?.states||[];
   const lo=st.length>1?orders(st,id):{};

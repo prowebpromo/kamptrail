@@ -51,7 +51,7 @@ function fullCatalogue(directory,quality){
    for(const e of own){assert.ok((p.source_ids||[]).includes(e.source_record_id),p.id+' donor is not a member');assert.ok(!e.retrieved_at||Number.isFinite(Date.parse(e.retrieved_at)));}
    if(p.access_hold)holds.push({state,id:p.id,...p.access_hold});
    const n0=oldDQ.normalizeFeature(g,{siteDetails:sd,amenityDetails:ad}),n1=DQ.normalizeFeature(f,{siteDetails:sd,amenityDetails:ad}),v0=n0?.properties.access_status||'rejected',v1=n1?.properties.access_status||'rejected';
-   if(!ledger||!(listed(p.id,'publication')||listed(p.id,'camping_classification')))assert.equal(!!n0,!!n1,p.id+' admission');if(v0!==v1)accessChanges.push({state,id:p.id,before:v0,after:v1});
+   if(!ledger||!listed(p.id,'row_admission'))assert.equal(!!n0,!!n1,p.id+' admission');if(v0!==v1)accessChanges.push({state,id:p.id,before:v0,after:v1});
   }
  }
  const catalogue=fullCatalogue(dir,DQ);if(!ledger)assert.equal(catalogue.length,A.size);

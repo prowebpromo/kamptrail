@@ -118,6 +118,12 @@
     const sources = [...new Set([...(Array.isArray(raw.sources) ? raw.sources : []), raw.source, raw.provider].filter(Boolean).map(String))];
     const ridb = raw.facility_id != null || sources.some(s => /recreation\.gov|\bridb\b/i.test(s));
     const osm = raw.osm_id != null || raw.tourism === 'camp_site' || raw.tourism === 'caravan_site';
+    // Rig keys belong to the separate rig-ownership change (2.32.0). Their reading is left exactly as before.
+    // The old reading treated a host that held an inherited campsite tag as OSM for rig keys. That tag now sits on
+    // its member's attributed evidence, so the same test reads it there. Rig ownership itself is the 2.32.0 change.
+    const campsiteTag = v => v === 'camp_site' || v === 'caravan_site';
+    const rigOsm = osm || campsiteTag(given.tourism) || (Array.isArray(given.member_evidence) && given.member_evidence.some(e => campsiteTag(e?.fields?.tourism)))
+      || (given._kt_normalized && given.kt_rig_osm === true);
     // Own overnight campsite records (ridb-sites.json). An in-memory re-normalization reuses the attached count.
     // Both Recreation.gov sidecars count the facility's own TypeOfUse=Overnight campsite records.
     const fid = raw.facility_id != null ? String(raw.facility_id) : null;
@@ -129,6 +135,7 @@
     const legacyRIDB = ridb && !(Number(raw.schema_version) >= 3) && !raw._kt_normalized;
     // Snapshot membership is a loading hint, not evidence of a site's state.
     const p = {...raw, ...classification, name, sources, state: raw.state || raw['addr:state'] || null};
+    if (rigOsm) p.kt_rig_osm = true; else delete p.kt_rig_osm;
     // Kept so re-normalization (index dedupe, browser state merges) reaches the same classification.
     if (overnightSites > 0) p.ridb_overnight_sites = overnightSites; else delete p.ridb_overnight_sites;
     // The Recreation.gov record's own import type, kept apart from the listing type shown.
@@ -213,7 +220,7 @@
     // Observations from other merged elements stay attributed to those elements and are never used here.
     p.amenity_members = amenityMembers(raw._kt_normalized ? raw.amenity_members : null, raw.member_evidence, p.id);
     p.rig_friendly = !legacyRIDB && Array.isArray(raw.rig_friendly) ? [...new Set(raw.rig_friendly.filter(v => typeof v === 'string').map(v => v === 'RV' ? 'rv' : v))] : [];
-    if (osm) {
+    if (rigOsm) {
       if (raw.tents === 'yes') p.rig_friendly.push('tent');
       if (raw.caravans === 'yes') p.rig_friendly.push('trailer');
       if (raw.motorhome === 'yes') p.rig_friendly.push('rv');
