@@ -304,6 +304,17 @@
   // A state's complete snapshot must support camping before another state's
   // previously loaded listings can enrich it. Keep original rows/order here:
   // returning locally merged rows would change cross-state dedupe geometry.
+  // Members of snapshot rows whose own record is not a classified campsite. Used across states, since one
+  // element can be a member in one state file and a row of its own in another.
+  function withheldMembers(features, options = {}) {
+    const out=new Set();
+    for (const raw of Array.isArray(features)?features:[]) {
+      const p=raw?.properties;if(!p||!Array.isArray(p.source_ids)||p.source_ids.length<2)continue;
+      const n=normalizeFeature(raw,options);
+      if(!n||n.properties.camping_classification!=='campsite')for(const id of p.source_ids)if(id!==p.id&&/^osm:/.test(id))out.add(id);
+    }
+    return out;
+  }
   function publicationCandidates(features, options = {}) {
     const candidates=(Array.isArray(features)?features:[]).map(raw=>({raw,feature:normalizeFeature(raw,options)})).filter(x=>x.feature);
     const published=cleanAndDedupeGeoJSON({features:candidates.map(x=>x.feature)},options).features;
@@ -349,7 +360,15 @@
     }
     // The public MVP lists evidence-supported camping locations only. Retain
     // unverified source records solely when an explicit diagnostic caller asks.
-    return {type:'FeatureCollection',features: options.includeUnverified ? features : features.filter(f => f.properties.camping_classification === 'campsite')};
+    if (options.includeUnverified) return {type:'FeatureCollection',features};
+    // An element absorbed into an unclassified host stays withheld with that host (tourism-type-admission
+    // candidate). It never publishes on its own because its host lost a borrowed classification. It needs its
+    // own admission and identity review. Elements with their own separate listing are unaffected.
+    const withheld=new Set();
+    for (const f of features) if (f.properties.camping_classification !== 'campsite') for (const id of f.properties.legacy_ids || []) if (id !== f.properties.id) withheld.add(id);
+    // Snapshot membership crosses state files: a host's own row (source_ids) withholds its members everywhere.
+    for (const id of options.withheldMembers || []) withheld.add(id);
+    return {type:'FeatureCollection',features:features.filter(f => f.properties.camping_classification === 'campsite' && !withheld.has(f.properties.id))};
   }
   const RIDB_AMENITY_URL='https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip';
   const RIDB_AMENITY_KEYS=['toilet','drinking_water','shower','dump','picnic_table','fire_fixture','grill','trash_collection','food_locker','tent_pad','grill_or_fire_ring'];
@@ -708,6 +727,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.31.0',FILTER_AMENITIES,OSM_AMENITY_TAG,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.31.0',FILTER_AMENITIES,OSM_AMENITY_TAG,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,withheldMembers,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

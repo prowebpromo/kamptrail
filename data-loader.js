@@ -175,6 +175,8 @@
   }
   function mergeLoaded(features,stateCode) {
     const options={state:stateCode,...(state.siteDetails?{siteDetails:state.siteDetails}:{}),...(state.amenityDetails?{amenityDetails:state.amenityDetails}:{})};
+    // Members of unclassified hosts stay withheld across loaded states (an element can be a member in one state and a row in another).
+    state.withheldMembers=new Set([...(state.withheldMembers||[]),...DataQuality.withheldMembers(features,options)]);options.withheldMembers=state.withheldMembers;
     const incoming=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options));
     incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));

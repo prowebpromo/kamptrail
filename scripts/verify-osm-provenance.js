@@ -21,7 +21,8 @@ function fullCatalogue(directory,quality){
   if(fs.existsSync(agency))features.push(...read(agency).features);
   const o={state,siteDetails:details,amenityDetails:read(path.join(directory,'ridb-amenities.json'))};for(const raw of quality.publicationCandidates(features,o)){const f=quality.normalizeFeature(raw,o);quality.attachSiteDetails(f,details);input.push(f);}
  }
- return quality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{siteDetails:details,amenityDetails:read(path.join(directory,'ridb-amenities.json'))}).features;
+ const ad=read(path.join(directory,'ridb-amenities.json')),wm=quality.withheldMembers?new Set(files.flatMap(file=>{const st=file.slice(0,2),fs_=read(path.join(directory,file)).features,ag=path.join(directory,'agency',st+'.geojson');if(fs.existsSync(ag))fs_.push(...read(ag).features);return [...quality.withheldMembers(fs_,{state:st,siteDetails:details,amenityDetails:ad})];})):undefined;
+ return quality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{siteDetails:details,amenityDetails:ad,withheldMembers:wm}).features;
 }
 (async()=>{
  const sourceHashes={};

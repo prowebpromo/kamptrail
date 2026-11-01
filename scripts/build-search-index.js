@@ -41,7 +41,9 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     }
   }
 
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})});
+  // Members of unclassified hosts stay withheld across state files.
+  const withheldMembers = quality.withheldMembers ? new Set(collections.flatMap(({state, geojson}) => [...quality.withheldMembers(geojson.features, {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})})])) : null;
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {}), ...(withheldMembers ? {withheldMembers} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);

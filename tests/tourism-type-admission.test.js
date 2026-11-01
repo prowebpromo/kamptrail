@@ -117,3 +117,14 @@ test('ledger: every proposed change is listed, attributed and flagged for separa
     assert.ok(r.identity.saved_link_resolves_after,r.canonical_id);
   }
 });
+test('an element absorbed by an unclassified host is never published because the host lost classification',()=>{
+  const host={...ridb,type:'other',name:'River Forks',source_ids:['ridb:1','osm:relation:5']};
+  const element={id:'osm:relation:5',osm_id:5,osm_type:'relation',tourism:'camp_site',name:'River Forks',source:'openstreetmap',schema_version:3};
+  const ga=[pt(host)],nc=[pt(element)];
+  const withheldMembers=new Set([...DQ.withheldMembers(ga,{siteDetails:{}}),...DQ.withheldMembers(nc,{})]);
+  assert.ok(withheldMembers.has('osm:relation:5'));
+  const out=DQ.cleanAndDedupeGeoJSON({features:[...DQ.publicationCandidates(ga,{siteDetails:{},withheldMembers}),...DQ.publicationCandidates(nc,{withheldMembers})].map(f=>DQ.normalizeFeature(f,{siteDetails:{}}))},{withheldMembers}).features;
+  assert.equal(out.length,0);
+  // The same element without an unclassified host still publishes on its own tag.
+  assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt(element)]}).features.length,1);
+});
