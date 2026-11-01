@@ -76,3 +76,23 @@ Not inspected (no access from this branch):
 - `npm run test:python`: pass.
 - Browser (`CHROMIUM_PATH` set to the installed Chromium): `tests/browser/identity.spec.js` passes 4/4 (the fourth: a 404 host file on a first visit, with wrong-merge and flip checks after each of 4 states, a saved stop and a correction keeping their ids, and convergence after the file arrives). It covers 4 loading orders and 2 delayed-response runs on real NC, TN, CA and NV data; every loaded listing's id and source-id set is checked against the index, along with popup claims and amenity and rig filter outcomes for the measured cases; a second offline visit served by the service worker cache, in the other order; and saved stops, share links, a review summary and a correction submitted through a legacy id. Across 16 related specs, 92 passed. After the fallback change: 8 specs including the new host-file-failure spec, 50 passed. The one other failure is the known `app.spec.js` mobile map height (493 vs >500).
 - `npm run build`: passes. `search-index.json` and `coordinate-index.json` are byte-identical to main, and the release contains `identity-hosts.json`.
+
+## Live acceptance (November 1, 2026)
+
+Result: **passed with no exceptions.** Checked on kamptrail.com against merge `16fcc1bb` (PR #153), search index `7f0d331a` (unchanged from 2.31.0). Every scenario compares all 33,370 index listings with the browser by canonical id and sorted source-id set. Scripts: `scripts/acceptance/live-2.33.0-identity-check.js` and `scripts/acceptance/live-2.33.0-saved-stops-check.js`. Raw output: `docs/acceptance/2.33.0-live-output.txt`.
+
+| Scenario | Differences from index | Wrong merges |
+|---|---|---|
+| Desktop, all states reversed, one at a time | 0 | 0 |
+| Desktop, random order (seed 7) | 0 | 0 |
+| Desktop, TX delayed 4 s, all states in one batch | 0 | 0 |
+| Mobile (390x844), random order (seed 424242) | 0 | 0 |
+| identity-hosts.json returns 404, desktop and mobile | 0 after the file loads | 0 |
+
+During the 404 fallback, 2,490 listings showed duplicate markers by design and 26 showed under another of their own ids. All 35,959 ids shown during the fallback opened the correct listing after the file loaded.
+
+A saved stop stored as `ridb:232479` kept that stored id across reloads in both NC>TN and TN>NC order and opened Cosby Campground (`osm:way:1107154601`) every time. A cached offline second visit with the service worker on, in reversed order, gave the same identity and the same toilet evidence as online.
+
+This closes the identity exception recorded for 2.31.0 (`docs/AMENITY_OWNERSHIP_2.31.0.md`).
+
+Before merge, a separate agent reviewed commit 1fa0a252 from a fresh checkout with its own whole-catalogue script and recommended merge. The merged head e8b6d4fd differs from it only by raising the CI job limit from 15 to 25 minutes.
