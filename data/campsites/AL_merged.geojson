@@ -933,11 +933,9 @@
         ]
       },
       "properties": {
-        "capacity": "21",
         "fixme": "the extent of this is a guess",
         "name": "Pine Glen Recreation Area",
         "operator": "United States Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/alabama/recreation/camping-cabins/recarea/?recid=30159",
         "id": "ridb:243219",
@@ -977,11 +975,13 @@
             "source_record_id": "osm:way:606829328",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "21",
               "charge": "3 USD/night",
               "drinking_water": "no",
               "fee": "yes",
               "internet_access": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
@@ -1843,9 +1843,7 @@
           "osm:node:2462387598",
           "osm:node:2462387602"
         ],
-        "backcountry": "yes",
         "drinking_water": "no",
-        "static_caravans": "no",
         "tents": "yes",
         "wheelchair": "no",
         "caravans": "no",
@@ -1870,12 +1868,15 @@
             "source_record_id": "osm:node:2462387598",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "drinking_water": "no",
               "fee": "yes",
               "internet_access": "no",
               "openfire": "yes",
               "picnic_table": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
             "source_updated_at": null,
@@ -2216,8 +2217,6 @@
           "osm:node:4431628900",
           "osm:node:4431628901"
         ],
-        "caravans": "yes",
-        "tents": "yes",
         "sources": [
           "openstreetmap"
         ],
@@ -2230,7 +2229,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4431628900",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:46:11Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4431628900"
+          }
+        ]
       }
     },
     {
@@ -7074,7 +7086,10 @@
             "source_record_id": "osm:node:13056873569",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
             "source_updated_at": null,
@@ -7438,11 +7453,8 @@
         "addr:postcode": "32564",
         "addr:state": "FL",
         "addr:street": "Deaton Bridge Road",
-        "capacity": "30",
-        "caravans": "yes",
         "fee": "yes",
         "name": "Blackwater River State Park Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 13317770830,
         "osm_type": "node",
@@ -7475,8 +7487,11 @@
             "source_record_id": "osm:way:495985131",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "30",
+              "caravans": "yes",
               "fee": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:46:11Z",
             "source_updated_at": null,

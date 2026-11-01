@@ -1,0 +1,4031 @@
+{
+ "version": 1,
+ "generated_from": {
+  "baseline_commit": "16fcc1bbd904b98358ce1d5bb557943c1067e6f0",
+  "output_digest": "66ee9f6a5b5c59a75f3bd0a896d965623ba31932e8cc618edca5d4da50668b4e"
+ },
+ "summary": {
+  "state_retries": [
+   {
+    "run": "default_batch",
+    "failed_first": [
+     "WA"
+    ],
+    "failed_after_retry": []
+   }
+  ],
+  "listings": 245,
+  "multi_state_listings": 40,
+  "scenarios": 84,
+  "affected_states": [
+   "AK",
+   "AL",
+   "AR",
+   "AZ",
+   "CA",
+   "CO",
+   "FL",
+   "GA",
+   "ID",
+   "IL",
+   "KY",
+   "MD",
+   "ME",
+   "MI",
+   "MN",
+   "MO",
+   "MT",
+   "NC",
+   "NJ",
+   "NM",
+   "NV",
+   "NY",
+   "OH",
+   "OR",
+   "PA",
+   "SD",
+   "TN",
+   "TX",
+   "UT",
+   "VA",
+   "WA",
+   "WI",
+   "WV",
+   "WY"
+  ],
+  "delayed_state": "ID",
+  "stable": 245,
+  "identity_unstable": [],
+  "rig_or_filter_unstable": [],
+  "fixture_mismatch": [],
+  "missing": [],
+  "browser_id_differs_from_index": []
+ },
+ "listings": [
+  {
+   "id": "osm:node:10025626978",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:10025626978"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:1060578769",
+   "states": [
+    "MN"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:1060578769"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:11810571792",
+   "states": [
+    "AK"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:11810571792"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:12671020366",
+   "states": [
+    "IL",
+    "MO"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:12671020366"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:12983070913",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:12983070913"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:13056873568",
+   "states": [
+    "AL"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:13056873568"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:13141822352",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:13141822352"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:13317770830",
+   "states": [
+    "AL",
+    "FL"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:13317770830"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:13378627667",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:13378627667"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:13393436072",
+   "states": [
+    "TN"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:13393436072"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:1596375040",
+   "states": [
+    "OR",
+    "WA"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:1596375040"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:1596375042",
+   "states": [
+    "OR",
+    "WA"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:1596375042"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:1611371103",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:1611371103"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:1621190105",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:1621190105"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:1827174025",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:1827174025"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:1922410822",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:1922410822"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:2332493731",
+   "states": [
+    "NM",
+    "TX"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:2332493731"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:2332493734",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:2332493734"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:2366027152",
+   "states": [
+    "NC",
+    "TN"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:2366027152"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:2918151787",
+   "states": [
+    "MI"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:2918151787"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:2951707170",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:2951707170"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:3202508524",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:3202508524"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:3387884027",
+   "states": [
+    "AL"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:3387884027"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:4345184689",
+   "states": [
+    "AR",
+    "MO"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:4345184689"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:4391442215",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:4391442215"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:4486938990",
+   "states": [
+    "MN",
+    "WI"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:node:4486938990"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:5673747195",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:5673747195"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:5788666453",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:5788666453"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:6496051705",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:6496051705"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:7418543226",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:7418543226"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:7711935108",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:7711935108"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:8417081500",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:8417081500"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:node:8828800470",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:node:8828800470"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:relation:21277840",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:relation:21277840"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:1190746264",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:1190746264"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:1300622137",
+   "states": [
+    "VA",
+    "WV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:1300622137"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:1319627962",
+   "states": [
+    "MD",
+    "VA",
+    "WV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:1319627962"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:1369809170",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:1369809170"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:1376181555",
+   "states": [
+    "IL",
+    "MO"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:1376181555"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:1559023868",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:1559023868"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:197950100",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:197950100"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:259289402",
+   "states": [
+    "NM",
+    "TX"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:259289402"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:260686310",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:260686310"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:335204985",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:335204985"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:335204987",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:335204987"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:427305526",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:427305526"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:479816844",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:479816844"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:516776905",
+   "states": [
+    "WY"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:516776905"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:623770855",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:623770855"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:624150541",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:624150541"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:636092321",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:636092321"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:658222902",
+   "states": [
+    "NC"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:658222902"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:679336587",
+   "states": [
+    "MD",
+    "VA"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:679336587"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:700835597",
+   "states": [
+    "ID",
+    "MT"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:700835597"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:733654657",
+   "states": [
+    "AR",
+    "TX"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:733654657"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:747157383",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:747157383"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:759770890",
+   "states": [
+    "MD",
+    "VA"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:759770890"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:783373080",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:783373080"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:783373085",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:783373085"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:801475598",
+   "states": [
+    "KY",
+    "VA"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "osm:way:801475598"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:830825704",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:830825704"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:859344792",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:859344792"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:862879196",
+   "states": [
+    "NC"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:862879196"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "osm:way:995342541",
+   "states": [
+    "PA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "osm:way:995342541"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:10001666",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:10001666"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:10039245",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:10039245"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:10072881",
+   "states": [
+    "OH",
+    "VA",
+    "WV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:10072881"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:10072883",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:10072883"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:10074570",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:10074570"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:10078442",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:10078442"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:10278188",
+   "states": [
+    "NM",
+    "TX"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:10278188"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:14720",
+   "states": [
+    "WY"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:14720"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:202082",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:202082"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:231875",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:231875"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:231900",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:231900"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232018",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232018"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232028",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232028"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232038",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232038"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232040",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232040"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232050",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232050"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232051",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232051"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232059",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232059"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232074",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232074"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232081",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232081"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232082",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232082"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232096",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232096"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232097",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232097"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232099",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232099"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232118",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232118"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232120",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232120"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232141",
+   "states": [
+    "AK"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232141"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232162",
+   "states": [
+    "WV"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232162"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232298",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232298"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232315",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232315"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232324",
+   "states": [
+    "AK"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232324"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232330",
+   "states": [
+    "AK"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232330"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232335",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232335"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232358",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232358"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232432",
+   "states": [
+    "VA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232432"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232445",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232445"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232458",
+   "states": [
+    "MI"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232458"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232466",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232466"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232473",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232473"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232486",
+   "states": [
+    "NC"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232486"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232515",
+   "states": [
+    "TN"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232515"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232799",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232799"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232830",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232830"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232853",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232853"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232855",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232855"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:232857",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:232857"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233125",
+   "states": [
+    "TX"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233125"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233162",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233162"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233170",
+   "states": [
+    "TX"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233170"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233185",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233185"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233236",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233236"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233284",
+   "states": [
+    "NC",
+    "TN"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:233284"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233297",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233297"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233306",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233306"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233308",
+   "states": [
+    "VA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233308"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233312",
+   "states": [
+    "NC"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233312"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233345",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233345"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233379",
+   "states": [
+    "VA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233379"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233483",
+   "states": [
+    "IL"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233483"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233588",
+   "states": [
+    "MN"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233588"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233818",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233818"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233834",
+   "states": [
+    "AR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233834"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233839",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:233839"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233841",
+   "states": [
+    "MN"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233841"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233861",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233861"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233866",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233866"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233899",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233899"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233952",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233952"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:233968",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:233968"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234017",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234017"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234018",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234018"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234021",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234021"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234022",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234022"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234025",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234025"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234026",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234026"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234029",
+   "states": [
+    "ID",
+    "OR"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:234029"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234030",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234030"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234041",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234041"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234053",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234053"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234059",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234059"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234150",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234150"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234254",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234254"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234265",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234265"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234308",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234308"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234311",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:234311"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234476",
+   "states": [
+    "NY"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234476"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234574",
+   "states": [
+    "VA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234574"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234586",
+   "states": [
+    "AR",
+    "MO",
+    "TX"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:234586"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234616",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234616"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234619",
+   "states": [
+    "ID",
+    "OR"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:234619"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234643",
+   "states": [
+    "TX"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234643"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234653",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234653"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234685",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234685"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234709",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234709"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234714",
+   "states": [
+    "NJ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234714"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234736",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234736"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234737",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234737"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234759",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234759"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234761",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234761"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234762",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234762"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:234784",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:234784"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:236512",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:236512"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:236514",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:236514"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:236547",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:236547"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:237190",
+   "states": [
+    "ID",
+    "MT"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:237190"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:238258",
+   "states": [
+    "MI",
+    "MN",
+    "WI"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:238258"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:238340",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:238340"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:238350",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:238350"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:238879",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:238879"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:238898",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:238898"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:238900",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:238900"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:239007",
+   "states": [
+    "ID",
+    "UT",
+    "WY"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:239007"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:239840",
+   "states": [
+    "MT",
+    "SD"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:239840"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:239846",
+   "states": [
+    "MT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:239846"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:239944",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:239944"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:239945",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:239945"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:240665",
+   "states": [
+    "ID",
+    "MT"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:240665"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:241130",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:241130"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:241175",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:241175"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:241301",
+   "states": [
+    "AR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:241301"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:242362",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:242362"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:242397",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:242397"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:242613",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:242613"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:242655",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:242655"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:243219",
+   "states": [
+    "AL"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:243219"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:244321",
+   "states": [
+    "MI"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:244321"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:244742",
+   "states": [
+    "CO"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:244742"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:245539",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:245539"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:245568",
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:245568"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:247762",
+   "states": [
+    "MD"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:247762"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:248959",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:248959"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249254",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249254"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249312",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249312"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249627",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249627"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249634",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249634"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249725",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249725"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249733",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249733"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249746",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249746"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249916",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249916"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:249962",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:249962"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:251362",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:251362"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:251437",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:251437"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:251448",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:251448"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:251720",
+   "states": [
+    "ID",
+    "MT"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:251720"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:251845",
+   "states": [
+    "MI"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:251845"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:252786",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:252786"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:255232",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:255232"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:255239",
+   "states": [
+    "ID"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:255239"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:255286",
+   "states": [
+    "GA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:255286"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:256348",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:256348"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:257030",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:257030"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:257351",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:257351"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:257396",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:257396"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:257404",
+   "states": [
+    "NM"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:257404"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:262790",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:262790"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:262792",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:262792"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:264293",
+   "states": [
+    "ME"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:264293"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:266135",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:266135"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:266136",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:266136"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:266477",
+   "states": [
+    "CA",
+    "OR"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:266477"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:267082",
+   "states": [
+    "OR"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:267082"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:270420",
+   "states": [
+    "AZ"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:270420"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:272179",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:272179"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:272245",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:272245"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:273847",
+   "states": [
+    "TN"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:273847"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:273848",
+   "states": [
+    "NC",
+    "TN"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "ridb:273848"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:273910",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:273910"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:273911",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:273911"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:273917",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:273917"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:273926",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:273926"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:273950",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:273950"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:274004",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:274004"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:274051",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:274051"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:274091",
+   "states": [
+    "WA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:274091"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:274260",
+   "states": [
+    "AK"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:274260"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:274261",
+   "states": [
+    "AK"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:274261"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "ridb:274437",
+   "states": [
+    "CA"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "ridb:274437"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "usfs:24878",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "usfs:24878"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "usfs:26883",
+   "states": [
+    "ID",
+    "MT"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "usfs:26883"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "usfs:80159",
+   "states": [
+    "ID",
+    "MT"
+   ],
+   "runs": 6,
+   "browser_ids": [
+    "usfs:80159"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  },
+  {
+   "id": "usfs:9461",
+   "states": [
+    "UT"
+   ],
+   "runs": 4,
+   "browser_ids": [
+    "usfs:9461"
+   ],
+   "stable": true,
+   "identity_stable": true,
+   "rig_and_filter_stable": true,
+   "matches_fixture": true,
+   "fixture_mismatch_runs": [],
+   "missing_runs": []
+  }
+ ]
+}

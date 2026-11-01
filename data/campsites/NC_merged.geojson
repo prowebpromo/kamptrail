@@ -11,7 +11,6 @@
         ]
       },
       "properties": {
-        "horse": "yes",
         "leisure": "horse_riding",
         "name": "ROUND BOTTOM HORSE CAMP",
         "official_name": "Round Bottom Horse Camp",
@@ -54,7 +53,8 @@
             "source_record_id": "osm:node:2454879859",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "horse": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -241,17 +241,13 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "dog": "leashed",
-        "group_only": "no",
         "name": "CEDAR POINT CAMPGROUND",
         "nudism": "no",
         "opening_hours": "24/7",
         "operator": "National Forest Service",
         "reservation": "recommended",
         "reservation:url": "https://www.recreation.gov/camping/campgrounds/233312",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/nfsnc/recreation/camping-cabins/recarea/?recid=48470&actid=29",
         "id": "ridb:233312",
@@ -292,13 +288,17 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "amenity": "charging_station",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
               "shower": "yes",
               "socket:nema_14_50": "yes",
               "socket:nema_5_15": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -444,7 +444,6 @@
         ]
       },
       "properties": {
-        "horse": "yes",
         "leisure": "horse_riding",
         "name": "CATALOOCHEE HORSE CAMP",
         "official_name": "Cataloochee Horse Camp",
@@ -487,7 +486,8 @@
             "source_record_id": "osm:node:2366425070",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "horse": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -1193,8 +1193,6 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "mobile_reception": "limited",
         "mobile_reception:strength": "issues",
         "name": "BALSAM MOUNTAIN CAMPGROUND",
@@ -1203,8 +1201,6 @@
         "reservation": "yes",
         "source": "recreation.gov",
         "start_date": "2023-06-17",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "wheelchair": "yes",
         "wikidata": "Q63564672",
@@ -1245,6 +1241,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "charge": "30 USD",
               "drinking_water": "yes",
               "fee": "yes",
@@ -1254,6 +1252,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -1315,8 +1315,6 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "mobile_reception": "no",
         "mobile_reception:strength": "none",
         "name": "CATALOOCHEE CAMPGROUND",
@@ -1324,8 +1322,6 @@
         "official_name": "Cataloochee Campground",
         "reservation": "yes",
         "source": "recreation.gov",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/233284",
         "wikidata": "Q63564924",
@@ -1366,6 +1362,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "caravans": "yes",
               "charge": "30 USD",
               "drinking_water": "yes",
               "fee": "yes",
@@ -1373,6 +1371,8 @@
               "openfire": "yes",
               "power_supply": "no",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -1392,7 +1392,6 @@
         ]
       },
       "properties": {
-        "capacity": "15",
         "description": "<h2>Overview</h2>\n<p>Rocky Bluff Campground offers solitude in a wooded setting located just 3 miles south of the quaint town of Hot Springs and the majestic French Broad River.  The campground is conviently located off of NC Scenic Byway 209 in the Spring Creek Gorge Area.  </p>\n<h2>Recreation</h2>\n<p>Recreation opportunities abound in and around the Hot Springs area. Located on the Appalachian District of the Pisgah National Forest, Rocky Bluff Campground itself is host to three different trail heads. If you are looking for longer-distance hiking opportunities, the famous Appalachian Trail runs right through the town of Hot Springs. Other popular recreation in the area include white water rafting, kayaking, tubing and fishing on the French Broad River. </p>\n<h2>Facilities</h2>\n<p>The campground offers 18 rustic campsites that are designed for passenger car and tent camping. Accessories include picnic tables, tent pads, lantern posts and campfire rings with grills. There are potable water sites located throughout the campground.  <strong>As of 2023, Restroom building is closed and porta-johns are available. </strong></p>\n<h2>Natural Features</h2>\n<p>Rocky Bluff Campground located near Spring Creek, a <a href=\"https://www.hotspringsnc.org/wp-content/uploads/Spring_Creek_Map.pdf\" rel=\"nofollow\">North Carolina Mountain Heritage Trout Water</a> . Winding it's way through deciduous oak forests, stocked with Brook, Brown and Rainbow trout, this creek is touted as a trout angler's paradise, making Rocky Bluff a perfect destination for your fishing camp. </p>\n\n<h2>Nearby Attractions</h2>\n<p>Hot Springs has been a well-known relaxation destination for centuries. The natural hot springs are a main draw for the town, along with the abundance of recreation. Visitors can also find several restaurants, art galleries, shopping, live music and festivals here. </p>\n",
         "name": "Rocky Bluff Campground",
         "operator": "US Forest Service",
@@ -1434,6 +1433,7 @@
             "source_record_id": "osm:node:2735461075",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "15",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -2488,7 +2488,6 @@
         ]
       },
       "properties": {
-        "capacity": "14",
         "description": "<p><strong>This site is not maintained but can still be used. </strong>Campers must hike in to the developed areas, and all sites are primitive. No electric hook ups, no toilets, no running water available. </p>",
         "name": "Boone Fork Campground",
         "tourism": "camp_site",
@@ -2528,6 +2527,7 @@
             "source_record_id": "osm:node:4733074323",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "14",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -2656,12 +2656,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "mobile_reception": "no",
         "name": "SMOKEMONT CAMPGROUND",
         "operator": "National Park Service",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "wikidata": "Q63565238",
         "id": "ridb:232486",
@@ -2702,8 +2699,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "fee": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -2974,7 +2974,6 @@
         ]
       },
       "properties": {
-        "capacity": "13",
         "name": "Wolf Ford Horse Camp",
         "operator": "US Forest Service",
         "tourism": "camp_site",
@@ -3015,6 +3014,7 @@
             "source_record_id": "osm:way:453509860",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "13",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -3642,7 +3642,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:347989059",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/347989059"
+          }
+        ]
       }
     },
     {
@@ -7531,9 +7543,6 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "capacity:tents": "12",
-        "caravans": "no",
         "dog": "yes",
         "fee": "yes",
         "mobile_reception": "limited",
@@ -7542,8 +7551,6 @@
         "nudism": "no",
         "reservation": "yes",
         "start_date": "2023-04-07",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site;caravan_site",
         "osm_id": 2366027152,
         "osm_type": "node",
@@ -7581,6 +7588,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "no",
+              "capacity:tents": "12",
+              "caravans": "no",
               "charge": "30 USD",
               "drinking_water": "yes",
               "fee": "yes",
@@ -7589,6 +7599,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -29955,9 +29967,12 @@
             "source_record_id": "osm:node:12749127341",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "no",
+              "group_only": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -29968,9 +29983,12 @@
             "source_record_id": "osm:node:12749175119",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "yes",
+              "group_only": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -29981,9 +29999,12 @@
             "source_record_id": "osm:node:12749175120",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "yes",
+              "group_only": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -29994,9 +30015,12 @@
             "source_record_id": "osm:node:12749175122",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "yes",
+              "group_only": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -33002,10 +33026,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
+              "backcountry": "yes",
+              "capacity:persons": "4",
+              "capacity:tents": "1",
+              "caravans": "no",
               "charge": "10$ Per night",
               "drinking_water": "no",
               "fee": "yes",
               "power_supply": "no",
+              "static_caravans": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -39713,8 +39743,12 @@
             "source_record_id": "osm:way:658223122",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
+              "group_only": "no",
               "internet_access": "no",
-              "sanitary_dump_station": "customers"
+              "sanitary_dump_station": "customers",
+              "tents": "no"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -40897,9 +40931,14 @@
             "source_record_id": "osm:way:701921547",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "6",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
-              "openfire": "no"
+              "group_only": "yes",
+              "openfire": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -42350,9 +42389,6 @@
       },
       "properties": {
         "backcountry": "no",
-        "capacity:caravans": "46",
-        "capacity:tents": "34",
-        "caravans": "yes",
         "email": "medoc.mountain@ncparks.gov",
         "group_only": "yes",
         "internet_access": "no",
@@ -42395,11 +42431,17 @@
             "source_record_id": "osm:way:862879197",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity:caravans": "46",
+              "capacity:tents": "34",
+              "caravans": "yes",
               "check_date:internet_access": "2022-04-09",
               "drinking_water": "yes",
+              "group_only": "no",
               "internet_access": "no",
               "power_supply": "yes",
               "shower": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
@@ -42528,7 +42570,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:886096460",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
+              "group_only": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/886096460"
+          }
+        ]
       }
     },
     {
@@ -48979,7 +49036,11 @@
             "source_record_id": "osm:way:1170960936",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "backcountry": "no",
+              "caravans": "yes",
+              "group_only": "no",
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -49560,7 +49621,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1212363470",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1212363470"
+          },
+          {
+            "source_record_id": "osm:way:1212363471",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1212363471"
+          }
+        ]
       }
     },
     {
@@ -49599,7 +49682,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1212363465",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1212363465"
+          }
+        ]
       }
     },
     {
@@ -49640,7 +49735,39 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1212363467",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1212363467"
+          },
+          {
+            "source_record_id": "osm:way:1212363468",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1212363468"
+          },
+          {
+            "source_record_id": "osm:way:1212363469",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:25:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1212363469"
+          }
+        ]
       }
     },
     {
@@ -57697,7 +57824,11 @@
             "source_record_id": "osm:relation:15829173",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "backcountry": "no",
+              "caravans": "yes",
+              "group_only": "no",
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -57707,7 +57838,11 @@
             "source_record_id": "osm:relation:17210094",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "backcountry": "no",
+              "caravans": "yes",
+              "group_only": "no",
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,
@@ -57792,7 +57927,11 @@
             "source_record_id": "osm:relation:17210097",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "backcountry": "no",
+              "caravans": "yes",
+              "group_only": "no",
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:25:26Z",
             "source_updated_at": null,

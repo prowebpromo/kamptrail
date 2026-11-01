@@ -987,10 +987,8 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "6",
         "description": "<p>This campground is located on the east side of Little Redfish Lake. There are six campsites which are all first-come, first-serve. Enjoy fishing, canoeing, kayaking, swimming and camping alongside Little Redfish Lake. Several trailheads are in the surrounding area including Alpine Way and Redfish which lead into the Sawtooth Wilderness, and Boundary Creek trail which leads into the White Clouds Wilderness. Photography of the beautiful Sawtooth and White Clouds Wilderness areas and surrounding lakes and mountains is very popular here. Redfish Lake Visitor Center offers informational and interpretive programs. Motorized watercraft are not allowed on Little Redfish Lake.  </p>",
         "dog": "leashed",
-        "horse": "yes",
         "maxstay": "10 days",
         "name": "Mountain View Campground",
         "operator": "United States Forest Service",
@@ -1035,8 +1033,10 @@
             "source_record_id": "osm:way:1188750454",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "6",
               "drinking_water": "yes",
               "fee": "yes",
+              "horse": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "toilets": "yes",
@@ -1143,18 +1143,14 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "13",
-        "caravans": "yes",
         "contact:phone": "+1-208-549-4200",
         "description": "<h2>Overview</h2>\n<p>Mann Creek Campground is located near the Mann Creek Reservoir in the foothills of the West Central Mountains in western Idaho near the Payette National Forest. The reservoir is a popular boating and fishing destination. </p>\n<p>Once on-site, you may be able to pay for your campsite(s) by scanning a QR code using the Recreation.gov mobile app, and the Scan and Pay feature. If this option is available, you will need to first download the free Recreation.gov mobile app <a href=\"https://www.recreation.gov/mobile-app\" rel=\"nofollow\">https://www.recreation.gov/mobile-app</a>  prior to your arrival as some remote areas have limited or no cellular service.</p>\n<h2>Recreation</h2>\n<p>The reservoir offers 283 surface-acres of water and five miles of shoreline, although the water level fluctuates seasonally. Visitors enjoy boating, canoeing, swimming and trout fishing.</p>\n<h2>Facilities</h2>\nThe campground offers 13 sites, two of which are accessible and six sites are available for advanced reservations. Picnic tables, some of which are covered, and fire rings are provided, as are vault toilets and drinking water. Drinking water is often not available in late summer and fall; please call ahead to confirm availability. Roads and most parking spurs are gravel. The campground loop and two accessible sites are paved. <h2>Natural Features</h2>\nMann Creek Reservoir lies in the rolling and arid foothills of the Hitt Mountains. At an elevation of 3,300 feet, the area is hot and dry in the summer months. Large shade trees help block some of the intense sun, but shade is limited. \n<h2>Contact Info</h2>\nFor facility specific information, please call (208) 549-4200.",
-        "motorhome": "yes",
         "name": "MANN CREEK CAMPGROUND",
         "name:en": "Mann Creek Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/payette/recreation/mann-creek-campground",
         "id": "ridb:234619",
@@ -1193,11 +1189,15 @@
             "source_record_id": "osm:node:5052010921",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "13",
+              "caravans": "yes",
               "fee": "yes",
               "firepit": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine",
               "water_hookup": "no"
@@ -1416,11 +1416,8 @@
         ]
       },
       "properties": {
-        "capacity": "8",
-        "caravans": "yes",
         "name": "Wild Goose Campground",
         "operator": "US Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/nezperceclearwater/recarea/?recid=80724",
         "id": "ridb:249916",
@@ -1460,7 +1457,10 @@
             "source_record_id": "osm:way:731236866",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "8",
+              "caravans": "yes",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
@@ -1480,17 +1480,13 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "contact:phone": "+1-208-587-7961",
         "description": "<h2>Overview</h2>\nElks Flat Campground is situated on the banks of the South Fork Boise River, at the foot of the Trinity Mountain Range in Idaho. It is five miles north of the town of Pine. Visitors enjoy fishing, swimming and exploring trails in the surrounding area. <h2>Recreation</h2>\nThe South Fork Boise River runs along the eastern edge of the campground, offering rafting, swimming and fishing for rainbow trout. Paradise Hot Springs is nearby.\n<br><br>\nGreen Creek Trail 270, a 4.5-mile trail for hiking, horseback riding and dirt bikes, begins a mile from the site. Cross Cut Trail 172 also begins close by and is open to hiking, biking, horseback riding and off-road vehicles.<h2>Facilities</h2>\nThis campground contains two large-group campsites that can accommodate up to 100 people. Each site is equipped with covered pavilions, picnic tables and cement site pads. Vault toilets and drinking water are provided. Roads and parking spurs within the campground are gravel.<h2>Natural Features</h2>\nThe campground is settled in a grassy meadow. It is surrounded by stands of cottonwood, aspen, Douglas fir and ponderosa pine, at an elevation of 4,400 feet.\n<h2>Nearby Attractions</h2>\nBaumgartner Hot Springs is approximately 16 miles away with a soaking pool and nature trail. Kelly Creek Flats Recreation Area is adjacent to Baumgartner with several more trail opportunities.",
-        "horse": "no",
-        "motorhome": "yes",
         "name": "ELKS FLAT CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/boise/recreation/elks-flat-campground-and-group-sites",
         "id": "ridb:232335",
@@ -1529,9 +1525,13 @@
             "source_record_id": "osm:node:4944318167",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "horse": "no",
+              "motorhome": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
             },
@@ -1894,16 +1894,12 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "12",
-        "caravans": "yes",
         "contact:phone": "+1-208-549-4200",
         "description": "<h2>Overview</h2>\n<p>Spring Creek Campground is located along the peaceful Spring Creek in the Hitt Mountains of western Idaho. Visitors enjoy relaxing along the gentle creek, fishing and exploring local trails. </p>\n<p>Once on-site, you may be able to pay for your campsite(s) by scanning a QR code using the Recreation.gov mobile app, and the Scan and Pay feature. If this option is available, you will need to first download the free Recreation.gov mobile app <a href=\"https://www.recreation.gov/mobile-app\" rel=\"nofollow\">https://www.recreation.gov/mobile-app</a>  prior to your arrival as some remote areas have limited or no cellular service.</p>\n<h2>Recreation</h2>\nSeveral miles of hiking, biking and off-road vehicle trails crisscross the area. \n<br/><br/>\nThe Sturgill Peak Trail climbs to a 7,289-foot summit and an active fire lookout built in 1934. Hikers are rewarded with views of the surrounding Hitt Range and the Wallowa Mountains to the west.<h2>Facilities</h2>\nThe campground offers several single-family campsites and one large group picnic site than can accommodate up to 100 guests. Picnic tables and fire rings are provided, as are accessible vault toilets and drinking water.<h2>Natural Features</h2>\nThe campground is situated beneath tall ponderosa pine and fir trees at an elevation of 4,750 feet. Summer temperatures are hot during the day, but the surrounding trees provide ample shade. \n<br/><br/>\nThe Payette National Forest encompasses some of Idaho's most beautiful and diverse country. Located in west-central Idaho north of Boise, the 2.3 million-acre forest extends 100 miles west to east from Hells Canyon to the Middle Fork Salmon River, and 70 miles north to south from the Salmon River to the Weiser River. \n<h2>Nearby Attractions</h2>\nMann Creek Reservoir is about 15 miles from the campground, offering boating and fishing opportunities.\n",
-        "motorhome": "yes",
         "name": "SPRING CREEK CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/payette/recreation/spring-creek-campground",
         "id": "ridb:234029",
@@ -1943,11 +1939,15 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity:pitches": "12",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine",
               "water_hookup": "no"
@@ -2473,7 +2473,6 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "5",
         "name": "Cedars Campground",
         "operator": "Nez Perce-Clearwater National Forests",
         "reservation": "no",
@@ -2516,6 +2515,7 @@
             "source_record_id": "osm:way:1198069467",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "5",
               "drinking_water": "no",
               "fee": "no"
             },
@@ -3281,9 +3281,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "McKay's Bend Recreation Site",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:255239",
         "source": "recreation.gov",
@@ -3322,7 +3320,9 @@
             "source_record_id": "osm:node:6740310055",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -3383,13 +3383,8 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "8",
-        "capacity:tents": "13",
-        "caravans": "yes",
         "name": "Goodenough Creek Campground",
         "operator": "Bureau of Land Management",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:202082",
         "source": "recreation.gov",
@@ -3429,7 +3424,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "capacity:caravans": "8",
+              "capacity:tents": "13",
+              "caravans": "yes",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -4622,7 +4622,6 @@
         ]
       },
       "properties": {
-        "capacity": "8",
         "dog": "leashed",
         "name": "Iron Lake Campground",
         "operator": "Salmon-Challis National Forest",
@@ -4668,6 +4667,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity": "8",
               "charge": "4USD",
               "fee": "yes",
               "toilets": "yes"
@@ -4899,20 +4899,15 @@
         ]
       },
       "properties": {
-        "capacity:persons": "150",
-        "caravans": "yes",
         "contact:phone": "+1-208-774-3000",
         "description": "<h2>Overview</h2>\nChemeketan Campground sits near the headwaters of the Salmon River, at the foot of the Sawtooth Mountain Range.<h2>Recreation</h2>\nThis site is part of the Sawtooth National Recreation Area, where outdoor activities abound. The Salmon River offers excellent fishing for rainbow trout, westslope cutthroat trout and occasional hybrid cutbows and bull trout. The Idaho Centennial Trail can be easily accessed nearby.\n<br/>\n<br/>\nAlturas, Perkins, Pettit and Yellowbelly Lakes are nearby, with fishing, canoeing and hiking. <h2>Facilities</h2>\nThis campground is reached via dirt road, however visitors must ford a stream before reaching the site. Trucks, RVs and cars with higher clearance should have no trouble crossing the stream.<br/>\n<br/>\nThe campground offers one group site than can accommodate up to 150 people. If it is not reserved, it is available as a group site or individual sites on a first come, first served basis.<br/>\n<br/>\nVault toilets, tables and grills are provided. <h2>Natural Features</h2>\nChemeketan is a secluded, peaceful campground situated among lodgepole pines, which provide partial shade. Rugged peaks of the Sawtooth Range surround the area and the Salmon River flows at the campground's edge. Temperatures are cool, with an average summer high of 78 degrees and a low of 40 degrees.\n<h2>Nearby Attractions</h2>\nThe Sawtooth National Recreation Area offers a myriad of excellent hiking and biking opportunities, and an estimated 750 miles of trails crisscross the valley and surrounding mountains. \n<br/>\nPopular area events include an Arts and Crafts Fair in July, and Wagon Days, Salmon Festival, Quilt Fair and Fireman's Ball in September.",
         "dog": "leashed",
-        "horse": "yes",
         "maxstay": "10 days",
-        "motorhome": "yes",
         "name": "CHEMEKETAN CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232028",
         "id": "ridb:232028",
@@ -4951,11 +4946,16 @@
             "source_record_id": "osm:way:724652887",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:persons": "150",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "horse": "yes",
               "internet_access": "no",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
             },
@@ -5532,9 +5532,7 @@
         ]
       },
       "properties": {
-        "capacity:tents": "16",
         "name": "Mica Bay Boater Park",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/mica-bay-boater-park",
         "id": "ridb:255232",
@@ -5574,7 +5572,9 @@
             "source_record_id": "osm:way:1367208878",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "capacity:tents": "16",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -5681,10 +5681,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Apgar Campground",
         "operator": "US Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/nezperceclearwater/recarea/?recid=81606",
         "id": "ridb:251720",
@@ -5724,7 +5722,9 @@
             "source_record_id": "osm:way:731234864",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
@@ -5790,10 +5790,7 @@
         ]
       },
       "properties": {
-        "capacity": "1",
-        "caravans": "yes",
         "name": "Oxbow Campsite",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:240665",
         "source": "recreation.gov",
@@ -5832,8 +5829,11 @@
             "source_record_id": "osm:node:7546363380",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "1",
+              "caravans": "yes",
               "fee": "no",
-              "shower": "no"
+              "shower": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -5894,13 +5894,9 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
         "contact:phone": "+1-208-236-7500",
         "description": "<h2>Overview</h2>\nScout Mountain Campground is located on beautiful Scout Mountain at an elevation of 6,900 feet, just 13 miles south of Pocatello, Idaho. Scout Mountain is part of the Mink Creek area, a popular place for birding and wildlife viewing. Visitors enjoy exploring a variety of local multi-use trails.<h2>Recreation</h2>\nHiking, mountain biking, horseback riding and dirt biking are very popular activities in the area. The paved 1-mile Scout Mountain Nature Trail loops the campground, leading to several overlooks. The East Fork Mink Creek Trail begins within the site and the Crestline Trail is nearby.<h2>Facilities</h2>\n<p>The campground contains one large group site that can accommodate up to 100 people, with picnic and serving tables, grills and a campfire ring with benches. Single sites, double sites, and one triple site are available with picnic tables, campfire rings, utility serving tables, lantern posts, and tent pads. </p><p>The campground has first-come, first-serve campsites and reservable campsites. Visitors can first check with the campground host for available campsites. If the campground host is not available, visitors must check if the campsite is occupied, and if available pay at the fee tube. Vault toilets and drinking water are provided.</p><p>Scout Mountain Campground is managed by Pinnacle Parks Llc under a special use permit with the Caribou-Targhee National Forest. For questions please contact 208-757-3999 between the hours of 8am and 9pm.</p><h2>Natural Features</h2>\nThe campground sits high atop the Bannock Mountain Range in a scenic forest of Douglas fir, lodgepole pine and aspen, which offers partial shade. Summer wildflowers are abundant.<br/>\n<br/>\nA wide variety of birds can be found in the area, including the Western Scrub-Jay, Juniper Titmouse, Bushtit, Blue-gray Gnatcatcher, Mountain Bluebird, Green-tailed and Spotted Towhees and Calliope Hummingbirds.\n<h2>Contact Info</h2>\nFor facility specific information, please call (208) 757-3999.\n<h2>Nearby Attractions</h2>\nCherry Springs Nature Area is less than 6 miles from the campground, with its pretty namesake spring, a stream for fishing, paved self-guided nature trails and picnic facilities. Mink Creek Nordic Center is about 5 miles away, with hiking and horseback riding trails in summer months and groomed cross-country ski trails in the winter.<h2>Charges & Cancellations</h2>\nA $10.00 service fee will apply if you change or cancel your reservation. Late cancellations are subject to additional fees. For full details see NRRS Reservation Policy.",
         "dog": "leashed",
-        "group_only": "no",
-        "motorhome": "yes",
         "name": "SCOUT MOUNTAIN CAMPGROUND",
         "operator": "Pinnacle Parks LLC",
         "operator:type": "private",
@@ -5911,7 +5907,6 @@
         "payment:credit_cards": "no",
         "payment:debit_cards": "no",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "type": "established",
         "website": "https://www.fs.usda.gov/r04/caribou-targhee/recreation/scout-mountain-campground",
@@ -5952,16 +5947,21 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "customers",
+              "backcountry": "no",
+              "caravans": "yes",
               "charge": "15 USD",
               "check_date": "2022-05-27",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "no",
+              "motorhome": "yes",
               "openfire": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine",
               "water_hookup": "no"
@@ -6892,15 +6892,11 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
         "camp_site": "standard",
-        "caravans": "no",
         "motor_vehicle": "yes",
         "name": "Cave Falls Campground",
         "note": "pit toilets, water from artisian well",
         "reservation": "no",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:239007",
         "source": "recreation.gov",
@@ -6939,9 +6935,13 @@
             "source_record_id": "osm:way:1185551384",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "no",
               "drinking_water": "yes",
               "internet_access": "no",
               "openfire": "yes",
+              "static_caravans": "no",
+              "tents": "yes",
               "washing_machine": "no"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
@@ -8441,19 +8441,15 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "contact:phone": "+1-208-727-5000",
         "description": "<h2>Overview</h2>\nGlacier View Campground is located next to beautiful Redfish Lake, beneath the Sawtooth Mountain Range, at an elevation of 6,500 feet.<h2>Recreation</h2>\nGlacier View is in the heart of the beautiful Sawtooth National Recreation Area, where outdoor activities abound. \n<br/><br/>\nRedfish Lake offers excellent boating, water skiing, canoeing, kayaking and fishing for rainbow trout and Kokanee salmon. Little Redfish Lake is just down the road, offering additional fishing and canoeing.\n<br/>\n<br/>\nThe Redfish Lake Visitor Center is within 1/4-mile, offering interpretive activities, evening programs and wildlife, geology and historical exhibits.<h2>Facilities</h2>\nThe campground offers several family sites, many with views of the lake and rugged Mount Heyburn. Flush toilets and drinking water are provided. Roads and parking spurs throughout the site are paved.<br/>\n<br/>\nYounger visitors love the campground's two playgrounds. Sandy Beach Boat Ramp is less than a mile away and an RV dump station is just over a mile away.<h2>Natural Features</h2>\nSummer wildflowers are plentiful, lodgepole pines provide partial shade and Fishhook Creek is nearby. Temperatures are cool, with an average summer high of 78 degrees and a low of 40 degrees.\n<h2>Nearby Attractions</h2>\nThe Sawtooth National Recreation Area offers a myriad of excellent hiking and biking opportunities; an estimated 750 miles of trails crisscross the valley and surrounding mountains. <br/>\n<br/>\nAlpine Way, Fishhook Creek, Redfish Lake Creek and Bench Lakes Trails all offer trailheads in the immediate area. The Idaho Centennial Trail passes nearby.<br/>\n<br/>\nThe Salmon River offers excellent fishing for rainbow trout, Westslope cutthroat trout and occasional hybrid cutbows and bull trout. <br/>\n<br/>\nPopular area events include an Arts and Crafts Fair in July, and Wagon Days, Salmon Festival, Quilt Fair, and Fireman's Ball in September.",
         "dog": "leashed",
-        "horse": "yes",
         "maxstay": "10 days",
-        "motorhome": "yes",
         "name": "GLACIER VIEW CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/sawtooth/recreation/glacier-view-campground",
         "id": "ridb:232050",
@@ -8492,10 +8488,14 @@
             "source_record_id": "osm:way:1188750457",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "horse": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "flush"
             },
@@ -9115,18 +9115,13 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "12",
-        "caravans": "yes",
         "contact:phone": "+1-208-253-0100",
         "description": "<h2>Overview</h2>\n<p>Evergreen Campground is situated next to the Weiser River just off Highway 95 between the towns of Council and New Meadows, Idaho. Fishing and hiking are popular activities. </p>\n<p>Once on-site, you may be able to pay for your campsite(s) by scanning a QR code using the Recreation.gov mobile app, and the Scan and Pay feature. If this option is available, you will need to first download the free Recreation.gov mobile app <a href=\"https://www.recreation.gov/mobile-app\" rel=\"nofollow\">https://www.recreation.gov/mobile-app</a> prior to your arrival as some remote areas have limited or no cellular service.</p>\n<h2>Recreation</h2>\n<p>The Weiser River flows between the campground and the highway, offering excellent rainbow trout fishing, and an occassional crawdad.<br><br>The Weiser River Trail is popular for hiking, mountain biking and horseback riding, and can be accessed within the site.</p>\n<h2>Facilities</h2>\nThe campground offers several single and double-family sites, most of which are accessible. Vault toilets and drinking water are provided. The road system throughout the campground is gravel, but parking spurs are paved.<h2>Natural Features</h2>\n<p>Evergeen lives up to its name, as it's settled in a scenic, lush Douglas fir and spruce forest at an approximate elevation of 4,000 feet. Although right off the highway, the large trees and dense bushed provide seclusion and privacy. The Weiser River flows between the campsites and the highway. </p>\n",
-        "horse": "no",
-        "motorhome": "yes",
         "name": "EVERGREEN CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/payette/recreation/evergreen-campground",
         "id": "ridb:234616",
@@ -9166,11 +9161,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity:pitches": "12",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "horse": "no",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine",
               "water_hookup": "no"
@@ -10056,21 +10056,15 @@
         ]
       },
       "properties": {
-        "capacity:persons": "40",
-        "capacity:pitches": "4",
-        "caravans": "yes",
         "contact:phone": "+1-208-774-3000",
         "description": "<h2>Overview</h2>\nSheep Trail Campground is located at an elevation of 6,670 feet in a beautiful valley at the foot of the Sawtooth Mountain Range in central Idaho.<h2>Recreation</h2>\nSheep Trail is situated in the Sawtooth National Recreation Area. A myriad of excellent hiking and biking opportunities are available, with an estimated 750 miles of trails crisscrossing the valley and surrounding mountains, including the nearby Idaho Centennial Trail.<br/>\n<br/>\nExpansive and scenic Elk Meadow is near the campground, providing a great location for bird and wildlife watching. <h2>Facilities</h2>\nThis small campground offers one group site that consists of four smaller sites. If the group site is not reserved, the individual sites are available on a first-come, first-served basis.<br/>\n<br/>\nVault toilets area provided. The road to the site and the parking spur within are paved.<h2>Natural Features</h2>\nSummer wildflowers are plentiful and a mixed stand of pines provides partial shade. A small creek runs next to the campground. Temperatures are cool, with an average summer high of 78 degrees and a low of 40 degrees.\n<h2>Nearby Attractions</h2>\nNumerous sparkling lakes and streams, including the Salmon River, dot the area, making for great rainbow and native Westslope cutthroat trout fishing. Stanley and Redfish Lakes are nearby, offering excellent boating, water skiing, canoeing, kayaking and fishing.<br/>\n<br/>\nPopular area events include an Arts and Crafts Fair in July, and Wagon Days, Salmon Festival, Quilt Fair and Fireman's Ball in September.",
         "dog": "leashed",
-        "horse": "yes",
         "maxstay": "10 days",
-        "motorhome": "yes",
         "name": "SHEEP TRAIL CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/sawtooth/recreation/sheep-trail-campground-highway-21",
         "id": "ridb:232097",
@@ -10109,9 +10103,15 @@
             "source_record_id": "osm:node:3759330390",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:persons": "40",
+              "capacity:pitches": "4",
+              "caravans": "yes",
               "drinking_water": "yes",
+              "horse": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
             },
@@ -10348,10 +10348,7 @@
         "addr:state": "ID",
         "addr:street": "Coeur D'Alene River Rd.",
         "camp_site": "basic",
-        "caravans": "yes",
         "name": "BUMBLEBEE CAMPGROUND",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/233899",
         "id": "ridb:233899",
@@ -10385,7 +10382,21 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1562436537",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1562436537"
+          }
+        ]
       }
     },
     {
@@ -10398,19 +10409,15 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "contact:phone": "+1-208-727-5000",
         "description": "<h2>Overview</h2>\nOutlet Campground is located next to beautiful Redfish Lake beneath the Sawtooth Mountain Range at an elevation of 6,500 feet. <h2>Recreation</h2>\nOutlet Campground is in the heart of the beautiful Sawtooth National Recreation Area, where outdoor activities abound. Redfish Lake offers excellent boating, water skiing, canoeing, kayaking and fishing for rainbow trout and Kokanee salmon. \n<br/><br/>\nLittle Redfish Lake is just down the road, offering additional fishing and canoeing.\n<br/>\n<br/>\nIn the immediate area are trailheads for the Alpine Way, Fishhook Creek, Redfish Lake Creek and Bench Lakes Trails. The Idaho Centennial Trail also passes nearby.<h2>Facilities</h2>\nThe campground offers several family sites, many of which have views of the lake and rugged Mount Heyburn. Flush toilets and drinking water are provided. Roads and parking spurs throughout the site are paved.<br/>\n<br/>\nSandy Beach Boat Ramp is less than a mile away and a dump station is just over a mile away.<br/>\n<br/>\nThe Redfish Lake Visitor Center is within 1/4-mile, offering interpretive activities, evening programs and wildlife, geology and historical exhibits.<h2>Natural Features</h2>\nSummer wildflowers are plentiful, lodgepole pines provide partial shade and Fishhook Creek is nearby. Temperatures are cool, with an average summer high of 78 degrees and a low of 40 degrees. \n<h2>Nearby Attractions</h2>\nThe Sawtooth National Recreation Area offers a myriad of excellent hiking and biking opportunities, and an estimated 750 miles of trails crisscross the valley and surrounding mountains. \n<br/>\nRedfish Lake Lodge is nearby with a restaurant, general store, boat and kayak rentals, mooring services, lake tours and a lake shuttle.<br/>\n<br/>\nPopular area events include an Arts and Crafts Fair in July, and Wagon Days, Salmon Festival, Quilt Fair, and Fireman's Ball in September.",
         "dog": "leashed",
-        "horse": "yes",
         "maxstay": "10 days",
-        "motorhome": "yes",
         "name": "OUTLET CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/sawtooth/recreation/outlet-campground",
         "id": "ridb:232358",
@@ -10449,10 +10456,14 @@
             "source_record_id": "osm:way:1188750458",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "horse": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
-              "power_supply": "no"
+              "power_supply": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -11176,20 +11187,15 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "45",
-        "caravans": "yes",
         "contact:phone": "+1-208-727-5000",
         "description": "<h2>Overview</h2>\nSunny Gulch Campground sits along the shores of Salmon River in the forests of central Idaho. <h2>Recreation</h2>\nExcellent fishing is right out your back door on the Salmon River, with rainbow trout, Westslope cutthroat trout and occasional hybrid cutbows and bull trout available.<br/> \n<br/>\nSunny Gulch lies in the heart of the Sawtooth National Recreation Area. A myriad of excellent hiking and biking opportunities are available, and an estimated 750 miles of trails crisscross the valley and surrounding mountains.<h2>Facilities</h2>\nSunny Gulch offers several campsites, a handful of which are close to a large picnic shelter. These sites and the shelter are perfect for a family reunion, wedding or other special event. The shelter contains a grill, utility tables, a dutch oven cooking surface and eight picnic tables. <br/>\n<br/> \nVault toilets and drinking water are provided. Roads and parking spurs are paved.<h2>Natural Features</h2>\nThe campground offers spectacular views of the Sawtooth Mountains. Summer wildflowers are plentiful and lodgepole pines provide partial shade. Temperatures are cool with an average summer high of 78 degrees and a low of 40 degrees.\n<h2>Nearby Attractions</h2>\nThe Alpine Way Trail begins less than a mile from the campground, and the Idaho Centennial Trail passes nearby. <br/>\n<br/>\nRedfish and Stanley Lakes are nearby with great boating, water skiing, canoeing, kayaking and fishing. Numerous additional sparkling lakes and streams dot the area. <br/>\n<br/>\nPopular area events include an Arts and Crafts Fair in July, and Wagon Days, Salmon Festival, Quilt Fair and Fireman's Ball in September.",
         "dog": "leashed",
-        "horse": "yes",
         "maxstay": "10 days",
-        "motorhome": "yes",
         "name": "SUNNY GULCH CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/sawtooth/recreation/sunny-gulch-campground",
         "id": "ridb:234150",
@@ -11228,10 +11234,15 @@
             "source_record_id": "osm:way:1188750462",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "45",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "horse": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
             },
@@ -11294,10 +11305,7 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "5",
-        "caravans": "yes",
         "description": "<p>This campground is just off Highway 21, and tucked back into the trees, overlooking beautiful Capehorn meadows. Walk across the street to overlook a marshy wetland, a hangout for breakfasting moose, elk, and a variety of birds. Each of the 5 sites is equipped with picnic tables and fire rings with cooking grills. The campground accommodates trailers and motorhomes up to 32 feet and has vault toilets and hand pumps for drinking water. Although there are no full hookups, the campground will fit trailers and RV's up to 32 feet long.</p>",
-        "motorhome": "yes",
         "name": "Thatcher Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
@@ -11342,9 +11350,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity:pitches": "5",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "firepit": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
@@ -12021,16 +12032,12 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "contact:phone": "+1-208-634-0400",
         "description": "<h2>Overview</h2>\n<p>Upper Payette Lake Campground is located 16 miles from McCall, Idaho, on the shores of beautiful Upper Payette Lake. Visitors enjoy fishing, canoeing and exploring local trails.</p>\n\n<p>Once on-site, you may be able to pay for your campsite(s) by scanning a QR code using the Recreation.gov mobile app, and the Scan and Pay feature. If this option is available, you will need to first download the free Recreation.gov mobile app <a href=\"https://www.recreation.gov/mobile-app\" rel=\"nofollow\">https://www.recreation.gov/mobile-app</a>  prior to your arrival as some remote areas have limited or no cellular service.</p>\n<h2>Recreation</h2>\n<p>Upper Payette Lake is a  no-wake lake that offers great fishing, canoeing and kayaking opportunities. The paved, mile-long Shoreline Trail begins in the campground and several additional hiking and biking trails begin just across the road from the entrance.</p>\n<h2>Facilities</h2>\nThe campground offers two group sites that can accommodate up to 20 and 30 guests. Several additional single and double-family sites are available as well. All sites are accessible; some have lake views and some have lake access.<br/>\n<br/>\nVault toilets and drinking water are provided. A boat ramp, day-use site and several paved pathways are located in the campground. Roads and parking spurs are gravel.<h2>Natural Features</h2>\n<p>The lake is situated at the foot of the Salmon River Mountains at an approximate elevation of 5,900 feet. Engelmann spruce and lodgepole pine forest the site, providing partial shade. Summer wildflowers are abundant. Summer days are typically warm and nights are cool.</p>\n",
-        "horse": "no",
-        "motorhome": "yes",
         "name": "UPPER PAYETTE LAKE CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/payette/recreation/upper-payette-lake-campground",
         "id": "ridb:234030",
@@ -12070,12 +12077,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bin": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "firepit": "yes",
+              "horse": "no",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine",
               "water_hookup": "no"
@@ -12103,16 +12114,13 @@
         "addr:state": "ID",
         "addr:street": "Silver Creek Road",
         "area": "yes",
-        "caravans": "yes",
         "contact:phone": "+1-208-739-3400",
         "description": "<h2>Overview</h2>\nSilver Creek Campground is located 25 miles north of Garden Valley, Idaho, in beautiful Peace Valley at an elevation of 4,490 feet. Peace Valley offers a variety of great trails. Fishing and hunting are popular activities as well. \n<h2>Recreation</h2>\nPeace Valley contains many trails for hiking, mountain biking, as well as horseback and OHV riding. Peace Creek Trail, Silver Creek Summit Trail, and Bull Creek Trail all begin nearby.  \n \nSilver Creek, Peace Creek, and the nearby Middle Fork Payette River offer good-to-excellent fishing most of the year. Anglers in the area cast for whitefish and rainbow trout. \n \nIn-season big game hunting for deer, elk and bear is a popular activity in the surrounding mountains. <h2>Facilities</h2>\n<p>This campground offers paved roads and paved parking spurs, drinking water, and accessible vault toilets. Many single and double campsites are available, all of which are accessible. Each site is equipped with a tent pad, a fire ring, as well as picnic and utility tables. <br> <br>Two accessible group campsites are available with picnic shelters, multiple tables, campfire rings, grills, and ample parking.  The Lodgepole Springs group site can accommodate up to 100 people, while the Cabin Creek group site can accommodate up to 80 people.</p>\n<h2>Natural Features</h2>\nThe campground is situated among a mixed-growth lodgepole pine forest, which provides partial shade. Silver Creek runs alongside the campground.  \n \nA variety of wildlife makes its home in and around Peace Valley, including deer, elk, bald eagles, and red-tailed hawks.\n<h2>Nearby Attractions</h2>\n<p>Silver Creek Plunge, a privately developed hot springs campground, is within a quarter-mile from the campground. It offers a hot springs pool, general store, a playground, horseshoe pits, as well as sand volleyball court and basketball hoop.</p>\n",
         "dog": "leashed",
-        "motorhome": "yes",
         "name": "SILVER CREEK CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234653",
         "wheelchair": "yes",
@@ -12154,11 +12162,14 @@
             "fields": {
               "bbq": "yes",
               "bin": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "motorhome": "yes",
               "openfire": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:wheelchair": "yes"
             },
@@ -12395,7 +12406,6 @@
         ]
       },
       "properties": {
-        "capacity": "20",
         "name": "BEAUTY CREEK CAMPGROUND",
         "operator": "US Forest Service",
         "tourism": "camp_site",
@@ -12430,7 +12440,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:516248297",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "20"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/516248297"
+          }
+        ]
       }
     },
     {
@@ -12664,7 +12686,6 @@
       },
       "properties": {
         "addr:state": "ID",
-        "capacity:pitches": "10",
         "contact:phone": "+1-208-764-3202",
         "description": "<p>Bowns Campground, located 25 miles east of Featherville and 18 miles north of Fairfield, is a developed campground composed of 10 units along Big Smoky Creek. Two of the camp sites are double family units.  Camping, fishing, hiking, and picnicking are popular activities. Campground amenities include picnic tables, fire rings, drinking water (seasonally) and restrooms. Miller Creek Trail (#087) starts just south of the campground and is open to motorcycles.</p>",
         "dog": "leashed",
@@ -12712,6 +12733,7 @@
             "source_record_id": "osm:node:3153597565",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "10",
               "drinking_water": "yes",
               "fee": "yes",
               "firepit": "yes",
@@ -12737,19 +12759,13 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "21",
-        "capacity:pitches": "21",
-        "caravans": "yes",
         "contact:phone": "+1-208-347-0300",
         "description": "<h2>Overview</h2>\n<p>Grouse Campground is located just 16 miles from McCall, Idaho, on the shores of Goose Lake. Visitors enjoy canoeing, fishing and horseback riding.</p>\n\n<p>Once on-site, you may be able to pay for your campsite(s) by scanning a QR code using the Recreation.gov mobile app, and the Scan and Pay feature. If this option is available, you will need to first download the free Recreation.gov mobile app<a href=\"https://www.recreation.gov/mobile-app\" rel=\"nofollow\"> https://www.recreation.gov/mobile-app</a> prior to your arrival as some remote areas have limited or no cellular service.</p>\n<h2>Recreation</h2>\nGoose Lake is a no-wake lake offering rainbow and brook trout fishing, canoeing and kayaking. Numerous hiking, horseback riding and dirt bike trails are in the vicinity, including Granite Mountain Lookout and Goose Creek Falls.<h2>Facilities</h2>\nThe campground offers several single and double-family sites, all of which are accessible. Most sites have scenic lake views. Vault toilets and drinking water are provided, and a horse-unloading ramp and hitching rail is provided in the campground near the boat ramp. Roads and parking spurs are gravel.<h2>Natural Features</h2>\n<p>Goose Lake is situated in the beautiful Salmon River Mountain range at an elevation of 6,500 feet. A forest of Engelmann spruce and lodgepole pines provides partial shade in the campground, which is a short, three-minute walk from the shoreline. Summer wildflowers are abundant.</p>\n\n<h2>Nearby Attractions</h2>\nBrundage Mountain Resort, located nearby, offers scenic chairlift rides and excellent lift-served mountain biking and hiking.",
-        "horse": "no",
-        "motorhome": "yes",
         "name": "GROUSE CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "yes",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/payette/recreation/grouse-campground",
         "id": "ridb:234254",
@@ -12789,12 +12805,18 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bin": "no",
+              "capacity:caravans": "21",
+              "capacity:pitches": "21",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
               "firepit": "yes",
+              "horse": "no",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine",
               "water_hookup": "no"
@@ -12984,13 +13006,10 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "7",
-        "caravans": "13",
         "description": "<p>2,100 foot elevation. 4 tent sites, 85 sites for tents or RVs, 2 group sites, and a playground on the Lochsa River. One campground loop is reserved for campers with horses and other stock. It has hitching rails, stock water, stock loading ramp and feeders. There is one trail outfitter at the campground. The campground is often visited by moose and other wildlife. The Lochsa River is popular in the spring for whitewater sports. There are a number of river accesses near the campground along US 12. Fishing for chinook salmon, steelhead, cutthroat and bull trout and mountain whitefish. Catch and release rules apply to some of these species; please check current regulations. Hiking or horseback riding on Boulder Creek Trail, Lochsa River Access Trail, Downriver Trail Scenic Overlook and Lochsa Park Trail. The Boulder Creek Trail leads to the Stanley Hot Springs, and most trails access the Bitterroot-Selway Wilderness.<br/> </p>",
         "name": "White Sands Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/nezperce-clearwater/recreation/white-sand-campground",
         "id": "ridb:249962",
@@ -13029,11 +13048,14 @@
             "source_record_id": "osm:way:901434590",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "7",
+              "caravans": "13",
               "drinking_water": "no",
               "fee": "yes",
               "firepit": "yes",
               "picnic_table": "yes",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
             },
@@ -13916,10 +13938,7 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "5",
-        "caravans": "yes",
         "description": "<p>A nice campground along Highway 21 in the trees with a small creek running through. Campground has 5 campsites with picnic tables and fire rings with cooking grills. The campground amemities include a vault toilet. No drinking water is available and the campground is limited to trailers and motorhomes up to 32 feet long; there are no hookups within the campground.</p>",
-        "motorhome": "yes",
         "name": "Banner Creek  Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
@@ -13964,8 +13983,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity:pitches": "5",
+              "caravans": "yes",
               "fee": "yes",
               "firepit": "yes",
+              "motorhome": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sewer_hookup": "no",
@@ -14417,18 +14439,14 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "10",
-        "caravans": "yes",
         "description": "<h2>Overview</h2>\nEasley Campground is located along the beautiful Big Wood River at an elevation of 6800 feet, conveniently close to Ketchum, Idaho only 14 miles south. Visitors enjoy fishing, hiking and soaking at Easley Hot Springs.<h2>Recreation</h2>\nEasley is part of the Sawtooth National Recreation Area, where outdoor activities abound. Fly-fishing for rainbow, brown and brook trout is popular on the Big Wood River, as is float tubing. <br/>\n<br/>\nThe 20-mile Harriman Trail passes through the campground, offering excellent hiking and biking. Numerous trails spur off the Harriman Trail leading to deep canyons, sparkling lakes, swimming holes and more great high country fishing.<h2>Facilities</h2>\nThe campground offers several family campsites, most of which have scenic views of the Boulder Mountains to the east. Vault toilets and drinking water are provided, but there is no electricity. Roads and parking spurs are gravel. <h2>Natural Features</h2>\nA forest of Douglas fir, ponderosa pine, lodgepole pine and aspen offers plentiful shade in the campground. Colorful summer wildflowers are abundant and willows dot the banks of the river. Temperatures are cool with an average summer high of 78 and a low of 40.\n<h2>Nearby Attractions</h2>\nEasley Hot Springs is less than 1/4-mile away, just past the campground entrance. A swimming pool, hot tubs and showers are available for a small fee, and a small store is located on-site.<br/>\n<br/>\nThe Sawtooth National Recreation Area Visitor Center is 6.5 miles from the campground, with a small museum, bookstore and area information. A dump station and drinking water are located here as well.<br/>\n<br/>\nSun Valley Resort is 11 miles away, with hiking, biking, guided horseback riding and beautiful mountain scenery.<br/>\n<br/>\nPopular area events include Wagon Days in Ketchum in September, and in Stanley an hour away, an Arts & Crafts Fair in July, and Salmon Festival, Quilt Fair and Fireman's Ball in September.",
         "dog": "leashed",
         "maxstay": "10 days",
-        "motorhome": "yes",
         "name": "EASLEY CAMPGROUND",
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "no",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r04/sawtooth/recreation/easley-campground",
         "id": "ridb:232040",
@@ -14467,9 +14485,13 @@
             "source_record_id": "osm:way:1535728916",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "10",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "motorhome": "yes",
               "power_supply": "no",
+              "tents": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
             },
@@ -14674,7 +14696,6 @@
         "contact:phone": "+1-208-774-3000",
         "description": "<h2>Overview</h2>\nStanley Lake Campground is located on the shoreline above beautiful Stanley Lake at the foot of the Sawtooth Mountains.<h2>Recreation</h2>\nStanley Lake offers excellent boating, water skiing, canoeing, kayaking and fishing for rainbow, cutthroat, brook and bull trout.  A boat ramp is located just outside the campground.<br/>\n<br/>\nThe Idaho Centennial Trail passes nearby and can be accessed from the Stanley Lake Trailhead across the lake. <h2>Facilities</h2>\nThe campground offers 17 reservable sites, as well as additional first come, first served sites. Vault toilets and drinking water are provided. Roads and spurs within the site are gravel.<br/>\n<br/>\nA scenic overlook is located next to sites 3 and 4, with outstanding views of McGowan Peak and Stanley Lake. Painters and photographers frequent the overlook to capture the views.<h2>Natural Features</h2>\nThe campground is situated on a hillside above the lake in a thick grove of lodgepole pines, at an elevation of 6,500 feet. Most campsites have partial shade and views of the lake and/or the rugged 9860-foot  McGowan Peak. Temperatures are cool, with an average summer high of 78 degrees and a low of 40 degrees.\n<h2>Nearby Attractions</h2>\nStanley Lake lies within the Sawtooth National Recreation Area, which offers a myriad of excellent hiking and biking opportunities. An estimated 750 miles of trails crisscross the valley and surrounding mountains. <br/>\n<br/>\nNumerous sparkling lakes and streams, including the Salmon River, dot the area, making for great rainbow and native Westslope cutthroat trout fishing. Redfish Lake is nearby, offering additional water recreation opportunities.<br/>\n<br/>\nPopular area events include an Arts and Crafts Fair in July, and Wagon Days, Salmon Festival, Quilt Fair and Fireman's Ball in September.",
         "dog": "leashed",
-        "horse": "yes",
         "maxstay": "10 days",
         "name": "STANLEY LAKE CAMPGROUND",
         "operator": "United States Forest Service",
@@ -14721,6 +14742,7 @@
             "fields": {
               "drinking_water": "yes",
               "fee": "yes",
+              "horse": "yes",
               "picnic_table": "yes",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -14868,10 +14890,8 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "1",
         "contact:phone": "+1-208-549-4200",
         "description": "<p>This is a <strong>one-unit </strong>dispersed camping area along Mann Creek. It is next to the road so it can be noisy and dusty. There is no potable water available at the site, so come prepared with your own.</p><p>Typical season of use is mid-May through late September or early October.</p>",
-        "horse": "no",
         "name": "Kiwanis Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
@@ -14915,8 +14935,10 @@
             "source_record_id": "osm:node:9359572844",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "1",
               "drinking_water": "no",
               "fee": "no",
+              "horse": "no",
               "picnic_table": "no",
               "toilets": "yes",
               "toilets:disposal": "pitlatrine"
@@ -18650,7 +18672,11 @@
             "source_record_id": "osm:node:3064201540",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "12",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -18890,7 +18916,11 @@
             "source_record_id": "osm:node:3064201547",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "backcountry": "yes",
+              "capacity": "12",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -21120,7 +21150,6 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "9",
         "description": "Nine nonelectric campsites have a vault toilet, picnic tables, fire rings and grills but no potable water.",
         "dog": "leashed",
         "name": "Golden Gate Campground",
@@ -21158,6 +21187,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity:pitches": "9",
               "drinking_water": "no",
               "firepit": "yes",
               "picnic_table": "yes",
@@ -27694,7 +27724,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7206677443",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7206677443"
+          }
+        ]
       }
     },
     {
@@ -28212,13 +28254,11 @@
       },
       "properties": {
         "camp_site": "serviced",
-        "caravans": "yes",
         "description": "Whitetail Campground features 61 Basic Sites, Central Water, Flush Toilets, and Showers. Sites are available from early May through late September, reservations are required.",
         "dog": "leashed",
         "name": "Whitetail Campground",
         "operator": "Farragut State Park",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://getoutside.idaho.gov/farragut/camping",
         "osm_id": 5788666453,
@@ -28251,6 +28291,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "charge": "54"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
@@ -28262,7 +28303,9 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "charge": "54"
+              "caravans": "yes",
+              "charge": "54",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -29731,7 +29774,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7511452318",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7511452318"
+          }
+        ]
       }
     },
     {
@@ -29938,7 +29993,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7511452326",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7511452326"
+          }
+        ]
       }
     },
     {
@@ -30005,7 +30072,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7511452329",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7511452329"
+          }
+        ]
       }
     },
     {
@@ -30072,7 +30151,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7511452332",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7511452332"
+          }
+        ]
       }
     },
     {
@@ -30195,7 +30286,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7511452337",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7511452337"
+          }
+        ]
       }
     },
     {
@@ -32316,7 +32419,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8165272064",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8165272064"
+          }
+        ]
       }
     },
     {
@@ -32887,7 +33002,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8165272839",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8165272839"
+          }
+        ]
       }
     },
     {
@@ -35371,7 +35498,6 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
         "name": "Lower Dry Gulch Campsite",
         "tourism": "camp_site",
         "osm_id": 8215189348,
@@ -35397,7 +35523,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8215189349",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8215189349"
+          }
+        ]
       }
     },
     {
@@ -35436,7 +35574,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8215189351",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8215189351"
+          }
+        ]
       }
     },
     {
@@ -35503,7 +35653,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8215189354",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8215189354"
+          }
+        ]
       }
     },
     {
@@ -39546,7 +39708,20 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8301666356",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "30"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8301666356"
+          }
+        ]
       }
     },
     {
@@ -50520,7 +50695,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12187614230",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12187614230"
+          },
+          {
+            "source_record_id": "osm:node:12187614231",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12187614231"
+          }
+        ]
       }
     },
     {
@@ -52016,7 +52213,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",
             "source_updated_at": null,
@@ -52101,7 +52299,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12901337714",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:04Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12901337714"
+          }
+        ]
       }
     },
     {
@@ -53676,7 +53886,9 @@
             "source_record_id": "osm:way:880327368",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:04Z",

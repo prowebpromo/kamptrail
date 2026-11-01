@@ -1555,8 +1555,6 @@
         ]
       },
       "properties": {
-        "backcountry": "yes",
-        "capacity": "10",
         "dog": "leashed",
         "name": "Pleasant Campground",
         "reservation": "no",
@@ -1598,6 +1596,8 @@
             "source_record_id": "osm:node:8892840643",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "10",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -1880,7 +1880,6 @@
         "addr:postcode": "95389",
         "addr:state": "CA",
         "addr:street": "Happy Isles Loop Road",
-        "capacity": "60",
         "name": "Lower Pines Campground",
         "operator": "Yosemite National Park",
         "tourism": "camp_site",
@@ -1925,6 +1924,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "customers",
+              "capacity": "60",
               "fee": "yes",
               "internet_access": "no",
               "power_supply": "no",
@@ -1947,7 +1947,6 @@
         ]
       },
       "properties": {
-        "capacity": "12",
         "name": "KCL Campground",
         "operator": "Bureau of Land Management",
         "tourism": "camp_site",
@@ -1989,6 +1988,7 @@
             "source_record_id": "osm:way:199264854",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "12",
               "drinking_water": "no",
               "fee": "no"
             },
@@ -2381,7 +2381,6 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "74",
         "ele": "2094",
         "gnis:feature_id": "1652975",
         "name": "HEART BAR CAMPGROUND",
@@ -2425,6 +2424,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity:caravans": "74",
               "charge": "30",
               "drinking_water": "untreated",
               "fee": "yes"
@@ -2489,7 +2489,6 @@
         ]
       },
       "properties": {
-        "capacity": "41",
         "name": "Horse Meadow Campground",
         "operator": "Forest Service",
         "tourism": "camp_site",
@@ -2525,7 +2524,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:891338579",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "41"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/891338579"
+          }
+        ]
       }
     },
     {
@@ -2751,7 +2762,6 @@
         ]
       },
       "properties": {
-        "capacity": "11",
         "name": "SOQUEL CAMPGROUND",
         "reservation": "recommended",
         "tourism": "camp_site",
@@ -2792,6 +2802,7 @@
             "source_record_id": "osm:node:8815593229",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "11",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -3848,7 +3859,6 @@
         ]
       },
       "properties": {
-        "capacity": "5",
         "name": "Convict Flat Campground",
         "reservation": "no",
         "tourism": "camp_site",
@@ -3890,6 +3900,7 @@
             "source_record_id": "osm:way:1016410931",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "5",
               "fee": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -4095,10 +4106,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "LOST CLAIM",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234761",
         "id": "ridb:234761",
@@ -4137,10 +4146,12 @@
             "source_record_id": "osm:way:1316027694",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -4290,7 +4301,6 @@
         "camp_site": "basic",
         "name": "Sugar Spring Campground",
         "operator": "Mendocino National Forest",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mendocino/recarea/?recid=25278",
         "id": "ridb:242397",
@@ -4333,6 +4343,7 @@
               "drinking_water": "no",
               "fee": "no",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -4356,7 +4367,6 @@
         "name": "Horse Springs Campground",
         "operator": "USFS",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=26245",
         "id": "ridb:249746",
@@ -4397,6 +4407,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "openfire": "permit",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -4611,11 +4622,8 @@
         "addr:housenumber": "2601",
         "addr:street": "Barstow Road",
         "alt_name": "New Jack City Campground",
-        "backcountry": "no",
         "boundary": "protected_area",
         "camp_site": "basic",
-        "capacity": "14",
-        "caravans": "yes",
         "email": "blm_ca_barstow_fo_web@blm.gov",
         "name": "Sawtooth Canyon Campground",
         "note": "Boundary is a guess",
@@ -4625,7 +4633,6 @@
         "phone": "+1 760-252-6000",
         "protect_class": "6",
         "protection_title": "BLM Limited Vehicle Use",
-        "tents": "yes",
         "tourism": "caravan_site",
         "type": "established",
         "website": "https://www.blm.gov/visit/search-details/274437/1",
@@ -4665,10 +4672,14 @@
             "source_record_id": "osm:relation:10337514",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity": "14",
+              "caravans": "yes",
               "fee": "no",
               "internet_access": "no",
               "power_supply": "no",
               "sanitary_dump_station": "no",
+              "tents": "yes",
               "water_point": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -5035,10 +5046,8 @@
       },
       "properties": {
         "cabins": "no",
-        "caravans": "yes",
         "dog": "leashed",
         "name": "Pardoes Point Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78518",
         "id": "ridb:236547",
@@ -5078,8 +5087,10 @@
             "source_record_id": "osm:node:8974561394",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -5102,7 +5113,6 @@
         "dog": "leashed",
         "name": "Kirkwood Campground",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78527",
         "id": "ridb:236514",
@@ -5142,6 +5152,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -5374,7 +5385,6 @@
         ]
       },
       "properties": {
-        "capacity": "37",
         "name": "GOLDLEDGE CAMPGROUND",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sequoia/recarea/?recid=79703",
@@ -5415,6 +5425,7 @@
             "source_record_id": "osm:way:891398797",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "37",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -5519,7 +5530,6 @@
         ]
       },
       "properties": {
-        "capacity": "115",
         "name": "Bridalveil Creek Campground",
         "reservation": "no",
         "tourism": "camp_site",
@@ -5562,6 +5572,7 @@
             "source_record_id": "osm:way:1033963529",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "115",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -5582,7 +5593,6 @@
       },
       "properties": {
         "camp_site": "standard",
-        "horse": "yes",
         "name": "Dixie Glade Campground",
         "operator": "Mendocino National Forest",
         "tourism": "camp_site",
@@ -5625,7 +5635,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "no",
-              "fee": "May-Sep"
+              "fee": "May-Sep",
+              "horse": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -7164,10 +7175,8 @@
       "properties": {
         "addr:state": "CA",
         "addr:street": "CA-79",
-        "caravans": "yes",
         "name": "OAK GROVE CAMPGROUND",
         "operator": "Cleveland National Forest",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:234736",
         "source": "recreation.gov",
@@ -7206,8 +7215,10 @@
             "source_record_id": "osm:way:1165567292",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "charge": "15",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -7269,7 +7280,6 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "10",
         "name": "E-Ne-Nuck Campground",
         "tourism": "camp_site",
         "id": "ridb:239647",
@@ -7310,6 +7320,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity:caravans": "10",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -7329,10 +7340,8 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "dog": "leashed",
         "name": "Caples Lake Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/eldorado/recarea/?recid=78524",
         "id": "ridb:236512",
@@ -7372,7 +7381,9 @@
             "source_record_id": "osm:way:1550255987",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -7671,12 +7682,9 @@
         ]
       },
       "properties": {
-        "capacity": "7",
-        "caravans": "no",
         "name": "Pigeon Flat Campground",
         "operator": "Dodge Ridge Corporation",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/stanislaus/recreation/outdoorlearning/recarea/?recid=15045&actid=29",
         "id": "ridb:245568",
@@ -7716,7 +7724,10 @@
             "source_record_id": "osm:way:300876539",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "capacity": "7",
+              "caravans": "no",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -8124,13 +8135,8 @@
         ]
       },
       "properties": {
-        "capacity:caravans": "99",
-        "capacity:tents": "99",
-        "caravans": "yes",
         "name": "BLACK ROCK CAMPGROUND",
         "operator": "NPS",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "wikidata": "Q63634926",
         "id": "ridb:232473",
@@ -8171,7 +8177,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "capacity:caravans": "99",
+              "capacity:tents": "99",
+              "caravans": "yes",
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -8405,10 +8416,8 @@
         ]
       },
       "properties": {
-        "caravans": "no",
         "name": "SUMMIT LAKE NORTH",
         "note": "area is approx",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:234041",
         "source": "recreation.gov",
@@ -8448,9 +8457,11 @@
             "source_record_id": "osm:way:918439587",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "yes",
               "power_supply": "no",
               "shower": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -8899,7 +8910,6 @@
         ]
       },
       "properties": {
-        "capacity": "68",
         "name": "DORABELLE CAMPGROUND",
         "reservation": "recommended",
         "tourism": "camp_site",
@@ -8941,6 +8951,7 @@
             "source_record_id": "osm:way:352429507",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "68",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -9611,7 +9622,6 @@
         ]
       },
       "properties": {
-        "group_only": "yes",
         "name": "CAMP THREE CAMPGROUND",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sequoia/recarea/?recid=79865",
@@ -9646,7 +9656,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7821270685",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7821270685"
+          }
+        ]
       }
     },
     {
@@ -9659,7 +9681,6 @@
         ]
       },
       "properties": {
-        "capacity": "55",
         "name": "FAIRVIEW CAMPGROUND",
         "opening_hours": "Apr-Nov",
         "operator": "recreation.gov",
@@ -9704,6 +9725,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permissive",
+              "capacity": "55",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -10190,8 +10212,6 @@
       },
       "properties": {
         "camp_site": "standard",
-        "capacity": "75",
-        "group_only": "yes",
         "name": "MASTERSON GROUP CAMPGROUND",
         "operator": "USFS",
         "reservation": "required",
@@ -10235,8 +10255,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity": "75",
               "charge": "75 USD",
               "fee": "yes",
+              "group_only": "yes",
               "picnic_table": "yes",
               "toilets": "yes",
               "water": "yes"
@@ -10258,8 +10280,6 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
-        "group_only": "yes",
         "name": "GRAY PINE GROUP CAMPGROUND",
         "operator": "Mendocino National Forest",
         "reservation": "no",
@@ -10302,9 +10322,11 @@
             "source_record_id": "osm:way:1301238225",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "charge": "75 USD",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "group_only": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -10747,14 +10769,11 @@
         ]
       },
       "properties": {
-        "capacity": "54",
-        "caravans": "yes",
         "cost": null,
         "name": "ALPINE VIEW CAMPGROUND",
         "operator": "Shasta-Trinity National Forest",
         "reservation": "available",
         "seasonal": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/stnf/recarea/?recid=6474",
         "wheelchair": "yes",
@@ -10795,8 +10814,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access:conditional": "yes @ (18 May-15 Sep)",
+              "capacity": "54",
+              "caravans": "yes",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -12082,7 +12104,6 @@
         ]
       },
       "properties": {
-        "capacity": "30",
         "ele": "1481",
         "gnis:feature_id": "267912",
         "name": "SUMMERDALE CAMPGROUND",
@@ -12126,6 +12147,7 @@
             "source_record_id": "osm:way:952399347",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "30",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -12146,7 +12168,6 @@
       },
       "properties": {
         "name": "DIRT FLAT",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:233839",
         "source": "recreation.gov",
@@ -12185,7 +12206,8 @@
             "source_record_id": "osm:way:413964717",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "drinking_water": "yes"
+              "drinking_water": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -12330,12 +12352,8 @@
         ]
       },
       "properties": {
-        "capacity": "3",
-        "caravans": "no",
-        "group_only": "yes",
         "name": "SHADY COVE GROUP CAMPGROUND",
         "reservation": "yes",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=26289",
         "id": "ridb:233952",
@@ -12375,9 +12393,13 @@
             "source_record_id": "osm:node:5112039521",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "3",
+              "caravans": "no",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "yes",
               "picnic_table": "yes",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -13122,12 +13144,9 @@
         "addr:city": "Crowley Lake",
         "addr:postcode": "93546",
         "attribution": "Mono County GIS",
-        "capacity": "85",
-        "caravans": "yes",
         "name": "CONVICT LAKE CAMPGROUND",
         "phone": "+1-760-924-5771",
         "reservation": "recommended",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234311",
         "id": "ridb:234311",
@@ -13167,7 +13186,10 @@
             "source_record_id": "osm:way:42486230",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "capacity": "85",
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -13446,8 +13468,6 @@
       },
       "properties": {
         "camp_site": "standard",
-        "capacity": "27",
-        "group_only": "yes",
         "name": "Indian Scotty Campground",
         "operator": "US Forest Service",
         "reservation": "no",
@@ -13491,6 +13511,7 @@
             "source_record_id": "osm:way:835361816",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "27",
               "charge": "10 USD",
               "fee": "yes"
             },
@@ -13502,8 +13523,10 @@
             "source_record_id": "osm:way:1207898576",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "1",
               "charge": "50 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "group_only": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -15654,11 +15677,8 @@
         ]
       },
       "properties": {
-        "capacity": "8",
-        "caravans": "no",
         "name": "Big Slide Campground",
         "operator": "United States Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/stnf/recarea/?recid=6540",
         "id": "ridb:238340",
@@ -15698,7 +15718,10 @@
             "source_record_id": "osm:way:1292756499",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "capacity": "8",
+              "caravans": "no",
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -15717,11 +15740,8 @@
         ]
       },
       "properties": {
-        "capacity": "5",
-        "caravans": "no",
         "name": "Slide Creek Campground",
         "operator": "United States Forest Service",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/stnf/recarea/?recid=6554",
         "id": "ridb:238350",
@@ -15761,7 +15781,10 @@
             "source_record_id": "osm:way:1292756501",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "capacity": "5",
+              "caravans": "no",
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -16121,7 +16144,6 @@
         ]
       },
       "properties": {
-        "capacity:pitches": "4",
         "name": "Bailey Canyon Campground",
         "operator": "USFS",
         "payment:cash": "yes",
@@ -16166,6 +16188,7 @@
             "source_record_id": "osm:way:1182119985",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:pitches": "4",
               "charge": "$12",
               "fee": "yes"
             },
@@ -16480,12 +16503,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
-        "horse": "yes",
         "name": "Green Springs Campground",
         "operator": "Mendocino National Forest",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:242362",
         "source": "recreation.gov",
@@ -16525,8 +16545,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "caravans": "yes",
               "drinking_water": "no",
-              "fee": "no"
+              "fee": "no",
+              "horse": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -16901,11 +16924,8 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
         "camp_site": "standard",
-        "caravans": "no",
         "name": "Hobo Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sequoia/recarea/?recid=79713",
         "id": "ridb:242613",
@@ -16945,9 +16965,12 @@
             "source_record_id": "osm:way:489193357",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "no",
               "drinking_water": "no",
               "fee": "yes",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -17008,7 +17031,6 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "South Fork Rec Campground",
         "payment:credit_cards": "yes",
         "reservation": "no",
@@ -17051,6 +17073,7 @@
             "source_record_id": "osm:way:1284785363",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "charge": "12 USD",
               "check_date": "2024-05-20",
               "drinking_water": "yes",
@@ -17159,7 +17182,6 @@
         ]
       },
       "properties": {
-        "capacity": "72",
         "name": "Troy Meadow Campground",
         "reservation": "no",
         "tourism": "camp_site",
@@ -17201,6 +17223,7 @@
             "source_record_id": "osm:way:475970263",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "72",
               "charge": "17",
               "fee": "yes"
             },
@@ -18122,7 +18145,6 @@
       "properties": {
         "name": "Hull Creek Campground",
         "operator": "Stanislaus National Forest",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/stanislaus/recarea/?recid=14983",
         "id": "ridb:245539",
@@ -18163,7 +18185,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
-              "openfire": "yes"
+              "openfire": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -19783,9 +19806,7 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Domingo Springs Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lassen/recarea/?recid=11295",
         "id": "ridb:248959",
@@ -19825,8 +19846,10 @@
             "source_record_id": "osm:way:972942621",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -19937,11 +19960,8 @@
         "addr:postcode": "92358",
         "addr:state": "CA",
         "addr:street": "Big Tree Cucamonga Road",
-        "caravans": "no",
         "name": "Joe Elliot Yellow Post Sites",
         "operator": "United States Forest Service",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=79407",
         "id": "ridb:249627",
@@ -19982,7 +20002,10 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "no"
+              "caravans": "no",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -20002,7 +20025,6 @@
       },
       "properties": {
         "camp_site": "standard",
-        "caravans": "yes",
         "impromptu": "yes",
         "name": "Applewhite Campground",
         "operator": "USFS",
@@ -20045,6 +20067,7 @@
             "source_record_id": "osm:way:397516589",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "yes",
               "toilets": "yes"
             },
@@ -20176,11 +20199,9 @@
         "addr:city": "Pinyon Pines",
         "addr:postcode": "92561",
         "addr:state": "CA",
-        "caravans": "yes",
         "name": "Pinyon Flat Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:249725",
         "schema_version": 3,
@@ -20218,8 +20239,10 @@
             "source_record_id": "osm:way:370927494",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "fee": "yes",
               "internet_access": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -20281,14 +20304,11 @@
         ]
       },
       "properties": {
-        "capacity": "19",
-        "capacity:tents": "19",
         "description": "<p>This family campground has 19 single-family campsites. All sites are first-come-first-serve basis (no reservations). Holcomb Valley campground is located approximately 5 miles north of Big Bear Lake off Forest Service Road 3N16. Although this campground is open year round, vehicle access will be based on road conditions. Please contact the <a href=\"http://www.fs.usda.gov/detail/sbnf/?cid=FSBDEV7_007796\" rel=\"nofollow\">Big Bear Discovery Center</a> for current road conditions.</p><p>Each family campsite accommodates a maximum of 8 people. Amenities include a picnic table, 1 fire ring, bear boxes and vault toilets. There is no water available. A campground host is on site during mid May through October.</p>",
         "name": "Holcomb Valley Campground",
         "note": "8 person per site maximum, holiday fee is $28. extra vehicle $8 per night, no water available.",
         "operator": "USFS",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/sbnf/recarea/?recid=26385",
         "id": "ridb:249733",
@@ -20327,12 +20347,15 @@
             "source_record_id": "osm:way:333773786",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "19",
+              "capacity:tents": "19",
               "charge": "$27",
               "drinking_water": "no",
               "fee": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
-              "shower": "no"
+              "shower": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -20561,7 +20584,6 @@
         ]
       },
       "properties": {
-        "capacity": "42",
         "ele": "640",
         "name": "POTWISHA CAMPGROUND",
         "pets": "permitted",
@@ -20606,6 +20628,7 @@
             "source_record_id": "osm:way:163733861",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "42",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -21054,11 +21077,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Goldhill Camping Area",
         "operator": "Los Padres National Forest",
         "reservation": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:252786",
         "source": "recreation.gov",
@@ -21097,8 +21118,10 @@
             "source_record_id": "osm:way:1347244768",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "drinking_water": "no",
-              "fee": "no"
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -21201,7 +21224,6 @@
         ]
       },
       "properties": {
-        "capacity": "82",
         "name": "Sentinel Campground",
         "reservation": "required",
         "tourism": "camp_site",
@@ -21244,6 +21266,7 @@
             "source_record_id": "osm:way:984420761",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "82",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -21390,12 +21413,9 @@
       },
       "properties": {
         "camp_site": "standard",
-        "capacity": "23",
         "cost": null,
-        "horse": "yes",
         "name": "Mattole Campground",
         "operator": "Bureau of Land Management",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/mattole-campground",
         "id": "ridb:262790",
@@ -21434,8 +21454,11 @@
             "source_record_id": "osm:way:714978812",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "23",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "horse": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -21455,12 +21478,9 @@
       },
       "properties": {
         "camp_site": "standard",
-        "capacity": "9",
-        "caravans": "yes",
         "cost": null,
         "name": "Tolkan Campground",
         "operator": "Bureau of Land Management",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/tolkan-campground",
         "id": "ridb:262792",
@@ -21499,8 +21519,11 @@
             "source_record_id": "osm:way:714995772",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "9",
+              "caravans": "yes",
               "drinking_water": "no",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -22132,11 +22155,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Roadrunner Campground",
         "operator": "Bureau of Land Management",
         "operator:type": "public",
-        "tents": "yes",
         "tourism": "camp_site",
         "id": "ridb:272179",
         "source": "recreation.gov",
@@ -22175,7 +22196,9 @@
             "source_record_id": "osm:node:1756728241",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "caravans": "yes",
+              "fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -22422,9 +22445,7 @@
       },
       "properties": {
         "camp_site": "standard",
-        "capacity": "10",
         "cost": null,
-        "group_only": "yes",
         "name": "EAST WEAVER GROUP CAMPGROUND",
         "operator": "Shasta Recreation Company for USFS",
         "reservation": "required",
@@ -22467,7 +22488,9 @@
             "source_record_id": "osm:way:1211712690",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "capacity": "10",
+              "fee": "yes",
+              "group_only": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -22529,7 +22552,6 @@
       },
       "properties": {
         "alt_name": "Cooper Gulch Day Use Area",
-        "capacity": "5",
         "cost": null,
         "name": "COOPER GULCH CAMPGROUND",
         "operator": "Shasta Recreation Company for USFS",
@@ -22573,6 +22595,7 @@
             "source_record_id": "osm:way:1212410909",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "5",
               "drinking_water": "yes",
               "fee": "yes"
             },
@@ -23733,7 +23756,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:314744745",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/314744745"
+          },
+          {
+            "source_record_id": "osm:node:3712804060",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3712804060"
+          }
+        ]
       }
     },
     {
@@ -28341,7 +28386,6 @@
         "caravans": "yes",
         "name": "Burnt Rancheria Campground",
         "operator": "USFS",
-        "static_caravans": "no",
         "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232278",
@@ -28381,8 +28425,11 @@
             "source_record_id": "osm:way:1292634807",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "charge": "35 USD/night",
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -29705,7 +29752,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4343825487",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4343825487"
+          }
+        ]
       }
     },
     {
@@ -38030,7 +38089,11 @@
             "source_record_id": "osm:node:2673090670",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "openfire": "no"
+              "backcountry": "no",
+              "caravans": "no",
+              "group_only": "no",
+              "openfire": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -42013,8 +42076,10 @@
             "source_record_id": "osm:node:5170448018",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "no",
               "openfire": "permit",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -50467,8 +50532,11 @@
             "source_record_id": "osm:node:5112035704",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:persons": "8",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -50530,8 +50598,11 @@
             "source_record_id": "osm:node:5112038190",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:persons": "8",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -50542,8 +50613,11 @@
             "source_record_id": "osm:node:5112038195",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:persons": "8",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -50554,8 +50628,11 @@
             "source_record_id": "osm:node:5144274023",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity:persons": "8",
+              "caravans": "yes",
               "drinking_water": "no",
               "fee": "no",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -50967,8 +51044,10 @@
             "source_record_id": "osm:node:5170401871",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "no",
               "drinking_water": "no",
               "openfire": "permit",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -51376,6 +51455,28 @@
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/5254954349"
+          },
+          {
+            "source_record_id": "osm:node:5254954350",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5254954350"
+          },
+          {
+            "source_record_id": "osm:node:5254954351",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5254954351"
           }
         ]
       }
@@ -51420,7 +51521,42 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5254954389",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5254954389"
+          },
+          {
+            "source_record_id": "osm:node:5254954390",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5254954390"
+          },
+          {
+            "source_record_id": "osm:node:5254954391",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5254954391"
+          }
+        ]
       }
     },
     {
@@ -51735,7 +51871,39 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:566242785",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "50"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/566242785"
+          },
+          {
+            "source_record_id": "osm:way:566242786",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "20"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/566242786"
+          },
+          {
+            "source_record_id": "osm:way:566242788",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "100"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/566242788"
+          }
+        ]
       }
     },
     {
@@ -55661,7 +55829,6 @@
         ]
       },
       "properties": {
-        "capacity": "33",
         "name": "Upper Bayview Campground",
         "operator": "Clear Lake State Park",
         "tourism": "camp_site",
@@ -55695,6 +55862,7 @@
             "source_record_id": "osm:node:6478672970",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "33",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -63880,7 +64048,9 @@
             "source_record_id": "osm:node:7712520279",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "capacity": "5"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -63890,7 +64060,9 @@
             "source_record_id": "osm:node:7712520280",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "backcountry": "yes",
+              "capacity": "5"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -67731,6 +67903,8 @@
             "source_record_id": "osm:node:8349722646",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -67742,6 +67916,8 @@
             "source_record_id": "osm:node:8349722647",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -67753,6 +67929,8 @@
             "source_record_id": "osm:node:8349722648",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -67764,6 +67942,8 @@
             "source_record_id": "osm:node:8349722649",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -67775,6 +67955,8 @@
             "source_record_id": "osm:node:8349722650",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -67834,6 +68016,8 @@
             "source_record_id": "osm:node:8349773252",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -67895,6 +68079,8 @@
             "source_record_id": "osm:node:8349773254",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -67906,6 +68092,8 @@
             "source_record_id": "osm:node:8349773255",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -67917,6 +68105,8 @@
             "source_record_id": "osm:node:8349773256",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -67928,6 +68118,8 @@
             "source_record_id": "osm:node:8349773257",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -67997,6 +68189,8 @@
             "source_record_id": "osm:node:8349773259",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68008,6 +68202,8 @@
             "source_record_id": "osm:node:8349773260",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68019,6 +68215,8 @@
             "source_record_id": "osm:node:8349773261",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68030,6 +68228,8 @@
             "source_record_id": "osm:node:8349773262",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68041,6 +68241,8 @@
             "source_record_id": "osm:node:8349773263",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68052,6 +68254,8 @@
             "source_record_id": "osm:node:8349773264",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68063,6 +68267,8 @@
             "source_record_id": "osm:node:8349773265",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68074,6 +68280,8 @@
             "source_record_id": "osm:node:8349773266",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68085,6 +68293,8 @@
             "source_record_id": "osm:node:8349773267",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68096,6 +68306,8 @@
             "source_record_id": "osm:node:8349773268",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -68107,12 +68319,24 @@
             "source_record_id": "osm:node:8349773269",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/8349773269"
+          },
+          {
+            "source_record_id": "osm:node:8349773270",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8349773270"
           }
         ]
       }
@@ -68172,6 +68396,8 @@
             "source_record_id": "osm:node:8356522085",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68183,6 +68409,8 @@
             "source_record_id": "osm:node:8415447601",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68194,6 +68422,8 @@
             "source_record_id": "osm:node:8415447602",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68205,6 +68435,8 @@
             "source_record_id": "osm:node:8415447603",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68216,6 +68448,8 @@
             "source_record_id": "osm:node:8415447604",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68227,6 +68461,8 @@
             "source_record_id": "osm:node:8415447605",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68238,6 +68474,8 @@
             "source_record_id": "osm:node:8415447606",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68249,6 +68487,8 @@
             "source_record_id": "osm:node:8415447607",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68340,6 +68580,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68351,6 +68593,8 @@
             "source_record_id": "osm:node:8397841890",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68362,6 +68606,8 @@
             "source_record_id": "osm:node:8397841891",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68373,6 +68619,8 @@
             "source_record_id": "osm:node:8397841892",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68384,6 +68632,8 @@
             "source_record_id": "osm:node:8397841893",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68395,6 +68645,8 @@
             "source_record_id": "osm:node:8397841894",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68524,6 +68776,8 @@
             "source_record_id": "osm:node:8416831431",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68535,6 +68789,8 @@
             "source_record_id": "osm:node:8416831432",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68546,6 +68802,8 @@
             "source_record_id": "osm:node:8416831433",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68557,6 +68815,8 @@
             "source_record_id": "osm:node:8416831434",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68568,6 +68828,8 @@
             "source_record_id": "osm:node:8416831435",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68579,6 +68841,8 @@
             "source_record_id": "osm:node:8417081499",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68601,16 +68865,11 @@
       "properties": {
         "backcountry": "yes",
         "capacity": "8",
-        "capacity:persons": "8",
-        "capacity:tents": "2",
-        "caravans": "no",
         "charge": "$20/night",
         "fee": "yes",
         "name": "Skunk Creek #1",
         "operator": "Lake Sonoma",
         "payment:credit_cards": "yes",
-        "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campsites/38117 https://www.recreation.gov/camping/campsites/38355",
         "osm_id": 8417081500,
@@ -68653,6 +68912,8 @@
             "source_record_id": "osm:node:8417081501",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68664,6 +68925,8 @@
             "source_record_id": "osm:node:8417081504",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68675,6 +68938,8 @@
             "source_record_id": "osm:node:8417081505",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68686,6 +68951,8 @@
             "source_record_id": "osm:node:8417081506",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68697,6 +68964,8 @@
             "source_record_id": "osm:node:8417081507",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68708,6 +68977,8 @@
             "source_record_id": "osm:node:8417081508",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68719,6 +68990,8 @@
             "source_record_id": "osm:node:8417081509",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68730,6 +69003,8 @@
             "source_record_id": "osm:node:8417081510",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68742,8 +69017,15 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "capacity": "8",
+              "capacity:persons": "8",
+              "capacity:tents": "2",
+              "caravans": "no",
               "charge": "$20/night",
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -68753,6 +69035,8 @@
             "source_record_id": "osm:node:8421103911",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68765,8 +69049,15 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "backcountry": "yes",
+              "capacity": "8",
+              "capacity:persons": "8",
+              "capacity:tents": "2",
+              "caravans": "no",
               "charge": "$20/night",
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -68831,6 +69122,8 @@
             "source_record_id": "osm:node:8417081516",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68842,6 +69135,8 @@
             "source_record_id": "osm:node:8417101417",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68853,6 +69148,8 @@
             "source_record_id": "osm:node:8417101418",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68864,6 +69161,8 @@
             "source_record_id": "osm:node:8417101419",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68875,6 +69174,8 @@
             "source_record_id": "osm:node:8417101420",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68886,6 +69187,8 @@
             "source_record_id": "osm:node:8417101421",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68897,6 +69200,8 @@
             "source_record_id": "osm:node:8417101422",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68908,6 +69213,8 @@
             "source_record_id": "osm:node:8417101423",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68919,6 +69226,8 @@
             "source_record_id": "osm:node:8417101424",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68983,6 +69292,8 @@
             "source_record_id": "osm:node:8417110907",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -68994,6 +69305,8 @@
             "source_record_id": "osm:node:8417110908",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -69005,6 +69318,8 @@
             "source_record_id": "osm:node:8417110910",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -69016,6 +69331,8 @@
             "source_record_id": "osm:node:8417110911",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -69027,6 +69344,8 @@
             "source_record_id": "osm:node:8417110912",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -69038,6 +69357,8 @@
             "source_record_id": "osm:node:8417110913",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -69049,6 +69370,8 @@
             "source_record_id": "osm:node:8417110914",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73577,6 +73900,8 @@
             "source_record_id": "osm:node:9443502901",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73588,6 +73913,8 @@
             "source_record_id": "osm:node:9443502902",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73599,6 +73926,8 @@
             "source_record_id": "osm:node:9443502903",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73610,6 +73939,8 @@
             "source_record_id": "osm:node:9443502904",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73621,6 +73952,8 @@
             "source_record_id": "osm:node:9443502905",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73632,6 +73965,8 @@
             "source_record_id": "osm:node:9443502906",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73643,6 +73978,7 @@
             "source_record_id": "osm:node:9443502911",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73654,6 +73990,7 @@
             "source_record_id": "osm:node:9443502912",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73717,6 +74054,8 @@
             "source_record_id": "osm:node:9443789656",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73728,6 +74067,8 @@
             "source_record_id": "osm:node:9443789657",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73739,6 +74080,8 @@
             "source_record_id": "osm:node:9443789658",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73750,6 +74093,8 @@
             "source_record_id": "osm:node:9443789659",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73761,6 +74106,8 @@
             "source_record_id": "osm:node:9443789660",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73772,6 +74119,8 @@
             "source_record_id": "osm:node:9443789661",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "USD 20",
               "fee": "yes"
             },
@@ -73835,6 +74184,8 @@
             "source_record_id": "osm:node:9443793198",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73846,6 +74197,8 @@
             "source_record_id": "osm:node:9443793199",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73857,6 +74210,8 @@
             "source_record_id": "osm:node:9443793200",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73868,6 +74223,8 @@
             "source_record_id": "osm:node:9443793201",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73879,6 +74236,8 @@
             "source_record_id": "osm:node:9443793202",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73890,6 +74249,8 @@
             "source_record_id": "osm:node:9443793203",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73949,6 +74310,8 @@
             "source_record_id": "osm:node:9443835726",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -73960,6 +74323,8 @@
             "source_record_id": "osm:node:9443835727",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
+              "capacity": "8",
               "charge": "$20/night",
               "fee": "yes"
             },
@@ -75096,10 +75461,14 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity:persons": "100",
+              "caravans": "yes",
               "drinking_water": "yes",
+              "group_only": "yes",
               "picnic_table": "yes",
               "power_supply": "no",
               "sanitary_dump_station": "no",
+              "tents": "yes",
               "toilets": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -75799,7 +76168,6 @@
           "osm:node:9755253465",
           "osm:node:9755253466"
         ],
-        "capacity:caravans": "1",
         "sources": [
           "openstreetmap"
         ],
@@ -75812,7 +76180,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9755253465",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity:caravans": "1"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9755253465"
+          }
+        ]
       }
     },
     {
@@ -77390,7 +77770,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10107325293",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10107325293"
+          }
+        ]
       }
     },
     {
@@ -77776,7 +78168,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10742641694",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10742641694"
+          }
+        ]
       }
     },
     {
@@ -84612,7 +85016,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -84623,7 +85028,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "yes"
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -91166,7 +91572,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "private",
-              "fee": "no"
+              "capacity:persons": "68",
+              "capacity:tents": "34",
+              "caravans": "no",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -94054,7 +94465,8 @@
             "source_record_id": "osm:node:14202252008",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "group_only": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -94064,7 +94476,8 @@
             "source_record_id": "osm:node:14202252009",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "permit"
+              "access": "permit",
+              "group_only": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -127232,7 +127645,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:837208687",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/837208687"
+          }
+        ]
       }
     },
     {
@@ -140038,6 +140463,7 @@
               "fee": "yes @ (Sep 15-Apr 15)",
               "power_supply": "no",
               "sanitary_dump_station": "yes",
+              "tents": "no",
               "water_point": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -140129,6 +140555,7 @@
             "fields": {
               "fee": "yes @ (Sep 15-Apr 15)",
               "power_supply": "no",
+              "tents": "no",
               "water_point": "no"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
@@ -141170,7 +141597,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "fee": "no"
+              "backcountry": "yes",
+              "caravans": "no",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:52:02Z",
             "source_updated_at": null,
@@ -144957,7 +145388,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1290158924",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity:persons": "10"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1290158924"
+          }
+        ]
       }
     },
     {
@@ -157389,7 +157832,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1559023869",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:52:02Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1559023869"
+          }
+        ]
       }
     },
     {

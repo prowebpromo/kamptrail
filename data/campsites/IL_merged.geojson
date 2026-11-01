@@ -604,14 +604,11 @@
       },
       "properties": {
         "cabins": "no",
-        "capacity": "109",
-        "caravans": "yes",
         "contact:phone": "+1-618-594-4410",
         "contact:website": "https://www.recreation.gov/camping/campgrounds/233483",
         "name": "Dam West Campground",
         "operator": "US Army Corps of Engineers",
         "permanent_camping": "no",
-        "tents": "yes",
         "tourism": "caravan_site",
         "id": "ridb:233483",
         "source": "recreation.gov",
@@ -650,10 +647,13 @@
             "source_record_id": "osm:way:1108044726",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "109",
+              "caravans": "yes",
               "fee": "yes",
               "internet_access": "wlan",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
+              "tents": "yes",
               "water_point": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:59Z",
@@ -926,7 +926,6 @@
       },
       "properties": {
         "camp_site:reservations": "no",
-        "capacity": "8",
         "name": "Camp Cadiz Campground",
         "phone:ranger": "+1-618-253-7114",
         "tourism": "camp_site",
@@ -969,6 +968,7 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity": "8",
               "fee": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:59Z",
@@ -2159,7 +2159,6 @@
         ]
       },
       "properties": {
-        "capacity": "7",
         "name": "Riverview Park at Dam 50 RV site",
         "source": "openstreetmap",
         "tourism": "caravan_site",
@@ -2185,7 +2184,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:297391808",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "capacity": "7"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/297391808"
+          }
+        ]
       }
     },
     {
@@ -4576,7 +4587,20 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:6359362595",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6359362595"
+          }
+        ]
       }
     },
     {
@@ -5875,7 +5899,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7450817347",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7450817347"
+          }
+        ]
       }
     },
     {
@@ -11521,7 +11557,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12663297995",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12663297995"
+          },
+          {
+            "source_record_id": "osm:node:12663297996",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12663297996"
+          }
+        ]
       }
     },
     {
@@ -11590,7 +11648,39 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12663429416",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12663429416"
+          },
+          {
+            "source_record_id": "osm:node:12663538558",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12663538558"
+          },
+          {
+            "source_record_id": "osm:node:12663538559",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12663538559"
+          }
+        ]
       }
     },
     {
@@ -11865,11 +11955,9 @@
         ]
       },
       "properties": {
-        "caravans": "yes",
         "name": "Questing Hills Equistrain Campground",
         "operator": "Jim Edgar Panther Creek State Fish and Wildlife Area",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 12671020366,
         "osm_type": "node",
@@ -11900,7 +11988,9 @@
             "source_record_id": "osm:way:760586141",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "caravans": "yes",
+              "fee": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:59Z",
             "source_updated_at": null,
@@ -12187,7 +12277,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13228026363",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13228026363"
+          },
+          {
+            "source_record_id": "osm:node:13228026364",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13228026364"
+          }
+        ]
       }
     },
     {
@@ -22147,7 +22259,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1310004329",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1310004329"
+          }
+        ]
       }
     },
     {
@@ -23616,7 +23740,6 @@
         "name": "Hermann City Park Campground",
         "operator": "City of Hermann",
         "static_caravans": "no",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://hermannmo.com/campground/",
         "osm_id": 1376181555,
@@ -23651,7 +23774,9 @@
             "source_record_id": "osm:way:1376181564",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:58:59Z",
             "source_updated_at": null,
@@ -25216,7 +25341,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1537354721",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1537354721"
+          },
+          {
+            "source_record_id": "osm:way:1537354727",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1537354727"
+          }
+        ]
       }
     },
     {

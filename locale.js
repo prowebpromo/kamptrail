@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.33.0';
+  const FR_VERSION = '2.34.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -1755,7 +1755,12 @@
   "Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence.": "Los filtros de servicios solo coinciden con las pruebas indicadas aquí, con el alcance indicado. Desconocido no significa ausente.",
   "Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.": "Los filtros de servicios usan solo las pruebas que muestra cada ficha: el propio elemento de OpenStreetMap del lugar, los registros de sitio del Servicio Forestal y los registros de parcelas de Recreation.gov. Con un filtro de longitud o de conexiones activo, los servicios de los registros de parcelas solo cuentan si están vinculados a la parcela que encaja, y estos registros no lo están.",
   "different site ({type}), not this campground": "otro sitio ({type}), no este camping",
-  "type unknown": "tipo desconocido"
+  "type unknown": "tipo desconocido",
+  "Recreation.gov facility {id}: {count} of {total} campsite records list RV or trailer equipment": "Instalación {id} de Recreation.gov: {count} de {total} registros de parcelas indican equipo de autocaravana o remolque",
+  "Merged elements, rig tags not used for this listing ({count})": "Elementos fusionados, etiquetas de vehículos no usadas para este lugar ({count})",
+  "These rig tags belong to other records merged into this listing, such as a separate loop or a duplicate outline. They are not used for this listing's rig types or filters.": "Estas etiquetas de vehículos pertenecen a otros registros fusionados en este lugar, como otro circuito o un contorno duplicado. No se usan para los tipos de vehículo ni para los filtros de este lugar.",
+  "No rig source for this listing.": "No hay ninguna fuente de vehículos para este lugar.",
+  "Tents and Trailers filters match only the rig types each popup reports from the listing's own sources. Sources that disagree never match.": "Los filtros de tiendas y remolques solo coinciden con los tipos de vehículo que cada ficha indica a partir de las fuentes propias del lugar. Las fuentes que no coinciden nunca cuentan."
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);
@@ -1798,7 +1803,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.33.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.34.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

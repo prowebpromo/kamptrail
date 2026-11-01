@@ -390,6 +390,16 @@
     if(e.state==='no_source')return `<div class="kt-amenity-evidence" data-state="no_source"><strong>${t("Amenity evidence:")}</strong> ${esc(t("No amenity source for this listing."))}${members}</div>`;
     return `<div class="kt-amenity-evidence" data-state="evidence"><strong>${t("Amenity evidence:")}</strong><ul>${rows}</ul>${osmBlock}<p class="kt-fine">${esc(t("Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence."))}</p>${rigNote}${members}</div>`;
   }
+  // 2.34.0: rig suitability from the listing's own sources only. Merged elements' rig tags are listed as not used.
+  function rigEvidenceText(p){
+    const e=DataQuality.rigEvidence(p);
+    const status={present:t("reported"),absent:t("source says no"),conflict:t("sources disagree"),unrecognized:t("value not recognized")};
+    const who=r=>r.source==='osm'?`${osmLink(r.record,t("OpenStreetMap element {ref}",{ref:osmRef(r.record)}))} <span class="kt-muted">(${esc(r.key)}=${esc(r.value)})</span>`:r.source==='ridb'?esc(t("Recreation.gov facility {id}: {count} of {total} campsite records list RV or trailer equipment",{id:r.record.slice(5),count:r.count,total:r.total})):r.source==='record'?esc(t("{source} listing record",{source:r.label||r.record})):'';
+    const rows=Object.keys(DataQuality.RIG_CATEGORIES).filter(c=>e.categories[c].status!=='unknown').map(c=>{const x=e.categories[c],refs=[...x.positive,...x.negative,...x.other,...x.conflict].map(who).filter(Boolean);return `<li data-rig="${c}" data-status="${x.status}"><strong>${esc(t({tent:'Tents',trailer:'Trailers and caravans',rv:'RV'}[c]))}:</strong> ${esc(status[x.status])}${refs.length?`: ${refs.join('; ')}`:''}</li>`;}).join('');
+    const members=e.members.length?`<details class="kt-rig-members"><summary>${esc(t("Merged elements, rig tags not used for this listing ({count})",{count:e.members.length}))}</summary><ul>${e.members.map(m=>`<li data-member="${esc(m.source_record_id)}">${/^osm:/.test(m.source_record_id)?osmLink(m.source_record_id,t("OpenStreetMap element {ref}",{ref:osmRef(m.source_record_id)})):esc(t("{source} listing record",{source:m.source||m.source_record_id}))}: <span class="kt-usfs-text">${esc(Object.entries(m.fields).map(([k,v])=>`${k}=${v}`).join(', '))}</span></li>`).join('')}</ul><p class="kt-fine">${esc(t("These rig tags belong to other records merged into this listing, such as a separate loop or a duplicate outline. They are not used for this listing's rig types or filters."))}</p></details>`:'';
+    if(!rows&&!members)return '';
+    return `<div class="kt-rig-evidence" data-state="${e.state}"><strong>${t("Rig types reported:")}</strong>${rows?`<ul>${rows}</ul>`:` ${esc(t("No rig source for this listing."))}`}${members}</div>`;
+  }
   function popupLayout(){
     const size=state.map?.getSize?.()||{},width=Number.isFinite(size.x)?size.x:390,height=Number.isFinite(size.y)?size.y:400;
     return {width:Math.max(100,Math.min(300,width-70)),height:Math.max(80,Math.min(360,height-160))};
@@ -399,6 +409,9 @@
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
     const closure=['closed','temporarily closed'].includes(status)?status:null;
+    // Rig and amenity provenance debt (2.34.0): operator and website may be inherited from a merged record and are
+    // not yet guarded. The popup never shows operator. source_url is normalized from the listing's own record and is
+    // set for every published listing, so the inherited website below is never reached. tests/rig-ownership.test.js pins this.
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
     const layout=popupLayout();
@@ -423,7 +436,7 @@
       ${ridbAmenitiesText(p)}
       ${usfsSiteText(p)}
       <!-- Bundled road_difficulty holds surface labels with no attributable source, so it is not shown. Approach difficulty comes only from dated visitor reports. -->
-      ${p.rig_friendly.length?`<div><strong>${t("Rig types reported:")}</strong> ${p.rig_friendly.map(value=>esc(uiLabel('rig',value))).join(', ')}</div>`:''}
+      ${rigEvidenceText(p)}
       ${rvText(p)}
       ${window.KampTrailDiscovery?.summary(p)?`<div><strong>${t("Community rating:")}</strong> ${esc(t("{0}/5 · {1} published {2} · latest visit {3}",{'0':(window.KampTrailDiscovery.summary(p).rating_sum/window.KampTrailDiscovery.summary(p).rating_count).toFixed(1),'1':window.KampTrailDiscovery.summary(p).rating_count,'2':t(window.KampTrailDiscovery.summary(p).rating_count===1?'review':'reviews'),'3':window.KampTrailDiscovery.summary(p).latest_visit}))}</div>`:''}
       <details class="kt-seasonal-scores"><summary>${t("Seasonal visit sub-ratings")}</summary><p class="kt-seasonal-values">${esc(window.KampTrailDiscovery?.summary(p)?window.KampTrailDiscovery.seasonalText(window.KampTrailDiscovery.seasonalScores(window.KampTrailDiscovery.summary(p).observations)):t("Open Reviews and photos to load published numeric sub-ratings."))}</p><p class="kt-fine">${t("Subjective 1–5 scores; at least 3 explicit ratings per aspect and season for an average. US calendar seasons combine years. Not current conditions or safety guarantees.")}</p></details>
@@ -558,7 +571,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.33.0',
+    version:'2.34.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){

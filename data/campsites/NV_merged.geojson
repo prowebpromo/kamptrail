@@ -179,10 +179,8 @@
         ]
       },
       "properties": {
-        "capacity": "9",
         "cost": null,
         "dog": "leashed",
-        "horse": "no",
         "name": "Bird Creek Campground",
         "operator": "US Forest Service",
         "tourism": "camp_site",
@@ -223,8 +221,10 @@
             "source_record_id": "osm:way:1236741631",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "9",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "horse": "no"
             },
             "retrieved_at": "2026-10-29T03:13:24Z",
             "source_updated_at": null,
@@ -632,10 +632,8 @@
         "addr:postcode": "89161",
         "addr:state": "NV",
         "addr:street": "Moenkopi Road",
-        "caravans": "yes",
         "name": "Red Rock Canyon Campground",
         "operator": "Bureau of Land Managment",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.blm.gov/nv/st/en/fo/lvfo/blm_programs/blm_special_areas/red_rock_nca/recreation/red_rock_campground.html",
         "id": "ridb:250877",
@@ -675,9 +673,11 @@
             "source_record_id": "osm:way:140968959",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "caravans": "yes",
               "fee": "yes",
               "internet_access": "no",
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:13:24Z",
             "source_updated_at": null,
@@ -2611,7 +2611,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4343825487",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:13:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4343825487"
+          }
+        ]
       }
     },
     {
@@ -14364,7 +14376,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10742641694",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:13:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10742641694"
+          }
+        ]
       }
     },
     {
@@ -17698,7 +17722,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "private",
-              "fee": "no"
+              "capacity:persons": "68",
+              "capacity:tents": "34",
+              "caravans": "no",
+              "fee": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:13:24Z",
             "source_updated_at": null,
@@ -41421,7 +41450,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1559023869",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:13:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1559023869"
+          }
+        ]
       }
     },
     {

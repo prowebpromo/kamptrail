@@ -16,17 +16,13 @@
         "addr:postcode": "21780",
         "addr:state": "MD",
         "addr:street": "Foxville Deerfield Road",
-        "backcountry": "no",
         "camp_site": "standard",
-        "capacity:pitches": "50",
-        "caravans": "yes",
         "email": "cato_campmanager@nps.gov",
         "name": "OWENS CREEK CAMPGROUND",
         "opening_hours": "May-Nov unknown; Dec-Apr closed",
         "operator": "National Park Service",
         "phone": "+1 877 444 6777",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/cato/planyourvisit/owens-creek-campground.htm",
         "wheelchair": "limited",
@@ -68,9 +64,13 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "customers",
+              "backcountry": "no",
+              "capacity:pitches": "50",
+              "caravans": "yes",
               "charge": "30 USD/night",
               "fee": "yes",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -300,14 +300,12 @@
       },
       "properties": {
         "cabins": "yes",
-        "caravans": "no",
         "email": "CATO_Camp_Manager@nps.gov",
         "name": "CAMP MISTY MOUNT",
         "opening_hours": "May-Oct",
         "operator": "National Park Service",
         "phone": "+1 301 271 3140",
         "reservation": "required",
-        "tents": "no",
         "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/233241",
         "wikidata": "Q5027421",
@@ -349,7 +347,9 @@
             "source_record_id": "osm:way:874693866",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "caravans": "no",
+              "internet_access": "no",
+              "tents": "no"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -2785,7 +2785,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4439928480",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4439928480"
+          },
+          {
+            "source_record_id": "osm:node:4439928520",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4439928520"
+          }
+        ]
       }
     },
     {
@@ -2827,7 +2851,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10934376515",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10934376515"
+          },
+          {
+            "source_record_id": "osm:node:11368993777",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "capacity:persons": "4"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11368993777"
+          }
+        ]
       }
     },
     {
@@ -4138,7 +4186,22 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9181475742",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes",
+              "caravans": "no",
+              "group_only": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9181475742"
+          }
+        ]
       }
     },
     {
@@ -11525,8 +11588,6 @@
         "access": "yes",
         "bbq": "yes",
         "camp_site": "standard",
-        "capacity": "48",
-        "caravans": "yes",
         "fee": "yes",
         "group_only": "yes",
         "name": "Lake Fairfax Large Group Campground",
@@ -11580,9 +11641,12 @@
               "access": "yes",
               "bbq": "yes",
               "fee": "yes",
+              "group_only": "yes",
               "openfire": "yes",
               "power_supply": "no",
-              "shower": "no"
+              "shower": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -11594,12 +11658,17 @@
             "fields": {
               "access": "yes",
               "bbq": "yes",
+              "capacity": "48",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "yes",
               "openfire": "yes",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
-              "shower": "yes"
+              "shower": "yes",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -12496,8 +12565,12 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
+              "capacity:caravans": "30",
+              "caravans": "yes",
               "fee": "yes",
-              "power_supply": "no"
+              "power_supply": "no",
+              "static_caravans": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -13653,9 +13726,13 @@
             "source_record_id": "osm:way:759755281",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "fee": "yes",
+              "group_only": "no",
               "power_supply": "no",
-              "sanitary_dump_station": "customers"
+              "sanitary_dump_station": "customers",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -13665,9 +13742,13 @@
             "source_record_id": "osm:way:759755282",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "no",
+              "caravans": "yes",
               "fee": "yes",
+              "group_only": "no",
               "power_supply": "no",
-              "sanitary_dump_station": "customers"
+              "sanitary_dump_station": "customers",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -13689,8 +13770,6 @@
         "addr:city": "Riverdale",
         "addr:postcode": "20737",
         "addr:state": "MD",
-        "capacity": "174",
-        "caravans": "yes",
         "leisure": "park",
         "name": "Greenbelt Park Campground",
         "operator": "National Park Service",
@@ -13698,7 +13777,6 @@
         "operator:type": "public",
         "operator:wikidata": "Q308439",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "website": "https://www.nps.gov/gree/planyourvisit/campground.htm",
         "osm_id": 759770890,
@@ -13732,8 +13810,11 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "bbq": "yes",
+              "capacity": "174",
+              "caravans": "yes",
               "fee": "yes",
-              "sanitary_dump_station": "customers"
+              "sanitary_dump_station": "customers",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -14804,7 +14885,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:941483571",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941483571"
+          },
+          {
+            "source_record_id": "osm:way:941483572",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941483572"
+          }
+        ]
       }
     },
     {
@@ -19222,7 +19325,8 @@
             "source_record_id": "osm:way:1163510164",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "internet_access": "no",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -20046,7 +20150,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1390989443",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1390989443"
+          }
+        ]
       }
     },
     {
@@ -20458,8 +20574,6 @@
           "osm:way:1319634830",
           "osm:way:1560919175"
         ],
-        "caravans": "no",
-        "tents": "yes",
         "sources": [
           "openstreetmap"
         ],
@@ -20472,7 +20586,31 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1319634830",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "caravans": "no",
+              "group_only": "yes",
+              "tents": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1319634830"
+          },
+          {
+            "source_record_id": "osm:way:1560919175",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1560919175"
+          }
+        ]
       }
     },
     {
@@ -22245,7 +22383,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1499197178",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T03:05:40Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1499197178"
+          }
+        ]
       }
     },
     {

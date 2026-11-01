@@ -1817,7 +1817,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:1154958949",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1154958949"
+          }
+        ]
       }
     },
     {
@@ -4418,7 +4430,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2904596068",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2904596068"
+          }
+        ]
       }
     },
     {
@@ -4664,8 +4688,10 @@
             "source_record_id": "osm:node:3131926178",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
@@ -4676,8 +4702,10 @@
             "source_record_id": "osm:node:3131926179",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
@@ -4688,8 +4716,10 @@
             "source_record_id": "osm:node:4694576424",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "backcountry": "yes",
               "drinking_water": "no",
               "fee": "yes",
+              "tents": "yes",
               "toilets": "no"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
@@ -5611,7 +5641,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3404394955",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3404394955"
+          }
+        ]
       }
     },
     {
@@ -9927,7 +9969,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7744609580",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7744609580"
+          },
+          {
+            "source_record_id": "osm:node:7744609581",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "backcountry": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7744609581"
+          }
+        ]
       }
     },
     {
@@ -10132,14 +10196,10 @@
         ]
       },
       "properties": {
-        "backcountry": "no",
-        "caravans": "yes",
-        "group_only": "no",
         "name": "Naval Air Station Key West Campground",
         "nudism": "no",
         "operator": "United States Navy MWR",
         "reservation": "required",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 8021890291,
         "osm_type": "node",
@@ -10171,12 +10231,16 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "private",
+              "backcountry": "no",
+              "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
+              "group_only": "no",
               "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
-              "sanitary_dump_station": "customers"
+              "sanitary_dump_station": "customers",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
@@ -14153,7 +14217,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11964661085",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11964661085"
+          },
+          {
+            "source_record_id": "osm:node:11964661086",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "group_only": "yes"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11964661086"
+          }
+        ]
       }
     },
     {
@@ -16001,11 +16087,8 @@
         "addr:postcode": "32564",
         "addr:state": "FL",
         "addr:street": "Deaton Bridge Road",
-        "capacity": "30",
-        "caravans": "yes",
         "fee": "yes",
         "name": "Blackwater River State Park Campground",
-        "tents": "yes",
         "tourism": "camp_site",
         "osm_id": 13317770830,
         "osm_type": "node",
@@ -16038,8 +16121,11 @@
             "source_record_id": "osm:way:495985131",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "capacity": "30",
+              "caravans": "yes",
               "fee": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tents": "yes"
             },
             "retrieved_at": "2026-10-29T02:55:27Z",
             "source_updated_at": null,
