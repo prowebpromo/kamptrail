@@ -1773,6 +1773,7 @@
   "Show on map": "Afficher sur la carte",
   "Source: {0}": "Source : {0}",
   "Synthetic test data, not a current alert.": "Données de test synthétiques, pas une alerte en vigueur.",
-  "Historical captured test data, not a current alert.": "Données de test historiques capturées, pas une alerte en vigueur."
+  "Historical captured test data, not a current alert.": "Données de test historiques capturées, pas une alerte en vigueur.",
+  "Zone shape is past its source freshness date and may be out of date.": "La forme de la zone a dépassé sa date de fraîcheur à la source et peut être périmée."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

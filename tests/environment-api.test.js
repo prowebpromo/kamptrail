@@ -339,3 +339,86 @@ test('a message that replaced or cancelled an alert keeps it retired after the m
         `);
     } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });
+
+test('retirement history survives proxy cache refreshes and is pruned after the original expires', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-retired2-'));
+    try {
+        php(`
+        $t0=strtotime('2026-11-01T15:00:00Z'); $dir=${JSON.stringify(directory)}; $q=['kind'=>'firewx'];
+        $mk=fn($id,$type,$exp,$refs)=>['type'=>'Feature','geometry'=>null,'properties'=>['status'=>'Actual','messageType'=>$type,'event'=>'Red Flag Warning','headline'=>'h','id'=>$id,'sent'=>'2026-11-01T14:00:00Z','expires'=>$exp,'ends'=>null,'references'=>array_map(fn($r)=>['identifier'=>$r],$refs)]];
+        $aExpires=gmdate('c',$t0+3000);
+        $responses=[[$mk('A','Alert',$aExpires,[]),$mk('B','Update',gmdate('c',$t0+5000),['A'])]];
+        $current=$responses[0];
+        $fetch=function($qq,$n)use(&$current,$collection){$c=$collection;$c['features']=$current;return ['ok'=>true,'data'=>ke_normalize('firewx',$c,$n)];};
+        $ids=fn($r)=>array_column(array_column($r['data']['features'],'properties'),'id');
+        $r1=ke_cached($q,$dir,$fetch,$t0);
+        check($ids($r1)===['A','B'] && $r1['data']['retired']===['A'], json_encode($r1['data']['retired']));
+        // Response 2: the next good upstream answer carries A alone. A fresh client must still see A retired.
+        $current=[$mk('A','Alert',$aExpires,[])];
+        $r2=ke_cached($q,$dir,$fetch,$t0+400);
+        check($ids($r2)===['A'], 'A alone');
+        check($r2['data']['retired']===['A'], 'history merged: '.json_encode($r2['data']['retired']));
+        $stored=json_decode(file_get_contents($dir.'/firewx-retired.json'),true);
+        check($stored==['A'=>$t0+3000], json_encode($stored));
+        // Still retained while A is unexpired, even from the cache hit path.
+        check(ke_cached($q,$dir,$fetch,$t0+450)['data']['retired']===['A']);
+        // The later of expires and ends is kept.
+        $current=[$mk('C','Alert',gmdate('c',$t0+1000),[]),$mk('D','Update',gmdate('c',$t0+1000),['C'])];
+        $current[0]['properties']['ends']=gmdate('c',$t0+9000);
+        $r3=ke_cached($q,$dir,$fetch,$t0+800);
+        $stored=json_decode(file_get_contents($dir.'/firewx-retired.json'),true);
+        check($stored['C']===$t0+9000 && $stored['A']===$t0+3000, json_encode($stored));
+        // After A expires it is pruned. C is still held until its ends time.
+        $current=[];
+        $r4=ke_cached($q,$dir,$fetch,$t0+3100);
+        check($r4['data']['retired']===['C'], json_encode($r4['data']['retired']));
+        $r5=ke_cached($q,$dir,$fetch,$t0+9100);
+        check($r5['data']['retired']===[] && json_decode(file_get_contents($dir.'/firewx-retired.json'),true)==[]);
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('polling limits are separate from freshness: a retained copy past the upstream deadline is served labelled stale, and not refetched early', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-stale-'));
+    try {
+        php(`
+        $t0=1793545200; $dir=${JSON.stringify(directory)};
+        // [kind, query, polling limit in seconds, header meta, seconds until the copy is stale (null = already stale one second later)]
+        $cases=[
+          ['firewx',['kind'=>'firewx'],300,['max_age'=>60,'expires'=>null],60],
+          ['firewx',['kind'=>'firewx'],300,['max_age'=>0,'expires'=>null],0],
+          ['firewx',['kind'=>'firewx'],300,['max_age'=>null,'expires'=>$t0-500],0],
+          ['zone',['kind'=>'zone','zone'=>'fire/COZ214'],3600,['max_age'=>60,'expires'=>null],60],
+          ['zone',['kind'=>'zone','zone'=>'fire/COZ214'],3600,['max_age'=>0,'expires'=>null],0],
+          ['zone',['kind'=>'zone','zone'=>'fire/COZ214'],3600,['max_age'=>null,'expires'=>$t0-500],0],
+        ];
+        foreach($cases as $i=>[$kind,$q,$poll,$meta,$staleAfter]){
+          $d=$dir.'/c'.$i; $calls=0;
+          $fetch=function($qq,$n)use(&$calls,$meta,$kind){$calls++;$GLOBALS['ke_upstream_meta']=['max_age'=>$meta['max_age'],'retry_until'=>null,'expires'=>$meta['expires']];return ['ok'=>true,'kind'=>$kind,'data'=>['type'=>'FeatureCollection','features'=>[]]];};
+          $first=ke_cached($q,$d,$fetch,$t0);
+          check($first['stale']===false && isset($first['fresh_until']), "$kind $i first");
+          check($first['fresh_until']===gmdate('c',$t0+$staleAfter), "$kind $i deadline ".$first['fresh_until']);
+          // Past the upstream deadline and inside the polling limit: served from the copy, labelled stale, no refetch.
+          foreach([$staleAfter+1,intdiv($poll,2),$poll-1] as $dt){
+            $hit=ke_cached($q,$d,$fetch,$t0+$dt);
+            check($hit['stale']===true, "$kind $i stale at +$dt");
+            check($calls===1, "$kind $i refetched early at +$dt");
+          }
+          // At the polling limit NWS is asked again and the new copy is fresh.
+          $again=ke_cached($q,$d,$fetch,$t0+$poll);
+          check($calls===2 && $again['stale']===false, "$kind $i refetch at polling limit");
+        }
+        // A stale copy never lets a request through during a Retry-After.
+        $d=$dir.'/rl'; $calls=0;
+        $ok=function($qq,$n)use(&$calls){$calls++;$GLOBALS['ke_upstream_meta']=['max_age'=>0,'retry_until'=>null,'expires'=>null];return ['ok'=>true,'data'=>['features'=>[]]];};
+        $limited=function($qq,$n)use(&$calls){$calls++;throw new KeException('rate_limited',503,1000);};
+        ke_cached(['kind'=>'firewx'],$d,$ok,$t0);
+        rejects(fn()=>ke_cached(['kind'=>'firewx'],$d,$limited,$t0+300),'rate_limited'); check($calls===2);
+        rejects(fn()=>ke_cached(['kind'=>'firewx'],$d,$ok,$t0+900),'rate_limited'); check($calls===2);
+        ke_cached(['kind'=>'firewx'],$d,$ok,$t0+1300); check($calls===3);
+        // Bounds that govern polling, not freshness.
+        check(ke_ttl('firewx',60)===300 && ke_ttl('zone',60)===3600 && ke_ttl('firewx',9999)===600);
+        check(ke_freshness_seconds(['max_age'=>60,'expires'=>$t0+999],$t0)===60 && ke_freshness_seconds(['max_age'=>null,'expires'=>$t0+90],$t0)===90 && ke_freshness_seconds(['max_age'=>null,'expires'=>$t0-5],$t0)===0 && ke_freshness_seconds(['max_age'=>null,'expires'=>null],$t0)===null);
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});

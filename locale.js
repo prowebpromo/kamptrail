@@ -1789,7 +1789,8 @@
   "Show on map": "Mostrar en el mapa",
   "Source: {0}": "Fuente: {0}",
   "Synthetic test data, not a current alert.": "Datos de prueba sintéticos, no es una alerta vigente.",
-  "Historical captured test data, not a current alert.": "Datos de prueba históricos capturados, no es una alerta vigente."
+  "Historical captured test data, not a current alert.": "Datos de prueba históricos capturados, no es una alerta vigente.",
+  "Zone shape is past its source freshness date and may be out of date.": "La forma de la zona superó su fecha de vigencia en la fuente y puede estar desactualizada."
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);

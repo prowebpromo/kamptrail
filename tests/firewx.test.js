@@ -259,3 +259,35 @@ test('client honors Retry-After exactly: no refetch before it, no cap, no fixed 
   await assert.rejects(e.request('firewx', null, signal));
   assert.equal(calls.length, 2); assert.ok(calls[1] - calls[0] >= 2090);
 });
+
+test('retired history from the proxy hides an alert for a client that never saw its replacement', () => {
+  // Proxy response 2 carries A alone, with the merged history naming A. A fresh tab renders it.
+  const a = feat({ id: 'A', expires: new Date(NOW + 3000000).toISOString() });
+  const response2 = { ...fx.payload('polygon'), data: { type: 'FeatureCollection', features: [a], retired: ['A'] } };
+  assert.doesNotThrow(() => fw.validate(response2, NOW));
+  const fresh = fw.select(response2.data.features, NOW, fw.retiredIds(response2));
+  assert.deepEqual(ids(fresh.alerts), []);
+  assert.equal(fresh.hidden.superseded, 1);
+  // Without the history the alert would show (the defect).
+  assert.deepEqual(ids(fw.select(response2.data.features, NOW).alerts), ['A']);
+});
+
+test('freshness: past the upstream deadline a retained response is labelled stale even inside the polling window', () => {
+  const at = (deadlineSeconds, extra = {}) => ({ ...fx.payload('polygon'), retrieved_at: new Date(NOW).toISOString(), fresh_until: new Date(NOW + deadlineSeconds * 1000).toISOString(), ...extra });
+  for (const [seconds, label] of [[60, 'max-age=60'], [0, 'max-age=0'], [-500, 'Expires in the past']]) {
+    const d = at(seconds);
+    if (seconds > 0) assert.equal(fw.freshness(d, NOW + seconds * 1000 - 1), 'fresh', label + ' before deadline');
+    assert.equal(fw.freshness(d, NOW + Math.max(seconds, 0) * 1000 + 1000), 'stale', label + ' after deadline, well inside 15 minutes');
+  }
+  assert.equal(fw.freshness(at(600), NOW + 599000), 'fresh');
+  assert.equal(fw.freshness(at(600, { stale: true }), NOW), 'stale', 'server label wins');
+  // A payload with no deadline keeps the 15 minute rule.
+  assert.equal(fw.freshness(fx.payload('polygon'), NOW + 14 * 60000), 'fresh');
+  // Zones: a retained zone shape past its deadline is flagged on the alert.
+  const alert = fw.select(fx.payload('zone_only').data.features, NOW).alerts[0];
+  const geom = fw.validateZone(fx.zone('fire/CAZ281'), 'fire/CAZ281'), geom2 = fw.validateZone(fx.zone('fire/NMZ104'), 'fire/NMZ104');
+  const cache = new Map([['fire/CAZ281', { geometry: geom, at: NOW, freshUntil: new Date(NOW + 60000).toISOString() }], ['fire/NMZ104', { geometry: geom2, at: NOW, freshUntil: null }]]);
+  assert.notEqual(fw.resolveShape(alert, cache, NOW).stale, true);
+  assert.equal(fw.resolveShape(alert, cache, NOW + 61000).stale, true);
+  assert.equal(fw.resolveShape(alert, new Map([['fire/CAZ281', { geometry: geom, at: NOW, stale: true }], ['fire/NMZ104', { geometry: geom2, at: NOW }]]), NOW).stale, true);
+});

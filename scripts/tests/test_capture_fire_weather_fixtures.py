@@ -249,7 +249,7 @@ class StoppedAfterPositiveTests(unittest.TestCase):
         window = steps['Capture seven-day alert history with provenance']
         self.assertEqual(window['if'], 'always()')
         self.assertIn('PIPESTATUS[0]', window['run'])
-        self.assertNotIn('set -euo pipefail', window['run'].split('tee')[0])
+        self.assertIn('set +e', window['run'].split('tee')[0])
         for name in ('Keep seven-day capture', 'Keep capture that contains a real fire alert'):
             self.assertTrue(steps[name]['if'].startswith('always()'), name)
         self.assertIn("steps.window.outputs.rc != '0'", steps['Fail the job if the capture was stopped by a rate limit']['if'])
@@ -257,6 +257,48 @@ class StoppedAfterPositiveTests(unittest.TestCase):
         self.assertLess(names.index('Keep capture that contains a real fire alert'), names.index('Fail the job if the capture was stopped by a rate limit'))
         keep = wf['jobs']['preserve-first-positive']
         self.assertEqual(keep['if'], "always() && needs.capture.outputs.positive == 'true'")
+
+
+class WindowStepUnderGithubShellTests(unittest.TestCase):
+    def run_step(self, stub):
+        import subprocess, yaml
+        wf = yaml.safe_load((SCRIPTS.parent / '.github/workflows/capture-fire-weather.yml').read_text())
+        step = next(s for s in wf['jobs']['capture']['steps'] if s.get('id') == 'window')
+        root = Path(tempfile.mkdtemp())
+        (root / 'scripts').mkdir()
+        (root / 'scripts/capture_fire_weather_fixtures.py').write_text(stub)
+        env = {'PATH': os.environ['PATH'], 'RUNNER_TEMP': str(root / 'tmp'), 'GITHUB_OUTPUT': str(root / 'out'), 'GITHUB_STEP_SUMMARY': str(root / 'sum'), 'HOME': str(root)}
+        (root / 'tmp').mkdir()
+        # The exact shell GitHub uses for `shell: bash`.
+        done = subprocess.run(['bash', '--noprofile', '--norc', '-eo', 'pipefail', '-c', step['run']], cwd=root, env=env, capture_output=True, text=True)
+        out = dict(line.split('=', 1) for line in (root / 'out').read_text().split('\n') if '=' in line) if (root / 'out').exists() else {}
+        return done, out, wf
+
+    STUB_POSITIVE = '''import json, os, sys
+out = sys.argv[sys.argv.index('--out') + 1]
+os.makedirs(out)
+json.dump({'positive': True, 'files': [], 'stopped': '429'}, open(os.path.join(out, 'manifest.json'), 'w'))
+print('stopped')
+sys.exit(1)
+'''
+
+    def test_a_stopped_positive_capture_still_writes_rc_and_positive_under_errexit(self):
+        done, out, wf = self.run_step(self.STUB_POSITIVE)
+        self.assertEqual(done.returncode, 0, done.stderr)
+        self.assertEqual((out['rc'], out['positive']), ('1', 'true'))
+        preserve_if = wf['jobs']['preserve-first-positive']['if']
+        self.assertEqual(preserve_if, "always() && needs.capture.outputs.positive == 'true'")
+        self.assertEqual(wf['jobs']['capture']['outputs']['positive'], '${{ steps.window.outputs.positive }}')
+        self.assertEqual(out['positive'], 'true', 'the preserve job condition is true for this output')
+
+    def test_a_crash_before_any_manifest_writes_rc_and_positive_false(self):
+        done, out, _ = self.run_step('import sys\nsys.exit(3)\n')
+        self.assertEqual(done.returncode, 0, done.stderr)
+        self.assertEqual((out['rc'], out['positive']), ('3', 'false'))
+
+    def test_a_clean_empty_capture_is_not_positive(self):
+        done, out, _ = self.run_step(self.STUB_POSITIVE.replace("'positive': True", "'positive': False").replace('sys.exit(1)', 'sys.exit(0)'))
+        self.assertEqual((out['rc'], out['positive']), ('0', 'false'))
 
 
 class AcceptedFixtureProtectionTests(unittest.TestCase):

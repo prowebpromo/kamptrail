@@ -9,8 +9,8 @@ const centre = { lat: (Math.min(...ring.map(p => p[1])) + Math.max(...ring.map(p
 const smokePolygon = { type: 'Polygon', coordinates: [[[centre.lng - .1, centre.lat - .1], [centre.lng + .1, centre.lat - .1], [centre.lng + .1, centre.lat + .1], [centre.lng - .1, centre.lat - .1]]] };
 
 /* Every response is a labelled fixture rebased to the browser clock, so it never reads as a historical alert. */
-async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes = 0, zoneFail = false, firewxStatus = 200, zoom = 9, retryAfter = null } = {}) {
-  const s = { requested: [], zones: [], errors: [], cases, firewxStatus, zoneFail, ageMinutes, retryAfter };
+async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes = 0, zoneFail = false, firewxStatus = 200, zoom = 9, retryAfter = null, retired = null, deadlineSeconds = null } = {}) {
+  const s = { requested: [], zones: [], errors: [], cases, firewxStatus, zoneFail, ageMinutes, retryAfter, retired, deadlineSeconds };
   page.on('pageerror', e => s.errors.push(e.message));
   await context.route(/^https:\/\//, r => r.fulfill({ contentType: 'image/png', body: pixel }));
   await context.route('**/api/environment.php?**', r => {
@@ -19,6 +19,8 @@ async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes
     if (kind === 'firewx') {
       if (s.firewxStatus !== 200) return r.fulfill({ status: s.firewxStatus, contentType: 'application/json', headers: s.retryAfter ? { 'Retry-After': String(s.retryAfter) } : {}, body: '{"ok":false}' });
       const body = fx.payload(s.cases, now); body.retrieved_at = new Date(now - s.ageMinutes * 60000).toISOString();
+      if (s.retired) body.data.retired = s.retired;
+      if (s.deadlineSeconds != null) body.fresh_until = new Date(now + s.deadlineSeconds * 1000).toISOString();
       return r.fulfill({ contentType: 'application/json', body: JSON.stringify(body) });
     }
     if (kind === 'zone') {
@@ -185,6 +187,20 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       expect(s.requested.filter(k => k === 'firewx').length).toBe(seen);
       await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
       await expect(panel(page).locator('.kt-firewx-stale')).toBeVisible();
+    });
+
+    test('a fresh tab hides an alert the proxy reports as retired even when the feed shows it alone', async ({ page, context }) => {
+      await setup(page, context, { cases: 'original_only', retired: ['urn:synthetic:original'] });
+      await enable(page); await open(page);
+      await expect(panel(page).locator('[data-firewx-status]')).toContainText('0 current alerts');
+      await expect(card(page, 'urn:synthetic:original')).toHaveCount(0);
+    });
+
+    test('a response past its upstream freshness deadline is labelled stale though it is only seconds old', async ({ page, context }) => {
+      await setup(page, context, { deadlineSeconds: -5 });
+      await enable(page); await open(page);
+      await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
+      await expect(panel(page).locator('.kt-firewx-stale')).toContainText('Stale: retrieved');
     });
 
     test('stale data is labelled stale and still lists the alert', async ({ page, context }) => {

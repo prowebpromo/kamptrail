@@ -69,6 +69,40 @@ function ke_note_header(string $line, int $now): void {
     if (preg_match('/^expires:\s*(.+?)\s*$/i', $line, $m) && ($when = strtotime($m[1])) !== false) $GLOBALS['ke_upstream_meta']['expires'] = $when;
 }
 
+/** Upstream freshness lifetime in seconds: Cache-Control max-age, else the Expires header, else unknown. */
+function ke_freshness_seconds(array $meta, int $now): ?int {
+    if (is_int($meta['max_age'] ?? null)) return max(0, $meta['max_age']);
+    if (is_int($meta['expires'] ?? null)) return max(0, $meta['expires'] - $now);
+    return null;
+}
+
+const KE_RETIRED_FILE = 'firewx-retired.json';
+const KE_RETIRED_UNKNOWN_SECONDS = 604800;
+
+/** Retirement history kept across proxy cache refreshes. Each id stays until the later of its alert's expires and ends. */
+function ke_merge_retired(string $directory, array $value, int $now): array {
+    $path = $directory . '/' . KE_RETIRED_FILE;
+    if (is_link($path)) return $value;
+    $known = [];
+    $stored = is_file($path) && filesize($path) <= 200000 ? json_decode((string)@file_get_contents($path), true) : null;
+    foreach (is_array($stored) ? $stored : [] as $id => $until) if (is_string($id) && is_int($until) && $until > $now) $known[$id] = $until;   // prune expired
+    $until = [];
+    foreach ($value['data']['features'] ?? [] as $f) {
+        $p = $f['properties'] ?? [];
+        $times = array_filter([isset($p['expires']) ? strtotime((string)$p['expires']) : false, isset($p['ends']) ? strtotime((string)$p['ends']) : false]);
+        if (is_string($p['id'] ?? null) && $times) $until[$p['id']] = max($times);
+    }
+    foreach ($value['data']['retired'] ?? [] as $id) {
+        if (!is_string($id)) continue;
+        $end = $until[$id] ?? ($known[$id] ?? $now + KE_RETIRED_UNKNOWN_SECONDS);
+        if ($end > $now) $known[$id] = max($known[$id] ?? 0, $end);
+    }
+    $known = array_slice($known, -KE_MAX_FEATURES * 4, null, true);
+    if (@file_put_contents($path, json_encode($known)) !== false) @chmod($path, 0600);
+    $value['data']['retired'] = array_slice(array_keys($known), 0, KE_MAX_FEATURES);
+    return $value;
+}
+
 /** Transport has no URL override, follows no redirects, and caps bytes before decoding. */
 function ke_http(string $base, array $query): array {
     $zone = str_starts_with($base, KE_ZONE_BASE) && preg_match(KE_ZONE_PATTERN, substr($base, strlen(KE_ZONE_BASE)));
@@ -91,7 +125,7 @@ function ke_http(string $base, array $query): array {
     if ($oversized) throw new KeException('zoom_in', 422);
     $meta = &$GLOBALS['ke_upstream_meta'];
     // Cache-Control max-age wins. Without it, the Expires header sets the freshness deadline.
-    if ($meta['max_age'] === null && $meta['expires'] !== null) $meta['max_age'] = max(0, $meta['expires'] - time());
+    $meta['max_age'] = ke_freshness_seconds($meta, time());
     if ($status === 429 || ($status === 503 && $meta['retry_until'] !== null)) {
         $until = $meta['retry_until'] ?? time() + KE_DEFAULT_RETRY_SECONDS;
         throw new KeException('rate_limited', 503, max(1, $until - time()));
@@ -359,7 +393,10 @@ function ke_cached(array $query, string $directory, callable $fetch, int $now): 
                         return $live;
                     }));
                     $value['data']['retired'] = array_slice(array_values(array_unique($retired)), 0, KE_MAX_FEATURES);
+                    $value = ke_merge_retired($directory, $value, $now);
                 }
+                // The polling limit decides when NWS is asked again. The upstream deadline decides when the copy is labelled stale.
+                if (isset($value['fresh_until'])) $value['stale'] = $now > strtotime($value['fresh_until']);
                 if ($query['kind'] === 'alerts') $value['data']['features'] = array_values(array_filter($value['data']['features'] ?? [], static function (array $f) use ($now): bool {
                     $p = $f['properties'];
                     return strtotime($p['expires']) > $now && ($p['ends'] === null || strtotime($p['ends']) > $now);
@@ -380,6 +417,12 @@ function ke_cached(array $query, string $directory, callable $fetch, int $now): 
         try {
             $GLOBALS['ke_upstream_meta'] = ['max_age' => null, 'retry_until' => null, 'expires' => null];
             $value = $fetch($query, $now);
+            if (in_array($query['kind'], ['firewx', 'zone'], true)) {
+                if ($query['kind'] === 'firewx') $value = ke_merge_retired($directory, $value, $now);
+                $age = ke_freshness_seconds($GLOBALS['ke_upstream_meta'], $now);
+                $value['fresh_until'] = gmdate('c', $now + ($age ?? ke_ttl($query['kind'], null)));
+                $value['stale'] = false;
+            }
             $entry = ['key' => $key, 'at' => $now, 'value' => $value, 'max_age' => $GLOBALS['ke_upstream_meta']['max_age'] ?? null];
         } catch (KeException $e) {
             $entry = ['key' => $key, 'at' => $now, 'error' => $e->reason, 'status' => $e->status];
