@@ -368,6 +368,8 @@
     for (const f of features) if (f.properties.camping_classification !== 'campsite') for (const id of f.properties.legacy_ids || []) if (id !== f.properties.id) withheld.add(id);
     // Snapshot membership crosses state files: a host's own row (source_ids) withholds its members everywhere.
     for (const id of options.withheldMembers || []) withheld.add(id);
+    // An element that is already its own published listing keeps it (saved links and reviews are keyed by it).
+    for (const id of options.preferredIds || []) withheld.delete(id);
     return {type:'FeatureCollection',features:features.filter(f => f.properties.camping_classification === 'campsite' && !withheld.has(f.properties.id))};
   }
   const RIDB_AMENITY_URL='https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip';
