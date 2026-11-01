@@ -143,7 +143,8 @@ test('the review form confirms the derived season, offers boundary choices, and 
  date.value='2026-07-04';date.listeners.change();assert.deepEqual(season.children.map(o=>o.attrs.value),['summer','spring','fall']);
  const data=v=>{global.FormData=class{get(k){return v[k]??null;}};return D.formValues({});};
  try{
-  assert.deepEqual(data({score_crowds:'4',score_fullness:'2',score_season:'spring'}),{scores:{crowds:4,fullness:2},season:'spring'});
+  assert.deepEqual(data({score_crowds:'4',score_fullness:'2',score_season:'winter',visited_on:'2026-03-01'}),{scores:{crowds:4,fullness:2},season:'winter'},'boundary choice is sent');
+  assert.deepEqual(data({score_crowds:'4',score_season:'spring',visited_on:'2026-03-01'}),{scores:{crowds:4}},'a confirmed visit-date season is implied, not sent');
   assert.deepEqual(data({observed_crowding:'crowded',score_season:'spring'}),{crowding:'crowded'},'no season without a score; no score from crowding');
   assert.deepEqual(data({score_noise_day:'5',score_noise_night:'1',score_cleanliness:'3'}),{scores:{noise_day:5,noise_night:1,cleanliness:3}});
  }finally{delete global.FormData;}

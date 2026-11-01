@@ -35,8 +35,11 @@ async function submit(page,{crowds,fullness,visited,season,expectSeasons}){
  await d.locator('[name=firsthand]').check();
  // The API rejects submissions under three seconds; the form measures the time it was open.
  await page.waitForTimeout(3100);
+ const posted=page.waitForRequest(r=>r.url().includes('/api/community.php')&&r.method()==='POST');
  const response=page.waitForResponse(r=>r.url().includes('/api/community.php')&&r.request().method()==='POST');
- await d.getByRole('button',{name:'Send for review',exact:true}).click();const res=await response;expect(res.status()).toBe(201);
+ await d.getByRole('button',{name:'Send for review',exact:true}).click();const sent=(await posted).postData()||'',payload=JSON.parse(sent.match(/name="observations"\r\n\r\n([^\r]+)/)[1]);
+ expect(payload).toEqual({scores:{crowds,fullness,noise_day:4,noise_night:5,cleanliness:3},...(season?{season}:{})});
+ const res=await response;expect(res.status()).toBe(201);
  await expect(page.getByRole('dialog',{name:'Review received'})).toContainText('waiting for moderation');
  const id=(await res.json()).id;await reopen(page);return id;
 }
