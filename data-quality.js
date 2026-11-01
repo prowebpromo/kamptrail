@@ -374,6 +374,10 @@
     const features=[], ids=new Map(), grid=new Map();
     // Same-name records within 300 m are one place. Agency and Recreation.gov points often sit a few hundred meters apart.
     const cellSize=.003, radius=options.radiusMeters ?? 300;
+    // Owner-only joins (the browser with the published hosts, 2.35.0): a record joins a listing only when
+    // both have the same index owner (its published host, else its own id). A record whose host has not
+    // loaded yet stays its own marker. It never borrows another owner. The index build does not set this.
+    const ownerOnly=!!(options.ownerOnly && options.previousHosts), ownerOf=id=>options.previousHosts.get(id)||id;
     for (const raw of input.features) {
       const f=normalizeFeature(raw,options); if (!f) continue;
       const p=f.properties, ll=getLatLng(f), cx=Math.floor(ll.lon/cellSize), cy=Math.floor(ll.lat/cellSize);
@@ -386,6 +390,7 @@
           for (const other of grid.get(`${x},${y}`) || []) {
             const op=other.properties;
             if (p.facility_id && op.facility_id && String(p.facility_id)!==String(op.facility_id)) continue;
+            if (ownerOnly && ownerOf(op.id)!==ownerOf(p.id)) continue;
             if (normalizeName(op.name) === normalizeName(p.name) && distanceMeters(ll,getLatLng(other))<=radius) {
               if (!previousHost || op.id===previousHost) {found=other;break;}
               if (!first) first=other;
@@ -779,6 +784,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.34.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.35.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);
