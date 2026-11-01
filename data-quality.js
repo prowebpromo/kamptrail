@@ -51,7 +51,7 @@
       access: access || null, access_status, access_label, exclusion_reason,
       camping_evidence: agencyCamping ? 'agency_camping_activity' : explicitlyCamping ? 'osm_campsite_tag' : campingName ? 'camping_facility_name' : campingIntro ? 'source_intro_camping' : ridbOvernight ? 'ridb_facility_type_overnight_sites' : ridb ? 'ridb_activity_listing' : 'source_listing',
       camping_classification: explicitlyCamping || campingName || campingIntro || ridbOvernight ? 'campsite' : 'unverified_camping_record',
-      ...(accommodation ? {accommodation} : {}),
+      ...(accommodation ? {kt_accommodation:accommodation} : {}),
       ...(campingName ? {camping_name_text:name} : campingIntro ? {camping_intro_text:intro.slice(0, 300)} : {})
     };
   }
@@ -118,7 +118,9 @@
     const ridb = raw.facility_id != null || sources.some(s => /recreation\.gov|\bridb\b/i.test(s));
     const osm = raw.osm_id != null || raw.tourism === 'camp_site' || raw.tourism === 'caravan_site';
     // Own overnight campsite records (ridb-sites.json). An in-memory re-normalization reuses the attached count.
-    const overnightSites = ridb && raw.facility_id != null ? (options.siteDetails ? options.siteDetails[String(raw.facility_id)]?.t : raw._kt_normalized ? raw.site_count : 0) : 0;
+    // Both Recreation.gov sidecars count the facility's own TypeOfUse=Overnight campsite records.
+    const fid = raw.facility_id != null ? String(raw.facility_id) : null;
+    const overnightSites = ridb && fid ? Math.max(options.siteDetails?.[fid]?.t || 0, options.amenityDetails?.facilities?.[fid]?.sites || 0, raw._kt_normalized ? raw.site_count || 0 : 0) : 0;
     const classification = classifyCampingRecord(borrowedWording ? {...raw, description:''} : raw, name, {osm, ridb, overnightSites});
     // A held inherited restriction blocks admission until identity review. It
     // is not a statement about the kept element's own public-access tags.
@@ -168,8 +170,8 @@
     p.type = ['established', 'dispersed', 'parking', 'backcountry', 'other', 'lodging'].includes(raw.type) ? raw.type : (osm ? 'established' : 'other');
     if (ridb && !osm && p.camping_classification === 'unverified_camping_record') p.type = 'other';
     // Reservable accommodation keeps its own kind. A fire lookout or cabin is never shown as a campground.
-    if (p.accommodation) p.type = 'lodging';
-    else delete p.accommodation;
+    if (classification.kt_accommodation) p.type = 'lodging';
+    else delete p.kt_accommodation;
     // A Recreation.gov record whose own facility type names no camping kind is classified from its own
     // wording (name, then the first description sentence). The wording is kept as attributed evidence.
     p.type_evidence = null;

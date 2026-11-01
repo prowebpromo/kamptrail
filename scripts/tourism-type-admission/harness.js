@@ -20,16 +20,16 @@ function catalogue(DQ,I,{browser=false,statesOrder=null}={}){
   const attach=f=>{DQ.attachSiteDetails(f,I.details);DQ.attachRIDBAmenities(f,I.ridb);DQ.attachUSFSSiteAmenities(f,I.usfs);};
   if(!browser){
     const input=[],stateById=new Map();
-    for(const {state,geojson} of I.collections){const o={state,siteDetails:I.details};for(const raw of DQ.publicationCandidates(geojson.features,o)){const f=DQ.normalizeFeature(raw,o);if(!f)continue;attach(f);input.push(f);
+    for(const {state,geojson} of I.collections){const o={state,siteDetails:I.details,amenityDetails:I.ridb};for(const raw of DQ.publicationCandidates(geojson.features,o)){const f=DQ.normalizeFeature(raw,o);if(!f)continue;attach(f);input.push(f);
       for(const id of [f.properties.id,...(f.properties.legacy_ids||[])]){if(!stateById.has(id))stateById.set(id,new Set());stateById.get(id).add(state);}}}
     const preferredIds=new Set(I.idx.map(s=>s.id)),previousHosts=new Map();for(const s of I.idx)for(const a of s.legacy_ids||[])previousHosts.set(a,s.id);
-    const out=DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{preferredIds,previousHosts,siteDetails:I.details}).features;out.forEach(attach);
+    const out=DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{preferredIds,previousHosts,siteDetails:I.details,amenityDetails:I.ridb}).features;out.forEach(attach);
     return {features:out,stateById};
   }
   // Browser: states merged one at a time into the running catalogue, as mergeLoaded does.
   let all=[];
   for(const {state,geojson} of (statesOrder||I.collections)){
-    const o={state,siteDetails:I.details};const incoming=DQ.publicationCandidates(geojson.features,o).map(raw=>DQ.normalizeFeature(raw,o));
+    const o={state,siteDetails:I.details,amenityDetails:I.ridb};const incoming=DQ.publicationCandidates(geojson.features,o).map(raw=>DQ.normalizeFeature(raw,o));
     incoming.forEach(attach);
     all=DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:[...all,...incoming]},o).features;all.forEach(attach);
   }

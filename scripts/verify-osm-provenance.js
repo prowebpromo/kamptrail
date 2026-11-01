@@ -19,9 +19,9 @@ function fullCatalogue(directory,quality){
  const details=read(path.join(directory,'ridb-sites.json')).facilities,input=[];
  for(const file of files){const state=file.slice(0,2),features=read(path.join(directory,file)).features,agency=path.join(directory,'agency',state+'.geojson');
   if(fs.existsSync(agency))features.push(...read(agency).features);
-  const o={state,siteDetails:details};for(const raw of quality.publicationCandidates(features,o)){const f=quality.normalizeFeature(raw,o);quality.attachSiteDetails(f,details);input.push(f);}
+  const o={state,siteDetails:details,amenityDetails:read(path.join(directory,'ridb-amenities.json'))};for(const raw of quality.publicationCandidates(features,o)){const f=quality.normalizeFeature(raw,o);quality.attachSiteDetails(f,details);input.push(f);}
  }
- return quality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{siteDetails:details}).features;
+ return quality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{siteDetails:details,amenityDetails:read(path.join(directory,'ridb-amenities.json'))}).features;
 }
 (async()=>{
  const sourceHashes={};
@@ -38,14 +38,14 @@ function fullCatalogue(directory,quality){
  assert.equal(A.size,B.size,'Listing count');assert.deepEqual([...A.keys()].sort(),[...B.keys()].sort(),'Canonical identities');
  for(const [id,s]of A){const b=B.get(id);assert.deepEqual([s.lat,s.lng,s.states],[b.lat,b.lng,b.states],id+' coordinates/states');assert.deepEqual([...s.legacy_ids].sort(),[...b.legacy_ids].sort(),id+' aliases');}
  const feeChanges=[...A].filter(([id,s])=>s.m.f!==B.get(id).m.f).map(([id,s])=>({id,name:s.name,before:B.get(id).m.f,after:s.m.f}));
- const accessChanges=[],holds=[],members=new Set(),sd=read(path.join(dir,'ridb-sites.json')).facilities;let evidenceRows=0,maxMembers=0;
+ const accessChanges=[],holds=[],members=new Set(),sd=read(path.join(dir,'ridb-sites.json')).facilities,ad=read(path.join(dir,'ridb-amenities.json'));let evidenceRows=0,maxMembers=0;
  const oldDQ=require(path.join(baseline,'data-quality.js'));
  for(const file of files){const state=file.slice(0,2),b=read(path.join(bdir,file)).features,a=read(path.join(dir,file)).features;assert.equal(a.length,b.length,state+' snapshot count');const bm=new Map(b.map(f=>[f.properties.id,f]));
   for(const f of a){const p=f.properties,g=bm.get(p.id);assert.ok(g,p.id);assert.deepEqual(f.geometry,g.geometry,p.id+' snapshot coordinates');assert.deepEqual(p.source_ids,g.properties.source_ids,p.id+' snapshot membership');assert.ok(!p._kt_normalized,'Normalized snapshot persisted');
    const own=p.member_evidence||[];assert.equal(new Set(own.map(e=>e.source_record_id)).size,own.length);maxMembers=Math.max(maxMembers,own.length);evidenceRows+=own.length>0?1:0;if(own.length)members.add(p.id);
    for(const e of own){assert.ok((p.source_ids||[]).includes(e.source_record_id),p.id+' donor is not a member');assert.ok(!e.retrieved_at||Number.isFinite(Date.parse(e.retrieved_at)));}
    if(p.access_hold)holds.push({state,id:p.id,...p.access_hold});
-   const n0=oldDQ.normalizeFeature(g,{siteDetails:sd}),n1=DQ.normalizeFeature(f,{siteDetails:sd}),v0=n0?.properties.access_status||'rejected',v1=n1?.properties.access_status||'rejected';
+   const n0=oldDQ.normalizeFeature(g,{siteDetails:sd,amenityDetails:ad}),n1=DQ.normalizeFeature(f,{siteDetails:sd,amenityDetails:ad}),v0=n0?.properties.access_status||'rejected',v1=n1?.properties.access_status||'rejected';
    assert.equal(!!n0,!!n1,p.id+' admission');if(v0!==v1)accessChanges.push({state,id:p.id,before:v0,after:v1});
   }
  }

@@ -174,7 +174,7 @@
     })();elevationTasks.set(code,task);return task;
   }
   function mergeLoaded(features,stateCode) {
-    const options={state:stateCode,...(state.siteDetails?{siteDetails:state.siteDetails}:{})};
+    const options={state:stateCode,...(state.siteDetails?{siteDetails:state.siteDetails}:{}),...(state.amenityDetails?{amenityDetails:state.amenityDetails}:{})};
     const incoming=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options));
     incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     if(state.siteDetails)incoming.forEach(f=>DataQuality.attachSiteDetails(f,state.siteDetails));
@@ -221,6 +221,7 @@
         const data=await fetchJSON(`data/campsites/${code}_merged.geojson`);
         if(data?.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid campsite data');
         const extra=await agency;
+        await state.amenityReady;
         mergeLoaded([...data.features,...(extra?.type==='FeatureCollection'&&Array.isArray(extra.features)?extra.features:[])],code);
         state.loadedStates.add(code);state.failed.delete(code);
         updateMarkers(); // Terrain lookup must not delay otherwise usable campsite markers.
@@ -528,7 +529,9 @@
       map.on('zoomend',layoutOverview);
       map.on('moveend',()=>{syncMode();clearTimeout(timer);timer=setTimeout(onView,250);});
       // Optional evidence must not delay the map when its request is slow or unavailable.
-      loadAmenityDetails().then(()=>{
+      // Recreation.gov overnight records corroborate a facility's own type at admission, so state merges wait for this (it never rejects).
+      state.amenityReady=loadAmenityDetails();
+      state.amenityReady.then(()=>{
         if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
         updateMarkers();
       });

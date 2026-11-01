@@ -27,7 +27,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
       throw new Error(`${state} is not a GeoJSON FeatureCollection`);
     }
     // Own overnight campsite records corroborate a Recreation.gov record's own facility type.
-    const options = {state, ...(siteDetails ? {siteDetails} : {})};
+    const options = {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})};
     for (const raw of quality.publicationCandidates(geojson.features,options)) {
       const feature = quality.normalizeFeature(raw, options);
       if (!feature) continue;
@@ -41,7 +41,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     }
   }
 
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {})});
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);
