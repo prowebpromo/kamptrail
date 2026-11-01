@@ -105,3 +105,11 @@ Full suites at 4c45554f, rebased onto main 76da929f, on a server started from th
 - Fixes these runs revealed: alert headings are `h2` (axe flagged a skipped level), the Spanish and French spec is split into separate tests, and the panel opens by keyboard because the expanded layers control intercepted clicks.
 
 Run the browser spec with `PORT=<free> node scripts/serve.js` from this worktree, then `BASE_URL=http://127.0.0.1:<port> CHROMIUM_PATH=<chrome> npx playwright test tests/browser/firewx.spec.js tests/browser/environment.spec.js`.
+
+## Results after the review fixes
+
+Run on the rebase onto main `a6dd9e5e`, own server on port 8821 with cwd `/home/claude/wt-r12`, heavy jobs through `heavy.sh`:
+
+- `npm test`: 499 of 499 passed.
+- `npm run test:python`: 422 ran, OK, 9 skipped.
+- `firewx.spec.js` and `environment.spec.js`, desktop and mobile: 44 of 44 passed.
