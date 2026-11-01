@@ -28,6 +28,33 @@ Approved by the owner. Recorded before any code change. It must not be weakened.
    - Ignore only the known local failure in `app.spec.js` (mobile map height 493 vs >500).
    - Check the release build.
 
+## Live acceptance (October 31, 2026)
+
+Result: **passed with a documented identity exception. 401 of 404 fixture listings reproduce exactly; this is not an unqualified 404/404 pass.**
+
+Checked on kamptrail.com against merge `afdfb3f9`, desktop (1440x1000) and mobile (390x844), service workers blocked. Script: `scripts/acceptance/live-2.31.0-amenity-check.js`. Raw output: `docs/acceptance/2.31.0-live-output.txt` (the script marks the identity exception as FAIL; the owner ruled it a documented exception).
+
+| Check | Desktop | Mobile |
+|---|---|---|
+| release.json source commit is afdfb3f9 | pass | pass |
+| search-index.json sha256 is 7f0d331a (reviewed package) | pass | pass |
+| page and KampTrailData report 2.31.0 | pass | pass |
+| popup and toilet/water filters agree | 404/404 | 404/404 |
+| unsourced "Amenities reported:" line absent | pass | pass |
+| rendered map popup shows amenity evidence | pass | pass |
+| no page errors | pass | pass |
+| fixture outcomes (toilet, water, toilet with 20 ft rig) reproduce exactly | 401/404 | 401/404 |
+
+The live evidence files (`ridb-amenities.json`, `usfs-site-amenities.json`, `ridb-sites.json`) are byte-identical to the merged commit.
+
+### Identity exception
+
+The three listings that differ are usfs:26736, usfs:5901 and usfs:9461. In the search index each is the canonical host with an OSM element as legacy id. The browser elects the OSM element as host instead (osm:way:244588682, osm:node:3759671902, osm:relation:19325196), so its own tags count and the fixture's "no amenity source" outcome does not hold. Saved links resolve either way through legacy_ids.
+
+Cause: `data-loader.js` L182 merges loaded states without the index's preferredIds and previousHosts, so browser host election can differ from the index and depends on load order. Loading 39 states, 10 of 32,229 listings showed under a different canonical id. A second run with the same inputs gave a different split, including Cosby Campground (index osm:way:1107154601, browser ridb:232479). The defect predates 2.31.0, and 2.31.0's popup-and-filter agreement holds in the browser in every run.
+
+Owner decision: record 2.31.0 as passing with this exception. Deterministic browser identity is its own package (`fix/deterministic-browser-identity`), using the index's canonical-host rules. 2.32.0 is tested under different loading orders before merge, and its deployment waits for the identity fix if rig suitability or filtering changes with load order. No score change.
+
 ## Design
 
 ### Snapshot merge guard (`scripts/merge_campsite_data.js`)
