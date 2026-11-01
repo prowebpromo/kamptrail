@@ -9,8 +9,8 @@ const centre = { lat: (Math.min(...ring.map(p => p[1])) + Math.max(...ring.map(p
 const smokePolygon = { type: 'Polygon', coordinates: [[[centre.lng - .1, centre.lat - .1], [centre.lng + .1, centre.lat - .1], [centre.lng + .1, centre.lat + .1], [centre.lng - .1, centre.lat - .1]]] };
 
 /* Every response is a labelled fixture rebased to the browser clock, so it never reads as a historical alert. */
-async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes = 0, zoneFail = false, firewxStatus = 200, zoom = 9, retryAfter = null, retired = null, deadlineSeconds = null } = {}) {
-  const s = { requested: [], zones: [], errors: [], cases, firewxStatus, zoneFail, ageMinutes, retryAfter, retired, deadlineSeconds };
+async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes = 0, zoneFail = false, firewxStatus = 200, zoom = 9, retryAfter = null, retired = null, deadlineSeconds = null, zoneDeadlineSeconds = null } = {}) {
+  const s = { requested: [], zones: [], errors: [], cases, firewxStatus, zoneFail, ageMinutes, retryAfter, retired, deadlineSeconds, zoneDeadlineSeconds };
   page.on('pageerror', e => s.errors.push(e.message));
   await context.route(/^https:\/\//, r => r.fulfill({ contentType: 'image/png', body: pixel }));
   await context.route('**/api/environment.php?**', r => {
@@ -26,7 +26,8 @@ async function setup(page, context, { lang = 'en', cases = 'polygon', ageMinutes
     if (kind === 'zone') {
       const id = u.searchParams.get('zone'); s.zones.push(id);
       if (s.zoneFail) return r.fulfill({ status: 502, contentType: 'application/json', body: '{"ok":false}' });
-      return r.fulfill({ contentType: 'application/json', body: JSON.stringify(fx.zone(id, now)) });
+      const zone = fx.zone(id, now); if (s.zoneDeadlineSeconds != null) zone.fresh_until = new Date(now + s.zoneDeadlineSeconds * 1000).toISOString();
+      return r.fulfill({ contentType: 'application/json', body: JSON.stringify(zone) });
     }
     const properties = kind === 'fire' ? { id: '1', name: 'Example fire', type: 'WF', acres: 20, source_updated_at: new Date(now - 3600000).toISOString() } : { id: '2', density: 'Light', start: new Date(now - 7200000).toISOString(), end: new Date(now - 3600000).toISOString() };
     return r.fulfill({ contentType: 'application/json', body: JSON.stringify({ ok: true, version: 1, kind, partial: false, retrieved_at: new Date(now).toISOString(), source: { name: 'Example', url: 'https://www.weather.gov/', ...(kind === 'smoke' ? { observation_date: new Date(now - 3600000).toISOString().slice(0, 10) } : {}) }, data: { type: 'FeatureCollection', features: [{ type: 'Feature', geometry: smokePolygon, properties }] } }) });
@@ -194,6 +195,23 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       await enable(page); await open(page);
       await expect(panel(page).locator('[data-firewx-status]')).toContainText('0 current alerts');
       await expect(card(page, 'urn:synthetic:original')).toHaveCount(0);
+    });
+
+    test('the zone-shape note appears only for a zone past its own upstream deadline', async ({ page, context }) => {
+      await setup(page, context, { cases: 'zone_only', zoneDeadlineSeconds: -5 });
+      await enable(page); await open(page);
+      const a = card(page, 'urn:synthetic:zone-only');
+      await expect(a).toHaveAttribute('data-shape', 'zones', { timeout: 20000 });
+      await expect(a.locator('.kt-firewx-stale-zone')).toContainText('Zone shape is past its source freshness date');
+      await expect(panel(page).locator('.kt-firewx-stale')).toHaveCount(0);   // the alert label is separate
+    });
+
+    test('a zone with the usual long max-age shows no note and the alert is not Stale', async ({ page, context }) => {
+      await setup(page, context, { cases: 'zone_only', zoneDeadlineSeconds: 2592000 });
+      await enable(page); await open(page);
+      const a = card(page, 'urn:synthetic:zone-only');
+      await expect(a).toHaveAttribute('data-shape', 'zones', { timeout: 20000 });
+      await expect(a.locator('.kt-firewx-stale-zone')).toHaveCount(0);
     });
 
     test('a response past its upstream max-age is not Stale before 15 minutes, and always shows its age', async ({ page, context }) => {

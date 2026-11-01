@@ -1790,7 +1790,7 @@
   "Source: {0}": "Fuente: {0}",
   "Synthetic test data, not a current alert.": "Datos de prueba sintéticos, no es una alerta vigente.",
   "Historical captured test data, not a current alert.": "Datos de prueba históricos capturados, no es una alerta vigente.",
-  "Zone shape was retrieved more than 15 minutes ago and may be out of date.": "La forma de la zona se obtuvo hace más de 15 minutos y puede estar desactualizada.",
+  "Zone shape is past its source freshness date and may be out of date.": "La forma de la zona superó su fecha de vigencia en la fuente y puede estar desactualizada.",
   "Updated {0} min ago": "Actualizado hace {0} min",
   "Updated less than a minute ago": "Actualizado hace menos de un minuto"
 };

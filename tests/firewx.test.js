@@ -289,12 +289,19 @@ test('freshness: Stale means more than 15 minutes since the last good retrieval,
   assert.equal(fw.ageMinutes(new Date(NOW).toISOString(), NOW + 30000), 0);
   assert.equal(fw.ageMinutes(new Date(NOW).toISOString(), NOW + 7 * MIN + 59000), 7);
   assert.equal(fw.ageMinutes(new Date(NOW).toISOString(), NOW - MIN), 0, 'a clock skew never shows a negative age');
-  // Zones use the same rule, from the client's last good retrieval of the zone.
+  // Zones follow their own upstream deadline (fresh_until: max-age, else Expires), not the 15 minute alert rule.
   const alert = fw.select(fx.payload('zone_only').data.features, NOW).alerts[0];
   const g1 = fw.validateZone(fx.zone('fire/CAZ281'), 'fire/CAZ281'), g2 = fw.validateZone(fx.zone('fire/NMZ104'), 'fire/NMZ104');
-  const cache = new Map([['fire/CAZ281', { geometry: g1, at: NOW }], ['fire/NMZ104', { geometry: g2, at: NOW }]]);
-  assert.notEqual(fw.resolveShape(alert, cache, NOW + 15 * MIN).stale, true);
-  assert.equal(fw.resolveShape(alert, cache, NOW + 15 * MIN + 1).stale, true);
-  const old = new Map([['fire/CAZ281', { geometry: g1, at: NOW, freshUntil: new Date(NOW - 1e6).toISOString(), stale: true }], ['fire/NMZ104', { geometry: g2, at: NOW }]]);
-  assert.notEqual(fw.resolveShape(alert, old, NOW + MIN).stale, true, 'proxy metadata alone does not flag a zone');
+  const zones = (seconds, extra = {}) => new Map([['fire/CAZ281', { geometry: g1, at: NOW, freshUntil: new Date(NOW + seconds * 1000).toISOString(), ...extra }], ['fire/NMZ104', { geometry: g2, at: NOW, freshUntil: new Date(NOW + 2592000000).toISOString() }]]);
+  const short = zones(60);
+  assert.notEqual(fw.resolveShape(alert, short, NOW + 60000).stale, true, 'exactly at the deadline');
+  assert.equal(fw.resolveShape(alert, short, NOW + 61000).stale, true, 'max-age=60 shows the note after 60 s');
+  assert.equal(fw.resolveShape(alert, zones(0), NOW + 1000).stale, true, 'max-age=0');
+  assert.equal(fw.resolveShape(alert, zones(-500), NOW).stale, true, 'Expires in the past');
+  const usual = zones(2592000);   // the usual ~30 day max-age
+  for (const when of [15 * MIN + 1, 6 * 3600000]) assert.notEqual(fw.resolveShape(alert, usual, NOW + when).stale, true, 'no note at ' + when);
+  assert.equal(fw.resolveShape(alert, zones(2592000, { stale: true }), NOW).stale, true, 'the proxy stale flag is honored for zones');
+  assert.notEqual(fw.resolveShape(alert, new Map([['fire/CAZ281', { geometry: g1, at: NOW }], ['fire/NMZ104', { geometry: g2, at: NOW }]]), NOW + 7 * 3600000).stale, true, 'no recorded deadline, no note');
+  // The alert label is unaffected by zone deadlines and stays on the 15 minute rule.
+  assert.equal(fw.freshness(at(-500), NOW + 2 * MIN), 'fresh');
 });
