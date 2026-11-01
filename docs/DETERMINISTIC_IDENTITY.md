@@ -1,0 +1,21 @@
+# Deterministic browser identity (2.33.0)
+
+Branch `fix/deterministic-browser-identity`, from main `358e07e2` (2.31.0). Kept apart from the rig-tag package (`fix/rig-tag-ownership`, 2.32.0) and the tourism admission package (`candidate/tourism-type-admission`).
+
+## Defect
+
+`data-loader.js` merged each new state into the listings already on the map by calling `DataQuality.cleanAndDedupeGeoJSON([...shown, ...incoming], {state})`. The search index build (`scripts/build-search-index.js`) calls the same function once over all 50 states in alphabetical order, with `preferredIds` and `previousHosts` from the published index. The browser had neither, and its input order was the order in which states finished loading. So the browser could pick a different canonical host than `search-index.json`, and the result changed with load order. Live on 2.31.0 (39 states loaded at once) 10 of 32,229 listings showed under a different id. Examples: `usfs:26736` showed as `osm:way:244588682`, `usfs:5901` as `osm:node:3759671902`, `usfs:9461` as `osm:relation:19325196`. A second run elected Cosby Campground as `ridb:232479` (index `osm:way:1107154601`) and dropped the OSM element's own toilet tag.
+
+## Acceptance criterion
+
+1. After any set of states has loaded, in any order, with any response timing, from network or cache, each listing whose states have all loaded matches its `search-index.json` row: same canonical id, same source-id set (id plus `legacy_ids`), and the same popup claims and filter inputs (fee status, type, amenity filter sets `a` and `s`, rig types, road difficulty, open status, rating, RV signatures). `scripts/check-browser-identity.js` measures this over the whole catalogue. The target is zero differences in every scenario.
+2. The result for a set of loaded states does not depend on the order they loaded in. A listing with only some of its states loaded may show a member's own published id. That id is a published alias and resolves to the same listing.
+3. If the host data cannot be fetched, the browser falls back to a fixed order that ignores load order (states sorted alphabetically, records in file order). It never moves an id it has already shown in the session to a different listing or demotes it to an alias.
+4. Every id ever published, canonical or legacy, resolves to the same listing: saved stops in `localStorage` (`kt_trip`), `#site=` share links, review and correction links, and reviews and contributions keyed by `campsite_id`. Resolution never rewrites a stored id.
+5. No change to `search-index.json`, listing ids, coordinates, fees, access, amenities or rig data.
+
+## Measured before the fix (2.31.0 code, current data)
+
+Script: `node scripts/check-browser-identity.js` (runs the real `data-loader.js` in a VM, one state per load call). Pairs scenario: for each of the 127 distinct state sets of multi-state listings, load those states one at a time in both orders and check only those listings.
+
+Results are filled in below once measured.
