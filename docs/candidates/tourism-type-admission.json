@@ -32,8 +32,7 @@
   "camping_evidence:\"source_intro_camping\"->\"ridb_facility_type_overnight_sites\"": 2,
   "camping_evidence:\"osm_campsite_tag\"->\"source_intro_camping\"": 21,
   "camping_evidence:\"osm_campsite_tag\"->\"ridb_facility_type_overnight_sites\"": 18,
-  "type:\"established\"->\"dispersed\"": 1,
-  "type:\"established\"->\"other\"": 2
+  "type:\"established\"->\"dispersed\"": 1
  },
  "proposed_by_evidence": {
   "established via osm_campsite_tag": 13,
@@ -44,7 +43,7 @@
   "dispersed via source_intro_camping": 11,
   "lodging via agency_camping_activity": 3,
   "lodging via ridb_facility_type_overnight_sites": 7,
-  "other via agency_camping_activity": 2
+  "established via agency_camping_activity": 2
  },
  "structured_facility_type": {
   "available_offline": false,
@@ -990,7 +989,8 @@
     "browser_own_states_every_order": {},
     "depends_on_load_order": false,
     "depends_on_deterministic_identity_package": false,
-    "saved_link_resolves_after": false
+    "saved_link_resolves_after": true,
+    "resolves_via": "withdrawn.json entry of ridb:247915"
    },
    "contributions": {
     "published_reviews": 0,
@@ -1758,7 +1758,8 @@
     "browser_own_states_every_order": {},
     "depends_on_load_order": true,
     "depends_on_deterministic_identity_package": true,
-    "saved_link_resolves_after": true
+    "saved_link_resolves_after": true,
+    "resolves_via": "index"
    },
    "contributions": {
     "published_reviews": 0,
@@ -1808,7 +1809,8 @@
     "browser_own_states_every_order": {},
     "depends_on_load_order": false,
     "depends_on_deterministic_identity_package": false,
-    "saved_link_resolves_after": false
+    "saved_link_resolves_after": true,
+    "resolves_via": "withdrawn.json entry of ridb:247835"
    },
    "contributions": {
     "published_reviews": 0,
@@ -75163,7 +75165,7 @@
    },
    "proposed": {
     "status": "published",
-    "type": "other",
+    "type": "established",
     "camping_evidence": "agency_camping_activity",
     "type_evidence": {
      "kind": "structured_classification",
@@ -75171,18 +75173,12 @@
      "source_record_id": "ridb:262781",
      "field": "FacilityTypeDescription (mapped at import)",
      "value": "established",
-     "retrieved_at": "2026-10-29T02:50:45Z"
+     "retrieved_at": "2026-10-29T02:50:45Z",
+     "confirmed_by": "blm-facility:262781"
     },
     "camping_evidence_record_id": "blm-facility:262781"
    },
-   "changes": [
-    {
-     "field": "type",
-     "from": "established",
-     "to": "other",
-     "separate_review": true
-    }
-   ],
+   "changes": [],
    "identity": {
     "index_id_before": "ridb:262781",
     "index_id_after": "ridb:262781",
@@ -80538,7 +80534,7 @@
    },
    "proposed": {
     "status": "published",
-    "type": "other",
+    "type": "established",
     "camping_evidence": "agency_camping_activity",
     "type_evidence": {
      "kind": "structured_classification",
@@ -80546,18 +80542,12 @@
      "source_record_id": "ridb:273310",
      "field": "FacilityTypeDescription (mapped at import)",
      "value": "established",
-     "retrieved_at": "2026-10-29T03:28:33Z"
+     "retrieved_at": "2026-10-29T03:28:33Z",
+     "confirmed_by": "blm-facility:273310"
     },
     "camping_evidence_record_id": "blm-facility:273310"
    },
-   "changes": [
-    {
-     "field": "type",
-     "from": "established",
-     "to": "other",
-     "separate_review": true
-    }
-   ],
+   "changes": [],
    "identity": {
     "index_id_before": "ridb:273310",
     "index_id_after": "ridb:273310",
