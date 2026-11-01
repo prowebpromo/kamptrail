@@ -1,0 +1,43 @@
+{
+  "pr": 156,
+  "pr_head_sha": "74c7ec5276d5f4e11edebae92ecd3f7bcd4a3b0b",
+  "merge_sha": "1ce6aaccf98aade607d79f40377d66ac08d87ce4",
+  "ci": "Predecessor merged outside this release-steward operation.",
+  "hostinger_publish_run": 41302971327,
+  "hostinger_publish_job": 124837559247,
+  "hostinger_publish_status": "success",
+  "acceptance_marker_commit": "4839a3beaeeb97faeb32fa5e0813b1d931b98550",
+  "production_acceptance_run": 41304023514,
+  "production_acceptance_job": 124840630694,
+  "production_acceptance_status": "success",
+  "desktop_and_mobile": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "mobile": false,
+      "release_sha": "1ce6aaccf98aade607d79f40377d66ac08d87ce4",
+      "version": "2.34.0",
+      "index_sha256": "83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a",
+      "listings": 33370,
+      "national_clearance_index_status": 404,
+      "exact_facility_popup_verified": true,
+      "javascript_errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mobile": true,
+      "release_sha": "1ce6aaccf98aade607d79f40377d66ac08d87ce4",
+      "version": "2.34.0",
+      "index_sha256": "83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a",
+      "listings": 33370,
+      "national_clearance_index_status": 404,
+      "exact_facility_popup_verified": true,
+      "javascript_errors": []
+    }
+  ]
+}
