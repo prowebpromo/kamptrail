@@ -267,6 +267,27 @@
     const admitted=new Set(published.flatMap(f=>[f.properties.id,...(f.properties.legacy_ids||[])]));
     return candidates.filter(x=>admitted.has(x.feature.properties.id)).map(x=>x.raw);
   }
+  // Published canonical hosts (data/campsites/identity-hosts.json, derived from search-index.json).
+  // hosts maps each canonical id of a multi-record listing to its legacy ids. Listings with one
+  // record never merge, so only these ids decide an election. See docs/DETERMINISTIC_IDENTITY.md.
+  const ID_TEXT = id => typeof id === 'string' && id.length > 0 && id.length <= 200 && !/[\x00-\x20\x7f]/.test(id);
+  function validIdentityHosts(data) {
+    if (!data || typeof data !== 'object' || data.version !== 1 || !data.hosts || typeof data.hosts !== 'object' || Array.isArray(data.hosts)) return false;
+    if (!Number.isSafeInteger(data.index_sites) || data.index_sites < 1 || typeof data.index_sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(data.index_sha256)) return false;
+    const entries = Object.entries(data.hosts), seen = new Set();
+    if (entries.length > 200000) return false;
+    for (const [id, aliases] of entries) {
+      if (!ID_TEXT(id) || !Array.isArray(aliases) || !aliases.length || aliases.length > 128) return false;
+      for (const alias of aliases) { if (!ID_TEXT(alias) || alias === id || seen.has(alias) || Object.hasOwn(data.hosts, alias)) return false; seen.add(alias); }
+    }
+    return true;
+  }
+  function identityOptions(data) {
+    if (!validIdentityHosts(data)) return null;
+    const preferredIds = new Set(), previousHosts = new Map();
+    for (const [id, aliases] of Object.entries(data.hosts)) { preferredIds.add(id); for (const alias of aliases) previousHosts.set(alias, id); }
+    return {preferredIds, previousHosts};
+  }
   function cleanAndDedupeGeoJSON(input, options = {}) {
     if (!input || !Array.isArray(input.features)) return {type:'FeatureCollection',features:[]};
     const features=[], ids=new Map(), grid=new Map();
@@ -665,6 +686,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.31.0',FILTER_AMENITIES,OSM_AMENITY_TAG,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.33.0',FILTER_AMENITIES,OSM_AMENITY_TAG,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

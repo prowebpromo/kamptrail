@@ -45,7 +45,7 @@
     }).catch(() => {showToast(t("Offline saving is unavailable. You can still use the map online."));});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.31.0' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.31.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.33.0' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.33.0')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -317,7 +317,8 @@
     if(target.forecast)KampTrailFilters.setForecastFilters(target.forecast);
     if (target.spot) { map.setView(target.spot, 13); KampTrailLayers.openSpot(L.latLng(target.spot[0], target.spot[1])); return; }
     await ensureSiteIndex();
-    const entry = campsiteIndex.find(s => s.id === target.site);
+    // A link to any published id, canonical or legacy, opens the same listing. The link is not rewritten.
+    const entry = campsiteIndex.find(s => s.id === target.site) || campsiteIndex.find(s => s.legacy_ids?.includes(target.site));
     if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
     if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?t("That campsite does not match your filters or has unknown or expired evidence. Change filters to view it."):t("That shared campsite could not be found. It may have been removed from the catalogue."), 'error');
   }

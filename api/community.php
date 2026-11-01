@@ -16,22 +16,23 @@ try {
         }
         $site=kc_string($_GET['site']??'',200);
         if ($site==='') kc_error(422,'Choose a campsite.');
+        $ids=kc_site_ids($site);$in=kc_in($ids);
         if(array_key_exists('review_id',$_GET)){
             $id=filter_var($_GET['review_id'],FILTER_VALIDATE_INT,['options'=>['min_range'=>1]]);
             if($id===false)kc_error(422,'Choose a published review.');
             if(!ko_ready($pdo))kc_error(404,'Video is no longer available.');
-            $q=$pdo->prepare("SELECT r.id,o.details FROM community_reviews r LEFT JOIN community_observations o ON o.review_id=r.id WHERE r.id=? AND r.campsite_id=? AND r.status='published'");
-            $q->execute([$id,$site]);$r=$q->fetch();
+            $q=$pdo->prepare("SELECT r.id,o.details FROM community_reviews r LEFT JOIN community_observations o ON o.review_id=r.id WHERE r.id=? AND r.campsite_id IN ($in) AND r.status='published'");
+            $q->execute(array_merge([$id],$ids));$r=$q->fetch();
             $video=$r?ko_video(json_decode($r['details']??'[]',true)?:[]):null;
             if(!$video)kc_error(404,'Video is no longer available.');
             kt_json(200,['ok'=>true,'review_id'=>(int)$r['id'],'video'=>$video]);
         }
         $before=max(0,(int)($_GET['before']??0));
-        $q=$pdo->prepare("SELECT COUNT(*) AS count, AVG(rating) AS average FROM community_reviews WHERE campsite_id=? AND status='published'");$q->execute([$site]);$stats=$q->fetch();
+        $q=$pdo->prepare("SELECT COUNT(*) AS count, AVG(rating) AS average FROM community_reviews WHERE campsite_id IN ($in) AND status='published'");$q->execute($ids);$stats=$q->fetch();
         $hasObservations=ko_ready($pdo);
-        $q=$pdo->prepare("SELECT r.id,r.display_name,r.rating,r.body,r.visited_on,r.rig,r.created_at,r.updated_at,".($hasObservations?"o.details":"NULL")." AS observation_details FROM community_reviews r ".($hasObservations?"LEFT JOIN community_observations o ON o.review_id=r.id ":"")."WHERE r.campsite_id=? AND r.status='published'".($before?' AND r.id < ?':'').' ORDER BY r.id DESC LIMIT 11');$q->execute($before?[$site,$before]:[$site]);$rows=$q->fetchAll();$more=count($rows)>10;$rows=array_slice($rows,0,10);
+        $q=$pdo->prepare("SELECT r.id,r.display_name,r.rating,r.body,r.visited_on,r.rig,r.created_at,r.updated_at,".($hasObservations?"o.details":"NULL")." AS observation_details FROM community_reviews r ".($hasObservations?"LEFT JOIN community_observations o ON o.review_id=r.id ":"")."WHERE r.campsite_id IN ($in) AND r.status='published'".($before?' AND r.id < ?':'').' ORDER BY r.id DESC LIMIT 11');$q->execute($before?array_merge($ids,[$before]):$ids);$rows=$q->fetchAll();$more=count($rows)>10;$rows=array_slice($rows,0,10);
         foreach ($rows as &$r) {$r['id']=(int)$r['id'];$r['rating']=(int)$r['rating'];$r['observations']=$r['observation_details']?(json_decode($r['observation_details'],true)?:[]):[];$r['video']=ko_video($r['observations']);$r['observations']=ko_conditions($r['observations']);unset($r['observation_details']);$r['photos']=kc_photo_rows($pdo,$r['id']);}unset($r);
-        kt_json(200,['ok'=>true,'count'=>(int)$stats['count'],'average'=>$stats['average']===null?null:round((float)$stats['average'],1),'scores_available'=>$hasObservations,'seasonal_scores'=>(object)ko_site_seasonal($pdo,$site),'score_minimum'=>KO_SCORE_MINIMUM,'reviews'=>$rows,'next_before'=>$more?(int)end($rows)['id']:null,'monthly'=>ko_monthly($pdo,$site),'photos_available'=>extension_loaded('gd') && class_exists('finfo'),'limits'=>['photos'=>3,'bytes_per_photo'=>KT_PHOTO_INPUT_LIMIT,'pixels_per_photo'=>KT_PHOTO_PIXEL_LIMIT]]);
+        kt_json(200,['ok'=>true,'count'=>(int)$stats['count'],'average'=>$stats['average']===null?null:round((float)$stats['average'],1),'scores_available'=>$hasObservations,'seasonal_scores'=>(object)ko_site_seasonal($pdo,$ids),'score_minimum'=>KO_SCORE_MINIMUM,'reviews'=>$rows,'next_before'=>$more?(int)end($rows)['id']:null,'monthly'=>ko_monthly($pdo,$ids),'photos_available'=>extension_loaded('gd') && class_exists('finfo'),'limits'=>['photos'=>3,'bytes_per_photo'=>KT_PHOTO_INPUT_LIMIT,'pixels_per_photo'=>KT_PHOTO_PIXEL_LIMIT]]);
     }
     kc_origin();
     if ((int)($_SERVER['CONTENT_LENGTH']??0)>20000000) kc_error(413,'This upload is too large. Attach at most three photos, 6 MB each.');
