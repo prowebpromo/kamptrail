@@ -96,3 +96,26 @@ A saved stop stored as `ridb:232479` kept that stored id across reloads in both 
 This closes the identity exception recorded for 2.31.0 (`docs/AMENITY_OWNERSHIP_2.31.0.md`).
 
 Before merge, a separate agent reviewed commit 1fa0a252 from a fresh checkout with its own whole-catalogue script and recommended merge. The merged head e8b6d4fd differs from it only by raising the CI job limit from 15 to 25 minutes.
+
+# Partial-load identity (2.35.0)
+
+Branch `fix/partial-load-identity`, from main `041ff76c` (2.34.0, service-worker cache `kt-v67`). Release 2.35.0, cache `kt-v68`.
+
+## Defect
+
+Live on 2.34.0 with `identity-hosts.json` present. Bird Creek Campground has two separately published index listings about 400 m apart: `usfs:65184` (NV only, no legacy ids) and `osm:way:1236741631` (CA and NV, legacy `ridb:234209`). With only NV loaded the browser showed one listing `ridb:234209` with legacy ids `[ridb:234209, usfs:65184]`, and `getCampsiteById` returned it for both `usfs:65184` and `osm:way:1236741631`. After CA also loaded, in either order, both resolved correctly.
+
+Cause: the proximity same-name match in `cleanAndDedupeGeoJSON` prefers a candidate that is the record's published host, but when that host has not loaded it falls back to the first same-name candidate in range (`first`), which can belong to another index owner. 2.33.0 acceptance compared only listings whose states had all loaded, so it never looked at this checkpoint. A visitor near Ely, NV may never load CA.
+
+## Acceptance criterion
+
+With the host file present, at every loading checkpoint (after each state load, any set of states, any order):
+
+1. No wrong merge: no browser listing holds ids (id plus `legacy_ids`) of more than one index owner, and every id it holds is published.
+2. No wrong resolution: every published id of a listing with at least one loaded state either resolves to nothing (its record is not loaded yet) or resolves to a listing whose ids all belong to its own index owner.
+3. Every published id of a listing whose states have all loaded resolves.
+4. A record whose index host has not loaded stays its own marker, or joins only records of its own index owner. It never borrows another owner.
+5. 2.33.0 criteria still hold: full-load census equals the index in any order, and the host-file failure fallback makes no wrong merge and converges after retry.
+6. Stored ids are not rewritten. `search-index.json`, `coordinate-index.json`, `identity-hosts.json` and all listing data stay byte-identical to main.
+
+Measured by `scripts/check-partial-identity.js` in Chromium against the real app served from the branch worktree, with the host file served. Scope: each of the 50 states loaded alone, and each of the 102 state pairs that share a multi-state listing, in both orders (204 runs, 408 checkpoints).
