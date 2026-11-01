@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// Rig-tag ownership repair check (2.32.0). Compares this checkout with an unchanged baseline checkout.
+// Rig-tag ownership repair check (2.34.0). Compares this checkout with an unchanged baseline checkout.
 // Every intended rig change is listed. Any other difference is an unexpected delta and fails (exit code 1).
 //
 //   node scripts/verify-rig-ownership.js --baseline=/unchanged/checkout [--report=out.json] [--cases=cases.json] [--csv=cases.csv]

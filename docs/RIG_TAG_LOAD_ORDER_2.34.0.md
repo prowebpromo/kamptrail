@@ -1,6 +1,6 @@
-# Rig-tag load-order check (2.32.0)
+# Rig-tag load-order check (2.34.0)
 
-Script: `scripts/verify-rig-load-order.js`. Result: `docs/RIG_TAG_LOAD_ORDER_2.32.0.json`. Run against the real committed snapshots of this branch in Chromium.
+Script: `scripts/verify-rig-load-order.js`. Result: `docs/RIG_TAG_LOAD_ORDER_2.34.0.json`. Run against the real committed snapshots of this branch in Chromium.
 
 ## Result
 

@@ -390,7 +390,7 @@
     if(e.state==='no_source')return `<div class="kt-amenity-evidence" data-state="no_source"><strong>${t("Amenity evidence:")}</strong> ${esc(t("No amenity source for this listing."))}${members}</div>`;
     return `<div class="kt-amenity-evidence" data-state="evidence"><strong>${t("Amenity evidence:")}</strong><ul>${rows}</ul>${osmBlock}<p class="kt-fine">${esc(t("Amenity filters match only the evidence listed here, at its stated scope. Unknown is not absence."))}</p>${rigNote}${members}</div>`;
   }
-  // 2.32.0: rig suitability from the listing's own sources only. Merged elements' rig tags are listed as not used.
+  // 2.34.0: rig suitability from the listing's own sources only. Merged elements' rig tags are listed as not used.
   function rigEvidenceText(p){
     const e=DataQuality.rigEvidence(p);
     const status={present:t("reported"),absent:t("source says no"),conflict:t("sources disagree"),unrecognized:t("value not recognized")};
@@ -409,7 +409,7 @@
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
     const closure=['closed','temporarily closed'].includes(status)?status:null;
-    // Rig and amenity provenance debt (2.32.0): operator and website may be inherited from a merged record and are
+    // Rig and amenity provenance debt (2.34.0): operator and website may be inherited from a merged record and are
     // not yet guarded. The popup never shows operator. source_url is normalized from the listing's own record and is
     // set for every published listing, so the inherited website below is never reached. tests/rig-ownership.test.js pins this.
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
@@ -571,7 +571,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.33.0',
+    version:'2.34.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){

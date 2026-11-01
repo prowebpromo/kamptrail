@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 'use strict';
-// Rig-tag ownership load-order check (2.32.0). Loads the real committed state snapshots in the browser in
+// Rig-tag ownership load-order check (2.34.0). Loads the real committed state snapshots in the browser in
 // several orders and compares, for every listing the repair changes (tests/fixtures/rig-tag-ownership-cases.json):
 // the source identities merged into it (canonical id plus legacy_ids), the popup rig line and the Tents and
 // Trailers filter outcomes. The canonical id the browser elects is reported but is not the comparison key.
 //
-//   node scripts/verify-rig-load-order.js [--out=docs/RIG_TAG_LOAD_ORDER_2.32.0.json] [--port=8791]
+//   node scripts/verify-rig-load-order.js [--out=docs/RIG_TAG_LOAD_ORDER_2.34.0.json] [--port=8791]
 //
 // Scenarios: default (all affected states in one batch), sequential forward, sequential reversed, one delayed
 // state response, and each multi-state listing's states one at a time in both orders.
 const fs = require('node:fs'), path = require('node:path'), {spawn} = require('node:child_process');
 const {chromium} = require('playwright');
 const args = process.argv.slice(2), arg = (n, d) => args.find(a => a.startsWith(`--${n}=`))?.slice(n.length + 3) ?? d;
-const root = path.resolve(__dirname, '..'), port = Number(arg('port', '8791')), out = path.resolve(root, arg('out', 'docs/RIG_TAG_LOAD_ORDER_2.32.0.json'));
+const root = path.resolve(__dirname, '..'), port = Number(arg('port', '8791')), out = path.resolve(root, arg('out', 'docs/RIG_TAG_LOAD_ORDER_2.34.0.json'));
 const fixture = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/rig-tag-ownership-cases.json'), 'utf8'));
 const index = JSON.parse(fs.readFileSync(path.join(root, 'data/campsites/search-index.json'), 'utf8')).sites, byId = new Map(index.map(s => [s.id, s]));
 const cases = fixture.cases.map(c => ({...c, states:byId.get(c.id).states, ids:[c.id, ...byId.get(c.id).legacy_ids]}));

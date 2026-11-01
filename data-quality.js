@@ -88,7 +88,7 @@
     for (const e of list(memberEvidence)) if (e && OSM_ELEMENT.test(e.source_record_id || '')) add(e);
     return [...records.values()].sort((a, b) => a.source_record_id < b.source_record_id ? -1 : a.source_record_id > b.source_record_id ? 1 : 0).slice(0, MAX_AMENITY_MEMBERS);
   }
-  // Rig suitability ownership (2.32.0). The same key set guards snapshot merging in scripts/merge_campsite_data.js.
+  // Rig suitability ownership (2.34.0). The same key set guards snapshot merging in scripts/merge_campsite_data.js.
   // tents, caravans and motorhome are read only from the listing's own OSM element. Other elements' rig tags,
   // and other records' rig lists, are kept as attributed member evidence and never used.
   const OSM_RIG_TAG = /^(?:tents|caravans|motorhome|capacity|backcountry|group_only|static_caravans|horse|maxlength|maxtents)(?::|$)/;
@@ -239,7 +239,7 @@
     } else if (!p.amenity_record) {p.amenities = []; p.amenity_negatives = [];}
     // Observations from other merged elements stay attributed to those elements and are never used here.
     p.amenity_members = amenityMembers(raw._kt_normalized ? raw.amenity_members : null, raw.member_evidence, p.id);
-    // Rig ownership (2.32.0). tents, caravans and motorhome count only on the listing's own OSM element.
+    // Rig ownership (2.34.0). tents, caravans and motorhome count only on the listing's own OSM element.
     // A host that inherited tourism=* or a rig tag from an absorbed element is not that element.
     p.osm_rig_tags = null;
     if (ownOsm) {
@@ -262,7 +262,7 @@
     if (ridb && raw.facility_id != null) p.source_url = `https://www.recreation.gov/camping/campgrounds/${encodeURIComponent(raw.facility_id)}`;
     else if (osm && raw.osm_id != null && /^(node|way|relation)$/.test(raw.osm_type || '')) p.source_url = `https://www.openstreetmap.org/${raw.osm_type}/${raw.osm_id}`;
     else p.source_url = raw.source_url || raw.website || raw.url || null;
-    // Provenance debt (2.32.0): raw.website and raw.operator can be inherited from an absorbed element in a snapshot.
+    // Provenance debt (2.34.0): raw.website and raw.operator can be inherited from an absorbed element in a snapshot.
     // They are kept as-is pending an owner decision. Only a record without its own source link falls back to website.
     p.attributes_unverified = legacyRIDB || !!raw.attributes_unverified;
     // Only validated sidecar metadata survives normalization; source elevation tags are not equivalent.
@@ -321,7 +321,7 @@
       p.amenity_negatives = [...new Set([...(p.amenity_negatives || []), ...(q.amenity_negatives || [])])];
       p.amenities = [...new Set([...p.amenities,...q.amenities])].filter(a => !p.amenity_negatives.includes(a));
     } else p.amenity_members = amenityMembers([...(p.amenity_members || []), ...[ownAmenityObservation(q)].filter(Boolean), ...(q.amenity_members || [])], null, p.id);
-    // Rig ownership (2.32.0): another record's rig values never become this listing's own.
+    // Rig ownership (2.34.0): another record's rig values never become this listing's own.
     if (p.id === q.id) p.rig_friendly = [...new Set([...p.rig_friendly,...q.rig_friendly])];
     else p.rig_members = rigMembers([...(p.rig_members || []), ...[ownRigObservation(q)].filter(Boolean), ...(q.rig_members || [])], null, p.id);
     // Repeated state/source rows never add counts to exact facility summaries.
@@ -335,7 +335,7 @@
       if(!checkedUSFSSiteAmenities(a))attachUSFSSiteAmenities(primary,b);
       else if(a.source.rows_sha256===b.source.rows_sha256)attachUSFSSiteAmenities(primary,{version:1,source:a.source,facilities:{...b.facilities,...a.facilities}});
     }
-    // Provenance debt (2.32.0): website is still filled from another record here. No campsite UI reads it (see data-loader.js).
+    // Provenance debt (2.34.0): website is still filled from another record here. No campsite UI reads it (see data-loader.js).
     for (const key of ['description','website','source_url','road_difficulty','rating','stay_limit','open_status','season','restrictions','camping_activity']) if (p[key] == null || p[key] === '') p[key]=q[key] ?? p[key];
     return primary;
   }
@@ -628,7 +628,7 @@
   }
   // Attach Recreation.gov site-level summaries (RV lengths, hookups) to a campground.
   // An OSM-hosted listing joined to a Recreation.gov facility by an exact ridb: alias keeps that facility's
-  // RV-type site count beside its own rig tags, so a disagreement shows as a conflict (2.32.0). It adds no category.
+  // RV-type site count beside its own rig tags, so a disagreement shows as a conflict (2.34.0). It adds no category.
   function attachRigCheck(feature, table) {
     const p = feature && feature.properties;
     if (!p || p.facility_id != null || !table || !p.osm_rig_tags || !OSM_ELEMENT.test(p.id)) return feature;
@@ -779,6 +779,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.33.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.34.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

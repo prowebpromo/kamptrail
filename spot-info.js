@@ -129,7 +129,7 @@
   }
   function renderFeeEvidence(target, properties) {
     const records=global.DataQuality.mergeFeeEvidence(properties.fee_evidence_records);
-    // Provenance debt (2.32.0): website may be inherited from a merged record. source_url is set for every published
+    // Provenance debt (2.34.0): website may be inherited from a merged record. source_url is set for every published
     // listing, so the website fallback here is never reached. tests/rig-ownership.test.js pins this.
     if(!records.length&&typeof properties.fee_text==='string'&&properties.fee_text.trim())records.push({source:properties.fee_source||t("Source reported"),source_field:properties.fee_source_field||null,source_record_id:null,source_url:global.DataQuality.mergeFeeEvidence([{source:t("Source"),text:t("Source"),source_url:properties.source_url||properties.website}])[0]?.source_url,retrieved_at:properties.fee_checked,text:properties.fee_text});
     const box=el('section',null,'kt-fee-records');box.append(el('h3',t("Camping fee evidence")),el('p',t("Source wording is shown in full. A retrieval date is when KampTrail downloaded the record, not a field inspection. Confirm current fees and restrictions with the operator."),'kt-fine'));
@@ -151,5 +151,5 @@
     }
     target.replaceChildren(box);relayout(target);
   }
-  global.KampTrailSpot = {version: '2.33.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
+  global.KampTrailSpot = {version: '2.34.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);

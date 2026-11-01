@@ -1,6 +1,6 @@
-# Rig-tag ownership repair (2.32.0)
+# Rig-tag ownership repair (2.34.0)
 
-Release 2.32.0 applies the 2.31.0 amenity ownership rule to rig suitability. The audit is `docs/RIG_TAG_OWNERSHIP_AUDIT.md`.
+Release 2.34.0 applies the 2.31.0 amenity ownership rule to rig suitability. The audit is `docs/RIG_TAG_OWNERSHIP_AUDIT.md`.
 
 ## Rule
 
@@ -61,7 +61,7 @@ All counts are over the 33,370 published listings. They match the audit.
 
 ## Browser identity and load order
 
-`data-loader.js` L182 merges loaded states without the index's `preferredIds`/`previousHosts`. This is pre-existing and not changed here. 2 changed listings are elected under another canonical id in the browser: `usfs:24878` shows as `osm:way:334210652` and `usfs:9461` as `osm:relation:19325196`. The load-order result is in `docs/RIG_TAG_LOAD_ORDER_2.32.0.md`: rig suitability and filtering change with load order for 18 of the 245 affected listings, because the browser elects the absorbed OSM element as host in the reversed order. Source identities never change. Deployment waits for the separate identity fix.
+`data-loader.js` L182 merges loaded states without the index's `preferredIds`/`previousHosts`. This is pre-existing and not changed here. 2 changed listings are elected under another canonical id in the browser: `usfs:24878` shows as `osm:way:334210652` and `usfs:9461` as `osm:relation:19325196`. The load-order result is in `docs/RIG_TAG_LOAD_ORDER_2.34.0.md`: rig suitability and filtering change with load order for 18 of the 245 affected listings, because the browser elects the absorbed OSM element as host in the reversed order. Source identities never change. Deployment waits for the separate identity fix.
 
 ## Provenance debt
 
@@ -94,4 +94,4 @@ Why not move inherited values to member evidence in the index normalizer: that c
 - Browser: `features`, `amenity-evidence`, `rig-evidence`, `discovery`, `rig-profile`, `locale` pass. `app.spec.js` fails only on the known mobile map height (493 vs >500). `locale.spec.js` French fallback closed its page once under shared load and passed on rerun.
 - `npm run build` (search index, services, permissions, release) succeeds and leaves committed data unchanged.
 
-Release 2.32.0, service-worker cache `kt-v65`.
+Release 2.34.0, service-worker cache `kt-v67`.

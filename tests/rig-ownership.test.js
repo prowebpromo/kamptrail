@@ -1,5 +1,5 @@
 'use strict';
-// Rig-tag ownership (2.32.0): merge guards, own-source reading, negatives, conflicts, members never used,
+// Rig-tag ownership (2.34.0): merge guards, own-source reading, negatives, conflicts, members never used,
 // the published per-listing fixture, and the provenance-debt guard on operator and website.
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const Q=require('../data-quality.js');

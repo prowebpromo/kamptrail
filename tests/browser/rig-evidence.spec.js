@@ -1,5 +1,5 @@
 const {test,expect}=require('@playwright/test');
-// Rig-tag ownership (2.32.0): the popup rig line reads only the listing's own sources, lists merged
+// Rig-tag ownership (2.34.0): the popup rig line reads only the listing's own sources, lists merged
 // elements' rig tags as not used, keeps negatives and conflicts, and the Tents and Trailers filters agree.
 test.use({serviceWorkers:'block',viewport:{width:390,height:844}});
 const camp=(id,coords,props)=>({type:'Feature',geometry:{type:'Point',coordinates:coords},properties:{id,name:id,schema_version:3,amenities:[],rig_friendly:[],...props}});

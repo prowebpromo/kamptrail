@@ -1,4 +1,4 @@
-# Rig-tag ownership audit (for 2.32.0)
+# Rig-tag ownership audit (for 2.34.0)
 
 Read-only audit of origin/main at afdfb3f (live release 2.31.0). Measured 2026-10-31 from the committed snapshots, the retained OSM extract (`data/opencampingmap/*.geojson`), the Recreation.gov inputs and sidecars and the agency files. No app code or data was changed for this audit.
 

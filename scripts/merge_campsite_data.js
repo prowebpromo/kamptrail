@@ -19,7 +19,7 @@ const osmIdentity = p => /^osm:(?:node|way|relation|unknown):/.test(String(p.id 
 const AMENITY_TAG = /^(?:toilets?|drinking_water|water|water_point|water_tap|water_hookup|water_supply|water_source|hot_water|shower|showers|sanitary_dump_station|waste|waste_disposal|waste_basket|bin|power|power_supply|socket|electric_hookup|electricity|sewer|sewer_hookup|hookups?|internet_access|wifi|washing_machine|dryer|laundry|laundry_service|kitchen|bbq|grill|fireplace|firepit|fire_pit|fire|openfire|campfire|firewood|wood_available|picnic_table|picnic_site|shelter|swimming_pool|sauna|playground|amenity(?:_[0-9]+)?|camp_site:fire|camp_site:water|check_date)(?::|$)/;
 const amenityTag = k => AMENITY_TAG.test(k);
 // Rig-suitability OSM tags describe the element that carries them, like amenities. A merge never
-// moves them onto the retained record. Another element's values stay as attributed member evidence (2.32.0).
+// moves them onto the retained record. Another element's values stay as attributed member evidence (2.34.0).
 const RIG_TAG = /^(?:tents|caravans|motorhome|capacity|backcountry|group_only|static_caravans|horse|maxlength|maxtents)(?::|$)/;
 const rigTag = k => RIG_TAG.test(k);
 const feeAccessTag = k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k);
@@ -222,7 +222,7 @@ class CampsiteMerger {
       cost: primaryCost ?? secondaryCost,
       // A separate record's amenity list stays with that record. Only the same record seen twice unions.
       amenities: [...new Set([...list(primary.amenities), ...(secondary.id === primary.id ? list(secondary.amenities) : [])])],
-      // A separate record's rig list stays with that record (2.32.0). Only the same record seen twice unions.
+      // A separate record's rig list stays with that record (2.34.0). Only the same record seen twice unions.
       rig_friendly: [...new Set([...list(primary.rig_friendly), ...(secondary.id === primary.id ? list(secondary.rig_friendly) : [])])],
       // Missing classifications remain unknown. Do not infer dispersed camping from geometry type.
       type: ['established', 'dispersed', 'backcountry', 'rv_park'].includes(primary.type)
