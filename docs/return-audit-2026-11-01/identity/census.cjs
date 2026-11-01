@@ -35,6 +35,7 @@ async function main() {
     const context=await browser.newContext({...config,serviceWorkers:'block',ignoreHTTPSErrors:true});
     let deny=fallback;
     const directChecks=[],received=new Set();
+    stats.inspectorCharset=[];
     await context.route('**/*',async r=>{
       const url=new URL(r.request().url());
       const key=url.pathname+url.search;
@@ -59,7 +60,14 @@ async function main() {
       directChecks.push((async()=>{
         const expected=manifest[key].sha256;
         const actual=digest(await res.body());
-        if(res.status()!==200||actual!==expected)throw Error('direct response diverges: '+key+' '+actual);
+        if(res.status()!==200)throw Error('direct response status '+res.status()+': '+key);
+        if(actual!==expected) {
+          // CDP exposes charset-less text/plain through Windows-1252, even for valid UTF-8.
+          // Compare the complete CDP representation, then independently hash the stored raw Response below.
+          const inspectorBytes=Buffer.from(new TextDecoder('windows-1252').decode(bodyFor(key)));
+          if(res.headers()['content-type']!=='text/plain' || actual!==digest(inspectorBytes))throw Error('direct response diverges: '+key+' '+actual);
+          stats.inspectorCharset.push(key);
+        }
         received.add(key);
       })().catch(err=>stats.errors.push(String(err))));
     });
@@ -157,8 +165,22 @@ async function main() {
       await Promise.all(directChecks);
       stats.directMissing=required.concat([indexKey, '/', '/data-loader.js?v=2.34.0','/data-quality.js?v=2.34.0']).filter(k=>!received.has(k));
       stats.directVerifiedResponses=[...received].sort();
+      const expected=Object.fromEntries(required.concat(indexKey).map(k=>[k,manifest[k].sha256]));
+      stats.rawResponseChecks=await page.evaluate(async pairs=>{
+        const dataCache=(await caches.keys()).find(name=>name.endsWith(':data-v1'));
+        if(!dataCache)throw Error('missing validated source cache');
+        const cache=await caches.open(dataCache),errors=[];
+        for(const [key,sha] of Object.entries(pairs)){
+          const response=await cache.match(new URL(key,location.origin));
+          if(!response){errors.push({key,missing:true});continue;}
+          const bytes=await response.arrayBuffer();
+          const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+          if(hash!==sha)errors.push({key,expected:sha,actual:hash});
+        }
+        return {checked:Object.keys(pairs).length,errors};
+      },expected);
     }
-    stats.pass=!stats.errors.length && !stats.directMissing?.length && !Object.values(stats.final.errors).some(Boolean) && !stats.steps.some(x=>x.wrongMerges||x.unknown||x.disappeared) && !stats.missingRequests.length && JSON.stringify(stats.final.states)===JSON.stringify(states) && (!fallback||stats.host404>0);
+    stats.pass=!stats.rawResponseChecks?.errors.length && !stats.errors.length && !stats.directMissing?.length && !Object.values(stats.final.errors).some(Boolean) && !stats.steps.some(x=>x.wrongMerges||x.unknown||x.disappeared) && !stats.missingRequests.length && JSON.stringify(stats.final.states)===JSON.stringify(states) && (!fallback||stats.host404>0);
     if(!stats.pass)process.exitCode=1;
   } finally {save();await browser.close();}
 }
