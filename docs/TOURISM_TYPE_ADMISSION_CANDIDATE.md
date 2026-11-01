@@ -50,3 +50,11 @@ The review branch is a source checkpoint. The review branch retains main a8785f9
 | Regression suites | All 101 targeted tests passed. Full configured Node suite ran serially with 425 passed and 64 skipped. Python had 388 passed and nine skipped. No failures. PHP CLI was unavailable for the Node run. |
 | Package | Locally rebuilt package search, identity and withdrawal files match the reviewed bytes. The only packaged clearance file is RI.json. The remote source checkpoint correctly fails before packaging until its catalogue is rebuilt. |
 | Legacy UI | Chromium desktop and mobile opened all 14 retired canonical and legacy IDs, 28/28. All four saved-trip cases passed for old string IDs and saved feature snapshots. Repeated against a deliberately stale 2.34.0 search index with the same 32/32 result. |
+
+The national browser census found two first-pass point differences on Axolotl Cabin and White Mountains cabins. The published coordinates are used verbatim in both index and browser after correction. Separate detail-level browser checks reproduced the 2.34.0 elevation readings on both listings. Terrain is loaded on demand at detail zoom and was not verified nationwide by the low-zoom census.
+
+A separate pre-existing issue occurs when Nevada loads before California and the identity host file is available. Bird Creek Campground ridb:234209 temporarily absorbs the independently published usfs:65184. Its expected host, osm:way:1236741631, is elected when California loads. This was independently reproduced on 2.34.0 and this candidate. It is recorded separately from complete-catalogue identity checks and should be investigated as a release issue.
+
+Independent Chromium forward-desktop and reverse-mobile runs each ended at 33,361 after 50 states, with zero missing/extra/duplicate hosts, wrong member sets or type, rig and point mismatches. The reversed run reproduced the Bird Creek exception at 28 intermediate steps. [Independent review and hash record](candidates/TOURISM_INDEPENDENT_REVIEW.md).
+
+A supplemental isolated PHP 8.3.6 run with SQLite, GD and mbstring passed all 76 selected PHP-related tests with no skips. These results supplement the default local Node suite above.
