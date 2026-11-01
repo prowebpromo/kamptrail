@@ -91,8 +91,10 @@ for(const mobile of [false,true])test.describe(mobile?'mobile':'desktop',()=>{if
   // Move past the 20 second request deadline while Nevada is still held.
   await page.clock.fastForward(21000);
   const c=page.locator('.kt-rest-control');
+  // Straight after the deadline, before any map move can trigger a fresh load.
+  await expect(c).toContainText('Unavailable now: Nevada.');await expect(c).not.toContainText('catalogue unavailable');
   await page.evaluate(([lng,lat])=>map.setView([lat,lng],10),site.coordinates);await page.clock.fastForward(500);
-  await expect(c).toContainText('Unavailable now: Nevada.');await expect(c).not.toContainText('catalogue unavailable');await expect(c).toContainText('1 official rest-area location');
+  await expect(c).toContainText('Unavailable now: Nevada.');await expect(c).toContainText('1 official rest-area location');
   await page.getByTitle(site.name,{exact:true}).click();const p=page.locator('.kt-rest-popup');
   await expect(p).toContainText(site.name);await expect(p).toContainText('overnight parking Prohibited');
   await expect(p.getByRole('link',{name:'Facility page checked '+e.sources[0].retrieved_at.slice(0,10),exact:true})).toHaveAttribute('href',e.sources[0].url);
