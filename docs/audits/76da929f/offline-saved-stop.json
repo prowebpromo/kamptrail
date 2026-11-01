@@ -1,0 +1,45 @@
+{
+  "start": "2026-11-01T16:12:15.063Z",
+  "end": "2026-11-01T16:12:24.091Z",
+  "baseline": "76da929f56eafbe20844b6b55e6596baf6f67af4",
+  "browser": "143.0.7499.0",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "environment": "isolated localhost frozen checkout; no production contributions",
+  "online": {
+    "stored": [
+      "ridb:232479"
+    ],
+    "stops": [
+      [
+        "ridb:232479",
+        "osm:way:1107154601",
+        "Cosby Campground"
+      ]
+    ],
+    "controlled": true,
+    "online": true,
+    "hosts": "published"
+  },
+  "offline": {
+    "stored": [
+      "ridb:232479"
+    ],
+    "stops": [
+      [
+        "ridb:232479",
+        "osm:way:1107154601",
+        "Cosby Campground"
+      ]
+    ],
+    "controlled": true,
+    "online": true,
+    "hosts": "published",
+    "uncachedFetchBlocked": true,
+    "contextOfflineRequested": true
+  },
+  "popup": "Cosby Campground\nCost: Paid · amount not verified\nType: established\nGPS: 35.75365, -83.20763\nApprox. elevation 2,299 ft · USGS 3DEP · retrieved 2026-10-30\n\nInterpolated terrain from USGS 3DEP. Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grade or RV clearance.\n\nAccess reported: Access allowed (source reported)\nAmenity evidence:\nToilets: reported: OpenStreetMap element way/1107154601 (whole mapped element · value “yes” · date unknown); Recreation.gov facility 232479 (157 of 157 campsite records, not every site · date unknown)\nDrinking water: reported: Recreation.gov facility 232479 (157 of 157 campsite records, not every site · date unknown)\nDump station: unknown\nShowers: source says no: OpenStreetMap element way/1107154601 (whole mapped element · value “no” · date unknown)\n\nOpenStreetMap element way/1107154601: internet_access=no, openfire=yes, shower=no, toilets=yes. Survey: date unknown. Retrieved: 2026-10-29. Tags describe this mapped element only. A retrieval date is not a survey date.\n\nAmenity filters match only the evidence listed here, at its stated scope. Unknown is not absence.\n\nRecreation.gov campsite records report…\nRig types reported:\nTents: reported: OpenStreetMap element way/1107154601 (tents=yes)\nTrailers and caravans: reported: OpenStreetMap element way/1107154601 (caravans=yes)\nSeasonal visit sub-ratings\n\nConfirm current fees, access, and camping rules with the operator before traveling.\n\nCheck source / operator\n\nCell coverage:\n\nCamper signal reports are what visitors experienced on the visit date, not a prediction.\n\nNo camper signal reports yet.\n\nCheck carrier coverage (FCC map) Copy coordinates\n\nOn the FCC map, choose Mobile Broadband and search near 35.75365, -83.20763. It shows coverage modeled by each carrier, not a guarantee of service.\n\nSave stop\nDirections\nShare\nOvernight permission\nFee evidence\nForecast + elevation\nWeather alerts\nFire and smoke nearby\nLand manager\nApproach roads\nNearest RV services\n\nReviews and photos\n\nSuggest a fix No account needed. A moderator reviews every report.",
+  "result": "PASS"
+}
