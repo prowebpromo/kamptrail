@@ -14,7 +14,7 @@ const FILTERS=[{amenities:['toilet']},{amenities:['water']},{amenities:['toilet'
 
 async function boot(page,{delay={},order=null}={}){
   for(const [code,ms] of Object.entries(delay))await page.route(`**/data/campsites/${code}_merged.geojson`,async r=>{await new Promise(x=>setTimeout(x,ms));await r.continue();});
-  await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'r1',checked_at:new Date().toISOString(),next_after:null,sites:{'ridb:232479':{rating_count:1,rating_sum:5,latest_visit:'2026-06-01',observations:[]}}})}));
+  await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{'ridb:232479':{rating_count:1,rating_sum:5,latest_visit:'2026-06-01',observations:[]}}})}));
   // Start in the ocean so no state loads before the test chooses an order.
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
   await page.goto('/');
