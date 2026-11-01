@@ -1,6 +1,6 @@
 # Tourism, listing type and admission review
 
-Candidate for 2.35.0 (kt-v68). Baseline a8785f981e58f745fbd57e34763b630ab73fe7d2, release 2.34.0. The earlier c109f339 proposal was evaluated again against the released identity and rig rules. No approval to merge or deploy was given.
+Candidate for 2.35.0 (kt-v68). The historical data comparison uses release 2.34.0 at `a8785f981e58f745fbd57e34763b630ab73fe7d2`. Maintenance main `041ff76c47cbc002ef38aa29e39a508337e2bf91` was integrated into the source-only review branch at `c2e57b710645bfcdb7b9120755e31831b8de3c82`. The earlier c109f339 proposal was evaluated again against the released identity and rig rules. No approval to merge or deploy was given.
 
 ## How the evidence changed the proposal
 
@@ -13,7 +13,7 @@ Candidate for 2.35.0 (kt-v68). Baseline a8785f981e58f745fbd57e34763b630ab73fe7d2
 | OSM member website links | Of 51 reviewed websites, 44 name the matching facility number. Every link remains supporting evidence. No link establishes equivalence or lends rig, tourism or amenity tags. |
 | Four further labels depend on description wording | Camp 32 (ridb:237191), Pine Glen Recreation Area (ridb:243219), Wolf Flats Recreation Area (ridb:255262) and Priest Hole Recreation Site (ridb:260547) were Campground on main. All remain discoverable. The candidate proposes Other for review because the retained source does not support a specific type. Wolf Flats had been proposed as Dispersed by description. |
 
-The seven pending facilities include one record for multiple seasonal camps, three ambiguous camp names and three areas mentioning camping. A map notice identifies each pending admission. For the 15 directly supported facilities, the source-reviewed observation is pinned to its ID, name and retrieval. A fresh observation is pending until checked. Access or operating exclusions still apply. The import does not retain Recreation.gov’s raw facility-type field and its facility-level update date. The separate source-retention proposal is outside this candidate.
+The seven pending facilities include one record for multiple seasonal camps, three ambiguous camp names and three areas mentioning camping. A map notice identifies each pending admission. For the 15 directly supported facilities, the source-reviewed observation is pinned to its ID, name and retrieval. A fresh observation is pending until checked. Access or operating exclusions still apply. The retained facility rows used for this comparison lack Recreation.gov’s raw facility-type field and facility update date. On maintenance main, future imports preserve `FacilityTypeDescription` and `LastUpdatedDate` under their original names on the original facility record when the source supplies them. The fields stay out of merged snapshots. This maintenance change did not backfill the historical input or alter this candidate’s classifications.
 
 ## Review records
 
@@ -36,9 +36,11 @@ Pending or rejected reviews, photos, corrections, permissions, shared links outs
 
 ## Remote source checkpoint and local build
 
-The review branch is a source checkpoint. The review branch retains main a8785f98’s 50 state snapshots and three indexes. Its search index contains 33,370 listings (SHA-256 `83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a`), and its separate withdrawn.json contains the nine reviewed notices. The package builder rejects this combination. The corrected snapshots, three index files and regenerated per-record ledgers were built in the review worktree. Rebuild before using or comparing a map from the branch. Automatic approval review rejected transmission of the generated state data to GitHub. The source checkpoint therefore cannot be merged as a built release. The expected final search-index SHA-256 is `370e42268e41ec027a4d89b9214084f240cc2bbc054632920690d9670b837740`.
+The review branch is a source checkpoint. Maintenance main 041ff76c and the historical comparison baseline a8785f98 contain identical versions of the 50 state snapshots and three indexes. The review branch carries those same versions. Its search index contains 33,370 listings (SHA-256 `83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a`), and its separate withdrawn.json contains the nine reviewed notices. The package builder rejects this combination. The corrected snapshots, three index files and regenerated per-record ledgers were built in the review worktree. Rebuild before using or comparing a map from the branch. Automatic approval review rejected transmission of the generated state data to GitHub. The source checkpoint therefore cannot be merged as a built release. The expected final search-index SHA-256 is `370e42268e41ec027a4d89b9214084f240cc2bbc054632920690d9670b837740`.
 
 ## Local acceptance, November 1
+
+The following measurements were recorded for the tourism source and the a8785f98 input before maintenance integration. The integrated source keeps the same expected catalogue and replay digests.
 
 | Check | Result |
 | --- | --- |
