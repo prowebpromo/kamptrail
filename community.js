@@ -43,6 +43,7 @@
     box.append(play,notice);return box;
   }
   // New reviews are keyed to the listing's published index id. Reads cover every published id of the listing.
+  const visit=d=>window.KampTrailDiscovery?.visitLabel?.(d)??(d||t("visit date not reported"));
   const publishedId=id=>String(window.KampTrailData?.publishedId?.(id) ?? id);
   function legacyAddress(body,site){
     if(location.hostname!=='prowebpromo.github.io')return false;
@@ -80,23 +81,25 @@
     if(legacyAddress(body,site))return;
     const actions=el('div',{class:'kt-community-actions'});actions.append(button(t("Write a review"),()=>edit({campsite_id:publishedId(site.properties.id),campsite_name:name})),button(t("My reviews"),mine));body.append(actions);
     const seasonal=el('section',{class:'kt-seasonal-scores','aria-label':t("Seasonal visit sub-ratings")});seasonal.append(el('h4',{},t("Seasonal visit sub-ratings")),el('p',{class:'kt-fine'},t("Subjective 1–5 scores explicitly entered for published visits. An average needs at least 3 ratings per aspect and season. Counts are ratings, not distinct campers. US calendar seasons combine years; visit dates do not establish current conditions or safety.")));const scores=el('p',{class:'kt-seasonal-values'},t("Loading seasonal sub-ratings…"));seasonal.append(scores);
-    const summary=message(t("Loading reviews…")),monthly=el('div'),list=el('div',{class:'kt-review-list'});body.append(summary,seasonal,monthly,list);
+    const siteScores=el('section',{class:'kt-site-scores','aria-label':t("Visit sub-rating averages")});siteScores.append(el('h4',{},t("Visit sub-rating averages")),el('p',{class:'kt-fine'},t("All published visits with an explicit 1–5 score for each aspect. An average appears only from 3 ratings. Crowds and fullness: 5 is more crowded or fuller. Other aspects: 5 is the better experience. Categorical noise and crowding reports are counted separately and never converted to scores.")));const siteValues=el('p',{class:'kt-site-score-values'},t("Loading visit sub-ratings…"));siteScores.append(siteValues);
+    const summary=message(t("Loading reviews…")),monthly=el('div'),list=el('div',{class:'kt-review-list'});body.append(summary,siteScores,seasonal,monthly,list);
     const more=button(t("Load more reviews"),()=>load(more.dataset.before));more.hidden=true;body.append(more);
     async function load(before){
       more.disabled=true;
       try{const res=await fetch(API+'?site='+encodeURIComponent(site.properties.id)+(before?'&before='+before:''));const out=await res.json();if(!res.ok)throw new Error();if(view!==st.view)return;
         summary.textContent=out.count?t("{0}/5 from {1} published {2}.", {"0":(out.average),"1":(out.count),"2":(out.count===1?t("review"):t("reviews"))}):t("No published reviews yet. Been here? Share your experience.");
         scores.textContent=out.scores_available===false||!out.seasonal_scores?t("Seasonal sub-ratings are unavailable."):window.KampTrailDiscovery?.seasonalText(out.seasonal_scores)||t("Seasonal sub-ratings are unavailable.");
+        siteValues.textContent=out.scores_available===false||!out.site_scores?t("Visit sub-rating averages are unavailable."):window.KampTrailDiscovery?.siteScoresText(out.site_scores)||t("Visit sub-rating averages are unavailable.");
         monthDetails(monthly,out.monthly,monthly.querySelector('select')?.value||'');
         for(const r of out.reviews){
-          const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},t("Visited {0}{1} · submitted {2}", {"0":(r.visited_on),"1":(r.rig?' · '+r.rig:''),"2":(String(r.created_at).slice(0,10))})),el('p',{class:'kt-review-text'},r.body));
-          const observed=window.KampTrailDiscovery?.describe(r.observations);if(observed)article.append(el('p',{class:'kt-observation'},t("Reported on ")+r.visited_on+' · '+observed));
+          const article=el('article',{class:'kt-review-card'});article.append(el('h4',{},`${r.rating}/5 · ${r.display_name}`),el('p',{class:'kt-fine'},t("Visited {0}{1} · submitted {2}", {"0":(visit(r.visited_on)),"1":(r.rig?' · '+r.rig:''),"2":(String(r.created_at).slice(0,10))})),el('p',{class:'kt-review-text'},r.body));
+          const observed=window.KampTrailDiscovery?.describe(r.observations);if(observed)article.append(el('p',{class:'kt-observation'},t("Reported on ")+visit(r.visited_on)+' · '+observed));
           if(r.photos.length){const gallery=el('div',{class:'kt-photo-grid'});r.photos.forEach(p=>gallery.append(image(p,r)));article.append(gallery);}
           const video=videoCard(r,site.properties.id,view);if(video)article.append(video);
           article.append(button(t("Report review"),()=>report(r.id)));list.append(article);
         }
         more.hidden=!out.next_before;more.dataset.before=out.next_before||'';
-      }catch{if(view===st.view){if(!monthly.hasChildNodes?.())monthly.append(el('p',{class:'kt-fine'},t('Visit-month summaries are unavailable until reviews reload.')));if(!before)scores.textContent=t("Seasonal sub-ratings are unavailable.");summary.replaceChildren(document.createTextNode(navigator.onLine?t("Reviews could not be loaded."):t("Reviews and photos need an internet connection.")),button(t("Retry"),()=>load(before)));}}
+      }catch{if(view===st.view){if(!monthly.hasChildNodes?.())monthly.append(el('p',{class:'kt-fine'},t('Visit-month summaries are unavailable until reviews reload.')));if(!before){scores.textContent=t("Seasonal sub-ratings are unavailable.");siteValues.textContent=t("Visit sub-rating averages are unavailable.");}summary.replaceChildren(document.createTextNode(navigator.onLine?t("Reviews could not be loaded."):t("Reviews and photos need an internet connection.")),button(t("Retry"),()=>load(before)));}}
       finally{more.disabled=false;}
     }
     await load();
@@ -129,7 +132,7 @@
     const msg=message(''),send=el('button',{type:'submit',class:'btn primary'},token?t("Save and resubmit"):t("Send for review"));f.append(msg,send);body.append(f,button(t("My reviews"),mine));
     f.onsubmit=async e=>{e.preventDefault();const chosen=[...files.files],remaining=(review.photos||[]).filter(p=>!new FormData(f).getAll('remove_photos[]').includes(String(p.id))).length;
       if(chosen.length+remaining>3||chosen.some(f=>f.size>6291456)){msg.textContent=t("Use at most 3 photos total, each 6 MB or smaller.");return;}
-      const data=new FormData(f);if(!chosen.length)data.delete('photos[]');data.set('action',token?'edit':'submit');data.set('campsite_id',review.campsite_id);data.set('campsite_name',review.campsite_name);data.set('elapsed_ms',Date.now()-st.opened);data.set('observations',JSON.stringify(window.KampTrailDiscovery?.formValues(f)||{}));send.disabled=true;msg.textContent=t("Sending…");
+      const data=new FormData(f);if(!chosen.length)data.delete('photos[]');data.set('action',token?'edit':'submit');data.set('campsite_id',review.campsite_id);data.set('campsite_name',review.campsite_name);data.set('elapsed_ms',Date.now()-st.opened);data.set('observations',JSON.stringify(window.KampTrailDiscovery?.formValues(f,{edit:!!token})||{}));send.disabled=true;msg.textContent=t("Sending…");
       try{const out=await request(data,token);window.dispatchEvent(new CustomEvent('kamptrail:communitychanged'));const code=token||out.token;const stored=remember({token:code,name:review.campsite_name,at:new Date().toISOString()});urls.splice(0).forEach(URL.revokeObjectURL);const done=shell(t("Review received"));done.append(message(t('Thanks. Your review, photos and optional video are waiting for moderation.')),el('p',{class:'kt-fine'},stored?t("Your management code is saved on this device."):t("This browser could not save the code. Copy it now so you can manage your review.")));codePanel(done,code);done.append(button(t("My reviews"),mine));}
       catch(err){msg.textContent=err.message;msg.classList.add('is-error');}finally{send.disabled=false;}
     };

@@ -228,7 +228,7 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 .kt-language small{display:none;position:absolute;top:100%;right:0;width:230px;padding:8px;background:#10281f;color:#fff;border:1px solid #73947b;z-index:1300;font-size:12px}.kt-language:focus-within small{display:block}
 @media(max-width:760px){header{position:relative}.brand{padding-right:95px}.brand span{display:none}.kt-language{position:absolute;right:12px;top:7px;width:85px}.kt-language select{width:100%;min-height:30px}.kt-language small{grid-column:auto}.app-intro .kt-language-scope{font-size:11px}}
 .land-guidance-list{font-size:14px;margin:10px 0;padding-left:22px}.land-guidance-list li{margin:10px 0}
-.kt-seasonal-values{white-space:pre-line;font-size:12px;line-height:1.6}.kt-seasonal-scores{margin:12px 0}.kt-seasonal-scores h4{margin:8px 0}
+.kt-seasonal-values,.kt-site-score-values{white-space:pre-line;font-size:12px;line-height:1.6;overflow-wrap:anywhere}.kt-seasonal-scores,.kt-site-scores{margin:12px 0}.kt-seasonal-scores h4,.kt-site-scores h4{margin:8px 0}
 
 .kt-review-video{margin:14px 0;padding:12px;border:1px solid var(--c-border);border-radius:8px}.kt-review-video h5{font-size:15px;margin:0 0 8px}.kt-review-video .btn{display:block;margin-top:12px}.kt-video-player{display:block;width:100%;aspect-ratio:16/9;min-height:200px;border:0;margin-top:12px}
 

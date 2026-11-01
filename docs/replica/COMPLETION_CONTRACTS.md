@@ -141,6 +141,16 @@ Each contract has three parts:
   - Categorical observations stay separate from numeric satisfaction scores. No conversion without an approved, documented mapping.
   - A published numeric average needs at least 3 qualifying ratings.
 
+#### Owner decisions for R5, R6 and R7 (November 1, 2026)
+
+Recorded verbatim:
+
+1. Staging is the PHP harness plus CI browser tests: an isolated database, exercising submission, moderation, publication, filtering, edits and removal through the real application endpoints. Record the tested commit and results. Production desktop/mobile acceptance is separate.
+2. Crowds and fullness are separate optional 1-5 scores. Crowds means perceived crowding. Fullness means the proportion of camping spaces occupied. Label both endpoints clearly, with higher meaning more crowded or fuller. Existing categorical observations (crowding, noise, quietness) are kept without conversion. Averages publish only with at least three qualifying ratings.
+3. Season comes from the visitor-entered visit date and is shown in the form for the visitor to confirm. Use the documented US calendar-season boundaries already in the code (keep PHP and JS identical, with a parity test). A missing visit date gives no seasonal contribution. When a stay crosses a season boundary, the visitor can select the season being rated. No stay-length field.
+
+Package A (R5 dimensions) builds to these decisions. Evidence: `docs/REVIEW_DIMENSIONS_R5.md`.
+
 ### R6. Condition filters (could, 0.5, partial)
 
 - **Source:** slider filters over the R5 dimensions, including seasonal crowds and day/night noise.
