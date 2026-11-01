@@ -246,6 +246,9 @@ test('real captured empty NWS responses and the real alert schema pass through t
     check($result['ok']===true && $result['kind']==='firewx' && $result['data']['features']===[] && $result['partial']===false);
     // A real, non-fire alert is excluded. The same real record with only its event rewritten is a SYNTHETIC test input.
     $real=json_decode(${captured('alerts/small-craft-advisory-p1.json')},true);
+    // The control capture was limited to one alert, so NWS added a pagination link. A paginated answer is refused as incomplete.
+    rejects(fn()=>ke_normalize('firewx',$real,$now),'zoom_in');
+    unset($real['pagination']);
     check(ke_normalize('firewx',$real,$now)['features']===[]);
     $real['features'][0]['properties']['event']='Red Flag Warning';
     $real['features'][0]['properties']['expires']='2026-11-02T03:00:00Z'; $real['features'][0]['properties']['ends']=null;

@@ -206,7 +206,7 @@ function ke_firewx_properties(array $p, int $now): ?array {
     if (!$cancel && (($expires !== null && strtotime($expires) <= $now) || ($ends !== null && strtotime($ends) <= $now))) return null;
     $references = [];
     foreach (is_array($p['references'] ?? null) ? array_slice($p['references'], 0, 20) : [] as $ref) {
-        $id = is_array($ref) ? ke_text($ref['identifier'] ?? null, 500) : null;
+        $id = is_array($ref) && is_string($ref['identifier'] ?? null) ? ke_text($ref['identifier'], 500) : null;
         if ($id !== null && $id !== '') $references[] = $id;
     }
     $zones = ke_zone_paths($p['affectedZones'] ?? []);
