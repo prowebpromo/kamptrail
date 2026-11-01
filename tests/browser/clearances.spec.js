@@ -69,6 +69,33 @@ for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',wi
     expect(errors).toEqual([]);
   });
 }
+// Codex review: the visible layer, the selector and the counts stay in sync while a popup is open.
+const ourLayers=page=>page.evaluate(()=>{let n=0;map.eachLayer(l=>{if(typeof l.ktClearanceId==='string')n++;});return n;});
+for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+  test(`${viewport.name}: zooming below 10 with a popup open closes it and clears markers, selector and counts together`,async({page,context})=>{
+    await page.setViewportSize(viewport);const {calls,errors}=await setup(page,context);await show(page);const control=page.locator('.kt-clearance-control');
+    await expect(control).toContainText('2 clearance candidates in view');expect(await ourLayers(page)).toBe(2);
+    await openCandidate(page,'osm:way:111');
+    await page.evaluate(()=>map.setZoom(8,{animate:false}));
+    await expect(page.locator('.kt-clearance-popup')).toHaveCount(0);
+    await expect(control).toContainText('Zoom to level 10 or closer');await expect.poll(()=>ourLayers(page)).toBe(0);
+    await expect(control.getByLabel('Clearance candidate in view').locator('option')).toHaveCount(0);await expect(control.getByRole('button',{name:'Open selected candidate'})).toBeDisabled();
+    const tilesBefore=calls.tiles;await page.evaluate(()=>map.setZoom(15,{animate:false}));await expect(control).toContainText('2 clearance candidates in view');expect(await ourLayers(page)).toBe(2);expect(calls.tiles).toBeGreaterThanOrEqual(tilesBefore);
+    expect(errors).toEqual([]);
+  });
+  test(`${viewport.name}: changing rig height with a popup open keeps that record's popup and updates its verdict and the counts`,async({page,context})=>{
+    await page.setViewportSize(viewport);const {errors}=await setup(page,context);await show(page);const control=page.locator('.kt-clearance-control');
+    await expect(control).toContainText('1 conflict with your rig height');
+    const popup=await openCandidate(page,'osm:way:111');await expect(popup.locator('.kt-clearance-verdict')).toContainText('Equal is not clear');
+    await page.getByRole('button',{name:'Open rig profile',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Rig profile',exact:true});await expect(dialog).toBeVisible();
+    await page.locator('#kt-rig-heightMm').fill('13');await page.getByRole('button',{name:'Save profile',exact:true}).click();await expect(page.locator('#kt-rig-status')).toContainText('Saved on this device');
+    await page.getByRole('button',{name:'Close rig profile',exact:true}).click();
+    await expect(popup).toBeVisible();await expect(popup.locator('.kt-clearance-verdict')).toContainText(`is higher than your rig height 13'0" by 6"`);
+    await expect.poll(()=>control.locator('[role=status]').textContent()).toContain('0 conflict with your rig height');
+    expect(await ourLayers(page)).toBe(2);await expect(control.getByLabel('Clearance candidate in view')).toHaveValue('osm:way:111');
+    expect(errors).toEqual([]);
+  });
+}
 test('rig comparison below and above, and without a saved rig height',async({page,context})=>{
   await setup(page,context,{rig:ft(14)});await show(page);
   let popup=await openCandidate(page,'osm:way:111');await expect(popup.locator('.kt-clearance-verdict')).toContainText(`Conflict: tagged clearance 13'6" is lower than your rig height 14'0" by 6"`);
@@ -160,6 +187,26 @@ test.describe('RI offline copy with the service worker in control',()=>{
       await page.reload();await page.waitForFunction(()=>window.KampTrailClearances&&window.map);await show(page);
       await expect(control).toContainText('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');
       await context.setOffline(false);expect(errors).toEqual([]);
+    });
+  }
+});
+
+test.describe('RI saved label after the connection drops, without a reload',()=>{
+  for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+    test(`${viewport.name}: the same tab relabels the RI copy as a saved snapshot when it goes offline`,async({page,context})=>{
+      await page.setViewportSize(viewport);
+      await page.route('**/data/clearances/RI.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(riPilot)}));
+      const {errors}=await setup(page,context,{zoom:12});await page.evaluate(()=>map.setView([41.8240,-71.4128],13));await show(page);const control=page.locator('.kt-clearance-control');
+      await expect(control).toContainText(/Rhode Island: [1-9]\d* pilot records/);await expect(control).not.toContainText('Saved snapshot');
+      const first=await control.getByLabel('Clearance candidate in view').locator('option').first().getAttribute('value');
+      let popup=await openCandidate(page,first);await expect(popup).not.toContainText('Saved snapshot');await page.getByRole('button',{name:'Close popup',exact:true}).click();
+      await context.setOffline(true);
+      await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
+      popup=await openCandidate(page,first);await expect(popup).toContainText('Saved snapshot. OpenStreetMap extract '+riPilot.source.extract_timestamp);
+      await page.getByRole('button',{name:'Close popup',exact:true}).click();
+      // Panning offline keeps the label: the store, not only the screen, holds the saved status.
+      await page.evaluate(()=>map.panBy([5,5],{animate:false}));await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records/);
+      await context.setOffline(false);await expect(control).not.toContainText('Saved snapshot');expect(errors).toEqual([]);
     });
   }
 });
