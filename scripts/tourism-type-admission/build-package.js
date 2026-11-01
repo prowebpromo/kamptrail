@@ -48,6 +48,11 @@ const singleState=new Map(),singleStateN=new Map();
 for(const c of BI.collections)singleState.set(c.state,resolver(H.catalogue(DQb,BI,{browser:true,statesOrder:[c]}).features));
 for(const c of NI.collections)singleStateN.set(c.state,resolver(H.catalogue(DQn,NI,{browser:true,statesOrder:[c]}).features));
 const allStates=resolver(H.catalogue(DQb,BI,{browser:true}).features),allStatesN=resolver(H.catalogue(DQn,NI,{browser:true}).features);
+const allStatesNrev=resolver(H.catalogue(DQn,NI,{browser:true,statesOrder:[...NI.collections].reverse()}).features);
+// Load-order dependence: the record's own states loaded in every order (candidate data).
+const perms=a=>a.length<=1?[a]:a.flatMap((x,i)=>perms([...a.slice(0,i),...a.slice(i+1)]).map(p=>[x,...p]));
+const byState=new Map(NI.collections.map(c=>[c.state,c]));const orderCache=new Map();
+function orderIds(states,id){const out={};for(const order of perms(states)){const key=order.join('>');if(!orderCache.has(key))orderCache.set(key,resolver(H.catalogue(DQn,NI,{browser:true,statesOrder:order.map(s=>byState.get(s))}).features));out[key]=orderCache.get(key).get(id)??null;}return out;}
 // Catalogue-wide scope of the L182 identity gap.
 const scope={listings:idx.size,all_states_loaded:{canonical_differs:0,unresolvable:0,examples:[]},single_state_loads:{listing_state_pairs:0,canonical_differs:0,unresolvable:0,listings_affected:0,examples:[]}};
 {const aff=new Set();for(const [id,s] of idx){const ids=[id,...s.legacy_ids];const b=allStates.get(id);if(b===undefined)scope.all_states_loaded.unresolvable++;else if(b!==id){scope.all_states_loaded.canonical_differs++;if(scope.all_states_loaded.examples.length<12)scope.all_states_loaded.examples.push({index_id:id,browser_id:b});}
@@ -85,6 +90,9 @@ for(const id of [...affected].sort()){
   if(B.has(id))rules.push(LINES.B);if(C.has(id))rules.push(LINES.C);
   const bAll=allStates.get(id)??null,bOwn=Object.fromEntries((s?.states||[]).map(st=>[st,singleState.get(st).get(id)??null]));
   const nAll=allStatesN.get(id)??null,nOwn=Object.fromEntries((nidx.get(id)?.states||[]).map(st=>[st,singleStateN.get(st).get(id)??null]));
+  const nStates=nidx.get(id)?.states||[],orders=nStates.length>1?orderIds(nStates,id):{};
+  const loadValues=[...new Set([nAll,allStatesNrev.get(id)??null,...Object.values(orders)])];
+  const loadOrder={all_states_reverse:allStatesNrev.get(id)??null,own_states_every_order:orders,depends_on_load_order:loadValues.length>1};
   const proposedType=cp?cp.type:null,implemented=!!cp&&cp.type!==p.type;
   let action,questions=[];
   if(B.has(id)){action=`Implemented: type ${p.type} -> ${proposedType}. The own Recreation.gov record says ${o.type}. The lent type came from ${lent.get(id)?.member||borrowed.find(b=>b.field==='type')?.member_id}. Publication unchanged: own facility name is camping evidence.`;}
@@ -108,7 +116,7 @@ for(const id of [...affected].sort()){
       browser_runtime_all_states:bAll,browser_runtime_own_state:bOwn,candidate_browser_all_states:nAll,candidate_browser_own_state:nOwn,
       saved_link_resolves_index:RES.cand.get(id)===id&&(s?.legacy_ids||[]).every(a=>RES.cand.get(a)===id),
       saved_link_resolves_browser:[nAll,...Object.values(nOwn)].every(v=>v!==null),
-      browser_matches_index:[nAll,...Object.values(nOwn)].every(v=>v===id)},
+      browser_matches_index:[nAll,...Object.values(nOwn)].every(v=>v===id),load_order:loadOrder},
     contributions:{published_reviews:0,published_observations:0,published_photos:0,keyed_by:'community_reviews.campsite_id (= listing id), photos via review_id',checked:'production public endpoint; pending submissions not checked'},
     recommended_action:action,open_questions:questions});
 }
@@ -125,7 +133,7 @@ const out={version:1,candidate:'tourism-type-admission',baseline_commit:require(
   venn,proposal,contributions_checked:contributionsChecked,identity_gap_L182:scope,records:rec};
 fs.writeFileSync(path.join(root,'docs/candidates/tourism-type-admission.json'),JSON.stringify(out,null,1)+'\n');
 const q=v=>{const s=v==null?'':typeof v==='string'?v:JSON.stringify(v);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;};
-const cols=['canonical_id','name','states','groups','absorbed_source_ids','own_type','own_tourism','own_classification','borrowed','current_type','proposed_type','current_status','proposed_status','implemented','blanket_guard_status','blanket_guard_type','rules','index_id','legacy_ids','browser_all_states','browser_own_state','saved_link_resolves_index','saved_link_resolves_browser','browser_matches_index','published_reviews','published_photos','recommended_action','open_questions'];
-const csv=[cols.join(',')].concat(rec.map(r=>[r.canonical_id,r.name,r.states.join(' '),r.groups.join(' '),r.absorbed_source_ids.join(' '),r.own_evidence.own_type,r.own_evidence.own_tourism,r.own_evidence.own_classification,r.borrowed_evidence.map(b=>`${b.field}=${b.value} from ${b.member_id}`).join('; '),r.current.type,r.proposed.type,r.current.status,r.proposed.status,r.proposed.implemented,r.blanket_guard_outcome.status,r.blanket_guard_outcome.type,r.rules.map(x=>x.file+':'+x.line).join(' '),r.identity.index_id,r.identity.legacy_ids.join(' '),r.identity.candidate_browser_all_states,Object.entries(r.identity.candidate_browser_own_state).map(([k,v])=>k+'='+v).join(' '),r.identity.saved_link_resolves_index,r.identity.saved_link_resolves_browser,r.identity.browser_matches_index,0,0,r.recommended_action,r.open_questions.join(' | ')].map(q).join(',')));
+const cols=['canonical_id','name','states','groups','absorbed_source_ids','own_type','own_tourism','own_classification','borrowed','current_type','proposed_type','current_status','proposed_status','implemented','blanket_guard_status','blanket_guard_type','rules','index_id','legacy_ids','browser_all_states','browser_own_state','saved_link_resolves_index','saved_link_resolves_browser','browser_matches_index','browser_load_order_dependent','published_reviews','published_photos','recommended_action','open_questions'];
+const csv=[cols.join(',')].concat(rec.map(r=>[r.canonical_id,r.name,r.states.join(' '),r.groups.join(' '),r.absorbed_source_ids.join(' '),r.own_evidence.own_type,r.own_evidence.own_tourism,r.own_evidence.own_classification,r.borrowed_evidence.map(b=>`${b.field}=${b.value} from ${b.member_id}`).join('; '),r.current.type,r.proposed.type,r.current.status,r.proposed.status,r.proposed.implemented,r.blanket_guard_outcome.status,r.blanket_guard_outcome.type,r.rules.map(x=>x.file+':'+x.line).join(' '),r.identity.index_id,r.identity.legacy_ids.join(' '),r.identity.candidate_browser_all_states,Object.entries(r.identity.candidate_browser_own_state).map(([k,v])=>k+'='+v).join(' '),r.identity.saved_link_resolves_index,r.identity.saved_link_resolves_browser,r.identity.browser_matches_index,r.identity.load_order.depends_on_load_order,0,0,r.recommended_action,r.open_questions.join(' | ')].map(q).join(',')));
 fs.writeFileSync(path.join(root,'docs/candidates/tourism-type-admission.csv'),csv.join('\n')+'\n');
-console.log(JSON.stringify({venn,blanket_guard:out.blanket_guard,proposal:proposal.length,proposal_kinds:proposal.reduce((a,r)=>(a[r.from+'->'+r.to]=(a[r.from+'->'+r.to]||0)+1,a),{}),identity_gap_L182:{...scope,all_states_loaded:{...scope.all_states_loaded,examples:undefined},single_state_loads:{...scope.single_state_loads,examples:undefined}},records_browser_mismatch:rec.filter(r=>!r.identity.browser_matches_index).length,records_unresolved:rec.filter(r=>!r.identity.saved_link_resolves_index||!r.identity.saved_link_resolves_browser).length},null,1));
+console.log(JSON.stringify({venn,blanket_guard:out.blanket_guard,proposal:proposal.length,proposal_kinds:proposal.reduce((a,r)=>(a[r.from+'->'+r.to]=(a[r.from+'->'+r.to]||0)+1,a),{}),identity_gap_L182:{...scope,all_states_loaded:{...scope.all_states_loaded,examples:undefined},single_state_loads:{...scope.single_state_loads,examples:undefined}},records_browser_mismatch:rec.filter(r=>!r.identity.browser_matches_index).length,records_unresolved:rec.filter(r=>!r.identity.saved_link_resolves_index||!r.identity.saved_link_resolves_browser).length,records_load_order_dependent:rec.filter(r=>r.identity.load_order.depends_on_load_order).map(r=>r.canonical_id)},null,1));
