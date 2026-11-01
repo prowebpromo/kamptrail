@@ -52,11 +52,13 @@ for(const [group,ids] of Object.entries(request.groups))for(const id of ids){
   if(id==='ridb:233178'&&n?.properties.own_closure_notice?.status!=='temporarily closed')problems.push({id,problem:'closure notice lost'});
   if(id==='ridb:252494'&&!(n?.properties.kt_accommodation==='cabins'&&n?.properties.ridb_overnight_sites>1))problems.push({id,problem:'multi-cabin record not distinguished'});
   const r=review[id];
+  const upgradeReason=group==='upgrade_27'?(decision==='approved_upgrade'?`Refreshed record confirms the agency's own FacilityName and point (${distance} m). The name gives ${LABEL[nameKind(observed.facility_name)]}. No structured type or campsite records, so the label rests on the name alone.`:'Refreshed record does not confirm the own name and point. Left unchanged.'):null;
+  const lodgingNote=id==='ridb:233178'?' Own dated closure notice (2026-09-10) shown in the popup.':id==='ridb:252494'?' Popup states that the one listing covers 15 cabins and that the point is not a particular cabin.':'';
   rows.push({id,group,name:own,observed,derived:{record_empty:empty,identity_confirmed:identity,point_distance_m:distance,name_kind:group==='upgrade_27'?nameKind(observed.facility_name||''):undefined,cabin_records_only:group==='lodging_10'?cabins:undefined},
     current:{label:current,classification:b?.properties.camping_classification??null,evidence:b?.properties.camping_evidence??null},
     candidate:{label:proposed,classification:n?.properties.camping_classification??null,evidence:n?.properties.camping_evidence??null,type_evidence:n?.properties.type_evidence?.kind??null,
       closure_notice:n?.properties.own_closure_notice??null,accommodation:n?.properties.kt_accommodation??null,overnight_records:n?.properties.ridb_overnight_sites??null},
-    decision,action,reason:r?.reason||independent[id]?.evidence_note||null,recommendation:r?{action:r.recommendation,label:r.recommended_label}:null});
+    decision,action,reason:upgradeReason||((r?.reason||independent[id]?.evidence_note||'')+lodgingNote)||null,recommendation:r?{action:r.recommendation,label:r.recommended_label}:null});
 }
 const count=k=>rows.reduce((a,r)=>(a[r[k]]=(a[r[k]]||0)+1,a),{});
 const out={version:1,decided:'2026-11-01 08:16 and 08:18 (owner)',evidence:{file:rel,sha256:crypto.createHash('sha256').update(evidenceBytes).digest('hex'),run:'https://github.com/prowebpromo/kamptrail/actions/runs/41350953975',retrieved_at:evidence.retrieved_at},

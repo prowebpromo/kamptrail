@@ -50,7 +50,8 @@ test('national campground search works outside loaded states, shows GPS and dire
 });
 test('basic filters persist and reset without inventing prices or showing unrelated facilities',async({page})=>{
   await ready(page);
-  expect(await page.evaluate(()=>KampTrailData.getAllCampsites().every(s=>s.properties.camping_classification==='campsite'))).toBe(true);
+  // Owner decision 2026-11-01: reviewed listings stay discoverable while pending review, with a notice.
+  expect(await page.evaluate(()=>KampTrailData.getAllCampsites().every(s=>s.properties.camping_classification==='campsite'||(s.properties.camping_classification==='published_pending_review'&&['proposed_withdrawal_pending_review','previously_published_pending_adjudication'].includes(s.properties.camping_evidence))))).toBe(true);
   await page.locator('#filters').click();await page.locator('[name="f-cost"][value="free"]').check();
   await expect(page.locator('#filter-badge')).toBeVisible();
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.fee_status==='free'))).toBe(true);
