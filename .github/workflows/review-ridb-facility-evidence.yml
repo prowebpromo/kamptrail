@@ -1,0 +1,45 @@
+name: Review RIDB facility evidence
+
+# Read-only review evidence for named Recreation.gov facilities: each facility's own raw RIDB
+# fields (FacilityTypeDescription, LastUpdatedDate and others, unchanged) and a summary of its
+# own campsite records. Output is an artifact only. Nothing is committed and no published data
+# or state refresh changes.
+on:
+  workflow_dispatch:
+    inputs:
+      facility_ids:
+        description: 'Recreation.gov facility ids, separated by spaces (at most 100)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ridb-facility-evidence
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Fetch evidence
+        env:
+          RIDB_API_KEY: ${{ secrets.RECREATION_GOV_API_KEY || secrets.RIDB_API_KEY }}
+          FACILITY_IDS: ${{ inputs.facility_ids }}
+        run: |
+          if [[ -z "$RIDB_API_KEY" ]]; then echo 'Set RECREATION_GOV_API_KEY or RIDB_API_KEY'; exit 1; fi
+          python scripts/fetch_ridb_facility_evidence.py --ids "$FACILITY_IDS" --out ridb-facility-evidence.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ridb-facility-evidence
+          path: ridb-facility-evidence.json
+          if-no-files-found: error
+          retention-days: 30

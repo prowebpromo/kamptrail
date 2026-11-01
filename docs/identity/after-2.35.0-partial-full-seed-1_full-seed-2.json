@@ -1,0 +1,74 @@
+{
+ "checked_at": "2026-11-01T17:38:53.370Z",
+ "base_url": "http://127.0.0.1:8797",
+ "app_version": "2.35.0",
+ "index_sites": 33370,
+ "states": 50,
+ "state_pairs": 102,
+ "scenarios": {
+  "full:seed:1": {
+   "summary": {
+    "runs": 1,
+    "checkpoints": 50,
+    "checkpoints_with_wrong_merge": 0,
+    "checkpoints_with_wrong_resolution": 0,
+    "max_wrong_merges": 0,
+    "max_wrong_resolutions": 0,
+    "total_wrong_merges": 0,
+    "total_wrong_resolutions": 0,
+    "total_unresolved": 0
+   },
+   "census": {
+    "compared": 33370,
+    "listings": 33370,
+    "differences": 0,
+    "counts": {
+     "missing": 0,
+     "split": 0,
+     "canonical": 0,
+     "source_ids": 0
+    },
+    "examples": {
+     "missing": [],
+     "split": [],
+     "canonical": [],
+     "source_ids": []
+    }
+   },
+   "order": "TN>NH>MS>MT>ND>WA>SD>VT>OR>FL>NV>SC>ME>NC>OH>LA>RI>IA>MA>NM>AL>OK>NY>KS>PA>MO>HI>WI>MD>MN>UT>KY>CO>AK>ID>AR>VA>TX>DE>CT>AZ>WV>IN>GA>CA>WY>MI>IL>NE>NJ",
+   "findings": []
+  },
+  "full:seed:2": {
+   "summary": {
+    "runs": 1,
+    "checkpoints": 50,
+    "checkpoints_with_wrong_merge": 0,
+    "checkpoints_with_wrong_resolution": 0,
+    "max_wrong_merges": 0,
+    "max_wrong_resolutions": 0,
+    "total_wrong_merges": 0,
+    "total_wrong_resolutions": 0,
+    "total_unresolved": 0
+   },
+   "census": {
+    "compared": 33370,
+    "listings": 33370,
+    "differences": 0,
+    "counts": {
+     "missing": 0,
+     "split": 0,
+     "canonical": 0,
+     "source_ids": 0
+    },
+    "examples": {
+     "missing": [],
+     "split": [],
+     "canonical": [],
+     "source_ids": []
+    }
+   },
+   "order": "OH>CT>NY>NV>VA>IL>MD>ID>PA>VT>SD>ME>OR>GA>IA>HI>AR>NM>MI>WI>WY>NE>NC>WV>DE>KY>TN>MO>WA>KS>MA>OK>NH>FL>AK>TX>NJ>LA>MS>CA>AZ>UT>IN>AL>MN>CO>MT>ND>SC>RI",
+   "findings": []
+  }
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "start": "2026-11-01T16:27:24.195Z",
+ "base": "https://kamptrail.com",
+ "browser": {
+  "executable": "/usr/bin/google-chrome",
+  "version": "153.0.8010.12"
+ },
+ "mobile_emulation": false,
+ "viewport_runtime": {
+  "width": 1280,
+  "height": 720
+ },
+ "release": {
+  "source_commit": "76da929f56eafbe20844b6b55e6596baf6f67af4"
+ },
+ "version": "2.34.0",
+ "online": {
+  "stored": [
+   "ridb:232479"
+  ],
+  "stops": [
+   [
+    "ridb:232479",
+    "osm:way:1107154601",
+    "Cosby Campground"
+   ]
+  ],
+  "controlled": true,
+  "online": true,
+  "hosts": "published"
+ },
+ "result": "FAIL",
+ "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'View on map' }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button>View on map</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <body>…</body> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <body>…</body> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <body>…</body> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+ "end": "2026-11-01T16:28:09.708Z"
+}

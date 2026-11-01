@@ -1,0 +1,740 @@
+{
+ "checked_at": "2026-11-01T13:41:23.984Z",
+ "base_url": "http://127.0.0.1:8797",
+ "app_version": "2.34.0",
+ "index_sites": 33370,
+ "states": 50,
+ "state_pairs": 102,
+ "scenarios": {
+  "single": {
+   "summary": {
+    "runs": 50,
+    "checkpoints": 50,
+    "checkpoints_with_wrong_merge": 1,
+    "checkpoints_with_wrong_resolution": 1,
+    "max_wrong_merges": 1,
+    "max_wrong_resolutions": 3,
+    "total_wrong_merges": 1,
+    "total_wrong_resolutions": 3,
+    "total_unresolved": 0
+   },
+   "with_findings": [
+    {
+     "order": "NV",
+     "checkpoints": [
+      {
+       "after": "NV",
+       "listings": 962,
+       "ids_checked": 1197,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "pairs": {
+   "pairs": 102,
+   "summary": {
+    "runs": 204,
+    "checkpoints": 408,
+    "checkpoints_with_wrong_merge": 10,
+    "checkpoints_with_wrong_resolution": 10,
+    "max_wrong_merges": 1,
+    "max_wrong_resolutions": 3,
+    "total_wrong_merges": 10,
+    "total_wrong_resolutions": 30,
+    "total_unresolved": 0
+   },
+   "with_findings": [
+    {
+     "order": "AZ>NV",
+     "checkpoints": [
+      {
+       "after": "AZ",
+       "listings": 1140,
+       "ids_checked": 1271,
+       "wrong_merges": 0,
+       "wrong_resolutions": 0,
+       "unresolved": 0
+      },
+      {
+       "after": "NV",
+       "listings": 2056,
+       "ids_checked": 2422,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      }
+     ]
+    },
+    {
+     "order": "NV>AZ",
+     "checkpoints": [
+      {
+       "after": "NV",
+       "listings": 962,
+       "ids_checked": 1197,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      },
+      {
+       "after": "AZ",
+       "listings": 2056,
+       "ids_checked": 2422,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      }
+     ]
+    },
+    {
+     "order": "NV>CA",
+     "checkpoints": [
+      {
+       "after": "NV",
+       "listings": 962,
+       "ids_checked": 1197,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      },
+      {
+       "after": "CA",
+       "listings": 4305,
+       "ids_checked": 4971,
+       "wrong_merges": 0,
+       "wrong_resolutions": 0,
+       "unresolved": 0
+      }
+     ]
+    },
+    {
+     "order": "NV>OR",
+     "checkpoints": [
+      {
+       "after": "NV",
+       "listings": 962,
+       "ids_checked": 1197,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      },
+      {
+       "after": "OR",
+       "listings": 3212,
+       "ids_checked": 3809,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      }
+     ]
+    },
+    {
+     "order": "OR>NV",
+     "checkpoints": [
+      {
+       "after": "OR",
+       "listings": 2251,
+       "ids_checked": 2614,
+       "wrong_merges": 0,
+       "wrong_resolutions": 0,
+       "unresolved": 0
+      },
+      {
+       "after": "NV",
+       "listings": 3212,
+       "ids_checked": 3809,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      }
+     ]
+    },
+    {
+     "order": "NV>UT",
+     "checkpoints": [
+      {
+       "after": "NV",
+       "listings": 962,
+       "ids_checked": 1197,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      },
+      {
+       "after": "UT",
+       "listings": 2462,
+       "ids_checked": 2965,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      }
+     ]
+    },
+    {
+     "order": "UT>NV",
+     "checkpoints": [
+      {
+       "after": "UT",
+       "listings": 1510,
+       "ids_checked": 1781,
+       "wrong_merges": 0,
+       "wrong_resolutions": 0,
+       "unresolved": 0
+      },
+      {
+       "after": "NV",
+       "listings": 2462,
+       "ids_checked": 2965,
+       "wrong_merges": 1,
+       "wrong_resolutions": 3,
+       "unresolved": 0,
+       "examples": {
+        "wrong_merges": [
+         {
+          "id": "ridb:234209",
+          "ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ],
+          "owners": [
+           "osm:way:1236741631",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "wrong_resolutions": [
+         {
+          "id": "osm:way:1236741631",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "ridb:234209",
+          "owner": "osm:way:1236741631",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         },
+         {
+          "id": "usfs:65184",
+          "owner": "usfs:65184",
+          "got": "ridb:234209",
+          "got_ids": [
+           "ridb:234209",
+           "ridb:234209",
+           "usfs:65184"
+          ]
+         }
+        ],
+        "unresolved": []
+       }
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

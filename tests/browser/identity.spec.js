@@ -157,3 +157,33 @@ test.describe('host file unavailable on a first visit',()=>{
     expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].feature.properties.id)).toBe('osm:way:1107154601');
   });
 });
+
+// Partial loads (2.35.0): Bird Creek Campground has two index listings about 400 m apart, usfs:65184 (NV)
+// and osm:way:1236741631 (CA, NV; legacy ridb:234209). With only NV loaded they must not merge.
+test.describe('partial loads with the host file present',()=>{
+  test.use({serviceWorkers:'block'});
+  for(const order of [['NV','CA'],['CA','NV']])test(`Bird Creek keeps two index owners apart after each state load, ${order.join(' before ')}`,async({page})=>{
+    test.setTimeout(180000);
+    const owners=Object.fromEntries(index.sites.flatMap(s=>[s.id,...s.legacy_ids].map(id=>[id,s.id])));
+    await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
+    await page.goto('/');
+    await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published');
+    const look=()=>page.evaluate(owners=>{
+      const view=id=>{const f=KampTrailData.getCampsiteById(id);return f?{id:f.properties.id,owners:[...new Set([f.properties.id,...(f.properties.legacy_ids||[])].map(x=>owners[x]||'?'+x))]}:null;};
+      const wrong=KampTrailData.getAllCampsites().filter(f=>new Set([f.properties.id,...(f.properties.legacy_ids||[])].map(x=>owners[x]||'?'+x)).size>1).map(f=>f.properties.id);
+      return {usfs:view('usfs:65184'),osm:view('osm:way:1236741631'),ridb:view('ridb:234209'),wrong};
+    },owners);
+    for(const code of order){
+      await page.evaluate(c=>KampTrailData.loadStates([c]),code);
+      const v=await look();
+      expect(v.wrong,`after ${code}: no listing holds records of two index owners`).toEqual([]);
+      if(v.usfs||code==='NV')expect(v.usfs,`after ${code}: usfs:65184 resolves to itself`).toEqual({id:'usfs:65184',owners:['usfs:65184']});
+      expect(v.osm?.owners,`after ${code}: osm:way:1236741631 resolves to its own owner`).toEqual(['osm:way:1236741631']);
+      expect(v.ridb?.owners,`after ${code}: ridb:234209 resolves to its own owner`).toEqual(['osm:way:1236741631']);
+    }
+    const v=await look();
+    expect(v.osm.id).toBe('osm:way:1236741631');
+    expect(v.ridb.id).toBe('osm:way:1236741631');
+    expect(v.usfs.id).toBe('usfs:65184');
+  });
+});

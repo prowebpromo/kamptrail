@@ -266,7 +266,23 @@ jobs:
               node scripts/record_health.js record rest_areas "$region" failed
             fi
           done
+      # A push from this workflow does not trigger the test workflow, so the refreshed tree is tested
+      # here. If anything fails, nothing is committed and the refreshed data is kept as an artifact.
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, gd, mbstring, fileinfo, exif, curl, zlib
+      - name: Verify the refreshed tree before committing
+        id: verify_refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          pip install -r requirements.txt pyyaml
+          # Continuity against the last committed index, then npm test and the Python suite.
+          bash scripts/verify-refresh.sh HEAD
       - name: Commit successful source and snapshot updates
+        id: commit_refresh
         shell: bash
         run: |
           set -euo pipefail
@@ -284,12 +300,32 @@ jobs:
               fi
               if git push; then exit 0; fi
               echo "Push rejected (attempt $attempt); rebasing on the latest main"
-              git pull --rebase origin main
+              git fetch origin main
+              git rebase origin/main
+              # The rebased tree combines this refresh with newer main and has never been tested.
+              # Verify it again, against the new main's published index, before the next push.
+              bash scripts/verify-refresh.sh origin/main
               sleep $((attempt * 5))
             done
             echo 'Could not push the refreshed data after 5 attempts' >&2
             exit 1
           fi
+      - name: Keep the unverified refresh for review when verification fails
+        if: ${{ failure() && (steps.verify_refresh.outcome == 'failure' || steps.commit_refresh.outcome == 'failure') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: unverified-refresh-${{ github.run_id }}-${{ github.run_attempt }}
+          # Every path the commit step stages, so the exact failing refresh state is kept.
+          path: |
+            data/campsites
+            data/opencampingmap
+            data/poi_dump_water_propane.geojson
+            data/services
+            data/sources
+            data/health.json
+            data/rest-areas
+            docs/REST_AREAS_PILOT_2.15.json
+          retention-days: 14
   agencies:
     if: ${{ inputs.source == 'agency' }}
     runs-on: ubuntu-latest
