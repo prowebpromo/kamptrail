@@ -1,0 +1,49 @@
+{
+  "pr": 157,
+  "pr_head_sha": "d3fd45ce95e9eee058fe0664e015ad6029792a49",
+  "merge_sha": "3171711b31dce4fd09d66d6f16a2d0efbe525c20",
+  "ci": {
+    "full_regression": 41302618327,
+    "lighthouse_pull_request": 41302618417,
+    "lighthouse_push": 41302579822,
+    "conclusion": "success",
+    "exact_head_verified": true
+  },
+  "hostinger_publish_run": 41304132160,
+  "hostinger_publish_job": 124840947396,
+  "hostinger_publish_status": "success",
+  "acceptance_marker_commit": "2e49cba2de62e61922591e9f65566a9a3f0b8d0d",
+  "production_acceptance_run": 41305534528,
+  "production_acceptance_job": 124845032030,
+  "production_acceptance_status": "success",
+  "desktop_and_mobile": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "mobile": false,
+      "release_sha": "3171711b31dce4fd09d66d6f16a2d0efbe525c20",
+      "version": "2.34.0",
+      "index_sha256": "83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a",
+      "listings": 33370,
+      "national_clearance_index_status": 404,
+      "exact_facility_popup_verified": true,
+      "javascript_errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mobile": true,
+      "release_sha": "3171711b31dce4fd09d66d6f16a2d0efbe525c20",
+      "version": "2.34.0",
+      "index_sha256": "83e6f21c026796ab6ee54f7963855d676536f29a5d95d256dadbbaf53b06c33a",
+      "listings": 33370,
+      "national_clearance_index_status": 404,
+      "exact_facility_popup_verified": true,
+      "javascript_errors": []
+    }
+  ]
+}
