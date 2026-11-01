@@ -98,3 +98,19 @@ Why not move inherited values to member evidence in the index normalizer: that c
 - `npm run build` (search index, services, permissions, release) succeeds and leaves committed data unchanged.
 
 Release 2.34.0, service-worker cache `kt-v67`.
+
+## Live acceptance (November 1, 2026)
+
+Result: **passed with no exceptions.** Checked on kamptrail.com against merge `9c930466` (PR #154), search index `83e6f21c`. All 245 fixture listings (`tests/fixtures/rig-tag-ownership-cases.json`) loaded in four runs: desktop (1440x1000) and mobile (390x844), each with the affected states loaded forward and reversed. Script: `scripts/acceptance/live-2.34.0-rig-check.js`. Raw output: `docs/acceptance/2.34.0-live-output.txt`.
+
+| Check | Desktop forward | Desktop reversed | Mobile reversed | Mobile forward |
+|---|---|---|---|---|
+| Browser id equals index id | 245/245 | 245/245 | 245/245 | 245/245 |
+| Rig line matches fixture | 245/245 | 245/245 | 245/245 | 245/245 |
+| Tents filter matches fixture | 245/245 | 245/245 | 245/245 | 245/245 |
+| Trailers filter matches fixture | 245/245 | 245/245 | 245/245 | 245/245 |
+| Page errors | 0 | 0 | 0 | 0 |
+
+Before merge, the search index was compared independently with main: the same 33,370 ids, and only the rig field (`m.r`) differs, on exactly 237 listings. identity-hosts.json kept the same 2,747 hosts, with its recorded index hash updated.
+
+Owner decision still pending and kept conservative here: 18 Recreation.gov listings whose absorbed OSM element links the same facility by website are treated as members.

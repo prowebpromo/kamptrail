@@ -1,0 +1,29 @@
+PASS desktop forward: page reports 2.34.0
+PASS desktop forward: all 245 listings loaded 
+PASS desktop forward: browser id equals index id for every listing 
+PASS desktop forward: rig line matches fixture for 245/245 
+PASS desktop forward: Tents filter matches fixture for 245/245 
+PASS desktop forward: Trailers filter matches fixture for 245/245 
+PASS desktop forward: no page errors 
+PASS desktop reversed: page reports 2.34.0
+PASS desktop reversed: all 245 listings loaded 
+PASS desktop reversed: browser id equals index id for every listing 
+PASS desktop reversed: rig line matches fixture for 245/245 
+PASS desktop reversed: Tents filter matches fixture for 245/245 
+PASS desktop reversed: Trailers filter matches fixture for 245/245 
+PASS desktop reversed: no page errors 
+PASS mobile reversed: page reports 2.34.0
+PASS mobile reversed: all 245 listings loaded 
+PASS mobile reversed: browser id equals index id for every listing 
+PASS mobile reversed: rig line matches fixture for 245/245 
+PASS mobile reversed: Tents filter matches fixture for 245/245 
+PASS mobile reversed: Trailers filter matches fixture for 245/245 
+PASS mobile reversed: no page errors 
+PASS mobile forward: page reports 2.34.0
+PASS mobile forward: all 245 listings loaded 
+PASS mobile forward: browser id equals index id for every listing 
+PASS mobile forward: rig line matches fixture for 245/245 
+PASS mobile forward: Tents filter matches fixture for 245/245 
+PASS mobile forward: Trailers filter matches fixture for 245/245 
+PASS mobile forward: no page errors 
+SUMMARY PASSED (0 failures)

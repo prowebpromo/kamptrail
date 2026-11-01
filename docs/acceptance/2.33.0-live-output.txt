@@ -1,0 +1,30 @@
+== desktop reversed
+reversed {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]} ms 258502
+== desktop seed7
+seed7 {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]} ms 238390
+== desktop delayed
+delayed {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]} ms 176370
+== desktop failure
+FALLBACK {"features":35959,"diff":2516,"missing":0,"dupSplit":2490,"canonDiff":26,"setDiff":26,"wrongMerge":0,"ex":[["set","ridb:241301","usfs:43429","ridb:241301|usfs:43429"],["set","ridb:245165","usfs:5977","ridb:245165|usfs:5977"],["set","ridb:246536","usfs:65003","ridb:246536|usfs:65003"],["set","ridb:244320","usfs:18788","ridb:244320|usfs:18788"],["set","ridb:234128","usfs:47291","ridb:234128|usfs:47291"]]} { hosts: 'fallback', shown: 35959 }
+AFTER {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]}
+fallback-shown ids not opening same listing after load: 0 of 35959
+== mobile seed424242
+seed424242 {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]} ms 282877
+== mobile failure
+FALLBACK {"features":35959,"diff":2516,"missing":0,"dupSplit":2490,"canonDiff":26,"setDiff":26,"wrongMerge":0,"ex":[["set","ridb:241301","usfs:43429","ridb:241301|usfs:43429"],["set","ridb:245165","usfs:5977","ridb:245165|usfs:5977"],["set","ridb:246536","usfs:65003","ridb:246536|usfs:65003"],["set","ridb:244320","usfs:18788","ridb:244320|usfs:18788"],["set","ridb:234128","usfs:47291","ridb:234128|usfs:47291"]]} { hosts: 'fallback', shown: 35959 }
+AFTER {"features":33370,"diff":0,"missing":0,"dupSplit":0,"canonDiff":0,"setDiff":0,"wrongMerge":0,"ex":[]}
+fallback-shown ids not opening same listing after load: 0 of 35959
+== saved stops and cached visit
+PASS order NC>TN visit 1: stored id stays ridb:232479 (ridb:232479)
+PASS order NC>TN visit 1: saved stop opens osm:way:1107154601 Cosby Campground
+PASS order NC>TN visit 2: stored id stays ridb:232479 (ridb:232479)
+PASS order NC>TN visit 2: saved stop opens osm:way:1107154601 Cosby Campground
+PASS order TN>NC visit 1: stored id stays ridb:232479 (ridb:232479)
+PASS order TN>NC visit 1: saved stop opens osm:way:1107154601 Cosby Campground
+PASS order TN>NC visit 2: stored id stays ridb:232479 (ridb:232479)
+PASS order TN>NC visit 2: saved stop opens osm:way:1107154601 Cosby Campground
+online  [["ridb:232479","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"],["osm:way:1107154601","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"]]
+offline [["ridb:232479","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"],["osm:way:1107154601","osm:way:1107154601","osm:way:1107154601|osm:way:1107154601|ridb:232479","Cosby Campground","{\"included\":true,\"reason\":\"evidence\",\"sources\":[\"osm:element\",\"ridb:campsite_records\"]}"]] {"hosts":"published","shown":0}
+PASS cached offline visit in reversed order gives the same identity and toilet claim
+SUMMARY PASSED (0)
+CHAIN-DONE
