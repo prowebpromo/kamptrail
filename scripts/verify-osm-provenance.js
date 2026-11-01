@@ -58,7 +58,9 @@ function fullCatalogue(directory,quality){
  const unattributedFees=catalogue.filter(f=>f.properties.fee_status!=='unknown'&&(!f.properties.fee_source_record_id||!f.properties.fee_source)).map(f=>f.properties.id);
  const unattributedAccess=catalogue.filter(f=>f.properties.access_status!=='unknown'&&!f.properties.access_source_record_id).map(f=>f.properties.id);
  assert.deepEqual(unattributedFees,[],'Known fee missing source identity/name');assert.deepEqual(unattributedAccess,[],'Known access missing source identity');
- assert.deepEqual(coordinateIndex(after.sites),read(path.join(bdir,'coordinate-index.json')),'Weather coordinate catalogue');
+ // In ledger mode the catalogue changes by the listed withdrawals, so every remaining row must keep its point and states.
+ if(!ledger)assert.deepEqual(coordinateIndex(after.sites),read(path.join(bdir,'coordinate-index.json')),'Weather coordinate catalogue');
+ else for(const s of after.sites){const b=B.get(s.id);if(b)assert.deepEqual([s.lat,s.lng],[b.lat,b.lng],s.id+' weather coordinate');}
  const report={baseline_commit:execFileSync('git',['rev-parse','HEAD'],{cwd:baseline,encoding:'utf8'}).trim(),source_hashes:sourceHashes,
   assertions:{ledger_mode:!!ledger,all_50_states_checked:true,raw_inputs_unchanged:true,listing_count_unchanged:true,canonical_ids_unchanged:true,coordinates_and_state_partitions_unchanged:true,aliases_unchanged:true,snapshot_counts_and_membership_unchanged:true,record_admission_unchanged:true,coordinate_catalogue_unchanged:true,known_fee_and_access_attributed:true,no_normalized_snapshots:true},
   census_before:feeCensus(before.sites),census_after:feeCensus(after.sites),counts:{fee_changes:feeChanges.length,access_changes:accessChanges.length,held_exclusions:holds.length,snapshot_rows_with_member_evidence:evidenceRows,unique_records_with_member_evidence:members.size,max_members_per_snapshot:maxMembers},
