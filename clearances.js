@@ -376,13 +376,16 @@
       select.replaceChildren();
       for(const c of rows){
         const o={color:colour(c),weight:5,opacity:.9,dashArray:state(c)==='comparable'?null:'6 5'},shownPilot=c.pilot?pilotData:null,content=()=>popup(c,m,shownPilot);
-        if(open&&keepCandidate&&c.id===openId){open.setStyle?.(o);open.getPopup().setContent(content);open.getPopup().update?.();continue;}
+        // Refresh the kept popup only when what it shows changed (record, rig height, saved status). Refreshing on every
+        // redraw re-runs Leaflet's auto-pan, whose moveend triggers another redraw.
+        const key=[c.id,c===open?.ktRecord,rigHeight(),shownPilot?.saved].join('|');
+        if(open&&keepCandidate&&c.id===openId){if(open.ktKey!==key){open.setStyle?.(o);open.getPopup().setContent(content);open.ktKey=[c.id,true,rigHeight(),shownPilot?.saved].join('|');open.ktRecord=c;}continue;}
         const item=c.geometry.type==='LineString'?L.polyline(c.geometry.coordinates.map(p=>[p[1],p[0]]),o):L.circleMarker([c.geometry.coordinates[1],c.geometry.coordinates[0]],{...o,radius:7});
-        item.ktClearanceId=c.id;item.bindPopup(content,popupOptions);layer.addLayer(item);
+        item.ktClearanceId=c.id;item.ktRecord=c;item.ktKey=[c.id,true,rigHeight(),shownPilot?.saved].join('|');item.bindPopup(content,popupOptions);layer.addLayer(item);
       }
       for(const r of reports){
-        if(open&&keepReport&&'report:'+r.id===openId){open.getPopup().setContent(()=>reportPopup(r));open.getPopup().update?.();continue;}
-        const item=L.circleMarker([r.lat,r.lng],{color:'#6b2f8f',weight:3,radius:8,fillOpacity:.15});item.ktClearanceId='report:'+r.id;item.bindPopup(()=>reportPopup(r),{maxWidth:popupOptions.maxWidth});layer.addLayer(item);
+        if(open&&keepReport&&'report:'+r.id===openId){if(open.ktRecord!==r&&JSON.stringify(open.ktRecord)!==JSON.stringify(r)){open.getPopup().setContent(()=>reportPopup(r));}open.ktRecord=r;continue;}
+        const item=L.circleMarker([r.lat,r.lng],{color:'#6b2f8f',weight:3,radius:8,fillOpacity:.15});item.ktClearanceId='report:'+r.id;item.ktRecord=r;item.bindPopup(()=>reportPopup(r),{maxWidth:popupOptions.maxWidth});layer.addLayer(item);
       }
       const listed=[...rows.slice(0,LIST_LIMIT).map(c=>[c.id,`${c.context.name||c.context.ref||t('Source object')} · ${c.id}`]),...reports.map(r=>['report:'+r.id,t('Visitor report {value}',{value:r.posted})])];
       for(const [id,label] of listed){const o=el('option',label);o.value=id;select.append(o);}
