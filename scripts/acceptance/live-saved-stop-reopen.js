@@ -44,7 +44,11 @@ const LEGACY = 'ridb:232479', HOST = 'osm:way:1107154601', NAME = 'Cosby Campgro
     for (const st of ['TN', 'NC']) await page.evaluate(st => KampTrailData.loadStates([st]), st);
     await resolved();
     await page.locator('#trip').click();
-    await page.getByRole('button', {name: 'View on map'}).first().click();
+    // Scope to the saved-stops drawer. On desktop the sidebar listing also shows a "View on map" button
+    // per campground, so an unscoped match can pick a sidebar button that the open drawer covers.
+    const drawer = page.locator('#kt-trip-drawer');
+    await drawer.waitFor({state: 'visible', timeout: 30000});
+    await drawer.getByRole('button', {name: 'View on map'}).first().click();
     await page.waitForFunction(n => document.querySelector('.leaflet-popup-content')?.textContent.includes(n), NAME, {timeout: 30000});
     record.offline = await snap();
     record.offline.uncached_fetch_blocked = await page.evaluate(async () => { try { await fetch('/acceptance-network-probe-' + Date.now(), {cache: 'no-store'}); return false; } catch { return true; } });
