@@ -39,7 +39,7 @@ test('exact way ids resolve the driven road; a parallel road stays off the route
   const r=await R.analyze(route({way_ids:['500','501']}),{env:dataset([onRoad,parallel]),rigMm:ft(14)});
   const by=Object.fromEntries(r.candidates.map(x=>[x.id,x]));
   assert.equal(r.association_method,'exact_osm_identity');
-  assert.equal(by['osm:way:500'].association,'on_route');assert.equal(by['osm:way:500'].route_conflict,true);assert.deepEqual(by['osm:way:500'].association_evidence,['route_way_id_equals_candidate_way','applies_to=way_itself']);
+  assert.equal(by['osm:way:500'].association,'on_route');assert.equal(by['osm:way:500'].route_conflict,true);assert.deepEqual(by['osm:way:500'].association_evidence,['nearby_route_segment_way_id_equals_candidate_way','segment=0','applies_to=way_itself']);
   assert.equal(by['osm:way:900'].association,'not_on_route');assert.equal(by['osm:way:900'].route_conflict,false);
   assert.equal(r.summary.on_route_conflicts,1);
 });
@@ -97,4 +97,29 @@ test('Rhode Island is unknown only when RI.json is missing or fails validation',
   const tampered=structuredClone(pilotData);tampered.records[0].metres.maxheight=99;
   assert.deepEqual((await R.analyze(riRoute,{env:dataset([onRoad],{pilot:Buffer.from(JSON.stringify(tampered))})})).missing.map(m=>m.reason),['ri_pilot_unavailable']);
   const outside=await R.analyze(route(),{env:dataset([onRoad])});assert.equal(outside.dataset.ri_pilot.needed,false,'routes outside RI never request the pilot');
+});
+
+// Codex review: an id match anywhere on the route must not associate a candidate that only lies near other segments.
+// Route of 4 segments, two legs (leg 1 = segments 0-1, leg 2 = segments 2-3), each segment about 430 m long.
+const long=(osm)=>({geometry:{type:'LineString',coordinates:[[-105,40],[-104.995,40],[-104.99,40],[-104.985,40],[-104.98,40]]},leg_ends:[2,4],osm});
+test('a way id that matches only a distant segment leaves the nearby candidate unresolved',async()=>{
+  const c=candidate(999,'way',[[-104.9990,40],[-104.9985,40]]);// near segment 0 only
+  const r=await R.analyze(long({way_ids:['111','222','999','333']}),{env:dataset([c]),rigMm:ft(14)});
+  const x=r.candidates[0];assert.equal(x.association,'unresolved');assert.deepEqual(x.association_evidence,['route_way_id_matches_only_on_distant_segment']);
+  assert.equal(x.route_conflict,false);assert.equal(x.nearest_segment,0);assert.equal(x.segment_basis,'proximity');
+});
+test('a nearby way id match is on_route, and the reported segment and leg come from the match',async()=>{
+  // The candidate straddles the vertex between segment 1 (way 111, leg 1) and segment 2 (way 999, leg 2), slightly nearer segment 1.
+  const c=candidate(999,'way',[[-104.9902,40.00001],[-104.9899,40.00001]]);
+  const r=await R.analyze(long({way_ids:['111','111','999','333']}),{env:dataset([c]),rigMm:ft(14)});
+  const x=r.candidates[0];assert.equal(x.association,'on_route');assert.equal(x.nearest_segment,2);assert.equal(x.leg,2);assert.equal(x.segment_basis,'osm_identity_match');
+  assert.deepEqual(x.association_evidence,['nearby_route_segment_way_id_equals_candidate_way','segment=2','applies_to=way_itself']);assert.equal(x.route_conflict,true);
+});
+test('an adjacent segment without identity leaves a candidate unresolved; a node matches only at a nearby vertex',async()=>{
+  const c=candidate(999,'way',[[-104.9902,40.00001],[-104.9899,40.00001]]);// near segments 1 and 2
+  assert.equal((await R.analyze(long({way_ids:['111','111',null,'333']}),{env:dataset([c])})).candidates[0].association,'unresolved');
+  assert.deepEqual((await R.analyze(long({way_ids:['111','111',null,'333']}),{env:dataset([c])})).candidates[0].association_evidence,['route_way_ids_incomplete_near_candidate']);
+  const gate=candidate(77,'node',[-104.99,40]);// at vertex 2
+  const far=await R.analyze(long({node_ids:['1','2','3','4','77']}),{env:dataset([gate])});assert.equal(far.candidates[0].association,'unresolved');assert.deepEqual(far.candidates[0].association_evidence,['route_node_id_matches_only_at_distant_vertex']);
+  const near=await R.analyze(long({node_ids:['1','2','77','4','5']}),{env:dataset([gate]),rigMm:ft(14)});assert.equal(near.candidates[0].association,'on_route');assert.ok([1,2].includes(near.candidates[0].nearest_segment));assert.equal(near.candidates[0].segment_basis,'osm_identity_match');
 });

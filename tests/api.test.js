@@ -197,10 +197,21 @@ test('visitor clearance reports: moderated submission, applied-only publication 
     assert.ok(!JSON.stringify(body).includes('rail bridge') && !JSON.stringify(body).includes(token));
     assert.equal(require('../clearances.js').validReport(r), true, 'the client accepts what the server publishes');
     assert.deepEqual((await (await read('-100,30,-99,31')).json()).reports, [], 'outside the box');
+    // The moderator action names publication for clearance reports only.
+    const queue = await admin.get('?status=applied');
+    assert.ok(queue.includes('<option value="applied" selected>Apply and publish on map</option>'));
+    assert.equal((await post(base, good)).status, 201);
+    const corrections = await admin.get('?status=received');
+    assert.ok(corrections.includes('Tiffany Springs') && !corrections.includes('Apply and publish on map'), 'campsite corrections keep the plain applied label');
+    // Moved back to accepted, it leaves the public endpoint.
+    await admin.form({do: 'set', id: String(id), status: 'accepted', public_note: ''});
+    assert.deepEqual((await (await read()).json()).reports, []);
+    await admin.form({do: 'set', id: String(id), status: 'applied', public_note: 'Matches the sign'});
+    assert.equal((await (await read()).json()).reports.length, 1);
     // Hidden again by a moderator, the report disappears.
     await admin.form({do: 'set', id: String(id), status: 'rejected', public_note: ''});
     assert.deepEqual((await (await read()).json()).reports, []);
-    assert.match(sql(`echo $p->query("SELECT COUNT(*) FROM moderation_log WHERE submission_id=${id}")->fetchColumn();`), /^3$/);
+    assert.match(sql(`echo $p->query("SELECT COUNT(*) FROM moderation_log WHERE submission_id=${id}")->fetchColumn();`), /^5$/);
     for (const q of ['', 'a,b,c,d', '-180,-90,180,90', '1,1,0,0'])assert.equal((await read(q)).status, 422, q);
     // The status page works for the submitter as for any report.
     assert.equal((await (await fetch(`${base}/api/status.php?token=${token}`)).json()).status, 'rejected');

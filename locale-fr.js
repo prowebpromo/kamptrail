@@ -1837,6 +1837,9 @@
   "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.": "Les données pilotes du Rhode Island sont absentes ou ont échoué à la validation; le Rhode Island est inconnu.",
   "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown": "les données pilotes du Rhode Island sont absentes ou ont échoué à la validation; le Rhode Island est inconnu",
   "Rhode Island uses the pilot extract of {date}. Its records show raw tags only and stay unresolved.": "Le Rhode Island utilise l’extrait pilote du {date}. Ses enregistrements montrent seulement des étiquettes brutes et restent non résolus.",
-  "National clearance data unavailable; outside Rhode Island this view is unknown.": "Données nationales de dégagement indisponibles; hors du Rhode Island, cette vue est inconnue."
+  "National clearance data unavailable; outside Rhode Island this view is unknown.": "Données nationales de dégagement indisponibles; hors du Rhode Island, cette vue est inconnue.",
+  "{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown.": "{count} candidats de dégagement dans la vue : {conflicts} en conflit avec la hauteur de votre véhicule, {unresolved} à vérifier ou inconnus.",
+  "{count} visitor reports.": "{count} signalements de visiteurs.",
+  "First {count} visitor reports; more are not shown.": "Les {count} premiers signalements de visiteurs; d’autres ne sont pas affichés."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

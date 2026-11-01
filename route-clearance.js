@@ -40,19 +40,24 @@
  function lengthOf(s,from,to){let m=0;for(let i=from;i<to;i++){const a=s.coords[i],b=s.coords[i+1],lat=(a[1]+b[1])/2,A=xy(a,lat),B=xy(b,lat);m+=Math.hypot(A[0]-B[0],A[1]-B[1]);}return m;}
 
  // Association from exact OSM identity only. Distance never associates a candidate with the driven road.
+ // near: segments within RADIUS of the candidate, as {i,d}, closest first. An id match counts only on one of those
+ // segments (way) or at one of their end vertices (node); a match elsewhere on the route contradicts the geometry.
  function associate(c,s,near){
   if(c.osm_type==='way'){
    if(!s.waySet)return {association:'unresolved',evidence:['route_has_no_way_ids']};
-   if(s.waySet.has(c.osm_id)){
-    if(c.applies_to==='unknown')return {association:'unresolved',evidence:['route_way_id_equals_candidate_way','applies_to_unknown']};
-    return {association:'on_route',evidence:['route_way_id_equals_candidate_way','applies_to='+c.applies_to]};
+   const hitSeg=near.find(n=>s.ways[n.i]===c.osm_id);
+   if(hitSeg){
+    if(c.applies_to==='unknown')return {association:'unresolved',evidence:['nearby_route_segment_way_id_equals_candidate_way','applies_to_unknown'],segment:hitSeg.i};
+    return {association:'on_route',evidence:['nearby_route_segment_way_id_equals_candidate_way','segment='+hitSeg.i,'applies_to='+c.applies_to],segment:hitSeg.i};
    }
-   if(near.every(i=>s.ways[i]!==null))return {association:'not_on_route',evidence:['route_way_ids_exclude_candidate_way']};
+   if(s.waySet.has(c.osm_id))return {association:'unresolved',evidence:['route_way_id_matches_only_on_distant_segment']};
+   if(near.every(n=>s.ways[n.i]!==null))return {association:'not_on_route',evidence:['route_way_ids_exclude_candidate_way']};
    return {association:'unresolved',evidence:['route_way_ids_incomplete_near_candidate']};
   }
   if(!s.nodeSet)return {association:'unresolved',evidence:['route_has_no_node_ids']};
-  if(s.nodeSet.has(c.osm_id))return {association:'on_route',evidence:['route_passes_candidate_node']};
-  if(near.every(i=>s.nodes[i]!==null&&s.nodes[i+1]!==null))return {association:'not_on_route',evidence:['route_node_ids_exclude_candidate_node']};
+  for(const n of near)for(const v of [n.i,n.i+1])if(s.nodes[v]===c.osm_id)return {association:'on_route',evidence:['nearby_route_vertex_node_id_equals_candidate_node','vertex='+v,'segment='+n.i],segment:n.i};
+  if(s.nodeSet.has(c.osm_id))return {association:'unresolved',evidence:['route_node_id_matches_only_at_distant_vertex']};
+  if(near.every(n=>s.nodes[n.i]!==null&&s.nodes[n.i+1]!==null))return {association:'not_on_route',evidence:['route_node_ids_exclude_candidate_node']};
   return {association:'unresolved',evidence:['route_node_ids_incomplete_near_candidate']};
  }
  function direction(c,assoc){
@@ -75,10 +80,12 @@
   const found=new Map(),budget={left:BUDGET};let failed=0,pilot=null;
   const scan=(list,segments,chunks)=>{for(const c of list){
      if(found.has(c.id))continue;const pts=C.points(c),cb=C.bboxOf(c);let best=Infinity,nearest=-1;const near=[];
-     for(const ch of chunks){if(!hit(ch.box,cb))continue;for(let i=ch.from;i<ch.to;i++){if(--budget.left<0)throw Error('Search limit reached');if(!hit(segBox(s,i),cb))continue;const d=segmentMetres(s.coords[i],s.coords[i+1],pts,budget);if(d<=RADIUS)near.push(i);if(d<best){best=d;nearest=i;}}}
-     if(best>RADIUS)continue;
+     for(const ch of chunks){if(!hit(ch.box,cb))continue;for(let i=ch.from;i<ch.to;i++){if(--budget.left<0)throw Error('Search limit reached');if(!hit(segBox(s,i),cb))continue;const d=segmentMetres(s.coords[i],s.coords[i+1],pts,budget);if(d<=RADIUS)near.push({i,d});if(d<best){best=d;nearest=i;}}}
+     if(best>RADIUS)continue;near.sort((x,y)=>x.d-y.d||x.i-y.i);
      const a=c.pilot?{association:'unresolved',evidence:['ri_pilot_applies_to_not_assessed']}:associate(c,s,near),cmp=C.compare(c,rigMm);
-     found.set(c.id,{candidate:c,id:c.id,osm_type:c.osm_type,osm_id:c.osm_id,distance_m:Math.round(best),nearest_segment:nearest,leg:legOf(s,nearest),association:a.association,association_evidence:a.evidence,direction:direction(c,a.association),state:C.state(c),status:c.status,applies_to:c.applies_to,comparison:cmp,route_conflict:a.association==='on_route'&&cmp.conflict,...(c.pilot?{source:'ri_pilot'}:{})});
+     // The reported segment and leg come from the identity match when there is one, otherwise from proximity.
+     const seg=Number.isSafeInteger(a.segment)?a.segment:nearest,segDist=Number.isSafeInteger(a.segment)?near.find(n=>n.i===a.segment).d:best;
+     found.set(c.id,{candidate:c,id:c.id,osm_type:c.osm_type,osm_id:c.osm_id,distance_m:Math.round(segDist),nearest_segment:seg,leg:legOf(s,seg),segment_basis:Number.isSafeInteger(a.segment)?'osm_identity_match':'proximity',association:a.association,association_evidence:a.evidence,direction:direction(c,a.association),state:C.state(c),status:c.status,applies_to:c.applies_to,comparison:cmp,route_conflict:a.association==='on_route'&&cmp.conflict,...(c.pilot?{source:'ri_pilot'}:{})});
      if(found.size>MAX_FOUND)throw Error('Search limit reached');
   }};
   const riSegments=[];if(Object.hasOwn(m.states_protected||{},'RI'))for(let i=0;i<s.coords.length-1;i++)if(hit(segBox(s,i),PILOT_REGION))riSegments.push(i);

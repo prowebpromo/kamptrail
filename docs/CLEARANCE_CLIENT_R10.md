@@ -68,7 +68,7 @@ Output, analyze() result, schema kamptrail-route-clearance-1:
 |---|---|
 | association_method | exact_osm_identity when the route carries way_ids or node_ids, else none |
 | association_limits | Plain statement of what the method can and cannot decide |
-| candidates[] | One per candidate within 100 m: id, osm_type, osm_id, distance_m, nearest_segment, leg, association, association_evidence, direction, state, status, applies_to, comparison, route_conflict |
+| candidates[] | One per candidate within 100 m: id, osm_type, osm_id, distance_m, nearest_segment, leg, segment_basis, association, association_evidence, direction, state, status, applies_to, comparison, route_conflict |
 | association | on_route, not_on_route or unresolved |
 | route_conflict | true only when association is on_route and the comparison is below or equal |
 | direction | not_directional only for an on_route candidate with no forward, backward or lanes tag. Otherwise unresolved |
@@ -78,9 +78,10 @@ Output, analyze() result, schema kamptrail-route-clearance-1:
 
 Association rules:
 
-- A way candidate is on_route when its osm_id is in route.osm.way_ids and its applies_to is way_itself or road_below. Both mean the limit applies to traffic on that tagged way. With applies_to unknown it stays unresolved.
+- A way candidate is on_route only when a route segment within 100 m of it carries its way id, and its applies_to is way_itself or road_below. Both mean the limit applies to traffic on that tagged way. With applies_to unknown it stays unresolved. If the id appears only on segments farther away, it stays unresolved (route_way_id_matches_only_on_distant_segment).
 - A way candidate is not_on_route only when every segment within 100 m carries a non-null way id and none equals it, for example a parallel road. Otherwise it is unresolved.
-- A node candidate (barrier, applies_to unknown) is on_route only when its id is in route.osm.node_ids. It is not_on_route only when every nearby segment has both node ids and none matches.
+- A node candidate (barrier, applies_to unknown) is on_route only when its node id is at an end vertex of a segment within 100 m. A match only at a distant vertex leaves it unresolved. It is not_on_route only when every nearby segment has both node ids and none matches.
+- For an on_route candidate, nearest_segment, leg and distance_m come from the matching segment (segment_basis osm_identity_match). Otherwise they come from proximity (segment_basis proximity).
 - Without ids every candidate is unresolved with evidence route_has_no_way_ids or route_has_no_node_ids. Distance never changes association.
 
 R11 should avoid only candidates with route_conflict true. Unresolved candidates and missing segments must be disclosed, never silently avoided or ignored.

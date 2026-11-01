@@ -153,13 +153,31 @@ test('map layer: an offline RI view with no manifest still shows the saved RI co
   const env=cacheEnv({online:false,stored:saved}).env;
   Object.assign(env,{TextEncoder,TextDecoder,Response,AbortController,Map,Set,Date,document:{createElement:t=>new Element(t)},addEventListener:(n,f)=>events.set('g:'+n,f)});
   env.setTimeout=(fn)=>{setImmediate(fn);return 1;};env.clearTimeout=()=>{};
-  const layer={rows:[],clearLayers(){this.rows=[];},addLayer(i){this.rows.push(i);},getLayers(){return this.rows;}};
+  const layer={rows:[],clearLayers(){this.rows=[];},addLayer(i){this.rows.push(i);},removeLayer(i){this.rows=this.rows.filter(x=>x!==i);},getLayers(){return [...this.rows];}};
   env.L={layerGroup:()=>layer,control:()=>({addTo(){control=this.onAdd();}}),DomEvent:{disableClickPropagation(){},disableScrollPropagation(){}},polyline:()=>({bindPopup(){return this;}}),circleMarker:()=>({bindPopup(){return this;}})};
-  const map={hasLayer:()=>true,on:(n,f)=>n.split(' ').forEach(x=>events.set(x,f)),getZoom:()=>13,getBounds:()=>({getWest:()=>bounds[0],getSouth:()=>bounds[1],getEast:()=>bounds[2],getNorth:()=>bounds[3]}),getSize:()=>({x:390,y:700}),getContainer:()=>({querySelector:()=>null}),attributionControl:{addAttribution(){},removeAttribution(){}}};
+  const map={closePopup(){},hasLayer:()=>true,on:(n,f)=>n.split(' ').forEach(x=>events.set(x,f)),getZoom:()=>13,getBounds:()=>({getWest:()=>bounds[0],getSouth:()=>bounds[1],getEast:()=>bounds[2],getNorth:()=>bounds[3]}),getSize:()=>({x:390,y:700}),getContainer:()=>({querySelector:()=>null}),attributionControl:{addAttribution(){},removeAttribution(){}}};
   env.window=env;vm.createContext(env);vm.runInContext(fs.readFileSync(path.join(root,'clearances.js'),'utf8'),env);env.KampTrailClearances.init(map);
   events.get('overlayadd')({layer});for(let i=0;i<20;i++)await tick();
   const status=control.children[1].textContent;
   assert.match(status,/Saved snapshot\. Rhode Island: \d+ pilot records with raw tags only \(extract 2026-10-28\); not compared\./);assert.match(status,/National clearance data unavailable/);assert.ok(layer.rows.length>0);
   bounds=[-105.1,39.9,-105,40];events.get('overlayadd')({layer});for(let i=0;i<20;i++)await tick();
   assert.match(control.children[1].textContent,/Clearance candidates unavailable/);assert.equal(layer.rows.length,0);
+});
+
+test('visitor reports: a truncated response is never shown as a complete count, in English, Spanish and French',()=>{
+  const reports=Array.from({length:200},(_,i)=>({id:i+1}));
+  assert.equal(C.reportsSummary({reports,truncated:true}),'First 200 visitor reports; more are not shown.');
+  assert.equal(C.reportsSummary({reports,truncated:false}),'200 visitor reports.');assert.equal(C.reportsSummary({reports:[],truncated:false}),'0 visitor reports.');
+  const vm=require('node:vm'),load=lang=>{const ctx={localStorage:{getItem:()=>lang,setItem(){}},Intl,Date,TextEncoder,TextDecoder,URL,module:{exports:{}}};ctx.window=ctx;if(lang==='fr')vm.runInNewContext(fs.readFileSync(path.join(root,'locale-fr.js'),'utf8'),ctx);vm.runInNewContext(fs.readFileSync(path.join(root,'locale.js'),'utf8'),ctx);vm.runInNewContext(fs.readFileSync(path.join(root,'clearances.js'),'utf8'),ctx);return ctx.module.exports;};
+  assert.equal(load('es').reportsSummary({reports,truncated:true}),'Primeros 200 informes de visitantes; hay más que no se muestran.');
+  assert.equal(load('fr').reportsSummary({reports,truncated:true}),'Les 200 premiers signalements de visiteurs; d’autres ne sont pas affichés.');
+  const src=fs.readFileSync(path.join(root,'clearances.js'),'utf8');assert.match(src,/d\.truncated===\'boolean\'|typeof d\.truncated==='boolean'/);assert.match(src,/reportsSummary\(reportData\)/);
+});
+test('RI saved label survives a dropped connection without a reload: the same store reports saved once offline',async()=>{
+  const h=cacheEnv();h.env.navigator={onLine:true};const store=C.createStore(h.env);
+  assert.equal((await store.loadPilot()).saved,false);assert.equal((await store.loadPilot()).saved,false,'still online: fresh');
+  h.env.navigator.onLine=false;const off=await store.loadPilot();assert.equal(off.saved,true,'offline read of the in-memory copy is labelled saved');
+  assert.equal(off.source.retrieved_at,'2026-10-30T16:30:30Z','original dates kept');assert.match(C.sourceDates(null,off.candidates[0],off),/^Saved snapshot\./);
+  const s2=C.createStore(cacheEnv().env);await s2.loadPilot();s2.markPilotSaved();assert.equal((await s2.loadPilot()).saved,true,'the offline event marks the store copy');
+  h.env.navigator.onLine=true;assert.equal((await store.loadPilot({force:true})).saved,false,'a forced read after reconnecting is fresh again');
 });

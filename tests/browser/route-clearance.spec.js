@@ -54,7 +54,7 @@ for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',wi
 test('a route carrying OSM way ids resolves the driven road: equal height is a route conflict, the parallel road is not',async({page,context})=>{
   const {dialog}=await setup(page,context,{osm:{way_ids:['500','501']}});
   await expect(dialog.getByRole('status')).toContainText('On the driven road: 1 (1 conflict with your rig height');
-  const resolved=dialog.locator('.kt-route-clearance-resolved');await expect(resolved).toContainText('Road 500');await expect(resolved).toContainText('Equal is not clear');await expect(resolved).toContainText('route_way_id_equals_candidate_way');
+  const resolved=dialog.locator('.kt-route-clearance-resolved');await expect(resolved).toContainText('Road 500');await expect(resolved).toContainText('Equal is not clear');await expect(resolved).toContainText('nearby_route_segment_way_id_equals_candidate_way');
   await expect(dialog.locator('.kt-route-clearance-other')).toContainText('Road 900');await expect(dialog.locator('.kt-route-clearance-other')).toContainText('on a different road');
   await expect(dialog.locator('.kt-route-clearance-missing')).toContainText('data failed its integrity check');
 });

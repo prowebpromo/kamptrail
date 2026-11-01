@@ -192,7 +192,8 @@
     const pilotCache=()=>`kamptrail:${scope()}:clearance-v1`;
     const pack=(d,saved)=>({source:d.source,candidates:pilotCandidates(d),saved});
     async function loadPilot({force=false}={}){
-      if(pilot&&!force)return pilot;
+      // Offline, the copy in memory is a saved snapshot even if it was read online earlier in this tab.
+      if(pilot&&!force)return env.navigator?.onLine===false&&!pilot.saved?(pilot={...pilot,saved:true}):pilot;
       if(pilotPending){if(pilotController?.signal.aborted){try{await pilotPending;}catch{}return loadPilot({force});}return pilotPending;}
       const ctl=new AbortController();pilotController=ctl;let timedOut=false;
       const timer=(env.setTimeout||setTimeout)(()=>{timedOut=true;ctl.abort();},PILOT_DEADLINE_MS);
@@ -211,12 +212,15 @@
       return pilotPending;
     }
     const cancelPilot=()=>pilotController?.abort();
-    return {loadManifest,loadTile,loadPilot,cancelPilot,pilotCacheName:pilotCache,get manifest(){return manifest;}};
+    const markPilotSaved=()=>{if(pilot&&!pilot.saved)pilot={...pilot,saved:true};};
+    return {loadManifest,loadTile,loadPilot,cancelPilot,markPilotSaved,pilotCacheName:pilotCache,get manifest(){return manifest;}};
   }
   function validReport(r){
     return plain(r)&&Number.isSafeInteger(r.id)&&r.id>0&&finite(r.lat)&&finite(r.lng)&&Math.abs(r.lat)<=90&&Math.abs(r.lng)<=180&&str(r.posted,40)&&parseHundredths(r.posted)?.hundredths===r.hundredths
       &&/^\d{4}-\d\d-\d\d$/.test(r.observed_on)&&utc(r.published_at)&&DIRECTIONS.includes(r.direction)&&(r.osm_ref===null||/^osm:(?:node|way):[1-9][0-9]{0,15}$/.test(r.osm_ref));
   }
+  // The endpoint returns at most 200 rows and says so; the count shown must never read as complete when it is not.
+  function reportsSummary(d){const n=d?.reports?.length??0;return d?.truncated?t('First {count} visitor reports; more are not shown.',{count:n}):t('{count} visitor reports.',{count:n});}
   async function loadReports(bbox,env=global,signal){
     const q=bbox.map(n=>n.toFixed(4)).join(',');
     const raw=await readBounded(REPORTS+'?bbox='+encodeURIComponent(q),256*1024,env,signal),d=decode(raw);
@@ -329,43 +333,61 @@
       const current=++view;controller?.abort();controller=null;if(control)control.hidden=!active();if(!active()){store.cancelPilot();map.attributionControl?.removeAttribution(credit);return;}
       map.attributionControl?.addAttribution(credit);
       const b=map.getBounds(),bbox=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()],zoom=map.getZoom();
-      if(zoom<MIN_ZOOM){if(!map._popup?.isOpen?.())layer.clearLayers();select.replaceChildren();select.disabled=openButton.disabled=true;status.textContent=t('Zoom to level {zoom} or closer to load clearance candidates. Nothing is loaded at this zoom; hazards here are unknown.',{zoom:MIN_ZOOM});return;}
+      if(zoom<MIN_ZOOM){clearAll();status.textContent=t('Zoom to level {zoom} or closer to load clearance candidates. Nothing is loaded at this zoom; hazards here are unknown.',{zoom:MIN_ZOOM});return;}
       status.textContent=t('Loading clearance candidates…');controller=new AbortController();const signal=controller.signal;
       try{
         let m=null,manifestFailed=false;try{m=await store.loadManifest();}catch{manifestFailed=true;}if(current!==view)return;
         const riView=intersects(PILOT_BOX,bbox);
         if(manifestFailed&&!riView)throw new Error('manifest unavailable');
         const plan=m?tilesForView(m,bbox,zoom):{ok:true,tiles:[]};
-        if(!plan.ok){if(!map._popup?.isOpen?.())layer.clearLayers();select.replaceChildren();select.disabled=openButton.disabled=true;status.textContent=t('This view needs too much clearance data. Zoom in further; hazards here are unknown.');return;}
+        if(!plan.ok){clearAll();status.textContent=t('This view needs too much clearance data. Zoom in further; hazards here are unknown.');return;}
         let failed=0;const seen=new Map();
         await Promise.all(plan.tiles.map(e=>store.loadTile(e,signal).then(d=>{for(const c of d.candidates)if(intersects(bboxOf(c),bbox))seen.set(c.id,c);}).catch(()=>{failed++;})));
         let regionNote=manifestFailed?' '+t('National clearance data unavailable; outside Rhode Island this view is unknown.'):'';const protectedStates=Object.keys(m?.states_protected||{});
         // The pilot is read while the manifest protects RI, or when the manifest cannot be read at all (for example offline).
+        let pilotNow=null;
         if(riView&&(manifestFailed||pilotNeeded(m,bbox))){
-          try{pilotData=await store.loadPilot({force:forcePilot});if(current!==view||!active())return;let added=0;for(const c of pilotData.candidates)if(!seen.has(c.id)&&intersects(bboxOf(c),bbox)){seen.set(c.id,c);added++;}regionNote+=' '+(pilotData.saved?t('Saved snapshot. '):'')+t('Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.',{count:added,date:pilotData.source.extract_timestamp.slice(0,10)});}
+          try{pilotNow=await store.loadPilot({force:forcePilot});if(current!==view||!active())return;let added=0;for(const c of pilotNow.candidates)if(!seen.has(c.id)&&intersects(bboxOf(c),bbox)){seen.set(c.id,c);added++;}regionNote+=' '+(pilotNow.saved?t('Saved snapshot. '):'')+t('Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.',{count:added,date:pilotNow.source.extract_timestamp.slice(0,10)});}
           catch{if(current!==view||!active())return;regionNote+=' '+t('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');}
         }
         const others=protectedStates.filter(x=>x!=='RI');if(others.length)regionNote+=' '+t('Not in this dataset: {states}.',{states:others.join(', ')});
-        let reportsNote='';
-        try{reports=(await loadReports(bbox,global,signal)).reports;}catch{reports=[];reportsNote=' '+t('Visitor reports unavailable.');}
+        let reportsNote='',reportData=null;
+        try{reportData=await loadReports(bbox,global,signal);}catch{reportsNote=' '+t('Visitor reports unavailable.');}
         if(current!==view||!active())return;
+        pilotData=pilotNow;reports=reportData?.reports||[];
         rows=[...seen.values()].sort((a,b)=>{const r=x=>{const c=compare(x,rigHeight());return c.conflict?0:c.state==='needs_checking'?1:c.state==='unknown'?2:3;};return r(a)-r(b)||a.id.localeCompare(b.id);});
         const conflicts=rows.filter(c=>compare(c,rigHeight()).conflict).length,unresolved=rows.filter(c=>state(c)!=='comparable').length;
-        status.textContent=t('{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown. {reports} visitor reports.',{count:rows.length,conflicts,unresolved,reports:reports.length})+(failed?' '+t('{failed} data tiles failed their integrity check and are not shown; that area is unknown.',{failed}):'')+reportsNote+' '+t('Unmapped hazards are unknown.')+regionNote;
-        if(map._popup?.isOpen?.())return;
-        layer.clearLayers();select.replaceChildren();
-        for(const c of rows){
-          const o={color:colour(c),weight:5,opacity:.9,dashArray:state(c)==='comparable'?null:'6 5'};
-          const item=c.geometry.type==='LineString'?L.polyline(c.geometry.coordinates.map(p=>[p[1],p[0]]),o):L.circleMarker([c.geometry.coordinates[1],c.geometry.coordinates[0]],{...o,radius:7});
-          item.ktClearanceId=c.id;const shownPilot=c.pilot?pilotData:null;item.bindPopup(()=>popup(c,m,shownPilot),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]});layer.addLayer(item);
-        }
-        for(const r of reports){const item=L.circleMarker([r.lat,r.lng],{color:'#6b2f8f',weight:3,radius:8,fillOpacity:.15});item.ktClearanceId='report:'+r.id;item.bindPopup(()=>reportPopup(r),{maxWidth:Math.max(120,Math.min(300,map.getSize().x-70))});layer.addLayer(item);}
-        const listed=[...rows.slice(0,LIST_LIMIT).map(c=>[c.id,`${c.context.name||c.context.ref||t('Source object')} · ${c.id}`]),...reports.map(r=>['report:'+r.id,t('Visitor report {value}',{value:r.posted})])];
-        for(const [id,label] of listed){const o=el('option',label);o.value=id;select.append(o);}
-        select.disabled=openButton.disabled=!listed.length;
+        status.textContent=t('{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown.',{count:rows.length,conflicts,unresolved})+(reportData?' '+reportsSummary(reportData):'')+(failed?' '+t('{failed} data tiles failed their integrity check and are not shown; that area is unknown.',{failed}):'')+reportsNote+' '+t('Unmapped hazards are unknown.')+regionNote;
+        render(m);
       }catch(error){
-        if(current===view&&active()){if(!map._popup?.isOpen?.())layer.clearLayers();select.disabled=openButton.disabled=true;status.textContent=t('Clearance candidates unavailable. Hazards in this view are unknown. Reconnect and retry.');}
+        if(current===view&&active()){clearAll();status.textContent=t('Clearance candidates unavailable. Hazards in this view are unknown. Reconnect and retry.');}
       }
+    }
+    // Layer, selector and counts change together. An open clearance popup stays only while its record is in the new
+    // validated result, with its content rebuilt from that result; otherwise it is closed.
+    const openItem=()=>{const p=map._popup;return p?.isOpen?.()&&p._source&&typeof p._source.ktClearanceId==='string'&&layer.hasLayer?.(p._source)!==false?p._source:null;};
+    function clearAll(){const open=openItem();if(open)map.closePopup();layer.clearLayers();select.replaceChildren();select.disabled=openButton.disabled=true;}
+    function render(m){
+      const popupOptions={maxWidth:Math.max(120,Math.min(300,map.getSize().x-70)),autoPanPaddingTopLeft:[12,80],autoPanPaddingBottomRight:[12,28]};
+      const open=openItem(),openId=open?.ktClearanceId;
+      const keepCandidate=openId&&rows.find(c=>c.id===openId),keepReport=openId&&reports.find(r=>'report:'+r.id===openId);
+      if(open&&!keepCandidate&&!keepReport)map.closePopup();
+      for(const l of layer.getLayers())if(!(l===open&&(keepCandidate||keepReport)))layer.removeLayer(l);
+      select.replaceChildren();
+      for(const c of rows){
+        const o={color:colour(c),weight:5,opacity:.9,dashArray:state(c)==='comparable'?null:'6 5'},shownPilot=c.pilot?pilotData:null,content=()=>popup(c,m,shownPilot);
+        if(open&&keepCandidate&&c.id===openId){open.setStyle?.(o);open.getPopup().setContent(content);open.getPopup().update?.();continue;}
+        const item=c.geometry.type==='LineString'?L.polyline(c.geometry.coordinates.map(p=>[p[1],p[0]]),o):L.circleMarker([c.geometry.coordinates[1],c.geometry.coordinates[0]],{...o,radius:7});
+        item.ktClearanceId=c.id;item.bindPopup(content,popupOptions);layer.addLayer(item);
+      }
+      for(const r of reports){
+        if(open&&keepReport&&'report:'+r.id===openId){open.getPopup().setContent(()=>reportPopup(r));open.getPopup().update?.();continue;}
+        const item=L.circleMarker([r.lat,r.lng],{color:'#6b2f8f',weight:3,radius:8,fillOpacity:.15});item.ktClearanceId='report:'+r.id;item.bindPopup(()=>reportPopup(r),{maxWidth:popupOptions.maxWidth});layer.addLayer(item);
+      }
+      const listed=[...rows.slice(0,LIST_LIMIT).map(c=>[c.id,`${c.context.name||c.context.ref||t('Source object')} · ${c.id}`]),...reports.map(r=>['report:'+r.id,t('Visitor report {value}',{value:r.posted})])];
+      for(const [id,label] of listed){const o=el('option',label);o.value=id;select.append(o);}
+      if(openId&&listed.some(([id])=>id===openId))select.value=openId;
+      select.disabled=openButton.disabled=!listed.length;
     }
     const widget=L.control({position:'bottomleft'});
     widget.onAdd=()=>{
@@ -381,14 +403,13 @@
     widget.addTo(map);
     map.on('overlayadd overlayremove',e=>{if(e.layer===layer)redraw();});
     let timer;map.on('moveend',()=>{global.clearTimeout(timer);timer=global.setTimeout(()=>redraw(),180);});
-    map.on('popupclose',()=>global.setTimeout(()=>{if(!map._popup?.isOpen?.()&&active())redraw();},0));
     global.addEventListener?.('kamptrail:rigprofilechanged',()=>{if(active())redraw();});
     global.addEventListener?.('online',()=>{if(active())redraw(true);});
-    global.addEventListener?.('offline',()=>{if(active()&&pilotData)pilotData={...pilotData,saved:true};if(active())redraw();});
+    global.addEventListener?.('offline',()=>{store.markPilotSaved();if(active())redraw();});
     return layer;
   }
   const api={version:VERSION,SCHEMA,MANIFEST,MIN_ZOOM,MAX_VIEW_TILES,MAX_VIEW_BYTES,MAX_TILE_BYTES,ATTRIBUTION,COPYRIGHT_URL,LICENSE_URL,parseHeight,parseHundredths,rigHundredths,state,compare,
     validateManifest,validateTile,validateCandidate,tilesForView,intersects,bboxOf,points,sha256Hex,readBounded,createStore,loadReports,validReport,
-    validatePilot,pilotCandidates,pilotNeeded,PILOT,PILOT_BOX,stateText,comparisonText,appliesText,heightText,sourceLink,sourceDates,attributionNode,openReportForm,init};
+    reportsSummary,validatePilot,pilotCandidates,pilotNeeded,PILOT,PILOT_BOX,stateText,comparisonText,appliesText,heightText,sourceLink,sourceDates,attributionNode,openReportForm,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailClearances=api;
 })(typeof window!=='undefined'?window:globalThis);
