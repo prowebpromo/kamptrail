@@ -297,7 +297,7 @@
     // facility name. A description can support existing admission, but never upgrades the type.
     p.type_evidence = null;
     const wording = classification.camping_name_text;
-    if (ridb && !osm && p.ridb_facility_type === 'other' && wording && p.camping_classification === 'campsite') {
+    if (raw.source === 'recreation.gov' && !osm && (p.ridb_facility_type == null || p.ridb_facility_type === 'other') && wording && p.camping_classification === 'campsite') {
       const kind = /\b(?:dispersed|primitive|yellow\s+post)\b/i.test(wording) ? 'dispersed' : /\bbackcountry\b/i.test(wording) ? 'backcountry' : 'established';
       p.type = kind;
       p.type_evidence = {kind:'descriptive_wording', source:'Recreation.gov', source_record_id:p.id, field:'FacilityName', value:wording, retrieved_at:evidenceDate(raw.source_retrieved_at)};

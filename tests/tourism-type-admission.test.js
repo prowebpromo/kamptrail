@@ -24,7 +24,7 @@ test('snapshot merge: the record\'s own tourism and the same record seen twice a
 });
 test('snapshot merge: a different record never lends its type',()=>{
   const m=new CampsiteMerger();
-  assert.equal(m.mergeProperties({...ridb,type:'other'},{...ridb,id:'ridb:2',facility_id:'2',type:'established'}).type,null);
+  assert.equal(m.mergeProperties({...ridb,type:'other'},{...ridb,id:'ridb:2',facility_id:'2',type:'established'}).type,'other');
   assert.equal(m.mergeProperties({...ridb,type:null},{...ridb,type:'established'}).type,'established');
 });
 test('snapshot merge: a description copied from another record is marked as that record\'s wording',()=>{
@@ -135,4 +135,37 @@ test('an element absorbed by an unclassified host is never published because the
   assert.equal(out.length,0);
   // The same element without an unclassified host still publishes on its own tag.
   assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt(element)]}).features.length,1);
+});
+
+test('a nearby agency activity remains separate when the merged record is normalized twice',()=>{
+  const host=pt({...ridb,name:'Basin Site',type:'other'});
+  const agency=pt({id:'usfs:99',name:'Basin Site',camping_activity:'Campground Camping',source:'US Forest Service',schema_version:3});
+  const first=DQ.cleanAndDedupeGeoJSON({features:[host,agency]},{includeUnverified:true}).features;
+  assert.equal(first[0].properties.camping_activity,undefined);
+  assert.equal(DQ.cleanAndDedupeGeoJSON({features:first}).features.length,0);
+});
+test('BLM camping-layer membership never masquerades as a Recreation.gov mapped facility type',()=>{
+  const own=pt({id:'blm-facility:42',facility_id:'42',name:'Test Canyon',type:'established',source:'Bureau of Land Management',camping_activity:'BLM camping facility',schema_version:3});
+  for(const f of [own,DQ.normalizeFeature(own)]){
+    const p=DQ.normalizeFeature(f).properties;
+    assert.equal(p.ridb_facility_type,null);
+    assert.equal(p.type_evidence.source_record_id,'blm-facility:42');
+    assert.equal(p.type_evidence.field,'BLM layer 8 camping_activity');
+  }
+});
+test('reviewed publication and evidence survive an updated retrieval without inventing a new own-source finding',()=>{
+  const f=pt({...ridb,id:'ridb:243218',facility_id:'243218',name:'Coleman Lake Recreation Area',source_retrieved_at:'2030-01-10T15:00:00Z',type:'other'});
+  const p=DQ.cleanAndDedupeGeoJSON({features:[f]}).features[0].properties;
+  assert.equal(p.camping_classification,'published_pending_review');
+  assert.equal(p.type,'other');
+  assert.equal(DQ.normalizeFeature(pt({...f.properties,access:'private'})),null);
+});
+test('review dispositions guard every held description and unreviewed website match',()=>{
+  const holds=require('../docs/candidates/tourism-type-review.json');
+  const idx=new Map(require('../data/campsites/search-index.json').sites.map(s=>[s.id,s]));
+  const rows=Object.entries(holds).filter(([,r])=>r.decision==='hold_current_other');
+  assert.equal(rows.length,51);for(const [id] of rows)assert.equal(idx.get(id)?.m.t,'other',id);
+  const linked=require('../scripts/tourism-type-admission/website-links.json');
+  assert.equal(linked.filter(w=>w.facility_id_matches).length,44);
+  assert.equal(linked.filter(w=>w.exact).length,0);
 });

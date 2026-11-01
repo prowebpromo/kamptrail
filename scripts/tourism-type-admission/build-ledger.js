@@ -55,7 +55,7 @@ for(const id of [...all].sort()){
   const changes=[];
   if(b&&!n){const w=withdrawn.get(id);changes.push({field:'publication',from:'published',to:'withdrawn from campsite discovery',legacy_page:w?`#site=${id} resolves through data/campsites/withdrawn.json`:null,reason:w?.reason||null,separate_review:true});}
   if(!b&&n)changes.push({field:'publication',from:'not published',to:'published',separate_review:true});
-  if(b&&n){for(const k of FIELDS)if(JSON.stringify(bf[k])!==JSON.stringify(nf[k]))changes.push({field:k,from:bf[k],to:nf[k],separate_review:true});
+  if(b&&n){if(JSON.stringify(bi?.states)!==JSON.stringify(ni?.states))changes.push({field:'snapshot_states',from:bi?.states,to:ni?.states,meaning:'state files used to load this listing',separate_review:true});for(const k of FIELDS)if(JSON.stringify(bf[k])!==JSON.stringify(nf[k]))changes.push({field:k,from:bf[k],to:nf[k],separate_review:true});
     if(JSON.stringify(bf.coordinates)!==JSON.stringify(nf.coordinates))changes.push({field:'coordinates',from:bf.coordinates,to:nf.coordinates,separate_review:true});
     const lost=bf.legacy_ids.filter(x=>!nf.legacy_ids.includes(x)),gained=nf.legacy_ids.filter(x=>!bf.legacy_ids.includes(x));
     if(lost.length||gained.length)changes.push({field:'legacy_ids',removed:lost,added:gained,resolves_now_to:Object.fromEntries(lost.map(x=>[x,RN.get(x)??(withdrawn.has(x)?'withdrawn.json':null)])),separate_review:true});

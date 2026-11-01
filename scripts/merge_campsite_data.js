@@ -242,8 +242,8 @@ class CampsiteMerger {
       // A separate record's rig list stays with that record (2.34.0). Only the same record seen twice unions.
       rig_friendly: [...new Set([...list(primary.rig_friendly), ...(secondary.id === primary.id ? list(secondary.rig_friendly) : [])])],
       // Missing classifications remain unknown. Do not infer dispersed camping from geometry type.
-      type: ['established', 'dispersed', 'backcountry', 'rv_park'].includes(primary.type)
-        ? primary.type : (['established', 'dispersed', 'backcountry', 'rv_park'].includes(secondary.type) ? secondary.type : null),
+      type: ['established','dispersed','backcountry','rv_park','other','parking'].includes(primary.type)
+        ? primary.type : (secondary.id === primary.id && ['established','dispersed','backcountry','rv_park','other','parking'].includes(secondary.type) ? secondary.type : null),
       sources: [...new Set([
         ...list(primary.sources), primary.source,
         ...list(secondary.sources), secondary.source
@@ -263,9 +263,6 @@ class CampsiteMerger {
       description: (primary.description?.length > secondary.description?.length)
         ? primary.description : (secondary.description || primary.description || '')
     };
-    // Listing type describes the record that carries it. A different absorbed record never lends its type
-    // (tourism-type-admission candidate, group B). The same record seen twice still fills a missing type.
-    if (secondary.id !== primary.id && merged.type === secondary.type && merged.type !== primary.type) merged.type = null;
     if (osmIdentity(secondary) && primary.id !== secondary.id) {
       const evidence = memberEvidence(primary, secondary);
       for (const key of Object.keys(merged)) if (ownedOsmField(key)) {

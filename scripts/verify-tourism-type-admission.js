@@ -28,6 +28,11 @@ if(states.length!==50)fail('state_count','snapshots',{count:states.length});
 const snap={tourism_moved:0,type_dropped:0,description_marked:0,rows_changed:0,states_changed:[]};
 for(const st of states){const rel=`data/campsites/${st}_merged.geojson`;if(sha(path.join(root,rel))===sha(path.join(baseline,rel)))continue;snap.states_changed.push(st);
   const a=read(path.join(root,rel)),b=read(path.join(baseline,rel));
+  const ownTypes=new Map();
+  for(const rawName of [st+'.geojson',st+'(1).geojson']){
+    const file=path.join(baseline,'data/campsites',rawName);if(!fs.existsSync(file))continue;
+    for(const f of read(file).features){const p=f.properties;if(!ownTypes.has(p.id))ownTypes.set(p.id,p.type);}
+  }
   if(JSON.stringify({...a,features:0})!==JSON.stringify({...b,features:0}))fail('snapshot_header',st);
   if(a.features.length!==b.features.length){fail('snapshot_row_count',st);continue;}
   b.features.forEach((fb,i)=>{const fa=a.features[i],pb=fb.properties,pa=fa.properties;
@@ -44,6 +49,7 @@ for(const st of states){const rel=`data/campsites/${st}_merged.geojson`;if(sha(p
           if(extra.some(f=>f!=='tourism'))fail('member_evidence_changed',pb.id,{state:st,member:e.source_record_id,fields:extra});
           if(o&&JSON.stringify({...o,fields:0})!==JSON.stringify({...e,fields:0}))fail('member_evidence_meta_changed',pb.id,{state:st});}
         for(const id of bm.keys())if(!(pa.member_evidence||[]).some(e=>e.source_record_id===id))fail('member_evidence_lost',pb.id,{state:st});continue;}
+      if(k==='type'&&pa.type==='other'&&ownTypes.get(pa.id)==='other'){snap.own_type_restored=(snap.own_type_restored||0)+1;continue;}
       if(k==='type'&&pa.type===null&&pb.type!=null){snap.type_dropped++;continue;}
       if(k==='description_source_record_id'&&pb[k]===undefined&&(pb.source_ids||[]).includes(pa[k])&&pa[k]!==pb.id){snap.description_marked++;continue;}
       fail('snapshot_field',pb.id,{state:st,key:k,before:pb[k],after:pa[k]});}
@@ -63,7 +69,7 @@ for(const [id,b] of B){const a=A.get(id);
   if(a.m.f!==b.m.f){if(listed(id,'fee_status',b.m.f,a.m.f))deltas.push({id,field:'fee_status'});else fail('index_fee_not_listed',id,{before:b.m.f,after:a.m.f});}
   if(a.name!==b.name)fail('index_name_changed',id);
   if(JSON.stringify(a.m.r||[])!==JSON.stringify(b.m.r||[]))fail('index_rig_metadata_changed',id,{before:b.m.r,after:a.m.r});
-  if(JSON.stringify(a.states)!==JSON.stringify(b.states)&&!listed(id,'legacy_ids'))fail('index_states_not_listed',id);
+  if(JSON.stringify(a.states)!==JSON.stringify(b.states)&&!listed(id,'snapshot_states',b.states,a.states))fail('index_states_not_listed',id);
   const rest=s=>JSON.stringify({...s,m:{...s.m,t:0,f:0,a:0,s:0},lat:0,lng:0,legacy_ids:0,states:0});
   if(rest(a)!==rest(b))fail('index_other_field',id);
   const amen=s=>JSON.stringify([s.m.a||[],s.m.s||[]]);if(amen(a)!==amen(b))fail('amenity_filter_metadata_changed',id);}
