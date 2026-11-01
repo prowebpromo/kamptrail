@@ -48,6 +48,15 @@ for (const rel of ['data/campsites/ridb-sites.json', 'data/campsites/ridb-amenit
   if (inputHashes[rel] !== sha(path.join(baseline, rel))) fail('unchanged_file_changed', rel);
 }
 
+// 1b. identity-hosts.json must be the one derived from this checkout's search index (2.33.0 browser identity).
+{
+  const {identityHosts} = require(path.join(root, 'scripts/build-identity-hosts.js'));
+  const want = JSON.stringify(identityHosts(fs.readFileSync(path.join(root, 'data/campsites/search-index.json'), 'utf8'))) + '\n';
+  if (fs.readFileSync(path.join(root, 'data/campsites/identity-hosts.json'), 'utf8') !== want) fail('identity_hosts_stale', 'data/campsites/identity-hosts.json');
+  const hostsOf = dir => JSON.stringify(read(path.join(dir, 'data/campsites/identity-hosts.json')).hosts);
+  if (hostsOf(root) !== hostsOf(baseline)) fail('identity_hosts_membership_changed', 'data/campsites/identity-hosts.json');
+}
+
 // 2. Ownership ground truth: each retained OSM element's own tags, and each agency record's own rig list.
 const elements = new Map(), agency = new Map();
 for (const name of fs.readdirSync(path.join(root, 'data/opencampingmap')).filter(n => /^[A-Z]{2}\.geojson$/.test(n))) {

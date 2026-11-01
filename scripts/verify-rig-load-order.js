@@ -81,5 +81,6 @@ async function scenario(browser, name, plan, watch, delay = null) {
     browser_id_differs_from_index:listings.filter(l => l.browser_ids.some(b => b !== l.id)).map(l => [l.id, l.browser_ids])};
   fs.writeFileSync(out, JSON.stringify({version:1, generated_from:fixture.generated_from, summary, listings}, null, 1) + '\n');
   console.log(JSON.stringify(summary, null, 1));
-  if (summary.rig_or_filter_unstable.length || summary.identity_unstable.length || summary.missing.length) process.exitCode = 2;
+  // Pass: no listing varies with load order, and every listing matches the published fixture (rig line, Tents, Trailers).
+  if (summary.rig_or_filter_unstable.length || summary.identity_unstable.length || summary.missing.length || summary.fixture_mismatch.length) process.exitCode = 2;
 })().catch(e => { console.error(e); process.exitCode = 1; });
