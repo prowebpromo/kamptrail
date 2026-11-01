@@ -131,6 +131,23 @@ Server: `PORT=8797 node scripts/serve.js` started from this worktree (process cw
 
 The only defect found on 2.34.0 was Bird Creek: one listing `ridb:234209` holding `usfs:65184`, with `usfs:65184`, `osm:way:1236741631` and `ridb:234209` all resolving to it. No other pair of index owners merged at any checkpoint.
 
+### Bird Creek at the previously failing checkpoint (`node scripts/check-bird-creek-checkpoints.js`)
+
+Run on 2026-11-01 in Chrome 153.0.8010.12, service workers blocked, `/api/**` answered 404, host file served. 2.34.0 from a 76da929f checkout on port 8821 (UTC 18:25:40 to 18:25:53). 2.35.0 from this branch on port 8822 (UTC 18:25:54 to 18:26:06). Each server's cwd was checked. Raw: `docs/identity/bird-creek-checkpoints-2.34.0.json`, `docs/identity/bird-creek-checkpoints-2.35.0.json`.
+
+Expected, from `search-index.json`: two listings. `usfs:65184` (NV, ids `usfs:65184`) and `osm:way:1236741631` (CA and NV, ids `osm:way:1236741631`, `ridb:234209`). The `ridb:234209` record is in the NV file, and the `osm:way:1236741631` record is in the CA file.
+
+| Version | Order | Checkpoint | Bird Creek listings in the browser (id: id set) | `usfs:65184` resolves to | `osm:way:1236741631` resolves to | `ridb:234209` resolves to | Result |
+|---|---|---|---|---|---|---|---|
+| 2.34.0 | NV>CA | after NV | `ridb:234209`: `ridb:234209`, `usfs:65184` | `ridb:234209` (wrong listing) | `ridb:234209` (merged with `usfs:65184`) | `ridb:234209` (merged with `usfs:65184`) | FAIL, 1 wrong merge, 3 wrong resolutions |
+| 2.34.0 | NV>CA | after CA | `osm:way:1236741631`: `osm:way:1236741631`, `ridb:234209`. `usfs:65184`: `usfs:65184` | `usfs:65184` | `osm:way:1236741631` | `osm:way:1236741631` | PASS |
+| 2.35.0 | NV>CA | after NV | `ridb:234209`: `ridb:234209`. `usfs:65184`: `usfs:65184` | `usfs:65184` | `ridb:234209` (own listing, CA host not yet loaded) | `ridb:234209` | PASS, no merge across listings |
+| 2.35.0 | NV>CA | after CA | `osm:way:1236741631`: `osm:way:1236741631`, `ridb:234209`. `usfs:65184`: `usfs:65184` | `usfs:65184` | `osm:way:1236741631` | `osm:way:1236741631` | PASS, matches the index |
+| both | CA>NV | after CA | `osm:way:1236741631`: `osm:way:1236741631` | not loaded (NV) | `osm:way:1236741631` | `osm:way:1236741631` | PASS, partial id set until NV loads |
+| both | CA>NV | after NV | as after NV>CA | `usfs:65184` | `osm:way:1236741631` | `osm:way:1236741631` | PASS, matches the index |
+
+Rule applied at every checkpoint: a published id may resolve only to a browser listing whose ids all belong to that id's index listing, and no browser listing may mix two index listings. A listing whose states have not all loaded may still show under a member id (`ridb:234209` before CA) or with a partial id set. That is recorded, not counted as a failure. Once all its states have loaded, the canonical id and full id set must match the index.
+
 2.35.0 full-load census against `search-index.json` (all 33,370 listings, with every checkpoint along the way checked as above):
 
 | Order | Checkpoints with a wrong merge or resolution | Differences from the index (missing, split, canonical id, source-id set) |
@@ -151,7 +168,8 @@ No stored id is rewritten. `search-index.json`, `coordinate-index.json`, `identi
 
 ## Tests (2.35.0)
 
-- `npm test`: 471 tests. The new `tests/deterministic-identity.test.js` cases cover the general rule (synthetic same-name records of two owners, the host arriving in either input order, same-id joins, and the index-build path still merging without `ownerOnly`) and Bird Creek on real NV and CA data in both orders, with every listing holding one index owner after each load. A first full run found two errors of my own (a version string and a fixture name), both fixed. Rerunning the two files afterwards passed 13/13.
+- At the PR head after rebasing onto main 76da929f: `npm test` 478/478, `npm run test:python` 404 run, OK, 9 skipped.
+- Before the rebase, `npm test`: 471 tests. The new `tests/deterministic-identity.test.js` cases cover the general rule (synthetic same-name records of two owners, the host arriving in either input order, same-id joins, and the index-build path still merging without `ownerOnly`) and Bird Creek on real NV and CA data in both orders, with every listing holding one index owner after each load. A first full run found two errors of my own (a version string and a fixture name), both fixed. Rerunning the two files afterwards passed 13/13.
 - `npm run test:python`: pass.
 - Browser, on the 8797 worktree server (`identity`, `saved-stops`, `features`, `discovery`, `amenity-evidence`, `rig-profile`, `rest-areas`, `app`): 57 passed, 1 failed. The failure is the known `app.spec.js` mobile map height (493 vs >500). `identity.spec.js` includes the two new partial-load tests, NV before CA and CA before NV.
 - `npm run build`: passes. The release has `identity-hosts.json`, cache `kt-v68` and version 2.35.0. `search-index.json`, `coordinate-index.json` and `identity-hosts.json` hashes equal main's.
