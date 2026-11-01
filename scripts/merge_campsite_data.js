@@ -43,6 +43,35 @@ function memberEvidence(primary, secondary) {
   return [...records.values()];
 }
 
+// Classification ownership (tourism-type-admission candidate). tourism=* classifies the element that carries
+// it. A distinct absorbed record never lends it to the retained record. It stays on that member's attributed
+// evidence. A description taken from another record is marked, so it never counts as the listing's own wording.
+const CLASSIFICATION_TAG = k => k === 'tourism';
+function ownClassification(merged, primary, secondary) {
+  if (secondary.id === primary.id) return;
+  for (const key of Object.keys(merged)) if (CLASSIFICATION_TAG(key)) {
+    if (Object.hasOwn(primary, key)) { merged[key] = primary[key]; continue; }
+    delete merged[key];
+    if (osmIdentity(secondary) && secondary[key] != null && secondary[key] !== '') {
+      const list = Array.isArray(merged.member_evidence) ? merged.member_evidence : [];
+      let record = list.find(r => r.source_record_id === secondary.id);
+      if (!record) {
+        const match = secondary.id.match(/^osm:(node|way|relation):([0-9]+)$/);
+        record = {source_record_id: secondary.id, source: 'OpenStreetMap contributors', fields: {},
+          retrieved_at: secondary.source_retrieved_at || null, source_updated_at: secondary.osm_timestamp || null,
+          source_url: match ? `https://www.openstreetmap.org/${match[1]}/${match[2]}` : null};
+        list.push(record);
+      }
+      record.fields = {...record.fields, [key]: secondary[key]};
+      merged.member_evidence = list;
+    }
+  }
+  if (merged.description && merged.description !== (primary.description || '') && merged.description === secondary.description) {
+    merged.description_source_record_id = secondary.description_source_record_id || secondary.id;
+  } else if (primary.description_source_record_id) merged.description_source_record_id = primary.description_source_record_id;
+  else delete merged.description_source_record_id;
+}
+
 // Name tokens that distinguish separate campgrounds when they are the only difference between two names.
 // Positional words that name separate campgrounds when they are the only difference between two names
 // (Upper and Lower Grays Meadow, North and South Deer Lake, Old and New Shady Rest).
@@ -244,6 +273,7 @@ class CampsiteMerger {
     // Listing type describes the record that carries it. A different absorbed record never lends its type
     // (tourism-type-admission candidate, group B). The same record seen twice still fills a missing type.
     if (secondary.id !== primary.id && merged.type === secondary.type && merged.type !== primary.type) merged.type = null;
+    ownClassification(merged, primary, secondary);
     if (osmIdentity(secondary) && primary.id !== secondary.id) {
       const evidence = memberEvidence(primary, secondary);
       for (const key of Object.keys(merged)) if (ownedOsmField(key)) {
