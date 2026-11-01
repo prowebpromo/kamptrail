@@ -29,6 +29,32 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(props['id'], 'ridb:42')
         self.assertEqual(props['schema_version'], 3)
 
+    def test_ridb_keeps_source_type_and_date_on_their_own_facility(self):
+        area = self.facility(FacilityTypeDescription='  Recreation AREA  ', LastUpdatedDate='2019-07-12')
+        camp = self.facility(FacilityID='43', FacilityTypeDescription='CAMPGROUND')
+        rows = RIDBFetcher('not-a-key').convert_to_geojson([area, camp], 'NY')['features']
+        first, second = [row['properties'] for row in rows]
+        self.assertEqual(first['id'], 'ridb:42')
+        self.assertEqual(first['FacilityTypeDescription'], '  Recreation AREA  ')
+        self.assertEqual(first['LastUpdatedDate'], '2019-07-12')
+        self.assertEqual(first['type'], 'other')
+        self.assertEqual(second['id'], 'ridb:43')
+        self.assertEqual(second['FacilityTypeDescription'], 'CAMPGROUND')
+        self.assertNotIn('LastUpdatedDate', second)
+        self.assertEqual(second['type'], 'established')
+
+    def test_ridb_preserves_omitted_null_and_blank_source_fields(self):
+        empty = self.facility()
+        del empty['FacilityTypeDescription']
+        props = self.convert(empty)
+        self.assertNotIn('FacilityTypeDescription', props)
+        self.assertNotIn('LastUpdatedDate', props)
+        for value in (None, ''):
+            props = self.convert(self.facility(FacilityTypeDescription=value, LastUpdatedDate=value))
+            self.assertEqual(props['FacilityTypeDescription'], value)
+            self.assertEqual(props['LastUpdatedDate'], value)
+            self.assertEqual(props['type'], 'other')
+
     def test_ambiguous_fee_text_is_unknown(self):
         for text in ['Free parking. Camping $20', 'Permit required', '$10-$30 per night', '$5 per vehicle']:
             self.assertIsNone(self.convert(self.facility(FacilityUseFeeDescription=text))['cost'])

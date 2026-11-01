@@ -15,6 +15,22 @@ const point = (properties = {}, coordinates = [-73, 42]) => ({
   type: 'Feature', geometry: { type: 'Point', coordinates }, properties
 });
 
+test('raw RIDB facility type and update date stay in the source input', async () => {
+  const merger = new CampsiteMerger();
+  const facility = point({id:'ridb:42', facility_id:'42', schema_version:3, name:'Pine',
+    type:'other', FacilityTypeDescription:'Visitor Center', LastUpdatedDate:'2019-07-12'});
+  const neighbor = point({id:'osm:node:5', osm_id:5, osm_type:'node', name:'Pine'});
+  const original = structuredClone(facility);
+  for (const features of [[facility], [facility, neighbor], [neighbor, facility]]) {
+    const merged = await merger.mergeDatasets([{features}]);
+    assert.equal(merged.features.length, 1);
+    assert.equal(merged.features[0].properties.id, features[0].properties.id);
+    assert.ok(!Object.hasOwn(merged.features[0].properties, 'FacilityTypeDescription'));
+    assert.ok(!Object.hasOwn(merged.features[0].properties, 'LastUpdatedDate'));
+  }
+  assert.deepEqual(facility, original);
+});
+
 test('OSM snapshot merges retain field ownership, dates and donor observations', () => {
   const merger = new CampsiteMerger();
   const a = {id:'osm:node:1',osm_id:1,osm_type:'node',name:'Pine Campground',tourism:'camp_site',source_retrieved_at:'2026-10-01T00:00:00Z'};
