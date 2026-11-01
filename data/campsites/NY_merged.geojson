@@ -332,7 +332,8 @@
             "source_record_id": "osm:way:818939421",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "drinking_water": "no"
+              "drinking_water": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:20:01Z",
             "source_updated_at": null,
@@ -74572,7 +74573,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:way:977966073",
         "member_evidence": [
           {
             "source_record_id": "osm:way:977966073",
@@ -74588,7 +74588,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/977966073"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:way:977966073"
       }
     },
     {
@@ -74721,7 +74722,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:way:977966076",
         "member_evidence": [
           {
             "source_record_id": "osm:way:977966076",
@@ -74737,7 +74737,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/977966076"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:way:977966076"
       }
     },
     {

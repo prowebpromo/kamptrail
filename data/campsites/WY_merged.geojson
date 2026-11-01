@@ -1664,7 +1664,8 @@
             "source_record_id": "osm:node:1183476492",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -2797,7 +2798,8 @@
               "drinking_water": "yes",
               "internet_access": "no",
               "openfire": "yes",
-              "washing_machine": "no"
+              "washing_machine": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -3138,7 +3140,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,
@@ -4065,7 +4068,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "6 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:43:15Z",
             "source_updated_at": null,

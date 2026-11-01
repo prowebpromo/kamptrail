@@ -787,7 +787,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -1016,7 +1017,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -1120,7 +1122,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "toilets": "vault"
+              "toilets": "vault",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -1537,7 +1540,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "toilets": "vault"
+              "toilets": "vault",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:08:26Z",
             "source_updated_at": null,
@@ -54075,7 +54079,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:7185812931",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185812931",
@@ -54092,7 +54095,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/7185812931"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:7185812931"
       }
     },
     {
@@ -96362,7 +96366,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:12843318515",
         "member_evidence": [
           {
             "source_record_id": "osm:node:12843318515",
@@ -96378,7 +96381,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/12843318515"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:12843318515"
       }
     },
     {

@@ -1197,7 +1197,8 @@
             "fields": {
               "charge": "13 USD",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -1554,7 +1555,8 @@
             "source_record_id": "osm:way:893357955",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -1699,7 +1701,8 @@
             "source_record_id": "osm:way:892415725",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -2775,7 +2778,8 @@
               "access": "yes",
               "charge": "15 USD",
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -3166,7 +3170,8 @@
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
               "shower": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:07:26Z",
             "source_updated_at": null,
@@ -25004,7 +25009,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:7185787423",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185787423",
@@ -25017,7 +25021,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/7185787423"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:7185787423"
       }
     },
     {
@@ -25119,7 +25124,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:6965151875",
         "member_evidence": [
           {
             "source_record_id": "osm:node:6965151875",
@@ -25132,7 +25136,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/6965151875"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:6965151875"
       }
     },
     {
@@ -25178,7 +25183,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:7185816695",
         "member_evidence": [
           {
             "source_record_id": "osm:node:6965223653",
@@ -25202,7 +25206,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/7185816695"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:7185816695"
       }
     },
     {
@@ -25247,7 +25252,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:6965223675",
         "member_evidence": [
           {
             "source_record_id": "osm:node:6965223675",
@@ -25260,7 +25264,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/6965223675"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:6965223675"
       }
     },
     {
@@ -26565,7 +26570,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:7185787422",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185787422",
@@ -26578,7 +26582,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/7185787422"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:7185787422"
       }
     },
     {
@@ -26658,7 +26663,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:node:7185808855",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185808855",
@@ -26671,7 +26675,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/node/7185808855"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:node:7185808855"
       }
     },
     {

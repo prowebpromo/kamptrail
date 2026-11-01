@@ -100,7 +100,8 @@
               "drinking_water": "yes",
               "fee": "yes",
               "picnic_table": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:38:31Z",
             "source_updated_at": null,
@@ -242,7 +243,8 @@
             "source_record_id": "osm:node:3250302410",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "toilets": "vault"
+              "toilets": "vault",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:38:31Z",
             "source_updated_at": null,

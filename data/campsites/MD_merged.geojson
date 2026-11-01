@@ -69,7 +69,8 @@
               "access": "customers",
               "charge": "30 USD/night",
               "fee": "yes",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -347,7 +348,8 @@
             "source_record_id": "osm:way:874693866",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "internet_access": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:05:40Z",
             "source_updated_at": null,
@@ -12488,7 +12490,6 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description_source_record_id": "osm:way:744170055",
         "member_evidence": [
           {
             "source_record_id": "osm:way:744170055",
@@ -12502,7 +12503,8 @@
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/744170055"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:way:744170055"
       }
     },
     {

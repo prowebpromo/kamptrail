@@ -50,7 +50,8 @@
             "source_record_id": "osm:node:10090366437",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -858,7 +859,8 @@
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -1047,7 +1049,8 @@
             "source_record_id": "osm:way:1301228043",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -1104,7 +1107,8 @@
             "source_record_id": "osm:way:784290664",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "power_supply": "no"
+              "power_supply": "no",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -3960,7 +3964,8 @@
               "drinking_water": "yes",
               "fee": "yes",
               "power_supply": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -3970,6 +3975,8 @@
             "source_record_id": "osm:way:1149569625",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
+              "fee": "yes",
               "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
@@ -5040,7 +5047,8 @@
               "access": "permit",
               "drinking_water": "yes",
               "fee": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -5875,7 +5883,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -6259,7 +6268,8 @@
             "source_record_id": "osm:way:1049718031",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,
@@ -6560,7 +6570,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:53:12Z",
             "source_updated_at": null,

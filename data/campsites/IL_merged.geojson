@@ -664,7 +664,8 @@
               "internet_access": "wlan",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
-              "water_point": "yes"
+              "water_point": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-10-29T02:58:59Z",
             "source_updated_at": null,
@@ -978,7 +979,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T02:58:59Z",
             "source_updated_at": null,

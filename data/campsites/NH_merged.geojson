@@ -55,7 +55,8 @@
             "fields": {
               "access": "customers",
               "charge": "20 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:14:06Z",
             "source_updated_at": null,
@@ -539,7 +540,8 @@
             "fields": {
               "access": "permit",
               "fee": "yes",
-              "internet_access": "no"
+              "internet_access": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:14:06Z",
             "source_updated_at": null,
@@ -813,7 +815,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "toilets": "yes",
-              "water": "faucet"
+              "water": "faucet",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:14:06Z",
             "source_updated_at": null,
@@ -924,7 +927,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "charge": "24 USD/night",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:14:06Z",
             "source_updated_at": null,

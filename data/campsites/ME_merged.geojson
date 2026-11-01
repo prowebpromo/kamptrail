@@ -55,7 +55,8 @@
             "fields": {
               "access": "customers",
               "charge": "20 USD",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:04:46Z",
             "source_updated_at": null,
@@ -268,7 +269,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:04:46Z",
             "source_updated_at": null,

@@ -177,7 +177,8 @@
             "source_record_id": "osm:way:641812739",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -239,7 +240,8 @@
             "fields": {
               "fee": "no",
               "internet_access": "no",
-              "internet_access:fee": "no"
+              "internet_access:fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -301,7 +303,8 @@
               "charge": "5 USD/day",
               "fee": "yes",
               "internet_access": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -841,7 +844,8 @@
             "source_record_id": "osm:node:5854827726",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -1404,7 +1408,8 @@
             "source_record_id": "osm:way:1112480750",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -1957,7 +1962,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,
@@ -2200,7 +2206,8 @@
             "source_record_id": "osm:node:5854822431",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:41:43Z",
             "source_updated_at": null,

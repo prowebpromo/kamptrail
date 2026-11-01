@@ -5877,7 +5877,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:36:27Z",
             "source_updated_at": null,
@@ -6115,7 +6116,8 @@
             "source_record_id": "osm:way:337710769",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "shower": "no"
+              "shower": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:36:27Z",
             "source_updated_at": null,

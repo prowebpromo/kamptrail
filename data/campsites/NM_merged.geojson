@@ -276,7 +276,8 @@
               "fee": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -340,7 +341,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -984,7 +986,8 @@
               "fee": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "vault"
+              "toilets": "vault",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -994,6 +997,11 @@
             "source_record_id": "osm:node:2332493689",
             "source": "OpenStreetMap contributors",
             "fields": {
+              "drinking_water": "no",
+              "fee": "no",
+              "sanitary_dump_station": "no",
+              "shower": "no",
+              "toilets": "vault",
               "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
@@ -2529,7 +2537,8 @@
               "power_supply": "no",
               "shower": "no",
               "toilets": "no",
-              "waste_basket": "yes"
+              "waste_basket": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -3039,7 +3048,8 @@
               "fee": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
@@ -3350,7 +3360,8 @@
               "fee": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:19:02Z",
             "source_updated_at": null,
