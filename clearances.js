@@ -158,7 +158,8 @@
     return d;
   }
 
-  const inches=h=>{const total=Math.abs(h)/100,ft=Math.floor(total/12),inch=total-ft*12;return `${ft}'${Number(inch.toFixed(2))}"`;};
+  // Display only, to the nearest tenth of an inch. Comparison uses whole millimetres.
+  const inches=h=>{const tenths=Math.round(Math.abs(h)/10),ft=Math.floor(tenths/120),inch=(tenths-ft*120)/10;return ft?`${ft}'${inch}"`:`${inch}"`;};
   function stateText(c){
     if(state(c)==='comparable')return t('Numeric tag; can be compared with your rig height.');
     if(c.status==='suspect')return t('Value needs checking: it failed a plausibility check and is not compared.');
@@ -170,7 +171,7 @@
   function comparisonText(cmp){
     if(cmp.relation==='no_rig_height')return t('Save a travel height in your rig profile to compare.');
     if(cmp.relation==='not_compared')return t('Not compared with your rig height.');
-    const clearance=inches(cmp.clearance_hundredths),rig=inches(cmp.rig_hundredths),gap=inches(Math.round(cmp.difference_mm*1000/254));
+    const clearance=inches(cmp.clearance_hundredths),rig=inches(cmp.rig_mm*1000/254),gap=inches(cmp.difference_mm*1000/254);
     if(cmp.relation==='below')return t('Conflict: tagged clearance {clearance} is lower than your rig height {rig} by {gap}.',{clearance,rig,gap});
     if(cmp.relation==='equal')return t('Conflict: tagged clearance {clearance} equals your rig height {rig}. Equal is not clear.',{clearance,rig});
     return t('Tagged clearance {clearance} is higher than your rig height {rig} by {gap}. One tagged object only; this does not establish passage.',{clearance,rig,gap});
