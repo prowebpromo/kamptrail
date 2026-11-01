@@ -185,6 +185,9 @@ class CampsiteMerger {
 
   sanitizeProperties(properties) {
     const p = { ...properties };
+    // These RIDB fields belong to the raw facility row, outside the public snapshot.
+    delete p.FacilityTypeDescription;
+    delete p.LastUpdatedDate;
     const sources = [...(Array.isArray(p.sources) ? p.sources : []), p.source || ''];
     const legacyRIDB = (p.facility_id != null || sources.some(source => /recreation\.gov|\bridb\b/i.test(String(source))))
       && !(Number(p.schema_version) >= 3);
