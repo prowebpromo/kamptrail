@@ -106,9 +106,17 @@ Per-view payloads with the client's gating (tilesForView, raw bytes): NYC z12 9 
 
 ## Results
 
-Branch rebased onto origin/main 76da929f (PR #160 merged).
+Branch rebased onto origin/main a6dd9e5e (2.35.0 merge, PR #164). The only conflicts were the module version strings in clearances.js and route-clearance.js, now 2.35.0.
 
-Review-fix round, tested at 4c9f5b15 (Codex findings on PR #163 at 49a12b92). Heavy jobs ran through /home/claude/heavy.sh. Server: PORT=8812 node scripts/serve.js, PID 1126, cwd /home/claude/wt-r10. Chromium 1243 via CHROMIUM_PATH.
+Second review round (node vertex distance), tested at c1106bf4. Server: PORT=8812 node scripts/serve.js, PID 6689, cwd /home/claude/wt-r10. Heavy jobs through /home/claude/heavy.sh.
+
+| Suite | Result |
+|---|---|
+| npm test | 500 of 500 pass |
+| route-clearance.spec.js and clearances.spec.js (desktop and mobile) | 19 of 19 |
+
+
+Earlier review-fix round, tested at 4c9f5b15 on 76da929f (Codex findings on PR #163 at 49a12b92). Heavy jobs ran through /home/claude/heavy.sh. Server: PORT=8812 node scripts/serve.js, PID 1126, cwd /home/claude/wt-r10. Chromium 1243 via CHROMIUM_PATH.
 
 | Suite | Result |
 |---|---|
