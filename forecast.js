@@ -105,7 +105,7 @@
     env.document?.addEventListener('visibilitychange',()=>{if(env.document.visibilityState==='visible')invalidate();});
     // One minute checks also drop samples that leave a rolling window; no network is done per marker.
     env.setInterval?.(()=>{if(manifest&&wanted.size)emit();},60000);
-    return{version:'2.34.0',ensureStates,get,matches,effectiveNow,status,statusText,describe,invalidate,range,active,toC,fromC,validManifest,validState,sampleWindow,utc};
+    return{version:'2.35.0',ensureStates,get,matches,effectiveNow,status,statusText,describe,invalidate,range,active,toC,fromC,validManifest,validState,sampleWindow,utc};
   }
   if(typeof module!=='undefined'&&module.exports)module.exports={create,range,active,toC,fromC,utc,validManifest,validState,sampleWindow};
   else global.KampTrailForecast=create(global);
