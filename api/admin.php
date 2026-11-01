@@ -4,6 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
 require __DIR__ . '/_lib/community-admin.php';
 require __DIR__ . '/_lib/permissions-admin.php';
+require __DIR__ . '/_lib/clearance-reports.php';
 
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
@@ -116,6 +117,7 @@ foreach ($list as $r) {
     $body .= '<div class="card"><div class="meta">#' . h($r['id']) . ' · ' . h($r['kind']) . ' · received ' . h($r['created_at']) . ' UTC · ' . $where . '</div>'
         . '<h2 style="font-size:17px;margin:6px 0">' . h($r['campsite_name'] ?: '(no name)') . ($r['campsite_id'] ? ' <span class="meta">' . h($r['campsite_id']) . '</span>' : '') . '</h2>'
         . ($r['problems'] ? '<p><strong>Problems:</strong> ' . h(str_replace(',', ', ', $r['problems'])) . '</p>' : '')
+        . (($c = $r['kind'] === 'clearance' ? kcr_read($pdo, (int)$r['id']) : null) ? '<p><strong>Posted clearance:</strong> ' . h($c['posted']) . ' · seen ' . h($c['observed_on']) . ' · direction ' . h($c['direction']) . ($c['osm_ref'] ? ' · ' . h($c['osm_ref']) : '') . '</p><p class="meta">Set to <strong>applied</strong> only after checking the sign evidence. Applied clearance reports are published on the map as visitor reports, never compared with a rig height.</p>' : '')
         . '<p style="white-space:pre-wrap">' . h($r['details']) . '</p>'
         . ($r['source_note'] ? '<p><strong>Source:</strong> ' . h($r['source_note']) . '</p>' : '')
         . ($r['contact_email'] ? '<p class="meta">Contact: ' . h($r['contact_email']) . '</p>' : '')

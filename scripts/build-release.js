@@ -46,12 +46,25 @@ const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app
   const statePolicyRaw=await fs.readFile(statePolicyPath);if(statePolicyRaw.length>64*1024)throw new Error('State policies exceed release bound');
   require('../rest-areas.js').validatePolicies(JSON.parse(statePolicyRaw));
   await fs.writeFile(path.join(out,'data','rest-areas','state-policies.json'),statePolicyRaw);
-  const clearancePath=path.join(root,'data','clearances','RI.json');
-  if(await fs.realpath(clearancePath)!==clearancePath)throw new Error('Height-tag pilot must not follow symlinks');
-  const clearanceRaw=await fs.readFile(clearancePath);
-  if(clearanceRaw.length>512*1024)throw new Error('Height-tag pilot exceeds release bound');
-  require('../clearances.js').validate(JSON.parse(clearanceRaw));
-  await fs.mkdir(path.join(out,'data','clearances'),{recursive:true});await fs.writeFile(path.join(out,'data','clearances','RI.json'),clearanceRaw);
+  // National clearance candidates: exactly the manifest and the tiles it lists, each checked against its bytes and sha256
+  // and validated by the client's own schema checks. Excluded-id records, the protected RI pilot and docs are not client data.
+  const clearanceRoot=path.join(root,'data','clearances'),clearanceIndexPath=path.join(clearanceRoot,'index.json'),clearanceModule=require('../clearances.js');
+  if(await fs.realpath(clearanceIndexPath)!==clearanceIndexPath)throw new Error('Clearance manifest must not follow symlinks');
+  const clearanceIndexRaw=await fs.readFile(clearanceIndexPath);if(clearanceIndexRaw.length>1024*1024)throw new Error('Clearance manifest exceeds release bound');
+  const clearanceIndex=clearanceModule.validateManifest(JSON.parse(clearanceIndexRaw));const clearanceFiles=['data/clearances/index.json'];let clearanceBytes=clearanceIndexRaw.length;
+  await fs.mkdir(path.join(out,'data','clearances','tiles'),{recursive:true});
+  for(const entry of clearanceIndex.tiles){
+    const source=path.join(clearanceRoot,entry.path);
+    if(await fs.realpath(source)!==source)throw new Error('Clearance tiles must not follow symlinks');
+    const bytes=await fs.readFile(source);
+    if(bytes.length!==entry.bytes||crypto.createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw new Error(`Clearance tile checksum mismatch: ${entry.path}`);
+    clearanceModule.validateTile(JSON.parse(bytes),entry);
+    await fs.writeFile(path.join(out,'data','clearances',entry.path),bytes);clearanceFiles.push('data/clearances/'+entry.path);clearanceBytes+=bytes.length;
+  }
+  const strayTiles=(await fs.readdir(path.join(clearanceRoot,'tiles'))).filter(name=>!clearanceIndex.tiles.some(e=>e.path==='tiles/'+name));
+  if(strayTiles.length)throw new Error(`Clearance tiles not in the manifest: ${strayTiles.slice(0,5).join(', ')}`);
+  await fs.writeFile(path.join(out,'data','clearances','index.json'),clearanceIndexRaw);
+  await fs.writeFile(path.join(root,'dist','clearance-package.json'),JSON.stringify({files:clearanceFiles.length,bytes:clearanceBytes,manifest_sha256:crypto.createHash('sha256').update(clearanceIndexRaw).digest('hex')},null,1)+'\n');
   const serviceRoot=path.join(root,'data','services'),serviceRaw=await fs.readFile(path.join(serviceRoot,'index.json'));
   async function copyServiceGeneration(raw,expectedId){
     if(raw.length>1024*1024)throw new Error('Services manifest exceeds release bound');
@@ -98,7 +111,7 @@ const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app
     }
   }
   // Contributions API: only these public PHP entry points and their private helpers. Never configuration or credentials.
-  const apiFiles=['api/.htaccess','api/health.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/route-elevation.php','api/_lib/route-elevation.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
+  const apiFiles=['api/.htaccess','api/health.php','api/clearance-reports.php','api/_lib/clearance-reports.php','api/environment.php','api/_lib/environment.php','api/forecast.php','api/_lib/forecast.php','api/route.php','api/_lib/routing.php','api/community.php','api/community-discovery.php','api/_lib/observations.php','api/photo.php','api/submit.php','api/status.php','api/admin.php','api/fcc-setup.php','api/_lib/.htaccess','api/_lib/bootstrap.php','api/_lib/community.php','api/_lib/community-admin.php','api/_lib/migrations.php','api/permissions.php','api/route-elevation.php','api/_lib/route-elevation.php','api/_lib/permissions.php','api/_lib/permissions-migration.php','api/_lib/permissions-admin.php','api/_lib/permission-evidence.php'];
   await fs.mkdir(path.join(out,'api','_lib'),{recursive:true});
   for(const file of apiFiles)await fs.copyFile(path.join(root,file),path.join(out,file));
   const permissionRoot=path.join(root,'api','_data','permissions');

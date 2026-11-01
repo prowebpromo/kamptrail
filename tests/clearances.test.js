@@ -1,90 +1,96 @@
 'use strict';
-const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
-const C=require('../clearances.js'),published=require('../data/clearances/RI.json');
-const vm=require('node:vm');
-const clone=()=>structuredClone(published);
-test('height syntax converts documented units only and never treats nonnumeric/conditional values as safe',()=>{
-  for(const [raw,metres] of [['3.8',3.8],['3 m',3],[`6'7"`,2.0066],[`12'`,3.6576],[`14'10"`,4.5212]])assert.ok(Math.abs(C.parseHeight(raw)-metres)<1e-9,raw);
-  for(const raw of ['none','default','below_default','no_indications','unsigned','13 ft','3,8','3.8m',' 3.8','3.8 ','3.8;4.2',`6'12"`,`6' 7"`,'4 @ (wet)','4|5','0','-4','101',''])assert.equal(C.parseHeight(raw),null,raw);
-});
-test('exact node and way namespaces remain separate; physical and legal tags never substitute for each other',()=>{
-  const d=clone(),way=d.records[0];d.records=[way,{...structuredClone(way),id:'osm:node:'+way.osm_id,osm_type:'node',geometry:{type:'Point',coordinates:way.geometry.coordinates[0]}}];
-  assert.equal(C.validate(d),d);assert.notEqual(d.records[0].id,d.records[1].id);
-  assert.match(C.heightText(way,'maxheight:physical'),/Unknown/);
-  way.tags['maxheight:physical']='4.8';way.metres['maxheight:physical']=4.8;C.validate(d);
-  assert.match(C.heightText(way,'maxheight:physical'),/4.80 m/);
-  assert.equal(C.sourceLink(way),'https://www.openstreetmap.org/way/'+way.osm_id);
-});
-test('corrupt dates, hash fields, geometry, scope, identities and raw/normalized mismatches fail before display or cache',()=>{
-  for(const mutate of [d=>d.region='MA',d=>d.source.url='https://evil.example/file',d=>d.source.resolved_url=d.source.resolved_url.replace('261028','261029'),d=>d.source.sha256='bad',d=>d.source.extract_timestamp='2026-02-30T00:00:00Z',d=>d.source.retrieved_at='2099-01-01T00:00:00Z',d=>d.records.push(d.records[0]),d=>d.records[0].id='osm:node:'+d.records[0].osm_id,d=>d.records[0].geometry.coordinates[0]=[-75,43],d=>d.records[0].metres.maxheight=99,d=>d.records[0].metres['maxheight:physical']=5,d=>d.records[0].tags['<img>']='yes',d=>d.records[0].edited_at='2026-10-29T00:00:00Z']){
-    const d=clone();mutate(d);assert.throws(()=>C.validate(d));
-  }
-});
-test('measured native pilot retains raw unknowns, all source dates and exact packaged geometry proof',()=>{
-  C.validate(published);const report=require('../docs/CLEARANCE_RI_PROOF.json'),raw=fs.readFileSync('data/clearances/RI.json');
-  assert.equal(raw.length,report.asset_bytes);assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),report.asset_sha256);
-  assert.equal(report.accepted,published.records.length);assert.equal(report.accepted,254);assert.equal(report.parsed_counts.maxheight,239);assert.equal(report.quarantined,4);assert.equal(report.statistics.lifecycle_excluded,1);
-  assert.equal(published.source.sha256,'2e814ed12a070be2112f7e64bd80b05785ca082820c9a83f0c8e7ce9c6ce58b6');
-  assert.equal(published.source.retrieved_at,'2026-10-30T16:30:30Z');assert.equal(published.source.extract_timestamp,'2026-10-28T21:21:02Z');
-  const unknown=published.records.filter(r=>r.metres.maxheight===null);assert.equal(unknown.length,15);assert.ok(unknown.every(r=>['none','default'].includes(r.tags.maxheight)));
-  assert.match(C.describe(unknown[0],published,true),/Saved snapshot/);assert.match(C.describe(unknown[0],published),/not an inspection/);assert.match(C.describe(unknown[0],published),/does not match these tags to your route/);
-});
-test('full tagged road geometry intersects view even when both endpoint vertices are outside',()=>{
-  const r={geometry:{type:'LineString',coordinates:[[-71.6,41.8],[-71.2,41.8]]}},b={west:-71.5,east:-71.3,south:41.7,north:41.9};
-  assert.equal(C.intersect(r,b),true);assert.equal(C.intersect(r,{...b,south:42,north:42.1}),false);
-  assert.equal(C.intersect(r,{...b,west:170,east:190}),false);assert.equal(C.intersect(r,{...b,west:-180,east:180}),true);
-});
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const C=require('../clearances.js');
+const root=path.resolve(__dirname,'..'),manifestRaw=fs.readFileSync(path.join(root,'data/clearances/index.json')),manifest=JSON.parse(manifestRaw);
+const entry=manifest.tiles.find(e=>e.records>5),tileRaw=fs.readFileSync(path.join(root,'data/clearances',entry.path)),tile=JSON.parse(tileRaw);
+const base=()=>structuredClone(tile.candidates.find(c=>c.status==='numeric_only'));
+const ft=(f,i=0)=>Math.round((f*12+i)*25.4);// canonical rig millimetres
+function candidate(over={}){const c=base();Object.assign(c,over);return c;}
+function numeric(raw){const h=C.parseHundredths(raw);return candidate({tags:{maxheight:raw},metres:{maxheight:h.metres},inches:{maxheight:h.hundredths/100},parse:{maxheight:'numeric'},min_inches:h.hundredths/100,min_metres:h.metres,status:'numeric_only',comparable:true});}
+function uncomparable(status,tags){const c=candidate({status,comparable:false,tags,plausibility:status==='suspect'?'suspect':'ok'});delete c.min_inches;delete c.min_metres;c.inches=Object.fromEntries(Object.keys(tags).map(k=>[k,null]));c.metres={...c.inches};return c;}
 
-function loaderHarness({cached=false}={}){
-  class Element{
-    constructor(tag){this.tag=tag;this.children=[];this.value='';}
-    append(...nodes){this.children.push(...nodes);}
-    replaceChildren(...nodes){this.children=[...nodes];}
-    setAttribute(){}
-  }
-  const evidence={...clone(),records:clone().records.slice(0,1)},events=new Map(),timers=new Map(),requests=[];
-  const layer={rows:[],clearLayers(){this.rows=[];},addLayer(item){this.rows.push(item);},getLayers(){return this.rows;}};
-  let control,enabled=true,nextTimer=0,waiting=false,stored=cached?JSON.stringify(evidence):null;
-  const env={TextEncoder,TextDecoder,Response,URL,AbortController,Date,Map,Set,
-    document:{createElement:tag=>new Element(tag)},location:{href:'https://kamptrail.com/'},
-    caches:{open:async()=>({put:async(url,response)=>{stored=await response.text();},match:async()=>stored?new Response(stored):null})},
-    setTimeout(fn,delay){const id=++nextTimer;timers.set(id,{fn,delay});return id;},clearTimeout:id=>timers.delete(id),addEventListener(){},
-    fetch:async(url,{signal})=>{
-      if(!waiting)return new Response(JSON.stringify(evidence));
-      return new Promise((resolve,reject)=>{const request={signal,resolve,ignoreAbort:false};requests.push(request);signal.addEventListener('abort',()=>{if(!request.ignoreAbort)reject(new Error('Request aborted'));});});
-    }
-  };
-  env.L={layerGroup:()=>layer,control:()=>({addTo(){control=this.onAdd();}}),
-    DomEvent:{disableClickPropagation(){},disableScrollPropagation(){}},
-    polyline:()=>({bindPopup(){return this;}}),circleMarker:()=>({bindPopup(){return this;}})};
-  const map={hasLayer:()=>enabled,on:(names,fn)=>names.split(' ').forEach(name=>events.set(name,fn)),getZoom:()=>12,
-    getBounds:()=>({getSouth:()=>40.9,getWest:()=>-72,getNorth:()=>42.1,getEast:()=>-70.9}),getSize:()=>({x:390,y:500}),getContainer:()=>({querySelector:()=>null})};
-  env.window=env;vm.createContext(env);vm.runInContext(fs.readFileSync(require.resolve('../clearances.js'),'utf8'),env);env.KampTrailClearances.init(map);
-  return {evidence,layer,requests,get control(){return control;},get status(){return control.children[1].textContent;},
-    load(){events.get('overlayadd')({layer});},waitForNetwork(){waiting=true;},retry(){control.children.at(-1).onclick();},
-    deadline(){const entry=[...timers].find(([,timer])=>timer.delay===15000);assert.ok(entry,'A source request must have a deadline');timers.delete(entry[0]);entry[1].fn();},
-    disable(){enabled=false;events.get('overlayremove')({layer});}
-  };
-}
-const settleLoader=()=>new Promise(resolve=>setImmediate(resolve));
-test('a refresh deadline retains validated in-memory height evidence and its original source date',async()=>{
-  const h=loaderHarness();h.load();await settleLoader();assert.equal(h.layer.rows.length,1);
-  h.waitForNetwork();h.retry();assert.equal(h.requests.length,1);h.deadline();await settleLoader();
-  assert.equal(h.requests[0].signal.aborted,true);assert.equal(h.layer.rows.length,1);
-  assert.match(h.status,/Saved snapshot/);assert.match(h.status,new RegExp(h.evidence.source.extract_timestamp.slice(0,10)));
-  assert.equal(h.control.children[2].children[0].disabled,false);
+test('rig comparison: below and equal are conflicts; above is not, and none claims passage',()=>{
+  const c=numeric(`13'6"`);
+  const below=C.compare(c,ft(13,8)),equal=C.compare(c,ft(13,6)),above=C.compare(c,ft(13,4));
+  assert.deepEqual([below.relation,below.conflict],['below',true]);
+  assert.deepEqual([equal.relation,equal.conflict],['equal',true],'equal is never clear');
+  assert.deepEqual([above.relation,above.conflict],['above',false]);
+  assert.match(C.comparisonText(equal),/Equal is not clear/);assert.match(C.comparisonText(above),/does not establish passage/);
+  assert.equal(C.compare(c,null).relation,'no_rig_height');assert.equal(C.compare(c,null).conflict,false);
+  for(const bad of [0,-5,1.5,'4000',10001,NaN])assert.equal(C.compare(c,bad).relation,'no_rig_height',String(bad));
 });
-test('a cold source deadline may use a previously validated dated cache',async()=>{
-  const h=loaderHarness({cached:true});h.waitForNetwork();h.load();h.deadline();await settleLoader();
-  assert.equal(h.layer.rows.length,1);assert.match(h.status,/Saved snapshot/);
-  assert.match(h.status,new RegExp(h.evidence.source.extract_timestamp.slice(0,10)));
+test('unit handling: feet/inches exact, metric floored to hundredths of an inch, rig millimetres rounded up',()=>{
+  assert.equal(C.parseHundredths(`13'6"`).hundredths,16200);assert.equal(C.parseHundredths(`12'`).hundredths,14400);
+  assert.equal(C.parseHundredths('4.1').hundredths,16141);assert.equal(C.parseHundredths('4.1 m').hundredths,16141);// 161.417... floored
+  assert.equal(C.parseHundredths('4.572').hundredths,18000);// exactly 15 ft
+  for(const raw of ['13 ft','4,1','4.1m',`13' 6"`,`6'12"`,'none','default','below_default','0','101','4 @ (wet)'])assert.equal(C.parseHundredths(raw),null,raw);
+  // Compared at the rig's whole-millimetre resolution: 13'6" is 4114.8 mm, so a 4115 mm rig is equal, a conflict.
+  assert.equal(C.compare(numeric(`13'6"`),4115).relation,'equal');assert.equal(C.compare(numeric(`13'6"`),4116).relation,'below');assert.equal(C.compare(numeric(`13'6"`),4114).relation,'above');
+  const metric=numeric('4.115');assert.equal(C.compare(metric,4115).relation,'equal');assert.equal(C.compare(metric,4115).conflict,true);
+  assert.equal(C.compare(numeric('4.1'),4100).relation,'equal','metric sign and metric rig at the same height');
+  // Python builder values agree with the client parser on every committed comparable candidate in this tile.
+  for(const c of tile.candidates.filter(c=>c.comparable))assert.ok(['maxheight','maxheight:physical','height'].some(k=>c.tags[k]&&C.parseHundredths(c.tags[k])?.hundredths===Math.round(c.min_inches*100)),c.id);
 });
-test('removing the height layer suppresses both cancelled and late source responses',async()=>{
-  for(const ignoresAbort of [false,true]){
-    const h=loaderHarness({cached:true});h.waitForNetwork();h.load();h.requests[0].ignoreAbort=ignoresAbort;h.disable();
-    assert.equal(h.requests[0].signal.aborted,true);assert.equal(h.control.hidden,true);
-    if(ignoresAbort)h.requests[0].resolve(new Response(JSON.stringify(h.evidence)));
-    await settleLoader();assert.equal(h.control.hidden,true);assert.equal(h.layer.rows.length,0);
-    assert.equal(h.control.children[2].children[0].disabled,true);assert.doesNotMatch(h.status,/Saved snapshot|evidence unavailable/);
+test('each status: only numeric_only with comparable=true is compared',()=>{
+  const cases={suspect:uncomparable('suspect',{maxheight:'55'}),conditional:uncomparable('conditional',{maxheight:'3.5','maxheight:conditional':'3 @ (wet)'}),
+    directional_only:uncomparable('directional_only',{'maxheight:forward':'3.9'}),mixed:uncomparable('mixed',{maxheight:'4','maxheight:backward':'3.6'}),unknown:uncomparable('unknown',{maxheight:'default'})};
+  for(const [status,c] of Object.entries(cases)){
+    const r=C.compare(c,ft(40));assert.equal(r.compared,false,status);assert.equal(r.conflict,false,status);assert.equal(r.relation,'not_compared',status);
+    assert.equal(C.state(c),status==='unknown'?'unknown':'needs_checking',status);
   }
+  assert.match(C.stateText(cases.suspect),/needs checking/);assert.match(C.stateText(cases.conditional),/conditional/);assert.match(C.stateText(cases.directional_only),/direction/);assert.match(C.stateText(cases.unknown),/Unknown/);
+  // A tampered record cannot become comparable without a minimum that its raw text supports.
+  const forged=numeric(`13'6"`);forged.min_inches=200;forged.inches.maxheight=200;assert.throws(()=>C.validateCandidate(forged,entry.bbox),/minimum differs from raw source/);
+  const flagged=uncomparable('suspect',{maxheight:'55'});flagged.comparable=true;assert.throws(()=>C.validateCandidate(flagged,entry.bbox),/invalid status/);
+  const sneaky=uncomparable('conditional',{maxheight:'3'});sneaky.min_inches=118;assert.throws(()=>C.validateCandidate(sneaky,entry.bbox),/carries a minimum/);
+});
+test('empty set has no minimum and no comparison',()=>{
+  const c=uncomparable('unknown',{maxheight:'none'});assert.equal(Object.hasOwn(c,'min_inches'),false);assert.equal(C.compare(c,ft(12)).compared,false);
+  const empty={...tile,candidates:[]};assert.throws(()=>C.validateTile(empty,entry),/record count/);
+});
+test('directional and conditional candidates stay visible but uncompared',()=>{
+  const dir=uncomparable('directional_only',{'maxheight:forward':`11'0"`,'maxheight:backward':`14'0"`});
+  assert.equal(C.compare(dir,ft(12)).compared,false,'a lower forward value is never silently applied or ignored');
+  assert.equal(C.validateCandidate(dir,entry.bbox),dir);
+  const cond=uncomparable('conditional',{'maxheight:conditional':'3.5 @ (Mo-Fr 07:00-19:00)'});assert.equal(C.validateCandidate(cond,entry.bbox),cond);assert.equal(C.compare(cond,1000).conflict,false);
+});
+test('manifest integrity: every committed tile matches bytes and sha256 and validates against the client schema',()=>{
+  C.validateManifest(manifest);let records=0;
+  for(const e of manifest.tiles){const raw=fs.readFileSync(path.join(root,'data/clearances',e.path));assert.equal(raw.length,e.bytes,e.path);assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),e.sha256,e.path);records+=C.validateTile(JSON.parse(raw),e).candidates.length;}
+  assert.equal(records,manifest.totals.candidates);
+  for(const mutate of [m=>m.attribution='OSM',m=>m.schema='kamptrail-clearances-2',m=>m.tiles[0].sha256='x',m=>m.tiles[0].path='../index.json',m=>m.tiles[0].bytes=600000,m=>m.tiles[0].bbox=[1,1,0,0],m=>m.tiles.push(m.tiles[0])]){
+    const m=structuredClone(manifest);mutate(m);assert.throws(()=>C.validateManifest(m));
+  }
+});
+test('store rejects a tile whose bytes or hash differ from the manifest, before any record is used',async()=>{
+  const serve=(body)=>async url=>url.endsWith('index.json')?new Response(manifestRaw):new Response(body);
+  const env={fetch:serve(tileRaw),crypto:globalThis.crypto};const store=C.createStore(env);const m=await store.loadManifest();
+  const e=m.tiles.find(x=>x.path===entry.path);assert.equal((await store.loadTile(e)).candidates.length,entry.records);
+  const tampered=Buffer.from(tileRaw.toString().replace(/"maxheight":"[^"]+"/,'"maxheight":"9\'9\\""'));
+  await assert.rejects(C.createStore({fetch:serve(tampered),crypto:globalThis.crypto}).loadManifest().then(m2=>C.createStore({fetch:serve(tampered),crypto:globalThis.crypto}).loadTile(m2.tiles.find(x=>x.path===entry.path))),/size mismatch|checksum mismatch/);
+  const sameSize=Buffer.from(tileRaw);sameSize[sameSize.length-3]^=1;
+  const s3=C.createStore({fetch:serve(sameSize),crypto:globalThis.crypto});await s3.loadManifest();await assert.rejects(s3.loadTile(e),/checksum mismatch/);
+  let cancelled=false;const s4=C.createStore({crypto:globalThis.crypto,fetch:async u=>u.endsWith('index.json')?new Response(manifestRaw):{ok:true,headers:new Headers(),body:new ReadableStream({pull(c){c.enqueue(new Uint8Array(600000));},cancel(){cancelled=true;}})}});
+  await s4.loadManifest();await assert.rejects(s4.loadTile(e),/exceeds bound/);assert.equal(cancelled,true);
+});
+test('zoom gating and per-view budget: nothing below zoom 10, bounded tiles at street level',()=>{
+  const nyc=[-74.03,40.69,-73.93,40.78];
+  for(const z of [4,8,9,9.99])assert.deepEqual(C.tilesForView(manifest,nyc,z),{ok:false,reason:'zoom',tiles:[]},String(z));
+  const z12=C.tilesForView(manifest,nyc,12);assert.equal(z12.ok,true);assert.ok(z12.tiles.length>0&&z12.tiles.length<=C.MAX_VIEW_TILES);assert.ok(z12.bytes<=C.MAX_VIEW_BYTES);
+  const wide=C.tilesForView(manifest,[-125,24,-66,50],10);assert.equal(wide.ok,false);assert.equal(wide.reason,'budget');assert.deepEqual(wide.tiles,[]);
+  // A tile is found through its bbox even when the view only touches the edge of a way stored in another cell.
+  const e=manifest.tiles[0];assert.ok(C.tilesForView(manifest,[e.bbox[2]-1e-6,e.bbox[3]-1e-6,e.bbox[2]+.001,e.bbox[3]+.001],12).tiles.includes(e));
+  const empty=C.tilesForView(manifest,[-40,-10,-39.9,-9.9],12);assert.equal(empty.ok,true);assert.equal(empty.tiles.length,0);
+});
+test('attribution: ODbL text and copyright link are attached to every display',()=>{
+  assert.equal(C.ATTRIBUTION,manifest.attribution);assert.equal(C.COPYRIGHT_URL,'https://www.openstreetmap.org/copyright');
+  const made=[];const doc={createElement:tag=>{const n={tag,children:[],append(...x){this.children.push(...x);}};made.push(n);return n;}};
+  const p=C.attributionNode(doc);assert.ok(p.children[0].includes('Open Database Licence'));assert.equal(p.children[1].href,'https://www.openstreetmap.org/copyright');
+  for(const f of ['clearances.js','route-clearance.js'])assert.match(fs.readFileSync(path.join(root,f),'utf8'),/attributionNode\(/,f);
+});
+test('visitor reports: only well-formed published rows pass, and they never carry a rig comparison',()=>{
+  const r={id:3,lat:41.8,lng:-71.4,posted:`12'9"`,hundredths:15300,observed_on:'2026-10-01',published_at:'2026-10-02T00:00:00Z',direction:'both',osm_ref:'osm:way:12'};
+  assert.equal(C.validReport(r),true);
+  for(const bad of [{hundredths:15301},{posted:'12 ft'},{direction:'north'},{osm_ref:'way:12'},{lat:95},{observed_on:'yesterday'}])assert.equal(C.validReport({...r,...bad}),false,JSON.stringify(bad));
+  assert.doesNotMatch(fs.readFileSync(path.join(root,'clearances.js'),'utf8').match(/function reportPopup[\s\S]*?return box;/)[0],/compare\(/);
 });
