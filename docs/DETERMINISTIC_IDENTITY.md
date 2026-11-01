@@ -26,6 +26,10 @@ Script: `node scripts/check-browser-identity.js` (runs the real `data-loader.js`
 | random order, seed 2 | 62 | 0 | 3 | 2 | 0 |
 | random order, seed 3 | not run on 2.31.0 | | | | 0 |
 | (c) each multi-state listing's states one at a time, both orders (127 state sets, 254 runs, 18,676 listing checks) | 174 | 0 | 6 | 0 | 0 |
+| fallback, host file unavailable, default order | | | | | 10 canonical, 0 other |
+| fallback, host file unavailable, reversed order | | | | | 177 canonical, 1 missing |
+
+The fallback rows are the degraded mode (criterion 3), not the shipped path: they match 2.31.0 in default order, and in reversed order they remove the claim differences but not the host differences. In the reversed fallback run, `usfs:65184` (Bird Creek Campground, NV), which the index lists separately, merged into the same-name listing `osm:way:1236741631`. Its id still resolves, as that listing's alias. This is an open gap against criterion 3's no-demote rule. Closing it needs a "never absorb" option in `cleanAndDedupeGeoJSON`, which the index build shares, so it is left for a follow-up. Raw: `docs/identity/after-2.33.0-no-host-file.json`.
 
 Catalogue: 33,370 listings. A "canonical id differs" listing shows under a different id than its index row, and the source-id check is skipped for it. In all 38 recorded examples (up to five per scenario) the shown id is one of that row's own `legacy_ids`, so only the host changed. "Claims differ" means fee status, type or open status differed (for example `ridb:10150488` showed type `other`, index `established`), caused by the other host's own fields. "Missing" means the index listing had no browser listing at all (`usfs:65184`, `usfs:45432`). Raw results: `docs/identity/before-2.31.0.json`, `docs/identity/after-2.33.0.json`.
 

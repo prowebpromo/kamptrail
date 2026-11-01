@@ -1,0 +1,97 @@
+{
+ "checked_at": "2026-11-01T02:16:02.979Z",
+ "index_sites": 33370,
+ "host_map": "missing",
+ "scenarios": {
+  "default": {
+   "order": "AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY",
+   "listings": 33370,
+   "counts": {
+    "canonical": 10,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [
+     {
+      "shown": "osm:node:2304190971",
+      "index": "usfs:6427",
+      "name": "Lower Jones Valley Campground"
+     },
+     {
+      "shown": "osm:node:2333792012",
+      "index": "usfs:65606",
+      "name": "Upper Bluster Campground"
+     },
+     {
+      "shown": "osm:way:335361783",
+      "index": "usfs:20680",
+      "name": "Upper Grays Meadow Campground"
+     },
+     {
+      "shown": "osm:way:975055224",
+      "index": "usfs:45510",
+      "name": "Billy Creek Upper Campground"
+     },
+     {
+      "shown": "osm:way:636944592",
+      "index": "usfs:12476",
+      "name": "Halfmoon West Campground"
+     }
+    ],
+    "source_ids": [],
+    "claims": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  "reversed": {
+   "order": "WY,WI,WV,WA,VA,VT,UT,TX,TN,SD,SC,RI,PA,OR,OK,OH,ND,NC,NY,NM,NJ,NH,NV,NE,MT,MO,MS,MN,MI,MA,MD,ME,LA,KY,KS,IA,IN,IL,ID,HI,GA,FL,DE,CT,CO,CA,AR,AZ,AK,AL",
+   "listings": 33370,
+   "counts": {
+    "canonical": 177,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 1,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [
+     {
+      "shown": "osm:way:368988012",
+      "index": "ridb:234586",
+      "name": "Lake Wedington"
+     },
+     {
+      "shown": "osm:node:4285104560",
+      "index": "ridb:233120",
+      "name": "Ozark Campground"
+     },
+     {
+      "shown": "osm:way:941066426",
+      "index": "ridb:247835",
+      "name": "Daisy State Park"
+     },
+     {
+      "shown": "ridb:233492",
+      "index": "osm:node:5645872378",
+      "name": "Dub Patton Campground"
+     },
+     {
+      "shown": "ridb:261735",
+      "index": "osm:way:160222816",
+      "name": "Stateline Campground"
+     }
+    ],
+    "source_ids": [],
+    "claims": [],
+    "missing": [
+     "usfs:65184"
+    ],
+    "extra": []
+   }
+  }
+ }
+}
