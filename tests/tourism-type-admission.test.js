@@ -1,5 +1,5 @@
 'use strict';
-// Tourism-type-admission candidate (revision 2). Classification comes from the listing's own record or an
+// Tourism-type-admission candidate (revision 3, owner decisions 2026-11-01). Classification comes from the listing's own record or an
 // exact-identity agency record. A different OSM element never classifies a listing, at the snapshot merge,
 // the index build or the browser merge.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
@@ -157,8 +157,35 @@ test('reviewed publication and evidence survive an updated retrieval without inv
   const f=pt({...ridb,id:'ridb:243218',facility_id:'243218',name:'Coleman Lake Recreation Area',source_retrieved_at:'2030-01-10T15:00:00Z',type:'other'});
   const p=DQ.cleanAndDedupeGeoJSON({features:[f]}).features[0].properties;
   assert.equal(p.camping_classification,'published_pending_review');
-  assert.equal(p.type,'other');
+  assert.equal(p.type,'established','owner decision 2026-11-01: the published label is held during review');
+  assert.equal(p.type_evidence.kind,'held_published_label');
   assert.equal(DQ.normalizeFeature(pt({...f.properties,access:'private'})),null);
+});
+test('owner decision 2026-11-01: a proposed withdrawal stays discoverable with its held label and a pending notice',()=>{
+  const row=pt({...ridb,id:'ridb:247835',facility_id:'247835',name:'Daisy State Park',type:null,description:'This recreation area is part of Greeson Lake'});
+  const out=DQ.cleanAndDedupeGeoJSON({features:[row]},{siteDetails:{}}).features;
+  assert.equal(out.length,1);
+  const p=out[0].properties;
+  assert.equal(p.camping_classification,'published_pending_review');
+  assert.equal(p.camping_evidence,'proposed_withdrawal_pending_review');
+  assert.equal(p.type,'established');assert.equal(p.type_evidence.kind,'held_published_label');
+  assert.equal(DQ.isWithdrawnId('ridb:247835'),false);
+  // Re-normalizing (browser state merge) keeps the same outcome.
+  assert.equal(DQ.normalizeFeature(out[0]).properties.camping_evidence,'proposed_withdrawal_pending_review');
+  // A record outside the reviewed set gets no hold.
+  assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt({...row.properties,id:'ridb:9',facility_id:'9'})]},{siteDetails:{}}).features.length,0);
+});
+test('owner decision 2026-11-01: a deferred downgrade keeps its published label',()=>{
+  const p=DQ.normalizeFeature(pt({...ridb,id:'ridb:255262',facility_id:'255262',name:'Wolf Flats Recreation Area',type:'other',tourism:undefined}),{siteDetails:{}}).properties;
+  assert.equal(p.type,'established');
+});
+test('lodging: the reviewed own-record closure notice is kept, and the multi-cabin record is distinguished',()=>{
+  const shaw=pt({...ridb,id:'ridb:233178',facility_id:'233178',name:'SHAW HOUSE',source_retrieved_at:'2026-10-29T02:47:24Z',description:'<p><em>Shaw House is temporarily closed. In April of 2026 ...</em> (09/10/2026)</p>'});
+  const s=DQ.cleanAndDedupeGeoJSON({features:[shaw]},{siteDetails:{'233178':{t:1}}}).features[0].properties;
+  assert.equal(s.type,'lodging');assert.equal(s.own_closure_notice.status,'temporarily closed');assert.equal(s.own_closure_notice.notice_date,'2026-09-10');
+  assert.equal(DQ.normalizeFeature(pt({...shaw.properties,source_retrieved_at:'2030-01-01T00:00:00Z'}),{siteDetails:{'233178':{t:1}}}).properties.own_closure_notice,undefined,'a later retrieval is reviewed afresh');
+  const wm=DQ.normalizeFeature(pt({...ridb,id:'ridb:252494',facility_id:'252494',name:'White Mountains National Recreation Area - Alaska Cabins'}),{siteDetails:{'252494':{t:15}}}).properties;
+  assert.equal(wm.type,'lodging');assert.equal(wm.kt_accommodation,'cabins');assert.equal(wm.ridb_overnight_sites,15);
 });
 test('review dispositions guard every held description and unreviewed website match',()=>{
   const holds=require('../docs/candidates/tourism-type-review.json');

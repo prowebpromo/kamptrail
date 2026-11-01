@@ -47,8 +47,28 @@
     "ridb:255232|Mica Bay Boater Park|2026-10-29T02:57:25Z",
     "ridb:255239|McKay's Bend Recreation Site|2026-10-29T02:57:25Z"
   ]);
-  // Also guard a cold single-state load and identity-host fallback, before the parent state arrives.
-  const WITHDRAWN_IDS = new Set(['ridb:237765', 'ridb:244404', 'usfs:18814', 'ridb:245273', 'usfs:5889', 'ridb:246536', 'usfs:65003', 'ridb:247835', 'osm:way:941066426', 'ridb:247915', 'osm:relation:13942065', 'ridb:247922', 'ridb:248072', 'ridb:248261']);
+  // Owner decision 2026-11-01 (docs/tourism/owner-decisions-2026-11-01.json): the nine proposed withdrawals stay
+  // discoverable with a pending-review notice. None is withdrawn in this build.
+  const PENDING_WITHDRAWAL_REVIEW = new Set(['ridb:237765', 'ridb:244404', 'ridb:245273', 'ridb:246536', 'ridb:247835', 'ridb:247915', 'ridb:247922', 'ridb:248072', 'ridb:248261']);
+  // Owner decision 2026-11-01: deferred type changes keep the label published on main f84a5b4b while the
+  // fresh RIDB records are reviewed. A held label is a review hold, not own-record evidence of the type.
+  const HELD_PUBLISHED_LABELS = new Map([
+    ['ridb:10049041', 'established'], ['ridb:10068990', 'established'], ['ridb:237148', 'established'], ['ridb:237191', 'established'],
+    ['ridb:237765', 'established'], ['ridb:240871', 'established'], ['ridb:240903', 'dispersed'], ['ridb:241301', 'established'],
+    ['ridb:243195', 'established'], ['ridb:243218', 'established'], ['ridb:243219', 'established'], ['ridb:243702', 'established'],
+    ['ridb:244320', 'dispersed'], ['ridb:244321', 'established'], ['ridb:244404', 'dispersed'], ['ridb:245164', 'established'],
+    ['ridb:245165', 'established'], ['ridb:245273', 'established'], ['ridb:246536', 'established'], ['ridb:247835', 'established'],
+    ['ridb:247915', 'established'], ['ridb:247922', 'established'], ['ridb:248072', 'established'], ['ridb:248261', 'established'],
+    ['ridb:249627', 'established'], ['ridb:249642', 'dispersed'], ['ridb:249674', 'established'], ['ridb:249741', 'dispersed'],
+    ['ridb:249752', 'dispersed'], ['ridb:249902', 'established'], ['ridb:255188', 'established'], ['ridb:255232', 'established'],
+    ['ridb:255239', 'established'], ['ridb:255262', 'established'], ['ridb:260547', 'established']
+  ]);
+  // A closure notice in the facility's own record, pinned to its reviewed retrieval and exact wording.
+  const REVIEWED_CLOSURES = new Map([
+    ['ridb:233178', {retrieved_at:'2026-10-29T02:47:24Z', excerpt:'Shaw House is temporarily closed.', status:'temporarily closed', notice_date:'2026-09-10'}]
+  ]);
+  // Withdrawn from discovery (none in this build). Also guards a cold single-state load and identity-host fallback.
+  const WITHDRAWN_IDS = new Set([]);
   const isWithdrawnId = id => WITHDRAWN_IDS.has(String(id));
   // These two canonical hosts began qualifying on their own higher-precision point in this
   // candidate. Preserve the published point used by saved links and exact-key elevation.
@@ -243,6 +263,9 @@
       } else if (PENDING_ADMISSION.has(raw.id) || REVIEWED_CAMPING.has(raw.id)) {
         classification.camping_classification = 'published_pending_review';
         classification.camping_evidence = 'previously_published_pending_adjudication';
+      } else if (PENDING_WITHDRAWAL_REVIEW.has(raw.id) && classification.camping_classification !== 'campsite') {
+        classification.camping_classification = 'published_pending_review';
+        classification.camping_evidence = 'proposed_withdrawal_pending_review';
       }
     }
     // A held inherited restriction blocks admission until identity review. It
@@ -320,10 +343,18 @@
         field:'BLM layer 8 camping_activity',value:raw.camping_activity,retrieved_at:null};
     }
     // Existing admission and own confirmed overnight camping do not determine the campsite type.
-    if (['reviewed_own_facility_record','previously_published_pending_adjudication'].includes(p.camping_evidence)) {
+    const held = HELD_PUBLISHED_LABELS.get(p.id);
+    if (held && !classification.kt_accommodation) {
+      p.type = held;
+      p.type_evidence = {kind:'held_published_label', value:held, published_on:'f84a5b4b', decision:'owner 2026-11-01: keep the current label while the fresh record is reviewed', review:'pending'};
+    } else if (['reviewed_own_facility_record','previously_published_pending_adjudication','proposed_withdrawal_pending_review'].includes(p.camping_evidence)) {
       p.type = 'other';
       p.type_evidence = null;
     }
+    const closure = raw.source === 'recreation.gov' ? REVIEWED_CLOSURES.get(raw.id) : null;
+    if (closure && raw.source_retrieved_at === closure.retrieved_at && String(raw.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').includes(closure.excerpt)) {
+      p.own_closure_notice = {status:closure.status, notice_date:closure.notice_date, excerpt:closure.excerpt, source_record_id:raw.id, retrieved_at:closure.retrieved_at};
+    } else if (raw.source === 'recreation.gov') delete p.own_closure_notice;
     delete p.camping_name_text; delete p.camping_intro_text;
     const aliases = {toilets:'toilet', restrooms:'toilet', drinking_water:'water', potable_water:'water', fire_rings:'fire_ring', picnic_tables:'picnic_table', sanitary_dump_station:'dump', waste_disposal:'dump'};
     // Amenity ownership (R8). Tags count only on the listing's own OSM element.

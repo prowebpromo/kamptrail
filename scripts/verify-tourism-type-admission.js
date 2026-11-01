@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// Tourism-type-admission candidate check (revision 2). Compares this checkout with an unchanged baseline checkout.
+// Tourism-type-admission candidate check (revision 3, owner decisions 2026-11-01). Compares this checkout with an unchanged baseline checkout.
 // Every listing difference must be a change listed in docs/candidates/tourism-type-admission.json (records[].changes,
 // each flagged separate_review). Snapshot rows may only lose inherited tourism to attributed member evidence, drop a
 // lent type, or mark a copied description. Anything else fails (exit code 1). It also rebuilds the search index in
@@ -97,12 +97,15 @@ const review=read(path.join(root,'docs/candidates/tourism-independent-source-rev
 const types=read(path.join(root,'docs/candidates/tourism-type-review.json'));
 for(const [id,r] of Object.entries(review)){
   const type=A.get(id)?.m.t;
+  // Owner decisions 2026-11-01: no withdrawal in this build, and every proposed withdrawal or Other keeps its baseline label.
   if(r.proposal==='discovery withdrawal'){
-    if(r.evidence_result==='insufficient_in_retained_row'){if(type!==undefined||!wIds.has(id))fail('missing_reviewed_withdrawal',id);}
-    else if(type!=='other')fail('reviewed_or_pending_admission',id,{type});
+    if(type===undefined||wIds.has(id))fail('owner_decision_withdrawal_not_held',id);
+    else if(type!==B.get(id).m.t)fail('owner_decision_label_not_held',id,{type,baseline:B.get(id).m.t});
   } else if(r.evidence_result.startsWith('lodging_supported')){if(type!=='lodging')fail('reviewed_lodging',id,{type});}
   else if(type!==B.get(id).m.t)fail('lodging_conflict_not_held',id,{type});
 }
+for(const [id,r] of Object.entries(types))if(r.decision==='review_previous_campground'&&A.get(id)?.m.t!==B.get(id)?.m.t)fail('owner_decision_label_not_held',id);
+for(const [id,r] of Object.entries(types))if(r.decision==='review_name_supported_upgrade'&&(B.get(id)?.m.t!=='other'||!['established','dispersed'].includes(A.get(id)?.m.t)))fail('owner_decision_upgrade_not_applied',id);
 for(const [id,r] of Object.entries(types))if(r.decision==='hold_current_other' && (A.get(id)?.m.t!=='other'||B.get(id)?.m.t!=='other'))fail('description_only_upgrade',id);
 // 5. Access holds and per-row access, fees and coordinates in the normalized catalogue.
 const holds={before:0,after:0};

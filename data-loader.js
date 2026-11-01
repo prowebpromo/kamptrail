@@ -417,7 +417,9 @@
   function popup(site) {
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
-    const closure=['closed','temporarily closed'].includes(status)?status:null;
+    // A reviewed dated closure notice in the facility's own record outranks a member's open status (owner decision 2026-11-01).
+    const ownClosure=p.own_closure_notice&&['closed','temporarily closed'].includes(p.own_closure_notice.status)?p.own_closure_notice:null;
+    const closure=ownClosure?ownClosure.status:['closed','temporarily closed'].includes(status)?status:null;
     // Rig and amenity provenance debt (2.34.0): operator and website may be inherited from a merged record and are
     // not yet guarded. The popup never shows operator. source_url is normalized from the listing's own record and is
     // set for every published listing, so the inherited website below is never reached. tests/rig-ownership.test.js pins this.
@@ -426,7 +428,7 @@
     const layout=popupLayout();
     return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
-      ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
+      ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${ownClosure?.notice_date?t(" Notice dated {0}.", {"0":(esc(ownClosure.notice_date))}):''}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
       <div><strong>${t("Cost:")}</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||t("Source"))}${p.fee_checked?t(", imported {0}", {"0":(esc(p.fee_checked))}):''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
       ${p.fee_status==='free'||p.fee_status==='conditional'?`<div class="kt-fine">${t("This is the camping fee only. Entrance fees, passes, permits, or reservation charges may still apply.")}</div>`:''}
@@ -436,7 +438,9 @@
       ${p.stay_limit?`<div><strong>${t("Stay limit:")}</strong> ${esc(p.stay_limit)}</div>`:''}
       ${p.reservable?`<div class="kt-fine">${t("Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.")}</div>`:''}
       <div><strong>${t("Type:")}</strong> ${esc(uiLabel('type',p.type))}</div>
-      ${p.camping_classification==='published_pending_review'?'<p class="kt-fine">'+esc(t("This previously listed location is under review. Its record does not establish the camping type at this point."))+'</p>':''}
+      ${p.type==='lodging'&&p.kt_accommodation==='cabins'&&p.ridb_overnight_sites>1?'<p class="kt-fine kt-multi-cabin">'+esc(t("This one listing covers {0} cabins in the facility’s Recreation.gov record. The map point does not locate a particular cabin.", {"0":String(p.ridb_overnight_sites)}))+'</p>':''}
+      ${p.camping_evidence==='proposed_withdrawal_pending_review'?'<p class="kt-fine kt-pending-withdrawal">'+esc(t("This location is under review for removal from campsite search. Its own record does not establish camping. It stays listed until the review is decided."))+'</p>':p.camping_classification==='published_pending_review'?'<p class="kt-fine">'+esc(t("This previously listed location is under review. Its record does not establish the camping type at this point."))+'</p>':''}
+      ${p.type_evidence?.kind==='held_published_label'?'<p class="kt-fine kt-held-label">'+esc(t("The type shown is the label published before this review."))+'</p>':''}
       ${p.camping_evidence==='reviewed_own_facility_record'?'<p class="kt-fine">'+esc(t("Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified."))+'</p>':''}
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
