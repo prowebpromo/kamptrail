@@ -154,3 +154,46 @@ test('sidecar evidence that arrives after states load gives the same listings as
   assert.deepEqual(snapshot(late,want),snapshot(early,want));
   expectIndex(late,want);
 });
+
+// Partial loads (2.35.0): with the published hosts, a record joins a listing only when both have the same
+// index owner. A record whose host has not loaded yet stays its own marker and never borrows another owner.
+const pt=(id,name,lon,lat,extra={})=>({type:'Feature',geometry:{type:'Point',coordinates:[lon,lat]},properties:{id,name,type:'established',camping_activity:true,...extra}});
+test('owner-only joins: same-name records of different index owners stay apart, same owner joins, the index build is unchanged',()=>{
+  const hosts={version:1,index_sites:3,index_sha256:'0'.repeat(64),hosts:{'osm:way:1':['ridb:2']}};
+  const base=DQ.identityOptions(hosts),browser={...base,ownerOnly:true};
+  // usfs:3 is its own index listing; ridb:2 belongs to osm:way:1, whose record has not loaded.
+  const partial=[pt('usfs:3','Bird Creek Campground',-114.6545,39.4636),pt('ridb:2','Bird Creek Campground',-114.6530,39.4633)];
+  const shown=DQ.cleanAndDedupeGeoJSON({features:partial},browser).features.map(f=>[f.properties.id,f.properties.legacy_ids.filter(x=>x!==f.properties.id)]);
+  assert.deepEqual(shown,[['usfs:3',[]],['ridb:2',[]]]);
+  // Without ownerOnly (the index build path) the shared function still makes its proximity merge.
+  assert.equal(DQ.cleanAndDedupeGeoJSON({features:partial},base).features.length,1);
+  // The host arrives: its own alias joins it, the other owner stays separate, in either input order.
+  for(const input of [[...partial,pt('osm:way:1','Bird Creek Campground',-114.6543,39.4633)],[pt('osm:way:1','Bird Creek Campground',-114.6543,39.4633),...partial]]){
+    const got=DQ.cleanAndDedupeGeoJSON({features:input},browser).features.map(f=>[f.properties.id,[...new Set(f.properties.legacy_ids)].filter(x=>x!==f.properties.id).sort()]).sort();
+    assert.deepEqual(got,[['osm:way:1',['ridb:2']],['usfs:3',[]]]);
+  }
+  // The same record in two state files still joins by its id.
+  assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt('usfs:3','A',-100,40),pt('usfs:3','A',-100,40)]},browser).features.length,1);
+});
+
+test('Bird Creek Campground: NV alone keeps usfs:65184 and the OSM/RIDB listing apart; both orders converge',async()=>{
+  const owners=s=>new Set([s.properties.id,...(s.properties.legacy_ids||[])].map(id=>owner.get(id)));
+  for(const order of [['NV','CA'],['CA','NV']]){
+    const h=harness();await h.api.init(h.map);
+    for(const [i,code] of order.entries()){
+      await h.api.loadStates([code]);
+      if(code==='NV'){
+        const usfs=h.api.getCampsiteById('usfs:65184');
+        assert.equal(usfs.properties.id,'usfs:65184',`${order}: usfs:65184 resolves to itself after ${code}`);
+        assert.deepEqual([...owners(usfs)],['usfs:65184'],`${order}: usfs:65184 holds no other owner's record`);
+        const other=h.api.getCampsiteById('osm:way:1236741631');
+        assert.ok(other&&other!==usfs,`${order}: the OSM/RIDB listing is a separate listing`);
+        assert.deepEqual([...owners(other)],['osm:way:1236741631']);
+      }
+      // Every loaded listing holds records of one index owner only, at every checkpoint.
+      for(const f of h.api.getAllCampsites())assert.equal(owners(f).size,1,`${order} after ${code}: ${f.properties.id} holds one index owner`);
+    }
+    expectIndex(h,['usfs:65184','osm:way:1236741631']);
+    assert.equal(h.api.getCampsiteById('ridb:234209').properties.id,'osm:way:1236741631');
+  }
+});

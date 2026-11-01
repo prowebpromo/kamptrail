@@ -183,7 +183,7 @@
   let identityTask=null,identityTried=0,identityTimer=null;
   async function loadIdentityHosts(){
     identityTried=Date.now();
-    try{const data=await fetchJSON('data/campsites/identity-hosts.json');if(!DataQuality.validIdentityHosts(data))throw new Error('Invalid identity hosts');identity={...DataQuality.identityOptions(data),aliases:data.hosts};}
+    try{const data=await fetchJSON('data/campsites/identity-hosts.json');if(!DataQuality.validIdentityHosts(data))throw new Error('Invalid identity hosts');identity={...DataQuality.identityOptions(data),ownerOnly:true,aliases:data.hosts};}
     catch(err){console.warn('Listing identity hosts unavailable; nearby records stay separate until they load.',err.message);}
     finally{identityTask=null;}
     if(identity){
