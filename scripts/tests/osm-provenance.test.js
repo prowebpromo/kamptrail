@@ -22,7 +22,13 @@ for(const f of fixtures.filter(f=>f.kind!=='synthetic_index_layer'))test('Claude
  assert.deepEqual(p.access_hold||null,f.expected.access_hold);
  // 2.31.0 also retains amenity tags, and 2.34.0 rig-suitability tags, on their member element. These fixtures pin the fee and access part.
  const feeAccess=k=>/(^|:)(fee|charge)(:|$)/.test(k)||/^access(:|$)/.test(k),pick=o=>Object.fromEntries(Object.entries(o).filter(([k])=>feeAccess(k)));
- assert.deepEqual((p.member_evidence||[]).map(e=>({source_record_id:e.source_record_id,fields:pick(e.fields),retrieved_at:e.retrieved_at})).filter(e=>Object.keys(e.fields).length),f.expected.member_evidence);
+ // A member's retrieval date belongs to its own source element and moves with each refresh of that element.
+ // Pin ownership (the date equals the donor element's own retrieval date), not a calendar date.
+ const own=id=>(inputs.find(i=>i.properties.id===id)||{}).properties?.source_retrieved_at;
+ const evidence=(p.member_evidence||[]).map(e=>({source_record_id:e.source_record_id,fields:pick(e.fields),retrieved_at:e.retrieved_at})).filter(e=>Object.keys(e.fields).length);
+ for(const e of evidence){assert.ok(e.retrieved_at,e.source_record_id+' retrieval date');if(!f.synthetic)assert.equal(e.retrieved_at,own(e.source_record_id),e.source_record_id+' retrieval date is its own element\'s');}
+ const withoutDate=list=>list.map(({retrieved_at,...rest})=>rest);
+ assert.deepEqual(withoutDate(evidence),withoutDate(f.expected.member_evidence));
  for(const e of p.member_evidence||[])for(const [k,v] of Object.entries(e.fields))if(!feeAccess(k)){assert.ok(DQ.OSM_AMENITY_TAG.test(k)||DQ.OSM_RIG_TAG.test(k),k);const donor=inputs.find(i=>i.properties.id===e.source_record_id);assert.equal(String(donor.properties[k]),String(v),e.source_record_id+' '+k);}
  const n=DQ.normalizeFeature(kept);
  if(f.expected.normalized.rejected)assert.equal(n,null);

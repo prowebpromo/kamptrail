@@ -201,6 +201,23 @@ class WorkflowSafetyTests(unittest.TestCase):
         self.assertIn('    branches: [main]', release)
         self.assertNotIn('download-artifact', release)
 
+    def test_scheduled_refresh_is_tested_before_it_commits(self):
+        # A push by this workflow does not trigger the test workflow. The refreshed tree must pass
+        # npm test and the Python suite in the same job, before the commit step, or nothing lands.
+        text = OWNER.read_text()
+        job = text[text.index('\n  fetch-data:'):text.index('\n  agencies:')]
+        verify = job.index('- name: Verify the refreshed tree before committing')
+        commit = job.index('- name: Commit successful source and snapshot updates')
+        self.assertLess(verify, commit)
+        step = job[verify:job.index('- name:', verify + 1)]
+        self.assertIn('npm test', step)
+        self.assertIn("python -m unittest discover -s scripts/tests -p 'test_*.py'", step)
+        self.assertIn('set -euo pipefail', step)
+        self.assertNotIn('continue-on-error', step)
+        commit_step = job[commit:]
+        self.assertNotRegex(commit_step.split('\n      - ')[0], r'if:\s*\$\{\{\s*always\(\)')
+        self.assertIn('setup-php', job[:verify])
+
     def test_exactly_one_data_schedule(self):
         scheduled = [file.name for file in WORKFLOWS.glob('fetch-*.yml')
                      if re.search(r'^  schedule:', file.read_text(), re.M)]

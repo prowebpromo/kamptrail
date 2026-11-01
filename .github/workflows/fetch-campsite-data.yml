@@ -266,6 +266,32 @@ jobs:
               node scripts/record_health.js record rest_areas "$region" failed
             fi
           done
+      # A push from this workflow does not trigger the test workflow, so the refreshed tree is tested
+      # here. If anything fails, nothing is committed and the refreshed data is kept as an artifact.
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, gd, mbstring, fileinfo, exif, curl, zlib
+      - name: Verify the refreshed tree before committing
+        id: verify_refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          pip install -r requirements.txt pyyaml
+          npm test
+          python -m unittest discover -s scripts/tests -p 'test_*.py'
+      - name: Keep refreshed data for review when verification fails
+        if: ${{ failure() && steps.verify_refresh.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: unverified-refresh-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            data/campsites
+            data/opencampingmap
+            data/sources
+            data/rest-areas
+          retention-days: 14
       - name: Commit successful source and snapshot updates
         shell: bash
         run: |
