@@ -94,8 +94,15 @@ for(const [id,b] of CB){const n=CN.get(id);if(!n)continue;
   if(JSON.stringify(b.geometry)!==JSON.stringify(n.geometry)&&!listed(id,'coordinates'))fail('catalogue_coordinates_not_listed',id);}
 if(CN.size!==A.size)fail('catalogue_differs_from_index','catalogue',{catalogue:CN.size,index:A.size});
 // 6. Determinism: the committed index rebuilds byte for byte.
+// The build seeds identity from the released index (baseline), exactly as scripts/tourism-type-admission/rebuild.sh does.
 const {buildFromDirectory,coordinateIndex}=require('./build-search-index');
-const rebuilt=JSON.stringify(buildFromDirectory(path.join(root,'data/campsites')))+'\n';
+const seedDir=fs.mkdtempSync(path.join(require('node:os').tmpdir(),'tta-seed-'));
+for(const n of fs.readdirSync(path.join(root,'data/campsites')))if(/^[A-Z]{2}_merged\.geojson$|^(ridb-sites|ridb-amenities|usfs-site-amenities)\.json$/.test(n))fs.symlinkSync(path.join(root,'data/campsites',n),path.join(seedDir,n));
+fs.symlinkSync(path.join(root,'data/campsites/agency'),path.join(seedDir,'agency'));
+if(fs.existsSync(path.join(root,'data/campsites/elevation')))fs.symlinkSync(path.join(root,'data/campsites/elevation'),path.join(seedDir,'elevation'));
+fs.copyFileSync(path.join(baseline,'data/campsites/search-index.json'),path.join(seedDir,'search-index.json'));
+const rebuilt=JSON.stringify(buildFromDirectory(seedDir))+'\n';
+fs.rmSync(seedDir,{recursive:true,force:true});
 if(rebuilt!==fs.readFileSync(path.join(root,'data/campsites/search-index.json'),'utf8'))fail('index_not_reproducible','search-index.json');
 if(JSON.stringify(coordinateIndex(ia.sites))+'\n'!==fs.readFileSync(path.join(root,'data/campsites/coordinate-index.json'),'utf8'))fail('coordinate_index','coordinate-index.json');
 const report={baseline_commit:require('node:child_process').execFileSync('git',['rev-parse','HEAD'],{cwd:baseline,encoding:'utf8'}).trim(),
