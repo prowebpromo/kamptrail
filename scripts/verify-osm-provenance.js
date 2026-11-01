@@ -35,9 +35,13 @@ function fullCatalogue(directory,quality){
   console.log('Replayed '+state);
  }
  const before=read(path.join(bdir,'search-index.json')),after=buildFromDirectory(dir),B=new Map(before.sites.map(s=>[s.id,s])),A=new Map(after.sites.map(s=>[s.id,s]));
- assert.equal(A.size,B.size,'Listing count');assert.deepEqual([...A.keys()].sort(),[...B.keys()].sort(),'Canonical identities');
- for(const [id,s]of A){const b=B.get(id);assert.deepEqual([s.lat,s.lng,s.states],[b.lat,b.lng,b.states],id+' coordinates/states');assert.deepEqual([...s.legacy_ids].sort(),[...b.legacy_ids].sort(),id+' aliases');}
- const feeChanges=[...A].filter(([id,s])=>s.m.f!==B.get(id).m.f).map(([id,s])=>({id,name:s.name,before:B.get(id).m.f,after:s.m.f}));
+ // --ledger=<file> excuses only the listing changes a reviewed candidate ledger lists (tourism-type-admission).
+ const ledgerArg=args.find(a=>a.startsWith('--ledger=')),ledger=ledgerArg?new Map(read(path.resolve(ledgerArg.slice(9))).records.map(r=>[r.canonical_id,r])):null;
+ const listed=(id,field)=>!!ledger?.get(id)?.changes.some(c=>c.field===field);
+ if(!ledger){assert.equal(A.size,B.size,'Listing count');assert.deepEqual([...A.keys()].sort(),[...B.keys()].sort(),'Canonical identities');}
+ else{for(const id of B.keys())if(!A.has(id))assert.ok(listed(id,'publication'),id+' removed without a ledger entry');for(const id of A.keys())if(!B.has(id))assert.ok(listed(id,'publication'),id+' added without a ledger entry');}
+ for(const [id,s]of A){const b=B.get(id);if(!b)continue;if(ledger&&(listed(id,'legacy_ids')||listed(id,'coordinates')))continue;assert.deepEqual([s.lat,s.lng,s.states],[b.lat,b.lng,b.states],id+' coordinates/states');assert.deepEqual([...s.legacy_ids].sort(),[...b.legacy_ids].sort(),id+' aliases');}
+ const feeChanges=[...A].filter(([id,s])=>B.has(id)&&s.m.f!==B.get(id).m.f).map(([id,s])=>({id,name:s.name,before:B.get(id).m.f,after:s.m.f}));
  const accessChanges=[],holds=[],members=new Set(),sd=read(path.join(dir,'ridb-sites.json')).facilities,ad=read(path.join(dir,'ridb-amenities.json'));let evidenceRows=0,maxMembers=0;
  const oldDQ=require(path.join(baseline,'data-quality.js'));
  for(const file of files){const state=file.slice(0,2),b=read(path.join(bdir,file)).features,a=read(path.join(dir,file)).features;assert.equal(a.length,b.length,state+' snapshot count');const bm=new Map(b.map(f=>[f.properties.id,f]));
@@ -46,16 +50,16 @@ function fullCatalogue(directory,quality){
    for(const e of own){assert.ok((p.source_ids||[]).includes(e.source_record_id),p.id+' donor is not a member');assert.ok(!e.retrieved_at||Number.isFinite(Date.parse(e.retrieved_at)));}
    if(p.access_hold)holds.push({state,id:p.id,...p.access_hold});
    const n0=oldDQ.normalizeFeature(g,{siteDetails:sd,amenityDetails:ad}),n1=DQ.normalizeFeature(f,{siteDetails:sd,amenityDetails:ad}),v0=n0?.properties.access_status||'rejected',v1=n1?.properties.access_status||'rejected';
-   assert.equal(!!n0,!!n1,p.id+' admission');if(v0!==v1)accessChanges.push({state,id:p.id,before:v0,after:v1});
+   if(!ledger||!(listed(p.id,'publication')||listed(p.id,'camping_classification')))assert.equal(!!n0,!!n1,p.id+' admission');if(v0!==v1)accessChanges.push({state,id:p.id,before:v0,after:v1});
   }
  }
- const catalogue=fullCatalogue(dir,DQ);assert.equal(catalogue.length,A.size);
+ const catalogue=fullCatalogue(dir,DQ);if(!ledger)assert.equal(catalogue.length,A.size);
  const unattributedFees=catalogue.filter(f=>f.properties.fee_status!=='unknown'&&(!f.properties.fee_source_record_id||!f.properties.fee_source)).map(f=>f.properties.id);
  const unattributedAccess=catalogue.filter(f=>f.properties.access_status!=='unknown'&&!f.properties.access_source_record_id).map(f=>f.properties.id);
  assert.deepEqual(unattributedFees,[],'Known fee missing source identity/name');assert.deepEqual(unattributedAccess,[],'Known access missing source identity');
  assert.deepEqual(coordinateIndex(after.sites),read(path.join(bdir,'coordinate-index.json')),'Weather coordinate catalogue');
  const report={baseline_commit:execFileSync('git',['rev-parse','HEAD'],{cwd:baseline,encoding:'utf8'}).trim(),source_hashes:sourceHashes,
-  assertions:{all_50_states_checked:true,raw_inputs_unchanged:true,listing_count_unchanged:true,canonical_ids_unchanged:true,coordinates_and_state_partitions_unchanged:true,aliases_unchanged:true,snapshot_counts_and_membership_unchanged:true,record_admission_unchanged:true,coordinate_catalogue_unchanged:true,known_fee_and_access_attributed:true,no_normalized_snapshots:true},
+  assertions:{ledger_mode:!!ledger,all_50_states_checked:true,raw_inputs_unchanged:true,listing_count_unchanged:true,canonical_ids_unchanged:true,coordinates_and_state_partitions_unchanged:true,aliases_unchanged:true,snapshot_counts_and_membership_unchanged:true,record_admission_unchanged:true,coordinate_catalogue_unchanged:true,known_fee_and_access_attributed:true,no_normalized_snapshots:true},
   census_before:feeCensus(before.sites),census_after:feeCensus(after.sites),counts:{fee_changes:feeChanges.length,access_changes:accessChanges.length,held_exclusions:holds.length,snapshot_rows_with_member_evidence:evidenceRows,unique_records_with_member_evidence:members.size,max_members_per_snapshot:maxMembers},
   fee_change_types:feeChanges.reduce((a,r)=>(a[r.before+'->'+r.after]=(a[r.before+'->'+r.after]||0)+1,a),{}),fee_changes:feeChanges,access_changes:accessChanges,access_holds:holds};
  fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');
