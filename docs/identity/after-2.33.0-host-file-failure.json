@@ -1,0 +1,207 @@
+{
+ "checked_at": "2026-11-01T03:37:49.140Z",
+ "index_sites": 33370,
+ "host_map": "served",
+ "scenarios": {
+  "fail:missing:reversed": {
+   "order": "WY,WI,WV,WA,VA,VT,UT,TX,TN,SD,SC,RI,PA,OR,OK,OH,ND,NC,NY,NM,NJ,NH,NV,NE,MT,MO,MS,MN,MI,MA,MD,ME,LA,KY,KS,IA,IN,IL,ID,HI,GA,FL,DE,CT,CO,CA,AR,AZ,AK,AL",
+   "host_file": "missing",
+   "fallback": {
+    "host_status_during_load": "fallback",
+    "listings_shown": 35959,
+    "ids_shown": 35959,
+    "wrong_merges": 0,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 2490
+   },
+   "reconcile": {
+    "host_status": "published",
+    "shown_ids_checked": 35959,
+    "shown_ids_resolving_elsewhere": 0,
+    "examples": []
+   },
+   "after_reconcile": {
+    "listings": 33370,
+    "counts": {
+     "canonical": 0,
+     "source_ids": 0,
+     "claims": 0,
+     "missing": 0,
+     "extra": 0
+    },
+    "examples": {
+     "canonical": [],
+     "source_ids": [],
+     "claims": [],
+     "missing": [],
+     "extra": []
+    }
+   }
+  },
+  "fail:missing:seed:1": {
+   "order": "TN,NH,MS,MT,ND,WA,SD,VT,OR,FL,NV,SC,ME,NC,OH,LA,RI,IA,MA,NM,AL,OK,NY,KS,PA,MO,HI,WI,MD,MN,UT,KY,CO,AK,ID,AR,VA,TX,DE,CT,AZ,WV,IN,GA,CA,WY,MI,IL,NE,NJ",
+   "host_file": "missing",
+   "fallback": {
+    "host_status_during_load": "fallback",
+    "listings_shown": 35959,
+    "ids_shown": 35959,
+    "wrong_merges": 0,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 2490
+   },
+   "reconcile": {
+    "host_status": "published",
+    "shown_ids_checked": 35959,
+    "shown_ids_resolving_elsewhere": 0,
+    "examples": []
+   },
+   "after_reconcile": {
+    "listings": 33370,
+    "counts": {
+     "canonical": 0,
+     "source_ids": 0,
+     "claims": 0,
+     "missing": 0,
+     "extra": 0
+    },
+    "examples": {
+     "canonical": [],
+     "source_ids": [],
+     "claims": [],
+     "missing": [],
+     "extra": []
+    }
+   }
+  },
+  "fail:timeout:seed:2": {
+   "order": "OH,CT,NY,NV,VA,IL,MD,ID,PA,VT,SD,ME,OR,GA,IA,HI,AR,NM,MI,WI,WY,NE,NC,WV,DE,KY,TN,MO,WA,KS,MA,OK,NH,FL,AK,TX,NJ,LA,MS,CA,AZ,UT,IN,AL,MN,CO,MT,ND,SC,RI",
+   "host_file": "timeout",
+   "fallback": {
+    "host_status_during_load": "fallback",
+    "listings_shown": 35959,
+    "ids_shown": 35959,
+    "wrong_merges": 0,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 2490
+   },
+   "reconcile": {
+    "host_status": "published",
+    "shown_ids_checked": 35959,
+    "shown_ids_resolving_elsewhere": 0,
+    "examples": []
+   },
+   "after_reconcile": {
+    "listings": 33370,
+    "counts": {
+     "canonical": 0,
+     "source_ids": 0,
+     "claims": 0,
+     "missing": 0,
+     "extra": 0
+    },
+    "examples": {
+     "canonical": [],
+     "source_ids": [],
+     "claims": [],
+     "missing": [],
+     "extra": []
+    }
+   }
+  },
+  "fail:corrupt:seed:3": {
+   "order": "FL,NY,MO,PA,OK,AL,NV,SC,WI,OH,ND,NJ,TN,NM,MI,ME,AK,CT,MD,LA,NH,VT,VA,WA,TX,NE,RI,NC,GA,KS,KY,OR,HI,IA,CO,MS,MT,AR,MN,DE,WY,SD,IN,IL,AZ,CA,UT,MA,ID,WV",
+   "host_file": "corrupt",
+   "fallback": {
+    "host_status_during_load": "fallback",
+    "listings_shown": 35959,
+    "ids_shown": 35959,
+    "wrong_merges": 0,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 2490
+   },
+   "reconcile": {
+    "host_status": "published",
+    "shown_ids_checked": 35959,
+    "shown_ids_resolving_elsewhere": 0,
+    "examples": []
+   },
+   "after_reconcile": {
+    "listings": 33370,
+    "counts": {
+     "canonical": 0,
+     "source_ids": 0,
+     "claims": 0,
+     "missing": 0,
+     "extra": 0
+    },
+    "examples": {
+     "canonical": [],
+     "source_ids": [],
+     "claims": [],
+     "missing": [],
+     "extra": []
+    }
+   }
+  },
+  "fail:missing:default": {
+   "order": "AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY",
+   "host_file": "missing",
+   "fallback": {
+    "host_status_during_load": "fallback",
+    "listings_shown": 35959,
+    "ids_shown": 35959,
+    "wrong_merges": 0,
+    "flips": 0,
+    "unknown_record_ids": 0,
+    "examples": {
+     "wrong": [],
+     "flips": []
+    },
+    "index_listings_with_duplicate_markers": 2490
+   },
+   "reconcile": {
+    "host_status": "published",
+    "shown_ids_checked": 35959,
+    "shown_ids_resolving_elsewhere": 0,
+    "examples": []
+   },
+   "after_reconcile": {
+    "listings": 33370,
+    "counts": {
+     "canonical": 0,
+     "source_ids": 0,
+     "claims": 0,
+     "missing": 0,
+     "extra": 0
+    },
+    "examples": {
+     "canonical": [],
+     "source_ids": [],
+     "claims": [],
+     "missing": [],
+     "extra": []
+    }
+   }
+  }
+ }
+}

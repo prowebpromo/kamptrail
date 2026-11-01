@@ -596,6 +596,115 @@
      }
     }
    ]
+  },
+  "seed:3": {
+   "order": "FL,NY,MO,PA,OK,AL,NV,SC,WI,OH,ND,NJ,TN,NM,MI,ME,AK,CT,MD,LA,NH,VT,VA,WA,TX,NE,RI,NC,GA,KS,KY,OR,HI,IA,CO,MS,MT,AR,MN,DE,WY,SD,IN,IL,AZ,CA,UT,MA,ID,WV",
+   "listings": 33370,
+   "counts": {
+    "canonical": 141,
+    "source_ids": 0,
+    "claims": 6,
+    "missing": 2,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [
+     {
+      "shown": "ridb:234715",
+      "index": "osm:way:988355889",
+      "name": "CAMP GATEWAY - STATEN ISLAND"
+     },
+     {
+      "shown": "ridb:232604",
+      "index": "osm:node:12546710572",
+      "name": "HIGHWAY K"
+     },
+     {
+      "shown": "osm:node:4285104560",
+      "index": "ridb:233120",
+      "name": "Ozark Campground"
+     },
+     {
+      "shown": "osm:way:368988012",
+      "index": "ridb:234586",
+      "name": "Lake Wedington"
+     },
+     {
+      "shown": "ridb:234209",
+      "index": "osm:way:1236741631",
+      "name": "Bird Creek Campground"
+     }
+    ],
+    "source_ids": [],
+    "claims": [
+     {
+      "id": "ridb:10023205",
+      "shown": {
+       "f": "free",
+       "t": "other",
+       "o": "closed"
+      },
+      "index": {
+       "f": "free",
+       "t": "established",
+       "o": "closed"
+      }
+     },
+     {
+      "id": "ridb:249858",
+      "shown": {
+       "f": "paid",
+       "t": "established",
+       "o": "open"
+      },
+      "index": {
+       "f": "paid",
+       "t": "other",
+       "o": "open"
+      }
+     },
+     {
+      "id": "ridb:10074574",
+      "shown": {
+       "f": "paid",
+       "t": "other"
+      },
+      "index": {
+       "f": "paid",
+       "t": "established"
+      }
+     },
+     {
+      "id": "ridb:10069654",
+      "shown": {
+       "f": "paid",
+       "t": "other",
+       "o": "open"
+      },
+      "index": {
+       "f": "paid",
+       "t": "established",
+       "o": "open"
+      }
+     },
+     {
+      "id": "ridb:237803",
+      "shown": {
+       "f": "paid",
+       "t": "established"
+      },
+      "index": {
+       "f": "paid",
+       "t": "other"
+      }
+     }
+    ],
+    "missing": [
+     "usfs:65184",
+     "usfs:45432"
+    ],
+    "extra": []
+   }
   }
  },
  "code": "2.31.0 (main 358e07e2)"
