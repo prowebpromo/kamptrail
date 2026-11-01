@@ -18,7 +18,16 @@ Branch `fix/deterministic-browser-identity`, from main `358e07e2` (2.31.0). Kept
 
 Script: `node scripts/check-browser-identity.js` (runs the real `data-loader.js` in a VM, one state per load call). Pairs scenario: for each of the 127 distinct state sets of multi-state listings, load those states one at a time in both orders and check only those listings.
 
-Results are filled in below once measured.
+| Scenario | 2.31.0 canonical id differs | source-id set differs | claims differ | missing | 2.33.0 (all columns) |
+|---|---|---|---|---|---|
+| (a) all 50 states, default order | 10 | 0 | 0 | 0 | 0 |
+| (b) reversed order | 178 | 0 | 6 | 2 | 0 |
+| random order, seed 1 | 142 | 0 | 3 | 2 | 0 |
+| random order, seed 2 | 62 | 0 | 3 | 2 | 0 |
+| random order, seed 3 | not run on 2.31.0 | | | | 0 |
+| (c) each multi-state listing's states one at a time, both orders (127 state sets, 254 runs, 18,676 listing checks) | 174 | 0 | 6 | 0 | 0 |
+
+Catalogue: 33,370 listings. A "canonical id differs" listing shows under a published alias of its index listing. In every one of those cases the shown id is also in its index row's `legacy_ids`, so the source-id set as a set was the same and only the host changed. "Claims differ" means fee status, type or open status differed (for example `ridb:10150488` showed type `other`, index `established`), caused by the other host's own fields. "Missing" means the index listing had no browser listing at all (`usfs:65184`, `usfs:45432`). Raw results: `docs/identity/before-2.31.0.json`, `docs/identity/after-2.33.0.json`.
 
 ## Approach
 

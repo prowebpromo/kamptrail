@@ -1,0 +1,111 @@
+{
+ "checked_at": "2026-11-01T01:35:18.113Z",
+ "index_sites": 33370,
+ "host_map": "served",
+ "scenarios": {
+  "default": {
+   "order": "AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY",
+   "listings": 33370,
+   "counts": {
+    "canonical": 0,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [],
+    "source_ids": [],
+    "claims": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  "reversed": {
+   "order": "WY,WI,WV,WA,VA,VT,UT,TX,TN,SD,SC,RI,PA,OR,OK,OH,ND,NC,NY,NM,NJ,NH,NV,NE,MT,MO,MS,MN,MI,MA,MD,ME,LA,KY,KS,IA,IN,IL,ID,HI,GA,FL,DE,CT,CO,CA,AR,AZ,AK,AL",
+   "listings": 33370,
+   "counts": {
+    "canonical": 0,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [],
+    "source_ids": [],
+    "claims": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  "seed:1": {
+   "order": "TN,NH,MS,MT,ND,WA,SD,VT,OR,FL,NV,SC,ME,NC,OH,LA,RI,IA,MA,NM,AL,OK,NY,KS,PA,MO,HI,WI,MD,MN,UT,KY,CO,AK,ID,AR,VA,TX,DE,CT,AZ,WV,IN,GA,CA,WY,MI,IL,NE,NJ",
+   "listings": 33370,
+   "counts": {
+    "canonical": 0,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [],
+    "source_ids": [],
+    "claims": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  "seed:2": {
+   "order": "OH,CT,NY,NV,VA,IL,MD,ID,PA,VT,SD,ME,OR,GA,IA,HI,AR,NM,MI,WI,WY,NE,NC,WV,DE,KY,TN,MO,WA,KS,MA,OK,NH,FL,AK,TX,NJ,LA,MS,CA,AZ,UT,IN,AL,MN,CO,MT,ND,SC,RI",
+   "listings": 33370,
+   "counts": {
+    "canonical": 0,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [],
+    "source_ids": [],
+    "claims": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  "seed:3": {
+   "order": "FL,NY,MO,PA,OK,AL,NV,SC,WI,OH,ND,NJ,TN,NM,MI,ME,AK,CT,MD,LA,NH,VT,VA,WA,TX,NE,RI,NC,GA,KS,KY,OR,HI,IA,CO,MS,MT,AR,MN,DE,WY,SD,IN,IL,AZ,CA,UT,MA,ID,WV",
+   "listings": 33370,
+   "counts": {
+    "canonical": 0,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": {
+    "canonical": [],
+    "source_ids": [],
+    "claims": [],
+    "missing": [],
+    "extra": []
+   }
+  },
+  "pairs": {
+   "combos": 127,
+   "runs": 254,
+   "listings_checked": 18676,
+   "counts": {
+    "canonical": 0,
+    "source_ids": 0,
+    "claims": 0,
+    "missing": 0,
+    "extra": 0
+   },
+   "examples": []
+  }
+ },
+ "code": "2.33.0 branch fix/deterministic-browser-identity"
+}
