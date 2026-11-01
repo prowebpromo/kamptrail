@@ -5,6 +5,7 @@ const crypto = require('node:crypto');
 const { chromium, devices } = require('playwright');
 const [capture, out, viewport, order, mode] = process.argv.slice(2);
 const fallback = mode === '404';
+const direct = process.env.KT_DIRECT === '1';
 const origin = 'https://kamptrail.com';
 const manifest = JSON.parse(fs.readFileSync(path.join(capture, 'manifest.json')));
 const digest = body => crypto.createHash('sha256').update(body).digest('hex');
@@ -21,18 +22,19 @@ const statesAgency = new Set(jsonFor('/data/campsites/agency/index.json').states
 if (states.length !== 50 || new Set(states).size !== 50) throw Error('state manifest');
 const indexKey = '/data/campsites/search-index.json';
 const types = {'.geojson':'application/json','.json':'application/json','.css':'text/css','.js':'text/javascript','.png':'image/png'};
-const stats = {viewport,order,fallback,origin,release:jsonFor('/release.json'),indexSha256:manifest[indexKey].sha256,steps:[],errors:[],blocked:[],requests:[]};
+const stats = {viewport,order,fallback,transport:direct?'direct-browser-https':'captured-https-replay',origin,release:jsonFor('/release.json'),indexSha256:manifest[indexKey].sha256,steps:[],errors:[],blocked:[],requests:[]};
 const name = [viewport,order,fallback?'404':'published'].join('-');
 fs.mkdirSync(out,{recursive:true});
 const resultPath = path.join(out,name+'.json');
 function save(){fs.writeFileSync(resultPath, JSON.stringify(stats,null,2)+'\n');}
 async function main() {
-  const browser = await chromium.launch({executablePath:process.env.CHROMIUM_PATH, headless:true, args:['--no-sandbox','--disable-dev-shm-usage']});
+  const browser = await chromium.launch({executablePath:process.env.CHROMIUM_PATH, headless:true, proxy:direct && process.env.HTTPS_PROXY ? {server:process.env.HTTPS_PROXY} : undefined, args:['--disable-gpu','--no-sandbox','--disable-dev-shm-usage']});
   try {
     stats.browserVersion=browser.version();
     const config=viewport==='mobile'?{...devices['Pixel 7'],viewport:{width:390,height:844}}:{viewport:{width:1365,height:850}};
     const context=await browser.newContext({...config,serviceWorkers:'block',ignoreHTTPSErrors:true});
     let deny=fallback;
+    const directChecks=[],received=new Set();
     await context.route('**/*',async r=>{
       const url=new URL(r.request().url());
       const key=url.pathname+url.search;
@@ -45,11 +47,22 @@ async function main() {
         return r.abort();
       }
       stats.requests.push(key);
+      if(direct)return r.continue();
       const contentType=key==='/'?'text/html':types[path.extname(url.pathname)]||'application/octet-stream';
       return r.fulfill({status:200,contentType,body:bodyFor(key)});
     });
     const page=await context.newPage();
     page.on('pageerror',err=>stats.errors.push(String(err)));
+    if(direct)page.on('response',res=>{
+      const u=new URL(res.url()), key=u.pathname+u.search;
+      if(u.origin!==origin||!manifest[key]||res.status()===404&&key==='/data/campsites/identity-hosts.json')return;
+      directChecks.push((async()=>{
+        const expected=manifest[key].sha256;
+        const actual=digest(await res.body());
+        if(res.status()!==200||actual!==expected)throw Error('direct response diverges: '+key+' '+actual);
+        received.add(key);
+      })().catch(err=>stats.errors.push(String(err))));
+    });
     await page.goto(origin+'/', {waitUntil:'load', timeout:90000});
     await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus?.().catalogueTotal>0 && document.querySelector('#result-summary').textContent.includes('nationwide'));
     await page.evaluate(async () => {
@@ -140,7 +153,12 @@ async function main() {
     }
     const required=states.map(s=>'/data/campsites/'+s+'_merged.geojson').concat([...statesAgency].map(s=>'/data/campsites/agency/'+s+'.geojson'), ['/data/campsites/identity-hosts.json','/data/campsites/ridb-sites.json','/data/campsites/ridb-amenities.json','/data/campsites/usfs-site-amenities.json']);
     stats.missingRequests=required.filter(key=>!stats.requests.includes(key));
-    stats.pass=!Object.values(stats.final.errors).some(Boolean) && !stats.steps.some(x=>x.wrongMerges||x.unknown||x.disappeared) && !stats.missingRequests.length && JSON.stringify(stats.final.states)===JSON.stringify(states) && (!fallback||stats.host404>0);
+    if(direct){
+      await Promise.all(directChecks);
+      stats.directMissing=required.concat([indexKey, '/', '/data-loader.js?v=2.34.0','/data-quality.js?v=2.34.0']).filter(k=>!received.has(k));
+      stats.directVerifiedResponses=[...received].sort();
+    }
+    stats.pass=!stats.errors.length && !stats.directMissing?.length && !Object.values(stats.final.errors).some(Boolean) && !stats.steps.some(x=>x.wrongMerges||x.unknown||x.disappeared) && !stats.missingRequests.length && JSON.stringify(stats.final.states)===JSON.stringify(states) && (!fallback||stats.host404>0);
     if(!stats.pass)process.exitCode=1;
   } finally {save();await browser.close();}
 }
