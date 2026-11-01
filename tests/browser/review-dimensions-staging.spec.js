@@ -73,3 +73,31 @@ for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',wi
   const AxeBuilder=require('@axe-core/playwright').default;expect((await new AxeBuilder({page}).include('#kt-community').analyze()).violations).toEqual([]);
  });
 }
+
+// Codex finding 2: a discovery page that mixes dated and undated published reviews must load, not be rejected.
+for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+ test(`${viewport.name}: mixed dated and undated reviews load in the dialog and in camper filters`,async({page,context})=>{
+  await page.setViewportSize({width:viewport.width,height:viewport.height});harness.sql(`$p->exec("DELETE FROM community_observations");$p->exec("DELETE FROM community_reviews");`);harness.resetQuota();
+  const site=await openSite(page,context);const raw=await page.evaluate(()=>KampTrailData.getVisibleCampsites()[0].properties.id);
+  // Published fixtures written straight to the isolated database: two dated visits and one legacy undated visit.
+  harness.sql(`$q=$p->prepare("INSERT INTO community_reviews(owner_hash,campsite_id,campsite_name,display_name,rating,body,visited_on,rig,status,created_at,updated_at) VALUES(?,?,'Mixed fixture',?,4,?,?,'','published','2026-07-02','2026-07-02')");$o=$p->prepare('INSERT INTO community_observations(review_id,details) VALUES(?,?)');
+   foreach([['dated-a','Dated camper A','2026-07-01','{"noise":"quiet","scores":{"crowds":3}}'],['dated-b','Dated camper B','2026-07-20','{"noise":"quiet","scores":{"crowds":2}}'],['undated','Undated camper','','{"noise":"noisy","scores":{"crowds":5},"season":"summer"}']] as $r){$q->execute([hash('sha256',$r[0]),${JSON.stringify(site)},$r[1],'Disposable mixed-date staging fixture body.',$r[2]]);$o->execute([$p->lastInsertId(),$r[3]]);}$p->exec('UPDATE community_discovery_state SET revision=revision+1 WHERE id=1');`);
+  const disc=await harness.get('/api/community-discovery.php');expect(disc.sites[site].observations.map(g=>g.latest_visit).sort()).toEqual(['','2026-07-01','2026-07-20']);
+  const region=await reopen(page),dialog=page.getByRole('dialog',{name:'Reviews and photos'});
+  await expect(dialog).toContainText('4/5 from 3 published reviews');
+  await expect(region).toContainText('Crowds (how crowded it felt): 3.3/5 · 3 explicit ratings');
+  await expect(dialog).toContainText('Visited visit date not reported');await expect(dialog).toContainText('Visited 2026-07-20');await expect(dialog).toContainText('Visited 2026-07-01');
+  expect(await dialog.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
+  await dialog.getByRole('button',{name:'Close',exact:true}).first().click();
+  // Load the real discovery page through the filters. A rejected page would show the refresh error instead.
+  await page.getByRole('button',{name:'Open filters',exact:true}).click();const panel=page.getByRole('region',{name:'Campsite filters'});
+  await panel.getByLabel('Observation age',{exact:true}).selectOption('0');await panel.getByLabel('Reported noise',{exact:true}).selectOption('noisy');
+  await expect.poll(()=>page.evaluate(()=>KampTrailDiscovery.status())).toContain('Published camper evidence checked');
+  await expect(panel).not.toContainText('could not refresh');
+  await expect.poll(()=>page.evaluate(id=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id).includes(id),raw)).toBe(true);
+  expect(await page.evaluate(id=>{const s=KampTrailDiscovery.summary(id);return {groups:s.observations.length,seasons:KampTrailDiscovery.seasonalScores(s.observations).summer.crowds.count};},site)).toEqual({groups:3,seasons:2});
+  // An age limit excludes the undated noisy report, so the site no longer matches noisy.
+  await panel.getByLabel('Observation age',{exact:true}).selectOption('365');
+  await expect.poll(()=>page.evaluate(id=>KampTrailDiscovery.matchesSummary(KampTrailDiscovery.summary(id),{observed_noise:'noisy',observedDays:365},Date.parse('2026-10-29T12:00:00Z')),site)).toBe(false);
+ });
+}
