@@ -61,7 +61,7 @@ All counts are over the 33,370 published listings. They match the audit.
 
 ## Browser identity and load order
 
-`data-loader.js` L182 merges loaded states without the index's `preferredIds`/`previousHosts`. This is pre-existing and not changed here. 2 changed listings are elected under another canonical id in the browser: `usfs:24878` shows as `osm:way:334210652` and `usfs:9461` as `osm:relation:19325196`. The load-order result is in `docs/RIG_TAG_LOAD_ORDER_2.32.0.md`.
+`data-loader.js` L182 merges loaded states without the index's `preferredIds`/`previousHosts`. This is pre-existing and not changed here. 2 changed listings are elected under another canonical id in the browser: `usfs:24878` shows as `osm:way:334210652` and `usfs:9461` as `osm:relation:19325196`. The load-order result is in `docs/RIG_TAG_LOAD_ORDER_2.32.0.md`: rig suitability and filtering change with load order for 18 of the 245 affected listings, because the browser elects the absorbed OSM element as host in the reversed order. Source identities never change. Deployment waits for the separate identity fix.
 
 ## Provenance debt
 
