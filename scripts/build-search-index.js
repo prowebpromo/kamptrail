@@ -13,6 +13,23 @@ function featureIds(feature) {
   return [...new Set([p.id, ...(p.legacy_ids || [])].filter(id => id != null && id !== '').map(String))];
 }
 
+// One published row. The browser identity check builds the same row from map listings.
+function listingRow(feature, quality = DataQuality, states = []) {
+  const [lng, lat] = feature.geometry.coordinates;
+  const p=feature.properties,m={f:p.fee_status,t:p.type};
+  // a: amenities with campground-wide evidence. s: amenities named on individual Recreation.gov campsite records.
+  const amenity=quality.amenityFilterSets?quality.amenityFilterSets(p):{g:p.amenities||[],s:[]};
+  if(amenity.g.length)m.a=amenity.g;
+  if(amenity.s.length)m.s=amenity.s;
+  if(p.rig_friendly?.length)m.r=p.rig_friendly;
+  if(p.road_difficulty)m.d=p.road_difficulty;
+  if(typeof p.open_status==='string'&&p.open_status.trim()&&p.open_status.trim().toLowerCase()!=='none')m.o=p.open_status.trim().toLowerCase().slice(0,80);
+  if(p.rating!==null)m.q=p.rating;
+  if(p.rv_sigs?.length)m.g=p.rv_sigs;
+  const elevation=quality.elevationInfo(feature);if(elevation)m.e=elevation;
+  return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states,lat,lng,m};
+}
+
 function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null, amenitySidecars = {}) {
   // Amenity evidence is attached exactly as the map attaches it, so search and route filters match the popup.
   const attachAmenities = feature => {
@@ -48,19 +65,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
       for (const state of stateById.get(id) || []) states.add(state);
     }
     if (!states.size) throw new Error(`No source snapshot found for ${feature.properties.id}`);
-    const [lng, lat] = feature.geometry.coordinates;
-    const p=feature.properties,m={f:p.fee_status,t:p.type};
-    // a: amenities with campground-wide evidence. s: amenities named on individual Recreation.gov campsite records.
-    const amenity=quality.amenityFilterSets?quality.amenityFilterSets(p):{g:p.amenities||[],s:[]};
-    if(amenity.g.length)m.a=amenity.g;
-    if(amenity.s.length)m.s=amenity.s;
-    if(p.rig_friendly?.length)m.r=p.rig_friendly;
-    if(p.road_difficulty)m.d=p.road_difficulty;
-    if(typeof p.open_status==='string'&&p.open_status.trim()&&p.open_status.trim().toLowerCase()!=='none')m.o=p.open_status.trim().toLowerCase().slice(0,80);
-    if(p.rating!==null)m.q=p.rating;
-    if(p.rv_sigs?.length)m.g=p.rv_sigs;
-    const elevation=quality.elevationInfo(feature);if(elevation)m.e=elevation;
-    return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states:[...states].sort(),lat,lng,m};
+    return listingRow(feature, quality, [...states].sort());
   });
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
   return {version:1, filter_version:1, community_version:1, elevation_version:1, amenity_version:1, sites};
@@ -150,4 +155,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = {buildSearchIndex, buildFromDirectory, readElevationSnapshots, coordinateIndex, publishedIds, publishedHosts};
+module.exports = {buildSearchIndex, listingRow, buildFromDirectory, readElevationSnapshots, coordinateIndex, publishedIds, publishedHosts};
