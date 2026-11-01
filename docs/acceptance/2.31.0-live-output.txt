@@ -1,0 +1,22 @@
+PASS release.json source_commit afdfb3f94d0d91f1c9e6fb0d6b20395ce119e6e5
+PASS search-index.json sha256 7f0d331a8292
+PASS all 404 case ids present in live search index (39 states)
+PASS desktop: page reports 2.31.0/2.31.0
+FAIL desktop: fixture outcomes (toilet, water, toilet+20 ft) reproduce for every listing whose browser identity matches the index: 401 exact, 0 identity-divergent, 3 unexplained usfs:26736 usfs:5901 usfs:9461
+INFO desktop: identity-divergent listings: 
+PASS desktop: popup and filters agree for 404/404 
+PASS desktop: unsourced "Amenities reported:" line absent
+INFO desktop: catalogue listings in loaded states shown under a different canonical id: 10 of 32229 (not found: 2)
+PASS desktop: rendered popup shows amenity evidence for ridb:10000305
+PASS desktop: rendered popup shows amenity evidence for osm:node:10025626978
+PASS desktop: no page errors 
+PASS mobile: page reports 2.31.0/2.31.0
+FAIL mobile: fixture outcomes (toilet, water, toilet+20 ft) reproduce for every listing whose browser identity matches the index: 401 exact, 0 identity-divergent, 3 unexplained usfs:26736 usfs:5901 usfs:9461
+INFO mobile: identity-divergent listings: 
+PASS mobile: popup and filters agree for 404/404 
+PASS mobile: unsourced "Amenities reported:" line absent
+INFO mobile: catalogue listings in loaded states shown under a different canonical id: 10 of 32229 (not found: 2)
+PASS mobile: rendered popup shows amenity evidence for ridb:10000305
+PASS mobile: rendered popup shows amenity evidence for osm:node:10025626978
+PASS mobile: no page errors 
+SUMMARY FAILED (2 failures)
