@@ -433,7 +433,6 @@
       "properties": {
         "name": "Lake Creek Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=70824&actid=29",
         "id": "ridb:237180",
         "source": "recreation.gov",
@@ -466,7 +465,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2520462908",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2520462908"
+          }
+        ]
       }
     },
     {
@@ -525,7 +536,6 @@
         "ele": "1768",
         "name": "Jumping Creek Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lcnf/recarea/?recid=61550",
         "id": "ridb:242553",
         "source": "recreation.gov",
@@ -755,7 +765,6 @@
       },
       "properties": {
         "name": "Devil's Elbow Campground",
-        "tourism": "camp_site",
         "id": "ridb:272276",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -787,7 +796,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:1602292651",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1602292651"
+          }
+        ]
       }
     },
     {
@@ -999,7 +1020,8 @@
         "sources": [
           "recreation.gov"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "description_source_record_id": "ridb:234319"
       }
     },
     {
@@ -1055,7 +1077,6 @@
       },
       "properties": {
         "name": "WOODBINE CAMPGROUND",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/woodbine-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=72154",
         "id": "ridb:233238",
         "source": "recreation.gov",
@@ -1088,7 +1109,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4029623914",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4029623914"
+          }
+        ]
       }
     },
     {
@@ -1313,7 +1346,6 @@
       "properties": {
         "name": "Swisher Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=71236&actid=29",
         "id": "ridb:237147",
         "source": "recreation.gov",
@@ -1346,7 +1378,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580208734",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580208734"
+          }
+        ]
       }
     },
     {
@@ -1990,7 +2034,6 @@
       },
       "properties": {
         "name": "White Sandy Campground",
-        "tourism": "camp_site",
         "id": "ridb:261822",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2022,7 +2065,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:874363325",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/874363325"
+          }
+        ]
       }
     },
     {
@@ -2205,7 +2260,6 @@
       "properties": {
         "name": "Tin Can Flat Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:10074574",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2305,7 +2359,6 @@
       },
       "properties": {
         "name": "West Fork Teton Campground",
-        "tourism": "camp_site",
         "id": "ridb:10073892",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2337,7 +2390,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5113023809",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5113023809"
+          }
+        ]
       }
     },
     {
@@ -2351,7 +2416,6 @@
       },
       "properties": {
         "name": "Divide Bridge Campground",
-        "tourism": "camp_site",
         "id": "ridb:261818",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2383,7 +2447,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4976239237",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4976239237"
+          }
+        ]
       }
     },
     {
@@ -2402,7 +2478,6 @@
         "reservation:website": "https://www.recreation.gov/camping/devil-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=113390",
         "sites": "14",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=66330",
         "id": "ridb:234791",
         "source": "recreation.gov",
@@ -2633,7 +2708,6 @@
         "name": "Sage Creek Campground",
         "operator": "US Forest Service",
         "payment:cash": "yes",
-        "tourism": "camp_site",
         "id": "ridb:239851",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2697,7 +2771,6 @@
         "name": "Flint Creek Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/beaverhead-deerlodge/recreation/flint-creek-campground",
         "id": "ridb:10074124",
         "source": "recreation.gov",
@@ -2801,7 +2874,6 @@
       "properties": {
         "name": "Kilbrennan Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49915&actid=29",
         "id": "ridb:270682",
         "source": "recreation.gov",
@@ -2834,7 +2906,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2447854227",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2447854227"
+          }
+        ]
       }
     },
     {
@@ -3016,7 +3100,6 @@
       },
       "properties": {
         "name": "Sylvia Lake Campground",
-        "tourism": "camp_site",
         "id": "ridb:239326",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3048,7 +3131,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8758770899",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8758770899"
+          }
+        ]
       }
     },
     {
@@ -3105,7 +3200,6 @@
       "properties": {
         "name": "Loon Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/fishing/recarea/?recid=70848&actid=42",
         "id": "ridb:237158",
         "source": "recreation.gov",
@@ -3138,7 +3232,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2460917452",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2460917452"
+          }
+        ]
       }
     },
     {
@@ -3152,7 +3258,6 @@
       },
       "properties": {
         "name": "INDIAN TREES CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:233882",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3184,7 +3289,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3753644580",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3753644580"
+          }
+        ]
       }
     },
     {
@@ -3203,7 +3320,6 @@
         "reservation": "yes",
         "reservation:website": "https://www.recreation.gov/camping/campgrounds/234789",
         "sites": "21",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=66414",
         "id": "ridb:234789",
         "source": "recreation.gov",
@@ -3308,7 +3424,6 @@
       "properties": {
         "name": "Pete Creek Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49919&actid=29",
         "id": "ridb:237170",
         "source": "recreation.gov",
@@ -3341,7 +3456,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2366421243",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2366421243"
+          }
+        ]
       }
     },
     {
@@ -3524,7 +3651,6 @@
       "properties": {
         "name": "Camp 32",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=71233&actid=29",
         "id": "ridb:237191",
         "source": "recreation.gov",
@@ -3557,7 +3683,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580134660",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580134660"
+          }
+        ]
       }
     },
     {
@@ -3655,7 +3793,6 @@
       },
       "properties": {
         "name": "Moose Creek Campground",
-        "tourism": "camp_site",
         "id": "ridb:241893",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3687,7 +3824,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3654089615",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3654089615"
+          }
+        ]
       }
     },
     {
@@ -3743,7 +3892,6 @@
       },
       "properties": {
         "name": "Thain Creek Campground",
-        "tourism": "camp_site",
         "id": "ridb:10072072",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3775,7 +3923,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:1769927419",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1769927419"
+          }
+        ]
       }
     },
     {
@@ -3961,7 +4121,6 @@
         "operator:short": "USFS",
         "reservation": "no",
         "sites": "4",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=66336",
         "id": "ridb:239284",
         "source": "recreation.gov",
@@ -3994,7 +4153,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:310874875",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/310874875"
+          }
+        ]
       }
     },
     {
@@ -4390,7 +4561,6 @@
         "note": "Lolo National Forest 1 to 5 people for $45.00 per night. For groups of 6 to 16 people, the fee is an additional $8.00 per person per night. Visit Recreation.gov to make reservations. Drinking water available, Flush toilets - hot shower.",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lolo/recarea/?recid=10310",
         "id": "ridb:234421",
         "schema_version": 3,
@@ -4616,7 +4786,6 @@
       },
       "properties": {
         "name": "Halfmoon Campground",
-        "tourism": "camp_site",
         "id": "ridb:236090",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4648,7 +4817,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5879878787",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5879878787"
+          }
+        ]
       }
     },
     {
@@ -4663,7 +4844,6 @@
       "properties": {
         "name": "Spar Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49911&actid=29",
         "id": "ridb:237166",
         "source": "recreation.gov",
@@ -4696,7 +4876,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2524845749",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2524845749"
+          }
+        ]
       }
     },
     {
@@ -4753,7 +4945,6 @@
       "properties": {
         "name": "MCGREGOR LAKE CAMPGROUND",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=66105&actid=29",
         "id": "ridb:233360",
         "source": "recreation.gov",
@@ -4786,7 +4977,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580134661",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580134661"
+          }
+        ]
       }
     },
     {
@@ -4968,7 +5171,6 @@
       },
       "properties": {
         "name": "DORIS CREEK CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234788",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5000,7 +5202,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4976447121",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4976447121"
+          }
+        ]
       }
     },
     {
@@ -5099,7 +5313,6 @@
       "properties": {
         "name": "Spring Creek Campground",
         "operator": "USPS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/lcnf/recreation/camping-cabins/recarea/?recid=61558&actid=29",
         "id": "ridb:10072073",
         "source": "recreation.gov",
@@ -5132,7 +5345,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3625394141",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3625394141"
+          }
+        ]
       }
     },
     {
@@ -5695,7 +5920,6 @@
         "name": "SPRING HILL CAMPGROUND",
         "operator": "Beaverhead-Deerlodge National Forest, Pintler Ranger District",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:234008",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5727,7 +5951,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1213387943",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1213387943"
+          }
+        ]
       }
     },
     {
@@ -5742,7 +5978,6 @@
       "properties": {
         "name": "COURT SHERIFF CAMPGROUND",
         "operator": "Bureau of Reclamation",
-        "tourism": "camp_site",
         "id": "ridb:250001",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5926,7 +6161,6 @@
       },
       "properties": {
         "name": "SWAN LAKE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234480",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5958,7 +6192,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12040534886",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12040534886"
+          }
+        ]
       }
     },
     {
@@ -6014,7 +6260,6 @@
       },
       "properties": {
         "name": "FALES FLAT CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234283",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6046,7 +6291,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3211267402",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3211267402"
+          }
+        ]
       }
     },
     {
@@ -6102,7 +6359,6 @@
       },
       "properties": {
         "name": "Tobacco River Campground",
-        "tourism": "camp_site",
         "id": "ridb:237145",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6246,7 +6502,6 @@
       "properties": {
         "name": "Jackpine Flats Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=66050&actid=29",
         "id": "ridb:270819",
         "source": "recreation.gov",
@@ -6279,7 +6534,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2579608436",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2579608436"
+          }
+        ]
       }
     },
     {
@@ -6463,7 +6730,6 @@
         "capacity": "32",
         "name": "Emerald Lake Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:239847",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6607,7 +6873,6 @@
         "name": "Rocky Gorge Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=71212&actid=29",
         "id": "ridb:237162",
         "schema_version": 3,
@@ -6639,7 +6904,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580134859",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580134859"
+          }
+        ]
       }
     },
     {
@@ -7032,7 +7309,6 @@
       "properties": {
         "name": "Big Eddy Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=64823&actid=29",
         "id": "ridb:237182",
         "source": "recreation.gov",
@@ -7065,7 +7341,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2579608426",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2579608426"
+          }
+        ]
       }
     },
     {
@@ -7206,7 +7494,6 @@
       "properties": {
         "name": "Caribou Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49920&actid=29",
         "id": "ridb:237153",
         "source": "recreation.gov",
@@ -7239,7 +7526,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580223006",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580223006"
+          }
+        ]
       }
     },
     {
@@ -7258,7 +7557,6 @@
         "reservation": "yes",
         "reservation:website": "https://www.recreation.gov/camping/campgrounds/234474",
         "sites": "23",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=77576",
         "id": "ridb:234474",
         "source": "recreation.gov",
@@ -7822,7 +8120,6 @@
       "properties": {
         "name": "Sylvan Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/fishing/recarea/?recid=66106&actid=42",
         "id": "ridb:237189",
         "source": "recreation.gov",
@@ -7855,7 +8152,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2530006027",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2530006027"
+          }
+        ]
       }
     },
     {
@@ -7913,7 +8222,6 @@
         "name": "Peck Gulch Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=71214&actid=29",
         "id": "ridb:237190",
         "schema_version": 3,
@@ -7945,7 +8253,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1320406410",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1320406410"
+          }
+        ]
       }
     },
     {
@@ -8716,7 +9036,6 @@
       "properties": {
         "name": "Lindbergh Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/flathead/recarea/?recid=67016",
         "id": "ridb:239314",
         "source": "recreation.gov",
@@ -8749,7 +9068,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2994955727",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2994955727"
+          }
+        ]
       }
     },
     {
@@ -8894,7 +9225,6 @@
         "operator": "USFS",
         "reservation": "no",
         "tents": "yes",
-        "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/custergallatin/recarea/?recid=60861",
         "id": "ridb:239846",
         "source": "recreation.gov",
@@ -8958,7 +9288,6 @@
       "properties": {
         "name": "Pine Grove Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:239848",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -8990,7 +9319,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3993639490",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3993639490"
+          }
+        ]
       }
     },
     {
@@ -9004,7 +9345,6 @@
       },
       "properties": {
         "name": "Paradise Campground",
-        "tourism": "camp_site",
         "id": "ridb:241873",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9036,7 +9376,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3211267403",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3211267403"
+          }
+        ]
       }
     },
     {
@@ -9135,7 +9487,6 @@
       "properties": {
         "name": "Jo Bonner  Campground ",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "id": "ridb:10003401",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9167,7 +9518,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:855541479",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/855541479"
+          }
+        ]
       }
     },
     {
@@ -9182,7 +9545,6 @@
       "properties": {
         "name": "Gateway Boat Camp",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=71237&actid=29",
         "id": "ridb:237148",
         "source": "recreation.gov",
@@ -9215,7 +9577,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580208584",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580208584"
+          }
+        ]
       }
     },
     {
@@ -9229,7 +9603,6 @@
       },
       "properties": {
         "name": "ALTA CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234614",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9261,7 +9634,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1558886118",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1558886118"
+          }
+        ]
       }
     },
     {
@@ -9528,7 +9913,6 @@
       "properties": {
         "name": "Yaak Falls Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49916&actid=29",
         "id": "ridb:237171",
         "source": "recreation.gov",
@@ -9561,7 +9945,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2383602361",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2383602361"
+          }
+        ]
       }
     },
     {
@@ -10122,7 +10518,6 @@
       "properties": {
         "name": "Grave Creek Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=70947&actid=29",
         "id": "ridb:237186",
         "source": "recreation.gov",
@@ -10155,7 +10550,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580208585",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580208585"
+          }
+        ]
       }
     },
     {
@@ -10380,7 +10787,6 @@
       "properties": {
         "name": "Red Top Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49917&actid=29",
         "id": "ridb:237150",
         "source": "recreation.gov",
@@ -10413,7 +10819,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580223100",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580223100"
+          }
+        ]
       }
     },
     {
@@ -10556,7 +10974,6 @@
         "name": "EMERY BAY CAMPGROUND",
         "operator": "NFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:234484",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10617,7 +11034,6 @@
       "properties": {
         "name": "North Shore Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=66081&actid=29",
         "id": "ridb:237188",
         "source": "recreation.gov",
@@ -10650,7 +11066,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580005777",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580005777"
+          }
+        ]
       }
     },
     {
@@ -10664,7 +11092,6 @@
       },
       "properties": {
         "name": "Hidden Lake Campground",
-        "tourism": "camp_site",
         "id": "ridb:10134446",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10696,7 +11123,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12079371218",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12079371218"
+          }
+        ]
       }
     },
     {
@@ -10753,7 +11192,6 @@
       "properties": {
         "contact:website": "https://www.recreation.gov/camping/tally-lake-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=75352",
         "name": "TALLY LAKE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234472",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10785,7 +11223,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1375628597",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1375628597"
+          }
+        ]
       }
     },
     {
@@ -10932,7 +11382,6 @@
         "operator": "United States Forest Service",
         "operator:type": "government",
         "reservation": "no",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/crazy-creek-campground",
         "id": "ridb:241839",
         "source": "recreation.gov",
@@ -11004,7 +11453,6 @@
         "operator:type": "government",
         "reservation": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/three-frogs-campground",
         "id": "ridb:241815",
         "source": "recreation.gov",
@@ -11110,7 +11558,6 @@
       "properties": {
         "name": "White Earth Campground",
         "operator": "Bureau of Reclamation",
-        "tourism": "camp_site",
         "id": "ridb:249995",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -11142,7 +11589,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:854968479",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/854968479"
+          }
+        ]
       }
     },
     {
@@ -11198,7 +11657,6 @@
       },
       "properties": {
         "name": "Gold Creek Campground",
-        "tourism": "camp_site",
         "id": "ridb:241830",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -11230,7 +11688,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12120743109",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12120743109"
+          }
+        ]
       }
     },
     {
@@ -11413,7 +11883,6 @@
       "properties": {
         "name": "Howard Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=66107&actid=29",
         "id": "ridb:237176",
         "source": "recreation.gov",
@@ -11446,7 +11915,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580208586",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580208586"
+          }
+        ]
       }
     },
     {
@@ -11461,7 +11942,6 @@
       "properties": {
         "name": "Dorr Skeels Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49912&actid=29",
         "id": "ridb:237167",
         "source": "recreation.gov",
@@ -11494,7 +11974,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2579608435",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2579608435"
+          }
+        ]
       }
     },
     {
@@ -11510,7 +12002,6 @@
         "capacity": "10",
         "name": "M-K Campground",
         "operator": "Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/custer/recreation/camping-cabins/recarea/?recid=60857&actid=29",
         "id": "ridb:239845",
         "source": "recreation.gov",
@@ -11543,7 +12034,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:256669915",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/256669915"
+          }
+        ]
       }
     },
     {
@@ -11600,7 +12103,6 @@
       "properties": {
         "name": "Rainy Lake Campground",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "id": "ridb:10134445",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/10134445",
@@ -11631,7 +12133,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3935085399",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3935085399"
+          }
+        ]
       }
     },
     {
@@ -11647,7 +12161,6 @@
         "name": "TIMBERLANE CAMPGROUND",
         "operator": "USFS",
         "phone": "+1-406-293-7773",
-        "tourism": "camp_site",
         "id": "ridb:234466",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -11679,7 +12192,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2422529323",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2422529323"
+          }
+        ]
       }
     },
     {
@@ -11694,7 +12219,6 @@
       "properties": {
         "name": "Riverside Campground",
         "operator": "Bureau of Reclamation",
-        "tourism": "camp_site",
         "id": "ridb:250002",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -11726,7 +12250,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:854958206",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/854958206"
+          }
+        ]
       }
     },
     {
@@ -11909,7 +12445,6 @@
       "properties": {
         "name": "Marten Creek Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=66051&actid=29",
         "id": "ridb:237178",
         "source": "recreation.gov",
@@ -11942,7 +12477,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580005776",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580005776"
+          }
+        ]
       }
     },
     {
@@ -11956,7 +12503,6 @@
       },
       "properties": {
         "name": "Red Shale Campground",
-        "tourism": "camp_site",
         "id": "ridb:239843",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -11988,7 +12534,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5367008295",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5367008295"
+          }
+        ]
       }
     },
     {
@@ -12549,7 +13107,6 @@
       "properties": {
         "name": "Tom Miner Campground",
         "phone": "+1 406-848-7375",
-        "tourism": "camp_site",
         "id": "ridb:236111",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -12581,7 +13138,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5000446521",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5000446521"
+          }
+        ]
       }
     },
     {
@@ -12931,7 +13500,6 @@
       },
       "properties": {
         "name": "Ashley Lake South Campground",
-        "tourism": "camp_site",
         "id": "ridb:239321",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -12963,7 +13531,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12087752308",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12087752308"
+          }
+        ]
       }
     },
     {
@@ -12983,7 +13563,6 @@
         "name": "Black Bear Campground",
         "operator": "United States Forest Service",
         "operator:type": "government",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r01/bitterroot/recreation/black-bear-campground",
         "id": "ridb:10071730",
         "source": "recreation.gov",
@@ -13050,7 +13629,6 @@
       },
       "properties": {
         "name": "Willow Creek Campground",
-        "tourism": "camp_site",
         "id": "ridb:237184",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -13082,7 +13660,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8770567495",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8770567495"
+          }
+        ]
       }
     },
     {
@@ -13306,7 +13896,6 @@
       },
       "properties": {
         "name": "Warm Springs Campground",
-        "tourism": "camp_site",
         "id": "ridb:241851",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -13338,7 +13927,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:14196043580",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/14196043580"
+          }
+        ]
       }
     },
     {
@@ -13436,7 +14037,6 @@
       },
       "properties": {
         "name": "Cave Mountain Campground",
-        "tourism": "camp_site",
         "id": "ridb:242563",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -13468,7 +14068,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3625388955",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3625388955"
+          }
+        ]
       }
     },
     {
@@ -13525,7 +14137,6 @@
       "properties": {
         "name": "Whitetail Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=49918&actid=29",
         "id": "ridb:237151",
         "source": "recreation.gov",
@@ -13558,7 +14169,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580223107",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580223107"
+          }
+        ]
       }
     },
     {
@@ -13573,7 +14196,6 @@
       "properties": {
         "name": "Big Therriault Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/kootenai/recreation/camping-cabins/recarea/?recid=70951&actid=29",
         "id": "ridb:237161",
         "source": "recreation.gov",
@@ -13606,7 +14228,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2580208583",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:11:42Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2580208583"
+          }
+        ]
       }
     },
     {
@@ -27216,7 +27850,8 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "description_source_record_id": "osm:node:8301666356"
       }
     },
     {

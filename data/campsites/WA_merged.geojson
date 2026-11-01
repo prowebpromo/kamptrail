@@ -142,7 +142,6 @@
         "caravans": "yes",
         "name": "Moss Creek campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232799",
         "id": "ridb:232799",
         "source": "recreation.gov",
@@ -286,7 +285,6 @@
       },
       "properties": {
         "name": "Tinkham Campground",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/camping-cabins/recarea/?recid=18036",
         "id": "ridb:232113",
         "source": "recreation.gov",
@@ -319,7 +317,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:379309766",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/379309766"
+          }
+        ]
       }
     },
     {
@@ -338,7 +348,6 @@
         "name": "Snowberry Bowl Campground",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/snowberry-bowl-campground",
         "id": "ridb:273926",
         "source": "recreation.gov",
@@ -570,7 +579,6 @@
         "description": "<p>Campground is located along the shore of the Hamma Hamma River. Evergreen conifers and hardwoods provide lots of shade. The <a href=\"http://www.fs.usda.gov/recarea/olympic/recarea/?recid=48037\" rel=\"nofollow\">Living Legacy Trail</a> leaves from a trailhead in the campground. The first 1/4 mile is accessible and overlooks the Hamma Hamma River.</p><p>There are 15 campsites that will accomodate tents, trailers, and RV's up to 21 feet in length. Tables, fire rings, paved road, and accessible vault toilets are available. Toilet access surface is compact gravel. </p>",
         "name": "Hamma Hamma Campground",
         "operator": "Olympic National Forest",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/olympic/recreation/hamma-hamma-campground",
         "id": "ridb:238906",
         "source": "recreation.gov",
@@ -632,7 +640,6 @@
         "name": "LOWER FALLS CAMPGROUND",
         "operator": "U.S. Forest Service",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31590",
         "id": "ridb:250032",
         "source": "recreation.gov",
@@ -699,7 +706,6 @@
         "name": "Verlot Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/recarea/?recid=17846&actid=29",
         "id": "ridb:232120",
         "source": "recreation.gov",
@@ -771,7 +777,6 @@
         "name": "Turlo Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/recarea/?recid=17844&actid=29",
         "id": "ridb:232118",
         "source": "recreation.gov",
@@ -1009,7 +1014,6 @@
         "name": "CAYUSE HORSE CAMP",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/cayuse-horse-camp",
         "id": "ridb:233818",
         "source": "recreation.gov",
@@ -1072,7 +1076,6 @@
         "operator": "USFS",
         "reservation": "recommended",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/mbs/recreation/money-creek-campground",
         "id": "ridb:232074",
         "source": "recreation.gov",
@@ -1225,7 +1228,6 @@
         "operator": "United States Forest Service",
         "operator:short": "USFS",
         "operator:wikidata": "Q1891156",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/recarea/?recid=17830",
         "id": "ridb:233865",
         "source": "recreation.gov",
@@ -1288,7 +1290,6 @@
         "name": "Finner Creek Campground",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/finner-creek-campground",
         "id": "ridb:10072883",
         "source": "recreation.gov",
@@ -1350,7 +1351,6 @@
       "properties": {
         "name": "Marble Creek Campground",
         "operator": "Mt. Baker-Snoqualmie National Forest",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/mbs/recreation/marble-creek-campground",
         "id": "ridb:233862",
         "source": "recreation.gov",
@@ -1383,7 +1383,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5434584353",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5434584353"
+          }
+        ]
       }
     },
     {
@@ -1618,7 +1630,6 @@
         "reservation": "required",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/icicle-group-campground",
         "id": "ridb:234784",
         "source": "recreation.gov",
@@ -1858,7 +1869,6 @@
         "name": "Gold Basin Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17836",
         "id": "ridb:232051",
         "source": "recreation.gov",
@@ -2097,7 +2107,6 @@
         "operator": "USFS",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/graham-harbor-campground",
         "id": "ridb:273910",
         "source": "recreation.gov",
@@ -2288,7 +2297,6 @@
         "operator": "US Forest Service",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/sawmill-flat-campground",
         "id": "ridb:234022",
         "source": "recreation.gov",
@@ -2392,7 +2400,6 @@
         "name": "BUCK CREEK CAMPGROUND",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/mbs/recreation/buck-creek-campground",
         "id": "ridb:233861",
         "source": "recreation.gov",
@@ -2497,7 +2504,6 @@
         "name": "HELLS CROSSING CAMPGROUND",
         "operator": "United States Forest Service",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/hells-crossing-campground",
         "id": "ridb:234018",
         "source": "recreation.gov",
@@ -2939,7 +2945,6 @@
         "addr:postcode": "98045",
         "area": "yes",
         "name": "Denny Creek Campground",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/camping-cabins/recarea/?recid=18032",
         "id": "ridb:232035",
         "source": "recreation.gov",
@@ -2972,7 +2977,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:379614279",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/379614279"
+          }
+        ]
       }
     },
     {
@@ -2987,7 +3004,6 @@
       "properties": {
         "name": "Walupt Lake Campground",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31460",
         "id": "ridb:232860",
         "schema_version": 3,
@@ -3090,7 +3106,6 @@
         "operator": "United States Forest Service",
         "operator:short": "USFS",
         "operator:wikidata": "Q1891156",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/camping-cabins/recarea/?recid=17826&actid=29",
         "id": "ridb:233864",
         "source": "recreation.gov",
@@ -3123,7 +3138,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10057461268",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10057461268"
+          }
+        ]
       }
     },
     {
@@ -3144,7 +3171,6 @@
         "name": "Park Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17640",
         "id": "ridb:232082",
         "source": "recreation.gov",
@@ -3217,7 +3243,6 @@
         "operator": "Hoodoo Recreation Services",
         "owner": "U.S. Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31342",
         "id": "ridb:233877",
         "source": "recreation.gov",
@@ -3410,7 +3435,6 @@
       },
       "properties": {
         "name": "EDGEWATER CAMPGROUND",
-        "tourism": "camp_site",
         "type": "established",
         "id": "ridb:234137",
         "source": "recreation.gov",
@@ -3442,7 +3466,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:13916212",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/13916212"
+          }
+        ]
       }
     },
     {
@@ -3459,7 +3495,6 @@
         "name": "Silver Fir Campground",
         "reservation": "yes",
         "tents": "yes",
-        "tourism": "camp_site",
         "wheelchair": "limited",
         "id": "ridb:232099",
         "source": "recreation.gov",
@@ -3531,7 +3566,6 @@
         "operator": "United States Forest Service",
         "reservation": "recommended",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=18090",
         "wheelchair": "yes",
         "id": "ridb:232298",
@@ -3607,7 +3641,6 @@
         "name": "Red Bridge Campground ",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17840",
         "id": "ridb:233866",
         "source": "recreation.gov",
@@ -3718,7 +3751,6 @@
         "name": "Nineteenmile Campground",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/nineteenmile-campground",
         "id": "ridb:274091",
         "source": "recreation.gov",
@@ -3953,7 +3985,6 @@
         "name": "Panorama Point Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17638",
         "id": "ridb:232081",
         "source": "recreation.gov",
@@ -4106,7 +4137,6 @@
         "name": "HALFWAY FLAT CAMPGROUND",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/halfway-flat-campground",
         "id": "ridb:256348",
         "source": "recreation.gov",
@@ -4218,7 +4248,6 @@
         "operator": "National Park Service",
         "reservation": "required",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232466",
         "id": "ridb:232466",
         "source": "recreation.gov",
@@ -4496,7 +4525,6 @@
         "caravans": "yes",
         "name": "Peterson Prairie Campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31878",
         "id": "ridb:232895",
         "source": "recreation.gov",
@@ -4682,7 +4710,6 @@
       },
       "properties": {
         "name": "Beaver Campground",
-        "tourism": "camp_site",
         "id": "ridb:232864",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4714,7 +4741,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1534037527",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1534037527"
+          }
+        ]
       }
     },
     {
@@ -4774,7 +4813,6 @@
         "operator": "Okanogan-Wenatchee National Forest",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/refrigerator-harbor-campground",
         "id": "ridb:273917",
         "source": "recreation.gov",
@@ -4826,9 +4864,7 @@
             "source_record_id": "osm:node:3902568473",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "drinking_water": "no",
-              "fee": "yes",
-              "toilets": "yes"
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-10-29T03:40:19Z",
             "source_updated_at": null,
@@ -4936,7 +4972,6 @@
         "name": "Brown Creek Campground",
         "operator": "U.S. Forest Service",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/olympic/recreation/brown-creek-campground",
         "wheelchair": "yes",
         "id": "ridb:238898",
@@ -5045,7 +5080,6 @@
         "name": "Windy Point Campground",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/windy-point-campground",
         "id": "ridb:234026",
         "source": "recreation.gov",
@@ -5197,7 +5231,6 @@
         "operator": "USDA Forest Service",
         "reservation": "recommended",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=74986",
         "id": "ridb:233297",
         "source": "recreation.gov",
@@ -5267,7 +5300,6 @@
         "addr:street": "South Shore Road",
         "name": "FALLS CREEK CAMPGROUND",
         "phone": "+1-360-288-0203",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/falls-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=124990",
         "id": "ridb:251365",
         "source": "recreation.gov",
@@ -5300,7 +5332,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5725489021",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5725489021"
+          }
+        ]
       }
     },
     {
@@ -5609,7 +5653,6 @@
       "properties": {
         "name": "BONAPARTE LAKE CAMPGROUND",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "id": "ridb:252036",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/252036",
@@ -5640,7 +5683,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5386931191",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5386931191"
+          }
+        ]
       }
     },
     {
@@ -5700,7 +5755,6 @@
         "operator": "National Park Service",
         "reservation": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/poi/238879",
         "wheelchair": "yes",
         "id": "ridb:238879",
@@ -5773,7 +5827,6 @@
         "reservation": "recommended",
         "reservation:website": "https://www.recreation.gov/camping/campgrounds/232315",
         "tents": "yes",
-        "tourism": "camp_site",
         "type": "established",
         "website": "https://www.fs.usda.gov/recarea/mbs/recreation/recarea/?recid=17958",
         "id": "ridb:232315",
@@ -5888,7 +5941,6 @@
         "name": "Dog Lake Campground",
         "operator": "USDA Forest Service",
         "reservation": "no",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation",
         "id": "ridb:274004",
         "source": "recreation.gov",
@@ -6003,7 +6055,6 @@
         "name": "Shannon Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17642",
         "id": "ridb:232096",
         "source": "recreation.gov",
@@ -6074,7 +6125,6 @@
         "operator": "US Forest Service",
         "reservation": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/red-mountain-campground",
         "id": "ridb:273950",
         "source": "recreation.gov",
@@ -6307,7 +6357,6 @@
         "operator:short": "USFS",
         "operator:wikidata": "Q1891156",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/poi/238901",
         "id": "ridb:238901",
         "schema_version": 3,
@@ -6339,7 +6388,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2557985693",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2557985693"
+          }
+        ]
       }
     },
     {
@@ -6607,7 +6668,6 @@
         "capacity:tents": "14",
         "name": "Oklahoma campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31860",
         "id": "ridb:232800",
         "source": "recreation.gov",
@@ -6674,7 +6734,6 @@
         "operator": "USDA Forest Service",
         "reservation": "recommended",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/hause-creek-campground",
         "id": "ridb:234017",
         "source": "recreation.gov",
@@ -6743,7 +6802,6 @@
         "gnis:feature_id": "1528619",
         "name": "Mineral Park Campground",
         "operator": "National Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:233891",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6808,7 +6866,6 @@
         "name": "Willows Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/willows-campground",
         "id": "ridb:234025",
         "source": "recreation.gov",
@@ -6960,7 +7017,6 @@
         "caravans": "yes",
         "name": "Takhlakh Lake Campground ",
         "tents": "yes",
-        "tourism": "camp_site",
         "url": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31432",
         "id": "ridb:232861",
         "source": "recreation.gov",
@@ -7070,7 +7126,6 @@
         "name": "KANER FLAT CAMPGROUND",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/kaner-flat-campground",
         "id": "ridb:251362",
         "source": "recreation.gov",
@@ -7223,7 +7278,6 @@
         "name": "Chiwawa Horse Camp",
         "source": "recreation.gov",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/chiwawa-horse-camp",
         "id": "ridb:274051",
         "schema_version": 3,
@@ -7330,7 +7384,6 @@
         "operator": "US Forest Service",
         "reservation": "yes",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/wish-poosh-campground",
         "id": "ridb:234709",
         "source": "recreation.gov",
@@ -7605,7 +7658,6 @@
         "name": "Collins Campground",
         "operator": "US Forest Service",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/olympic/recarea/?recid=47809",
         "id": "ridb:238900",
         "source": "recreation.gov",
@@ -7668,7 +7720,6 @@
         "name": "Adams Fork Campground",
         "operator": "USFS",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232857",
         "id": "ridb:232857",
         "source": "recreation.gov",
@@ -7732,7 +7783,6 @@
         "name": "Boulder Creek Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17634",
         "id": "ridb:232023",
         "source": "recreation.gov",
@@ -7799,7 +7849,6 @@
       "properties": {
         "name": "COHO CAMPGROUND",
         "operator": "U.S. Forest Service",
-        "tourism": "camp_site",
         "type": "established",
         "website": "https://www.recreation.gov/camping/campgrounds/233384",
         "id": "ridb:233384",
@@ -7832,7 +7881,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:16277559",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:40:19Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/16277559"
+          }
+        ]
       }
     },
     {
@@ -7895,7 +7956,6 @@
         "name": "PLEASANT VALLEY CAMPGROUND",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/pleasant-valley-campground",
         "id": "ridb:234021",
         "source": "recreation.gov",
@@ -7963,7 +8023,6 @@
         "caravans": "yes",
         "name": "Panther Creek campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/giffordpinchot/recreation/campground-panther-creek",
         "id": "ridb:233103",
         "source": "recreation.gov",
@@ -8156,7 +8215,6 @@
         "name": "Douglas Fir Campground",
         "reservation": "yes",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17580",
         "wheelchair": "yes",
         "id": "ridb:232038",
@@ -8602,7 +8660,6 @@
         "caravans": "yes",
         "name": "Iron Creek Campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:232853",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -8667,7 +8724,6 @@
         "name": "Horseshoe Cove Campground",
         "operator": "USDA Forest Service",
         "reservation": "recommended",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mbs/recarea/?recid=17636",
         "id": "ridb:232059",
         "source": "recreation.gov",
@@ -8745,7 +8801,6 @@
         "seasonal": "yes",
         "source": "recreation.gov",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/mbs/recreation/beckler-river-campground",
         "wheelchair": "yes",
         "id": "ridb:232018",
@@ -8813,7 +8868,6 @@
         "caravans": "yes",
         "name": "Tower Rock Campground ",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/giffordpinchot/recarea/?recid=31448",
         "id": "ridb:232855",
         "source": "recreation.gov",
@@ -9043,7 +9097,6 @@
         "caravans": "yes",
         "name": "Falls View Campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/olympic/recarea/?recid=47829",
         "id": "ridb:238903",
         "source": "recreation.gov",
@@ -9281,7 +9334,6 @@
         "operator": "USFS",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/graham-harbor-creek-campground",
         "id": "ridb:273911",
         "source": "recreation.gov",
@@ -14968,7 +15020,8 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "description_source_record_id": "osm:node:7797378898"
       }
     },
     {
@@ -42004,6 +42057,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:relation:14600180",
         "member_evidence": [
           {
             "source_record_id": "osm:relation:14600180",

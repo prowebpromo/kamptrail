@@ -1,0 +1,636 @@
+{
+ "version": 1,
+ "note": "Withdrawn from campsite discovery by the tourism-type-admission candidate. Old links resolve to this entry.",
+ "listings": [
+  {
+   "id": "ridb:10049041",
+   "legacy_ids": [
+    "usfs:47185"
+   ],
+   "name": "Morrow Bridge and Midway Seasonal Camps",
+   "states": [
+    "SC"
+   ],
+   "coordinates": [
+    -82.4203,
+    33.98959
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/10049041",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:10068990",
+   "legacy_ids": [
+    "usfs:5975"
+   ],
+   "name": "Willow Creek Transfer Camp",
+   "states": [
+    "ID"
+   ],
+   "coordinates": [
+    -115.134433,
+    43.625972
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/10068990",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:237148",
+   "legacy_ids": [],
+   "name": "Gateway Boat Camp",
+   "states": [
+    "ID",
+    "MT"
+   ],
+   "coordinates": [
+    -115.16465,
+    48.9970333
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/237148",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:237765",
+   "legacy_ids": [],
+   "name": "Kirkwood Ranch",
+   "states": [
+    "ID"
+   ],
+   "coordinates": [
+    -116.497783,
+    45.56779
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/237765",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:240871",
+   "legacy_ids": [
+    "usfs:34671"
+   ],
+   "name": "Enduro Camp",
+   "states": [
+    "LA"
+   ],
+   "coordinates": [
+    -93.0146443,
+    30.998339
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/240871",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:240903",
+   "legacy_ids": [
+    "usfs:34751"
+   ],
+   "name": "Sugar Creek Hunter Camp",
+   "states": [
+    "LA"
+   ],
+   "coordinates": [
+    -92.792,
+    32.962
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/240903",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:241301",
+   "legacy_ids": [
+    "usfs:43429"
+   ],
+   "name": "Bear Creek Lake Recreation Area",
+   "states": [
+    "AR"
+   ],
+   "coordinates": [
+    -90.6938167,
+    34.7122167
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/241301",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:243195",
+   "legacy_ids": [],
+   "name": "McDougle Camp",
+   "states": [
+    "AL"
+   ],
+   "coordinates": [
+    -87.35,
+    34.34
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/243195",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:243218",
+   "legacy_ids": [
+    "usfs:30157"
+   ],
+   "name": "Coleman Lake Recreation Area",
+   "states": [
+    "AL"
+   ],
+   "coordinates": [
+    -85.56203439,
+    33.78408702
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/243218",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:243702",
+   "legacy_ids": [
+    "usfs:39956"
+   ],
+   "name": "Head O' Boulder Forest Camp",
+   "states": [
+    "OR"
+   ],
+   "coordinates": [
+    -118.6923,
+    44.754881
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/243702",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:244320",
+   "legacy_ids": [
+    "usfs:18788"
+   ],
+   "name": "Bowman Lake Area",
+   "states": [
+    "MI"
+   ],
+   "coordinates": [
+    -85.94,
+    43.889444
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/244320",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:244321",
+   "legacy_ids": [
+    "usfs:18790"
+   ],
+   "name": "Condon Lakes West",
+   "states": [
+    "MI"
+   ],
+   "coordinates": [
+    -85.900061,
+    43.757958
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/244321",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:244404",
+   "legacy_ids": [
+    "usfs:18814"
+   ],
+   "name": "Wakeley Lake Area",
+   "states": [
+    "MI"
+   ],
+   "coordinates": [
+    -84.509175,
+    44.633085
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/244404",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:245164",
+   "legacy_ids": [
+    "usfs:5976"
+   ],
+   "name": "Hunter Creek Transfer Camp",
+   "states": [
+    "ID"
+   ],
+   "coordinates": [
+    -115.132042,
+    43.423767
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/245164",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:245165",
+   "legacy_ids": [
+    "usfs:5977"
+   ],
+   "name": "Bear Creek Transfer Camp",
+   "states": [
+    "ID"
+   ],
+   "coordinates": [
+    -114.900558,
+    43.727218
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/245165",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:245273",
+   "legacy_ids": [
+    "usfs:5889"
+   ],
+   "name": "Buckhorn",
+   "states": [
+    "ID"
+   ],
+   "coordinates": [
+    -114.886628,
+    44.162487
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/245273",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:246536",
+   "legacy_ids": [
+    "usfs:65003"
+   ],
+   "name": "Bingo",
+   "states": [
+    "VT"
+   ],
+   "coordinates": [
+    -72.9137,
+    43.875356
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/246536",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:247835",
+   "legacy_ids": [],
+   "name": "Daisy State Park",
+   "states": [
+    "AR",
+    "TX"
+   ],
+   "coordinates": [
+    -93.74295328,
+    34.23217194
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/247835",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:247915",
+   "legacy_ids": [],
+   "name": "River Forks",
+   "states": [
+    "GA",
+    "NC"
+   ],
+   "coordinates": [
+    -83.904533,
+    34.288295
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/247915",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:247922",
+   "legacy_ids": [],
+   "name": "Don Carter State Park",
+   "states": [
+    "GA"
+   ],
+   "coordinates": [
+    -83.7419459,
+    34.3895525
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/247922",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:248072",
+   "legacy_ids": [],
+   "name": "Scusset Beach State Reservation",
+   "states": [
+    "MA"
+   ],
+   "coordinates": [
+    -70.505148,
+    41.777929
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/248072",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:248261",
+   "legacy_ids": [],
+   "name": "Potato Hills Central",
+   "states": [
+    "OK"
+   ],
+   "coordinates": [
+    -95.32412,
+    34.6250312
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/248261",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "source_intro_camping",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:249627",
+   "legacy_ids": [],
+   "name": "Joe Elliot Yellow Post Sites",
+   "states": [
+    "CA"
+   ],
+   "coordinates": [
+    -117.55283,
+    34.219066
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/249627",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:249642",
+   "legacy_ids": [
+    "usfs:34162"
+   ],
+   "name": "Coon Creek Yellow Post Sites",
+   "states": [
+    "CA"
+   ],
+   "coordinates": [
+    -116.766367,
+    34.150479
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/249642",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249674",
+   "legacy_ids": [
+    "usfs:34161"
+   ],
+   "name": "Stockton Flats Yellow Post Sites",
+   "states": [
+    "CA"
+   ],
+   "coordinates": [
+    -117.59064,
+    34.296807
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/249674",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:249741",
+   "legacy_ids": [
+    "usfs:74091"
+   ],
+   "name": "Thomas Hunting Grounds Yellow Post Sites",
+   "states": [
+    "CA"
+   ],
+   "coordinates": [
+    -117.005479,
+    34.128422
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/249741",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249752",
+   "legacy_ids": [
+    "usfs:74092"
+   ],
+   "name": "Clark's Ranch Yellow Post Site",
+   "states": [
+    "CA"
+   ],
+   "coordinates": [
+    -116.97729,
+    34.183998
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/249752",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "dispersed"
+   }
+  },
+  {
+   "id": "ridb:249902",
+   "legacy_ids": [
+    "usfs:74043"
+   ],
+   "name": "Wolf Gap Recreation Area",
+   "states": [
+    "WV"
+   ],
+   "coordinates": [
+    -78.68909,
+    38.924545
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/249902",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "agency_camping_activity",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:255188",
+   "legacy_ids": [],
+   "name": "Spring Recreation Site",
+   "states": [
+    "OR"
+   ],
+   "coordinates": [
+    -117.2388,
+    44.37688
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/255188",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:255232",
+   "legacy_ids": [],
+   "name": "Mica Bay Boater Park",
+   "states": [
+    "ID"
+   ],
+   "coordinates": [
+    -116.859166,
+    47.594722
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/255232",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  },
+  {
+   "id": "ridb:255239",
+   "legacy_ids": [],
+   "name": "McKay's Bend Recreation Site",
+   "states": [
+    "ID"
+   ],
+   "coordinates": [
+    -116.726944,
+    46.4975
+   ],
+   "source_url": "https://www.recreation.gov/camping/campgrounds/255239",
+   "reason": "no_own_camping_classification",
+   "explanation": "The listing's own Recreation.gov record does not state a camping facility type with overnight campsite records, and its name and description do not describe camping. The earlier classification came from a different record (an absorbed OpenStreetMap element or a nearby agency record matched by name). Camping may still be available. It is not verified.",
+   "previous_classification": {
+    "camping_evidence": "osm_campsite_tag",
+    "type": "established"
+   }
+  }
+ ]
+}

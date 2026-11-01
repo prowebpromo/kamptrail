@@ -266,7 +266,6 @@
         "caravans": "yes",
         "name": "West Fork Campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:274260",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -791,7 +790,6 @@
         "mobile_reception": "no",
         "name": "Black Bear Campground",
         "operator": "US Forest Service",
-        "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6602&actid=29",
         "id": "ridb:249093",
         "source": "recreation.gov",
@@ -1274,7 +1272,6 @@
       "properties": {
         "name": "QUARTZ CREEK CAMPGROUND",
         "operator": "U.S. Forest Service",
-        "tourism": "caravan_site",
         "id": "ridb:233909",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1676,7 +1673,6 @@
         "phone": "+1 907 474 2200",
         "reservation": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/cripple-creek-campground",
         "id": "ridb:274261",
         "source": "recreation.gov",
@@ -2115,7 +2111,6 @@
       },
       "properties": {
         "name": "Bertha Creek Campground",
-        "tourism": "caravan_site",
         "id": "ridb:249080",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2147,7 +2142,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:230274150",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/230274150"
+          }
+        ]
       }
     },
     {
@@ -2233,7 +2240,8 @@
         "sources": [
           "recreation.gov"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "description_source_record_id": "ridb:233068"
       }
     },
     {
@@ -3518,7 +3526,6 @@
         "phone": "+1-877-444-6777",
         "reservation": "yes",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232330",
         "wheelchair": "yes",
         "id": "ridb:232330",
@@ -4926,7 +4933,6 @@
       },
       "properties": {
         "name": "Eagle Campground",
-        "tourism": "camp_site",
         "id": "ridb:14534",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4958,7 +4964,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1089802745",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1089802745"
+          }
+        ]
       }
     },
     {
@@ -5692,7 +5710,6 @@
         "phone": "+1-877-444-6777",
         "reservation": "yes",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232141",
         "id": "ridb:232141",
         "source": "recreation.gov",
@@ -7112,7 +7129,6 @@
         "operator": "U.S. Bureau of Land Management",
         "reservation": "no",
         "source": "recreation.gov",
-        "tourism": "caravan_site",
         "website": "https://www.recreation.gov/camping/poi/274259",
         "id": "ridb:274259",
         "schema_version": 3,
@@ -7143,7 +7159,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:295165500",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-10-29T02:47:12Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/295165500"
+          }
+        ]
       }
     },
     {
@@ -8426,7 +8454,6 @@
         "name": "WILLIWAW CAMPGROUND",
         "operator": "US Forest Service",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6604&actid=29",
         "id": "ridb:232324",
         "source": "recreation.gov",
@@ -9289,7 +9316,6 @@
       },
       "properties": {
         "name": "Five Mile Campground",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/five-mile-campground",
         "id": "ridb:14536",
         "source": "recreation.gov",

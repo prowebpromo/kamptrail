@@ -16,7 +16,6 @@
         "payment:cash": "yes",
         "payment:cheque": "yes",
         "phone": "+1-603-726-7737",
-        "tourism": "camp_site",
         "id": "ridb:239405",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -118,7 +117,6 @@
       },
       "properties": {
         "name": "HASTINGS CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:232176",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -150,7 +148,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:400804588",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:04:46Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/400804588"
+          }
+        ]
       }
     },
     {
@@ -215,7 +225,6 @@
         "operator": "National Park Service",
         "reservation": "required",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/acad/planyourvisit/duckharbor.htm",
         "id": "ridb:264293",
         "source": "recreation.gov",

@@ -15,7 +15,6 @@
         "name": "Temple Mountain Campground East",
         "operator": "Bureau of Land Management",
         "operator:wikidata": "Q1010556",
-        "tourism": "caravan_site",
         "website": "https://www.blm.gov/visit/temple-mountain-campground-east",
         "id": "ridb:257029",
         "source": "recreation.gov",
@@ -1060,7 +1059,6 @@
         "reservation": "no",
         "source": "recreation.gov",
         "tents": "yes",
-        "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130614",
         "website": "https://www.fs.usda.gov/recarea/fishlake/recarea/?recid=12151",
@@ -1126,7 +1124,6 @@
         "name": "NAVAJO LAKE CAMPGROUND",
         "operator": "United States Forest Service",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130614",
         "website": "https://www.fs.usda.gov/recarea/dixie/recarea/?recid=24868",
@@ -1159,7 +1156,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:15694611",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/15694611"
+          }
+        ]
       }
     },
     {
@@ -1891,7 +1900,6 @@
       },
       "properties": {
         "name": "Lonesome Beaver Campground",
-        "tourism": "camp_site",
         "id": "ridb:257157",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1923,7 +1931,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1474046985",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1474046985"
+          }
+        ]
       }
     },
     {
@@ -2023,7 +2043,6 @@
       },
       "properties": {
         "name": "Spring Campground",
-        "tourism": "camp_site",
         "id": "ridb:246945",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2055,7 +2074,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1329144542",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1329144542"
+          }
+        ]
       }
     },
     {
@@ -2196,7 +2227,6 @@
       "properties": {
         "name": "McMillan Spring Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "id": "ridb:257159",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2228,7 +2258,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3202148695",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3202148695"
+          }
+        ]
       }
     },
     {
@@ -3599,7 +3641,6 @@
       },
       "properties": {
         "name": "HADES",
-        "tourism": "camp_site",
         "id": "ridb:233794",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4083,7 +4124,6 @@
       "properties": {
         "name": "Preston Valley Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:247316",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4269,7 +4309,6 @@
       },
       "properties": {
         "name": "Hayden Fork Campground",
-        "tourism": "camp_site",
         "id": "ridb:247042",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4301,7 +4340,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:224915024",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/224915024"
+          }
+        ]
       }
     },
     {
@@ -4993,7 +5044,6 @@
       },
       "properties": {
         "name": "UPPER PLEASANT CREEK CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:10074570",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5052,6 +5102,16 @@
             "retrieved_at": "2026-10-29T03:37:36Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/330929209"
+          },
+          {
+            "source_record_id": "osm:way:1393425787",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1393425787"
           }
         ]
       }
@@ -5368,7 +5428,6 @@
         "operator": "Bureau of Land Management",
         "operator:wikidata": "Q1010556",
         "tents": "yes",
-        "tourism": "camp_site",
         "type": "established",
         "website": "https://www.blm.gov/visit/temple-mountain-campground-west",
         "id": "ridb:257030",
@@ -5649,7 +5708,6 @@
         "reservation": "required",
         "source": "recreation.gov",
         "tents": "yes",
-        "tourism": "camp_site",
         "uuid": "sonora_20130614",
         "website": "https://www.fs.usda.gov/recarea/ashley/recreation/camping-cabins/recarea/?recid=72173&actid=29",
         "wheelchair": "yes",
@@ -6012,7 +6070,6 @@
         "name": "BARKER RECREATION AREA",
         "operator": "United States Forest Service",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130614",
         "website": "https://www.fs.usda.gov/recarea/dixie/recarea/?recid=24986",
@@ -6045,7 +6102,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:20141971",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/20141971"
+          }
+        ]
       }
     },
     {
@@ -6396,7 +6465,6 @@
       "properties": {
         "name": "Bridger Campground",
         "reservation": "no",
-        "tourism": "camp_site",
         "id": "ridb:10150488",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -7429,7 +7497,6 @@
       "properties": {
         "name": "Hatch Point Campground",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "id": "ridb:256956",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -8248,7 +8315,6 @@
       },
       "properties": {
         "name": "Miller Flat Reservoir Campground",
-        "tourism": "camp_site",
         "id": "ridb:10048852",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -8280,7 +8346,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1547045218",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1547045218"
+          }
+        ]
       }
     },
     {
@@ -8303,7 +8381,6 @@
         "reservation": "recommended",
         "source": "recreation.gov",
         "tents": "yes",
-        "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130614",
         "website": "https://www.fs.usda.gov/recarea/fishlake/recarea/?recid=12255",
@@ -8452,7 +8529,6 @@
       },
       "properties": {
         "name": "Kaler Hollow Campground",
-        "tourism": "camp_site",
         "id": "ridb:236577",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -8484,7 +8560,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8162289240",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8162289240"
+          }
+        ]
       }
     },
     {
@@ -8671,7 +8759,6 @@
         "group_only": "yes",
         "name": "Indian Creek Falls Group Site",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/indian-creek-falls-group-site",
         "id": "ridb:252280",
         "source": "recreation.gov",
@@ -8704,7 +8791,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1416891722",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1416891722"
+          }
+        ]
       }
     },
     {
@@ -8887,7 +8986,6 @@
       },
       "properties": {
         "name": "Willows Campground",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/ashley/recreation/camping-cabins/recarea/?recid=72209&actid=29",
         "id": "ridb:236563",
         "source": "recreation.gov",
@@ -8921,7 +9019,29 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8381398472",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8381398472"
+          },
+          {
+            "source_record_id": "osm:way:250864742",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/250864742"
+          }
+        ]
       }
     },
     {
@@ -8936,7 +9056,6 @@
       "properties": {
         "name": "PINE LAKE CAMPGROUND",
         "operator": "United States Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/dixie/recarea/?recid=24982",
         "id": "ridb:231915",
         "source": "recreation.gov",
@@ -8969,7 +9088,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:334210653",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/334210653"
+          }
+        ]
       }
     },
     {
@@ -8985,7 +9116,6 @@
         "name": "TWIN LAKE CAMPGROUND",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "type": "established",
         "uuid": "sonora_20130614",
         "id": "ridb:233385",
@@ -9017,7 +9147,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:21189992",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/21189992"
+          }
+        ]
       }
     },
     {
@@ -9073,7 +9215,6 @@
       },
       "properties": {
         "name": "Windwhistle Campground",
-        "tourism": "camp_site",
         "id": "ridb:202161",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9105,7 +9246,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5689371729",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5689371729"
+          }
+        ]
       }
     },
     {
@@ -9295,7 +9448,6 @@
         "operator": "National Park Service",
         "reservation": "Mar-Oct yes; no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/arch/planyourvisit/camping.htm",
         "id": "ridb:234059",
         "source": "recreation.gov",
@@ -9363,7 +9515,6 @@
         "operator": "National Park Service",
         "operator:wikipedia": "en:National Park Service",
         "tents": "yes",
-        "tourism": "camp_site",
         "type": "established",
         "website": "https://www.nps.gov/zion/planyourvisit/watchman-campground.htm",
         "wheelchair": "yes",
@@ -9726,7 +9877,6 @@
       "properties": {
         "group_only": "yes",
         "name": "Creek Pasture Group Site",
-        "tourism": "camp_site",
         "id": "ridb:252281",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9758,7 +9908,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1416891714",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1416891714"
+          }
+        ]
       }
     },
     {
@@ -10824,7 +10986,6 @@
       "properties": {
         "name": "Starr Spring Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "type": "established",
         "id": "ridb:257158",
         "source": "recreation.gov",
@@ -10856,7 +11017,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:18313941",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:37:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/18313941"
+          }
+        ]
       }
     },
     {
@@ -11249,7 +11422,6 @@
       "properties": {
         "name": "Stateline Campground",
         "reservation": "no",
-        "tourism": "camp_site",
         "id": "ridb:261735",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -11397,7 +11569,6 @@
         "operator": "National Park Service",
         "reservation": "Mar 1-Oct 1 yes; no",
         "tents": "yes",
-        "tourism": "caravan_site",
         "website": "https://www.nps.gov/care/planyourvisit/fruitacampground.htm",
         "id": "ridb:272245",
         "source": "recreation.gov",
@@ -13404,6 +13575,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:relation:15524671",
         "member_evidence": [
           {
             "source_record_id": "osm:relation:15524671",

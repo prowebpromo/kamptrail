@@ -185,7 +185,6 @@
         "horse": "no",
         "name": "Bird Creek Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/htnf/recarea/?recid=65184",
         "id": "ridb:234209",
         "source": "recreation.gov",
@@ -372,7 +371,6 @@
         "name": "Lower Virginia Creek Primitive Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:243885",
         "schema_version": 3,
@@ -404,7 +402,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333791880",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:13:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333791880"
+          }
+        ]
       }
     },
     {
@@ -636,7 +646,6 @@
         "name": "Red Rock Canyon Campground",
         "operator": "Bureau of Land Managment",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/nv/st/en/fo/lvfo/blm_programs/blm_special_areas/red_rock_nca/recreation/red_rock_campground.html",
         "id": "ridb:250877",
         "source": "recreation.gov",
@@ -784,7 +793,6 @@
         "dog": "leashed",
         "name": "TIMBER CREEK CAMPGROUND",
         "operator": "USDA Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/htnf/recarea/?recid=65534",
         "id": "ridb:234208",
         "source": "recreation.gov",
@@ -1431,7 +1439,6 @@
       "properties": {
         "name": "Centerville Flat Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "id": "ridb:243975",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1463,7 +1470,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2378462846",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:13:24Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2378462846"
+          }
+        ]
       }
     },
     {
@@ -17692,6 +17711,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:way:1493721329",
         "member_evidence": [
           {
             "source_record_id": "osm:way:1493721329",

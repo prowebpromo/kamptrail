@@ -1134,7 +1134,8 @@
         "sources": [
           "recreation.gov"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "description_source_record_id": "ridb:233590"
       }
     },
     {
@@ -1910,7 +1911,6 @@
         "operator:type": "government",
         "operator:wikidata": "Q1049334",
         "operator:wikipedia": "en:United States Army Corps of Engineers",
-        "tourism": "camp_site",
         "id": "ridb:233666",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1942,7 +1942,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9395313370",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:28:09Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9395313370"
+          }
+        ]
       }
     },
     {
@@ -4435,7 +4447,6 @@
       "properties": {
         "name": "The Point Campground (Chickasaw)",
         "operator": "National Park Service",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234048",
         "id": "ridb:234048",
         "source": "recreation.gov",
@@ -4468,7 +4479,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13127375771",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:28:09Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13127375771"
+          }
+        ]
       }
     },
     {

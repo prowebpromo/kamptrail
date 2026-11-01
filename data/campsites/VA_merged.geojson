@@ -308,7 +308,6 @@
         "capacity": "58",
         "description": "<h2>Overview</h2>\nMorris Hill is a peaceful, rustic campground for groups of family and friends. The family campground is a family-friendly destination perched on a ridge above Lake Moomaw. Kids can have fun at the playground while older generations sit back and relax in the shade. The group sites accommodate up the 25 guests with space for up to eight tents.  Campers can enjoy the wonders of camping with simple pleasures like s'mores on the campfire, berry picking in the woods, and watching for waterfowl and wildlife like deer. The convenient location near Lake Moomaw and sandy swim beaches, a fishing pier, boat ramp, and hiking and biking trails makes Morris Hill a popular spot. <h2>Recreation</h2>\nAn inviting swimming beach at Coles Point attracts many visitors. About less than a mile from the campground is a fishing pier where anglers seek brown and rainbow trout, bass and crappie. Back Creek is also nice for trout fishing. Hikers enjoy the Morris Hill Bike Trail and Fortney Loop Trail.<h2>Facilities</h2>\nFamily Campground: Most sites will fit any size RV. Campsite amenities include flush toilets, hot showers, a playground and drinking water. Group Sites: There is no water or electricity.  Two fully accessible vault toilets, picnic tables and a group grill are on each group site. Coles Point Boat Ramp, the nearest boat ramp to Morris, is less than two miles away.<h2>Natural Features</h2>\nThe campground sits on a ridge overlooking Lake Moomaw. It is about a half-mile from the south end of the lake. Lake Moomaw, which flows from the Jackson River, is a cold-water 2,530-acre lake with an inviting swimming beach. \n<br/><br/>\nMorris Hill is part of the George Washington and Jefferson National Forests which spans across Virginia and parts of West Virginia and Kentucky. These forests protect 40 species of trees that are mostly Appalachian hardwood and mixed pine-hardwood forests, 60 species of mammals and 200 species of birds.\n<h2>Nearby Attractions</h2>\nHead downstream of the Jackson River for fly fishing, canoeing, rafting and kayaking. A half hour east of the lake is Hot Springs, Virginia, a quaint village known as a rural resort town.\n<h2>Charges & Cancellations</h2>\n<p>Due to Covid-19 restrictions group camping will not be open this season. We apologize for any inconvenience. Please visit www.cdc.gov for the latest information on the virus. </p>\n",
         "name": "MORRIS HILL CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:232161",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -375,7 +374,6 @@
         "operator:wikipedia": "en:National Park Service",
         "reservation": "required",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/prwi/planyourvisit/oakridge.htm",
         "id": "ridb:233379",
         "source": "recreation.gov",
@@ -447,7 +445,6 @@
         "opening_hours": "Apr 15-Oct 31 07:00-22:00",
         "operator": "United States Department of Agriculture",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recreation/camping-cabins/recarea/?recid=73771&actid=29",
         "id": "ridb:233308",
         "source": "recreation.gov",
@@ -1488,7 +1485,6 @@
         "operator:wikipedia": "en:National Park Service",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/mathews-arm-campground.htm",
         "id": "ridb:232432",
         "source": "recreation.gov",
@@ -1552,7 +1548,6 @@
       },
       "properties": {
         "name": "STEEL BRIDGE CAMPGROUND",
-        "tourism": "camp_site",
         "wikidata": "Q35056203",
         "id": "ridb:251909",
         "source": "recreation.gov",
@@ -1585,7 +1580,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5902470930",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5902470930"
+          }
+        ]
       }
     },
     {
@@ -2074,7 +2081,6 @@
         "smoking": "outside",
         "static_caravans": "no",
         "tents": "no",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/10007130?tab=campsites",
         "id": "ridb:10007130",
         "source": "recreation.gov",
@@ -2353,7 +2359,6 @@
         "note": "Open Season: April 15 to October 31 Restrictions: No horses. Closest Towns: Speedwell, VA Water: Drinking water available April 15 to October 31. Restroom: Vault toilets",
         "operator": "George Washington & Jefferson National Forests,Mount Rogers National Recreation Area",
         "phone": "+1-800-628-7202",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recarea/?recid=73661",
         "wikidata": "Q49479463",
         "id": "ridb:249858",
@@ -2386,7 +2391,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:356571169",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:39:23Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/356571169"
+          }
+        ]
       }
     },
     {
@@ -2456,7 +2473,6 @@
         "phone": "+1 540 999 3500",
         "reservation": "yes",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/loft-mountain-campground.htm",
         "id": "ridb:232433",
         "source": "recreation.gov",
@@ -2818,7 +2834,6 @@
         "description": "<h2>Overview</h2>\nRaccoon Branch Campground, nestled at the base of Dickey Knob, offers scenic mountain views, hiking trail access from campsites and cool mountain streams. Campers can access Dickey Creek and the Raccoon Branch from the campground. The most notable time to visit is fall, when the trees boast gorgeous fall foliage. \n<br/><br/>\nWith a location just 11 miles from Interstate 81, the beautiful campground is easily reached by drivers heading out from one of the surrounding cities. <h2>Recreation</h2>\nThe beautiful Dickey Knob Trail takes hikers through a Wilderness to the top of Dickey Knob for spectacular views of Sugar Grove and Rye Valley. The creek provides a setting for wading and fishing.<h2>Facilities</h2>\n<p>Every site accommodates RV or tent camping and five campsites have electric hookups. Perks of the campground include flush toilets, drinking water, paved roads and spurs and a dump station.  There are no showers.   A volunteer host is onsite to welcome visitors and offer advice on the region.</p>\n<h2>Natural Features</h2>\nThe campground is at an elevation of 2,880 ft., along a large grassy area, surrounded by pines, hardwoods and rhododendrons. Perched in the Appalachian Mountains, Raccoon Branch is part of the Mount Rogers National Recreation Area, a 200,000-acre stretch of designated wilderness areas. \n<h2>Nearby Attractions</h2>\nHike the Appalachian Trail, which extends more than 2,175 miles throughout the Appalachian Mountains across 14 states. The trail was designated as the first National Scenic Trail.   The Virginia Creeper Trail, Hungry Mother State Park and Grayson Highlands State Park are nearby.",
         "name": "RACCOON BRANCH CAMPGROUND",
         "operator": "Mount Rogers National Recreation Area",
-        "tourism": "camp_site",
         "id": "ridb:234574",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -25638,6 +25653,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:way:744170055",
         "member_evidence": [
           {
             "source_record_id": "osm:way:744170055",

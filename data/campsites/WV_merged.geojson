@@ -141,7 +141,6 @@
         "description": "<p>Located along the Laurel Fork River between <a href=\"https://www.fs.usda.gov/recarea/mnf/recarea/?recid=12367\" rel=\"nofollow\">Laurel Fork North and South Wilderness</a> areas, this primitive campground offers visitors a nice camping opportunity in the Middle Mountain area  on the site of an old Civilian Conservation Corps location.</p><p>Day hiking and backpacking opportunities are available leaving from this campground as well through the <a href=\"https://www.fs.usda.gov/recarea/mnf/recarea/?recid=12367\" rel=\"nofollow\">Laurel Fork North and South Wilderness</a>.</p>",
         "name": "Laurel Fork Campground",
         "operator": "Monongahela National Forest",
-        "tourism": "camp_site",
         "id": "ridb:239764",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -200,7 +199,6 @@
         "capacity": "5",
         "name": "Big Rock Campground",
         "operator": "National Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mnf/recreation/camping-cabins/recarea/?recid=6984&actid=29",
         "id": "ridb:239756",
         "source": "recreation.gov",
@@ -262,7 +260,6 @@
       "properties": {
         "name": "Bear Heaven Campground",
         "operator": "USDA Forest Service",
-        "tourism": "camp_site",
         "wheelchair": "no",
         "id": "ridb:239752",
         "source": "recreation.gov",
@@ -576,7 +573,6 @@
       },
       "properties": {
         "name": "Riffle Run Campground",
-        "tourism": "camp_site",
         "id": "ridb:248530",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -608,7 +604,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4103920180",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4103920180"
+          }
+        ]
       }
     },
     {
@@ -796,7 +804,6 @@
         "description": "<p>This primitive campground is a favorite among fisherman for being adjacent to Long Run and the East Fork of the Greenbrier River.</p><p>For hikers, this campground is located close to the East Fork Trail #365. This is an 8 mile trail with some difficult terrain to traverse. Also close by is the shorter Smoke Camp Trail #324. It is 1.8 miles in length for those looking for more of a day hike.</p><p>Island Campground is located approximately 5 miles north and east of Bartow, West Virginia.</p>",
         "name": "Island Campground",
         "operator": "National Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mnf/recreation/camping-cabins/recarea/?recid=6991&actid=29",
         "id": "ridb:239762",
         "source": "recreation.gov",
@@ -1361,7 +1368,6 @@
         "description": "<p>With a convenient location just off State Route 92 this campground is great for families and outdoor enthusiasts. <a href=\"https://www.fs.usda.gov/recarea/mnf/recarea/?recid=77599\" rel=\"nofollow\">Two Lick Trailhead</a> is located within the campground and providing easy and accessible access. Also each campsite is furnished with a fire ring, picnic table, and lantern ring.</p>",
         "name": "Pocahontas Campground",
         "operator": "National Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:239769",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1461,7 +1467,6 @@
       "properties": {
         "name": "Cranberry Campground",
         "operator": "National Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mnf/recreation/recarea/?recid=6987",
         "id": "ridb:239759",
         "source": "recreation.gov",
@@ -1494,7 +1499,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1027685004",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1027685004"
+          }
+        ]
       }
     },
     {
@@ -1895,7 +1912,6 @@
         "reservation": "no",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mnf/recreation/natureviewing/recarea/?recid=7003&actid=63",
         "id": "ridb:239774",
         "source": "recreation.gov",
@@ -2046,7 +2062,6 @@
       "properties": {
         "designation": "Horseshoe Recreation Area",
         "name": "HORSESHOE RECREATION AREA",
-        "tourism": "camp_site",
         "id": "ridb:232006",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2078,7 +2093,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:146028510",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:41:43Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/146028510"
+          }
+        ]
       }
     },
     {
@@ -2136,7 +2163,6 @@
         "capacity": "28",
         "name": "Tea Creek Campground",
         "operator": "National Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:239770",
         "source": "recreation.gov",
         "schema_version": 3,

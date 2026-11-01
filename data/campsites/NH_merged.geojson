@@ -16,7 +16,6 @@
         "payment:cash": "yes",
         "payment:cheque": "yes",
         "phone": "+1-603-726-7737",
-        "tourism": "camp_site",
         "id": "ridb:239405",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -501,7 +500,6 @@
         "addr:street": "Tripoli Road",
         "name": "OSCEOLA VISTA CAMPGROUND",
         "operator": "National Forest",
-        "tourism": "camp_site",
         "id": "ridb:232308",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -774,7 +772,6 @@
         "name": "SUGARLOAF 1 CAMPGROUND",
         "operator": "US Forest Service",
         "phone": "+1 603 536 6100",
-        "tourism": "camp_site",
         "id": "ridb:232177",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -809,6 +806,7 @@
           "openstreetmap"
         ],
         "data_conflicts": [],
+        "description_source_record_id": "ridb:232140",
         "member_evidence": [
           {
             "source_record_id": "osm:way:1004215386",
@@ -820,6 +818,16 @@
             "retrieved_at": "2026-10-29T03:14:06Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/1004215386"
+          },
+          {
+            "source_record_id": "osm:way:1004215387",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:14:06Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1004215387"
           }
         ]
       }
@@ -878,7 +886,6 @@
       "properties": {
         "fixme": "Some sites can now be reserved online through recreation.gov. Any site not listed on recreation.gov is operated on a first-come, first-served policy. toilets = Flush Toilet. water = Faucet",
         "name": "RUSSELL POND CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:273778",
         "source": "recreation.gov",
         "schema_version": 3,

@@ -810,7 +810,6 @@
       },
       "properties": {
         "name": "River Forks",
-        "tourism": "camp_site",
         "type": null,
         "website": "https://www.hallcounty.org/facilities/facility/details/river-forks-park-11",
         "id": "ridb:247915",
@@ -843,7 +842,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:13942065",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:56:22Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/13942065"
+          }
+        ]
       }
     },
     {
@@ -1908,7 +1919,6 @@
       "properties": {
         "leisure": "park",
         "name": "Don Carter State Park",
-        "tourism": "camp_site",
         "website": "https://gastateparks.org/DonCarter",
         "id": "ridb:247922",
         "source": "recreation.gov",
@@ -1941,7 +1951,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:456269017",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:56:22Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/456269017"
+          }
+        ]
       }
     },
     {
@@ -2506,7 +2528,6 @@
         "LandPro08:reviewed": "no",
         "name": "Sweetwater Campground",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "id": "ridb:232715",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/232715",
@@ -2537,7 +2558,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:34775775",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:56:22Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/34775775"
+          }
+        ]
       }
     },
     {
@@ -2562,7 +2595,6 @@
         "name": "Toto Creek Campground",
         "phone": "+1-770-945-9531",
         "tents": "yes",
-        "tourism": "camp_site",
         "type": "established",
         "website": "https://www.recreation.gov/camping/campgrounds/255286?tab=campsites",
         "id": "ridb:255286",

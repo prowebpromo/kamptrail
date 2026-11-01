@@ -645,7 +645,6 @@
         "ele": "170",
         "gnis:feature_id": "1339114",
         "name": "KIMBALL BEND PARK",
-        "tourism": "camp_site",
         "id": "ridb:233170",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -677,7 +676,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1241967949",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1241967949"
+          }
+        ]
       }
     },
     {
@@ -721,7 +732,8 @@
         "sources": [
           "recreation.gov"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "description_source_record_id": "ridb:232628"
       }
     },
     {
@@ -1577,7 +1589,6 @@
         "name": "New Canyon Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253563",
         "schema_version": 3,
@@ -1609,7 +1620,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333697992",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333697992"
+          }
+        ]
       }
     },
     {
@@ -2128,7 +2151,6 @@
       "properties": {
         "name": "Fourth of July Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "id": "ridb:253557",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2160,7 +2182,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1430461164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1430461164"
+          }
+        ]
       }
     },
     {
@@ -2893,7 +2927,6 @@
         "gnis:feature_id": "2029313",
         "name": "SPEEGLEVILLE PARK",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:233125",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2925,7 +2958,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1274407941",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1274407941"
+          }
+        ]
       }
     },
     {
@@ -3851,7 +3896,8 @@
         "sources": [
           "recreation.gov"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "description_source_record_id": "ridb:234038"
       }
     },
     {
@@ -3909,7 +3955,6 @@
         "name": "Bosque Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253603",
         "schema_version": 3,
@@ -3941,7 +3986,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333697951",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333697951"
+          }
+        ]
       }
     },
     {
@@ -4293,7 +4350,6 @@
         "name": "Red Cloud Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253634",
         "schema_version": 3,
@@ -4325,7 +4381,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493794",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493794"
+          }
+        ]
       }
     },
     {
@@ -5771,7 +5839,6 @@
         "payment:cash": "yes",
         "payment:coins": "yes",
         "payment:credit_cards": "yes",
-        "tourism": "camp_site",
         "id": "ridb:233579",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6011,7 +6078,6 @@
         "phone": "+1-512-930-5253",
         "reservation": "yes",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:234643",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6281,7 +6347,6 @@
         "name": "Mills Canyon Rim Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253552",
         "schema_version": 3,
@@ -6313,7 +6378,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493783",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:36:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493783"
+          }
+        ]
       }
     },
     {

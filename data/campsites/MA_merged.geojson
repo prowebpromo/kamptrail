@@ -260,7 +260,6 @@
         "owner": "Army Corps Of Engineers",
         "ownership": "state",
         "protected": "perpetuity",
-        "tourism": "camp_site",
         "type": null,
         "id": "ridb:248072",
         "source": "recreation.gov",
@@ -2117,7 +2116,8 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "description_source_record_id": "osm:way:43440566"
       }
     },
     {

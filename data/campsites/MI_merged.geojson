@@ -563,7 +563,6 @@
         "opening_hours": "May 03-Oct 08: 00:00-24:00",
         "operator": "American Land and Leisure",
         "tents": "yes",
-        "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/hmnf/recreation/camping-cabins/recarea/?recid=18896&actid=29",
         "wikidata": "Q117195450",
         "id": "ridb:251845",
@@ -597,7 +596,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1155134361",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-10-29T03:07:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1155134361"
+          }
+        ]
       }
     },
     {
@@ -683,7 +694,8 @@
         "sources": [
           "recreation.gov"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "description_source_record_id": "ridb:273356"
       }
     },
     {
@@ -953,7 +965,6 @@
         "operator": "Huron National Forest",
         "operator:type": "public",
         "operator:wikidata": "Q33384278",
-        "tourism": "caravan_site",
         "wikidata": "Q117037322",
         "id": "ridb:233255",
         "source": "recreation.gov",
@@ -986,7 +997,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1153012506",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-10-29T03:07:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1153012506"
+          }
+        ]
       }
     },
     {
@@ -1134,7 +1157,6 @@
         "payment:cheque": "yes",
         "phone": "+1-906-932-1330",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/ottawa/recarea/?recid=12338",
         "id": "ridb:238258",
         "source": "recreation.gov",
@@ -1494,7 +1516,6 @@
         "opening_hours": "May 8 - Oct 21 00:00-24:00",
         "operator": "American Land and Leisure",
         "owner": "U.S. Forest Service Huron-Manistee National Forests",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/hmnf/recarea/?recid=18880",
         "id": "ridb:250045",
         "source": "recreation.gov",
@@ -1641,7 +1662,6 @@
         "gnis:feature_id": "624266",
         "group_only": "yes",
         "name": "D.H. Day Group Campground",
-        "tourism": "camp_site",
         "id": "ridb:232457",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2713,7 +2733,6 @@
         "payment:cash": "yes",
         "payment:cheque": "yes",
         "phone": "+1-989-739-0728",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/hmnf/recarea/?recid=18836",
         "wikidata": "Q117195404",
         "id": "ridb:233253",
@@ -2780,7 +2799,6 @@
         "opening_hours": "24/7",
         "operator": "U.S. Forest Service Huron-Manistee National Forests",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:244321",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2812,7 +2830,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5965463931",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:07:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5965463931"
+          }
+        ]
       }
     },
     {
@@ -2868,7 +2898,6 @@
       },
       "properties": {
         "name": "D.H. Day Campground",
-        "tourism": "camp_site",
         "id": "ridb:259242",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2900,7 +2929,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:892417054",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:07:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/892417054"
+          }
+        ]
       }
     },
     {
@@ -3084,7 +3125,6 @@
         "caravans": "yes",
         "name": "PLATTE RIVER CAMPGROUND",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:232458",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -24964,6 +25004,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:7185787423",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185787423",
@@ -25078,6 +25119,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:6965151875",
         "member_evidence": [
           {
             "source_record_id": "osm:node:6965151875",
@@ -25136,6 +25178,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:7185816695",
         "member_evidence": [
           {
             "source_record_id": "osm:node:6965223653",
@@ -25204,6 +25247,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:6965223675",
         "member_evidence": [
           {
             "source_record_id": "osm:node:6965223675",
@@ -26521,6 +26565,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:7185787422",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185787422",
@@ -26613,6 +26658,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:7185808855",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185808855",

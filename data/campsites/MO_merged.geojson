@@ -475,7 +475,6 @@
       "properties": {
         "name": "AUNTS CREEK",
         "source": "recreation.gov",
-        "tourism": "caravan_site",
         "id": "ridb:232516",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/232516",
@@ -507,7 +506,29 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2676275082",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-10-29T03:10:37Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2676275082"
+          },
+          {
+            "source_record_id": "osm:node:2676275770",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-10-29T03:10:37Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2676275770"
+          }
+        ]
       }
     },
     {
@@ -1865,7 +1886,6 @@
       },
       "properties": {
         "name": "HIGHWAY K",
-        "tourism": "camp_site",
         "id": "ridb:232604",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1898,7 +1918,29 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12546710571",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:10:37Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12546710571"
+          },
+          {
+            "source_record_id": "osm:node:12546710572",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:10:37Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12546710572"
+          }
+        ]
       }
     },
     {
@@ -3725,7 +3767,6 @@
         "capacity": "87",
         "name": "Longview Campground",
         "operator": "Jackson County Parks + Rec",
-        "tourism": "camp_site",
         "website": "https://www.makeyourdayhere.com/Facilities/Facility/Details/Longview-Campground-35",
         "id": "ridb:248100",
         "source": "recreation.gov",

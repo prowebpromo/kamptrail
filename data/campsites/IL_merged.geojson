@@ -516,7 +516,6 @@
       },
       "properties": {
         "name": "LITHIA SPRINGS",
-        "tourism": "camp_site",
         "id": "ridb:233539",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -548,7 +547,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12668854455",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:58:59Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12668854455"
+          }
+        ]
       }
     },
     {
@@ -612,7 +623,6 @@
         "operator": "US Army Corps of Engineers",
         "permanent_camping": "no",
         "tents": "yes",
-        "tourism": "caravan_site",
         "id": "ridb:233483",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -929,7 +939,6 @@
         "capacity": "8",
         "name": "Camp Cadiz Campground",
         "phone:ranger": "+1-618-253-7114",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/shawnee/recreation/horseriding-camping/recarea/?recid=10682&actid=30",
         "id": "ridb:244060",
         "source": "recreation.gov",

@@ -685,7 +685,6 @@
       "properties": {
         "name": "FENSKE LAKE CAMPGROUND",
         "operator": "United States Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/superior/recreation/recarea/?recid=37047&actid=29",
         "id": "ridb:233840",
         "source": "recreation.gov",
@@ -718,7 +717,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:439215393",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/439215393"
+          }
+        ]
       }
     },
     {
@@ -738,7 +749,6 @@
         "operator:type": "government",
         "operator:wikidata": "Q1049334",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:233588",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -969,7 +979,6 @@
         "operator": "USDA National Forest",
         "source": "recreation.gov",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:233841",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/233841",
@@ -1072,7 +1081,6 @@
         "operator": "USFS",
         "reservation": "yes",
         "reservation:website": "https://www.recreation.gov/camping/campgrounds/232429",
-        "tourism": "camp_site",
         "website": "https://flourlakecampground.com/",
         "id": "ridb:232429",
         "source": "recreation.gov",
@@ -1175,7 +1183,6 @@
       "properties": {
         "name": "Two Island Lake Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:240995",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1207,7 +1214,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2520164188",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:08:26Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2520164188"
+          }
+        ]
       }
     },
     {
@@ -1478,7 +1497,6 @@
         "operator:type": "public",
         "operator:wikidata": "Q1891156",
         "reservation": "accepted",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/superior/recreation/camping-cabins/recarea/?recid=36977&actid=29",
         "website:reservation": "https://www.recreation.gov/camping/campgrounds/233165",
         "id": "ridb:233165",
@@ -54057,6 +54075,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:7185812931",
         "member_evidence": [
           {
             "source_record_id": "osm:node:7185812931",
@@ -96343,6 +96362,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:node:12843318515",
         "member_evidence": [
           {
             "source_record_id": "osm:node:12843318515",

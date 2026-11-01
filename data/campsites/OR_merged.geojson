@@ -14,7 +14,6 @@
         "created_by": "GPSBabel-1.3.5",
         "name": "EAST LEMOLO CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251894",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -46,7 +45,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:290875428",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/290875428"
+          }
+        ]
       }
     },
     {
@@ -189,7 +200,6 @@
         "building": "yes",
         "name": "DRAKE PEAK LOOKOUT",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:234185",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -221,7 +231,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:497225176",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/497225176"
+          }
+        ]
       }
     },
     {
@@ -447,7 +469,6 @@
       },
       "properties": {
         "name": "ISLET CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:254094",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -479,7 +500,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:554578607",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/554578607"
+          }
+        ]
       }
     },
     {
@@ -537,7 +570,6 @@
       "properties": {
         "name": "Trout Creek Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "id": "ridb:274478",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -569,7 +601,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:555565221",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/555565221"
+          }
+        ]
       }
     },
     {
@@ -800,7 +844,6 @@
         "man_made": "tower",
         "name": "PICKETT BUTTE LOOKOUT",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:234149",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -832,7 +875,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:497202698",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/497202698"
+          }
+        ]
       }
     },
     {
@@ -1186,7 +1241,6 @@
         "capacity": "7",
         "name": "Twin Springs Campground",
         "payment:cash": "yes",
-        "tourism": "camp_site",
         "id": "ridb:10321880",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1244,7 +1298,6 @@
       },
       "properties": {
         "name": "Topsy Campground ",
-        "tourism": "camp_site",
         "id": "ridb:262739",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1276,7 +1329,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5948413686",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5948413686"
+          }
+        ]
       }
     },
     {
@@ -1420,7 +1485,6 @@
       "properties": {
         "name": "BUNKER HILL CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251895",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1452,7 +1516,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:290875431",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/290875431"
+          }
+        ]
       }
     },
     {
@@ -1466,7 +1542,6 @@
       },
       "properties": {
         "name": "FRENCH PETE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234730",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1498,7 +1573,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7818764823",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7818764823"
+          }
+        ]
       }
     },
     {
@@ -1556,7 +1643,6 @@
         "description": "<p>Five primitive campsites available with a fire pit and picnic table at each site adjacent to Wahtum Lake located just east of the <a href=\"https://www.fs.usda.gov/recarea/mthood/recarea/?recid=79438\" rel=\"nofollow\">Mark O. Hatfield Wilderness</a> and multiple hiking opportunties. Trees and shade available.</p>",
         "name": "Wahtum Lake Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "id": "ridb:252341",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1588,7 +1674,29 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3264589189",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3264589189"
+          },
+          {
+            "source_record_id": "osm:node:7797378898",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7797378898"
+          }
+        ]
       }
     },
     {
@@ -1728,7 +1836,6 @@
       },
       "properties": {
         "name": "Elk Lake Campground",
-        "tourism": "camp_site",
         "id": "ridb:244100",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1760,7 +1867,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4831813070",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4831813070"
+          }
+        ]
       }
     },
     {
@@ -1816,7 +1935,6 @@
       },
       "properties": {
         "name": "GORGE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:267083",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1848,7 +1966,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2106213119",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2106213119"
+          }
+        ]
       }
     },
     {
@@ -1862,7 +1992,6 @@
       },
       "properties": {
         "name": "Pioneer Ford Campground",
-        "tourism": "camp_site",
         "id": "ridb:251566",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1894,7 +2023,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2106213128",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2106213128"
+          }
+        ]
       }
     },
     {
@@ -1993,7 +2134,6 @@
       },
       "properties": {
         "name": "Alder Springs Campground",
-        "tourism": "camp_site",
         "id": "ridb:244134",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2025,7 +2165,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5249881807",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5249881807"
+          }
+        ]
       }
     },
     {
@@ -2342,7 +2494,6 @@
         "addr:street": "North Umpqua Highway",
         "name": "Susan Creek Campground",
         "reservation": "required",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/susan-creek-campground",
         "id": "ridb:251351",
         "source": "recreation.gov",
@@ -2375,7 +2526,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9934980712",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9934980712"
+          }
+        ]
       }
     },
     {
@@ -2515,7 +2678,6 @@
       },
       "properties": {
         "name": "BULL BEND CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:266140",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2547,7 +2709,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3611785010",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3611785010"
+          }
+        ]
       }
     },
     {
@@ -2690,7 +2864,6 @@
         "capacity": "8",
         "name": "Rattlesnake Canyon Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "id": "ridb:10155245",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2722,7 +2895,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5406408140",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5406408140"
+          }
+        ]
       }
     },
     {
@@ -2864,7 +3049,6 @@
       "properties": {
         "name": "THIELSEN VIEW CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251548",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2896,7 +3080,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:614077868",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/614077868"
+          }
+        ]
       }
     },
     {
@@ -2911,7 +3107,6 @@
       "properties": {
         "name": "BROKEN ARROW CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:231979",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2943,7 +3138,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:614077859",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/614077859"
+          }
+        ]
       }
     },
     {
@@ -3042,7 +3249,6 @@
       },
       "properties": {
         "name": "Gull Point Campground",
-        "tourism": "camp_site",
         "id": "ridb:233193",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3074,7 +3280,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3611838752",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3611838752"
+          }
+        ]
       }
     },
     {
@@ -3300,7 +3518,6 @@
       },
       "properties": {
         "name": "WILLOW PRAIRIE HORSECAMP",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/willow-prairie-horsecamp/r/campgroundDetails.do?contractCode=NRSO&parkId=74117",
         "id": "ridb:234103",
         "source": "recreation.gov",
@@ -3333,7 +3550,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:560426078",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/560426078"
+          }
+        ]
       }
     },
     {
@@ -3855,7 +4084,6 @@
       },
       "properties": {
         "name": "Foster Bar Campground",
-        "tourism": "camp_site",
         "id": "ridb:265238",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3887,7 +4115,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7234504369",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7234504369"
+          }
+        ]
       }
     },
     {
@@ -4074,7 +4314,6 @@
         "caravans": "yes",
         "name": "LAVA LAKE CAMPGROUND",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/deschutes/recarea/?recid=38894",
         "id": "ridb:251448",
         "source": "recreation.gov",
@@ -4260,7 +4499,6 @@
       },
       "properties": {
         "name": "Moss Springs Campground",
-        "tourism": "camp_site",
         "id": "ridb:237807",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4292,7 +4530,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3108072371",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3108072371"
+          }
+        ]
       }
     },
     {
@@ -4307,7 +4557,6 @@
       "properties": {
         "name": "North Fork Siuslaw Campground",
         "operator": "United States Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/siuslaw/recarea/?recid=42413",
         "id": "ridb:264616",
         "source": "recreation.gov",
@@ -4340,7 +4589,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3389936543",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3389936543"
+          }
+        ]
       }
     },
     {
@@ -4693,7 +4954,6 @@
       },
       "properties": {
         "name": "FALL RIVER CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:267073",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4725,7 +4985,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3611567832",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3611567832"
+          }
+        ]
       }
     },
     {
@@ -4827,7 +5099,6 @@
         "description": "<p>Several walk in campsites along the <a href=\"http://www.fs.usda.gov/recarea/rogue-siskiyou/recreation/recarea/?recid=74294\" rel=\"nofollow\">Illinois River</a>. <a href=\"http://www.fs.usda.gov/recarea/rogue-siskiyou/recreation/recarea/?recid=77743\" rel=\"nofollow\">River Bench Day Use</a> and Campground are located on a lower river terrace, within a forested setting. Must hike down one of two access trails to use.</p><h2>Facilities</h2><ul><li>8 walk in campsites with picnic tables, and fire pits</li><li>No drinking water</li><li>Vault toilet within walking distance</li><li>No garbage disposal - Please pack it out</li></ul>",
         "name": "River Bench Campground",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/rogue-siskiyou/recarea/?recid=70634",
         "id": "ridb:266477",
         "source": "recreation.gov",
@@ -4929,7 +5200,6 @@
       "properties": {
         "capacity": "4",
         "name": "Devil's Canyon Campground",
-        "tourism": "camp_site",
         "id": "ridb:10322469",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4961,7 +5231,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1023898993",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1023898993"
+          }
+        ]
       }
     },
     {
@@ -5017,7 +5299,6 @@
       },
       "properties": {
         "name": "SUNSET COVE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:267070",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5049,7 +5330,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:617842005",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/617842005"
+          }
+        ]
       }
     },
     {
@@ -5107,7 +5400,6 @@
         "created_by": "GPSBabel-1.3.5",
         "name": "INLET CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251886",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5139,7 +5431,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:290875426",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/290875426"
+          }
+        ]
       }
     },
     {
@@ -5238,7 +5542,6 @@
       },
       "properties": {
         "name": "FRISSELL CROSSING CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234731",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5270,7 +5573,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5729132644",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5729132644"
+          }
+        ]
       }
     },
     {
@@ -5371,7 +5686,6 @@
       "properties": {
         "name": "Elderberry Flat Campground",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/or/resources/recreation/site_info.php?siteid=343",
         "id": "ridb:272170",
         "source": "recreation.gov",
@@ -5435,7 +5749,6 @@
         "name": "Post Pile Campground",
         "operator": "BLM",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:10039245",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6215,7 +6528,6 @@
       },
       "properties": {
         "name": "Green Mountain Campground",
-        "tourism": "camp_site",
         "id": "ridb:262731",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6247,7 +6559,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5371420783",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5371420783"
+          }
+        ]
       }
     },
     {
@@ -6644,7 +6968,6 @@
       "properties": {
         "name": "Bear Springs Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mthood/recarea/?recid=52786",
         "id": "ridb:234720",
         "source": "recreation.gov",
@@ -6705,7 +7028,6 @@
         "capacity": "15",
         "name": "RILEY HORSE CAMPGROUND",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/mthood/recarea/?recid=53464",
         "id": "ridb:232834",
         "source": "recreation.gov",
@@ -6806,7 +7128,6 @@
       },
       "properties": {
         "name": "PINE REST CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:267078",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -6838,7 +7159,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2106213112",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2106213112"
+          }
+        ]
       }
     },
     {
@@ -6979,7 +7312,6 @@
       "properties": {
         "name": "Fish Lake Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "type": null,
         "id": "ridb:262776",
         "source": "recreation.gov",
@@ -7208,7 +7540,6 @@
         "capacity": "6",
         "name": "Jackman Park Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/jackman-park-campground",
         "id": "ridb:10005523",
         "source": "recreation.gov",
@@ -7357,7 +7688,6 @@
         "name": "Stillwater Campground",
         "operator": "BLM",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:10001666",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -7418,7 +7748,6 @@
         "capacity": "20",
         "name": "Chimney Rock Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/chimney-rock-campground",
         "id": "ridb:274330",
         "source": "recreation.gov",
@@ -7775,7 +8104,6 @@
         "created_by": "GPSBabel-1.3.5",
         "name": "BOGUS CREEK CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251357",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -7807,7 +8135,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:290875430",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/290875430"
+          }
+        ]
       }
     },
     {
@@ -7823,7 +8163,6 @@
         "building": "yes",
         "name": "SNOW CAMP LOOKOUT",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:234159",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -7855,7 +8194,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:497213023",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/497213023"
+          }
+        ]
       }
     },
     {
@@ -7914,7 +8265,6 @@
         "capacity": "7",
         "name": "MUD LAKE CAMPGROUND",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/wallowa-whitman/recarea/?recid=52561",
         "id": "ridb:233236",
         "source": "recreation.gov",
@@ -8484,7 +8834,6 @@
       "properties": {
         "name": "Buck Creek Forest Camp and Trailhead",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "id": "ridb:237803",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -8516,7 +8865,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10102596044",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10102596044"
+          }
+        ]
       }
     },
     {
@@ -8998,7 +9359,6 @@
         "addr:street": "Hyatt Prairie Road",
         "name": "Hyatt Lake Recreation Area",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "id": "ridb:250031",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9104,7 +9464,6 @@
         "created_by": "GPSBabel-1.3.5",
         "name": "EAGLE ROCK CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251471",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9136,7 +9495,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:290875419",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/290875419"
+          }
+        ]
       }
     },
     {
@@ -9192,7 +9563,6 @@
       },
       "properties": {
         "name": "ALLEN SPRINGS CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:251577",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9224,7 +9594,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2106213123",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2106213123"
+          }
+        ]
       }
     },
     {
@@ -9239,7 +9621,6 @@
       "properties": {
         "name": "MALLARD MARSH CAMPGROUND",
         "operator": "USFS",
-        "tourism": "camp_site",
         "id": "ridb:251581",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9467,7 +9848,6 @@
         "created_by": "GPSBabel-1.3.5",
         "name": "CANTON CREEK CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251885",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9499,7 +9879,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:290875434",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/290875434"
+          }
+        ]
       }
     },
     {
@@ -9514,7 +9906,6 @@
       "properties": {
         "name": "TOKETEE LAKE CAMPGROUND",
         "source_ref": "http://www.fs.fed.us/r6/data-library/gis/umpqua/documents/rec_site_pt.zip",
-        "tourism": "camp_site",
         "id": "ridb:251907",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9546,7 +9937,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:758187836",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/758187836"
+          }
+        ]
       }
     },
     {
@@ -9856,7 +10259,6 @@
         "capacity": "36",
         "name": "South Steens Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/south-steens-campground",
         "id": "ridb:255183",
         "source": "recreation.gov",
@@ -9917,7 +10319,6 @@
         "leisure": "park",
         "name": "Spring Recreation Site",
         "operator": "BLM",
-        "tourism": "camp_site",
         "id": "ridb:255188",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -9949,7 +10350,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:495108930",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/495108930"
+          }
+        ]
       }
     },
     {
@@ -10006,7 +10419,6 @@
       "properties": {
         "name": "Priest Hole Recreation Site",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "id": "ridb:260547",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10038,7 +10450,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7786229176",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7786229176"
+          }
+        ]
       }
     },
     {
@@ -10136,7 +10560,6 @@
       },
       "properties": {
         "name": "Duncan Reservoir Campground",
-        "tourism": "camp_site",
         "id": "ridb:262741",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10168,7 +10591,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4983585083",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4983585083"
+          }
+        ]
       }
     },
     {
@@ -10182,7 +10617,6 @@
       },
       "properties": {
         "name": "Baker Beach Campground",
-        "tourism": "camp_site",
         "id": "ridb:264601",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10214,7 +10648,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5950102085",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5950102085"
+          }
+        ]
       }
     },
     {
@@ -10236,7 +10682,6 @@
         "nohousenumber": "yes",
         "operator": "United States Forest Service",
         "reservation": "required",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/siuslaw/recreation/rocky-bend-group-campground",
         "id": "ridb:264686",
         "source": "recreation.gov",
@@ -10269,7 +10714,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1414183865",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1414183865"
+          }
+        ]
       }
     },
     {
@@ -10325,7 +10782,6 @@
       },
       "properties": {
         "name": "LOWER BRIDGE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:266139",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10357,7 +10813,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2106213133",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2106213133"
+          }
+        ]
       }
     },
     {
@@ -10497,7 +10965,6 @@
       },
       "properties": {
         "name": "PRINCESS CREEK CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:267079",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10529,7 +10996,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:617842010",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/617842010"
+          }
+        ]
       }
     },
     {
@@ -10587,7 +11066,6 @@
         "camp_site": "basic",
         "name": "LOWER CANYON CREEK CAMPGROUND",
         "operator": "Deschutes National Forest",
-        "tourism": "camp_site",
         "id": "ridb:267081",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10647,7 +11125,6 @@
         "caravans": "yes",
         "name": "INDIAN FORD CAMPGROUND",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/deschutes/recarea/?recid=38612",
         "id": "ridb:267082",
         "source": "recreation.gov",
@@ -10790,7 +11267,6 @@
       },
       "properties": {
         "name": "CRESCENT CREEK CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:267557",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -10822,7 +11298,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3633568559",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3633568559"
+          }
+        ]
       }
     },
     {
@@ -10969,7 +11457,6 @@
         "name": "Big Elk Campground",
         "operator": "United States Forest Service",
         "operator:wikidata": "Q1891156",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/r06/siuslaw/recreation/big-elk-campground",
         "id": "ridb:272044",
         "source": "recreation.gov",
@@ -11002,7 +11489,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1442511569",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:29:55Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1442511569"
+          }
+        ]
       }
     },
     {

@@ -1188,7 +1188,6 @@
       },
       "properties": {
         "name": "WAPITI CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234606",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1220,7 +1219,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1357534303",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1357534303"
+          }
+        ]
       }
     },
     {
@@ -1617,7 +1628,6 @@
         "operator": "BLM",
         "source": "recreation.gov",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:14720",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/14720",
@@ -1759,7 +1769,6 @@
       "properties": {
         "name": "THREEMILE CAMPGROUND",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "id": "ridb:233293",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/233293",
@@ -1790,7 +1799,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:968816684",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/968816684"
+          }
+        ]
       }
     },
     {
@@ -2736,7 +2757,6 @@
         "reservation": "no",
         "static_caravans": "no",
         "tents": "yes",
-        "tourism": "camp_site",
         "id": "ridb:239007",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2923,7 +2943,6 @@
       },
       "properties": {
         "name": "STATION CREEK CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:232382",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2955,7 +2974,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:820530616",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/820530616"
+          }
+        ]
       }
     },
     {
@@ -3011,7 +3042,6 @@
       },
       "properties": {
         "name": "HALF MOON LAKE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234785",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3043,7 +3073,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:654779541",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/654779541"
+          }
+        ]
       }
     },
     {
@@ -3058,7 +3100,6 @@
       "properties": {
         "name": "Prior Flat Campground",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "id": "ridb:14713",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3118,7 +3159,6 @@
       "properties": {
         "name": "Worthen Meadow Campground",
         "operator": "USDA",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/shoshone/recreation/camping-cabins/recarea/?recid=36391&actid=29",
         "id": "ridb:240434",
         "source": "recreation.gov",
@@ -3151,7 +3191,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2047463931",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2047463931"
+          }
+        ]
       }
     },
     {
@@ -3378,7 +3430,6 @@
         "gnis:feature_id": "1608733",
         "name": "Medicine Lodge Lake Campground",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "id": "ridb:243108",
         "schema_version": 3,
         "source_url": "https://www.recreation.gov/camping/campgrounds/243108",
@@ -3409,7 +3460,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:3178433233",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/3178433233"
+          }
+        ]
       }
     },
     {
@@ -3718,7 +3781,6 @@
       "properties": {
         "name": "Bennett Peak Campground",
         "operator": "Bureau of Land Management",
-        "tourism": "camp_site",
         "id": "ridb:202226",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3751,7 +3813,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:427905864",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/427905864"
+          }
+        ]
       }
     },
     {
@@ -3892,7 +3966,6 @@
       "properties": {
         "name": "HUNTER PEAK",
         "operator": "USDA",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/shoshone/recreation/camping-cabins/recarea/?recid=35905&actid=29",
         "id": "ridb:234595",
         "source": "recreation.gov",
@@ -3925,7 +3998,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:243871065",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/243871065"
+          }
+        ]
       }
     },
     {
@@ -3941,7 +4026,6 @@
         "name": "Cottonwood Campground",
         "operator": "Bureau of Land Management",
         "payment:cash": "yes",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/cottonwood-campground-0",
         "id": "ridb:202232",
         "source": "recreation.gov",
@@ -4085,7 +4169,6 @@
       },
       "properties": {
         "name": "Newton Creek Campground",
-        "tourism": "camp_site",
         "id": "ridb:240420",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4117,7 +4200,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4061068898",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4061068898"
+          }
+        ]
       }
     },
     {
@@ -5518,7 +5613,6 @@
       "properties": {
         "name": "Atlantic City Campground",
         "operator": "BLM",
-        "tourism": "camp_site",
         "id": "ridb:202234",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5550,7 +5644,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1173479120",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1173479120"
+          }
+        ]
       }
     },
     {
@@ -5564,7 +5670,6 @@
       },
       "properties": {
         "name": "BIG GAME CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:234594",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -5596,7 +5701,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4064506527",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:43:15Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4064506527"
+          }
+        ]
       }
     },
     {

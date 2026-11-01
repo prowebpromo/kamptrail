@@ -605,7 +605,6 @@
         "operator:type": "military",
         "operator:wikidata": "Q1049334",
         "source_ref": "https://www.recreation.gov/camping/campgrounds/232662?tab=info",
-        "tourism": "camp_site",
         "website": "https://www.swl.usace.army.mil/Missions/Recreation/Arkansas-River/Arkansas-River-Recreation/",
         "id": "ridb:232662",
         "source": "recreation.gov",
@@ -638,7 +637,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1442811091",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1442811091"
+          }
+        ]
       }
     },
     {
@@ -1116,7 +1127,6 @@
         "capacity": "18",
         "name": "LAKE WEDINGTON",
         "tents": "yes",
-        "tourism": "caravan_site",
         "id": "ridb:234586",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3488,7 +3498,6 @@
         "capacity": "31",
         "name": "Ozark Campground",
         "operator": "US National Park Service",
-        "tourism": "camp_site",
         "id": "ridb:233120",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3520,7 +3529,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4285104560",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4285104560"
+          }
+        ]
       }
     },
     {
@@ -4332,7 +4353,6 @@
       },
       "properties": {
         "name": "Daisy State Park",
-        "tourism": "camp_site",
         "id": "ridb:247835",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4364,7 +4384,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:941066426",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:50:05Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941066426"
+          }
+        ]
       }
     },
     {

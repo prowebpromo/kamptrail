@@ -103,7 +103,6 @@
         "operator": "National Park Service",
         "reservation": "required",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234715",
         "id": "ridb:234715",
         "source": "recreation.gov",
@@ -136,7 +135,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:988355889",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:20:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/988355889"
+          }
+        ]
       }
     },
     {
@@ -283,7 +294,6 @@
         "operator": "United States Forest Service",
         "reservation": "required",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234476",
         "id": "ridb:234476",
         "source": "recreation.gov",
@@ -74562,6 +74572,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:way:977966073",
         "member_evidence": [
           {
             "source_record_id": "osm:way:977966073",
@@ -74710,6 +74721,7 @@
         "field_provenance": {
           "cost": "unknown"
         },
+        "description_source_record_id": "osm:way:977966076",
         "member_evidence": [
           {
             "source_record_id": "osm:way:977966076",

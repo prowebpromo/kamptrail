@@ -15,7 +15,6 @@
         "name": "CAMP GATEWAY - SANDY HOOK",
         "operator": "National Park Service",
         "tents": "yes",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/gate/planyourvisit/camping-at-gateway.htm",
         "id": "ridb:234714",
         "source": "recreation.gov",
@@ -48,7 +47,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1268405937",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:14:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1268405937"
+          }
+        ]
       }
     },
     {

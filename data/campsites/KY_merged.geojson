@@ -1902,7 +1902,6 @@
       },
       "properties": {
         "name": "Bell Farm Horse Camp",
-        "tourism": "camp_site",
         "id": "ridb:236715",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1934,7 +1933,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:670629346",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:03:17Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/670629346"
+          }
+        ]
       }
     },
     {
@@ -2201,7 +2212,6 @@
       "properties": {
         "name": "BOAT GUNNEL GROUP CAMPGROUND",
         "phone": "+1-877-444-6777",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39344",
         "id": "ridb:251820",
         "source": "recreation.gov",
@@ -2234,7 +2244,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8903531678",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:03:17Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8903531678"
+          }
+        ]
       }
     },
     {
@@ -3191,7 +3213,8 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "description_source_record_id": "osm:node:5266026954"
       }
     },
     {

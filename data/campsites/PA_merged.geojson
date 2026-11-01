@@ -855,7 +855,6 @@
       "properties": {
         "name": "IVES RUN",
         "name:signed": "no",
-        "tourism": "caravan_site",
         "website": "https://www.recreation.gov/camping/campgrounds/233523",
         "id": "ridb:233523",
         "source": "recreation.gov",
@@ -1551,7 +1550,6 @@
         "name": "Milton Loop Campground",
         "opening_hours": "Apr-Oct",
         "phone": "+1 814-257-0131",
-        "tourism": "camp_site",
         "id": "ridb:248331",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1583,7 +1581,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:572976438",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T03:32:01Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/572976438"
+          }
+        ]
       }
     },
     {

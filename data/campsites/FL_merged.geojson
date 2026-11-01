@@ -104,7 +104,6 @@
         "name": "RIVER FOREST GROUP SITE",
         "operator": "United States Forest Service",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "website": "riverforestpoa.org",
         "id": "ridb:234597",
         "schema_version": 3,
@@ -136,7 +135,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:154201254",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/154201254"
+          }
+        ]
       }
     },
     {
@@ -1075,7 +1086,6 @@
       "properties": {
         "alt_name": "Write Lake Campground",
         "name": "WRIGHT LAKE CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:251908",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1107,7 +1117,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:477557348",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-10-29T02:55:27Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/477557348"
+          }
+        ]
       }
     },
     {
