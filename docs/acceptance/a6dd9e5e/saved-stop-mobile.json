@@ -1,0 +1,55 @@
+{
+ "start": "2026-11-01T20:46:51.077Z",
+ "base": "https://kamptrail.com",
+ "browser": {
+  "executable": "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome",
+  "version": "153.0.8010.12"
+ },
+ "mobile_emulation": true,
+ "viewport_runtime": {
+  "width": 390,
+  "height": 844
+ },
+ "expected_sha": "a6dd9e5ed6b2ce64e372ba30d99119be4aaa19e7",
+ "release": {
+  "source_commit": "a6dd9e5ed6b2ce64e372ba30d99119be4aaa19e7"
+ },
+ "version": "2.35.0",
+ "online": {
+  "stored": [
+   "ridb:232479"
+  ],
+  "stops": [
+   [
+    "ridb:232479",
+    "osm:way:1107154601",
+    "Cosby Campground"
+   ]
+  ],
+  "controlled": true,
+  "online": true,
+  "hosts": "published"
+ },
+ "offline": {
+  "stored": [
+   "ridb:232479"
+  ],
+  "stops": [
+   [
+    "ridb:232479",
+    "osm:way:1107154601",
+    "Cosby Campground"
+   ]
+  ],
+  "controlled": true,
+  "online": false,
+  "hosts": "published",
+  "uncached_fetch_blocked": true
+ },
+ "popup": "Cosby Campground\nCost: Paid · amount not verified\nType: established\nGPS: 35.75365, -83.20763\nApprox. elevation 2,299 ft · USGS 3DEP · retrieved 2026-10-30\n\nInterpolated terrain from USGS 3DEP. Retrieval date is not acquisition date. Source grid resolution does not guarantee point accuracy, road grad",
+ "release_end": {
+  "source_commit": "a6dd9e5ed6b2ce64e372ba30d99119be4aaa19e7"
+ },
+ "result": "PASS",
+ "end": "2026-11-01T20:47:05.984Z"
+}

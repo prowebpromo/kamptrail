@@ -1,0 +1,222 @@
+{
+ "start": "2026-11-01T20:35:02.677Z",
+ "base": "https://kamptrail.com",
+ "browser": "153.0.8010.12",
+ "expected": [
+  {
+   "id": "usfs:65184",
+   "ids": [
+    "usfs:65184"
+   ],
+   "states": [
+    "NV"
+   ],
+   "name": "Bird Creek Campground"
+  },
+  {
+   "id": "osm:way:1236741631",
+   "ids": [
+    "osm:way:1236741631",
+    "ridb:234209"
+   ],
+   "states": [
+    "CA",
+    "NV"
+   ],
+   "name": "Bird Creek Campground"
+  }
+ ],
+ "runs": [
+  {
+   "order": "NV>CA",
+   "version": "2.35.0",
+   "checkpoints": [
+    {
+     "after": "NV",
+     "observed": {
+      "resolve": {
+       "usfs:65184": {
+        "id": "usfs:65184",
+        "ids": [
+         "usfs:65184"
+        ]
+       },
+       "osm:way:1236741631": {
+        "id": "ridb:234209",
+        "ids": [
+         "ridb:234209"
+        ]
+       },
+       "ridb:234209": {
+        "id": "ridb:234209",
+        "ids": [
+         "ridb:234209"
+        ]
+       }
+      },
+      "named": [
+       {
+        "id": "ridb:234209",
+        "ids": [
+         "ridb:234209"
+        ],
+        "name": "Bird Creek Campground"
+       },
+       {
+        "id": "usfs:65184",
+        "ids": [
+         "usfs:65184"
+        ],
+        "name": "Bird Creek Campground"
+       }
+      ]
+     },
+     "problems": [],
+     "partial_pending_states": [
+      "osm:way:1236741631 -> ridb:234209 [ridb:234209] (listing osm:way:1236741631 also needs CA)",
+      "ridb:234209 -> ridb:234209 [ridb:234209] (listing osm:way:1236741631 also needs CA)"
+     ],
+     "result": "PASS"
+    },
+    {
+     "after": "NV>CA",
+     "observed": {
+      "resolve": {
+       "usfs:65184": {
+        "id": "usfs:65184",
+        "ids": [
+         "usfs:65184"
+        ]
+       },
+       "osm:way:1236741631": {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631",
+         "ridb:234209"
+        ]
+       },
+       "ridb:234209": {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631",
+         "ridb:234209"
+        ]
+       }
+      },
+      "named": [
+       {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631",
+         "ridb:234209"
+        ],
+        "name": "Bird Creek Campground"
+       },
+       {
+        "id": "usfs:65184",
+        "ids": [
+         "usfs:65184"
+        ],
+        "name": "Bird Creek Campground"
+       }
+      ]
+     },
+     "problems": [],
+     "partial_pending_states": [],
+     "result": "PASS"
+    }
+   ]
+  },
+  {
+   "order": "CA>NV",
+   "version": "2.35.0",
+   "checkpoints": [
+    {
+     "after": "CA",
+     "observed": {
+      "resolve": {
+       "usfs:65184": null,
+       "osm:way:1236741631": {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631"
+        ]
+       },
+       "ridb:234209": {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631"
+        ]
+       }
+      },
+      "named": [
+       {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631"
+        ],
+        "name": "Bird Creek Campground"
+       }
+      ]
+     },
+     "problems": [],
+     "partial_pending_states": [
+      "osm:way:1236741631 -> osm:way:1236741631 [osm:way:1236741631] (listing osm:way:1236741631 also needs NV)",
+      "ridb:234209 -> osm:way:1236741631 [osm:way:1236741631] (listing osm:way:1236741631 also needs NV)"
+     ],
+     "result": "PASS"
+    },
+    {
+     "after": "CA>NV",
+     "observed": {
+      "resolve": {
+       "usfs:65184": {
+        "id": "usfs:65184",
+        "ids": [
+         "usfs:65184"
+        ]
+       },
+       "osm:way:1236741631": {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631",
+         "ridb:234209"
+        ]
+       },
+       "ridb:234209": {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631",
+         "ridb:234209"
+        ]
+       }
+      },
+      "named": [
+       {
+        "id": "osm:way:1236741631",
+        "ids": [
+         "osm:way:1236741631",
+         "ridb:234209"
+        ],
+        "name": "Bird Creek Campground"
+       },
+       {
+        "id": "usfs:65184",
+        "ids": [
+         "usfs:65184"
+        ],
+        "name": "Bird Creek Campground"
+       }
+      ]
+     },
+     "problems": [],
+     "partial_pending_states": [],
+     "result": "PASS"
+    }
+   ]
+  }
+ ],
+ "mismatches": 0,
+ "result": "PASS",
+ "end": "2026-11-01T20:35:15.129Z"
+}
