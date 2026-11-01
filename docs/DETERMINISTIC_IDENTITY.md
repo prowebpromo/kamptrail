@@ -148,3 +148,10 @@ The only defect found on 2.34.0 was Bird Creek: one listing `ridb:234209` holdin
 At full load the result equals 2.33.0: every multi-record listing in the index is formed from records that all share one owner, and the index's own election (preferred ids, previous hosts) still picks the host among them.
 
 No stored id is rewritten. `search-index.json`, `coordinate-index.json`, `identity-hosts.json` and every listing file are byte-identical to main `041ff76c`.
+
+## Tests (2.35.0)
+
+- `npm test`: 471 tests. The new `tests/deterministic-identity.test.js` cases cover the general rule (synthetic same-name records of two owners, the host arriving in either input order, same-id joins, and the index-build path still merging without `ownerOnly`) and Bird Creek on real NV and CA data in both orders, with every listing holding one index owner after each load. A first full run found two errors of my own (a version string and a fixture name), both fixed. Rerunning the two files afterwards passed 13/13.
+- `npm run test:python`: pass.
+- Browser, on the 8797 worktree server (`identity`, `saved-stops`, `features`, `discovery`, `amenity-evidence`, `rig-profile`, `rest-areas`, `app`): 57 passed, 1 failed. The failure is the known `app.spec.js` mobile map height (493 vs >500). `identity.spec.js` includes the two new partial-load tests, NV before CA and CA before NV.
+- `npm run build`: passes. The release has `identity-hosts.json`, cache `kt-v68` and version 2.35.0. `search-index.json`, `coordinate-index.json` and `identity-hosts.json` hashes equal main's.
