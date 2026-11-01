@@ -179,17 +179,35 @@
   // order (states alphabetically, records in file order), with the index's canonical hosts.
   // The result for a set of loaded states never depends on load order or response timing.
   const stateInputs=new Map(),shownIds=new Set();
-  let identity=null; // {preferredIds,previousHosts} from identity-hosts.json, or null when unavailable.
+  let identity=null; // {preferredIds,previousHosts,aliases} from identity-hosts.json, or null when unavailable.
+  let identityTask=null,identityTried=0,identityTimer=null;
   async function loadIdentityHosts(){
+    identityTried=Date.now();
     try{const data=await fetchJSON('data/campsites/identity-hosts.json');if(!DataQuality.validIdentityHosts(data))throw new Error('Invalid identity hosts');identity={...DataQuality.identityOptions(data),aliases:data.hosts};}
-    catch(err){identity=null;console.warn('Listing identity hosts unavailable; listings keep the ids already shown.',err.message);}
+    catch(err){console.warn('Listing identity hosts unavailable; nearby records stay separate until they load.',err.message);}
+    finally{identityTask=null;}
+    if(identity){
+      clearTimeout(identityTimer);
+      // Reconcile once: records shown separately join their published listing. Every id shown or
+      // stored meanwhile is one of that listing's own published ids, so it keeps resolving to it.
+      if(stateInputs.size){rebuildCatalogue();updateMarkers();}
+    } else scheduleIdentityRetry();
+    return !!identity;
   }
+  function ensureIdentity(force=false){
+    if(identity)return Promise.resolve(true);
+    if(!identityTask&&(force||Date.now()-identityTried>=15000))identityTask=loadIdentityHosts();
+    return identityTask||Promise.resolve(false);
+  }
+  function scheduleIdentityRetry(){clearTimeout(identityTimer);identityTimer=setTimeout(()=>ensureIdentity(true),30000);identityTimer?.unref?.();}
+  window.addEventListener?.('online',()=>ensureIdentity(true));
   function identityOptions(){
     if(identity)return identity;
-    // Fallback: no published host data. An id already shown stays canonical with its aliases.
-    const previousHosts=new Map();
-    for(const f of state.allCampsites)for(const alias of f.properties.legacy_ids||[])if(alias!==f.properties.id)previousHosts.set(alias,f.properties.id);
-    return {preferredIds:shownIds,previousHosts};
+    // Fallback without the published hosts: no proximity merge, so no merge the index would not
+    // make and no host election that depends on load order. The same record seen in two state files
+    // still joins by its id. Nearby records of one place can show as separate markers until the
+    // host file arrives. docs/DETERMINISTIC_IDENTITY.md
+    return {radiusMeters:-1};
   }
   function attachSidecars(f){
     if(state.siteDetails)DataQuality.attachSiteDetails(f,state.siteDetails);
@@ -234,6 +252,7 @@
   }
   async function loadState(code,{retry=false}={}) {
     if(!STATE_BOUNDS[code])return;
+    ensureIdentity(retry);
     if(state.loadedStates.has(code))return loadElevation(code,retry);
     if(state.loading.has(code))return state.loading.get(code);
     const last=state.failed.get(code);
@@ -561,7 +580,10 @@
         updateMarkers();
       });
       // Identity hosts load beside the other small metadata; failure falls back without blocking.
-      await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex(),loadIdentityHosts()]);
+      // Identity hosts are awaited at most 3 s beside the other metadata. A slow or failed file never
+      // blocks the map: listings load in the no-merge fallback and reconcile when the file arrives.
+      const hosts=ensureIdentity(true);
+      await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex(),Promise.race([hosts,new Promise(r=>{const t=setTimeout(r,3000);t?.unref?.();})])]);
       if(state.overview&&map.hasLayer(state.overview))map.removeLayer(state.overview);state.overview=null;
       await onView();
     },
@@ -587,6 +609,8 @@
     // The listing's id in the published index. A listing shown before all its states load can carry a member's own id.
     publishedId(id){const key=String(id);return identity?.previousHosts.get(key)||key;},
     getIdentityStatus:()=>({hosts:identity?'published':'fallback',shown:shownIds.size}),
+    // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
+    async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
     getLoadedStates:()=>[...state.loadedStates],
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,

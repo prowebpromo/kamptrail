@@ -112,3 +112,48 @@ test.describe('cached states',()=>{
     await context.setOffline(false);
   });
 });
+
+test.describe('host file unavailable on a first visit',()=>{
+  test.use({serviceWorkers:'block'});
+  test('no wrong merge or flip, saved stops and contributions keep their ids, and the file arriving converges to the index',async({page})=>{
+    test.setTimeout(240000);
+    let serveHosts=false;
+    await page.route('**/data/campsites/identity-hosts.json',r=>serveHosts?r.continue():r.fulfill({status:404,body:''}));
+    await page.addInitScript(()=>{if(!sessionStorage.getItem('seeded')){sessionStorage.setItem('seeded','1');localStorage.setItem('kt_trip',JSON.stringify([{id:'ridb:232479',feature:null,note:'legacy',arrive:'',depart:''}]));}});
+    await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
+    await page.goto('/');
+    await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='fallback');
+    const owners=Object.fromEntries(index.sites.flatMap(s=>[s.id,...s.legacy_ids].map(id=>[id,s.id])));
+    const check=()=>page.evaluate(owners=>{const wrong=[],ids=[];for(const f of KampTrailData.getAllCampsites()){const p=f.properties,own=new Set([p.id,...(p.legacy_ids||[])].map(id=>owners[id]));if(own.size!==1||own.has(undefined))wrong.push(p.id);ids.push(p.id);}return {wrong,ids};},owners);
+    const shown=new Set();
+    for(const code of ['NV','TN','NC','CA']){
+      await page.evaluate(c=>KampTrailData.loadStates([c]),code);
+      const {wrong,ids}=await check();
+      expect(wrong,`${code}: no listing joins records of two index listings`).toEqual([]);
+      for(const id of shown)expect(ids,`${id} is still a listing id`).toContain(id);
+      ids.forEach(id=>shown.add(id));
+    }
+    // The saved stop keeps its stored id and still finds a listing for it.
+    await expect.poll(()=>page.evaluate(()=>KampTrailTrip.getStops().map(s=>[s.id,!!s.feature]))).toEqual([['ridb:232479',true]]);
+    // A correction during the fallback is keyed to a published id of the same listing.
+    let posted=null;
+    await page.route('**/api/submit.php',async r=>{posted=JSON.parse(r.request().postData());await r.fulfill({status:201,contentType:'application/json',body:JSON.stringify({ok:true,token:'a'.repeat(32),status:'pending'})});});
+    await page.evaluate(()=>KampTrailContrib.open({kind:'correction',site:KampTrailData.getCampsiteById('ridb:232479')}));
+    await page.locator('#kt-report textarea[name="details"]').fill('Firsthand test correction during the host fallback.');
+    await page.locator('#kt-report input[name="firsthand"]').check();
+    await page.locator('#kt-report input[name="problems"]').first().check();
+    await page.locator('#kt-report button[type="submit"]').click();
+    await expect.poll(()=>posted?.campsite_id).toBeTruthy();
+    expect(owners[posted.campsite_id]).toBe('osm:way:1107154601');
+    // The file arrives: listings converge to the index and every id shown or stored still resolves.
+    serveHosts=true;
+    await page.evaluate(()=>KampTrailData.retryIdentity());
+    expect(await page.evaluate(()=>KampTrailData.getIdentityStatus().hosts)).toBe('published');
+    const loaded=['NV','TN','NC','CA'],complete=index.sites.filter(s=>s.states.every(c=>loaded.includes(c)));
+    const got=await page.evaluate(ids=>ids.map(id=>KampTrailData.getCampsiteById(id)?.properties.id||null),complete.flatMap(s=>[s.id,...s.legacy_ids]));
+    expect(got).toEqual(complete.flatMap(s=>[s.id,...s.legacy_ids].map(()=>s.id)));
+    for(const id of shown)if(complete.some(s=>s.id===owners[id]))expect(await page.evaluate(id=>KampTrailData.getCampsiteById(id)?.properties.id,id)).toBe(owners[id]);
+    expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')).map(s=>s.id))).toEqual(['ridb:232479']);
+    expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].feature.properties.id)).toBe('osm:way:1107154601');
+  });
+});

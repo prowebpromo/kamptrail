@@ -15,16 +15,21 @@ const dir=path.join(root,'data/campsites');
 const indexText=fs.readFileSync(path.join(dir,'search-index.json'),'utf8'),index=JSON.parse(indexText),byId=new Map(index.sites.map(s=>[s.id,s]));
 
 function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0}={}){
+  const host={mode:hosts};
   const cluster={addLayers(){},addLayer(){},removeLayer(){}};
   const ocean={getSouth:()=>-10,getNorth:()=>-9,getWest:()=>-140,getEast:()=>-139,contains:()=>false};
   const map={on(){return this;},getBounds:()=>ocean,addLayer(){},removeLayer(){},hasLayer:()=>false,getZoom:()=>10,setView(){},closePopup(){}};
   const requests=[];
-  const fetcher=async url=>{
+  const fetcher=async(url,opts)=>{
     const rel=String(url);requests.push(rel);
     const code=(rel.match(/([A-Z]{2})(?:_merged)?\.geojson$/)||[])[1];
     if(code&&delay[code])await new Promise(r=>setTimeout(r,delay[code]));
     if(sidecarDelay&&/(ridb-amenities|usfs-site-amenities)\.json$/.test(rel))await new Promise(r=>setTimeout(r,sidecarDelay));
-    if(rel.endsWith('identity-hosts.json')&&hosts!=='served')return hosts==='corrupt'?{ok:true,json:async()=>({version:1,hosts:[]})}:{ok:false,status:404,json:async()=>({})};
+    if(rel.endsWith('identity-hosts.json')&&host.mode!=='served'){
+      if(host.mode==='corrupt')return {ok:true,json:async()=>({version:1,hosts:[]})};
+      if(host.mode==='timeout')return new Promise((_,reject)=>opts?.signal?.addEventListener('abort',()=>reject(Object.assign(new Error('aborted'),{name:'AbortError'}))));
+      return {ok:false,status:404,json:async()=>({})};
+    }
     if(code&&fail.has(code))return {ok:false,status:503,json:async()=>({})};
     const file=path.join(root,rel);if(!fs.existsSync(file))return {ok:false,status:404,json:async()=>({})};
     return {ok:true,json:async()=>JSON.parse(fs.readFileSync(file,'utf8'))};
@@ -34,7 +39,7 @@ function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0}={}){
   context.window=context;vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(root,'data-quality.js'),'utf8'),context);
   vm.runInContext(fs.readFileSync(path.join(root,'data-loader.js'),'utf8'),context);
-  return {api:context.KampTrailData,DQ:context.DataQuality,map,requests};
+  return {api:context.KampTrailData,DQ:context.DataQuality,map,requests,serveHosts:()=>{host.mode='served';}};
 }
 // Values built inside the VM realm are compared as plain JSON.
 const plain=v=>JSON.parse(JSON.stringify(v));
@@ -98,19 +103,33 @@ test('delayed responses and parallel batches give the same listings as sequentia
   expectIndex(b,want);
 });
 
-test('without host data the fallback is fixed for one state and never moves a shown id',async()=>{
-  // Without host data the browser cannot know a host it has not loaded yet. It keeps every id it has
-  // already shown canonical (no flip) and otherwise uses the index build's fixed input order.
-  const one=async()=>{const h=harness({hosts:'missing'});await h.api.init(h.map);await h.api.loadStates(['TN']);return h;};
-  const x=await one(),y=await one();
-  assert.equal(x.api.getIdentityStatus().hosts,'fallback');
-  const key=h=>plain(h.api.getAllCampsites().map(f=>ids(rowOf(h,f)).join('|')).sort());
-  assert.deepEqual(key(x),key(y));
-  const h=harness({hosts:'corrupt'});await h.api.init(h.map);await h.api.loadStates(['TN']);
-  const shown=new Set(h.api.getAllCampsites().map(f=>f.properties.id));
-  await h.api.loadStates(['NC']);
-  const after=new Set(h.api.getAllCampsites().map(f=>f.properties.id));
-  for(const id of shown)assert.ok(after.has(id),`${id} stays canonical after another state loads`);
+// Host file failure on a first visit (404, timeout, corrupt): no merge the index would not make, no flip
+// of a shown id, saved stops and contributions keep their ids, and the file arriving converges to the index.
+const owner=new Map();for(const s of index.sites)for(const id of [s.id,...s.legacy_ids])owner.set(id,s.id);
+for(const mode of ['missing','timeout','corrupt'])test(`host file ${mode} on a first visit: no wrong merge, no flip, converges after retry`,async()=>{
+  const states=['UT','NV','TN','NC','CA'],h=harness({hosts:mode});
+  await h.api.init(h.map);assert.equal(h.api.getIdentityStatus().hosts,'fallback');
+  const shown=new Set();
+  for(const code of states){
+    await h.api.loadStates([code]);
+    const now=new Set();
+    for(const f of h.api.getAllCampsites()){
+      const p=f.properties,own=new Set([p.id,...(p.legacy_ids||[])].map(id=>owner.get(id)));
+      assert.ok(!own.has(undefined),`${p.id}: every record is published`);
+      assert.equal(own.size,1,`${p.id}: no merge of two index listings (${[...own]})`);
+      now.add(p.id);
+    }
+    for(const id of shown)assert.ok(now.has(id),`${id}: a shown listing id is never demoted or moved`);
+    for(const id of now)shown.add(id);
+  }
+  // Bird Creek Campground (NV) stays its own listing, as in the index.
+  assert.equal(h.api.getCampsiteById('usfs:65184').properties.id,'usfs:65184');
+  h.serveHosts();
+  for(let i=0;i<3&&h.api.getIdentityStatus().hosts!=='published';i++)await h.api.retryIdentity();
+  assert.equal(h.api.getIdentityStatus().hosts,'published');
+  const loaded=new Set(states),complete=index.sites.filter(s=>s.states.every(c=>loaded.has(c)));
+  for(const s of complete)for(const id of [s.id,...s.legacy_ids])assert.equal(h.api.getCampsiteById(id)?.properties.id,s.id,`${id} resolves to ${s.id} after reconcile`);
+  expectIndex(h,complete.map(s=>s.id).slice(0,300));
 });
 
 test('any published id resolves to one listing; publishedId and identityIds follow the index',async()=>{
