@@ -41,7 +41,7 @@ async function enable(page, name = LAYER) {
 }
 const panel = page => page.locator('.kt-firewx-control');
 const card = (page, id) => page.locator(`.kt-firewx-alert[data-alert-id="${id}"]`);
-async function open(page) { const d = panel(page).locator('details'); if (!await d.evaluate(e => e.open)) await panel(page).locator('summary').click(); }
+async function open(page) { const d = panel(page).locator('details'); if (!await d.evaluate(e => e.open)) await panel(page).locator('summary').press('Enter'); await expect(d).toHaveJSProperty('open', true); }
 const noOverflow = page => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1 && [...document.querySelectorAll('.kt-firewx-control')].every(e => e.getBoundingClientRect().right <= innerWidth + 1));
 
 for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { name: 'mobile', size: { width: 390, height: 844 } }]) {
