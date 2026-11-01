@@ -174,6 +174,7 @@
     })();elevationTasks.set(code,task);return task;
   }
   function mergeLoaded(features,stateCode) {
+    if(!state.rawStates)state.rawStates=new Map();state.rawStates.set(stateCode,features);
     const options={state:stateCode,...(state.siteDetails?{siteDetails:state.siteDetails}:{}),...(state.amenityDetails?{amenityDetails:state.amenityDetails}:{})};
     // Members of unclassified hosts stay withheld across loaded states (an element can be a member in one state and a row in another).
     state.withheldMembers=new Set([...(state.withheldMembers||[]),...DataQuality.withheldMembers(features,options)]);options.withheldMembers=state.withheldMembers;
@@ -223,7 +224,6 @@
         const data=await fetchJSON(`data/campsites/${code}_merged.geojson`);
         if(data?.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid campsite data');
         const extra=await agency;
-        await state.amenityReady;
         mergeLoaded([...data.features,...(extra?.type==='FeatureCollection'&&Array.isArray(extra.features)?extra.features:[])],code);
         state.loadedStates.add(code);state.failed.delete(code);
         updateMarkers(); // Terrain lookup must not delay otherwise usable campsite markers.
@@ -531,9 +531,10 @@
       map.on('zoomend',layoutOverview);
       map.on('moveend',()=>{syncMode();clearTimeout(timer);timer=setTimeout(onView,250);});
       // Optional evidence must not delay the map when its request is slow or unavailable.
-      // Recreation.gov overnight records corroborate a facility's own type at admission, so state merges wait for this (it never rejects).
-      state.amenityReady=loadAmenityDetails();
-      state.amenityReady.then(()=>{
+      // Optional amenity evidence never delays listings. When it arrives, loaded states are merged again from their
+      // raw rows, because its overnight campsite records also corroborate a Recreation.gov facility's own type.
+      loadAmenityDetails().then(()=>{
+        if(state.amenityDetails&&state.rawStates?.size){const raw=[...state.rawStates];state.allCampsites=[];state.withheldMembers=new Set();for(const [code,features] of raw)mergeLoaded(features,code);}
         if(state.amenityDetails)state.allCampsites.forEach(f=>DataQuality.attachRIDBAmenities(f,state.amenityDetails));
         updateMarkers();
       });
