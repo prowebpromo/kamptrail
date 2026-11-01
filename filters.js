@@ -58,7 +58,7 @@
     Object.assign(state.filters,f);sync();apply('profile');return true;
   }
   window.KampTrailFilters={
-    version:'2.34.0',
+    version:'2.35.0',
     init(map){
       const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
       p.setAttribute('role','region');p.setAttribute('aria-label',t("Campsite filters"));
@@ -69,7 +69,7 @@
         <label><input type="radio" name="f-cost" value="conditional"> ${t("Free with conditions")}</label>
         <label><input type="radio" name="f-cost" value="paid"> ${t("Paid")}</label>
         <label><input type="radio" name="f-cost" value="unknown"> ${t("Unknown")}</label></div>
-        <label for="f-type"><strong>${t("Campsite type")}</strong></label><select id="f-type"><option value="all">${t("All types")}</option><option value="established">${t("Campground")}</option><option value="dispersed">${t("Dispersed")}</option><option value="backcountry">${t("Backcountry")}</option><option value="parking">${t("Overnight parking")}</option><option value="other">${t("Other / unspecified")}</option></select>
+        <label for="f-type"><strong>${t("Campsite type")}</strong></label><select id="f-type"><option value="all">${t("All types")}</option><option value="established">${t("Campground")}</option><option value="dispersed">${t("Dispersed")}</option><option value="backcountry">${t("Backcountry")}</option><option value="parking">${t("Overnight parking")}</option><option value="lodging">${t("Lookout, cabin or other lodging")}</option><option value="other">${t("Other / unspecified")}</option></select>
         <fieldset class="kt-elevation-filters"><legend>${t("Approximate terrain elevation")}</legend>
         <label for="f-elevation-unit">${t("Elevation units")}</label><select id="f-elevation-unit"><option value="ft">${t("Feet (ft)")}</option><option value="m">${t("Metres (m)")}</option></select>
         <div class="kt-elevation-bounds"><label>${t("Minimum")}<input id="f-elevation-min" type="number" step="any" inputmode="decimal" aria-describedby="f-elevation-help f-elevation-error" placeholder="${t("No minimum")}"></label><label>${t("Maximum")}<input id="f-elevation-max" type="number" step="any" inputmode="decimal" aria-describedby="f-elevation-help f-elevation-error" placeholder="${t("No maximum")}"></label></div>
@@ -94,7 +94,7 @@
       try{
         const saved=JSON.parse(localStorage.getItem('kt_filters_mvp')||'{}');
         if(['all','free','conditional','paid','unknown'].includes(saved.cost))state.filters.cost=saved.cost;
-        if(['all','established','dispersed','backcountry','parking','other'].includes(saved.type))state.filters.type=saved.type;
+        if(['all','established','dispersed','backcountry','parking','lodging','other'].includes(saved.type))state.filters.type=saved.type;
         if(RIGS.some(([v])=>v===saved.rigSize))state.filters.rigSize=saved.rigSize;
         const forecast={forecastMinC:saved.forecastMinC??null,forecastMaxC:saved.forecastMaxC??null,forecastHours:saved.forecastHours??24,forecastUnit:saved.forecastUnit==='C'?'C':'F'};if(window.KampTrailForecast?.range(forecast).valid)Object.assign(state.filters,forecast);
         const e={elevationMin:saved.elevationMin??null,elevationMax:saved.elevationMax??null};if(DataQuality.elevationRange(e).valid)Object.assign(state.filters,e);state.filters.elevationUnit=saved.elevationUnit==='m'?'m':'ft';

@@ -1,0 +1,867 @@
+[
+ {
+  "state": "AK",
+  "host": "ridb:232330",
+  "host_published_as": "ridb:232330",
+  "member": "osm:way:840370810",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232330",
+  "facility_ids_in_url": [
+   "232330"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "AK",
+  "host": "ridb:232141",
+  "host_published_as": "ridb:232141",
+  "member": "osm:way:840370815",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232141",
+  "facility_ids_in_url": [
+   "232141"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "AK",
+  "host": "ridb:274259",
+  "host_published_as": "ridb:274259",
+  "member": "osm:way:295165500",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/poi/274259",
+  "facility_ids_in_url": [
+   "274259"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "caravan_site",
+  "member_tourism": "caravan_site"
+ },
+ {
+  "state": "AZ",
+  "host": "ridb:270420",
+  "host_published_as": "ridb:270420",
+  "member": "osm:way:1304536321",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/270420?tab=info",
+  "facility_ids_in_url": [
+   "270420"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:232450",
+  "host_published_as": "ridb:232450",
+  "member": "osm:way:227298729",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232450",
+  "facility_ids_in_url": [
+   "232450"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:231970",
+  "host_published_as": "ridb:231970",
+  "member": "osm:way:1289786983",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/231970",
+  "facility_ids_in_url": [
+   "231970"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:231971",
+  "host_published_as": "ridb:231971",
+  "member": "osm:way:1290276275",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/231971?tab=ratings",
+  "facility_ids_in_url": [
+   "231971"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:231974",
+  "host_published_as": "ridb:231974",
+  "member": "osm:way:1290115196",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/231974",
+  "facility_ids_in_url": [
+   "231974"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:234761",
+  "host_published_as": "ridb:234761",
+  "member": "osm:way:1316027694",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234761",
+  "facility_ids_in_url": [
+   "234761"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:232874",
+  "host_published_as": "ridb:232874",
+  "member": "osm:way:359442294",
+  "field": "website",
+  "value": "https://recreation.gov/camping/campgrounds/232874",
+  "facility_ids_in_url": [
+   "232874"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:234311",
+  "host_published_as": "ridb:234311",
+  "member": "osm:way:42486230",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234311",
+  "facility_ids_in_url": [
+   "234311"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:234598",
+  "host_published_as": "ridb:234598",
+  "member": "osm:node:12918369500",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234598",
+  "facility_ids_in_url": [
+   "234598"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:234650",
+  "host_published_as": "ridb:234650",
+  "member": "osm:way:827073443",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234650",
+  "facility_ids_in_url": [
+   "234650"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CA",
+  "host": "ridb:234738",
+  "host_published_as": "ridb:234738",
+  "member": "osm:way:1510614035",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234738",
+  "facility_ids_in_url": [
+   "234738"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CO",
+  "host": "ridb:234685",
+  "host_published_as": "ridb:234685",
+  "member": "osm:way:304389372",
+  "field": "contact:website",
+  "value": "http://www.recreation.gov/camping/Pinyon_Flats_Campground",
+  "facility_ids_in_url": [],
+  "legacy_park_ids": [],
+  "basis": "no_facility_id",
+  "facility_id_matches": false,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "CO",
+  "host": "ridb:244742",
+  "host_published_as": "ridb:244742",
+  "member": "osm:way:171848991",
+  "field": "website",
+  "value": "https://www.recreation.gov/recreationalAreaDetails.do?contractCode=NRSO&facilityId=244742&agencyCode=70903",
+  "facility_ids_in_url": [
+   "244742"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "GA",
+  "host": "ridb:255286",
+  "host_published_as": "ridb:255286",
+  "member": "osm:relation:13941087",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/255286?tab=campsites",
+  "facility_ids_in_url": [
+   "255286"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "ID",
+  "host": "ridb:232028",
+  "host_published_as": "ridb:232028",
+  "member": "osm:way:724652887",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232028",
+  "facility_ids_in_url": [
+   "232028"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "ID",
+  "host": "ridb:233899",
+  "host_published_as": "ridb:233899",
+  "member": "osm:way:1562436537",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/233899",
+  "facility_ids_in_url": [
+   "233899"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "ID",
+  "host": "ridb:234653",
+  "host_published_as": "ridb:234653",
+  "member": "osm:way:1548439763",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234653",
+  "facility_ids_in_url": [
+   "234653"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "ID",
+  "host": "ridb:232210",
+  "host_published_as": "ridb:232210",
+  "member": "osm:way:1074320173",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/alpine-north-loop/r/campgroundDetails.do?contractCode=NRSO&parkId=70487",
+  "facility_ids_in_url": [],
+  "legacy_park_ids": [
+   "70487"
+  ],
+  "basis": "legacy_park_id_only",
+  "facility_id_matches": false,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "IL",
+  "host": "ridb:233483",
+  "host_published_as": "ridb:233483",
+  "member": "osm:way:1108044726",
+  "field": "contact:website",
+  "value": "https://www.recreation.gov/camping/campgrounds/233483",
+  "facility_ids_in_url": [
+   "233483"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "caravan_site",
+  "member_tourism": "caravan_site"
+ },
+ {
+  "state": "MD",
+  "host": "ridb:233241",
+  "host_published_as": "ridb:233241",
+  "member": "osm:way:874693866",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/233241",
+  "facility_ids_in_url": [
+   "233241"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "MN",
+  "host": "ridb:232429",
+  "host_published_as": "ridb:232429",
+  "member": "osm:way:1159184655",
+  "field": "reservation:website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232429",
+  "facility_ids_in_url": [
+   "232429"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "MN",
+  "host": "ridb:233165",
+  "host_published_as": "osm:way:162329157",
+  "member": "osm:way:162329157",
+  "field": "website:reservation",
+  "value": "https://www.recreation.gov/camping/campgrounds/233165",
+  "facility_ids_in_url": [
+   "233165"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "MT",
+  "host": "ridb:233238",
+  "host_published_as": "ridb:233238",
+  "member": "osm:node:4029623914",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/woodbine-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=72154",
+  "facility_ids_in_url": [],
+  "legacy_park_ids": [
+   "72154"
+  ],
+  "basis": "legacy_park_id_only",
+  "facility_id_matches": false,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "MT",
+  "host": "ridb:234791",
+  "host_published_as": "osm:way:1237624206",
+  "member": "osm:way:1237624206",
+  "field": "reservation:website",
+  "value": "https://www.recreation.gov/camping/devil-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=113390",
+  "facility_ids_in_url": [],
+  "legacy_park_ids": [
+   "113390"
+  ],
+  "basis": "legacy_park_id_only",
+  "facility_id_matches": false,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "MT",
+  "host": "ridb:234789",
+  "host_published_as": "osm:way:295391328",
+  "member": "osm:way:295391328",
+  "field": "reservation:website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234789",
+  "facility_ids_in_url": [
+   "234789"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "MT",
+  "host": "ridb:234474",
+  "host_published_as": "osm:way:308822478",
+  "member": "osm:way:308822478",
+  "field": "reservation:website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234474",
+  "facility_ids_in_url": [
+   "234474"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "MT",
+  "host": "ridb:234472",
+  "host_published_as": "osm:way:1375628597",
+  "member": "osm:way:1375628597",
+  "field": "contact:website",
+  "value": "https://www.recreation.gov/camping/tally-lake-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=75352",
+  "facility_ids_in_url": [],
+  "legacy_park_ids": [
+   "75352"
+  ],
+  "basis": "legacy_park_id_only",
+  "facility_id_matches": false,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "NC",
+  "host": "ridb:233284",
+  "host_published_as": "ridb:233284",
+  "member": "osm:way:1107154603",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/233284",
+  "facility_ids_in_url": [
+   "233284"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "NM",
+  "host": "ridb:251437",
+  "host_published_as": "ridb:251437",
+  "member": "osm:node:2332493797",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/251437",
+  "facility_ids_in_url": [
+   "251437"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "NY",
+  "host": "ridb:234715",
+  "host_published_as": "osm:way:988355889",
+  "member": "osm:way:988355889",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234715",
+  "facility_ids_in_url": [
+   "234715"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "NY",
+  "host": "ridb:234476",
+  "host_published_as": "ridb:234476",
+  "member": "osm:way:818939421",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234476",
+  "facility_ids_in_url": [
+   "234476"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "OK",
+  "host": "ridb:234048",
+  "host_published_as": "ridb:234048",
+  "member": "osm:node:13127375771",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/234048",
+  "facility_ids_in_url": [
+   "234048"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "OR",
+  "host": "ridb:234103",
+  "host_published_as": "ridb:234103",
+  "member": "osm:way:560426078",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/willow-prairie-horsecamp/r/campgroundDetails.do?contractCode=NRSO&parkId=74117",
+  "facility_ids_in_url": [],
+  "legacy_park_ids": [
+   "74117"
+  ],
+  "basis": "legacy_park_id_only",
+  "facility_id_matches": false,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "PA",
+  "host": "ridb:233523",
+  "host_published_as": "osm:node:1520003718",
+  "member": "osm:node:1520003718",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/233523",
+  "facility_ids_in_url": [
+   "233523"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "caravan_site",
+  "member_tourism": "caravan_site"
+ },
+ {
+  "state": "TN",
+  "host": "ridb:251724",
+  "host_published_as": "osm:node:5857313093",
+  "member": "osm:node:5857313093",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/251724",
+  "facility_ids_in_url": [
+   "251724"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "TN",
+  "host": "ridb:232485",
+  "host_published_as": "ridb:232485",
+  "member": "osm:node:1788117418",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232485",
+  "facility_ids_in_url": [
+   "232485"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "TN",
+  "host": "ridb:232515",
+  "host_published_as": "ridb:232515",
+  "member": "osm:way:863382473",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232515",
+  "facility_ids_in_url": [
+   "232515"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "TX",
+  "host": "ridb:233125",
+  "host_published_as": "ridb:233125",
+  "member": "osm:way:1274407941",
+  "field": "contact:website",
+  "value": "https://www.recreation.gov/camping/campgrounds/233125",
+  "facility_ids_in_url": [
+   "233125"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "VA",
+  "host": "ridb:10007130",
+  "host_published_as": "osm:way:1175125858",
+  "member": "osm:way:1175125858",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/10007130?tab=campsites",
+  "facility_ids_in_url": [
+   "10007130"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "VT",
+  "host": "ridb:256347",
+  "host_published_as": "osm:way:360962323",
+  "member": "osm:way:360962323",
+  "field": "url",
+  "value": "https://www.recreation.gov/camping/campgrounds/256347",
+  "facility_ids_in_url": [
+   "256347"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:232799",
+  "host_published_as": "ridb:232799",
+  "member": "osm:way:425653468",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232799",
+  "facility_ids_in_url": [
+   "232799"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:232466",
+  "host_published_as": "ridb:232466",
+  "member": "osm:way:509662254",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232466",
+  "facility_ids_in_url": [
+   "232466"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:251365",
+  "host_published_as": "ridb:251365",
+  "member": "osm:node:5725489021",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/falls-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=124990",
+  "facility_ids_in_url": [],
+  "legacy_park_ids": [
+   "124990"
+  ],
+  "basis": "legacy_park_id_only",
+  "facility_id_matches": false,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:238879",
+  "host_published_as": "ridb:238879",
+  "member": "osm:way:1428130365",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/poi/238879",
+  "facility_ids_in_url": [
+   "238879"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:232315",
+  "host_published_as": "ridb:232315",
+  "member": "osm:relation:13200212",
+  "field": "reservation:website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232315",
+  "facility_ids_in_url": [
+   "232315"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:238901",
+  "host_published_as": "ridb:238901",
+  "member": "osm:node:2557985693",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/poi/238901",
+  "facility_ids_in_url": [
+   "238901"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:232857",
+  "host_published_as": "ridb:232857",
+  "member": "osm:way:1525582119",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/232857",
+  "facility_ids_in_url": [
+   "232857"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ },
+ {
+  "state": "WA",
+  "host": "ridb:233384",
+  "host_published_as": "ridb:233384",
+  "member": "osm:relation:16277559",
+  "field": "website",
+  "value": "https://www.recreation.gov/camping/campgrounds/233384",
+  "facility_ids_in_url": [
+   "233384"
+  ],
+  "legacy_park_ids": [],
+  "basis": "same_facility_id_in_website_supporting_only",
+  "facility_id_matches": true,
+  "exact": false,
+  "host_tourism": "camp_site",
+  "member_tourism": "camp_site"
+ }
+]

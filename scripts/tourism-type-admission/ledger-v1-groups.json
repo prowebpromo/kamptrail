@@ -1,0 +1,1719 @@
+{
+ "note": "Group membership measured on baseline afdfb3f9 by scripts/tourism-type-admission/build-package.js (revision 1). A here is the 61 listings whose outcome the inherited tag decides. The full 667/592 sets are in count_reconciliation.",
+ "A": [
+  "osm:node:12546710572",
+  "osm:way:1175125858",
+  "osm:way:146028510",
+  "osm:way:1517725355",
+  "ridb:10023205",
+  "ridb:10039245",
+  "ridb:10069432",
+  "ridb:10069654",
+  "ridb:10072072",
+  "ridb:10072073",
+  "ridb:10072881",
+  "ridb:10072883",
+  "ridb:10074140",
+  "ridb:10074570",
+  "ridb:10074574",
+  "ridb:10076130",
+  "ridb:10076892",
+  "ridb:10078442",
+  "ridb:10134446",
+  "ridb:10150488",
+  "ridb:10155245",
+  "ridb:10278188",
+  "ridb:10321880",
+  "ridb:10322469",
+  "ridb:232662",
+  "ridb:233125",
+  "ridb:233233",
+  "ridb:233234",
+  "ridb:233241",
+  "ridb:233931",
+  "ridb:233981",
+  "ridb:234103",
+  "ridb:234149",
+  "ridb:234159",
+  "ridb:234185",
+  "ridb:234586",
+  "ridb:234643",
+  "ridb:234714",
+  "ridb:234761",
+  "ridb:236715",
+  "ridb:237148",
+  "ridb:237191",
+  "ridb:237765",
+  "ridb:243195",
+  "ridb:243219",
+  "ridb:244321",
+  "ridb:247835",
+  "ridb:247915",
+  "ridb:247922",
+  "ridb:248072",
+  "ridb:249627",
+  "ridb:249674",
+  "ridb:250031",
+  "ridb:252280",
+  "ridb:252786",
+  "ridb:255188",
+  "ridb:255232",
+  "ridb:255239",
+  "ridb:255262",
+  "ridb:260547",
+  "ridb:262731",
+  "ridb:262776",
+  "ridb:272170",
+  "ridb:274051"
+ ],
+ "B": [
+  "ridb:10076131",
+  "ridb:248261"
+ ],
+ "C": [
+  "ridb:10049041",
+  "ridb:10068990",
+  "ridb:232162",
+  "ridb:232421",
+  "ridb:233178",
+  "ridb:233226",
+  "ridb:233834",
+  "ridb:233931",
+  "ridb:234128",
+  "ridb:240871",
+  "ridb:240903",
+  "ridb:241301",
+  "ridb:243218",
+  "ridb:243702",
+  "ridb:244320",
+  "ridb:244321",
+  "ridb:244404",
+  "ridb:245164",
+  "ridb:245165",
+  "ridb:245273",
+  "ridb:246536",
+  "ridb:249642",
+  "ridb:249674",
+  "ridb:249741",
+  "ridb:249752",
+  "ridb:249902",
+  "ridb:250031",
+  "ridb:250985",
+  "ridb:251352",
+  "ridb:251710",
+  "ridb:251834",
+  "ridb:251835",
+  "ridb:251837",
+  "ridb:251838",
+  "ridb:251842",
+  "ridb:251843",
+  "ridb:252280",
+  "ridb:255303",
+  "ridb:261802",
+  "ridb:261804",
+  "ridb:262781",
+  "ridb:273310",
+  "ridb:273352"
+ ],
+ "C_now": [
+  "ridb:10049041",
+  "ridb:10068990",
+  "ridb:232162",
+  "ridb:232421",
+  "ridb:233178",
+  "ridb:233226",
+  "ridb:233834",
+  "ridb:234128",
+  "ridb:240871",
+  "ridb:240903",
+  "ridb:241301",
+  "ridb:243218",
+  "ridb:243702",
+  "ridb:244320",
+  "ridb:244404",
+  "ridb:245164",
+  "ridb:245165",
+  "ridb:245273",
+  "ridb:246536",
+  "ridb:249642",
+  "ridb:249741",
+  "ridb:249752",
+  "ridb:249902",
+  "ridb:250985",
+  "ridb:251352",
+  "ridb:251710",
+  "ridb:251834",
+  "ridb:251835",
+  "ridb:251837",
+  "ridb:251838",
+  "ridb:251842",
+  "ridb:251843",
+  "ridb:255303",
+  "ridb:261802",
+  "ridb:261804",
+  "ridb:262781",
+  "ridb:273310",
+  "ridb:273352"
+ ],
+ "surfaced": [
+  "osm:way:368988012",
+  "osm:relation:13942065",
+  "osm:way:941066426"
+ ],
+ "affected": [
+  "osm:node:12546710572",
+  "osm:way:1175125858",
+  "osm:way:146028510",
+  "osm:way:1517725355",
+  "ridb:10023205",
+  "ridb:10039245",
+  "ridb:10049041",
+  "ridb:10068990",
+  "ridb:10069432",
+  "ridb:10069654",
+  "ridb:10072072",
+  "ridb:10072073",
+  "ridb:10072881",
+  "ridb:10072883",
+  "ridb:10074140",
+  "ridb:10074570",
+  "ridb:10074574",
+  "ridb:10076130",
+  "ridb:10076131",
+  "ridb:10076892",
+  "ridb:10078442",
+  "ridb:10134446",
+  "ridb:10150488",
+  "ridb:10155245",
+  "ridb:10278188",
+  "ridb:10321880",
+  "ridb:10322469",
+  "ridb:232162",
+  "ridb:232421",
+  "ridb:232662",
+  "ridb:233125",
+  "ridb:233178",
+  "ridb:233226",
+  "ridb:233233",
+  "ridb:233234",
+  "ridb:233241",
+  "ridb:233834",
+  "ridb:233931",
+  "ridb:233981",
+  "ridb:234103",
+  "ridb:234128",
+  "ridb:234149",
+  "ridb:234159",
+  "ridb:234185",
+  "ridb:234586",
+  "ridb:234643",
+  "ridb:234714",
+  "ridb:234761",
+  "ridb:236715",
+  "ridb:237148",
+  "ridb:237191",
+  "ridb:237765",
+  "ridb:240871",
+  "ridb:240903",
+  "ridb:241301",
+  "ridb:243195",
+  "ridb:243218",
+  "ridb:243219",
+  "ridb:243702",
+  "ridb:244320",
+  "ridb:244321",
+  "ridb:244404",
+  "ridb:245164",
+  "ridb:245165",
+  "ridb:245273",
+  "ridb:246536",
+  "ridb:247835",
+  "ridb:247915",
+  "ridb:247922",
+  "ridb:248072",
+  "ridb:248261",
+  "ridb:249627",
+  "ridb:249642",
+  "ridb:249674",
+  "ridb:249741",
+  "ridb:249752",
+  "ridb:249902",
+  "ridb:250031",
+  "ridb:250985",
+  "ridb:251352",
+  "ridb:251710",
+  "ridb:251834",
+  "ridb:251835",
+  "ridb:251837",
+  "ridb:251838",
+  "ridb:251842",
+  "ridb:251843",
+  "ridb:252280",
+  "ridb:252786",
+  "ridb:255188",
+  "ridb:255232",
+  "ridb:255239",
+  "ridb:255262",
+  "ridb:255303",
+  "ridb:260547",
+  "ridb:261802",
+  "ridb:261804",
+  "ridb:262731",
+  "ridb:262776",
+  "ridb:262781",
+  "ridb:272170",
+  "ridb:273310",
+  "ridb:273352",
+  "ridb:274051"
+ ],
+ "borrowed": {
+  "osm:node:12546710572": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:232604",
+    "member_id": "osm:node:12546710571",
+    "state": "MO"
+   }
+  ],
+  "osm:way:1175125858": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10007130",
+    "member_id": "osm:way:1175125858",
+    "state": "VA"
+   }
+  ],
+  "osm:way:146028510": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:232006",
+    "member_id": "osm:way:146028510",
+    "state": "WV"
+   }
+  ],
+  "osm:way:1517725355": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234421",
+    "member_id": "osm:way:1517725355",
+    "state": "MT"
+   }
+  ],
+  "ridb:10023205": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10023205",
+    "member_id": "osm:node:2332493786",
+    "state": "NM"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10023205",
+    "member_id": "osm:node:2332493786",
+    "state": "NM"
+   }
+  ],
+  "ridb:10039245": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10039245",
+    "member_id": "osm:way:714346650",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10039245",
+    "member_id": "osm:way:714346650",
+    "state": "OR"
+   }
+  ],
+  "ridb:10049041": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:47185",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:10068990": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:5975",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:10069432": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10069432",
+    "member_id": "osm:node:9359572844",
+    "state": "ID"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10069432",
+    "member_id": "osm:node:9359572844",
+    "state": "ID"
+   }
+  ],
+  "ridb:10069654": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10069654",
+    "member_id": "osm:way:810253192",
+    "state": "ID"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10069654",
+    "member_id": "osm:way:810253192",
+    "state": "ID"
+   }
+  ],
+  "ridb:10072072": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072072",
+    "member_id": "osm:node:1769927419",
+    "state": "MT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072072",
+    "member_id": "osm:node:1769927419",
+    "state": "MT"
+   }
+  ],
+  "ridb:10072073": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072073",
+    "member_id": "osm:node:3625394141",
+    "state": "MT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072073",
+    "member_id": "osm:node:3625394141",
+    "state": "MT"
+   }
+  ],
+  "ridb:10072881": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072881",
+    "member_id": "osm:way:849430082",
+    "state": "OH"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072881",
+    "member_id": "osm:way:849430082",
+    "state": "OH"
+   }
+  ],
+  "ridb:10072883": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072883",
+    "member_id": "osm:node:3809520896",
+    "state": "WA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10072883",
+    "member_id": "osm:node:3809520896",
+    "state": "WA"
+   }
+  ],
+  "ridb:10074140": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10074140",
+    "member_id": "osm:way:172243179",
+    "state": "CO"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10074140",
+    "member_id": "osm:way:172243179",
+    "state": "CO"
+   }
+  ],
+  "ridb:10074570": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10074570",
+    "member_id": "osm:way:330929209",
+    "state": "UT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10074570",
+    "member_id": "osm:way:330929209",
+    "state": "UT"
+   }
+  ],
+  "ridb:10074574": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10074574",
+    "member_id": "osm:node:9064202909",
+    "state": "MT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10074574",
+    "member_id": "osm:node:9064202909",
+    "state": "MT"
+   }
+  ],
+  "ridb:10076130": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10076130",
+    "member_id": "osm:way:521576233",
+    "state": "CO"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10076130",
+    "member_id": "osm:way:521576233",
+    "state": "CO"
+   }
+  ],
+  "ridb:10076131": [
+   {
+    "field": "type",
+    "value": "established",
+    "on_row": "ridb:10076131",
+    "member_id": "ridb:273356",
+    "state": "MI"
+   },
+   {
+    "field": "type",
+    "value": "established",
+    "on_row": "ridb:10076131",
+    "member_id": "ridb:273356",
+    "state": "MI"
+   }
+  ],
+  "ridb:10076892": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10076892",
+    "member_id": "osm:way:1187436959",
+    "state": "OH"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10076892",
+    "member_id": "osm:way:1187436959",
+    "state": "OH"
+   }
+  ],
+  "ridb:10078442": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10078442",
+    "member_id": "osm:way:747965972",
+    "state": "NM"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10078442",
+    "member_id": "osm:way:747965972",
+    "state": "NM"
+   }
+  ],
+  "ridb:10134446": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10134446",
+    "member_id": "osm:node:12079371218",
+    "state": "MT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10134446",
+    "member_id": "osm:node:12079371218",
+    "state": "MT"
+   }
+  ],
+  "ridb:10150488": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10150488",
+    "member_id": "osm:way:998890683",
+    "state": "UT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10150488",
+    "member_id": "osm:way:998890683",
+    "state": "UT"
+   }
+  ],
+  "ridb:10155245": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10155245",
+    "member_id": "osm:node:5406408140",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10155245",
+    "member_id": "osm:node:5406408140",
+    "state": "OR"
+   }
+  ],
+  "ridb:10278188": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10278188",
+    "member_id": "osm:node:9170786474",
+    "state": "NM"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10278188",
+    "member_id": "osm:node:9170786474",
+    "state": "NM"
+   }
+  ],
+  "ridb:10321880": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10321880",
+    "member_id": "osm:node:6585727685",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10321880",
+    "member_id": "osm:node:6585727685",
+    "state": "OR"
+   }
+  ],
+  "ridb:10322469": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10322469",
+    "member_id": "osm:way:1023898993",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:10322469",
+    "member_id": "osm:way:1023898993",
+    "state": "OR"
+   }
+  ],
+  "ridb:232162": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:73999",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:232421": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:21780",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:232662": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:232662",
+    "member_id": "osm:way:1442811091",
+    "state": "AR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:232662",
+    "member_id": "osm:way:1442811091",
+    "state": "AR"
+   }
+  ],
+  "ridb:233125": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233125",
+    "member_id": "osm:way:1274407941",
+    "state": "TX"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233125",
+    "member_id": "osm:way:1274407941",
+    "state": "TX"
+   }
+  ],
+  "ridb:233178": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:80125",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:233226": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:79304",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:233233": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233233",
+    "member_id": "osm:node:2371302923",
+    "state": "AZ"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233233",
+    "member_id": "osm:node:2371302923",
+    "state": "AZ"
+   }
+  ],
+  "ridb:233234": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233234",
+    "member_id": "osm:node:2371302924",
+    "state": "AZ"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233234",
+    "member_id": "osm:node:2371302924",
+    "state": "AZ"
+   }
+  ],
+  "ridb:233241": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233241",
+    "member_id": "osm:way:874693866",
+    "state": "MD"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233241",
+    "member_id": "osm:way:874693866",
+    "state": "MD"
+   }
+  ],
+  "ridb:233834": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:43437",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:233931": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233931",
+    "member_id": "osm:relation:20141971",
+    "state": "UT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233931",
+    "member_id": "osm:relation:20141971",
+    "state": "UT"
+   },
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:24986",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "only after group A guard"
+   }
+  ],
+  "ridb:233981": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233981",
+    "member_id": "osm:node:3712258134",
+    "state": "CA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:233981",
+    "member_id": "osm:node:3712258134",
+    "state": "CA"
+   }
+  ],
+  "ridb:234103": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234103",
+    "member_id": "osm:way:560426078",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234103",
+    "member_id": "osm:way:560426078",
+    "state": "OR"
+   }
+  ],
+  "ridb:234128": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:47291",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:234149": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234149",
+    "member_id": "osm:way:497202698",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234149",
+    "member_id": "osm:way:497202698",
+    "state": "OR"
+   }
+  ],
+  "ridb:234159": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234159",
+    "member_id": "osm:way:497213023",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234159",
+    "member_id": "osm:way:497213023",
+    "state": "OR"
+   }
+  ],
+  "ridb:234185": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234185",
+    "member_id": "osm:way:497225176",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234185",
+    "member_id": "osm:way:497225176",
+    "state": "OR"
+   }
+  ],
+  "ridb:234586": [
+   {
+    "field": "tourism",
+    "value": "caravan_site",
+    "on_row": "ridb:234586",
+    "member_id": "osm:way:368988012",
+    "state": "AR"
+   },
+   {
+    "field": "tourism",
+    "value": "caravan_site",
+    "on_row": "ridb:234586",
+    "member_id": "osm:way:368988012",
+    "state": "AR"
+   }
+  ],
+  "ridb:234643": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234643",
+    "member_id": "osm:way:337710769",
+    "state": "TX"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234643",
+    "member_id": "osm:way:337710769",
+    "state": "TX"
+   }
+  ],
+  "ridb:234714": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234714",
+    "member_id": "osm:way:1268405937",
+    "state": "NJ"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234714",
+    "member_id": "osm:way:1268405937",
+    "state": "NJ"
+   }
+  ],
+  "ridb:234761": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234761",
+    "member_id": "osm:way:1316027694",
+    "state": "CA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:234761",
+    "member_id": "osm:way:1316027694",
+    "state": "CA"
+   }
+  ],
+  "ridb:236715": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:236715",
+    "member_id": "osm:way:670629346",
+    "state": "KY"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:236715",
+    "member_id": "osm:way:670629346",
+    "state": "KY"
+   }
+  ],
+  "ridb:237148": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:237148",
+    "member_id": "osm:node:2580208584",
+    "state": "MT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:237148",
+    "member_id": "osm:node:2580208584",
+    "state": "MT"
+   }
+  ],
+  "ridb:237191": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:237191",
+    "member_id": "osm:node:2580134660",
+    "state": "MT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:237191",
+    "member_id": "osm:node:2580134660",
+    "state": "MT"
+   }
+  ],
+  "ridb:237765": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:237765",
+    "member_id": "osm:way:882896517",
+    "state": "ID"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:237765",
+    "member_id": "osm:way:882896517",
+    "state": "ID"
+   }
+  ],
+  "ridb:240871": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:34671",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:240903": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:34751",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:241301": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:43429",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:243195": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:243195",
+    "member_id": "osm:node:6282190586",
+    "state": "AL"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:243195",
+    "member_id": "osm:node:6282190586",
+    "state": "AL"
+   }
+  ],
+  "ridb:243218": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:30157",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:243219": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:243219",
+    "member_id": "osm:way:606829328",
+    "state": "AL"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:243219",
+    "member_id": "osm:way:606829328",
+    "state": "AL"
+   }
+  ],
+  "ridb:243702": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:39956",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:244320": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:18788",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:244321": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:244321",
+    "member_id": "osm:node:5965463931",
+    "state": "MI"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:244321",
+    "member_id": "osm:node:5965463931",
+    "state": "MI"
+   },
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:18790",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "only after group A guard"
+   }
+  ],
+  "ridb:244404": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:18814",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:245164": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:5976",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:245165": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:5977",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:245273": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:5889",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:246536": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:65003",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:247835": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:247835",
+    "member_id": "osm:way:941066426",
+    "state": "AR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:247835",
+    "member_id": "osm:way:941066426",
+    "state": "AR"
+   }
+  ],
+  "ridb:247915": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:247915",
+    "member_id": "osm:relation:13942065",
+    "state": "GA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:247915",
+    "member_id": "osm:relation:13942065",
+    "state": "GA"
+   }
+  ],
+  "ridb:247922": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:247922",
+    "member_id": "osm:way:456269017",
+    "state": "GA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:247922",
+    "member_id": "osm:way:456269017",
+    "state": "GA"
+   }
+  ],
+  "ridb:248072": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:248072",
+    "member_id": "osm:relation:16106729",
+    "state": "MA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:248072",
+    "member_id": "osm:relation:16106729",
+    "state": "MA"
+   }
+  ],
+  "ridb:248261": [
+   {
+    "field": "type",
+    "value": "established",
+    "on_row": "ridb:248261",
+    "member_id": "ridb:233590",
+    "state": "OK"
+   },
+   {
+    "field": "type",
+    "value": "established",
+    "on_row": "ridb:248261",
+    "member_id": "ridb:233590",
+    "state": "OK"
+   }
+  ],
+  "ridb:249627": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:249627",
+    "member_id": "osm:node:11450612841",
+    "state": "CA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:249627",
+    "member_id": "osm:node:11450612841",
+    "state": "CA"
+   }
+  ],
+  "ridb:249642": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:34162",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:249674": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:249674",
+    "member_id": "osm:node:9847165963",
+    "state": "CA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:249674",
+    "member_id": "osm:node:9847165963",
+    "state": "CA"
+   },
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:34161",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "only after group A guard"
+   }
+  ],
+  "ridb:249741": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:74091",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:249752": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:74092",
+    "member_type": "dispersed",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:249902": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:74043",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:250031": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:250031",
+    "member_id": "osm:way:1485140648",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:250031",
+    "member_id": "osm:way:1485140648",
+    "state": "OR"
+   },
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:250031",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "only after group A guard"
+   }
+  ],
+  "ridb:250985": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:250985",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:251352": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:251352",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:251710": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:81556",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:251834": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:251834",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:251835": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:251835",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:251837": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:251837",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:251838": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:251838",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:251842": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:251842",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:251843": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:251843",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:252280": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:252280",
+    "member_id": "osm:way:1416891722",
+    "state": "UT"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:252280",
+    "member_id": "osm:way:1416891722",
+    "state": "UT"
+   },
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:252280",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "only after group A guard"
+   }
+  ],
+  "ridb:252786": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:252786",
+    "member_id": "osm:way:1347244768",
+    "state": "CA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:252786",
+    "member_id": "osm:way:1347244768",
+    "state": "CA"
+   }
+  ],
+  "ridb:255188": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255188",
+    "member_id": "osm:way:495108930",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255188",
+    "member_id": "osm:way:495108930",
+    "state": "OR"
+   }
+  ],
+  "ridb:255232": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255232",
+    "member_id": "osm:way:1367208878",
+    "state": "ID"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255232",
+    "member_id": "osm:way:1367208878",
+    "state": "ID"
+   }
+  ],
+  "ridb:255239": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255239",
+    "member_id": "osm:node:6740310055",
+    "state": "ID"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255239",
+    "member_id": "osm:node:6740310055",
+    "state": "ID"
+   }
+  ],
+  "ridb:255262": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255262",
+    "member_id": "osm:node:9760549594",
+    "state": "ID"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:255262",
+    "member_id": "osm:node:9760549594",
+    "state": "ID"
+   }
+  ],
+  "ridb:255303": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:71280",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:260547": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:260547",
+    "member_id": "osm:node:7786229176",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:260547",
+    "member_id": "osm:node:7786229176",
+    "state": "OR"
+   }
+  ],
+  "ridb:261802": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:261802",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:261804": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:261804",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:262731": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:262731",
+    "member_id": "osm:node:5371420783",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:262731",
+    "member_id": "osm:node:5371420783",
+    "state": "OR"
+   }
+  ],
+  "ridb:262776": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:262776",
+    "member_id": "osm:relation:9817255",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:262776",
+    "member_id": "osm:relation:9817255",
+    "state": "OR"
+   }
+  ],
+  "ridb:262781": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:262781",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:272170": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:272170",
+    "member_id": "osm:node:3286932328",
+    "state": "OR"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:272170",
+    "member_id": "osm:node:3286932328",
+    "state": "OR"
+   }
+  ],
+  "ridb:273310": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "ridb:273310",
+    "member_type": "established",
+    "same_facility_id": true,
+    "applies": "now"
+   }
+  ],
+  "ridb:273352": [
+   {
+    "field": "camping_classification",
+    "value": "campsite (agency_camping_activity)",
+    "member_id": "usfs:10488",
+    "member_type": "established",
+    "same_facility_id": false,
+    "applies": "now"
+   }
+  ],
+  "ridb:274051": [
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:274051",
+    "member_id": "osm:way:1483058309",
+    "state": "WA"
+   },
+   {
+    "field": "tourism",
+    "value": "camp_site",
+    "on_row": "ridb:274051",
+    "member_id": "osm:way:1483058309",
+    "state": "WA"
+   }
+  ]
+ }
+}

@@ -23,9 +23,9 @@ test('snapshot merge keeps amenity tags and survey dates on the element that car
   const e=merged.member_evidence.find(r=>r.source_record_id==='osm:node:2');
   assert.deepEqual(e.fields,{fee:'yes',toilets:'yes',drinking_water:'yes',shower:'yes',check_date:'2024-06-01','toilets:disposal':'pitlatrine'});
   assert.equal(e.source,'OpenStreetMap contributors');assert.equal(e.retrieved_at,'2026-10-29T02:53:12Z');assert.equal(e.source_url,'https://www.openstreetmap.org/node/2');
-  // A Recreation.gov host owns no OSM tag at all.
+  // A Recreation.gov host owns no OSM tag at all (tourism stays with the member too: tourism-type-admission candidate).
   const host=merge(ridb(7),osm(3,{toilets:'yes',power_supply:'yes'}));
-  assert.equal(host.toilets,undefined);assert.equal(host.power_supply,undefined);assert.deepEqual(host.member_evidence[0].fields,{toilets:'yes',power_supply:'yes'});
+  assert.equal(host.toilets,undefined);assert.equal(host.power_supply,undefined);assert.equal(host.tourism,undefined);assert.deepEqual(host.member_evidence[0].fields,{toilets:'yes',power_supply:'yes',tourism:'camp_site'});
   // Membership and identity are unchanged by the guard.
   assert.deepEqual(host.source_ids,['ridb:7','osm:node:3']);assert.equal(host.id,'ridb:7');
   // The same element seen twice keeps its own tags, and separate records never union amenity lists.
@@ -153,13 +153,17 @@ test('published fixture: each of the 191 borrowed-amenity and 221 Recreation.gov
   for(const name of fs.readdirSync(dir).filter(n=>/^[A-Z]{2}_merged\.geojson$/.test(n)).sort()){
     const state=name.slice(0,2),features=read(name).features,agency=path.join(dir,'agency',state+'.geojson');
     if(fs.existsSync(agency))features.push(...JSON.parse(fs.readFileSync(agency,'utf8')).features);
-    for(const raw of Q.publicationCandidates(features,{state})){const f=Q.normalizeFeature(raw,{state});if(f){attach(f);input.push(f);}}
+    // The same options the index build passes (own overnight records corroborate a Recreation.gov facility type).
+    const o={state,siteDetails:details,amenityDetails:ridbData};
+    for(const raw of Q.publicationCandidates(features,o)){const f=Q.normalizeFeature(raw,o);if(f){attach(f);input.push(f);}}
   }
-  const catalogue=Q.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{preferredIds,previousHosts}).features;catalogue.forEach(attach);
+  const catalogue=Q.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{preferredIds,previousHosts,siteDetails:details,amenityDetails:ridbData}).features;catalogue.forEach(attach);
+  // Listings withdrawn by the tourism-type-admission candidate are absent by design. Each has a legacy entry.
+  const withdrawn=fs.existsSync(path.join(dir,'withdrawn.json'))?new Set(read('withdrawn.json').listings.map(w=>w.id)):new Set();
   const by=new Map(catalogue.filter(f=>wanted.has(f.properties.id)).map(f=>[f.properties.id,f.properties]));
   assert.equal(fixture.cases.filter(c=>c.borrowed).length,191);assert.equal(fixture.cases.filter(c=>c.ridb_toilet_records).length,221);
   for(const c of fixture.cases){
-    const p=by.get(c.id);assert.ok(p,c.id);
+    const p=by.get(c.id);if(!p&&withdrawn.has(c.id))continue;assert.ok(p,c.id);
     assert.deepEqual(Q.amenityFilterReason(p,'toilet'),c.toilet,c.id+' toilet');
     assert.deepEqual(Q.amenityFilterReason(p,'water'),c.water,c.id+' water');
     assert.deepEqual(Q.amenityFilterReason(p,'toilet',fixture.length_filter_used),c.toilet_with_length_filter,c.id+' toilet with length');

@@ -45,7 +45,7 @@
     }).catch(() => {showToast(t("Offline saving is unavailable. You can still use the map online."));});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.34.0' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.34.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.35.0' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.35.0')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -176,7 +176,7 @@
       const details = document.createElement('p');
       const rigLen = +((window.kamptrailFilters || {}).rigLength || 0);
       const cost = p.fee_status === 'free' ? t("Reported free") : p.fee_status === 'conditional' ? t("Free with conditions") : p.fee_status === 'paid' ? (Number.isFinite(p.cost) ? t("Reported ${amount}", {amount:p.cost}) : t("Paid · amount unknown")) : t("Fee unknown");
-      details.textContent = `${cost} · ${p.type === 'established' ? t("Campground") : ({dispersed:t('Dispersed'),backcountry:t('Backcountry'),parking:t('Overnight parking')}[p.type] || p.type || t("Type unknown"))} · ${p.state || t("State not reported")}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? t(" · RV fit not documented") : ''}`;
+      details.textContent = `${cost} · ${p.type === 'established' ? t("Campground") : ({dispersed:t('Dispersed'),backcountry:t('Backcountry'),parking:t('Overnight parking'),lodging:t('Lookout, cabin or other lodging')}[p.type] || p.type || t("Type unknown"))} · ${p.state || t("State not reported")}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? t(" · RV fit not documented") : ''}`;
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = t("View on map"); view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
       const trip = document.createElement('button'); trip.textContent = t("Save stop"); trip.onclick = () => KampTrailTrip.addStop(p.id);
@@ -320,6 +320,10 @@
     // A link to any published id, canonical or legacy, opens the same listing. The link is not rewritten.
     const entry = campsiteIndex.find(s => s.id === target.site) || campsiteIndex.find(s => s.legacy_ids?.includes(target.site));
     if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
+    if (!entry && !KampTrailData.getCampsiteById(target.site)) {
+      const w = (await KampTrailData.loadWithdrawn()).get(String(target.site));
+      if (w) { if (Array.isArray(w.coordinates)) map.setView([w.coordinates[1], w.coordinates[0]], 12); showToast(t("{name} is no longer listed in campsite search. Its camping classification could not be verified from its own source record. Check {source} before you go.", {name:w.name, source:w.source_url || t("the land manager")}), 'info', 12000); return; }
+    }
     if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?t("That campsite does not match your filters or has unknown or expired evidence. Change filters to view it."):t("That shared campsite could not be found. It may have been removed from the catalogue."), 'error');
   }
   addEventListener('hashchange', () => openSharedLink().catch(() => {}));

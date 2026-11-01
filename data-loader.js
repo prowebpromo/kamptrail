@@ -178,7 +178,7 @@
   // Every load rebuilds the catalogue from each loaded state's own records in the index build's
   // order (states alphabetically, records in file order), with the index's canonical hosts.
   // The result for a set of loaded states never depends on load order or response timing.
-  const stateInputs=new Map(),shownIds=new Set();
+  const stateInputs=new Map(),rawStates=new Map(),shownIds=new Set();
   let identity=null; // {preferredIds,previousHosts,aliases} from identity-hosts.json, or null when unavailable.
   let identityTask=null,identityTried=0,identityTimer=null;
   async function loadIdentityHosts(){
@@ -215,17 +215,26 @@
     if(state.usfsDetails)DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails);
   }
   function rebuildCatalogue(){
-    const input=[];
-    for(const code of [...stateInputs.keys()].sort())for(const f of stateInputs.get(code)){attachSidecars(f);input.push(f);}
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},identityOptions());
+    const input=[],withheldMembers=new Set();
+    for(const code of [...stateInputs.keys()].sort()){
+      const cached=stateInputs.get(code);
+      for(const id of cached.withheld)withheldMembers.add(id);
+      for(const f of cached.rows){attachSidecars(f);input.push(f);}
+    }
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{...identityOptions(),withheldMembers});
     state.allCampsites=cleaned.features;
     for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
   }
+  function prepareState(features,stateCode){
+    const options={state:stateCode,siteDetails:state.siteDetails,amenityDetails:state.amenityDetails};
+    const rows=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options)).filter(Boolean);
+    for(const f of rows)f.properties.forecastStates=[stateCode];
+    stateInputs.set(stateCode,{rows,withheld:DataQuality.withheldMembers(features,options)});
+  }
   function mergeLoaded(features,stateCode) {
-    const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode})).filter(Boolean);
-    incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
-    stateInputs.set(stateCode,incoming);
+    rawStates.set(stateCode,features);
+    prepareState(features,stateCode);
     rebuildCatalogue();
   }
   async function loadAgencyIndex() {
@@ -571,7 +580,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.34.0',
+    version:'2.35.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -585,7 +594,7 @@
       // Optional evidence must not delay the map when its request is slow or unavailable.
       // Sidecar evidence attaches before deduplication, as in the index build, so arrival rebuilds.
       loadAmenityDetails().then(()=>{
-        if(state.amenityDetails&&stateInputs.size)rebuildCatalogue();
+        if(state.amenityDetails&&stateInputs.size){for(const [code,features] of rawStates)prepareState(features,code);rebuildCatalogue();}
         updateMarkers();
       });
       loadUSFSSiteDetails().then(()=>{
@@ -624,6 +633,8 @@
     getIdentityStatus:()=>({hosts:identity?'published':'fallback',shown:shownIds.size}),
     // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
     async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
+    // Listings withdrawn from campsite discovery keep a resolvable legacy entry explaining why (data/campsites/withdrawn.json).
+    loadWithdrawn(){if(!state.withdrawnPromise)state.withdrawnPromise=fetchJSON('data/campsites/withdrawn.json').then(d=>d?.version===1&&Array.isArray(d.listings)?new Map(d.listings.filter(w=>typeof w?.id==='string').flatMap(w=>[w.id,...(Array.isArray(w.legacy_ids)?w.legacy_ids:[])].map(k=>[String(k),w]))):new Map()).catch(()=>new Map());return state.withdrawnPromise;},
     getLoadedStates:()=>[...state.loadedStates],
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,

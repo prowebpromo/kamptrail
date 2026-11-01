@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.34.0';
+  const FR_VERSION = '2.35.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -177,6 +177,9 @@
   "Backcountry": "Zona remota",
   "Overnight parking": "Estacionamiento nocturno",
   "Other / unspecified": "Otro / sin especificar",
+  "{name} is no longer listed in campsite search. Its camping classification could not be verified from its own source record. Check {source} before you go.": "{name} ya no aparece en la búsqueda de campings. Su clasificación como camping no pudo verificarse con su propio registro de origen. Consulta {source} antes de ir.",
+  "the land manager": "el responsable del terreno",
+  "Lookout, cabin or other lodging": "Mirador, cabaña u otro alojamiento",
   "Approximate terrain elevation": "Altitud aproximada del terreno",
   "Elevation units": "Unidades de altitud",
   "Feet (ft)": "Pies (ft)",
@@ -1768,7 +1771,7 @@
   }
   const labels = {
     fee:{free:'Reported free',conditional:'Free with conditions',paid:'Paid',unknown:'Fee unknown'},
-    type:{established:'Campground',dispersed:'Dispersed',backcountry:'Backcountry',parking:'Overnight parking',other:'Other / unspecified',spot:'This spot',service:'Services',imported:'Imported point'},
+    type:{established:'Campground',dispersed:'Dispersed',backcountry:'Backcountry',parking:'Overnight parking',lodging:'Lookout, cabin or other lodging',other:'Other / unspecified',spot:'This spot',service:'Services',imported:'Imported point'},
     amenity:{toilet:'Toilets',water:'Drinking water',dump:'Dump station',shower:'Showers',fire_ring:'Fire ring',picnic_table:'Picnic table'},
     rig:{tent:'Tents',trailer:'Trailers and caravans',rv:'RV'},
     hookup:{electric:'Electric',water:'Water',sewer:'Sewer'},
@@ -1803,7 +1806,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.34.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.35.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
