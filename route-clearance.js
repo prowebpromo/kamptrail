@@ -55,7 +55,12 @@
    return {association:'unresolved',evidence:['route_way_ids_incomplete_near_candidate']};
   }
   if(!s.nodeSet)return {association:'unresolved',evidence:['route_has_no_node_ids']};
-  for(const n of near)for(const v of [n.i,n.i+1])if(s.nodes[v]===c.osm_id)return {association:'on_route',evidence:['nearby_route_vertex_node_id_equals_candidate_node','vertex='+v,'segment='+n.i],segment:n.i};
+  // Measure to the matching vertex itself: a nearby segment can end far from the candidate.
+  if(s.nodeSet.has(c.osm_id)){
+   const p=c.geometry.coordinates;let best=null;
+   for(let v=0;v<s.coords.length;v++)if(s.nodes[v]===c.osm_id){const q=s.coords[v],lat=(p[1]+q[1])/2,A=xy(p,lat),B=xy(q,lat),d=Math.hypot(A[0]-B[0],A[1]-B[1]);if(!best||d<best.d)best={v,d};}
+   if(best&&best.d<=RADIUS){const seg=best.v<s.coords.length-1?best.v:best.v-1;return {association:'on_route',evidence:['route_vertex_node_id_equals_candidate_node','vertex='+best.v,'segment='+seg],segment:seg,distance:best.d};}
+  }
   if(s.nodeSet.has(c.osm_id))return {association:'unresolved',evidence:['route_node_id_matches_only_at_distant_vertex']};
   if(near.every(n=>s.nodes[n.i]!==null&&s.nodes[n.i+1]!==null))return {association:'not_on_route',evidence:['route_node_ids_exclude_candidate_node']};
   return {association:'unresolved',evidence:['route_node_ids_incomplete_near_candidate']};
@@ -84,7 +89,7 @@
      if(best>RADIUS)continue;near.sort((x,y)=>x.d-y.d||x.i-y.i);
      const a=c.pilot?{association:'unresolved',evidence:['ri_pilot_applies_to_not_assessed']}:associate(c,s,near),cmp=C.compare(c,rigMm);
      // The reported segment and leg come from the identity match when there is one, otherwise from proximity.
-     const seg=Number.isSafeInteger(a.segment)?a.segment:nearest,segDist=Number.isSafeInteger(a.segment)?near.find(n=>n.i===a.segment).d:best;
+     const seg=Number.isSafeInteger(a.segment)?a.segment:nearest,segDist=Number.isFinite(a.distance)?a.distance:Number.isSafeInteger(a.segment)?near.find(n=>n.i===a.segment).d:best;
      found.set(c.id,{candidate:c,id:c.id,osm_type:c.osm_type,osm_id:c.osm_id,distance_m:Math.round(segDist),nearest_segment:seg,leg:legOf(s,seg),segment_basis:Number.isSafeInteger(a.segment)?'osm_identity_match':'proximity',association:a.association,association_evidence:a.evidence,direction:direction(c,a.association),state:C.state(c),status:c.status,applies_to:c.applies_to,comparison:cmp,route_conflict:a.association==='on_route'&&cmp.conflict,...(c.pilot?{source:'ri_pilot'}:{})});
      if(found.size>MAX_FOUND)throw Error('Search limit reached');
   }};

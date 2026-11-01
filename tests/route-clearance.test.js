@@ -123,3 +123,25 @@ test('an adjacent segment without identity leaves a candidate unresolved; a node
   const far=await R.analyze(long({node_ids:['1','2','3','4','77']}),{env:dataset([gate])});assert.equal(far.candidates[0].association,'unresolved');assert.deepEqual(far.candidates[0].association_evidence,['route_node_id_matches_only_at_distant_vertex']);
   const near=await R.analyze(long({node_ids:['1','2','77','4','5']}),{env:dataset([gate]),rigMm:ft(14)});assert.equal(near.candidates[0].association,'on_route');assert.ok([1,2].includes(near.candidates[0].nearest_segment));assert.equal(near.candidates[0].segment_basis,'osm_identity_match');
 });
+
+// Codex review 2: a node match is measured to the matching vertex itself, and counts only within 100 m.
+const east=(m,lat=40)=>m/(111320*Math.cos(lat*Math.PI/180)),north=m=>m/111320;
+test('node match: 853 m from the matching vertex is unresolved with no conflict, even though a route segment is near',async()=>{
+  const gate=candidate(77,'node',[-105,40]);// at vertex 0; the matching id is on vertex 2, about 853 m away
+  const r=await R.analyze(long({node_ids:['1','2','77','4','5']}),{env:dataset([gate]),rigMm:ft(14)});
+  const x=r.candidates[0];assert.equal(x.association,'unresolved');assert.deepEqual(x.association_evidence,['route_node_id_matches_only_at_distant_vertex']);
+  assert.equal(x.route_conflict,false);assert.equal(x.distance_m,0,'distance to the nearest segment, reported as proximity');assert.equal(x.segment_basis,'proximity');
+});
+test('node match boundary: 99 m from the matching vertex is on_route with that distance; 101 m is unresolved',async()=>{
+  const at=m=>candidate(77,'node',[-104.99+east(m),40]);// along segment 2, so a segment is always within 100 m
+  const ok=(await R.analyze(long({node_ids:['1','2','77','4','5']}),{env:dataset([at(99)]),rigMm:ft(14)})).candidates[0];
+  assert.equal(ok.association,'on_route');assert.equal(ok.distance_m,99);assert.equal(ok.route_conflict,true);assert.equal(ok.segment_basis,'osm_identity_match');assert.equal(ok.nearest_segment,2);assert.equal(ok.leg,2);
+  const no=(await R.analyze(long({node_ids:['1','2','77','4','5']}),{env:dataset([at(101)]),rigMm:ft(14)})).candidates[0];
+  assert.equal(no.association,'unresolved');assert.equal(no.route_conflict,false);assert.equal(no.distance_m,0);
+});
+test('way match boundary: 99 m from the matching segment is on_route with that distance; 101 m is outside the search',async()=>{
+  const off=m=>candidate(999,'way',[[-104.9885,40+north(m)],[-104.9865,40+north(m)]]);// parallel to segment 2 (way 999)
+  const ok=(await R.analyze(long({way_ids:['111','222','999','333']}),{env:dataset([off(99)]),rigMm:ft(14)})).candidates[0];
+  assert.equal(ok.association,'on_route');assert.equal(ok.distance_m,99);assert.equal(ok.nearest_segment,2);
+  assert.equal((await R.analyze(long({way_ids:['111','222','999','333']}),{env:dataset([off(101)]),rigMm:ft(14)})).candidates.length,0);
+});
