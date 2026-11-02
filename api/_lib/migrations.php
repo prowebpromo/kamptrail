@@ -139,8 +139,4 @@ return [
             "CREATE TABLE IF NOT EXISTS clearance_reports (submission_id INTEGER PRIMARY KEY, posted TEXT NOT NULL, hundredths INTEGER NOT NULL, observed_on TEXT NOT NULL, direction TEXT NOT NULL, osm_ref TEXT NULL, FOREIGN KEY (submission_id) REFERENCES submissions(id))",
         ],
     ],
-    '007_feedback_notifications' => [
-        'mysql' => ["CREATE TABLE IF NOT EXISTS notification_outbox (submission_id BIGINT UNSIGNED PRIMARY KEY, state VARCHAR(20) NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, next_attempt_at DATETIME NOT NULL, lease_token CHAR(32) NULL, lease_until DATETIME NULL, accepted_at DATETIME NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, FOREIGN KEY (submission_id) REFERENCES submissions(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"],
-        'sqlite' => ["CREATE TABLE IF NOT EXISTS notification_outbox (submission_id INTEGER PRIMARY KEY, state TEXT NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, next_attempt_at TEXT NOT NULL, lease_token TEXT NULL, lease_until TEXT NULL, accepted_at TEXT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, FOREIGN KEY (submission_id) REFERENCES submissions(id))"],
-    ],
 ];

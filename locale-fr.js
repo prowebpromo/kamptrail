@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.40.0', messages:{
+  global.KampTrailI18nFr = {version:'2.39.1', messages:{
   "Scroll to read more. Use + and − to zoom the map, or two fingers on a touch screen.": "Faites défiler la page pour en savoir plus. Utilisez + et − pour zoomer sur la carte, ou deux doigts sur un écran tactile.",
   "Find free and paid campsites, explore public land, and save your stops. Choose a state or search to start.": "Trouvez des sites de camping gratuits et payants, explorez les terres publiques et enregistrez vos arrêts. Choisissez un État ou lancez une recherche pour commencer.",
   "Feedback": "Vos commentaires",

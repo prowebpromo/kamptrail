@@ -2,7 +2,6 @@
 // Accept a camper's correction or new-campsite proposal for moderation. Nothing is published automatically.
 declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
-require __DIR__ . '/_lib/notifications.php';
 require __DIR__ . '/_lib/clearance-reports.php';
 require __DIR__ . '/_lib/feedback.php';
 kt_require_method('POST');
@@ -78,9 +77,8 @@ try {
     $pdo->beginTransaction();
     $stmt->execute([$token, $kind, $campsiteId ?: null, $kind === 'clearance' ? 'Posted clearance ' . $clearance['posted'] : ($campsiteName ?: null), $hasCoords ? round((float)$lat, 6) : null, $hasCoords ? round((float)$lng, 6) : null,
         $problems ? implode(',', $problems) : null, $details, $source ?: null, $email ?: null, $client, 'received', $now, $now]);
-    $submissionId = (int)$pdo->lastInsertId();
     if ($clearance) $pdo->prepare('INSERT INTO clearance_reports (submission_id, posted, hundredths, observed_on, direction, osm_ref) VALUES (?, ?, ?, ?, ?, ?)')
-        ->execute([$submissionId, $clearance['posted'], $clearance['hundredths'], $clearance['observed_on'], $clearance['direction'], $clearance['osm_ref']]);
+        ->execute([(int)$pdo->lastInsertId(), $clearance['posted'], $clearance['hundredths'], $clearance['observed_on'], $clearance['direction'], $clearance['osm_ref']]);
     $pdo->commit();
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();
@@ -88,8 +86,4 @@ try {
     kt_unavailable();
 }
 
-if ($feedback) {
-    try { ktn_enqueue($pdo, $submissionId, $kind, $now); }
-    catch (Throwable $e) { error_log('KampTrail notifications: queue write failed; report is saved'); }
-}
 kt_json(201, ['ok' => true, 'token' => $token, 'status' => 'received', 'status_url' => 'api/status.php?token=' . $token]);

@@ -2,7 +2,6 @@
 // Moderator page: review reports, set status with a public note, keep an audit trail, apply schema migrations.
 declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
-require __DIR__ . '/_lib/notifications.php';
 require __DIR__ . '/_lib/community-admin.php';
 require __DIR__ . '/_lib/permissions-admin.php';
 require __DIR__ . '/_lib/clearance-reports.php';
@@ -68,8 +67,6 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
             $notice = kp_admin_action($pdo, $moderator);
         } elseif (str_starts_with((string)($_POST['do'] ?? ''), 'community_')) {
             $notice = kc_moderate($pdo, $moderator);
-        } elseif (($_POST['do'] ?? '') === 'notification_retry') {
-            $notice = ktn_retry($pdo, (int)($_POST['id'] ?? 0)) ? 'Owner notice accepted by SMTP. Inbox delivery is not confirmed.' : 'Notice was not sent. Check private mail configuration or try again after an active attempt finishes.';
         } elseif (($_POST['do'] ?? '') === 'set') {
             $id = (int)($_POST['id'] ?? 0);
             $to = (string)($_POST['status'] ?? '');
@@ -130,13 +127,6 @@ foreach ($list as $r) {
         // For a clearance report, applied publishes it on the map (api/clearance-reports.php), so the action says so.
         . '<select name="status">' . implode('', array_map(fn($s) => '<option value="' . h($s) . '"' . ($s === $r['status'] ? ' selected' : '') . '>' . h($r['kind'] === 'clearance' && $s === 'applied' ? 'Apply and publish on map' : ($isFeedback ? (['accepted'=>'Accepted for follow-up','applied'=>'Completed','rejected'=>'Closed without a change','received'=>'Received'][$s] ?? $s) : $s)) . '</option>', KT_STATUSES)) . '</select>'
         . '<input name="public_note" maxlength="1000" placeholder="Public note shown to the submitter" style="flex:1;min-width:240px" value="' . h($r['public_note'] ?? '') . '"><button>Save</button></form>';
-    if ($isFeedback) {
-        $nq = $pdo->prepare('SELECT state, attempts, accepted_at FROM notification_outbox WHERE submission_id=?');
-        $nq->execute([$r['id']]);
-        $n = $nq->fetch();
-        $body .= '<p class="meta">Owner email: ' . h($n ? ($n['state'] === 'sent' ? 'SMTP accepted (delivery not confirmed)' : $n['state']) . ' · attempts ' . $n['attempts'] : 'not queued') . '</p>';
-        if ($n && $n['state'] !== 'sent' && ktn_enabled()) $body .= '<form method="post" action="' . $self . '?status=' . h($filter) . '"><input type="hidden" name="do" value="notification_retry"><input type="hidden" name="csrf" value="' . h($csrf) . '"><input type="hidden" name="id" value="' . h($r['id']) . '"><button>Retry owner notice</button></form>';
-    }
     if ($logRows) {
         $body .= '<table><tr><th>When (UTC)</th><th>By</th><th>Change</th><th>Note</th></tr>';
         foreach ($logRows as $l) $body .= '<tr><td>' . h($l['created_at']) . '</td><td>' . h($l['moderator']) . '</td><td>' . h($l['from_status']) . ' → ' . h($l['to_status']) . '</td><td>' . h($l['note'] ?? '') . '</td></tr>';
