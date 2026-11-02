@@ -1,18 +1,23 @@
 {
- "version": 1,
- "decided": "2026-11-01 08:16 and 08:18 (owner)",
+ "version": 2,
+ "decided": "2026-11-01 08:16 and 08:18, and 20:24 ET (Chuck Price, owner)",
  "evidence": {
   "file": "docs/tourism/ridb-facility-evidence-2026-11-01.json",
   "sha256": "ec8da8c2c93ae75e3267ca42c7beeab8040d86965da4bcb98776dfc9ccd760b5",
   "run": "https://github.com/prowebpromo/kamptrail/actions/runs/41350953975",
   "retrieved_at": "2026-11-01T21:14:28Z"
  },
- "baseline_commit": "f84a5b4b6cb23641d0ef263e10fe077751cc1c14",
+ "baseline_commit": "b0dfbdbc92a352c3e05e4f2a1396e463a845e17d",
  "observed_fields": "observed.* copied from the evidence file; derived.*, decision and action computed by this script; current.* from the baseline catalogue; candidate.* from this build",
  "by_decision": {
   "keep_discoverable_pending_withdrawal_review": 9,
-  "deferred_label_held": 26,
-  "approved_upgrade": 27,
+  "relabel_other_pending": 7,
+  "keep_current_label": 14,
+  "exception_held_pending": 2,
+  "relabel_dispersed": 3,
+  "upgrade_named_campground": 13,
+  "upgrade_reviewed_individually": 12,
+  "upgrade_named_dispersed_campground": 2,
   "approved_lodging": 8,
   "approved_lodging_rejection": 2
  },
@@ -58,9 +63,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "The Kirkwood Historic Ranch is an area rich in river history",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record describes a historic ranch and museum. Historic bunk houses do not establish campsites. Fresh record adds no campsite or type evidence.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: strong. Its own record describes a historic ranch and museum. Historic bunk houses are buildings, not campsites.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: strong. Its own record describes a historic ranch and museum. Historic bunk houses are buildings, not campsites.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -106,9 +113,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "Recreation areas near the Wakeley Lake Area.",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record only describes recreation areas near this part of the forest. The Dispersed label came from the matched USFS record usfs:18814, which is candidate evidence only.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: weak. Its own record lists nearby recreation areas. That is an absence of camping detail, not a statement that there is no camping.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: weak. Its own record lists nearby recreation areas. That is an absence of camping detail, not a statement that there is no camping.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -154,9 +163,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "This is a great recreation area.",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record says only 'This is a great recreation area.' The Campground label came from the matched USFS record usfs:5889.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: weak. Its own record says nothing about facilities either way.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: weak. Its own record says nothing about facilities either way.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -202,9 +213,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "General Forest Camping Recreational Opportunity Guide",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record only links a general forest camping guide. The Campground label came from the matched USFS record usfs:65003.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: weak. Its own record links a general forest camping guide. That points toward camping without establishing a site.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: weak. Its own record links a general forest camping guide. That points toward camping without establishing a site.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -250,9 +263,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "This recreation area is part of Greeson Lake",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record says only that the area is part of Greeson Lake. The absorbed OSM element osm:way:941066426 is a separate element and stays withheld with its host.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: weak. A park record that only names its lake.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: weak. A park record that only names its lake.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -298,9 +313,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "This recreation area is part of Lake Sidney Lanier",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record says only that the area is part of Lake Sidney Lanier. The absorbed OSM relation osm:relation:13942065 and its website are not evidence about this record.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: weak. A park record that only names its lake.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: weak. A park record that only names its lake.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -346,9 +363,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "This recreation area is part of Lake Sidney Lanier",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record says only that the area is part of Lake Sidney Lanier. The separately published OSM listing osm:way:456269017 stays discoverable under its own id.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: weak. A park record that only names its lake.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: weak. A park record that only names its lake.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -394,9 +413,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "This recreation area is part of Cape Cod Canal",
+   "own_field": "FacilityDescription",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record says only that the area is part of Cape Cod Canal, with no campground details.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: weak. A reservation record that only names the canal.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: weak. A reservation record that only names the canal.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -442,9 +463,11 @@
     "accommodation": null,
     "overnight_records": null
    },
+   "own_quote": "Potato Hills Central",
+   "own_field": "FacilityName",
    "decision": "keep_discoverable_pending_withdrawal_review",
-   "action": "stays listed, pending-review notice, label held",
-   "reason": "Own record identifies the facility as part of Sardis Lake. The campground wording in the merged row is marked as copied from another record and does not classify this one.",
+   "action": "Stays listed with its current label and the pending notice. Case strength: moderate. Its retained own record names the facility as part of Sardis Lake. The campground wording in the merged row is copied from another record (ridb:233590) and does not classify this one.",
+   "reason": "Stays listed with its current label and the pending notice. Case strength: moderate. Its retained own record names the facility as part of Sardis Lake. The campground wording in the merged row is copied from another record (ridb:233590) and does not classify this one.",
    "recommendation": {
     "action": "withdraw",
     "label": null
@@ -482,17 +505,19 @@
     "evidence": "agency_camping_activity"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "published_pending_review",
     "evidence": "previously_published_pending_adjudication",
-    "type_evidence": "held_published_label",
+    "type_evidence": null,
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "One record describes two seasonal primitive hunting camps. The point does not distinguish them and no own field gives a type.",
+   "own_quote": "offer primitive facilities in a setting ideal for hunting",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_other_pending",
+   "action": "→ Other, pending review",
+   "reason": "→ Other, pending review",
    "recommendation": {
     "action": "keep_pending_admission",
     "label": "other"
@@ -533,14 +558,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes 3 large camping units with picnic tables, fire rings and a restroom. Keeping the published label is not an upgrade.",
+   "own_quote": "Campground amenities include picnic tables, fire rings, a restroom",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -581,14 +608,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record calls itself a campground with 5 sites, tables and fire rings.",
+   "own_quote": "The campground has 5 sites with tables and fire rings.",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -626,17 +655,19 @@
     "evidence": "agency_camping_activity"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "published_pending_review",
     "evidence": "previously_published_pending_adjudication",
-    "type_evidence": "held_published_label",
+    "type_evidence": null,
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record names a camp and describes restrooms only. No site count, overnight use or type.",
+   "own_quote": "The Enduro camp has vaulted restrooms.",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_other_pending",
+   "action": "→ Other, pending review",
+   "reason": "→ Other, pending review",
    "recommendation": {
     "action": "keep_pending_admission",
     "label": "other"
@@ -674,17 +705,19 @@
     "evidence": "agency_camping_activity"
    },
    "candidate": {
-    "label": "dispersed",
+    "label": "other",
     "classification": "published_pending_review",
     "evidence": "previously_published_pending_adjudication",
-    "type_evidence": "held_published_label",
+    "type_evidence": null,
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record repeats its Hunter Camp name only. The Dispersed label came from a matched USFS record.",
+   "own_quote": "Sugar Creek Hunter Camp",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_other_pending",
+   "action": "→ Other, pending review",
+   "reason": "→ Other, pending review",
    "recommendation": {
     "action": "keep_pending_admission",
     "label": "other"
@@ -722,17 +755,19 @@
     "evidence": "agency_camping_activity"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "published_pending_review",
     "evidence": "previously_published_pending_adjudication",
-    "type_evidence": "held_published_label",
+    "type_evidence": null,
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record is an area containing three campgrounds. The area point is not one campground.",
+   "own_quote": "the recreation area offers three campgrounds",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_other_pending",
+   "action": "→ Other, pending review",
+   "reason": "→ Other, pending review",
    "recommendation": {
     "action": "keep_pending_admission",
     "label": "other"
@@ -770,17 +805,19 @@
     "evidence": "osm_campsite_tag"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "published_pending_review",
     "evidence": "previously_published_pending_adjudication",
-    "type_evidence": "held_published_label",
+    "type_evidence": null,
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record repeats its name only.",
+   "own_quote": "McDougle Camp",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_other_pending",
+   "action": "→ Other, pending review",
+   "reason": "→ Other, pending review",
    "recommendation": {
     "action": "keep_pending_admission",
     "label": "other"
@@ -821,14 +858,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes 39 campsites with water and electrical hookups and bathhouses.",
+   "own_quote": "There are 39 campsites with water and electrical hookups",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -874,9 +913,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes a rustic camp with a few sites at a trailhead. Weakest of the kept labels.",
+   "own_quote": "This rustic camp offers a few sites",
+   "own_field": "FacilityDescription",
+   "decision": "exception_held_pending",
+   "action": "Held at Campground, pending. The own record establishes camping but not Campground. The Campground label came from the USFS record usfs:39956, matched by name and point only.",
+   "reason": "Held at Campground, pending. The own record establishes camping but not Campground. The Campground label came from the USFS record usfs:39956, matched by name and point only.",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -914,17 +955,19 @@
     "evidence": "agency_camping_activity"
    },
    "candidate": {
-    "label": "dispersed",
+    "label": "other",
     "classification": "published_pending_review",
     "evidence": "previously_published_pending_adjudication",
-    "type_evidence": "held_published_label",
+    "type_evidence": null,
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record covers a 1,513-acre area with several landowners. The four campsites it names are not typed and the point is the area.",
+   "own_quote": "The Bowman Lake area is located in Lake and Sweetwater Townships in Lake County.",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_other_pending",
+   "action": "→ Other, pending review",
+   "reason": "→ Other, pending review",
    "recommendation": {
     "action": "keep_pending_admission",
     "label": "other"
@@ -962,17 +1005,19 @@
     "evidence": "osm_campsite_tag"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "published_pending_review",
     "evidence": "previously_published_pending_adjudication",
-    "type_evidence": "held_published_label",
+    "type_evidence": null,
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record lists camping as one activity in a wider area. No campsite is identified.",
+   "own_quote": "This area is very popular for mushroom and berry picking, as well as hunting, fishing and camping.",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_other_pending",
+   "action": "→ Other, pending review",
+   "reason": "→ Other, pending review",
    "recommendation": {
     "action": "keep_pending_admission",
     "label": "other"
@@ -1013,14 +1058,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record calls it a campground with 3 single units and 1 multi-family unit.",
+   "own_quote": "the campground offers 3 single camping units, and 1 multi-family unit",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1061,14 +1108,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes 6 campsites with picnic tables and fire rings.",
+   "own_quote": "The transfer camp offers 6 campsites with picnic tables and fire rings",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1106,17 +1155,19 @@
     "evidence": "osm_campsite_tag"
    },
    "candidate": {
-    "label": "established",
+    "label": "dispersed",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own name is a Yellow Post site and the record describes two remote first-come sites on a high-clearance road. The approved FacilityName rule maps 'yellow post' to Dispersed. Changes the published Campground label, so it needs approval.",
+   "own_quote": "These two remote yellow post sites are located near the end of Forest Road 1N34",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_dispersed",
+   "action": "Campground → Dispersed",
+   "reason": "Campground → Dispersed",
    "recommendation": {
     "action": "relabel",
     "label": "dispersed"
@@ -1157,14 +1208,16 @@
     "label": "dispersed",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own name is Yellow Post Sites and the record describes 19 first-come individual sites with no restrooms or water.",
+   "own_quote": "These 19 yellow post sites are individual camping sites.",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Dispersed on its own description",
+   "reason": "Keeps Dispersed on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "dispersed"
@@ -1202,17 +1255,19 @@
     "evidence": "osm_campsite_tag"
    },
    "candidate": {
-    "label": "established",
+    "label": "dispersed",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own name is Yellow Post Sites and the record says the sites lack developed-campground amenities. Changes the published Campground label, so it needs approval.",
+   "own_quote": "these sites do NOT contain the amenities found at developed campgrounds",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_dispersed",
+   "action": "Campground → Dispersed",
+   "reason": "Campground → Dispersed",
    "recommendation": {
     "action": "relabel",
     "label": "dispersed"
@@ -1253,14 +1308,16 @@
     "label": "dispersed",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own name is Yellow Post Sites and the record describes five remote sites without developed-campground amenities.",
+   "own_quote": "these sites do NOT contain the amenities found at developed campgrounds",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Dispersed on its own description",
+   "reason": "Keeps Dispersed on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "dispersed"
@@ -1301,14 +1358,16 @@
     "label": "dispersed",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own name is a Yellow Post Site and the record describes a single remote site without developed-campground amenities.",
+   "own_quote": "this site does NOT contain the amenities found at developed campgrounds",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Dispersed on its own description",
+   "reason": "Keeps Dispersed on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "dispersed"
@@ -1354,9 +1413,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record invites visitors to stay at its campsites.",
+   "own_quote": "Stay at one of our charming campsites",
+   "own_field": "FacilityDescription",
+   "decision": "exception_held_pending",
+   "action": "Held at Campground, pending. The own record establishes camping but not Campground. The Campground label came from the USFS record usfs:74043, matched by name and point only.",
+   "reason": "Held at Campground, pending. The own record establishes camping but not Campground. The Campground label came from the USFS record usfs:74043, matched by name and point only.",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1397,14 +1458,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes RV and tent camping sites and calls the site a campground.",
+   "own_quote": "The RV and tent camping sites, boat launch, boarding dock, and fish cleaning station",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1445,14 +1508,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record calls itself a boat-in campground with 16 tent units.",
+   "own_quote": "This unique boat-in campground offers 16 tent camping units",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1493,14 +1558,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "reviewed_own_facility_record",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes developed camping for RVs and tents, with 14 full-hookup RV sites.",
+   "own_quote": "This recreation site offers developed camping for RVs and tents",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1541,14 +1608,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "source_intro_camping",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record calls it a campground with 8 sites, potable water and vault toilets.",
+   "own_quote": "The Camp 32 campground is located 15 miles southwest of Eureka",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1589,14 +1658,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "source_intro_camping",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes 21 campsites with grills and sanitary facilities.",
+   "own_quote": "Pine Glen Recreation Area offers camping sites for 21 campsites, cooking grills, sanitary facilities",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1634,17 +1705,19 @@
     "evidence": "osm_campsite_tag"
    },
    "candidate": {
-    "label": "established",
+    "label": "dispersed",
     "classification": "campsite",
     "evidence": "source_intro_camping",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record calls it a dispersed, undeveloped camping area. That contradicts the published Campground label. Other is the conservative alternative if descriptions may not set a type.",
+   "own_quote": "Wolf Flats is a dispersed, undeveloped camping area with 25 locations to camp.",
+   "own_field": "FacilityDescription",
+   "decision": "relabel_dispersed",
+   "action": "Campground → Dispersed",
+   "reason": "Campground → Dispersed",
    "recommendation": {
     "action": "relabel",
     "label": "dispersed"
@@ -1685,14 +1758,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "source_intro_camping",
-    "type_evidence": "held_published_label",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "deferred_label_held",
-   "action": "label held, review pending",
-   "reason": "Own record describes 14 drive-in campsites with fire rings and tables, plus a separate walk-in dispersed area.",
+   "own_quote": "Priest Hole contains 14 drive-in campsites with fire rings and picnic tables",
+   "own_field": "FacilityDescription",
+   "decision": "keep_current_label",
+   "action": "Keeps Campground on its own description",
+   "reason": "Keeps Campground on its own description",
    "recommendation": {
     "action": "keep_current_label",
     "label": "established"
@@ -1739,9 +1814,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Large Vehicle Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -1785,9 +1862,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Miller Flat Reservoir Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -1831,9 +1910,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Campo Alto Group Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -1869,17 +1950,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "This campsite is located approximately 50 yards from Lake Superior and Trout Bay Beach.",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. One hike, bike or boat-in campsite. No campground or dispersed wording.",
+   "reason": "Stays Other. One hike, bike or boat-in campsite. No campground or dispersed wording.",
    "recommendation": null
   },
   {
@@ -1923,9 +2006,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Wildcat Creek Campground #2 Upper",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -1969,9 +2054,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Home Gulch Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2015,9 +2102,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Smith Lake Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2061,9 +2150,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Fulford Cave Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2107,9 +2198,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Godman Campground/Trailhead",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2153,9 +2246,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Conrad Crossing Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2199,9 +2294,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Muchwater Dispersed Campground and Recreation Area",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_dispersed_campground",
    "action": "Other → Dispersed",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Dispersed. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Dispersed",
    "recommendation": null
   },
   {
@@ -2245,9 +2342,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Deer Creek Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2291,9 +2390,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Peninsula Dispersed Campground and Recreation Area",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_dispersed_campground",
    "action": "Other → Dispersed",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Dispersed. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Dispersed",
    "recommendation": null
   },
   {
@@ -2337,9 +2438,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Muleshoe Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2383,9 +2486,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Table Meadows Campground",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2421,17 +2526,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "This recreation area is part of Dworshak Reservoir",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. \"Group Camp\" supports camping. The description only names the reservoir.",
+   "reason": "Stays Other. \"Group Camp\" supports camping. The description only names the reservoir.",
    "recommendation": null
   },
   {
@@ -2470,14 +2577,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "Granite Lake Rv Park",
+   "own_field": "FacilityName",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Other → Campground. The own name is an RV park, a developed campground for RVs. The description only names the lake, so the name is the sole basis.",
+   "reason": "Other → Campground. The own name is an RV park, a developed campground for RVs. The description only names the lake, so the name is the sole basis.",
    "recommendation": null
   },
   {
@@ -2513,17 +2622,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "Campsite along Kokopelli Trail.",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. Supports camping, not a type.",
+   "reason": "Stays Other. Supports camping, not a type.",
    "recommendation": null
   },
   {
@@ -2562,14 +2673,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "Small campground along the Castle Valley Road",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Other → Campground. The own description calls it a campground.",
+   "reason": "Other → Campground. The own description calls it a campground.",
    "recommendation": null
   },
   {
@@ -2608,14 +2721,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "27 campsites with picnic tables and fire rings",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Other → Campground. The own description calls it a campground with 27 sites.",
+   "reason": "Other → Campground. The own description calls it a campground with 27 sites.",
    "recommendation": null
   },
   {
@@ -2651,17 +2766,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "no facilities are offered at this location",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. An undeveloped RV base camp. No dispersed wording.",
+   "reason": "Stays Other. An undeveloped RV base camp. No dispersed wording.",
    "recommendation": null
   },
   {
@@ -2697,17 +2814,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "This is a small primitive camping area within the Pine Creek Exclosure.",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. \"Primitive\" alone does not establish Dispersed.",
+   "reason": "Stays Other. \"Primitive\" alone does not establish Dispersed.",
    "recommendation": null
   },
   {
@@ -2743,17 +2862,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "established",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "Alkali Creek Horsecamp (11 acres) contains six fee camping units",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. \"Horse Camp\" supports camping. The site details describe a differently named camp (Alkali Creek Horsecamp).",
+   "reason": "Stays Other. \"Horse Camp\" supports camping. The site details describe a differently named camp (Alkali Creek Horsecamp).",
    "recommendation": null
   },
   {
@@ -2789,17 +2910,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "dispersed",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Dispersed",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Dispersed. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "Primitive camping area. No toilets, water, and hookups.",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. \"Primitive\" alone does not establish Dispersed.",
+   "reason": "Stays Other. \"Primitive\" alone does not establish Dispersed.",
    "recommendation": null
   },
   {
@@ -2838,14 +2961,16 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "this 13-site camp provides access to many miles of equestrian trails",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Other → Campground. The own record describes a 13-site camp. Judgement call: it gives a site count but no amenities.",
+   "reason": "Other → Campground. The own record describes a 13-site camp. Judgement call: it gives a site count but no amenities.",
    "recommendation": null
   },
   {
@@ -2889,9 +3014,11 @@
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
+   "own_quote": "Jericho Campground and Picnic Area",
+   "own_field": "FacilityName",
+   "decision": "upgrade_named_campground",
    "action": "Other → Campground",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Campground. No structured type or campsite records, so the label rests on the name alone.",
+   "reason": "Other → Campground",
    "recommendation": null
   },
   {
@@ -2927,17 +3054,19 @@
     "evidence": "camping_facility_name"
    },
    "candidate": {
-    "label": "dispersed",
+    "label": "other",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
    },
-   "decision": "approved_upgrade",
-   "action": "Other → Dispersed",
-   "reason": "Refreshed record confirms the agency's own FacilityName and point (0 m). The name gives Dispersed. No structured type or campsite records, so the label rests on the name alone.",
+   "own_quote": "it makes a great short or introductory backpacking adventure",
+   "own_field": "FacilityDescription",
+   "decision": "upgrade_reviewed_individually",
+   "action": "Stays Other. The description is about the river and hiking. No campsites are described.",
+   "reason": "Stays Other. The description is about the river and hiking. No campsites are described.",
    "recommendation": null
   },
   {
@@ -2985,6 +3114,8 @@
     "accommodation": "cabin",
     "overnight_records": 1
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "Coldfoot Cabin's own campsite page shows two bedrooms with bunk beds.",
@@ -3041,6 +3172,8 @@
     "accommodation": "house",
     "overnight_records": 1
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "The retained facility describes Shaw House as a rentable historic stone cabin. A dated notice in that same record reports temporary closure after fire damage. Do not infer availability. Own dated closure notice (2026-09-10) shown in the popup.",
@@ -3091,6 +3224,8 @@
     "accommodation": "lookout",
     "overnight_records": 1
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "Pickett Butte's facility record describes a one-room structure and seasonal lodging use.",
@@ -3141,6 +3276,8 @@
     "accommodation": "lookout",
     "overnight_records": 1
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "Snow Camp's record describes guests staying in the rebuilt lookout cabin.",
@@ -3191,6 +3328,8 @@
     "accommodation": "lookout",
     "overnight_records": 1
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "Drake Peak's record describes overnight lodging in the former lookout cabin.",
@@ -3241,6 +3380,8 @@
     "accommodation": null,
     "overnight_records": 4
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging_rejection",
    "action": "stays Campground",
    "reason": "All four reservations are structurally labelled cabin. Each unit's official instructions say it is a gathering place and visitors should sleep in their own tent or trailer.",
@@ -3291,6 +3432,8 @@
     "accommodation": "house",
     "overnight_records": 1
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "The facility describes a historic cabin that sleeps eight people.",
@@ -3341,6 +3484,8 @@
     "accommodation": "cabin",
     "overnight_records": 1
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "Axolotl's facility describes a cabin for visitors.",
@@ -3391,6 +3536,8 @@
     "accommodation": "cabins",
     "overnight_records": 15
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging",
    "action": "Campground → Lodging",
    "reason": "This is a group of public-use cabins across the recreation area. Its own record describes the cabins and cabin permits. Do not imply the map point gives a particular cabin location. Popup states that the one listing covers 15 cabins and that the point is not a particular cabin.",
@@ -3442,6 +3589,8 @@
     "accommodation": null,
     "overnight_records": 20
    },
+   "own_quote": null,
+   "own_field": null,
    "decision": "approved_lodging_rejection",
    "action": "stays Campground",
    "reason": "The BLM facility's fee record distinguishes RV full hookups and tent camping. Its official page describes the campground and tent and RV sites. House is part of a proper name here.",
