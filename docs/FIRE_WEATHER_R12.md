@@ -151,3 +151,7 @@ Run on the author's own server (`PORT=8861 node scripts/serve.js`, cwd verified 
 - `npm run test:python`: 440 run, OK, 9 skipped.
 - `tests/browser/firewx.spec.js` and `tests/browser/environment.spec.js`, desktop and mobile: 58 tests, all passing after the Retry-After spec was moved from `.kt-firewx-stale` to `.kt-firewx-failed` (a failed refresh is no longer Stale by itself). The two Retry-After specs were re-run alone and pass.
 - Code readiness: complete. Parity credit: none. No authentic positive fire alert has been captured and `features.csv` is unchanged.
+
+## Results after finding 11
+
+Own server on port 8861, cwd verified as `/home/claude/wt-r12`, through `heavy.sh`. origin/main is still b0dfbdbc 2.36.0 and is already merged. `npm test` 544 passed, 0 failed. `npm run test:python` 440 run, OK, 9 skipped. `firewx.spec.js` and `environment.spec.js`, desktop and mobile, in full: 58 passed. Parity credit: none.
