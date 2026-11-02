@@ -273,3 +273,30 @@ test('private bug and feature feedback excludes map evidence and requires opt-in
     assert.deepEqual(JSON.parse(stored[1].source_note),{version:'2.39.0',language:'fr',browser:'Safari',connection:'online',width:390,height:844});
   } finally { proc.kill(); fs.rmSync(cfg.dir,{recursive:true,force:true}); }
 });
+
+test('owner notices queue only valid feedback; SMTP and queue failures preserve reports; retry requires CSRF', {skip: !hasPhp}, async () => {
+  const cfg=tmpConfig(", 'notifications'=>['enabled'=>true]"),base='http://127.0.0.1:19940';
+  const proc=await server(cfg.file,19940);
+  const sql=code=>{const r=spawnSync('php',['-r',`$p=new PDO('sqlite:${cfg.db}');${code}`],{encoding:'utf8'});assert.equal(r.status,0,r.stderr);return r.stdout;};
+  try {
+    const admin=await adminSession(base);await admin.form({do:'login',password:'correct horse battery'});await admin.form({do:'migrate'});
+    const fb={kind:'bug',title:'Notification test',details:'Enough detail for a valid bug report.',elapsed_ms:8000};
+    assert.equal((await post(base,{...fb,website:'spam'})).status,202);
+    assert.equal((await post(base,{...fb,title:'x'})).status,422);
+    assert.equal((await post(base,good)).status,201);
+    assert.equal(sql('echo $p->query("SELECT COUNT(*) FROM notification_outbox")->fetchColumn();'),'0');
+    const receipt=await (await post(base,fb)).json();assert.equal(receipt.ok,true);
+    assert.equal((await post(base,{...fb,kind:'feature'})).status,201);
+    assert.equal(sql('echo $p->query("SELECT COUNT(*) FROM notification_outbox")->fetchColumn();'),'2');
+    assert.equal((await admin.form({do:'notification_retry',id:'2',csrf:'invalid'})).status,400);
+    assert.equal(sql('echo $p->query("SELECT attempts FROM notification_outbox WHERE submission_id=2")->fetchColumn();'),'0');
+    await admin.form({do:'notification_retry',id:'2'});
+    assert.equal(sql('echo $p->query("SELECT state FROM notification_outbox WHERE submission_id=2")->fetchColumn();'),'failed');
+    assert.equal((await (await fetch(`${base}/api/status.php?token=${receipt.token}`)).json()).status,'received');
+    sql('$p->exec("DROP TABLE notification_outbox");');
+    assert.equal((await post(base,fb)).status,201); // report commit survives queue write failure
+    sql('$p->exec("DELETE FROM schema_migrations WHERE version=\'007_feedback_notifications\'");');
+    assert.equal((await post(base,fb)).status,201); // missing migration also preserves intake
+    assert.equal((await post(base,fb)).status,429);
+  } finally {proc.kill();fs.rmSync(cfg.dir,{recursive:true,force:true});}
+});
