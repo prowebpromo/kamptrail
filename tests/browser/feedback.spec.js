@@ -58,6 +58,22 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
       await expect(d.getByRole('link',{name:'Contact KampTrail'})).toHaveAttribute('href','https://boondockorbust.com/contact/#contact-form');
       await expect(d.getByRole('button',{name:'Send feedback'})).toBeEnabled();
     });
+    test('page width is constrained and the wheel scrolls past the map to feedback',async({page,context})=>{
+      await setup(page,context);
+      expect((await page.locator('#app').boundingBox()).width).toBeLessThanOrEqual(1120);
+      expect(await page.evaluate(()=>document.documentElement.scrollHeight>innerHeight)).toBe(true);
+      const zoom=await page.evaluate(()=>map.getZoom());
+      const box=await page.locator('#map').boundingBox();
+      await page.mouse.move(box.x+box.width/2,Math.min(box.y+150,viewport.height-50));
+      await page.mouse.wheel(0,400);
+      await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(0);
+      expect(await page.evaluate(()=>map.getZoom())).toBe(zoom);
+      await page.locator('#feedback-panel').getByRole('button',{name:'Report a bug',exact:true}).click();
+      await expect(page.getByRole('dialog',{name:'Help improve KampTrail'})).toBeVisible();
+      await page.keyboard.press('Escape');
+      await page.locator('#feedback-panel').getByRole('button',{name:'Suggest a feature',exact:true}).click();
+      await expect(page.getByRole('dialog').getByLabel('Feedback type')).toHaveValue('feature');
+    });
     test('private link works without saved browser storage and renders moderator text literally',async({page,context})=>{
       await setup(page,context,`/#feedback=report:${token}`);
       const d=page.getByRole('dialog',{name:'Help improve KampTrail'});
@@ -65,3 +81,49 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
     });
   });
 }
+
+test.describe('touch page scrolling',()=>{
+  test.use({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
+  test('one-finger gestures scroll the page while two-finger map gestures stay enabled',async({page})=>{
+    await page.goto('/',{waitUntil:'domcontentloaded'});
+    await expect.poll(()=>page.evaluate(()=>!!window.map)).toBe(true);
+    expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
+    expect(await page.evaluate(()=>map.touchZoom.enabled())).toBe(true);
+    const box=await page.locator('#map').boundingBox();
+    const client=await page.context().newCDPSession(page);
+    const x=box.x+box.width/2,y=Math.min(box.y+180,740);
+    await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+    for(let step=1;step<=6;step++)await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y-step*35}]});
+    await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(0);
+  });
+});
+
+for(const viewport of [{width:1920,height:1080},{width:1000,height:520},{width:698,height:480}]){
+  test.describe(`page layout ${viewport.width}x${viewport.height}`,()=>{
+    test.use({viewport,serviceWorkers:'block'});
+    test('wide and short windows retain a bounded map and normal document scrolling',async({page})=>{
+      await page.goto('/',{waitUntil:'domcontentloaded'});
+      expect((await page.locator('#app').boundingBox()).width).toBeLessThanOrEqual(1120);
+      const height=(await page.locator('#map').boundingBox()).height;
+      expect(height).toBeGreaterThanOrEqual(560);expect(height).toBeLessThanOrEqual(680);
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      expect(await page.evaluate(()=>document.documentElement.scrollHeight>innerHeight)).toBe(true);
+      await page.locator('#feedback-panel').getByRole('button',{name:'Suggest a feature',exact:true}).click();
+      await expect(page.getByRole('dialog').getByLabel('Feedback type')).toHaveValue('feature');
+      await expect(page.getByRole('dialog').getByRole('button',{name:'Close feedback'})).toBeInViewport();
+    });
+  });
+}
+
+test('the campsite list keeps independent scrolling within the scrolling page',async({page})=>{
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75,zoom:8})));
+  await page.goto('/',{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  const results=page.locator('#results');
+  await expect.poll(()=>results.evaluate(e=>e.scrollHeight>e.clientHeight)).toBe(true);
+  const before=await page.evaluate(()=>scrollY),box=await results.boundingBox();
+  await page.mouse.move(box.x+box.width/2,box.y+180);await page.mouse.wheel(0,250);
+  await expect.poll(()=>results.evaluate(e=>e.scrollTop)).toBeGreaterThan(0);
+  expect(await page.evaluate(()=>scrollY)).toBe(before);
+});
