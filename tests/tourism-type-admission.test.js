@@ -78,12 +78,18 @@ test('an OSM accommodation tag is not the classifier\'s accommodation kind',()=>
   const f=DQ.normalizeFeature(pt({...osmEl,accommodation:'camping',name:'North Tongue River Campground'}));
   assert.equal(f.properties.type,'established');
 });
-test('descriptive wording classifies a Recreation.gov listing with no camping facility type, with attribution',()=>{
-  const f=DQ.normalizeFeature(pt({...ridb,type:'other',name:'Tom Bennett Campground'}),{siteDetails:{}});
-  assert.equal(f.properties.type,'established');
-  assert.deepEqual([f.properties.type_evidence.kind,f.properties.type_evidence.field,f.properties.type_evidence.value],['descriptive_wording','FacilityName','Tom Bennett Campground']);
+test('name rule scope: an unseen facility with an ambiguous camping name keeps its prior label until reviewed',()=>{
+  for(const [name,prior] of [['Example Primitive Camp','other'],['Example Camping Area','other'],['Tom Bennett Campground','other'],['Example Camping Area','established']]){
+    const f=DQ.normalizeFeature(pt({...ridb,id:'ridb:999001',facility_id:'999001',type:prior,name}),{siteDetails:{}});
+    assert.equal(f.properties.camping_classification,'campsite',name+' still admitted on its own name');
+    assert.equal(f.properties.type,prior,name);
+    assert.notEqual(f.properties.type_evidence?.kind,'descriptive_wording');
+  }
   const d=DQ.normalizeFeature(pt({...ridb,type:'other',name:'Wolf Flats Recreation Area',description:'Wolf Flats is a dispersed, undeveloped camping area with 25 locations to camp.'}),{siteDetails:{}});
   assert.equal(d.properties.type,'other');assert.equal(d.properties.type_evidence,null);
+  // A ledgered id upgrades on its own name.
+  const g=DQ.normalizeFeature(pt({...ridb,id:'ridb:10007101',facility_id:'10007101',type:'other',name:'Large Vehicle Campground'}),{siteDetails:{}});
+  assert.equal(g.properties.type,'established');assert.equal(g.properties.type_evidence.field,'FacilityName');
 });
 test('borrowed description wording never classifies the retained record',()=>{
   const f=DQ.normalizeFeature(pt({...ridb,type:'other',name:'Potato Hills Central',description:'Potato Hills Central Campground offers campsites.',description_source_record_id:'ridb:2'}),{siteDetails:{}});
@@ -154,7 +160,7 @@ test('BLM camping-layer membership never masquerades as a Recreation.gov mapped 
   }
 });
 test('reviewed publication and evidence survive an updated retrieval without inventing a new own-source finding',()=>{
-  const f=pt({...ridb,id:'ridb:243218',facility_id:'243218',name:'Coleman Lake Recreation Area',source_retrieved_at:'2030-01-10T15:00:00Z',type:'other'});
+  const f=pt({...ridb,id:'ridb:243218',facility_id:'243218',name:'Coleman Lake Recreation Area',source_retrieved_at:'2030-01-10T15:00:00Z',type:'other',description:'<p>There are 39 campsites with water and electrical hookups, bathhouses.</p>'});
   const p=DQ.cleanAndDedupeGeoJSON({features:[f]}).features[0].properties;
   assert.equal(p.camping_classification,'published_pending_review');
   assert.equal(p.type,'established','owner decision 2026-11-01 20:24: accepted from its own description');
@@ -175,27 +181,66 @@ test('owner decision 2026-11-01: a proposed withdrawal stays discoverable with i
   // A record outside the reviewed set gets no hold.
   assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt({...row.properties,id:'ridb:9',facility_id:'9'})]},{siteDetails:{}}).features.length,0);
 });
-test('owner decision 2026-11-01 20:24: deferred labels follow the dated ledger',()=>{
-  const n=(id,name,extra={})=>DQ.cleanAndDedupeGeoJSON({features:[pt({...ridb,id,facility_id:id.slice(5),name,type:'other',description:'Camping is available at campsites.',...extra})]},{siteDetails:{},includeUnverified:true}).features[0].properties;
-  assert.equal(n('ridb:255262','Wolf Flats Recreation Area').type,'dispersed','own dispersed description');
-  assert.equal(n('ridb:249902','Wolf Gap Recreation Area').type_evidence.kind,'held_published_label','decision 4 exception stays held');
-  const enduro=n('ridb:240871','Enduro Camp');assert.equal(enduro.type,'other');assert.equal(enduro.camping_classification,'published_pending_review');
-  assert.equal(n('ridb:262796','Horse Mountain Primitive Camp').type,'other','primitive alone is not Dispersed');
-  assert.equal(n('ridb:257133','Rock Castle Camping Area').type,'established');
-  assert.equal(n('ridb:10134443','Muchwater Dispersed Campground and Recreation Area').type,'dispersed');
+const LEDGER=require('../docs/tourism/decision-ledger-2026-11-01.json');
+const decided=id=>LEDGER.records.find(r=>r.id===id);
+// A row carrying the ledger's own wording in its specified field.
+const own=(id,extra={})=>{const r=decided(id);return pt({...ridb,id,facility_id:id.slice(5),name:r.own_field==='FacilityName'?r.own_quote:r.name,type:'other',description:r.own_field==='FacilityDescription'?'<p>'+r.own_quote+'</p>':'',source_retrieved_at:'2026-10-29T02:57:25Z',...extra});};
+const out=row=>DQ.cleanAndDedupeGeoJSON({features:[row]},{siteDetails:{},includeUnverified:true}).features[0].properties;
+test('owner decisions 2026-11-01: labels follow the dated ledger',()=>{
+  assert.equal(out(own('ridb:255262')).type,'dispersed','own dispersed description');
+  assert.equal(out(own('ridb:249902')).type_evidence.kind,'held_published_label','decision 4 exception stays held');
+  const enduro=out(own('ridb:240871'));assert.equal(enduro.type,'other');assert.equal(enduro.camping_classification,'published_pending_review');
+  assert.equal(out(own('ridb:262796')).type,'other','primitive alone is not Dispersed');
+  for(const id of ['ridb:257133','ridb:248513','ridb:265204'])assert.equal(out(own(id)).type,'established',id);
+  assert.equal(out(own('ridb:10134443')).type,'dispersed');
+});
+test('reviewed labels are bound to their own wording: a new date keeps the label, changed or missing wording returns it to pending',()=>{
+  const later=out(own('ridb:255262',{source_retrieved_at:'2031-05-01T00:00:00Z'}));
+  assert.equal(later.type,'dispersed');assert.equal(later.type_evidence.kind,'owner_reviewed_own_record');assert.equal(later.type_evidence.retrieved_at,'2031-05-01T00:00:00Z');
+  const changed=out(own('ridb:255262',{description:'<p>Wolf Flats is a developed campground with 25 paved sites.</p>'}));
+  assert.equal(changed.type,'other');assert.equal(changed.camping_classification,'published_pending_review');
+  assert.equal(changed.camping_evidence,'owner_review_evidence_changed');assert.equal(changed.type_evidence.reviewed_label,'dispersed');
+  // Missing wording, on a listing whose admission stands on its reviewed own record (Coleman Lake).
+  const missing=out(own('ridb:243218',{description:'',source_retrieved_at:'2026-10-29T02:45:26Z'}));
+  assert.equal(missing.camping_classification,'published_pending_review');
+  assert.equal(missing.type,'other');assert.equal(missing.type_evidence.kind,'owner_review_evidence_changed');
+  // Wording copied from another record is not the facility's own wording.
+  assert.equal(out(own('ridb:243218',{description_source_record_id:'ridb:2',source_retrieved_at:'2026-10-29T02:45:26Z'})).type_evidence.kind,'owner_review_evidence_changed');
+  // A name-bound label: a renamed facility goes back to pending.
+  assert.equal(out(own('ridb:10007101',{name:'Large Vehicle Campground Loop B'})).type_evidence.kind,'owner_review_evidence_changed');
+  assert.equal(out(own('ridb:10007101')).type,'established');
+  // Re-normalization (browser state merge) reaches the same outcome.
+  assert.equal(DQ.normalizeFeature({type:'Feature',geometry:{type:'Point',coordinates:[-110,40]},properties:later}).properties.type,'dispersed');
 });
 test('the dated decision ledger matches the classifier for every decided listing',()=>{
-  const ledger=require('../docs/tourism/decision-ledger-2026-11-01.json');
-  assert.equal(ledger.records.length,62);
+  assert.equal(LEDGER.records.length,62);
   const src=fs.readFileSync(path.join(__dirname,'../data-quality.js'),'utf8');
-  const map=name=>new Map([...src.slice(src.indexOf('const '+name)).split(']);')[0].matchAll(/\['(ridb:\d+)', '(\w+)'\]/g)].map(m=>[m[1],m[2]]));
-  const reviewed=map('OWNER_REVIEWED_LABELS'),held=map('HELD_PUBLISHED_LABELS');
-  for(const r of ledger.records){
-    if(['upgrade_reviewed_individually','keep_current_label','relabel_dispersed'].includes(r.decision))assert.equal(reviewed.get(r.id),r.label,r.id);
+  const block=name=>src.slice(src.indexOf('const '+name)).split(']);')[0];
+  const reviewed=new Map([...block('OWNER_REVIEWED_LABELS').matchAll(/\["(ridb:\d+)", \{label:"(\w+)", field:"(\w+)", quote:("(?:[^"\\]|\\.)*")\}\]/g)].map(m=>[m[1],{label:m[2],field:m[3],quote:JSON.parse(m[4])}]));
+  const held=new Map([...block('HELD_PUBLISHED_LABELS').matchAll(/\['(ridb:\d+)', '(\w+)'\]/g)].map(m=>[m[1],m[2]]));
+  const accepted=['upgrade_named_campground','upgrade_named_dispersed_campground','upgrade_reviewed_individually','keep_current_label','relabel_dispersed'];
+  for(const r of LEDGER.records){
+    if(accepted.includes(r.decision))assert.deepEqual(reviewed.get(r.id),{label:r.label,field:r.own_field,quote:r.own_quote},r.id);
     else assert.ok(!reviewed.has(r.id),r.id);
     assert.equal(held.has(r.id),['keep_discoverable_pending_withdrawal_review','exception_held_pending'].includes(r.decision),r.id);
   }
-  assert.equal(reviewed.size,29);assert.equal(held.size,11);
+  assert.equal(reviewed.size,44);assert.equal(held.size,11);
+  for(const id of ['ridb:248513','ridb:265204'])assert.equal(decided(id).confirmed,'2026-11-01T21:33:00-04:00',id);
+});
+test('one coordinate policy: the index build and the browser choose the same point',()=>{
+  const {buildSearchIndex}=require('../scripts/build-search-index.js');
+  const previous={sites:[{id:'ridb:7',legacy_ids:[],lat:40,lng:-110},{id:'ridb:251354',legacy_ids:[],lat:45.240556,lng:-111.871389}]};
+  const rows=[pt({...ridb,id:'ridb:7',facility_id:'7',name:'Ordinary Campground'},[-110.01,40.01]),
+    pt({...ridb,id:'ridb:251354',facility_id:'251354',name:'Axolotl Cabin'},[-111.8713889,45.2405556])];
+  const details={'7':{t:3},'251354':{t:1}};
+  const index=buildSearchIndex([{state:'MT',geojson:{type:'FeatureCollection',features:rows}}],DQ,details,[],new Set(previous.sites.map(s=>s.id)),new Map());
+  const at=id=>{const s=index.sites.find(x=>x.id===id);return [s.lng,s.lat];};
+  const browser=DQ.cleanAndDedupeGeoJSON({features:rows.map(r=>DQ.normalizeFeature(r,{siteDetails:details}))},{siteDetails:details,previousHosts:new Map(),ownerOnly:true});
+  const bat=id=>browser.features.find(f=>f.properties.id===id).geometry.coordinates;
+  assert.deepEqual(at('ridb:7'),[-110.01,40.01],'index takes the new source point');
+  assert.deepEqual(bat('ridb:7'),[-110.01,40.01],'browser takes the same point');
+  assert.deepEqual(at('ridb:251354'),[-111.871389,45.240556],'pinned in the index');
+  assert.deepEqual(bat('ridb:251354'),[-111.871389,45.240556],'pinned in the browser');
 });
 test('lodging: the reviewed own-record closure notice is kept, and the multi-cabin record is distinguished',()=>{
   const shaw=pt({...ridb,id:'ridb:233178',facility_id:'233178',name:'SHAW HOUSE',source_retrieved_at:'2026-10-29T02:47:24Z',description:'<p><em>Shaw House is temporarily closed. In April of 2026 ...</em> (09/10/2026)</p>'});

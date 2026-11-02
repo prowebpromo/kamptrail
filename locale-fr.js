@@ -162,6 +162,7 @@
   "Overnight parking": "Stationnement de nuit",
   "Other / unspecified": "Autre / non précisé",
   "This previously listed location is under review. Its record does not establish the camping type at this point.": "Ce lieu déjà répertorié est en cours d’examen. Sa fiche ne confirme pas le type de camping à cet endroit.",
+  "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La fiche propre de ce lieu a changé après l’examen de son type. Il apparaît comme Autre jusqu’à un nouvel examen.",
   "Camping and this camping type are described in this facility’s own Recreation.gov record.": "Le camping et ce type de camping figurent dans la propre fiche Recreation.gov de l’installation.",
   " Notice dated {0}.": " Avis daté du {0}.",
   "This one listing covers {0} cabins in the facility’s Recreation.gov record. The map point does not locate a particular cabin.": "Cette fiche unique couvre {0} cabanes de l’enregistrement Recreation.gov de l’installation. Le point sur la carte ne situe pas une cabane précise.",

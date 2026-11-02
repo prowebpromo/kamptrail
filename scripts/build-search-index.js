@@ -32,7 +32,7 @@ function listingRow(feature, quality = DataQuality, states = []) {
   return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states,lat,lng,m};
 }
 
-function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null, amenitySidecars = {}, publishedPoints = null) {
+function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null, amenitySidecars = {}) {
   // Amenity evidence is attached exactly as the map attaches it, so search and route filters match the popup.
   const attachAmenities = feature => {
     if (amenitySidecars.ridb) quality.attachRIDBAmenities(feature, amenitySidecars.ridb);
@@ -62,7 +62,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
 
   // Members of unclassified hosts stay withheld across state files.
   const withheldMembers = quality.withheldMembers ? new Set(collections.flatMap(({state, geojson}) => [...quality.withheldMembers(geojson.features, {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})})])) : null;
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {}), ...(withheldMembers ? {withheldMembers} : {}), ...(publishedPoints ? {publishedPoints} : {})});
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {}), ...(withheldMembers ? {withheldMembers} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);
@@ -113,14 +113,6 @@ function publishedIds(directory) {
   return Array.isArray(sites) ? new Set(sites.map(site => site.id)) : null;
 }
 
-// Published point per canonical ID in the committed index, so a reconciliation never moves a listing.
-function publishedPointMap(directory) {
-  const file = path.join(directory, 'search-index.json');
-  if (!fs.existsSync(file)) return null;
-  const sites = JSON.parse(fs.readFileSync(file, 'utf8')).sites;
-  return Array.isArray(sites) ? new Map(sites.map(site => [site.id, [site.lng, site.lat]])) : null;
-}
-
 // Alias to canonical ID in the committed index, so an alias stays with its listing across rebuilds.
 function publishedHosts(directory) {
   const file = path.join(directory, 'search-index.json');
@@ -149,7 +141,7 @@ function buildFromDirectory(directory) {
       if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
     }
     return {state, geojson};
-  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory),amenitySidecars,publishedPointMap(directory));
+  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory),amenitySidecars);
 }
 
 if (require.main === module) {

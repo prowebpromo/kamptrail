@@ -37,7 +37,6 @@ function catalogue(DQ,I,{browser=false,statesOrder=I.collections}={}){
     for(const id of row.legacy_ids)previousHosts.set(id,row.id);
   }
   const options={preferredIds,previousHosts,withheldMembers,siteDetails:I.details,amenityDetails:I.ridb};
-  if(!browser)options.publishedPoints=new Map(I.idx.map(s=>[s.id,[s.lng,s.lat]]));
   const features=DQ.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},options).features;
   features.forEach(attach);
   return {features,stateById};

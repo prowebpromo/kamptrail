@@ -45,7 +45,7 @@ for(const [group,ids] of Object.entries(request.groups))for(const id of ids){
     const own=ownRows.get(id);if(d.own_quote&&!(own&&(own.name===d.own_quote||own.description.includes(d.own_quote))))problems.push({id,problem:'own-record quote not found',quote:d.own_quote});
     const kind=n?.properties.type_evidence?.kind;
     if(['keep_discoverable_pending_withdrawal_review','exception_held_pending'].includes(d.decision)&&kind!=='held_published_label')problems.push({id,problem:'held label not recorded'});
-    if(['upgrade_reviewed_individually','keep_current_label','relabel_dispersed'].includes(d.decision)&&kind!=='owner_reviewed_own_record')problems.push({id,problem:'owner-reviewed label not recorded'});
+    if(['upgrade_named_campground','upgrade_named_dispersed_campground','upgrade_reviewed_individually','keep_current_label','relabel_dispersed'].includes(d.decision)&&kind!=='owner_reviewed_own_record')problems.push({id,problem:'owner-reviewed label not recorded'});
     if(d.decision==='relabel_other_pending'&&n?.properties.camping_classification!=='published_pending_review')problems.push({id,problem:'Other not pending'});}
   else if(group==='lodging_10'){const r=independent[id]?.evidence_result||'';
     if(r.startsWith('lodging_supported')&&cabins&&observed.campsites_overnight>0){decision='approved_lodging';action=`${LABEL[current]} → Lodging`;expect='lodging';}

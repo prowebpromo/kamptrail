@@ -66,37 +66,54 @@
     ['ridb:248261', 'established'],
     ['ridb:249902', 'established']
   ]);
-  // Labels the owner accepted from the facility's own Recreation.gov record (name or description, quoted in the ledger).
+  // Labels the owner accepted from the facility's own Recreation.gov record. Each is bound to the quoted wording in
+  // the named field. Changed or missing wording returns the listing to pending review (see normalizeFeature).
+  // These are the only facilities whose name or description sets a type. An unseen facility keeps its prior label.
   const OWNER_REVIEWED_LABELS = new Map([
-    ['ridb:10068183', 'other'],
-    ['ridb:10068990', 'established'],
-    ['ridb:237148', 'established'],
-    ['ridb:237191', 'established'],
-    ['ridb:243218', 'established'],
-    ['ridb:243219', 'established'],
-    ['ridb:245164', 'established'],
-    ['ridb:245165', 'established'],
-    ['ridb:247937', 'other'],
-    ['ridb:248513', 'established'],
-    ['ridb:249627', 'dispersed'],
-    ['ridb:249642', 'dispersed'],
-    ['ridb:249674', 'dispersed'],
-    ['ridb:249741', 'dispersed'],
-    ['ridb:249752', 'dispersed'],
-    ['ridb:255188', 'established'],
-    ['ridb:255232', 'established'],
-    ['ridb:255239', 'established'],
-    ['ridb:255262', 'dispersed'],
-    ['ridb:256895', 'other'],
-    ['ridb:257133', 'established'],
-    ['ridb:260547', 'established'],
-    ['ridb:261695', 'established'],
-    ['ridb:262649', 'other'],
-    ['ridb:262654', 'other'],
-    ['ridb:262772', 'other'],
-    ['ridb:262796', 'other'],
-    ['ridb:265204', 'established'],
-    ['ridb:273835', 'other']
+    ["ridb:10007101", {label:"established", field:"FacilityName", quote:"Large Vehicle Campground"}],
+    ["ridb:10048852", {label:"established", field:"FacilityName", quote:"Miller Flat Reservoir Campground"}],
+    ["ridb:10060062", {label:"established", field:"FacilityName", quote:"Campo Alto Group Campground"}],
+    ["ridb:10068183", {label:"other", field:"FacilityDescription", quote:"This campsite is located approximately 50 yards from Lake Superior and Trout Bay Beach."}],
+    ["ridb:10068990", {label:"established", field:"FacilityDescription", quote:"Campground amenities include picnic tables, fire rings, a restroom"}],
+    ["ridb:10070265", {label:"established", field:"FacilityName", quote:"Wildcat Creek Campground #2 Upper"}],
+    ["ridb:10072074", {label:"established", field:"FacilityName", quote:"Home Gulch Campground"}],
+    ["ridb:10072265", {label:"established", field:"FacilityName", quote:"Smith Lake Campground"}],
+    ["ridb:10078445", {label:"established", field:"FacilityName", quote:"Fulford Cave Campground"}],
+    ["ridb:10078676", {label:"established", field:"FacilityName", quote:"Godman Campground/Trailhead"}],
+    ["ridb:10078697", {label:"established", field:"FacilityName", quote:"Conrad Crossing Campground"}],
+    ["ridb:10134443", {label:"dispersed", field:"FacilityName", quote:"Muchwater Dispersed Campground and Recreation Area"}],
+    ["ridb:10134448", {label:"established", field:"FacilityName", quote:"Deer Creek Campground"}],
+    ["ridb:10134449", {label:"dispersed", field:"FacilityName", quote:"Peninsula Dispersed Campground and Recreation Area"}],
+    ["ridb:10278932", {label:"established", field:"FacilityName", quote:"Muleshoe Campground"}],
+    ["ridb:237148", {label:"established", field:"FacilityDescription", quote:"The campground has 5 sites with tables and fire rings."}],
+    ["ridb:237191", {label:"established", field:"FacilityDescription", quote:"The Camp 32 campground is located 15 miles southwest of Eureka"}],
+    ["ridb:240676", {label:"established", field:"FacilityName", quote:"Table Meadows Campground"}],
+    ["ridb:243218", {label:"established", field:"FacilityDescription", quote:"There are 39 campsites with water and electrical hookups"}],
+    ["ridb:243219", {label:"established", field:"FacilityDescription", quote:"Pine Glen Recreation Area offers camping sites for 21 campsites, cooking grills, sanitary facilities"}],
+    ["ridb:245164", {label:"established", field:"FacilityDescription", quote:"the campground offers 3 single camping units, and 1 multi-family unit"}],
+    ["ridb:245165", {label:"established", field:"FacilityDescription", quote:"The transfer camp offers 6 campsites with picnic tables and fire rings"}],
+    ["ridb:247937", {label:"other", field:"FacilityDescription", quote:"This recreation area is part of Dworshak Reservoir"}],
+    ["ridb:248513", {label:"established", field:"FacilityName", quote:"Granite Lake Rv Park"}],
+    ["ridb:249627", {label:"dispersed", field:"FacilityDescription", quote:"These two remote yellow post sites are located near the end of Forest Road 1N34"}],
+    ["ridb:249642", {label:"dispersed", field:"FacilityDescription", quote:"These 19 yellow post sites are individual camping sites."}],
+    ["ridb:249674", {label:"dispersed", field:"FacilityDescription", quote:"these sites do NOT contain the amenities found at developed campgrounds"}],
+    ["ridb:249741", {label:"dispersed", field:"FacilityDescription", quote:"these sites do NOT contain the amenities found at developed campgrounds"}],
+    ["ridb:249752", {label:"dispersed", field:"FacilityDescription", quote:"this site does NOT contain the amenities found at developed campgrounds"}],
+    ["ridb:255188", {label:"established", field:"FacilityDescription", quote:"The RV and tent camping sites, boat launch, boarding dock, and fish cleaning station"}],
+    ["ridb:255232", {label:"established", field:"FacilityDescription", quote:"This unique boat-in campground offers 16 tent camping units"}],
+    ["ridb:255239", {label:"established", field:"FacilityDescription", quote:"This recreation site offers developed camping for RVs and tents"}],
+    ["ridb:255262", {label:"dispersed", field:"FacilityDescription", quote:"Wolf Flats is a dispersed, undeveloped camping area with 25 locations to camp."}],
+    ["ridb:256895", {label:"other", field:"FacilityDescription", quote:"Campsite along Kokopelli Trail."}],
+    ["ridb:257133", {label:"established", field:"FacilityDescription", quote:"Small campground along the Castle Valley Road"}],
+    ["ridb:260547", {label:"established", field:"FacilityDescription", quote:"Priest Hole contains 14 drive-in campsites with fire rings and picnic tables"}],
+    ["ridb:261695", {label:"established", field:"FacilityDescription", quote:"27 campsites with picnic tables and fire rings"}],
+    ["ridb:262649", {label:"other", field:"FacilityDescription", quote:"no facilities are offered at this location"}],
+    ["ridb:262654", {label:"other", field:"FacilityDescription", quote:"This is a small primitive camping area within the Pine Creek Exclosure."}],
+    ["ridb:262772", {label:"other", field:"FacilityDescription", quote:"Alkali Creek Horsecamp (11 acres) contains six fee camping units"}],
+    ["ridb:262796", {label:"other", field:"FacilityDescription", quote:"Primitive camping area. No toilets, water, and hookups."}],
+    ["ridb:265204", {label:"established", field:"FacilityDescription", quote:"this 13-site camp provides access to many miles of equestrian trails"}],
+    ["ridb:272101", {label:"established", field:"FacilityName", quote:"Jericho Campground and Picnic Area"}],
+    ["ridb:273835", {label:"other", field:"FacilityDescription", quote:"it makes a great short or introductory backpacking adventure"}]
   ]);
   // A closure notice in the facility's own record, pinned to its reviewed retrieval and exact wording.
   const REVIEWED_CLOSURES = new Map([
@@ -357,15 +374,10 @@
     // Reservable accommodation keeps its own kind. A fire lookout or cabin is never shown as a campground.
     if (classification.kt_accommodation) p.type = 'lodging';
     else delete p.kt_accommodation;
-    // A Recreation.gov record whose own facility type names no camping kind is classified from its own
-    // facility name. A description can support existing admission, but never upgrades the type.
+    // Names and descriptions set a type only through the owner-reviewed, evidence-bound labels below. A description
+    // or name can support existing admission, but never upgrades the type of an unreviewed facility.
     p.type_evidence = null;
-    const wording = classification.camping_name_text;
-    if (raw.source === 'recreation.gov' && !osm && (p.ridb_facility_type == null || p.ridb_facility_type === 'other') && wording && p.camping_classification === 'campsite') {
-      const kind = /\b(?:dispersed|primitive|yellow\s+post)\b/i.test(wording) ? 'dispersed' : /\bbackcountry\b/i.test(wording) ? 'backcountry' : 'established';
-      p.type = kind;
-      p.type_evidence = {kind:'descriptive_wording', source:'Recreation.gov', source_record_id:p.id, field:'FacilityName', value:wording, retrieved_at:evidenceDate(raw.source_retrieved_at)};
-    } else if (ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(p.ridb_facility_type)) {
+    if (ridb && raw.facility_id != null && ['established', 'dispersed', 'backcountry'].includes(p.ridb_facility_type)) {
       p.type_evidence = {kind:'structured_classification', source:'Recreation.gov', source_record_id:p.id, field:'FacilityTypeDescription (mapped at import)', value:p.ridb_facility_type, retrieved_at:evidenceDate(raw.source_retrieved_at)};
     }
     if (classification.kt_accommodation) {
@@ -378,10 +390,21 @@
         field:'BLM layer 8 camping_activity',value:raw.camping_activity,retrieved_at:null};
     }
     // Existing admission and own confirmed overnight camping do not determine the campsite type.
-    const held = HELD_PUBLISHED_LABELS.get(p.id), reviewed = OWNER_REVIEWED_LABELS.get(p.id);
+    const held = HELD_PUBLISHED_LABELS.get(p.id), reviewed = raw.source === 'recreation.gov' && raw.id === p.id ? OWNER_REVIEWED_LABELS.get(p.id) : null;
     if (reviewed && !classification.kt_accommodation && discoverable(p)) {
-      p.type = reviewed;
-      p.type_evidence = {kind:'owner_reviewed_own_record', value:reviewed, source:'Recreation.gov', source_record_id:p.id, decision:'owner 2026-11-01 20:24 ET', ledger:'docs/tourism/decision-ledger-2026-11-01.json'};
+      const ownText = reviewed.field === 'FacilityName' ? name : (borrowedWording ? '' : String(raw.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' '));
+      const supported = reviewed.field === 'FacilityName' ? ownText === reviewed.quote : ownText.includes(reviewed.quote);
+      const binding = {source:'Recreation.gov', source_record_id:p.id, field:reviewed.field, quote:reviewed.quote, retrieved_at:evidenceDate(raw.source_retrieved_at), ledger:'docs/tourism/decision-ledger-2026-11-01.json'};
+      if (supported) {
+        p.type = reviewed.label;
+        p.type_evidence = {kind:'owner_reviewed_own_record', value:reviewed.label, decision:'owner 2026-11-01', ...binding};
+      } else {
+        // The reviewed wording changed or is gone: the listing returns to pending review, shown as Other.
+        p.type = 'other';
+        p.camping_classification = 'published_pending_review';
+        p.camping_evidence = 'owner_review_evidence_changed';
+        p.type_evidence = {kind:'owner_review_evidence_changed', reviewed_label:reviewed.label, review:'pending', ...binding};
+      }
     } else if (held && !classification.kt_accommodation) {
       p.type = held;
       p.type_evidence = {kind:'held_published_label', value:held, published_on:'f84a5b4b', decision:'owner 2026-11-01: keep the current label while the fresh record is reviewed', review:'pending'};
@@ -616,9 +639,9 @@
     }
     // The public MVP lists evidence-supported camping locations only. Retain
     // unverified source records solely when an explicit diagnostic caller asks.
-    // A published listing keeps its published point when its own record now qualifies where another copy
-    // supplied the point before (tourism-type-admission candidate). Coordinates change only by review.
-    for (const f of features) {const pt=options.publishedPoints?.get(f.properties.id) || PUBLISHED_HOST_POINTS.get(f.properties.id);if(pt&&(pt[0]!==f.geometry.coordinates[0]||pt[1]!==f.geometry.coordinates[1]))f.geometry={type:'Point',coordinates:[pt[0],pt[1]]};}
+    // One coordinate policy for the index build and the browser: only the individually reviewed listings in
+    // PUBLISHED_HOST_POINTS keep a pinned point. Every other listing takes its source point in both paths.
+    for (const f of features) {const pt=PUBLISHED_HOST_POINTS.get(f.properties.id);if(pt&&(pt[0]!==f.geometry.coordinates[0]||pt[1]!==f.geometry.coordinates[1]))f.geometry={type:'Point',coordinates:[pt[0],pt[1]]};}
     if (options.includeUnverified) return {type:'FeatureCollection',features};
     // An element absorbed into an unclassified host stays withheld with that host (tourism-type-admission
     // candidate). It never publishes on its own because its host lost a borrowed classification. It needs its
