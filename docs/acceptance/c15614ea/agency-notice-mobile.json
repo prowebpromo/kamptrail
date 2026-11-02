@@ -1,0 +1,43 @@
+{
+ "start": "2026-11-02T16:25:57.752Z",
+ "base": "https://kamptrail.com",
+ "expected_sha": "c15614eabb37ff58863081970ce340c7705b659d",
+ "browser": {
+  "executable": "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome",
+  "version": "153.0.8010.12"
+ },
+ "mobile_emulation": true,
+ "viewport_runtime": {
+  "width": 390,
+  "height": 844
+ },
+ "release": {
+  "source_commit": "c15614eabb37ff58863081970ce340c7705b659d"
+ },
+ "version": "2.38.0",
+ "overview": {
+  "notice": "Forest Service and BLM listings could not load. Other listings are shown. Retry",
+  "summary": "Zoomed out · about 64,162 source listings nationwide",
+  "after_retry": "ok"
+ },
+ "colorado": {
+  "notice": "Forest Service and BLM listings could not load for Colorado. Other listings are shown. Retry",
+  "agency_failed": [
+   {
+    "state": "CO",
+    "error": "HTTP 500"
+   }
+  ],
+  "failed_states": [],
+  "co_listings": 1203,
+  "agency_listings_before": 0,
+  "overview_notice": "Forest Service and BLM listings could not load for Colorado. Other listings are shown. Retry",
+  "agency_listings_after": 442,
+  "after_retry": []
+ },
+ "release_end": {
+  "source_commit": "c15614eabb37ff58863081970ce340c7705b659d"
+ },
+ "result": "PASS",
+ "end": "2026-11-02T16:26:02.877Z"
+}
