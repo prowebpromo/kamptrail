@@ -4,6 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
 require __DIR__ . '/_lib/community-admin.php';
 require __DIR__ . '/_lib/permissions-admin.php';
+require __DIR__ . '/_lib/clearance-reports.php';
 
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
@@ -116,12 +117,14 @@ foreach ($list as $r) {
     $body .= '<div class="card"><div class="meta">#' . h($r['id']) . ' · ' . h($r['kind']) . ' · received ' . h($r['created_at']) . ' UTC · ' . $where . '</div>'
         . '<h2 style="font-size:17px;margin:6px 0">' . h($r['campsite_name'] ?: '(no name)') . ($r['campsite_id'] ? ' <span class="meta">' . h($r['campsite_id']) . '</span>' : '') . '</h2>'
         . ($r['problems'] ? '<p><strong>Problems:</strong> ' . h(str_replace(',', ', ', $r['problems'])) . '</p>' : '')
+        . (($c = $r['kind'] === 'clearance' ? kcr_read($pdo, (int)$r['id']) : null) ? '<p><strong>Posted clearance:</strong> ' . h($c['posted']) . ' · seen ' . h($c['observed_on']) . ' · direction ' . h($c['direction']) . ($c['osm_ref'] ? ' · ' . h($c['osm_ref']) : '') . '</p><p class="meta">Choose <strong>Apply and publish on map</strong> only after checking the sign evidence. Applied clearance reports are published on the map as visitor reports, never compared with a rig height. Any other status removes them from the map.</p>' : '')
         . '<p style="white-space:pre-wrap">' . h($r['details']) . '</p>'
         . ($r['source_note'] ? '<p><strong>Source:</strong> ' . h($r['source_note']) . '</p>' : '')
         . ($r['contact_email'] ? '<p class="meta">Contact: ' . h($r['contact_email']) . '</p>' : '')
         . ($r['public_note'] ? '<p class="meta">Public note: ' . h($r['public_note']) . '</p>' : '')
         . '<form method="post" action="' . $self . '?status=' . h($filter) . '" class="row"><input type="hidden" name="do" value="set"><input type="hidden" name="csrf" value="' . h($csrf) . '"><input type="hidden" name="id" value="' . h($r['id']) . '">'
-        . '<select name="status">' . implode('', array_map(fn($s) => '<option value="' . h($s) . '"' . ($s === $r['status'] ? ' selected' : '') . '>' . h($s) . '</option>', KT_STATUSES)) . '</select>'
+        // For a clearance report, applied publishes it on the map (api/clearance-reports.php), so the action says so.
+        . '<select name="status">' . implode('', array_map(fn($s) => '<option value="' . h($s) . '"' . ($s === $r['status'] ? ' selected' : '') . '>' . h($r['kind'] === 'clearance' && $s === 'applied' ? 'Apply and publish on map' : $s) . '</option>', KT_STATUSES)) . '</select>'
         . '<input name="public_note" maxlength="1000" placeholder="Public note shown to the submitter" style="flex:1;min-width:240px" value="' . h($r['public_note'] ?? '') . '"><button>Save</button></form>';
     if ($logRows) {
         $body .= '<table><tr><th>When (UTC)</th><th>By</th><th>Change</th><th>Note</th></tr>';

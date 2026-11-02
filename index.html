@@ -11,8 +11,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.35.0">
-  <link rel="manifest" href="manifest.json?v=2.35.0">
+  <meta name="kamptrail-version" content="2.36.0">
+  <link rel="manifest" href="manifest.json?v=2.36.0">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
   <link rel="canonical" href="https://prowebpromo.github.io/kamptrail/">
@@ -26,8 +26,8 @@
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.Default.css">
-  <link rel="stylesheet" href="app.css?v=2.35.0">
-  <script src="locale.js?v=2.35.0"></script>
+  <link rel="stylesheet" href="app.css?v=2.36.0">
+  <script src="locale.js?v=2.36.0"></script>
   <script src="vendor/leaflet/leaflet.js"></script>
   <script src="vendor/markercluster/leaflet.markercluster.js"></script>
 </head>
@@ -66,7 +66,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.35.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.36.0</a></span>
     </footer>
   </div>
   <dialog id="data-dialog" aria-labelledby="data-title">
@@ -101,7 +101,7 @@
     <p data-i18n="On-demand forecasts and the separate forecast-grid elevation display come from the National Weather Service and cover US locations only. These are separate from the campsite terrain samples. Topo and satellite basemaps come from the USGS National Map.">On-demand forecasts and the separate forecast-grid elevation display come from the National Weather Service and cover US locations only. These are separate from the campsite terrain samples. Topo and satellite basemaps come from the USGS National Map.</p>
     <p data-i18n="Service discovery uses OpenStreetMap tags for dump stations, water fill points, LPG, showers, laundry, groceries and fuel. Expanded coverage and source extract dates appear in Sources and dates above; an incomplete refresh keeps the previous saved coverage. Areas without an expanded extract retain older dump, water and LPG records. Each point shows source dates and access evidence. Opening, RV access, cylinder refills and overnight permission are unverified. No loaded matches may reflect incomplete coverage. Visited, validated service areas can be read offline with source dates; uncached areas stay unknown.">Service discovery uses OpenStreetMap tags for dump stations, water fill points, LPG, showers, laundry, groceries and fuel. Expanded coverage and source extract dates appear in Sources and dates above; an incomplete refresh keeps the previous saved coverage. Areas without an expanded extract retain older dump, water and LPG records. Each point shows source dates and access evidence. Opening, RV access, cylinder refills and overnight permission are unverified. No loaded matches may reflect incomplete coverage. Visited, validated service areas can be read offline with source dates; uncached areas stay unknown.</p>
     <p data-i18n="The optional official rest-area layer begins with TxDOT&#x27;s Texas location list. Travel information centers are excluded from this pilot. Each point links to its source and download date. The separately sourced 24-hour visitor stay limit is duration context, not permission to sleep overnight. Current opening, available spaces and overnight permission remain unknown. Other states have no coverage in this layer yet. Saved rest-area stops retain dated source context; reconnect to check current permission.">The optional official rest-area layer begins with TxDOT's Texas location list. Travel information centers are excluded from this pilot. Each point links to its source and download date. The separately sourced 24-hour visitor stay limit is duration context, not permission to sleep overnight. Current opening, available spaces and overnight permission remain unknown. Other states have no coverage in this layer yet. Saved rest-area stops retain dated source context; reconnect to check current permission.</p>
-    <p data-i18n="The optional Rhode Island height-tag pilot shows dated OpenStreetMap highway geometry and original height tags. General/legal and physical values stay separate; missing, nonnumeric, conditional, direction-specific and lane-specific limits remain unknown or uninterpreted. These are incomplete, uninspected source statements. This layer does not match hazards to your route, compare your rig or enforce avoidance. Check current signs and operators. A validated saved snapshot can remain available with its original dates.">The optional Rhode Island height-tag pilot shows dated OpenStreetMap highway geometry and original height tags. General/legal and physical values stay separate; missing, nonnumeric, conditional, direction-specific and lane-specific limits remain unknown or uninterpreted. These are incomplete, uninspected source statements. This layer does not match hazards to your route, compare your rig or enforce avoidance. Check current signs and operators. A validated saved snapshot can remain available with its original dates.</p>
+    <p data-i18n="The optional clearance-candidate layer shows OpenStreetMap objects that carry a height tag, nationwide, from zoom 10. Only plain numeric tags are compared with the travel height in your rig profile; a clearance equal to your rig height is a conflict, never clear. Suspect, conditional, direction-specific, mixed and unknown values stay visible as needing checking. Along a calculated route a candidate counts as on the driven road only with an exact OSM identity match; nearby candidates stay unresolved, and segments without data are listed. Rhode Island uses its dated pilot file, shown as raw tags and never compared, until it joins the national set. Moderated visitor reports of posted clearances appear separately. Nothing here establishes passage, legal access or that unmapped hazards are absent. OpenStreetMap data: ODbL 1.0.">The optional clearance-candidate layer shows OpenStreetMap objects that carry a height tag, nationwide, from zoom 10. Only plain numeric tags are compared with the travel height in your rig profile; a clearance equal to your rig height is a conflict, never clear. Suspect, conditional, direction-specific, mixed and unknown values stay visible as needing checking. Along a calculated route a candidate counts as on the driven road only with an exact OSM identity match; nearby candidates stay unresolved, and segments without data are listed. Rhode Island uses its dated pilot file, shown as raw tags and never compared, until it joins the national set. Moderated visitor reports of posted clearances appear separately. Nothing here establishes passage, legal access or that unmapped hazards are absent. OpenStreetMap data: ODbL 1.0.</p>
     <p data-i18n="RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means one campsite reports your length and every hookup you chose. Different sites in the same campground are never combined. Road routes, drive times and requested detour estimates use the FOSSGIS OSRM car router. They are not checked for RV height, weight, length or current road conditions. Along-route discovery searches near the road geometry and applies the same reported-data filters as the map. Approximate distance from the line is separate from a driving detour.">RV site lengths, hookups, stay limits, and some fees come from Recreation.gov campsite records. A match means one campsite reports your length and every hookup you chose. Different sites in the same campground are never combined. Road routes, drive times and requested detour estimates use the FOSSGIS OSRM car router. They are not checked for RV height, weight, length or current road conditions. Along-route discovery searches near the road geometry and applies the same reported-data filters as the map. Approximate distance from the line is separate from a driving detour.</p>
     <p data-i18n="Offline maps save USGS Topo tiles for an area you choose. The standard map is not saved, because OpenStreetMap&#x27;s tile policy does not allow bulk downloads.">Offline maps save USGS Topo tiles for an area you choose. The standard map is not saved, because OpenStreetMap's tile policy does not allow bulk downloads.</p>
     <h3 data-i18n="Corrections">Corrections</h3>
@@ -133,28 +133,28 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden data-i18n="Loading…">Loading…</div>
   <noscript data-i18n="KampTrail needs JavaScript to display its interactive map.">KampTrail needs JavaScript to display its interactive map.</noscript>
-  <script src="share.js?v=2.35.0"></script>
-  <script src="spot-info.js?v=2.35.0"></script>
-  <script src="community-discovery.js?v=2.35.0"></script>
-  <script src="data-quality.js?v=2.35.0"></script>
-  <script src="forecast.js?v=2.35.0"></script>
-  <script src="services.js?v=2.35.0"></script>
-  <script src="data-loader.js?v=2.35.0"></script>
-  <script src="filters.js?v=2.35.0"></script>
-  <script src="rig-profile.js?v=2.35.0"></script>
-  <script src="routes.js?v=2.35.0"></script>
-  <script src="route-elevation.js?v=2.35.0"></script>
-  <script src="route-clearance.js?v=2.35.0"></script>
-  <script src="trip-planner.js?v=2.35.0"></script>
-  <script src="mvum.js?v=2.35.0"></script>
-  <script src="environment.js?v=2.35.0"></script>
-  <script src="layers.js?v=2.35.0"></script>
-  <script src="offline-maps.js?v=2.35.0"></script>
-  <script src="contributions.js?v=2.35.0"></script>
-  <script src="community.js?v=2.35.0"></script>
-  <script src="permissions.js?v=2.35.0"></script>
-  <script src="rest-areas.js?v=2.35.0"></script>
-  <script src="clearances.js?v=2.35.0"></script>
-  <script src="app.js?v=2.35.0"></script>
+  <script src="share.js?v=2.36.0"></script>
+  <script src="spot-info.js?v=2.36.0"></script>
+  <script src="community-discovery.js?v=2.36.0"></script>
+  <script src="data-quality.js?v=2.36.0"></script>
+  <script src="forecast.js?v=2.36.0"></script>
+  <script src="services.js?v=2.36.0"></script>
+  <script src="data-loader.js?v=2.36.0"></script>
+  <script src="filters.js?v=2.36.0"></script>
+  <script src="rig-profile.js?v=2.36.0"></script>
+  <script src="routes.js?v=2.36.0"></script>
+  <script src="route-elevation.js?v=2.36.0"></script>
+  <script src="route-clearance.js?v=2.36.0"></script>
+  <script src="trip-planner.js?v=2.36.0"></script>
+  <script src="mvum.js?v=2.36.0"></script>
+  <script src="environment.js?v=2.36.0"></script>
+  <script src="layers.js?v=2.36.0"></script>
+  <script src="offline-maps.js?v=2.36.0"></script>
+  <script src="contributions.js?v=2.36.0"></script>
+  <script src="community.js?v=2.36.0"></script>
+  <script src="permissions.js?v=2.36.0"></script>
+  <script src="rest-areas.js?v=2.36.0"></script>
+  <script src="clearances.js?v=2.36.0"></script>
+  <script src="app.js?v=2.36.0"></script>
 </body>
 </html>

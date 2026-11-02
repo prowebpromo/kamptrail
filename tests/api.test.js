@@ -159,3 +159,76 @@ test('a pending additive community migration does not interrupt existing campsit
     assert.equal((await fetch(base+'/api/community.php?site=usfs:77')).status,503);
   }finally{proc.kill();}
 });
+
+test('visitor clearance reports: moderated submission, applied-only publication and bounded public reads', {skip: !hasPhp}, async () => {
+  const cfg = tmpConfig();
+  const port = 18931, base = `http://127.0.0.1:${port}`;
+  const proc = await server(cfg.file, port);
+  const report = {kind: 'clearance', lat: 41.81, lng: -71.45, details: 'Sign on the rail bridge over Main St, northbound side.', source: 'visited 2026-10-20', firsthand: true, elapsed_ms: 8000,
+    clearance: {posted: `12'9"`, observed_on: '2026-10-20', direction: 'one_direction', osm_ref: 'osm:way:123456'}};
+  const sql = code => spawnSync('php', ['-r', `$p=new PDO('sqlite:${cfg.db}');` + code], {encoding: 'utf8'}).stdout;
+  try {
+    const admin = await adminSession(base);
+    await admin.form({do: 'login', password: 'correct horse battery'});
+    await admin.form({do: 'migrate'});
+    assert.match(sql(`echo $p->query("SELECT COUNT(*) FROM schema_migrations WHERE version='006_clearance_reports'")->fetchColumn();`), /^1$/);
+    // Validation: the posted value uses the same syntax as the map data, and no field is guessed.
+    for (const bad of [{posted: '12 ft'}, {posted: `12' 9"`}, {posted: '0'}, {observed_on: '2999-01-01'}, {direction: 'north'}, {osm_ref: 'way:1'}])
+      assert.equal((await post(base, {...report, clearance: {...report.clearance, ...bad}})).status, 422, JSON.stringify(bad));
+    assert.equal((await post(base, {...report, lat: null, lng: null})).status, 422);
+    const res = await post(base, report);
+    assert.equal(res.status, 201);
+    const {token} = await res.json();
+    const box = '-71.5,41.7,-71.4,41.9', read = async (q = box) => fetch(`${base}/api/clearance-reports.php?bbox=${q}`);
+    // Received and accepted reports are not published.
+    assert.deepEqual((await (await read()).json()).reports, []);
+    const id = Number(sql(`echo $p->query("SELECT id FROM submissions WHERE public_token='${token}'")->fetchColumn();`));
+    assert.ok((await admin.get('?status=received')).includes('Posted clearance:</strong> 12&#039;9&quot;'));
+    await admin.form({do: 'set', id: String(id), status: 'accepted', public_note: 'Checking'});
+    assert.deepEqual((await (await read()).json()).reports, []);
+    // Applied publishes only structured fields: no prose, email, token or client hash.
+    await admin.form({do: 'set', id: String(id), status: 'applied', public_note: 'Matches the sign'});
+    const body = await (await read()).json();
+    assert.equal(body.reports.length, 1);
+    const r = body.reports[0];
+    assert.deepEqual(Object.keys(r).sort(), ['direction', 'hundredths', 'id', 'lat', 'lng', 'observed_on', 'osm_ref', 'posted', 'published_at']);
+    assert.deepEqual([r.posted, r.hundredths, r.observed_on, r.direction, r.osm_ref], [`12'9"`, 15300, '2026-10-20', 'one_direction', 'osm:way:123456']);
+    assert.match(r.published_at, /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/);
+    assert.ok(!JSON.stringify(body).includes('rail bridge') && !JSON.stringify(body).includes(token));
+    assert.equal(require('../clearances.js').validReport(r), true, 'the client accepts what the server publishes');
+    assert.deepEqual((await (await read('-100,30,-99,31')).json()).reports, [], 'outside the box');
+    // The moderator action names publication for clearance reports only.
+    const queue = await admin.get('?status=applied');
+    assert.ok(queue.includes('<option value="applied" selected>Apply and publish on map</option>'));
+    assert.equal((await post(base, good)).status, 201);
+    const corrections = await admin.get('?status=received');
+    assert.ok(corrections.includes('Tiffany Springs') && !corrections.includes('Apply and publish on map'), 'campsite corrections keep the plain applied label');
+    // Moved back to accepted, it leaves the public endpoint.
+    await admin.form({do: 'set', id: String(id), status: 'accepted', public_note: ''});
+    assert.deepEqual((await (await read()).json()).reports, []);
+    await admin.form({do: 'set', id: String(id), status: 'applied', public_note: 'Matches the sign'});
+    assert.equal((await (await read()).json()).reports.length, 1);
+    // Hidden again by a moderator, the report disappears.
+    await admin.form({do: 'set', id: String(id), status: 'rejected', public_note: ''});
+    assert.deepEqual((await (await read()).json()).reports, []);
+    assert.match(sql(`echo $p->query("SELECT COUNT(*) FROM moderation_log WHERE submission_id=${id}")->fetchColumn();`), /^5$/);
+    for (const q of ['', 'a,b,c,d', '-180,-90,180,90', '1,1,0,0'])assert.equal((await read(q)).status, 422, q);
+    // The status page works for the submitter as for any report.
+    assert.equal((await (await fetch(`${base}/api/status.php?token=${token}`)).json()).status, 'rejected');
+  } finally { proc.kill(); fs.rmSync(cfg.dir, {recursive: true, force: true}); }
+});
+
+test('clearance reports wait for their migration and never break campsite corrections', {skip: !hasPhp}, async () => {
+  const cfg = tmpConfig();
+  const port = 18932, base = `http://127.0.0.1:${port}`;
+  const proc = await server(cfg.file, port);
+  try {
+    const admin = await adminSession(base);
+    await admin.form({do: 'login', password: 'correct horse battery'});
+    await admin.form({do: 'migrate'});
+    spawnSync('php', ['-r', `$p=new PDO('sqlite:${cfg.db}');$p->exec("DELETE FROM schema_migrations WHERE version='006_clearance_reports'");`]);
+    assert.equal((await post(base, {kind: 'clearance', lat: 41.8, lng: -71.4, details: 'Bridge sign seen in person.', firsthand: true, elapsed_ms: 8000, clearance: {posted: '4.1', observed_on: '2026-10-01', direction: 'both'}})).status, 503);
+    assert.equal((await fetch(`${base}/api/clearance-reports.php?bbox=-72,41,-71,42`)).status, 503);
+    assert.equal((await post(base, good)).status, 201);
+  } finally { proc.kill(); fs.rmSync(cfg.dir, {recursive: true, force: true}); }
+});
