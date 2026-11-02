@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.36.0', messages:{
+  global.KampTrailI18nFr = {version:'2.37.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -1108,6 +1108,7 @@
   "Zoom to level 6 or closer. Official rest-area coverage: {0}. Overnight permission is unknown.": "Zoomez au niveau 6 ou plus. Couverture officielle des aires de repos : {0}. L’autorisation de passer la nuit est inconnue.",
   "{0} official rest-area location{1} in this view. Coverage: {2}; other states are not covered. Overnight permission and current opening are unknown.": "Emplacements officiels d’aires de repos dans cette vue : {0}. Couverture : {2} ; les autres États ne sont pas couverts. L’autorisation de passer la nuit et l’ouverture actuelle sont inconnues.",
   "Unavailable now: {0}.": "Indisponible actuellement : {0}.",
+  "Select Retry official rest areas to load them.": "Sélectionnez « Réessayer les aires de repos officielles » pour les charger.",
   "Texas Department of Transportation": "Département des Transports du Texas",
   "Idaho Transportation Department": "Département des Transports de l’Idaho",
   "Montana Department of Transportation": "Département des Transports du Montana",
