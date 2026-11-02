@@ -1,0 +1,77 @@
+{
+ "captured_by": "scripts/capture_fire_weather_fixtures.py",
+ "user_agent": "KampTrail fire-weather fixture capture (https://kamptrail.com)",
+ "window": {
+  "start": "2026-10-25T14:46:28Z",
+  "end": "2026-11-01T14:46:28Z",
+  "days": 7
+ },
+ "files": [
+  {
+   "file": "alerts/red-flag-warning-p1.json",
+   "kind": "nws-alerts",
+   "event": "Red Flag Warning",
+   "url": "https://api.weather.gov/alerts?event=Red+Flag+Warning&start=2026-10-25T14%3A46%3A28Z&end=2026-11-01T14%3A46%3A28Z&limit=500",
+   "http_status": 200,
+   "retrieved_at": "2026-11-01T14:46:29Z",
+   "bytes": 278,
+   "sha256": "6104975470a97e9e5cd4d1b720d778b4458c6ac064f62c98499a3d57416e0ca5",
+   "feature_count": 0
+  },
+  {
+   "file": "alerts/fire-weather-watch-p1.json",
+   "kind": "nws-alerts",
+   "event": "Fire Weather Watch",
+   "url": "https://api.weather.gov/alerts?event=Fire+Weather+Watch&start=2026-10-25T14%3A46%3A28Z&end=2026-11-01T14%3A46%3A28Z&limit=500",
+   "http_status": 200,
+   "retrieved_at": "2026-11-01T14:46:31Z",
+   "bytes": 280,
+   "sha256": "0c6888c59ac68c2ff21b3030a0bc3621af7aab352cb8b7bfdd51b3a9c4bb61ee",
+   "feature_count": 0
+  },
+  {
+   "file": "alerts/small-craft-advisory-p1.json",
+   "kind": "nws-alerts",
+   "event": "Small Craft Advisory",
+   "url": "https://api.weather.gov/alerts?event=Small+Craft+Advisory&start=2026-10-25T14%3A46%3A28Z&end=2026-11-01T14%3A46%3A28Z&limit=1",
+   "http_status": 200,
+   "retrieved_at": "2026-11-01T14:46:32Z",
+   "bytes": 6164,
+   "sha256": "f33550f0e19587a9bd1b24a4a7ee8ad220a5e89ecb9953262dfadd3e8c66b283",
+   "feature_count": 1
+  },
+  {
+   "file": "zones/fire_COZ214.json",
+   "kind": "nws-zone",
+   "url": "https://api.weather.gov/zones/fire/COZ214",
+   "http_status": 200,
+   "retrieved_at": "2026-11-01T14:46:33Z",
+   "bytes": 25822,
+   "sha256": "0c817bceedcf6afa179857150fad08f156002e91f0aac018715d8896591eec6b",
+   "cache_control": "public, max-age=2030089, s-maxage=604800",
+   "geometry_type": "Polygon"
+  },
+  {
+   "file": "zones/fire_CAZ281.json",
+   "kind": "nws-zone",
+   "url": "https://api.weather.gov/zones/fire/CAZ281",
+   "http_status": 200,
+   "retrieved_at": "2026-11-01T14:46:34Z",
+   "bytes": 7005,
+   "sha256": "8f0efc4c5a1bcd790377b4ba851a2d9bcd7adf9e46537bb584a1c3f72728fc89",
+   "cache_control": "public, max-age=2591977, s-maxage=604800",
+   "geometry_type": "Polygon"
+  },
+  {
+   "file": "zones/fire_NMZ104.json",
+   "kind": "nws-zone",
+   "url": "https://api.weather.gov/zones/fire/NMZ104",
+   "http_status": 200,
+   "retrieved_at": "2026-11-01T14:46:36Z",
+   "bytes": 61094,
+   "sha256": "9272cc7021d99f18bd421b25fc845b9faea6ff932cf3ea2a3032910bd3e788fd",
+   "cache_control": "public, max-age=2592000, s-maxage=604800",
+   "geometry_type": "Polygon"
+  }
+ ]
+}

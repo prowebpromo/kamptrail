@@ -1,0 +1,104 @@
+{
+    "@context": [
+        "https://geojson.org/geojson-ld/geojson-context.jsonld",
+        {
+            "@version": "1.1",
+            "wx": "https://api.weather.gov/ontology#",
+            "@vocab": "https://api.weather.gov/ontology#"
+        }
+    ],
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b16b264c275e22bc2d32094d3061cdb6b5d683d1.004.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b16b264c275e22bc2d32094d3061cdb6b5d683d1.004.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.b16b264c275e22bc2d32094d3061cdb6b5d683d1.004.1",
+                "areaDesc": "Northern Lynn Canal",
+                "geocode": {
+                    "SAME": [
+                        "058012"
+                    ],
+                    "UGC": [
+                        "PKZ012"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/PKZ012"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.12a9c38ace27f0af1284b56aa67470f456294fc4.004.1",
+                        "identifier": "urn:oid:2.49.0.1.840.0.12a9c38ace27f0af1284b56aa67470f456294fc4.004.1",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2026-11-01T02:22:00-09:00"
+                    }
+                ],
+                "sent": "2026-11-01T05:43:00-09:00",
+                "effective": "2026-11-01T05:43:00-09:00",
+                "onset": "2026-11-01T05:43:00-09:00",
+                "expires": "2026-11-01T05:58:45-09:00",
+                "ends": "2026-11-01T06:00:00-09:00",
+                "status": "Actual",
+                "messageType": "Cancel",
+                "category": "Met",
+                "severity": "Minor",
+                "certainty": "Observed",
+                "urgency": "Past",
+                "event": "Small Craft Advisory",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Juneau AK",
+                "headline": "The Small Craft Advisory has been cancelled.",
+                "description": "The Small Craft Advisory has been cancelled and is no longer in effect.",
+                "instruction": null,
+                "response": "AllClear",
+                "note": null,
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "MWWAJK"
+                    ],
+                    "WMOidentifier": [
+                        "WHAK77 PAJK 011443"
+                    ],
+                    "NWSheadline": [
+                        "SMALL CRAFT ADVISORY IS CANCELLED"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "VTEC": [
+                        "/O.CAN.PAJK.SC.Y.0354.000000T0000Z-261101T1500Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2026-11-01T06:00:00-09:00"
+                    ],
+                    "expiredReferences": [
+                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0cddd089db82b2f3b640b0cd7acd7374a12824b5.005.1,2026-11-01T00:56:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3680eb17d9bcb59bdcd0e90ea12ff3efe1dccb5f.008.1,2026-10-31T22:11:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.38d816bab3b9559f588b31b957fa0eba83eee0ab.008.1,2026-10-31T20:32:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.2361248733c4e6141523e84c242df145aa6a5b6c.008.1,2026-10-31T19:12:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.94d1350fcb4983c169877181c9e334993bec2cbc.012.1,2026-10-31T15:47:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f6689e7fffc742d7572b823a58f377daae2a89a3.010.1,2026-10-31T15:32:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.96d807b7c0fee73590e158fbb0cd2cb84a80a9d2.011.1,2026-10-31T12:50:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.1d5a531d65796c83ea1742b53605d0abd92fd3d4.012.1,2026-10-31T09:41:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.508eee8eda1a2705e8cb993c4c1108b0f01c5f33.013.1,2026-10-31T06:35:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.219891b2971507e415c61d235cb4f6980e37015b.013.1,2026-10-31T03:39:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3c2d15b3ce139cd4905e0a0e4897c32d1e643764.022.1,2026-10-31T02:38:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.7ad12907c77e5b306883dde04ea80e70cb057371.013.1,2026-10-31T00:38:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c8231c5706c981dc36654aaa1247facca9f171d2.021.1,2026-10-30T21:52:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.6ace7dca69d0faace881d95334728f00fcad2487.021.1,2026-10-30T18:43:00-08:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.34b3a4e6a1fdf3d70f7c32ba46202854bbc62780.015.1,2026-10-30T15:31:00-08:00"
+                    ]
+                },
+                "scope": "Public",
+                "code": "IPAWSv1.0",
+                "language": "en-US",
+                "web": "http://www.weather.gov",
+                "eventCode": {
+                    "SAME": [
+                        "NWS"
+                    ],
+                    "NationalWeatherService": [
+                        "SCY"
+                    ]
+                }
+            }
+        }
+    ],
+    "title": "Small Craft Advisory events issued between Sun, Oct 25, 2026 2:46:28 PM +0000 and Sun, Nov 1, 2026 2:46:28 PM +0000",
+    "updated": "2026-11-01T14:43:57+00:00",
+    "pagination": {
+        "next": "https://api.weather.gov/alerts?event%5B0%5D=Small%20Craft%20Advisory&start=2026-10-25T14:46:28Z&end=2026-11-01T14:46:28Z&limit=1&cursor=eyJ0IjoxNzkzNTQ0MTgwLCJpIjoidXJuOm9pZDoyLjQ5LjAuMS44NDAuMC5iMTZiMjY0YzI3NWUyMmJjMmQzMjA5NGQzMDYxY2RiNmI1ZDY4M2QxLjAwNC4xIn0%3D"
+    }
+}
