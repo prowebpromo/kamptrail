@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.37.0', messages:{
+  global.KampTrailI18nFr = {version:'2.38.0', messages:{
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
@@ -102,6 +102,8 @@
   "Some listings could not load. Use Retry in the campsite list.": "Certaines fiches n’ont pas pu être chargées. Utilisez Réessayer dans la liste des sites de camping.",
   "Zoom in, search, or select a state bubble to see campsites. Listings load for the area you view, which keeps the map fast on a weak signal.": "Zoomez, effectuez une recherche ou sélectionnez la bulle d’un État pour voir les sites de camping. Les fiches se chargent pour la zone affichée, ce qui garde la carte rapide avec un signal faible.",
   "Retry missing data": "Réessayer les données manquantes",
+  "Forest Service and BLM listings could not load. Other listings are shown.": "Les fiches du Forest Service et du BLM n’ont pas pu être chargées. Les autres fiches sont affichées.",
+  "Forest Service and BLM listings could not load for {states}. Other listings are shown.": "Les fiches du Forest Service et du BLM n’ont pas pu être chargées pour {states}. Les autres fiches sont affichées.",
   "Paid · amount unknown": "Payant · montant inconnu",
   "Campground": "Camping",
   "Type unknown": "Type inconnu",
