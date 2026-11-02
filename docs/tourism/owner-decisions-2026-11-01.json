@@ -7,7 +7,7 @@
   "run": "https://github.com/prowebpromo/kamptrail/actions/runs/41350953975",
   "retrieved_at": "2026-11-01T21:14:28Z"
  },
- "baseline_commit": "b0dfbdbc92a352c3e05e4f2a1396e463a845e17d",
+ "baseline_commit": "f9752ecb8090a6e3452896c23eaa374e65c59694",
  "observed_fields": "observed.* copied from the evidence file; derived.*, decision and action computed by this script; current.* from the baseline catalogue; candidate.* from this build",
  "by_decision": {
   "keep_discoverable_pending_withdrawal_review": 9,
@@ -1809,7 +1809,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -1857,7 +1857,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -1905,7 +1905,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2001,7 +2001,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2049,7 +2049,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2097,7 +2097,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2145,7 +2145,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2193,7 +2193,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2241,7 +2241,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2289,7 +2289,7 @@
     "label": "dispersed",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2337,7 +2337,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2385,7 +2385,7 @@
     "label": "dispersed",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2433,7 +2433,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2481,7 +2481,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
@@ -2585,8 +2585,8 @@
    "own_quote": "Granite Lake Rv Park",
    "own_field": "FacilityName",
    "decision": "upgrade_reviewed_individually",
-   "action": "Other → Campground. The own name is an RV park, a developed campground for RVs. The description only names the lake, so the name is the sole basis.",
-   "reason": "Other → Campground. The own name is an RV park, a developed campground for RVs. The description only names the lake, so the name is the sole basis.",
+   "action": "Other → Campground. The own name is an RV park. Approved as Campground by the owner on 2026-11-01 21:33 ET.",
+   "reason": "Other → Campground. The own name is an RV park. Approved as Campground by the owner on 2026-11-01 21:33 ET.",
    "recommendation": null
   },
   {
@@ -2969,8 +2969,8 @@
    "own_quote": "this 13-site camp provides access to many miles of equestrian trails",
    "own_field": "FacilityDescription",
    "decision": "upgrade_reviewed_individually",
-   "action": "Other → Campground. The own record describes a 13-site camp. Judgement call: it gives a site count but no amenities.",
-   "reason": "Other → Campground. The own record describes a 13-site camp. Judgement call: it gives a site count but no amenities.",
+   "action": "Other → Campground. The own record describes a 13-site camp. Approved as Campground by the owner on 2026-11-01 21:33 ET.",
+   "reason": "Other → Campground. The own record describes a 13-site camp. Approved as Campground by the owner on 2026-11-01 21:33 ET.",
    "recommendation": null
   },
   {
@@ -3009,7 +3009,7 @@
     "label": "established",
     "classification": "campsite",
     "evidence": "camping_facility_name",
-    "type_evidence": "descriptive_wording",
+    "type_evidence": "owner_reviewed_own_record",
     "closure_notice": null,
     "accommodation": null,
     "overnight_records": null
