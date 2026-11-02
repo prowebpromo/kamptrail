@@ -17,6 +17,7 @@ const CASES=[
   {id:'ridb:255240',via:['blm-facility:255240'],name:'Pink House Recreation Site',type:'established',not:['under review']},
   {id:'ridb:234745',via:['ridb:234745'],name:'DESOLATION GRAY CANYONS SCREEN CABINS',type:'established',not:['covers']},
   {id:'ridb:10007101',via:['ridb:10007101'],name:'Large Vehicle Campground',type:'established',not:['under review','label published before']},
+  {id:'ridb:10076130',via:['usfs:36723'],name:'Tom Bennett Campground',type:'established',has:['label published before this review'],not:['under review']},
   {id:'ridb:10134443',via:['usfs:83462'],name:'Muchwater Dispersed Campground and Recreation Area',type:'dispersed',not:['under review']}
 ];
 for(const [label,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){

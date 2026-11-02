@@ -1,6 +1,6 @@
 # Tourism, listing type and admission review
 
-Review branch `review/tourism-admission-r3`, revision 4. It applies Chuck Price's decisions of 2026-11-01 20:24 ET on revision 3 (`8df61a78`), on top of his 08:16 and 08:18 decisions. Current main `b0dfbdbc` (release 2.36.0, kt-v69) is integrated and is the comparison baseline. Its campsite data and classifier match f84a5b4b, so main's labels are unchanged. No version bump, merge, pull request or deploy was made. No approval to merge or deploy was given.
+Review branch `review/tourism-admission-r3`, revision 5 (draft PR #167). It applies Chuck Price's decisions of 2026-11-01 (08:16, 08:18, 20:24 and 21:33 ET) and the three source fixes Codex requested on PR #167 at `53babeab`. Current main `f9752ecb` (release 2.37.0, kt-v70) is integrated and is the comparison baseline. Its campsite data and classifier match f84a5b4b and b0dfbdbc, so main's labels are unchanged. No version bump, merge, deploy or ready-for-review change was made. No approval to merge or deploy was given.
 
 ## Decision ledger
 
@@ -10,6 +10,7 @@ The [dated decision ledger](tourism/decision-ledger-2026-11-01.json) records eve
 | --- | --- | --- |
 | 2026-11-01 08:16 and 08:18 | Chuck Price (owner) | Keep the 9 withdrawals discoverable with a pending notice. Approve 8 lodging relabels and 2 rejections, preserving closure notices and distinguishing the multi-cabin record. Approve upgrades only where the refreshed record confirms them. Defer the 26 downgrades. |
 | 2026-11-01 20:24 ET | Chuck Price (owner), relayed by the coordinator | Accept the 13 upgrades whose own name says Campground, and the 2 named Dispersed Campground. Review the other 12 individually. Keep all 9 withdrawals listed. Accept 16 keeps, 3 Dispersed and 7 Other (pending). A name plus point match is candidate evidence only. Another agency's fields classify a listing only with a shared facility id or an independently verified link to that exact facility. |
+| 2026-11-01 21:33 ET | Chuck Price (owner), relayed by the coordinator | Granite Lake Rv Park (ridb:248513) and Wolf Ford Horse Camp (ridb:265204) are approved as Campground. |
 
 ### Applied
 
@@ -26,7 +27,7 @@ The [dated decision ledger](tourism/decision-ledger-2026-11-01.json) records eve
 | --- | --- | --- | --- | --- |
 | ridb:10068183 | Little Duck Campsite on Grand Island | FacilityDescription | “This campsite is located approximately 50 yards from Lake Superior and Trout Bay Beach.” | Stays Other. One hike, bike or boat-in campsite. No campground or dispersed wording. |
 | ridb:247937 | Dworshak State Park- Three Meadows Group Camp | FacilityDescription | “This recreation area is part of Dworshak Reservoir” | Stays Other. "Group Camp" supports camping. The description only names the reservoir. |
-| ridb:248513 | Granite Lake Rv Park | FacilityName | “Granite Lake Rv Park” | Other → Campground. The own name is an RV park, a developed campground for RVs. The description only names the lake, so the name is the sole basis. |
+| ridb:248513 | Granite Lake Rv Park | FacilityName | “Granite Lake Rv Park” | Other → Campground. The own name is an RV park. Approved as Campground by the owner on 2026-11-01 21:33 ET. |
 | ridb:256895 | Bitter Creek Overlook Camping Area | FacilityDescription | “Campsite along Kokopelli Trail.” | Stays Other. Supports camping, not a type. |
 | ridb:257133 | Rock Castle Camping Area | FacilityDescription | “Small campground along the Castle Valley Road” | Other → Campground. The own description calls it a campground. |
 | ridb:261695 | Edson Creek Camping | FacilityDescription | “27 campsites with picnic tables and fire rings” | Other → Campground. The own description calls it a campground with 27 sites. |
@@ -34,10 +35,10 @@ The [dated decision ledger](tourism/decision-ledger-2026-11-01.json) records eve
 | ridb:262654 | Pine Creek Camping Area | FacilityDescription | “This is a small primitive camping area within the Pine Creek Exclosure.” | Stays Other. "Primitive" alone does not establish Dispersed. |
 | ridb:262772 | Ft. Meade Horse Camp | FacilityDescription | “Alkali Creek Horsecamp (11 acres) contains six fee camping units” | Stays Other. "Horse Camp" supports camping. The site details describe a differently named camp (Alkali Creek Horsecamp). |
 | ridb:262796 | Horse Mountain Primitive Camp | FacilityDescription | “Primitive camping area. No toilets, water, and hookups.” | Stays Other. "Primitive" alone does not establish Dispersed. |
-| ridb:265204 | Wolf Ford Horse Camp | FacilityDescription | “this 13-site camp provides access to many miles of equestrian trails” | Other → Campground. The own record describes a 13-site camp. Judgement call: it gives a site count but no amenities. |
+| ridb:265204 | Wolf Ford Horse Camp | FacilityDescription | “this 13-site camp provides access to many miles of equestrian trails” | Other → Campground. The own record describes a 13-site camp. Approved as Campground by the owner on 2026-11-01 21:33 ET. |
 | ridb:273835 | North Fork Primitive Camp | FacilityDescription | “it makes a great short or introductory backpacking adventure” | Stays Other. The description is about the river and hiking. No campsites are described. |
 
-"Primitive" alone did not establish Dispersed (Horse Mountain, Pine Creek, North Fork). A name naming a camp supports camping but not a type unless the record describes a campground. Two rows are judgement calls for the owner to confirm. Granite Lake Rv Park rests on its name alone. Wolf Ford Horse Camp gives a site count but no amenities.
+"Primitive" alone did not establish Dispersed (Horse Mountain, Pine Creek, North Fork). A name naming a camp supports camping but not a type unless the record describes a campground. Granite Lake Rv Park (name only) and Wolf Ford Horse Camp (site count only) were judgement calls. The owner approved both as Campground on 2026-11-01 21:33 ET.
 
 ### Decision 4 exceptions
 
@@ -65,6 +66,46 @@ The other 14 keeps quote their own description for the label (see the deferred t
 | ridb:248261 | Potato Hills Central | moderate | FacilityName: “Potato Hills Central” | Its retained own record names the facility as part of Sardis Lake. The campground wording in the merged row is copied from another record (ridb:233590) and does not classify this one. |
 
 Strength reflects what the own record says. Kirkwood Ranch's record positively describes a non-camping use (historic ranch and museum). The others are silent or only name a lake or canal, which is weak evidence. Potato Hills Central is moderate: its own record says nothing about camping, and the only campground wording is copied from ridb:233590. Any later withdrawal needs a tested notice page for every canonical and legacy id it retires. That includes usfs:18814, usfs:5889, usfs:65003, osm:way:941066426 and osm:relation:13942065, which today resolve to these listings.
+
+## Codex review fixes (PR #167 at 53babeab)
+
+1. One coordinate policy. The index builder used to pin every existing canonical id to its previous index point (`publishedPointMap`). The browser pinned only the two reviewed lodging hosts. Both paths now pin only those two (`PUBLISHED_HOST_POINTS`: Axolotl Cabin ridb:251354 and White Mountains ridb:252494). Every other listing takes its source point in both. Removing the general pin changed no point in this build. The index digests are the same as revision 4. Regression test: an ordinary facility moved from [-110, 40] to [-110.01, 40.01] gets the new point in both the index build and the browser, and a pinned facility keeps its point in both.
+2. Reviewed labels bound to their evidence. Each of the 44 owner-accepted labels in `OWNER_REVIEWED_LABELS` carries the ledger's field and quote. The label applies only while the listing's own Recreation.gov record still has that wording: the exact name for FacilityName, or the quote inside its own plain-text description for FacilityDescription. Wording copied from another record does not count. A new retrieval date alone keeps the label. Policy for changed or missing wording: the listing returns to pending review as Other. It gets `camping_evidence = owner_review_evidence_changed` and a `type_evidence` that records the reviewed label, field and quote. The popup says "This listing's own record changed after its type was reviewed. It shows as Other until it is reviewed again." Spanish and French versions are included. Regression tests: unchanged wording with a 2031 date keeps Dispersed for Wolf Flats. Wolf Flats described as a developed campground, Coleman Lake with no description, Coleman Lake with copied wording, and a renamed Large Vehicle Campground all return to pending.
+3. Name rule scope. Facility names and descriptions no longer set a type automatically. The 15 name-based upgrades are now ledgered, evidence-bound labels like the rest. Regression test: unseen "Example Primitive Camp", "Example Camping Area" and "Example Lake Campground" keep their prior label (Other stays Other, Campground stays Campground). They are still admitted on their own name.
+
+Scoping the name rule exposed 27 listings. Each is published as Campground on main, but its own Recreation.gov facility type is Other. The unscoped name rule had been keeping them at Campground since revision 2. Without it they would have dropped to Other with no review. They now keep main's label as a held label, recorded under `review_holds` in the ledger. This is a review hold, not an owner decision. The popup shows "The type shown is the label published before this review."
+
+| ID | Name | Held label |
+| --- | --- | --- |
+| ridb:10023205 | Ojo Redondo Campground | Campground |
+| ridb:10039245 | Post Pile Campground | Campground |
+| ridb:10069432 | Kiwanis Campground | Campground |
+| ridb:10069654 | Pittsburg Campground | Campground |
+| ridb:10072072 | Thain Creek Campground | Campground |
+| ridb:10072073 | Spring Creek Campground | Campground |
+| ridb:10072881 | Lane Farm Campground | Campground |
+| ridb:10072883 | Finner Creek Campground | Campground |
+| ridb:10074140 | South Mineral Campground | Campground |
+| ridb:10074570 | UPPER PLEASANT CREEK CAMPGROUND | Campground |
+| ridb:10074574 | Tin Can Flat Campground | Campground |
+| ridb:10076130 | Tom Bennett Campground | Campground |
+| ridb:10076131 | Carr Lake Campsites | Campground |
+| ridb:10076892 | Ring Mill Campground | Campground |
+| ridb:10078442 | Apache Creek Campground | Campground |
+| ridb:10134446 | Hidden Lake Campground | Campground |
+| ridb:10150488 | Bridger Campground | Campground |
+| ridb:10155245 | Rattlesnake Canyon Campground | Campground |
+| ridb:10278188 | Chosa Campground | Campground |
+| ridb:10321880 | Twin Springs Campground | Campground |
+| ridb:10322469 | Devil's Canyon Campground | Campground |
+| ridb:236715 | Bell Farm Horse Camp | Campground |
+| ridb:252786 | Goldhill Camping Area | Campground |
+| ridb:262731 | Green Mountain Campground | Campground |
+| ridb:262776 | Fish Lake Campground | Campground |
+| ridb:272170 | Elderberry Flat Campground | Campground |
+| ridb:274051 | Chiwawa Horse Camp | Campground |
+
+Codex's frozen regression failure on Wolf Ford ("established" in browser normalization, "other" in the committed index) comes from the uncommitted rebuild, not from a source mismatch. The committed search-index.json is main's. Browser normalization of the rebuilt snapshots matches the rebuilt index for all 33,370 listings, with 0 type and 0 point differences, and Wolf Ford is Campground in both. Against the committed index the same check shows only the 37 decided type changes, Wolf Ford among them. The missing generated `docs/candidates/tourism-type-admission.json` is also expected. The build writes it, and the ledger unit test reads it.
 
 ## Fresh evidence
 
@@ -149,7 +190,7 @@ Raw type, LastUpdatedDate, retrieved_at and campsite records are observed (evide
 | ridb:10278932 | Muleshoe Campground | Facility | 2026-10-05 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityName: “Muleshoe Campground” | Other → Campground |
 | ridb:240676 | Table Meadows Campground | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityName: “Table Meadows Campground” | Other → Campground |
 | ridb:247937 | Dworshak State Park- Three Meadows Group Camp | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Other | FacilityDescription: “This recreation area is part of Dworshak Reservoir” | Stays Other. "Group Camp" supports camping. The description only names the reservoir. |
-| ridb:248513 | Granite Lake Rv Park | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityName: “Granite Lake Rv Park” | Other → Campground. The own name is an RV park, a developed campground for RVs. The description only names the lake, so the name is the sole basis. |
+| ridb:248513 | Granite Lake Rv Park | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityName: “Granite Lake Rv Park” | Other → Campground. The own name is an RV park. Approved as Campground by the owner on 2026-11-01 21:33 ET. |
 | ridb:256895 | Bitter Creek Overlook Camping Area | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Other | FacilityDescription: “Campsite along Kokopelli Trail.” | Stays Other. Supports camping, not a type. |
 | ridb:257133 | Rock Castle Camping Area | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityDescription: “Small campground along the Castle Valley Road” | Other → Campground. The own description calls it a campground. |
 | ridb:261695 | Edson Creek Camping | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityDescription: “27 campsites with picnic tables and fire rings” | Other → Campground. The own description calls it a campground with 27 sites. |
@@ -157,7 +198,7 @@ Raw type, LastUpdatedDate, retrieved_at and campsite records are observed (evide
 | ridb:262654 | Pine Creek Camping Area | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Other | FacilityDescription: “This is a small primitive camping area within the Pine Creek Exclosure.” | Stays Other. "Primitive" alone does not establish Dispersed. |
 | ridb:262772 | Ft. Meade Horse Camp | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Other | FacilityDescription: “Alkali Creek Horsecamp (11 acres) contains six fee camping units” | Stays Other. "Horse Camp" supports camping. The site details describe a differently named camp (Alkali Creek Horsecamp). |
 | ridb:262796 | Horse Mountain Primitive Camp | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Other | FacilityDescription: “Primitive camping area. No toilets, water, and hookups.” | Stays Other. "Primitive" alone does not establish Dispersed. |
-| ridb:265204 | Wolf Ford Horse Camp | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityDescription: “this 13-site camp provides access to many miles of equestrian trails” | Other → Campground. The own record describes a 13-site camp. Judgement call: it gives a site count but no amenities. |
+| ridb:265204 | Wolf Ford Horse Camp | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityDescription: “this 13-site camp provides access to many miles of equestrian trails” | Other → Campground. The own record describes a 13-site camp. Approved as Campground by the owner on 2026-11-01 21:33 ET. |
 | ridb:272101 | Jericho Campground and Picnic Area | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Campground | FacilityName: “Jericho Campground and Picnic Area” | Other → Campground |
 | ridb:273835 | North Fork Primitive Camp | Facility | 2026-02-25 | 2026-11-01T21:14:28Z | none | Other | Other | FacilityDescription: “it makes a great short or introductory backpacking adventure” | Stays Other. The description is about the river and hiking. No campsites are described. |
 
@@ -180,11 +221,12 @@ Raw type, LastUpdatedDate, retrieved_at and campsite records are observed (evide
 
 | Catalogue | Listings | Campground | Dispersed | Lodging | Other | Pending review | Withdrawn |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Main b0dfbdbc (before) | 33,370 | 32,479 | 813 | 0 | 78 | 0 | 0 |
+| Main f9752ecb (before) | 33,370 | 32,479 | 813 | 0 | 78 | 0 | 0 |
 | Revision 3 8df61a78 | 33,370 | 32,494 | 817 | 8 | 51 | 16 | 0 |
+| Revision 4 53babeab | 33,370 | 32,480 | 816 | 8 | 66 | 16 | 0 |
 | This build | 33,370 | 32,480 | 816 | 8 | 66 | 16 | 0 |
 
-Pending review is 9 pending withdrawals and 7 pending admissions shown as Other. Two more listings carry a held label (the decision-4 exceptions). Index changes from main: 17 Other → Campground, 2 Other → Dispersed, 3 Campground → Dispersed, 5 Campground → Other, 2 Dispersed → Other, 8 Campground → Lodging, and 5 state-file loading hints (Bingo NY, Kirkwood Ranch OR, Willow Creek and Hunter Creek Transfer Camps UT, Wolf Gap KY and VA). No fee, access, rig, amenity, point, alias or name changed. All four access holds stay active.
+Pending review is 9 pending withdrawals and 7 pending admissions shown as Other. Held labels: the 9 pending withdrawals, the 2 decision-4 exceptions and the 27 review holds. Index changes from main: 17 Other → Campground, 2 Other → Dispersed, 3 Campground → Dispersed, 5 Campground → Other, 2 Dispersed → Other, 8 Campground → Lodging, and 5 state-file loading hints (Bingo NY, Kirkwood Ranch OR, Willow Creek and Hunter Creek Transfer Camps UT, Wolf Gap KY and VA). No fee, access, rig, amenity, point, alias or name changed. All four access holds stay active.
 
 ## Build, digests and continuity
 
@@ -196,9 +238,14 @@ Pending review is 9 pending withdrawals and 7 pending admissions shown as Other.
 | withdrawn.json (committed, no listings) | `b0a6ccc47e0088045f8a52a78518bb997a8cb9fe52defa07c6a7d8d78b4c1867` |
 | Manifest of 50 snapshots and the four files above | `47f74acf7cb63c9004107f5b262f94bcd0641ba91ee389e27ffcec87dfb7f620` |
 
-The same manifest came from the two runs inside `run-all.sh` and from a clean rebuild in a fresh `git worktree add` of pushed head `b4674b41`, against a separate unchanged worktree of main b0dfbdbc. The verifier rebuilt the index byte for byte and found 0 unexpected deltas over the 734-record ledger.
+The same manifest came from the two runs inside `run-all.sh` and from a clean rebuild in a fresh `git worktree add` of pushed head `6f3dfec3`, against a separate unchanged worktree of main f9752ecb. The verifier rebuilt the index byte for byte and found 0 unexpected deltas over the 734-record ledger. The digests equal revision 4's. The three source fixes change no output in this build, only how a later refresh is handled.
 
-`check-id-continuity.js` against main's search-index.json and `withdrawn.json`, on both builds: 36,290 published ids before and after, 0 lost, 0 moved, 0 conflicting.
+`node scripts/check-id-continuity.js <main f9752ecb search-index.json> data/campsites/search-index.json data/campsites/withdrawn.json`, full output on the clean rebuild (the in-branch run is identical):
+
+```
+Previous published ids: 36290. New: 36290. No longer resolving: 0. Moved to another listing: 0. Claimed by more than one listing: 0.
+exit code 0
+```
 
 The branch is a source checkpoint. The rebuilt snapshots and indexes stay uncommitted. Rebuild before comparing a map from the branch.
 
@@ -208,30 +255,30 @@ Run `bash scripts/tourism-type-admission/run-all.sh /absolute/path/to/main-check
 
 ## Code changes
 
-- `data-quality.js`: `HELD_PUBLISHED_LABELS` (11: 9 pending withdrawals and 2 exceptions), `OWNER_REVIEWED_LABELS` (29 labels accepted from own records, `type_evidence.kind = owner_reviewed_own_record`), the pending-withdrawal set and the Shaw House closure notice pinned to its retrieval and wording. The 7 Other listings use the existing pending-admission path.
+- `data-quality.js`: `HELD_PUBLISHED_LABELS` (38: 9 pending withdrawals, 2 decision-4 exceptions, 27 review holds), `OWNER_REVIEWED_LABELS` (44 labels accepted from own records, each bound to its ledger field and quote, `type_evidence.kind = owner_reviewed_own_record`), the pending-withdrawal set, the two pinned lodging points and the Shaw House closure notice pinned to its retrieval and wording. Names no longer set a type outside the ledger. The 7 Other listings use the existing pending-admission path.
+- `scripts/build-search-index.js` and the harness no longer pin every canonical id to its previous point.
 - `data-loader.js`: popup notices for a pending withdrawal, a held label, an own-record closure, the multi-cabin record, and an accepted own-record type. Spanish and French strings added.
 - `scripts/verify-tourism-type-admission.js` and `owner-decisions.js` check the build against the ledger.
-- Tests: unit tests for each decision and for ledger agreement. `tests/browser/tourism-review.spec.js` covers 16 listings on desktop and mobile.
+- Tests: unit tests for each decision and for ledger agreement. `tests/browser/tourism-review.spec.js` covers 17 listings on desktop and mobile.
 
 ## Tests
 
-All runs used the rebuilt candidate in this worktree. Main b0dfbdbc was served from an unchanged worktree for comparison. Each server ran as `PORT=<port> node scripts/serve.js` with its cwd confirmed by `readlink /proc/<pid>/cwd` and its search-index digest checked.
+All runs used the rebuilt candidate in this worktree. Main f9752ecb was served from an unchanged worktree for comparison. Each server ran as `PORT=<port> node scripts/serve.js`, with its cwd confirmed by `readlink /proc/<pid>/cwd` and the served search-index digest checked (candidate `9abd8fa5…`, main `83e6f21c…`).
 
-| Suite | Candidate | Main b0dfbdbc |
+| Suite | Candidate | Main f9752ecb |
 | --- | --- | --- |
-| `npm test` | 537 passed, 0 failed, 0 skipped | not rerun |
+| `npm test` (includes the new coordinate, evidence-binding, name-scope and ledger tests) | 540 passed, 0 failed, 0 skipped | not rerun |
 | `npm run test:python` | 419 ran, OK, 9 skipped (native forecast and parser tests) | not rerun |
-| Browser, Chromium, desktop and mobile: tourism-review, app, features, identity, saved-stops, fee-evidence, amenity-evidence, rig-evidence, ridb-amenities, usfs-site-amenities, locale | 59 of 61 passed | app and locale: 12 of 14 passed |
+| Browser, Chromium, desktop and mobile: tourism-review, app, features, identity, saved-stops, fee-evidence, amenity-evidence, rig-evidence, ridb-amenities, usfs-site-amenities, locale | 60 of 61 passed | app.spec: 8 of 9 passed |
 
-- `app.spec.js` "mobile controls remain clickable" fails the map-height check (493 px, expected more than 500) on both candidate and main.
-- `locale.spec.js` "French ... falls back to labeled English" failed once on the candidate (zoom button accessible name empty). It failed the same way on main, and it passed when rerun alone on the candidate. It is intermittent and not caused by this revision.
-- `tourism-review.spec.js` passes on desktop and mobile for all 16 listings and 18 canonical and legacy ids.
+The one failure is `app.spec.js` "mobile controls remain clickable": the map-height check gets 493 px, expected more than 500. It fails the same way on main. `tourism-review.spec.js` passes on desktop and mobile for 17 listings and 19 canonical and legacy ids. The ledger unit test reads the generated `docs/candidates/tourism-type-admission.json`, so it passes only after a rebuild.
 
 ## Limitations
 
 - In English the popup prints the raw type value ("established", "lodging"). Main does the same. Not fixed here.
 - Held labels are review holds, not own-record evidence of a type.
-- Accepted labels stay valid only while the quoted wording is in the own record. A source refresh that drops it fails `owner-decisions.js` and must be reviewed again.
+- Accepted labels stay valid only while the quoted wording is in the own record. When a refresh changes or drops it, the listing returns to pending as Other, and `owner-decisions.js` fails until the owner reviews it again.
+- The 27 review holds need an owner decision. Their own Recreation.gov type is Other and their names say Campground.
 - Pending or rejected reviews, photos, corrections, permissions, shared links outside the site and privately saved trips could not be enumerated. The id-resolution checks apply whether or not such references exist.
 - The Bird Creek partial-load issue recorded on main is unchanged.
 
