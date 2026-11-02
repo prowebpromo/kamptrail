@@ -130,4 +130,13 @@ return [
         ],
     ],
     '005_permissions' => require __DIR__ . '/permissions-migration.php',
+    // Structured fields for visitor clearance reports. The report itself is an ordinary moderated submission.
+    '006_clearance_reports' => [
+        'mysql' => [
+            "CREATE TABLE IF NOT EXISTS clearance_reports (submission_id BIGINT UNSIGNED PRIMARY KEY, posted VARCHAR(40) NOT NULL, hundredths INTEGER NOT NULL, observed_on CHAR(10) NOT NULL, direction VARCHAR(20) NOT NULL, osm_ref VARCHAR(40) NULL, CONSTRAINT fk_clearance_submission FOREIGN KEY (submission_id) REFERENCES submissions(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+        ],
+        'sqlite' => [
+            "CREATE TABLE IF NOT EXISTS clearance_reports (submission_id INTEGER PRIMARY KEY, posted TEXT NOT NULL, hundredths INTEGER NOT NULL, observed_on TEXT NOT NULL, direction TEXT NOT NULL, osm_ref TEXT NULL, FOREIGN KEY (submission_id) REFERENCES submissions(id))",
+        ],
+    ],
 ];

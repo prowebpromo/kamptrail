@@ -91,19 +91,23 @@ test('Spanish rig and height display preserves portable profile keys and raw OSM
   const env=boot('es');Object.assign(env.context,{TextEncoder,TextDecoder,URL,crypto:require('node:crypto').webcrypto});
   for(const file of ['rig-profile.js','clearances.js','route-clearance.js'])vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../'+file),'utf8'),env.context);
   const rig=env.context.KampTrailRigProfile,p=rig.create();p.name='Original rig name';p.rig.heightMm=3200;p.rig.campsiteFitLengthMm=6706;p.campsite.hookups=['electric'];
-  const saved=rig.validate(p);assert.equal(saved.name,'Original rig name');assert.equal(saved.rig.heightMm,3200);assert.equal(rig.toFilters(saved).hookups[0],'electric');assert.equal(saved.displayUnits.length,'ft');assert.equal(env.api.t('Rig profile'),'Perfil del vehículo');assert.equal(env.api.t('Nearby mapped heights (RI pilot)'),'Alturas cartografiadas cercanas (piloto de RI)');
-  const C=env.context.KampTrailClearances,raw={tags:{maxheight:'3.7 m'},metres:{maxheight:3.7}};assert.match(C.heightText(raw,'maxheight'),/^3.7 m/);assert.deepEqual(raw.tags,{maxheight:'3.7 m'});assert.match(C.heightText(raw,'maxheight:physical'),/Desconocido/);
+  const saved=rig.validate(p);assert.equal(saved.name,'Original rig name');assert.equal(saved.rig.heightMm,3200);assert.equal(rig.toFilters(saved).hookups[0],'electric');assert.equal(saved.displayUnits.length,'ft');assert.equal(env.api.t('Rig profile'),'Perfil del vehículo');assert.equal(env.api.t('Clearance candidates along route'),'Candidatos de gálibo a lo largo de la ruta');
+  const C=env.context.KampTrailClearances,raw={tags:{maxheight:'3.7 m'}};assert.match(C.heightText(raw,'maxheight'),/^3.7 m/);assert.deepEqual(raw.tags,{maxheight:'3.7 m'});assert.match(C.heightText(raw,'maxheight:physical'),/Desconocido/);
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../community-discovery.js'),'utf8'),env.context);assert.equal(env.context.KampTrailDiscovery.MONTHS['01'],'Enero');assert.equal(env.context.KampTrailDiscovery.season('2026-01-05'),'winter');
 });
 
 test('Spanish height evidence translates product explanations while retaining raw tags, source identities and dates',()=>{
   const env=boot('es');Object.assign(env.context,{TextEncoder,TextDecoder,Uint8Array,URL,module:{exports:{}}});
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../clearances.js'),'utf8'),env.context);
-  const C=env.context.module.exports,data=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/clearances/RI.json'),'utf8')),row=structuredClone(data.records[0]);
-  const raw='none';row.tags.maxheight=raw;row.metres.maxheight=null;
-  assert.equal(C.heightText(row,'maxheight'),'none (límite numérico desconocido)');
+  const C=env.context.module.exports,m=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/clearances/index.json'),'utf8')),e=m.tiles.find(x=>x.records>2);
+  const row=structuredClone(JSON.parse(fs.readFileSync(path.join(__dirname,'../data/clearances',e.path),'utf8')).candidates[0]);
+  const raw='none';row.tags.maxheight=raw;
+  assert.equal(C.heightText(row,'maxheight'),'none (límite numérico desconocido)');assert.equal(row.tags.maxheight,'none');
   assert.match(C.heightText(row,'maxheight:physical'),/no hay etiqueta en la fuente/);
-  const description=C.describe(row,data,true);assert.match(description,/Instantánea guardada/);assert.match(description,/no aplica restricciones del vehículo|ni aplica restricciones del vehículo/);assert.ok(description.includes(data.source.extract_timestamp));assert.ok(description.includes(data.source.retrieved_at));assert.ok(description.includes(row.edited_at));assert.equal(C.sourceLink(row),'https://www.openstreetmap.org/'+row.osm_type+'/'+row.osm_id);
+  const dates=C.sourceDates(m,row),s=m.sources[row.state];assert.match(dates,/no son una inspección/);assert.ok(dates.includes(s.extract_timestamp));assert.ok(dates.includes(s.retrieved_at));assert.ok(dates.includes(row.edited_at));
+  assert.equal(C.sourceLink(row),'https://www.openstreetmap.org/'+row.osm_type+'/'+row.osm_id);
+  assert.match(C.comparisonText({relation:'equal',clearance_hundredths:16200,rig_hundredths:16200,difference_mm:0}),/^Conflicto: .*13'6".*Igual no significa/);
+  assert.equal(C.ATTRIBUTION,m.attribution,'the ODbL sentence is legal attribution and stays in English');
 });
 
 test('French uses its own catalogue, keeps every Spanish key and placeholder, and falls back visibly when missing',()=>{

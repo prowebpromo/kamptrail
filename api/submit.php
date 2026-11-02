@@ -2,6 +2,7 @@
 // Accept a camper's correction or new-campsite proposal for moderation. Nothing is published automatically.
 declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
+require __DIR__ . '/_lib/clearance-reports.php';
 kt_require_method('POST');
 
 $pdo = kt_db();
@@ -21,7 +22,14 @@ $elapsed = (int)($in['elapsed_ms'] ?? 0);
 if ($elapsed < 3000) $errors['form'] = 'Please take a moment to review your report, then send it again.';
 
 $kind = (string)($in['kind'] ?? '');
-if (!in_array($kind, ['correction', 'new_place'], true)) $errors['kind'] = 'Choose a correction or a new campsite.';
+if (!in_array($kind, ['correction', 'new_place', 'clearance'], true)) $errors['kind'] = 'Choose a correction or a new campsite.';
+// A posted clearance is a moderated submission with structured fields. It needs the 006 migration.
+$clearance = null;
+if ($kind === 'clearance') {
+    if (!kcr_ready($pdo)) kt_unavailable();
+    $clearance = kcr_validate($in['clearance'] ?? null);
+    if (isset($clearance['error'])) $errors['clearance'] = $clearance['error'];
+}
 
 $campsiteId = kt_text($in['campsite_id'] ?? '', 200);
 $campsiteName = kt_text($in['campsite_name'] ?? '', 200);
@@ -32,6 +40,7 @@ $lat = $in['lat'] ?? null; $lng = $in['lng'] ?? null;
 $hasCoords = is_numeric($lat) && is_numeric($lng);
 if ($hasCoords && (abs((float)$lat) > 90 || abs((float)$lng) > 180)) $errors['coordinates'] = 'Coordinates are out of range.';
 if ($kind === 'new_place' && !$hasCoords) $errors['coordinates'] = 'Coordinates are required for a new campsite.';
+if ($kind === 'clearance' && !$hasCoords) $errors['coordinates'] = 'Coordinates are required for a clearance report.';
 
 $allowedProblems = ['closed', 'not_allowed', 'fee', 'location', 'amenities', 'access', 'name', 'other', 'new'];
 $problems = array_values(array_unique(array_filter(array_map('strval', is_array($in['problems'] ?? null) ? $in['problems'] : []), fn($p) => in_array($p, $allowedProblems, true))));
@@ -57,9 +66,14 @@ try {
     $now = kt_now();
     $stmt = $pdo->prepare('INSERT INTO submissions (public_token, kind, campsite_id, campsite_name, lat, lng, problems, details, source_note, contact_email, client_hash, status, created_at, updated_at)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    $stmt->execute([$token, $kind, $campsiteId ?: null, $campsiteName ?: null, $hasCoords ? round((float)$lat, 6) : null, $hasCoords ? round((float)$lng, 6) : null,
+    $pdo->beginTransaction();
+    $stmt->execute([$token, $kind, $campsiteId ?: null, $kind === 'clearance' ? 'Posted clearance ' . $clearance['posted'] : ($campsiteName ?: null), $hasCoords ? round((float)$lat, 6) : null, $hasCoords ? round((float)$lng, 6) : null,
         $problems ? implode(',', $problems) : null, $details, $source ?: null, $email ?: null, $client, 'received', $now, $now]);
+    if ($clearance) $pdo->prepare('INSERT INTO clearance_reports (submission_id, posted, hundredths, observed_on, direction, osm_ref) VALUES (?, ?, ?, ?, ?, ?)')
+        ->execute([(int)$pdo->lastInsertId(), $clearance['posted'], $clearance['hundredths'], $clearance['observed_on'], $clearance['direction'], $clearance['osm_ref']]);
+    $pdo->commit();
 } catch (Throwable $e) {
+    if ($pdo->inTransaction()) $pdo->rollBack();
     error_log('KampTrail API: submission insert failed');
     kt_unavailable();
 }

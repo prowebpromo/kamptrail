@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.35.0';
+  const FR_VERSION = '2.36.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -1792,7 +1792,103 @@
   "Historical captured test data, not a current alert.": "Datos de prueba históricos capturados, no es una alerta vigente.",
   "Zone shape is past its source freshness date and may be out of date.": "La forma de la zona superó su fecha de vigencia en la fuente y puede estar desactualizada.",
   "Updated {0} min ago": "Actualizado hace {0} min",
-  "Updated less than a minute ago": "Actualizado hace menos de un minuto"
+  "Updated less than a minute ago": "Actualizado hace menos de un minuto",
+  "Numeric tag; can be compared with your rig height.": "Etiqueta numérica; se puede comparar con la altura de tu vehículo.",
+  "Value needs checking: it failed a plausibility check and is not compared.": "Valor por verificar: no superó una prueba de plausibilidad y no se compara.",
+  "Unknown: no usable number. Not compared.": "Desconocido: no hay un número utilizable. No se compara.",
+  "Needs checking: conditional limit, not interpreted or compared.": "Por verificar: límite condicional, no se interpreta ni se compara.",
+  "Needs checking: direction or lane limit, not interpreted or compared.": "Por verificar: límite por sentido o carril, no se interpreta ni se compara.",
+  "Needs checking: mixed plain and direction or lane values, not compared.": "Por verificar: valores generales mezclados con valores por sentido o carril, no se compara.",
+  "Save a travel height in your rig profile to compare.": "Guarda una altura de viaje en el perfil de tu vehículo para comparar.",
+  "Not compared with your rig height.": "No se compara con la altura de tu vehículo.",
+  "Conflict: tagged clearance {clearance} is lower than your rig height {rig} by {gap}.": "Conflicto: el gálibo etiquetado {clearance} es menor que la altura de tu vehículo {rig} por {gap}.",
+  "Conflict: tagged clearance {clearance} equals your rig height {rig}. Equal is not clear.": "Conflicto: el gálibo etiquetado {clearance} es igual a la altura de tu vehículo {rig}. Igual no significa que se pueda pasar.",
+  "Tagged clearance {clearance} is higher than your rig height {rig} by {gap}. One tagged object only; this does not establish passage.": "El gálibo etiquetado {clearance} supera la altura de tu vehículo {rig} por {gap}. Es un solo objeto etiquetado; no establece que se pueda pasar.",
+  "Road relationship unknown: this data cannot tie the limit to a road.": "Relación con la vía desconocida: estos datos no pueden vincular el límite a una vía.",
+  "Limit tagged on this road way ({evidence}). Which road a route drives is a separate question.": "Límite etiquetado en esta vía ({evidence}). Qué vía recorre una ruta es otra cuestión.",
+  "OpenStreetMap extract {extract}; downloaded {retrieved}. Object last edited {edited}. These dates are not an inspection.": "Extracto de OpenStreetMap {extract}; descargado {retrieved}. Última edición del objeto {edited}. Estas fechas no son una inspección.",
+  "Object last edited {edited}. Extract date unknown.": "Última edición del objeto {edited}. Fecha del extracto desconocida.",
+  "OpenStreetMap copyright and licence": "Derechos de autor y licencia de OpenStreetMap",
+  "Report a posted clearance": "Informar un gálibo señalizado",
+  "Not sure": "No estoy seguro",
+  "Both directions": "Ambos sentidos",
+  "One direction only": "Solo un sentido",
+  "I saw this sign myself or it comes from an official source.": "Vi esta señal personalmente o proviene de una fuente oficial.",
+  "Location: {lat}, {lng}.": "Ubicación: {lat}, {lng}.",
+  "Linked to OpenStreetMap object {id}.": "Vinculado al objeto de OpenStreetMap {id}.",
+  "Move the map so its centre is on the structure before opening this form.": "Mueve el mapa para que su centro quede sobre la estructura antes de abrir este formulario.",
+  "A moderator reviews every report. Published reports show the posted value and dates. They are never compared with your rig height and never change OpenStreetMap data.": "Un moderador revisa cada informe. Los informes publicados muestran el valor señalizado y las fechas. Nunca se comparan con la altura de tu vehículo ni modifican los datos de OpenStreetMap.",
+  "Posted clearance on the sign": "Gálibo indicado en la señal",
+  "Write it as on the sign, for example 13'6\" or 4.1 m.": "Escríbelo como en la señal, por ejemplo 13'6\" o 4.1 m.",
+  "Date you saw it": "Fecha en que la viste",
+  "Applies to": "Se aplica a",
+  "Where is the sign and what is it on?": "¿Dónde está la señal y en qué estructura?",
+  "Road name, structure and travel direction. At least 10 characters.": "Nombre de la vía, estructura y sentido de circulación. Al menos 10 caracteres.",
+  "Enter the posted height as 13'6\" or 4.1 m.": "Escribe la altura señalizada como 13'6\" o 4.1 m.",
+  "Posted clearance {value}": "Gálibo señalizado {value}",
+  "Received. A moderator will review it. Check its status under About the data, My reports.": "Recibido. Un moderador lo revisará. Consulta su estado en Acerca de los datos, Mis informes.",
+  "Reports are unavailable right now. Try again later.": "Los informes no están disponibles ahora. Inténtalo más tarde.",
+  "Clearance candidate details": "Detalles del candidato de gálibo",
+  "Clearance candidate": "Candidato de gálibo",
+  "Map view only: not matched to any route.": "Solo vista de mapa: no se asocia a ninguna ruta.",
+  "Source flags: {reasons}": "Indicadores de la fuente: {reasons}",
+  "Report a different posted clearance": "Informar un gálibo señalizado distinto",
+  "Visitor-reported clearance details": "Detalles del gálibo informado por visitantes",
+  "Visitor-reported posted clearance": "Gálibo señalizado informado por visitantes",
+  "Posted value: {value}. Seen {observed}; published {published}.": "Valor señalizado: {value}. Visto {observed}; publicado {published}.",
+  "Moderated visitor report, not OpenStreetMap data. Not compared with your rig height and not tied to a road.": "Informe de visitante moderado, no son datos de OpenStreetMap. No se compara con la altura de tu vehículo ni se vincula a una vía.",
+  "Applies to: {direction}": "Se aplica a: {direction}",
+  "Zoom to level {zoom} or closer to load clearance candidates. Nothing is loaded at this zoom; hazards here are unknown.": "Acerca el mapa al nivel {zoom} o más para cargar candidatos de gálibo. A este nivel no se carga nada; los peligros aquí son desconocidos.",
+  "Loading clearance candidates…": "Cargando candidatos de gálibo…",
+  "This view needs too much clearance data. Zoom in further; hazards here are unknown.": "Esta vista necesita demasiados datos de gálibo. Acerca más el mapa; los peligros aquí son desconocidos.",
+  "Visitor reports unavailable.": "Informes de visitantes no disponibles.",
+  "{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown. {reports} visitor reports.": "{count} candidatos de gálibo en la vista: {conflicts} en conflicto con la altura de tu vehículo, {unresolved} por verificar o desconocidos. {reports} informes de visitantes.",
+  "{failed} data tiles failed their integrity check and are not shown; that area is unknown.": "{failed} teselas de datos no superaron la comprobación de integridad y no se muestran; esa zona es desconocida.",
+  "Unmapped hazards are unknown.": "Los peligros no cartografiados son desconocidos.",
+  "Not in this dataset: {states}.": "No incluidos en este conjunto de datos: {states}.",
+  "Visitor report {value}": "Informe de visitante {value}",
+  "Clearance candidates unavailable. Hazards in this view are unknown. Reconnect and retry.": "Candidatos de gálibo no disponibles. Los peligros en esta vista son desconocidos. Vuelve a conectarte e inténtalo de nuevo.",
+  "Clearance candidate in view": "Candidato de gálibo en la vista",
+  "Open selected candidate": "Abrir el candidato seleccionado",
+  "Retry clearance data": "Reintentar datos de gálibo",
+  "Clearance candidates": "Candidatos de gálibo",
+  "Clearance candidates along route": "Candidatos de gálibo a lo largo de la ruta",
+  "Searches OpenStreetMap clearance candidates within about 100 m of the calculated route. A candidate counts as on the driven road only when the route carries the same OSM way or node id. Nearby candidates without that evidence stay unresolved: they may be on another road, another level or another direction. Segments without data, and any unmapped hazards, are unknown. Nothing here means a route is clear.": "Busca candidatos de gálibo de OpenStreetMap a unos 100 m de la ruta calculada. Un candidato cuenta como parte de la vía recorrida solo cuando la ruta lleva el mismo identificador de vía o nodo de OSM. Los candidatos cercanos sin esa evidencia quedan sin resolver: pueden estar en otra vía, otro nivel u otro sentido. Los tramos sin datos y cualquier peligro no cartografiado son desconocidos. Nada de esto significa que una ruta esté libre.",
+  "The route, itinerary or rig height changed. Close and search the current route again.": "Cambió la ruta, el itinerario o la altura del vehículo. Cierra y vuelve a buscar en la ruta actual.",
+  "about {m} m from route, leg {leg}": "a unos {m} m de la ruta, tramo {leg}",
+  "Not counted against this route: {text}": "No se cuenta contra esta ruta: {text}",
+  "Road association: {association} ({evidence}). Direction: {direction}.": "Asociación con la vía: {association} ({evidence}). Sentido: {direction}.",
+  "on the driven road": "en la vía recorrida",
+  "on a different road": "en otra vía",
+  "unresolved": "sin resolver",
+  "no direction limit tagged": "sin límite por sentido etiquetado",
+  "On the driven road: {on} ({conflicts} conflict with your rig height, {unresolvedValue} need checking or unknown). Nearby, road unresolved: {unresolved}. On a different road: {other}. Segments without data: {missing}. This is not a clear-route result.": "En la vía recorrida: {on} ({conflicts} en conflicto con la altura de tu vehículo, {unresolvedValue} por verificar o desconocidos). Cercanos, vía sin resolver: {unresolved}. En otra vía: {other}. Tramos sin datos: {missing}. Esto no indica que la ruta esté libre.",
+  "This route has no OSM road identity, so no candidate can be tied to the driven road. Every nearby candidate below is unresolved.": "Esta ruta no tiene identidad de vía de OSM, así que ningún candidato puede vincularse a la vía recorrida. Todos los candidatos cercanos de abajo quedan sin resolver.",
+  "Road association uses exact OSM way and node ids carried by the route.": "La asociación con la vía usa los identificadores exactos de vía y nodo de OSM que lleva la ruta.",
+  "On the driven road (exact OSM id)": "En la vía recorrida (identificador OSM exacto)",
+  "None identified. This does not mean the road is clear.": "Ninguno identificado. Esto no significa que la vía esté libre.",
+  "Nearby, road relationship unresolved": "Cercanos, relación con la vía sin resolver",
+  "None within about 100 m.": "Ninguno a unos 100 m.",
+  "Nearby, on a different road (exact OSM id)": "Cercanos, en otra vía (identificador OSM exacto)",
+  "Route segments without clearance data": "Tramos de la ruta sin datos de gálibo",
+  "Data loaded for every segment. Unmapped hazards are still unknown.": "Se cargaron datos para todos los tramos. Los peligros no cartografiados siguen siendo desconocidos.",
+  "Segments {from} to {to} (about {km} km): {reason}.": "Tramos {from} a {to} (unos {km} km): {reason}.",
+  "{region} is not in this dataset yet": "{region} aún no está en este conjunto de datos",
+  "data failed its integrity check": "los datos no superaron la comprobación de integridad",
+  "too much data for one route check": "demasiados datos para una sola comprobación de ruta",
+  "OSM extract dates by state: {dates}.": "Fechas de extracto de OSM por estado: {dates}.",
+  "Clearance data is unavailable or the search could not be completed. No clearance conclusion is possible.": "Los datos de gálibo no están disponibles o la búsqueda no pudo completarse. No es posible ninguna conclusión sobre el gálibo.",
+  "Clearance candidates (OpenStreetMap)": "Candidatos de gálibo (OpenStreetMap)",
+  "The optional clearance-candidate layer shows OpenStreetMap objects that carry a height tag, nationwide, from zoom 10. Only plain numeric tags are compared with the travel height in your rig profile; a clearance equal to your rig height is a conflict, never clear. Suspect, conditional, direction-specific, mixed and unknown values stay visible as needing checking. Along a calculated route a candidate counts as on the driven road only with an exact OSM identity match; nearby candidates stay unresolved, and segments without data are listed. Rhode Island uses its dated pilot file, shown as raw tags and never compared, until it joins the national set. Moderated visitor reports of posted clearances appear separately. Nothing here establishes passage, legal access or that unmapped hazards are absent. OpenStreetMap data: ODbL 1.0.": "La capa opcional de candidatos de gálibo muestra objetos de OpenStreetMap con una etiqueta de altura, en todo el país, desde el nivel de zoom 10. Solo las etiquetas numéricas simples se comparan con la altura de viaje de tu perfil de vehículo; un gálibo igual a la altura de tu vehículo es un conflicto, nunca libre. Los valores sospechosos, condicionales, por sentido, mixtos y desconocidos siguen visibles como pendientes de verificar. En una ruta calculada, un candidato cuenta como parte de la vía recorrida solo con una coincidencia exacta de identidad de OSM; los candidatos cercanos quedan sin resolver y se enumeran los tramos sin datos. Rhode Island usa su archivo piloto fechado, mostrado como etiquetas originales y nunca comparado, hasta que se incorpore al conjunto nacional. Los informes moderados de visitantes sobre gálibos señalizados aparecen por separado. Nada de esto establece el paso, el acceso legal ni la ausencia de peligros no cartografiados. Datos de OpenStreetMap: ODbL 1.0.",
+  "Rhode Island pilot record: raw source tags only. Not reviewed for comparison, so it is not compared with your rig height.": "Registro piloto de Rhode Island: solo etiquetas originales de la fuente. No se revisó para comparar, así que no se compara con la altura de tu vehículo.",
+  "Rhode Island: {count} pilot records with raw tags only (extract {date}); not compared.": "Rhode Island: {count} registros piloto solo con etiquetas originales (extracto {date}); no se comparan.",
+  "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.": "Faltan los datos piloto de Rhode Island o no superaron la validación; Rhode Island es desconocido.",
+  "Rhode Island pilot data is missing or failed validation; Rhode Island is unknown": "faltan los datos piloto de Rhode Island o no superaron la validación; Rhode Island es desconocido",
+  "Rhode Island uses the pilot extract of {date}. Its records show raw tags only and stay unresolved.": "Rhode Island usa el extracto piloto del {date}. Sus registros muestran solo etiquetas originales y quedan sin resolver.",
+  "National clearance data unavailable; outside Rhode Island this view is unknown.": "Datos nacionales de gálibo no disponibles; fuera de Rhode Island esta vista es desconocida.",
+  "{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown.": "{count} candidatos de gálibo en la vista: {conflicts} en conflicto con la altura de tu vehículo, {unresolved} por verificar o desconocidos.",
+  "{count} visitor reports.": "{count} informes de visitantes.",
+  "First {count} visitor reports; more are not shown.": "Primeros {count} informes de visitantes; hay más que no se muestran."
 };
   function t(key, params = {}) {
     const messages = catalogue(), message = messages && Object.hasOwn(messages, key) ? messages[key] : String(key);
@@ -1835,7 +1931,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.35.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.36.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
