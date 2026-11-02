@@ -7,6 +7,16 @@ function worker(fetcher) {
   return {handlers,stores,caches};
 }
 const good={type:'FeatureCollection',features:[]};
+test('2.40 upgrade retires the shipped 2.39 shell while keeping saved campsite data',async()=>{
+  const w=worker(),prefix='kamptrail:https://example.test/kamptrail/:';
+  const previous=await w.caches.open(prefix+'kt-v73');
+  await previous.put('https://example.test/kamptrail/app.js',new Response('stale 2.39.1 runtime'));
+  await w.caches.open(prefix+'data-v1');
+  let installed;w.handlers.install({waitUntil:p=>installed=p});await installed;
+  let activated;w.handlers.activate({waitUntil:p=>activated=p});await activated;
+  assert.equal(w.stores.has(prefix+'kt-v73'),false,'The shipped cache must be retired, not reused');
+  assert.equal(w.stores.has(prefix+'data-v1'),true,'Visited campsite data survives the upgrade');
+});
 test('optional RIDB amenity evidence bypasses generic caches for page validation',()=>{
   const w=worker();let intercepted=false;
   w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/campsites/ridb-amenities.json'),respondWith:()=>{intercepted=true;}});
