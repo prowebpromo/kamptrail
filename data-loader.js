@@ -268,7 +268,8 @@
     if(state.agencyRetry)return state.agencyRetry;
     state.agencyRetry=(async()=>{
       try{
-        if(state.agencyIndex!=='ok'){state.agencyIndex='pending';notify();await loadAgencyIndex();}
+        // Stay 'failed' until the retry resolves it, so the notice clears only on real recovery.
+        if(state.agencyIndex!=='ok')await loadAgencyIndex();
         if(state.agencyIndex==='ok'){
           const codes=[...state.loadedStates].filter(c=>state.agencyStates.has(c)&&!state.loading.has(c)&&(agencyFailed.has(c)||!agencyRaw.has(c))).sort();
           const results=await Promise.all(codes.map(async c=>[c,await fetchAgencyState(c)]));

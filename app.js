@@ -144,15 +144,7 @@
     const status = KampTrailData.getLoadStatus();
     const sites = KampTrailData.getVisibleCampsites();
     const summary = document.getElementById('result-summary');
-    if (status.overview) {
-      summary.textContent = t("Zoomed out · about {count} source listings nationwide", {count:status.catalogueTotal.toLocaleString(window.KampTrailI18n?.locale() || 'en-US')});
-      const note = document.createElement('p'); note.className = 'list-empty';
-      note.textContent = t("Zoom in, search, or select a state bubble to see campsites. Listings load for the area you view, which keeps the map fast on a weak signal.");
-      document.getElementById('data-errors').hidden = true;
-      document.getElementById('result-list').replaceChildren(note);
-      return;
-    }
-    summary.textContent = t("{count} in this view · {total} loaded{loading}", {count:sites.length.toLocaleString(window.KampTrailI18n?.locale()),total:status.totalSites.toLocaleString(window.KampTrailI18n?.locale()),loading:status.loading?' · '+t('Loading…'):''});
+    // Load failures render first, so the overview keeps the notice and its Retry.
     const errors = document.getElementById('data-errors');
     const agencyFailed = status.agencyFailedStates || [], agencyMissing = status.agencyIndex === 'failed' || agencyFailed.length > 0;
     errors.replaceChildren(); errors.hidden = !status.failedStates.length && !agencyMissing;
@@ -171,6 +163,14 @@
       retry.onclick = () => { retry.disabled = true; KampTrailData.retryAgency().finally(() => { retry.disabled = false; }); };
       notice.append(message, retry); errors.append(notice);
     }
+    if (status.overview) {
+      summary.textContent = t("Zoomed out · about {count} source listings nationwide", {count:status.catalogueTotal.toLocaleString(window.KampTrailI18n?.locale() || 'en-US')});
+      const note = document.createElement('p'); note.className = 'list-empty';
+      note.textContent = t("Zoom in, search, or select a state bubble to see campsites. Listings load for the area you view, which keeps the map fast on a weak signal.");
+      document.getElementById('result-list').replaceChildren(note);
+      return;
+    }
+    summary.textContent = t("{count} in this view · {total} loaded{loading}", {count:sites.length.toLocaleString(window.KampTrailI18n?.locale()),total:status.totalSites.toLocaleString(window.KampTrailI18n?.locale()),loading:status.loading?' · '+t('Loading…'):''});
     const list = document.getElementById('result-list');
     const fragment = document.createDocumentFragment();
     const center = map.getCenter();

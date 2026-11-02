@@ -79,5 +79,43 @@ for(const [name,options] of Object.entries(VIEWPORTS)){
       expect(await agencyCount(page)).toBeGreaterThan(0);
       expect(errors).toEqual([]);
     });
+
+    test('an agency index failure shows the notice and Retry in the national overview',async({page})=>{
+      const errors=[];page.on('pageerror',e=>errors.push(e.message));
+      await page.route('**/data/campsites/agency/index.json*',r=>r.fulfill({status:404,body:'not found'}));
+      // National overview: zoomed out, so only state totals show.
+      await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.5,lng:-98.5,zoom:4})));
+      await page.goto('/',{waitUntil:'domcontentloaded'});
+      await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().overview&&KampTrailData.getLoadStatus().agencyIndex==='failed',null,{timeout:30000});
+      if(name==='mobile'&&!(await page.locator('#results').isVisible()))await page.locator('#results-toggle').click();
+      const notice=page.locator('#data-errors .kt-agency-notice');
+      await expect(notice).toContainText(INDEX_NOTICE);
+      await expect(page.locator('#data-errors')).toBeVisible();
+      await expect(page.locator('#result-summary')).toContainText('Zoomed out');
+      await page.unroute('**/data/campsites/agency/index.json*');
+      await notice.getByRole('button',{name:'Retry',exact:true}).click();
+      await expect(page.locator('#data-errors .kt-agency-notice')).toHaveCount(0);
+      await expect(page.locator('#data-errors')).toBeHidden();
+      expect(await page.evaluate(()=>KampTrailData.getLoadStatus().agencyIndex)).toBe('ok');
+      expect(errors).toEqual([]);
+    });
+
+    test('a detail-view agency failure stays visible after zooming out to the overview',async({page})=>{
+      const errors=[];page.on('pageerror',e=>errors.push(e.message));
+      await page.route('**/data/campsites/agency/CO.geojson*',r=>r.fulfill({status:500,body:'error'}));
+      await open(page,name==='mobile');
+      await expect(page.locator('#data-errors .kt-agency-notice')).toContainText(STATE_NOTICE);
+      await page.evaluate(()=>map.setZoom(4));
+      await page.waitForFunction(()=>KampTrailData.getLoadStatus().overview,null,{timeout:15000});
+      await expect(page.locator('#result-summary')).toContainText('Zoomed out');
+      const notice=page.locator('#data-errors .kt-agency-notice');
+      await expect(notice).toContainText(STATE_NOTICE);
+      await expect(page.locator('#data-errors')).toBeVisible();
+      await page.unroute('**/data/campsites/agency/CO.geojson*');
+      await notice.getByRole('button',{name:'Retry',exact:true}).click();
+      await expect(page.locator('#data-errors .kt-agency-notice')).toHaveCount(0);
+      expect(await page.evaluate(()=>KampTrailData.getLoadStatus().agencyFailedStates)).toEqual([]);
+      expect(errors).toEqual([]);
+    });
   });
 }
