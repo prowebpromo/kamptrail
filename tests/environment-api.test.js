@@ -332,9 +332,9 @@ test('a message that replaced or cancelled an alert keeps it retired after the m
         $collection['features']=[$mk('orig','Alert','2026-11-02T03:00:00Z',[]),$mk('upd','Update','2026-11-01T15:02:00Z',['orig'])];
         $fetch=fn($qq,$n)=>['ok'=>true,'data'=>ke_normalize('firewx',$collection,$n)];
         $first=ke_cached($q,$dir,$fetch,$now);
-        check(array_column(array_column($first['data']['features'],'properties'),'id')===['orig','upd']);
+        check(array_column(array_column($first['data']['features'],'properties'),'id')===['upd'], 'orig is retired by upd');
         $later=ke_cached($q,$dir,$fetch,$now+200);
-        check(array_column(array_column($later['data']['features'],'properties'),'id')===['orig'], 'update dropped');
+        check(array_column(array_column($later['data']['features'],'properties'),'id')===[], 'update expired, orig stays retired and is not returned as active');
         check(in_array('orig',$later['data']['retired'],true), json_encode($later['data']['retired']));
         `);
     } finally { fs.rmSync(directory, { recursive: true, force: true }); }
@@ -352,11 +352,11 @@ test('retirement history survives proxy cache refreshes and is pruned after the 
         $fetch=function($qq,$n)use(&$current,$collection){$c=$collection;$c['features']=$current;return ['ok'=>true,'data'=>ke_normalize('firewx',$c,$n)];};
         $ids=fn($r)=>array_column(array_column($r['data']['features'],'properties'),'id');
         $r1=ke_cached($q,$dir,$fetch,$t0);
-        check($ids($r1)===['A','B'] && $r1['data']['retired']===['A'], json_encode($r1['data']['retired']));
+        check($ids($r1)===['B'] && $r1['data']['retired']===['A'], json_encode($r1['data']['retired']));
         // Response 2: the next good upstream answer carries A alone. A fresh client must still see A retired.
         $current=[$mk('A','Alert',$aExpires,[])];
         $r2=ke_cached($q,$dir,$fetch,$t0+400);
-        check($ids($r2)===['A'], 'A alone');
+        check($ids($r2)===[], 'A is retired, so the server never returns it as active: '.json_encode($ids($r2)));
         check($r2['data']['retired']===['A'], 'history merged: '.json_encode($r2['data']['retired']));
         $stored=json_decode(file_get_contents($dir.'/firewx-retired.json'),true);
         check($stored==['A'=>$t0+3000], json_encode($stored));
@@ -374,6 +374,48 @@ test('retirement history survives proxy cache refreshes and is pruned after the 
         check($r4['data']['retired']===['C'], json_encode($r4['data']['retired']));
         $r5=ke_cached($q,$dir,$fetch,$t0+9100);
         check($r5['data']['retired']===[] && json_decode(file_get_contents($dir.'/firewx-retired.json'),true)==[]);
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('server filters against the full retained history: 501 retirements, A is #501, and a response with A alone returns no active A', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-retired3-'));
+    try {
+        php(`
+        $now=strtotime('2026-11-01T15:00:00Z'); $dir=${JSON.stringify(directory)};
+        $feature=fn($id)=>['properties'=>['id'=>$id,'messageType'=>'Alert','expires'=>gmdate('c',$now+3600),'ends'=>null]];
+        $merge=function($features,$retired,$t)use($dir){return ke_merge_retired($dir,['data'=>['features'=>$features,'retired'=>$retired]],$t);};
+        $ids=array_map(fn($n)=>"R$n",range(1,500)); $ids[]='A';   // A is retirement #501
+        check(count($ids)===501);
+        foreach(array_chunk($ids,100) as $chunk) $merge([],$chunk,$now);
+        $stored=json_decode(file_get_contents($dir.'/firewx-retired.json'),true);
+        check(count($stored)===501 && array_key_last($stored)==='A', 'all 501 retained');
+        $r=$merge([$feature('A'),$feature('R1'),$feature('fresh')],[],$now+400);
+        $active=array_column(array_column($r['data']['features'],'properties'),'id');
+        check($active===['fresh'], 'active: '.json_encode($active));
+        check(count($r['data']['retired'])===500, 'client list capped at 500');
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('retirement history holds at most 2,000 ids, prunes the oldest first, and an expired id leaves the history', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-retired4-'));
+    try {
+        php(`
+        $now=strtotime('2026-11-01T15:00:00Z'); $dir=${JSON.stringify(directory)};
+        $feature=fn($id,$exp)=>['properties'=>['id'=>$id,'messageType'=>'Alert','expires'=>gmdate('c',$exp),'ends'=>null]];
+        $merge=function($features,$retired,$t)use($dir){return ke_merge_retired($dir,['data'=>['features'=>$features,'retired'=>$retired]],$t);};
+        $features=[]; $all=[];
+        for($n=1;$n<=2010;$n++){ $all[]="X$n"; $features[]=$feature("X$n",$now+86400); }
+        foreach(array_chunk($all,100) as $i=>$chunk) $merge(array_slice($features,$i*100,100),$chunk,$now);
+        $stored=json_decode(file_get_contents($dir.'/firewx-retired.json'),true);
+        check(count($stored)===2000, 'kept '.count($stored));
+        check(!isset($stored['X1']) && !isset($stored['X10']) && isset($stored['X11']) && isset($stored['X2010']), 'oldest pruned first');
+        $r=$merge([$feature('X1',$now+86400),$feature('X2010',$now+86400)],[],$now+60);
+        $active=array_column(array_column($r['data']['features'],'properties'),'id');
+        check($active===['X1'], json_encode($active));
+        $r=$merge([],[],$now+86401);
+        check(json_decode(file_get_contents($dir.'/firewx-retired.json'),true)==[] && $r['data']['retired']===[]);
         `);
     } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });

@@ -179,7 +179,9 @@
     st.banner.append(node('p', t('National Weather Service · retrieved {0}', { 0: stamp(d.retrieved_at) })));
     const minutes = ageMinutes(d.retrieved_at, now);
     st.banner.append(node('p', minutes < 1 ? t('Updated less than a minute ago') : t('Updated {0} min ago', { 0: minutes }), 'kt-firewx-age'));
-    if (kind === 'stale' || st.failed) st.banner.append(node('p', t('Stale: retrieved {0}. These alerts may have changed or ended. Check the NWS source.', { 0: stamp(d.retrieved_at) }), 'kt-firewx-stale'));
+    if (st.failed) st.banner.append(node('p', t('Could not refresh. These alerts are from the last good update.'), 'kt-firewx-failed'));
+    // Stale is only about age: more than 15 minutes since the last good retrieval. A failed refresh alone does not make it stale.
+    if (kind === 'stale') st.banner.append(node('p', t('Stale: retrieved {0}. These alerts may have changed or ended. Check the NWS source.', { 0: stamp(d.retrieved_at) }), 'kt-firewx-stale'));
     const { alerts, hidden } = select(d.data.features, now, st.retired);
     const features = [];
     for (const a of alerts) {
@@ -198,7 +200,7 @@
     if (!alerts.length) st.list.append(node('p', t('No current Red Flag Warnings or Fire Weather Watches were returned. This does not mean fire danger is low or conditions are safe.'), 'kt-firewx-empty'));
     const hiddenCount = hidden.cancelled + hidden.superseded + hidden.expired;
     if (hiddenCount) st.list.append(node('p', t('{0} ended, cancelled or replaced alerts are not shown.', { 0: hiddenCount }), 'kt-fine'));
-    setStatus(t('{0} current alerts. Retrieved {1}.', { 0: alerts.length, 1: stamp(d.retrieved_at) }) + (kind === 'stale' || st.failed ? ' ' + t('Stale.') : ''));
+    setStatus(t('{0} current alerts. Retrieved {1}.', { 0: alerts.length, 1: stamp(d.retrieved_at) }) + (st.failed ? ' ' + t('Could not refresh.') : '') + (kind === 'stale' ? ' ' + t('Stale.') : ''));
   }
 
   // ---- loading ---------------------------------------------------------------------------------------------------
@@ -235,7 +237,7 @@
     } catch {
       if (seq !== st.seq || !st.enabled) return;
       st.failed = true;
-      if (st.data && Date.now() - time(st.data.retrieved_at) <= STALE_MAX_MS) { render(); setStatus(t('Could not refresh. Showing alerts retrieved {0}. Stale.', { 0: stamp(st.data.retrieved_at) })); }
+      if (st.data && Date.now() - time(st.data.retrieved_at) <= STALE_MAX_MS) render();
       else { st.data = null; render(); setStatus(t('Fire weather alerts are unavailable. No alerts or shapes are shown. Check the NWS source.')); }
     } finally { clearTimeout(timeout); }
     // Poll every five minutes, or at the upstream Retry-After if that is later. Never earlier than Retry-After.

@@ -99,7 +99,13 @@ function ke_merge_retired(string $directory, array $value, int $now): array {
     }
     $known = array_slice($known, -KE_MAX_FEATURES * 4, null, true);
     if (@file_put_contents($path, json_encode($known)) !== false) @chmod($path, 0600);
-    $value['data']['retired'] = array_slice(array_keys($known), 0, KE_MAX_FEATURES);
+    // The server filters against the full retained history (up to 2,000 ids) before the client list is capped, so a
+    // retired alert is never returned as active even when its id is beyond the ids the client receives.
+    // A retired id that falls off a full history (oldest pruned first) is no longer remembered; see docs.
+    if (isset($value['data']['features']) && is_array($value['data']['features'])) {
+        $value['data']['features'] = array_values(array_filter($value['data']['features'], static fn($f): bool => !isset($known[$f['properties']['id'] ?? ''])));
+    }
+    $value['data']['retired'] = array_slice(array_keys($known), -KE_MAX_FEATURES);   // newest 500 go to the client
     return $value;
 }
 

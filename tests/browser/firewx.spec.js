@@ -231,17 +231,45 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       await expect(panel(page).locator('.kt-firewx-age')).toHaveText('Updated 30 min ago');
     });
 
-    test('a failed refresh keeps the last alerts labelled stale, and a first failure shows an unavailable message', async ({ page, context }) => {
-      const s = await setup(page, context);
+    test('a failed refresh 5 minutes after a good retrieval says it could not refresh and shows the age, with no Stale', async ({ page, context }) => {
+      const s = await setup(page, context, { ageMinutes: 5 });
       await enable(page); await open(page);
       await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
-      await expect(panel(page).locator('.kt-firewx-stale')).toHaveCount(0);
       s.firewxStatus = 503;
       await panel(page).getByRole('button', { name: 'Refresh fire weather alerts' }).click();
-      await expect(panel(page).locator('.kt-firewx-stale')).toBeVisible({ timeout: 20000 });
+      await expect(panel(page).locator('.kt-firewx-failed')).toContainText('Could not refresh', { timeout: 20000 });
       await expect(panel(page).locator('[data-firewx-status]')).toContainText('Could not refresh');
+      await expect(panel(page).locator('.kt-firewx-age')).toHaveText('Updated 5 min ago');
+      await expect(panel(page).locator('.kt-firewx-stale')).toHaveCount(0);
+      await expect(panel(page).locator('[data-firewx-status]')).not.toContainText('Stale');
       await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
     });
+
+    test('a failed refresh 16 minutes after a good retrieval shows Stale as well', async ({ page, context }) => {
+      const s = await setup(page, context, { ageMinutes: 16 });
+      await enable(page); await open(page);
+      await expect(panel(page).locator('.kt-firewx-stale')).toBeVisible();
+      s.firewxStatus = 503;
+      await panel(page).getByRole('button', { name: 'Refresh fire weather alerts' }).click();
+      await expect(panel(page).locator('.kt-firewx-failed')).toContainText('Could not refresh', { timeout: 20000 });
+      await expect(panel(page).locator('.kt-firewx-stale')).toContainText('Stale: retrieved');
+      await expect(panel(page).locator('[data-firewx-status]')).toContainText('Stale.');
+      await expect(panel(page).locator('.kt-firewx-age')).toHaveText('Updated 16 min ago');
+      await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
+    });
+
+    for (const [lang, label, failed, age] of [['es', 'Alertas de clima de incendio (NWS)', 'No se pudo actualizar', 'Actualizado hace 5 min'], ['fr', 'Alertes météo d’incendie (NWS)', 'Actualisation impossible', 'Mis à jour il y a 5 min']]) {
+      test(`${lang} failed refresh at 5 minutes shows the translated message and age, with no Stale`, async ({ page, context }) => {
+        const s = await setup(page, context, { lang, ageMinutes: 5 });
+        await enable(page, label); await open(page);
+        await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
+        s.firewxStatus = 503;
+        await page.evaluate(() => window.KampTrailFireWeather.refresh());
+        await expect(panel(page).locator('.kt-firewx-failed')).toContainText(failed, { timeout: 20000 });
+        await expect(panel(page).locator('.kt-firewx-age')).toHaveText(age);
+        await expect(panel(page).locator('.kt-firewx-stale')).toHaveCount(0);
+      });
+    }
 
     test('first-load failure hides everything and offers a retry', async ({ page, context }) => {
       await setup(page, context, { firewxStatus: 503 });

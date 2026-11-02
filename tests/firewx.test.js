@@ -305,3 +305,13 @@ test('freshness: Stale means more than 15 minutes since the last good retrieval,
   // The alert label is unaffected by zone deadlines and stays on the 15 minute rule.
   assert.equal(fw.freshness(at(-500), NOW + 2 * MIN), 'fresh');
 });
+
+test('refresh failure: "Could not refresh" never implies Stale; only a last good retrieval older than 15 minutes does', () => {
+  const src = fs.readFileSync(path.join(root, 'firewx.js'), 'utf8');
+  assert.match(src, /if \(st\.failed\) st\.banner\.append\(node\('p', t\('Could not refresh\./);
+  assert.match(src, /if \(kind === 'stale'\) st\.banner\.append/, 'Stale banner depends only on age');
+  assert.doesNotMatch(src, /kind === 'stale' \|\| st\.failed/);
+  const MIN = 60000, d = { ...fx.payload('polygon'), retrieved_at: new Date(NOW).toISOString() };
+  assert.equal(fw.freshness(d, NOW + 5 * MIN), 'fresh', 'failed refresh at 5 minutes');
+  assert.equal(fw.freshness(d, NOW + 16 * MIN), 'stale', 'failed refresh at 16 minutes');
+});
