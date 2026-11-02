@@ -284,5 +284,5 @@
     return { [LABEL]: st.group };
   }
 
-  global.KampTrailFireWeather = { version: '2.36.0', LABEL, EVENTS, FRESH_MS, STALE_MAX_MS, ZONE_BUDGET, init, refresh, render, validate, validateZone, freshness, ageMinutes, select, retiredIds, usableSnapshot, neededZones, resolveShape };
+  global.KampTrailFireWeather = { version: '2.37.0', LABEL, EVENTS, FRESH_MS, STALE_MAX_MS, ZONE_BUDGET, init, refresh, render, validate, validateZone, freshness, ageMinutes, select, retiredIds, usableSnapshot, neededZones, resolveShape };
 })(typeof window !== 'undefined' ? window : globalThis);
