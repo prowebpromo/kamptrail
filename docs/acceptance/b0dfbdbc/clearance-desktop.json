@@ -1,0 +1,58 @@
+{
+ "start": "2026-11-02T01:51:44.039Z",
+ "base": "https://kamptrail.com",
+ "expected_sha": "b0dfbdbc92a352c3e05e4f2a1396e463a845e17d",
+ "browser": {
+  "executable": "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome",
+  "version": "153.0.8010.12"
+ },
+ "mobile_emulation": false,
+ "viewport_runtime": {
+  "width": 1280,
+  "height": 720
+ },
+ "national": {
+  "manifest_tiles": 1059,
+  "picked_tile": "tiles/13-2045-3244.json",
+  "picked_records": 535,
+  "center": {
+   "lat": 35.0217465,
+   "lng": -90.10564400000001
+  },
+  "zoom": 13,
+  "status": "1022 clearance candidates in view: 0 conflict with your rig height, 1022 need checking or unknown. Visitor reports unavailable. Unmapped hazards are unknown.",
+  "odbl_in_control": true,
+  "attribution_bar": true,
+  "tile_responses": [
+   [
+    "12-1023-1622.json",
+    200
+   ],
+   [
+    "12-1023-1621.json",
+    200
+   ],
+   [
+    "13-2045-3245.json",
+    200
+   ],
+   [
+    "13-2045-3244.json",
+    200
+   ],
+   [
+    "13-2045-3243.json",
+    200
+   ]
+  ],
+  "page_errors": [],
+  "visitor_reports_unavailable": true
+ },
+ "release": {
+  "source_commit": "b0dfbdbc92a352c3e05e4f2a1396e463a845e17d"
+ },
+ "version": "2.36.0",
+ "result": "FAIL",
+ "error": "visitor reports endpoint answers\n\ntrue !== false\n",
+ "end": "2026-11-02T01:51:48.206Z"
+}
