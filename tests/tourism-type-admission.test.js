@@ -157,8 +157,8 @@ test('reviewed publication and evidence survive an updated retrieval without inv
   const f=pt({...ridb,id:'ridb:243218',facility_id:'243218',name:'Coleman Lake Recreation Area',source_retrieved_at:'2030-01-10T15:00:00Z',type:'other'});
   const p=DQ.cleanAndDedupeGeoJSON({features:[f]}).features[0].properties;
   assert.equal(p.camping_classification,'published_pending_review');
-  assert.equal(p.type,'established','owner decision 2026-11-01: the published label is held during review');
-  assert.equal(p.type_evidence.kind,'held_published_label');
+  assert.equal(p.type,'established','owner decision 2026-11-01 20:24: accepted from its own description');
+  assert.equal(p.type_evidence.kind,'owner_reviewed_own_record');
   assert.equal(DQ.normalizeFeature(pt({...f.properties,access:'private'})),null);
 });
 test('owner decision 2026-11-01: a proposed withdrawal stays discoverable with its held label and a pending notice',()=>{
@@ -175,9 +175,27 @@ test('owner decision 2026-11-01: a proposed withdrawal stays discoverable with i
   // A record outside the reviewed set gets no hold.
   assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt({...row.properties,id:'ridb:9',facility_id:'9'})]},{siteDetails:{}}).features.length,0);
 });
-test('owner decision 2026-11-01: a deferred downgrade keeps its published label',()=>{
-  const p=DQ.normalizeFeature(pt({...ridb,id:'ridb:255262',facility_id:'255262',name:'Wolf Flats Recreation Area',type:'other',tourism:undefined}),{siteDetails:{}}).properties;
-  assert.equal(p.type,'established');
+test('owner decision 2026-11-01 20:24: deferred labels follow the dated ledger',()=>{
+  const n=(id,name,extra={})=>DQ.cleanAndDedupeGeoJSON({features:[pt({...ridb,id,facility_id:id.slice(5),name,type:'other',description:'Camping is available at campsites.',...extra})]},{siteDetails:{},includeUnverified:true}).features[0].properties;
+  assert.equal(n('ridb:255262','Wolf Flats Recreation Area').type,'dispersed','own dispersed description');
+  assert.equal(n('ridb:249902','Wolf Gap Recreation Area').type_evidence.kind,'held_published_label','decision 4 exception stays held');
+  const enduro=n('ridb:240871','Enduro Camp');assert.equal(enduro.type,'other');assert.equal(enduro.camping_classification,'published_pending_review');
+  assert.equal(n('ridb:262796','Horse Mountain Primitive Camp').type,'other','primitive alone is not Dispersed');
+  assert.equal(n('ridb:257133','Rock Castle Camping Area').type,'established');
+  assert.equal(n('ridb:10134443','Muchwater Dispersed Campground and Recreation Area').type,'dispersed');
+});
+test('the dated decision ledger matches the classifier for every decided listing',()=>{
+  const ledger=require('../docs/tourism/decision-ledger-2026-11-01.json');
+  assert.equal(ledger.records.length,62);
+  const src=fs.readFileSync(path.join(__dirname,'../data-quality.js'),'utf8');
+  const map=name=>new Map([...src.slice(src.indexOf('const '+name)).split(']);')[0].matchAll(/\['(ridb:\d+)', '(\w+)'\]/g)].map(m=>[m[1],m[2]]));
+  const reviewed=map('OWNER_REVIEWED_LABELS'),held=map('HELD_PUBLISHED_LABELS');
+  for(const r of ledger.records){
+    if(['upgrade_reviewed_individually','keep_current_label','relabel_dispersed'].includes(r.decision))assert.equal(reviewed.get(r.id),r.label,r.id);
+    else assert.ok(!reviewed.has(r.id),r.id);
+    assert.equal(held.has(r.id),['keep_discoverable_pending_withdrawal_review','exception_held_pending'].includes(r.decision),r.id);
+  }
+  assert.equal(reviewed.size,29);assert.equal(held.size,11);
 });
 test('lodging: the reviewed own-record closure notice is kept, and the multi-cabin record is distinguished',()=>{
   const shaw=pt({...ridb,id:'ridb:233178',facility_id:'233178',name:'SHAW HOUSE',source_retrieved_at:'2026-10-29T02:47:24Z',description:'<p><em>Shaw House is temporarily closed. In April of 2026 ...</em> (09/10/2026)</p>'});

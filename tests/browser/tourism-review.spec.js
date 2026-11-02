@@ -1,11 +1,16 @@
 const {test,expect}=require('@playwright/test');
-// Owner decisions of 2026-11-01 for the tourism admission candidate (docs/TOURISM_TYPE_ADMISSION_CANDIDATE.md).
+// Owner decisions of 2026-11-01 (08:16 and 20:24 ET) for the tourism admission candidate (docs/TOURISM_TYPE_ADMISSION_CANDIDATE.md).
 // Run against a rebuilt candidate catalogue. In English the popup prints the raw type value (pre-existing on main). Each case opens the real app at #site=<id>, by canonical and legacy id.
 const CASES=[
   {id:'ridb:247835',via:['ridb:247835','osm:way:941066426'],name:'Daisy State Park',type:'established',has:['under review for removal from campsite search','label published before this review']},
   {id:'ridb:244404',via:['usfs:18814'],name:'Wakeley Lake Area',type:'dispersed',has:['under review for removal from campsite search']},
-  {id:'ridb:255262',via:['ridb:255262'],name:'Wolf Flats Recreation Area',type:'established',has:['label published before this review'],not:['under review for removal']},
-  {id:'ridb:243218',via:['usfs:30157'],name:'Coleman Lake Recreation Area',type:'established',has:['label published before this review']},
+  {id:'ridb:255262',via:['ridb:255262'],name:'Wolf Flats Recreation Area',type:'dispersed',not:['under review','label published before this review']},
+  {id:'ridb:243218',via:['usfs:30157'],name:'Coleman Lake Recreation Area',type:'established',has:['Camping and this camping type are described in this facility’s own Recreation.gov record.'],not:['label published before this review','type is unverified']},
+  {id:'ridb:249902',via:['usfs:74043'],name:'Wolf Gap Recreation Area',type:'established',has:['label published before this review','Its camping type is unverified.']},
+  {id:'ridb:240871',via:['usfs:34671'],name:'Enduro Camp',type:'other',has:['This previously listed location is under review.'],not:['label published before this review']},
+  {id:'ridb:249627',via:['ridb:249627'],name:'Joe Elliot Yellow Post Sites',type:'dispersed',not:['label published before this review']},
+  {id:'ridb:262796',via:['ridb:262796'],name:'Horse Mountain Primitive Camp',type:'other',not:['under review']},
+  {id:'ridb:257133',via:['ridb:257133'],name:'Rock Castle Camping Area',type:'established',not:['under review']},
   {id:'ridb:252494',via:['blm-facility:252494'],name:'White Mountains National Recreation Area - Alaska Cabins',type:'lodging',has:['covers 15 cabins','does not locate a particular cabin']},
   {id:'ridb:233178',via:['ridb:233178','usfs:80125'],name:'SHAW HOUSE',type:'lodging',has:['Agency reports: temporarily closed.','Notice dated 2026-09-10.'],not:['Status (agency):','covers']},
   {id:'ridb:234149',via:['ridb:234149'],name:'PICKETT BUTTE LOOKOUT',type:'lodging',not:['covers']},

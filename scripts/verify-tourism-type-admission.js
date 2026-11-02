@@ -95,17 +95,20 @@ for(const w of W.listings){if(A.has(w.id))fail('withdrawn_still_published',w.id)
 // Independent review decisions are fixed separately from the mechanically generated delta ledger.
 const review=read(path.join(root,'docs/candidates/tourism-independent-source-review.json')).records;
 const types=read(path.join(root,'docs/candidates/tourism-type-review.json'));
+const decided=new Map(read(path.join(root,'docs/tourism/decision-ledger-2026-11-01.json')).records.map(r=>[r.id,r]));
 for(const [id,r] of Object.entries(review)){
   const type=A.get(id)?.m.t;
-  // Owner decisions 2026-11-01: no withdrawal in this build, and every proposed withdrawal or Other keeps its baseline label.
+  // Owner decisions 2026-11-01 (docs/tourism/decision-ledger-2026-11-01.json): no withdrawal in this build. Each listing
+  // shows its ledger label, or its baseline label where the ledger holds it.
   if(r.proposal==='discovery withdrawal'){
+    const want=decided.get(id)?.label??B.get(id).m.t;
     if(type===undefined||wIds.has(id))fail('owner_decision_withdrawal_not_held',id);
-    else if(type!==B.get(id).m.t)fail('owner_decision_label_not_held',id,{type,baseline:B.get(id).m.t});
+    else if(type!==want)fail('owner_decision_label',id,{type,want});
   } else if(r.evidence_result.startsWith('lodging_supported')){if(type!=='lodging')fail('reviewed_lodging',id,{type});}
   else if(type!==B.get(id).m.t)fail('lodging_conflict_not_held',id,{type});
 }
-for(const [id,r] of Object.entries(types))if(r.decision==='review_previous_campground'&&A.get(id)?.m.t!==B.get(id)?.m.t)fail('owner_decision_label_not_held',id);
-for(const [id,r] of Object.entries(types))if(r.decision==='review_name_supported_upgrade'&&(B.get(id)?.m.t!=='other'||!['established','dispersed'].includes(A.get(id)?.m.t)))fail('owner_decision_upgrade_not_applied',id);
+for(const [id,r] of Object.entries(types))if(['review_previous_campground','review_name_supported_upgrade'].includes(r.decision)&&A.get(id)?.m.t!==(decided.get(id)?.label??B.get(id)?.m.t))fail('owner_decision_label',id,{type:A.get(id)?.m.t});
+for(const [id,d] of decided)if(!A.has(id))fail('owner_decision_listing_missing',id);
 for(const [id,r] of Object.entries(types))if(r.decision==='hold_current_other' && (A.get(id)?.m.t!=='other'||B.get(id)?.m.t!=='other'))fail('description_only_upgrade',id);
 // 5. Access holds and per-row access, fees and coordinates in the normalized catalogue.
 const holds={before:0,after:0};
