@@ -64,7 +64,35 @@
     ['ridb:247922', 'established'],
     ['ridb:248072', 'established'],
     ['ridb:248261', 'established'],
-    ['ridb:249902', 'established']
+    ['ridb:249902', 'established'],
+    // Review holds (ledger review_holds): unledgered names no longer set a type, so these keep main's label pending review.
+    ['ridb:10023205', 'established'],
+    ['ridb:10039245', 'established'],
+    ['ridb:10069432', 'established'],
+    ['ridb:10069654', 'established'],
+    ['ridb:10072072', 'established'],
+    ['ridb:10072073', 'established'],
+    ['ridb:10072881', 'established'],
+    ['ridb:10072883', 'established'],
+    ['ridb:10074140', 'established'],
+    ['ridb:10074570', 'established'],
+    ['ridb:10074574', 'established'],
+    ['ridb:10076130', 'established'],
+    ['ridb:10076131', 'established'],
+    ['ridb:10076892', 'established'],
+    ['ridb:10078442', 'established'],
+    ['ridb:10134446', 'established'],
+    ['ridb:10150488', 'established'],
+    ['ridb:10155245', 'established'],
+    ['ridb:10278188', 'established'],
+    ['ridb:10321880', 'established'],
+    ['ridb:10322469', 'established'],
+    ['ridb:236715', 'established'],
+    ['ridb:252786', 'established'],
+    ['ridb:262731', 'established'],
+    ['ridb:262776', 'established'],
+    ['ridb:272170', 'established'],
+    ['ridb:274051', 'established']
   ]);
   // Labels the owner accepted from the facility's own Recreation.gov record. Each is bound to the quoted wording in
   // the named field. Changed or missing wording returns the listing to pending review (see normalizeFeature).

@@ -78,8 +78,12 @@ test('an OSM accommodation tag is not the classifier\'s accommodation kind',()=>
   const f=DQ.normalizeFeature(pt({...osmEl,accommodation:'camping',name:'North Tongue River Campground'}));
   assert.equal(f.properties.type,'established');
 });
+test('name rule scope: a held published Campground stays Campground while its own type is Other',()=>{
+  const f=DQ.cleanAndDedupeGeoJSON({features:[pt({...ridb,id:'ridb:10076130',facility_id:'10076130',type:'other',name:'Tom Bennett Campground'})]},{siteDetails:{}}).features[0].properties;
+  assert.equal(f.type,'established');assert.equal(f.type_evidence.kind,'held_published_label');
+});
 test('name rule scope: an unseen facility with an ambiguous camping name keeps its prior label until reviewed',()=>{
-  for(const [name,prior] of [['Example Primitive Camp','other'],['Example Camping Area','other'],['Tom Bennett Campground','other'],['Example Camping Area','established']]){
+  for(const [name,prior] of [['Example Primitive Camp','other'],['Example Camping Area','other'],['Example Lake Campground','other'],['Example Camping Area','established']]){
     const f=DQ.normalizeFeature(pt({...ridb,id:'ridb:999001',facility_id:'999001',type:prior,name}),{siteDetails:{}});
     assert.equal(f.properties.camping_classification,'campsite',name+' still admitted on its own name');
     assert.equal(f.properties.type,prior,name);
@@ -224,7 +228,9 @@ test('the dated decision ledger matches the classifier for every decided listing
     else assert.ok(!reviewed.has(r.id),r.id);
     assert.equal(held.has(r.id),['keep_discoverable_pending_withdrawal_review','exception_held_pending'].includes(r.decision),r.id);
   }
-  assert.equal(reviewed.size,44);assert.equal(held.size,11);
+  const holds=LEDGER.review_holds.records;assert.equal(holds.length,27);
+  for(const h of holds){assert.equal(held.get(h.id),h.held_label,h.id);assert.ok(!decided(h.id),h.id);}
+  assert.equal(reviewed.size,44);assert.equal(held.size,11+27);
   for(const id of ['ridb:248513','ridb:265204'])assert.equal(decided(id).confirmed,'2026-11-01T21:33:00-04:00',id);
 });
 test('one coordinate policy: the index build and the browser choose the same point',()=>{

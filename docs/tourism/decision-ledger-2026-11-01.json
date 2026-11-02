@@ -717,5 +717,174 @@
   }
  ],
  "evidence_binding": "Each accepted label applies only while the listing's own Recreation.gov record still carries the quoted wording in the named field (FacilityName: the exact name; FacilityDescription: the quote inside the plain-text description, not wording copied from another record). A new retrieval date alone keeps the label. Changed or missing wording returns the listing to pending review as Other, with type_evidence.kind owner_review_evidence_changed and a popup notice, until the owner reviews it again.",
- "name_rule": "Facility names upgrade a type only for the ledgered ids. Any other facility keeps its prior label until reviewed."
+ "name_rule": "Facility names upgrade a type only for the ledgered ids. Any other facility keeps its prior label until reviewed.",
+ "review_holds": {
+  "kind": "review hold, not an owner decision",
+  "reason": "Limiting the name rule to ledgered ids (Codex review of PR #167, item 3) would otherwise change these 27 published Campground labels to Other without review. Their own Recreation.gov facility type is Other. Main showed Campground. Each keeps main's label as a held label, pending owner review.",
+  "labels_from": "main f9752ecb search-index.json",
+  "records": [
+   {
+    "id": "ridb:10023205",
+    "name": "Ojo Redondo Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10039245",
+    "name": "Post Pile Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10069432",
+    "name": "Kiwanis Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10069654",
+    "name": "Pittsburg Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10072072",
+    "name": "Thain Creek Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10072073",
+    "name": "Spring Creek Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10072881",
+    "name": "Lane Farm Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10072883",
+    "name": "Finner Creek Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10074140",
+    "name": "South Mineral Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10074570",
+    "name": "UPPER PLEASANT CREEK CAMPGROUND",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10074574",
+    "name": "Tin Can Flat Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10076130",
+    "name": "Tom Bennett Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10076131",
+    "name": "Carr Lake Campsites",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10076892",
+    "name": "Ring Mill Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10078442",
+    "name": "Apache Creek Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10134446",
+    "name": "Hidden Lake Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10150488",
+    "name": "Bridger Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10155245",
+    "name": "Rattlesnake Canyon Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10278188",
+    "name": "Chosa Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10321880",
+    "name": "Twin Springs Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:10322469",
+    "name": "Devil's Canyon Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:236715",
+    "name": "Bell Farm Horse Camp",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:252786",
+    "name": "Goldhill Camping Area",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:262731",
+    "name": "Green Mountain Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:262776",
+    "name": "Fish Lake Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:272170",
+    "name": "Elderberry Flat Campground",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   },
+   {
+    "id": "ridb:274051",
+    "name": "Chiwawa Horse Camp",
+    "held_label": "established",
+    "status": "held at main label, pending owner review"
+   }
+  ]
+ }
 }
