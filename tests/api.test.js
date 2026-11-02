@@ -232,3 +232,44 @@ test('clearance reports wait for their migration and never break campsite correc
     assert.equal((await post(base, good)).status, 201);
   } finally { proc.kill(); fs.rmSync(cfg.dir, {recursive: true, force: true}); }
 });
+
+test('private bug and feature feedback excludes map evidence and requires opt-in diagnostics', {skip: !hasPhp}, async () => {
+  const cfg = tmpConfig(), base = 'http://127.0.0.1:19939';
+  const proc = await server(cfg.file, 19939);
+  try {
+    const admin = await adminSession(base);
+    await admin.form({do:'login', password:'correct horse battery'});
+    await admin.form({do:'migrate'});
+    const feedback = {kind:'bug', title:'Search closes unexpectedly <script>', details:'Search closes when I press Enter after typing a town.', elapsed_ms:8000};
+    assert.equal((await post(base, {...feedback,title:'x'})).status, 422);
+    assert.equal((await post(base, {...feedback,contact_email:'invalid'})).status, 422);
+    assert.equal((await post(base, {...feedback,elapsed_ms:1})).status, 422);
+    const first = await post(base, {...feedback, campsite_id:'osm:private',lat:999,lng:999,problems:['fee'],source:'not map evidence', diagnostics:{version:'2.39.0',url:'https://private.example'}});
+    assert.equal(first.status, 201);
+    const receipt = await first.json();
+    let report = await (await fetch(`${base}/api/status.php?token=${receipt.token}`)).json();
+    assert.equal(report.kind,'bug'); assert.equal(report.campsite_id,null);
+    assert.ok(!JSON.stringify(report).includes('details')); assert.ok(!JSON.stringify(report).includes('contact_email'));
+    let html = await admin.get();
+    assert.match(html,/Search closes unexpectedly &lt;script&gt;/);
+    assert.ok(!html.includes('not map evidence')); assert.ok(!html.includes('private.example'));
+    assert.ok(!html.includes('Shared diagnostics'));
+    const second = await post(base, {...feedback,kind:'feature',title:'Improve offline preparation',contact_email:'qa@example.test',include_diagnostics:true,
+      diagnostics:{version:'2.39.0',language:'fr',browser:'Safari',width:390,height:844,connection:'online',url:'https://do-not-store.example',lat:42,saved_stops:['private']}});
+    assert.equal(second.status,201);
+    const receipt2 = await second.json();
+    html = await admin.get();
+    assert.match(html,/Shared diagnostics/); assert.match(html,/Safari/);
+    assert.ok(!html.includes('do-not-store.example')); assert.ok(!html.includes('saved_stops'));
+    const id = spawnSync('php',['-r',`$p=new PDO('sqlite:${cfg.db}'); echo $p->query("SELECT id FROM submissions WHERE public_token='${receipt2.token}'")->fetchColumn();`],{encoding:'utf8'}).stdout.trim();
+    assert.match(id,/^\d+$/);
+    await admin.form({do:'set',id,status:'accepted',public_note:'We are investigating.'});
+    report = await (await fetch(`${base}/api/status.php?token=${receipt2.token}`)).json();
+    assert.equal(report.status,'accepted'); assert.equal(report.note,'We are investigating.');
+    assert.ok(!JSON.stringify(report).includes('qa@example.test')); assert.ok(!JSON.stringify(report).includes('Safari'));
+    const stored = JSON.parse(spawnSync('php',['-r',`$p=new PDO('sqlite:${cfg.db}');echo json_encode($p->query("SELECT lat,lng,campsite_id,problems,source_note FROM submissions ORDER BY id")->fetchAll(PDO::FETCH_ASSOC));`],{encoding:'utf8'}).stdout);
+    assert.deepEqual(stored.map(r=>[r.lat,r.lng,r.campsite_id,r.problems]),[[null,null,null,null],[null,null,null,null]]);
+    assert.equal(stored[0].source_note,null);
+    assert.deepEqual(JSON.parse(stored[1].source_note),{version:'2.39.0',language:'fr',browser:'Safari',connection:'online',width:390,height:844});
+  } finally { proc.kill(); fs.rmSync(cfg.dir,{recursive:true,force:true}); }
+});

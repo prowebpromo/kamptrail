@@ -7,6 +7,7 @@
   const API = 'api/';
   const PROBLEMS = [['closed', t("Closed or gone")], ['not_allowed', t("Camping not allowed")], ['fee', t("Fee is wrong")], ['location', t("Location is wrong")], ['amenities', t("Amenities are wrong")], ['access', t("Road or rig access is wrong")], ['name', t("Name is wrong")], ['other', t("Something else")]];
   const STATUS_TEXT = {received: t("Received. Waiting for review."), accepted: t("Accepted. The data will be updated in a coming release."), rejected: t("Not accepted."), applied: t("Applied to the map data.")};
+  const FEEDBACK_STATUS = {received: t("Received. Waiting for review."), accepted: t("Accepted for follow-up."), rejected: t("Closed without a change."), applied: t("Completed.")};
   const st = {dialog: null, openedAt: 0, target: null, lastFocus: null};
   const el = (tag, attrs = {}, text) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (v === true) e.setAttribute(k, ''); else if (v !== false && v != null) e.setAttribute(k, v); } if (text != null) e.textContent = text; return e; };
   function reports() { try { const r = JSON.parse(localStorage.getItem(STORE)); return Array.isArray(r) ? r.filter(x => x && /^[a-f0-9]{32}$/.test(x.token)) : []; } catch { return []; } }
@@ -101,7 +102,7 @@
       try {
         const res = await fetch(API + 'status.php?token=' + encodeURIComponent(r.token));
         const out = await res.json();
-        if (res.ok && out.status) { s.textContent = STATUS_TEXT[out.status] || out.status; if (out.note) li.append(el('div', {class: 'kt-fine'}, t("Moderator note: {0}", {"0":(out.note)}))); }
+        if (res.ok && out.status) { s.textContent = (['bug', 'feature'].includes(r.kind) ? FEEDBACK_STATUS[out.status] : STATUS_TEXT[out.status]) || out.status; if (out.note) li.append(el('div', {class: 'kt-fine'}, t("Moderator note: {0}", {"0":(out.note)}))); }
         else s.textContent = res.status === 404 ? t("Not found.") : t("Status unavailable right now.");
       } catch { s.textContent = t("Status unavailable right now."); }
     }
@@ -114,5 +115,5 @@
     if (!d.open) d.showModal();
     d.querySelector(target.kind === 'new_place' ? '[name="campsite_name"]' : '[name="problems"]')?.focus();
   }
-  window.KampTrailContrib = {version: '2.38.0', open, showReports, reports};
+  window.KampTrailContrib = {version: '2.39.0', open, showReports, reports, rememberReport: remember};
 })();

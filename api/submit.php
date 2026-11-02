@@ -3,6 +3,7 @@
 declare(strict_types=1);
 require __DIR__ . '/_lib/bootstrap.php';
 require __DIR__ . '/_lib/clearance-reports.php';
+require __DIR__ . '/_lib/feedback.php';
 kt_require_method('POST');
 
 $pdo = kt_db();
@@ -22,7 +23,13 @@ $elapsed = (int)($in['elapsed_ms'] ?? 0);
 if ($elapsed < 3000) $errors['form'] = 'Please take a moment to review your report, then send it again.';
 
 $kind = (string)($in['kind'] ?? '');
-if (!in_array($kind, ['correction', 'new_place', 'clearance'], true)) $errors['kind'] = 'Choose a correction or a new campsite.';
+if (!in_array($kind, ['correction', 'new_place', 'clearance', 'bug', 'feature'], true)) $errors['kind'] = 'Choose a report type.';
+$feedback = in_array($kind, ['bug', 'feature'], true);
+// General app feedback must never acquire campsite evidence or coordinates.
+if ($feedback) {
+    unset($in['campsite_id'], $in['lat'], $in['lng'], $in['problems'], $in['source']);
+    $in['campsite_name'] = $in['title'] ?? '';
+}
 // A posted clearance is a moderated submission with structured fields. It needs the 006 migration.
 $clearance = null;
 if ($kind === 'clearance') {
@@ -34,6 +41,7 @@ if ($kind === 'clearance') {
 $campsiteId = kt_text($in['campsite_id'] ?? '', 200);
 $campsiteName = kt_text($in['campsite_name'] ?? '', 200);
 if ($kind === 'correction' && $campsiteId === '') $errors['campsite_id'] = 'The campsite is missing. Reopen the listing and try again.';
+if ($feedback && mb_strlen($campsiteName) < 3) $errors['title'] = 'Enter a short summary of at least 3 characters.';
 if ($kind === 'new_place' && mb_strlen($campsiteName) < 3) $errors['campsite_name'] = 'Enter the campsite name.';
 
 $lat = $in['lat'] ?? null; $lng = $in['lng'] ?? null;
@@ -48,10 +56,10 @@ if ($kind === 'correction' && !$problems) $errors['problems'] = 'Choose what is 
 
 $details = kt_text($in['details'] ?? '', 4000);
 if (mb_strlen($details) < 10) $errors['details'] = 'Describe what you saw in at least a sentence.';
-$source = kt_text($in['source'] ?? '', 500);
+$source = $feedback ? kfb_diagnostics($in) : kt_text($in['source'] ?? '', 500);
 $email = kt_text($in['contact_email'] ?? '', 200);
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors['contact_email'] = 'Enter a valid email or leave it blank.';
-if (($in['firsthand'] ?? false) !== true) $errors['firsthand'] = 'Confirm the report is first-hand or from an official source.';
+if (!$feedback && ($in['firsthand'] ?? false) !== true) $errors['firsthand'] = 'Confirm the report is first-hand or from an official source.';
 
 if ($errors) kt_json(422, ['ok' => false, 'error' => 'invalid', 'fields' => $errors]);
 

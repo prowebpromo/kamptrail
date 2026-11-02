@@ -110,7 +110,8 @@ test('GitHub Pages subpath resolves core scripts and national search catalogue',
 test('data information uses the real catalogue and supports keyboard dismissal on mobile',async({page})=>{
   await page.setViewportSize({width:390,height:844});
   await ready(page);
-  await expect(page.locator('.app-intro')).toContainText('Long-press the map to check any spot.');
+  await expect(page.locator('.app-intro')).toContainText('Choose a state or search to start.');
+  await expect(page.getByRole('button',{name:'Feedback',exact:true})).toBeVisible();
   const count=await page.evaluate(()=>Object.values(KampTrailData.getStateTotals()).reduce((a,b)=>a+b,0));
   await page.locator('#about-data').click();
   await expect(page.getByRole('dialog')).toBeVisible();
