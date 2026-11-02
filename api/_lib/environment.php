@@ -77,6 +77,16 @@ function ke_freshness_seconds(array $meta, int $now): ?int {
 }
 
 const KE_RETIRED_FILE = 'firewx-retired.json';
+// Retirement bounds. The file holds KE_RETIRED_MAX_IDS ids of up to KE_ID_MAX_BYTES bytes each, so the byte bound is derived
+// from the two limits and cannot be smaller than a full history. Each entry is "id":unix-time, plus 40 bytes of quotes, colon and comma.
+const KE_ID_MAX_BYTES = 256;
+const KE_RETIRED_MAX_IDS = KE_MAX_FEATURES * 4;
+const KE_RETIRED_MAX_BYTES = KE_RETIRED_MAX_IDS * (KE_ID_MAX_BYTES + 40) + 2;
+
+/** An alert id or reference longer than the maximum is rejected, never truncated: a truncated id could not match its alert. */
+function ke_check_id($id): void {
+    if (is_string($id) && strlen($id) > KE_ID_MAX_BYTES) throw new KeException('upstream_unavailable');
+}
 const KE_RETIRED_UNKNOWN_SECONDS = 604800;
 
 /** Retirement history kept across proxy cache refreshes. Each id stays until the later of its alert's expires and ends. */
@@ -84,7 +94,7 @@ function ke_merge_retired(string $directory, array $value, int $now): array {
     $path = $directory . '/' . KE_RETIRED_FILE;
     if (is_link($path)) return $value;
     $known = [];
-    $stored = is_file($path) && filesize($path) <= 200000 ? json_decode((string)@file_get_contents($path), true) : null;
+    $stored = is_file($path) && filesize($path) <= KE_RETIRED_MAX_BYTES ? json_decode((string)@file_get_contents($path), true) : null;
     foreach (is_array($stored) ? $stored : [] as $id => $until) if (is_string($id) && is_int($until) && $until > $now) $known[$id] = $until;   // prune expired
     $until = [];
     foreach ($value['data']['features'] ?? [] as $f) {
@@ -97,8 +107,18 @@ function ke_merge_retired(string $directory, array $value, int $now): array {
         $end = $until[$id] ?? ($known[$id] ?? $now + KE_RETIRED_UNKNOWN_SECONDS);
         if ($end > $now) $known[$id] = max($known[$id] ?? 0, $end);
     }
-    $known = array_slice($known, -KE_MAX_FEATURES * 4, null, true);
-    if (@file_put_contents($path, json_encode($known)) !== false) @chmod($path, 0600);
+    $known = array_slice($known, -KE_RETIRED_MAX_IDS, null, true);
+    // Write to a temporary file and rename, so a failed or oversized write never replaces a good history. Filtering below still
+    // uses the in-memory history, and a failed write is flagged in the response and logged.
+    $encoded = json_encode($known, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    $temporary = $path . '.' . bin2hex(random_bytes(4)) . '.tmp';
+    if ($encoded !== false && strlen($encoded) <= KE_RETIRED_MAX_BYTES && @file_put_contents($temporary, $encoded) === strlen($encoded) && @chmod($temporary, 0600) && @rename($temporary, $path)) {
+        unset($value['data']['retired_unsaved']);
+    } else {
+        @unlink($temporary);
+        $value['data']['retired_unsaved'] = true;
+        error_log('KampTrail firewx retirement history not saved; the previous file was kept');
+    }
     // The server filters against the full retained history (up to 2,000 ids) before the client list is capped, so a
     // retired alert is never returned as active even when its id is beyond the ids the client receives.
     // A retired id that falls off a full history (oldest pruned first) is no longer remembered; see docs.
@@ -258,7 +278,7 @@ function ke_firewx_references($feature): array {
     $p = is_array($feature) ? ($feature['properties'] ?? null) : null;
     if (!is_array($p) || ($p['status'] ?? '') !== 'Actual' || !in_array($p['messageType'] ?? '', ['Alert', 'Update', 'Cancel'], true) || !in_array($p['event'] ?? '', KE_FIREWX_EVENTS, true)) return [];
     $ids = [];
-    foreach (is_array($p['references'] ?? null) ? array_slice($p['references'], 0, 20) : [] as $ref) if (is_array($ref) && is_string($ref['identifier'] ?? null) && $ref['identifier'] !== '') $ids[] = ke_text($ref['identifier'], 500);
+    foreach (is_array($p['references'] ?? null) ? array_slice($p['references'], 0, 20) : [] as $ref) if (is_array($ref) && is_string($ref['identifier'] ?? null) && $ref['identifier'] !== '') { ke_check_id($ref['identifier']); $ids[] = ke_text($ref['identifier'], KE_ID_MAX_BYTES); }
     return $ids;
 }
 
@@ -271,12 +291,14 @@ function ke_firewx_properties(array $p, int $now): ?array {
     $cancel = $p['messageType'] === 'Cancel';
     if (!$cancel && (($expires !== null && strtotime($expires) <= $now) || ($ends !== null && strtotime($ends) <= $now))) return null;
     $references = [];
+    ke_check_id($p['id'] ?? null);
     foreach (is_array($p['references'] ?? null) ? array_slice($p['references'], 0, 20) : [] as $ref) {
-        $id = is_array($ref) && is_string($ref['identifier'] ?? null) ? ke_text($ref['identifier'], 500) : null;
+        if (is_array($ref)) ke_check_id($ref['identifier'] ?? null);
+        $id = is_array($ref) && is_string($ref['identifier'] ?? null) ? ke_text($ref['identifier'], KE_ID_MAX_BYTES) : null;
         if ($id !== null && $id !== '') $references[] = $id;
     }
     $zones = ke_zone_paths($p['affectedZones'] ?? []);
-    $props = ['id' => ke_text($p['id'] ?? null, 500), 'name' => ke_text($p['event'], 100), 'source_updated_at' => ke_date($p['sent'] ?? null)];
+    $props = ['id' => ke_text($p['id'] ?? null, KE_ID_MAX_BYTES), 'name' => ke_text($p['event'], 100), 'source_updated_at' => ke_date($p['sent'] ?? null)];
     foreach (['event', 'headline', 'areaDesc', 'severity', 'messageType', 'status'] as $key) $props[$key] = ke_text($p[$key] ?? null, 2000);
     foreach (['sent', 'effective', 'onset', 'expires', 'ends'] as $key) $props[$key] = ke_date($p[$key] ?? null);
     $props['references'] = $references; $props['zone_count'] = count($zones); $props['zones'] = array_slice($zones, 0, 60);

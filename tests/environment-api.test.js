@@ -420,6 +420,70 @@ test('retirement history holds at most 2,000 ids, prunes the oldest first, and a
     } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });
 
+test('long ids: 2,000 retirements at the maximum id length keep the whole history, and the earliest retired alert is never active', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-retired5-'));
+    try {
+        php(`
+        $now=strtotime('2026-11-01T15:00:00Z'); $dir=${JSON.stringify(directory)};
+        $feature=fn($id)=>['properties'=>['id'=>$id,'messageType'=>'Alert','expires'=>gmdate('c',$now+86400),'ends'=>null]];
+        $merge=function($features,$retired,$t)use($dir){return ke_merge_retired($dir,['data'=>['features'=>$features,'retired'=>$retired]],$t);};
+        check(KE_RETIRED_MAX_BYTES >= KE_RETIRED_MAX_IDS * (KE_ID_MAX_BYTES + 6), 'byte bound holds a full history at maximum length');
+        foreach ([
+            fn($n)=>str_pad("L$n-", KE_ID_MAX_BYTES, 'x'),
+            fn($n)=>'urn:oid:2.49.0.1.840.0.'.substr(hash('sha256',"$n"),0,40).'.001.1',
+        ] as $make) {
+            @unlink($dir.'/firewx-retired.json');
+            $ids=[]; for($n=1;$n<=2000;$n++) $ids[]=$make($n);
+            check(strlen($ids[0])<=KE_ID_MAX_BYTES && count(array_unique($ids))===2000);
+            foreach(array_chunk($ids,100) as $chunk) { $r=$merge([],$chunk,$now); check(empty($r['data']['retired_unsaved']), 'saved'); }
+            $stored=json_decode(file_get_contents($dir.'/firewx-retired.json'),true);
+            check(is_array($stored) && count($stored)===2000 && isset($stored[$ids[0]]) && isset($stored[$ids[1999]]), 'file holds all 2000: '.count((array)$stored));
+            check(filesize($dir.'/firewx-retired.json')<=KE_RETIRED_MAX_BYTES, 'file within bound');
+            $r=$merge([$feature($ids[0]),$feature('live')],[],$now+60);
+            $active=array_column(array_column($r['data']['features'],'properties'),'id');
+            check($active===['live'], 'earliest retired is not active: '.json_encode($active));
+        }
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('an id over the maximum length is rejected, never truncated', { skip: !capable }, () => {
+    php(`
+    $now=strtotime('2026-11-01T15:00:00Z');
+    $mk=fn($id,$type,$refs)=>['type'=>'Feature','geometry'=>null,'properties'=>['status'=>'Actual','messageType'=>$type,'event'=>'Red Flag Warning','headline'=>'h','id'=>$id,'sent'=>'2026-11-01T14:00:00Z','expires'=>'2026-11-02T03:00:00Z','ends'=>null,'references'=>array_map(fn($r)=>['identifier'=>$r],$refs)]];
+    $long=str_repeat('y',KE_ID_MAX_BYTES+1); $edge=str_repeat('y',KE_ID_MAX_BYTES);
+    $c=['type'=>'FeatureCollection'];
+    $c['features']=[$mk($edge,'Alert',[])]; check(ke_normalize('firewx',$c,$now)['features'][0]['properties']['id']===$edge, 'maximum length is accepted whole');
+    $c['features']=[$mk($long,'Alert',[])]; rejects(fn()=>ke_normalize('firewx',$c,$now),'upstream_unavailable');
+    $c['features']=[$mk('ok','Update',[$long])]; rejects(fn()=>ke_normalize('firewx',$c,$now),'upstream_unavailable');
+    `);
+});
+
+test('a history write that cannot be saved leaves the previous good file intact, keeps filtering, and flags it', { skip: !capable }, () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-retired6-'));
+    try {
+        php(`
+        $now=strtotime('2026-11-01T15:00:00Z'); $dir=${JSON.stringify(directory)}; $file=$dir.'/firewx-retired.json';
+        $feature=fn($id)=>['properties'=>['id'=>$id,'messageType'=>'Alert','expires'=>gmdate('c',$now+86400),'ends'=>null]];
+        $merge=function($features,$retired,$t)use($dir){return ke_merge_retired($dir,['data'=>['features'=>$features,'retired'=>$retired]],$t);};
+        $merge([],['A','B'],$now); $good=file_get_contents($file);
+        check(array_keys(json_decode($good,true))===['A','B']);
+        // An id longer than the bound makes the encoded history exceed it.
+        $r=$merge([$feature('A'),$feature('live')],[str_repeat('z',KE_RETIRED_MAX_BYTES)],$now+60);
+        check(file_get_contents($file)===$good, 'previous file intact');
+        check(($r['data']['retired_unsaved']??false)===true, 'flagged');
+        $active=array_column(array_column($r['data']['features'],'properties'),'id');
+        check($active===['live'], 'still filtering: '.json_encode($active));
+        check(glob($dir.'/*.tmp')===[], 'no temporary file left');
+        // A write that fails outright (directory not writable as a file target) also keeps the file.
+        chmod($dir,0500);
+        if (posix_geteuid()!==0) { $r=$merge([$feature('A')],['C'],$now+120); check(file_get_contents($file)===$good && ($r['data']['retired_unsaved']??false)===true, 'unwritable'); }
+        chmod($dir,0700);
+        $r=$merge([],[],$now+180); check(empty($r['data']['retired_unsaved']), 'flag clears after a good save');
+        `);
+    } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
 test('polling limits are separate from freshness: a retained copy past the upstream deadline is served labelled stale, and not refetched early', { skip: !capable }, () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kt-stale-'));
     try {

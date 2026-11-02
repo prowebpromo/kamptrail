@@ -315,3 +315,8 @@ test('refresh failure: "Could not refresh" never implies Stale; only a last good
   assert.equal(fw.freshness(d, NOW + 5 * MIN), 'fresh', 'failed refresh at 5 minutes');
   assert.equal(fw.freshness(d, NOW + 16 * MIN), 'stale', 'failed refresh at 16 minutes');
 });
+
+test('client rejects a retired id over the 256-byte maximum', () => {
+  const d = fx.payload('polygon'); d.data.retired = ['x'.repeat(256)]; assert.doesNotThrow(() => fw.validate(d, NOW));
+  d.data.retired = ['x'.repeat(257)]; assert.throws(() => fw.validate(d, NOW), /retired/);
+});

@@ -44,7 +44,7 @@
       if (p.references != null && (!Array.isArray(p.references) || !p.references.every(r => typeof r === 'string'))) throw new Error('Invalid references');
     }
     const retired = d.data.retired;
-    if (retired != null && (!Array.isArray(retired) || retired.length > MAX_FEATURES || !retired.every(id => typeof id === 'string'))) throw new Error('Invalid retired list');
+    if (retired != null && (!Array.isArray(retired) || retired.length > MAX_FEATURES || !retired.every(id => typeof id === 'string' && id.length <= 256))) throw new Error('Invalid retired list');
     return d;
   }
 
