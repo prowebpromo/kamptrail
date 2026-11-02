@@ -45,7 +45,7 @@
     }).catch(() => {showToast(t("Offline saving is unavailable. You can still use the map online."));});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.39.0' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.39.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.39.1' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.39.1')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -63,7 +63,7 @@
     document.getElementById('result-summary').textContent = t("The map could not start.");
     return;
   }
-  const map = window.map = L.map('map', {zoomControl:true, preferCanvas:true, minZoom:3, worldCopyJump:true});
+  const map = window.map = L.map('map', {zoomControl:true, preferCanvas:true, scrollWheelZoom:false, dragging:!window.matchMedia('(pointer: coarse)').matches, minZoom:3, worldCopyJump:true});
   // Leaflet owns these two controls; set their explicit labels without touching map/source content.
   for (const [button, label] of [[map.zoomControl?._zoomInButton, t("Zoom in")], [map.zoomControl?._zoomOutButton, t("Zoom out")]]) {
     if (button) {button.title = t(label); button.setAttribute('aria-label', t(label));}

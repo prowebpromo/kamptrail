@@ -268,3 +268,19 @@ footer{background:#fff;border-top:1px solid var(--c-border);padding:7px 16px;fon
 #kt-feedback form{display:grid;gap:10px}
 #kt-feedback select,#kt-feedback input:not([type=checkbox]),#kt-feedback textarea{font-size:16px;border:1px solid #a7b9aa;border-radius:6px;padding:9px;color:#203b2d;background:#fff}
 #kt-feedback .kt-report-body>a{display:inline-block;margin:8px 12px 8px 0}
+
+/* A centered, scrolling page. Map gestures must not trap page scrolling. */
+html{overflow-y:scroll;scrollbar-gutter:stable}
+body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
+#app{max-width:1120px;margin:0 auto;height:auto;grid-template-rows:auto auto auto minmax(560px,min(680px,68dvh)) auto;overflow:visible;border:1px solid #d8dfd5;border-radius:12px;background:#fff;box-shadow:0 3px 18px #10281f0c}
+#app>header{border-radius:11px 11px 0 0}
+#app>footer{border-radius:0 0 11px 11px}
+.app-intro .kt-map-gesture-note{margin-top:5px;font-size:11px;line-height:1.4;color:#52674e}
+.kt-site-feedback{max-width:1120px;margin:24px auto 48px;padding:28px;background:#fff;border:1px solid #d8dfd5;border-radius:12px;line-height:1.6}
+.kt-site-feedback h2{margin:0 0 10px;font-size:25px;color:#10281f}
+.kt-site-feedback p{margin:0 0 18px;max-width:760px}
+.kt-site-feedback-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:18px}
+.kt-site-feedback-actions .btn,.kt-site-feedback-actions a{min-height:44px;display:inline-flex;align-items:center}
+.kt-site-feedback-actions a{font-size:14px}
+.kt-site-feedback .kt-site-feedback-note{font-size:13px;color:#52674e;margin:0}
+@media(max-width:760px){body{padding:0}#app{border:0;border-radius:0}#app>header,#app>footer{border-radius:0}.kt-site-feedback{margin:20px 12px 32px;padding:22px}.app-intro .kt-map-gesture-note{font-size:11px}}

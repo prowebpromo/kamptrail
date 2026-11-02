@@ -20,3 +20,11 @@ Check received reports each working day during launch. Reproduce bugs before sch
 For bug/feature reports: **received** = waiting, **accepted** = follow-up planned, **applied** = completed, **rejected** = closed without a change. Explain decisions in the submitter-visible note. A suggestion does not promise implementation. Existing correction and clearance meanings are unchanged.
 
 This release claims no parity points. Press outreach waits for the release gates and live desktop/mobile verification.
+
+## Layout correction (2.39.1)
+
+The owner reported missing page scrolling and an overly wide Kamptrail.com. The old app fills `100dvh` with `overflow:hidden`, and wheel gestures zoom the map. Horizontal overflow was not reproduced at 698 pixels; this correction addresses the scrolling trap and edge-to-edge desktop presentation.
+
+The app now has a centered desktop width of at most 1,120 pixels and a map track of 560–680 pixels. Document scrolling can reach the feedback/help section below the map. The results list keeps its own scrolling. Mouse-wheel gestures scroll the page; map zoom buttons and desktop dragging remain available. On touch devices, one finger scrolls the page and the map retains two-finger pan/zoom.
+
+Verify wide desktop, a short/zoomed window and mobile. Check document scrolling, independent list scrolling, no horizontal overflow, usable map height, and both feedback buttons. This package changes no source data, listing identities or parity rows.
