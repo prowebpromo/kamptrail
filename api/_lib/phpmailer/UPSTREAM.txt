@@ -1,0 +1,4 @@
+PHPMailer 7.1.1, https://github.com/PHPMailer/PHPMailer/releases/tag/v7.1.1
+Commit 1bc1716a507a65e039d4ac9d9adebbbd0d346e15
+Unmodified src/Exception.php, src/PHPMailer.php, src/SMTP.php and LICENSE.
+Only authenticated SMTP is used. Update these files together from an official release.
