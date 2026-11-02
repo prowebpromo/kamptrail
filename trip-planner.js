@@ -100,7 +100,13 @@
   function button(text,action) {
     const el=document.createElement('button');el.type='button';el.className='btn';el.textContent=text;el.onclick=action;return el;
   }
-  function viewStop(stop) {
+  async function viewStop(stop) {
+    if(stop.feature?.properties?.type!=='service' && window.DataQuality?.isWithdrawnId?.(stop.id)){
+      close();
+      st.savedMarker?.remove();st.savedMarker=null;
+      if(!await window.KampTrailData.openWithdrawn(stop.id))window.showToast?.(t("The selected location could not load. Please try again."),'error');
+      return;
+    }
     const site=getSite(stop);if(!site)return;
     close();
     st.savedMarker?.remove();st.savedMarker=null;
@@ -232,10 +238,13 @@
       const n=nights(stop.arrive,stop.depart);if(n)text+=` · ${n} ${t(n===1?'night':'nights')}`;
       detail.textContent=text;
       const actions=document.createElement('div');actions.className='kt-saved-actions';
-      if(site) {
+      const withdrawn=site?.properties?.type!=='service' && window.DataQuality?.isWithdrawnId?.(stop.id);
+      if(withdrawn)detail.textContent=t("Removed from campsite search. Open the saved facility record for details.");
+      if(site || withdrawn) {
         const view=button(t("View on map"),()=>viewStop(stop));view.classList.add('kt-trip-zoom');
-        const link=document.createElement('a');link.className='btn';link.href=directions(site);link.target='_blank';link.rel='noopener noreferrer';link.textContent=t("Directions");link.setAttribute('aria-label',t("Directions to {name} in Google Maps", {name:nameOf(site)}));
-        actions.append(view,link);
+        actions.append(view);
+        if(site){const link=document.createElement('a');link.className='btn';link.href=directions(site);link.target='_blank';link.rel='noopener noreferrer';link.textContent=t("Directions");link.setAttribute('aria-label',t("Directions to {name} in Google Maps", {name:nameOf(site)}));
+        actions.append(link);}
       }
       const label=site?nameOf(site):t("saved stop {0}", {"0":(stop.id)});
       const up=button(t("Up"),()=>move(index,-1));up.classList.add('kt-trip-up');up.disabled=index===0;up.setAttribute('aria-label',t("Move {name} up", {name:label}));

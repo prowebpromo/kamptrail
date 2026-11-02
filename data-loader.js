@@ -178,7 +178,7 @@
   // Every load rebuilds the catalogue from each loaded state's own records in the index build's
   // order (states alphabetically, records in file order), with the index's canonical hosts.
   // The result for a set of loaded states never depends on load order or response timing.
-  const stateInputs=new Map(),shownIds=new Set();
+  const stateInputs=new Map(),rawStates=new Map(),shownIds=new Set();
   let identity=null; // {preferredIds,previousHosts,aliases} from identity-hosts.json, or null when unavailable.
   let identityTask=null,identityTried=0,identityTimer=null;
   async function loadIdentityHosts(){
@@ -215,17 +215,26 @@
     if(state.usfsDetails)DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails);
   }
   function rebuildCatalogue(){
-    const input=[];
-    for(const code of [...stateInputs.keys()].sort())for(const f of stateInputs.get(code)){attachSidecars(f);input.push(f);}
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},identityOptions());
+    const input=[],withheldMembers=new Set();
+    for(const code of [...stateInputs.keys()].sort()){
+      const cached=stateInputs.get(code);
+      for(const id of cached.withheld)withheldMembers.add(id);
+      for(const f of cached.rows){attachSidecars(f);input.push(f);}
+    }
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{...identityOptions(),withheldMembers});
     state.allCampsites=cleaned.features;
     for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
   }
+  function prepareState(features,stateCode){
+    const options={state:stateCode,siteDetails:state.siteDetails,amenityDetails:state.amenityDetails};
+    const rows=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options)).filter(Boolean);
+    for(const f of rows)f.properties.forecastStates=[stateCode];
+    stateInputs.set(stateCode,{rows,withheld:DataQuality.withheldMembers(features,options)});
+  }
   function mergeLoaded(features,stateCode) {
-    const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode})).filter(Boolean);
-    incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
-    stateInputs.set(stateCode,incoming);
+    rawStates.set(stateCode,features);
+    prepareState(features,stateCode);
     rebuildCatalogue();
   }
   async function loadAgencyIndex() {
@@ -408,7 +417,9 @@
   function popup(site) {
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
-    const closure=['closed','temporarily closed'].includes(status)?status:null;
+    // A reviewed dated closure notice in the facility's own record outranks a member's open status (owner decision 2026-11-01).
+    const ownClosure=p.own_closure_notice&&['closed','temporarily closed'].includes(p.own_closure_notice.status)?p.own_closure_notice:null;
+    const closure=ownClosure?ownClosure.status:['closed','temporarily closed'].includes(status)?status:null;
     // Rig and amenity provenance debt (2.34.0): operator and website may be inherited from a merged record and are
     // not yet guarded. The popup never shows operator. source_url is normalized from the listing's own record and is
     // set for every published listing, so the inherited website below is never reached. tests/rig-ownership.test.js pins this.
@@ -417,7 +428,7 @@
     const layout=popupLayout();
     return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
-      ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
+      ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${ownClosure?.notice_date?t(" Notice dated {0}.", {"0":(esc(ownClosure.notice_date))}):''}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
       <div><strong>${t("Cost:")}</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||t("Source"))}${p.fee_checked?t(", imported {0}", {"0":(esc(p.fee_checked))}):''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
       ${p.fee_status==='free'||p.fee_status==='conditional'?`<div class="kt-fine">${t("This is the camping fee only. Entrance fees, passes, permits, or reservation charges may still apply.")}</div>`:''}
@@ -427,6 +438,10 @@
       ${p.stay_limit?`<div><strong>${t("Stay limit:")}</strong> ${esc(p.stay_limit)}</div>`:''}
       ${p.reservable?`<div class="kt-fine">${t("Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.")}</div>`:''}
       <div><strong>${t("Type:")}</strong> ${esc(uiLabel('type',p.type))}</div>
+      ${p.type==='lodging'&&p.kt_accommodation==='cabins'&&p.ridb_overnight_sites>1?'<p class="kt-fine kt-multi-cabin">'+esc(t("This one listing covers {0} cabins in the facility’s Recreation.gov record. The map point does not locate a particular cabin.", {"0":String(p.ridb_overnight_sites)}))+'</p>':''}
+      ${p.camping_evidence==='owner_review_evidence_changed'?'<p class="kt-fine kt-review-changed">'+esc(t("This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again."))+'</p>':p.camping_evidence==='proposed_withdrawal_pending_review'?'<p class="kt-fine kt-pending-withdrawal">'+esc(t("This location is under review for removal from campsite search. Its own record does not establish camping. It stays listed until the review is decided."))+'</p>':p.camping_classification==='published_pending_review'?'<p class="kt-fine">'+esc(t("This previously listed location is under review. Its record does not establish the camping type at this point."))+'</p>':''}
+      ${p.type_evidence?.kind==='held_published_label'?'<p class="kt-fine kt-held-label">'+esc(t("The type shown is the label published before this review."))+'</p>':''}
+      ${p.camping_evidence==='reviewed_own_facility_record'?'<p class="kt-fine">'+esc(p.type_evidence?.kind==='owner_reviewed_own_record'&&p.type!=='other'?t("Camping and this camping type are described in this facility’s own Recreation.gov record."):t("Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified."))+'</p>':''}
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
@@ -585,7 +600,7 @@
       // Optional evidence must not delay the map when its request is slow or unavailable.
       // Sidecar evidence attaches before deduplication, as in the index build, so arrival rebuilds.
       loadAmenityDetails().then(()=>{
-        if(state.amenityDetails&&stateInputs.size)rebuildCatalogue();
+        if(state.amenityDetails&&stateInputs.size){for(const [code,features] of rawStates)prepareState(features,code);rebuildCatalogue();}
         updateMarkers();
       });
       loadUSFSSiteDetails().then(()=>{
@@ -624,6 +639,41 @@
     getIdentityStatus:()=>({hosts:identity?'published':'fallback',shown:shownIds.size}),
     // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
     async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
+    // Listings withdrawn from campsite discovery keep a resolvable legacy entry explaining why (data/campsites/withdrawn.json).
+    async openWithdrawn(id){
+      if(!DataQuality.isWithdrawnId(id))return false;
+      const withdrawn=(await api.loadWithdrawn()).get(String(id));
+      if(!withdrawn)return false;
+        const [lng,lat] = withdrawn.coordinates;
+        const panel = document.createElement('section');
+        panel.className = 'kt-withdrawn-listing';
+        const heading = document.createElement('h2');
+        heading.textContent = withdrawn.name;
+        const notice = document.createElement('p');
+        notice.textContent = t("This place was removed from campsite search after an evidence review. Check the facility record for camping details and current availability.");
+        panel.append(heading,notice);
+        if (/^ridb:\d+$/.test(withdrawn.id)) {
+          const link = document.createElement('a');
+          link.href = 'https://www.recreation.gov/camping/campgrounds/' + withdrawn.id.slice(5);
+          link.textContent = t("View facility record on Recreation.gov");
+          panel.append(link);
+        }
+        state.map.setView([lat,lng],12);
+        L.popup().setLatLng([lat,lng]).setContent(panel).openOn(state.map);
+      return true;
+    },
+    loadWithdrawn(){
+      if(!state.withdrawnPromise)state.withdrawnPromise=fetchJSON('data/campsites/withdrawn.json').then(data=>{
+        if(data?.version!==1||!Array.isArray(data.listings))throw new Error('Invalid withdrawn listings');
+        const records=new Map();
+        for(const w of data.listings){
+          if(typeof w?.id!=='string'||!Array.isArray(w.legacy_ids)||!Array.isArray(w.coordinates)||w.coordinates.length!==2||!w.coordinates.every(Number.isFinite))throw new Error('Invalid withdrawn entry');
+          for(const id of [w.id,...w.legacy_ids])records.set(id,w);
+        }
+        return records;
+      }).catch(()=>{state.withdrawnPromise=null;return new Map();});
+      return state.withdrawnPromise;
+    },
     getLoadedStates:()=>[...state.loadedStates],
     getVisibleStates,
     getStateBounds:()=>STATE_BOUNDS,

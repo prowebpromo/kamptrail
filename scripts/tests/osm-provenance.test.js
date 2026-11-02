@@ -29,7 +29,7 @@ for(const f of fixtures.filter(f=>f.kind!=='synthetic_index_layer'))test('Claude
  for(const e of evidence){assert.ok(e.retrieved_at,e.source_record_id+' retrieval date');if(!f.synthetic)assert.equal(e.retrieved_at,own(e.source_record_id),e.source_record_id+' retrieval date is its own element\'s');}
  const withoutDate=list=>list.map(({retrieved_at,...rest})=>rest);
  assert.deepEqual(withoutDate(evidence),withoutDate(f.expected.member_evidence));
- for(const e of p.member_evidence||[])for(const [k,v] of Object.entries(e.fields))if(!feeAccess(k)){assert.ok(DQ.OSM_AMENITY_TAG.test(k)||DQ.OSM_RIG_TAG.test(k),k);const donor=inputs.find(i=>i.properties.id===e.source_record_id);assert.equal(String(donor.properties[k]),String(v),e.source_record_id+' '+k);}
+ for(const e of p.member_evidence||[])for(const [k,v] of Object.entries(e.fields))if(!feeAccess(k)){assert.ok(k==='tourism'||DQ.OSM_AMENITY_TAG.test(k)||DQ.OSM_RIG_TAG.test(k),k);const donor=inputs.find(i=>i.properties.id===e.source_record_id);assert.equal(String(donor.properties[k]),String(v),e.source_record_id+' '+k);}
  const n=DQ.normalizeFeature(kept);
  if(f.expected.normalized.rejected)assert.equal(n,null);
  else{assert.ok(n);for(const k of ['fee_status','cost','access_status'])assert.equal(n.properties[k],f.expected.normalized[k],k);}

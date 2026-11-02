@@ -23,7 +23,7 @@ const amenityTag = k => AMENITY_TAG.test(k);
 const RIG_TAG = /^(?:tents|caravans|motorhome|capacity|backcountry|group_only|static_caravans|horse|maxlength|maxtents)(?::|$)/;
 const rigTag = k => RIG_TAG.test(k);
 const feeAccessTag = k => /(^|:)(fee|charge)(:|$)/.test(k) || /^access(:|$)/.test(k);
-const osmTag = k => feeAccessTag(k) || amenityTag(k) || rigTag(k);
+const osmTag = k => k === 'tourism' || feeAccessTag(k) || amenityTag(k) || rigTag(k);
 const ownedOsmField = k => osmTag(k) || ['osm_id','osm_type','fee_status','cost','fee_text','fee_source','fee_source_record_id','fee_checked','fee_evidence','fee_evidence_records','fee_conflict'].includes(k);
 
 // Retain observations on their source element. A proximity match grants no
@@ -45,6 +45,23 @@ function memberEvidence(primary, secondary) {
   // Source snapshots fail visibly rather than silently dropping provenance.
   if (records.size > 128) throw new Error('Too many OSM member evidence records; identity review required');
   return [...records.values()];
+}
+
+// Classification ownership (tourism-type-admission candidate). tourism=* classifies the element that carries
+// it. A distinct absorbed record never lends it to the retained record. It stays on that member's attributed
+// evidence. A description copied from another record is marked with that record's id.
+function ownClassification(merged, primary, secondary) {
+  if (secondary.id === primary.id) return;
+  for(const field of ['tourism','camping_activity']){
+    if(Object.hasOwn(primary,field))merged[field]=primary[field];else delete merged[field];
+  }
+  // A description copied from a different record is that record's wording. It is marked so it never
+  // classifies the retained listing. The text itself is unchanged.
+  const own = primary.description_source_record_id || null;
+  if (merged.description && merged.description !== (primary.description || '') && merged.description === secondary.description) {
+    merged.description_source_record_id = secondary.description_source_record_id || secondary.id;
+  } else if (own) merged.description_source_record_id = own;
+  else delete merged.description_source_record_id;
 }
 
 // Name tokens that distinguish separate campgrounds when they are the only difference between two names.
@@ -228,8 +245,8 @@ class CampsiteMerger {
       // A separate record's rig list stays with that record (2.34.0). Only the same record seen twice unions.
       rig_friendly: [...new Set([...list(primary.rig_friendly), ...(secondary.id === primary.id ? list(secondary.rig_friendly) : [])])],
       // Missing classifications remain unknown. Do not infer dispersed camping from geometry type.
-      type: ['established', 'dispersed', 'backcountry', 'rv_park'].includes(primary.type)
-        ? primary.type : (['established', 'dispersed', 'backcountry', 'rv_park'].includes(secondary.type) ? secondary.type : null),
+      type: ['established','dispersed','backcountry','rv_park','other','parking'].includes(primary.type)
+        ? primary.type : (secondary.id === primary.id && ['established','dispersed','backcountry','rv_park','other','parking'].includes(secondary.type) ? secondary.type : null),
       sources: [...new Set([
         ...list(primary.sources), primary.source,
         ...list(secondary.sources), secondary.source
@@ -270,6 +287,8 @@ class CampsiteMerger {
         merged.access_hold = {value: String(donor.fields.access).trim().toLowerCase(), source_record_id: donor.source_record_id};
       } else delete merged.access_hold;
     }
+    // After member evidence is rebuilt, so the attributed tourism value is kept on its member.
+    ownClassification(merged, primary, secondary);
     return merged;
   }
 

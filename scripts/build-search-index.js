@@ -45,8 +45,10 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (geojson?.type !== 'FeatureCollection' || !Array.isArray(geojson.features)) {
       throw new Error(`${state} is not a GeoJSON FeatureCollection`);
     }
-    for (const raw of quality.publicationCandidates(geojson.features,{state})) {
-      const feature = quality.normalizeFeature(raw, {state});
+    // Own overnight campsite records corroborate a Recreation.gov record's own facility type.
+    const options = {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})};
+    for (const raw of quality.publicationCandidates(geojson.features,options)) {
+      const feature = quality.normalizeFeature(raw, options);
       if (!feature) continue;
       if(siteDetails)quality.attachSiteDetails(feature,siteDetails);
       attachAmenities(feature);
@@ -58,7 +60,9 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     }
   }
 
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {})});
+  // Members of unclassified hosts stay withheld across state files.
+  const withheldMembers = quality.withheldMembers ? new Set(collections.flatMap(({state, geojson}) => [...quality.withheldMembers(geojson.features, {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})})])) : null;
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {}), ...(withheldMembers ? {withheldMembers} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);
@@ -146,6 +150,19 @@ if (require.main === module) {
     const result = buildFromDirectory(directory);
     if (!result.sites.length) throw new Error('No publishable campsites found. Search index was not replaced.');
     const output = path.join(directory, 'search-index.json');
+    // Existing canonical and saved alias IDs must resolve to the same host or to an approved
+    // withdrawn entry. Stop before replacing any output if a refresh would break a saved link.
+    if(fs.existsSync(output)){
+      const previous=JSON.parse(fs.readFileSync(output,'utf8')).sites;
+      const owners=new Map(result.sites.map(row=>[row.id,row.id]));
+      for(const row of result.sites)for(const id of row.legacy_ids)if(!owners.has(id))owners.set(id,row.id);
+      const withdrawnFile=path.join(directory,'withdrawn.json');
+      const withdrawn=fs.existsSync(withdrawnFile)?JSON.parse(fs.readFileSync(withdrawnFile,'utf8')).listings:[];
+      const retired=new Map(withdrawn.flatMap(row=>[row.id,...row.legacy_ids].map(id=>[id,row.id])));
+      for(const row of previous)for(const id of [row.id,...row.legacy_ids]){
+        if((owners.get(id)||retired.get(id))!==row.id)throw new Error('Published ID would lose its host: '+id+' (was '+row.id+')');
+      }
+    }
     const temporary = output + '.tmp';
     fs.writeFileSync(temporary, JSON.stringify(result) + '\n');
     fs.renameSync(temporary, output);

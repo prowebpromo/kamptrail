@@ -15,11 +15,11 @@ test('snapshot merge keeps every rig-suitability key on the element that carries
   const tags={tents:'yes',caravans:'yes',motorhome:'yes',capacity:'40','capacity:caravans':'13',backcountry:'no',group_only:'no',static_caravans:'no',horse:'yes',maxlength:'12',maxtents:'2'};
   const host=merge(ridb(7),osm(3,tags));
   for(const k of Object.keys(tags))assert.equal(host[k],undefined,k);
-  assert.deepEqual(host.member_evidence[0].fields,tags);assert.equal(host.member_evidence[0].source_record_id,'osm:way:3');
+  assert.deepEqual(host.member_evidence[0].fields,{tourism:'camp_site',...tags});assert.equal(host.member_evidence[0].source_record_id,'osm:way:3');
   // An OSM host keeps its own values, including explicit negatives. The absorbed element's values go to member evidence.
   const own=merge(osm(1,{tents:'yes',caravans:'no'}),osm(2,{tents:'no',caravans:'yes'}));
   assert.equal(own.tents,'yes');assert.equal(own.caravans,'no');
-  assert.deepEqual(own.member_evidence.find(e=>e.source_record_id==='osm:way:2').fields,{tents:'no',caravans:'yes'});
+  assert.deepEqual(own.member_evidence.find(e=>e.source_record_id==='osm:way:2').fields,{tourism:'camp_site',tents:'no',caravans:'yes'});
   // Separate records never union rig lists. The same record seen twice still does.
   assert.deepEqual(merge(ridb(8,{rig_friendly:['tent']}),ridb(9,{rig_friendly:['rv']})).rig_friendly,['tent']);
   assert.deepEqual(merge(usfs(5),usfs(5)).rig_friendly,['rv']);

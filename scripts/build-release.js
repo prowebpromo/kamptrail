@@ -2,6 +2,11 @@ const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('n
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
 const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
+  const campsiteData=path.join(root,'data','campsites');
+  const withdrawals=JSON.parse(await fs.readFile(path.join(campsiteData,'withdrawn.json'),'utf8'));
+  const search=JSON.parse(await fs.readFile(path.join(campsiteData,'search-index.json'),'utf8'));
+  const retired=new Set(withdrawals.listings.flatMap(row=>[row.id,...row.legacy_ids]));
+  for(const row of search.sites)if([row.id,...row.legacy_ids].some(id=>retired.has(id)))throw new Error('Search still contains a retired listing. Rebuild the reviewed candidate before packaging.');
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-rest-policies.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
@@ -9,7 +14,7 @@ const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
   await fs.cp(path.join(root,'media','how-to'),path.join(out,'media','how-to'),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});
-  for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','identity-hosts.json','ridb-sites.json','coordinate-index.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
+  for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','identity-hosts.json','ridb-sites.json','coordinate-index.json','withdrawn.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
   const amenityPath=path.join(root,'data','campsites','ridb-amenities.json');
   if(await fs.stat(amenityPath).then(s=>s.isFile()).catch(()=>false)){
     const raw=await fs.readFile(amenityPath);if(raw.length>2*1024*1024||!require('../data-quality.js').validRIDBAmenities(JSON.parse(raw)))throw new Error('Invalid optional RIDB amenity evidence');

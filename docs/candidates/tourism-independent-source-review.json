@@ -1,0 +1,609 @@
+{
+  "baseline": "a8785f981e58f745fbd57e34763b630ab73fe7d2",
+  "proposal_baseline": "c109f339",
+  "review_date": "2026-11-01",
+  "scope": "Independent human-readable evidence review of all 31 withdrawal proposals and all 10 lodging proposals. Results describe evidence, not permission to publish or an assertion of present availability. Withdrawal rows are assessed against their own retained records; external primary sources supplement the three lodging rows described below. No nearby OSM records or website identity used.",
+  "counts": {
+    "seasonal_camp_evidence": 1,
+    "own_campsites": 14,
+    "insufficient_in_retained_row": 9,
+    "camp_name_limited_details": 3,
+    "area_with_camping": 3,
+    "own_primitive_site_details": 1,
+    "lodging_supported": 7,
+    "lodging_supported_with_closure": 1,
+    "hold_lodging": 1,
+    "reject_lodging": 1
+  },
+  "records": {
+    "ridb:10049041": {
+      "name": "Morrow Bridge and Midway Seasonal Camps",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "seasonal_camp_evidence",
+      "evidence_note": "The named seasonal primitive camps are described together. The map point alone does not distinguish the two facilities.",
+      "retained_paths": [
+        "data/campsites/SC.geojson"
+      ],
+      "own_record_id": "ridb:10049041",
+      "facility_id": "10049041",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/10049041",
+      "source_date": "2026-10-29T03:32:57Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:10068990": {
+      "name": "Willow Creek Transfer Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "Three large camping units are attributed to Willow Creek Transfer Camp itself.",
+      "retained_paths": [
+        "data/campsites/ID.geojson"
+      ],
+      "own_record_id": "ridb:10068990",
+      "facility_id": "10068990",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/10068990",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:237148": {
+      "name": "Gateway Boat Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The facility has five sites with tables and fire rings and identifies itself as a boat-access campground.",
+      "retained_paths": [
+        "data/campsites/ID.geojson",
+        "data/campsites/MT.geojson"
+      ],
+      "own_record_id": "ridb:237148",
+      "facility_id": "237148",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/237148",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:237765": {
+      "name": "Kirkwood Ranch",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "The visitor ranch and museum are described. Historic bunk houses do not establish lodging or campsites.",
+      "retained_paths": [
+        "data/campsites/ID.geojson"
+      ],
+      "own_record_id": "ridb:237765",
+      "facility_id": "237765",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/237765",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:240871": {
+      "name": "Enduro Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "camp_name_limited_details",
+      "evidence_note": "Its own name identifies a camp. Restrooms are described, without a site count or express overnight use.",
+      "retained_paths": [
+        "data/campsites/LA.geojson"
+      ],
+      "own_record_id": "ridb:240871",
+      "facility_id": "240871",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/240871",
+      "source_date": "2026-10-29T03:03:23Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:240903": {
+      "name": "Sugar Creek Hunter Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "camp_name_limited_details",
+      "evidence_note": "Own record contains its Hunter Camp name, with no independent overnight details in that row.",
+      "retained_paths": [
+        "data/campsites/LA.geojson"
+      ],
+      "own_record_id": "ridb:240903",
+      "facility_id": "240903",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/240903",
+      "source_date": "2026-10-29T03:03:23Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:241301": {
+      "name": "Bear Creek Lake Recreation Area",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "area_with_camping",
+      "evidence_note": "The recreation area contains three campgrounds. The area point is distinct from an individual campground.",
+      "retained_paths": [
+        "data/campsites/AR.geojson"
+      ],
+      "own_record_id": "ridb:241301",
+      "facility_id": "241301",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/241301",
+      "source_date": "2026-10-29T02:48:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:243195": {
+      "name": "McDougle Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "camp_name_limited_details",
+      "evidence_note": "Own name identifies a camp. The retained description repeats the name.",
+      "retained_paths": [
+        "data/campsites/AL.geojson"
+      ],
+      "own_record_id": "ridb:243195",
+      "facility_id": "243195",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/243195",
+      "source_date": "2026-10-29T02:45:26Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:243218": {
+      "name": "Coleman Lake Recreation Area",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The area record attributes 39 electrical and water hookup campsites to this facility and identifies accessible camping sites.",
+      "retained_paths": [
+        "data/campsites/AL.geojson"
+      ],
+      "own_record_id": "ridb:243218",
+      "facility_id": "243218",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/243218",
+      "source_date": "2026-10-29T02:45:26Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:243702": {
+      "name": "Head O' Boulder Forest Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The forest camp offers several rustic sites and is also a trailhead.",
+      "retained_paths": [
+        "data/campsites/OR.geojson"
+      ],
+      "own_record_id": "ridb:243702",
+      "facility_id": "243702",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/243702",
+      "source_date": "2026-10-29T03:28:33Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:244320": {
+      "name": "Bowman Lake Area",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "area_with_camping",
+      "evidence_note": "The entry covers an extensive area and identifies four campsites on Bowman Lake. The area includes multiple landowners.",
+      "retained_paths": [
+        "data/campsites/MI.geojson"
+      ],
+      "own_record_id": "ridb:244320",
+      "facility_id": "244320",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/244320",
+      "source_date": "2026-10-29T03:06:41Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:244321": {
+      "name": "Condon Lakes West",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "area_with_camping",
+      "evidence_note": "Camping is listed as a popular activity in a wider area. A particular campsite is not identified.",
+      "retained_paths": [
+        "data/campsites/MI.geojson"
+      ],
+      "own_record_id": "ridb:244321",
+      "facility_id": "244321",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/244321",
+      "source_date": "2026-10-29T03:06:41Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:244404": {
+      "name": "Wakeley Lake Area",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "The description discusses recreation areas near this part of the forest.",
+      "retained_paths": [
+        "data/campsites/MI.geojson"
+      ],
+      "own_record_id": "ridb:244404",
+      "facility_id": "244404",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/244404",
+      "source_date": "2026-10-29T03:06:41Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:245164": {
+      "name": "Hunter Creek Transfer Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The campground describes three single camping units and one multifamily unit.",
+      "retained_paths": [
+        "data/campsites/ID.geojson"
+      ],
+      "own_record_id": "ridb:245164",
+      "facility_id": "245164",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/245164",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:245165": {
+      "name": "Bear Creek Transfer Camp",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The named transfer camp has six campsites.",
+      "retained_paths": [
+        "data/campsites/ID.geojson"
+      ],
+      "own_record_id": "ridb:245165",
+      "facility_id": "245165",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/245165",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:245273": {
+      "name": "Buckhorn",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "The description only identifies a recreation area.",
+      "retained_paths": [
+        "data/campsites/ID.geojson"
+      ],
+      "own_record_id": "ridb:245273",
+      "facility_id": "245273",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/245273",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:246536": {
+      "name": "Bingo",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "The retained description links a general forest camping guide.",
+      "retained_paths": [
+        "data/campsites/VT.geojson"
+      ],
+      "own_record_id": "ridb:246536",
+      "facility_id": "246536",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/246536",
+      "source_date": "2026-10-29T03:37:44Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:247835": {
+      "name": "Daisy State Park",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "The park is described only as part of Greeson Lake. The separate absorbed OSM element is not evidence about this row.",
+      "retained_paths": [
+        "data/campsites/AR.geojson"
+      ],
+      "own_record_id": "ridb:247835",
+      "facility_id": "247835",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/247835",
+      "source_date": "2026-10-29T02:48:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:247915": {
+      "name": "River Forks",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "The facility is described only as part of Lake Sidney Lanier. The distinct OSM element and its website are insufficient.",
+      "retained_paths": [
+        "data/campsites/GA.geojson"
+      ],
+      "own_record_id": "ridb:247915",
+      "facility_id": "247915",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/247915",
+      "source_date": "2026-10-29T02:55:36Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:247922": {
+      "name": "Don Carter State Park",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "The park is described only as part of Lake Sidney Lanier. Check the separately published OSM listing remains available under its own ID.",
+      "retained_paths": [
+        "data/campsites/GA.geojson"
+      ],
+      "own_record_id": "ridb:247922",
+      "facility_id": "247922",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/247922",
+      "source_date": "2026-10-29T02:55:36Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:248072": {
+      "name": "Scusset Beach State Reservation",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "This reservation is identified as part of Cape Cod Canal, without campground details.",
+      "retained_paths": [
+        "data/campsites/MA.geojson"
+      ],
+      "own_record_id": "ridb:248072",
+      "facility_id": "248072",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/248072",
+      "source_date": "2026-10-29T03:05:47Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:248261": {
+      "name": "Potato Hills Central",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "insufficient_in_retained_row",
+      "evidence_note": "This facility is identified as part of Sardis Lake, without campground details.",
+      "retained_paths": [
+        "data/campsites/OK.geojson"
+      ],
+      "own_record_id": "ridb:248261",
+      "facility_id": "248261",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/248261",
+      "source_date": "2026-10-29T03:27:17Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:249627": {
+      "name": "Joe Elliot Yellow Post Sites",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_primitive_site_details",
+      "evidence_note": "Two first-come yellow post sites with campfire pits and seasonal access restrictions are described.",
+      "retained_paths": [
+        "data/campsites/CA.geojson"
+      ],
+      "own_record_id": "ridb:249627",
+      "facility_id": "249627",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/249627",
+      "source_date": "2026-10-29T02:50:45Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:249642": {
+      "name": "Coon Creek Yellow Post Sites",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The source expressly identifies 19 individual camping sites. They are first come and have no reservations.",
+      "retained_paths": [
+        "data/campsites/CA.geojson"
+      ],
+      "own_record_id": "ridb:249642",
+      "facility_id": "249642",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/249642",
+      "source_date": "2026-10-29T02:50:45Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:249674": {
+      "name": "Stockton Flats Yellow Post Sites",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "These sites are expressly described as suitable for tent and car camping.",
+      "retained_paths": [
+        "data/campsites/CA.geojson"
+      ],
+      "own_record_id": "ridb:249674",
+      "facility_id": "249674",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/249674",
+      "source_date": "2026-10-29T02:50:45Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:249741": {
+      "name": "Thomas Hunting Grounds Yellow Post Sites",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "Five named remote sites are expressly offered for tent and car camping.",
+      "retained_paths": [
+        "data/campsites/CA.geojson"
+      ],
+      "own_record_id": "ridb:249741",
+      "facility_id": "249741",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/249741",
+      "source_date": "2026-10-29T02:50:45Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:249752": {
+      "name": "Clark's Ranch Yellow Post Site",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The remote site is expressly offered for tent and car camping.",
+      "retained_paths": [
+        "data/campsites/CA.geojson"
+      ],
+      "own_record_id": "ridb:249752",
+      "facility_id": "249752",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/249752",
+      "source_date": "2026-10-29T02:50:45Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:249902": {
+      "name": "Wolf Gap Recreation Area",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The same recreation area's visitor description invites visitors to stay at its campsites.",
+      "retained_paths": [
+        "data/campsites/WV.geojson"
+      ],
+      "own_record_id": "ridb:249902",
+      "facility_id": "249902",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/249902",
+      "source_date": "2026-10-29T03:40:29Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:255188": {
+      "name": "Spring Recreation Site",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The facility identifies its own RV and tent campsites, distinguishes the boat launch and refers to its campground.",
+      "retained_paths": [
+        "data/campsites/OR.geojson"
+      ],
+      "own_record_id": "ridb:255188",
+      "facility_id": "255188",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/255188",
+      "source_date": "2026-10-29T03:28:33Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:255232": {
+      "name": "Mica Bay Boater Park",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The facility identifies itself as a boat-in campground with 16 tent units. Agency intro boilerplate precedes this text.",
+      "retained_paths": [
+        "data/campsites/ID.geojson"
+      ],
+      "own_record_id": "ridb:255232",
+      "facility_id": "255232",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/255232",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:255239": {
+      "name": "McKay's Bend Recreation Site",
+      "proposal": "discovery withdrawal",
+      "evidence_result": "own_campsites",
+      "evidence_note": "The facility describes 14 full-hookup RV sites and three large tent campsites and calls the camping first come.",
+      "retained_paths": [
+        "data/campsites/ID.geojson"
+      ],
+      "own_record_id": "ridb:255239",
+      "facility_id": "255239",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/255239",
+      "source_date": "2026-10-29T02:57:25Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:10344823": {
+      "name": "Coldfoot Cabin",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported",
+      "evidence_note": "Coldfoot Cabin's own campsite page shows two bedrooms with bunk beds.",
+      "retained_paths": [
+        "data/campsites/agency/AK.geojson"
+      ],
+      "own_record_id": "blm-facility:10344823",
+      "facility_id": "10344823",
+      "retained_source_url": "https://www.blm.gov/visit/search-details/10344823/1",
+      "source_date": null,
+      "additional_authoritative_sources": [
+        "https://www.recreation.gov/camping/campsites/10344824"
+      ]
+    },
+    "ridb:233178": {
+      "name": "SHAW HOUSE",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported_with_closure",
+      "evidence_note": "The retained facility describes Shaw House as a rentable historic stone cabin. A dated notice in that same record reports temporary closure after fire damage. Do not infer availability.",
+      "retained_paths": [
+        "data/campsites/AZ.geojson"
+      ],
+      "own_record_id": "ridb:233178",
+      "facility_id": "233178",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/233178",
+      "source_date": "2026-10-29T02:47:24Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:234149": {
+      "name": "PICKETT BUTTE LOOKOUT",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported",
+      "evidence_note": "Pickett Butte's facility record describes a one-room structure and seasonal lodging use.",
+      "retained_paths": [
+        "data/campsites/OR.geojson"
+      ],
+      "own_record_id": "ridb:234149",
+      "facility_id": "234149",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/234149",
+      "source_date": "2026-10-29T03:28:33Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:234159": {
+      "name": "SNOW CAMP LOOKOUT",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported",
+      "evidence_note": "Snow Camp's record describes guests staying in the rebuilt lookout cabin.",
+      "retained_paths": [
+        "data/campsites/OR.geojson"
+      ],
+      "own_record_id": "ridb:234159",
+      "facility_id": "234159",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/234159",
+      "source_date": "2026-10-29T03:28:33Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:234185": {
+      "name": "DRAKE PEAK LOOKOUT",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported",
+      "evidence_note": "Drake Peak's record describes overnight lodging in the former lookout cabin.",
+      "retained_paths": [
+        "data/campsites/OR.geojson"
+      ],
+      "own_record_id": "ridb:234185",
+      "facility_id": "234185",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/234185",
+      "source_date": "2026-10-29T03:28:33Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:234745": {
+      "name": "DESOLATION GRAY CANYONS SCREEN CABINS",
+      "proposal": "lodging",
+      "evidence_result": "hold_lodging",
+      "evidence_note": "All four reservations are structurally labelled cabin. Each unit's official instructions say it is a gathering place and visitors should sleep in their own tent or trailer.",
+      "retained_paths": [
+        "data/campsites/agency/UT.geojson"
+      ],
+      "own_record_id": "blm-facility:234745",
+      "facility_id": "234745",
+      "retained_source_url": "https://www.blm.gov/visit/search-details/234745/1",
+      "source_date": null,
+      "additional_authoritative_sources": [
+        "https://www.recreation.gov/camping/campgrounds/234745",
+        "https://www.recreation.gov/camping/campsites/91885",
+        "https://www.recreation.gov/camping/campsites/91156",
+        "https://www.recreation.gov/camping/campsites/91806",
+        "https://www.recreation.gov/camping/campsites/91352"
+      ]
+    },
+    "ridb:251352": {
+      "name": "Henneberry House",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported",
+      "evidence_note": "The facility describes a historic cabin that sleeps eight people.",
+      "retained_paths": [
+        "data/campsites/MT.geojson",
+        "data/campsites/agency/MT.geojson"
+      ],
+      "own_record_id": "ridb:251352",
+      "facility_id": "251352",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/251352",
+      "source_date": "2026-10-29T03:10:59Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:251354": {
+      "name": "Axolotl Cabin",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported",
+      "evidence_note": "Axolotl's facility describes a cabin for visitors.",
+      "retained_paths": [
+        "data/campsites/MT.geojson",
+        "data/campsites/agency/MT.geojson"
+      ],
+      "own_record_id": "ridb:251354",
+      "facility_id": "251354",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/251354",
+      "source_date": "2026-10-29T03:10:59Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:252494": {
+      "name": "White Mountains National Recreation Area - Alaska Cabins",
+      "proposal": "lodging",
+      "evidence_result": "lodging_supported",
+      "evidence_note": "This is a group of public-use cabins across the recreation area. Its own record describes the cabins and cabin permits. Do not imply the map point gives a particular cabin location.",
+      "retained_paths": [
+        "data/campsites/AK.geojson",
+        "data/campsites/agency/AK.geojson"
+      ],
+      "own_record_id": "ridb:252494",
+      "facility_id": "252494",
+      "retained_source_url": "https://www.recreation.gov/camping/campgrounds/252494",
+      "source_date": "2026-10-29T02:46:29Z",
+      "additional_authoritative_sources": []
+    },
+    "ridb:255240": {
+      "name": "Pink House Recreation Site",
+      "proposal": "lodging",
+      "evidence_result": "reject_lodging",
+      "evidence_note": "The BLM facility's fee record distinguishes RV full hookups and tent camping. Its official page describes the campground and tent and RV sites. House is part of a proper name here.",
+      "retained_paths": [
+        "data/campsites/agency/ID.geojson"
+      ],
+      "own_record_id": "blm-facility:255240",
+      "facility_id": "255240",
+      "retained_source_url": "https://www.blm.gov/visit/search-details/255240/1",
+      "source_date": null,
+      "additional_authoritative_sources": [
+        "https://www.blm.gov/visit/pink-house-recreation-site",
+        "https://www.blm.gov/visit/pink-house-day-use-pavilions"
+      ]
+    }
+  }
+}
