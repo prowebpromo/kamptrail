@@ -4,11 +4,12 @@
 // canonical id and the same source-id set (id plus legacy_ids), with no wrong merges, after loading every state.
 // Unexpected browser ids, unmatched browser listings and unequal listing counts are mismatches too.
 // With EXPECTED_SHA set, release.json must report that source_commit at the start and the end of the run.
+// A state, agency index or agency file that failed to load is a FAIL with its reason in load_failures.
 // Exit 0 only on zero mismatches. Exit 1 on any mismatch or release change, 2 on a script or browser error.
 // Usage: INDEX_FILE=<index.json> [EXPECTED_SHA=<sha>] [BASE=https://kamptrail.com] [MOBILE=1] [CHROMIUM_PATH=...] node live-identity-census.js <reversed|seed:N|default|delayed:ST>
 const {chromium} = require('playwright');
 const fs = require('fs');
-const {compare} = require('./census-compare');
+const {compare, loadFailures} = require('./census-compare');
 const EXPECTED_SHA = process.env.EXPECTED_SHA || null;
 
 const scenario = process.argv[2] || 'reversed';
@@ -50,6 +51,7 @@ function seedShuffle(list, seed) {
     const loadStatus = await page.evaluate(() => KampTrailData.getLoadStatus());
     const browserListings = await page.evaluate(() => KampTrailData.getAllCampsites().map(f => [f.properties.id, [f.properties.id, ...(f.properties.legacy_ids || [])]]));
     const result = compare(expected, browserListings);
+    const failures = loadFailures(loadStatus);
     const releaseEnd = await readRelease();
     const releaseProblems = [];
     if (EXPECTED_SHA && release.source_commit !== EXPECTED_SHA) releaseProblems.push(`start source_commit ${release.source_commit} is not ${EXPECTED_SHA}`);
@@ -61,12 +63,13 @@ function seedShuffle(list, seed) {
       browser: {executable: process.env.CHROMIUM_PATH || 'playwright bundled', version: browser.version()},
       viewport_runtime: page.viewportSize(), mobile_emulation: MOBILE,
       state_order: order, failed_states: loadStatus.failedStates,
+      agency_index: loadStatus.agencyIndex, agency_failed_states: loadStatus.agencyFailedStates, load_failures: failures,
       expected_listings: result.expected_listings, browser_features: result.browser_features, count_differs: result.count_differs,
       mismatches: result.mismatches,
       missing: result.missing, split: result.split, canonical_differs: result.canonical,
       source_set_differs: result.sourceSet, wrong_merges: result.wrongMerge, unexpected_ids: result.unexpected,
       unmatched_browser_listings: result.unmatched, page_errors: pageErrors,
-      result: result.mismatches === 0 && !loadStatus.failedStates.length && !releaseProblems.length ? 'PASS' : 'FAIL'
+      result: result.mismatches === 0 && !failures.length && !releaseProblems.length ? 'PASS' : 'FAIL'
     };
     console.log(JSON.stringify(record, null, 1));
     process.exitCode = record.result === 'PASS' ? 0 : 1;

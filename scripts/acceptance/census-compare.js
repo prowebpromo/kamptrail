@@ -35,4 +35,14 @@ function compare(expected, browser) {
   return {expected_listings: expected.length, browser_features: browser.length, count_differs: countDiffers, mismatches, ...out};
 }
 
-module.exports = {compare};
+// Load problems that make a census run invalid: whole states, the agency (Forest Service and BLM) index or
+// agency state files that did not load. Missing agency listings must be a named FAIL, never a count mismatch.
+function loadFailures(status) {
+  const out = [];
+  for (const f of (status && status.failedStates) || []) out.push(`state ${f.state} failed to load: ${f.error}`);
+  if (!status || status.agencyIndex !== 'ok') out.push(`agency index ${status && status.agencyIndex ? status.agencyIndex : 'status unavailable'}${status && status.agencyIndexError ? `: ${status.agencyIndexError}` : ''}`);
+  for (const f of (status && status.agencyFailedStates) || []) out.push(`agency file ${f.state} failed to load: ${f.error}`);
+  return out;
+}
+
+module.exports = {compare, loadFailures};

@@ -45,7 +45,7 @@
     }).catch(() => {showToast(t("Offline saving is unavailable. You can still use the map online."));});
   }
 
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.37.0' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.37.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.38.0' || [window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.38.0')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -144,23 +144,33 @@
     const status = KampTrailData.getLoadStatus();
     const sites = KampTrailData.getVisibleCampsites();
     const summary = document.getElementById('result-summary');
-    if (status.overview) {
-      summary.textContent = t("Zoomed out · about {count} source listings nationwide", {count:status.catalogueTotal.toLocaleString(window.KampTrailI18n?.locale() || 'en-US')});
-      const note = document.createElement('p'); note.className = 'list-empty';
-      note.textContent = t("Zoom in, search, or select a state bubble to see campsites. Listings load for the area you view, which keeps the map fast on a weak signal.");
-      document.getElementById('data-errors').hidden = true;
-      document.getElementById('result-list').replaceChildren(note);
-      return;
-    }
-    summary.textContent = t("{count} in this view · {total} loaded{loading}", {count:sites.length.toLocaleString(window.KampTrailI18n?.locale()),total:status.totalSites.toLocaleString(window.KampTrailI18n?.locale()),loading:status.loading?' · '+t('Loading…'):''});
+    // Load failures render first, so the overview keeps the notice and its Retry.
     const errors = document.getElementById('data-errors');
-    errors.replaceChildren(); errors.hidden = !status.failedStates.length;
+    const agencyFailed = status.agencyFailedStates || [], agencyMissing = status.agencyIndex === 'failed' || agencyFailed.length > 0;
+    errors.replaceChildren(); errors.hidden = !status.failedStates.length && !agencyMissing;
     if (status.failedStates.length) {
       const message = document.createElement('div');
       message.textContent = t("Could not load: {states}. Saved listings remain available.", {states:status.failedStates.map(s=>s.state).join(', ')});
       const retry = document.createElement('button'); retry.textContent = t("Retry missing data"); retry.onclick = () => KampTrailData.refresh();
       errors.append(message, retry);
     }
+    // Forest Service and BLM listings are a separate source: name it and the states it is missing for.
+    if (agencyMissing) {
+      const notice = document.createElement('div'); notice.className = 'kt-agency-notice';
+      const message = document.createElement('div');
+      message.textContent = status.agencyIndex === 'failed' ? t("Forest Service and BLM listings could not load. Other listings are shown.") : t("Forest Service and BLM listings could not load for {states}. Other listings are shown.", {states:agencyFailed.map(s=>stateNames[s.state] || s.state).join(', ')});
+      const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = t("Retry");
+      retry.onclick = () => { retry.disabled = true; KampTrailData.retryAgency().finally(() => { retry.disabled = false; }); };
+      notice.append(message, retry); errors.append(notice);
+    }
+    if (status.overview) {
+      summary.textContent = t("Zoomed out · about {count} source listings nationwide", {count:status.catalogueTotal.toLocaleString(window.KampTrailI18n?.locale() || 'en-US')});
+      const note = document.createElement('p'); note.className = 'list-empty';
+      note.textContent = t("Zoom in, search, or select a state bubble to see campsites. Listings load for the area you view, which keeps the map fast on a weak signal.");
+      document.getElementById('result-list').replaceChildren(note);
+      return;
+    }
+    summary.textContent = t("{count} in this view · {total} loaded{loading}", {count:sites.length.toLocaleString(window.KampTrailI18n?.locale()),total:status.totalSites.toLocaleString(window.KampTrailI18n?.locale()),loading:status.loading?' · '+t('Loading…'):''});
     const list = document.getElementById('result-list');
     const fragment = document.createDocumentFragment();
     const center = map.getCenter();

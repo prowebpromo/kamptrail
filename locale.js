@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.37.0';
+  const FR_VERSION = '2.38.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -118,6 +118,8 @@
   "Some listings could not load. Use Retry in the campsite list.": "No se pudieron cargar algunos lugares. Usa Reintentar en la lista.",
   "Zoom in, search, or select a state bubble to see campsites. Listings load for the area you view, which keeps the map fast on a weak signal.": "Acerca el mapa, busca o selecciona el círculo de un estado para ver lugares de acampada. Solo se cargan los lugares de la zona visible para que el mapa funcione con poca señal.",
   "Retry missing data": "Reintentar datos que faltan",
+  "Forest Service and BLM listings could not load. Other listings are shown.": "No se pudieron cargar los lugares de Forest Service y BLM. Se muestran los demás lugares.",
+  "Forest Service and BLM listings could not load for {states}. Other listings are shown.": "No se pudieron cargar los lugares de Forest Service y BLM en {states}. Se muestran los demás lugares.",
   "Paid · amount unknown": "De pago · importe desconocido",
   "Campground": "Camping",
   "Type unknown": "Tipo desconocido",
@@ -1900,7 +1902,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.37.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.38.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
