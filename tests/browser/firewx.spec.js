@@ -180,14 +180,14 @@ for (const view of [{ name: 'desktop', size: { width: 1440, height: 1000 } }, { 
       s.firewxStatus = 503; s.retryAfter = 7200;
       const refresh = panel(page).getByRole('button', { name: 'Refresh fire weather alerts' });
       await refresh.click();
-      await expect(panel(page).locator('.kt-firewx-stale')).toBeVisible({ timeout: 20000 });
+      await expect(panel(page).locator('.kt-firewx-failed')).toBeVisible({ timeout: 20000 });
       const seen = s.requested.filter(k => k === 'firewx').length;
       s.firewxStatus = 200;
       await refresh.click(); await refresh.click();
       await page.waitForTimeout(500);
       expect(s.requested.filter(k => k === 'firewx').length).toBe(seen);
       await expect(card(page, 'urn:synthetic:polygon')).toBeVisible();
-      await expect(panel(page).locator('.kt-firewx-stale')).toBeVisible();
+      await expect(panel(page).locator('.kt-firewx-failed')).toBeVisible();
     });
 
     test('a fresh tab hides an alert the proxy reports as retired even when the feed shows it alone', async ({ page, context }) => {
