@@ -1,0 +1,37 @@
+{
+ "start": "2026-11-02T02:46:54.362Z",
+ "base": "https://kamptrail.com",
+ "expected_sha": "f9752ecb8090a6e3452896c23eaa374e65c59694",
+ "browser": {
+  "executable": "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome",
+  "version": "153.0.8010.12"
+ },
+ "mobile_emulation": true,
+ "site": {
+  "id": "indot:0db7d09b-31eb-439c-b8bc-f6322669b016",
+  "name": "Greenfield Rest Area Westbound",
+  "coordinates": [
+   -85.701562,
+   39.826439
+  ]
+ },
+ "viewport_runtime": {
+  "width": 390,
+  "height": 844
+ },
+ "release": {
+  "source_commit": "f9752ecb8090a6e3452896c23eaa374e65c59694"
+ },
+ "version": "2.37.0",
+ "request_timeout_ms": 20000,
+ "after_deadline": "Official rest areas 2 official rest-area locations in this view. Coverage: California, Florida, Iowa, Idaho, Indiana, Kansas, Michigan, Montana, Ohio, South Dakota, Texas, Washington; other states are not covered. Overnight permission and current opening are unknown. Unavailable now: Nevada. Select Retry official rest areas to load them. Retry official rest areas",
+ "while_nevada_missing": "Official rest areas 2 official rest-area locations in this view. Coverage: California, Florida, Iowa, Idaho, Indiana, Kansas, Michigan, Montana, Ohio, South Dakota, Texas, Washington; other states are not covered. Overnight permission and current opening are unknown. Unavailable now: Nevada. Select Retry official rest areas to load them. Retry official rest areas",
+ "popup": "Greenfield Rest Area Westbound Interstate 70, Mile Marker 107, Westbound · Milepost 107. Indiana Department of Transportation location list retrieved 2026-10-31T16:28:38Z; record updated 2026-05-08T12:35:10Z. A listed location does not establish permission to park or sleep overnight. State policy checked 2026-10-31T16:28:56Z: overnight parking Prohibited; sleeping in a vehicle Unknown; camping Unk",
+ "after_retry": "Official rest areas 2 official rest-area locations in this view. Coverage: California, Florida, Iowa, Idaho, Indiana, Kansas, Michigan, Montana, Nevada, Ohio, South Dakota, Texas, Washington; other states are not covered. Overnight permission and current opening are unknown. Retry official rest areas",
+ "nevada_requests": 2,
+ "release_end": {
+  "source_commit": "f9752ecb8090a6e3452896c23eaa374e65c59694"
+ },
+ "result": "PASS",
+ "end": "2026-11-02T02:47:01.270Z"
+}
