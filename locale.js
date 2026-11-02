@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.38.0';
+  const FR_VERSION = '2.39.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -17,6 +17,33 @@
     return fr || {};
   };
   const es = {
+  "Find free and paid campsites, explore public land, and save your stops. Choose a state or search to start.": "Encuentra campings gratuitos y de pago, explora terrenos públicos y guarda tus paradas. Elige un estado o busca para empezar.",
+  "Feedback": "Comentarios",
+  "Report a bug": "Informar de un error",
+  "Suggest a feature": "Sugerir una función",
+  "Help improve KampTrail": "Ayuda a mejorar KampTrail",
+  "Close feedback": "Cerrar comentarios",
+  "Found a bug or have an idea? Send it privately. No account required. Email is optional.": "¿Encontraste un error o tienes una idea? Envíala en privado. No necesitas una cuenta. El correo es opcional.",
+  "For bugs, include the steps, what you expected and what happened. Do not include passwords or sensitive personal information.": "Si es un error, incluye los pasos, lo que esperabas y lo que ocurrió. No incluyas contraseñas ni información personal sensible.",
+  "What would help you, and why?": "¿Qué te ayudaría y por qué?",
+  "Feedback type": "Tipo de comentario",
+  "Short summary": "Resumen breve",
+  "Include basic app diagnostics (optional)": "Incluir diagnósticos básicos de la aplicación (opcional)",
+  "See what diagnostics would include": "Ver qué incluirían los diagnósticos",
+  "App version, interface language, browser family, screen size and connection status only. No location, saved stops, URLs or browsing history.": "Solo versión de la aplicación, idioma, tipo de navegador, tamaño de pantalla y estado de conexión. Sin ubicación, paradas guardadas, URL ni historial de navegación.",
+  "Send feedback": "Enviar comentario",
+  "Feedback is reviewed privately. A suggestion is not a promise to build it. For a campsite correction, use “Suggest a fix” on that listing.": "Los comentarios se revisan en privado. Una sugerencia no es una promesa de implementarla. Para corregir un camping, usa «Sugerir una corrección» en su ficha.",
+  "Thanks. Your feedback was received.": "Gracias. Recibimos tu comentario.",
+  "Check My reports on this device for updates. Keep your private status link if browser storage is unavailable or cleared.": "Consulta Mis informes en este dispositivo para ver novedades. Guarda tu enlace privado de estado si el almacenamiento del navegador no está disponible o se borra.",
+  "Private report status": "Estado privado del informe",
+  "Accepted for follow-up.": "Aceptado para seguimiento.",
+  "Closed without a change.": "Cerrado sin cambios.",
+  "Completed.": "Completado.",
+  "Contact KampTrail": "Contactar con KampTrail",
+  "Feedback could not be sent. Your text is still here. Try again when connected, or use the contact form.": "No se pudo enviar el comentario. Tu texto sigue aquí. Inténtalo de nuevo con conexión o usa el formulario de contacto.",
+  "Enter a short summary of at least 3 characters.": "Escribe un resumen de al menos 3 caracteres.",
+  "Choose a report type.": "Elige un tipo de informe.",
+
   "Separate mapped element": "Elemento cartográfico separado",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Este informe pertenece a un elemento cartográfico separado. No confirma la tarifa ni el acceso de este camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "No se pudo comprobar el almacenamiento sin conexión. Vuelve a conectarte e inténtalo de nuevo antes de viajar.",
@@ -1902,7 +1929,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.38.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.39.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

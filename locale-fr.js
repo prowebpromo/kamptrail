@@ -1,7 +1,34 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.38.0', messages:{
+  global.KampTrailI18nFr = {version:'2.39.0', messages:{
+  "Find free and paid campsites, explore public land, and save your stops. Choose a state or search to start.": "Trouvez des sites de camping gratuits et payants, explorez les terres publiques et enregistrez vos arrêts. Choisissez un État ou lancez une recherche pour commencer.",
+  "Feedback": "Vos commentaires",
+  "Report a bug": "Signaler un problème",
+  "Suggest a feature": "Suggérer une fonctionnalité",
+  "Help improve KampTrail": "Aidez à améliorer KampTrail",
+  "Close feedback": "Fermer le formulaire",
+  "Found a bug or have an idea? Send it privately. No account required. Email is optional.": "Vous avez rencontré un problème ou avez une idée ? Envoyez votre commentaire en privé. Aucun compte requis. L’adresse courriel est facultative.",
+  "For bugs, include the steps, what you expected and what happened. Do not include passwords or sensitive personal information.": "Pour un problème, indiquez les étapes, le résultat attendu et le résultat obtenu. N’incluez aucun mot de passe ni renseignement personnel sensible.",
+  "What would help you, and why?": "Qu’est-ce qui vous serait utile, et pourquoi ?",
+  "Feedback type": "Type de commentaire",
+  "Short summary": "Résumé court",
+  "Include basic app diagnostics (optional)": "Inclure les diagnostics de base de l’application (facultatif)",
+  "See what diagnostics would include": "Voir ce que contiendraient les diagnostics",
+  "App version, interface language, browser family, screen size and connection status only. No location, saved stops, URLs or browsing history.": "Uniquement la version de l’application, la langue de l’interface, la famille du navigateur, la taille d’écran et l’état de connexion. Aucune position, aucun arrêt enregistré, aucune URL ni historique de navigation.",
+  "Send feedback": "Envoyer le commentaire",
+  "Feedback is reviewed privately. A suggestion is not a promise to build it. For a campsite correction, use “Suggest a fix” on that listing.": "Les commentaires sont examinés en privé. Une suggestion n’est pas une promesse de réalisation. Pour corriger un site de camping, utilisez « Suggérer une correction » dans sa fiche.",
+  "Thanks. Your feedback was received.": "Merci. Votre commentaire a été reçu.",
+  "Check My reports on this device for updates. Keep your private status link if browser storage is unavailable or cleared.": "Consultez Mes signalements sur cet appareil pour les mises à jour. Conservez votre lien privé de suivi si le stockage du navigateur est indisponible ou effacé.",
+  "Private report status": "Suivi privé du signalement",
+  "Accepted for follow-up.": "Accepté pour suivi.",
+  "Closed without a change.": "Fermé sans modification.",
+  "Completed.": "Terminé.",
+  "Contact KampTrail": "Contacter KampTrail",
+  "Feedback could not be sent. Your text is still here. Try again when connected, or use the contact form.": "Le commentaire n’a pas pu être envoyé. Votre texte est conservé ici. Réessayez avec une connexion ou utilisez le formulaire de contact.",
+  "Enter a short summary of at least 3 characters.": "Saisissez un résumé d’au moins 3 caractères.",
+  "Choose a report type.": "Choisissez un type de signalement.",
+
   "Separate mapped element": "Élément cartographique distinct",
   "This report belongs to a separate mapped element. It does not establish this campsite's fee or access.": "Ce rapport concerne un élément cartographique distinct. Il n’établit ni le tarif ni l’accès de ce site de camping.",
   "Offline storage could not be checked. Reconnect and try again before travel.": "Impossible de vérifier le stockage hors connexion. Reconnectez-vous et réessayez avant de partir.",
