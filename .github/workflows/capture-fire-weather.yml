@@ -2,7 +2,9 @@ name: Capture NWS fire-weather samples
 
 # Saves real Red Flag Warnings and Fire Weather Watches, with zone geometry for
 # alerts that have no polygon, as workflow artifacts for test fixtures.
-# Read-only: no commits, no data publication, and not a trigger for any release.
+# The capture job is read-only. Only the first authentic positive capture is kept durably: the
+# preserve-first-positive job commits it unchanged to its own branch and opens a pull request for review.
+# Nothing is committed to main, no data is published, and no release is triggered.
 on:
   schedule:
     - cron: '41 */3 * * *'
@@ -20,6 +22,8 @@ jobs:
     if: github.repository == 'prowebpromo/kamptrail'
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      positive: ${{ steps.window.outputs.positive }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -38,10 +42,150 @@ jobs:
             python3 -c "import json,sys;d=json.load(open(sys.argv[1]));print(f\"Retrieved {d['retrieved_at']}: {d['alerts']} alerts, {d.get('with_polygon',0)} with polygon, {d.get('zone_only',0)} zone-only, {d.get('zone_geometries_saved',0)} zone geometries saved.\")" "$RUNNER_TEMP/fire-weather/summary.json"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Keep samples
-        if: steps.capture.outputs.alerts != '0'
+        if: steps.capture.outcome == 'success' && steps.capture.outputs.alerts != '0'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: nws-fire-weather-${{ github.run_id }}
           path: ${{ runner.temp }}/fire-weather
           retention-days: 90
           if-no-files-found: error
+      # Runs even if the active-alert step failed. A rate limit that stops the script after positive pages were saved
+      # does not fail this step: the exit code is kept in the rc output and the job fails in the last step, after the uploads.
+      - name: Capture seven-day alert history with provenance
+        id: window
+        if: always()
+        shell: bash
+        run: |
+          # GitHub starts this shell with -e and pipefail. Turn errexit off so a stopped capture cannot skip the outputs below.
+          set +e
+          python3 scripts/capture_fire_weather_fixtures.py --out "$RUNNER_TEMP/fire-weather-window" | tee "$RUNNER_TEMP/window.json"
+          rc=${PIPESTATUS[0]}
+          set -e
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          positive=false
+          if [ -f "$RUNNER_TEMP/fire-weather-window/manifest.json" ]; then
+            positive=$(python3 -c "import json,sys;print('true' if json.load(open(sys.argv[1])).get('positive') else 'false')" "$RUNNER_TEMP/fire-weather-window/manifest.json" || echo false)
+          fi
+          echo "positive=$positive" >> "$GITHUB_OUTPUT"
+          {
+            echo "### NWS seven-day fixture capture"
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/window.json"
+            echo '```'
+            echo "Each file in manifest.json carries its URL, retrieval time, byte count and SHA-256."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep seven-day capture
+        if: always() && steps.window.outputs.rc != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: nws-fire-weather-window-${{ github.run_id }}
+          path: ${{ runner.temp }}/fire-weather-window
+          retention-days: 90
+          if-no-files-found: error
+      # Every positive capture is kept under a name unique to its run and attempt, and nothing overwrites it.
+      # The first one is also committed durably by preserve-first-positive below. Later ones stay separate artifacts.
+      - name: Keep capture that contains a real fire alert
+        if: always() && steps.window.outputs.positive == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/fire-weather-window
+          retention-days: 90
+          if-no-files-found: error
+          overwrite: false
+      - name: Fail the job if the capture was stopped by a rate limit
+        if: always() && steps.window.outputs.rc != '' && steps.window.outputs.rc != '0'
+        shell: bash
+        run: |
+          echo "Capture stopped (exit code ${{ steps.window.outputs.rc }}). Saved files were still uploaded." >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
+  # Keeps the first authentic positive capture beyond artifact retention. It commits the files byte for byte,
+  # after checking each SHA-256 against the manifest, to a branch of its own and opens a pull request.
+  # If that branch already exists, the first positive capture is already kept and this job changes nothing.
+  preserve-first-positive:
+    needs: capture
+    if: always() && needs.capture.outputs.positive == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      BRANCH: fire-weather/first-positive-capture
+      DEST: tests/fixtures/fire-weather/captured/first-positive
+      ARTIFACT: nws-fire-weather-POSITIVE-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+      - name: Stop if the first positive capture is already kept
+        id: existing
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
+            echo "kept=true" >> "$GITHUB_OUTPUT"
+            echo "The first positive capture is already on $BRANCH. This run stays a separate artifact ($ARTIFACT)." >> "$GITHUB_STEP_SUMMARY"
+          elif [ -e "$DEST" ]; then
+            # The review branch is deleted after merge. The accepted fixture on main is what protects it then.
+            echo "kept=true" >> "$GITHUB_OUTPUT"
+            echo "$DEST already exists on main. It is never overwritten. This run stays a separate artifact ($ARTIFACT)." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "kept=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Download this run's positive capture
+        if: steps.existing.outputs.kept == 'false'
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: ${{ env.ARTIFACT }}
+          path: ${{ runner.temp }}/positive
+      - name: Verify every file against the manifest and commit it unchanged
+        if: steps.existing.outputs.kept == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          src="$RUNNER_TEMP/positive"
+          python3 - "$src" <<'PY'
+          import hashlib, json, os, sys
+          src = sys.argv[1]
+          manifest = json.load(open(os.path.join(src, 'manifest.json')))
+          if not manifest.get('positive'):
+              sys.exit('manifest does not mark this capture positive')
+          for f in manifest['files']:
+              data = open(os.path.join(src, f['file']), 'rb').read()
+              if hashlib.sha256(data).hexdigest() != f['sha256'] or len(data) != f['bytes']:
+                  sys.exit('hash or size mismatch: ' + f['file'])
+          print('verified', len(manifest['files']), 'files')
+          PY
+          [ ! -e "$DEST" ] || { echo "$DEST exists; refusing to overwrite" >&2; exit 1; }
+          git switch -c "$BRANCH"
+          mkdir -p "$DEST"
+          cp -a "$src"/. "$DEST"/
+          (cd "$DEST" && find . -type f ! -name PROVENANCE.txt -print0 | sort -z | xargs -0 sha256sum) > "$RUNNER_TEMP/sums.txt"
+          {
+            echo "First authentic positive NWS fire-weather capture, committed unchanged."
+            echo "Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} (attempt ${{ github.run_attempt }})"
+            echo "Artifact: $ARTIFACT"
+            echo "Request URLs, UTC retrieval times and SHA-256 per file: manifest.json"
+            echo
+            echo "sha256sum of the committed files:"
+            cat "$RUNNER_TEMP/sums.txt"
+          } > "$DEST/PROVENANCE.txt"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$DEST"
+          git commit -m "Keep the first authentic positive NWS fire-weather capture (run ${{ github.run_id }})"
+          # No force: if another run created the branch first, this push fails and that run's capture is the kept one.
+          git push origin "HEAD:refs/heads/$BRANCH"
+      - name: Open a pull request for review
+        if: steps.existing.outputs.kept == 'false'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh pr create --base main --head "$BRANCH" \
+            --title "Keep the first authentic positive NWS fire-weather capture" \
+            --body "Committed unchanged by capture-fire-weather run ${{ github.run_id }}. Each file was checked against manifest.json (URL, UTC retrieval time, SHA-256) before commit. This is a fixture for review only. R12 parity credit waits until the fixture passes the relevant tests and contract review. Pull requests opened with the workflow token do not start CI, so rerun CI on this PR before review."

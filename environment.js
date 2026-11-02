@@ -3,8 +3,8 @@
   'use strict';
   const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
   const MIN_ZOOM=7,MAX_AGE=20*60*1000,MAX_BYTES=6000000,MAX_FEATURES=500;
-  const SOURCES={fire:{label:'Fire perimeters (NIFC)',name:'NIFC',url:'https://data-nifc.opendata.arcgis.com/'},smoke:{label:'Smoke plumes (NOAA)',name:'NOAA HMS',url:'https://www.ospo.noaa.gov/products/land/hms.html'},alerts:{name:'National Weather Service',url:'https://www.weather.gov/'}};
-  const st={map:null,groups:{},enabled:new Set(),status:{},control:null,sequence:{fire:0,smoke:0},controllers:{},timers:{},dialog:null,pointSequence:0,pointController:null,point:null,interval:null,expiry:null,reading:new Set(),requestQueue:Promise.resolve(),lastRequest:0};
+  const SOURCES={fire:{label:'Fire perimeters (NIFC)',name:'NIFC',url:'https://data-nifc.opendata.arcgis.com/'},smoke:{label:'Smoke plumes (NOAA)',name:'NOAA HMS',url:'https://www.ospo.noaa.gov/products/land/hms.html'},alerts:{name:'National Weather Service',url:'https://www.weather.gov/'},firewx:{name:'National Weather Service',url:'https://www.weather.gov/fire/'},zone:{name:'National Weather Service',url:'https://www.weather.gov/'}};
+  const st={map:null,groups:{},enabled:new Set(),status:{},control:null,sequence:{fire:0,smoke:0},controllers:{},timers:{},dialog:null,pointSequence:0,pointController:null,point:null,interval:null,expiry:null,reading:new Set(),requestQueue:Promise.resolve(),lastRequest:0,retryUntil:0};
   const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
   const text=v=>typeof v==='string'?v:'';
   function stamp(value){const d=Date.parse(value);return Number.isFinite(d)?new Date(d).toLocaleString(global.KampTrailI18n?.locale()):t("Not reported");}
@@ -17,25 +17,31 @@
   function validate(d,kind,now=Date.now()){
     if(!Object.hasOwn(SOURCES,kind)||!d||d.ok!==true||d.version!==1||d.kind!==kind||d.partial===true||d.data?.type!=='FeatureCollection'||!Array.isArray(d.data.features)||d.data.features.length>MAX_FEATURES)throw new Error('Invalid context');
     if(kind==='smoke'&&(!/^\d{4}-\d{2}-\d{2}$/.test(d.source?.observation_date||'')||!Number.isFinite(Date.parse(d.source.observation_date))))throw new Error('Missing observation day');
-    const at=Date.parse(d.retrieved_at);if(!Number.isFinite(at)||at>now+60000||now-at>MAX_AGE)throw new Error('Outdated context');
+    const at=Date.parse(d.retrieved_at);if(!Number.isFinite(at)||at>now+60000||(now-at>MAX_AGE&&kind!=='firewx'&&kind!=='zone'))throw new Error('Outdated context');/* firewx labels its own staleness; zone shapes are static */
     const budget={count:0};
     for(const f of d.data.features){
       if(f?.type!=='Feature'||!f.properties||typeof f.properties!=='object'||Array.isArray(f.properties))throw new Error('Invalid feature');
       if(kind==='alerts'){
         const p=f.properties;if(!text(p.event)||!text(p.headline)||!Number.isFinite(Date.parse(p.expires)))throw new Error('Invalid alert');
+      }else if(kind==='firewx'){
+        if(f.geometry!=null&&!validGeometry(f.geometry,budget))throw new Error('Invalid shape');
       }else if(!validGeometry(f.geometry,budget))throw new Error('Invalid shape');
     }
     return d;
   }
   function activeAlerts(features,now=Date.now()){return features.filter(f=>Date.parse(f.properties.expires)>now&&(!f.properties.ends||Date.parse(f.properties.ends)>now));}
-  function query(kind,coords){const p=new URLSearchParams({kind});if(kind==='alerts'){p.set('lat',coords[0].toFixed(4));p.set('lng',coords[1].toFixed(4));}else p.set('bbox',coords.map(x=>x.toFixed(3)).join(','));return 'api/environment.php?'+p;}
+  function query(kind,coords){const p=new URLSearchParams({kind});if(kind==='alerts'){p.set('lat',coords[0].toFixed(4));p.set('lng',coords[1].toFixed(4));}else if(kind==='zone')p.set('zone',String(coords));else if(kind!=='firewx')p.set('bbox',coords.map(x=>x.toFixed(3)).join(','));return 'api/environment.php?'+p;}
+  /* The proxy passes the upstream Retry-After through. It is honored exactly: no request before it, and no cap on how long it can be. */
+  function retryDelay(r){const h=r.headers?.get?.('Retry-After');if(h==null||h==='')return 2100;const ms=/^\d+$/.test(h.trim())?Number(h)*1000:Date.parse(h)-Date.now();return Number.isFinite(ms)?Math.max(ms,0):2100;}
+  const retryAfterMs=()=>Math.max(0,st.retryUntil-Date.now());
   async function fetchContext(kind,coords,signal){
     if(!navigator.onLine)throw new Error('Offline');
+    if(retryAfterMs()>0)throw new Error('Rate limited');
     if(signal.aborted)throw new Error('Cancelled');
     const delay=Math.max(0,2100-(Date.now()-st.lastRequest));if(delay)await new Promise(resolve=>setTimeout(resolve,delay));if(signal.aborted)throw new Error('Cancelled');st.lastRequest=Date.now();
     let r=await fetch(query(kind,coords),{signal,cache:'no-store',credentials:'omit',headers:{Accept:'application/json'}});
-    if(r.status===503&&!signal.aborted){await new Promise(resolve=>setTimeout(resolve,2100));if(signal.aborted)throw new Error('Cancelled');st.lastRequest=Date.now();r=await fetch(query(kind,coords),{signal,cache:'no-store',credentials:'omit',headers:{Accept:'application/json'}});}
-    if(!r.ok)throw new Error('Source unavailable');
+    if(r.status===503&&!signal.aborted){const wait=retryDelay(r);if(wait>10000){st.retryUntil=Date.now()+wait;throw new Error('Rate limited');}await new Promise(resolve=>setTimeout(resolve,wait));if(signal.aborted)throw new Error('Cancelled');st.lastRequest=Date.now();r=await fetch(query(kind,coords),{signal,cache:'no-store',credentials:'omit',headers:{Accept:'application/json'}});}
+    if(!r.ok){if((r.status===503||r.status===429)&&r.headers?.get?.('Retry-After')!=null)st.retryUntil=Date.now()+retryDelay(r);throw new Error('Source unavailable');}
     const body=await r.text();if(body.length>MAX_BYTES)throw new Error('Context too large');return validate(JSON.parse(body),kind);
   }
   function request(kind,coords,signal){const pending=st.requestQueue.then(()=>fetchContext(kind,coords,signal));st.requestQueue=pending.catch(()=>{});return pending;}
@@ -108,5 +114,5 @@
     if(!st.dialog){const dialog=node('dialog');dialog.id='kt-environment-alerts';dialog.setAttribute('aria-labelledby','kt-environment-title');const head=node('div',null,'kt-environment-heading'),title=node('h2',t("Weather alerts"));title.id='kt-environment-title';const close=node('button',t("Close"),'btn');close.type='button';close.setAttribute('aria-label',t("Close weather alerts"));close.onclick=()=>dialog.close();head.append(title,close);dialog.append(head);st.alertLocation=node('p');dialog.append(st.alertLocation,node('p',t("NWS alerts apply at this coordinate. This is an on-demand check, not a push notification or evacuation service. Confirm restrictions with the land manager."),'kt-fine'));st.alertBody=node('div');st.alertBody.setAttribute('role','status');st.alertBody.setAttribute('aria-live','polite');dialog.append(st.alertBody);const refresh=node('button',t("Refresh weather alerts"),'btn');refresh.type='button';refresh.onclick=loadAlerts;const nearby=node('button',t("Fire and smoke nearby"),'btn');nearby.type='button';nearby.onclick=()=>{dialog.close();showNear(...st.point);};dialog.append(refresh,nearby);dialog.addEventListener('close',()=>{st.pointSequence++;st.pointController?.abort();clearInterval(st.interval);clearTimeout(st.expiry);});document.body.append(dialog);st.dialog=dialog;}
     st.point=[lat,lng];st.alertLocation.textContent=t("Coordinate {0}, {1}", {"0":(lat.toFixed(4)),"1":(lng.toFixed(4))});if(!st.dialog.open)st.dialog.showModal();loadAlerts();clearInterval(st.interval);st.interval=setInterval(()=>{if(st.dialog.open)loadAlerts();},60000);
   }
-  global.KampTrailEnvironment={version:'2.36.0',init,showNear,openAlerts,refresh,validate,validBounds,validGeometry,activeAlerts,query};
+  global.KampTrailEnvironment={version:'2.36.0',init,showNear,openAlerts,refresh,validate,validBounds,validGeometry,activeAlerts,query,request,retryAfterMs};
 })(typeof window!=='undefined'?window:globalThis);

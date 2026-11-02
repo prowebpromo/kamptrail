@@ -8,7 +8,7 @@ try {
     $result = ke_cached($query, $directory, static fn(array $q, int $now): array => ke_fetch($q, 'ke_http', $now), time());
     kt_json(200, $result);
 } catch (KeException $e) {
-    if ($e->status === 503) header('Retry-After: 5');
+    if ($e->status === 503) header('Retry-After: ' . ($e->retryAfter ?? 5));
     $message = $e->reason === 'zoom_in' ? 'Zoom in to load environmental context for a smaller area.' : ($e->reason === 'invalid_query' ? 'Choose a valid map area or point.' : 'Environmental context is temporarily unavailable. Try again shortly.');
     kt_json($e->status, ['ok' => false, 'version' => 1, 'error' => $e->reason, 'message' => $message]);
 } catch (Throwable $e) {
