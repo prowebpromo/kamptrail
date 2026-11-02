@@ -222,15 +222,70 @@
     for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
   }
-  function mergeLoaded(features,stateCode) {
+  function setStateInput(features,stateCode) {
     const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode})).filter(Boolean);
     incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     stateInputs.set(stateCode,incoming);
+  }
+  function mergeLoaded(features,stateCode) {
+    setStateInput(features,stateCode);
     rebuildCatalogue();
   }
+  // Forest Service and BLM listings (agency files) load beside each state's merged file. A missing index or
+  // agency file is reported in getLoadStatus() and can be retried; listings already loaded are kept.
+  // Raw source records per loaded state, so a recovered agency file rebuilds the catalogue as a normal load does.
+  const mergedRaw=new Map(),agencyRaw=new Map(),agencyFailed=new Map();
+  state.agencyIndex='pending';
+  const errorText=error=>error?.name==='AbortError'?'Request timed out':String(error?.message||error);
+  const validCollection=d=>d?.type==='FeatureCollection'&&Array.isArray(d.features);
+  function fetchAgencyState(code){
+    return fetchJSON(`data/campsites/agency/${code}.geojson`).then(d=>{if(!validCollection(d))throw new Error('Invalid campsite data');return d;})
+      .catch(err=>{const error=errorText(err);console.warn(`Agency listings for ${code} unavailable: ${error}`);return {error};});
+  }
+  // Records an agency file result for a loaded state. A failure keeps any agency listings that loaded before.
+  function recordAgency(code,result){
+    if(!result)return;
+    if(result.error)agencyFailed.set(code,{error:result.error});
+    else{agencyRaw.set(code,result.features);agencyFailed.delete(code);}
+  }
+  const stateFeatures=code=>[...(mergedRaw.get(code)||[]),...(agencyRaw.get(code)||[])];
   async function loadAgencyIndex() {
-    try{const data=await fetchJSON('data/campsites/agency/index.json');if(Array.isArray(data?.states)){state.agencyStates=new Set(data.states);state.agencyCounts=data.counts&&typeof data.counts==='object'?data.counts:{};}}
-    catch(err){console.warn('Agency campsite index unavailable; Recreation.gov and OSM listings still load.',err.message);}
+    try{
+      const data=await fetchJSON('data/campsites/agency/index.json');
+      if(!Array.isArray(data?.states))throw new Error('Invalid agency index');
+      state.agencyStates=new Set(data.states);state.agencyCounts=data.counts&&typeof data.counts==='object'?data.counts:{};
+      state.agencyIndex='ok';delete state.agencyIndexError;
+    }
+    catch(err){
+      // A previously loaded index stays in use; only a visit without one reports the failure.
+      if(state.agencyIndex!=='ok'){state.agencyIndex='failed';state.agencyIndexError=errorText(err);}
+      console.warn('Agency campsite index unavailable; Recreation.gov and OSM listings still load.',err.message);
+    }
+  }
+  // Retry: the agency index if it failed, then every missing agency file of a loaded state. Recovered files
+  // merge and the catalogue is rebuilt once, with the same identity rules as a normal load.
+  function retryAgency(){
+    if(state.agencyRetry)return state.agencyRetry;
+    state.agencyRetry=(async()=>{
+      try{
+        if(state.agencyIndex!=='ok'){state.agencyIndex='pending';notify();await loadAgencyIndex();}
+        if(state.agencyIndex==='ok'){
+          const codes=[...state.loadedStates].filter(c=>state.agencyStates.has(c)&&!state.loading.has(c)&&(agencyFailed.has(c)||!agencyRaw.has(c))).sort();
+          const results=await Promise.all(codes.map(async c=>[c,await fetchAgencyState(c)]));
+          let changed=false;
+          for(const [code,result] of results){
+            // A state can finish a fresh load during the retry; its own result is newer.
+            if(!state.loadedStates.has(code)||!mergedRaw.has(code))continue;
+            recordAgency(code,result);
+            if(!result.error){setStateInput(stateFeatures(code),code);changed=true;}
+          }
+          if(changed)rebuildCatalogue();
+        }
+      }finally{state.agencyRetry=null;}
+      updateMarkers();
+      return api.getLoadStatus();
+    })();
+    return state.agencyRetry;
   }
   async function loadSiteDetails() {
     try{const data=await fetchJSON('data/campsites/ridb-sites.json');if(data&&typeof data.facilities==='object')state.siteDetails=data.facilities;}
@@ -259,11 +314,11 @@
     if(!retry&&last&&Date.now()-last.at<15000)return;
     const task=(async()=>{
       try{
-        const agency=state.agencyStates?.has(code)?fetchJSON(`data/campsites/agency/${code}.geojson`).catch(err=>{console.warn(`Agency listings for ${code} unavailable: ${err.message}`);return null;}):null;
+        const agency=state.agencyStates?.has(code)?fetchAgencyState(code):null;
         const data=await fetchJSON(`data/campsites/${code}_merged.geojson`);
         if(data?.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid campsite data');
-        const extra=await agency;
-        mergeLoaded([...data.features,...(extra?.type==='FeatureCollection'&&Array.isArray(extra.features)?extra.features:[])],code);
+        mergedRaw.set(code,data.features);recordAgency(code,await agency);
+        mergeLoaded(stateFeatures(code),code);
         state.loadedStates.add(code);state.failed.delete(code);
         updateMarkers(); // Terrain lookup must not delay otherwise usable campsite markers.
         await loadElevation(code,retry);
@@ -571,7 +626,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.37.0',
+    version:'2.38.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -636,7 +691,10 @@
     refreshForecast:()=>requestForecast(true),
     getForecastStatus(){const f=api.getCurrentFilters(),forecast=window.KampTrailForecast;return{...forecast?.status(),unknown:forecast?.active(f)?api.getVisibleCampsites({...f,forecastMinC:null,forecastMaxC:null}).filter(s=>!forecast.get(s,f.forecastHours)).length:0};},
     getElevationStatus(){const f=api.getCurrentFilters();return{loading:[...elevationStatus.values()].includes('loading'),saved:[...elevationStatus.values()].includes('saved'),unavailable:[...elevationStatus].filter(([,v])=>v==='unavailable').map(([k])=>k),unknown:DataQuality.elevationRange(f).active?api.getVisibleCampsites({...f,elevationMin:null,elevationMax:null}).filter(s=>!DataQuality.elevationInfo(s)).length:0};},
-    getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0,overview:!detailVisible(),catalogueTotal:Object.values(stateTotals()).reduce((a,b)=>a+b,0)}),
+    getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0,overview:!detailVisible(),catalogueTotal:Object.values(stateTotals()).reduce((a,b)=>a+b,0),
+      // Forest Service and BLM listings: 'ok', 'failed' or 'pending' for the index, and loaded states whose agency file failed.
+      agencyIndex:state.agencyIndex,...(state.agencyIndexError?{agencyIndexError:state.agencyIndexError}:{}),agencyFailedStates:[...agencyFailed].map(([code,f])=>({state:code,error:f.error})).sort((a,b)=>a.state.localeCompare(b.state))}),
+    retryAgency,
     loadStates:async codes=>{const result=await loadBatch(codes,true);if(detailVisible()&&window.KampTrailForecast?.active(api.getCurrentFilters()))await window.KampTrailForecast.ensureStates(codes);return result;},
     refresh:()=>detailVisible()?loadBatch(getVisibleStates(),true):Promise.resolve(api.getLoadStatus()),
     getStateTotals:stateTotals,

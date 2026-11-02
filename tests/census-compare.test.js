@@ -3,7 +3,7 @@
 // browser listings the index does not have (Codex review of PR #161: expected [A], browser [A, extra]).
 const {test} = require('node:test');
 const assert = require('node:assert/strict');
-const {compare} = require('../scripts/acceptance/census-compare');
+const {compare, loadFailures} = require('../scripts/acceptance/census-compare');
 
 const A = ['a:1', ['a:1', 'a:legacy']], B = ['b:1', ['b:1']];
 
@@ -42,4 +42,17 @@ test('missing, canonical, source-set and wrong-merge differences fail', () => {
   const merged = compare([A, B], [['a:1', ['a:1', 'a:legacy', 'b:1']]]);
   assert.deepEqual(merged.wrongMerge, ['a:1']);
   assert.equal(merged.count_differs, true);
+});
+
+// Live census on 2.37.0 (2026-11-02): agency files that did not load showed only as a count mismatch.
+test('agency load failures are named census failures', () => {
+  const ok = {failedStates: [], agencyIndex: 'ok', agencyFailedStates: []};
+  assert.deepEqual(loadFailures(ok), []);
+  assert.deepEqual(loadFailures({...ok, agencyIndex: 'failed', agencyIndexError: 'HTTP 404'}), ['agency index failed: HTTP 404']);
+  assert.deepEqual(loadFailures({...ok, agencyFailedStates: [{state: 'CO', error: 'HTTP 500'}, {state: 'ID', error: 'Request timed out'}]}),
+    ['agency file CO failed to load: HTTP 500', 'agency file ID failed to load: Request timed out']);
+  assert.deepEqual(loadFailures({...ok, failedStates: [{state: 'NY', error: 'HTTP 503'}]}), ['state NY failed to load: HTTP 503']);
+  assert.deepEqual(loadFailures({...ok, agencyIndex: 'pending'}), ['agency index pending']);
+  // A build without the agency status cannot prove the agency listings loaded.
+  assert.deepEqual(loadFailures({failedStates: []}), ['agency index status unavailable']);
 });
