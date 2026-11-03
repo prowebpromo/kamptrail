@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.40.0';
+  const FR_VERSION = '2.41.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -17,6 +17,25 @@
     return fr || {};
   };
   const es = {
+  "Installation does not download maps. While online, use Offline to save Topo maps and save your stops. New routes, fresh weather and sending feedback need a connection.":"La instalación no descarga mapas. Con conexión, usa Sin conexión para guardar mapas Topo y guarda tus paradas. Las rutas nuevas, el tiempo actualizado y enviar comentarios requieren conexión.",
+  "KampTrail app":"KampTrail app",
+  "KampTrail is open as an app.":"KampTrail está abierto como una aplicación.",
+  "Install KampTrail":"Instalar KampTrail",
+  "KampTrail installed":"KampTrail instalado",
+  "Install now":"Instalar ahora",
+  "Close installation instructions":"Cerrar instrucciones de instalación",
+  "Instructions for other devices":"Instrucciones para otros dispositivos",
+  "Add KampTrail to your home screen or app launcher for easy access. Free, with no account required.":"Añade KampTrail a tu pantalla de inicio o lanzador de aplicaciones. Gratis y sin cuenta.",
+  "KampTrail is installed. Open it from your home screen, Dock or app launcher.":"KampTrail está instalado. Ábrelo desde la pantalla de inicio, el Dock o el lanzador de aplicaciones.",
+  "Installation complete.":"Instalación completada.",
+  "Finish the installation in your browser.":"Completa la instalación en tu navegador.",
+  "Your browser accepted the request. Finish any remaining installation steps.":"Tu navegador aceptó la solicitud. Completa los pasos de instalación restantes.",
+  "Installation dismissed. You can use the browser instructions above.":"Instalación cancelada. Puedes seguir las instrucciones del navegador indicadas arriba.",
+  "Installation is unavailable right now. Use the browser instructions above.":"La instalación no está disponible ahora. Sigue las instrucciones del navegador indicadas arriba.",
+  "In Safari, open Share (or the page menu, then Share). Choose Add to Home Screen and tap Add. Look under View More if needed. Leave Open as Web App on if offered. If these options are missing in your browser, open this page in Safari.":"En Safari, abre Compartir (o el menú de página y luego Compartir). Elige Añadir a pantalla de inicio y pulsa Añadir. Busca en Ver más si es necesario. Mantén activado Abrir como app web si aparece. Si estas opciones no aparecen en tu navegador, abre esta página en Safari.",
+  "In Chrome, open the three-dot menu, then Install and create shortcut, then Install. Some versions show Add to Home screen or Install app. Follow the prompts.":"En Chrome, abre el menú de tres puntos, luego Instalar y crear acceso directo y después Instalar. Algunas versiones muestran Añadir a pantalla de inicio o Instalar aplicación. Sigue las indicaciones.",
+  "In Safari on macOS 14 or later, choose File, then Add to Dock. Chrome and Edge also offer installation.":"En Safari con macOS 14 o posterior, elige Archivo y luego Añadir al Dock. Chrome y Edge también permiten instalar.",
+  "In Chrome, use the address-bar Install icon, or the menu: Cast, save, and share, then Install page as app. In Edge: More tools, Apps, then Install this site as an app. If unavailable, bookmark KampTrail.":"En Chrome, usa el icono Instalar de la barra de direcciones o el menú: Enviar, guardar y compartir, y luego Instalar página como aplicación. En Edge: Más herramientas, Aplicaciones y luego Instalar este sitio como una aplicación. Si no está disponible, guarda KampTrail en favoritos.",
   "Scroll to read more. Use + and − to zoom the map, or two fingers on a touch screen.": "Desplázate para leer más. Usa + y − para ampliar o reducir el mapa, o dos dedos en una pantalla táctil.",
   "Find free and paid campsites, explore public land, and save your stops. Choose a state or search to start.": "Encuentra campings gratuitos y de pago, explora terrenos públicos y guarda tus paradas. Elige un estado o busca para empezar.",
   "Feedback": "Comentarios",
@@ -1930,7 +1949,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.40.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.41.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

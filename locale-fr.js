@@ -1,7 +1,26 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.40.0', messages:{
+  global.KampTrailI18nFr = {version:'2.41.0', messages:{
+  "Installation does not download maps. While online, use Offline to save Topo maps and save your stops. New routes, fresh weather and sending feedback need a connection.":"L’installation ne télécharge pas les cartes. Avec une connexion, utilisez Hors ligne pour enregistrer des cartes Topo et enregistrez vos arrêts. Les nouveaux itinéraires, la météo récente et l’envoi de commentaires nécessitent une connexion.",
+  "KampTrail app":"Application KampTrail",
+  "KampTrail is open as an app.":"KampTrail est ouvert comme une application.",
+  "Install KampTrail":"Installer KampTrail",
+  "KampTrail installed":"KampTrail installé",
+  "Install now":"Installer maintenant",
+  "Close installation instructions":"Fermer les instructions d’installation",
+  "Instructions for other devices":"Instructions pour les autres appareils",
+  "Add KampTrail to your home screen or app launcher for easy access. Free, with no account required.":"Ajoutez KampTrail à votre écran d’accueil ou lanceur d’applications. Gratuit et sans compte.",
+  "KampTrail is installed. Open it from your home screen, Dock or app launcher.":"KampTrail est installé. Ouvrez-le depuis l’écran d’accueil, le Dock ou le lanceur d’applications.",
+  "Installation complete.":"Installation terminée.",
+  "Finish the installation in your browser.":"Terminez l’installation dans votre navigateur.",
+  "Your browser accepted the request. Finish any remaining installation steps.":"Votre navigateur a accepté la demande. Terminez les étapes d’installation restantes.",
+  "Installation dismissed. You can use the browser instructions above.":"Installation annulée. Vous pouvez suivre les instructions du navigateur ci-dessus.",
+  "Installation is unavailable right now. Use the browser instructions above.":"L’installation n’est pas disponible actuellement. Suivez les instructions du navigateur ci-dessus.",
+  "In Safari, open Share (or the page menu, then Share). Choose Add to Home Screen and tap Add. Look under View More if needed. Leave Open as Web App on if offered. If these options are missing in your browser, open this page in Safari.":"Dans Safari, ouvrez Partager (ou le menu de la page, puis Partager). Choisissez Sur l’écran d’accueil, puis Ajouter. Consultez Afficher plus si nécessaire. Laissez Ouvrir comme app web activé si proposé. Si ces options manquent dans votre navigateur, ouvrez cette page dans Safari.",
+  "In Chrome, open the three-dot menu, then Install and create shortcut, then Install. Some versions show Add to Home screen or Install app. Follow the prompts.":"Dans Chrome, ouvrez le menu à trois points, puis Installer et créer un raccourci, puis Installer. Certaines versions affichent Ajouter à l’écran d’accueil ou Installer l’application. Suivez les instructions.",
+  "In Safari on macOS 14 or later, choose File, then Add to Dock. Chrome and Edge also offer installation.":"Dans Safari sous macOS 14 ou ultérieur, choisissez Fichier, puis Ajouter au Dock. Chrome et Edge proposent aussi l’installation.",
+  "In Chrome, use the address-bar Install icon, or the menu: Cast, save, and share, then Install page as app. In Edge: More tools, Apps, then Install this site as an app. If unavailable, bookmark KampTrail.":"Dans Chrome, utilisez l’icône Installer de la barre d’adresse ou le menu : Caster, enregistrer et partager, puis Installer la page en tant qu’application. Dans Edge : Outils supplémentaires, Applications, puis Installer ce site en tant qu’application. Sinon, ajoutez KampTrail aux favoris.",
   "Scroll to read more. Use + and − to zoom the map, or two fingers on a touch screen.": "Faites défiler la page pour en savoir plus. Utilisez + et − pour zoomer sur la carte, ou deux doigts sur un écran tactile.",
   "Find free and paid campsites, explore public land, and save your stops. Choose a state or search to start.": "Trouvez des sites de camping gratuits et payants, explorez les terres publiques et enregistrez vos arrêts. Choisissez un État ou lancez une recherche pour commencer.",
   "Feedback": "Vos commentaires",

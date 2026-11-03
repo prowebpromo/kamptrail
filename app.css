@@ -285,3 +285,5 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-site-feedback-actions a{font-size:14px}
 .kt-site-feedback .kt-site-feedback-note{font-size:13px;color:#52674e;margin:0}
 @media(max-width:760px){body{padding:0}#app{border:0;border-radius:0}#app>header,#app>footer{border-radius:0}.kt-site-feedback{margin:20px 12px 32px;padding:22px}.app-intro .kt-map-gesture-note{font-size:11px}}
+
+#kt-install{width:min(540px,calc(100vw - 24px));max-height:85dvh;overflow:auto;border:1px solid #b8c5b1;border-radius:12px;padding:20px;color:#203b2d;background:#fff;line-height:1.6}#kt-install::backdrop{background:#10281f99}#kt-install h2{font-size:20px;margin:0}#kt-install button{min-height:44px}#kt-install [hidden]{display:none}#install-kamptrail{white-space:normal}
