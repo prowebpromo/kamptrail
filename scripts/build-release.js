@@ -1,11 +1,11 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['index.html','locale.js','locale-fr.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','brand-mark.svg','apple-touch-icon.png','favicon-32.png','media/onboarding/browse.jpg','media/onboarding/filters.jpg','media/onboarding/offline.jpg','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-rest-policies.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
-  for(const file of files)await fs.copyFile(path.join(root,file),path.join(out,file));
+  for(const file of files){await fs.mkdir(path.dirname(path.join(out,file)),{recursive:true});await fs.copyFile(path.join(root,file),path.join(out,file));}
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
   await fs.cp(path.join(root,'media','how-to'),path.join(out,'media','how-to'),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});

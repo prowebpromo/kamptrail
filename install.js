@@ -60,6 +60,7 @@
   window.addEventListener('appinstalled',()=>{installed=true;deferred=null;busy=false;render();});
   display.addEventListener?.('change',event=>{installed=event.matches || navigator.standalone===true;render();});
   document.getElementById('install-kamptrail')?.addEventListener('click',open);
+  document.querySelectorAll?.('[data-install-open]').forEach(button=>button.addEventListener('click',open));
   render();
-  window.KampTrailInstall={version:'2.41.0',open};
+  window.KampTrailInstall={version:'2.42.0',open};
 })();

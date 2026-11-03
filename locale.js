@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.41.0';
+  const FR_VERSION = '2.42.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -17,6 +17,33 @@
     return fr || {};
   };
   const es = {
+  "Map images:":"Imágenes del mapa:",
+  "contributors":"colaboradores",
+  "YOUR NEXT STOP STARTS HERE":"TU PRÓXIMA PARADA EMPIEZA AQUÍ",
+  "Find a place. Make a plan. Get outside.":"Encuentra un lugar. Haz un plan. Sal a explorar.",
+  "Explore free and paid campsites, check the details, and keep your next stops together. No account required.":"Explora campamentos gratuitos y de pago, consulta los detalles y reúne tus próximas paradas. Sin cuenta.",
+  "Explore the map":"Explorar el mapa",
+  "See how it works":"Ver cómo funciona",
+  "FREE TO USE":"USO GRATUITO",
+  "Public land. Campsites. Your kind of trip.":"Tierras públicas. Campamentos. Un viaje a tu manera.",
+  "Have an idea or found a bug?":"¿Tienes una idea o encontraste un error?",
+  "A LITTLE PLANNING. MORE TIME OUTSIDE.":"UN POCO DE PLANIFICACIÓN. MÁS TIEMPO AL AIRE LIBRE.",
+  "From first look to ready to roll":"De la primera búsqueda a la salida",
+  "Browse the map":"Explora el mapa",
+  "Start with a town or state. Open a listing to see its sources, location and reported camping details.":"Empieza por una ciudad o estado. Abre una ficha para ver sus fuentes, ubicación y detalles de acampada.",
+  "KampTrail map showing campsite listings and a selected destination":"Mapa de KampTrail con campamentos y un destino seleccionado",
+  "Find what fits":"Encuentra lo que te conviene",
+  "Use Filters and My rig to narrow the choices. Check the listing and confirm current access with the operator.":"Usa Filtros y Mi vehículo para limitar las opciones. Consulta la ficha y confirma el acceso actual con el operador.",
+  "KampTrail campsite filters for narrowing the map results":"Filtros de campamentos de KampTrail para limitar los resultados del mapa",
+  "Prepare before you go":"Prepárate antes de salir",
+  "While connected, save your stops and use Offline to download Topo map areas. Check your saved content before losing service.":"Con conexión, guarda tus paradas y usa Sin conexión para descargar zonas de mapas Topo. Revisa lo guardado antes de perder la señal.",
+  "KampTrail Offline panel for saving Topo map areas":"Panel Sin conexión de KampTrail para guardar zonas de mapas Topo",
+  "TAKE KAMPTRAIL WITH YOU":"LLEVA KAMPTRAIL CONTIGO",
+  "One tap closer to your next stop":"Tu próxima parada, a un toque",
+  "iPhone and iPad":"iPhone y iPad",
+  "Android":"Android",
+  "Windows and other computers":"Windows y otros ordenadores",
+  "Mac with Safari":"Mac con Safari",
   "Installation does not download maps. While online, use Offline to save Topo maps and save your stops. New routes, fresh weather and sending feedback need a connection.":"La instalación no descarga mapas. Con conexión, usa Sin conexión para guardar mapas Topo y guarda tus paradas. Las rutas nuevas, el tiempo actualizado y enviar comentarios requieren conexión.",
   "KampTrail app":"KampTrail app",
   "KampTrail is open as an app.":"KampTrail está abierto como una aplicación.",
@@ -1947,9 +1974,9 @@
     if (!root) return;
     if (root === global.document) shellApplied = true;
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
-    for (const attr of ['aria-label', 'placeholder', 'title']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
+    for (const attr of ['aria-label', 'placeholder', 'title', 'alt']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.41.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.42.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

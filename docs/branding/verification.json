@@ -1,0 +1,50 @@
+{
+  "assets": [
+    {
+      "file": "icon-192.png",
+      "width": 192,
+      "height": 192,
+      "bytes": 4237
+    },
+    {
+      "file": "icon-512.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 16458
+    },
+    {
+      "file": "apple-touch-icon.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 3927
+    },
+    {
+      "file": "favicon-32.png",
+      "width": 32,
+      "height": 32,
+      "bytes": 724
+    },
+    {
+      "file": "brand-preview.png",
+      "width": 768,
+      "height": 768,
+      "bytes": 29351
+    },
+    {
+      "file": "og.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 48551
+    }
+  ],
+  "maskable": {
+    "maxMarkRadiusPx": 190.08550707510557,
+    "safeRadiusPx": 204.8,
+    "pass": true
+  },
+  "palette": {
+    "forest": "#10281f",
+    "ivory": "#fff1cf",
+    "sun": "#f3bd42"
+  }
+}
