@@ -11,8 +11,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.40.0">
-  <link rel="manifest" href="manifest.json?v=2.40.0">
+  <meta name="kamptrail-version" content="2.41.0">
+  <link rel="manifest" href="manifest.json?v=2.41.0">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="icon-192.png">
   <link rel="canonical" href="https://kamptrail.com/">
@@ -26,8 +26,8 @@
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.Default.css">
-  <link rel="stylesheet" href="app.css?v=2.40.0">
-  <script src="locale.js?v=2.40.0"></script>
+  <link rel="stylesheet" href="app.css?v=2.41.0">
+  <script src="locale.js?v=2.41.0"></script>
   <script src="vendor/leaflet/leaflet.js"></script>
   <script src="vendor/markercluster/leaflet.markercluster.js"></script>
 </head>
@@ -36,6 +36,7 @@
     <header>
       <div class="brand"><h1>KampTrail</h1><span data-i18n="Free to use. No account required.">Free to use. No account required.</span></div>
       <nav class="actions" aria-label="Map tools" data-i18n-aria-label="Map tools">
+        <button id="install-kamptrail" type="button" class="btn" aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button>
         <button id="filters" class="btn" aria-label="Open filters" data-i18n-aria-label="Open filters" aria-expanded="false"><span data-i18n="Filters">Filters</span> <span id="filter-badge" style="display:none"></span></button>
         <button id="rig-profile" class="btn" aria-label="Open rig profile" data-i18n-aria-label="Open rig profile" data-i18n="My rig">My rig</button>
         <button id="trip" class="btn" aria-label="Open saved stops" data-i18n-aria-label="Open saved stops"><span data-i18n="Saved stops">Saved stops</span> <span id="trip-count">(0)</span></button>
@@ -66,7 +67,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.40.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.41.0</a></span>
     </footer>
   </div>
   <section id="feedback-panel" class="kt-site-feedback" aria-labelledby="kt-site-feedback-title">
@@ -143,29 +144,30 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden data-i18n="Loading…">Loading…</div>
   <noscript data-i18n="KampTrail needs JavaScript to display its interactive map.">KampTrail needs JavaScript to display its interactive map.</noscript>
-  <script src="share.js?v=2.40.0"></script>
-  <script src="spot-info.js?v=2.40.0"></script>
-  <script src="community-discovery.js?v=2.40.0"></script>
-  <script src="data-quality.js?v=2.40.0"></script>
-  <script src="forecast.js?v=2.40.0"></script>
-  <script src="services.js?v=2.40.0"></script>
-  <script src="data-loader.js?v=2.40.0"></script>
-  <script src="filters.js?v=2.40.0"></script>
-  <script src="rig-profile.js?v=2.40.0"></script>
-  <script src="routes.js?v=2.40.0"></script>
-  <script src="route-elevation.js?v=2.40.0"></script>
-  <script src="route-clearance.js?v=2.40.0"></script>
-  <script src="trip-planner.js?v=2.40.0"></script>
-  <script src="mvum.js?v=2.40.0"></script>
-  <script src="environment.js?v=2.40.0"></script>
-  <script src="layers.js?v=2.40.0"></script>
-  <script src="offline-maps.js?v=2.40.0"></script>
-  <script src="contributions.js?v=2.40.0"></script>
-  <script src="feedback.js?v=2.40.0"></script>
-  <script src="community.js?v=2.40.0"></script>
-  <script src="permissions.js?v=2.40.0"></script>
-  <script src="rest-areas.js?v=2.40.0"></script>
-  <script src="clearances.js?v=2.40.0"></script>
-  <script src="app.js?v=2.40.0"></script>
+  <script src="share.js?v=2.41.0"></script>
+  <script src="spot-info.js?v=2.41.0"></script>
+  <script src="community-discovery.js?v=2.41.0"></script>
+  <script src="data-quality.js?v=2.41.0"></script>
+  <script src="forecast.js?v=2.41.0"></script>
+  <script src="services.js?v=2.41.0"></script>
+  <script src="data-loader.js?v=2.41.0"></script>
+  <script src="filters.js?v=2.41.0"></script>
+  <script src="rig-profile.js?v=2.41.0"></script>
+  <script src="routes.js?v=2.41.0"></script>
+  <script src="route-elevation.js?v=2.41.0"></script>
+  <script src="route-clearance.js?v=2.41.0"></script>
+  <script src="trip-planner.js?v=2.41.0"></script>
+  <script src="mvum.js?v=2.41.0"></script>
+  <script src="environment.js?v=2.41.0"></script>
+  <script src="layers.js?v=2.41.0"></script>
+  <script src="offline-maps.js?v=2.41.0"></script>
+  <script src="contributions.js?v=2.41.0"></script>
+  <script src="install.js?v=2.41.0"></script>
+  <script src="feedback.js?v=2.41.0"></script>
+  <script src="community.js?v=2.41.0"></script>
+  <script src="permissions.js?v=2.41.0"></script>
+  <script src="rest-areas.js?v=2.41.0"></script>
+  <script src="clearances.js?v=2.41.0"></script>
+  <script src="app.js?v=2.41.0"></script>
 </body>
 </html>
