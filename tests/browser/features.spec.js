@@ -197,6 +197,15 @@ test('offline maps save USGS Topo tiles for the view and refuse oversized areas'
   const plan=await page.evaluate(()=>KampTrailOffline.plan(map.getBounds(),map.getZoom()));
   expect(plan.tooMany).toBe(false);expect(plan.zmin).toBe(15);expect(plan.zmax).toBe(16);
   await page.getByRole('button',{name:'Save this area'}).click();
+  const acknowledgement=page.getByRole('dialog',{name:'Before you continue'});
+  await expect(acknowledgement).toBeVisible();
+  await expect(acknowledgement.getByRole('button',{name:'Continue',exact:true})).toBeDisabled();
+  await acknowledgement.getByRole('button',{name:'Cancel',exact:true}).click();
+  expect(await page.evaluate(()=>localStorage.getItem('kt_safety_ack_v1'))).toBeNull();
+  expect(await page.evaluate(async()=>{const name=KampTrailOffline.cacheName();return (await caches.keys()).includes(name)?(await(await caches.open(name)).keys()).length:0;})).toBe(0);
+  await page.getByRole('button',{name:'Save this area'}).click();
+  await acknowledgement.getByRole('checkbox').check();
+  await acknowledgement.getByRole('button',{name:'Continue',exact:true}).click();
   await expect(page.locator('.kt-off-status')).toContainText('1 saved area',{timeout:30000});
   const cached=await page.evaluate(async()=>(await (await caches.open(KampTrailOffline.cacheName())).keys()).length);
   expect(cached).toBe(plan.urls.length);

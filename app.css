@@ -298,3 +298,10 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-workflow-card img{aspect-ratio:auto;height:340px;object-fit:contain;padding:12px;background:#e1e9dc}
 
 .kt-screenshot-credit{font-size:11px;color:#52674e;margin:12px 0}.kt-screenshot-credit a{color:inherit}
+
+/* Safety acknowledgement and independent site information remain usable on narrow screens. */
+#kt-safety-ack{box-sizing:border-box;width:min(560px,calc(100vw - 24px));max-height:90dvh;overflow:auto;overscroll-behavior:contain;border:1px solid #b8c5b1;border-radius:12px;padding:20px;color:#203b2d;background:#fff;line-height:1.6;overflow-wrap:anywhere}
+#kt-safety-ack::backdrop{background:#10281f99}#kt-safety-ack h2{font-size:20px;margin:0 0 12px}#kt-safety-ack button{min-height:44px;margin:8px 10px 0 0}#kt-safety-ack a{display:inline-flex;align-items:center;min-height:44px;margin-right:14px;color:#245639}#kt-safety-ack label{display:flex;align-items:flex-start;gap:12px;min-height:44px;cursor:pointer}#kt-safety-ack input[type=checkbox]{width:22px;height:22px;min-height:22px;flex:0 0 22px;margin:4px 0;padding:0}#kt-safety-ack :focus-visible,.kt-legal-nav a:focus-visible{outline:3px solid #b48624;outline-offset:3px}
+.kt-legal-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 22px;max-width:1120px;margin:24px auto 0;padding:20px 12px 28px;border-top:1px solid #cbd7c5;box-sizing:border-box;line-height:1.5;font-size:13px;color:#3e5738}.kt-legal-nav a{display:inline-flex;align-items:center;min-height:44px;color:#245639}.kt-legal-nav span{flex-basis:100%;text-align:center;overflow-wrap:anywhere}
+
+#kt-safety-failure{box-sizing:border-box;max-width:600px;margin:24px auto;padding:24px;border:1px solid #b8c5b1;border-radius:12px;color:#203b2d;background:#fff;line-height:1.6;overflow-wrap:anywhere}#kt-safety-failure a{display:inline-flex;align-items:center;min-height:44px;margin:4px 16px 4px 0;color:#245639}#kt-safety-failure button{min-height:44px;font:inherit}#kt-safety-failure :focus-visible{outline:3px solid #b48624;outline-offset:3px}@media(max-width:640px){#kt-safety-failure{margin:12px;padding:20px}}

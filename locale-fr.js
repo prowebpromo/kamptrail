@@ -1,7 +1,24 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.42.0', messages:{
+  global.KampTrailI18nFr = {version:'2.43.0', messages:{
+  "Reload KampTrail":"Recharger KampTrail",
+  "Safety acknowledgement could not be displayed. Reload KampTrail or close the app without accepting.":"L’avertissement de sécurité à accepter n’a pas pu être affiché. Rechargez KampTrail ou fermez l’application sans accepter.",
+  "Acknowledgement is required to use the installed app. You can close this app without accepting.":"L’acceptation est requise pour utiliser l’application installée. Vous pouvez fermer cette application sans accepter.",
+  "Legal and safety information":"Informations juridiques et de sécurité",
+  "Terms of Use":"Conditions d’utilisation",
+  "Safety Disclaimer":"Avertissement de sécurité",
+  "Privacy Policy":"Politique de confidentialité",
+  "About & Privacy":"À propos et confidentialité",
+  "Owned and operated by Adirondack Mfg Corp":"Propriété et exploitation : Adirondack Mfg Corp",
+  "I have read and agree to the Terms of Use and acknowledge the Safety Disclaimer.":"J’ai lu et j’accepte les Conditions d’utilisation et je reconnais l’Avertissement de sécurité.",
+  "Continue":"Continuer",
+  "Your acknowledgement could not be saved on this device. It applies only to this session.":"Votre acceptation n’a pas pu être enregistrée sur cet appareil. Elle ne s’applique qu’à cette session.",
+  "Continue for this session":"Continuer pour cette session",
+  "Before you continue":"Avant de continuer",
+  "KampTrail is a planning aid, not a safety guarantee. Verify access, closures, road conditions and vehicle clearance with official sources. Maps and listings may be incomplete or outdated. Do not use while driving.":"KampTrail est une aide à la planification, pas une garantie de sécurité. Vérifiez l’accès, les fermetures, l’état des routes et le dégagement de votre véhicule auprès de sources officielles. Les cartes et les fiches peuvent être incomplètes ou périmées. Ne l’utilisez pas en conduisant.",
+  "Safety acknowledgement is unavailable. Reload KampTrail before saving maps.":"L’acceptation de l’avertissement de sécurité est indisponible. Rechargez KampTrail avant d’enregistrer des cartes.",
+  "These documents are currently in English.":"Ces documents sont actuellement en anglais.",
   "Map images:":"Images de carte :",
   "contributors":"contributeurs",
   "YOUR NEXT STOP STARTS HERE":"VOTRE PROCHAINE ÉTAPE COMMENCE ICI",

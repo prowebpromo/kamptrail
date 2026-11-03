@@ -7,7 +7,7 @@
   const TOPO = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
   const MAX_TILES = 3000, AVG_KB = 20, MAX_ZOOM = 16, CONCURRENCY = 3;
   const STORE = 'kt_offline_areas_v1';
-  const st = {map: null, panel: null, button: null, running: null};
+  const st = {map: null, panel: null, button: null, running: null, saving: false};
   const cacheName = () => `kamptrail:${new URL('./', location.href).href}:tiles-v1`;
   const tileUrl = (z, x, y) => `${TOPO}${z}/${y}/${x}`;
   function lon2x(lng, z) { return Math.floor((lng + 180) / 360 * 2 ** z); }
@@ -116,9 +116,13 @@
     p.querySelector('.kt-off-delete').hidden = !list.length;
   }
   async function saveArea() {
-    if (st.running) return;
+    if (st.running || st.saving) return;
+    st.saving = true;
+    try {
+    if (!window.KampTrailSafety || await window.KampTrailSafety.request() !== true) return;
     if (!navigator.onLine) { window.showToast?.(t("Connect to the internet to save a map area."), 'error'); return; }
-    const pl = plan(st.map.getBounds(), st.map.getZoom());
+    const b = st.map.getBounds();
+    const pl = plan(b, st.map.getZoom());
     if (st.map.getZoom() < 8) { window.showToast?.(t("Zoom in to the area you will camp in (zoom 8 or closer), then save."), 'error'); return; }
     if (pl.tooMany) { window.showToast?.(t("That area needs more than {0} tiles. Zoom in and save a smaller area.", {"0":(MAX_TILES.toLocaleString(window.KampTrailI18n?.locale() || 'en-US'))}), 'error'); return; }
     const mb = Math.max(1, Math.round(pl.urls.length * AVG_KB / 1024));
@@ -128,7 +132,6 @@
     const bar = st.panel.querySelector('.kt-off-progress'), cancel = st.panel.querySelector('.kt-off-cancel'), btn = st.panel.querySelector('.kt-off-save');
     bar.hidden = false; cancel.hidden = false; btn.disabled = true; bar.max = pl.urls.length; bar.value = 0;
     cancel.onclick = () => controller.abort();
-    const b = st.map.getBounds();
     const res = await download(pl.urls, (d) => { bar.value = d; }, controller.signal);
     st.running = null; bar.hidden = true; cancel.hidden = true; btn.disabled = false;
     const saved = res.done - res.failed;
@@ -138,6 +141,16 @@
     render();
     if (controller.signal.aborted) window.showToast?.(t("Stopped. {0} tiles were saved.", {"0":(saved.toLocaleString(window.KampTrailI18n?.locale() || 'en-US'))}));
     else window.showToast?.(res.failed ? t("Saved {0} tiles. {1} failed. Save again to retry the gaps.", {"0":(saved.toLocaleString(window.KampTrailI18n?.locale() || 'en-US')),"1":(res.failed)}) : t("Map area saved. Choose the Topo map to use it offline."), res.failed ? 'error' : 'info', 9000);
+    } catch { window.showToast?.(t('Could not save this map area. Please try again.'), 'error'); }
+    finally {
+      st.saving = false;
+      st.running = null;
+      if (st.panel) {
+        st.panel.querySelector('.kt-off-save').disabled = false;
+        st.panel.querySelector('.kt-off-progress').hidden = true;
+        st.panel.querySelector('.kt-off-cancel').hidden = true;
+      }
+    }
   }
   async function clearAll() {
     if (!confirm(t("Delete all saved map areas from this device?"))) return;
@@ -173,7 +186,7 @@
     };
     addEventListener('offline', nudge); nudge();
   }
-  const api = {version: '2.42.0', init, plan, cacheName, TOPO, readiness, readinessLines};
+  const api = {version: '2.43.0', init, plan, cacheName, TOPO, readiness, readinessLines};
   if (typeof window !== 'undefined') window.KampTrailOffline = api;
   if (typeof module !== 'undefined') module.exports = api;
 })();
