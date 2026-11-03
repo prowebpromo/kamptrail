@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v76';
+const VERSION = 'kt-v77';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -16,7 +16,7 @@ const SHELL = [
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
+  'data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
@@ -64,6 +64,17 @@ async function navigation(request) {
   const cache=await caches.open(SHELL_CACHE);
   // Only the app shell may refresh the cached offline shell. Other pages (how-to.html) pass through.
   const path=new URL(request.url).pathname,scope=new URL(self.registration.scope).pathname;
+  // Keep legal documents paired with this shell generation, including offline navigation.
+  const legalPage=['terms.html','safety.html','privacy.html'].find(page=>path===`${scope}${page}`);
+  if(legalPage){
+    const saved=await cache.match(legalPage);
+    if(saved)return saved;
+    try {
+      const response=await fetch(request);
+      if(response.ok){await cache.put(legalPage,response.clone());return response;}
+    } catch {}
+    return new Response('This KampTrail document is unavailable offline. Reconnect to read it.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8'}});
+  }
   if(path!==scope && path!==`${scope}index.html`){
     try { return await fetch(request); } catch { return await cache.match('index.html') || new Response('KampTrail is unavailable offline. Open it once with a connection.',{status:503,headers:{'Content-Type':'text/plain'}}); }
   }

@@ -4,7 +4,7 @@
   const t = key => window.KampTrailI18n?.t(key) ?? key;
   const display = window.matchMedia('(display-mode: standalone)');
   let deferred = null, busy = false, installed = navigator.standalone === true || display.matches;
-  let dialog, body, action, message, previousFocus;
+  let dialog, body, action, message, previousFocus, opening = false;
   const el = (tag, text, attrs={}) => {const n=document.createElement(tag);if(text)n.textContent=t(text);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,v);return n;};
   function platform() {
     const ua=navigator.userAgent;
@@ -42,7 +42,13 @@
     } catch {if(!installed)message.textContent=t('Installation is unavailable right now. Use the browser instructions above.');}
     finally {busy=false;action.disabled=false;action.hidden=installed || !deferred;}
   }
-  function open() {
+  async function open() {
+    if (opening) return;
+    opening = true;
+    try {
+      if (!window.KampTrailSafety || await window.KampTrailSafety.request() !== true) return;
+    } catch { return; }
+    finally { opening = false; }
     previousFocus=document.activeElement;
     if(!dialog){
       dialog=el('dialog',null,{id:'kt-install','aria-labelledby':'kt-install-title'});
@@ -62,5 +68,5 @@
   document.getElementById('install-kamptrail')?.addEventListener('click',open);
   document.querySelectorAll?.('[data-install-open]').forEach(button=>button.addEventListener('click',open));
   render();
-  window.KampTrailInstall={version:'2.42.0',open};
+  window.KampTrailInstall={version:'2.43.0',open};
 })();

@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.42.0';
+  const FR_VERSION = '2.43.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -17,6 +17,23 @@
     return fr || {};
   };
   const es = {
+  "Reload KampTrail":"Volver a cargar KampTrail",
+  "Safety acknowledgement could not be displayed. Reload KampTrail or close the app without accepting.":"No se pudo mostrar el aviso de seguridad para su aceptación. Vuelva a cargar KampTrail o cierre la aplicación sin aceptar.",
+  "Acknowledgement is required to use the installed app. You can close this app without accepting.":"Se requiere aceptar el aviso para usar la aplicación instalada. Puede cerrar esta aplicación sin aceptar.",
+  "Legal and safety information":"Información legal y de seguridad",
+  "Terms of Use":"Condiciones de uso",
+  "Safety Disclaimer":"Aviso de seguridad",
+  "Privacy Policy":"Política de privacidad",
+  "About & Privacy":"Acerca de y privacidad",
+  "Owned and operated by Adirondack Mfg Corp":"Propiedad de Adirondack Mfg Corp, que también lo opera",
+  "I have read and agree to the Terms of Use and acknowledge the Safety Disclaimer.":"He leído y acepto las Condiciones de uso y reconozco el Aviso de seguridad.",
+  "Continue":"Continuar",
+  "Your acknowledgement could not be saved on this device. It applies only to this session.":"No se pudo guardar su aceptación en este dispositivo. Solo se aplica a esta sesión.",
+  "Continue for this session":"Continuar para esta sesión",
+  "Before you continue":"Antes de continuar",
+  "KampTrail is a planning aid, not a safety guarantee. Verify access, closures, road conditions and vehicle clearance with official sources. Maps and listings may be incomplete or outdated. Do not use while driving.":"KampTrail ayuda a planificar, pero no garantiza la seguridad. Verifique el acceso, los cierres, el estado de las carreteras y el espacio libre para su vehículo con fuentes oficiales. Los mapas y los listados pueden estar incompletos o desactualizados. No lo use mientras conduce.",
+  "Safety acknowledgement is unavailable. Reload KampTrail before saving maps.":"La aceptación del aviso de seguridad no está disponible. Vuelva a cargar KampTrail antes de guardar mapas.",
+  "These documents are currently in English.":"Estos documentos están actualmente en inglés.",
   "Map images:":"Imágenes del mapa:",
   "contributors":"colaboradores",
   "YOUR NEXT STOP STARTS HERE":"TU PRÓXIMA PARADA EMPIEZA AQUÍ",
@@ -1976,7 +1993,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title', 'alt']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.42.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.43.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {

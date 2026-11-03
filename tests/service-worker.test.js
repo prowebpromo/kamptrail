@@ -161,3 +161,34 @@ test('saved app navigation retains dated land care guidance when offline',async(
   assert.ok(saved.includes('datetime="2026-10-30"'));
   assert.ok(saved.includes('https://www.blm.gov/programs/recreation/camping'));
 });
+
+test('legal navigation returns each versioned document offline without replacing the app shell',async()=>{
+  let fetched=0;const w=worker(async()=>{fetched++;throw Error('offline');});
+  const version=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '([^']+)'/)[1];
+  const cache=await w.caches.open('kamptrail:https://example.test/kamptrail/:'+version);
+  await cache.put('index.html',new Response('APP'));
+  for(const page of ['terms.html','safety.html','privacy.html']){
+    await cache.put(page,new Response('DOCUMENT '+page));let result;
+    w.handlers.fetch({request:{url:'https://example.test/kamptrail/'+page+'?test=1',method:'GET',mode:'navigate'},respondWith:p=>result=p});
+    assert.equal(await(await result).text(),'DOCUMENT '+page);
+  }
+  assert.equal(fetched,0,'cached legal copy remains paired with installed shell');
+  assert.equal(await(await cache.match('index.html')).text(),'APP');
+});
+test('uncached legal navigation fails explicitly on network errors or non-OK responses, never with app HTML',async()=>{
+  for(const fetcher of [async()=>{throw Error('offline');},async()=>new Response('upstream error',{status:500})]){
+    const w=worker(fetcher),version=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '([^']+)'/)[1];
+    const cache=await w.caches.open('kamptrail:https://example.test/kamptrail/:'+version);await cache.put('index.html',new Response('APP'));
+    for(const page of ['terms.html','safety.html','privacy.html']){let result;w.handlers.fetch({request:{url:'https://example.test/kamptrail/'+page,method:'GET',mode:'navigate'},respondWith:p=>result=p});const response=await result;assert.equal(response.status,503);assert.notEqual(await response.text(),'APP');}
+    assert.equal(await(await cache.match('index.html')).text(),'APP');
+  }
+});
+test('missing or stale safety module stops app initialization through the version handshake',()=>{
+  const source=fs.readFileSync('app.js','utf8'),line=source.split('\n').find(line=>line.includes('.some(module=>module?.version'));
+  assert.ok(line.includes('window.KampTrailSafety'));
+  const expression=line.match(/\[window\.KampTrailSafety,[\s\S]*\]\.some\(module=>module\?\.version!=='([^']+)'\)/)[0];
+  const names=[...expression.matchAll(/window\.([A-Za-z0-9]+)/g)].map(m=>m[1]);const current=JSON.parse(fs.readFileSync('package.json','utf8')).version;
+  const window=Object.fromEntries(names.map(name=>[name,{version:current}]));assert.equal(vm.runInNewContext(expression,{window}),false);
+  delete window.KampTrailSafety;assert.equal(vm.runInNewContext(expression,{window}),true);window.KampTrailSafety={version:'old'};assert.equal(vm.runInNewContext(expression,{window}),true);
+  assert.match(source.slice(source.indexOf(line),source.indexOf('const dataDialog')),/return;/);
+});
