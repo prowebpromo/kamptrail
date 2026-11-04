@@ -28,7 +28,7 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       expect((await new AxeBuilder({page}).include('#beta-testing').include('#about-chuck').include('#beta-faq').analyze()).violations).toEqual([]);
       await preview.getByRole('link', {name:'See recent updates and current limitations'}).click();
       await expect(page.getByRole('heading', {name:'What’s new',exact:true})).toBeVisible();
-      await expect(page.locator('#beta-limits')).toContainText('Carrier coverage overlays are unavailable.');
+      await expect(page.getByRole('region', {name:'Current beta limitations'})).toContainText('Carrier coverage overlays are unavailable.');
       await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
       await expect(page.locator('#beta-title')).toBeVisible();
     });
