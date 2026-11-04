@@ -4,6 +4,7 @@ RewriteEngine On
 RewriteRule (^|/)\.(?!well-known/) - [F,L]
 </IfModule>
 <IfModule mod_headers.c>
+Header always set X-Robots-Tag "noindex, nofollow, noarchive"
 Header always set Strict-Transport-Security "max-age=86400"
 Header always set X-Content-Type-Options "nosniff"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
