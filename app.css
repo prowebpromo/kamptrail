@@ -305,3 +305,26 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-legal-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 22px;max-width:1120px;margin:24px auto 0;padding:20px 12px 28px;border-top:1px solid #cbd7c5;box-sizing:border-box;line-height:1.5;font-size:13px;color:#3e5738}.kt-legal-nav a{display:inline-flex;align-items:center;min-height:44px;color:#245639}.kt-legal-nav span{flex-basis:100%;text-align:center;overflow-wrap:anywhere}
 
 #kt-safety-failure{box-sizing:border-box;max-width:600px;margin:24px auto;padding:24px;border:1px solid #b8c5b1;border-radius:12px;color:#203b2d;background:#fff;line-height:1.6;overflow-wrap:anywhere}#kt-safety-failure a{display:inline-flex;align-items:center;min-height:44px;margin:4px 16px 4px 0;color:#245639}#kt-safety-failure button{min-height:44px;font:inherit}#kt-safety-failure :focus-visible{outline:3px solid #b48624;outline-offset:3px}@media(max-width:640px){#kt-safety-failure{margin:12px;padding:20px}}
+
+/* Public beta preview, founder information and first-trip questions. */
+.kt-beta-label{font-size:12px;letter-spacing:.06em}
+.kt-hero-note>a{display:block;margin-top:12px}
+#beta-testing,#about-chuck,#beta-faq{scroll-margin-top:20px}
+.kt-founder{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;align-items:center}
+.kt-founder figure{margin:0}
+.kt-founder img{display:block;width:100%;height:auto;border-radius:12px}
+.kt-founder figcaption{font-size:12px;line-height:1.5;margin-top:8px;color:#50634c}
+.kt-founder h2{margin-bottom:16px}
+.kt-founder p,.kt-beta-testing p,.kt-beta-testing li,.kt-beta-faq p{font-size:15px;line-height:1.7;color:#50634c}
+.kt-founder a,.kt-beta-testing a,.kt-beta-faq a{color:#245639;text-underline-offset:3px}
+.kt-beta-testing{border:1px solid #d3ddce;border-radius:14px;background:#f9faf3;padding:30px}
+.kt-beta-testing h2{margin-bottom:12px}
+.kt-beta-testing ol{padding-left:24px;margin:20px 0}
+.kt-beta-testing li{padding-left:6px;margin:10px 0}
+.kt-beta-testing .kt-home-actions{margin:24px 0 18px}
+.kt-beta-testing .primary{color:#fff}
+.kt-beta-faq details{border-bottom:1px solid #d3ddce;padding:12px 0}
+.kt-beta-faq summary{cursor:pointer;min-height:44px;align-content:center;font-weight:650;line-height:1.5;padding:8px 0}
+.kt-beta-faq details p{max-width:850px;margin:6px 0 16px}
+.kt-workflow-card .kt-workflow-link{margin-top:16px}
+@media(max-width:760px){.kt-founder{grid-template-columns:1fr;gap:22px}.kt-founder figure{max-width:180px}.kt-beta-testing{padding:24px}.kt-beta-testing .kt-home-actions{align-items:stretch}.kt-beta-testing .kt-home-actions>.btn{justify-content:center}.kt-beta-faq{padding:0 8px}}

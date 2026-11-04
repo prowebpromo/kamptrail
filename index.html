@@ -11,8 +11,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.43.0">
-  <link rel="manifest" href="manifest.json?v=2.43.0">
+  <meta name="kamptrail-version" content="2.44.0">
+  <link rel="manifest" href="manifest.json?v=2.44.0">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="canonical" href="https://prowebpromo.github.io/kamptrail/">
@@ -26,8 +26,8 @@
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.Default.css">
-  <link rel="stylesheet" href="app.css?v=2.43.0">
-  <script src="locale.js?v=2.43.0"></script>
+  <link rel="stylesheet" href="app.css?v=2.44.0">
+  <script src="locale.js?v=2.44.0"></script>
   <script src="vendor/leaflet/leaflet.js"></script>
   <script src="vendor/markercluster/leaflet.markercluster.js"></script>
 </head>
@@ -44,7 +44,25 @@
         <label class="kt-language"><span>Language / Idioma</span><select id="kt-language" title="Language changes reload the page. Save unfinished forms first." data-i18n-title="Language changes reload the page. Save unfinished forms first." aria-describedby="kt-language-help"><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option></select><small id="kt-language-help" data-i18n="Language changes reload the page. Save unfinished forms first.">Language changes reload the page. Save unfinished forms first.</small></label>
       </nav>
     </header>
-    <section class="kt-home-hero" aria-labelledby="home-title"><div><p class="kt-eyebrow" data-i18n="YOUR NEXT STOP STARTS HERE">YOUR NEXT STOP STARTS HERE</p><h2 id="home-title" data-i18n="Find a place. Make a plan. Get outside.">Find a place. Make a plan. Get outside.</h2><p class="kt-hero-copy" data-i18n="Explore free and paid campsites, check the details, and keep your next stops together. No account required.">Explore free and paid campsites, check the details, and keep your next stops together. No account required.</p><div class="kt-home-actions"><a class="btn primary" href="#explore" data-i18n="Explore the map">Explore the map</a><button class="btn" type="button" data-install-open aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button><a href="#how-it-works" data-i18n="See how it works">See how it works</a></div></div><div class="kt-hero-note"><span class="kt-eyebrow" data-i18n="FREE TO USE">FREE TO USE</span><p  data-i18n="Public land. Campsites. Your kind of trip.">Public land. Campsites. Your kind of trip.</p><a href="#feedback-panel" data-i18n="Have an idea or found a bug?">Have an idea or found a bug?</a></div></section>
+    <section class="kt-home-hero" aria-labelledby="home-title">
+      <div>
+        <p class="kt-eyebrow kt-beta-label" data-i18n="Public beta · Free · No account required">Public beta · Free · No account required</p>
+        <h2 id="home-title" data-i18n="Find campsites. Check the details. Plan your next stop.">Find campsites. Check the details. Plan your next stop.</h2>
+        <p class="kt-hero-copy" data-i18n="Explore free and paid campsites, public-land information, and useful services. Save your stops and help improve KampTrail’s public beta.">Explore free and paid campsites, public-land information, and useful services. Save your stops and help improve KampTrail’s public beta.</p>
+        <div class="kt-home-actions">
+          <a class="btn primary" href="#explore" data-i18n="Explore the map">Explore the map</a>
+          <button class="btn" type="button" data-install-open aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button>
+          <a class="btn" href="#beta-testing" data-i18n="Help test KampTrail">Help test KampTrail</a>
+          <a href="#how-it-works" data-i18n="See how it works">See how it works</a>
+        </div>
+      </div>
+      <div class="kt-hero-note">
+        <span class="kt-eyebrow" data-i18n="FREE TO USE">FREE TO USE</span>
+        <p data-i18n="Public land. Campsites. Your kind of trip.">Public land. Campsites. Your kind of trip.</p>
+        <a href="updates.html" data-i18n="What’s new">What’s new</a>
+        <a href="#feedback-panel" data-i18n="Have an idea or found a bug?">Have an idea or found a bug?</a>
+      </div>
+    </section>
     <div class="app-intro"><div><p data-i18n="Find free and paid campsites, explore public land, and save your stops. Choose a state or search to start.">Find free and paid campsites, explore public land, and save your stops. Choose a state or search to start.</p><p class="kt-map-gesture-note" data-i18n="Scroll to read more. Use + and − to zoom the map, or two fingers on a touch screen.">Scroll to read more. Use + and − to zoom the map, or two fingers on a touch screen.</p></div><span class="app-intro-links"><button type="button" id="kt-feedback-open" aria-haspopup="dialog" data-i18n="Feedback">Feedback</button><a href="how-to.html" data-i18n="How-to videos">How-to videos</a><button id="about-data" aria-haspopup="dialog" data-i18n="About the data">About the data</button></span><p id="kt-language-scope" class="kt-language-scope" hidden data-i18n="Spanish interface. Source text, place names and visitor content stay in their original language. Untranslated server or browser messages may appear in English."></p></div>
     <section id="explore" class="search-bar" aria-label="Find a destination" data-i18n-aria-label="Find a destination">
       <form id="search-form" role="search">
@@ -68,11 +86,49 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.43.0</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.44.0</a></span>
     </footer>
   </div>
-<section id="how-it-works" class="kt-home-section" aria-labelledby="workflow-title"><p class="kt-eyebrow" data-i18n="A LITTLE PLANNING. MORE TIME OUTSIDE.">A LITTLE PLANNING. MORE TIME OUTSIDE.</p><h2 id="workflow-title" data-i18n="From first look to ready to roll">From first look to ready to roll</h2><div class="kt-workflow-grid"><article class="kt-workflow-card"><img src="media/onboarding/browse.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail map showing campsite listings and a selected destination" data-i18n-alt="KampTrail map showing campsite listings and a selected destination"><div><span class="kt-step-number">01</span><h3  data-i18n="Browse the map">Browse the map</h3><p  data-i18n="Start with a town or state. Open a listing to see its sources, location and reported camping details.">Start with a town or state. Open a listing to see its sources, location and reported camping details.</p></div></article><article class="kt-workflow-card"><img src="media/onboarding/filters.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail campsite filters for narrowing the map results" data-i18n-alt="KampTrail campsite filters for narrowing the map results"><div><span class="kt-step-number">02</span><h3  data-i18n="Find what fits">Find what fits</h3><p  data-i18n="Use Filters and My rig to narrow the choices. Check the listing and confirm current access with the operator.">Use Filters and My rig to narrow the choices. Check the listing and confirm current access with the operator.</p></div></article><article class="kt-workflow-card"><img src="media/onboarding/offline.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail Offline panel for saving Topo map areas" data-i18n-alt="KampTrail Offline panel for saving Topo map areas"><div><span class="kt-step-number">03</span><h3  data-i18n="Prepare before you go">Prepare before you go</h3><p  data-i18n="While connected, save your stops and use Offline to download Topo map areas. Check your saved content before losing service.">While connected, save your stops and use Offline to download Topo map areas. Check your saved content before losing service.</p></div></article></div><p class="kt-screenshot-credit"><span data-i18n="Map images:">Map images:</span> © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> <span data-i18n="contributors">contributors</span></p></section>
+<section id="how-it-works" class="kt-home-section" aria-labelledby="workflow-title"><p class="kt-eyebrow" data-i18n="A LITTLE PLANNING. MORE TIME OUTSIDE.">A LITTLE PLANNING. MORE TIME OUTSIDE.</p><h2 id="workflow-title" data-i18n="From first look to ready to roll">From first look to ready to roll</h2><div class="kt-workflow-grid"><article class="kt-workflow-card"><img src="media/onboarding/browse.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail map showing campsite listings and a selected destination" data-i18n-alt="KampTrail map showing campsite listings and a selected destination"><div><span class="kt-step-number">01</span><h3  data-i18n="Browse the map">Browse the map</h3><p  data-i18n="Start with a town or state. Open a listing to see its sources, location and reported camping details.">Start with a town or state. Open a listing to see its sources, location and reported camping details.</p><p class="kt-workflow-link"><a href="how-to.html#who-manages-this-land" data-i18n="Watch how to check land management">Watch how to check land management</a></p></div></article><article class="kt-workflow-card"><img src="media/onboarding/filters.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail campsite filters for narrowing the map results" data-i18n-alt="KampTrail campsite filters for narrowing the map results"><div><span class="kt-step-number">02</span><h3  data-i18n="Find what fits">Find what fits</h3><p  data-i18n="Use Filters and My rig to narrow the choices. Check the listing and confirm current access with the operator.">Use Filters and My rig to narrow the choices. Check the listing and confirm current access with the operator.</p><p class="kt-workflow-link"><a href="how-to.html#trip-to-google-maps" data-i18n="Watch how to plan multiple stops">Watch how to plan multiple stops</a></p></div></article><article class="kt-workflow-card"><img src="media/onboarding/offline.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail Offline panel for saving Topo map areas" data-i18n-alt="KampTrail Offline panel for saving Topo map areas"><div><span class="kt-step-number">03</span><h3  data-i18n="Prepare before you go">Prepare before you go</h3><p  data-i18n="While connected, save your stops and use Offline to download Topo map areas. Check your saved content before losing service.">While connected, save your stops and use Offline to download Topo map areas. Check your saved content before losing service.</p><p class="kt-workflow-link"><a href="how-to.html#offline-maps" data-i18n="Watch how to save Topo maps">Watch how to save Topo maps</a></p></div></article></div><p class="kt-screenshot-credit"><span data-i18n="Map images:">Map images:</span> © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> <span data-i18n="contributors">contributors</span></p></section>
+<section id="about-chuck" class="kt-home-section kt-founder" aria-labelledby="founder-title">
+  <figure>
+    <img src="media/about/chuck-and-cindy.jpg" width="480" height="640" loading="lazy" decoding="async" alt="Chuck and Cindy Price of Boondock or Bust" data-i18n-alt="Chuck and Cindy Price of Boondock or Bust">
+    <figcaption data-i18n="Chuck and Cindy Price · Boondock or Bust">Chuck and Cindy Price · Boondock or Bust</figcaption>
+  </figure>
+  <div>
+    <p class="kt-eyebrow" data-i18n="THE CAMPER BEHIND KAMPTRAIL">THE CAMPER BEHIND KAMPTRAIL</p>
+    <h2 id="founder-title" data-i18n="Built by Chuck from Boondock or Bust">Built by Chuck from Boondock or Bust</h2>
+    <p data-i18n="I’m Chuck Price, a lifelong camper and the creator of Boondock or Bust. Cindy and I travel in a 2018 Hymer Aktiv Class B after years with a Class C Gulfstream.">I’m Chuck Price, a lifelong camper and the creator of Boondock or Bust. Cindy and I travel in a 2018 Hymer Aktiv Class B after years with a Class C Gulfstream.</p>
+    <p data-i18n="I’m building KampTrail to bring campsite information, public-land context, and trip planning together. Start with a place you know and tell me what would make it more useful for your trips.">I’m building KampTrail to bring campsite information, public-land context, and trip planning together. Start with a place you know and tell me what would make it more useful for your trips.</p>
+    <a href="https://boondockorbust.com/about/" data-i18n="Meet Chuck and Cindy on Boondock or Bust">Meet Chuck and Cindy on Boondock or Bust</a>
+  </div>
+</section>
 <section id="install-guide" class="kt-home-section kt-install-guide" aria-labelledby="install-guide-title"><div><p class="kt-eyebrow" data-i18n="TAKE KAMPTRAIL WITH YOU">TAKE KAMPTRAIL WITH YOU</p><h2 id="install-guide-title" data-i18n="One tap closer to your next stop">One tap closer to your next stop</h2><p  data-i18n="Add KampTrail to your home screen or app launcher for easy access. Free, with no account required.">Add KampTrail to your home screen or app launcher for easy access. Free, with no account required.</p><button class="btn primary" type="button" data-install-open aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button><p class="kt-install-guide-note" data-i18n="Installation does not download maps. While online, use Offline to save Topo maps and save your stops. New routes, fresh weather and sending feedback need a connection.">Installation does not download maps. While online, use Offline to save Topo maps and save your stops. New routes, fresh weather and sending feedback need a connection.</p></div><div class="kt-device-guides"><details><summary data-i18n="iPhone and iPad">iPhone and iPad</summary><p  data-i18n="In Safari, open Share (or the page menu, then Share). Choose Add to Home Screen and tap Add. Look under View More if needed. Leave Open as Web App on if offered. If these options are missing in your browser, open this page in Safari.">In Safari, open Share (or the page menu, then Share). Choose Add to Home Screen and tap Add. Look under View More if needed. Leave Open as Web App on if offered. If these options are missing in your browser, open this page in Safari.</p></details><details><summary data-i18n="Android">Android</summary><p  data-i18n="In Chrome, open the three-dot menu, then Install and create shortcut, then Install. Some versions show Add to Home screen or Install app. Follow the prompts.">In Chrome, open the three-dot menu, then Install and create shortcut, then Install. Some versions show Add to Home screen or Install app. Follow the prompts.</p></details><details><summary data-i18n="Windows and other computers">Windows and other computers</summary><p  data-i18n="In Chrome, use the address-bar Install icon, or the menu: Cast, save, and share, then Install page as app. In Edge: More tools, Apps, then Install this site as an app. If unavailable, bookmark KampTrail.">In Chrome, use the address-bar Install icon, or the menu: Cast, save, and share, then Install page as app. In Edge: More tools, Apps, then Install this site as an app. If unavailable, bookmark KampTrail.</p></details><details><summary data-i18n="Mac with Safari">Mac with Safari</summary><p  data-i18n="In Safari on macOS 14 or later, choose File, then Add to Dock. Chrome and Edge also offer installation.">In Safari on macOS 14 or later, choose File, then Add to Dock. Chrome and Edge also offer installation.</p></details></div></section>
+<section id="beta-testing" class="kt-home-section kt-beta-testing" aria-labelledby="beta-title">
+  <p class="kt-eyebrow" data-i18n="BOONDOCK OR BUST SUBSCRIBER PREVIEW">BOONDOCK OR BUST SUBSCRIBER PREVIEW</p>
+  <h2 id="beta-title" data-i18n="Start with a place you know">Start with a place you know</h2>
+  <p data-i18n="You can use the beta now. Help shape it by trying these four steps on your phone or computer.">You can use the beta now. Help shape it by trying these four steps on your phone or computer.</p>
+  <ol>
+    <li data-i18n="Find a familiar campsite or camping area.">Find a familiar campsite or camping area.</li><li data-i18n="Check its location, fee information, amenities, and source links. Tell us what is missing or incorrect.">Check its location, fee information, amenities, and source links. Tell us what is missing or incorrect.</li><li data-i18n="Save a stop, reload the page, and find it again in Saved stops.">Save a stop, reload the page, and find it again in Saved stops.</li><li data-i18n="Tell us what was confusing and which improvement would matter most on your next trip.">Tell us what was confusing and which improvement would matter most on your next trip.</li>
+  </ol>
+  <div class="kt-home-actions">
+    <a class="btn primary" href="#explore" data-i18n="Explore the map">Explore the map</a>
+    <button type="button" class="btn" data-feedback-kind="bug" aria-haspopup="dialog" data-i18n="Report a bug">Report a bug</button>
+    <button type="button" class="btn" data-feedback-kind="feature" aria-haspopup="dialog" data-i18n="Suggest a feature">Suggest a feature</button>
+  </div>
+  <p data-i18n="For a campsite correction, use Suggest a fix on that listing. General feedback is private, and email is optional.">For a campsite correction, use Suggest a fix on that listing. General feedback is private, and email is optional.</p>
+  <a href="updates.html" data-i18n="See recent updates and current limitations">See recent updates and current limitations</a>
+</section>
+<section id="beta-faq" class="kt-home-section kt-beta-faq" aria-labelledby="faq-title">
+  <h2 id="faq-title" data-i18n="Before your first trip with KampTrail">Before your first trip with KampTrail</h2>
+  <details><summary data-i18n="Is KampTrail free?">Is KampTrail free?</summary><p data-i18n="The current beta is free to use. No account is required to explore the map, save stops, or send feedback.">The current beta is free to use. No account is required to explore the map, save stops, or send feedback.</p></details>
+  <details><summary data-i18n="Do I need to install an app?">Do I need to install an app?</summary><p data-i18n="You can use KampTrail in your browser. Install KampTrail explains how to add it to your home screen or app launcher.">You can use KampTrail in your browser. Install KampTrail explains how to add it to your home screen or app launcher.</p></details>
+  <details><summary data-i18n="Where are my saved stops stored?">Where are my saved stops stored?</summary><p data-i18n="Saved stops stay in this browser on this device. Export a GPX file to back up your trip or move its stops to another device. Clearing site data removes local saves.">Saved stops stay in this browser on this device. Export a GPX file to back up your trip or move its stops to another device. Clearing site data removes local saves.</p></details>
+  <details><summary data-i18n="What works without a connection?">What works without a connection?</summary><p data-i18n="Prepare while online. Previously viewed listings and saved stops can remain available when browser storage permits. Use Offline to save selected USGS Topo map areas. New routes, fresh weather, land lookups, and sending feedback need a connection.">Prepare while online. Previously viewed listings and saved stops can remain available when browser storage permits. Use Offline to save selected USGS Topo map areas. New routes, fresh weather, land lookups, and sending feedback need a connection.</p></details>
+  <details><summary data-i18n="Are campsite details verified?">Are campsite details verified?</summary><p data-i18n="Listings combine agency records, OpenStreetMap data, and moderated visitor contributions. Coverage and dates vary. Unknown fees stay unknown. Confirm current fees, access, closures, and vehicle suitability with the operator or land manager.">Listings combine agency records, OpenStreetMap data, and moderated visitor contributions. Coverage and dates vary. Unknown fees stay unknown. Confirm current fees, access, closures, and vehicle suitability with the operator or land manager.</p></details>
+  <details><summary data-i18n="Will routes account for my RV dimensions?">Will routes account for my RV dimensions?</summary><p data-i18n="Current routes use car routing. Your rig profile and mapped clearance candidates do not establish a safe or legal route for your vehicle. Check restrictions, road conditions, and posted signs before traveling.">Current routes use car routing. Your rig profile and mapped clearance candidates do not establish a safe or legal route for your vehicle. Check restrictions, road conditions, and posted signs before traveling.</p></details>
+  <p><a href="how-to.html" data-i18n="How-to videos">How-to videos</a> · <a href="safety.html" data-i18n="Safety Disclaimer">Safety Disclaimer</a> · <a href="privacy.html" data-i18n="About &amp; Privacy">About &amp; Privacy</a></p>
+</section>
   <section id="feedback-panel" class="kt-site-feedback" aria-labelledby="kt-site-feedback-title">
     <h2 id="kt-site-feedback-title" data-i18n="Help improve KampTrail">Help improve KampTrail</h2>
     <p data-i18n="Found a bug or have an idea? Send it privately. No account required. Email is optional.">Found a bug or have an idea? Send it privately. No account required. Email is optional.</p>
@@ -145,6 +201,8 @@
     <p data-i18n="KampTrail moved to kamptrail.com. Saved stops and offline maps belong to the address where you saved them. On the old address, open Saved stops and choose Export GPX. Here, choose Import GPX. Save offline map areas again on this address before you travel.">KampTrail moved to kamptrail.com. Saved stops and offline maps belong to the address where you saved them. On the old address, open Saved stops and choose Export GPX. Here, choose Import GPX. Save offline map areas again on this address before you travel.</p>
   </dialog>
   <nav class="kt-legal-nav" aria-label="Legal and safety information" data-i18n-aria-label="Legal and safety information">
+    <a href="updates.html" data-i18n="What’s new">What’s new</a>
+    <a href="#about-chuck" data-i18n="Who’s behind KampTrail">Who’s behind KampTrail</a>
     <a href="terms.html" data-i18n="Terms of Use">Terms of Use</a>
     <a href="safety.html" data-i18n="Safety Disclaimer">Safety Disclaimer</a>
     <a href="privacy.html" data-i18n="About &amp; Privacy">About &amp; Privacy</a>
@@ -153,31 +211,31 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden data-i18n="Loading…">Loading…</div>
   <noscript data-i18n="KampTrail needs JavaScript to display its interactive map.">KampTrail needs JavaScript to display its interactive map.</noscript>
-  <script src="share.js?v=2.43.0"></script>
-  <script src="spot-info.js?v=2.43.0"></script>
-  <script src="community-discovery.js?v=2.43.0"></script>
-  <script src="data-quality.js?v=2.43.0"></script>
-  <script src="forecast.js?v=2.43.0"></script>
-  <script src="services.js?v=2.43.0"></script>
-  <script src="data-loader.js?v=2.43.0"></script>
-  <script src="filters.js?v=2.43.0"></script>
-  <script src="rig-profile.js?v=2.43.0"></script>
-  <script src="routes.js?v=2.43.0"></script>
-  <script src="route-elevation.js?v=2.43.0"></script>
-  <script src="route-clearance.js?v=2.43.0"></script>
-  <script src="trip-planner.js?v=2.43.0"></script>
-  <script src="mvum.js?v=2.43.0"></script>
-  <script src="environment.js?v=2.43.0"></script>
-  <script src="layers.js?v=2.43.0"></script>
-  <script src="safety.js?v=2.43.0"></script>
-  <script src="offline-maps.js?v=2.43.0"></script>
-  <script src="contributions.js?v=2.43.0"></script>
-  <script src="install.js?v=2.43.0"></script>
-  <script src="feedback.js?v=2.43.0"></script>
-  <script src="community.js?v=2.43.0"></script>
-  <script src="permissions.js?v=2.43.0"></script>
-  <script src="rest-areas.js?v=2.43.0"></script>
-  <script src="clearances.js?v=2.43.0"></script>
-  <script src="app.js?v=2.43.0"></script>
+  <script src="share.js?v=2.44.0"></script>
+  <script src="spot-info.js?v=2.44.0"></script>
+  <script src="community-discovery.js?v=2.44.0"></script>
+  <script src="data-quality.js?v=2.44.0"></script>
+  <script src="forecast.js?v=2.44.0"></script>
+  <script src="services.js?v=2.44.0"></script>
+  <script src="data-loader.js?v=2.44.0"></script>
+  <script src="filters.js?v=2.44.0"></script>
+  <script src="rig-profile.js?v=2.44.0"></script>
+  <script src="routes.js?v=2.44.0"></script>
+  <script src="route-elevation.js?v=2.44.0"></script>
+  <script src="route-clearance.js?v=2.44.0"></script>
+  <script src="trip-planner.js?v=2.44.0"></script>
+  <script src="mvum.js?v=2.44.0"></script>
+  <script src="environment.js?v=2.44.0"></script>
+  <script src="layers.js?v=2.44.0"></script>
+  <script src="safety.js?v=2.44.0"></script>
+  <script src="offline-maps.js?v=2.44.0"></script>
+  <script src="contributions.js?v=2.44.0"></script>
+  <script src="install.js?v=2.44.0"></script>
+  <script src="feedback.js?v=2.44.0"></script>
+  <script src="community.js?v=2.44.0"></script>
+  <script src="permissions.js?v=2.44.0"></script>
+  <script src="rest-areas.js?v=2.44.0"></script>
+  <script src="clearances.js?v=2.44.0"></script>
+  <script src="app.js?v=2.44.0"></script>
 </body>
 </html>
