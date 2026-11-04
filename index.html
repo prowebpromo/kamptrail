@@ -37,7 +37,7 @@
       <label class="kt-language"><span>Language / Idioma</span><select id="kt-language" title="Language changes reload the page. Save unfinished forms first." data-i18n-title="Language changes reload the page. Save unfinished forms first." aria-describedby="kt-language-help"><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option></select><small id="kt-language-help" data-i18n="Language changes reload the page. Save unfinished forms first.">Language changes reload the page. Save unfinished forms first.</small></label>
     <button class="btn" id="kt-full-site" type="button" hidden data-i18n="Full website">Full website</button>
     </header>
-    <nav class="kt-site-nav" aria-label="KampTrail pages" data-i18n-aria-label="KampTrail pages"><a href="#explore" data-i18n="Map">Map</a><a href="plan.html" data-i18n="Plan a trip">Plan a trip</a><a href="tools.html" data-i18n="Free tools">Free tools</a><a href="guides.html" data-i18n="Guides">Guides</a><a href="about.html" data-i18n="About">About</a><a href="#beta-testing" data-i18n="Help test">Help test</a></nav>
+    <nav class="kt-site-nav" aria-label="KampTrail pages" data-i18n-aria-label="KampTrail pages"><a href="#explore" data-i18n="Map">Map</a><a href="plan.html" data-i18n="Plan a trip">Plan a trip</a><a href="tools.html" data-i18n="Free tools">Free tools</a><a href="guides.html" data-i18n="Guides">Guides</a><a href="about.html" data-i18n="About">About</a><a href="#feedback-panel" data-i18n="Feedback">Feedback</a></nav>
     <section class="kt-home-hero" aria-labelledby="home-title">
       <picture class="kt-hero-picture"><source media="(max-width: 760px)" srcset="media/hero/lakeside-mobile.webp"><img class="kt-hero-landscape" src="media/hero/lakeside-photo.webp" width="1536" height="1024" alt="" fetchpriority="high" decoding="async"></picture>
       <div class="kt-hero-message">
@@ -53,7 +53,7 @@
           <button class="btn" type="button" data-install-open aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button>
         </div>
         <div class="kt-hero-links">
-          <a href="#beta-testing" data-i18n="Help test KampTrail">Help test KampTrail</a>
+          <a href="#how-it-works" data-i18n="How it works">How it works</a>
           <a href="#how-it-works" data-i18n="See how it works">See how it works</a>
           <a href="#feedback-panel" data-i18n="Feedback">Feedback</a>
         </div>
@@ -81,11 +81,14 @@
       <button id="results-toggle" class="btn" aria-controls="results" aria-expanded="true" data-i18n="Campsite list">Campsite list</button>
       <div id="search-results" role="region" aria-label="Search results" data-i18n-aria-label="Search results" hidden></div>
       <a class="kt-skip-map" href="#map" data-i18n="Skip map markers">Skip map markers</a>
+      <div id="kt-entry-state" class="kt-entry-state" role="status" aria-live="polite" hidden></div>
+      <div id="kt-use-nudge" class="kt-use-nudge" role="region" aria-label="Suggestions after use" hidden></div>
       <nav class="actions" aria-label="Map tools" data-i18n-aria-label="Map tools">
         <button id="install-kamptrail" type="button" class="btn" aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button>
         <button id="filters" class="btn" aria-label="Open filters" data-i18n-aria-label="Open filters" aria-expanded="false"><span data-i18n="Filters">Filters</span> <span id="filter-badge" style="display:none"></span></button>
         <button id="rig-profile" class="btn" aria-label="My rig" data-i18n-aria-label="My rig" data-i18n="My rig">My rig</button>
         <button id="trip" class="btn" aria-label="Saved stops" data-i18n-aria-label="Saved stops"><span data-i18n="Saved stops">Saved stops</span> <span id="trip-count">(0)</span></button>
+        <button id="kt-recent" class="btn" aria-haspopup="dialog" data-i18n="Recently viewed">Recently viewed</button>
         <button id="near" class="btn" aria-label="Near me" data-i18n-aria-label="Near me" aria-pressed="false" data-i18n="Near me">Near me</button>
 
       </nav>
@@ -119,7 +122,7 @@
   </div>
 </section>
 <section id="install-guide" class="kt-home-section kt-install-guide" aria-labelledby="install-guide-title"><div><p class="kt-eyebrow" data-i18n="TAKE KAMPTRAIL WITH YOU">TAKE KAMPTRAIL WITH YOU</p><h2 id="install-guide-title" data-i18n="One tap closer to your next stop">One tap closer to your next stop</h2><p  data-i18n="Add KampTrail to your home screen or app launcher for easy access. Free, with no account required.">Add KampTrail to your home screen or app launcher for easy access. Free, with no account required.</p><button class="btn primary" type="button" data-install-open aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button><p class="kt-install-guide-note" data-i18n="Installation does not download maps. While online, use Offline to save Topo maps and save your stops. New routes, fresh weather and sending feedback need a connection.">Installation does not download maps. While online, use Offline to save Topo maps and save your stops. New routes, fresh weather and sending feedback need a connection.</p></div><div class="kt-device-guides"><details><summary data-i18n="iPhone and iPad">iPhone and iPad</summary><p  data-i18n="In Safari, open Share (or the page menu, then Share). Choose Add to Home Screen and tap Add. Look under View More if needed. Leave Open as Web App on if offered. If these options are missing in your browser, open this page in Safari.">In Safari, open Share (or the page menu, then Share). Choose Add to Home Screen and tap Add. Look under View More if needed. Leave Open as Web App on if offered. If these options are missing in your browser, open this page in Safari.</p></details><details><summary data-i18n="Android">Android</summary><p  data-i18n="In Chrome, open the three-dot menu, then Install and create shortcut, then Install. Some versions show Add to Home screen or Install app. Follow the prompts.">In Chrome, open the three-dot menu, then Install and create shortcut, then Install. Some versions show Add to Home screen or Install app. Follow the prompts.</p></details><details><summary data-i18n="Windows and other computers">Windows and other computers</summary><p  data-i18n="In Chrome, use the address-bar Install icon, or the menu: Cast, save, and share, then Install page as app. In Edge: More tools, Apps, then Install this site as an app. If unavailable, bookmark KampTrail.">In Chrome, use the address-bar Install icon, or the menu: Cast, save, and share, then Install page as app. In Edge: More tools, Apps, then Install this site as an app. If unavailable, bookmark KampTrail.</p></details><details><summary data-i18n="Mac with Safari">Mac with Safari</summary><p  data-i18n="In Safari on macOS 14 or later, choose File, then Add to Dock. Chrome and Edge also offer installation.">In Safari on macOS 14 or later, choose File, then Add to Dock. Chrome and Edge also offer installation.</p></details></div></section>
-<section id="beta-testing" class="kt-home-section kt-beta-testing" aria-labelledby="beta-title">
+<section id="beta-testing" hidden class="kt-home-section kt-beta-testing" aria-labelledby="beta-title">
   <p class="kt-eyebrow" data-i18n="PUBLIC BETA · OPEN TO EVERYONE">PUBLIC BETA · OPEN TO EVERYONE</p>
   <h2 id="beta-title" data-i18n="Start with a place you know">Start with a place you know</h2>
   <p data-i18n="You can use the beta now. Help shape it by trying these four steps on your phone or computer.">You can use the beta now. Help shape it by trying these four steps on your phone or computer.</p>
@@ -226,6 +229,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden data-i18n="Loading…">Loading…</div>
   <noscript data-i18n="KampTrail needs JavaScript to display its interactive map.">KampTrail needs JavaScript to display its interactive map.</noscript>
+  <script defer src="beta.js?v=2.46.1"></script>
   <script defer src="shell.js?v=2.46.1"></script>
   <script defer src="safety.js?v=2.46.1"></script>
   <script defer src="install.js?v=2.46.1"></script>

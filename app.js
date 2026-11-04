@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.46.1' || [window.KampTrailSafety,window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.46.1')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.46.1' || [window.KampTrailBeta,window.KampTrailSafety,window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.46.1')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -116,6 +116,11 @@
     const status = KampTrailData.getLoadStatus();
     const sites = KampTrailData.getVisibleCampsites();
     const summary = document.getElementById('result-summary');
+    const entryLayer=window.kamptrailFilters?.entryLayer;
+    if(['rest-areas','dump-stations'].includes(entryLayer)){
+      const note=document.createElement('p');note.className='list-empty';note.textContent=t(entryLayer==='rest-areas'?'Official rest-area layer is on. Tap an R marker for source details. Coverage is incomplete.':'Dump-station layer is on. Tap a D marker for source details. Coverage is incomplete.');
+      summary.textContent=t(entryLayer==='rest-areas'?'Official rest areas':'Dump stations');document.getElementById('result-list').replaceChildren(note);return;
+    }
     // Load failures render first, so the overview keeps the notice and its Retry.
     const errors = document.getElementById('data-errors');
     const agencyFailed = status.agencyFailedStates || [], agencyMissing = status.agencyIndex === 'failed' || agencyFailed.length > 0;
@@ -247,6 +252,7 @@
     if (searching) return;
     const query = document.getElementById('destination').value.trim();
     if (!query) {searchResults.hidden = true;return;}
+    window.KampTrailBeta?.search();
     const coords = query.match(/^(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)$/);
     if (coords) {
       const lat = +coords[1],lng = +coords[2];
@@ -311,7 +317,7 @@
     if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?t("That campsite does not match your filters or has unknown or expired evidence. Change filters to view it."):t("That shared campsite could not be found. It may have been removed from the catalogue."), 'error');
   }
   addEventListener('hashchange', () => openSharedLink().catch(() => {}));
-  KampTrailData.init(map, {maxMarkers:5000,onTripAdd:id=>KampTrailTrip.addStop(id)}).then(() => { renderResults(); return openSharedLink(); }).catch(err => {
+  window.KampTrailMapDataReady=KampTrailData.init(map, {maxMarkers:5000,onTripAdd:id=>KampTrailTrip.addStop(id)}).then(() => { renderResults(); return openSharedLink(); }).catch(err => {
     console.error(err);setLoading(false);
     showToast(t("Some campsite listings could not load. Open the campsite list and retry."), 'error');
   });

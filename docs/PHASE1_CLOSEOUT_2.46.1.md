@@ -2,6 +2,8 @@
 
 This record replaces the stale status sentences in the original 2.46.0 implementation mapping. It does not declare the SOW accepted. Production is held for owner review. The supplied SOW includes physical-device and production measurements that cannot be established by desktop automation.
 
+The November 4 beta integration requirements now set the product priority. See `BETA_INTEGRATION_2026-11-04.md`. Candidate runtime remains 2.46.1; its next staging artifact uses cache generation kt-v82 and an exact source SHA. No production release is implied.
+
 ## Additional implementation
 
 - Website: original `plan.html` and `about.html`, task-based Tools categories, consistent visitor navigation, social metadata and collection/page structured data. Both pages ship in the offline shell and sitemap. See `WEBSITE_RECONCILIATION_2026-11-04.md` for all nine RME sections and explicit build/defer decisions.
@@ -9,7 +11,7 @@ This record replaces the stale status sentences in the original 2.46.0 implement
 - D-1: `data/record-overrides.json` is the authoritative correction ledger. A validated generated module is used by the index and browser. Exact ID, name and six-decimal coordinates must all match. A correction cannot set fees, access, rig suitability, source type, identity or discovery admission.
 - Up the Creek: the operator's own physical address identifies Moab, UT. The missing state is corrected to UT with a dated correction-source link. The raw source snapshot is unchanged. An explicit contradictory state is retained, and a relocated/renamed record is not silently corrected.
 - Moab Field Office: the displayed kind is Management area, with the exact source-scope warning. The source classification and discovery admission remain unchanged pending independent data review. This is not a completed withdrawal.
-- Version and service-worker generation move together to 2.46.1 / kt-v81.
+- Version and service-worker generation move together to 2.46.1 / kt-v82.
 
 ## SOW acceptance register
 

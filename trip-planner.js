@@ -428,7 +428,7 @@
       if(!valid(site)){notify(t("That campsite has not loaded yet. Try again after its listing loads."));return;}
       const key=savedId(site);
       if(st.stops.some(stop=>sameListing(stop,site))){open();return;}
-      st.stops.push({id:key,feature:clone(site),note:'',arrive:'',depart:''});save();render();drawRoute();open();
+      st.stops.push({id:key,feature:clone(site),note:'',arrive:'',depart:''});const persisted=save();render();drawRoute();open();if(persisted)window.KampTrailBeta?.saveStop(site);
     },
     toggle(){st.open?close():open();},
     getStops(){return st.stops.map(stop=>({id:stop.id,feature:getSite(stop),note:stop.note,arrive:stop.arrive,depart:stop.depart}));},

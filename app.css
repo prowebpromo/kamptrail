@@ -416,3 +416,5 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
  #kt-full-site{min-height:44px;margin:8px 0 0}
 }
 .kt-workspace #install-kamptrail,.kt-workspace [data-install-open]{display:none!important}
+
+#beta-testing[hidden],.kt-entry-state[hidden],.kt-use-nudge[hidden]{display:none!important}.kt-entry-state,.kt-use-nudge{width:100%;padding:12px;border:1px solid #b8cbb7;border-radius:8px;background:#f2f7ee;color:#183729}.kt-entry-state p,.kt-use-nudge p{margin:0 0 8px;line-height:1.45}.kt-use-nudge .btn,.kt-entry-state .btn{margin-right:8px}#kt-recent-dialog{max-width:520px;width:calc(100% - 28px);max-height:80dvh;border:1px solid #b8cbb7;border-radius:12px;padding:20px}#kt-recent-dialog ul{padding:0;list-style:none}#kt-recent-dialog li{margin:8px 0}#kt-recent-dialog li button{text-align:left;width:100%}

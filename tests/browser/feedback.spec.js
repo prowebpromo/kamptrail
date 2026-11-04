@@ -23,14 +23,14 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       await page.getByRole('link', {name:'Watch the offline walkthrough'}).click();
       await expect(page.locator('#h-offline')).toBeVisible();
     });
-    test('testing invitation, founder, FAQ and release history remain usable', async ({page,context}) => {
+    test('manual feedback, founder, FAQ and release history remain usable without recruiting on arrival', async ({page,context}) => {
       await context.route(/^https:\/\//, route => route.abort());
       await page.goto('/', {waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
       await expect(page.locator('.kt-beta-label')).toContainText('Public beta');
-      await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
-      await expect(page).toHaveURL(/#beta-testing$/);
-      await expect(page.locator('#beta-testing li')).toHaveCount(4);
-      const preview = page.locator('#beta-testing');
+      await page.getByRole('link', {name:'Feedback',exact:true}).first().click();
+      await expect(page).toHaveURL(/#feedback-panel$/);
+      await expect(page.locator('#beta-testing')).toBeHidden();
+      const preview = page.locator('#feedback-panel');
       await preview.getByRole('button', {name:'Report a bug',exact:true}).click();
       const dialog = page.getByRole('dialog', {name:'Help improve KampTrail'});
       await expect(dialog).toBeVisible();
@@ -45,11 +45,11 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       await expect(page.locator('#beta-faq')).toContainText('Current routes use car routing.');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       expect((await new AxeBuilder({page}).include('.kt-home-hero').include('#beta-testing').include('#about-chuck').include('#beta-faq').analyze()).violations).toEqual([]);
-      await preview.getByRole('link', {name:'See recent updates and current limitations'}).click();
+      await page.locator('.kt-legal-nav').getByRole('link',{name:'What’s new',exact:true}).click();
       await expect(page.getByRole('heading', {name:'What’s new',exact:true})).toBeVisible();
       await expect(page.getByRole('region', {name:'Current beta limitations'})).toContainText('Carrier coverage overlays are unavailable.');
       await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
-      await expect(page.locator('#beta-title')).toBeVisible();
+      await expect(page.locator('#feedback-panel')).toBeVisible();await expect(page.locator('#beta-testing')).toBeHidden();
     });
   });
 }

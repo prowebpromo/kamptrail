@@ -82,6 +82,7 @@
         const response = await fetch('api/submit.php', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), signal:controller.signal});
         const out = await response.json();
         if (response.status === 201 && /^[a-f0-9]{32}$/.test(out.token || '')) {
+          window.KampTrailBeta?.track('feedback_submitted');
           window.KampTrailContrib.rememberReport({token:out.token, name:payload.title, kind:payload.kind, at:new Date().toISOString()});
           body.replaceChildren(el('p', {class:'kt-report-ok', role:'status'}, t('Thanks. Your feedback was received.')),
             el('p', {class:'kt-fine'}, t('Check My reports on this device for updates. Keep your private status link if browser storage is unavailable or cleared.')));

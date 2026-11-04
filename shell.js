@@ -50,9 +50,9 @@
 
 
   window.KampTrailShell={version:VERSION};
-  const pwa=new URLSearchParams(location.search).get('source')==='pwa'||matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  const pwa=new URLSearchParams(location.search).get('source')==='pwa'||!!window.KampTrailBeta?.entry.mode||matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
   document.body.classList.toggle('kt-workspace',pwa);
   const view=document.getElementById('kt-full-site');
   if(view){view.hidden=!pwa;view.onclick=()=>{document.body.classList.toggle('kt-workspace');view.textContent=t(document.body.classList.contains('kt-workspace')?'Full website':'Map workspace');};}
-  document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#"]');if(!link||!document.body.classList.contains('kt-workspace'))return;const target=document.getElementById(link.getAttribute('href').slice(1));if(target?.classList.contains('kt-home-section')){document.body.classList.remove('kt-workspace');if(view)view.textContent=t('Map workspace');}});
+  document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#"]');if(!link||!document.body.classList.contains('kt-workspace'))return;const target=document.getElementById(link.getAttribute('href').slice(1));if(target&&(target.classList.contains('kt-home-section')||target.classList.contains('kt-site-feedback'))){document.body.classList.remove('kt-workspace');if(view)view.textContent=t('Map workspace');}});
 })();

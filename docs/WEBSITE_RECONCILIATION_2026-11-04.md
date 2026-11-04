@@ -2,6 +2,8 @@
 
 Owner request: evaluate the Roam Meet Explore website and build what KampTrail needs, using existing Boondock or Bust resources where appropriate. This is separate from the twenty-item Phase 1 remediation SOW. The comparison below describes published website claims, not an independently tested RME app.
 
+Subsequent owner direction: BoB acquires editorial search traffic; KampTrail validates utility use and retention. The matrix is retained as a record of the earlier comparison, not a mandate for new editorial or SEO pages. `BETA_INTEGRATION_2026-11-04.md` governs the current beta priorities.
+
 ## Section-by-section decision
 
 | RME section | Observed website purpose | Existing KampTrail / BoB coverage | Decision and implementation |

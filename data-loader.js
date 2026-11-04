@@ -471,7 +471,7 @@
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
     const layout=popupLayout();
-    return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
+    return `<div class="kt-site-popup" data-kt-place-id="${siteId}" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
       ${p.record_override?.note?'<p class="kt-record-scope">'+esc(t(p.record_override.note))+'</p>':''}
       ${p.record_override?.state_applied?`<div class="kt-fine"><a href="${esc(safeUrl(p.record_override.source_url))}" target="_blank" rel="noopener noreferrer">${t('State correction source')}</a> · ${esc(p.record_override.checked_at)}</div>`:''}
@@ -637,6 +637,7 @@
       window.addEventListener?.('kamptrail:discoveryupdated',()=>updateMarkers());
       window.addEventListener?.('kamptrail:forecastupdated',()=>{updateMarkers();requestForecast();});
       state.map=map;state.config=config;
+      map.on('popupopen',event=>{const id=event.popup?.getElement?.()?.querySelector('[data-kt-place-id]')?.dataset.ktPlaceId;const site=id&&api.getCampsiteById(id);if(site)window.KampTrailBeta?.viewPlace(site);});
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true,chunkProgress:(done,total)=>{state.chunking=done<total;}});
       let timer;
       map.on('zoomend',layoutOverview);
