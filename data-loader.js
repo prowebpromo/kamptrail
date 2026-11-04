@@ -596,7 +596,7 @@
       let dx=0,dy=0;
       if(!free(p.x,p.y)){
         let found=false;
-        for(let ring=1;ring<=6&&!found;ring++){
+        for(let ring=1;ring<=16&&!found;ring++){
           const dist=ring*it.size*0.75;
           for(const a of BUBBLE_DIRECTIONS){const x=p.x+Math.cos(a)*dist,y=p.y+Math.sin(a)*dist;if(free(x,y)){dx=Math.round(x-p.x);dy=Math.round(y-p.y);found=true;break;}}
         }

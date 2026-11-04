@@ -33,6 +33,7 @@ test('national search fetches the name index on first search only and opens a ca
   await expect(page.locator('#result-summary')).toContainText('Zoomed out',{timeout:15000});
   expect(requests.some(u=>u.includes('search-index.json'))).toBe(false);
   await page.locator('#destination').fill('North Fruita Desert');await page.locator('#search-form button').click();
+  await page.getByRole('button',{name:/North Fruita Desert.*Campsite/}).first().click();
   await expect(page.locator('.leaflet-popup')).toContainText('Fruita',{timeout:30000});
   expect(requests.filter(u=>u.includes('search-index.json')).length).toBe(1);
 });
