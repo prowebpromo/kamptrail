@@ -62,6 +62,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
       await page.route('**/api/submit.php',r=>{sent.push(r.request().postDataJSON());return r.fulfill({status:down?503:201,contentType:'application/json',body:JSON.stringify(down?{ok:false,error:'unavailable'}:{ok:true,token,status:'received'})});});
       await page.route('**/api/status.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,status:'accepted',note:'We are investigating.'})}));
       await page.goto(path,{waitUntil:'domcontentloaded'});
+      await page.evaluate(()=>KampTrailMapLoader.start());
       return sent;
     }
     test('bug report is private by default, tracked, accessible and leaves the map usable',async({page,context})=>{
@@ -138,7 +139,8 @@ test.describe('touch page scrolling',()=>{
   test.use({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
   test('one-finger gestures scroll the page while two-finger map gestures stay enabled',async({page})=>{
     await page.goto('/',{waitUntil:'domcontentloaded'});
-    await expect.poll(()=>page.evaluate(()=>!!window.map)).toBe(true);
+    await page.evaluate(()=>KampTrailMapLoader.start());
+    await expect.poll(()=>page.evaluate(()=>typeof window.map?.getZoom==='function')).toBe(true);
     expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
     expect(await page.evaluate(()=>map.touchZoom.enabled())).toBe(true);
     const box=await page.locator('#map').boundingBox();

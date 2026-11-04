@@ -2,50 +2,7 @@
 (function () {
   'use strict';
   const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
-  // Localize initial shell labels before live counts and statuses are rendered.
-  window.KampTrailI18n?.apply();
-  let toastTimer;
-  window.escapeHtml = value => String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  window.showToast = function (message, type = 'info', duration = 6000) {
-    const el = document.getElementById('toast');
-    clearTimeout(toastTimer);
-    el.textContent = message;
-    el.className = `toast show ${type}`;
-    if (duration > 0) toastTimer = setTimeout(() => el.classList.remove('show'), duration);
-  };
-  window.setLoading = on => { document.getElementById('loading').hidden = !on; };
-  function updateOnline() {
-    document.getElementById('status-dot').style.color = navigator.onLine ? '#287d45' : '#b06719';
-    document.getElementById('status-text').textContent = navigator.onLine ? t("Online") : t("Offline: viewed listings, saved stops and saved Topo maps work");
-  }
-  addEventListener('online', updateOnline);
-  addEventListener('offline', updateOnline);
-  updateOnline();
-
-  if ('serviceWorker' in navigator) {
-    let refreshing = false;
-    const hadController = !!navigator.serviceWorker.controller;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (refreshing) return;
-      // First install controls this page without a reload. Reload only on request.
-      if (hadController || window.ktReloadForUpdate) { refreshing = true; location.reload(); }
-    });
-    navigator.serviceWorker.register('service-worker.js', {updateViaCache:'none'}).then(reg => {
-      function offer(sw) {
-        const toast = document.getElementById('toast');
-        showToast(t("An updated KampTrail is ready."), 'info', 0);
-        const button = document.createElement('button');button.textContent = t("Reload update");
-        button.onclick = () => {window.ktReloadForUpdate = true;sw.postMessage('SKIP_WAITING');};toast.append(button);
-      }
-      if (reg.waiting) offer(reg.waiting);
-      reg.addEventListener('updatefound', () => {
-        const sw = reg.installing;
-        sw?.addEventListener('statechange', () => {if (sw.state === 'installed' && navigator.serviceWorker.controller) offer(sw);});
-      });
-    }).catch(() => {showToast(t("Offline saving is unavailable. You can still use the map online."));});
-  }
-
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.45.0' || [window.KampTrailSafety,window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.45.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.46.0' || [window.KampTrailSafety,window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.46.0')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -78,6 +35,18 @@
     try { localStorage.setItem('kt_last_position', JSON.stringify({lat:c.lat,lng:c.lng,zoom:map.getZoom()})); } catch (_) {}
   });
   KampTrailLayers.init(map);
+  const skip=document.querySelector('.kt-skip-map');
+  if(skip){skip.href='#map';skip.onclick=event=>{event.preventDefault();document.querySelector('#map .leaflet-control-layers-toggle')?.focus();};}
+  function markerNames(){
+    for(const el of document.querySelectorAll('#map .leaflet-marker-icon')){
+      if(el.classList.contains('kt-state-bubble'))continue;
+      const count=el.textContent.trim();
+      if(count&&/^\d+[.,]?\d*k?$/.test(count))el.setAttribute('aria-label',t('{count} map locations. Zoom in to explore.',{count}));
+      else if(el.title)el.setAttribute('aria-label',el.title);
+    }
+  }
+  map.on('moveend layeradd',()=>requestAnimationFrame(markerNames));
+
   KampTrailOffline.init(map);
   const key=L.control({position:'bottomright'});
   key.onAdd=()=>{
@@ -124,6 +93,7 @@
   listToggle.onclick = () => setList(main.classList.contains('list-closed'));
 
   const stateNames = {AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'};
+  window.KampTrailStateNames=stateNames;
   const stateSelect = document.getElementById('state-select');
   Object.entries(stateNames).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([code,name]) => {
     const option = document.createElement('option'); option.value = code; option.textContent = name; stateSelect.append(option);
@@ -131,10 +101,11 @@
   function jumpState(code) {
     const b = KampTrailData.getStateBounds()[code];
     if (!b) return;
+    if(navigator.onLine===false)showToast(t("You're offline. Listings not saved on this device may be unavailable. Saved areas and stops still work."));
     map.fitBounds([[b.s,b.w],[b.n,b.e]], {padding:[16,16],maxZoom:8});
     // Listings show from the detail zoom. Large states open at their center instead of a view that only shows totals.
     if (map.getZoom() < KampTrailData.DETAIL_ZOOM) map.setView([(b.s+b.n)/2,(b.w+b.e)/2], KampTrailData.DETAIL_ZOOM);
-    KampTrailData.loadStates([code]).catch(() => showToast(t("Some listings could not load. Use Retry in the campsite list."), 'error'));
+    KampTrailData.loadStates([code]).then(status=>{if(status.failedStates.some(s=>s.state===code))showToast(t("Listings for this area are unavailable. Saved areas and stops still work. Reconnect and retry."),'error');}).catch(() => showToast(t("Some listings could not load. Use Retry in the campsite list."), 'error'));
     stateSelect.value = code;
     document.getElementById('search-results').hidden = true;
   }
@@ -179,6 +150,7 @@
       return map.distance(center,[y,x]) - map.distance(center,[v,u]);
     });
     const active = window.kamptrailFilters || {};
+    const order=document.createElement('p');order.className='kt-fine';order.textContent=t('Sorted by straight-line distance from map center.');fragment.append(order);
     sorted.slice(0,100).forEach(site => {
       const p = site.properties;
       const card = document.createElement('article'); card.className = 'site-card';
@@ -186,7 +158,7 @@
       const details = document.createElement('p');
       const rigLen = +((window.kamptrailFilters || {}).rigLength || 0);
       const cost = p.fee_status === 'free' ? t("Reported free") : p.fee_status === 'conditional' ? t("Free with conditions") : p.fee_status === 'paid' ? (Number.isFinite(p.cost) ? t("Reported ${amount}", {amount:p.cost}) : t("Paid · amount unknown")) : t("Fee unknown");
-      details.textContent = `${cost} · ${p.type === 'established' ? t("Campground") : ({dispersed:t('Dispersed'),backcountry:t('Backcountry'),parking:t('Overnight parking')}[p.type] || p.type || t("Type unknown"))} · ${p.state || t("State not reported")}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? t(" · RV fit not documented") : ''}`;
+      details.textContent = `${cost} · ${p.type === 'established' ? t("Campground") : ({dispersed:t('Dispersed'),backcountry:t('Backcountry'),parking:t('Overnight parking')}[p.type] || p.type || t("Type unknown"))} · ${p.state || (window.KampTrailSearchRegions?.get(String(p.id))?.length?t('Map area: {state}',{state:window.KampTrailSearchRegions.get(String(p.id)).join(', ')}):t("State not reported"))}${(rigLen > 0 || (active.hookups || []).length) && !DataQuality.matchingSites(p, rigLen, active.hookups || [], false) ? t(" · RV fit not documented") : ''}`;
       const actions = document.createElement('div'); actions.className = 'site-actions';
       const view = document.createElement('button'); view.textContent = t("View on map"); view.onclick = () => { KampTrailData.focusCampsite(p.id); if (innerWidth < 761) setList(false); };
       const trip = document.createElement('button'); trip.textContent = t("Save stop"); trip.onclick = () => KampTrailTrip.addStop(p.id);
@@ -230,7 +202,7 @@
   let places = [], campsiteIndex = [];
   const placeLoad = fetch('data/places-us.json').then(r => {if (!r.ok) throw new Error('Place index unavailable');return r.json();}).then(d => {places = d.places || [];}).catch(() => {});
   // The national name index is large, so it loads on first search or shared link, not on page load.
-  const ensureSiteIndex = () => KampTrailData.loadSearchIndex().then(data=>{campsiteIndex=data.sites;}).catch(()=>{});
+  const ensureSiteIndex = () => KampTrailData.loadSearchIndex().then(data=>{campsiteIndex=data.sites;window.KampTrailSearchRegions=new Map(data.sites.map(s=>[String(s.id),s.states]));}).catch(()=>{});
   async function updateHealth() {
     const box = document.getElementById('kt-health'); if (!box) return;
     let sum = null;
@@ -266,9 +238,9 @@
   function addChoice(label, action) {
     const button = document.createElement('button'); button.type = 'button'; button.textContent = label;
     button.onclick = async () => {searchResults.hidden=true;try{await action();}catch{showToast(t("The selected location could not load. Please try again."), 'error');}};
-    searchResults.append(button);
+    searchResults.append(button);choices.push({label,action,button});
   }
-  let searching = false;
+  let searching = false, choices=[];
   document.getElementById('search-form').onsubmit = async e => {
     e.preventDefault();
     if (searching) return;
@@ -280,11 +252,12 @@
       if (Math.abs(lat) > 85 || Math.abs(lng) > 180) return showToast(t("Enter valid latitude, longitude coordinates."), 'error');
       map.setView([lat,lng],11); searchResults.hidden = true; return;
     }
+    if(navigator.onLine===false)showToast(t('You are offline. Search can use only names previously saved on this device. Coordinates still work.'));
     searching = true;
     await Promise.all([placeLoad,ensureSiteIndex()]);
     searching = false;
     const key = normalize(query);
-    searchResults.replaceChildren();
+    searchResults.replaceChildren();choices=[];
     Object.entries(stateNames).filter(([c,n]) => key === normalize(c) || key === normalize(n)).forEach(([c,n]) => addChoice(t("{name} · State", {name:n}), () => jumpState(c)));
     const indexedSites = campsiteIndex.length ? campsiteIndex : KampTrailData.getAllCampsites().map(s=>({id:s.properties.id,name:s.properties.name,states:[],lat:s.geometry.coordinates[1],lng:s.geometry.coordinates[0]}));
     const campsiteMatches = indexedSites.filter(s=>normalize(s.name).includes(key)).slice(0,8);
@@ -309,7 +282,11 @@
       note.textContent = t("No match. Try a city and state (Albany, NY), choose a state, or enter latitude, longitude. Try a campground name or a nearby city.");
       searchResults.append(note);
     }
-    searchResults.hidden = false;
+    const exactCities=cityMatches.filter(p=>normalize(p.name+' '+p.state)===key||normalize(p.name+' '+(stateNames[p.state]||''))===key);
+    const exactSites=campsiteMatches.filter(p=>normalize(p.name)===key);
+    const unique=choices.length===1?choices[0]:exactCities.length===1&&!exactSites.length?choices.find(c=>c.label===t('{name}, {state} · City',{name:exactCities[0].name,state:exactCities[0].state})):exactSites.length===1&&!cityMatches.length?choices.find(c=>c.label===t('{name} · Campsite',{name:exactSites[0].name})):null;
+    if(unique){searchResults.hidden=true;await unique.action();showToast(t('Opened {name}',{name:unique.label}));}
+    else {searchResults.hidden=false;if(choices.length>1)showToast(t('Several places match. Choose a result.'));}
   };
   document.addEventListener('keydown', e => {if(e.key === 'Escape') searchResults.hidden = true;});
   document.addEventListener('click', e => {if (!e.target.closest('.search-bar')) searchResults.hidden = true;});

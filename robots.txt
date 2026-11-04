@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /data/
+Sitemap: https://kamptrail.com/sitemap.xml

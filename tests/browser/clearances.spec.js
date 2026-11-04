@@ -87,7 +87,7 @@ for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',wi
     await page.setViewportSize(viewport);const {errors}=await setup(page,context);await show(page);const control=page.locator('.kt-clearance-control');
     await expect(control).toContainText('1 conflict with your rig height');
     const popup=await openCandidate(page,'osm:way:111');await expect(popup.locator('.kt-clearance-verdict')).toContainText('Equal is not clear');
-    await page.getByRole('button',{name:'Open rig profile',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Rig profile',exact:true});await expect(dialog).toBeVisible();
+    await page.getByRole('button',{name:'My rig',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Rig profile',exact:true});await expect(dialog).toBeVisible();
     await page.locator('#kt-rig-heightMm').fill('13');await page.getByRole('button',{name:'Save profile',exact:true}).click();await expect(page.locator('#kt-rig-status')).toContainText('Saved on this device');
     await page.getByRole('button',{name:'Close rig profile',exact:true}).click();
     await expect(popup).toBeVisible();await expect(popup.locator('.kt-clearance-verdict')).toContainText(`is higher than your rig height 13'0" by 6"`);

@@ -19,8 +19,17 @@
     if(key!==st.topologyKey){st.topologyKey=key;st.revision++;if(typeof window.CustomEvent==='function')window.dispatchEvent(new window.CustomEvent('kamptrail:tripchanged',{detail:{revision:st.revision}}));}
     return st.revision;
   }
+  let persistenceRequested=false, backupDismissed=false;
+  try{backupDismissed=sessionStorage.getItem('kt_backup_dismissed')==='1';}catch{}
+  function protectStops(){
+    if(!persistenceRequested&&st.stops.length){persistenceRequested=true;try{Promise.resolve(navigator.storage?.persist?.()).catch(()=>{});}catch{}}
+  }
+  function backupPrompt(force=false){
+    const box=st.el?.querySelector('#kt-trip-backup');if(!box)return;
+    box.hidden=backupDismissed||!st.stops.length||(!force&&st.stops.length<3);
+  }
   function save() {
-    syncRevision();
+    syncRevision();protectStops();
     try { localStorage.setItem('kt_trip',JSON.stringify(st.stops));st.storageAvailable=true;return true; }
     catch { st.storageAvailable=false;notify(t("Your browser could not save these stops. Changes are available only while this page stays open."));return false; }
   }
@@ -140,6 +149,7 @@
     if(points.length<2){notify(t("Save at least two stops to calculate a road route."));return;}
     if(sites.some(s=>!s)){notify(t("An older stop has no coordinates. Resolve or remove it before routing."));return;}
     if(points.length>MAX_ROUTE_STOPS){notify(t("Road routing covers up to {count} stops. Split this into shorter trips.", {count:MAX_ROUTE_STOPS}));return;}
+    backupPrompt(true);
     if(st.driveBusy)return;st.driveBusy=true;
     const btn=st.el.querySelector('#kt-trip-drive');btn.disabled=true;btn.textContent=t("Calculating road route…");const requestedKey=pointsKey(points),refresh=!!currentDrive();
     try{
@@ -216,8 +226,11 @@
     const road=currentDrive();
     st.el.querySelector('#kt-trip-route').checked=st.showRoute&&!!road;st.el.querySelector('#kt-trip-route').disabled=!road;
     st.el.querySelector('#kt-trip-discover').disabled=!road;st.el.querySelector('#kt-trip-terrain').disabled=!road;st.el.querySelector('#kt-trip-clearance').disabled=!road;st.el.querySelector('#kt-trip-view-route').disabled=!road;
+    st.el.querySelector('#kt-trip-car-notice').hidden=!road;
     st.el.querySelector('#kt-trip-route-status').textContent=road?t("{0} road route from {1}.{2}", {"0":(road.raw.from_cache?t("Saved"):t("Calculated")),"1":(road.raw.calculated_at.slice(0,10)),"2":(road.raw.offline?t(" Offline: conditions may have changed."):road.raw.source_unavailable?t(" Routing service unavailable; showing the saved route."):'')}):t("Calculate a road route to draw roads and search along the trip.");
-    renderSummary();renderLegs();
+    renderSummary();renderLegs();backupPrompt();
+    const ios=/iPhone|iPad|iPod/.test(navigator.userAgent||'')||(/Mac/.test(navigator.platform||'')&&navigator.maxTouchPoints>1);
+    st.el.querySelector('#kt-trip-ios').hidden=!ios||window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;
     st.el.querySelector('#kt-trip-drive').hidden=st.stops.length<2;st.el.querySelector('#kt-trip-drive-credit').hidden=!currentDrive();
     if(!st.stops.length) {const empty=document.createElement('p');empty.textContent=t("No saved stops yet. Save a campsite from its listing or map popup, long-press the map to save any spot, or import a GPX file.");list.append(empty);return;}
     st.stops.forEach((stop,index)=>{
@@ -254,6 +267,7 @@
     return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="KampTrail" xmlns="http://www.topografix.com/GPX/1/1">\n  <metadata><name>KampTrail trip</name><time>${new Date().toISOString()}</time></metadata>\n${wpts.join('\n')}\n  <rte><name>KampTrail trip</name>\n${rtepts.join('\n')}\n  </rte>\n</gpx>\n`;
   }
   function exportGPX() {
+    backupPrompt(true);
     if(!st.stops.some(getSite)){notify(t("There are no saved locations to export."));return;}
     const missing=st.stops.filter(s=>!getSite(s)).length;
     const blob=new Blob([toGPX()],{type:'application/gpx+xml'});
@@ -298,7 +312,10 @@
     d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','kt-saved-title');d.setAttribute('aria-hidden','true');
     d.innerHTML=`<div class="kt-saved-header"><h2 id="kt-saved-title">${t("Saved stops")}</h2><button type="button" class="btn" id="kt-trip-close" aria-label="${t("Close saved stops")}">${t("Close")}</button></div>
       <p class="kt-saved-note">${t("Saved on this device. Confirm current access before traveling.")}</p>
+      <div id="kt-trip-backup" class="kt-backup-prompt" hidden><p>${t("Back up your stops with Export GPX. Browser storage can be cleared or removed.")}</p><button type="button" class="btn" id="kt-trip-backup-export">${t("Export GPX backup")}</button><button type="button" class="btn" id="kt-trip-backup-dismiss">${t("Dismiss backup reminder")}</button></div>
+      <p id="kt-trip-ios" class="kt-saved-note">${t("On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a GPX backup too.")}</p>
       <p id="kt-trip-summary" role="status" aria-live="polite"></p>
+      <p id="kt-trip-car-notice" class="kt-car-route-notice" hidden>${t("Car route. Not checked for your rig’s height, weight or length. Check posted restrictions.")} <a href="#beta-faq" id="kt-trip-route-faq">${t("Routing limitations")}</a></p>
       <div id="kt-trip-tools">
         <div class="kt-trip-row"><button type="button" class="btn" id="kt-trip-directions">${t("Directions for the whole trip")}</button><button type="button" class="btn" id="kt-trip-drive">${t("Calculate road route")}</button></div>
         <p class="kt-route-credit" id="kt-trip-drive-credit" hidden>Routes and drive times: car routing by <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener noreferrer">OSRM (FOSSGIS)</a>, map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>, <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">fix the map</a>. Not checked for RV height, weight, or length.</p>
@@ -345,18 +362,21 @@
       #kt-trip-drawer textarea {width:100%;resize:vertical}
       #kt-trip-drawer .kt-saved-footer {padding:12px;border-top:1px solid #45624b;display:flex;gap:7px;flex-wrap:wrap}
     `;
+    const scroll=document.createElement('div');scroll.className='kt-trip-scroll';
+    for(const child of [...d.children])if(!child.classList.contains('kt-saved-header')&&!child.classList.contains('kt-saved-footer'))scroll.append(child);
+    d.insertBefore(scroll,d.querySelector('.kt-saved-footer'));
     document.head.append(style);document.body.append(d);return d;
   }
   function open() {
     if(!st.el)return;
-    st.previousFocus=document.activeElement;st.open=true;render();st.el.hidden=false;st.el.style.right='0';st.el.setAttribute('aria-hidden','false');
+    st.previousFocus=document.activeElement;st.open=true;document.body.classList.add('kt-trip-sheet-open');render();st.el.hidden=false;st.el.style.right='0';st.el.setAttribute('aria-hidden','false');
     document.getElementById('trip')?.setAttribute('aria-expanded','true');
     const app=document.getElementById('app');if(app)app.inert=true;
     st.el.querySelector('#kt-trip-close').focus();
   }
   function close() {
     if(!st.el||!st.open)return;
-    st.open=false;st.el.hidden=true;st.el.setAttribute('aria-hidden','true');
+    st.open=false;document.body.classList.remove('kt-trip-sheet-open');st.el.hidden=true;st.el.setAttribute('aria-hidden','true');
     document.getElementById('trip')?.setAttribute('aria-expanded','false');
     const app=document.getElementById('app');if(app)app.inert=false;
     const target=st.previousFocus?.isConnected?st.previousFocus:document.getElementById('trip');target?.focus();
@@ -370,7 +390,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.45.0',
+    version:'2.46.0',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;
@@ -378,6 +398,9 @@
       const trigger=document.getElementById('trip');trigger?.setAttribute('aria-expanded','false');trigger?.setAttribute('aria-controls','kt-trip-drawer');
       if(trigger)trigger.onclick=()=>st.open?close():open();
       st.el.querySelector('#kt-trip-close').onclick=close;
+      st.el.querySelector('#kt-trip-backup-export').onclick=exportGPX;
+      st.el.querySelector('#kt-trip-backup-dismiss').onclick=()=>{backupDismissed=true;try{sessionStorage.setItem('kt_backup_dismissed','1');}catch{}backupPrompt();};
+      st.el.querySelector('#kt-trip-route-faq').onclick=()=>{close();const question=document.querySelector('#beta-faq details:last-of-type');if(question)question.open=true;};
       st.el.querySelector('#kt-trip-clear').onclick=()=>{if(confirm(t("Remove all saved stops from this device?"))){st.stops=[];save();render();drawRoute();st.el.querySelector('#kt-trip-close').focus();}};
       st.el.querySelector('#kt-trip-directions').onclick=showLegs;
       st.el.querySelector('#kt-trip-drive').onclick=fetchDrive;

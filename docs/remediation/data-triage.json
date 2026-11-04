@@ -1,0 +1,205 @@
+{
+  "source_commit": "52d9963606c0030c1260f1fb37042c808674688d",
+  "canonical_index_rows": 33370,
+  "index_rows_without_regions": 0,
+  "canonical_rows_matched_to_own_raw_record": 33268,
+  "own_raw_record_without_state_or_addr_state": 23912,
+  "name_pattern_candidates": [
+    {
+      "id": "blm-area:10232545",
+      "name": "Bishop Field Office",
+      "regions": [
+        "CA"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:node:1878660825",
+      "name": "Headquarters Campground",
+      "regions": [
+        "CA"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:way:534758091",
+      "name": "Headquarters Campground",
+      "regions": [
+        "CA"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:way:638012315",
+      "name": "Headquarters Campground",
+      "regions": [
+        "CA",
+        "NV"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:node:3199377893",
+      "name": "Headquarters Group  Camp",
+      "regions": [
+        "MN",
+        "WI"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:node:8228912997",
+      "name": "Headquarters RV Park",
+      "regions": [
+        "MN"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:way:1050848302",
+      "name": "Horseman's Headquarters Camp",
+      "regions": [
+        "FL"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:way:1014656221",
+      "name": "Main Office",
+      "regions": [
+        "NJ"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "blm-area:16330",
+      "name": "Moab Field Office (BLM)",
+      "regions": [
+        "UT"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:way:1391974375",
+      "name": "Office",
+      "regions": [
+        "IL",
+        "KY",
+        "MO"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:node:7173187234",
+      "name": "Office/Recreation Hall",
+      "regions": [
+        "ME",
+        "NH"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:node:5633448526",
+      "name": "Olympus Ranger Station Camp",
+      "regions": [
+        "WA"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:way:667984130",
+      "name": "Opdyke West RV Park Office",
+      "regions": [
+        "TX"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:way:243492053",
+      "name": "Park Headquarters",
+      "regions": [
+        "TX"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "blm-area:74973",
+      "name": "Price Field Office",
+      "regions": [
+        "UT"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:node:8776262529",
+      "name": "Round Valley RV Park Office",
+      "regions": [
+        "ID"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "osm:node:5678638021",
+      "name": "Spanish Flat Camp Site Office",
+      "regions": [
+        "CA"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "blm-area:1861",
+      "name": "Umpqua Field Office",
+      "regions": [
+        "OR"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "ridb:10216501",
+      "name": "Westwater Campground (Ranger Station)",
+      "regions": [
+        "UT"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    },
+    {
+      "id": "ridb:10012141",
+      "name": "Westwater Group Site (Ranger Station)",
+      "regions": [
+        "UT"
+      ],
+      "reason": "Name-pattern candidate only; not an exclusion decision"
+    }
+  ],
+  "decisions": {
+    "blm-area:16330": "BLM source describes a 1.8-million-acre jurisdiction, not an individual campsite. Recommend withdrawing this exact id from discovery only after independent review, while preserving legacy resolution. No bulk name exclusion applied.",
+    "osm:node:1944017355": "Own source lacks state; index places this exact id in UT. UI labels this as map-area membership rather than inventing a source state."
+  },
+  "sample_missing_own_state_ids": [
+    "osm:way:1039718373",
+    "osm:way:1039718374",
+    "osm:node:10566510241",
+    "osm:way:1086539425",
+    "osm:node:4831811523",
+    "osm:way:1042431273",
+    "osm:node:14202252007",
+    "osm:node:11103402061",
+    "osm:node:13953989452",
+    "osm:node:14240445406",
+    "osm:node:7776602964",
+    "osm:node:9852158293",
+    "osm:way:1192760888",
+    "osm:way:1192773906",
+    "osm:node:11103402070",
+    "osm:node:12230767910",
+    "osm:node:12449749922",
+    "osm:node:13953989443",
+    "osm:node:7776602968",
+    "osm:node:11103402071",
+    "osm:node:12230767909",
+    "osm:node:12449749921",
+    "osm:node:13953989444",
+    "osm:node:11103402072",
+    "osm:node:13953989445"
+  ]
+}

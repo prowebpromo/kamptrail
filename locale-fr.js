@@ -1,7 +1,35 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.45.0', messages:{
+  global.KampTrailI18nFr = {version:'2.46.0', messages:{
+  "Full website": "Site complet",
+  "Map workspace": "Espace carte",
+  "Skip map markers": "Passer les marqueurs de la carte",
+  "Back up your stops with Export GPX. Browser storage can be cleared or removed.": "Sauvegardez vos étapes avec Exporter GPX. Le stockage du navigateur peut être effacé.",
+  "Export GPX backup": "Exporter une sauvegarde GPX",
+  "Dismiss backup reminder": "Fermer le rappel de sauvegarde",
+  "Car route. Not checked for your rig’s height, weight or length. Check posted restrictions.": "Itinéraire automobile. La hauteur, le poids et la longueur de votre véhicule ne sont pas vérifiés. Consultez les restrictions affichées.",
+  "Routing limitations": "Limites des itinéraires",
+  "Please read this before installing or using KampTrail.": "Veuillez lire ceci avant d’installer ou d’utiliser KampTrail.",
+  "On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a GPX backup too.": "Sur iPhone ou iPad, ajouter KampTrail à l’écran d’accueil peut aider à conserver les données. Gardez aussi une sauvegarde GPX.",
+  "Listings for this area are unavailable. Saved areas and stops still work. Reconnect and retry.": "Les fiches de cette zone sont indisponibles. Les zones et étapes enregistrées restent utilisables. Reconnectez-vous et réessayez.",
+  "You're offline. Listings not saved on this device may be unavailable. Saved areas and stops still work.": "Vous êtes hors connexion. Les fiches non enregistrées sur cet appareil peuvent être indisponibles. Les zones et étapes enregistrées restent utilisables.",
+  "Sorted by straight-line distance from map center.": "Tri par distance à vol d’oiseau depuis le centre de la carte.",
+  "Show {count} results": "Afficher {count} résultats",
+  "About these filters": "À propos de ces filtres",
+  "Fee and type": "Tarif et type",
+  "Elevation and weather": "Altitude et météo",
+  "Rig and hookups": "Véhicule et branchements",
+  "Camper reports": "Rapports des campeurs",
+  "{state}: {short}, about {count} source listings. Select to zoom in.": "{state} : {short}, environ {count} fiches sources. Sélectionnez pour agrandir.",
+  "{count} map locations. Zoom in to explore.": "{count} lieux sur la carte. Agrandissez pour explorer.",
+  "Opened {name}": "Ouverture de {name}",
+  "Several places match. Choose a result.": "Plusieurs lieux correspondent. Choisissez un résultat.",
+  "You are offline. Search can use only names previously saved on this device. Coordinates still work.": "Vous êtes hors connexion. La recherche utilise seulement les noms enregistrés sur cet appareil. Les coordonnées restent utilisables.",
+
+  "Help test": "Aider à tester",
+  "PUBLIC BETA · OPEN TO EVERYONE": "BÊTA PUBLIQUE · OUVERTE À TOUS",
+  "Real map data": "Données cartographiques réelles",
   "Find campsites.": "Trouvez des lieux de camping.",
   "Check the details.": "Vérifiez les détails.",
   "Plan your next stop.": "Planifiez votre prochaine étape.",

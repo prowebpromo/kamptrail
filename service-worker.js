@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v79';
+const VERSION = 'kt-v80';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -12,11 +12,11 @@ const SERVICES_CACHE = `${PREFIX}services-v2`;
 const ROUTE_CACHE = `${PREFIX}routes-v1`;
 const CLEARANCE_CACHE = `${PREFIX}clearance-v1`;
 const SHELL = [
-  './','index.html','locale.js','app.js','app.css','data/places-us.json','manifest.json','brand-mark.svg','apple-touch-icon.png','favicon-32.png','icon-192.png','icon-512.png','og.png',
+  './','index.html','provider-config.json','locale.js','shell.js','map-loader.js','app.js','app.css','data/places-us.json','manifest.json','brand-mark.svg','apple-touch-icon.png','favicon-32.png','icon-192.png','icon-512.png','og.png',
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','updates.html','tools.html','guides.html','resources.css','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
+  'data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','resources.css','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
@@ -76,7 +76,7 @@ async function navigation(request) {
     return new Response('This KampTrail document is unavailable offline. Reconnect to read it.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8'}});
   }
   if(path!==scope && path!==`${scope}index.html`){
-    try { return await fetch(request); } catch { return await cache.match('index.html') || new Response('KampTrail is unavailable offline. Open it once with a connection.',{status:503,headers:{'Content-Type':'text/plain'}}); }
+    try { return await fetch(request); } catch { return await cache.match(request,{ignoreSearch:true}) || await cache.match('index.html') || new Response('KampTrail is unavailable offline. Open it once with a connection.',{status:503,headers:{'Content-Type':'text/plain'}}); }
   }
   try {
     const response=await fetch(request);

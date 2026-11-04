@@ -576,6 +576,7 @@
       const size=n>=5000?46:n>=1000?40:34;
       const ll=BUBBLE_ANCHOR[code]||[(b.s+b.n)/2,(b.w+b.e)/2];
       const m=L.marker(ll,{icon:bubbleIcon(size,n),title:t("{0}: about {1} source listings. Select to zoom in.", {"0":(code),"1":(n.toLocaleString(window.KampTrailI18n?.locale() || 'en-US'))}),keyboard:true,zIndexOffset:n});
+      m.on('add',()=>{const el=m.getElement?.();if(el)el.setAttribute('aria-label',t('{state}: {short}, about {count} source listings. Select to zoom in.',{state:window.KampTrailStateNames?.[code]||code,short:short(n),count:n.toLocaleString(window.KampTrailI18n?.locale()||'en-US')}));});
       m.on('click',()=>{state.map.fitBounds([[b.s,b.w],[b.n,b.e]],{maxZoom:9});if(state.map.getZoom()<DETAIL_ZOOM)state.map.setView([(b.s+b.n)/2,(b.w+b.e)/2],DETAIL_ZOOM);});
       group.addLayer(m);group.items.push({code,n,base:size,size,ll,marker:m,line:null,dx:0,dy:0});
     }
@@ -600,7 +601,7 @@
         }
       }
       placed.push({x:p.x+dx,y:p.y+dy,r:it.size/2});
-      if(resized||dx!==it.dx||dy!==it.dy){it.dx=dx;it.dy=dy;it.marker.setIcon(bubbleIcon(it.size,it.n,dx,dy));}
+      if(resized||dx!==it.dx||dy!==it.dy){it.dx=dx;it.dy=dy;it.marker.setIcon(bubbleIcon(it.size,it.n,dx,dy));const el=it.marker.getElement?.();if(el)el.setAttribute('aria-label',t('{state}: {short}, about {count} source listings. Select to zoom in.',{state:window.KampTrailStateNames?.[it.code]||it.code,short:short(it.n),count:it.n.toLocaleString(window.KampTrailI18n?.locale()||'en-US')}));}
       if(dx||dy){const end=state.map.layerPointToLatLng([p.x+dx,p.y+dy]);if(it.line)it.line.setLatLngs([it.ll,end]);else it.line=L.polyline([it.ll,end],{className:'kt-state-leader',interactive:false,weight:1.5,color:'#24613f',opacity:.8});if(!g.hasLayer(it.line))g.addLayer(it.line);}
       else if(it.line&&g.hasLayer(it.line))g.removeLayer(it.line);
     }
@@ -627,7 +628,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.45.0',
+    version:'2.46.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){

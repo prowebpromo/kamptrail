@@ -1,7 +1,7 @@
 /* Local acknowledgement only. No account, server receipt or browsing restriction. */
 (function () {
   'use strict';
-  const VERSION = '2.45.0';
+  const VERSION = '2.46.0';
   const ACK_VERSION = '2026-11-02', KEY = 'kt_safety_ack_v1';
   const t = key => window.KampTrailI18n?.t(key) ?? key;
   let sessionAccepted = false, pending = null, required = false;
@@ -28,7 +28,8 @@
       for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
       return node;
     };
-    const dialog = el('dialog', null, {id:'kt-safety-ack', 'aria-labelledby':'kt-safety-title'});
+    const dialog = el('dialog', null, {id:'kt-safety-ack', 'aria-labelledby':'kt-safety-title', 'aria-modal':'true'});
+    dialog.append(el('p','Please read this before installing or using KampTrail.'));
     const checkbox = el('input', null, {type:'checkbox', id:'kt-safety-agree'});
     checkbox.checked = false;
     const agree = el('label', null, {for:'kt-safety-agree'});

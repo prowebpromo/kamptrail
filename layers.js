@@ -11,12 +11,12 @@
 
   function basemaps() {
     let errors = 0;
-    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'});
+    const osm = L.tileLayer((window.KampTrailProviders?.tiles?.standard || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'), {maxZoom: 19, attribution: (window.KampTrailProviders?.attribution?.standard || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>')});
     osm.on('tileerror', () => { if (++errors === 3 && navigator.onLine) window.showToast?.(t("Map imagery is temporarily unavailable. Campsite search, lists, and saved stops still work."), 'error'); });
     return {
       Standard: osm,
-      Topo: L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {maxNativeZoom: 16, maxZoom: 19, attribution: 'USGS The National Map'}),
-      Satellite: L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {maxNativeZoom: 16, maxZoom: 19, attribution: 'USGS The National Map: orthoimagery'})
+      Topo: L.tileLayer((window.KampTrailProviders?.tiles?.topo || 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}'), {maxNativeZoom: 16, maxZoom: 19, attribution: (window.KampTrailProviders?.attribution?.topo || 'USGS The National Map')}),
+      Satellite: L.tileLayer((window.KampTrailProviders?.tiles?.satellite || 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}'), {maxNativeZoom: 16, maxZoom: 19, attribution: (window.KampTrailProviders?.attribution?.satellite || 'USGS The National Map: orthoimagery')})
     };
   }
   function landLayer() {
@@ -173,5 +173,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.45.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.46.0', init, openSpot, loadServices, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();

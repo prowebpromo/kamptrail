@@ -28,9 +28,9 @@
   function saveAreas(list) { try { localStorage.setItem(STORE, JSON.stringify(list)); } catch {} }
   async function download(urls, onProgress, signal) {
     const cache = await caches.open(cacheName());
-    let done = 0, failed = 0, next = 0;
+    let done = 0, failed = 0, next = 0, quota=false;
     async function worker() {
-      while (next < urls.length && !signal.aborted) {
+      while (next < urls.length && !signal.aborted && !quota) {
         const url = urls[next++];
         try {
           if (!(await cache.match(url))) {
@@ -39,12 +39,12 @@
             await cache.put(url, r);
             await new Promise(res => setTimeout(res, 60)); // pace requests to the USGS service
           }
-        } catch (e) { if (signal.aborted) break; failed++; }
+        } catch (e) { if (signal.aborted) break; failed++;if(e.name==='QuotaExceededError')quota=true; }
         done++; onProgress(done, failed);
       }
     }
     await Promise.all(Array.from({length: CONCURRENCY}, worker));
-    return {done, failed};
+    return {done, failed, quota};
   }
   function el(tag, text, cls) { const e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; }
   // Inventory only this app scope; never create caches or fetch data while checking.
@@ -139,7 +139,8 @@
       const list = areas(); list.push({s: b.getSouth(), w: b.getWest(), n: b.getNorth(), e: b.getEast(), zmin: pl.zmin, zmax: pl.zmax, saved, at: new Date().toISOString().slice(0, 10)}); saveAreas(list);
     }
     render();
-    if (controller.signal.aborted) window.showToast?.(t("Stopped. {0} tiles were saved.", {"0":(saved.toLocaleString(window.KampTrailI18n?.locale() || 'en-US'))}));
+    if(res.quota)window.showToast?.(t("Device storage is full. Existing saved areas remain. Free space or choose a smaller area."),'error',9000);
+    else if (controller.signal.aborted) window.showToast?.(t("Stopped. {0} tiles were saved.", {"0":(saved.toLocaleString(window.KampTrailI18n?.locale() || 'en-US'))}));
     else window.showToast?.(res.failed ? t("Saved {0} tiles. {1} failed. Save again to retry the gaps.", {"0":(saved.toLocaleString(window.KampTrailI18n?.locale() || 'en-US')),"1":(res.failed)}) : t("Map area saved. Choose the Topo map to use it offline."), res.failed ? 'error' : 'info', 9000);
     } catch { window.showToast?.(t('Could not save this map area. Please try again.'), 'error'); }
     finally {
@@ -186,7 +187,7 @@
     };
     addEventListener('offline', nudge); nudge();
   }
-  const api = {version: '2.45.0', init, plan, cacheName, TOPO, readiness, readinessLines};
+  const api = {version: '2.46.0', init, plan, cacheName, TOPO, readiness, readinessLines};
   if (typeof window !== 'undefined') window.KampTrailOffline = api;
   if (typeof module !== 'undefined') module.exports = api;
 })();

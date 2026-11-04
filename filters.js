@@ -7,7 +7,7 @@
   const HOOKUPS=[['electric',t("Electric")],['water',t("Water")],['sewer',t("Sewer")]];
   const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0,rigLength:0,rigIncludeUnknown:false,hookups:[],minReviews:1,scoreSeason:'',minScore_quietness:0,minScore_shade:0,minScore_comfort:0,observedDays:365,elevationMin:null,elevationMax:null,elevationUnit:'ft',forecastMinC:null,forecastMaxC:null,forecastHours:24,forecastUnit:'F'});
   const state={filters:defaults(),panel:null,button:null};
-  function close(){state.panel.style.display='none';state.button.setAttribute('aria-expanded','false');}
+  function close(){state.panel.style.display='none';document.body.classList.remove('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','false');state.button.focus();}
   function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+(window.KampTrailDiscovery?.scoreFilterCount(f)||0)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal)+Number(!!f.observed_radio)+Number(DataQuality.elevationRange(f).active)+Number(window.KampTrailForecast?.active(f));}
   function apply(origin='manual'){
     const f=state.filters;
@@ -58,7 +58,7 @@
     Object.assign(state.filters,f);sync();apply('profile');return true;
   }
   window.KampTrailFilters={
-    version:'2.45.0',
+    version:'2.46.0',
     init(map){
       const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
       p.setAttribute('role','region');p.setAttribute('aria-label',t("Campsite filters"));
@@ -89,7 +89,7 @@
         <fieldset class="amenity-options"><legend><strong>${t("Amenities reported")}</strong></legend>${AMENITIES.map(([v,l])=>`<label><input type="checkbox" name="f-amenity" value="${v}"> ${l}</label>`).join('')}</fieldset>
         <p class="filter-note" id="f-amenity-scope">${t("Amenity filters use only the evidence each popup shows: the listing's own OpenStreetMap element, Forest Service site records and Recreation.gov campsite records. With a length or hookup filter on, campsite-record amenities count only if tied to the fitting campsite, which these records are not.")}</p>
         <p class="filter-note">${t("Rig and amenity filters show only listings whose source reports them. Many listings have no data, so these filters hide a lot. Unknown fees remain unknown. Confirm with the operator.")}</p></div>`;
-      map.getContainer().append(p);L.DomEvent.disableClickPropagation(p);L.DomEvent.disableScrollPropagation(p);
+      document.body.append(p);p.setAttribute('role','dialog');p.setAttribute('aria-label',t('Filters'));L.DomEvent.disableClickPropagation(p);L.DomEvent.disableScrollPropagation(p);
       state.panel=p;
       try{
         const saved=JSON.parse(localStorage.getItem('kt_filters_mvp')||'{}');
@@ -151,7 +151,18 @@
       }
       sync();
       state.button=document.getElementById('filters');
-      state.button.onclick=()=>{const open=p.style.display==='none';p.style.display=open?'block':'none';state.button.setAttribute('aria-expanded',String(open));};
+      const show=document.createElement('button');show.type='button';show.id='kt-filter-show';show.className='btn primary';show.onclick=close;const footer=document.createElement('div');footer.className='kt-filter-footer';footer.append(show);p.append(footer);
+      const resultCount=()=>{show.textContent=t('Show {count} results',{count:window.KampTrailData?.getVisibleCampsites?.().length||0});};window.addEventListener('kamptrail:dataupdated',resultCount);resultCount();
+      const body=p.querySelector('.filter-body');
+      for(const note of [...body.querySelectorAll('p.filter-note')]){if(note.getAttribute('role')||/status|error/.test(note.id))continue;const info=document.createElement('details');info.className='kt-filter-info';const summary=document.createElement('summary');summary.textContent=t('About these filters');note.before(info);info.append(summary,note);}
+      // Group existing controls without rebuilding them or changing their listeners and values.
+      const nodes=[...body.children];let group=null;
+      for(const node of nodes){
+        const heading=node.matches('.kt-elevation-filters')?'Elevation and weather':node.matches('label[for="f-length"]')?'Rig and hookups':node.matches('.kt-camper-filters')?'Camper reports':!group?'Fee and type':null;
+        if(heading){group=document.createElement('details');group.className='kt-filter-group';group.open=true;const title=document.createElement('summary');title.textContent=t(heading);group.append(title);body.append(group);}group.append(node);
+      }
+      state.button.onclick=()=>{const open=p.style.display==='none';if(!open){close();return;}p.style.display='flex';document.body.classList.add('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','true');p.querySelector('#kt-f-close').focus();resultCount();};
+      p.addEventListener('keydown',event=>{if(event.key!=='Tab')return;const all=[...p.querySelectorAll('button:not([disabled]),input,select,summary')].filter(n=>n.getClientRects().length);const first=all[0],last=all.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}});
       p.querySelector('#kt-filter-rig-profile').onclick=()=>window.KampTrailRigProfile?.open();
       p.querySelector('#kt-f-reset').onclick=reset;p.querySelector('#kt-f-close').onclick=()=>{close();state.button.focus();};
       p.querySelectorAll('[name="f-cost"]').forEach(el=>el.onchange=()=>{state.filters.cost=el.value;apply();});
