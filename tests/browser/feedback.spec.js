@@ -25,7 +25,7 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       await routingQuestion.click();
       await expect(page.locator('#beta-faq')).toContainText('Current routes use car routing.');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-      expect((await new AxeBuilder({page}).include('#beta-testing').include('#about-chuck').include('#beta-faq').analyze()).violations).toEqual([]);
+      expect((await new AxeBuilder({page}).include('.kt-home-hero').include('#beta-testing').include('#about-chuck').include('#beta-faq').analyze()).violations).toEqual([]);
       await preview.getByRole('link', {name:'See recent updates and current limitations'}).click();
       await expect(page.getByRole('heading', {name:'What’s new',exact:true})).toBeVisible();
       await expect(page.getByRole('region', {name:'Current beta limitations'})).toContainText('Carrier coverage overlays are unavailable.');

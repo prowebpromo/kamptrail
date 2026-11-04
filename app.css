@@ -308,6 +308,7 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 
 /* Public beta preview, founder information and first-trip questions. */
 .kt-beta-label{font-size:12px;letter-spacing:.06em}
+.kt-home-actions a.btn{color:#fff}
 .kt-hero-note>a{display:block;margin-top:12px}
 #beta-testing,#about-chuck,#beta-faq{scroll-margin-top:20px}
 .kt-founder{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;align-items:center}
