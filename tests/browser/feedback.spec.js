@@ -1,6 +1,58 @@
 const {test,expect}=require('@playwright/test');
 const AxeBuilder=require('@axe-core/playwright').default;
 const token='f'.repeat(32);
+for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
+  test.describe(`subscriber beta preview ${viewport.width}`, () => {
+    test.use({viewport,serviceWorkers:'block'});
+    test('resource directories expose existing BoB tools and guide destinations', async ({page,context}) => {
+      await context.route(/^https:\/\//, route => route.abort());
+      await page.goto('/tools.html', {waitUntil:'domcontentloaded'});
+      await expect(page.getByRole('heading', {name:'Free RV planning tools',exact:true})).toBeVisible();
+      await expect(page.locator('.resource-card')).toHaveCount(10);
+      await expect(page.locator('main')).toContainText('Formula and worked examples');
+      await expect(page.locator('main')).toContainText('Web app with sign-in');
+      const navigation = page.getByRole('navigation', {name:'KampTrail pages'});
+      await expect(navigation.getByRole('link', {name:'Free tools',exact:true})).toHaveAttribute('aria-current','page');
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
+      await navigation.getByRole('link', {name:'Guides',exact:true}).click();
+      await expect(page.getByRole('heading', {name:'RV camping guides and how-to help',exact:true})).toBeVisible();
+      await expect(page.locator('.resource-card')).toHaveCount(9);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
+      await page.getByRole('link', {name:'Watch the offline walkthrough'}).click();
+      await expect(page.locator('#h-offline')).toBeVisible();
+    });
+    test('testing invitation, founder, FAQ and release history remain usable', async ({page,context}) => {
+      await context.route(/^https:\/\//, route => route.abort());
+      await page.goto('/', {waitUntil:'domcontentloaded'});
+      await expect(page.locator('.kt-beta-label')).toContainText('Public beta');
+      await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
+      await expect(page).toHaveURL(/#beta-testing$/);
+      await expect(page.locator('#beta-testing li')).toHaveCount(4);
+      const preview = page.locator('#beta-testing');
+      await preview.getByRole('button', {name:'Report a bug',exact:true}).click();
+      const dialog = page.getByRole('dialog', {name:'Help improve KampTrail'});
+      await expect(dialog).toBeVisible();
+      await expect(dialog.getByLabel('Feedback type')).toHaveValue('bug');
+      await dialog.getByRole('button', {name:'Close feedback'}).click();
+      await preview.getByRole('button', {name:'Suggest a feature',exact:true}).click();
+      await expect(dialog.getByLabel('Feedback type')).toHaveValue('feature');
+      await dialog.getByRole('button', {name:'Close feedback'}).click();
+      await expect(page.locator('#about-chuck img')).toHaveJSProperty('naturalWidth',480);
+      const routingQuestion = page.locator('#beta-faq summary').filter({hasText:'Will routes account for my RV dimensions?'});
+      await routingQuestion.click();
+      await expect(page.locator('#beta-faq')).toContainText('Current routes use car routing.');
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      expect((await new AxeBuilder({page}).include('.kt-home-hero').include('#beta-testing').include('#about-chuck').include('#beta-faq').analyze()).violations).toEqual([]);
+      await preview.getByRole('link', {name:'See recent updates and current limitations'}).click();
+      await expect(page.getByRole('heading', {name:'What’s new',exact:true})).toBeVisible();
+      await expect(page.getByRole('region', {name:'Current beta limitations'})).toContainText('Carrier coverage overlays are unavailable.');
+      await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
+      await expect(page.locator('#beta-title')).toBeVisible();
+    });
+  });
+}
 for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   test.describe(`private feedback ${viewport.width}`,()=>{
     test.use({viewport,serviceWorkers:'block'});

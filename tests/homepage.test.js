@@ -9,3 +9,53 @@ test('brand and gallery ship while optional screenshots cannot block offline-she
 test('new homepage marked copy and alternatives exist in both translated catalogues',()=>{const es={window:null},fr={};es.window=es;vm.runInNewContext(fs.readFileSync('locale.js','utf8'),es);vm.runInNewContext(fs.readFileSync('locale-fr.js','utf8'),fr);const sections=[html.match(/<section class="kt-home-hero"[\s\S]*?<\/section>/)[0],html.match(/<section id="how-it-works"[\s\S]*?<\/section>/)[0],html.match(/<section id="install-guide"[\s\S]*?<\/section>/)[0]].join('');const esKeys=new Set([...fs.readFileSync('locale.js','utf8').matchAll(/^  ("(?:[^"\\]|\\.)*"):/gm)].map(m=>JSON.parse(m[1])));const keys=[...sections.matchAll(/data-i18n(?:-alt)?="([^"]+)"/g)].map(x=>x[1]);for(const key of keys){assert.ok(Object.hasOwn(fr.KampTrailI18nFr.messages,key),key);assert.ok(esKeys.has(key),key);}});
 const testLegalFiles=['safety.js','terms.html','safety.html','privacy.html','legal.css'];
 test('safety gate loads before guarded features and legal documents ship offline',()=>{const sw=fs.readFileSync('service-worker.js','utf8'),build=fs.readFileSync('scripts/build-release.js','utf8');for(const name of testLegalFiles){assert.ok(sw.includes("'"+name+"'"),name);assert.ok(build.includes("'"+name+"'"),name);}const gate=html.indexOf('src="safety.js?');assert.ok(gate>=0);for(const name of ['offline-maps.js','install.js'])assert.ok(gate<html.indexOf('src="'+name+'?'));assert.match(html,/<nav class="kt-legal-nav"/);for(const page of ['terms','safety','privacy'])assert.ok(html.includes('href="'+page+'.html"'));assert.ok(html.includes('Owned and operated by Adirondack Mfg Corp'));});
+
+test('beta preview links resolve and its marked text has Spanish and French translations', () => {
+  const updates = fs.readFileSync('updates.html', 'utf8');
+  const spanish = fs.readFileSync('locale.js', 'utf8');
+  const french = {};
+  vm.runInNewContext(fs.readFileSync('locale-fr.js', 'utf8'), french);
+  const spanishKeys = new Set([...spanish.matchAll(/^  ("(?:[^"\\]|\\.)*"):/gm)].map(match => JSON.parse(match[1])));
+  const sections = ['about-chuck', 'beta-testing', 'beta-faq'].map(id => {
+    const section = html.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`));
+    assert.ok(section, id);
+    return section[0];
+  }).join('') + updates;
+  for (const match of sections.matchAll(/data-i18n(?:-alt)?="([^"]+)"/g)) {
+    const key = match[1].replaceAll('&amp;', '&');
+    assert.ok(spanishKeys.has(key), key);
+    assert.ok(Object.hasOwn(french.KampTrailI18nFr.messages, key), key);
+  }
+  const howTo = fs.readFileSync('how-to.html', 'utf8');
+  for (const match of html.matchAll(/href="how-to.html#([^"]+)"/g)) {
+    assert.ok(howTo.includes(`id="${match[1]}"`), match[1]);
+  }
+  for (const file of ['updates.html', 'media/about/chuck-and-cindy.jpg']) {
+    assert.ok(fs.readFileSync('scripts/build-release.js', 'utf8').includes(file), file);
+  }
+  assert.ok(fs.readFileSync('service-worker.js', 'utf8').includes("'updates.html'"));
+  assert.equal([...html.matchAll(/<details>/g)].length, 10);
+});
+
+test('resource directories ship existing BoB tools with explicit formats and working local destinations', () => {
+  const build = fs.readFileSync('scripts/build-release.js', 'utf8');
+  const worker = fs.readFileSync('service-worker.js', 'utf8');
+  for (const name of ['tools.html', 'guides.html', 'resources.css']) {
+    assert.ok(build.includes("'" + name + "'"), name);
+    assert.ok(worker.includes("'" + name + "'"), name);
+  }
+  const tools = fs.readFileSync('tools.html', 'utf8');
+  for (const label of ['Interactive calculator', 'Interactive planner', 'Printable PDFs', 'Formula and worked examples', 'Web app with sign-in']) {
+    assert.ok(tools.includes(label), label);
+  }
+  for (const name of ['tools.html', 'guides.html']) {
+    const source = fs.readFileSync(name, 'utf8');
+    assert.match(source, /<html lang="en">/);
+    assert.ok(source.includes(`href="${name}" aria-current="page"`));
+    for (const match of source.matchAll(/(?:href|src)="([^"#]+)"/g)) {
+      if (/^https?:/.test(match[1])) continue;
+      const destination = match[1].split(/[?#]/)[0];
+      assert.ok(fs.existsSync(destination), destination);
+    }
+  }
+});

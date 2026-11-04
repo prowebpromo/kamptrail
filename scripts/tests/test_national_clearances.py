@@ -680,7 +680,15 @@ class CommittedDataTests(unittest.TestCase):
         self.assertGreater(seen, 100)
         self.assertEqual(index['exclusions']['total'], sum(index['exclusions']['by_reason'].values()))
         self.assertEqual(index['states_protected']['RI']['status'], 'protected')
-        self.assertEqual(index['totals']['states_with_failures'], [])
+        # A guarded partial refresh keeps usable prior data and records the failure.
+        # Its presence is valid; missing fallback data or inconsistent reporting is not.
+        self.assertEqual(index['totals']['states_with_failures'], sorted(index['failures']))
+        self.assertNotIn('RI', index['failures'])
+        for region, failure in index['failures'].items():
+            self.assertIn(region, index['sources'])
+            self.assertGreater(index['states'][region]['candidates'], 0)
+            self.assertEqual(set(failure), {'reason'})
+            self.assertTrue(failure['reason'])
 
     def test_committed_totals_match_the_tile_index_and_limits(self):
         index = json.loads((national.DEFAULT_DIR / 'index.json').read_text())
