@@ -17,6 +17,12 @@
     return fr || {};
   };
   const es = {
+  "Beta preview": "Vista previa de la beta",
+  "Free tools and Guides connect KampTrail to existing Boondock or Bust resources.": "Las herramientas gratuitas y las guías conectan KampTrail con los recursos existentes de Boondock or Bust.",
+  "Map": "Mapa",
+  "Free tools": "Herramientas gratuitas",
+  "Guides": "Guías",
+  "KampTrail pages": "Páginas de KampTrail",
   "Public beta · Free · No account required": "Beta pública · Gratis · Sin cuenta",
   "Find campsites. Check the details. Plan your next stop.": "Encuentra lugares para acampar. Revisa los detalles. Planifica tu próxima parada.",
   "Explore free and paid campsites, public-land information, and useful services. Save your stops and help improve KampTrail’s public beta.": "Explora lugares para acampar gratuitos y de pago, información sobre terrenos públicos y servicios útiles. Guarda tus paradas y ayuda a mejorar la beta pública de KampTrail.",

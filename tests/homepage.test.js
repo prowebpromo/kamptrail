@@ -36,3 +36,26 @@ test('beta preview links resolve and its marked text has Spanish and French tran
   assert.ok(fs.readFileSync('service-worker.js', 'utf8').includes("'updates.html'"));
   assert.equal([...html.matchAll(/<details>/g)].length, 10);
 });
+
+test('resource directories ship existing BoB tools with explicit formats and working local destinations', () => {
+  const build = fs.readFileSync('scripts/build-release.js', 'utf8');
+  const worker = fs.readFileSync('service-worker.js', 'utf8');
+  for (const name of ['tools.html', 'guides.html', 'resources.css']) {
+    assert.ok(build.includes("'" + name + "'"), name);
+    assert.ok(worker.includes("'" + name + "'"), name);
+  }
+  const tools = fs.readFileSync('tools.html', 'utf8');
+  for (const label of ['Interactive calculator', 'Interactive planner', 'Printable PDFs', 'Formula and worked examples', 'Web app with sign-in']) {
+    assert.ok(tools.includes(label), label);
+  }
+  for (const name of ['tools.html', 'guides.html']) {
+    const source = fs.readFileSync(name, 'utf8');
+    assert.match(source, /<html lang="en">/);
+    assert.ok(source.includes(`href="${name}" aria-current="page"`));
+    for (const match of source.matchAll(/(?:href|src)="([^"#]+)"/g)) {
+      if (/^https?:/.test(match[1])) continue;
+      const destination = match[1].split(/[?#]/)[0];
+      assert.ok(fs.existsSync(destination), destination);
+    }
+  }
+});

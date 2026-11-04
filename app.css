@@ -288,7 +288,7 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 
 #kt-install{width:min(540px,calc(100vw - 24px));max-height:85dvh;overflow:auto;border:1px solid #b8c5b1;border-radius:12px;padding:20px;color:#203b2d;background:#fff;line-height:1.6}#kt-install::backdrop{background:#10281f99}#kt-install h2{font-size:20px;margin:0}#kt-install button{min-height:44px}#kt-install [hidden]{display:none}#install-kamptrail{white-space:normal}
 /* Homepage introduction and practical onboarding, with the working map kept in the page. */
-#app{grid-template-rows:auto auto auto auto minmax(560px,min(680px,68dvh)) auto}
+#app{grid-template-rows:auto auto auto auto auto minmax(560px,min(680px,68dvh)) auto}
 .brand img{flex:none}.brand{flex-wrap:wrap;column-gap:10px}.brand span{flex-basis:100%;margin-left:54px}
 .kt-home-hero{display:grid;grid-template-columns:1fr 230px;gap:36px;padding:34px 30px;background:#f9faf3;border-bottom:1px solid #d8dfd5;color:#10281f}
 .kt-eyebrow{font-size:10px;font-weight:750;letter-spacing:.13em;color:#516b49;margin:0 0 12px}.kt-home-hero h2{font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.035em;max-width:620px;margin:0 0 14px}.kt-hero-copy{font-size:15px;line-height:1.6;max-width:620px;margin:0 0 20px;color:#50634c}.kt-home-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.kt-home-actions a{color:#245639}.kt-home-actions .primary{color:white}.kt-home-actions .btn{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}.kt-hero-note{border-left:1px solid #d4ddc9;padding-left:26px;align-self:center}.kt-hero-note p{font-size:21px;line-height:1.35;font-weight:600}.kt-hero-note a{font-size:12px;color:#245639}
@@ -329,3 +329,9 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-beta-faq details p{max-width:850px;margin:6px 0 16px}
 .kt-workflow-card .kt-workflow-link{margin-top:16px}
 @media(max-width:760px){.kt-founder{grid-template-columns:1fr;gap:22px}.kt-founder figure{max-width:180px}.kt-beta-testing{padding:24px}.kt-beta-testing .kt-home-actions{align-items:stretch}.kt-beta-testing .kt-home-actions>.btn{justify-content:center}.kt-beta-faq{padding:0 8px}}
+
+/* Shared navigation and resource directories. */
+.kt-site-nav{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;padding:12px 24px;background:#fff;border-bottom:1px solid #d3ddce;color:#203b2d}
+.kt-site-nav a{display:inline-flex;align-items:center;min-height:44px;color:#245639;text-underline-offset:4px;font-size:14px;font-weight:650}
+.kt-site-nav a[aria-current="page"]{color:#10281f;text-decoration-thickness:3px}
+.kt-site-nav a:focus-visible{outline:3px solid #a86d00;outline-offset:4px}

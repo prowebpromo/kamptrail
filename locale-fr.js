@@ -2,6 +2,12 @@
 (function (global) {
   'use strict';
   global.KampTrailI18nFr = {version:'2.44.0', messages:{
+  "Beta preview": "Aperçu de la bêta",
+  "Free tools and Guides connect KampTrail to existing Boondock or Bust resources.": "Les outils gratuits et les guides relient KampTrail aux ressources existantes de Boondock or Bust.",
+  "Map": "Carte",
+  "Free tools": "Outils gratuits",
+  "Guides": "Guides",
+  "KampTrail pages": "Pages KampTrail",
   "Public beta · Free · No account required": "Bêta publique · Gratuit · Aucun compte requis",
   "Find campsites. Check the details. Plan your next stop.": "Trouvez un lieu où camper. Vérifiez les détails. Planifiez votre prochaine étape.",
   "Explore free and paid campsites, public-land information, and useful services. Save your stops and help improve KampTrail’s public beta.": "Explorez des lieux de camping gratuits et payants, les informations sur les terres publiques et les services utiles. Enregistrez vos étapes et aidez à améliorer la bêta publique de KampTrail.",
