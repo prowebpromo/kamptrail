@@ -1,7 +1,18 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.44.0', messages:{
+  global.KampTrailI18nFr = {version:'2.45.0', messages:{
+  "Find campsites.": "Trouvez des lieux de camping.",
+  "Check the details.": "Vérifiez les détails.",
+  "Plan your next stop.": "Planifiez votre prochaine étape.",
+  "Real map. Your next stop.": "Une vraie carte. Votre prochaine étape.",
+  "Actual KampTrail map near Moab, Utah": "Carte réelle de KampTrail près de Moab, Utah",
+  "Map preview": "Aperçu de la carte",
+  "Moab, Utah": "Moab, Utah",
+  "Open the map to explore": "Ouvrez la carte pour explorer",
+  "Campsites · Public land · Trip planning": "Camping · Terres publiques · Planification de voyages",
+  "Map data": "Données cartographiques",
+  "Imagery": "Imagerie",
   "Beta preview": "Aperçu de la bêta",
   "Free tools and Guides connect KampTrail to existing Boondock or Bust resources.": "Les outils gratuits et les guides relient KampTrail aux ressources existantes de Boondock or Bust.",
   "Map": "Carte",

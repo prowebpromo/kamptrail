@@ -321,5 +321,5 @@
       catch (error) {if (generation === state.generation) {feedback.textContent = error.message; send.disabled = false;}}
     };
   }
-  window.KampTrailPermissions = {version: '2.44.0', open, mine, answerSection};
+  window.KampTrailPermissions = {version: '2.45.0', open, mine, answerSection};
 })();
