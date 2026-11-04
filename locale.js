@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.44.0';
+  const FR_VERSION = '2.45.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -17,6 +17,17 @@
     return fr || {};
   };
   const es = {
+  "Find campsites.": "Encuentra sitios para acampar.",
+  "Check the details.": "Revisa los detalles.",
+  "Plan your next stop.": "Planifica tu próxima parada.",
+  "Real map. Your next stop.": "Un mapa real. Tu próxima parada.",
+  "Actual KampTrail map near Moab, Utah": "Mapa real de KampTrail cerca de Moab, Utah",
+  "Map preview": "Vista previa del mapa",
+  "Moab, Utah": "Moab, Utah",
+  "Open the map to explore": "Abre el mapa para explorar",
+  "Campsites · Public land · Trip planning": "Campamentos · Terrenos públicos · Planificación de viajes",
+  "Map data": "Datos del mapa",
+  "Imagery": "Imágenes",
   "Beta preview": "Vista previa de la beta",
   "Free tools and Guides connect KampTrail to existing Boondock or Bust resources.": "Las herramientas gratuitas y las guías conectan KampTrail con los recursos existentes de Boondock or Bust.",
   "Map": "Mapa",
@@ -2054,7 +2065,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title', 'alt']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.44.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.45.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
