@@ -12,7 +12,7 @@
   const statuses = () => ({received:t('Received. Waiting for review.'), accepted:t('Accepted for follow-up.'), rejected:t('Closed without a change.'), applied:t('Completed.')});
   function diagnostics() {
     const ua = navigator.userAgent;
-    return {version:'2.46.0', language:window.KampTrailI18n?.language || document.documentElement.lang || 'en', browser:/Firefox\//.test(ua)?'Firefox':/Edg\//.test(ua)?'Edge':/(Chrome|CriOS)\//.test(ua)?'Chrome':/Safari\//.test(ua)?'Safari':'Other', width:window.innerWidth, height:window.innerHeight, connection:navigator.onLine?'online':'offline'};
+    return {version:'2.46.1', language:window.KampTrailI18n?.language || document.documentElement.lang || 'en', browser:/Firefox\//.test(ua)?'Firefox':/Edg\//.test(ua)?'Edge':/(Chrome|CriOS)\//.test(ua)?'Chrome':/Safari\//.test(ua)?'Safari':'Other', width:window.innerWidth, height:window.innerHeight, connection:navigator.onLine?'online':'offline'};
   }
   function ensure() {
     if (dialog) return dialog;
@@ -75,6 +75,7 @@
       const values = new FormData(f);
       const payload = {kind:type.value, title:values.get('title'), details:values.get('details'), contact_email:values.get('contact_email'), website:values.get('website'), elapsed_ms:Date.now()-openedAt};
       if (diag.checked) Object.assign(payload, {include_diagnostics:true, diagnostics:diagnostics()});
+      if(navigator.onLine===false){note.replaceChildren(...fallback('Feedback could not be sent. Your text is still here. Try again when connected, or use the contact form.').childNodes);note.classList.add('is-error');return;}
       send.disabled = true; note.textContent = t('Sending…');
       const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 20000);
       try {
@@ -91,7 +92,7 @@
         if (note.textContent) return;
         throw new Error('unavailable');
       } catch {
-        note.replaceChildren(fallback('Feedback could not be sent. Your text is still here. Try again when connected, or use the contact form.'));
+        note.replaceChildren(...fallback('Feedback could not be sent. Your text is still here. Try again when connected, or use the contact form.').childNodes);note.classList.add('is-error');
       } finally { clearTimeout(timeout); send.disabled = false; }
     };
     body.append(f); if (!d.open) d.showModal(); summary.focus();
@@ -114,7 +115,7 @@
     const match = hash.match(/^#feedback=report:([a-f0-9]{32})$/);
     if (match) showStatus(match[1]);
   }
-  window.KampTrailFeedback = {version:'2.46.0', open};
+  window.KampTrailFeedback = {version:'2.46.1', open};
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('kt-feedback-open')?.addEventListener('click', () => open());
     document.querySelectorAll('[data-feedback-kind]').forEach(button => button.addEventListener('click', () => open(button.dataset.feedbackKind)));

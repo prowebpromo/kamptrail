@@ -1,5 +1,5 @@
 /* Initial shell and offline status; independent of map startup. */
-(function(){'use strict';const VERSION='2.46.0';const t=(k,p)=>window.KampTrailI18n?.t(k,p)??k;
+(function(){'use strict';const VERSION='2.46.1';const t=(k,p)=>window.KampTrailI18n?.t(k,p)??k;
   // Localize initial shell labels before live counts and statuses are rendered.
   window.KampTrailI18n?.apply();
   let toastTimer;

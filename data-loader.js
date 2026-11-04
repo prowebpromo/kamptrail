@@ -473,7 +473,8 @@
     const layout=popupLayout();
     return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
-      ${p.id==='blm-area:16330'?'<p class="kt-record-scope">'+esc(t("This BLM record describes the Moab Field Office area, not an individual campsite. Use BLM camping guidance to choose a site and confirm access."))+'</p>':''}
+      ${p.record_override?.note?'<p class="kt-record-scope">'+esc(t(p.record_override.note))+'</p>':''}
+      ${p.record_override?.state_applied?`<div class="kt-fine"><a href="${esc(safeUrl(p.record_override.source_url))}" target="_blank" rel="noopener noreferrer">${t('State correction source')}</a> · ${esc(p.record_override.checked_at)}</div>`:''}
       ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
       <div><strong>${t("Cost:")}</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||t("Source"))}${p.fee_checked?t(", imported {0}", {"0":(esc(p.fee_checked))}):''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
@@ -483,7 +484,7 @@
       ${p.restrictions?`<div><strong>${t("Restrictions:")}</strong> ${esc(p.restrictions.length>180?p.restrictions.slice(0,177)+'…':p.restrictions)}</div>`:''}
       ${p.stay_limit?`<div><strong>${t("Stay limit:")}</strong> ${esc(p.stay_limit)}</div>`:''}
       ${p.reservable?`<div class="kt-fine">${t("Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.")}</div>`:''}
-      <div><strong>${t("Type:")}</strong> ${esc(uiLabel('type',p.type))}</div>
+      <div><strong>${t("Type:")}</strong> ${esc(p.record_override?.scope==='management_area'?t('Management area'):uiLabel('type',p.type))}</div>
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
@@ -629,7 +630,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.46.0',
+    version:'2.46.1',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
