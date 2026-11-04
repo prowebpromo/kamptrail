@@ -7,7 +7,7 @@ async function openGuide(page){
   await page.route(/^https:\/\//,r=>r.abort());
   await page.route('**/data/campsites/*_merged.geojson',r=>r.fulfill({contentType:'application/geo+json',body:'{"type":"FeatureCollection","features":[]}'}));
   await page.route('**/data/campsites/agency/*.geojson',r=>r.fulfill({contentType:'application/geo+json',body:'{"type":"FeatureCollection","features":[]}'}));
-  await page.goto('/');
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.getByRole('button',{name:'About the data',exact:true}).click();
   const guide=page.locator('#kt-camping-care');await guide.locator('summary').click();return guide;
 }

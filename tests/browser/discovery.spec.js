@@ -5,9 +5,9 @@ test('published rating and same-visit conditions filter map results and remain l
  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
  await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{[ids[0]]:{rating_count:1,rating_sum:5,latest_visit:visited,observations:[{values:{noise:'quiet',signals:[{carrier:'verizon',signal:'none',environment:'inside_rv'}]},count:1,latest_visit:visited}]},[ids[1]]:{rating_count:3,rating_sum:6,latest_visit:visited,observations:[{values:{noise:'noisy',signals:[{carrier:'verizon',signal:'strong',environment:'outdoors'}]},count:3,latest_visit:visited}]}}})}));
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
- await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
  ids=await page.evaluate(()=>KampTrailData.getVisibleCampsites().slice(0,2).map(s=>s.properties.id));expect(ids).toHaveLength(2);
- await page.getByRole('button',{name:'Open filters',exact:true}).click();const panel=page.getByRole('region',{name:'Campsite filters'});
+ await page.getByRole('button',{name:'Open filters',exact:true}).click();const panel=page.getByRole('dialog',{name:'Filters',exact:true});
  await panel.getByLabel('Minimum community rating',{exact:true}).selectOption('4');
  await expect(panel).toContainText('Published camper evidence checked');
  await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);
@@ -19,14 +19,14 @@ test('published rating and same-visit conditions filter map results and remain l
  await panel.getByLabel('Reported noise',{exact:true}).selectOption('noisy');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[1]]);
  await context.setOffline(true);await panel.getByRole('button',{name:'Refresh camper evidence'}).click();await expect(panel).toContainText('Saved camper evidence');
  await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[1]]);
- await context.setOffline(false);await page.reload();await page.getByRole('button',{name:'Open filters',exact:true}).click();await expect(page.getByLabel('Reported noise',{exact:true})).toHaveValue('noisy');
+ await context.setOffline(false);await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.getByRole('button',{name:'Open filters',exact:true}).click();await expect(page.getByLabel('Reported noise',{exact:true})).toHaveValue('noisy');
 });
 test('mobile observation fields fit the review dialog and pass a focused accessibility scan',async({page,context})=>{
  await page.setViewportSize({width:390,height:844});
  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
  await page.route('**/api/community.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,count:0,average:null,reviews:[],next_before:null})}));
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
- await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
  await page.evaluate(()=>KampTrailData.focusCampsite(KampTrailData.getVisibleCampsites()[0].properties.id));await page.getByRole('button',{name:'Reviews and photos',exact:true}).click();await page.getByRole('button',{name:'Write a review',exact:true}).click();const d=page.getByRole('dialog',{name:'Write a review'});
  await expect(d.getByLabel('Verizon signal',{exact:true})).toBeVisible();await expect(d.getByLabel('Approach for your rig',{exact:true})).toBeVisible();
  expect(await d.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
@@ -38,11 +38,11 @@ test('seasonal numeric filters exclude unknown and sparse scores, count selectio
  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
  await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:Object.fromEntries(ids.map((id,i)=>[id,{rating_count:i===1?2:3,rating_sum:i===1?10:12,latest_visit:visited,observations:[{values:i===2?{noise:'quiet'}:{scores:{quietness:i===0?4:5}},count:i===1?2:3,latest_visit:visited}]}]))})}));
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
- await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);ids=await page.evaluate(()=>KampTrailData.getVisibleCampsites().slice(0,3).map(s=>s.properties.id));expect(ids).toHaveLength(3);
- await page.getByRole('button',{name:'Open filters',exact:true}).click();const panel=page.getByRole('region',{name:'Campsite filters'});
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);ids=await page.evaluate(()=>KampTrailData.getVisibleCampsites().slice(0,3).map(s=>s.properties.id));expect(ids).toHaveLength(3);
+ await page.getByRole('button',{name:'Open filters',exact:true}).click();const panel=page.getByRole('dialog',{name:'Filters',exact:true});
  await panel.getByLabel('Minimum average quietness score',{exact:true}).selectOption('4');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);await expect(page.locator('#filter-badge')).toHaveText('1');
  const season=await page.evaluate(date=>KampTrailDiscovery.season(date),visited);await panel.getByLabel('Numeric rating visit season',{exact:true}).selectOption(season);await expect(page.locator('#filter-badge')).toHaveText('2');await expect(page.locator('#result-list')).toContainText('3 explicit ratings');
- await page.reload();await page.getByRole('button',{name:'Open filters',exact:true}).click();await expect(page.getByLabel('Minimum average quietness score',{exact:true})).toHaveValue('4');await expect(page.getByLabel('Numeric rating visit season',{exact:true})).toHaveValue(season);await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);
+ await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.getByRole('button',{name:'Open filters',exact:true}).click();await expect(page.getByLabel('Minimum average quietness score',{exact:true})).toHaveValue('4');await expect(page.getByLabel('Numeric rating visit season',{exact:true})).toHaveValue(season);await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(s=>s.properties.id))).toEqual([ids[0]]);
  await page.getByLabel('Minimum average personal comfort score',{exact:true}).selectOption('4');await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBe(0);await expect(page.locator('#filter-badge')).toHaveText('3');
  await page.locator('#kt-f-reset').click();await expect(page.getByLabel('Minimum average quietness score',{exact:true})).toHaveValue('0');await expect(page.getByLabel('Numeric rating visit season',{exact:true})).toHaveValue('');await expect(page.locator('#filter-badge')).toBeHidden();
 });
@@ -52,7 +52,7 @@ test('review sub-ratings stay optional and explicit, and detail summaries show l
  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
  await page.route('**/api/community.php*',async r=>{if(r.request().method()==='POST'){payload=r.request().postData();await r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,id:1,token:'a'.repeat(64),status:'pending'})});return;}await r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,count:0,average:null,reviews:[],next_before:null,score_minimum:3,seasonal_scores:{winter:{quietness:{count:2,sum:10,first_visit:'2025-12-01',latest_visit:visited}}}})});});
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
- await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);await page.evaluate(()=>KampTrailData.focusCampsite(KampTrailData.getVisibleCampsites()[0].properties.id));await page.getByRole('button',{name:'Reviews and photos',exact:true}).click();
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);await page.evaluate(()=>KampTrailData.focusCampsite(KampTrailData.getVisibleCampsites()[0].properties.id));await page.getByRole('button',{name:'Reviews and photos',exact:true}).click();
  await expect(page.getByRole('region',{name:'Seasonal visit sub-ratings'})).toContainText('insufficient evidence · 2 explicit ratings');await expect(page.getByRole('region',{name:'Seasonal visit sub-ratings'})).toContainText('2025-12-01 to 2026-01-01');
  await page.getByRole('button',{name:'Write a review',exact:true}).click();const d=page.getByRole('dialog',{name:'Write a review'});await expect(d.getByLabel('Quietness',{exact:true})).toHaveValue('');await d.getByLabel('Noise',{exact:true}).selectOption('quiet');await expect(d.getByLabel('Quietness',{exact:true})).toHaveValue('');
  await d.getByLabel('Public name',{exact:true}).fill('Numeric fixture camper');await d.getByLabel('Overall rating',{exact:true}).selectOption('4');await d.getByLabel('Date visited',{exact:true}).fill(visited);await d.getByLabel('Quietness',{exact:true}).selectOption('5');await d.getByLabel('Your experience',{exact:true}).fill('My own visit was quiet and the optional score reflects that experience.');await d.locator('[name=firsthand]').check();await d.getByRole('button',{name:'Send for review',exact:true}).click();await expect(page.getByRole('dialog',{name:'Review received'})).toBeVisible();expect(payload).toContain('{"noise":"quiet","scores":{"quietness":5}}');expect(payload).not.toContain('"comfort":');expect(payload).not.toContain('"shade":');
@@ -63,7 +63,7 @@ test('campsite popup shows dated camper signal reports beside the FCC map link a
  await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{[ids[0]]:{rating_count:2,rating_sum:8,latest_visit:visited,observations:[{values:{signals:[{carrier:'att',signal:'usable',environment:'inside_rv'},{carrier:'verizon',signal:'none',environment:'outdoors'}]},count:2,latest_visit:visited}]}}})}));
  await context.grantPermissions(['clipboard-read','clipboard-write']);
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
- await page.goto('/');await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
  ids=await page.evaluate(()=>KampTrailData.getVisibleCampsites().slice(0,2).map(s=>s.properties.id));
  await page.evaluate(()=>KampTrailDiscovery.load(true));
  await page.waitForFunction(id=>!!KampTrailDiscovery.summary(KampTrailData.getCampsiteById(id).properties),ids[0]);

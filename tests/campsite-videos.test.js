@@ -16,7 +16,7 @@ async function boot({recheck,spanish=false}={}){
  const document={documentElement:{},addEventListener(){},body:new Element('body'),activeElement:{focus(){}},createElement:t=>new Element(t),createTextNode:text=>({textContent:text})},requests=[];
  const review={id:1,rating:4,display_name:'Original Name',visited_on:'2026-10-01',created_at:'2026-10-02',body:'Visitor text <script>unchanged</script>',photos:[],video:{provider:'youtube',id:'abcdefghijk',url:'https://evil.test/ignored'}};
  const context={document,location:{hostname:'example.test'},navigator:{onLine:true},Date,fetch:async(url,options)=>{requests.push({url,options});if(url.includes('review_id='))return recheck?recheck():{ok:true,json:async()=>({review_id:1,video:review.video})};return{ok:true,json:async()=>({count:1,average:4,reviews:[review],next_before:null,scores_available:false})};},localStorage:{getItem:()=>spanish?'es':'en'}};
- context.window=context;vm.runInNewContext(fs.readFileSync('locale.js','utf8'),context);vm.runInNewContext(fs.readFileSync('community.js','utf8'),context);
+ context.window=context;vm.runInNewContext((fs.readFileSync('locale-es.js','utf8')+'\n'+fs.readFileSync('locale.js','utf8')),context);vm.runInNewContext(fs.readFileSync('community.js','utf8'),context);
  await context.KampTrailCommunity.open({properties:{id:'qa:video',name:'Original Place'}});
  return{document,requests,api:context.KampTrailCommunity,dialog:document.body.querySelector('dialog')};
 }

@@ -120,7 +120,7 @@ test('the same states give the same catalogue whether agency files load at once 
 });
 
 test('the notice text exists in Spanish and French with the same placeholder',()=>{
-  const es=read('locale.js'),fr=read('locale-fr.js');
+  const es=read('locale-es.js'),fr=read('locale-fr.js');
   for(const key of ['Forest Service and BLM listings could not load. Other listings are shown.','Forest Service and BLM listings could not load for {states}. Other listings are shown.']){
     for(const src of [es,fr]){const m=src.match(new RegExp('^  '+JSON.stringify(key).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+': ("(?:[^"\\\\]|\\\\.)*")','m'));assert.ok(m,key);const v=JSON.parse(m[1]);assert.notEqual(v,key);assert.equal(v.includes('{states}'),key.includes('{states}'));}
   }

@@ -7,7 +7,7 @@
   const HOOKUPS=[['electric',t("Electric")],['water',t("Water")],['sewer',t("Sewer")]];
   const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0,rigLength:0,rigIncludeUnknown:false,hookups:[],minReviews:1,scoreSeason:'',minScore_quietness:0,minScore_shade:0,minScore_comfort:0,observedDays:365,elevationMin:null,elevationMax:null,elevationUnit:'ft',forecastMinC:null,forecastMaxC:null,forecastHours:24,forecastUnit:'F'});
   const state={filters:defaults(),panel:null,button:null};
-  function close(){state.panel.style.display='none';document.body.classList.remove('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','false');state.button.focus();}
+  function close(){if(state.panel.style.display==='none')return;state.panel.style.display='none';document.body.classList.remove('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','false');state.button.focus();}
   function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+(window.KampTrailDiscovery?.scoreFilterCount(f)||0)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal)+Number(!!f.observed_radio)+Number(DataQuality.elevationRange(f).active)+Number(window.KampTrailForecast?.active(f));}
   function apply(origin='manual'){
     const f=state.filters;
@@ -152,7 +152,7 @@
       sync();
       state.button=document.getElementById('filters');
       const show=document.createElement('button');show.type='button';show.id='kt-filter-show';show.className='btn primary';show.onclick=close;const footer=document.createElement('div');footer.className='kt-filter-footer';footer.append(show);p.append(footer);
-      const resultCount=()=>{show.textContent=t('Show {count} results',{count:window.KampTrailData?.getVisibleCampsites?.().length||0});};window.addEventListener('kamptrail:dataupdated',resultCount);resultCount();
+      const resultCount=()=>{show.textContent=window.KampTrailData?.getLoadStatus?.().overview?t('View map to choose an area'):t('Show {count} results',{count:window.KampTrailData?.getVisibleCampsites?.().length||0});};window.addEventListener('kamptrail:dataupdated',resultCount);resultCount();
       const body=p.querySelector('.filter-body');
       for(const note of [...body.querySelectorAll('p.filter-note')]){if(note.getAttribute('role')||/status|error/.test(note.id))continue;const info=document.createElement('details');info.className='kt-filter-info';const summary=document.createElement('summary');summary.textContent=t('About these filters');note.before(info);info.append(summary,note);}
       // Group existing controls without rebuilding them or changing their listeners and values.

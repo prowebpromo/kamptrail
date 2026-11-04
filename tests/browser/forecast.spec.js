@@ -25,11 +25,11 @@ async function fixture(page,context,{zoom=11,mobile=false,corrupt=false}={}){
  await page.route('**/data/campsites/coordinate-index.json',r=>{requests.push(r.request().url());return json(r,{version:1,sha256:catalogue,count:6});});
  await page.route('**/api/forecast.php?*',r=>{requests.push(r.request().url());return new URL(r.request().url()).searchParams.get('kind')==='index'?json(r,{ok:true,server_now:iso(serverNow),manifest}):r.fulfill({contentType:'application/json',body:raw+(invalidBytes?' ':'')});});
  await page.addInitScript(zoom=>{if(localStorage.getItem('kt_last_position')===null)localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.085,zoom}));},zoom);
- await page.goto('/');await page.waitForFunction(()=>window.KampTrailData&&KampTrailData.getLoadStatus().catalogueTotal===6);
- if(zoom>=8)await page.waitForFunction(()=>KampTrailData.getAllCampsites().length===6&&!KampTrailData.getLoadStatus().loading);
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData&&KampTrailData.getLoadStatus().catalogueTotal===6);
+ if(zoom>=8)await page.waitForFunction(()=>window.KampTrailData?.getAllCampsites().length===6&&!KampTrailData.getLoadStatus().loading);
  return{errors,requests,manifest,setServerNow:value=>{serverNow=value;},repair:()=>{invalidBytes=false;}};
 }
-async function panel(page){await page.getByRole('button',{name:'Open filters',exact:true}).click();return page.getByRole('region',{name:'Campsite filters'});}
+async function panel(page){await page.getByRole('button',{name:'Open filters',exact:true}).click();return page.getByRole('dialog',{name:'Filters',exact:true});}
 async function bound(p,label,value){const n=p.getByLabel(label,{exact:true});await n.fill(value);await n.press('Tab');}
 const visible=page=>page.evaluate(()=>KampTrailData.getVisibleCampsites().map(f=>f.properties.id).sort());
 test('forecast downloads are lazy and zero/negative inclusive controls persist, change horizon, and reset',async({page,context})=>{
@@ -40,7 +40,7 @@ test('forecast downloads are lazy and zero/negative inclusive controls persist, 
  await p.getByLabel('Temperature units',{exact:true}).selectOption('C');await expect(p.getByLabel('Minimum forecast sample temperature (°C)',{exact:true})).toHaveValue('0');
  await bound(p,'Minimum forecast sample temperature (°C)','-10');await expect.poll(()=>visible(page)).toEqual(['forecast:cold','forecast:zero']);
  await bound(p,'Minimum forecast sample temperature (°C)','2');await expect(p.locator('#f-forecast-error')).toContainText('last valid filter remains applied');await expect.poll(()=>visible(page)).toEqual(['forecast:cold','forecast:zero']);
- await bound(p,'Minimum forecast sample temperature (°C)','-10');await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('kt_last_position')).zoom)).toBe(11);await page.reload();await expect.poll(()=>visible(page)).toEqual(['forecast:cold','forecast:zero']);const restored=await panel(page);await expect(restored.getByLabel('Minimum forecast sample temperature (°C)',{exact:true})).toHaveValue('-10');await expect(restored.getByLabel('Forecast window',{exact:true})).toHaveValue('48');
+ await bound(p,'Minimum forecast sample temperature (°C)','-10');await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('kt_last_position')).zoom)).toBe(11);await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await expect.poll(()=>visible(page)).toEqual(['forecast:cold','forecast:zero']);const restored=await panel(page);await expect(restored.getByLabel('Minimum forecast sample temperature (°C)',{exact:true})).toHaveValue('-10');await expect(restored.getByLabel('Forecast window',{exact:true})).toHaveValue('48');
  await restored.getByRole('button',{name:'Reset',exact:true}).click();await expect.poll(()=>visible(page)).toHaveLength(6);await expect(restored.getByLabel('Minimum forecast sample temperature (°F)',{exact:true})).toHaveValue('');expect(errors).toEqual([]);
 });
 test('route fetches only corridor candidate states and shares map matching; offline preserves controls and excludes forecasts',async({page,context})=>{

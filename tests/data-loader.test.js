@@ -300,7 +300,7 @@ test('corrupt stable terrain bytes cannot become offline matches',async()=>{
 });
 
 test('Spanish amenity details retain exact counts, qualifiers, original place words and unknown fee/eligibility',async()=>{
-  const translations={Intl,Date,localStorage:{getItem:()=> 'es'}};translations.window=translations;vm.runInNewContext(fs.readFileSync('locale.js','utf8'),translations);
+  const translations={Intl,Date,localStorage:{getItem:()=> 'es'}};translations.window=translations;vm.runInNewContext((fs.readFileSync('locale-es.js','utf8')+'\n'+fs.readFileSync('locale.js','utf8')),translations);
   const row=feature({name:'Original publisher Campground <img src=x>',facility_id:'123',schema_version:3});
   const h=harness(async url=>new Response(JSON.stringify(url.endsWith('ridb-amenities.json')?amenityPayload():url.endsWith('_merged.geojson')?{type:'FeatureCollection',features:[row]}:{})),{KampTrailI18n:translations.KampTrailI18n,caches:cacheStorage(),location:{href:'https://example.test/kamptrail/'}});
   await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));
@@ -340,7 +340,7 @@ test('Forest Service site statements show exact text, credit and dates apart fro
   h.api.updateFilters({amenities:['toilet']});assert.equal(h.api.getVisibleCampsites().length,0);
 });
 test('Spanish Forest Service statements keep the agency text in English and translate only interface words',async()=>{
-  const translations={Intl,Date,localStorage:{getItem:()=> 'es'}};translations.window=translations;vm.runInNewContext(fs.readFileSync('locale.js','utf8'),translations);
+  const translations={Intl,Date,localStorage:{getItem:()=> 'es'}};translations.window=translations;vm.runInNewContext((fs.readFileSync('locale-es.js','utf8')+'\n'+fs.readFileSync('locale.js','utf8')),translations);
   const row=feature({name:'Matched Campground',facility_id:'123',schema_version:3});
   const h=harness(async url=>new Response(JSON.stringify(url.endsWith('usfs-site-amenities.json')?usfsPayload():url.endsWith('_merged.geojson')?{type:'FeatureCollection',features:[row]}:{})),{KampTrailI18n:translations.KampTrailI18n,caches:cacheStorage(),location:{href:'https://example.test/kamptrail/'}});
   await h.api.init(h.map);await new Promise(resolve=>setImmediate(resolve));

@@ -14,7 +14,12 @@
     if(pending[code])return pending[code];
     pending[code]=new Promise((resolve,reject)=>{
       const script=global.document.createElement('script');script.src='locale-'+code+'.js?v='+FR_VERSION;script.async=true;
-      script.onload=()=>pack(code)?resolve():reject(Error('catalogue'));
+      script.onload=async()=>{
+        if(!pack(code)){reject(Error('catalogue'));return;}
+        // Also retain the selected pack when selection happens before the first worker controls the page.
+        try{if(global.caches){const scope=new URL('./',global.location.href).href;const cache=await global.caches.open('kamptrail:'+scope+':locales-v1');const response=await fetch(script.src);if(response.ok)await cache.put(script.src,response);}}catch{}
+        resolve();
+      };
       script.onerror=()=>{delete pending[code];script.remove();reject(Error('catalogue'));};
       global.document.head.append(script);
     });

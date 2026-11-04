@@ -19,7 +19,6 @@ test('MVP has only working core tools and city search updates the map and list',
   expect(await page.evaluate(()=>[typeof window.KampTrailCompare,typeof window.KampTrailGPX,typeof window.KampTrailPhotos,typeof window.KampTrailOverlays])).toEqual(['undefined','undefined','undefined','undefined']);
   await page.locator('#destination').fill('Albany, NY');
   await page.locator('#search-form button').click();
-  await page.getByRole('button',{name:'Albany, NY · City',exact:true}).click();
   await expect.poll(()=>page.evaluate(()=>map.getCenter().lat)).toBeCloseTo(42.65258,1);
   await expect.poll(()=>page.evaluate(()=>KampTrailData.getVisibleCampsites().length)).toBeGreaterThan(0);
   await page.waitForFunction(()=>!KampTrailData.getLoadStatus().loading);
@@ -32,17 +31,16 @@ test('national campground search works outside loaded states, shows GPS and dire
   expect(await page.evaluate(()=>KampTrailData.getLoadedStates().includes('CA'))).toBe(false);
   const target=await page.evaluate(async()=>{
     const data=await (await fetch('data/campsites/search-index.json')).json();
-    return data.sites.find(s=>s.states.length===1&&s.states[0]==='CA'&&s.name.length>8);
+    return data.sites.find(s=>s.states.length===1&&s.states[0]==='CA'&&s.name.length>8&&data.sites.filter(other=>other.name===s.name).length===1);
   });
   await page.locator('#destination').fill(target.name);
   await page.locator('#search-form button').click();
-  await page.getByRole('button',{name:`${target.name} · Campsite`,exact:true}).first().click();
   await expect(page.locator('.leaflet-popup')).toContainText(target.name);
   await expect(page.locator('.kt-coordinates')).toHaveText(`${target.lat.toFixed(5)}, ${target.lng.toFixed(5)}`);
   await expect(page.locator('.leaflet-popup a[href*="google.com/maps/dir"]')).toHaveAttribute('href',`https://www.google.com/maps/dir/?api=1&destination=${target.lat},${target.lng}`);
   await page.locator('.leaflet-popup [data-kt-action="trip"]').click();
   await expect(page.locator('#kt-trip-list')).toContainText(target.name);
-  await page.reload({waitUntil:'domcontentloaded'});
+  await page.reload({waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await expect(page.locator('#trip-count')).toHaveText('(1)');
   await page.locator('#trip').click();
   await expect(page.locator('#kt-trip-list')).toContainText(target.name);
@@ -54,8 +52,8 @@ test('basic filters persist and reset without inventing prices or showing unrela
   await page.locator('#filters').click();await page.locator('[name="f-cost"][value="free"]').check();
   await expect(page.locator('#filter-badge')).toBeVisible();
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.fee_status==='free'))).toBe(true);
-  await page.reload({waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.reload({waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await page.locator('#filters').click();await expect(page.locator('[name="f-cost"][value="free"]')).toBeChecked();
   await page.locator('#kt-f-reset').click();await expect(page.locator('#filter-badge')).toBeHidden();
   expect(await page.locator('#f-road,#f-rate').count()).toBe(0);
@@ -79,8 +77,8 @@ test('saved locations and searched cities remain usable after the first online v
   await page.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}));KampTrailTrip.addStop(KampTrailData.getAllCampsites()[0].properties.id);});
   const name=await page.evaluate(()=>KampTrailTrip.getStops()[0].feature.properties.name);
   await page.locator('#kt-trip-close').click();await context.setOffline(true);
-  await page.reload({waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.reload({waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await page.locator('#trip').click();await expect(page.locator('#kt-trip-list')).toContainText(name);
   await page.locator('#kt-trip-close').click();
   await page.locator('#destination').fill('Albany, NY');await page.locator('#search-form button').click();

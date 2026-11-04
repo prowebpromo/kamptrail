@@ -119,7 +119,7 @@ test('after-stay prompt shows only for past dated campsite stops, opens the revi
   await expect(prompts).toHaveCount(0);
   expect(await page.evaluate(()=>Object.keys(JSON.parse(localStorage.getItem('kt_stay_prompts_v1')))))
     .toEqual([`ridb:1|${day(-1)}`]);
-  await page.reload();await scaffold(page);
+  await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await scaffold(page);
   await page.evaluate(()=>{window.KampTrailCommunity={open(){}};});
   await init(page);await page.locator('#trip').click();
   await expect(page.locator('.kt-stay-prompt')).toHaveCount(0);

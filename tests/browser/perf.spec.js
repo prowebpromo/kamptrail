@@ -5,7 +5,7 @@ const national=page=>page.addInitScript(()=>localStorage.setItem('kt_last_positi
 
 test('national view downloads no state listings or search index and shows state totals',async({page})=>{
   const requests=[];page.on('request',r=>requests.push(r.url()));
-  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});
+  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await expect(page.locator('#result-summary')).toContainText('Zoomed out',{timeout:15000});
   await expect.poll(()=>page.locator('.kt-state-bubble').count()).toBeGreaterThan(40);
   await page.waitForTimeout(1500);
@@ -17,10 +17,10 @@ test('national view downloads no state listings or search index and shows state 
 
 test('selecting a state bubble zooms in and loads only nearby states',async({page})=>{
   const requests=[];page.on('request',r=>requests.push(r.url()));
-  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});
+  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await expect.poll(()=>page.locator('.kt-state-bubble').count()).toBeGreaterThan(40);
   await page.locator('.kt-state-bubble[title^="CO:"]').click();
-  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading,null,{timeout:30000});
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading,null,{timeout:30000});
   expect(await page.evaluate(()=>map.getZoom())).toBeGreaterThanOrEqual(7);
   const loaded=[...new Set(requests.map(u=>u.match(/campsites\/([A-Z]{2})_merged/)?.[1]).filter(Boolean))];
   expect(loaded).toContain('CO');expect(loaded.length).toBeLessThanOrEqual(6);
@@ -29,27 +29,26 @@ test('selecting a state bubble zooms in and loads only nearby states',async({pag
 
 test('national search fetches the name index on first search only and opens a campsite',async({page})=>{
   const requests=[];page.on('request',r=>requests.push(r.url()));
-  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});
+  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await expect(page.locator('#result-summary')).toContainText('Zoomed out',{timeout:15000});
   expect(requests.some(u=>u.includes('search-index.json'))).toBe(false);
   await page.locator('#destination').fill('North Fruita Desert');await page.locator('#search-form button').click();
-  await page.getByRole('button',{name:/North Fruita Desert.*Campsite/}).first().click();
   await expect(page.locator('.leaflet-popup')).toContainText('Fruita',{timeout:30000});
   expect(requests.filter(u=>u.includes('search-index.json')).length).toBe(1);
 });
 
 test('a shared link opens from a zoomed-out saved view with the full dataset',async({page})=>{
   await national(page);
-  const id=await (async()=>{await page.goto('/',{waitUntil:'domcontentloaded'});return page.evaluate(async()=>{const d=await (await fetch('data/campsites/search-index.json')).json();return d.sites.find(s=>s.id.startsWith('usfs:')&&s.states.length===1).id;});})();
+  const id=await (async()=>{await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());return page.evaluate(async()=>{const d=await (await fetch('data/campsites/search-index.json')).json();return d.sites.find(s=>s.id.startsWith('usfs:')&&s.states.length===1).id;});})();
   await page.goto(`/#site=${encodeURIComponent(id)}`,{waitUntil:'domcontentloaded'});
   await expect(page.locator('.leaflet-popup')).toBeVisible({timeout:30000});
   await expect(page.locator('.leaflet-popup')).toContainText('US Forest Service');
 });
 
 test('state jump opens at listing zoom and filters apply to the full dataset',async({page})=>{
-  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});
+  await national(page);await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.locator('#state-select').selectOption('TX');
-  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading,null,{timeout:30000});
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading,null,{timeout:30000});
   expect(await page.evaluate(()=>map.getZoom())).toBeGreaterThanOrEqual(7);
   await page.locator('#filters').click();await page.locator('[name="f-cost"][value="free"]').check();
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.fee_status==='free'))).toBe(true);
@@ -59,7 +58,7 @@ test('state jump opens at listing zoom and filters apply to the full dataset',as
 });
 
 test('state bubbles do not overlap at national zoom, and moved bubbles keep a leader line',async({page})=>{
-  await national(page);await page.setViewportSize({width:1280,height:800});await page.goto('/',{waitUntil:'domcontentloaded'});
+  await national(page);await page.setViewportSize({width:1280,height:800});await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await expect.poll(()=>page.locator('.kt-state-bubble').count()).toBeGreaterThan(40);
   for(const zoom of [4,5,6]){
     await page.evaluate(z=>map.setView([40,-80],z),zoom);await page.waitForTimeout(400);
@@ -80,7 +79,7 @@ test('state bubbles do not overlap at national zoom, and moved bubbles keep a le
 test('explicitly focusing a second campsite replaces an already open popup',async({page,context})=>{
  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64')}));
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:40,lng:-105.5,zoom:9})));
- await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>1&&!KampTrailData.getLoadStatus().loading);
+ await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>1&&!KampTrailData.getLoadStatus().loading);
  const sites=await page.evaluate(()=>{const all=KampTrailData.getAllCampsites(),first=all[0],second=all.find(f=>f.properties.name!==first.properties.name);return[first,second].map(f=>({id:f.properties.id,name:f.properties.name}));});
  await page.evaluate(id=>KampTrailData.focusCampsite(id),sites[0].id);await expect(page.locator('.kt-site-popup').getByRole('heading',{level:2})).toHaveText(sites[0].name);
  await page.evaluate(id=>KampTrailData.focusCampsite(id),sites[1].id);await expect(page.locator('.kt-site-popup')).toHaveCount(1);await expect(page.locator('.kt-site-popup').getByRole('heading',{level:2})).toHaveText(sites[1].name);

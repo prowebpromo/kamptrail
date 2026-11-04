@@ -19,7 +19,7 @@
   }
   window.KampTrailMapLoader={version:VERSION,start};
   const explore=document.getElementById('explore');
-  document.addEventListener('click',event=>{const link=event.target.closest('a[href="#explore"],#explore,#about-data');if(link&&!started){const control=event.target.closest('button');if(control){event.preventDefault();event.stopImmediatePropagation();start().then(()=>{if(started)control.click();});}else start();}},true);
+  document.addEventListener('click',event=>{const link=event.target.closest('a[href="#explore"],#explore,#about-data');if(link&&!started){const control=event.target.closest('button');if(control?.id==='install-kamptrail')return;if(control){event.preventDefault();event.stopImmediatePropagation();start().then(()=>{if(started)control.click();});}else start();}},true);
   document.getElementById('search-form')?.addEventListener('submit',event=>{if(!started){event.preventDefault();event.stopImmediatePropagation();start().then(()=>{if(started)document.getElementById('search-form').requestSubmit();});}},true);
   let returning=false;try{returning=!!localStorage.getItem('kt_last_position')||!!localStorage.getItem('kt_trip');}catch{}
   if(returning||location.hash||new URLSearchParams(location.search).get('source')==='pwa'||document.body.classList.contains('kt-workspace'))start();

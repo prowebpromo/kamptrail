@@ -2,6 +2,18 @@
 (function (global) {
   'use strict';
   global.KampTrailI18nFr = {version:'2.46.0', messages:{
+  "View map to choose an area": "Voir la carte pour choisir une zone",
+  "Update ready. Finish or back up your changes, then reload.": "Mise à jour prête. Terminez ou sauvegardez vos modifications avant de recharger.",
+  "A faster start and clearer mobile tools": "Un démarrage plus rapide et des outils mobiles plus clairs",
+  "The map starts when you need it. Optional language files and smaller mobile images reduce the initial download.": "La carte démarre quand vous en avez besoin. Les langues facultatives et les images mobiles plus petites réduisent le téléchargement initial.",
+  "Saved stops can request stronger browser storage and offer GPX backup reminders. Keep an exported backup.": "Les étapes enregistrées peuvent demander un stockage persistant et proposer des rappels de sauvegarde GPX. Gardez une copie exportée.",
+  "Mobile filters and saved stops use full-height panels with persistent controls. Car-route limitations remain visible with route results.": "Les filtres et les étapes enregistrées utilisent des panneaux mobiles pleine hauteur avec des commandes visibles. Les limites des itinéraires automobiles restent affichées avec les résultats.",
+
+  "This BLM record describes the Moab Field Office area, not an individual campsite. Use BLM camping guidance to choose a site and confirm access.": "Ce dossier du BLM décrit la zone du bureau de Moab, pas un emplacement de camping individuel. Consultez les indications de camping du BLM pour choisir un lieu et confirmer l’accès.",
+  "Map area: {state}": "Zone cartographique : {state}",
+  "Device storage is full. Existing saved areas remain. Free space or choose a smaller area.": "Le stockage de l’appareil est plein. Les zones enregistrées sont conservées. Libérez de l’espace ou choisissez une zone plus petite.",
+  "Standard map tiles are unavailable. Choose Topo or Satellite in Layers. Saved stops still work.": "Le fond de carte standard est indisponible. Choisissez Topo ou Satellite dans Couches. Les étapes enregistrées restent utilisables.",
+
   "Full website": "Site complet",
   "Map workspace": "Espace carte",
   "Skip map markers": "Passer les marqueurs de la carte",

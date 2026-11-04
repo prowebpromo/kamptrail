@@ -1,5 +1,17 @@
 /* Optional Spanish UI catalogue. */
 (function(global){'use strict';global.KampTrailI18nEs={version:'2.46.0',messages:{
+  "View map to choose an area": "Ver el mapa para elegir una zona",
+  "Update ready. Finish or back up your changes, then reload.": "Actualización lista. Termina o guarda una copia de tus cambios antes de volver a cargar.",
+  "A faster start and clearer mobile tools": "Un inicio más rápido y herramientas móviles más claras",
+  "The map starts when you need it. Optional language files and smaller mobile images reduce the initial download.": "El mapa se inicia cuando lo necesitas. Los idiomas opcionales y las imágenes móviles más pequeñas reducen la descarga inicial.",
+  "Saved stops can request stronger browser storage and offer GPX backup reminders. Keep an exported backup.": "Las paradas guardadas pueden solicitar almacenamiento persistente y ofrecer recordatorios de copia GPX. Conserva una copia exportada.",
+  "Mobile filters and saved stops use full-height panels with persistent controls. Car-route limitations remain visible with route results.": "Los filtros y las paradas guardadas usan paneles móviles de altura completa con controles visibles. Las limitaciones de rutas para automóviles se muestran junto a los resultados.",
+
+  "This BLM record describes the Moab Field Office area, not an individual campsite. Use BLM camping guidance to choose a site and confirm access.": "Este registro de BLM describe el área de la Oficina de Campo de Moab, no un campamento individual. Usa las guías de acampada de BLM para elegir un lugar y confirmar el acceso.",
+  "Map area: {state}": "Zona del mapa: {state}",
+  "Device storage is full. Existing saved areas remain. Free space or choose a smaller area.": "El almacenamiento del dispositivo está lleno. Se conservan las zonas guardadas. Libera espacio o elige una zona más pequeña.",
+  "Standard map tiles are unavailable. Choose Topo or Satellite in Layers. Saved stops still work.": "El mapa estándar no está disponible. Elige Topo o Satélite en Capas. Las paradas guardadas siguen funcionando.",
+
   "Full website": "Sitio web completo",
   "Map workspace": "Mapa de trabajo",
   "Skip map markers": "Saltar los marcadores del mapa",

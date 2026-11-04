@@ -14,7 +14,7 @@ async function fixture(page,context,{zoom=11,mobile=false,corrupt=false}={}){
  await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:1,facilities:{}}));
  await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[campsite]}));
  await page.addInitScript(z=>{if(!localStorage.getItem('kt_last_position'))localStorage.setItem('kt_last_position',JSON.stringify({lat:40.75,lng:-111.88,zoom:z}));if(localStorage.getItem('test_services_offline')==='1')Object.defineProperty(navigator,'onLine',{get:()=>false,configurable:true});},zoom);
- await page.goto('/');await page.waitForFunction(()=>window.KampTrailLayers&&window.KampTrailServices&&window.map);
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailLayers&&window.KampTrailServices&&window.map);
  return{...services,errors};
 }
 const ids=page=>page.evaluate(()=>KampTrailLayers.serviceIds().sort());
@@ -34,13 +34,13 @@ test('map services are zoom gated and share categories/access/identity with near
  await picker.hover();await expect(picker).toHaveClass(/leaflet-control-layers-expanded/);
  await expect.poll(async()=>{const box=await picker.boundingBox();return !!box&&Math.abs(box.y-closed.y)<1&&Math.abs(box.x+box.width-closed.x-closed.width)<1;}).toBe(true);await page.getByLabel('Satellite',{exact:true}).check();await expect(page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]')).toHaveCount(1);
  await page.getByLabel('Services (7 categories)',{exact:true}).uncheck();await expect(page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]')).toHaveCount(0);await page.locator('.leaflet-control-layers').hover();await expect(page.getByLabel('Services (7 categories)',{exact:true})).toBeVisible();await page.getByLabel('Services (7 categories)',{exact:true}).check();await expect(page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]')).toHaveCount(1);
- await page.reload();await page.waitForFunction(()=>window.KampTrailServices);expect(await page.evaluate(()=>KampTrailServices.getCategories())).toEqual(['fuel']);expect(errors).toEqual([]);
+ await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailServices);expect(await page.evaluate(()=>KampTrailServices.getCategories())).toEqual(['fuel']);expect(errors).toEqual([]);
 });
 test('saved dated services survive offline reload and missing areas remain unknown',async({page,context})=>{
  const {errors}=await fixture(page,context);await page.evaluate(()=>KampTrailLayers.showServices());await expect.poll(()=>ids(page)).toEqual(['osm:node:1','osm:node:3']);
  await page.evaluate(async()=>{await KampTrailServices._cacheSettled();localStorage.setItem('test_services_offline','1');});
  // Reload the app shell while the service client sees offline; block all POI requests as well.
- await page.route('**/data/services/**',r=>r.abort('internetdisconnected'));await page.reload();await page.waitForFunction(()=>window.KampTrailServices);await page.evaluate(()=>KampTrailLayers.showServices());
+ await page.route('**/data/services/**',r=>r.abort('internetdisconnected'));await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailServices);await page.evaluate(()=>KampTrailLayers.showServices());
  await expect(page.locator('.kt-services-status')).toContainText('Saved dated evidence');await expect.poll(()=>ids(page)).toEqual(['osm:node:1','osm:node:3']);
  await context.setOffline(true);await page.evaluate(()=>map.setView([38.5,-109.5],11));await expect(page.locator('.kt-services-status')).toContainText('missing areas are unknown');await expect.poll(()=>ids(page)).toEqual([]);await context.setOffline(false);expect(errors).toEqual([]);
 });
@@ -58,7 +58,7 @@ test('corrupt shard is visibly partial and retry succeeds; nearby evidence and m
  const picker=page.locator('.leaflet-control-layers');await expect(picker).toHaveClass(/leaflet-control-layers-expanded/);await expect(control).toBeHidden();
  const servicesLayer=page.getByLabel('Services (7 categories)',{exact:true});await expect(servicesLayer).toBeVisible();await expect(servicesLayer).toBeChecked();
  await servicesLayer.uncheck();await expect(servicesLayer).not.toBeChecked();await expect(toast).toBeVisible();await page.locator('#map').click({position:{x:2,y:40}});
- await page.waitForFunction(()=>KampTrailData.getCampsiteById('camp:pilot'));await page.evaluate(()=>KampTrailData.focusCampsite('camp:pilot'));
+ await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('camp:pilot'));await page.evaluate(()=>KampTrailData.focusCampsite('camp:pilot'));
  const popup=page.locator('.kt-site-popup');await popup.getByRole('button',{name:'Nearest RV services',exact:true}).click();
  await expect(popup.getByRole('heading',{name:'Services within 30 miles (straight-line)',level:3})).toBeVisible();await expect(popup.locator('[data-service-id="osm:node:1"]')).toContainText('customers');expect((await new AxeBuilder({page}).include('.kt-site-popup').analyze()).violations).toEqual([]);
  await page.evaluate(()=>KampTrailServices.setCategories(['laundry']));await expect(popup.locator('[data-service-id="osm:node:3"]')).toContainText('Pilot laundry');await expect(popup.locator('[data-service-id="osm:node:1"]')).toHaveCount(0);expect(errors).toEqual([]);

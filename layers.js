@@ -12,6 +12,7 @@
   function basemaps() {
     let errors = 0;
     const osm = L.tileLayer((window.KampTrailProviders?.tiles?.standard || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'), {maxZoom: 19, attribution: (window.KampTrailProviders?.attribution?.standard || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>')});
+    let lastTileNotice=0;osm.on('tileerror',()=>{if(Date.now()-lastTileNotice>15000){lastTileNotice=Date.now();window.showToast?.(t('Standard map tiles are unavailable. Choose Topo or Satellite in Layers. Saved stops still work.'),'error');}});
     osm.on('tileerror', () => { if (++errors === 3 && navigator.onLine) window.showToast?.(t("Map imagery is temporarily unavailable. Campsite search, lists, and saved stops still work."), 'error'); });
     return {
       Standard: osm,

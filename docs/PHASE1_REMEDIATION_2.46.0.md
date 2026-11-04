@@ -27,7 +27,7 @@ No accounts, cloud sync, mass location pages, paid services, legal-copy changes,
 | H-2 | Reviewed deploy htaccess adds short initial HSTS, nosniff, strict-origin-when-cross-origin referrer policy, same-origin geolocation, HTML/manifest/worker revalidation and a report-only CSP draft. Hosting behavior is unverified until staged on LiteSpeed. Existing API access protection retained. |
 | H-3 | WebApplication JSON-LD and explicit Twitter title/description/image. Canonical source URLs point to kamptrail.com. |
 | H-4 | Shared provider configuration for map URLs/attribution and routing URL. Existing server already enforces a global 1100 ms upstream interval, returns readable 429 responses, and caches successful routes on the device. OSM tiles are not offline-downloaded; offline saving uses USGS Topo only. See the provider note. |
-| D-1 | Exact-id triage and counts in docs/remediation/data-triage.json. The Moab BLM record represents a broad jurisdiction. Its withdrawal is proposed for independent review, not silently applied as a name-based exclusion. Up the Creek gains an explicitly labeled catalogue-area fallback in the UI. Distance ordering is now stated. No data import or classification changes are included. |
+| D-1 | Exact-id triage and counts in docs/remediation/data-triage.json. The Moab BLM record represents a broad jurisdiction; its result card and popup now state that it is not an individual campsite. Its withdrawal is proposed for independent review, not silently applied as a name-based exclusion. Up the Creek gains an explicitly labeled catalogue-area fallback in the UI. Distance ordering is now stated. No data import or classification changes are included. |
 
 ## Provider and storage findings
 
@@ -48,3 +48,5 @@ The exact BLM RecAreaID 16330 was read from its agency ArcGIS service without ru
 ## Verification limits
 
 Real iPhone/Android installs, airplane-mode Topo download timing, VoiceOver/TalkBack and voice-control checks require physical devices and have not been represented as passes. No source data was refreshed to obtain evidence. Staging/review is required before this candidate changes production.
+
+Initial read-only triage: 33,370 canonical index listings, zero without catalogue regions. 33,268 canonical ids matched an own retained record, of which 23,912 lack both state and addr:state fields. These are source-field gaps, not 23,912 geographically unassigned listings. Twenty names match the office/headquarters/ranger-station candidate pattern; no name-based exclusion was applied.

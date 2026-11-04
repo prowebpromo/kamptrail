@@ -3,6 +3,7 @@ const VERSION = 'kt-v80';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
+const LOCALE_CACHE = `${PREFIX}locales-v1`;
 const DATA_CACHE = `${PREFIX}data-v1`;
 const TILE_CACHE = `${PREFIX}tiles-v1`;
 const MVUM_CACHE = `${PREFIX}mvum-v1`;
@@ -25,7 +26,7 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   const keys=await caches.keys();
-  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
+  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==LOCALE_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
   await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{
@@ -50,12 +51,20 @@ self.addEventListener('fetch',event=>{
   // Saved offline map areas: USGS Topo tiles the visitor chose to save. Cache first, network otherwise. Nothing is added here automatically.
   if(request.method==='GET' && request.url.startsWith(TOPO_TILES)) {event.respondWith(savedTile(request));return;}
   if(request.method!=='GET' || url.origin!==self.location.origin || !url.href.startsWith(self.registration.scope))return;
+  if(/\/locale-(?:es|fr)\.js$/.test(url.pathname)){event.respondWith(optionalLocale(request));return;}
   if(request.mode==='navigate') {event.respondWith(navigation(request));return;}
   if(url.pathname.endsWith('.geojson') || url.pathname.endsWith('/data/campsites/index.json') || url.pathname.endsWith('/data/campsites/search-index.json') || url.pathname.endsWith('/data/campsites/identity-hosts.json') || url.pathname.endsWith('/data/campsites/ridb-sites.json') || url.pathname.endsWith('/data/campsites/agency/index.json') || url.pathname.endsWith('/data/services/services.json') || url.pathname.endsWith('/data/health.json')) {
     event.respondWith(visitedData(request,event));return;
   }
   if(/\.(js|css|png|svg|webp|jpg|jpeg|ico|json)$/.test(url.pathname))event.respondWith(asset(request));
 });
+async function optionalLocale(request){
+  const cache=await caches.open(LOCALE_CACHE),saved=await cache.match(request);
+  if(saved)return saved;
+  const response=await fetch(request);
+  if(response.ok){await cache.put(request,response.clone());const keys=await cache.keys();for(const key of keys.slice(0,Math.max(0,keys.length-4)))await cache.delete(key);}
+  return response;
+}
 async function savedTile(request) {
   try { const cache=await caches.open(TILE_CACHE),hit=await cache.match(request.url); if(hit)return hit; } catch {}
   try { return await fetch(request); } catch { return new Response('',{status:504,statusText:'Map tile not saved offline'}); }

@@ -124,6 +124,6 @@ test('French uses its own catalogue, keeps every Spanish key and placeholder, an
 });
 test('French is offered, cached for offline use and packaged',()=>{
   const read=f=>fs.readFileSync(path.join(__dirname,'..',f),'utf8');
-  assert.match(read('index.html'),/<option value="fr" lang="fr">Français<\/option>/);assert.doesNotMatch(read('service-worker.js'),/locale-fr/,'not precached, so other visitors never fetch it');assert.match(read('scripts/build-release.js'),/'locale-fr\.js'/);
+  assert.match(read('index.html'),/<option value="fr" lang="fr">Français<\/option>/);assert.doesNotMatch(read('service-worker.js').match(/const SHELL = \[([\s\S]*?)\];/)[1],/locale-(?:es|fr)/,'optional catalogues are not precached');assert.match(read('scripts/build-release.js'),/'locale-fr\.js'/);
   assert.doesNotMatch(read('index.html'),/src="locale-fr\.js/,'English and Spanish visitors do not download the French catalogue');
 });

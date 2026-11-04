@@ -473,6 +473,7 @@
     const layout=popupLayout();
     return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
+      ${p.id==='blm-area:16330'?'<p class="kt-record-scope">'+esc(t("This BLM record describes the Moab Field Office area, not an individual campsite. Use BLM camping guidance to choose a site and confirm access."))+'</p>':''}
       ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
       <div><strong>${t("Cost:")}</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||t("Source"))}${p.fee_checked?t(", imported {0}", {"0":(esc(p.fee_checked))}):''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
@@ -591,7 +592,7 @@
     for(const it of [...g.items].sort((a,b)=>b.n-a.n)){
       const size=Math.round(it.base*scale),resized=size!==it.size;it.size=size;
       const p=state.map.latLngToLayerPoint(it.ll);
-      const free=(x,y)=>placed.every(q=>Math.hypot(q.x-x,q.y-y)>=(q.r+it.size/2+3));
+      const free=(x,y)=>placed.every(q=>Math.hypot(q.x-x,q.y-y)>=(q.r+Math.max(44,it.size)/2+3));
       let dx=0,dy=0;
       if(!free(p.x,p.y)){
         let found=false;
@@ -600,7 +601,7 @@
           for(const a of BUBBLE_DIRECTIONS){const x=p.x+Math.cos(a)*dist,y=p.y+Math.sin(a)*dist;if(free(x,y)){dx=Math.round(x-p.x);dy=Math.round(y-p.y);found=true;break;}}
         }
       }
-      placed.push({x:p.x+dx,y:p.y+dy,r:it.size/2});
+      placed.push({x:p.x+dx,y:p.y+dy,r:Math.max(44,it.size)/2});
       if(resized||dx!==it.dx||dy!==it.dy){it.dx=dx;it.dy=dy;it.marker.setIcon(bubbleIcon(it.size,it.n,dx,dy));const el=it.marker.getElement?.();if(el)el.setAttribute('aria-label',t('{state}: {short}, about {count} source listings. Select to zoom in.',{state:window.KampTrailStateNames?.[it.code]||it.code,short:short(it.n),count:it.n.toLocaleString(window.KampTrailI18n?.locale()||'en-US')}));}
       if(dx||dy){const end=state.map.layerPointToLatLng([p.x+dx,p.y+dy]);if(it.line)it.line.setLatLngs([it.ll,end]);else it.line=L.polyline([it.ll,end],{className:'kt-state-leader',interactive:false,weight:1.5,color:'#24613f',opacity:.8});if(!g.hasLayer(it.line))g.addLayer(it.line);}
       else if(it.line&&g.hasLayer(it.line))g.removeLayer(it.line);

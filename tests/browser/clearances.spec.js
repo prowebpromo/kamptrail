@@ -34,7 +34,7 @@ async function setup(page,context,{rig=ft(13,6),zoom=15,tamper=false,reports=[]}
   await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:1,facilities:{}}));
   // Seed once per tab, so a reload keeps the profile the test changed.
   await page.addInitScript(({zoom,p})=>{if(sessionStorage.getItem('kt-test-seeded'))return;sessionStorage.setItem('kt-test-seeded','1');localStorage.setItem('kt_last_position',JSON.stringify({lat:40.001,lng:-104.999,zoom}));if(p)localStorage.setItem('kt_rig_profile_v1',JSON.stringify(p));},{zoom,p:rig?profile(rig):null});
-  await page.goto('/');await page.waitForFunction(()=>window.KampTrailClearances&&window.map);return {calls,errors};
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailClearances&&window.map);return {calls,errors};
 }
 async function show(page){
   await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');
@@ -101,10 +101,10 @@ test('rig comparison below and above, and without a saved rig height',async({pag
   let popup=await openCandidate(page,'osm:way:111');await expect(popup.locator('.kt-clearance-verdict')).toContainText(`Conflict: tagged clearance 13'6" is lower than your rig height 14'0" by 6"`);
   await page.getByRole('button',{name:'Close popup',exact:true}).click();
   await page.evaluate(()=>{const p=JSON.parse(localStorage.getItem('kt_rig_profile_v1'));p.rig.heightMm=Math.round(13*12*25.4);localStorage.setItem('kt_rig_profile_v1',JSON.stringify(p));});
-  await page.reload();await page.waitForFunction(()=>window.KampTrailClearances);await show(page);
+  await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailClearances);await show(page);
   popup=await openCandidate(page,'osm:way:111');await expect(popup.locator('.kt-clearance-verdict')).toContainText(`is higher than your rig height 13'0" by 6"`);await expect(popup).toContainText('does not establish passage');
   await page.getByRole('button',{name:'Close popup',exact:true}).click();
-  await page.evaluate(()=>localStorage.removeItem('kt_rig_profile_v1'));await page.reload();await page.waitForFunction(()=>window.KampTrailClearances);await show(page);
+  await page.evaluate(()=>localStorage.removeItem('kt_rig_profile_v1'));await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailClearances);await show(page);
   popup=await openCandidate(page,'osm:way:111');await expect(popup.locator('.kt-clearance-verdict')).toContainText('Save a travel height in your rig profile to compare');
 });
 test('below zoom 10 nothing is requested; integrity failure shows nothing and says the area is unknown',async({page,context})=>{
@@ -169,12 +169,12 @@ test.describe('RI offline copy with the service worker in control',()=>{
       test.setTimeout(120000);await page.setViewportSize(viewport);const errors=[];page.on('pageerror',e=>errors.push(e.message));
       await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
       await page.addInitScript(()=>{if(sessionStorage.getItem('kt-ri-seeded'))return;sessionStorage.setItem('kt-ri-seeded','1');localStorage.setItem('kt_last_position',JSON.stringify({lat:41.824,lng:-71.4128,zoom:13}));});
-      await page.goto('/');await page.waitForFunction(()=>window.KampTrailClearances&&window.map);
+      await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailClearances&&window.map);
       await page.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}));});
       await show(page);const control=page.locator('.kt-clearance-control');
       await expect(control).toContainText(/Rhode Island: [1-9]\d* pilot records with raw tags only \(extract 2026-10-28\); not compared/);await expect(control).not.toContainText('Saved snapshot');
       await expect.poll(()=>page.evaluate(async()=>{const k=(await caches.keys()).find(n=>n.endsWith(':clearance-v1'));return !!k&&!!(await (await caches.open(k)).match(new URL('data/clearances/RI.json',location.href).href));})).toBe(true);
-      await context.setOffline(true);await page.reload();await page.waitForFunction(()=>window.KampTrailClearances&&window.map);
+      await context.setOffline(true);await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailClearances&&window.map);
       expect(await page.evaluate(()=>!!navigator.serviceWorker.controller&&!navigator.onLine)).toBe(true);
       await show(page);
       await expect(control).toContainText(/Saved snapshot\. Rhode Island: [1-9]\d* pilot records with raw tags only \(extract 2026-10-28\); not compared/);
@@ -184,7 +184,7 @@ test.describe('RI offline copy with the service worker in control',()=>{
       await page.getByRole('button',{name:'Close popup',exact:true}).click();
       // A tampered saved copy fails validation on read and RI becomes unknown.
       await page.evaluate(async()=>{const k=(await caches.keys()).find(n=>n.endsWith(':clearance-v1')),c=await caches.open(k),u=new URL('data/clearances/RI.json',location.href).href,d=await (await c.match(u)).json();d.source.sha256='bad';await c.put(u,new Response(JSON.stringify(d),{headers:{'content-type':'application/json'}}));});
-      await page.reload();await page.waitForFunction(()=>window.KampTrailClearances&&window.map);await show(page);
+      await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailClearances&&window.map);await show(page);
       await expect(control).toContainText('Rhode Island pilot data is missing or failed validation; Rhode Island is unknown.');
       await context.setOffline(false);expect(errors).toEqual([]);
     });

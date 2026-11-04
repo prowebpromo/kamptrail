@@ -10,7 +10,7 @@ async function setup(page,context,{zoom=8,mode='normal'}={}){
  return r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,kind,partial:mode==='partial',retrieved_at:new Date(mode==='stale'?now-21*60000:now).toISOString(),source:{name:'Example',url:'https://www.weather.gov/',...(kind==='smoke'?{observation_date:'2026-10-28'}:{})},data:{type:'FeatureCollection',features:mode==='empty'?[]:[{type:'Feature',geometry:kind==='alerts'?null:polygon,properties}]}})});
  });
  await page.addInitScript(z=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:z})),zoom);
- await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.KampTrailEnvironment&&window.KampTrailData&&!KampTrailData.getLoadStatus().loading);return{requested,errors};
+ await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailEnvironment&&window.KampTrailData&&!KampTrailData.getLoadStatus().loading);return{requested,errors};
 }
 async function enable(page,name){const checkbox=page.getByRole('checkbox',{name,exact:true});if(!await checkbox.isVisible()){await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');await page.waitForTimeout(50);}await checkbox.press('Space');await expect(checkbox).toBeChecked();}
 test('environment layers are opt-in and national views fetch no hazard geometries',async({page,context})=>{const s=await setup(page,context,{zoom:4});expect(s.requested).toEqual([]);await enable(page,'Fire perimeters (NIFC)');await expect(page.locator('[data-environment=fire]')).toContainText('Zoom to level 7');expect(s.requested).toEqual([]);expect(s.errors).toEqual([]);});

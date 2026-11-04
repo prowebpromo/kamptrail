@@ -25,7 +25,7 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
     });
     test('testing invitation, founder, FAQ and release history remain usable', async ({page,context}) => {
       await context.route(/^https:\/\//, route => route.abort());
-      await page.goto('/', {waitUntil:'domcontentloaded'});
+      await page.goto('/', {waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
       await expect(page.locator('.kt-beta-label')).toContainText('Public beta');
       await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
       await expect(page).toHaveURL(/#beta-testing$/);
@@ -138,7 +138,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
 test.describe('touch page scrolling',()=>{
   test.use({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
   test('one-finger gestures scroll the page while two-finger map gestures stay enabled',async({page})=>{
-    await page.goto('/',{waitUntil:'domcontentloaded'});
+    await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
     await page.evaluate(()=>KampTrailMapLoader.start());
     await expect.poll(()=>page.evaluate(()=>typeof window.map?.getZoom==='function')).toBe(true);
     expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
@@ -157,7 +157,7 @@ for(const viewport of [{width:1920,height:1080},{width:1000,height:520},{width:6
   test.describe(`page layout ${viewport.width}x${viewport.height}`,()=>{
     test.use({viewport,serviceWorkers:'block'});
     test('wide and short windows retain a bounded map and normal document scrolling',async({page})=>{
-      await page.goto('/',{waitUntil:'domcontentloaded'});
+      await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
       expect((await page.locator('#app').boundingBox()).width).toBeLessThanOrEqual(1120);
       const height=(await page.locator('#map').boundingBox()).height;
       expect(height).toBeGreaterThanOrEqual(560);expect(height).toBeLessThanOrEqual(680);
@@ -172,7 +172,7 @@ for(const viewport of [{width:1920,height:1080},{width:1000,height:520},{width:6
 
 test('the campsite list keeps independent scrolling within the scrolling page',async({page})=>{
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75,zoom:8})));
-  await page.goto('/',{waitUntil:'domcontentloaded'});
+  await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   const results=page.locator('#results');
   await expect.poll(()=>results.evaluate(e=>e.scrollHeight>e.clientHeight)).toBe(true);

@@ -6,7 +6,7 @@ const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR
 test('Spanish map tools, filters, popups and saved stops survive explicit language changes',async({page,context})=>{
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   await page.addInitScript(()=>{if(!localStorage.getItem('kt_language'))localStorage.setItem('kt_language','es');if(!localStorage.getItem('kt_last_position'))localStorage.setItem('kt_last_position',JSON.stringify({lat:42.65,lng:-73.75,zoom:8}));});
-  await page.goto('/');await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await expect(page.locator('html')).toHaveAttribute('lang','es');await expect(page.locator('#kt-language')).toHaveValue('es');await expect(page.locator('.leaflet-control-zoom-in')).toHaveAccessibleName('Acercar mapa');await expect(page.locator('#near')).toHaveAccessibleName('Cerca de mí');await expect(page.locator('#destination')).toHaveAttribute('placeholder','Ciudad, lugar de acampada o latitud, longitud');
   expect(await page.evaluate(()=>KampTrailLayers.getBase())).toBe('Standard');await page.evaluate(()=>KampTrailLayers.showLand());expect(await page.evaluate(()=>KampTrailLayers.isOn('Public land (BLM, USFS, NPS)'))).toBe(true);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_layers_v1')).overlays['Public land (BLM, USFS, NPS)'])).toBe(true);
   const name=await page.evaluate(()=>{const site=KampTrailData.getAllCampsites()[0];KampTrailData.focusCampsite(site.properties.id);return site.properties.name;});
@@ -41,7 +41,7 @@ test('Spanish seasonal/review fixture preserves canonical scores, signal payload
   expect(await d.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);expect((await new AxeBuilder({page}).include('#kt-community').analyze()).violations).toEqual([]);await d.getByRole('button',{name:'Enviar a revisión',exact:true}).click();await expect.poll(()=>observations).toEqual({signals:[{carrier:'att',signal:'weak',environment:'unspecified'}],scores:{quietness:4}});await expect(d).toContainText('Reseña recibida');
 });
 test('Spanish current rig and single camping-care checklist keep names and canonical measurements',async({page,context})=>{
-  await context.route(/^https:\/\//,r=>r.abort());await page.addInitScript(()=>localStorage.setItem('kt_language','es'));await page.goto('/');
+  await context.route(/^https:\/\//,r=>r.abort());await page.addInitScript(()=>localStorage.setItem('kt_language','es'));await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.locator('#rig-profile').click();const rig=page.locator('#kt-rig-dialog');await expect(rig).toContainText('Perfil del vehículo');await rig.locator('#kt-rig-name').fill('Original rig words');await rig.locator('#kt-rig-heightMm').fill('10');await rig.getByRole('button',{name:'Guardar perfil',exact:true}).click();
   const profile=await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_rig_profile_v1')));expect(profile.name).toBe('Original rig words');expect(profile.rig.heightMm).toBe(3048);expect(profile.displayUnits.length).toBe('ft');await rig.locator('#kt-rig-close').click();
   await page.locator('#about-data').click();const care=page.locator('#kt-camping-care');await care.locator('summary').click();await expect(care).toContainText('moja y remueve las brasas');await expect(care.locator('time')).toHaveAttribute('datetime','2026-10-30');expect(await page.locator('#kt-camping-care').count()).toBe(1);await expect(page.locator('#land-guidance')).toHaveCount(0);
@@ -50,7 +50,7 @@ test('French loads its separate catalogue, keeps place names, and falls back to 
   await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));
   await page.addInitScript(()=>{if(!localStorage.getItem('kt_language'))localStorage.setItem('kt_language','fr');localStorage.setItem('kt_last_position',JSON.stringify({lat:42.65,lng:-73.75,zoom:8}));});
   const french=page.waitForRequest(r=>r.url().includes('locale-fr.js?v='));
-  await page.goto('/');await french;await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await french;await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await expect(page.locator('html')).toHaveAttribute('lang','fr');await expect(page.locator('#kt-language')).toHaveValue('fr');
   await expect(page.locator('.leaflet-control-zoom-in')).toHaveAccessibleName('Zoom avant');await expect(page.locator('#kt-language-scope')).toBeVisible();await expect(page.locator('#kt-language-scope')).toContainText('Interface en français');
   const name=await page.evaluate(()=>{const site=KampTrailData.getAllCampsites()[0];KampTrailData.focusCampsite(site.properties.id);return site.properties.name;});
@@ -59,6 +59,6 @@ test('French loads its separate catalogue, keeps place names, and falls back to 
   await page.locator('#kt-language').selectOption('en');await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.locator('#kt-language-scope')).toBeHidden();
   const english=await page.context().newPage();const loaded=[];english.on('request',r=>{if(r.url().includes('locale-fr.js'))loaded.push(r.url());});
   await english.goto('/');await english.waitForFunction(()=>window.KampTrailI18n);expect(loaded).toEqual([]);await english.close();
-  await page.route('**/locale-fr.js*',r=>r.fulfill({status:404,body:'missing'}));await page.evaluate(()=>localStorage.setItem('kt_language','fr'));await page.reload();
+  await page.route('**/locale-fr.js*',r=>r.fulfill({status:404,body:'missing'}));await page.evaluate(()=>localStorage.setItem('kt_language','fr'));await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailI18n);await expect(page.locator('#kt-language-help')).toContainText('This language is not saved');await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.locator('.leaflet-control-zoom-in')).toHaveAccessibleName('Zoom in');
 });

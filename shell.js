@@ -25,6 +25,11 @@
     const hadController = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (refreshing) return;
+      const editing=[...document.querySelectorAll('dialog[open] input,dialog[open] textarea,[role="dialog"]:not([hidden]) input,[role="dialog"]:not([hidden]) textarea')].some(input=>!['checkbox','radio','hidden','file'].includes(input.type)&&input.value!==input.defaultValue);
+      if(hadController&&editing&&!window.ktReloadForUpdate){
+        showToast(t('Update ready. Finish or back up your changes, then reload.'),'info',0);
+        const reload=document.createElement('button');reload.textContent=t('Reload update');reload.onclick=()=>{window.ktReloadForUpdate=true;location.reload();};document.getElementById('toast').append(reload);return;
+      }
       // First install controls this page without a reload. Reload only on request.
       if (hadController || window.ktReloadForUpdate) { refreshing = true; location.reload(); }
     });
