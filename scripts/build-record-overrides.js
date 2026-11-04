@@ -14,6 +14,6 @@ function validate(data){
     if(!['source_verified','discovery_withdrawal_requires_independent_review'].includes(r.review_status))throw Error('Missing review state');
   }return data;
 }
-function render(data){return "/* Generated from data/record-overrides.json. Do not edit this copy. */\n(function(g){const data="+JSON.stringify(validate(data)).replaceAll('<','\\u003c')+";g.KampTrailRecordOverrides=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;})(typeof window!=='undefined'?window:globalThis);\n";}
+function render(data){const version=require('../package.json').version;return "/* Generated from data/record-overrides.json. Do not edit this copy. */\n(function(g){const VERSION = '"+version+"';g.KampTrailRecordOverridesVersion=VERSION;const data="+JSON.stringify(validate(data)).replaceAll('<','\\u003c')+";g.KampTrailRecordOverrides=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;})(typeof window!=='undefined'?window:globalThis);\n";}
 function build(){const out=render(JSON.parse(fs.readFileSync(path.join(root,'data/record-overrides.json'),'utf8')));fs.writeFileSync(path.join(root,'record-overrides.js'),out);return out;}
 if(require.main===module)build();module.exports={validate,render,build};
