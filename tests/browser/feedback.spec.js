@@ -174,6 +174,7 @@ test('the campsite list keeps independent scrolling within the scrolling page',a
   await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   const results=page.locator('#results');
   await expect.poll(()=>results.evaluate(e=>e.scrollHeight>e.clientHeight)).toBe(true);
+  await results.scrollIntoViewIfNeeded();
   const before=await page.evaluate(()=>scrollY),box=await results.boundingBox();
   await page.mouse.move(box.x+box.width/2,box.y+180);await page.mouse.wheel(0,250);
   await expect.poll(()=>results.evaluate(e=>e.scrollTop)).toBeGreaterThan(0);
