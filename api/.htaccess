@@ -1,0 +1,7 @@
+Options -Indexes
+<IfModule mod_php.c>
+php_flag display_errors off
+</IfModule>
+<FilesMatch "\.(sql|md|json|lock|dist)$">
+Require all denied
+</FilesMatch>

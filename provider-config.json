@@ -1,0 +1,14 @@
+{
+  "version": "2.46.0",
+  "tiles": {
+    "standard": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "topo": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+    "satellite": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
+  },
+  "attribution": {
+    "standard": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap contributors</a>",
+    "topo": "USGS The National Map",
+    "satellite": "USGS The National Map: orthoimagery"
+  },
+  "routing": "https://routing.openstreetmap.de/routed-car/route/v1/driving/"
+}

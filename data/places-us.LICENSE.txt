@@ -1,0 +1,33 @@
+US city lookup for KampTrail
+
+Attribution: GeoNames, https://www.geonames.org/, CC BY 4.0.
+License: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+
+Source download:
+https://download.geonames.org/export/dump/cities5000.zip
+Source format and terms:
+https://download.geonames.org/export/dump/readme.txt
+https://www.geonames.org/about.html
+Retrieved: October 27, 2026 (America/New_York)
+Source ZIP SHA-256: 53c265f85cb3289d435a1ab089df4673343f28839088bcc736d7685fb810129d
+
+This is a modified extract containing only records whose country code is US.
+It retains GeoNames ID, original primary place name, USPS state abbreviation,
+WGS84 latitude/longitude and source population. Alternate names are limited
+to ASCII strings for a compact English-language search index. Exact primary
+name duplicates are removed from aliases. Records are sorted by descending
+population, then state/name/ID. No coordinates or population values were
+invented. The source population is for search ranking, not a current census
+claim. No population field is displayed in the interface.
+
+The cities5000 source generally includes cities with population over 5,000
+and first-order administrative seats. It is not a complete list of every
+US community, neighborhood, address, campground or postal code. An absent
+place does not mean it does not exist. This extract contains 7,557 places
+across all 50 US states and the District of Columbia. Territories are not
+included because their GeoNames country codes differ from US.
+
+GeoNames provides its data as is, without warranty of accuracy, timeliness
+or completeness. See the linked source terms for details. This file and the
+JSON data attribution must accompany redistribution of this extract.
