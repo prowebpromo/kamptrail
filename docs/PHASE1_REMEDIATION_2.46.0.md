@@ -50,3 +50,9 @@ The exact BLM RecAreaID 16330 was read from its agency ArcGIS service without ru
 Real iPhone/Android installs, airplane-mode Topo download timing, VoiceOver/TalkBack and voice-control checks require physical devices and have not been represented as passes. No source data was refreshed to obtain evidence. Staging/review is required before this candidate changes production.
 
 Initial read-only triage: 33,370 canonical index listings, zero without catalogue regions. 33,268 canonical ids matched an own retained record, of which 23,912 lack both state and addr:state fields. These are source-field gaps, not 23,912 geographically unassigned listings. Twenty names match the office/headquarters/ranger-station candidate pattern; no name-based exclusion was applied.
+
+## Additional verified details
+
+The desktop manifest screenshot is an actual capture of the candidate map workspace. Responsive map-preview imagery uses a 45,882-byte smaller variant. The worker retains separately versioned optional language responses, including a selection made before first worker control. Automatic update reloading is deferred while visible dialog inputs contain edits; the visitor gets an explicit reload action. Existing version handshakes remain in force.
+
+A Hostinger staging connection or configured preview address has not been found in this session. Production publication is held for the revised SOW's staging/review gate. Local packaged-site checks do not establish that LiteSpeed has accepted the proposed htaccess headers, and physical-device requirements remain open.

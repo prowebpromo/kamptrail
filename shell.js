@@ -25,7 +25,7 @@
     const hadController = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (refreshing) return;
-      const editing=[...document.querySelectorAll('dialog[open] input,dialog[open] textarea,[role="dialog"]:not([hidden]) input,[role="dialog"]:not([hidden]) textarea')].some(input=>!['checkbox','radio','hidden','file'].includes(input.type)&&input.value!==input.defaultValue);
+      const editing=[...document.querySelectorAll('dialog[open] input,dialog[open] textarea,[role="dialog"]:not([hidden]) input,[role="dialog"]:not([hidden]) textarea')].some(input=>input.getClientRects().length>0&&!['checkbox','radio','hidden','file'].includes(input.type)&&input.value!==input.defaultValue);
       if(hadController&&editing&&!window.ktReloadForUpdate){
         showToast(t('Update ready. Finish or back up your changes, then reload.'),'info',0);
         const reload=document.createElement('button');reload.textContent=t('Reload update');reload.onclick=()=>{window.ktReloadForUpdate=true;location.reload();};document.getElementById('toast').append(reload);return;
@@ -54,4 +54,5 @@
   document.body.classList.toggle('kt-workspace',pwa);
   const view=document.getElementById('kt-full-site');
   if(view){view.hidden=!pwa;view.onclick=()=>{document.body.classList.toggle('kt-workspace');view.textContent=t(document.body.classList.contains('kt-workspace')?'Full website':'Map workspace');};}
+  document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#"]');if(!link||!document.body.classList.contains('kt-workspace'))return;const target=document.getElementById(link.getAttribute('href').slice(1));if(target?.classList.contains('kt-home-section')){document.body.classList.remove('kt-workspace');if(view)view.textContent=t('Map workspace');}});
 })();
