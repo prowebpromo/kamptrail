@@ -749,6 +749,9 @@
     const forecast=global.KampTrailForecast,forecastActive=filters.forecastMinC!=null||filters.forecastMaxC!=null,forecastNow=forecast?.effectiveNow();
     return sites.filter(site => {
       const p=site.properties;
+      if (['rest-areas','dump-stations'].includes(filters.entryLayer)) return false;
+      // Entry intent selects only the retained record's own publisher. Member evidence never promotes a match.
+      if (filters.catalogueSource === 'blm' && p.source !== 'Bureau of Land Management') return false;
       if(forecastActive&&(!forecast||!forecast.matches(site,filters,forecastNow)))return false;
       if(elevation.active){const e=elevationInfo(site);if(!elevation.valid||!e||(elevation.min!==null&&e.m<elevation.min)||(elevation.max!==null&&e.m>elevation.max))return false;}
       if (filters.cost && filters.cost !== 'all' && p.fee_status !== filters.cost) return false;

@@ -9,6 +9,9 @@
       try{window.KampTrailProviders=await (await fetch('provider-config.json')).json();}catch{}
       await script('vendor/leaflet/leaflet.js');await script('vendor/markercluster/leaflet.markercluster.js');
       for(const tag of document.querySelectorAll('script[type="application/x-kamptrail-map"]'))await script(tag.dataset.src);
+      // Entry actions must wait for the agency catalogue metadata, or an immediate
+      // state jump can permanently miss its BLM/Forest Service input for this visit.
+      await window.KampTrailMapDataReady;
       started=true;
       window.dispatchEvent(new Event('kamptrail:mapready'));
       const action=new URLSearchParams(location.search).get('action');

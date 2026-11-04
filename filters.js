@@ -179,6 +179,6 @@
       p.querySelectorAll('[name="f-hookup"]').forEach(el=>el.onchange=()=>{state.filters.hookups=[...p.querySelectorAll('[name="f-hookup"]:checked')].map(i=>i.value);apply();});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
       apply();
-    },reset,applyProfile,setElevationFilters,setForecastFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
+    },reset,applyEntry(mode){state.filters=defaults();if(mode==='overnight-parking')state.filters.type='parking';if(mode==='free-camping')state.filters.cost='free';if(mode==='blm')state.filters.catalogueSource='blm';if(['rest-areas','dump-stations'].includes(mode))state.filters.entryLayer=mode;sync();apply('entry');},applyProfile,setElevationFilters,setForecastFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
   };
 })();
