@@ -1,0 +1,47 @@
+name: Build KampTrail Phase 1 staging
+on:
+  push:
+    branches: [review/phase1-stage-build]
+permissions:
+  contents: write
+concurrency:
+  group: kamptrail-phase1-stage-build
+  cancel-in-progress: false
+jobs:
+  staging:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: d070167e86ea42afabc67b21793e5c9b173bf769
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          KAMPTRAIL_PUBLIC_URL: https://kamptrail.com/
+      - name: Prepare isolated staging branch
+        shell: bash
+        run: |
+          node <<'JS'
+          const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{execFileSync}=require('node:child_process');
+          const source='d070167e86ea42afabc67b21793e5c9b173bf769',out=path.resolve('dist/kamptrail'),branch='refs/heads/review/phase1-artifact';
+          if(branch==='refs/heads/main'||branch==='refs/heads/hostinger')throw Error('Forbidden production branch');
+          if(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()!==source)throw Error('Source mismatch');
+          for(const p of ['.git','.env','package.json','scripts','.github'])if(fs.existsSync(path.join(out,p)))throw Error('Unexpected source or secret');
+          for(const file of fs.readdirSync(out).filter(f=>f.endsWith('.html'))){const p=path.join(out,file);let s=fs.readFileSync(p,'utf8').replace('</head>','<meta name="robots" content="noindex,nofollow,noarchive"></head>');s=s.replace(/(<body[^>]*>)/,'$1<aside aria-label="Staging notice" style="padding:12px 18px;background:#fff3d1;color:#253d32;font:14px/1.5 system-ui">KampTrail Phase 1 staging, PR #178. Saved data is separate from kamptrail.com. This staging site has no production database.</aside>');fs.writeFileSync(p,s);}
+          fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nDisallow: /\n');
+          fs.writeFileSync(path.join(out,'release.json'),JSON.stringify({source_commit:source,production:false,pull_request:178})+'\n');
+          const m=JSON.parse(fs.readFileSync(path.join(out,'manifest.json')));m.name='KampTrail Staging';m.short_name='KT Stage';fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify(m)+'\n');
+          const scratch=fs.mkdtempSync(path.join(os.tmpdir(),'kt-stage-')),env={...process.env,GIT_INDEX_FILE:path.join(scratch,'index'),GIT_AUTHOR_NAME:'github-actions[bot]',GIT_AUTHOR_EMAIL:'41898282+github-actions[bot]@users.noreply.github.com',GIT_COMMITTER_NAME:'github-actions[bot]',GIT_COMMITTER_EMAIL:'41898282+github-actions[bot]@users.noreply.github.com'};
+          const git=args=>execFileSync('git',args,{env,encoding:'utf8'}).trim();
+          git(['read-tree','--empty']);git(['--work-tree='+out,'add','--all','--force']);const tree=git(['write-tree']),commit=git(['commit-tree',tree,'-m','Isolated Phase 1 staging from '+source]);git(['push','origin',commit+':'+branch]);console.log(JSON.stringify({source,branch,commit}));fs.rmSync(scratch,{recursive:true,force:true});
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kamptrail-phase1-staging
+          path: dist/kamptrail
+          include-hidden-files: true
