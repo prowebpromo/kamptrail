@@ -43,3 +43,12 @@ test('explicit city search opens directly while ambiguous names keep their choic
 test('an uncached offline language choice keeps the active language and announces recovery',async({page,context})=>{
  await page.goto('/');await context.setOffline(true);await page.locator('#kt-language').selectOption('es');await expect(page.locator('#kt-language')).toHaveValue('en');await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.locator('#kt-language-help')).toContainText('Reconnect');
 });
+test.describe('update while editing',()=>{
+ test.use({serviceWorkers:'allow'});
+ test('controller handoff preserves a visible unsent draft and offers an explicit reload',async({page})=>{
+  await page.goto('/#feedback-panel');await page.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));});
+  await page.reload();await page.locator('#feedback-panel [data-feedback-kind="bug"]').click();const dialog=page.getByRole('dialog',{name:'Help improve KampTrail'});await dialog.locator('textarea').fill('Keep this unsent test draft intact.');
+  await page.evaluate(()=>navigator.serviceWorker.dispatchEvent(new Event('controllerchange')));
+  await expect(page.locator('#toast')).toContainText('Finish or back up your changes');await expect(dialog.locator('textarea')).toHaveValue('Keep this unsent test draft intact.');await expect(page.locator('#toast button')).toHaveText('Reload update');
+ });
+});
