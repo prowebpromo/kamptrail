@@ -1,5 +1,9 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.0',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.1',messages:{
+  "State correction source": "Fuente de la corrección del estado",
+  "Management area": "Área de gestión",
+  "About": "Acerca de",
+  "Plan a trip": "Planifica un viaje",
   "View map to choose an area": "Ver el mapa para elegir una zona",
   "Update ready. Finish or back up your changes, then reload.": "Actualización lista. Termina o guarda una copia de tus cambios antes de volver a cargar.",
   "A faster start and clearer mobile tools": "Un inicio más rápido y herramientas móviles más claras",

@@ -2,7 +2,7 @@
 (function(global){
   'use strict';
   const STORAGE_KEY='kt_language', supported=['en','es','fr'];
-  const FR_VERSION = '2.46.0';
+  const FR_VERSION = '2.46.1';
   let language='en';
   try{const saved=global.localStorage?.getItem(STORAGE_KEY);if(supported.includes(saved))language=saved;}catch{}
   const pack=code=>{const value=global[code==='es'?'KampTrailI18nEs':'KampTrailI18nFr'];return value?.version===FR_VERSION&&value.messages&&typeof value.messages==='object'?value.messages:null;};
@@ -67,7 +67,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title', 'alt']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.46.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.46.1', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   function notice(message){
     const help=global.document?.getElementById('kt-language-help');
     if(help){help.removeAttribute?.('data-i18n');help.textContent=message;help.setAttribute('role','status');help.setAttribute('aria-live','polite');}

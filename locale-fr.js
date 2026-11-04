@@ -1,7 +1,11 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.46.0', messages:{
+  global.KampTrailI18nFr = {version:'2.46.1', messages:{
+  "State correction source": "Source de la correction de l’État",
+  "Management area": "Zone de gestion",
+  "About": "À propos",
+  "Plan a trip": "Préparer un voyage",
   "View map to choose an area": "Voir la carte pour choisir une zone",
   "Update ready. Finish or back up your changes, then reload.": "Mise à jour prête. Terminez ou sauvegardez vos modifications avant de recharger.",
   "A faster start and clearer mobile tools": "Un démarrage plus rapide et des outils mobiles plus clairs",
