@@ -4,20 +4,20 @@
  "exclusions": {
   "by_reason": {
    "plain_height_is_bridge_structure_height": 197,
-   "plain_height_not_vehicle_path": 58472
+   "plain_height_not_vehicle_path": 69964
   },
   "by_state": {
    "AK": {
-    "plain_height_not_vehicle_path": 28
+    "plain_height_not_vehicle_path": 29
    },
    "AL": {
-    "plain_height_not_vehicle_path": 67
+    "plain_height_not_vehicle_path": 69
    },
    "AR": {
-    "plain_height_not_vehicle_path": 92
+    "plain_height_not_vehicle_path": 109
    },
    "AZ": {
-    "plain_height_not_vehicle_path": 1114
+    "plain_height_not_vehicle_path": 1144
    },
    "CA": {
     "plain_height_is_bridge_structure_height": 46,
@@ -25,67 +25,67 @@
    },
    "CO": {
     "plain_height_is_bridge_structure_height": 2,
-    "plain_height_not_vehicle_path": 655
+    "plain_height_not_vehicle_path": 770
    },
    "CT": {
     "plain_height_is_bridge_structure_height": 25,
-    "plain_height_not_vehicle_path": 577
+    "plain_height_not_vehicle_path": 676
    },
    "DC": {
     "plain_height_not_vehicle_path": 49
    },
    "DE": {
-    "plain_height_not_vehicle_path": 296
+    "plain_height_not_vehicle_path": 299
    },
    "FL": {
     "plain_height_is_bridge_structure_height": 12,
-    "plain_height_not_vehicle_path": 2601
+    "plain_height_not_vehicle_path": 2726
    },
    "GA": {
     "plain_height_is_bridge_structure_height": 1,
-    "plain_height_not_vehicle_path": 893
+    "plain_height_not_vehicle_path": 947
    },
    "HI": {
     "plain_height_is_bridge_structure_height": 1,
     "plain_height_not_vehicle_path": 190
    },
    "IA": {
-    "plain_height_not_vehicle_path": 1453
+    "plain_height_not_vehicle_path": 1620
    },
    "ID": {
-    "plain_height_not_vehicle_path": 50
+    "plain_height_not_vehicle_path": 89
    },
    "IL": {
     "plain_height_is_bridge_structure_height": 2,
-    "plain_height_not_vehicle_path": 1660
+    "plain_height_not_vehicle_path": 1850
    },
    "IN": {
-    "plain_height_not_vehicle_path": 262
+    "plain_height_not_vehicle_path": 264
    },
    "KS": {
-    "plain_height_not_vehicle_path": 188
+    "plain_height_not_vehicle_path": 190
    },
    "KY": {
-    "plain_height_not_vehicle_path": 139
+    "plain_height_not_vehicle_path": 140
    },
    "LA": {
     "plain_height_is_bridge_structure_height": 1,
-    "plain_height_not_vehicle_path": 146
+    "plain_height_not_vehicle_path": 258
    },
    "MA": {
     "plain_height_is_bridge_structure_height": 12,
-    "plain_height_not_vehicle_path": 1381
+    "plain_height_not_vehicle_path": 2545
    },
    "MD": {
     "plain_height_is_bridge_structure_height": 2,
-    "plain_height_not_vehicle_path": 1057
+    "plain_height_not_vehicle_path": 1208
    },
    "ME": {
     "plain_height_not_vehicle_path": 156
    },
    "MI": {
     "plain_height_is_bridge_structure_height": 1,
-    "plain_height_not_vehicle_path": 5104
+    "plain_height_not_vehicle_path": 5242
    },
    "MN": {
     "plain_height_is_bridge_structure_height": 2,
@@ -93,44 +93,44 @@
    },
    "MO": {
     "plain_height_is_bridge_structure_height": 11,
-    "plain_height_not_vehicle_path": 2211
+    "plain_height_not_vehicle_path": 2400
    },
    "MS": {
-    "plain_height_not_vehicle_path": 185
+    "plain_height_not_vehicle_path": 191
    },
    "MT": {
-    "plain_height_not_vehicle_path": 508
+    "plain_height_not_vehicle_path": 552
    },
    "NC": {
     "plain_height_is_bridge_structure_height": 3,
-    "plain_height_not_vehicle_path": 762
+    "plain_height_not_vehicle_path": 832
    },
    "ND": {
     "plain_height_not_vehicle_path": 19
    },
    "NE": {
     "plain_height_is_bridge_structure_height": 1,
-    "plain_height_not_vehicle_path": 463
+    "plain_height_not_vehicle_path": 505
    },
    "NH": {
-    "plain_height_not_vehicle_path": 228
+    "plain_height_not_vehicle_path": 239
    },
    "NJ": {
     "plain_height_is_bridge_structure_height": 11,
-    "plain_height_not_vehicle_path": 296
+    "plain_height_not_vehicle_path": 347
    },
    "NM": {
-    "plain_height_not_vehicle_path": 227
+    "plain_height_not_vehicle_path": 233
    },
    "NV": {
-    "plain_height_not_vehicle_path": 268
+    "plain_height_not_vehicle_path": 567
    },
    "NY": {
     "plain_height_is_bridge_structure_height": 29,
-    "plain_height_not_vehicle_path": 4093
+    "plain_height_not_vehicle_path": 4483
    },
    "OH": {
-    "plain_height_not_vehicle_path": 2328
+    "plain_height_not_vehicle_path": 2410
    },
    "OK": {
     "plain_height_is_bridge_structure_height": 4,
@@ -138,31 +138,31 @@
    },
    "OR": {
     "plain_height_is_bridge_structure_height": 1,
-    "plain_height_not_vehicle_path": 946
+    "plain_height_not_vehicle_path": 1268
    },
    "PA": {
     "plain_height_is_bridge_structure_height": 2,
-    "plain_height_not_vehicle_path": 607
+    "plain_height_not_vehicle_path": 617
    },
    "SC": {
-    "plain_height_not_vehicle_path": 1221
+    "plain_height_not_vehicle_path": 2172
    },
    "SD": {
-    "plain_height_not_vehicle_path": 24
+    "plain_height_not_vehicle_path": 25
    },
    "TN": {
-    "plain_height_not_vehicle_path": 599
+    "plain_height_not_vehicle_path": 614
    },
    "TX": {
     "plain_height_is_bridge_structure_height": 11,
-    "plain_height_not_vehicle_path": 8699
+    "plain_height_not_vehicle_path": 8804
    },
    "UT": {
-    "plain_height_not_vehicle_path": 222
+    "plain_height_not_vehicle_path": 242
    },
    "VA": {
     "plain_height_is_bridge_structure_height": 1,
-    "plain_height_not_vehicle_path": 2104
+    "plain_height_not_vehicle_path": 2918
    },
    "VT": {
     "plain_height_is_bridge_structure_height": 4,
@@ -170,11 +170,11 @@
    },
    "WA": {
     "plain_height_is_bridge_structure_height": 4,
-    "plain_height_not_vehicle_path": 1381
+    "plain_height_not_vehicle_path": 6999
    },
    "WI": {
     "plain_height_is_bridge_structure_height": 6,
-    "plain_height_not_vehicle_path": 810
+    "plain_height_not_vehicle_path": 844
    },
    "WV": {
     "plain_height_is_bridge_structure_height": 2,
@@ -218,7 +218,7 @@
     "barrier=council_ring": 2,
     "barrier=cycle_barrier": 5,
     "barrier=debris": 3,
-    "barrier=fence": 32840,
+    "barrier=fence": 32848,
     "barrier=full-height_turnstile": 1,
     "barrier=gate": 5712,
     "barrier=guard_rail": 101,
@@ -232,7 +232,7 @@
     "barrier=netting": 1,
     "barrier=placeholder_fence": 1,
     "barrier=planter": 9,
-    "barrier=retaining_wall": 3885,
+    "barrier=retaining_wall": 3887,
     "barrier=retaining_wall;fence": 1,
     "barrier=rope": 14,
     "barrier=sally_port": 1,
@@ -245,11 +245,39 @@
     "barrier=swing_gate": 239,
     "barrier=toll_booth": 19,
     "barrier=traffic_island": 4,
-    "barrier=wall": 8838,
+    "barrier=wall": 8864,
     "barrier=yes": 6,
+    "highway=bus_stop": 7,
+    "highway=corridor": 1,
+    "highway=crossing": 2,
+    "highway=elevator": 2,
+    "highway=footway": 20,
+    "highway=ladder": 21,
+    "highway=path": 5,
+    "highway=pedestrian": 11,
+    "highway=primary": 7,
+    "highway=raceway": 1,
+    "highway=residential": 67,
+    "highway=secondary": 15,
+    "highway=service": 40,
+    "highway=steps": 8,
+    "highway=street_lamp": 10988,
+    "highway=tertiary": 7,
+    "highway=toll_gantry": 2,
+    "highway=traffic_mirror": 3,
+    "highway=turning_circle": 2,
+    "railway=crossing_box": 1,
+    "railway=engine_shed": 1,
+    "railway=miniature": 2,
     "railway=monorail": 1,
-    "railway=platform": 77,
+    "railway=platform": 283,
+    "railway=rail": 3,
+    "railway=signal_box": 6,
+    "railway=station": 4,
     "railway=subway_entrance": 1,
+    "railway=ventilation_shaft": 18,
+    "railway=wash": 1,
+    "railway=workshop": 5,
     "structure=covered": 230,
     "structure=covered+tunnel": 3,
     "structure=tunnel": 236
@@ -257,28 +285,28 @@
   },
   "files": {
    "AK": {
-    "bytes": 1637,
-    "ids": 28,
+    "bytes": 1648,
+    "ids": 29,
     "path": "excluded/AK.json",
-    "sha256": "ef32774d3ed20f35d95e063ee438185e481e3e0a4169d41b446ee0daac8f2521"
+    "sha256": "968f5eb0ee7d71c5ea9fa89d5536464e5876cecfdc2874e7c0b0e922ffc1bf5e"
    },
    "AL": {
-    "bytes": 1932,
-    "ids": 67,
+    "bytes": 2211,
+    "ids": 69,
     "path": "excluded/AL.json",
-    "sha256": "c6cde263aef8a800117b64a865d0356f9cd54796c5935fda70ba2b2c01d5e867"
+    "sha256": "2fc43da9e7ae75e638d64c7366c65211130cee6082b61e2651632e9cdeb75b12"
    },
    "AR": {
-    "bytes": 1940,
-    "ids": 92,
+    "bytes": 2312,
+    "ids": 109,
     "path": "excluded/AR.json",
-    "sha256": "025196aa48ad797d90d100438c40dca3bc9ef21029c6fbe7fb00d4902213610e"
+    "sha256": "b7e6c2e1698eed6cafa66c2f5db079850fbb7e653d48eb1b774bfe9a14fa17cd"
    },
    "AZ": {
-    "bytes": 10571,
-    "ids": 1114,
+    "bytes": 11027,
+    "ids": 1144,
     "path": "excluded/AZ.json",
-    "sha256": "566878281014f4521d3d4801d30f49d50e15548a1b74e960f54c2635d1f52543"
+    "sha256": "10d64878090c4f08b14807fa41278ccb81617db611d56712264bef137e2ba940"
    },
    "CA": {
     "bytes": 82443,
@@ -287,16 +315,16 @@
     "sha256": "3ce65c89290fd7d1a683bf97faf683e1d8ab4250b3c0738e825f9ce61418f731"
    },
    "CO": {
-    "bytes": 8951,
-    "ids": 657,
+    "bytes": 10277,
+    "ids": 772,
     "path": "excluded/CO.json",
-    "sha256": "e6b909d45012551218ea8aef80e94c296b5edc85451cc7520f036ed7cd76c3a9"
+    "sha256": "3e22a2b6ac146ad091ea4a7f4dc51bc01c1560784db1d1f51c9edf36d2ff5e18"
    },
    "CT": {
-    "bytes": 6114,
-    "ids": 602,
+    "bytes": 7183,
+    "ids": 701,
     "path": "excluded/CT.json",
-    "sha256": "a7d4c1a056ef6472a3c192eeeb40af49a01d7c215d35a0b5be560ddef8673ac7"
+    "sha256": "b954919181f60c0b235aa87d4969e4afddb4dafc32bdc18c2086d9974c9c5445"
    },
    "DC": {
     "bytes": 2073,
@@ -305,22 +333,22 @@
     "sha256": "b262bd490f73e4645ec4c5f6b7bda52907afc0d16c9261f5fdf10ac2aa963192"
    },
    "DE": {
-    "bytes": 2628,
-    "ids": 296,
+    "bytes": 2782,
+    "ids": 299,
     "path": "excluded/DE.json",
-    "sha256": "e9bb3b1beda90ad0f9d76e1ebc84270eb83dca1da7baa913f762b94dbe5e116c"
+    "sha256": "6e690229a266c0e5c94a7752a640ed8bb11aa8bf1e61be3b1084145aac705f26"
    },
    "FL": {
-    "bytes": 20140,
-    "ids": 2613,
+    "bytes": 21281,
+    "ids": 2738,
     "path": "excluded/FL.json",
-    "sha256": "4cbf85151baef9323e111c369091ec4eb9b837c0c1b12e4138860e741d8e0751"
+    "sha256": "02f1c8d981b45b83b4c498209fadec9fa32feb4114783eb10da9587910f2c46e"
    },
    "GA": {
-    "bytes": 9384,
-    "ids": 894,
+    "bytes": 10076,
+    "ids": 948,
     "path": "excluded/GA.json",
-    "sha256": "f5eeb5828e1e0d05378fe3099abf9f0ba3d1734d3d8d216ecb6182d9d4f0e0c8"
+    "sha256": "42220c79b8d88f25193901cbfd9c48dccaba67082167e9f421d8b17a6a54c9f5"
    },
    "HI": {
     "bytes": 3296,
@@ -329,58 +357,58 @@
     "sha256": "b520e6d81f42164725ebe6be1b7dcd8169a1de57f58fe42a95080b35ad99737f"
    },
    "IA": {
-    "bytes": 9509,
-    "ids": 1453,
+    "bytes": 10684,
+    "ids": 1620,
     "path": "excluded/IA.json",
-    "sha256": "00043cbefd9ece2999de46eabc42a3c3e83a834ac39c707200adac28367c92fa"
+    "sha256": "2c8b8c1f2f4e17aa8225c7f7aef2c1a4c85d0d275b74625a92f7c963f569c4a5"
    },
    "ID": {
-    "bytes": 1782,
-    "ids": 50,
+    "bytes": 2154,
+    "ids": 89,
     "path": "excluded/ID.json",
-    "sha256": "86a0f1f7d378846e11500f388b7ee6247ff3e1b3746b66f0ff21c2d80983ff43"
+    "sha256": "8b95ef2c8f6cbcdc9ee4e2ba79aa3dca796d966f2810dd9aaddee6957dcddd31"
    },
    "IL": {
-    "bytes": 17227,
-    "ids": 1662,
+    "bytes": 18435,
+    "ids": 1852,
     "path": "excluded/IL.json",
-    "sha256": "0ace1cc2c46ab920022d9641accd165e09faf80bca8033119ffe1145cd44acb4"
+    "sha256": "3b402201af67afcf60dc0bd180ac136672c9aea653a9584f206472c201f324a6"
    },
    "IN": {
-    "bytes": 4070,
-    "ids": 262,
+    "bytes": 4342,
+    "ids": 264,
     "path": "excluded/IN.json",
-    "sha256": "891a6b05ebc181d81c07ad38cc1417c0417d57915b1886707c2cd9d48ab1e1b4"
+    "sha256": "44dde411bd43e3144a3aa047c272788c30d135b1a5aea9d9b0e79898e30b0bc6"
    },
    "KS": {
-    "bytes": 3358,
-    "ids": 188,
+    "bytes": 3631,
+    "ids": 190,
     "path": "excluded/KS.json",
-    "sha256": "29a74740b0ece129b67051933e272a27af1f4037be8126e51e1fd00febae3d0d"
+    "sha256": "c6af09f83a1afa66f8267f3f4778011510fe7fb4f649b1c69b1edff53ce9a08a"
    },
    "KY": {
-    "bytes": 2885,
-    "ids": 139,
+    "bytes": 3016,
+    "ids": 140,
     "path": "excluded/KY.json",
-    "sha256": "e60b86ee0c98cbded7f33730a44b7e1a7bd248f54d1942bde4338c9216abf4a9"
+    "sha256": "e4217550a01ee192f03f8619fdfa541d0b6f6d5e7a40c532e137fb791407abe4"
    },
    "LA": {
-    "bytes": 2567,
-    "ids": 147,
+    "bytes": 5081,
+    "ids": 259,
     "path": "excluded/LA.json",
-    "sha256": "04ee403d334da55a14895a7cb4caad96d7b646fdfcade729c372cb21c27a84d9"
+    "sha256": "7c5f1888d85c6afc76d8403238cf7570adca73bd7e8d6b9a5bbe3d583b936912"
    },
    "MA": {
-    "bytes": 14624,
-    "ids": 1393,
+    "bytes": 21880,
+    "ids": 2557,
     "path": "excluded/MA.json",
-    "sha256": "85fd61346544d61afa5b99c407f58eea7c91001fe3333bd28c4d46f48c72f739"
+    "sha256": "b2fdf731ae9629c8c9f3cb86db3fb9ccd7f17bb3083b6e38679f0b9b92558fa6"
    },
    "MD": {
-    "bytes": 11200,
-    "ids": 1059,
+    "bytes": 12384,
+    "ids": 1210,
     "path": "excluded/MD.json",
-    "sha256": "17e875b1d9501a0abac936083d699a6cfa0510da2ed7bdfaa2c21b021cd6a3cf"
+    "sha256": "feec9e42cb2321f3475494e2e6b456c13dc0e4dc7e7a441fb5e6dfdce538d794"
    },
    "ME": {
     "bytes": 3207,
@@ -389,10 +417,10 @@
     "sha256": "35e2fd75cb1807d201aff5714c04c9f480b48e3a686bf45186f0c73d7e3a5722"
    },
    "MI": {
-    "bytes": 41156,
-    "ids": 5105,
+    "bytes": 42293,
+    "ids": 5243,
     "path": "excluded/MI.json",
-    "sha256": "30ccc803ca3dca71a9a622efd3eff5aa9115aa1a8d3c79b523740d7ed2a53e89"
+    "sha256": "5a1c8477bb9fede3b582f78f47fba07044ec47a580c656cd626a12f5b747db4b"
    },
    "MN": {
     "bytes": 4427,
@@ -401,28 +429,28 @@
     "sha256": "383a0810063aaa06a715e068124edbbd7f990dd709a0828dac757df2b60e026e"
    },
    "MO": {
-    "bytes": 18767,
-    "ids": 2222,
+    "bytes": 20308,
+    "ids": 2411,
     "path": "excluded/MO.json",
-    "sha256": "d997ef587062dcede24060bd3075ded8fd515835ddbb133b45f0cccc85d94810"
+    "sha256": "b24c250e25af38704e4d9cb9d114763bffe83744002987c5ca06d8f1b815eea9"
    },
    "MS": {
-    "bytes": 2322,
-    "ids": 185,
+    "bytes": 2642,
+    "ids": 191,
     "path": "excluded/MS.json",
-    "sha256": "31c064e00ab8e05b279707c5b602e9416cae5e9d47d35421293a78abe0eaa52f"
+    "sha256": "c8c379355004345e7c4fd230248d1ce815532ee498744aa6af1fc51cd9b93f57"
    },
    "MT": {
-    "bytes": 6405,
-    "ids": 508,
+    "bytes": 6983,
+    "ids": 552,
     "path": "excluded/MT.json",
-    "sha256": "2e1e56d12d578cc4d2fab703059b418e1b93adaabf809177f25cbcacfe651f6b"
+    "sha256": "1c26063cc4e1c768b3646ea06e6d5c8abe3ce9ce7c3ca4d6e846add75362ffcf"
    },
    "NC": {
-    "bytes": 8930,
-    "ids": 765,
+    "bytes": 10050,
+    "ids": 835,
     "path": "excluded/NC.json",
-    "sha256": "dd6616856d47da259796cb8bf9b658cc72178c9908035f1f0fbc7af8e0136abc"
+    "sha256": "c0292926b16f8c8bd42ac2212b5a95af5af80e07869b3ec6ecb8eb67a9007eca"
    },
    "ND": {
     "bytes": 1682,
@@ -431,46 +459,46 @@
     "sha256": "83ab7ea70afc4fce0294d94a07a9b2c2e708c2a6ce90a051800d56fb225068c6"
    },
    "NE": {
-    "bytes": 4844,
-    "ids": 464,
+    "bytes": 5206,
+    "ids": 506,
     "path": "excluded/NE.json",
-    "sha256": "cf3d049255801c3c2add345743923ba80cf02340d27ed318e4128eb1631af8c7"
+    "sha256": "9cd18221d02c5492080174215faa648cfa1866ffc876c621653c99ea8d4447c9"
    },
    "NH": {
-    "bytes": 3423,
-    "ids": 228,
+    "bytes": 3662,
+    "ids": 239,
     "path": "excluded/NH.json",
-    "sha256": "1dbb58874441f305f572c9d20091189347aa5f0a49fc04d73f55a2952aa554da"
+    "sha256": "bde5b6a2b90500ff63262dc765291402c784d6c2f4a60c6bf09a55acb3663f5a"
    },
    "NJ": {
-    "bytes": 4681,
-    "ids": 307,
+    "bytes": 5174,
+    "ids": 358,
     "path": "excluded/NJ.json",
-    "sha256": "8ec1b1c088f9d0e894079811149c221561040a9678ce99703046cdc2b3794885"
+    "sha256": "5e7f400473d8b76cf003eb1a68cfb02346b8188cc004a9347040f9252b6041e4"
    },
    "NM": {
-    "bytes": 4739,
-    "ids": 227,
+    "bytes": 5175,
+    "ids": 233,
     "path": "excluded/NM.json",
-    "sha256": "fa77a3c038cf345646a00fd0f6aa41d29fce7e2e46f4a07c81e7e3649f81f726"
+    "sha256": "76350a8c382e60b424ce59205d6f7fea2f294d4e88505a48f1ac7d8b3c92378e"
    },
    "NV": {
-    "bytes": 3660,
-    "ids": 268,
+    "bytes": 5651,
+    "ids": 567,
     "path": "excluded/NV.json",
-    "sha256": "3b8d4db5bb14cdea65a03b87c4ee50174812269b876dc599c85f9a559be59b31"
+    "sha256": "90ffa63b23e9ccaf71462467ff932be37725bb172ba7e32db88bf4145cde18eb"
    },
    "NY": {
-    "bytes": 32764,
-    "ids": 4122,
+    "bytes": 37241,
+    "ids": 4512,
     "path": "excluded/NY.json",
-    "sha256": "0fe23fafc27745116830feebf6b79025ea26b23e6430b4df8cce5d3e730955e5"
+    "sha256": "f8e8358a37d659904898dfe009092449860b2564b17feb6936255e11d749d60c"
    },
    "OH": {
-    "bytes": 20255,
-    "ids": 2328,
+    "bytes": 21316,
+    "ids": 2410,
     "path": "excluded/OH.json",
-    "sha256": "7cb759fc557a09fbb0cdfa07f58e9db5f0147e02ead21d34c40938a61f6654e5"
+    "sha256": "0f4fd9c67ae091923c4eefe9ec7c25a10225200573f62787cba3be5ce0bf78e1"
    },
    "OK": {
     "bytes": 6255,
@@ -479,52 +507,52 @@
     "sha256": "6b0ee4dc992be566d462b7d99acec3a931ffa794d239c88b81ee24221e71eda5"
    },
    "OR": {
-    "bytes": 11162,
-    "ids": 947,
+    "bytes": 13785,
+    "ids": 1269,
     "path": "excluded/OR.json",
-    "sha256": "b100c0f95c729794f0c6f06c1ccf4e956208ecf43d30f4ed75bd189a66125886"
+    "sha256": "ad7c087461ad6d533869878c99aa1352524c65ae227e80d06881e5822ee66348"
    },
    "PA": {
-    "bytes": 7972,
-    "ids": 609,
+    "bytes": 8317,
+    "ids": 619,
     "path": "excluded/PA.json",
-    "sha256": "b16a130d218e171005f144086d15e1829d90fc5b98de6c79245e6781f7ce035f"
+    "sha256": "6ef164c0f62e2762a6ae00ae7dca2002c46919a00ec48fcdd76d94840192c49d"
    },
    "SC": {
-    "bytes": 10260,
-    "ids": 1221,
+    "bytes": 16181,
+    "ids": 2172,
     "path": "excluded/SC.json",
-    "sha256": "b3a81f6cd14cd0c1cc46e1452ec5c3cd9556ef134edfc3305dc210d447343e7a"
+    "sha256": "f7177d487cc2822693f09285b49f98f5990cf108eb836e1f7a30c9c2d4542e27"
    },
    "SD": {
-    "bytes": 1417,
-    "ids": 24,
+    "bytes": 1559,
+    "ids": 25,
     "path": "excluded/SD.json",
-    "sha256": "841c751bbb5846f696b9b2ad587cefc9ff6566d00fcc67ee65333eb8eb6569f8"
+    "sha256": "dbed735835c7eb78f7fc726a8afc79069350bd65733c2647153654a24ff29acc"
    },
    "TN": {
-    "bytes": 6675,
-    "ids": 599,
+    "bytes": 6915,
+    "ids": 614,
     "path": "excluded/TN.json",
-    "sha256": "79756278ab558d3184a174ab819d7837c0289ff67318830a004cb42c27535de7"
+    "sha256": "c2aabf143b2ec8090b63bb3a5e940f024cee52e25cb1e330716e6a14010ecdca"
    },
    "TX": {
-    "bytes": 52729,
-    "ids": 8710,
+    "bytes": 53987,
+    "ids": 8815,
     "path": "excluded/TX.json",
-    "sha256": "225a81adf2b9a05655a23e16d3c265e37bd9ea38531f3c2f8eac6f33793cbaae"
+    "sha256": "9564e9158c4f232f212a9f7ac93e4cc3e822dff3a22872b48c8c675f1b367c8f"
    },
    "UT": {
-    "bytes": 3971,
-    "ids": 222,
+    "bytes": 4258,
+    "ids": 242,
     "path": "excluded/UT.json",
-    "sha256": "393a52208a7578d686f003af617a54b5ee382a6e1f4f08f3ef077d89193e93c3"
+    "sha256": "3d66249079e7b6b37160547284d0c88b55ebaa1ee668f11c19091a7bc871e318"
    },
    "VA": {
-    "bytes": 15924,
-    "ids": 2105,
+    "bytes": 21026,
+    "ids": 2919,
     "path": "excluded/VA.json",
-    "sha256": "2c25198bcb5c654be9940b2b2d94870b72d0909e7d19368a62a5926a3d2730f2"
+    "sha256": "5d4fde13fa7cfe077ed2e5780d83aaf63294e17221cbe2803aded233cc2a0150"
    },
    "VT": {
     "bytes": 3588,
@@ -533,16 +561,16 @@
     "sha256": "9e0225f80d534989288f9fad628c6b1efffea9a5df9a191487baa14501b975f0"
    },
    "WA": {
-    "bytes": 14589,
-    "ids": 1385,
+    "bytes": 47488,
+    "ids": 7003,
     "path": "excluded/WA.json",
-    "sha256": "91183dfe8ed11e5246ef316cf568e7f352a0f459775bbaa0a4efe6e9fcb5514f"
+    "sha256": "0a71efe7d175f2e181322ac3cd612022f63ae52f54bdf0dc51a2af2e15e4d22b"
    },
    "WI": {
-    "bytes": 9282,
-    "ids": 816,
+    "bytes": 9800,
+    "ids": 850,
     "path": "excluded/WI.json",
-    "sha256": "4c19e0d0a8be9984b9db24d4aa0ea9f6bc4fb1e7098f5cb9a19011f28e87b655"
+    "sha256": "93b2ecb95eaef229531422587e40256a540c3002079ec44df1e76376eb58bd3e"
    },
    "WV": {
     "bytes": 2067,
@@ -557,9 +585,16 @@
     "sha256": "bdbe24d0999ee45ee2b7c8c52f1d65f84e7dcff36a14e2a30f8c052d8ec2d182"
    }
   },
-  "total": 58669
+  "total": 70161
  },
- "failures": {},
+ "failures": {
+  "CA": {
+   "reason": "build_failed"
+  },
+  "MN": {
+   "reason": "build_failed"
+  }
+ },
  "grid": {
   "anchor": "bbox_center_of_candidate",
   "base_zoom": 7,
@@ -582,74 +617,74 @@
  "sources": {
   "AK": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 144181827,
+   "bytes": 144196162,
    "containment": "census_polygon",
-   "content_sha256": "d25d795eaff14671e16b92154584228140b68f3aa92f6503e0b14dbda49496aa",
+   "content_sha256": "9ccd191f23a15d642f80431ba71073800b88c58269edb9e61d706413afe97eb2",
    "extract_candidates": 41,
-   "extract_excluded": 28,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 29,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 4
    },
    "quarantined": 4,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/alaska-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:44:17Z",
-   "source_sha256": "83f7cac046ec6ae04aba8ae9f94951482e9108b5fcb7d77040feaa510fce14c7",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/alaska-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T12:53:23Z",
+   "source_sha256": "d47f517f77db79fd38ea7c6e3a4d7990fde57fcfdcd73079ff2b53b0a976a800",
    "url": "https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf"
   },
   "AL": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 151330181,
+   "bytes": 151443747,
    "containment": "census_polygon",
-   "content_sha256": "0d595ef76613ac506856bb389dca43de952ef573a8a47d1a765607dea0037bad",
+   "content_sha256": "9ce6c4c6e903ca13f37aca3a91f4b9091706764d3ce80a4bb8b18363e302766c",
    "extract_candidates": 277,
-   "extract_excluded": 67,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 69,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 3,
     "no_road_structure_or_barrier_context": 6,
     "outside_requested_state": 4
    },
    "quarantined": 13,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/alabama-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:44:20Z",
-   "source_sha256": "6ffa6b9fb487b64ac660b85c233090a02d6b10cb849fed22e465d9a1deec122e",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/alabama-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T12:53:29Z",
+   "source_sha256": "55d22759bb60d61480cc5acbd45ff19934b3d0d5a78b9618de6357a6e28ec32a",
    "url": "https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf"
   },
   "AR": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 100371897,
+   "bytes": 100439185,
    "containment": "census_polygon",
-   "content_sha256": "e12ba8429d9d79d6399df31a4087b5ebcabf57abb2655c53ed96ea40dfa48765",
+   "content_sha256": "8060e3b525975762209338bd1285e07332bf979aa73938e4c4cbe0db443c5847",
    "extract_candidates": 66,
-   "extract_excluded": 92,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 109,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 3,
     "no_road_structure_or_barrier_context": 41
    },
    "quarantined": 44,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/arkansas-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:45:00Z",
-   "source_sha256": "8b97100cd2949c2afe22befe6a707a86cadfa347daa7ed73830a1d2cfd994a6f",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/arkansas-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T12:55:25Z",
+   "source_sha256": "d42cdd7a30a3d1299b042cee941e0f964f56e300ed5eb886d8868ecebe310c4a",
    "url": "https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf"
   },
   "AZ": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 304390023,
+   "bytes": 304518372,
    "containment": "census_polygon",
-   "content_sha256": "1aba16fd6aecee916e41daf4e175060c7c2bf9b47cc8653a2ba52c66ac90227b",
+   "content_sha256": "84971cb3912adffd652e23132071431250da695ca481440ba8ab55d035b1a521",
    "extract_candidates": 640,
-   "extract_excluded": 1114,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 1144,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 18
    },
    "quarantined": 19,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/arizona-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:45:22Z",
-   "source_sha256": "bbc9e6b8052154d9ac753eb6798f2ca9eab939cb7a13017dcc1fbbd1c7108d1c",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/arizona-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T12:56:08Z",
+   "source_sha256": "2cf30ec36ba4d77db381324e23663c7c0e3bf263347c373aa94fe5eb9f3bfc2d",
    "url": "https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf"
   },
   "CA": {
@@ -674,40 +709,40 @@
   },
   "CO": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 386644200,
+   "bytes": 386878398,
    "containment": "census_polygon",
-   "content_sha256": "bc937f043ef37878de4fbb19e5bc7e498dc9566492cf91dabdc09d8439da937d",
+   "content_sha256": "1e0b99e6e1f8da4b48cf0f733c84c206363b21dc2968088063824bff81a48dec",
    "extract_candidates": 582,
-   "extract_excluded": 657,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 772,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 44,
     "unsupported_or_incomplete_geometry": 2
    },
    "quarantined": 46,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/colorado-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:46:34Z",
-   "source_sha256": "b1a27ee76e26547d2c4deb234d97d14e52557d67036686e65a378fd902c0aa9e",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/colorado-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T12:58:58Z",
+   "source_sha256": "6f1e9811fa0f323b240a679e7a9c0caa56f57cbf493e8e70bbb86eb37327af45",
    "url": "https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf"
   },
   "CT": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 217346052,
+   "bytes": 217377387,
    "containment": "census_polygon",
-   "content_sha256": "e3d3c7c6914d392bda28eb873943690adfdbd5f40fa04fbd78e532f34508df71",
-   "extract_candidates": 887,
-   "extract_excluded": 602,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "68f29582cae47c0917955aee691e9ec10201d23e07280b4d7bfc85fe2bde3cc1",
+   "extract_candidates": 888,
+   "extract_excluded": 701,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 7,
     "no_road_structure_or_barrier_context": 7,
     "outside_requested_state": 1,
-    "unsupported_or_incomplete_geometry": 1
+    "unsupported_or_incomplete_geometry": 2
    },
-   "quarantined": 16,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/connecticut-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:47:36Z",
-   "source_sha256": "dda4dc0c0859591e4624755b3568bd0f02d6de72520d02921436afe8ea6910d8",
+   "quarantined": 17,
+   "resolved_url": "https://download.geofabrik.de/north-america/us/connecticut-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:00:14Z",
+   "source_sha256": "48aa2c16aebd4469212cc9863ac51cf1012af834f3f23aafb5d5864dc47dbc3d",
    "url": "https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf"
   },
   "DC": {
@@ -729,55 +764,55 @@
   },
   "DE": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 22243804,
+   "bytes": 22250607,
    "containment": "census_polygon",
-   "content_sha256": "a736d3f9d996d46ac47d0395b389d877a0359553b8afef29479e992bf0ca85b2",
+   "content_sha256": "ac2fb48a45f1c0961806cff344424d2ef5b1060b8268079efe41a5f0f7130a9d",
    "extract_candidates": 111,
-   "extract_excluded": 296,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 299,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 6
    },
    "quarantined": 7,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/delaware-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:41:35Z",
-   "source_sha256": "4df2abcfc2958b8919a217dbc160115dcdb480c1f59587b6f30db08cd09b5697",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/delaware-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:01:08Z",
+   "source_sha256": "8d7f2f83bb683118b017366a44380c744175b99a474a4d03f72b7ba2146d0240",
    "url": "https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf"
   },
   "FL": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 660057777,
+   "bytes": 660106904,
    "containment": "census_polygon",
-   "content_sha256": "96d20551dae6b71744b926d29c1027973e6938419fd7d1f7c5412af7b3c13fdb",
-   "extract_candidates": 1253,
-   "extract_excluded": 2613,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "f8e0c4be04dc007337dc121b13439791fb30cb3555c07119a0e2d9644be5c819",
+   "extract_candidates": 1261,
+   "extract_excluded": 2738,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 59,
     "unsupported_or_incomplete_geometry": 4
    },
    "quarantined": 63,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/florida-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:49:36Z",
-   "source_sha256": "44190cfeb81327567128ee1c2d1639384d8ed6f20fe4b2f03c876b75981ccab8",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/florida-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:07:57Z",
+   "source_sha256": "46d785232f8e64d87a83acd9de4a7cee4e891e8d7125d314bfcf7f635a6a3450",
    "url": "https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf"
   },
   "GA": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 358219304,
+   "bytes": 358242277,
    "containment": "census_polygon",
-   "content_sha256": "30d25e8c07e38f9ee00117bea7883c026747e14bb50068ba3ad07ed2e62669fe",
+   "content_sha256": "5dba49300e74d55e64402a3ffc68606bea701cded7ef66dbf01fee9b1c80b6a6",
    "extract_candidates": 1446,
-   "extract_excluded": 894,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 948,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 47
    },
    "quarantined": 47,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/georgia-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:50:33Z",
-   "source_sha256": "43e9abd89451ed091a258b8b86df19f52a70405ba54eb21dfa5fc3dcf9c9f3d8",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/georgia-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:06:11Z",
+   "source_sha256": "29ae9938b03b5aef046a3f2c8a19e497e911467f8faa6e8ee9a1eb99512556dc",
    "url": "https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf"
   },
   "HI": {
@@ -799,48 +834,48 @@
   },
   "IA": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 134295959,
+   "bytes": 134308688,
    "containment": "census_polygon",
-   "content_sha256": "45363acb3a40cbf6b3a6446a3c1324d71d3434ca8c349da2c02c2241554a0aa5",
+   "content_sha256": "85ca3152e40889b2f95b2a36bc4c249165630e8bbba52684ae05807d147a253d",
    "extract_candidates": 271,
-   "extract_excluded": 1453,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 1620,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 4,
     "no_road_structure_or_barrier_context": 42,
     "outside_requested_state": 6
    },
    "quarantined": 52,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/iowa-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:51:29Z",
-   "source_sha256": "b53b08b99396bd244e32384246dc50ff81a6c9b5aafc5f12e33da46441e37d7b",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/iowa-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:08:45Z",
+   "source_sha256": "20f92c189083599fc1dd0e566457e17122034e2ae7cc80e702cac4516f0e51ac",
    "url": "https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf"
   },
   "ID": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 130238212,
+   "bytes": 130260496,
    "containment": "census_polygon",
-   "content_sha256": "5052473306f872751ee2e5b82f55ba9e40adccb50185d89451f9844c14773504",
+   "content_sha256": "8270d24d84a87cd1769ea3fcfefd1c065583045cbac76def32d0fab682a58b90",
    "extract_candidates": 185,
-   "extract_excluded": 50,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 89,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 12
    },
    "quarantined": 12,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/idaho-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:51:29Z",
-   "source_sha256": "e126bdbd12e4491ae56cab2192cde800365ef99d6562e9e8e0fdfcb3abe16297",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/idaho-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:10:08Z",
+   "source_sha256": "b9f8fca7b9650f147aa3a14a26e717e887e14faefc579a7e76f2776c0d8d3d0f",
    "url": "https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf"
   },
   "IL": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 362657187,
+   "bytes": 362793320,
    "containment": "census_polygon",
-   "content_sha256": "fd505527ac5041889df430833cbda50ea9b4fa96c6f045ea1a29778d2285d5bb",
+   "content_sha256": "b14ce1e19ad137e5d980cc2b3c3d92c2185ac14ebc767f88f1b7bcf1ee6aa8ee",
    "extract_candidates": 3052,
-   "extract_excluded": 1662,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 1852,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 4,
     "no_road_structure_or_barrier_context": 271,
@@ -848,123 +883,123 @@
     "unsupported_or_incomplete_geometry": 1
    },
    "quarantined": 286,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/illinois-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:52:24Z",
-   "source_sha256": "76978afb841b143ca7f987fbd6bae8a12eb53f4229a26252edeef03b083e0f01",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/illinois-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:13:15Z",
+   "source_sha256": "f5ea4299941901ca48c092b763b53786c0e96c919640369b67e7a98b0c411831",
    "url": "https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf"
   },
   "IN": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 201320970,
+   "bytes": 201445174,
    "containment": "census_polygon",
-   "content_sha256": "b9f81c255ecd0e1a05a46b0e3d8e6bfdef706421d78f7a96125e74aa15dd2e7e",
+   "content_sha256": "88b2f96a5ca9f3788c6b3f953c59aea2cda02d011a68a56c21ecbb15e9059db4",
    "extract_candidates": 732,
-   "extract_excluded": 262,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 264,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 2,
     "no_road_structure_or_barrier_context": 8,
     "outside_requested_state": 1
    },
    "quarantined": 11,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/indiana-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:52:20Z",
-   "source_sha256": "adec945fe7d44f9da588826f59541027ce056fe00ab142ed72a062b810852182",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/indiana-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:11:53Z",
+   "source_sha256": "f471ac40cd62f8eab9299b7dd385884cad0820dc744c64a55cae5b99d7b78dd6",
    "url": "https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf"
   },
   "KS": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 117492336,
+   "bytes": 117513941,
    "containment": "census_polygon",
-   "content_sha256": "63ea2ff2e59f214f07ac2689f2dab40f20166967bdd596a39f5d8827da8e7b78",
+   "content_sha256": "59f326b6c4c8ba19679cf5af4014f24258c3534a2bba1d3ff7fb763a5c59961e",
    "extract_candidates": 399,
-   "extract_excluded": 188,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 190,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 13,
     "outside_requested_state": 2
    },
    "quarantined": 15,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/kansas-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:53:08Z",
-   "source_sha256": "f8fb69097d247097425803edb31a15ad04b76f96a4a9534a910e4600bbed5e7b",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/kansas-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:13:01Z",
+   "source_sha256": "f930b1e37833245e2ed9b8cb5880a9ad76eca30b6885c19928e79b676124e0b3",
    "url": "https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf"
   },
   "KY": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 155006301,
+   "bytes": 155017331,
    "containment": "census_polygon",
-   "content_sha256": "a584fd57431bfcc9846a7711352f40c1391c6c1a8ce3685903db106d83bf57f0",
+   "content_sha256": "c9d2ab4796f7e1c69604374e22b07894a46165b697f988e17468d7140c1a4913",
    "extract_candidates": 306,
-   "extract_excluded": 139,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 140,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 2,
     "no_road_structure_or_barrier_context": 10,
     "outside_requested_state": 12
    },
    "quarantined": 24,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/kentucky-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:53:25Z",
-   "source_sha256": "ef49a09b3485cc440b57fb4948658a1263a54fc0e7e800777c0b6752845e36c0",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/kentucky-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:14:08Z",
+   "source_sha256": "0d949cce9727cf4773d3082c079482aa223277d446969d3db637abe82e992924",
    "url": "https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf"
   },
   "LA": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 147396554,
+   "bytes": 147426564,
    "containment": "census_polygon",
-   "content_sha256": "3327f90a0a7535456cb12e65a981477dd08e44a651904d492d842c40eb561899",
+   "content_sha256": "c9a05e78a7453c659f7ec79364d20e427cbc896e8f9d79924543d5f8f73a9493",
    "extract_candidates": 187,
-   "extract_excluded": 147,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 259,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 5,
     "no_road_structure_or_barrier_context": 46,
     "outside_requested_state": 1
    },
    "quarantined": 52,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/louisiana-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:53:54Z",
-   "source_sha256": "22d9e2d84cb525c1efbffd853f16ac6cfdbecc716fceeaa7cfb1d38e96887984",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/louisiana-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:15:03Z",
+   "source_sha256": "adc549957d2a116ef22fae467d8efc36498d3cf77ff7df1e245e1a06c712364b",
    "url": "https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf"
   },
   "MA": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 311432824,
+   "bytes": 311512690,
    "containment": "census_polygon",
-   "content_sha256": "c4875a5c1cc33beaafcc26b313acce671196b560474f889731bb5926e6abc0de",
-   "extract_candidates": 1437,
-   "extract_excluded": 1393,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "a60c3e8fd052b9111ddde8b6bb9a6e9797afe9ebe06ee294988c70b5cda5db47",
+   "extract_candidates": 1440,
+   "extract_excluded": 2557,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 5,
     "no_road_structure_or_barrier_context": 60,
     "outside_requested_state": 11,
-    "unsupported_or_incomplete_geometry": 10
+    "unsupported_or_incomplete_geometry": 12
    },
-   "quarantined": 86,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/massachusetts-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:54:27Z",
-   "source_sha256": "15fe935b956fea9f899178de58fe27a29bdb23569d81067de2bd16da7db9f5af",
+   "quarantined": 88,
+   "resolved_url": "https://download.geofabrik.de/north-america/us/massachusetts-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:18:16Z",
+   "source_sha256": "f703370f2be6c729cd4ee252029420aa6738ea34b3d1bda8a2134c3465cae124",
    "url": "https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf"
   },
   "MD": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 216193568,
+   "bytes": 216226558,
    "containment": "census_polygon",
-   "content_sha256": "87858a52b3cdf69a5f0b3585d1258244b60652c833b057d6387cf5a07318a9d0",
+   "content_sha256": "1cfc3c2e6965166f75841602d1137871d376e1f2c0a92851eecbf2d6d057ee8d",
    "extract_candidates": 884,
-   "extract_excluded": 1059,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 1210,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 8,
     "no_road_structure_or_barrier_context": 143,
     "outside_requested_state": 13
    },
    "quarantined": 164,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/maryland-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:54:44Z",
-   "source_sha256": "0eef473bcf3d5867b2d8dd20777f2db020c8a2c5f7464d74990a386e7964f4ae",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/maryland-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:17:13Z",
+   "source_sha256": "fca97ec76e7d438b1f076f3146c326e856d0c62280fa235adc3b8b37c85e5110",
    "url": "https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf"
   },
   "ME": {
@@ -988,20 +1023,20 @@
   },
   "MI": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 316396967,
+   "bytes": 316681459,
    "containment": "census_polygon",
-   "content_sha256": "1c986dc60d18e465b57ecc7a4e4f73608d5c81a5465931b603a095c58562a087",
-   "extract_candidates": 1967,
-   "extract_excluded": 5105,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "eba9d40e5a3aa9876a9d86778d5834217607d0466633b95f9dbc19000de6565c",
+   "extract_candidates": 1969,
+   "extract_excluded": 5243,
+   "extract_timestamp": "2026-11-02T21:21:26Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 37,
     "outside_requested_state": 2
    },
    "quarantined": 39,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/michigan-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:56:14Z",
-   "source_sha256": "67702a0b4a74b5106e1e89bb8b6aa927db93c5ca9cdee71e413d8222b62bd269",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/michigan-261102.osm.pbf",
+   "retrieved_at": "2026-11-03T13:22:43Z",
+   "source_sha256": "bc79128923e4fce9e3e617f7911fcd21ec56d4d6b74cc6e76f8c5db869afd25f",
    "url": "https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf"
   },
   "MN": {
@@ -1025,198 +1060,199 @@
   },
   "MO": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 200248518,
+   "bytes": 200309078,
    "containment": "census_polygon",
-   "content_sha256": "d6a83516e9aba5b3af56f8c6353b0d0cb26bb122982a1b20b41032784669c75d",
+   "content_sha256": "4ae9ba24cd6cfb6ade54d55b17fe0c151b43d9406429295c9f1987a933e7abac",
    "extract_candidates": 977,
-   "extract_excluded": 2222,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 2411,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 2,
     "no_road_structure_or_barrier_context": 82,
     "outside_requested_state": 1
    },
    "quarantined": 85,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/missouri-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:57:24Z",
-   "source_sha256": "a674f99d536842a78902901bdc1ebe82a44880619eaa1637940c1bfe2a182325",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/missouri-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:26:18Z",
+   "source_sha256": "74312857626fafca1e69735c6f622dde1223f6f435df7bf74922be995cdb796d",
    "url": "https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf"
   },
   "MS": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 95158109,
+   "bytes": 95163805,
    "containment": "census_polygon",
-   "content_sha256": "83cd0b6f1dc0ce9aa5a58df9c0e7d114d0e0c86c47094805e7423a7c51c4ee4e",
+   "content_sha256": "dbff1e790142451d1c3ed9951d52734885ea1948c5c2b043fb0f361aefb83dfe",
    "extract_candidates": 1670,
-   "extract_excluded": 185,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 191,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 5,
     "no_road_structure_or_barrier_context": 2,
     "outside_requested_state": 2
    },
    "quarantined": 9,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/mississippi-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:57:23Z",
-   "source_sha256": "add6e0ca392b75c2ebab5c9d755ae4d72641807f049b10dcc49babfe562318f6",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/mississippi-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:26:46Z",
+   "source_sha256": "140a1427c3eacc9e4c2664dadfb71922c8eeb0b340a7e665789120ae3504f6d9",
    "url": "https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf"
   },
   "MT": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 101306642,
+   "bytes": 101335678,
    "containment": "census_polygon",
-   "content_sha256": "7f9dabf9bebff066c820f2a7aa6e5ea1cb8c1b599537d9a301ce2f40d09b8de1",
+   "content_sha256": "9edcbf7382882ede8c841ff4ff337c721a52a2c30c5ebbacca42c63c5e65f20f",
    "extract_candidates": 78,
-   "extract_excluded": 508,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 552,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 5,
-    "outside_requested_state": 2
+    "outside_requested_state": 2,
+    "unsupported_or_incomplete_geometry": 5
    },
-   "quarantined": 7,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/montana-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:58:15Z",
-   "source_sha256": "9f5f8c7679a60701f34c4d26abfd7929f0c21a5cd104135954348ed13107e350",
+   "quarantined": 12,
+   "resolved_url": "https://download.geofabrik.de/north-america/us/montana-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:29:55Z",
+   "source_sha256": "ecf542c6bac60f488eeb96287a4dede6a848fd2c54c37fd61562cf0787466b9a",
    "url": "https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf"
   },
   "NC": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 430441595,
+   "bytes": 430496161,
    "containment": "census_polygon",
-   "content_sha256": "e944da1037bba725eae4b7e613c121035baedeb87504556491e020e1b14b8da1",
+   "content_sha256": "692322252feb547e1cace854358a1f92df166b1d5cd72605173313b35b1267ce",
    "extract_candidates": 764,
-   "extract_excluded": 765,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 835,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 25,
     "unsupported_or_incomplete_geometry": 24
    },
    "quarantined": 50,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/north-carolina-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:58:47Z",
-   "source_sha256": "159768443f82ff2bd2e3c30c3d6dbf45469f364b0ad7fee42d2471d2080b3023",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/north-carolina-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:31:11Z",
+   "source_sha256": "e52339b8cdc21a8383cf8939b09a682d3fb443ecbefd26c5676b4a941122897f",
    "url": "https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf"
   },
   "ND": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 128225666,
+   "bytes": 128258009,
    "containment": "census_polygon",
-   "content_sha256": "81d6ed5c15e3f75935cb86d21d293a76fb9a88df79408d7b39b56bd57eb06154",
+   "content_sha256": "7e6561a91f8b7d021df23149b50b55422c3f4ce25d7243bdda0a02b16aac0445",
    "extract_candidates": 69,
    "extract_excluded": 19,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "outside_requested_state": 3
    },
    "quarantined": 3,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/north-dakota-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:59:02Z",
-   "source_sha256": "373b41880be33713ca399baea690b554c40b9bc7d1c01658c18826326e157932",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/north-dakota-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:31:08Z",
+   "source_sha256": "4ca9e23ddec13babc1b1729961952d5fe8db9b5b3309dddede7bd46fe39ababe",
    "url": "https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf"
   },
   "NE": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 101467749,
+   "bytes": 101493226,
    "containment": "census_polygon",
-   "content_sha256": "ebceb72323b40abdc69d53017584f3bbbe56bb7e15f41d1914159052d96457e9",
+   "content_sha256": "73a12dfadff414bcefae1bad027aaee6dca2c90c76b51206bffe1a20e4cc4872",
    "extract_candidates": 104,
-   "extract_excluded": 464,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 506,
+   "extract_timestamp": "2026-11-02T21:21:26Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 2,
     "no_road_structure_or_barrier_context": 12
    },
    "quarantined": 14,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/nebraska-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:59:46Z",
-   "source_sha256": "dccae48758802a293564d5e55841b6cfaa80e55108c00cae1bbaa76144621187",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/nebraska-261102.osm.pbf",
+   "retrieved_at": "2026-11-03T13:35:50Z",
+   "source_sha256": "c716f1c696d85626fcfb0c02d130fe9ca9c74cb40f56ef07f20baad5dce6a521",
    "url": "https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf"
   },
   "NH": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 72350581,
+   "bytes": 72366664,
    "containment": "census_polygon",
-   "content_sha256": "2081e605d81726ecc6b22a0bf4eacea1d21d58f9230b4263faad6630add32819",
+   "content_sha256": "4d83f7f205c99cb1fdce5331c1c1db68ef6f63b6d9dddd22258c1bac3e237089",
    "extract_candidates": 195,
-   "extract_excluded": 228,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 239,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 3,
     "no_road_structure_or_barrier_context": 19,
     "outside_requested_state": 12
    },
    "quarantined": 34,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/new-hampshire-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T21:59:42Z",
-   "source_sha256": "89e0a2b4b59684ea5b1ad44a8ce561f22b636ae167a3b40f2ae70032ee411e1d",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/new-hampshire-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:33:42Z",
+   "source_sha256": "92ea0cd4d436e0dc6667625e3324751951cfb777172171f8694979f3c940df18",
    "url": "https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf"
   },
   "NJ": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 164755063,
+   "bytes": 164813773,
    "containment": "census_polygon",
-   "content_sha256": "1e2fabc0eb87e2a769b2916446a1b2cd5e3dd01e1aaef089952d2fec8773192b",
+   "content_sha256": "6b97a8be054a07d3ddb6dd4178ee8cd256e97882411aa8fcafeda7e61ad03449",
    "extract_candidates": 1698,
-   "extract_excluded": 307,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 358,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 46,
     "no_road_structure_or_barrier_context": 24,
     "outside_requested_state": 73
    },
    "quarantined": 143,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/new-jersey-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:00:38Z",
-   "source_sha256": "924844f42833eb0401de96c1cebb0b81be2db3c7419f44b89cdb6499709d519e",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/new-jersey-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:35:40Z",
+   "source_sha256": "7e0c64a6cfdbfec1f94937afd80d42c61db7229dd28bdb9a50f981509d8b58b8",
    "url": "https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf"
   },
   "NM": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 136709436,
+   "bytes": 136751978,
    "containment": "census_polygon",
-   "content_sha256": "d91e69e220a7b50a5c357f4cae4ba8fa4a8e369557db599a6401b1e5af415cd1",
-   "extract_candidates": 268,
-   "extract_excluded": 227,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "e63ea3076066c5910c86da1cbcc4dceb44b7679495df439479653e1eed86b877",
+   "extract_candidates": 269,
+   "extract_excluded": 233,
+   "extract_timestamp": "2026-11-02T21:21:26Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 15,
     "outside_requested_state": 2
    },
    "quarantined": 18,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/new-mexico-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:00:43Z",
-   "source_sha256": "76897aca6e39c6758ae28bf996748cad98589436275f728647fa3d4c0b8f5a18",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/new-mexico-261102.osm.pbf",
+   "retrieved_at": "2026-11-03T13:37:35Z",
+   "source_sha256": "5d84fc5f55c13f616011450f4356085a73f893e5c874cffedb8b92fad5f47ea0",
    "url": "https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf"
   },
   "NV": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 124052529,
+   "bytes": 124055717,
    "containment": "census_polygon",
-   "content_sha256": "9f6a2c1882bfc900d98bf9a38dccfdeb0ccde2302bc3aa8b16c4b23d4fed6509",
+   "content_sha256": "a1b7898e7c0d8e88d4aeb5203f7cfff2c90a3a0a5272aafda20843b75e55e4b5",
    "extract_candidates": 304,
-   "extract_excluded": 268,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 567,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 26,
     "outside_requested_state": 4
    },
    "quarantined": 31,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/nevada-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:01:33Z",
-   "source_sha256": "ced51d770434e8794c805392474061f8018a6e3394e92aaca40a623ebc5d6e49",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/nevada-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:37:35Z",
+   "source_sha256": "b2cd62ddd0c6bafc96747334e96da6301e2ac5a50bd80ee5b7bfdb790878d0e5",
    "url": "https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf"
   },
   "NY": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 498387684,
+   "bytes": 498500438,
    "containment": "census_polygon",
-   "content_sha256": "058344613f041012d7301f0357c51b846112a7aff1c92ad0b894cc24d0510a25",
-   "extract_candidates": 3263,
-   "extract_excluded": 4122,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "9173e7202722629a6c82d53c11837507e3e4fd7cd0f8e9e0127d92f44c31c5ca",
+   "extract_candidates": 3260,
+   "extract_excluded": 4512,
+   "extract_timestamp": "2026-11-02T21:21:26Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 48,
     "no_road_structure_or_barrier_context": 92,
@@ -1224,193 +1260,193 @@
     "unsupported_or_incomplete_geometry": 4
    },
    "quarantined": 189,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/new-york-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:02:32Z",
-   "source_sha256": "4109383b4079928e503c945777166918377fabe12863f55c7bb23d31093e5bed",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/new-york-261102.osm.pbf",
+   "retrieved_at": "2026-11-03T13:41:25Z",
+   "source_sha256": "69f555b371c94f64b2185586dc984d7e61e925ff2967006faec32cda749c6aec",
    "url": "https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf"
   },
   "OH": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 326586124,
+   "bytes": 326746852,
    "containment": "census_polygon",
-   "content_sha256": "0493ff67c0f83be6b953b2328a94fc030b70f0904d4930f41b12fb2b6ccbe82c",
+   "content_sha256": "6131307313de101a87644f93ff25360095231947cef3620ffd293d82dca37722",
    "extract_candidates": 1432,
-   "extract_excluded": 2328,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 2410,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 31,
     "outside_requested_state": 5
    },
    "quarantined": 37,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/ohio-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:02:59Z",
-   "source_sha256": "204168e61f99285d2c2c7681c791f62fd29657281db4518280dbed5f8ecc48d6",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/ohio-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:39:35Z",
+   "source_sha256": "fc8514c6d40222930be6032ad360b3e80f004749a77661bca0f37aab9578ccb1",
    "url": "https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf"
   },
   "OK": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 170015392,
+   "bytes": 170106710,
    "containment": "census_polygon",
-   "content_sha256": "bdaaf2f43d5c16c4cb29ae8e64a4305aaab8f51792b2fa4a9c24e9b194f5e71f",
+   "content_sha256": "cf9aa01d5b88c1f201937906c2e668ed8b60e77b1df4d79843a9274793671cf9",
    "extract_candidates": 3481,
    "extract_excluded": 508,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 50,
     "outside_requested_state": 8
    },
    "quarantined": 59,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/oklahoma-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:03:56Z",
-   "source_sha256": "d41499c4a70bc77a932f2aee4ba15fbc9c98c9b68d6ad756ae41e2bde52ff672",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/oklahoma-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:44:21Z",
+   "source_sha256": "e54a2c2137390e4dd1a74228f933cccb35cebc2cd67966e6742e7a9ac06cc4a8",
    "url": "https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf"
   },
   "OR": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 255082841,
+   "bytes": 255114996,
    "containment": "census_polygon",
-   "content_sha256": "73ec728582f1f8bed874843c5a71f220ab5895f0376f29e0dd495674a7a4d6ca",
+   "content_sha256": "95e67353e459f18a0aa9b91a26f861545ea2a78d1a10fddc68a5419ce10f4948",
    "extract_candidates": 714,
-   "extract_excluded": 947,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 1269,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 2,
     "no_road_structure_or_barrier_context": 99,
     "outside_requested_state": 5
    },
    "quarantined": 106,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/oregon-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:04:36Z",
-   "source_sha256": "f06e436764574e4d33df167c73ba88e67588c73bb529ed883322d870b7e6e04b",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/oregon-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:46:28Z",
+   "source_sha256": "e8948c9e1f33db4287b9fe19f25b61cc11a87c654a6c718aed59bb5abbfdb41e",
    "url": "https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf"
   },
   "PA": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 349614847,
+   "bytes": 349673557,
    "containment": "census_polygon",
-   "content_sha256": "4d2414849ebfe1312821d066de8e1ad61dbe84d694a35642c1582563c50204d0",
+   "content_sha256": "792b65b2fc1d314755cac267225b7f400686c374094e9265838d7d5b166d8843",
    "extract_candidates": 2797,
-   "extract_excluded": 609,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 619,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 5,
     "no_road_structure_or_barrier_context": 163,
     "outside_requested_state": 25
    },
    "quarantined": 193,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/pennsylvania-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:05:17Z",
-   "source_sha256": "0f2da6c2fa1cc67c49360e052f394cfdc916530f3038155f78a053fc3d093ece",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/pennsylvania-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:46:32Z",
+   "source_sha256": "397444a90c5abd8b30eecab53e3d0b1287f4d88cf1fd9194d758d61665944444",
    "url": "https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf"
   },
   "SC": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 165486682,
+   "bytes": 165573106,
    "containment": "census_polygon",
-   "content_sha256": "1c325c8ad5503d869fd1c6713ec427b615e3d12f1dd6381c4e2b9ef03d0f79fc",
-   "extract_candidates": 544,
-   "extract_excluded": 1221,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "da27e35a743c14c31b1188f5b9e8f798cd2364af58a18892309307c885c2340b",
+   "extract_candidates": 576,
+   "extract_excluded": 2172,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 1,
     "no_road_structure_or_barrier_context": 89,
     "outside_requested_state": 8
    },
    "quarantined": 98,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/south-carolina-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:06:29Z",
-   "source_sha256": "b316fa7ee527cb89d248bb8137ff2eee112512be3456828f4c0db08e49c07e5c",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/south-carolina-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:48:07Z",
+   "source_sha256": "ee5ba64065aa735545b737c873422aa2b49db1555bb062fddffcfcba6ff5c5f5",
    "url": "https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf"
   },
   "SD": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 50184654,
+   "bytes": 50213452,
    "containment": "census_polygon",
-   "content_sha256": "b08b67e55d0c888f6d802cb82011cbc2ac17aa64474f0013db35fd53b246ee01",
+   "content_sha256": "deaf99426f0fe05af33319b24246ddd1894482c63102846524828e6bec0c73d1",
    "extract_candidates": 20,
-   "extract_excluded": 24,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 25,
+   "extract_timestamp": "2026-11-02T21:21:26Z",
    "quarantine_reasons": {},
    "quarantined": 0,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/south-dakota-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:06:20Z",
-   "source_sha256": "05a3bad17ce129aa54e08e95e12f7c69f655077f2c24d910a6027f90f79bd0e1",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/south-dakota-261102.osm.pbf",
+   "retrieved_at": "2026-11-03T13:48:16Z",
+   "source_sha256": "63f44ddeabeb6088475a58845f7173910158f4ba8cc8091033c9458370d06643",
    "url": "https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf"
   },
   "TN": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 191169093,
+   "bytes": 191196696,
    "containment": "census_polygon",
-   "content_sha256": "29533046b28cad7be99892b1e13a610f9a7c05f3e4d6bbc0f1eb5bdeb839db5a",
+   "content_sha256": "7bf3e9f04eeae0bf9f6ac3e8ddd164bc827ad53eafda43379de1fc4789dc8d8e",
    "extract_candidates": 1791,
-   "extract_excluded": 599,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 614,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 4,
     "no_road_structure_or_barrier_context": 11,
     "outside_requested_state": 7
    },
    "quarantined": 22,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/tennessee-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:07:30Z",
-   "source_sha256": "585a6a37b4027e248aedffa5efe02f9822bea51ee9bf070fceac3021c5b98907",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/tennessee-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:50:44Z",
+   "source_sha256": "36588cd63a0b9add4cf53d0556e728c7282847ec93b15def41b631f2c24b5135",
    "url": "https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf"
   },
   "TX": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 726522325,
+   "bytes": 726673368,
    "containment": "census_polygon",
-   "content_sha256": "c214403aca7f7189ef1485ccd189be5303ac397b5a049b8ecf8684f8f33749e2",
-   "extract_candidates": 11525,
-   "extract_excluded": 8710,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "29d89b490ac54b399b1826b66c1299abfa02c03a55ed6c7beebfdad8c265b683",
+   "extract_candidates": 11527,
+   "extract_excluded": 8815,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 4,
     "no_road_structure_or_barrier_context": 513,
     "outside_requested_state": 19
    },
    "quarantined": 536,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/texas-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:09:02Z",
-   "source_sha256": "f337c8bd1efd0d3ced6b1c859fe999da305419e8c718e2ad9afcc9e86150fadf",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/texas-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:51:53Z",
+   "source_sha256": "a645ffbca7d16e3207cc11c768e5333bdabb607423c78f6be4eae06abd45e257",
    "url": "https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf"
   },
   "UT": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 171041576,
+   "bytes": 171088096,
    "containment": "census_polygon",
-   "content_sha256": "d39f4edf347b9a8994a775f41cd4523d1fce63a59ab48082b76e2fb40fcb1245",
+   "content_sha256": "067dd0430b372872b9a88d8cec3347bd240696377f6eeb9e6c252e328810d580",
    "extract_candidates": 325,
-   "extract_excluded": 222,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 242,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 69
    },
    "quarantined": 69,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/utah-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:08:49Z",
-   "source_sha256": "017c0b15a856ccc25be29765b50bc05e2db56f9e5d1ec1d7570e32271d9bb87d",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/utah-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:53:35Z",
+   "source_sha256": "87ea111921cd6f77a6531e6a439ee14cf8762205821646b694d3cd218dd2f82f",
    "url": "https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf"
   },
   "VA": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 429230186,
+   "bytes": 429302125,
    "containment": "census_polygon",
-   "content_sha256": "e89a84c9fbcb2d3a2bff2508fb9559a6a354df09e79ba689bc954aa74435736b",
-   "extract_candidates": 849,
-   "extract_excluded": 2105,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "content_sha256": "ffec9c482b2b57ac0eb04292ae97854c081fd7b183f9569c9bc16010feb4bbe2",
+   "extract_candidates": 850,
+   "extract_excluded": 2919,
+   "extract_timestamp": "2026-11-02T21:21:26Z",
    "quarantine_reasons": {
     "no_road_structure_or_barrier_context": 68,
     "outside_requested_state": 5,
     "unsupported_or_incomplete_geometry": 1
    },
    "quarantined": 74,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/virginia-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:10:04Z",
-   "source_sha256": "5c109f7cab3416bae5f066b56914008acb79eb2fe8d537464eb1b2125798c366",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/virginia-261102.osm.pbf",
+   "retrieved_at": "2026-11-03T13:55:25Z",
+   "source_sha256": "81d3dd744f841df75d362507dce594bb22a2bd7e1a2998ca2e568300a4783a07",
    "url": "https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf"
   },
   "VT": {
@@ -1434,40 +1470,40 @@
   },
   "WA": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 365305788,
+   "bytes": 365373756,
    "containment": "census_polygon",
-   "content_sha256": "7218882c029768a64ca05c31fe84859bd5bbdcc18b2e8a67a68cef82baeafaa3",
+   "content_sha256": "88d1d2ccbed1eb3d9a79ce312627bbd84bbc64440f8aebbbf618de7b8aba8f65",
    "extract_candidates": 2231,
-   "extract_excluded": 1385,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 7003,
+   "extract_timestamp": "2026-11-01T21:21:36Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 2,
     "no_road_structure_or_barrier_context": 261,
     "outside_requested_state": 13
    },
    "quarantined": 276,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/washington-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:12:17Z",
-   "source_sha256": "70a057582583438c97f34f1eb441b32c2c1798bf1de3cc92e7dab044af16df65",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/washington-261101.osm.pbf",
+   "retrieved_at": "2026-11-03T13:58:35Z",
+   "source_sha256": "178d2728a69b88e1e8c7b44ce08b6b73d601e64461a92df536879cb5450f1e29",
    "url": "https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf"
   },
   "WI": {
    "boundary_reference_sha256": "e1fd5ba6855dfc7d3219ca4bc37cdd83c0eac7d4e9ebf4ace8080d0c47f6862a",
-   "bytes": 294998371,
+   "bytes": 295125968,
    "containment": "census_polygon",
-   "content_sha256": "ad73914d3bba07ed93451d2a9eee8e5abe99b8aaca69d26187d89bced8ac4b86",
+   "content_sha256": "e8079666bf7cdbe67b761396687cfdf9e96d18b40f4d9c6a290c4569b7506231",
    "extract_candidates": 628,
-   "extract_excluded": 816,
-   "extract_timestamp": "2026-10-30T21:24:51Z",
+   "extract_excluded": 850,
+   "extract_timestamp": "2026-11-02T21:21:26Z",
    "quarantine_reasons": {
     "boundary_ambiguous": 4,
     "no_road_structure_or_barrier_context": 166,
     "outside_requested_state": 1
    },
    "quarantined": 171,
-   "resolved_url": "https://download.geofabrik.de/north-america/us/wisconsin-261030.osm.pbf",
-   "retrieved_at": "2026-10-31T22:11:48Z",
-   "source_sha256": "3db991aff834cb89bd12af0646d33acbd53f0c6c819c5b4ded65842720861d5d",
+   "resolved_url": "https://download.geofabrik.de/north-america/us/wisconsin-261102.osm.pbf",
+   "retrieved_at": "2026-11-03T13:58:06Z",
+   "source_sha256": "3ddacbc1c3f6454e9dcceb0690b3ca777c51c5eb2c0c85902ce96000953b9ca9",
    "url": "https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf"
   },
   "WV": {
@@ -1539,8 +1575,8 @@
    "suspect": 6
   },
   "CT": {
-   "candidates": 887,
-   "comparable": 611,
+   "candidates": 888,
+   "comparable": 612,
    "suspect": 0
   },
   "DC": {
@@ -1554,8 +1590,8 @@
    "suspect": 0
   },
   "FL": {
-   "candidates": 1253,
-   "comparable": 1023,
+   "candidates": 1261,
+   "comparable": 1031,
    "suspect": 6
   },
   "GA": {
@@ -1604,8 +1640,8 @@
    "suspect": 0
   },
   "MA": {
-   "candidates": 1437,
-   "comparable": 1017,
+   "candidates": 1440,
+   "comparable": 1020,
    "suspect": 4
   },
   "MD": {
@@ -1619,8 +1655,8 @@
    "suspect": 0
   },
   "MI": {
-   "candidates": 1967,
-   "comparable": 1768,
+   "candidates": 1969,
+   "comparable": 1770,
    "suspect": 0
   },
   "MN": {
@@ -1669,8 +1705,8 @@
    "suspect": 0
   },
   "NM": {
-   "candidates": 268,
-   "comparable": 252,
+   "candidates": 269,
+   "comparable": 253,
    "suspect": 6
   },
   "NV": {
@@ -1679,8 +1715,8 @@
    "suspect": 0
   },
   "NY": {
-   "candidates": 3263,
-   "comparable": 2463,
+   "candidates": 3260,
+   "comparable": 2460,
    "suspect": 7
   },
   "OH": {
@@ -1704,8 +1740,8 @@
    "suspect": 1
   },
   "SC": {
-   "candidates": 544,
-   "comparable": 474,
+   "candidates": 576,
+   "comparable": 506,
    "suspect": 0
   },
   "SD": {
@@ -1719,8 +1755,8 @@
    "suspect": 9
   },
   "TX": {
-   "candidates": 11525,
-   "comparable": 11180,
+   "candidates": 11527,
+   "comparable": 11182,
    "suspect": 4
   },
   "UT": {
@@ -1729,8 +1765,8 @@
    "suspect": 0
   },
   "VA": {
-   "candidates": 849,
-   "comparable": 543,
+   "candidates": 850,
+   "comparable": 544,
    "suspect": 3
   },
   "VT": {
@@ -2727,12 +2763,12 @@
     -101.274487,
     31.951017
    ],
-   "bytes": 64918,
+   "bytes": 64928,
    "part": 1,
    "parts": 1,
    "path": "tiles/7-27-52.json",
    "records": 77,
-   "sha256": "de0eb0f395ee24fd528c90a7755aff6f8bed69db4080d650db5c4166f58536fc",
+   "sha256": "1ad684461f5a6da85761e309dec8f9f5de94a117377810dcdda43e55445230dc",
    "x": 27,
    "y": 52,
    "z": 7
@@ -2902,7 +2938,7 @@
    "parts": 1,
    "path": "tiles/7-29-45.json",
    "records": 24,
-   "sha256": "88008b6d8afb18c0f8213355603721f91c8c2b2816090b09e3eb70e57cf0583c",
+   "sha256": "fdf8c93e28bb95aca6aef31e2f39889ea2d341620f88940abcace751568ffc4d",
    "x": 29,
    "y": 45,
    "z": 7
@@ -3157,7 +3193,7 @@
    "parts": 1,
    "path": "tiles/7-32-46.json",
    "records": 148,
-   "sha256": "1e70edc71f158565a38c6e0935fddcf1d9822594245c6e342720b6cea3c70b18",
+   "sha256": "ba45c58880c513c82b0b769d736f24948b983285992051f156206a8670d26a92",
    "x": 32,
    "y": 46,
    "z": 7
@@ -3509,12 +3545,12 @@
     -122.589014,
     47.041184
    ],
-   "bytes": 73067,
+   "bytes": 72994,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-40-90.json",
    "records": 93,
-   "sha256": "adc3f8db83804edd984f574666f8bd02e87eef01a1cd92087a7c5c39c8fa0bc7",
+   "sha256": "d8df553bb5dd93f628e99f6264174108772d70903f66b7ee8569c942cb01188b",
    "x": 40,
    "y": 90,
    "z": 8
@@ -3934,12 +3970,12 @@
     -105.488081,
     35.462024
    ],
-   "bytes": 105774,
+   "bytes": 106517,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-52-101.json",
-   "records": 142,
-   "sha256": "a44bace1f084f20b96deb056ae73b640bd1748877ec2e5f4c5d949a542ad5b9b",
+   "records": 143,
+   "sha256": "0747a9f7491274b3e2d9868df9ac5c370aa2c3cf079991d2ac1b6775ec20ad0c",
    "x": 52,
    "y": 101,
    "z": 8
@@ -4410,12 +4446,12 @@
     -94.354075,
     35.459923
    ],
-   "bytes": 71285,
+   "bytes": 71321,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-60-101.json",
    "records": 103,
-   "sha256": "57469b594bc88bee91c1839cead53839ebb16e33af5f82f845aeaff441f39f01",
+   "sha256": "d513ff1e4741dc614e5fd8ec663fc4eb8080a847910f0a69b76a93bd27807505",
    "x": 60,
    "y": 101,
    "z": 8
@@ -4444,12 +4480,12 @@
     -94.241928,
     33.145803
    ],
-   "bytes": 85035,
+   "bytes": 85094,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-60-103.json",
    "records": 111,
-   "sha256": "18fd4d8f1db75b1b7a446375d04eb8d95713580e0f40c3974b5b156d3efbc341",
+   "sha256": "b32bd8d9088b584e3490c1b987e12d15b1cad795f0abfc263a34389ba74d2b7d",
    "x": 60,
    "y": 103,
    "z": 8
@@ -4869,12 +4905,12 @@
     -88.711345,
     43.068727
    ],
-   "bytes": 65327,
+   "bytes": 65947,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-64-94.json",
    "records": 89,
-   "sha256": "2e8e774139b9637cbe8e0ec76b651b9ad3c930459e791a30095699be58080505",
+   "sha256": "04f97c2ce8b3d30010d1106894d34a7804f4abecf76043dd50481adeffefb11d",
    "x": 64,
    "y": 94,
    "z": 8
@@ -5226,12 +5262,12 @@
     -84.380409,
     41.967787
    ],
-   "bytes": 70556,
+   "bytes": 70456,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-67-95.json",
    "records": 99,
-   "sha256": "bd9b28523c2e45d57aa4570435d5ee09ec2b16c69f3c7c7eebf15da26157c9c5",
+   "sha256": "7f58d6a999625f521d63298f1a146323fa6aa34c006a7342f0017ac751fdcdf6",
    "x": 67,
    "y": 95,
    "z": 8
@@ -5566,12 +5602,12 @@
     -81.564429,
     30.412253
    ],
-   "bytes": 107993,
+   "bytes": 107977,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-69-105.json",
    "records": 138,
-   "sha256": "c1ccb08f97591999c6a598cf7d693fce65dba7c68096b65d241eb21e47ddae41",
+   "sha256": "9ae8c0bed6e391928ccaef317fd9796fa5fc9ecd31102f5716fc1c876d95c58a",
    "x": 69,
    "y": 105,
    "z": 8
@@ -5697,34 +5733,17 @@
   },
   {
    "bbox": [
-    -81.542081,
-    33.147395,
-    -80.171593,
-    34.242394
-   ],
-   "bytes": 125146,
-   "part": 1,
-   "parts": 1,
-   "path": "tiles/8-70-102.json",
-   "records": 147,
-   "sha256": "96f56362d4773330a330f1b14f890906f2beae72828278c77702c11ceabb6e6b",
-   "x": 70,
-   "y": 102,
-   "z": 8
-  },
-  {
-   "bbox": [
     -81.321467,
     31.970024,
-    -80.310139,
+    -80.170045,
     33.137281
    ],
-   "bytes": 55411,
+   "bytes": 59471,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-70-103.json",
-   "records": 72,
-   "sha256": "c96af8d5c5760040f7d0c9ba30d1478637558faeda50cf2a709617c9685c49aa",
+   "records": 76,
+   "sha256": "35b37791e3d84505f6e30ee7fba421e52d34d311a5b4741608213dfa23136fd1",
    "x": 70,
    "y": 103,
    "z": 8
@@ -5855,12 +5874,12 @@
     -80.066973,
     26.882379
    ],
-   "bytes": 68263,
+   "bytes": 73635,
    "part": 1,
    "parts": 1,
    "path": "tiles/8-71-108.json",
-   "records": 92,
-   "sha256": "de5338411dbd652a1c084951a14ec14be498e5ea64d536eef8c5b31b3180ab8d",
+   "records": 100,
+   "sha256": "ff3de06c74d9eb6d2c99af44cf45b3f29ac8903510b6b8b1ee2e7819d2744b3d",
    "x": 71,
    "y": 108,
    "z": 8
@@ -7334,12 +7353,12 @@
     -96.375898,
     35.403212
    ],
-   "bytes": 41630,
+   "bytes": 41622,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-118-202.json",
    "records": 59,
-   "sha256": "1613b426e398a5d8f83dd60dd44ab717a8252f097bd5dadd1883a0be85a9f84f",
+   "sha256": "d099bec03253dba8e44d74bafa7893d830ff4e010dab0de54df94edded01e414",
    "x": 118,
    "y": 202,
    "z": 9
@@ -7589,12 +7608,12 @@
     -94.934909,
     35.97458
    ],
-   "bytes": 87342,
+   "bytes": 87366,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-120-201.json",
    "records": 128,
-   "sha256": "129e9a80158b435b1bc3670de48b53eb504ae24c527175cba7a4d2a70175ab63",
+   "sha256": "280dc9a60faae7855acc0094cb9de9c000ce1a98177495164f26a2d34efe7063",
    "x": 120,
    "y": 201,
    "z": 9
@@ -8835,9 +8854,43 @@
    "parts": 1,
    "path": "tiles/9-140-191.json",
    "records": 105,
-   "sha256": "6c272da664f3f2c76af87e2b70c1cb6198966745532f8abab4bb537163657677",
+   "sha256": "4bf2208809de23d5f65f25cb04693ac105ee4419b5ad7325294a6b81aa23b67a",
    "x": 140,
    "y": 191,
+   "z": 9
+  },
+  {
+   "bbox": [
+    -81.542081,
+    33.809791,
+    -80.902753,
+    34.242394
+   ],
+   "bytes": 104436,
+   "part": 1,
+   "parts": 1,
+   "path": "tiles/9-140-204.json",
+   "records": 130,
+   "sha256": "753bad5abac5781da72123591a340c4b00fe695a070c25467c01a2f36a4994c3",
+   "x": 140,
+   "y": 204,
+   "z": 9
+  },
+  {
+   "bbox": [
+    -81.135122,
+    33.326412,
+    -80.863974,
+    33.722074
+   ],
+   "bytes": 6730,
+   "part": 1,
+   "parts": 1,
+   "path": "tiles/9-140-205.json",
+   "records": 9,
+   "sha256": "3a85480aa7614c0b9a831d3a2d6110a2ff2d7e13cbf5c9167ada7f35fece78c5",
+   "x": 140,
+   "y": 205,
    "z": 9
   },
   {
@@ -8923,6 +8976,40 @@
    "sha256": "7b7d16270394afbfce1dab97b4c7d071c295cc78028edd08c07d54bbf02a05b3",
    "x": 141,
    "y": 191,
+   "z": 9
+  },
+  {
+   "bbox": [
+    -80.861191,
+    34.093059,
+    -80.171593,
+    34.217065
+   ],
+   "bytes": 13530,
+   "part": 1,
+   "parts": 1,
+   "path": "tiles/9-141-204.json",
+   "records": 8,
+   "sha256": "7622289ce60ac748fe37859468a18bbb4a9dd09e518a044659d93c7c472693a0",
+   "x": 141,
+   "y": 204,
+   "z": 9
+  },
+  {
+   "bbox": [
+    -80.851383,
+    33.137011,
+    -80.310234,
+    33.588159
+   ],
+   "bytes": 25973,
+   "part": 1,
+   "parts": 1,
+   "path": "tiles/9-141-205.json",
+   "records": 28,
+   "sha256": "bd958d6dd7cb028411977d3ae50f5e6ca5cc0b37f8c2634c795e5fd3ee7a29cb",
+   "x": 141,
+   "y": 205,
    "z": 9
   },
   {
@@ -9066,14 +9153,14 @@
     -79.463447,
     36.031011,
     -78.74446,
-    36.474273
+    36.585964
    ],
-   "bytes": 52361,
+   "bytes": 53040,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-143-200.json",
-   "records": 65,
-   "sha256": "b5885a7097a9c56ce3fab823a0290f61fb95f870868482aa727480dd5dbb0d30",
+   "records": 66,
+   "sha256": "477e9a72903450080b93f2b3db511759e7bc342909ade4314c495906d9f251c2",
    "x": 143,
    "y": 200,
    "z": 9
@@ -9289,12 +9376,12 @@
     -75.340821,
     41.512127
    ],
-   "bytes": 63341,
+   "bytes": 63340,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-148-191.json",
    "records": 85,
-   "sha256": "58adec189aa603bbd8130d2b3a4c9935fd1c967712097730828671e6e05caafc",
+   "sha256": "9e00995d274a2a84daccca9307d2360237f53257a781467243c62e54b798dd06",
    "x": 148,
    "y": 191,
    "z": 9
@@ -9748,12 +9835,12 @@
     -70.728809,
     42.550537
    ],
-   "bytes": 62889,
+   "bytes": 66358,
    "part": 1,
    "parts": 1,
    "path": "tiles/9-155-189.json",
-   "records": 68,
-   "sha256": "431759bcfc3c2ddab3eee85aaac2f919790b33112a1d4e6f8932bb55604a62e9",
+   "records": 70,
+   "sha256": "fcd7d7a3c70af07f418a76dbe7fc91af5b6e1daf96e4cfcb5789be0bbe14fe11",
    "x": 155,
    "y": 189,
    "z": 9
@@ -10751,12 +10838,12 @@
     -97.43377,
     30.735656
    ],
-   "bytes": 123021,
+   "bytes": 123071,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-234-420.json",
    "records": 171,
-   "sha256": "23d31defb649ee03e4d3b85f376a896c0f834cba5ba2f55d3ca9ce73f2447964",
+   "sha256": "3d4a0fd506c0669b85904538fc64cf8a410932a303f9eadb035aec862f10aa7f",
    "x": 234,
    "y": 420,
    "z": 10
@@ -11873,12 +11960,12 @@
     -83.146727,
     42.291104
    ],
-   "bytes": 74598,
+   "bytes": 75278,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-275-379.json",
-   "records": 98,
-   "sha256": "fc22548e83080130305d36ea1cc1d6852f1d0a118fea65a4d5ea1111a86a28d6",
+   "records": 99,
+   "sha256": "9678b74d2652de2d76934972eccb1f6711fbb221b1f754d4c2f8d1a663158583",
    "x": 275,
    "y": 379,
    "z": 10
@@ -12349,12 +12436,12 @@
     -75.976959,
     36.876669
    ],
-   "bytes": 69297,
+   "bytes": 69298,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-295-399.json",
    "records": 89,
-   "sha256": "385468054e3ffff88c86aa3ecc4a0ae498b57b8c8208c6f49a98db4ebc9e8073",
+   "sha256": "ddfeaeb242cebd0ca8875baa45f922e287de86a7c75507dc558bd56eafc6a768",
    "x": 295,
    "y": 399,
    "z": 10
@@ -12655,12 +12742,12 @@
     -72.791539,
     42.2798
    ],
-   "bytes": 4878,
+   "bytes": 5553,
    "part": 1,
    "parts": 1,
    "path": "tiles/10-304-379.json",
-   "records": 6,
-   "sha256": "3b6f71e154376bfdc68032876d85f35b187dc510f9562dc38f04ad3e7fbb948e",
+   "records": 7,
+   "sha256": "01e71cded7b3fd1de77210aec9ec6950c5e6062ec6063dcf4c8ce7c44980b8bc",
    "x": 304,
    "y": 379,
    "z": 10
@@ -13573,12 +13660,12 @@
     -97.56023,
     35.595161
    ],
-   "bytes": 70837,
+   "bytes": 70851,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-468-807.json",
    "records": 99,
-   "sha256": "f9ed4b438a311a4cce98fb0275ef68124423954c9389c5d2e9aeb7cfcd6dcc16",
+   "sha256": "043fecf651ba23a8bfd7e894baa0278c5cf0fa8a97e3d21c2b72ec7e21332ae5",
    "x": 468,
    "y": 807,
    "z": 11
@@ -14134,12 +14221,12 @@
     -94.04462,
     30.133899
    ],
-   "bytes": 127845,
+   "bytes": 127909,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-488-844.json",
    "records": 168,
-   "sha256": "9c1a9f392e4a0a61b524db1b34bddeb75097ee0d8ae2920b69c98045c8e08300",
+   "sha256": "0309aaf7da78f4cf487c77879ada92e2e7e7b9201120d71f697940b103897190",
    "x": 488,
    "y": 844,
    "z": 11
@@ -14168,12 +14255,12 @@
     -93.885451,
     29.985747
    ],
-   "bytes": 34957,
+   "bytes": 34982,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-489-845.json",
    "records": 48,
-   "sha256": "b5e90c251069096bbaea1ab26c2b8e71b78e54794b3f56a633db83f437129a4e",
+   "sha256": "e49790f7d829d2c85f6802003ff175be79ba7c1902df987c646b35a3b237b258",
    "x": 489,
    "y": 845,
    "z": 11
@@ -14542,12 +14629,12 @@
     -84.379138,
     39.226505
    ],
-   "bytes": 122346,
+   "bytes": 122227,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-543-781.json",
    "records": 165,
-   "sha256": "7198979e2badc2857cef22bc1077f918fe1fc320f9107e8d384f9f8f0377dc36",
+   "sha256": "1edc6135bb6792706dd7cea39f2874856d664dccaadd2dff9198b45bf7412ece",
    "x": 543,
    "y": 781,
    "z": 11
@@ -14627,12 +14714,12 @@
     -83.164832,
     42.54721
    ],
-   "bytes": 44757,
+   "bytes": 45854,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-550-756.json",
-   "records": 63,
-   "sha256": "7d50fc520e517f89f3bad314221d92081a5db7b4a1ea1d941ad3667f5e5f0fb6",
+   "records": 64,
+   "sha256": "a583c60e911b81dcdacb5ed974dcf2d8709d070fb4a2203a8478849a52d9e738",
    "x": 550,
    "y": 756,
    "z": 11
@@ -14763,12 +14850,12 @@
     -80.158217,
     25.798897
    ],
-   "bytes": 119152,
+   "bytes": 119150,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-567-872.json",
    "records": 167,
-   "sha256": "0767733371455c5d611874abbe94114d6d99741c47123a029b38ced837d9d27d",
+   "sha256": "f4262d297934e187607cc3fdf17afeb174a13436d86c50fbfc4976ec7e3c4777",
    "x": 567,
    "y": 872,
    "z": 11
@@ -15205,12 +15292,12 @@
     -73.9992,
     40.846478
    ],
-   "bytes": 126462,
+   "bytes": 126463,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-602-769.json",
    "records": 159,
-   "sha256": "d13640826c98cc6a34534ffc3257ac29c987d104a3422304987eabb0cc364bf3",
+   "sha256": "662e242ab10fd6c96272b762dbcee904633daf79d9c86b0dbc162ee5817ebdb9",
    "x": 602,
    "y": 769,
    "z": 11
@@ -15222,12 +15309,12 @@
     -74.00379,
     40.713546
    ],
-   "bytes": 79291,
+   "bytes": 79295,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-602-770.json",
    "records": 97,
-   "sha256": "9249f3e4f3d1f8ab1fa57604f720744b86f8f6015bc641f585eea7d28eae120c",
+   "sha256": "25ea7f8ec1d90f6f8839269ae13193eaadceee410f5637d506770c0f5a086723",
    "x": 602,
    "y": 770,
    "z": 11
@@ -15324,12 +15411,12 @@
     -73.650523,
     41.107303
    ],
-   "bytes": 79438,
+   "bytes": 79502,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-604-767.json",
    "records": 92,
-   "sha256": "f3061926b189cb2d845f8226ac232568cafe6422c25d2956843d384e22fef9df",
+   "sha256": "e389124eb2f660fda9caae3fccca79ec9d7688270d8698f11e2cbe78ebe48244",
    "x": 604,
    "y": 767,
    "z": 11
@@ -15426,12 +15513,12 @@
     -73.508931,
     41.112091
    ],
-   "bytes": 56534,
+   "bytes": 57229,
    "part": 1,
    "parts": 1,
    "path": "tiles/11-605-767.json",
-   "records": 72,
-   "sha256": "9b3b53b4167ff1e2184ed70acc54f9b32f25f75084bfb377f78f690f80b1f1bd",
+   "records": 73,
+   "sha256": "6042f725540362d65b82526f6416e0b9fe46bafc152c15cab2fc5a3d5b74fae3",
    "x": 605,
    "y": 767,
    "z": 11
@@ -15669,7 +15756,7 @@
    "parts": 1,
    "path": "tiles/12-656-1433.json",
    "records": 63,
-   "sha256": "d1f1ef40bbb3ddbe07532a85965f84bfb09e3206522d2ab7dfc6aac4e2407db9",
+   "sha256": "7ea9d98eaec0d74017fb4213ea12c405bc1b5eb3a0be7ad2853c1568abf28381",
    "x": 656,
    "y": 1433,
    "z": 12
@@ -16276,12 +16363,12 @@
     -97.734235,
     30.292387
    ],
-   "bytes": 84618,
+   "bytes": 85694,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-935-1686.json",
-   "records": 113,
-   "sha256": "a97c85e2b69b90df17d9832776c4dca864536138c01e5af3df35d5003a5eb34a",
+   "records": 114,
+   "sha256": "07fd2e044ba41099955be5a597e6949374f9699d80e6da23fc291bb7c0682687",
    "x": 935,
    "y": 1686,
    "z": 12
@@ -16463,12 +16550,12 @@
     -97.297643,
     32.768883
    ],
-   "bytes": 111063,
+   "bytes": 111065,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-940-1653.json",
    "records": 157,
-   "sha256": "d01e2d1e451ccd4ac77db6c880621cea76d390bd815aea528daf127ed3824be8",
+   "sha256": "e5e4177113951b48999fa283919709d212344a51098bfff1b2ec732908887463",
    "x": 940,
    "y": 1653,
    "z": 12
@@ -16645,17 +16732,17 @@
   },
   {
    "bbox": [
-    -97.024892,
+    -97.024912,
     32.990953,
     -96.943782,
     33.06212
    ],
-   "bytes": 107290,
+   "bytes": 107970,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-944-1649.json",
-   "records": 144,
-   "sha256": "540337c675541e1c2f7b45cf1897da15ee8d29ee4f1798196530c323915c8d2c",
+   "records": 145,
+   "sha256": "236de35adbcf6701102f10f08fc5b1f54d6f5d9e8476130ac414b46a76bcd523",
    "x": 944,
    "y": 1649,
    "z": 12
@@ -17024,12 +17111,12 @@
     -96.064928,
     36.152407
    ],
-   "bytes": 12955,
+   "bytes": 12982,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-954-1606.json",
    "records": 18,
-   "sha256": "43438e9702be1f2a81e68ef547376fba99e256c2d336455d85afa93fe8577c72",
+   "sha256": "f8010ab5577cd179519fd781e3189e291c37448957d18d59a27c6a66d7506795",
    "x": 954,
    "y": 1606,
    "z": 12
@@ -18032,7 +18119,7 @@
    "parts": 1,
    "path": "tiles/12-1100-1514.json",
    "records": 58,
-   "sha256": "f0838ce39b542e3cfc471cb3479aa9c3907461b158e080fefc6099c50192eb4f",
+   "sha256": "d87996670e71ea527b8fbcfa1d190f5952ebf962f71f6c8486c453f3b5fa2c08",
    "x": 1100,
    "y": 1514,
    "z": 12
@@ -18066,7 +18153,7 @@
    "parts": 1,
    "path": "tiles/12-1101-1514.json",
    "records": 83,
-   "sha256": "6f7ad668449f7d1b01ea297af66a9467977946dbc526c0422b981bd380236ff7",
+   "sha256": "a62d843088a87a17e434901ef6432787059289c647b912e663d2236cd5a0a584",
    "x": 1101,
    "y": 1514,
    "z": 12
@@ -18100,7 +18187,7 @@
    "parts": 1,
    "path": "tiles/12-1102-1514.json",
    "records": 147,
-   "sha256": "be419346ab983e33aae525e267f07992a08db553d1a1439b33ec008af39da98e",
+   "sha256": "c2662892b4d6bc5a43c817d4d8e76c847cd0962bec2a0fec80f710330b99dda9",
    "x": 1102,
    "y": 1514,
    "z": 12
@@ -18112,12 +18199,12 @@
     -82.968241,
     42.402788
    ],
-   "bytes": 39325,
+   "bytes": 39389,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-1103-1514.json",
    "records": 55,
-   "sha256": "c8f17df2690435499643eb4a2f6e75c9cba04fca2b00e20cf7c04e036f6fe43e",
+   "sha256": "bc41915f397402c9eb08287a50dbdf5b9dc78e8ac34834f24f116cdafba86c5d",
    "x": 1103,
    "y": 1514,
    "z": 12
@@ -18372,7 +18459,7 @@
    "parts": 1,
    "path": "tiles/12-1193-1550.json",
    "records": 97,
-   "sha256": "7ab5432f3c5cfc3f95fe1d630db450ccdf5782183240f9174aae5a4b8d512292",
+   "sha256": "380d616c1a8cbf20cfa62acd3f1ca182411af71bd5371679b598cac4881676fb",
    "x": 1193,
    "y": 1550,
    "z": 12
@@ -18610,7 +18697,7 @@
    "parts": 1,
    "path": "tiles/12-1206-1537.json",
    "records": 49,
-   "sha256": "bda88f60dac8d9801c597bb3ada20cf453ba0bb339b2b5472dad9fd1319e0fde",
+   "sha256": "30969268b7ee948e3ae08419b74e885bbdf1337adda6bdd843efae9fcef2b381",
    "x": 1206,
    "y": 1537,
    "z": 12
@@ -18639,12 +18726,12 @@
     -73.916573,
     40.71572
    ],
-   "bytes": 102268,
+   "bytes": 100136,
    "part": 1,
    "parts": 1,
    "path": "tiles/12-1206-1540.json",
-   "records": 138,
-   "sha256": "0453bc6b5a3dfbe2261ba10f220a021e2400eb4aa4a41f444bc8aafa1a7a438f",
+   "records": 135,
+   "sha256": "aa7b1125b035e75a7709f8c877a01fefa961cd9d899c626b282036a48c6c5dc2",
    "x": 1206,
    "y": 1540,
    "z": 12
@@ -19443,7 +19530,7 @@
    "parts": 1,
    "path": "tiles/13-2204-3030.json",
    "records": 53,
-   "sha256": "c7a555bbcb4bf68abcc3c97cdc0b70e83fee9504cc176430942a73e0b2ee0298",
+   "sha256": "d724c91351e09c07abdf650d84bae8d0d5282ca6329ea760a89d85fcf7a01c95",
    "x": 2204,
    "y": 3030,
    "z": 13
@@ -19477,7 +19564,7 @@
    "parts": 1,
    "path": "tiles/13-2205-3030.json",
    "records": 124,
-   "sha256": "72d77fb7dae9aa3a4d5e4b855b9c8e3098fe066dba32134a085b982eb61626fa",
+   "sha256": "4cbcbed83e33397fbe34c5832d489f4ffac30ac213c444c7d3029397ae9ef737",
    "x": 2205,
    "y": 3030,
    "z": 13
@@ -19574,12 +19661,12 @@
     -73.960627,
     40.780691
    ],
-   "bytes": 48751,
+   "bytes": 48707,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-2412-3078.json",
    "records": 61,
-   "sha256": "125838964d2f6594e17e71a96de7ff67e53cfcfe8a1b34cad996275fe1f6fd98",
+   "sha256": "216c44847dbc42b61de7af4b5f819900a563b1b8557798d6e59400e241b47483",
    "x": 2412,
    "y": 3078,
    "z": 13
@@ -19591,12 +19678,12 @@
     -73.954071,
     40.748142
    ],
-   "bytes": 46687,
+   "bytes": 46703,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-2412-3079.json",
    "records": 58,
-   "sha256": "a18f12eaec2c6e5e33d3921312950626de87fca4de82e73f0edfb53b212c6651",
+   "sha256": "dc1addb0af9981f3d3ccb671ee1860d8c79ca9fcac75a7bacf95fdb412dda9fe",
    "x": 2412,
    "y": 3079,
    "z": 13
@@ -19608,12 +19695,12 @@
     -73.915729,
     40.783093
    ],
-   "bytes": 58623,
+   "bytes": 58537,
    "part": 1,
    "parts": 1,
    "path": "tiles/13-2413-3078.json",
    "records": 77,
-   "sha256": "c5b3e78b391d5676884e8b2b68668d1f4f7a52f4159818d423d01691b3b6bb20",
+   "sha256": "81e93578aaa6089fcd027315db3322f4bf5289951b01980c4beff715121f7276",
    "x": 2413,
    "y": 3078,
    "z": 13
@@ -19777,18 +19864,21 @@
    "conditional": 9,
    "directional_only": 86,
    "mixed": 44,
-   "numeric_only": 43445,
+   "numeric_only": 43492,
    "suspect": 69,
    "unknown": 12915
   },
-  "bytes": 44468668,
-  "candidates": 56568,
-  "comparable": 43445,
-  "excluded": 58669,
+  "bytes": 44511917,
+  "candidates": 56615,
+  "comparable": 43492,
+  "excluded": 70161,
   "states_not_built": [],
   "states_with_data": 50,
-  "states_with_failures": [],
-  "tiles": 1059
+  "states_with_failures": [
+   "CA",
+   "MN"
+  ],
+  "tiles": 1062
  },
  "version": 3
 }

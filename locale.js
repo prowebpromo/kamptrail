@@ -7,7 +7,7 @@
   try { const saved = global.localStorage?.getItem(STORAGE_KEY); if (supported.includes(saved)) language = saved; } catch { /* Language is optional when storage is blocked. */ }
   // French is not precached, so English and Spanish visitors never download it. The service worker caches it on the first French load.
   // French loads as a separate catalogue so English and Spanish visitors do not download it. It must be parsed before app modules render.
-  const FR_VERSION = '2.43.0';
+  const FR_VERSION = '2.44.0';
   if (language === 'fr' && !global.KampTrailI18nFr && global.document?.readyState === 'loading') global.document.write('<script src="locale-fr.js?v=' + FR_VERSION + '"><\/script>');
   let fr = null;
   const catalogue = () => {
@@ -17,6 +17,67 @@
     return fr || {};
   };
   const es = {
+  "Beta preview": "Vista previa de la beta",
+  "Free tools and Guides connect KampTrail to existing Boondock or Bust resources.": "Las herramientas gratuitas y las guías conectan KampTrail con los recursos existentes de Boondock or Bust.",
+  "Map": "Mapa",
+  "Free tools": "Herramientas gratuitas",
+  "Guides": "Guías",
+  "KampTrail pages": "Páginas de KampTrail",
+  "Public beta · Free · No account required": "Beta pública · Gratis · Sin cuenta",
+  "Find campsites. Check the details. Plan your next stop.": "Encuentra lugares para acampar. Revisa los detalles. Planifica tu próxima parada.",
+  "Explore free and paid campsites, public-land information, and useful services. Save your stops and help improve KampTrail’s public beta.": "Explora lugares para acampar gratuitos y de pago, información sobre terrenos públicos y servicios útiles. Guarda tus paradas y ayuda a mejorar la beta pública de KampTrail.",
+  "Help test KampTrail": "Ayuda a probar KampTrail",
+  "What’s new": "Novedades",
+  "Chuck and Cindy Price · Boondock or Bust": "Chuck y Cindy Price · Boondock or Bust",
+  "THE CAMPER BEHIND KAMPTRAIL": "EL CAMPISTA DETRÁS DE KAMPTRAIL",
+  "Built by Chuck from Boondock or Bust": "Creado por Chuck de Boondock or Bust",
+  "I’m Chuck Price, a lifelong camper and the creator of Boondock or Bust. Cindy and I travel in a 2018 Hymer Aktiv Class B after years with a Class C Gulfstream.": "Soy Chuck Price, campista de toda la vida y creador de Boondock or Bust. Cindy y yo viajamos en una Hymer Aktiv Clase B de 2018 después de años con una Gulfstream Clase C.",
+  "I’m building KampTrail to bring campsite information, public-land context, and trip planning together. Start with a place you know and tell me what would make it more useful for your trips.": "Estoy creando KampTrail para reunir información de campamentos, contexto sobre terrenos públicos y planificación de viajes. Empieza por un lugar que conozcas y dime qué lo haría más útil para tus viajes.",
+  "Meet Chuck and Cindy on Boondock or Bust": "Conoce a Chuck y Cindy en Boondock or Bust",
+  "Chuck and Cindy Price of Boondock or Bust": "Chuck y Cindy Price de Boondock or Bust",
+  "BOONDOCK OR BUST SUBSCRIBER PREVIEW": "VISTA PREVIA PARA SUSCRIPTORES DE BOONDOCK OR BUST",
+  "Start with a place you know": "Empieza por un lugar que conozcas",
+  "You can use the beta now. Help shape it by trying these four steps on your phone or computer.": "Ya puedes usar la beta. Ayuda a mejorarla probando estos cuatro pasos en tu teléfono o computadora.",
+  "Find a familiar campsite or camping area.": "Busca un campamento o una zona de acampada que conozcas.",
+  "Check its location, fee information, amenities, and source links. Tell us what is missing or incorrect.": "Revisa su ubicación, información de tarifas, servicios y enlaces a las fuentes. Dinos qué falta o es incorrecto.",
+  "Save a stop, reload the page, and find it again in Saved stops.": "Guarda una parada, vuelve a cargar la página y búscala en Paradas guardadas.",
+  "Tell us what was confusing and which improvement would matter most on your next trip.": "Dinos qué te resultó confuso y qué mejora sería más importante para tu próximo viaje.",
+  "For a campsite correction, use Suggest a fix on that listing. General feedback is private, and email is optional.": "Para corregir un campamento, usa Sugerir una corrección en su ficha. Los comentarios generales son privados y el correo electrónico es opcional.",
+  "See recent updates and current limitations": "Ver las novedades y limitaciones actuales",
+  "Before your first trip with KampTrail": "Antes de tu primer viaje con KampTrail",
+  "Is KampTrail free?": "¿KampTrail es gratis?",
+  "The current beta is free to use. No account is required to explore the map, save stops, or send feedback.": "La beta actual es gratuita. No necesitas una cuenta para explorar el mapa, guardar paradas o enviar comentarios.",
+  "Do I need to install an app?": "¿Necesito instalar una aplicación?",
+  "You can use KampTrail in your browser. Install KampTrail explains how to add it to your home screen or app launcher.": "Puedes usar KampTrail en tu navegador. Instalar KampTrail explica cómo añadirlo a la pantalla de inicio o al lanzador de aplicaciones.",
+  "Where are my saved stops stored?": "¿Dónde se guardan mis paradas?",
+  "Saved stops stay in this browser on this device. Export a GPX file to back up your trip or move its stops to another device. Clearing site data removes local saves.": "Las paradas guardadas permanecen en este navegador y dispositivo. Exporta un archivo GPX para respaldar tu viaje o trasladar sus paradas a otro dispositivo. Borrar los datos del sitio elimina lo guardado localmente.",
+  "What works without a connection?": "¿Qué funciona sin conexión?",
+  "Prepare while online. Previously viewed listings and saved stops can remain available when browser storage permits. Use Offline to save selected USGS Topo map areas. New routes, fresh weather, land lookups, and sending feedback need a connection.": "Prepárate mientras tengas conexión. Las fichas vistas y las paradas guardadas pueden seguir disponibles si el almacenamiento del navegador lo permite. Usa Sin conexión para guardar áreas seleccionadas de mapas topográficos de USGS. Las rutas nuevas, el clima actualizado, las consultas de terrenos y el envío de comentarios requieren conexión.",
+  "Are campsite details verified?": "¿Están verificados los datos de los campamentos?",
+  "Listings combine agency records, OpenStreetMap data, and moderated visitor contributions. Coverage and dates vary. Unknown fees stay unknown. Confirm current fees, access, closures, and vehicle suitability with the operator or land manager.": "Las fichas combinan registros de agencias, datos de OpenStreetMap y aportes moderados de visitantes. La cobertura y las fechas varían. Las tarifas desconocidas siguen siendo desconocidas. Confirma las tarifas actuales, el acceso, los cierres y la idoneidad del vehículo con el operador o gestor del terreno.",
+  "Will routes account for my RV dimensions?": "¿Las rutas tienen en cuenta las dimensiones de mi vehículo?",
+  "Current routes use car routing. Your rig profile and mapped clearance candidates do not establish a safe or legal route for your vehicle. Check restrictions, road conditions, and posted signs before traveling.": "Las rutas actuales usan un planificador para automóviles. El perfil de tu vehículo y los posibles obstáculos de altura del mapa no garantizan una ruta segura o legal para tu vehículo. Revisa las restricciones, el estado de las carreteras y las señales antes de viajar.",
+  "Who’s behind KampTrail": "Quién está detrás de KampTrail",
+  "Watch how to check land management": "Mira cómo consultar quién gestiona el terreno",
+  "Watch how to plan multiple stops": "Mira cómo planificar varias paradas",
+  "Watch how to save Topo maps": "Mira cómo guardar mapas topográficos",
+  "Recent changes to the campsite map and trip planner, with the limits to keep in mind while testing.": "Cambios recientes en el mapa de campamentos y planificador de viajes, con las limitaciones que debes tener en cuenta durante las pruebas.",
+  "Common questions": "Preguntas frecuentes",
+  "A clearer welcome to the public beta": "Una bienvenida más clara a la beta pública",
+  "The homepage explains the beta and gives testers four practical steps to try.": "La página de inicio explica la beta y ofrece cuatro pasos prácticos para probar.",
+  "Meet Chuck from Boondock or Bust and learn why he is building KampTrail.": "Conoce a Chuck de Boondock or Bust y descubre por qué está creando KampTrail.",
+  "Workflow cards link directly to short videos about land management, multiple stops, and offline Topo maps.": "Las tarjetas explicativas enlazan directamente a videos breves sobre gestión de terrenos, varias paradas y mapas topográficos sin conexión.",
+  "First-trip questions explain installation, local saves, data limits, and car routing.": "Las preguntas para el primer viaje explican la instalación, los datos guardados localmente, las limitaciones de los datos y las rutas para automóviles.",
+  "Safety and privacy information": "Información de seguridad y privacidad",
+  "Added safety acknowledgement before protected features and dedicated Terms of Use, Safety Disclaimer, and About and Privacy pages.": "Se añadió una confirmación de seguridad antes de las funciones protegidas y páginas de Condiciones de uso, Aviso de seguridad e Información y privacidad.",
+  "Current beta limitations": "Limitaciones actuales de la beta",
+  "Campsite and service coverage varies. Source dates describe records, not a recent field inspection. Confirm current conditions with the operator.": "La cobertura de campamentos y servicios varía. Las fechas de las fuentes describen los registros, no una inspección reciente. Confirma las condiciones actuales con el operador.",
+  "Routes use car routing. RV dimensions and clearance warnings do not guarantee safe passage.": "Las rutas usan un planificador para automóviles. Las dimensiones del vehículo y las advertencias de altura no garantizan un paso seguro.",
+  "Carrier coverage overlays are unavailable. Dated camper signal reports and external coverage links are separate information.": "Las capas de cobertura de operadores no están disponibles. Los informes fechados de señal de los campistas y los enlaces externos de cobertura son información aparte.",
+  "Saved stops stay on this device and browser. Offline use requires preparation and available browser storage.": "Las paradas guardadas permanecen en este dispositivo y navegador. El uso sin conexión requiere preparación y almacenamiento disponible en el navegador.",
+  "What we need help testing": "Qué necesitamos ayudarte a probar",
+  "Try finding a familiar place, checking its details, saving a stop, and finding it again after reloading. Tell us where you get stuck and what information you need before deciding to visit.": "Busca un lugar conocido, revisa sus detalles, guarda una parada y vuelve a encontrarla después de cargar la página. Dinos dónde te atascas y qué información necesitas antes de decidir visitarlo.",
+  "Back to KampTrail": "Volver a KampTrail",
   "Reload KampTrail":"Volver a cargar KampTrail",
   "Safety acknowledgement could not be displayed. Reload KampTrail or close the app without accepting.":"No se pudo mostrar el aviso de seguridad para su aceptación. Vuelva a cargar KampTrail o cierre la aplicación sin aceptar.",
   "Acknowledgement is required to use the installed app. You can close this app without accepting.":"Se requiere aceptar el aviso para usar la aplicación instalada. Puede cerrar esta aplicación sin aceptar.",
@@ -1993,7 +2054,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title', 'alt']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.43.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.44.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   if (global.document) {
     global.document.documentElement.lang = language;
     global.document.addEventListener('DOMContentLoaded', () => {
