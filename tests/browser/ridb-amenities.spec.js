@@ -15,7 +15,7 @@ test('campsite records retain qualified amenity evidence and filters match at re
   await page.route('**/data/campsites/ridb-amenities.json',r=>json(r,evidence));
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.1,zoom:11})));
-  await page.goto('/');await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:123')?.properties.ridb_amenity_evidence);
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('ridb:123')?.properties.ridb_amenity_evidence);
   await page.evaluate(()=>KampTrailData.focusCampsite('ridb:123'));
   const popup=page.locator('.kt-site-popup');await expect(popup.locator('img')).toHaveCount(0);
   await expect(popup).toHaveAttribute('tabindex','0');
@@ -55,15 +55,15 @@ test('a delayed sidecar preserves open popup controls and appears on reopening t
   await page.route('**/data/campsites/ridb-amenities.json',async r=>{await delayed;await json(r,evidence);});
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.1,zoom:11})));
-  await page.goto('/',{waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:123'));
+  await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
+  await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('ridb:123'));
   await expect.poll(()=>page.evaluate(()=>{let found=false;map.eachLayer(l=>{if(l.kamptrailId==='ridb:123'){window.amenityTestMarker=l;found=true;}});return found;})).toBe(true);
   await page.evaluate(()=>window.amenityTestMarker.openPopup());
   const popup=page.locator('.kt-site-popup');await expect(popup).toContainText('amenity evidence unavailable');
   await popup.getByRole('button',{name:'Fee evidence',exact:true}).click();
   await expect(popup.getByRole('heading',{name:'Camping fee evidence',level:3})).toBeVisible();
   await page.evaluate(()=>window.amenityTestPopup=document.querySelector('.kt-site-popup'));
-  release();await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:123').properties.ridb_amenity_evidence);
+  release();await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('ridb:123').properties.ridb_amenity_evidence);
   expect(await page.evaluate(()=>window.amenityTestPopup===document.querySelector('.kt-site-popup'))).toBe(true);
   await expect(popup.getByRole('heading',{name:'Camping fee evidence',level:3})).toBeVisible();
   await expect(popup).toContainText('amenity evidence unavailable');

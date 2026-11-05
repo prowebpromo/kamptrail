@@ -14,7 +14,7 @@ async function setup(page,context,{zoom=11,mode='normal'}={}){
  if(u.includes('EDW_ForestCommonNames_01'))return r.fulfill({contentType:'application/json',body:JSON.stringify({features:[{attributes:{adminforestname:forest,url:'https://www.fs.usda.gov/'}}]})});
  return r.fulfill({contentType:'image/png',body:pixel});});
  await page.addInitScript(zoom=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom})),zoom);
- await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.KampTrailData&&!KampTrailData.getLoadStatus().loading);
+ await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData&&!KampTrailData.getLoadStatus().loading);
  return{requested,errors};
 }
 async function enable(page){await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');/* Leaflet suppresses clicks for one event-loop turn after expanding. */await page.waitForTimeout(50);const box=page.getByRole('checkbox',{name:'USFS motor vehicle roads',exact:true});await box.press('Space');await expect(box).toBeChecked();}

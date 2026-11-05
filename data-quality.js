@@ -4,6 +4,7 @@
   const t=(key,params={})=>global.KampTrailI18n?.t(key,params)??String(key).replace(/\{([a-zA-Z0-9_]+)\}/g,(token,name)=>Object.hasOwn(params,name)?String(params[name]):token);
   const validNumber = n => typeof n === 'number' && Number.isFinite(n);
   const normalizeName = value => String(value || '').trim().toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const recordOverrides=global.KampTrailRecordOverrides || (typeof module!=='undefined'&&module.exports?require('./record-overrides.js'):{records:{}});
   function getLatLng(feature) {
     if (feature?.geometry?.type !== 'Point' || !Array.isArray(feature.geometry.coordinates)) return null;
     const [lon, lat] = feature.geometry.coordinates;
@@ -183,6 +184,14 @@
       const elementType = raw.osm_type || (['node', 'way', 'relation'].includes(raw.type) ? raw.type : 'unknown');
       p.id = `osm:${elementType}:${raw.osm_id}${elementType === 'unknown' ? ':' + coordKey : ''}`;
     } else p.id = raw.id != null && raw.id !== '' ? String(raw.id) : `site:${normalizeName(name)}:${coordKey}`;
+    // Corrections attach only to this exact retained ID, name and coordinates.
+    // They cannot change identity, fees, access or campsite classification.
+    const correction=recordOverrides.records[p.id];
+    if(correction&&correction.coordinate_key===coordKey&&normalizeName(correction.name)===normalizeName(name)){
+      const stateApplied=!p.state&&!!correction.state;
+      if(stateApplied)p.state=correction.state;
+      p.record_override={...correction,state_applied:stateApplied||!!raw.record_override?.state_applied};
+    }else delete p.record_override;
     p.fee_evidence_records=mergeFeeEvidence(raw.fee_evidence_records);
     const ownOsmFee = osm && !ridb && !raw._kt_normalized;
     if(ownOsmFee && raw.fee != null){
@@ -740,6 +749,9 @@
     const forecast=global.KampTrailForecast,forecastActive=filters.forecastMinC!=null||filters.forecastMaxC!=null,forecastNow=forecast?.effectiveNow();
     return sites.filter(site => {
       const p=site.properties;
+      if (['rest-areas','dump-stations'].includes(filters.entryLayer)) return false;
+      // Entry intent selects only the retained record's own publisher. Member evidence never promotes a match.
+      if (filters.catalogueSource === 'blm' && p.source !== 'Bureau of Land Management') return false;
       if(forecastActive&&(!forecast||!forecast.matches(site,filters,forecastNow)))return false;
       if(elevation.active){const e=elevationInfo(site);if(!elevation.valid||!e||(elevation.min!==null&&e.m<elevation.min)||(elevation.max!==null&&e.m>elevation.max))return false;}
       if (filters.cost && filters.cost !== 'all' && p.fee_status !== filters.cost) return false;
@@ -784,6 +796,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.45.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.46.2',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);

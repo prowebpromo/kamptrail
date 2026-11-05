@@ -20,7 +20,7 @@ async function open(page,context,{facility,name,ridbFacility='123'}){
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.1,zoom:11})));
   const evidenceRequested=page.waitForResponse('**/data/campsites/usfs-site-amenities.json');
-  await page.goto('/');
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await evidenceRequested;
   await page.waitForFunction(id=>KampTrailData.getCampsiteById(id),`ridb:${facility}`);
   if(ridbFacility!=='123')await page.evaluate(()=>{window.__noRidb=true;});

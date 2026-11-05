@@ -136,7 +136,7 @@ function popupFor(features,language='en'){
   const context={console:{warn(){},log(){}},setTimeout,clearTimeout,URL,document:{addEventListener(){},documentElement:{lang:'en'},querySelectorAll:()=>[]},localStorage:{getItem:()=>language,setItem(){}},Intl,Date};
   context.window=context;vm.createContext(context);
   if(language==='fr')vm.runInContext(fs.readFileSync(path.join(__dirname,'../locale-fr.js'),'utf8'),context);
-  if(language!=='en')vm.runInContext(fs.readFileSync(path.join(__dirname,'../locale.js'),'utf8'),context);
+  if(language!=='en')vm.runInContext((fs.readFileSync(path.join(__dirname,'../locale-es.js'),'utf8')+'\n'+fs.readFileSync(path.join(__dirname,'../locale.js'),'utf8')),context);
   vm.runInContext(fs.readFileSync(path.join(__dirname,'../data-quality.js'),'utf8'),context);
   vm.runInContext(fs.readFileSync(path.join(__dirname,'../data-loader.js'),'utf8'),context);
   const site=context.DataQuality.cleanAndDedupeGeoJSON({features:list}).features[0];

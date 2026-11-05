@@ -471,8 +471,10 @@
     const sourceURL=safeUrl(p.source_url || p.website || p.url);
     const siteId=esc(p.id);
     const layout=popupLayout();
-    return `<div class="kt-site-popup" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
+    return `<div class="kt-site-popup" data-kt-place-id="${siteId}" tabindex="0" role="region" aria-label="${esc(t('Campsite details'))}" style="min-width:${Math.min(220,layout.width)}px;max-width:${layout.width}px;max-height:${layout.height}px;color:#263443">
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
+      ${p.record_override?.note?'<p class="kt-record-scope">'+esc(t(p.record_override.note))+'</p>':''}
+      ${p.record_override?.state_applied?`<div class="kt-fine"><a href="${esc(safeUrl(p.record_override.source_url))}" target="_blank" rel="noopener noreferrer">${t('State correction source')}</a> · ${esc(p.record_override.checked_at)}</div>`:''}
       ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
       <div><strong>${t("Cost:")}</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||t("Source"))}${p.fee_checked?t(", imported {0}", {"0":(esc(p.fee_checked))}):''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
@@ -482,7 +484,7 @@
       ${p.restrictions?`<div><strong>${t("Restrictions:")}</strong> ${esc(p.restrictions.length>180?p.restrictions.slice(0,177)+'…':p.restrictions)}</div>`:''}
       ${p.stay_limit?`<div><strong>${t("Stay limit:")}</strong> ${esc(p.stay_limit)}</div>`:''}
       ${p.reservable?`<div class="kt-fine">${t("Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.")}</div>`:''}
-      <div><strong>${t("Type:")}</strong> ${esc(uiLabel('type',p.type))}</div>
+      <div><strong>${t("Type:")}</strong> ${esc(p.record_override?.scope==='management_area'?t('Management area'):uiLabel('type',p.type))}</div>
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
@@ -576,6 +578,7 @@
       const size=n>=5000?46:n>=1000?40:34;
       const ll=BUBBLE_ANCHOR[code]||[(b.s+b.n)/2,(b.w+b.e)/2];
       const m=L.marker(ll,{icon:bubbleIcon(size,n),title:t("{0}: about {1} source listings. Select to zoom in.", {"0":(code),"1":(n.toLocaleString(window.KampTrailI18n?.locale() || 'en-US'))}),keyboard:true,zIndexOffset:n});
+      m.on('add',()=>{const el=m.getElement?.();if(el)el.setAttribute('aria-label',t('{state}: {short}, about {count} source listings. Select to zoom in.',{state:window.KampTrailStateNames?.[code]||code,short:short(n),count:n.toLocaleString(window.KampTrailI18n?.locale()||'en-US')}));});
       m.on('click',()=>{state.map.fitBounds([[b.s,b.w],[b.n,b.e]],{maxZoom:9});if(state.map.getZoom()<DETAIL_ZOOM)state.map.setView([(b.s+b.n)/2,(b.w+b.e)/2],DETAIL_ZOOM);});
       group.addLayer(m);group.items.push({code,n,base:size,size,ll,marker:m,line:null,dx:0,dy:0});
     }
@@ -590,17 +593,17 @@
     for(const it of [...g.items].sort((a,b)=>b.n-a.n)){
       const size=Math.round(it.base*scale),resized=size!==it.size;it.size=size;
       const p=state.map.latLngToLayerPoint(it.ll);
-      const free=(x,y)=>placed.every(q=>Math.hypot(q.x-x,q.y-y)>=(q.r+it.size/2+3));
+      const free=(x,y)=>placed.every(q=>Math.hypot(q.x-x,q.y-y)>=(q.r+Math.max(44,it.size)/2+3));
       let dx=0,dy=0;
       if(!free(p.x,p.y)){
         let found=false;
-        for(let ring=1;ring<=6&&!found;ring++){
+        for(let ring=1;ring<=16&&!found;ring++){
           const dist=ring*it.size*0.75;
           for(const a of BUBBLE_DIRECTIONS){const x=p.x+Math.cos(a)*dist,y=p.y+Math.sin(a)*dist;if(free(x,y)){dx=Math.round(x-p.x);dy=Math.round(y-p.y);found=true;break;}}
         }
       }
-      placed.push({x:p.x+dx,y:p.y+dy,r:it.size/2});
-      if(resized||dx!==it.dx||dy!==it.dy){it.dx=dx;it.dy=dy;it.marker.setIcon(bubbleIcon(it.size,it.n,dx,dy));}
+      placed.push({x:p.x+dx,y:p.y+dy,r:Math.max(44,it.size)/2});
+      if(resized||dx!==it.dx||dy!==it.dy){it.dx=dx;it.dy=dy;it.marker.setIcon(bubbleIcon(it.size,it.n,dx,dy));const el=it.marker.getElement?.();if(el)el.setAttribute('aria-label',t('{state}: {short}, about {count} source listings. Select to zoom in.',{state:window.KampTrailStateNames?.[it.code]||it.code,short:short(it.n),count:it.n.toLocaleString(window.KampTrailI18n?.locale()||'en-US')}));}
       if(dx||dy){const end=state.map.layerPointToLatLng([p.x+dx,p.y+dy]);if(it.line)it.line.setLatLngs([it.ll,end]);else it.line=L.polyline([it.ll,end],{className:'kt-state-leader',interactive:false,weight:1.5,color:'#24613f',opacity:.8});if(!g.hasLayer(it.line))g.addLayer(it.line);}
       else if(it.line&&g.hasLayer(it.line))g.removeLayer(it.line);
     }
@@ -627,13 +630,14 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.45.0',
+    version:'2.46.2',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
       window.addEventListener?.('kamptrail:discoveryupdated',()=>updateMarkers());
       window.addEventListener?.('kamptrail:forecastupdated',()=>{updateMarkers();requestForecast();});
       state.map=map;state.config=config;
+      map.on('popupopen',event=>{const id=event.popup?.getElement?.()?.querySelector('[data-kt-place-id]')?.dataset.ktPlaceId;const site=id&&api.getCampsiteById(id);if(site)window.KampTrailBeta?.viewPlace(site);});
       state.clusterGroup=L.markerClusterGroup({maxClusterRadius:50,spiderfyOnMaxZoom:true,showCoverageOnHover:false,chunkedLoading:true,chunkProgress:(done,total)=>{state.chunking=done<total;}});
       let timer;
       map.on('zoomend',layoutOverview);

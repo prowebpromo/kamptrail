@@ -33,8 +33,8 @@ async function open(page,context){
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43.015,lng:-75.13,zoom:12})));
   const usfsLoaded=page.waitForResponse('**/data/campsites/usfs-site-amenities.json'),ridbLoaded=page.waitForResponse('**/data/campsites/ridb-amenities.json');
-  await page.goto('/');await usfsLoaded;await ridbLoaded;
-  await page.waitForFunction(()=>KampTrailData.getCampsiteById('ridb:601')?.properties.ridb_amenity_evidence&&KampTrailData.getCampsiteById('ridb:602')?.properties.usfs_site_evidence&&KampTrailData.getCampsiteById('ridb:603')?.properties.usfs_site_evidence);
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await usfsLoaded;await ridbLoaded;
+  await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('ridb:601')?.properties.ridb_amenity_evidence&&KampTrailData.getCampsiteById('ridb:602')?.properties.usfs_site_evidence&&KampTrailData.getCampsiteById('ridb:603')?.properties.usfs_site_evidence);
 }
 async function popupFor(page,id){
   await page.evaluate(id=>KampTrailData.focusCampsite(id),id);

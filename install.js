@@ -23,6 +23,7 @@
     const trigger=document.getElementById('install-kamptrail');
     const runningAsApp=display.matches || navigator.standalone===true;
     if(trigger){
+      trigger.hidden=runningAsApp;
       const label=runningAsApp?'KampTrail app':installed?'KampTrail installed':'Install KampTrail';
       trigger.setAttribute('data-i18n',label);
       trigger.textContent=t(label);
@@ -68,5 +69,5 @@
   document.getElementById('install-kamptrail')?.addEventListener('click',open);
   document.querySelectorAll?.('[data-install-open]').forEach(button=>button.addEventListener('click',open));
   render();
-  window.KampTrailInstall={version:'2.45.0',open};
+  window.KampTrailInstall={version:'2.46.2',open};
 })();

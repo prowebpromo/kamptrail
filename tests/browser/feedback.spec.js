@@ -23,14 +23,14 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       await page.getByRole('link', {name:'Watch the offline walkthrough'}).click();
       await expect(page.locator('#h-offline')).toBeVisible();
     });
-    test('testing invitation, founder, FAQ and release history remain usable', async ({page,context}) => {
+    test('manual feedback, founder, FAQ and release history remain usable without recruiting on arrival', async ({page,context}) => {
       await context.route(/^https:\/\//, route => route.abort());
-      await page.goto('/', {waitUntil:'domcontentloaded'});
+      await page.goto('/', {waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
       await expect(page.locator('.kt-beta-label')).toContainText('Public beta');
-      await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
-      await expect(page).toHaveURL(/#beta-testing$/);
-      await expect(page.locator('#beta-testing li')).toHaveCount(4);
-      const preview = page.locator('#beta-testing');
+      await page.getByRole('link', {name:'Feedback',exact:true}).first().click();
+      await expect(page).toHaveURL(/#feedback-panel$/);
+      await expect(page.locator('#beta-testing')).toBeHidden();
+      const preview = page.locator('#feedback-panel');
       await preview.getByRole('button', {name:'Report a bug',exact:true}).click();
       const dialog = page.getByRole('dialog', {name:'Help improve KampTrail'});
       await expect(dialog).toBeVisible();
@@ -45,11 +45,11 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       await expect(page.locator('#beta-faq')).toContainText('Current routes use car routing.');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       expect((await new AxeBuilder({page}).include('.kt-home-hero').include('#beta-testing').include('#about-chuck').include('#beta-faq').analyze()).violations).toEqual([]);
-      await preview.getByRole('link', {name:'See recent updates and current limitations'}).click();
+      await page.locator('.kt-legal-nav').getByRole('link',{name:'What’s new',exact:true}).click();
       await expect(page.getByRole('heading', {name:'What’s new',exact:true})).toBeVisible();
       await expect(page.getByRole('region', {name:'Current beta limitations'})).toContainText('Carrier coverage overlays are unavailable.');
       await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
-      await expect(page.locator('#beta-title')).toBeVisible();
+      await expect(page.locator('#feedback-panel')).toBeVisible();await expect(page.locator('#beta-testing')).toBeHidden();
     });
   });
 }
@@ -62,6 +62,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
       await page.route('**/api/submit.php',r=>{sent.push(r.request().postDataJSON());return r.fulfill({status:down?503:201,contentType:'application/json',body:JSON.stringify(down?{ok:false,error:'unavailable'}:{ok:true,token,status:'received'})});});
       await page.route('**/api/status.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,status:'accepted',note:'We are investigating.'})}));
       await page.goto(path,{waitUntil:'domcontentloaded'});
+      await page.evaluate(()=>KampTrailMapLoader.start());
       return sent;
     }
     test('bug report is private by default, tracked, accessible and leaves the map usable',async({page,context})=>{
@@ -137,8 +138,9 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
 test.describe('touch page scrolling',()=>{
   test.use({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
   test('one-finger gestures scroll the page while two-finger map gestures stay enabled',async({page})=>{
-    await page.goto('/',{waitUntil:'domcontentloaded'});
-    await expect.poll(()=>page.evaluate(()=>!!window.map)).toBe(true);
+    await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
+    await page.evaluate(()=>KampTrailMapLoader.start());
+    await expect.poll(()=>page.evaluate(()=>typeof window.map?.getZoom==='function')).toBe(true);
     expect(await page.evaluate(()=>map.dragging.enabled())).toBe(false);
     expect(await page.evaluate(()=>map.touchZoom.enabled())).toBe(true);
     const box=await page.locator('#map').boundingBox();
@@ -155,7 +157,7 @@ for(const viewport of [{width:1920,height:1080},{width:1000,height:520},{width:6
   test.describe(`page layout ${viewport.width}x${viewport.height}`,()=>{
     test.use({viewport,serviceWorkers:'block'});
     test('wide and short windows retain a bounded map and normal document scrolling',async({page})=>{
-      await page.goto('/',{waitUntil:'domcontentloaded'});
+      await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
       expect((await page.locator('#app').boundingBox()).width).toBeLessThanOrEqual(1120);
       const height=(await page.locator('#map').boundingBox()).height;
       expect(height).toBeGreaterThanOrEqual(560);expect(height).toBeLessThanOrEqual(680);
@@ -170,7 +172,7 @@ for(const viewport of [{width:1920,height:1080},{width:1000,height:520},{width:6
 
 test('the campsite list keeps independent scrolling within the scrolling page',async({page})=>{
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75,zoom:8})));
-  await page.goto('/',{waitUntil:'domcontentloaded'});
+  await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   const results=page.locator('#results');
   await expect.poll(()=>results.evaluate(e=>e.scrollHeight>e.clientHeight)).toBe(true);

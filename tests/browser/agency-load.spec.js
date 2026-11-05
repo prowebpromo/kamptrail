@@ -12,7 +12,7 @@ const agencyCount=page=>page.evaluate(()=>KampTrailData.getAllCampsites().filter
 async function open(page,mobile){
   // Central Colorado at detail zoom: only Colorado is in view.
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.0,lng:-105.5,zoom:9})));
-  await page.goto('/',{waitUntil:'domcontentloaded'});
+  await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().loadedStates.includes('CO')&&!KampTrailData.getLoadStatus().loading,null,{timeout:30000});
   if(mobile&&!(await page.locator('#results').isVisible()))await page.locator('#results-toggle').click();
   await expect(page.locator('#results')).toBeVisible();
@@ -85,7 +85,7 @@ for(const [name,options] of Object.entries(VIEWPORTS)){
       await page.route('**/data/campsites/agency/index.json*',r=>r.fulfill({status:404,body:'not found'}));
       // National overview: zoomed out, so only state totals show.
       await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.5,lng:-98.5,zoom:4})));
-      await page.goto('/',{waitUntil:'domcontentloaded'});
+      await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
       await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().overview&&KampTrailData.getLoadStatus().agencyIndex==='failed',null,{timeout:30000});
       if(name==='mobile'&&!(await page.locator('#results').isVisible()))await page.locator('#results-toggle').click();
       const notice=page.locator('#data-errors .kt-agency-notice');
@@ -106,7 +106,7 @@ for(const [name,options] of Object.entries(VIEWPORTS)){
       await open(page,name==='mobile');
       await expect(page.locator('#data-errors .kt-agency-notice')).toContainText(STATE_NOTICE);
       await page.evaluate(()=>map.setZoom(4));
-      await page.waitForFunction(()=>KampTrailData.getLoadStatus().overview,null,{timeout:15000});
+      await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().overview,null,{timeout:15000});
       await expect(page.locator('#result-summary')).toContainText('Zoomed out');
       const notice=page.locator('#data-errors .kt-agency-notice');
       await expect(notice).toContainText(STATE_NOTICE);

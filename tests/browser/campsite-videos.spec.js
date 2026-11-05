@@ -20,7 +20,7 @@ async function setup(page,context,{spanish=false,publication=true,slow=false}={}
   return r.fulfill({contentType:'application/json',body:JSON.stringify(out)});
  });
  await page.addInitScript(({spanish,token})=>{localStorage.setItem('kt_language',spanish?'es':'en');localStorage.setItem('kt_reviews_v1',JSON.stringify([{name:'Original visitor place',token}]));},{spanish,token});
- await page.goto('/');
+ await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
  const open=()=>page.evaluate(()=>KampTrailCommunity.open({properties:{id:'qa:video',name:'Original visitor place'}}));await open();
  return{external,sent,checks:()=>checks,release:()=>release?.(),open};
 }

@@ -31,6 +31,7 @@
   };
   const key = (kind, lat, lng, digits = 4) => `${kind}:${lat.toFixed(digits)},${lng.toFixed(digits)}`;
   async function getJSON(url, timeout = 12000) {
+    if(global.navigator?.onLine===false)throw new Error('Offline');
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeout);
     try {
@@ -100,6 +101,7 @@
     return true;
   }
   function renderLand(target, lat, lng) {
+    target.setAttribute('role','status');target.setAttribute('aria-live','polite');
     target.replaceChildren(el('p', t("Checking land manager…"), 'kt-muted'));
     return landManager(lat, lng).then(info => {
       const box = el('div', null, `kt-land ${info.public ? 'is-public' : 'is-restricted'}`);
@@ -113,6 +115,7 @@
     }).catch(() => { target.replaceChildren(el('p', t("Land manager lookup is unavailable right now. Try again when connected."), 'kt-muted')); });
   }
   function renderForecast(target, lat, lng) {
+    target.setAttribute('role','status');target.setAttribute('aria-live','polite');
     target.replaceChildren(el('p', t("Loading the National Weather Service forecast…"), 'kt-muted'));
     return forecast(lat, lng).then(wx => {
       const box = el('div', null, 'kt-wx');
@@ -151,5 +154,5 @@
     }
     target.replaceChildren(box);relayout(target);
   }
-  global.KampTrailSpot = {version: '2.45.0', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
+  global.KampTrailSpot = {version: '2.46.2', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);

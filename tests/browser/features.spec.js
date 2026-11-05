@@ -37,7 +37,7 @@ test('layers control offers topo, satellite, public land and RV services from pu
   await expect(page.locator('.kt-services-status')).toContainText('Zoom to level 10');
   await page.evaluate(()=>map.setZoom(11));
   await expect.poll(()=>page.locator('.kt-svc-icon,.kt-svc-cluster').count()).toBeGreaterThan(0);
-  await page.reload({waitUntil:'domcontentloaded'});
+  await page.reload({waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailLayers?.getBase()==='Topo');
   expect(await page.evaluate(()=>KampTrailLayers.isOn('Public land (BLM, USFS, NPS)'))).toBe(true);
   expect(errors).toEqual([]);
@@ -84,8 +84,8 @@ test('amenity and rig filters persist and match only reported data',async({page,
   expect(await page.evaluate(()=>{const shown=new Set(KampTrailData.getVisibleCampsites().map(s=>s.properties.id)),all=KampTrailData.getVisibleCampsites({...KampTrailData.getCurrentFilters(),amenities:[]});return all.every(s=>shown.has(s.properties.id)===(DataQuality.amenityEvidence(s.properties).amenities.toilet.status==='present'));})).toBe(true);
   await page.locator('#f-rig').selectOption('tent');
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.rig_friendly.includes('tent')))).toBe(true);
-  await page.reload({waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.reload({waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await page.locator('#filters').click();
   await expect(page.locator('[name="f-amenity"][value="toilet"]')).toBeChecked();
   await expect(page.locator('#f-rig')).toHaveValue('tent');
@@ -155,8 +155,8 @@ test('rig length and hookup filters use Recreation.gov site details and popups s
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>s.properties.rv_max_length>=35))).toBe(true);
   await page.locator('[name="f-hookup"][value="electric"]').check();
   expect(await page.evaluate(()=>KampTrailData.getVisibleCampsites().every(s=>DataQuality.matchingSites(s.properties,35,['electric'])>0))).toBe(true);
-  await page.reload({waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.reload({waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   await page.locator('#filters').click();await expect(page.locator('#f-length')).toHaveValue('35');
   const id=await page.evaluate(()=>KampTrailData.getAllCampsites().find(s=>DataQuality.matchingSites(s.properties,35,['electric'])>0).properties.id);
   await page.evaluate(id=>KampTrailData.focusCampsite(id),id);

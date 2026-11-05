@@ -17,7 +17,7 @@ async function boot(page,{delay={},order=null}={}){
   await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{'ridb:232479':{rating_count:1,rating_sum:5,latest_visit:'2026-06-01',observations:[]}}})}));
   // Start in the ocean so no state loads before the test chooses an order.
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
-  await page.goto('/');
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published');
   await page.evaluate(async order=>{if(order)for(const c of order)await KampTrailData.loadStates([c]);else await KampTrailData.loadStates(['NC','TN','CA','NV']);},order);
 }
@@ -90,7 +90,7 @@ test.describe('deterministic identity on the published catalogue',()=>{
     await page.locator('#kt-report button[type="submit"]').click();
     await expect.poll(()=>posted?.campsite_id).toBe('osm:way:1107154601');
     // Reloading keeps the saved ids exactly as stored.
-    await page.reload();await page.waitForFunction(()=>window.KampTrailTrip);
+    await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailTrip);
     expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')).map(s=>s.id))).toEqual(['ridb:232479','usfs:20680']);
   });
 });
@@ -104,7 +104,7 @@ test.describe('cached states',()=>{
     const ids=await page.evaluate(()=>KampTrailData.getAllCampsites().map(f=>f.properties.id).sort());
     // Second visit, offline: state files and the host map come from the cache, in the other order.
     await context.setOffline(true);
-    await page.reload();await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published');
+    await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published');
     await page.evaluate(async()=>{for(const c of ['TN','NC'])await KampTrailData.loadStates([c]);});
     expect(await page.evaluate(()=>KampTrailData.getLoadStatus().loadedStates.sort())).toEqual(['NC','TN']);
     expect(await page.evaluate(()=>KampTrailData.getAllCampsites().map(f=>f.properties.id).sort())).toEqual(ids);
@@ -121,7 +121,7 @@ test.describe('host file unavailable on a first visit',()=>{
     await page.route('**/data/campsites/identity-hosts.json',r=>serveHosts?r.continue():r.fulfill({status:404,body:''}));
     await page.addInitScript(()=>{if(!sessionStorage.getItem('seeded')){sessionStorage.setItem('seeded','1');localStorage.setItem('kt_trip',JSON.stringify([{id:'ridb:232479',feature:null,note:'legacy',arrive:'',depart:''}]));}});
     await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
-    await page.goto('/');
+    await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
     await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='fallback');
     const owners=Object.fromEntries(index.sites.flatMap(s=>[s.id,...s.legacy_ids].map(id=>[id,s.id])));
     const check=()=>page.evaluate(owners=>{const wrong=[],ids=[];for(const f of KampTrailData.getAllCampsites()){const p=f.properties,own=new Set([p.id,...(p.legacy_ids||[])].map(id=>owners[id]));if(own.size!==1||own.has(undefined))wrong.push(p.id);ids.push(p.id);}return {wrong,ids};},owners);
@@ -166,7 +166,7 @@ test.describe('partial loads with the host file present',()=>{
     test.setTimeout(180000);
     const owners=Object.fromEntries(index.sites.flatMap(s=>[s.id,...s.legacy_ids].map(id=>[id,s.id])));
     await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
-    await page.goto('/');
+    await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
     await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published');
     const look=()=>page.evaluate(owners=>{
       const view=id=>{const f=KampTrailData.getCampsiteById(id);return f?{id:f.properties.id,owners:[...new Set([f.properties.id,...(f.properties.legacy_ids||[])].map(x=>owners[x]||'?'+x))]}:null;};

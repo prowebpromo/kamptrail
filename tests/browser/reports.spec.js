@@ -12,8 +12,8 @@ async function setup(page,context,{api='ok'}={}){
     return r.fulfill({status:201,contentType:'application/json',body:JSON.stringify({ok:true,token,status:'received'})});});
   await page.route('**/api/status.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,status:'accepted',note:'Thanks, fee will be updated.'})}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
-  await page.goto('/',{waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+  await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
+  await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
   return sent;
 }
 test('a camper reports a fee correction without an account and can check its status',async({page,context})=>{

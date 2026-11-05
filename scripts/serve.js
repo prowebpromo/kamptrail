@@ -1,7 +1,7 @@
 // Small local static server. Both / and /kamptrail/ work for deployment-path checks.
 const http=require('node:http'),fs=require('node:fs/promises'),path=require('node:path');
-const root=path.resolve(__dirname,'..');
-const types={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.geojson':'application/geo+json','.png':'image/png','.svg':'image/svg+xml','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8'};
+const root=path.resolve(process.env.KAMPTRAIL_SERVE_DIR||path.resolve(__dirname,'..'));
+const types={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.geojson':'application/geo+json','.png':'image/png','.svg':'image/svg+xml','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8','.xml':'application/xml','.webp':'image/webp','.ico':'image/x-icon'};
 const port=Number(process.env.PORT || 8765);
 http.createServer(async(req,res)=>{
   try {

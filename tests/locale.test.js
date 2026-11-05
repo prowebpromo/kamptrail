@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const fs=require('node:fs');
 const path=require('node:path');
-const source=fs.readFileSync(path.join(__dirname,'../locale.js'),'utf8');
+const source=fs.readFileSync(path.join(__dirname,'../locale-es.js'),'utf8')+'\n'+fs.readFileSync(path.join(__dirname,'../locale.js'),'utf8');
 const frSource=fs.readFileSync(path.join(__dirname,'../locale-fr.js'),'utf8');
 function boot(saved='en', blocked=false, dom, withFrench=false){
   const rows=new Map([['kt_language',saved],['kt_trip','visitor notes: Leave my words unchanged.'],['kt_filters_mvp','{"cost":"free"}']]);
@@ -27,20 +27,20 @@ test('numbers use selected locale and date-only inputs keep their UTC calendar d
   assert.equal(api.date('2026-01-01',{year:'numeric',month:'2-digit',day:'2-digit'}),new Intl.DateTimeFormat('es-US',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'UTC'}).format(new Date('2026-01-01T00:00:00Z')));
   assert.equal(api.date('not-a-date'),'not-a-date');assert.equal(api.date('2026-02-30'),'2026-02-30');assert.equal(api.date(''),'Desconocido');
 });
-test('only explicitly marked first-party elements change; html lang is set before DOM readiness',()=>{
+test('only explicitly marked first-party elements change; html lang is set before DOM readiness',async()=>{
   const marked={dataset:{i18n:'Save stop'},textContent:'Save stop'},sourceNode={textContent:'Camping is free'},input={getAttribute:()=> 'City, campsite, or lat, lng',setAttribute:(k,v)=>input[k]=v};
   const listeners={},dom={documentElement:{lang:'en'},addEventListener:(name,fn)=>listeners[name]=fn,querySelectorAll:selector=>selector==='[data-i18n]'?[marked]:selector==='[data-i18n-placeholder]'?[input]:[],getElementById:()=>null};
-  const {api}=boot('es',false,dom);assert.equal(dom.documentElement.lang,'es');listeners.DOMContentLoaded();assert.equal(marked.textContent,'Guardar parada');assert.equal(input.placeholder,'Ciudad, lugar de acampada o latitud, longitud');assert.equal(sourceNode.textContent,'Camping is free');
+  const {api}=boot('es',false,dom);assert.equal(dom.documentElement.lang,'es');await listeners.DOMContentLoaded();assert.equal(marked.textContent,'Guardar parada');assert.equal(input.placeholder,'Ciudad, lugar de acampada o latitud, longitud');assert.equal(sourceNode.textContent,'Camping is free');
   assert.deepEqual(Array.from(api.supported),['en','es','fr']);
 });
 test('locale asset is present in early boot, offline shell and release package',()=>{
   const read=f=>fs.readFileSync(path.join(__dirname,'..',f),'utf8');const index=read('index.html');assert.ok(index.indexOf('src="locale.js?v=')<index.indexOf('src="app.js?v='));assert.match(index,/id="kt-language"/);assert.match(read('service-worker.js'),/'locale\.js'/);assert.match(read('scripts/build-release.js'),/'locale\.js'/);assert.match(read('playwright.config.js'),/'locale\.spec\.js'/);
 });
-test('explicit selector changes reload only after successful storage and recover accessibly from denial',()=>{
+test('explicit selector changes reload only after successful storage and recover accessibly from denial',async()=>{
   for(const blocked of [false,true]){
     let reloads=0,change;const help={textContent:'',setAttribute:(k,v)=>help[k]=v},choice={value:'en',addEventListener:(_name,fn)=>change=fn},listeners={};
     const dom={documentElement:{lang:'en'},querySelectorAll:()=>[],addEventListener:(name,fn)=>listeners[name]=fn,getElementById:id=>id==='kt-language'?choice:id==='kt-language-help'?help:null};
-    const env=boot('en',blocked,dom);env.context.location={reload:()=>reloads++};listeners.DOMContentLoaded();choice.value='es';change();
+    const env=boot('en',blocked,dom);env.context.location={reload:()=>reloads++};await listeners.DOMContentLoaded();choice.value='es';await change();
     assert.equal(reloads,blocked?0:1);assert.equal(dom.documentElement.lang,blocked?'en':'es');assert.equal(choice.value,blocked?'en':'es');
     if(blocked){assert.match(help.textContent,/could not be saved/);assert.equal(help.role,'status');}
   }
@@ -124,6 +124,6 @@ test('French uses its own catalogue, keeps every Spanish key and placeholder, an
 });
 test('French is offered, cached for offline use and packaged',()=>{
   const read=f=>fs.readFileSync(path.join(__dirname,'..',f),'utf8');
-  assert.match(read('index.html'),/<option value="fr" lang="fr">Français<\/option>/);assert.doesNotMatch(read('service-worker.js'),/locale-fr/,'not precached, so other visitors never fetch it');assert.match(read('scripts/build-release.js'),/'locale-fr\.js'/);
+  assert.match(read('index.html'),/<option value="fr" lang="fr">Français<\/option>/);assert.doesNotMatch(read('service-worker.js').match(/const SHELL = \[([\s\S]*?)\];/)[1],/locale-(?:es|fr)/,'optional catalogues are not precached');assert.match(read('scripts/build-release.js'),/'locale-fr\.js'/);
   assert.doesNotMatch(read('index.html'),/src="locale-fr\.js/,'English and Spanish visitors do not download the French catalogue');
 });

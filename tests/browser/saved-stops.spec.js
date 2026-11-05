@@ -53,7 +53,8 @@ test('mobile dialog closes with Escape, restores focus, and stays above the app'
   await page.locator('#trip').click();
   await expect(page.locator('#kt-trip-close')).toBeFocused();
   const rect=await page.locator('#kt-trip-drawer').boundingBox();expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.height).toBeLessThanOrEqual(844);
-  await page.keyboard.press('Shift+Tab');await expect(page.locator('#kt-trip-import')).toBeFocused();
+  const lastControl=page.locator('#kt-trip-backup-json-import');await expect(lastControl).toBeVisible();await expect(lastControl).toBeEnabled();
+  await page.keyboard.press('Shift+Tab');await expect(lastControl).toBeFocused();
   await page.keyboard.press('Tab');await expect(page.locator('#kt-trip-close')).toBeFocused();
   await page.keyboard.press('Escape');await expect(page.locator('#kt-trip-drawer')).toBeHidden();await expect(page.locator('#trip')).toBeFocused();
 });
@@ -119,7 +120,7 @@ test('after-stay prompt shows only for past dated campsite stops, opens the revi
   await expect(prompts).toHaveCount(0);
   expect(await page.evaluate(()=>Object.keys(JSON.parse(localStorage.getItem('kt_stay_prompts_v1')))))
     .toEqual([`ridb:1|${day(-1)}`]);
-  await page.reload();await scaffold(page);
+  await page.reload();await page.evaluate(()=>window.KampTrailMapLoader?.start());await scaffold(page);
   await page.evaluate(()=>{window.KampTrailCommunity={open(){}};});
   await init(page);await page.locator('#trip').click();
   await expect(page.locator('.kt-stay-prompt')).toHaveCount(0);

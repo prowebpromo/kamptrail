@@ -31,8 +31,8 @@ async function setup(page,context,{osm=null,delay=null}={}){
   await page.route('**/data/clearances/tiles/*.json',r=>r.fulfill({contentType:'application/json',body:tiles.get(r.request().url().split('/').pop())}));
   await context.route('**/api/route.php',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,route:route(osm)})}));
   await page.addInitScript(({p,stops})=>{localStorage.setItem('kt_last_position',JSON.stringify({lat:40,lng:-104.99,zoom:12}));localStorage.setItem('kt_rig_profile_v1',JSON.stringify(p));localStorage.setItem('kt_trip',JSON.stringify(stops.map(feature=>({id:feature.properties.id,feature,note:'',arrive:'',depart:''}))));},{p:profile,stops:[stop('Start',-105,40),stop('End',-104.98,40)]});
-  await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.KampTrailRouteClearance&&window.KampTrailTrip);
-  await page.getByRole('button',{name:'Open saved stops',exact:true}).click();await page.getByRole('button',{name:'Calculate road route',exact:true}).click();
+  await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailRouteClearance&&window.KampTrailTrip);
+  await page.getByRole('button',{name:'Saved stops',exact:true}).click();await page.getByRole('button',{name:'Calculate road route',exact:true}).click();
   await expect(page.locator('#kt-trip-summary')).toContainText('driving');await page.getByRole('button',{name:'Clearance candidates along route',exact:true}).click();
   return {errors,dialog:page.getByRole('dialog',{name:'Clearance candidates along route'})};
 }

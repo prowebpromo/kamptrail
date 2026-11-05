@@ -11,7 +11,7 @@ async function setup(page,context,{down=false,monthly}={}){
   return r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,count:1,average:4,monthly,reviews:[{id:1,display_name:'<img src=x onerror=alert(1)>',rating:4,body:'Quiet night. <script>alert(1)</script>',visited_on:'2026-10-01',rig:'22-foot van',created_at:'2026-10-02',photos:[{id:1,width:1,height:1}]}],next_before:null})});
  });
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
- await page.goto('/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>KampTrailData.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+ await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
  const id=await page.evaluate(()=>KampTrailData.getVisibleCampsites()[0].properties.id);await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
  await page.locator('.leaflet-popup').getByRole('button',{name:'Reviews and photos',exact:true}).click();return sent;
 }

@@ -22,8 +22,8 @@ async function open(page,context){
   await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:2,facilities:{'901':{t:20,r:20,L:40,g:[[40,0,20]]},'904':{t:12,r:0,L:0}}}));
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43.01,lng:-75.12,zoom:12})));
-  await page.goto('/');
-  await page.waitForFunction(()=>KampTrailData.getCampsiteById('osm:way:903')?.properties.ridb_rig_check);
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
+  await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('osm:way:903')?.properties.ridb_rig_check);
 }
 async function rigBox(page,id){
   await page.evaluate(id=>KampTrailData.focusCampsite(id),id);

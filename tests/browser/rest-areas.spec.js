@@ -23,7 +23,7 @@ async function setup(page,context,{mobile=false,broken=false,policyBroken=false,
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
   await page.route('**/api/permissions.php*',r=>{const d=r.request().postDataJSON();return json(r,{ok:true,official:{status:'unknown',activity:d.activity,summary:'No current official permission evidence is recorded.',as_of:'2026-10-30T00:00:00Z',evidence:[]},reports_available:false,count:0,reports:[],next_before:null});});
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:30.9001,lng:-97.5623,zoom:10})));
-  await page.goto('/');await page.waitForFunction(()=>window.KampTrailRestAreas&&window.map);
+  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailRestAreas&&window.map);
   return{calls,errors};
 }
 async function show(page,{keyboard=false}={}){

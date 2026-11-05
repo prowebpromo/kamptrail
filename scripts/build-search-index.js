@@ -6,6 +6,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+require('./build-record-overrides.js').build();
 const DataQuality = require('../data-quality.js');
 
 function featureIds(feature) {
