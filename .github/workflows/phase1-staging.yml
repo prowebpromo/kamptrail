@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: dd39d924d1c3023dcffa59d06baa139be24dbc69
+          ref: 229eabebb13ec3c90e64601d31a86ac58ed06919
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
@@ -47,7 +47,7 @@ jobs:
         run: |
           node <<'JS'
           const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{execFileSync}=require('node:child_process');
-          const source='dd39d924d1c3023dcffa59d06baa139be24dbc69',out=path.resolve('dist/kamptrail'),branch='refs/heads/review/phase1-artifact';
+          const source='229eabebb13ec3c90e64601d31a86ac58ed06919',out=path.resolve('dist/kamptrail'),branch='refs/heads/review/phase1-artifact';
           if(branch==='refs/heads/main'||branch==='refs/heads/hostinger')throw Error('Forbidden production branch');
           if(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()!==source)throw Error('Source mismatch');
           for(const p of ['.git','.env','package.json','scripts','.github'])if(fs.existsSync(path.join(out,p)))throw Error('Unexpected source or secret');
