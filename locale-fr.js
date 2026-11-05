@@ -1,7 +1,18 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.46.3', messages:{
+  global.KampTrailI18nFr = {version:'2.46.4', messages:{
+  "Choose your map view": "Choisissez votre vue de la carte",
+  "Start with parking options, rest areas, dump stations, free camping or BLM land. The full map and planning tools remain available. Installation help is still available after you explore.": "Commencez par les options de stationnement, les aires de repos, les stations de vidange, le camping gratuit ou les terrains du BLM. La carte complète et les outils de planification restent disponibles. L’aide à l’installation reste accessible après votre exploration.",
+  "KampTrail | Camping, Parking & RV Services": "KampTrail | Camping, stationnement et services pour camping-cars",
+  "Find camping,": "Des campings,",
+  "parking and": "des étapes et",
+  "RV services.": "des services pour camping-cars.",
+  "Explore campsites, rest areas and dump stations. Check land management, save your stops and plan your trip.": "Explorez les campings, aires de repos et stations de vidange. Vérifiez qui gère les terrains, enregistrez vos étapes et préparez votre voyage.",
+  "Choose a map view": "Choisissez une vue de la carte",
+  "Rest areas": "Aires de repos",
+  "Free camping": "Camping gratuit",
+  "BLM land": "Terrains du BLM",
   "How it works": "Fonctionnement",
   "Recently viewed": "Consultés récemment",
   "Recently viewed places": "Lieux consultés récemment",

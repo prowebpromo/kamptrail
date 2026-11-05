@@ -77,3 +77,22 @@ test('two return visits still wait for use before offering installation',async({
 test('prepared BoB article CTAs stay usable without scripts and fit narrow and wide layouts',async({page})=>{
  for(const width of [390,1440]){await page.setViewportSize({width,height:900});await page.goto('/integrations/bob/cta-blocks.html');await expect(page.locator('aside')).toHaveCount(5);await expect(page.locator('script,style,h1')).toHaveCount(0);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);const modes=await page.locator('a').evaluateAll(all=>all.map(a=>{const u=new URL(a.href);return [u.origin,u.searchParams.get('mode'),u.searchParams.get('near')];}));expect(modes.map(x=>x[1])).toEqual(['overnight-parking','rest-areas','dump-stations','free-camping','blm']);expect(modes.every(x=>x[0]==='https://kamptrail.com'&&x[2]==='1')).toBe(true);}
 });
+
+for(const viewport of [{width:1440,height:1000},{width:390,height:844}])test('homepage intent choices reach the existing views without location permission '+viewport.width,async({page})=>{
+ await page.setViewportSize(viewport);
+ await page.addInitScript(()=>{window.nearRequests=0;Object.defineProperty(navigator,'geolocation',{value:{getCurrentPosition(){window.nearRequests++;}}});});
+ const modes=[['overnight-parking',()=>kamptrailFilters.type==='parking'],['rest-areas',()=>KampTrailLayers.isOn('Official rest areas')&&kamptrailFilters.entryLayer==='rest-areas'],['dump-stations',()=>KampTrailServices.getCategories().join()==='dump'&&kamptrailFilters.entryLayer==='dump-stations'],['free-camping',()=>kamptrailFilters.cost==='free'],['blm',()=>kamptrailFilters.catalogueSource==='blm'&&KampTrailLayers.isOn('Public land (BLM, USFS, NPS)')]];
+ for(const [mode,check]of modes){
+  await page.goto('/',{waitUntil:'domcontentloaded'});
+  const hero=page.locator('.kt-home-hero'),choices=hero.locator('.kt-intent-shortcuts');
+  await expect(choices.locator('a')).toHaveCount(5);
+  await expect(hero.locator('[data-install-open]')).toHaveCount(0);
+  const last=await choices.locator('a').last().boundingBox();expect(last.y+last.height).toBeLessThanOrEqual(viewport.height);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  const link=choices.locator('a[href="./?mode='+mode+'"]');await link.press('Enter');
+  await expect(page).toHaveURL(new RegExp('\\?mode='+mode+'$'));
+  await page.waitForFunction(()=>!!window.kamptrailFilters&&!!window.KampTrailLayers&&!!window.KampTrailServices&&!!window.KampTrailBeta);
+  await page.waitForFunction(check);await expect(page.locator('body')).toHaveClass(/kt-workspace/);await expect(page.locator('#kt-entry-state')).toBeVisible();
+  expect(await page.evaluate(()=>window.nearRequests)).toBe(0);
+ }
+});

@@ -122,6 +122,8 @@
       try{return await readJSON(url,limit,own.signal);}finally{global.clearTimeout(timer);master.signal.removeEventListener('abort',stop);}
     }
     async function load(force=false){
+      // A later viewport or popup redraw must share a running retry, not supersede it with stale cached data.
+      if(pending&&!controller?.signal.aborted)return pending;
       if(data&&!force)return data;if(pending)return pending;
       const master=controller=new AbortController(),prior=data;
       pending=(async()=>{
@@ -158,6 +160,6 @@
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
     return layer;
   }
-  const api={version:'2.46.3',requestTimeoutMs:20000,REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
+  const api={version:'2.46.4',requestTimeoutMs:20000,REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.KampTrailRestAreas=api;
 })(typeof window!=='undefined'?window:globalThis);
