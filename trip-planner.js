@@ -445,7 +445,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.46.2',
+    version:'2.46.3',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;

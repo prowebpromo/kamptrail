@@ -70,7 +70,7 @@
       gtag('set',{...fields,allow_google_signals:false,allow_ad_personalization_signals:false});
       gtag('consent','update',{...DENIED,analytics_storage:'granted'});
       if(!configured){
-        gtag('config',MEASUREMENT_ID,{...fields,send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,cookie_prefix:COOKIE_PREFIX,cookie_domain:'none'});
+        gtag('config',MEASUREMENT_ID,{...fields,send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,cookie_prefix:COOKIE_PREFIX,cookie_domain:'none',cookie_expires:5184000,cookie_update:false});
         configured=true;
       }
       if(!measuring){
@@ -131,5 +131,5 @@
     });
     mounts.set(win,api);sync();return api;
   }
-  return Object.freeze({version:'2.46.2',mount,DEFAULT_RELEASE,MEASUREMENT_ID,QUEUE,COOKIE_PREFIX});
+  return Object.freeze({version:'2.46.3',mount,DEFAULT_RELEASE,MEASUREMENT_ID,QUEUE,COOKIE_PREFIX});
 });
