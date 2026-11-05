@@ -1,0 +1,31 @@
+name: Focused homepage and rest-area retry acceptance
+on:
+  push:
+    branches: [review/homepage-retry-focused]
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Desktop and mobile homepage keyboard shortcuts
+        run: npx playwright test tests/browser/beta.spec.js -g 'homepage intent choices'
+      - name: Desktop and mobile delayed-region retry race
+        run: npx playwright test tests/browser/rest-areas.spec.js -g 'a region that misses its own deadline'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: focused-homepage-rest-retry
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
