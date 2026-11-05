@@ -1,0 +1,28 @@
+name: Read-only Google owner and payload diagnosis
+on:
+  push:
+    branches: [review/analytics-owner-diagnostic]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  routing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Observe real SDK routing without publishing or sending hits
+        run: node scripts/acceptance/google-owner-diagnostic.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: google-owner-diagnostic
+          path: google-owner-diagnostic.json
+          retention-days: 14
