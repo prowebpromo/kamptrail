@@ -1,16 +1,17 @@
-name: Read-only live homepage intent acceptance
+name: Read-only homepage visual acceptance
 on:
   push:
     branches: [review/homepage-intent-live]
 permissions:
   contents: read
 jobs:
-  live:
+  visual:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       CHROMIUM_PATH: /usr/bin/google-chrome
-      EXPECTED_SHA: b7fa9d0d1487817e3e6da87386ff4419fc32158d
+      EXPECTED_SHA: c10fff893a0a869000f227a5fe794bb8d13990fe
+      KT_QA_URL: http://127.0.0.1:8765
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,16 +19,19 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Desktop real shortcut acceptance
+      - run: node scripts/build-release.js
+      - name: Start disposable built source
+        run: KAMPTRAIL_SERVE_DIR="$PWD/dist/kamptrail" node scripts/serve.js >/tmp/kamptrail-preview.log 2>&1 &
+      - name: Desktop visual acceptance
         run: node scripts/acceptance/homepage-live.cjs
-      - name: Mobile real shortcut acceptance
+      - name: Mobile visual acceptance
         env:
           MOBILE: 1
         run: node scripts/acceptance/homepage-live.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: homepage-intent-live
+          name: homepage-visual-evidence
           path: |
             homepage-live-*.json
             homepage-live-*.png

@@ -1,5 +1,5 @@
 /* Start the map near the workspace, or immediately for a returning/deep-linked visit. */
-(function(){'use strict';const VERSION='2.46.4';let pending=null,started=false;
+(function(){'use strict';const VERSION='2.46.5';let pending=null,started=false;
   function script(src){return new Promise((resolve,reject)=>{const node=document.createElement('script');node.src=src;node.onload=resolve;node.onerror=()=>{node.remove();reject(Error(src));};document.head.append(node);});}
   async function start(){
     if(pending)return pending;
@@ -26,6 +26,6 @@
   document.getElementById('search-form')?.addEventListener('submit',event=>{if(!started){event.preventDefault();event.stopImmediatePropagation();start().then(()=>{if(started)document.getElementById('search-form').requestSubmit();});}},true);
   let returning=false;try{returning=!!localStorage.getItem('kt_last_position')||!!localStorage.getItem('kt_trip');}catch{}
   if(returning||location.hash||new URLSearchParams(location.search).get('source')==='pwa'||document.body.classList.contains('kt-workspace'))start();
-  else if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){observer.disconnect();start();}},{rootMargin:'300px'});observer.observe(explore);}
+  else if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){observer.disconnect();start();}},{rootMargin:'0px'});observer.observe(document.getElementById('map'));}
   else start();
 })();

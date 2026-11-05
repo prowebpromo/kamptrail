@@ -4,7 +4,7 @@
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs/promises');
-const APP='https://kamptrail.com',EXPECTED=process.env.EXPECTED_SHA,MOBILE=process.env.MOBILE==='1';
+const APP=process.env.KT_QA_URL||'https://kamptrail.com',EXPECTED=process.env.EXPECTED_SHA,MOBILE=process.env.MOBILE==='1';
 const modes=[
  ['overnight-parking','Overnight parking',()=>window.kamptrailFilters?.type==='parking'],
  ['rest-areas','Rest areas',()=>window.kamptrailFilters?.entryLayer==='rest-areas'&&window.KampTrailLayers?.isOn('Official rest areas')],
@@ -16,12 +16,13 @@ const modes=[
  assert.match(EXPECTED||'',/^[a-f0-9]{40}$/,'Pin the authorized merge before checking production');
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/google-chrome',args:['--no-sandbox','--disable-dev-shm-usage']});
  const viewport=MOBILE?{width:390,height:844}:{width:1440,height:1000};
- const context=await browser.newContext({viewport,...(MOBILE?{isMobile:true,hasTouch:true}:{})}),page=await context.newPage();
- const report={kind:'read-only-live-homepage-intents',started:new Date().toISOString(),mobile_emulation:MOBILE,expected_source:EXPECTED,version:'2.46.4',all_google_collect_aborted:true,modes:[]};
+ const context=await browser.newContext({serviceWorkers:'block',viewport,...(MOBILE?{isMobile:true,hasTouch:true}:{})}),page=await context.newPage();
+ const report={kind:'read-only-live-homepage-intents',started:new Date().toISOString(),mobile_emulation:MOBILE,expected_source:EXPECTED,version:'2.46.5',all_google_collect_aborted:true,modes:[]};
  let blockedCollect=0;
  try{
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/(^|\.)google-analytics\.com$/.test(u.hostname)||(/(^|\.)google\.com$/.test(u.hostname)&&/collect/.test(u.pathname))){blockedCollect++;return route.abort();}return route.continue();});
   await context.addInitScript(()=>{window.ktQaLocationCalls=0;Object.defineProperty(navigator,'geolocation',{value:{getCurrentPosition(){window.ktQaLocationCalls++;}}});});
+  if(APP.startsWith('https:')){
   const deadline=Date.now()+8*60*1000;
   let release;
   while(Date.now()<deadline){
@@ -29,9 +30,10 @@ const modes=[
    await new Promise(resolve=>setTimeout(resolve,10000));
   }
   assert.equal(release?.source_commit,EXPECTED,'authorized source must be live');report.source=release.source_commit;
+  }else{report.source_under_test=EXPECTED;}
   await page.goto(APP+'/',{waitUntil:'domcontentloaded',timeout:90000});
   await page.waitForFunction(()=>!!window.KampTrailAnalytics);
-  assert.equal(await page.locator('meta[name="kamptrail-version"]').getAttribute('content'),'2.46.4');
+  assert.equal(await page.locator('meta[name="kamptrail-version"]').getAttribute('content'),'2.46.5');
   assert.equal((await page.locator('#home-title').innerText()).replace(/\s+/g,' '),'Find camping, parking and RV services.');
   assert.equal(await page.locator('.kt-home-hero [data-install-open]').count(),0);
   assert.equal(await page.locator('#install-guide [data-install-open]').count(),1);
@@ -45,15 +47,36 @@ const modes=[
   assert.equal(await page.evaluate(()=>KampTrailAnalytics.getStatus().analyticsConsent),false);
   await page.waitForFunction(()=>{const img=document.querySelector('.kt-hero-landscape');return img.complete&&img.naturalWidth>0;});
   await page.screenshot({path:'homepage-live-'+(MOBILE?'mobile':'desktop')+'.png'});
+  assert.equal(await page.locator('.kt-phone,.kt-hero-product').count(),0);
+  assert.equal(await page.locator('#install-kamptrail').isVisible(),false);
+  const skip=page.locator('.kt-skip-map');
+  assert.equal(await skip.evaluate(e=>getComputedStyle(e).clipPath),'inset(50%)');
+  await skip.focus();assert.equal(await skip.evaluate(e=>getComputedStyle(e).clipPath),'none');
+  await page.locator('#destination').focus();
+  report.keyboard_skip_link=true;report.initial_install_hidden=true;report.device_mockup_removed=true;
+  await page.locator('#how-it-works').screenshot({path:'homepage-live-'+(MOBILE?'mobile':'desktop')+'-guides.png'});
+  await page.locator('#about-chuck').screenshot({path:'homepage-live-'+(MOBILE?'mobile':'desktop')+'-founder.png'});
+  for(const id of ['install-guide','beta-faq','feedback-panel']){
+   const section=page.locator('#'+id);assert.equal(await section.isVisible(),true);
+   assert.ok(await section.evaluate(e=>e.scrollWidth<=e.clientWidth+1),id+' fits');
+  }
+  for(let i=0;i<3;i++){
+   await page.locator('#destination').fill('38.57332,-109.54984');
+   await page.locator('#destination').press('Enter');
+   await page.waitForFunction(n=>window.KampTrailBeta?.status().searches>=n,i+1);
+  }
+  assert.equal(await page.locator('#install-kamptrail').isVisible(),true);
+  assert.equal(await page.locator('dialog[open]').count(),0);
+  report.install_after_three_searches=true;
   for(const [mode,label,check]of modes){
    await page.goto(APP+'/',{waitUntil:'domcontentloaded',timeout:90000});
    await page.getByRole('navigation',{name:'Choose a map view',exact:true}).getByRole('link',{name:label,exact:true}).press('Enter');
    await page.waitForFunction(check,null,{timeout:60000});
    assert.equal(new URL(page.url()).search,'?mode='+mode);assert.ok(await page.locator('body').evaluate(el=>el.classList.contains('kt-workspace')));
-   assert.equal(await page.locator('.kt-home-hero').isVisible(),false);
+   assert.equal(await page.locator('.kt-home-hero').isVisible(),false);assert.equal(await page.locator('.kt-intent-shortcuts').isVisible(),false);
    assert.equal(await page.locator('#kt-entry-state').isVisible(),true);
    assert.equal(await page.evaluate(()=>window.ktQaLocationCalls),0,'generic shortcut cannot request location');
-   assert.equal(await page.evaluate(()=>KampTrailData.version),'2.46.4');
+   assert.equal(await page.evaluate(()=>KampTrailData.version),'2.46.5');
    assert.equal(await page.evaluate(()=>KampTrailAnalytics.getStatus().measuring),false,'test never opts into analytics');
    const layout=await page.evaluate(()=>({width:innerWidth,documentWidth:document.documentElement.scrollWidth}));assert.ok(layout.documentWidth<=layout.width,'workspace has no horizontal overflow');
    report.modes.push({mode,keyboard_activation:true,expected_filter_or_layer:true,entry_notice_visible:true,no_location_request:true,layout});
