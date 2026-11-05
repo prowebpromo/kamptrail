@@ -74,6 +74,10 @@ function validatePayloads(requests,pageUrl){
    await page.waitForTimeout(1400);
    assert.equal(requests.filter(x=>x.tid===BETA).length,0,'no beta SDK hits before fresh consent');
    if(target.site==='app')assert.equal(loads.filter(x=>x.id===BETA).length,0,'no Google loader before app consent');
+   else {
+    const initialLoaders=await page.locator('script[src*="googletagmanager.com/gtag/js"]').evaluateAll(els=>els.map(e=>new URL(e.src).searchParams.get('id')));
+    assert.deepEqual(initialLoaders,[LEGACY],'before beta consent only the existing Site Kit library is present');
+   }
    await page.getByRole('button',{name:'Decline',exact:true}).click();
    await page.waitForTimeout(800);
    assert.equal(requests.filter(x=>x.tid===BETA).length,0,'decline sends no beta SDK hits');
@@ -95,9 +99,12 @@ function validatePayloads(requests,pageUrl){
     await page.waitForTimeout(1200);
     assert.ok(!requests.some(x=>x.tid===BETA&&x.event==='affiliate_click'),'actual legacy affiliate event contaminated beta');
     entry.explicit_legacy_affiliate_routing=true;
-    const loaders=await page.locator('script[src*="googletagmanager.com/gtag/js"]').evaluateAll(els=>els.map(e=>new URL(e.src).searchParams.get('id')));
-    assert.deepEqual(loaders,[LEGACY],'Site Kit remains the sole Google script loader');
-    entry.single_site_kit_loader=true;
+    const loaders=await page.locator('script[src*="googletagmanager.com/gtag/js"]').evaluateAll(els=>els.map(e=>{const u=new URL(e.src);return {element_id:e.id,id:u.searchParams.get('id'),cx:u.searchParams.get('cx')};}));
+    entry.google_sdk_modules=loaders;
+    assert.equal(loaders.filter(x=>x.element_id==='google_gtagjs-js'&&x.id===LEGACY).length,1,'one application-owned Site Kit loader');
+    assert.ok(loaders.every(x=>(x.element_id==='google_gtagjs-js'&&x.id===LEGACY)||(x.element_id===''&&x.id===BETA&&x.cx==='c')),'only Site Kit and Google-generated destination module may be present: '+JSON.stringify(loaders));
+    assert.equal(await page.evaluate(()=>Object.hasOwn(window,'ktBetaAnalyticsQueue')),false,'no second application data layer on BoB');
+    entry.single_site_kit_owner=true;
    }
    entry.events=validatePayloads(requests,target.url);
    const cookies=await context.cookies();entry.beta_cookie_names=cookies.filter(c=>/^ktbeta(?:_|$)/.test(c.name)).map(c=>c.name).sort();
