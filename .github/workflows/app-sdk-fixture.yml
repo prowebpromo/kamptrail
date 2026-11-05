@@ -1,0 +1,28 @@
+name: Nonpublishing shipped app Google SDK acceptance
+on:
+  push:
+    branches: [review/analytics-app-sdk]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sdk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Test shipped modules against actual SDK without publishing or sending hits
+        run: node scripts/acceptance/app-sdk-fixture.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: app-sdk-fixture
+          path: app-sdk-fixture.json
+          retention-days: 14
