@@ -4,10 +4,11 @@ const integration=require('../integrations/bob/analytics-existing-owner.js'),con
 const RELEASE={enabled:true,existingOwnerReviewed:true,automaticCollectionReviewed:true},PATH='/resources/interstate-rest-areas/';
 class Bus{constructor(){this.listeners=new Map();}addEventListener(t,f){if(!this.listeners.has(t))this.listeners.set(t,new Set());this.listeners.get(t).add(f);}removeEventListener(t,f){this.listeners.get(t)?.delete(f);}emit(t,e={}){for(const f of this.listeners.get(t)||[])f(e);}}
 class Element extends Bus{constructor(tag,doc){super();this.tagName=tag.toUpperCase();this.ownerDocument=doc;this.children=[];this.attributes={};}appendChild(n){this.children.push(n);n.parent=this;return n;}setAttribute(k,v){this.attributes[k]=String(v);}focus(){}remove(){if(this.parent)this.parent.children=this.parent.children.filter(n=>n!==this);}}
-function setup({release=RELEASE,href='https://boondockorbust.com'+PATH+'?email=private@example.com#saved-stop',ready=true,oldGrant=false,loggedIn=false,requestReady=false}={}){
+function setup({release=RELEASE,href='https://boondockorbust.com'+PATH+'?email=private@example.com#saved-stop',ready=true,oldGrant=false,savedGrant=false,loggedIn=false,requestReady=false}={}){
   const win=new Bus(),doc=new Bus(),data=new Map(),calls=[],jar=new Map([['_ga','legacy'],['_ga_895FCE9MJX','legacy-stream'],['ktbeta','beta'],['ktbeta_VQE0H1DNKL','beta-stream']]);
   const clock=2000000000000;
   if(oldGrant)data.set('kt_optional_analytics_choice_v1',JSON.stringify({version:1,choice:'granted',savedAt:clock,expiresAt:clock+1000}));
+  if(savedGrant)data.set(consent.STORAGE_KEY,JSON.stringify({version:consent.VERSION,choice:'granted',savedAt:clock,expiresAt:clock+1000}));
   win.location=new URL(href);win.localStorage={getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)};
   doc.defaultView=win;doc.body={classList:{contains:n=>loggedIn&&n==='logged-in'}};doc.createElement=tag=>{assert.notEqual(tag,'script');return new Element(tag,doc);};doc.querySelectorAll=()=>[];
   Object.defineProperty(doc,'cookie',{get:()=>[...jar].map(([k,v])=>k+'='+v).join('; '),set:v=>{if(v.includes('Max-Age=0'))jar.delete(v.split('=')[0]);}});
@@ -49,4 +50,22 @@ test('asynchronous owner readiness is requested once only after a fresh grant an
 });
 test('a late readiness callback after revocation cannot configure or send beta data',()=>{
   const f=setup({ready:false,requestReady:true});f.click('Allow optional analytics');f.click('Revoke and clear choice');f.completeReadiness();assert.deepEqual(f.calls,[]);assert.equal(f.api.getStatus().measuring,false);f.unchanged();
+});
+
+test('privacy-page revoke clears prior beta cookies even though that page cannot configure measurement',()=>{
+  const f=setup({href:'https://boondockorbust.com/privacy-policy/',savedGrant:true});
+  assert.equal(f.api.getStatus().configured,false);assert.equal(f.api.getStatus().analyticsConsent,true);
+  assert.deepEqual(f.calls,[]);assert.equal(f.jar.get('ktbeta'),'beta');
+  f.click('Revoke and clear choice');
+  assert.equal(f.api.getStatus().analyticsConsent,false);assert.equal(f.api.getStatus().measuring,false);
+  assert.equal(f.jar.has('ktbeta'),false);assert.equal(f.jar.has('ktbeta_VQE0H1DNKL'),false);
+  assert.equal(f.jar.get('_ga'),'legacy');assert.equal(f.jar.get('_ga_895FCE9MJX'),'legacy-stream');
+  assert.equal(f.data.has(consent.STORAGE_KEY),false);assert.deepEqual(f.calls,[]);f.unchanged();
+});
+test('eligible article restores a valid grant without clearing its existing beta or legacy identity cookies',()=>{
+  const f=setup({savedGrant:true});
+  assert.equal(f.api.getStatus().analyticsConsent,true);assert.equal(f.api.getStatus().measuring,true);
+  assert.equal(f.jar.get('ktbeta'),'beta');assert.equal(f.jar.get('ktbeta_VQE0H1DNKL'),'beta-stream');
+  assert.equal(f.jar.get('_ga'),'legacy');assert.equal(f.jar.get('_ga_895FCE9MJX'),'legacy-stream');
+  assert.deepEqual(f.calls.map(c=>c[0]),['config','event']);f.unchanged();
 });

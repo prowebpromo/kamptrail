@@ -1,0 +1,19 @@
+name: Verify BoB privacy-page revocation
+on:
+  push:
+    branches: [review/bob-privacy-revocation]
+permissions:
+  contents: read
+jobs:
+  privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify owner, prior grant and privacy-page cookie removal
+        run: node --test tests/analytics-existing-owner.test.js
+      - name: Verify WordPress payload syntax
+        run: php -l review/bob-beta-analytics.php

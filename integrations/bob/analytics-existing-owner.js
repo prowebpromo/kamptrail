@@ -41,7 +41,11 @@
     }
     function pause(){
       adapter.configure({enabled:false});
-      if(configured){win['ga-disable-'+MEASUREMENT_ID]=true;clearDedicatedCookies();}
+      // An explicit denial must clear beta cookies even on the privacy page,
+      // which can render these controls but is ineligible for measurement.
+      // During initial saved-grant restoration, controls is still null: preserve
+      // existing beta identifiers until the restored choice is known.
+      if(configured||(controls&&!consent)){win['ga-disable-'+MEASUREMENT_ID]=true;clearDedicatedCookies();}
       measuring=false;
     }
     function sync(){
@@ -60,9 +64,9 @@
         win['ga-disable-'+MEASUREMENT_ID]=false;
         if(!configured){
           // Config is scoped to the beta destination, not global defaults.
-          // The group labels beta routing; it does not isolate unscoped legacy
-          // events. Every existing custom emitter must explicitly target its
-          // own legacy ID before this integration is activated.
+          // Custom groups do not isolate unscoped legacy events. Every existing
+          // custom emitter must explicitly route to its own legacy destination;
+          // verify this with actual Google SDK payloads before activating beta.
           owner.gtag('config',MEASUREMENT_ID,{...safeFields(),groups:GROUP,send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,cookie_prefix:COOKIE_PREFIX,cookie_domain:'none',cookie_expires:5184000,cookie_update:false});
           configured=true;
         }
