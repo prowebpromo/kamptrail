@@ -1,0 +1,39 @@
+name: Verify live MVP release
+on:
+  push:
+    branches: [review/mvp-live-acceptance]
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      EXPECTED_SHA: 7b46e7d9eef8771952ac21ba6324406712f23177
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Wait for the authorized source and verify public hosting
+        run: node review/mvp-hosting.cjs
+      - name: Desktop live saved-stop and layout acceptance
+        run: node review/mvp-live.cjs > live-desktop.json
+      - name: Mobile live saved-stop and layout acceptance
+        run: node review/mvp-live.cjs > live-mobile.json
+        env:
+          MOBILE: '1'
+      - name: Report validated live results
+        run: |
+          node -e 'for(const file of ["live-desktop.json","live-mobile.json"]){const r=require("./"+file);if(r.result!=="PASS"||r.release.source_commit!==process.env.EXPECTED_SHA)throw Error("Live acceptance failed");console.log(JSON.stringify({file,result:r.result,source:r.release.source_commit,version:r.version,mobile:r.mobile_emulation,layout:r.layout,beta_collection:r.beta_collection,json_backup_ids:r.json_backup_ids,offline:r.offline}));}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kamptrail-mvp-live-acceptance
+          path: |
+            live-*.json
+            live-*.png
+          retention-days: 14
