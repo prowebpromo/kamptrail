@@ -42,9 +42,21 @@ jobs:
           if(branch==='refs/heads/main'||branch==='refs/heads/hostinger')throw Error('Forbidden production branch');
           if(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()!==source)throw Error('Source mismatch');
           for(const p of ['.git','.env','package.json','scripts','.github'])if(fs.existsSync(path.join(out,p)))throw Error('Unexpected source or secret');
-          for(const file of fs.readdirSync(out).filter(f=>f.endsWith('.html'))){const p=path.join(out,file);let s=fs.readFileSync(p,'utf8').replace('</head>','<meta name="robots" content="noindex,nofollow,noarchive"></head>');s=s.replace(/(<body[^>]*>)/,'$1<aside aria-label="Staging notice" style="padding:12px 18px;background:#fff3d1;color:#253d32;font:14px/1.5 system-ui">KampTrail Phase 1 staging, PR #178. Saved data is separate from kamptrail.com. This staging site has no production database.</aside>');fs.writeFileSync(p,s);}
+          const stageKey=source.slice(0,12)+'-'+process.env.GITHUB_RUN_ID;
+          if(!/^[a-f0-9]{12}-[0-9]+$/.test(stageKey))throw Error('Invalid staging cache key');
+          const stageAsset=value=>{if(/^(?:[a-z]+:|\/\/|#)/i.test(value)||!/[.](?:js|css|json)(?:[?#]|$)/.test(value))return value;const u=new URL(value,'https://staging.invalid/');u.searchParams.set('__stage_build',stageKey);return (u.pathname.slice(1)+u.search+u.hash).replaceAll('&','&amp;');};
+          const shellPath=path.join(out,'shell.js');
+          fs.writeFileSync(shellPath,fs.readFileSync(shellPath,'utf8').replace("register('service-worker.js',","register('service-worker.js?__stage_build="+stageKey+"',"));
+          const workerPath=path.join(out,'service-worker.js');
+          let stagedWorker=fs.readFileSync(workerPath,'utf8');
+          stagedWorker=stagedWorker.replace(/const VERSION = '([^']+)'/,"const VERSION = '$1-stage-"+stageKey+"'");
+          const precache="await cache.addAll(SHELL.map(url=>new Request(new URL(url,self.registration.scope),{cache:'reload'})));";
+          if(!stagedWorker.includes(precache))throw Error('Staging precache overlay no longer matches');
+          stagedWorker=stagedWorker.replace(precache,"await Promise.all(SHELL.map(async url=>{const original=new URL(url,self.registration.scope),fresh=new URL(original);fresh.searchParams.set('__stage_build','"+stageKey+"');const response=await fetch(new Request(fresh,{cache:'reload'}));if(!response.ok)throw Error('Staging shell unavailable');await cache.put(original,response);}));");
+          fs.writeFileSync(workerPath,stagedWorker);
+          for(const file of fs.readdirSync(out).filter(f=>f.endsWith('.html'))){const p=path.join(out,file);let s=fs.readFileSync(p,'utf8').replace('</head>','<meta name="robots" content="noindex,nofollow,noarchive"></head>');s=s.replace(/((?:src|href|data-src)=")([^"]+)(")/g,(_,a,url,b)=>a+stageAsset(url)+b);s=s.replace(/(<body[^>]*>)/,'$1<aside aria-label="Staging notice" style="padding:12px 18px;background:#fff3d1;color:#253d32;font:14px/1.5 system-ui">KampTrail Phase 1 staging, PR #178. Saved data is separate from kamptrail.com. This staging site has no production database.</aside>');fs.writeFileSync(p,s);}
           fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nDisallow: /\n');
-          fs.writeFileSync(path.join(out,'release.json'),JSON.stringify({source_commit:source,production:false,pull_request:178})+'\n');
+          fs.writeFileSync(path.join(out,'release.json'),JSON.stringify({source_commit:source,production:false,pull_request:178,staging_build:stageKey})+'\n');
           const m=JSON.parse(fs.readFileSync(path.join(out,'manifest.json')));m.name='KampTrail Staging';m.short_name='KT Stage';fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify(m)+'\n');
           const ht=path.join(out,'.htaccess');fs.writeFileSync(ht,fs.readFileSync(ht,'utf8').replace('<IfModule mod_headers.c>','<IfModule mod_headers.c>\nHeader always set X-Robots-Tag "noindex, nofollow, noarchive"'));
           const scratch=fs.mkdtempSync(path.join(os.tmpdir(),'kt-stage-')),env={...process.env,GIT_INDEX_FILE:path.join(scratch,'index'),GIT_AUTHOR_NAME:'github-actions[bot]',GIT_AUTHOR_EMAIL:'41898282+github-actions[bot]@users.noreply.github.com',GIT_COMMITTER_NAME:'github-actions[bot]',GIT_COMMITTER_EMAIL:'41898282+github-actions[bot]@users.noreply.github.com'};
