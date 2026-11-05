@@ -89,7 +89,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}])test('ho
   await expect(hero.locator('[data-install-open]')).toHaveCount(0);
   const last=await choices.locator('a').last().boundingBox();expect(last.y+last.height).toBeLessThanOrEqual(viewport.height);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  const link=choices.locator('a[href="?mode='+mode+'"]');await link.press('Enter');
+  const link=choices.locator('a[href="./?mode='+mode+'"]');await link.press('Enter');
   await expect(page).toHaveURL(new RegExp('\\?mode='+mode+'$'));
   await page.waitForFunction(()=>!!window.kamptrailFilters&&!!window.KampTrailLayers&&!!window.KampTrailServices&&!!window.KampTrailBeta);
   await page.waitForFunction(check);await expect(page.locator('body')).toHaveClass(/kt-workspace/);await expect(page.locator('#kt-entry-state')).toBeVisible();
