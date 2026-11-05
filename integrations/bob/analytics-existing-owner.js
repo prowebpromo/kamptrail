@@ -4,7 +4,7 @@
  * fields and await actual library readiness before allowing this adapter.
  */
 (function(root,factory){
-  if(typeof module==='object'&&module.exports)module.exports=factory(require('./consent-analytics.js'),require('./consent-controls.js'));
+  if(typeof module==='object'&&module.exports)module.exports=factory(require('../../consent-analytics.js'),require('../../consent-controls.js'));
   else if(!root.KampTrailAnalyticsExistingOwner)root.KampTrailAnalyticsExistingOwner=factory(root.KampTrailAnalyticsPreparation,root.KampTrailConsentControls);
 })(typeof globalThis==='object'?globalThis:this,function(preparation,controlsModule){
   'use strict';

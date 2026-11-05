@@ -1,6 +1,6 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict');
-const integration=require('../analytics-existing-owner.js'),consent=require('../consent-controls.js');
+const integration=require('../integrations/bob/analytics-existing-owner.js'),consent=require('../consent-controls.js');
 const RELEASE={enabled:true,existingOwnerReviewed:true,automaticCollectionReviewed:true},PATH='/resources/interstate-rest-areas/';
 class Bus{constructor(){this.listeners=new Map();}addEventListener(t,f){if(!this.listeners.has(t))this.listeners.set(t,new Set());this.listeners.get(t).add(f);}removeEventListener(t,f){this.listeners.get(t)?.delete(f);}emit(t,e={}){for(const f of this.listeners.get(t)||[])f(e);}}
 class Element extends Bus{constructor(tag,doc){super();this.tagName=tag.toUpperCase();this.ownerDocument=doc;this.children=[];this.attributes={};}appendChild(n){this.children.push(n);n.parent=this;return n;}setAttribute(k,v){this.attributes[k]=String(v);}focus(){}remove(){if(this.parent)this.parent.children=this.parent.children.filter(n=>n!==this);}}
