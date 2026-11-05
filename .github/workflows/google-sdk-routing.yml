@@ -1,4 +1,4 @@
-name: Nonpublishing Google SDK routing contract
+name: Nonpublishing explicit routing and PHP contract
 on:
   push:
     branches: [review/analytics-sdk-routing]
@@ -18,8 +18,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Lint proposed WordPress snippets
+        run: |
+          php -l review/bob-beta-analytics.php
+          php -l review/bob-affiliate-routing.php
       - name: Observe real SDK routing without publishing or sending hits
-        run: node scripts/acceptance/google-sdk-routing.cjs
+        run: node scripts/acceptance/google-sdk-explicit-routing.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
