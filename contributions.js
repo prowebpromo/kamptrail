@@ -58,6 +58,7 @@
     f.append(msg, send);
     f.onsubmit = async e => {
       e.preventDefault();
+      if(navigator.onLine===false){msg.className='kt-report-msg is-error';msg.textContent=t("You are offline. Send this when you have signal, or ");msg.append(fallbackLink(target),'.');return;}
       const data = new FormData(f);
       const body = {kind: target.kind, details: data.get('details'), source: data.get('source'), contact_email: data.get('contact_email'), website: data.get('website'), firsthand: data.get('firsthand') === 'on', elapsed_ms: Date.now() - st.openedAt};
       if (isNew) Object.assign(body, {campsite_name: data.get('campsite_name'), lat: +target.lat.toFixed(6), lng: +target.lng.toFixed(6), problems: ['new']});
@@ -115,5 +116,5 @@
     if (!d.open) d.showModal();
     d.querySelector(target.kind === 'new_place' ? '[name="campsite_name"]' : '[name="problems"]')?.focus();
   }
-  window.KampTrailContrib = {version: '2.45.0', open, showReports, reports, rememberReport: remember};
+  window.KampTrailContrib = {version: '2.46.2', open, showReports, reports, rememberReport: remember};
 })();

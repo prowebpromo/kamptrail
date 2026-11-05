@@ -49,5 +49,7 @@ function kr_provider(): string {
     // A local fixture server is allowed only under PHP's local development SAPI, never in deployed PHP-FPM.
     $fixture=getenv('KAMPTRAIL_TEST_ROUTER');
     if (PHP_SAPI==='cli-server' && is_string($fixture) && preg_match('~^http://127\.0\.0\.1:[0-9]+/$~D',$fixture)) return $fixture;
-    return KR_PROVIDER;
+    $config=json_decode((string)file_get_contents(dirname(__DIR__,2).'/provider-config.json'),true);
+    $url=$config['routing']??KR_PROVIDER;
+    return is_string($url)&&preg_match('~^https://[a-z0-9.-]+/[^?#]*$~D',$url)?$url:KR_PROVIDER;
 }
