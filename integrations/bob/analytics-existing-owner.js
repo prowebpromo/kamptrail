@@ -60,8 +60,9 @@
         win['ga-disable-'+MEASUREMENT_ID]=false;
         if(!configured){
           // Config is scoped to the beta destination, not global defaults.
-          // A nondefault group prevents unrelated unscoped legacy events from
-          // automatically routing to this beta destination after configuration.
+          // The group labels beta routing; it does not isolate unscoped legacy
+          // events. Every existing custom emitter must explicitly target its
+          // own legacy ID before this integration is activated.
           owner.gtag('config',MEASUREMENT_ID,{...safeFields(),groups:GROUP,send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,cookie_prefix:COOKIE_PREFIX,cookie_domain:'none',cookie_expires:5184000,cookie_update:false});
           configured=true;
         }

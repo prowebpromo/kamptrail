@@ -15,6 +15,8 @@ permissions:
 jobs:
   regression:
     runs-on: ubuntu-24.04
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
     services:
       mysql:
         image: mysql:8.0
@@ -60,7 +62,10 @@ jobs:
         env:
           KT_MYSQL_CONTAINER: ${{ job.services.mysql.id }}
       - run: npm run test:python
-      - run: npx playwright install --with-deps chromium
+      - name: Verify runner Chrome
+        run: |
+          test -x /usr/bin/google-chrome
+          /usr/bin/google-chrome --version
       - run: npm run build:search
       - run: npm run test:browser
       - run: npm run build
