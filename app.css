@@ -360,6 +360,10 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-home-hero .kt-home-actions .primary:hover{background:#ffcf7a;border-color:#ffcf7a;color:#122b20}
 .kt-home-hero .kt-home-actions button{background:#102b22b3;border-color:#b4c4aa;color:#fffaf0}
 .kt-home-hero .kt-home-actions button:hover{background:#315440}
+.kt-intent-shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;max-width:520px}
+.kt-intent-shortcuts a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 13px;border:1px solid #8da691;border-radius:7px;background:#173e2de8;color:#fffaf0;font-size:13px;font-weight:650;line-height:1.4;text-align:center;text-decoration:none}
+.kt-intent-shortcuts a:hover{background:#315440;border-color:#e0e9dc}
+@media(max-width:760px){.kt-intent-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.kt-intent-shortcuts a{padding:9px 8px;font-size:12px}}
 .kt-hero-links{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0 0}
 .kt-hero-links a{font-size:12px;min-height:32px;display:inline-flex;align-items:center;color:#f1f0df;text-underline-offset:4px}
 .kt-hero-capabilities{font-size:11px;line-height:1.6;color:#d2e0cc;margin:24px 0 0}

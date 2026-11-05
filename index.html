@@ -3,32 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="KampTrail | Free Campsite Map and Trip Planner">KampTrail | Free Campsite Map and Trip Planner</title>
-  <meta name="description" content="Free, no-account campsite map for the US. Find campsites, see BLM and Forest Service land, check who manages a spot, find dump stations and propane, and plan trips with GPX export.">
+  <title data-i18n="KampTrail | Camping, Parking &amp; RV Services">KampTrail | Camping, Parking &amp; RV Services</title>
+  <meta name="description" content="Explore campsites, parking options, rest areas, dump stations and RV services. Check land management, save stops and plan trips. Free, no account required.">
   <meta name="theme-color" content="#10281f">
   <meta name="application-name" content="KampTrail">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light">
-  <meta name="kamptrail-version" content="2.46.3">
-  <link rel="manifest" href="manifest.json?v=2.46.3">
+  <meta name="kamptrail-version" content="2.46.4">
+  <link rel="manifest" href="manifest.json?v=2.46.4">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="canonical" href="https://kamptrail.com/">
   <meta property="og:site_name" content="KampTrail">
-  <meta property="og:title" content="KampTrail | Free Campsite Map and Trip Planner">
+  <meta property="og:title" content="KampTrail | Camping, Parking &amp; RV Services">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://kamptrail.com/og.png">
-  <meta property="og:description" content="Find campsites, public land, dump stations and propane. Plan trips and export GPX. Free, no account.">
+  <meta property="og:description" content="Explore campsites, parking options, rest areas and RV services. Check sources, save stops and plan your trip. Free, no account.">
   <meta property="og:url" content="https://kamptrail.com/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="KampTrail | Free campsite map and trip planner">
-  <meta name="twitter:description" content="Explore campsites, check source details and save your next stop. Free public beta. No account required.">
+  <meta name="twitter:title" content="KampTrail | Camping, Parking &amp; RV Services">
+  <meta name="twitter:description" content="Explore camping, parking options, rest areas and RV services. Free public beta. No account required.">
   <meta name="twitter:image" content="https://kamptrail.com/og.png">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "KampTrail", "url": "https://kamptrail.com/", "description": "Free public-beta campsite map with public-land context, saved stops and trip planning.", "applicationCategory": "TravelApplication", "operatingSystem": "Any modern web browser", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
-  <link rel="stylesheet" href="app.css?v=2.46.3">
-  <script defer src="locale.js?v=2.46.3"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "KampTrail", "url": "https://kamptrail.com/", "description": "Free public-beta map for camping, parking options, rest areas and RV services, with public-land context and saved stops.", "applicationCategory": "TravelApplication", "operatingSystem": "Any modern web browser", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+  <link rel="stylesheet" href="app.css?v=2.46.4">
+  <script defer src="locale.js?v=2.46.4"></script>
 </head>
 <body>
   <div id="app">
@@ -43,21 +43,25 @@
       <div class="kt-hero-message">
         <p class="kt-eyebrow kt-beta-label" data-i18n="Public beta · Free · No account required">Public beta · Free · No account required</p>
         <h2 id="home-title">
-          <span data-i18n="Find campsites.">Find campsites.</span>
-          <span data-i18n="Check the details.">Check the details.</span>
-          <span class="kt-hero-accent" data-i18n="Plan your next stop.">Plan your next stop.</span>
+          <span data-i18n="Find camping,">Find camping,</span>
+          <span data-i18n="parking and">parking and</span>
+          <span class="kt-hero-accent" data-i18n="RV services.">RV services.</span>
         </h2>
-        <p class="kt-hero-copy" data-i18n="Explore free and paid campsites, public-land information, and useful services. Save your stops and help improve KampTrail’s public beta.">Explore free and paid campsites, public-land information, and useful services. Save your stops and help improve KampTrail’s public beta.</p>
+        <p class="kt-hero-copy" data-i18n="Explore campsites, rest areas and dump stations. Check land management, save your stops and plan your trip.">Explore campsites, rest areas and dump stations. Check land management, save your stops and plan your trip.</p>
         <div class="kt-home-actions">
           <a class="btn primary" href="#explore" data-i18n="Explore the map">Explore the map <span aria-hidden="true">↗</span></a>
-          <button class="btn" type="button" data-install-open aria-haspopup="dialog" data-i18n="Install KampTrail">Install KampTrail</button>
         </div>
+        <nav class="kt-intent-shortcuts" aria-label="Choose a map view" data-i18n-aria-label="Choose a map view">
+          <a href="./?mode=overnight-parking" data-i18n="Overnight parking">Overnight parking</a>
+          <a href="./?mode=rest-areas" data-i18n="Rest areas">Rest areas</a>
+          <a href="./?mode=dump-stations" data-i18n="Dump stations">Dump stations</a>
+          <a href="./?mode=free-camping" data-i18n="Free camping">Free camping</a>
+          <a href="./?mode=blm" data-i18n="BLM land">BLM land</a>
+        </nav>
         <div class="kt-hero-links">
           <a href="#how-it-works" data-i18n="How it works">How it works</a>
-          <a href="#how-it-works" data-i18n="See how it works">See how it works</a>
           <a href="#feedback-panel" data-i18n="Feedback">Feedback</a>
         </div>
-        <p class="kt-hero-capabilities" data-i18n="Campsites · Public land · Trip planning">Campsites · Public land · Trip planning</p>
       </div>
       <figure class="kt-hero-product">
         <div class="kt-hero-product-label"><span class="kt-hero-dot" aria-hidden="true"></span><span data-i18n="Real map data">Real map data</span></div>
@@ -104,7 +108,7 @@
     </main>
     <footer>
       <span>Data: <a href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a> · <a href="https://www.fs.usda.gov/" target="_blank" rel="noopener">USFS</a> · <a href="https://www.blm.gov/" target="_blank" rel="noopener">BLM</a> · <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/18" target="_blank" rel="noopener">Census Bureau (TIGERweb)</a> · <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> · <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors (ODbL)</a> · <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames (CC BY)</a></span>
-      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.46.3</a></span>
+      <span><span id="status-dot" aria-hidden="true">●</span> <span id="status-text" data-i18n="Online">Online</span> · <a href="https://github.com/prowebpromo/kamptrail" target="_blank" rel="noopener">v2.46.4</a></span>
     </footer>
   </div>
 <section id="how-it-works" class="kt-home-section" aria-labelledby="workflow-title"><p class="kt-eyebrow" data-i18n="A LITTLE PLANNING. MORE TIME OUTSIDE.">A LITTLE PLANNING. MORE TIME OUTSIDE.</p><h2 id="workflow-title" data-i18n="From first look to ready to roll">From first look to ready to roll</h2><div class="kt-workflow-grid"><article class="kt-workflow-card"><img src="media/onboarding/browse.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail map showing campsite listings and a selected destination" data-i18n-alt="KampTrail map showing campsite listings and a selected destination"><div><span class="kt-step-number">01</span><h3  data-i18n="Browse the map">Browse the map</h3><p  data-i18n="Start with a town or state. Open a listing to see its sources, location and reported camping details.">Start with a town or state. Open a listing to see its sources, location and reported camping details.</p><p class="kt-workflow-link"><a href="how-to.html#who-manages-this-land" data-i18n="Watch how to check land management">Watch how to check land management</a></p></div></article><article class="kt-workflow-card"><img src="media/onboarding/filters.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail campsite filters for narrowing the map results" data-i18n-alt="KampTrail campsite filters for narrowing the map results"><div><span class="kt-step-number">02</span><h3  data-i18n="Find what fits">Find what fits</h3><p  data-i18n="Use Filters and My rig to narrow the choices. Check the listing and confirm current access with the operator.">Use Filters and My rig to narrow the choices. Check the listing and confirm current access with the operator.</p><p class="kt-workflow-link"><a href="how-to.html#trip-to-google-maps" data-i18n="Watch how to plan multiple stops">Watch how to plan multiple stops</a></p></div></article><article class="kt-workflow-card"><img src="media/onboarding/offline.jpg" width="375" height="750" loading="lazy" decoding="async" alt="KampTrail Offline panel for saving Topo map areas" data-i18n-alt="KampTrail Offline panel for saving Topo map areas"><div><span class="kt-step-number">03</span><h3  data-i18n="Prepare before you go">Prepare before you go</h3><p  data-i18n="While connected, save your stops and use Offline to download Topo map areas. Check your saved content before losing service.">While connected, save your stops and use Offline to download Topo map areas. Check your saved content before losing service.</p><p class="kt-workflow-link"><a href="how-to.html#offline-maps" data-i18n="Watch how to save Topo maps">Watch how to save Topo maps</a></p></div></article></div><p class="kt-screenshot-credit"><span data-i18n="Map images:">Map images:</span> © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> <span data-i18n="contributors">contributors</span></p></section>
@@ -231,13 +235,13 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="loading" class="loading" role="status" hidden data-i18n="Loading…">Loading…</div>
   <noscript data-i18n="KampTrail needs JavaScript to display its interactive map.">KampTrail needs JavaScript to display its interactive map.</noscript>
-  <script defer src="analytics.bundle.js?v=2.46.3"></script>
-  <script defer src="beta.js?v=2.46.3"></script>
-  <script defer src="shell.js?v=2.46.3"></script>
-  <script defer src="safety.js?v=2.46.3"></script>
-  <script defer src="install.js?v=2.46.3"></script>
-  <script defer src="feedback.js?v=2.46.3"></script>
-  <script type="application/x-kamptrail-map" data-src="app.bundle.js?v=2.46.3"></script>
-  <script defer src="map-loader.js?v=2.46.3"></script>
+  <script defer src="analytics.bundle.js?v=2.46.4"></script>
+  <script defer src="beta.js?v=2.46.4"></script>
+  <script defer src="shell.js?v=2.46.4"></script>
+  <script defer src="safety.js?v=2.46.4"></script>
+  <script defer src="install.js?v=2.46.4"></script>
+  <script defer src="feedback.js?v=2.46.4"></script>
+  <script type="application/x-kamptrail-map" data-src="app.bundle.js?v=2.46.4"></script>
+  <script defer src="map-loader.js?v=2.46.4"></script>
 </body>
 </html>

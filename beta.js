@@ -1,7 +1,7 @@
 /* BoB entry states and device-local engagement. No analytics network client. */
 (function(root){
   'use strict';
-  const VERSION='2.46.3';
+  const VERSION='2.46.4';
   const MODES=Object.freeze({
     'overnight-parking':{label:'Overnight parking',note:'Parking-related listings. A marker does not establish overnight permission. Confirm with the property manager.'},
     'rest-areas':{label:'Official rest areas',note:'Official rest-area layer is on. Coverage is incomplete. A location or stay limit does not establish overnight permission.'},

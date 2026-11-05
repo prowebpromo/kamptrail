@@ -154,5 +154,5 @@
     }
     target.replaceChildren(box);relayout(target);
   }
-  global.KampTrailSpot = {version: '2.46.3', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
+  global.KampTrailSpot = {version: '2.46.4', relayout, landManager, forecast, describeLand, renderLand, renderForecast, renderFeeEvidence, openCampingCare, AGENCIES, SMA_URL: SMA};
 })(typeof window !== 'undefined' ? window : globalThis);
