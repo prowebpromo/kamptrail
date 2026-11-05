@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Optional analytics choice | Isolated staging preview</title>
+</head>
+<body style="margin:0;background:#fff;color:#183729;font-family:Arial,sans-serif;font-size:16px;line-height:1.5;">
+  <main style="max-width:760px;margin:0 auto;padding:24px 16px;">
+    <p style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">KampTrail staging review</p>
+    <h1 style="font-size:30px;line-height:1.2;margin:12px 0;">Test your optional analytics choice</h1>
+    <p>This isolated preview loads only the local controls and disabled adapter. It does not load optional analytics or send analytics events. Your choice is saved on this preview's origin when browser storage works.</p>
+    <div id="consent-settings" data-kamptrail-consent-controls></div>
+    <section aria-labelledby="preview-status-title" style="border:1px solid #b8cbb7;border-radius:10px;padding:20px;margin:20px 0;">
+      <h2 id="preview-status-title" style="font-size:22px;margin:0 0 12px;">Current test state</h2>
+      <pre id="preview-status" role="status" aria-live="polite" style="font:inherit;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;"></pre>
+      <p style="margin-bottom:0;">Allowing a saved choice does not enable collection. The adapter stays disabled and has no transport.</p>
+    </section>
+    <noscript><p>JavaScript is required to test these controls. Optional analytics are not loaded by this preview.</p></noscript>
+  </main>
+  <script src="consent-analytics.js"></script>
+  <script src="consent-controls.js"></script>
+  <script>
+    (function(){
+      'use strict';
+      const adapter=KampTrailAnalyticsPreparation.createAdapter(window);
+      adapter.configure({enabled:false,transport:null});
+      const display=document.getElementById('preview-status');
+      function update(choice){
+        const actual=adapter.getStatus();
+        display.textContent='Choice: '+choice.choice+'\nStorage: '+choice.persistence+'\nAdapter enabled: '+actual.enabled+'\nAnalytics permission: '+actual.analyticsConsent+'\nCollection permitted: '+actual.permitted;
+      }
+      const controls=KampTrailConsentControls.mount({container:document.getElementById('consent-settings'),adapter,onChange:update});
+      window.KampTrailConsentPreview=Object.freeze({adapter,controls});
+    })();
+  </script>
+</body>
+</html>

@@ -15,6 +15,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: a592095e822c8b43d6b2227b09ff27f41caeb008
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: staging-review
+          sparse-checkout: review/consent-analytics
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -29,6 +36,8 @@ jobs:
           mkdir -p staging-fixture
           php -r '$p=new PDO("sqlite:staging-fixture/staging.sqlite"); require "api/_lib/bootstrap.php"; kt_migrate($p); echo "Empty staging schema prepared.\\n";'
           chmod 600 staging-fixture/staging.sqlite
+      - name: Test isolated consent controls
+        run: node --test staging-review/review/consent-analytics/consent-analytics.test.js staging-review/review/consent-analytics/consent-controls.test.js
       - run: npm ci
       - run: npm run build
         env:
@@ -42,6 +51,9 @@ jobs:
           if(branch==='refs/heads/main'||branch==='refs/heads/hostinger')throw Error('Forbidden production branch');
           if(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()!==source)throw Error('Source mismatch');
           for(const p of ['.git','.env','package.json','scripts','.github'])if(fs.existsSync(path.join(out,p)))throw Error('Unexpected source or secret');
+          const consentRoot=path.join(process.env.GITHUB_WORKSPACE,'staging-review','review','consent-analytics');
+          const consentFiles=['consent-analytics.js','consent-controls.js','consent-preview.html'];
+          for(const file of consentFiles){const from=path.join(consentRoot,file);if(!fs.statSync(from).isFile())throw Error('Missing consent review file');fs.copyFileSync(from,path.join(out,file));}
           const stageKey=source.slice(0,12)+'-'+process.env.GITHUB_RUN_ID;
           if(!/^[a-f0-9]{12}-[0-9]+$/.test(stageKey))throw Error('Invalid staging cache key');
           const stageAsset=value=>{if(/^(?:[a-z]+:|\/\/|#)/i.test(value)||!/[.](?:js|css|json)(?:[?#]|$)/.test(value))return value;const u=new URL(value,'https://staging.invalid/');u.searchParams.set('__stage_build',stageKey);return (u.pathname.slice(1)+u.search+u.hash).replaceAll('&','&amp;');};
@@ -54,11 +66,12 @@ jobs:
           if(!stagedWorker.includes(precache))throw Error('Staging precache overlay no longer matches');
           stagedWorker=stagedWorker.replace(precache,"await Promise.all(SHELL.map(async url=>{const original=new URL(url,self.registration.scope),fresh=new URL(original);fresh.searchParams.set('__stage_build','"+stageKey+"');const response=await fetch(new Request(fresh,{cache:'reload'}));if(!response.ok)throw Error('Staging shell unavailable');await cache.put(original,response);}));");
           fs.writeFileSync(workerPath,stagedWorker);
-          for(const file of fs.readdirSync(out).filter(f=>f.endsWith('.html'))){const p=path.join(out,file);let s=fs.readFileSync(p,'utf8').replace('</head>','<meta name="robots" content="noindex,nofollow,noarchive"></head>');s=s.replace(/((?:src|href|data-src)=")([^"]+)(")/g,(_,a,url,b)=>a+stageAsset(url)+b);s=s.replace(/(<body[^>]*>)/,'$1<aside aria-label="Staging notice" style="padding:12px 18px;background:#fff3d1;color:#253d32;font:14px/1.5 system-ui">KampTrail Phase 1 staging, PR #178. Saved data is separate from kamptrail.com. This staging site has no production database.</aside>');fs.writeFileSync(p,s);}
+          for(const file of fs.readdirSync(out).filter(f=>f.endsWith('.html'))){const p=path.join(out,file);let s=fs.readFileSync(p,'utf8').replace('</head>','<meta name="robots" content="noindex,nofollow,noarchive"></head>');s=s.replace(/((?:src|href|data-src)=")([^"]+)(")/g,(_,a,url,b)=>a+stageAsset(url)+b);if(file==='index.html'){s=s.replace(/(<nav class="kt-legal-nav"[^>]*>)([\s\S]*?)(<\/nav>)/,'$1$2<a href="consent-preview.html">Analytics choices (staging review)</a>$3');}s=s.replace(/(<body[^>]*>)/,'$1<aside aria-label="Staging notice" style="padding:12px 18px;background:#fff3d1;color:#253d32;font:14px/1.5 system-ui">KampTrail Phase 1 staging, PR #178. Saved data is separate from kamptrail.com. This staging site has no production database.</aside>');fs.writeFileSync(p,s);}
           fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nDisallow: /\n');
-          fs.writeFileSync(path.join(out,'release.json'),JSON.stringify({source_commit:source,production:false,pull_request:178,staging_build:stageKey})+'\n');
+          fs.writeFileSync(path.join(out,'release.json'),JSON.stringify({source_commit:source,production:false,pull_request:178,staging_build:stageKey,consent_preview_commit:process.env.GITHUB_SHA})+'\n');
           const m=JSON.parse(fs.readFileSync(path.join(out,'manifest.json')));m.name='KampTrail Staging';m.short_name='KT Stage';fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify(m)+'\n');
           const ht=path.join(out,'.htaccess');fs.writeFileSync(ht,fs.readFileSync(ht,'utf8').replace('<IfModule mod_headers.c>','<IfModule mod_headers.c>\nHeader always set X-Robots-Tag "noindex, nofollow, noarchive"'));
+          execFileSync(process.execPath,[path.join(consentRoot,'browser-check.cjs'),out],{cwd:process.env.GITHUB_WORKSPACE,stdio:'inherit'});
           const scratch=fs.mkdtempSync(path.join(os.tmpdir(),'kt-stage-')),env={...process.env,GIT_INDEX_FILE:path.join(scratch,'index'),GIT_AUTHOR_NAME:'github-actions[bot]',GIT_AUTHOR_EMAIL:'41898282+github-actions[bot]@users.noreply.github.com',GIT_COMMITTER_NAME:'github-actions[bot]',GIT_COMMITTER_EMAIL:'41898282+github-actions[bot]@users.noreply.github.com'};
           const git=args=>execFileSync('git',args,{env,encoding:'utf8'}).trim();
           git(['fetch','--no-tags','origin',branch]);const parent=git(['rev-parse','FETCH_HEAD']);git(['read-tree','--empty']);git(['--work-tree='+out,'add','--all','--force']);const tree=git(['write-tree']),commit=git(['commit-tree',tree,'-p',parent,'-m','Isolated Phase 1 staging from '+source]);git(['push','origin',commit+':'+branch]);console.log(JSON.stringify({source,branch,commit}));fs.rmSync(scratch,{recursive:true,force:true});
@@ -72,4 +85,10 @@ jobs:
         with:
           name: kamptrail-staging-empty-db
           path: staging-fixture/staging.sqlite
+          retention-days: 7
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kamptrail-consent-acceptance
+          path: consent-browser-acceptance.json
           retention-days: 7
