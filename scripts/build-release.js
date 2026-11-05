@@ -1,6 +1,6 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['beta.js','plan.html','about.html','record-overrides.js','provider-config.json','shell.js','map-loader.js','locale-es.js','robots.txt','sitemap.xml','favicon.ico','icon-maskable-192.png','icon-maskable-512.png','media/onboarding/desktop.webp','media/hero/moab-map-preview-small.webp','media/hero/lakeside-mobile.webp','index.html','locale.js','locale-fr.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','updates.html','tools.html','guides.html','resources.css','media/about/chuck-and-cindy.jpg','media/hero/lakeside-photo.webp','media/hero/moab-map-preview.webp','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','brand-mark.svg','apple-touch-icon.png','favicon-32.png','media/onboarding/browse.jpg','media/onboarding/filters.jpg','media/onboarding/offline.jpg','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const files=['consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js','beta.js','plan.html','about.html','record-overrides.js','provider-config.json','shell.js','map-loader.js','locale-es.js','robots.txt','sitemap.xml','favicon.ico','icon-maskable-192.png','icon-maskable-512.png','media/onboarding/desktop.webp','media/hero/moab-map-preview-small.webp','media/hero/lakeside-mobile.webp','index.html','locale.js','locale-fr.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','updates.html','tools.html','guides.html','resources.css','media/about/chuck-and-cindy.jpg','media/hero/lakeside-photo.webp','media/hero/moab-map-preview.webp','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','brand-mark.svg','apple-touch-icon.png','favicon-32.png','media/onboarding/browse.jpg','media/onboarding/filters.jpg','media/onboarding/offline.jpg','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('./build-record-overrides.js').build();
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
@@ -139,10 +139,17 @@ const files=['beta.js','plan.html','about.html','record-overrides.js','provider-
   const scriptTags=mapModules.map(file=>`  <script type="application/x-kamptrail-map" data-src="${file}?v=${require('../package.json').version}"></script>\n`).join('');
   const htmlFile=path.join(out,'index.html');
   await fs.writeFile(htmlFile,(await fs.readFile(htmlFile,'utf8')).replace(scriptTags,`  <script type="application/x-kamptrail-map" data-src="app.bundle.js?v=${require('../package.json').version}"></script>\n`));
+  const analyticsModules=['consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js'];
+  const analyticsSource=(await Promise.all(analyticsModules.map(file=>fs.readFile(path.join(root,file),'utf8')))).join('\n;\n');
+  const analyticsPacked=await require('esbuild').transform(analyticsSource,{minify:true,target:'es2020',legalComments:'inline'});
+  await fs.writeFile(path.join(out,'analytics.bundle.js'),analyticsPacked.code);
+  const analyticsTags=analyticsModules.map(file=>`  <script defer src="${file}?v=${require('../package.json').version}"></script>\n`).join('');
+  await fs.writeFile(htmlFile,(await fs.readFile(htmlFile,'utf8')).replace(analyticsTags,`  <script defer src="analytics.bundle.js?v=${require('../package.json').version}"></script>\n`));
   const swFile=path.join(out,'service-worker.js');
   let worker=await fs.readFile(swFile,'utf8');
   for(const file of mapModules)worker=worker.replaceAll("'"+file+"',",'').replaceAll(",'"+file+"'",'');
-  worker=worker.replace("'locale.js',","'locale.js','app.bundle.js',");
+  for(const file of analyticsModules)worker=worker.replaceAll("'"+file+"',",'').replaceAll(",'"+file+"'",'');
+  worker=worker.replace("'locale.js',","'locale.js','app.bundle.js','analytics.bundle.js',");
   await fs.writeFile(swFile,worker);
   // Prefer the app over a hosting provider's default landing page.
   await fs.copyFile(path.join(root,'hosting.htaccess'),path.join(out,'.htaccess'));
