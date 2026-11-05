@@ -109,10 +109,12 @@
     const inventory = await readiness();
     const checklist = p.querySelector('.kt-off-readiness');
     if (checklist) checklist.replaceChildren(...readinessLines(inventory).map(text => el('li', text)));
-    const tiles = list.reduce((n, a) => n + (a.saved || 0), 0);
+    // Downloads can overlap, be retried or lose entries to browser eviction.
+    // Count the current unique cache entries rather than historical download totals.
+    const tiles = inventory.available ? inventory.tiles.toLocaleString(window.KampTrailI18n?.locale() || 'en-US') : t('Unknown');
     let usage = '';
     try { const est = await navigator.storage?.estimate?.(); if (est && est.usage) usage = t(" · about {0} MB used by this site", {"0":(Math.round(est.usage / 1048576))}); } catch {}
-    p.querySelector('.kt-off-status').textContent = list.length ? t("{0} saved {1}, {2} map tiles{3}", {"0":(list.length),"1":(t(list.length === 1 ? 'area' : 'areas')),"2":(tiles.toLocaleString(window.KampTrailI18n?.locale() || 'en-US')),"3":(usage)}) : t("No map areas saved yet.");
+    p.querySelector('.kt-off-status').textContent = list.length ? t("{0} saved {1}, {2} map tiles{3}", {"0":(list.length),"1":(t(list.length === 1 ? 'area' : 'areas')),"2":tiles,"3":(usage)}) : t("No map areas saved yet.");
     p.querySelector('.kt-off-delete').hidden = !list.length;
   }
   async function saveArea() {
@@ -136,7 +138,9 @@
     st.running = null; bar.hidden = true; cancel.hidden = true; btn.disabled = false;
     const saved = res.done - res.failed;
     if (saved > 0) {
-      const list = areas(); list.push({s: b.getSouth(), w: b.getWest(), n: b.getNorth(), e: b.getEast(), zmin: pl.zmin, zmax: pl.zmax, saved, at: new Date().toISOString().slice(0, 10)}); saveAreas(list);
+      const area = {s: b.getSouth(), w: b.getWest(), n: b.getNorth(), e: b.getEast(), zmin: pl.zmin, zmax: pl.zmax, saved, at: new Date().toISOString().slice(0, 10)};
+      const list = areas().filter(a => !['s','w','n','e','zmin','zmax'].every(key => a[key] === area[key]));
+      list.push(area); saveAreas(list);
     }
     render();
     if(res.quota)window.showToast?.(t("Device storage is full. Existing saved areas remain. Free space or choose a smaller area."),'error',9000);
@@ -187,7 +191,7 @@
     };
     addEventListener('offline', nudge); nudge();
   }
-  const api = {version: '2.46.1', init, plan, cacheName, TOPO, readiness, readinessLines};
+  const api = {version: '2.46.2', init, plan, cacheName, TOPO, readiness, readinessLines};
   if (typeof window !== 'undefined') window.KampTrailOffline = api;
   if (typeof module !== 'undefined') module.exports = api;
 })();

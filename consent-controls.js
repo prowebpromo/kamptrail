@@ -23,9 +23,9 @@
     function element(tag,text){const node=doc.createElement(tag);if(text!==undefined)node.textContent=text;return node;}
     const section=element('section'),id='kt-consent-controls-'+(++nextId),heading=element('h2','Optional analytics choice');
     section.id=id;section.setAttribute('role','region');section.setAttribute('aria-labelledby',id+'-title');section.setAttribute('style',panelStyle);heading.id=id+'-title';heading.setAttribute('style','font-size:22px;line-height:1.3;margin:0 0 12px;');
-    const intro=element('p','Staging test: optional analytics are not loaded. These controls only test your saved choice.');
+    const intro=element('p',options.introText||'Optional usage measurement is currently off. You can save a choice here. Declining does not affect the map or your saved stops.');
     const separation=element('p','Your analytics choice is separate from safety terms and location permission.');
-    const duration=element('p','Test choice duration: '+(maxAgeMs/(24*60*60*1000))+' days. This is a configurable test setting.');
+    const duration=element('p','Your choice lasts up to '+(maxAgeMs/(24*60*60*1000))+' days in this browser. You can change or clear it sooner.');
     const status=element('p');status.id=id+'-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.setAttribute('aria-atomic','true');
     const notice=element('p');notice.setAttribute('role','status');notice.setAttribute('aria-live','polite');notice.setAttribute('style','font-weight:700;');
     const choices=element('div');choices.setAttribute('role','group');choices.setAttribute('aria-label','Optional analytics choice');choices.setAttribute('style','display:flex;flex-wrap:wrap;gap:12px;');
@@ -103,5 +103,5 @@
     });
     mounts.set(container,api);restore();return api;
   }
-  return Object.freeze({mount,VERSION,STORAGE_KEY,MAX_AGE_MS});
+  return Object.freeze({version:'2.46.2',mount,VERSION,STORAGE_KEY,MAX_AGE_MS});
 });

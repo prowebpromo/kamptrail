@@ -1,5 +1,5 @@
 /* Initial shell and offline status; independent of map startup. */
-(function(){'use strict';const VERSION='2.46.1';const t=(k,p)=>window.KampTrailI18n?.t(k,p)??k;
+(function(){'use strict';const VERSION='2.46.2';const t=(k,p)=>window.KampTrailI18n?.t(k,p)??k;
   // Localize initial shell labels before live counts and statuses are rendered.
   window.KampTrailI18n?.apply();
   let toastTimer;
@@ -33,7 +33,7 @@
       // First install controls this page without a reload. Reload only on request.
       if (hadController || window.ktReloadForUpdate) { refreshing = true; location.reload(); }
     });
-    navigator.serviceWorker.register('service-worker.js?__stage_build=a592095e822c-42023638187', {updateViaCache:'none'}).then(reg => {
+    navigator.serviceWorker.register('service-worker.js?__stage_build=dd39d924d1c3-42044854067', {updateViaCache:'none'}).then(reg => {
       function offer(sw) {
         const toast = document.getElementById('toast');
         showToast(t("An updated KampTrail is ready."), 'info', 0);

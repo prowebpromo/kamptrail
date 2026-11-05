@@ -8,8 +8,8 @@
   const MODES=new Set(['map','overnight-parking','rest-areas','dump-stations','free-camping','blm']);
   const KINDS=new Set(['campsite','service_or_rest_area','other_stop']);
   const SOURCES=new Set(['boondockorbust','pwa','other']);
-  const APP_EVENTS=new Set(['kt_landing','kt_open_in_kamptrail','kt_search_performed','kt_marker_viewed','kt_stop_saved','kt_return_session','kt_install_opened','kt_pwa_installed','kt_tester_opened','kt_feedback_submitted']);
-  const CTA_EVENTS=new Set(['kt_launch_viewed','kt_launch_clicked']);
+  const APP_EVENTS=new Set(['kt_measurement_started','kt_landing','kt_open_in_kamptrail','kt_search_performed','kt_marker_viewed','kt_stop_saved','kt_return_session','kt_install_opened','kt_pwa_installed','kt_tester_opened','kt_feedback_submitted']);
+  const CTA_EVENTS=new Set(['kt_launch_viewed','kt_launch_clicked','kt_measurement_started']);
   const ARTICLES=new Map([
     ['/resources/walmart-overnight-rv-parking-policy-by-state-2026/','overnight-parking'],
     ['/resources/interstate-rest-areas/','rest-areas'],
@@ -114,6 +114,16 @@
         if(typeof granted!=='boolean')throw new TypeError('Consent must be an explicit boolean.');
         consent=granted;refresh();return api;
       },
+      isEligible:()=>!!context()&&!destroyed,
+      measurementStarted(){
+        const page=context();if(!page)return false;
+        if(page.site==='bob')return send('kt_measurement_started',{mode:ARTICLES.get(page.path),source:'boondockorbust',article_path:page.path});
+        const url=new URL(win.location.href);let article='';
+        for(const value of [url.searchParams.get('ref'),doc.referrer]){const referred=pageContext(value);if(referred?.site==='bob'){article=referred.path;break;}}
+        const shared=/^#(?:site|spot)=/i.test(url.hash);
+        const mode=shared?'map':win.KampTrailBeta?.entry?.mode||url.searchParams.get('mode')||'map';
+        return send('kt_measurement_started',{mode,source:article?'boondockorbust':url.searchParams.get('source')==='pwa'?'pwa':'other',article_path:article});
+      },
       getStatus:()=>Object.freeze({enabled,analyticsConsent:consent,permitted:permitted(),destroyed}),
       refresh,
       destroy(){if(destroyed)return;destroyed=true;consent=false;enabled=false;transport=null;observerGeneration++;observer?.disconnect();observer=null;win.removeEventListener('kamptrail:metric',onMetric);doc.removeEventListener('click',onClick);instances.delete(win);}
@@ -138,5 +148,5 @@
       gtag('event',event,{...safe,send_to:measurementId});
     };
   }
-  return Object.freeze({createAdapter,createGa4Transport});
+  return Object.freeze({version:'2.46.2',createAdapter,createGa4Transport,pageContext});
 });

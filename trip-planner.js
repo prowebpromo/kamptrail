@@ -257,6 +257,56 @@
       actions.append(up,down,remove);card.append(title,detail,actions);if(stayDue(stop,site))card.append(stayPrompt(stop,site,label));card.append(stopEditor(stop));list.append(card);
     });
   }
+  // Local recovery backup. GPX remains an interchange format, not a full trip restore.
+  const BACKUP_BYTES=1024*1024, BACKUP_STOPS=200;
+  const backupError=()=>new Error(t("Invalid trip backup. Use a KampTrail version 1 JSON backup with at most 200 stops and 1 MB."));
+  function backupObject(value,keys){
+    return !!value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).length===keys.length&&keys.every(key=>Object.hasOwn(value,key));
+  }
+  function safeBackupData(value,depth=0){
+    if(depth>20)return false;
+    if(value===null||typeof value==='string'||typeof value==='boolean')return true;
+    if(typeof value==='number')return Number.isFinite(value);
+    if(!value||typeof value!=='object')return false;
+    return Object.entries(value).every(([key,item])=>!['__proto__','prototype','constructor'].includes(key)&&safeBackupData(item,depth+1));
+  }
+  function parseBackup(text){
+    if(typeof text!=='string'||new Blob([text]).size>BACKUP_BYTES)throw backupError();
+    let data;try{data=JSON.parse(text);}catch{throw backupError();}
+    if(!backupObject(data,['format','version','stops'])||data.format!=='kamptrail-trip'||data.version!==1||!Array.isArray(data.stops)||data.stops.length>BACKUP_STOPS||!safeBackupData(data))throw backupError();
+    const ids=new Set();
+    for(const stop of data.stops){
+      if(!backupObject(stop,['id','feature','note','arrive','depart'])||typeof stop.id!=='string'||!stop.id.trim()||ids.has(stop.id)||typeof stop.note!=='string'||stop.note.length>1000||![stop.arrive,stop.depart].every(date=>date===''||(isDate(date)&&Number.isFinite(Date.parse(date))&&new Date(date).toISOString().slice(0,10)===date)))throw backupError();
+      ids.add(stop.id);
+      const feature=stop.feature;
+      if(feature!==null&&(!backupObject(feature,['type','geometry','properties'])||feature.type!=='Feature'||!backupObject(feature.geometry,['type','coordinates'])||!feature.properties||typeof feature.properties!=='object'||Array.isArray(feature.properties)||!['string','number'].includes(typeof feature.properties.id)||!valid(feature)))throw backupError();
+    }
+    return data.stops;
+  }
+  function buildBackup(){
+    const text=JSON.stringify({format:'kamptrail-trip',version:1,stops:clone(st.stops)});
+    parseBackup(text);return text;
+  }
+  function exportBackup(){
+    let text;try{text=buildBackup();}catch(error){notify(error.message);return;}
+    const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([text],{type:'application/json'}));link.download=`kamptrail-trip-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.append(link);link.click();setTimeout(()=>{URL.revokeObjectURL(link.href);link.remove();},1000);
+    info(t("JSON backup downloaded. It contains your notes, dates and locations. Keep it private."));
+  }
+  async function importBackup(file){
+    if(!file)return false;
+    let stops;
+    try{
+      if(file.size>BACKUP_BYTES)throw backupError();
+      stops=parseBackup(await file.text());
+    }catch(error){notify(error.message||t("That trip backup could not be read."));return false;}
+    if(st.stops.length&&!confirm(t("Replace all saved stops on this device with this JSON backup? Your current stops will be removed. Export a JSON backup first if you want to keep them.")))return false;
+    // Persist first: a blocked/quota-limited write must leave both copies untouched.
+    try{localStorage.setItem('kt_trip',JSON.stringify(stops));}
+    catch{notify(t("Your browser could not restore this backup. Your previous saved stops are unchanged."));return false;}
+    st.stops=stops;st.storageAvailable=true;st.recoveryStates.clear();syncRevision();protectStops();render();drawRoute();
+    info(t("Trip backup restored on this device."));return true;
+  }
   // ---- GPX ----
   const xml = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
   function toGPX() {
@@ -312,8 +362,9 @@
     d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','kt-saved-title');d.setAttribute('aria-hidden','true');
     d.innerHTML=`<div class="kt-saved-header"><h2 id="kt-saved-title">${t("Saved stops")}</h2><button type="button" class="btn" id="kt-trip-close" aria-label="${t("Close saved stops")}">${t("Close")}</button></div>
       <p class="kt-saved-note">${t("Saved on this device. Confirm current access before traveling.")}</p>
-      <div id="kt-trip-backup" class="kt-backup-prompt" hidden><p>${t("Back up your stops with Export GPX. Browser storage can be cleared or removed.")}</p><button type="button" class="btn" id="kt-trip-backup-export">${t("Export GPX backup")}</button><button type="button" class="btn" id="kt-trip-backup-dismiss">${t("Dismiss backup reminder")}</button></div>
-      <p id="kt-trip-ios" class="kt-ios-storage-note">${t("On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a GPX backup too.")}</p>
+      <div id="kt-trip-backup" class="kt-backup-prompt" hidden><p>${t("Back up your full trip with Export JSON backup. Browser storage can be cleared or removed. GPX exports locations for other apps.")}</p><button type="button" class="btn" id="kt-trip-backup-export">${t("Export GPX backup")}</button><button type="button" class="btn" id="kt-trip-backup-dismiss">${t("Dismiss backup reminder")}</button></div>
+      <p id="kt-trip-ios" class="kt-ios-storage-note">${t("On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a JSON backup too.")}</p>
+      <p class="kt-saved-note">${t("JSON backups contain your notes, dates and saved locations. Keep them private. Import replaces your saved stops after confirmation.")}</p>
       <p id="kt-trip-summary" role="status" aria-live="polite"></p>
       <p id="kt-trip-car-notice" class="kt-car-route-notice" hidden>${t("Car route. Not checked for your rig’s height, weight or length. Check posted restrictions.")} <a href="#beta-faq" id="kt-trip-route-faq">${t("Routing limitations")}</a></p>
       <div id="kt-trip-tools">
@@ -330,6 +381,9 @@
         <button type="button" class="btn" id="kt-trip-export">${t("Export GPX")}</button>
         <button type="button" class="btn" id="kt-trip-import">${t("Import GPX")}</button>
         <input type="file" id="kt-trip-file" accept=".gpx,application/gpx+xml,application/xml,text/xml" hidden>
+        <button type="button" class="btn" id="kt-trip-backup-json-export">${t("Export JSON backup")}</button>
+        <button type="button" class="btn" id="kt-trip-backup-json-import">${t("Import JSON backup")}</button>
+        <input type="file" id="kt-trip-backup-json-file" accept=".json,application/json" hidden>
         <button type="button" class="btn" id="kt-trip-clear">${t("Clear saved stops")}</button>
       </div>`;
     const style=document.createElement('style');style.textContent=`
@@ -353,6 +407,7 @@
       #kt-trip-drawer .kt-stay-prompt p {flex-basis:100%;margin:0}
       #kt-trip-drawer .btn {display:inline-block;text-decoration:none;border:1px solid #73947b;background:#203d2e;color:#f5fff7;padding:7px 10px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;min-height:34px}
       #kt-trip-drawer .btn:disabled {opacity:.45;cursor:default}
+      #kt-trip-drawer #kt-trip-backup-json-export,#kt-trip-drawer #kt-trip-backup-json-import {min-height:44px;min-width:44px}
       #kt-trip-drawer .btn:focus-visible,#kt-trip-drawer input:focus-visible,#kt-trip-drawer textarea:focus-visible,#kt-trip-drawer summary:focus-visible {outline:3px solid #e2a535;outline-offset:2px}
       #kt-trip-drawer .kt-stop-details {margin-top:8px;font-size:12px}
       #kt-trip-drawer .kt-stop-details summary {cursor:pointer;color:#cfe3d4;min-height:28px}
@@ -390,7 +445,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.46.1',
+    version:'2.46.2',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;
@@ -410,6 +465,10 @@
       const file=st.el.querySelector('#kt-trip-file');
       st.el.querySelector('#kt-trip-import').onclick=()=>file.click();
       file.onchange=()=>{importGPX(file.files[0]);file.value='';};
+      st.el.querySelector('#kt-trip-backup-json-export').onclick=exportBackup;
+      const backupFile=st.el.querySelector('#kt-trip-backup-json-file');
+      st.el.querySelector('#kt-trip-backup-json-import').onclick=()=>backupFile.click();
+      backupFile.onchange=()=>{importBackup(backupFile.files[0]);backupFile.value='';};
       document.addEventListener('keydown',event=>{
         if(!st.open)return;
         if(event.key==='Escape'){event.preventDefault();close();return;}
@@ -433,6 +492,6 @@
     toggle(){st.open?close():open();},
     getStops(){return st.stops.map(stop=>({id:stop.id,feature:getSite(stop),note:stop.note,arrive:stop.arrive,depart:stop.depart}));},
     // Exposed for tests and the share module.
-    routeLegs, toGPX, parseGPX
+    routeLegs, toGPX, parseGPX, buildBackup, parseBackup, importBackup
   };
 })();

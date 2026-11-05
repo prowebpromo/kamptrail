@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v83-stage-a592095e822c-42023638187';
+const VERSION = 'kt-v84-stage-dd39d924d1c3-42044854067';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -13,7 +13,7 @@ const SERVICES_CACHE = `${PREFIX}services-v2`;
 const ROUTE_CACHE = `${PREFIX}routes-v1`;
 const CLEARANCE_CACHE = `${PREFIX}clearance-v1`;
 const SHELL = [
-  './','index.html','provider-config.json','locale.js','app.bundle.js','shell.js','beta.js','map-loader.js','app.css','data/places-us.json','manifest.json','brand-mark.svg','apple-touch-icon.png','favicon-32.png','icon-192.png','icon-512.png','icon-maskable-192.png','icon-maskable-512.png','og.png',
+  './','index.html','provider-config.json','locale.js','app.bundle.js','analytics.bundle.js','shell.js','beta.js','map-loader.js','app.css','data/places-us.json','manifest.json','brand-mark.svg','apple-touch-icon.png','favicon-32.png','icon-192.png','icon-512.png','icon-maskable-192.png','icon-maskable-512.png','og.png',
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
@@ -21,7 +21,7 @@ const SHELL = [
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
-  await Promise.all(SHELL.map(async url=>{const original=new URL(url,self.registration.scope),fresh=new URL(original);fresh.searchParams.set('__stage_build','a592095e822c-42023638187');const response=await fetch(new Request(fresh,{cache:'reload'}));if(!response.ok)throw Error('Staging shell unavailable');await cache.put(original,response);}));
+  await Promise.all(SHELL.map(async url=>{const original=new URL(url,self.registration.scope),fresh=new URL(original);fresh.searchParams.set('__stage_build','dd39d924d1c3-42044854067');const response=await fetch(new Request(fresh,{cache:'reload'}));if(!response.ok)throw Error('Staging shell unavailable');await cache.put(original,response);}));
   await self.skipWaiting();
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{

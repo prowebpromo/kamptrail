@@ -174,5 +174,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.46.1', init, openSpot, loadServices, showRestAreas:()=>{const l=st.overlays['Official rest areas'];if(st.map&&l&&!st.map.hasLayer(l))l.addTo(st.map);}, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.46.2', init, openSpot, loadServices, showRestAreas:()=>{const l=st.overlays['Official rest areas'];if(st.map&&l&&!st.map.hasLayer(l))l.addTo(st.map);}, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();

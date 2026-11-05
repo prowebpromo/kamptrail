@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.46.1', messages:{
+  global.KampTrailI18nFr = {version:'2.46.2', messages:{
   "How it works": "Fonctionnement",
   "Recently viewed": "Consultés récemment",
   "Recently viewed places": "Lieux consultés récemment",
@@ -48,6 +48,17 @@
   "Car route. Not checked for your rig’s height, weight or length. Check posted restrictions.": "Itinéraire automobile. La hauteur, le poids et la longueur de votre véhicule ne sont pas vérifiés. Consultez les restrictions affichées.",
   "Routing limitations": "Limites des itinéraires",
   "Please read this before installing or using KampTrail.": "Veuillez lire ceci avant d’installer ou d’utiliser KampTrail.",
+  "Invalid trip backup. Use a KampTrail version 1 JSON backup with at most 200 stops and 1 MB.": "La sauvegarde du voyage est invalide. Utilisez une sauvegarde JSON KampTrail version 1 de 1 Mo maximum contenant au plus 200 étapes.",
+  "JSON backup downloaded. It contains your notes, dates and locations. Keep it private.": "La sauvegarde JSON a été téléchargée. Elle contient vos notes, dates et lieux. Gardez-la privée.",
+  "That trip backup could not be read.": "Impossible de lire cette sauvegarde du voyage.",
+  "Replace all saved stops on this device with this JSON backup? Your current stops will be removed. Export a JSON backup first if you want to keep them.": "Remplacer toutes les étapes enregistrées sur cet appareil par cette sauvegarde JSON ? Vos étapes actuelles seront supprimées. Exportez d’abord une sauvegarde JSON si vous souhaitez les conserver.",
+  "Your browser could not restore this backup. Your previous saved stops are unchanged.": "Votre navigateur n’a pas pu restaurer cette sauvegarde. Vos étapes précédemment enregistrées n’ont pas changé.",
+  "Trip backup restored on this device.": "La sauvegarde du voyage a été restaurée sur cet appareil.",
+  "Back up your full trip with Export JSON backup. Browser storage can be cleared or removed. GPX exports locations for other apps.": "Sauvegardez l’ensemble de votre voyage avec Exporter la sauvegarde JSON. Le stockage du navigateur peut être effacé ou supprimé. Le GPX exporte les lieux pour d’autres applications.",
+  "On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a JSON backup too.": "Sur iPhone ou iPad, ajouter KampTrail à l’écran d’accueil peut aider à conserver les données. Gardez aussi une sauvegarde JSON.",
+  "JSON backups contain your notes, dates and saved locations. Keep them private. Import replaces your saved stops after confirmation.": "Les sauvegardes JSON contiennent vos notes, dates et lieux enregistrés. Gardez-les privées. L’importation remplace vos étapes enregistrées après confirmation.",
+  "Export JSON backup": "Exporter la sauvegarde JSON",
+  "Import JSON backup": "Importer une sauvegarde JSON",
   "On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a GPX backup too.": "Sur iPhone ou iPad, ajouter KampTrail à l’écran d’accueil peut aider à conserver les données. Gardez aussi une sauvegarde GPX.",
   "Listings for this area are unavailable. Saved areas and stops still work. Reconnect and retry.": "Les fiches de cette zone sont indisponibles. Les zones et étapes enregistrées restent utilisables. Reconnectez-vous et réessayez.",
   "You're offline. Listings not saved on this device may be unavailable. Saved areas and stops still work.": "Vous êtes hors connexion. Les fiches non enregistrées sur cet appareil peuvent être indisponibles. Les zones et étapes enregistrées restent utilisables.",
