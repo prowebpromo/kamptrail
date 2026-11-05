@@ -12,8 +12,26 @@ test('Spanish map tools, filters, popups and saved stops survive explicit langua
   const name=await page.evaluate(()=>{const site=KampTrailData.getAllCampsites()[0];KampTrailData.focusCampsite(site.properties.id);return site.properties.name;});
   const popup=page.locator('.leaflet-popup');await expect(popup).toContainText(name);await popup.locator('[data-kt-action="reviews"]').click();await expect(page.getByRole('dialog',{name:'Reseñas y fotos',exact:true})).toBeVisible();await page.keyboard.press('Escape');await popup.locator('[data-kt-action="trip"]').click();await expect(page.locator('#kt-trip-list')).toContainText(name);await expect(page.locator('#kt-trip-close')).toHaveAccessibleName('Cerrar paradas guardadas');await page.locator('#kt-trip-close').click();
   await page.locator('#filters').click();await page.locator('[name="f-cost"][value="free"]').check();await expect(page.locator('#kt-f-close')).toHaveAccessibleName('Cerrar filtros');await page.locator('#kt-f-close').click();
-  await page.locator('#kt-language').selectOption('en');await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.locator('#trip-count')).toHaveText('(1)');await page.locator('#filters').click();await expect(page.locator('[name="f-cost"][value="free"]')).toBeChecked();await page.locator('#kt-f-close').click();
-  await page.locator('#kt-language').selectOption('es');await expect(page.locator('html')).toHaveAttribute('lang','es');await page.locator('#trip').click();await expect(page.locator('#kt-trip-list')).toContainText(name);await page.keyboard.press('Escape');await expect(page.locator('#trip')).toBeFocused();
+  async function changeLanguage(language){
+    // setLanguage updates html.lang before reload. Await the new document and
+    // map startup so clicks cannot be replayed after a premature Escape.
+    await Promise.all([
+      page.waitForNavigation({waitUntil:'domcontentloaded'}),
+      page.locator('#kt-language').selectOption(language)
+    ]);
+    await page.evaluate(()=>window.KampTrailMapLoader.start());
+    await page.waitForFunction(()=>window.KampTrailData?.getLoadStatus().totalSites>0&&!KampTrailData.getLoadStatus().loading);
+    await expect(page.locator('html')).toHaveAttribute('lang',language);
+  }
+  await changeLanguage('en');await expect(page.locator('#trip-count')).toHaveText('(1)');await page.locator('#filters').click();await expect(page.locator('[name="f-cost"][value="free"]')).toBeChecked();await page.locator('#kt-f-close').click();
+  await changeLanguage('es');await page.locator('#trip').click();
+  await expect(page.locator('#kt-trip-drawer')).toBeVisible();
+  await expect(page.locator('#kt-trip-close')).toBeFocused();
+  await expect(page.locator('#kt-trip-list')).toContainText(name);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#kt-trip-drawer')).toBeHidden();
+  await expect(page.locator('#trip')).toHaveAttribute('aria-expanded','false');
+  await expect(page.locator('#trip')).toBeFocused();
 });
 test('Spanish permission fixture keeps source quotations and visitor text verbatim and form controls accessible',async({page})=>{
   const quote='One night only. <script>publisher()</script>',visitor='I stayed without asking. <img src=x onerror=alert(1)>',place={kind:'campsite',id:'usfs:es-fixture',name:'English Proper Place Name',coordinates:[-108.7,39.33]};

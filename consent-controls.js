@@ -103,5 +103,5 @@
     });
     mounts.set(container,api);restore();return api;
   }
-  return Object.freeze({version:'2.46.3',mount,VERSION,STORAGE_KEY,MAX_AGE_MS});
+  return Object.freeze({version:'2.46.4',mount,VERSION,STORAGE_KEY,MAX_AGE_MS});
 });

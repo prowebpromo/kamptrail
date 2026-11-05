@@ -1,5 +1,16 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.3',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.4',messages:{
+  "Choose your map view": "Elige tu vista del mapa",
+  "Start with parking options, rest areas, dump stations, free camping or BLM land. The full map and planning tools remain available. Installation help is still available after you explore.": "Empieza con opciones de estacionamiento, áreas de descanso, estaciones de vaciado, acampada gratuita o terrenos del BLM. El mapa completo y las herramientas de planificación siguen disponibles. La ayuda de instalación sigue disponible después de explorar.",
+  "KampTrail | Camping, Parking & RV Services": "KampTrail | Camping, estacionamiento y servicios para autocaravanas",
+  "Find camping,": "Encuentra campings,",
+  "parking and": "estacionamiento y",
+  "RV services.": "servicios para tu RV.",
+  "Explore campsites, rest areas and dump stations. Check land management, save your stops and plan your trip.": "Explora campings, áreas de descanso y estaciones de vaciado. Consulta quién gestiona el terreno, guarda tus paradas y planifica tu viaje.",
+  "Choose a map view": "Elige una vista del mapa",
+  "Rest areas": "Áreas de descanso",
+  "Free camping": "Acampada gratuita",
+  "BLM land": "Terrenos del BLM",
   "How it works": "Cómo funciona",
   "Recently viewed": "Vistos recientemente",
   "Recently viewed places": "Lugares vistos recientemente",
