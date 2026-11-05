@@ -1,0 +1,34 @@
+name: Read-only live homepage intent acceptance
+on:
+  push:
+    branches: [review/homepage-intent-live]
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+      EXPECTED_SHA: b7fa9d0d1487817e3e6da87386ff4419fc32158d
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Desktop real shortcut acceptance
+        run: node scripts/acceptance/homepage-live.cjs
+      - name: Mobile real shortcut acceptance
+        env:
+          MOBILE: 1
+        run: node scripts/acceptance/homepage-live.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: homepage-intent-live
+          path: |
+            homepage-live-*.json
+            homepage-live-*.png
+          retention-days: 14
