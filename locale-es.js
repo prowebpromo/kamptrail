@@ -1,5 +1,5 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.2',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.3',messages:{
   "How it works": "Cómo funciona",
   "Recently viewed": "Vistos recientemente",
   "Recently viewed places": "Lugares vistos recientemente",

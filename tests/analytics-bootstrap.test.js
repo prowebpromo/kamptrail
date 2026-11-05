@@ -20,7 +20,7 @@ class Element extends Bus{
 function fixture({href='https://kamptrail.com/?mode=rest-areas&email=private@example.com#site=secret',release,grant=false,maxAgeMs=1000,loggedIn=false,legacy=false,existingGoogleScript=false}={}){
   let clock=2000000000000,nextTimer=0,sequence=0;const timers=new Map(),data=new Map(),jar=new Map([['_ga','legacy'],['_ga_LEGACY','legacy-stream'],['ktbeta','owned'],['ktbeta_VQE0H1DNKL','owned-stream'],['ktbetaOther','unrelated']]);
   const storage={getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value),removeItem:key=>data.delete(key)};
-  if(grant)data.set(consent.STORAGE_KEY,JSON.stringify({version:1,choice:'granted',savedAt:clock,expiresAt:clock+maxAgeMs}));
+  if(grant)data.set(consent.STORAGE_KEY,JSON.stringify({version:2,choice:'granted',savedAt:clock,expiresAt:clock+maxAgeMs}));
   data.set('kt_saved_stops','private stop');data.set('kt_safety_accepted','yes');
   const win=new Bus(),doc=new Bus();win.location=new URL(href);win.localStorage=storage;doc.defaultView=win;doc.requests=[];doc.cookieWrites=[];
   Object.defineProperty(doc,'cookie',{get:()=>[...jar].map(([key,value])=>key+'='+value).join('; '),set:value=>{doc.cookieWrites.push(value);const key=value.split('=')[0];if(value.includes('Max-Age=0'))jar.delete(key);}});
@@ -85,7 +85,7 @@ test('expiry stops measurement by timer and also at event-time when the timer wa
   }
 });
 test('cross-tab decline, clear and invalid records deny synchronously using current storage',()=>{
-  for(const raw of [null,'invalid',JSON.stringify({version:1,choice:'denied',savedAt:2000000000000,expiresAt:2000000001000})]){
+  for(const raw of [null,'invalid',JSON.stringify({version:2,choice:'denied',savedAt:2000000000000,expiresAt:2000000001000})]){
     const f=fixture({release:RELEASE,grant:true});ready(f);if(raw===null)f.storage.removeItem(consent.STORAGE_KEY);else f.storage.setItem(consent.STORAGE_KEY,raw);
     const before=events(f).length;f.win.emit('storage',{key:consent.STORAGE_KEY,storageArea:f.storage,newValue:'untrusted grant'});assert.equal(f.win['ga-disable-'+bootstrap.MEASUREMENT_ID],true);f.metric();assert.equal(events(f).length,before);assert.equal(f.api.getStatus().measuring,false);f.untouched();
   }
@@ -122,3 +122,5 @@ test('an existing BoB gtag/dataLayer or Google script blocks a second analytics 
     assert.equal(f.api.getStatus().ownerConflict,true);assert.equal(f.api.getStatus().measuring,false);assert.equal(f.doc.requests.length,0);assert.equal(Object.hasOwn(f.win,bootstrap.QUEUE),false);assert.equal(Object.hasOwn(f.win,'ga-disable-'+bootstrap.MEASUREMENT_ID),false);f.metric();f.api.refresh();f.untouched();
   }
 });
+
+ test('off-era version-one grant cannot activate the current fresh consent version',()=>{const f=fixture({release:RELEASE});f.storage.setItem('kt_optional_analytics_choice_v1',JSON.stringify({version:1,choice:'granted',savedAt:2000000000000,expiresAt:2000000001000}));f.api.refresh();assert.equal(f.api.getStatus().analyticsConsent,false);assert.equal(f.doc.requests.length,0);});

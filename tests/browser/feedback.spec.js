@@ -39,6 +39,7 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       await preview.getByRole('button', {name:'Suggest a feature',exact:true}).click();
       await expect(dialog.getByLabel('Feedback type')).toHaveValue('feature');
       await dialog.getByRole('button', {name:'Close feedback'}).click();
+      await page.locator('#about-chuck img').scrollIntoViewIfNeeded();
       await expect(page.locator('#about-chuck img')).toHaveJSProperty('naturalWidth',480);
       const routingQuestion = page.locator('#beta-faq summary').filter({hasText:'Will routes account for my RV dimensions?'});
       await routingQuestion.click();

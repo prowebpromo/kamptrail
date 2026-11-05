@@ -148,5 +148,5 @@
       gtag('event',event,{...safe,send_to:measurementId});
     };
   }
-  return Object.freeze({version:'2.46.2',createAdapter,createGa4Transport,pageContext});
+  return Object.freeze({version:'2.46.3',createAdapter,createGa4Transport,pageContext});
 });

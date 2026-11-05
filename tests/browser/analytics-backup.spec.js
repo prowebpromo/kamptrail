@@ -3,16 +3,16 @@ const fs=require('node:fs'),path=require('node:path');
 const AxeBuilder=require('@axe-core/playwright').default;
 test.use({serviceWorkers:'block'});
 test.beforeEach(async({context})=>context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64')})));
-test('integrated optional choices stay off after grant, reload and revoke without loading Google',async({page})=>{
+test('nonproduction integrated optional choices stay off after grant, reload and revoke without loading Google',async({page})=>{
   const google=[];page.on('request',r=>{if(/googletagmanager|google-analytics/.test(r.url()))google.push(r.url());});
   await page.goto('/?source=pwa');await page.locator('#kt-analytics-settings>summary').click();
-  const choices=page.locator('#kt-analytics-choice');await expect(choices).toContainText('measurement is currently off');
+  const choices=page.locator('#kt-analytics-choice');await expect(choices).toContainText('You can allow Google Analytics');
   await choices.getByRole('button',{name:'Allow optional analytics',exact:true}).click();
   expect(await page.evaluate(()=>KampTrailAnalytics.getStatus().analyticsConsent)).toBe(true);
   expect(await page.evaluate(()=>KampTrailAnalytics.getStatus().measuring)).toBe(false);
   await page.reload();await page.locator('#kt-analytics-settings>summary').click();await expect(choices).toContainText('allow optional analytics');
   await choices.getByRole('button',{name:'Revoke and clear choice',exact:true}).click();
-  expect(await page.evaluate(()=>localStorage.getItem('kt_optional_analytics_choice_v1'))).toBe(null);
+  expect(await page.evaluate(()=>localStorage.getItem('kt_optional_analytics_choice_v2'))).toBe(null);
   expect(await page.evaluate(()=>typeof window.ktBetaAnalyticsQueue)).toBe('undefined');expect(google).toEqual([]);
   for(const width of [360,1440]){await page.setViewportSize({width,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect((await new AxeBuilder({page}).include('#kt-analytics-settings').analyze()).violations).toEqual([]);}
 });

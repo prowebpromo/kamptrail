@@ -50,7 +50,7 @@ test('valid grants and declines survive reload and synchronize the injected adap
 
 test('invalid, future, expired and different-version choices fail closed and are cleared',()=>{
   const time=2000000000000;
-  for(const value of ['{broken',null,{},record('unknown'),{...record('granted'),version:2},{...record('granted'),expiresAt:time-1},record('granted',time+1),{...record('granted'),expiresAt:time+MAX_AGE_MS+1},{...record('granted'),savedAt:'yesterday'}]){
+  for(const value of ['{broken',null,{},record('unknown'),{...record('granted'),version:1},{...record('granted'),expiresAt:time-1},record('granted',time+1),{...record('granted'),expiresAt:time+MAX_AGE_MS+1},{...record('granted'),savedAt:'yesterday'}]){
     const storage=sharedStorage();storage.setItem(STORAGE_KEY,typeof value==='string'?value:JSON.stringify(value));const f=setup({storage,time});assert.equal(f.component.getStatus().choice,'unknown',JSON.stringify(value));assert.equal(f.calls.includes(true),false);assert.equal(storage.getItem(STORAGE_KEY),null);
   }
 });
