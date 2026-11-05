@@ -1,0 +1,29 @@
+name: One synthetic beta GA4 debug verification
+on:
+  push:
+    branches: [review/analytics-receipt-verification]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  receipt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+      ALLOW_ONE_GA4_DEBUG_EVENT: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Send one clearly labeled debug hit after fresh consent
+        run: node scripts/acceptance/analytics-receipt.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: analytics-receipt-transport
+          path: analytics-receipt-transport.json
+          retention-days: 14
