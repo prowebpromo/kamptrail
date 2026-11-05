@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: a592095e822c8b43d6b2227b09ff27f41caeb008
+          ref: dd39d924d1c3023dcffa59d06baa139be24dbc69
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
@@ -37,7 +37,7 @@ jobs:
           php -r '$p=new PDO("sqlite:staging-fixture/staging.sqlite"); require "api/_lib/bootstrap.php"; kt_migrate($p); echo "Empty staging schema prepared.\\n";'
           chmod 600 staging-fixture/staging.sqlite
       - name: Test isolated consent controls
-        run: node --test staging-review/review/consent-analytics/consent-analytics.test.js staging-review/review/consent-analytics/consent-controls.test.js
+        run: node --test tests/consent-analytics.test.js tests/consent-controls.test.js tests/analytics-bootstrap.test.js tests/trip-backup.test.js
       - run: npm ci
       - run: npm run build
         env:
@@ -47,12 +47,12 @@ jobs:
         run: |
           node <<'JS'
           const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{execFileSync}=require('node:child_process');
-          const source='a592095e822c8b43d6b2227b09ff27f41caeb008',out=path.resolve('dist/kamptrail'),branch='refs/heads/review/phase1-artifact';
+          const source='dd39d924d1c3023dcffa59d06baa139be24dbc69',out=path.resolve('dist/kamptrail'),branch='refs/heads/review/phase1-artifact';
           if(branch==='refs/heads/main'||branch==='refs/heads/hostinger')throw Error('Forbidden production branch');
           if(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()!==source)throw Error('Source mismatch');
           for(const p of ['.git','.env','package.json','scripts','.github'])if(fs.existsSync(path.join(out,p)))throw Error('Unexpected source or secret');
           const consentRoot=path.join(process.env.GITHUB_WORKSPACE,'staging-review','review','consent-analytics');
-          const consentFiles=['consent-analytics.js','consent-controls.js','consent-preview.html'];
+          const consentFiles=['consent-preview.html'];
           for(const file of consentFiles){const from=path.join(consentRoot,file);if(!fs.statSync(from).isFile())throw Error('Missing consent review file');fs.copyFileSync(from,path.join(out,file));}
           const stageKey=source.slice(0,12)+'-'+process.env.GITHUB_RUN_ID;
           if(!/^[a-f0-9]{12}-[0-9]+$/.test(stageKey))throw Error('Invalid staging cache key');
