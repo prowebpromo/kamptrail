@@ -83,10 +83,11 @@ for(const mobile of [false,true])test.describe(mobile?'mobile':'desktop',()=>{if
   const site=indiana.records.find(x=>x.id===statePolicies.exceptions[0].facility_id),nevada=require('../../data/rest-areas/NV.json'),e=statePolicies.exceptions[0];
   await page.clock.install();
   const {errors}=await setup(page,context,{mobile,regions:['TX','IN','NV','MT']});
-  let release,nvCalls=0,held;const gate=new Promise(r=>{release=r;}),started=new Promise(r=>{held=r;});
+  let release,releaseRetry,nvCalls=0,held;const gate=new Promise(r=>{release=r;}),retryGate=new Promise(r=>{releaseRetry=r;}),started=new Promise(r=>{held=r;});
   await page.unroute('**/data/rest-areas/index.json');
   await page.route('**/data/rest-areas/index.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({version:1,regions:['IN','NV','MT','TX'].map(region=>({region,file:region+'.json',records:1}))})}));
-  await page.route('**/data/rest-areas/NV.json',async r=>{nvCalls++;if(nvCalls===1){held();await gate.catch(()=>{});return r.abort().catch(()=>{});}return r.fulfill({contentType:'application/json',body:JSON.stringify(nevada)});});
+  await page.route('**/data/rest-areas/NV.json',async r=>{nvCalls++;if(nvCalls===1){held();await gate.catch(()=>{});return r.abort().catch(()=>{});}await retryGate;return r.fulfill({contentType:'application/json',body:JSON.stringify(nevada)});});
+  try{
   await show(page);await started;
   // Move past the 20 second request deadline while Nevada is still held.
   await page.clock.fastForward(21000);
@@ -100,9 +101,15 @@ for(const mobile of [false,true])test.describe(mobile?'mobile':'desktop',()=>{if
   await expect(p.getByRole('link',{name:'Facility page checked '+e.sources[0].retrieved_at.slice(0,10),exact:true})).toHaveAttribute('href',e.sources[0].url);
   await page.keyboard.press('Escape');await page.locator('.leaflet-popup-close-button').click().catch(()=>{});
   release();
-  await c.getByRole('button',{name:'Retry official rest areas',exact:true}).click();await page.clock.fastForward(500);
+  await c.getByRole('button',{name:'Retry official rest areas',exact:true}).click();
   await expect.poll(()=>nvCalls).toBe(2);
+  // Opening a retained facility remains usable while the missing region retries.
+  await page.getByTitle(site.name,{exact:true}).click();await expect(p).toContainText(site.name);
+  await page.locator('.leaflet-popup-close-button').click();
+  // This popup-close redraw occurs while the successful retry is definitely pending.
+  await page.clock.fastForward(500);releaseRetry();
   await expect(c).not.toContainText('Unavailable now');await expect(c).toContainText('Nevada');
   await page.getByTitle(site.name,{exact:true}).click();await expect(page.locator('.kt-rest-popup')).toContainText(site.name);
   expect(errors).toEqual([]);
+  }finally{release();releaseRetry();}
 });});
