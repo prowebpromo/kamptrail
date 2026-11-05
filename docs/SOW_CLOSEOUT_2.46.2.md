@@ -27,3 +27,7 @@ The existing Phase 1 source already implements deferred map/languages, responsiv
 - Independent data review before any discovery withdrawal. No withdrawal, source refresh, production database copy or paid service is part of this closeout.
 
 The original Phase 1 SOW explicitly requires physical devices and production-after measurements. These cannot be marked passed by desktop automation. Production release must preserve that distinction.
+
+## Owner release direction, November 5, 2026 Eastern
+
+The owner directed: “I think wee've accomplished MVP - lets bring the updates live once any final checks are completed.” This authorizes normal MVP publication after final CI/staging verification, followed by the approved BoB CTA updates. Keep physical-device checks explicitly unverified. Do not enable beta analytics merely to publish the MVP. The owner also explicitly requested KampTrail.com setup in GSC and GA4.

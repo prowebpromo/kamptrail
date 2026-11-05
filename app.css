@@ -424,4 +424,5 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 #kt-analytics-settings{max-width:1120px;padding:0 16px;box-sizing:border-box}
 #kt-analytics-settings>summary{cursor:pointer;min-height:44px;align-content:center;text-decoration:underline}
 #kt-analytics-settings a{color:#245639}
+.kt-workspace #kt-analytics-settings{display:block}
 #kt-analytics-settings button:focus-visible,#kt-analytics-settings>summary:focus-visible{outline:3px solid #a86d00;outline-offset:3px}

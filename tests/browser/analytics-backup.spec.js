@@ -5,7 +5,7 @@ test.use({serviceWorkers:'block'});
 test.beforeEach(async({context})=>context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64')})));
 test('integrated optional choices stay off after grant, reload and revoke without loading Google',async({page})=>{
   const google=[];page.on('request',r=>{if(/googletagmanager|google-analytics/.test(r.url()))google.push(r.url());});
-  await page.goto('/');await page.locator('#kt-analytics-settings>summary').click();
+  await page.goto('/?source=pwa');await page.locator('#kt-analytics-settings>summary').click();
   const choices=page.locator('#kt-analytics-choice');await expect(choices).toContainText('measurement is currently off');
   await choices.getByRole('button',{name:'Allow optional analytics',exact:true}).click();
   expect(await page.evaluate(()=>KampTrailAnalytics.getStatus().analyticsConsent)).toBe(true);
@@ -38,7 +38,8 @@ test('sole-owner bootstrap uses only current consented events with sanitized con
   expect(await page.evaluate(()=>ktBetaAnalyticsQueue.filter(c=>c[0]==='event').length)).toBe(2);expect(await page.evaluate(()=>window['ga-disable-G-VQE0H1DNKL'])).toBe(true);
 });
 test('JSON toolbar download restores original IDs, private notes and dates through the real file input',async({page})=>{
-  await page.goto('/?source=pwa');await page.evaluate(()=>KampTrailMapLoader.start());await page.waitForFunction(()=>KampTrailData?.getAllCampsites().length>1);
+  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75,zoom:8})));
+  await page.goto('/?source=pwa');await page.evaluate(()=>KampTrailMapLoader.start());await page.waitForFunction(()=>KampTrailData?.getAllCampsites().length>1&&!KampTrailData.getLoadStatus().loading);
   await page.evaluate(()=>KampTrailTrip.addStop(KampTrailData.getAllCampsites()[0].properties.id));
   const drawer=page.locator('#kt-trip-drawer');await drawer.locator('.kt-stop-details summary').first().click();
   await drawer.getByLabel('Arrive',{exact:true}).first().fill('2026-11-05');await drawer.getByLabel('Arrive',{exact:true}).first().press('Tab');

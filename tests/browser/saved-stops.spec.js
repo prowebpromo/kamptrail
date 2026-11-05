@@ -53,7 +53,8 @@ test('mobile dialog closes with Escape, restores focus, and stays above the app'
   await page.locator('#trip').click();
   await expect(page.locator('#kt-trip-close')).toBeFocused();
   const rect=await page.locator('#kt-trip-drawer').boundingBox();expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.height).toBeLessThanOrEqual(844);
-  await page.keyboard.press('Shift+Tab');await expect(page.locator('#kt-trip-import')).toBeFocused();
+  const lastControl=page.locator('#kt-trip-backup-json-import');await expect(lastControl).toBeVisible();await expect(lastControl).toBeEnabled();
+  await page.keyboard.press('Shift+Tab');await expect(lastControl).toBeFocused();
   await page.keyboard.press('Tab');await expect(page.locator('#kt-trip-close')).toBeFocused();
   await page.keyboard.press('Escape');await expect(page.locator('#kt-trip-drawer')).toBeHidden();await expect(page.locator('#trip')).toBeFocused();
 });

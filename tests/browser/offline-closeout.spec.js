@@ -11,7 +11,7 @@ const camp = (id, name, offset, props) => ({
 const features = [
   camp(991001,'Closeout Free Tent',-.002,{fee:'no',fee_status:'free',cost:0}),
   camp(991002,'Closeout Paid Trailer',0,{fee:'yes',fee_status:'paid',cost:15,tents:'no',caravans:'yes'}),
-  camp(991003,'Closeout Free Dispersed',.002,{fee:'no',fee_status:'free',cost:0,type:'dispersed',tourism:'camp_pitch'})
+  camp(991003,'Closeout Free Dispersed',.002,{fee:'no',fee_status:'free',cost:0,type:'dispersed',tourism:'camp_site'})
 ];
 async function ready(page,context) {
   const requests = {topo:[],submissions:[],lookups:[],holdTopo:false};
