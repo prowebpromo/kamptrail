@@ -1,0 +1,29 @@
+name: Focused homepage intent acceptance
+on:
+  push:
+    branches: [review/homepage-intent-focused]
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Verify newly added desktop and mobile keyboard shortcuts
+        run: npx playwright test tests/browser/beta.spec.js -g 'homepage intent choices'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: focused-homepage-intents
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
