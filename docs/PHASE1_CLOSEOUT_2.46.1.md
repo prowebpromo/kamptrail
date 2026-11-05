@@ -2,7 +2,7 @@
 
 This record replaces the stale status sentences in the original 2.46.0 implementation mapping. It does not declare the SOW accepted. Production is held for owner review. The supplied SOW includes physical-device and production measurements that cannot be established by desktop automation.
 
-The November 4 beta integration requirements now set the product priority. See `BETA_INTEGRATION_2026-11-04.md`. Candidate runtime remains 2.46.1; its next staging artifact uses cache generation kt-v82 and an exact source SHA. No production release is implied.
+The November 4 beta integration requirements now set the product priority. See `BETA_INTEGRATION_2026-11-04.md`. Candidate runtime remains 2.46.1; its next staging artifact uses cache generation kt-v83 and an exact source SHA. No production release is implied.
 
 ## Additional implementation
 
@@ -11,7 +11,7 @@ The November 4 beta integration requirements now set the product priority. See `
 - D-1: `data/record-overrides.json` is the authoritative correction ledger. A validated generated module is used by the index and browser. Exact ID, name and six-decimal coordinates must all match. A correction cannot set fees, access, rig suitability, source type, identity or discovery admission.
 - Up the Creek: the operator's own physical address identifies Moab, UT. The missing state is corrected to UT with a dated correction-source link. The raw source snapshot is unchanged. An explicit contradictory state is retained, and a relocated/renamed record is not silently corrected.
 - Moab Field Office: the displayed kind is Management area, with the exact source-scope warning. The source classification and discovery admission remain unchanged pending independent data review. This is not a completed withdrawal.
-- Version and service-worker generation move together to 2.46.1 / kt-v82.
+- Version and service-worker generation move together to 2.46.1 / kt-v83.
 
 ## SOW acceptance register
 
@@ -26,16 +26,16 @@ The November 4 beta integration requirements now set the product priority. See `
 | U-2 | Unique matches open directly; ambiguous choices retained | New-candidate browser regression and real mobile keyboard pass. |
 | U-3 | Terms/Safety gate preserved; modal context and behavior | Real install and screen-reader pass. Legal wording is unchanged. |
 | U-4 | PWA launches map workspace; full website and shortcuts reachable | Actual Android and iOS installed-app launches. |
-| U-5 | Primary actions, route warning and clarified beta wording with translations | Staged successful-route summary and standalone-device check. |
+| U-5 | Primary actions, route warning and clarified beta wording with translations | Successful route, visible car warning, reload/cache and offline replay passed on isolated staging. Standalone-device check remains. |
 | A-1 | Visible labels contained in accessible names | Actual voice-control tool pass remains open. |
 | A-2 | State and cluster names include meaning and visible count | Screen-reader pass remains open. |
 | A-3 | Marker skip link and focus styling | Record keyboard path and screen-reader/device checks. |
 | A-4 | 44-pixel controls/hit areas | New-candidate viewport measurements and real-device touch. |
 | M-1 | Separate any/maskable icons, id, metadata, shortcuts, real wide screenshot | External manifest check and real Android icon/shortcut inspection. |
 | H-1 | robots, sitemap, favicon and new website URLs packaged | Temporary-domain robots is provider-controlled. Submit the production sitemap only after publication and verified property access. |
-| H-2 | Header/cache policy verified on the prior Hostinger staging build | Verify new candidate and successful PHP-dependent workflows on isolated staging. Production remains a separate gate. |
+| H-2 | Header/cache policy verified on the prior Hostinger staging build | Isolated staging health, road routing and feedback passed; see STAGING_PHP_ACCEPTANCE_2026-11-04.md. Production remains a separate gate. |
 | H-3 | WebApplication/page/collection JSON-LD and social tags | Independent schema-validator result remains open until recorded. |
-| H-4 | Shared configuration, existing global pacing/cache and provider notes | Confirm staged routing fallback and keep provider limits/availability explicit. No paid service or traffic allowance is invented. |
+| H-4 | Shared configuration, existing global pacing/cache and provider notes | Successful route and cached/offline replay passed on staging. Keep provider limits/availability explicit. No paid service or traffic allowance is invented. |
 | D-1 | Exact-ID ledger, operator-backed state correction, management-area presentation, counts and pipeline notes | Independent review before any BLM discovery withdrawal. Retained-input replay is not a live source refresh. |
 
 ## Data evidence and refresh behavior

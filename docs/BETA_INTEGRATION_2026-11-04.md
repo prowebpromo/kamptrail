@@ -44,7 +44,7 @@ The app now emits a bounded, in-memory `kamptrail:metric` event stream. An expli
 | kt_landing | KampTrail document starts |
 | kt_open_in_kamptrail | Map initialized and requested mode applied |
 | kt_search_performed | Nonempty search submitted, no query text included |
-| kt_marker_viewed | A campsite popup opens, deduplicated per listing within the document |
+| kt_marker_viewed | A campsite popup opens, deduplicated per listing within an activity session |
 | kt_stop_saved | New valid stop persisted, duplicate saves excluded |
 | kt_return_session | Return after at least 30 minutes of inactivity on this device |
 | kt_install_opened | Engagement suggestion opens install instructions |
@@ -52,7 +52,7 @@ The app now emits a bounded, in-memory `kamptrail:metric` event stream. An expli
 | kt_tester_opened | Engagement suggestion opens feedback |
 | kt_feedback_submitted | API confirms a successful report, no report content included |
 
-Metadata is limited to event, random session token, sequence, source category, BoB article pathname, KampTrail landing pathname, supported mode and a coarse place kind when applicable. No search text, GPS coordinates, listing IDs/names, email, full URL query/fragment or feedback body enters this bridge. Local engagement counters and at most twelve recent campsite IDs/names stay on the device. Clearing site data resets them. No account or cross-device identity is created.
+Metadata is limited to event, random session token, sequence, source category, BoB article pathname, KampTrail landing pathname, supported mode and a coarse place kind when applicable (campsite, service_or_rest_area, or other_stop). No search text, GPS coordinates, listing IDs/names, email, full URL query/fragment or feedback body enters this bridge. Local engagement counters and at most twelve recent campsite IDs/names stay on the device. Clearing site data resets them. No account or cross-device identity is created.
 
 Primary business KPI: BoB visitor → active KampTrail user conversion. An active session performs a search, opens a campsite marker or saves a stop. A click alone is not activation. Until a shared, consent-aware measurement setup joins both domains, report three separate observed stages: article session → CTA click; KampTrail landing → map open; BoB-referred map open → active session. The last rate is an operational session proxy, not the full visitor-level business KPI. Do not infer the BoB denominator from KampTrail arrivals or claim local visit counters measure unique people.
 
@@ -71,3 +71,7 @@ Saved Stops remains the main saved-place and favorite action, preserving its exi
 ## Remaining gates
 
 Publish neither domain until reviewed. The app must be published before live BoB links rely on the new modes. Install prompts, source restrictions, data caveats and existing saved/route behavior require staged regression. Collector wiring, real reports, traffic-ranked coverage, actual WordPress previews, actual iOS/Android installation and retention outcomes remain unverified. The existing Phase 1 physical-device, independent data review and production-after gates still apply.
+
+## Independent review follow-up
+
+The delegated review found and fixed entry parameters overriding published/legacy campsite or coordinate share links, noncampsite saves qualifying as campsite engagement, loss of remembered installation, stale in-document return-session identity, repeated recent-place selection failing to reopen, and mode notices surviving a Reset or an incompatible manual fee/type change. Valid rig narrowing retains the entry mode. Focused validation: 8 Node beta tests and 17 browser beta tests passed. These changes require new exact-head CI and a new staging artifact before release.

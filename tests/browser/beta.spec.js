@@ -19,8 +19,46 @@ for(const [mode,check]of [
 test('denied nearby permission keeps the entry filter and supplies a search fallback',async({page})=>{
  await page.addInitScript(()=>Object.defineProperty(navigator,'geolocation',{value:{getCurrentPosition(ok,no){no({code:1});}}}));await ready(page,'/?mode=overnight-parking&near=1&state=UT');await expect(page.locator('#toast')).toContainText('permission was denied');expect(await page.evaluate(()=>kamptrailFilters.type)).toBe('parking');await expect(page.locator('#destination')).toBeVisible();
 });
+test('entry notices follow manual filter changes, keep valid narrowing and preserve share hashes on reset',async({page})=>{
+ await ready(page);await expect(page.locator('#kt-entry-state')).toBeVisible();
+ // Changing a rig constraint retains the free-camping predicate.
+ await page.evaluate(()=>KampTrailFilters.setIncludeUnknownLength(true));await expect(page.locator('#kt-entry-state')).toBeVisible();expect(new URL(page.url()).searchParams.get('mode')).toBe('free-camping');
+ await page.locator('#filters').click();await page.locator('[name="f-cost"][value="paid"]').check();await expect(page.locator('#kt-entry-state')).toBeHidden();expect(new URL(page.url()).searchParams.has('mode')).toBe(false);expect(await page.evaluate(()=>kamptrailFilters.cost)).toBe('paid');await page.locator('#kt-f-close').click();
+ await ready(page,'/?mode=overnight-parking&state=UT');await page.locator('#filters').click();await page.locator('#f-type').selectOption('established');await expect(page.locator('#kt-entry-state')).toBeHidden();expect(await page.evaluate(()=>KampTrailBeta.entry.mode)).toBe(null);await page.locator('#kt-f-close').click();
+ await ready(page,'/?mode=free-camping&state=UT');await page.evaluate(()=>{history.replaceState(null,'',location.href+'#site=usfs%3A5981');KampTrailFilters.reset();KampTrailFilters.reset();});await expect(page.locator('#kt-entry-state')).toBeHidden();expect(new URL(page.url()).hash).toBe('#site=usfs%3A5981');expect(new URL(page.url()).searchParams.has('mode')).toBe(false);expect(await page.evaluate(()=>KampTrailBeta.entry.mode)).toBe(null);
+});
+for(const id of ['osm:way:1548179559','usfs:5981'])test('shared campsite '+id+' keeps precedence over mode, state and nearby requests',async({page})=>{
+ await page.addInitScript(()=>{localStorage.setItem('kt_filters_mvp',JSON.stringify({cost:'free',rigLength:60}));window.nearRequests=0;Object.defineProperty(navigator,'geolocation',{value:{getCurrentPosition(ok){window.nearRequests++;ok({coords:{latitude:30,longitude:-100,accuracy:100}});}}});});
+ const hash='#site='+encodeURIComponent(id);await page.goto('/?mode=free-camping&state=UT&near=1'+hash);await page.evaluate(()=>KampTrailMapLoader.start());
+ await expect(page.locator('[data-kt-place-id="osm:way:1548179559"]')).toBeVisible();
+ expect(await page.evaluate(()=>KampTrailData.getCampsiteById('usfs:5981').properties.fee_status)).toBe('paid');
+ expect(await page.evaluate(()=>kamptrailFilters.cost)).toBe('all');expect(await page.evaluate(()=>window.nearRequests)).toBe(0);await expect(page.locator('#kt-entry-state')).toBeHidden();expect(new URL(page.url()).hash).toBe(hash);
+ const center=await page.evaluate(()=>{const c=map.getCenter();return [c.lat,c.lng];});expect(center[0]).toBeCloseTo(43.6076983,1);expect(center[1]).toBeCloseTo(-115.2183993,1);
+ expect(await page.evaluate(()=>KampTrailBeta.events().every(e=>e.mode==='map'))).toBe(true);
+});
+test('a shared coordinate spot keeps precedence over an entry mode',async({page})=>{
+ await page.addInitScript(()=>{window.nearRequests=0;Object.defineProperty(navigator,'geolocation',{value:{getCurrentPosition(){window.nearRequests++;}}});});
+ await page.goto('/?mode=free-camping&state=UT&near=1#spot=44,-115');await page.evaluate(()=>KampTrailMapLoader.start());await expect(page.locator('.kt-spot-popup')).toContainText('44.00000, -115.00000');await expect(page.locator('#kt-entry-state')).toBeHidden();
+ expect(await page.evaluate(()=>window.nearRequests)).toBe(0);expect(await page.evaluate(()=>kamptrailFilters.cost)).toBe('all');expect(await page.evaluate(()=>KampTrailBeta.events().every(e=>e.mode==='map'))).toBe(true);
+});
+test('persisted service saves retain accurate events without unlocking campsite recruitment',async({page})=>{
+ await ready(page);await page.evaluate(()=>{KampTrailBeta.search();for(const id of ['view-one','view-two'])KampTrailBeta.viewPlace({properties:{id,name:id}});const site=KampTrailServices.feature({id:'service:test',name:'Test dump station',coordinates:[-110,40],categories:['dump'],tags:{},source_region:'US-UT'},null);KampTrailTrip.addStop(site.properties.id,site);KampTrailTrip.addStop(site.properties.id,site);});
+ expect(await page.evaluate(()=>KampTrailBeta.status().saves)).toBe(0);expect(await page.evaluate(()=>KampTrailBeta.status().tester)).toBe(false);await expect(page.locator('#kt-use-nudge')).toBeHidden();await expect(page.locator('#beta-testing')).toBeHidden();
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')).filter(s=>s.id==='service:test').length)).toBe(1);expect(await page.evaluate(()=>KampTrailBeta.events().filter(e=>e.event==='kt_stop_saved').map(e=>e.place_kind))).toEqual(['service_or_rest_area']);
+});
 test('three real searches offer installation without opening a dialog; dismissal persists for the session',async({page})=>{
  await ready(page);for(let i=0;i<3;i++){await page.locator('#destination').fill('38.57,-109.55');await page.locator('#destination').press('Enter');if(i<2)await expect(page.locator('#kt-use-nudge')).toBeHidden();}await expect(page.locator('#kt-use-nudge')).toContainText('Install');expect(await page.locator('dialog[open]').count()).toBe(0);await page.locator('#kt-use-nudge').getByRole('button',{name:'Not now'}).click();await page.reload();await page.waitForFunction(()=>window.map?.getZoom);await page.locator('#destination').fill('38.57,-109.55');await page.locator('#destination').press('Enter');await expect(page.locator('#kt-use-nudge')).toBeHidden();expect(await page.evaluate(()=>KampTrailBeta.status().visits)).toBe(1);
+});
+test('an observed installation remains remembered after a regular browser tab reload',async({page})=>{
+ await ready(page);await page.evaluate(()=>{window.dispatchEvent(new Event('appinstalled'));KampTrailBeta.search();KampTrailBeta.search();KampTrailBeta.search();});await page.reload();await page.evaluate(()=>KampTrailMapLoader.start());await page.locator('#destination').fill('38.57,-109.55');await page.locator('#destination').press('Enter');expect(await page.evaluate(()=>KampTrailBeta.status().installed)).toBe(true);await expect(page.locator('#kt-use-nudge')).toBeHidden();
+});
+test('the same recently viewed campsite can be reopened repeatedly without changing its stored id',async({page})=>{
+ const id='usfs:5981';await page.addInitScript(id=>localStorage.setItem('kt_beta_use_v1',JSON.stringify({visits:1,searches:0,views:0,saves:0,last:Date.now(),recent:[{id,name:'Abbott legacy link'}]})),id);
+ await page.goto('/?mode=free-camping&state=UT&near=1#site='+encodeURIComponent(id));await page.evaluate(()=>KampTrailMapLoader.start());await expect(page.locator('[data-kt-place-id="osm:way:1548179559"]')).toBeVisible();
+ // Keep the previously published legacy identity as the recent selection.
+ await page.reload();await page.evaluate(()=>KampTrailMapLoader.start());
+ for(let attempt=0;attempt<2;attempt++){await page.evaluate(()=>map.closePopup());await page.locator('#kt-recent').click();await page.locator('#kt-recent-dialog li button').filter({hasText:'Abbott legacy link'}).click();await expect(page.locator('[data-kt-place-id="osm:way:1548179559"]')).toBeVisible();expect(new URL(page.url()).hash).toBe('#site='+encodeURIComponent(id));}
+ expect(await page.evaluate(()=>KampTrailBeta.status().recent.some(x=>x.id==='usfs:5981'))).toBe(true);
 });
 test('real campsite viewing and saving unlock recruitment, retain exact recent IDs and emit bounded metadata',async({page})=>{
  await ready(page,'/?mode=blm&state=UT&ref='+encodeURIComponent('https://boondockorbust.com/resources/example/?email=secret'));
