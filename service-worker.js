@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v84-stage-dd39d924d1c3-42044854067';
+const VERSION = 'kt-v84-stage-229eabebb13e-42048670015';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -21,7 +21,7 @@ const SHELL = [
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
-  await Promise.all(SHELL.map(async url=>{const original=new URL(url,self.registration.scope),fresh=new URL(original);fresh.searchParams.set('__stage_build','dd39d924d1c3-42044854067');const response=await fetch(new Request(fresh,{cache:'reload'}));if(!response.ok)throw Error('Staging shell unavailable');await cache.put(original,response);}));
+  await Promise.all(SHELL.map(async url=>{const original=new URL(url,self.registration.scope),fresh=new URL(original);fresh.searchParams.set('__stage_build','229eabebb13e-42048670015');const response=await fetch(new Request(fresh,{cache:'reload'}));if(!response.ok)throw Error('Staging shell unavailable');await cache.put(original,response);}));
   await self.skipWaiting();
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{

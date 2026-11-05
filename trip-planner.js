@@ -364,7 +364,7 @@
       <p class="kt-saved-note">${t("Saved on this device. Confirm current access before traveling.")}</p>
       <div id="kt-trip-backup" class="kt-backup-prompt" hidden><p>${t("Back up your full trip with Export JSON backup. Browser storage can be cleared or removed. GPX exports locations for other apps.")}</p><button type="button" class="btn" id="kt-trip-backup-export">${t("Export GPX backup")}</button><button type="button" class="btn" id="kt-trip-backup-dismiss">${t("Dismiss backup reminder")}</button></div>
       <p id="kt-trip-ios" class="kt-ios-storage-note">${t("On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a JSON backup too.")}</p>
-      <p class="kt-saved-note">${t("JSON backups contain your notes, dates and saved locations. Keep them private. Import replaces your saved stops after confirmation.")}</p>
+      <p class="kt-backup-privacy">${t("JSON backups contain your notes, dates and saved locations. Keep them private. Import replaces your saved stops after confirmation.")}</p>
       <p id="kt-trip-summary" role="status" aria-live="polite"></p>
       <p id="kt-trip-car-notice" class="kt-car-route-notice" hidden>${t("Car route. Not checked for your rig’s height, weight or length. Check posted restrictions.")} <a href="#beta-faq" id="kt-trip-route-faq">${t("Routing limitations")}</a></p>
       <div id="kt-trip-tools">
@@ -391,7 +391,7 @@
       #kt-trip-drawer[hidden],#kt-trip-drawer [hidden] {display:none!important}
       #kt-trip-drawer .kt-saved-header {padding:12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #45624b}
       #kt-trip-drawer h2 {font-size:18px;margin:0;flex:1}
-      #kt-trip-drawer .kt-saved-note,#kt-trip-drawer .kt-ios-storage-note,#kt-trip-summary {font-size:12px;line-height:1.5;margin:10px 14px 0;color:#bed3c4}
+      #kt-trip-drawer .kt-saved-note,#kt-trip-drawer .kt-backup-privacy,#kt-trip-drawer .kt-ios-storage-note,#kt-trip-summary {font-size:12px;line-height:1.5;margin:10px 14px 0;color:#bed3c4}
       #kt-trip-summary {font-weight:600;color:#e3f0e5}
       #kt-trip-tools {padding:8px 14px 0;display:grid;gap:8px}
       #kt-trip-tools .kt-route-toggle {font-size:12px;display:flex;gap:6px;align-items:center}
