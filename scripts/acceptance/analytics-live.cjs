@@ -51,7 +51,7 @@ function validatePayloads(requests,pageUrl){
    });
    await page.goto(target.url,{waitUntil:'domcontentloaded',timeout:90000});
    await page.waitForFunction(()=>!!window.KampTrailAnalytics,null,{timeout:45000});
-   const entry={site:target.site,path:new URL(target.url).pathname};
+   const entry={site:target.site,path:new URL(target.url).pathname};report.pages.push(entry);
    if(target.site==='app'){
     await page.waitForFunction(()=>window.KampTrailData?.version==='2.46.3',null,{timeout:90000});
     const release=await page.evaluate(async()=> (await fetch('/release.json?n='+Date.now(),{cache:'no-store'})).json());
@@ -107,7 +107,7 @@ function validatePayloads(requests,pageUrl){
     entry.single_site_kit_owner=true;
    }
    entry.events=validatePayloads(requests,target.url);
-   const cookies=await context.cookies();entry.beta_cookie_names=cookies.filter(c=>/^ktbeta(?:_|$)/.test(c.name)).map(c=>c.name).sort();
+   const cookies=await context.cookies();entry.observed_cookie_names=cookies.map(c=>c.name).sort();entry.beta_cookie_names=cookies.filter(c=>/^ktbeta(?:_|$)/.test(c.name)).map(c=>c.name).sort();
    assert.ok(entry.beta_cookie_names.length,'dedicated beta cookies exist after allowance');
    for(const cookie of cookies.filter(c=>/^ktbeta(?:_|$)/.test(c.name)))assert.ok(cookie.expires<=Date.now()/1000+60*24*60*60+120,'beta cookie expiry exceeds 60 days');
    await openChoices(page,target.site);
@@ -122,7 +122,7 @@ function validatePayloads(requests,pageUrl){
    entry.revoke_stops_requests=true;entry.old_grant_ignored=true;entry.decline_sends_nothing=true;
    entry.layout=await page.evaluate(()=>({width:innerWidth,documentWidth:document.documentElement.scrollWidth}));assert.ok(entry.layout.documentWidth<=entry.layout.width,'no horizontal overflow');
    await openChoices(page,target.site);await page.screenshot({path:'analytics-live-'+target.site+'-'+(target.article?.mode||'map')+'-'+(MOBILE?'mobile':'desktop')+'.png'});
-   report.pages.push(entry);await context.close();
+   await context.close();
   }
   report.result='PASS';
  }catch(error){report.result='FAIL';report.error=error.message;process.exitCode=1;}
