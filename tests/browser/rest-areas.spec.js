@@ -101,6 +101,7 @@ for(const mobile of [false,true])test.describe(mobile?'mobile':'desktop',()=>{if
   await page.keyboard.press('Escape');await page.locator('.leaflet-popup-close-button').click().catch(()=>{});
   release();
   await c.getByRole('button',{name:'Retry official rest areas',exact:true}).click();await page.clock.fastForward(500);
+  await expect.poll(()=>nvCalls).toBe(2);
   await expect(c).not.toContainText('Unavailable now');await expect(c).toContainText('Nevada');
   await page.getByTitle(site.name,{exact:true}).click();await expect(page.locator('.kt-rest-popup')).toContainText(site.name);
   expect(errors).toEqual([]);
