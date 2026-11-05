@@ -84,7 +84,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}])test('ho
  const modes=[['overnight-parking',()=>kamptrailFilters.type==='parking'],['rest-areas',()=>KampTrailLayers.isOn('Official rest areas')&&kamptrailFilters.entryLayer==='rest-areas'],['dump-stations',()=>KampTrailServices.getCategories().join()==='dump'&&kamptrailFilters.entryLayer==='dump-stations'],['free-camping',()=>kamptrailFilters.cost==='free'],['blm',()=>kamptrailFilters.catalogueSource==='blm'&&KampTrailLayers.isOn('Public land (BLM, USFS, NPS)')]];
  for(const [mode,check]of modes){
   await page.goto('/',{waitUntil:'domcontentloaded'});
-  const hero=page.locator('.kt-home-hero'),choices=hero.locator('.kt-intent-shortcuts');
+  const hero=page.locator('.kt-home-hero'),choices=page.locator('.kt-intent-shortcuts');
   await expect(choices.locator('a')).toHaveCount(5);
   await expect(hero.locator('[data-install-open]')).toHaveCount(0);
   const last=await choices.locator('a').last().boundingBox();expect(last.y+last.height).toBeLessThanOrEqual(viewport.height);

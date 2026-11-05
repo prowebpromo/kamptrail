@@ -191,7 +191,7 @@
     };
     addEventListener('offline', nudge); nudge();
   }
-  const api = {version: '2.46.4', init, plan, cacheName, TOPO, readiness, readinessLines};
+  const api = {version: '2.46.5', init, plan, cacheName, TOPO, readiness, readinessLines};
   if (typeof window !== 'undefined') window.KampTrailOffline = api;
   if (typeof module !== 'undefined') module.exports = api;
 })();
