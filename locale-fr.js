@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.46.2', messages:{
+  global.KampTrailI18nFr = {version:'2.46.3', messages:{
   "How it works": "Fonctionnement",
   "Recently viewed": "Consultés récemment",
   "Recently viewed places": "Lieux consultés récemment",

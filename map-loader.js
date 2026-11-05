@@ -1,5 +1,5 @@
 /* Start the map near the workspace, or immediately for a returning/deep-linked visit. */
-(function(){'use strict';const VERSION='2.46.2';let pending=null,started=false;
+(function(){'use strict';const VERSION='2.46.3';let pending=null,started=false;
   function script(src){return new Promise((resolve,reject)=>{const node=document.createElement('script');node.src=src;node.onload=resolve;node.onerror=()=>{node.remove();reject(Error(src));};document.head.append(node);});}
   async function start(){
     if(pending)return pending;

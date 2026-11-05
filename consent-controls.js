@@ -4,7 +4,7 @@
   else if(!root.KampTrailConsentControls)root.KampTrailConsentControls=factory();
 })(typeof globalThis==='object'?globalThis:this,function(){
   'use strict';
-  const VERSION=1,STORAGE_KEY='kt_optional_analytics_choice_v1',MAX_AGE_MS=180*24*60*60*1000;
+  const VERSION=2,STORAGE_KEY='kt_optional_analytics_choice_v2',MAX_AGE_MS=180*24*60*60*1000;
   const mounts=new WeakMap();let nextId=0;
   const panelStyle='border:1px solid #b8cbb7;border-radius:10px;background:#f2f7ee;color:#183729;padding:20px;margin:20px 0;line-height:1.5;';
   const buttonStyle='flex:1 1 180px;box-sizing:border-box;min-height:48px;border:2px solid #183729;border-radius:6px;padding:12px 16px;background:#fff;color:#183729;font:inherit;font-weight:700;cursor:pointer;';
@@ -103,5 +103,5 @@
     });
     mounts.set(container,api);restore();return api;
   }
-  return Object.freeze({version:'2.46.2',mount,VERSION,STORAGE_KEY,MAX_AGE_MS});
+  return Object.freeze({version:'2.46.3',mount,VERSION,STORAGE_KEY,MAX_AGE_MS});
 });
