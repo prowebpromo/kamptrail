@@ -33,7 +33,7 @@
       // First install controls this page without a reload. Reload only on request.
       if (hadController || window.ktReloadForUpdate) { refreshing = true; location.reload(); }
     });
-    navigator.serviceWorker.register('service-worker.js', {updateViaCache:'none'}).then(reg => {
+    navigator.serviceWorker.register('service-worker.js?__stage_build=a592095e822c-41943258420', {updateViaCache:'none'}).then(reg => {
       function offer(sw) {
         const toast = document.getElementById('toast');
         showToast(t("An updated KampTrail is ready."), 'info', 0);
