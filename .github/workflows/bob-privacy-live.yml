@@ -1,0 +1,30 @@
+name: Read-only BoB privacy-page analytics revocation acceptance
+on:
+  push:
+    branches: [review/bob-privacy-live]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Revoke article consent from an ineligible privacy page
+        run: node scripts/acceptance/bob-privacy-live.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bob-privacy-live
+          path: |
+            bob-privacy-live.json
+            bob-privacy-after-revoke.png
+          retention-days: 14
