@@ -1,0 +1,43 @@
+name: Read-only live beta analytics acceptance
+on:
+  push:
+    branches: [review/analytics-live-acceptance]
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Authorized production merge SHA
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+      EXPECTED_SHA: d292602a49d03aff753e545e8452d0ed8ad68c6b
+      SITE: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Wait for authorized live source
+        run: node scripts/acceptance/analytics-wait.cjs
+      - name: Desktop anonymous consent and real SDK request acceptance
+        run: node scripts/acceptance/analytics-live.cjs
+      - name: Mobile anonymous consent and real SDK request acceptance
+        env:
+          MOBILE: 1
+        run: node scripts/acceptance/analytics-live.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: analytics-live-acceptance
+          path: |
+            analytics-live-*.json
+            analytics-live-*.png
+          retention-days: 14
