@@ -354,7 +354,7 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 #explore>.actions .btn[aria-pressed="true"]{background:#dcebdd;border-color:#24613f}
 .kt-home-hero{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:0;padding:0;min-height:420px;background:#10281f;color:#fff;border:0}
 .kt-hero-message{min-width:0;padding:44px 40px;align-self:center}
-.kt-home-hero .kt-beta-label{margin:0 0 22px;padding:0;border:0;background:none;color:#c8daca;font-size:11px;letter-spacing:.045em;line-height:1.5}
+.kt-home-hero .kt-beta-label{display:inline-block;margin:0 0 22px;padding:7px 10px;border:1px solid #819a81;border-radius:6px;background:#203f30;color:#fff1cb;font-size:13px;font-weight:750;letter-spacing:.015em;line-height:1.5}
 .kt-home-hero h2{font-size:clamp(38px,4.2vw,48px);font-weight:750;line-height:1.1;letter-spacing:-.04em;margin:0 0 20px;max-width:500px;color:#fffaf0}
 .kt-home-hero h2>span{display:block}
 .kt-home-hero h2 .kt-hero-accent{color:#f0be67}
@@ -364,6 +364,15 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-home-hero .kt-home-actions .primary:hover{background:#ffcf7a;border-color:#ffcf7a}
 .kt-hero-picture{display:block;position:relative;min-width:0;min-height:100%}
 .kt-hero-landscape{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:64% center}
+.kt-hero-visual{position:relative;display:grid;place-items:center;min-width:0;padding:32px 24px 18px;isolation:isolate}
+.kt-hero-visual>.kt-hero-picture{position:absolute;inset:0;z-index:-2;height:100%}
+.kt-hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,40,31,.08) 55%,rgba(16,40,31,.8));z-index:-1}
+.kt-hero-preview{width:min(100%,250px);margin:0;text-align:center}
+.kt-hero-phone{width:230px;max-width:100%;margin:0 auto 20px;padding:7px;border:1px solid #536357;border-radius:28px;background:#15271e;box-shadow:12px 18px 32px #07170d66;transform:rotate(6deg);overflow:hidden}
+.kt-hero-phone-brand{display:flex;align-items:center;gap:6px;padding:6px 7px 10px;font-size:12px;font-weight:700;color:#fffaf0;text-align:left}
+.kt-hero-phone-screen{display:block;width:100%;height:auto;border-radius:3px 3px 18px 18px}
+.kt-hero-preview figcaption{font-size:10px;line-height:1.5;color:#fffaf0;text-shadow:0 1px 3px #10281f}
+.kt-hero-preview figcaption a{color:inherit;text-underline-offset:2px}
 .kt-intent-shortcuts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:18px 24px;margin:0;background:#f4f7f0;border-bottom:1px solid #d8dfd5}
 .kt-intent-shortcuts a{display:flex;align-items:center;justify-content:center;min-width:0;min-height:46px;padding:10px 8px;border:1px solid #bdcdbb;border-radius:7px;background:#fff;color:#244b35;font-size:13px;font-weight:650;line-height:1.4;text-align:center;text-decoration:none}
 .kt-intent-shortcuts a:hover{background:#e6eee2;border-color:#6e8e76}
@@ -394,13 +403,16 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
  #app>.kt-site-nav a{justify-content:center;font-size:12px;padding:0 4px;text-align:center}
  .kt-home-hero{grid-template-columns:minmax(0,1fr);min-height:0}
  .kt-hero-message{padding:26px 24px}
- .kt-home-hero .kt-beta-label{font-size:10px;margin-bottom:16px}
+ .kt-home-hero .kt-beta-label{font-size:12px;margin-bottom:16px}
  .kt-home-hero h2{font-size:34px;line-height:1.1;letter-spacing:-.035em;margin-bottom:16px;text-wrap:balance}
  .kt-home-hero h2>span{display:inline}
  .kt-home-hero .kt-hero-copy{font-size:14px;line-height:1.6;max-width:440px;margin-bottom:20px}
  .kt-home-hero .kt-home-actions .btn{font-size:13px;min-height:46px;padding:12px 18px}
  .kt-hero-picture{min-height:0;height:112px}
  .kt-hero-landscape{object-position:center 62%}
+ .kt-hero-visual{padding:24px 24px 16px}
+ .kt-hero-preview{width:220px}
+ .kt-hero-phone{width:190px;border-radius:24px;margin-bottom:16px}
  .kt-intent-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:14px 16px}
  .kt-intent-shortcuts a{font-size:12px;padding:8px;min-height:44px}
  .kt-intent-shortcuts a:last-child{grid-column:1/-1}
