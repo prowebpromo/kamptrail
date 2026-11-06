@@ -131,5 +131,5 @@
     });
     mounts.set(win,api);sync();return api;
   }
-  return Object.freeze({version:'2.46.5',mount,DEFAULT_RELEASE,MEASUREMENT_ID,QUEUE,COOKIE_PREFIX});
+  return Object.freeze({version:'2.46.6',mount,DEFAULT_RELEASE,MEASUREMENT_ID,QUEUE,COOKIE_PREFIX});
 });

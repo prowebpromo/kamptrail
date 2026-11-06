@@ -1,7 +1,8 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.46.5', messages:{
+  global.KampTrailI18nFr = {version:'2.46.6', messages:{
+  "KampTrail map preview near Moab, Utah": "Aperçu de la carte KampTrail près de Moab, Utah",
   "Check land management, save your stops and plan your trip.": "Consultez qui gère les terrains, enregistrez vos étapes et préparez votre voyage.",
   "Choose a state or search to start.": "Choisissez un État ou lancez une recherche pour commencer.",
   "A clearer view, a simpler start": "Une vue plus claire, un démarrage plus simple",
