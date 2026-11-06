@@ -7,10 +7,10 @@ permissions:
 jobs:
   visual:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     env:
       CHROMIUM_PATH: /usr/bin/google-chrome
-      EXPECTED_SHA: 771125d0ff971bb3096e52559e341b1e1ca2535d
+      EXPECTED_SHA: cf618fc93e69bc15fbe660e7922c8265ff3589d8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

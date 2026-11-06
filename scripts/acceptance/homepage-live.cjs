@@ -23,7 +23,7 @@ const modes=[
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/(^|\.)google-analytics\.com$/.test(u.hostname)||(/(^|\.)google\.com$/.test(u.hostname)&&/collect/.test(u.pathname))){blockedCollect++;return route.abort();}return route.continue();});
   await context.addInitScript(()=>{window.ktQaLocationCalls=0;Object.defineProperty(navigator,'geolocation',{value:{getCurrentPosition(){window.ktQaLocationCalls++;}}});});
   if(APP.startsWith('https:')){
-  const deadline=Date.now()+20*60*1000;
+  const deadline=Date.now()+30*60*1000;
   let release;
   while(Date.now()<deadline){
    try{const r=await context.request.get(APP+'/release.json?n='+Date.now());release=await r.json();if(r.ok()&&release.source_commit===EXPECTED)break;}catch{}
