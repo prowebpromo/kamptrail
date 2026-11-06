@@ -1,5 +1,6 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.5',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.6',messages:{
+  "KampTrail map preview near Moab, Utah": "Vista previa del mapa de KampTrail cerca de Moab, Utah",
   "Check land management, save your stops and plan your trip.": "Consulta quién gestiona el terreno, guarda tus paradas y planifica tu viaje.",
   "Choose a state or search to start.": "Elige un estado o busca para empezar.",
   "A clearer view, a simpler start": "Una vista más clara y un comienzo más sencillo",
