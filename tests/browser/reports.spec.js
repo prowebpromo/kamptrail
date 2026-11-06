@@ -19,8 +19,14 @@ async function setup(page,context,{api='ok'}={}){
 test('a camper reports a fee correction without an account and can check its status',async({page,context})=>{
   const sent=await setup(page,context);
   const id=await page.evaluate(()=>KampTrailData.getVisibleCampsites()[0].properties.id);
+  await page.locator('#map').scrollIntoViewIfNeeded();
   await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
-  await page.locator('.leaflet-popup').getByRole('button',{name:'Suggest a fix'}).click();
+  const fix=page.locator('.leaflet-popup').getByRole('button',{name:'Suggest a fix'});
+  await expect(fix).toBeVisible();
+  await page.waitForFunction(()=>!map._animatingZoom&&!map._panAnim?._inProgress);
+  await fix.scrollIntoViewIfNeeded();
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  await fix.click();
   const d=page.getByRole('dialog',{name:'Suggest a fix'});
   await d.getByLabel('Fee is wrong').check();
   await d.getByLabel('What did you see?').fill('Pay station sign says $12 per night, seen 2026-10-20.');

@@ -27,8 +27,10 @@ async function setup(page,context,{mobile=false,broken=false,policyBroken=false,
   return{calls,errors};
 }
 async function show(page,{keyboard=false}={}){
+ await page.locator('#map').scrollIntoViewIfNeeded();
  const checkbox=page.getByLabel('Official rest areas',{exact:true});
  if(keyboard)await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');else await page.locator('.leaflet-control-layers').hover();
+ await expect(page.locator('.leaflet-control-layers')).toHaveClass(/leaflet-control-layers-expanded/);
  // Leaflet suppresses clicks for one task while expanding the menu.
  await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,0)));
  if(keyboard){await checkbox.focus();await checkbox.press('Space');await expect(checkbox).toBeChecked();}else await checkbox.check();

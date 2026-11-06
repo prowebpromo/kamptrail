@@ -27,7 +27,10 @@ test('layers control offers topo, satellite, public land and RV services from pu
   await ready(page);
   const labels=await page.locator('.leaflet-control-layers label').allTextContents();
   for(const name of ['Standard','Topo','Satellite','Public land (BLM, USFS, NPS)','Services (7 categories)'])expect(labels.join('|')).toContain(name);
+  await page.locator('#map').scrollIntoViewIfNeeded();
   await page.locator('.leaflet-control-layers').hover();
+  await expect(page.locator('.leaflet-control-layers')).toHaveClass(/leaflet-control-layers-expanded/);
+  await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,0)));
   await page.getByLabel('Topo').check();
   await expect.poll(()=>calls.some(u=>u.includes('basemap.nationalmap.gov')&&u.includes('USGSTopo'))).toBe(true);
   await page.getByLabel('Public land (BLM, USFS, NPS)').check();

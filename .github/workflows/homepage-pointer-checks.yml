@@ -1,0 +1,49 @@
+name: Verify stabilized homepage pointer paths
+on:
+  push:
+    branches: [fix/homepage-pointer-tests]
+permissions:
+  contents: read
+  actions: read
+env:
+  CHROMIUM_PATH: /usr/bin/google-chrome
+  EXPECTED_SHA: 771125d0ff971bb3096e52559e341b1e1ca2535d
+jobs:
+  targeted:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Verify source identity and completed full CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node <<'NODE'
+          const assert=require('node:assert/strict');
+          const repo='prowebpromo/kamptrail', expected=process.env.EXPECTED_SHA;
+          async function api(p){const r=await fetch('https://api.github.com/repos/'+repo+p,{headers:{Authorization:'Bearer '+process.env.GH_TOKEN,Accept:'application/vnd.github+json'}});assert.equal(r.ok,true,p+': '+r.status);return r.json();}
+          (async()=>{
+            const main=await api('/git/ref/heads/main');assert.equal(main.object.sha,expected);
+            const run=await api('/actions/runs/42133348118');assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'c10fff893a0a869000f227a5fe794bb8d13990fe');
+            const good=await api('/git/commits/'+run.head_sha), prod=await api('/git/commits/'+expected);
+            assert.equal(good.tree.sha,prod.tree.sha,'Full CI and publication must have identical trees');
+            const [a,b]=await Promise.all([api('/git/trees/'+prod.tree.sha+'?recursive=1'),api('/git/trees/'+process.env.GITHUB_SHA+'?recursive=1')]);
+            assert.equal(a.truncated,false);assert.equal(b.truncated,false);
+            const allowed=new Set(['.github/workflows/homepage-live.yml','.github/workflows/homepage-visual-finish.yml','scripts/acceptance/homepage-live.cjs','tests/browser/features.spec.js','tests/browser/reports.spec.js','tests/browser/rest-areas.spec.js','.github/workflows/homepage-pointer-checks.yml']);
+            const am=new Map(a.tree.filter(x=>x.type!=='tree').map(x=>[x.path,x.sha])),bm=new Map(b.tree.filter(x=>x.type!=='tree').map(x=>[x.path,x.sha]));
+            for(const p of new Set([...am.keys(),...bm.keys()]))if(!allowed.has(p))assert.equal(am.get(p),bm.get(p),'Unexpected product or data change: '+p);
+            console.log(JSON.stringify({source:expected,full_ci_run:run.id,identical_ci_tree:true,product_and_data_blobs_identical:true}));
+          })().catch(e=>{console.error(e.message);process.exitCode=1;});
+          NODE
+      - run: npm ci
+      - name: Repeat the three stabilized pointer paths
+        run: npx playwright test tests/browser/features.spec.js tests/browser/reports.spec.js tests/browser/rest-areas.spec.js --grep 'layers control offers|a camper reports a fee correction|source failure and offline views' --repeat-each=3 --reporter=list
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: homepage-pointer-failures
+          path: test-results
