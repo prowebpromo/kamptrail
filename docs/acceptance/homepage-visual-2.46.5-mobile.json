@@ -1,0 +1,81 @@
+{
+  "kind": "read-only-live-homepage-intents",
+  "started": "2026-11-06T01:32:27.018Z",
+  "mobile_emulation": true,
+  "expected_source": "cf618fc93e69bc15fbe660e7922c8265ff3589d8",
+  "version": "2.46.5",
+  "all_google_collect_aborted": true,
+  "modes": [
+    {
+      "mode": "overnight-parking",
+      "keyboard_activation": true,
+      "expected_filter_or_layer": true,
+      "entry_notice_visible": true,
+      "no_location_request": true,
+      "layout": {
+        "width": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "mode": "rest-areas",
+      "keyboard_activation": true,
+      "expected_filter_or_layer": true,
+      "entry_notice_visible": true,
+      "no_location_request": true,
+      "layout": {
+        "width": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "mode": "dump-stations",
+      "keyboard_activation": true,
+      "expected_filter_or_layer": true,
+      "entry_notice_visible": true,
+      "no_location_request": true,
+      "layout": {
+        "width": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "mode": "free-camping",
+      "keyboard_activation": true,
+      "expected_filter_or_layer": true,
+      "entry_notice_visible": true,
+      "no_location_request": true,
+      "layout": {
+        "width": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "mode": "blm",
+      "keyboard_activation": true,
+      "expected_filter_or_layer": true,
+      "entry_notice_visible": true,
+      "no_location_request": true,
+      "layout": {
+        "width": 390,
+        "documentWidth": 390
+      }
+    }
+  ],
+  "source": "cf618fc93e69bc15fbe660e7922c8265ff3589d8",
+  "hero_choices_in_first_screen": true,
+  "install_removed_from_hero": true,
+  "install_guide_retained": true,
+  "home_layout": {
+    "width": 390,
+    "documentWidth": 390
+  },
+  "broader_product_navigation_retained": true,
+  "keyboard_skip_link": true,
+  "initial_install_hidden": true,
+  "device_mockup_removed": true,
+  "install_after_three_searches": true,
+  "blocked_google_collect_requests": 0,
+  "result": "PASS",
+  "finished": "2026-11-06T01:32:35.237Z"
+}
