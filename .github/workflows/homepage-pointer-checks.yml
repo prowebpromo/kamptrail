@@ -20,7 +20,7 @@ jobs:
           cache: npm
       - name: Verify source identity and completed full CI
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           node <<'NODE'
           const assert=require('node:assert/strict');
