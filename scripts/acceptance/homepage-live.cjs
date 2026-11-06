@@ -16,14 +16,14 @@ const modes=[
  assert.match(EXPECTED||'',/^[a-f0-9]{40}$/,'Pin the authorized merge before checking production');
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/google-chrome',args:['--no-sandbox','--disable-dev-shm-usage']});
  const viewport=MOBILE?{width:390,height:844}:{width:1440,height:1000};
- const context=await browser.newContext({serviceWorkers:'block',viewport,...(MOBILE?{isMobile:true,hasTouch:true}:{})}),page=await context.newPage();
+ const context=await browser.newContext({serviceWorkers:APP.startsWith('https:')?'allow':'block',viewport,...(MOBILE?{isMobile:true,hasTouch:true}:{})}),page=await context.newPage();
  const report={kind:'read-only-live-homepage-intents',started:new Date().toISOString(),mobile_emulation:MOBILE,expected_source:EXPECTED,version:'2.46.5',all_google_collect_aborted:true,modes:[]};
  let blockedCollect=0;
  try{
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(/(^|\.)google-analytics\.com$/.test(u.hostname)||(/(^|\.)google\.com$/.test(u.hostname)&&/collect/.test(u.pathname))){blockedCollect++;return route.abort();}return route.continue();});
   await context.addInitScript(()=>{window.ktQaLocationCalls=0;Object.defineProperty(navigator,'geolocation',{value:{getCurrentPosition(){window.ktQaLocationCalls++;}}});});
   if(APP.startsWith('https:')){
-  const deadline=Date.now()+8*60*1000;
+  const deadline=Date.now()+20*60*1000;
   let release;
   while(Date.now()<deadline){
    try{const r=await context.request.get(APP+'/release.json?n='+Date.now());release=await r.json();if(r.ok()&&release.source_commit===EXPECTED)break;}catch{}
@@ -46,6 +46,7 @@ const modes=[
   report.broader_product_navigation_retained=true;
   assert.equal(await page.evaluate(()=>KampTrailAnalytics.getStatus().analyticsConsent),false);
   await page.waitForFunction(()=>{const img=document.querySelector('.kt-hero-landscape');return img.complete&&img.naturalWidth>0;});
+  await page.waitForFunction(()=>!document.querySelector('.toast.show'),null,{timeout:15000});
   await page.screenshot({path:'homepage-live-'+(MOBILE?'mobile':'desktop')+'.png'});
   assert.equal(await page.locator('.kt-phone,.kt-hero-product').count(),0);
   assert.equal(await page.locator('#install-kamptrail').isVisible(),false);

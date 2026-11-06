@@ -7,11 +7,10 @@ permissions:
 jobs:
   visual:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       CHROMIUM_PATH: /usr/bin/google-chrome
-      EXPECTED_SHA: c10fff893a0a869000f227a5fe794bb8d13990fe
-      KT_QA_URL: http://127.0.0.1:8765
+      EXPECTED_SHA: 771125d0ff971bb3096e52559e341b1e1ca2535d
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,9 +18,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: node scripts/build-release.js
-      - name: Start disposable built source
-        run: KAMPTRAIL_SERVE_DIR="$PWD/dist/kamptrail" node scripts/serve.js >/tmp/kamptrail-preview.log 2>&1 &
       - name: Desktop visual acceptance
         run: node scripts/acceptance/homepage-live.cjs
       - name: Mobile visual acceptance
