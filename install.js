@@ -22,8 +22,9 @@
   function render() {
     const trigger=document.getElementById('install-kamptrail');
     const runningAsApp=display.matches || navigator.standalone===true;
+    installed=installed || runningAsApp || window.KampTrailBeta?.status().installed===true;
     if(trigger){
-      trigger.hidden=runningAsApp;
+      trigger.hidden=installed || window.KampTrailBeta?.installAvailable()!==true;
       const label=runningAsApp?'KampTrail app':installed?'KampTrail installed':'Install KampTrail';
       trigger.setAttribute('data-i18n',label);
       trigger.textContent=t(label);
@@ -65,9 +66,10 @@
   }
   window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();if(!installed)deferred=event;render();});
   window.addEventListener('appinstalled',()=>{installed=true;deferred=null;busy=false;render();});
-  display.addEventListener?.('change',event=>{installed=event.matches || navigator.standalone===true;render();});
+  window.addEventListener('kamptrail:installavailability',render);
+  display.addEventListener?.('change',()=>render());
   document.getElementById('install-kamptrail')?.addEventListener('click',open);
   document.querySelectorAll?.('[data-install-open]').forEach(button=>button.addEventListener('click',open));
   render();
-  window.KampTrailInstall={version:'2.46.4',open};
+  window.KampTrailInstall={version:'2.46.5',open};
 })();

@@ -12,7 +12,7 @@
   const statuses = () => ({received:t('Received. Waiting for review.'), accepted:t('Accepted for follow-up.'), rejected:t('Closed without a change.'), applied:t('Completed.')});
   function diagnostics() {
     const ua = navigator.userAgent;
-    return {version:'2.46.4', language:window.KampTrailI18n?.language || document.documentElement.lang || 'en', browser:/Firefox\//.test(ua)?'Firefox':/Edg\//.test(ua)?'Edge':/(Chrome|CriOS)\//.test(ua)?'Chrome':/Safari\//.test(ua)?'Safari':'Other', width:window.innerWidth, height:window.innerHeight, connection:navigator.onLine?'online':'offline'};
+    return {version:'2.46.5', language:window.KampTrailI18n?.language || document.documentElement.lang || 'en', browser:/Firefox\//.test(ua)?'Firefox':/Edg\//.test(ua)?'Edge':/(Chrome|CriOS)\//.test(ua)?'Chrome':/Safari\//.test(ua)?'Safari':'Other', width:window.innerWidth, height:window.innerHeight, connection:navigator.onLine?'online':'offline'};
   }
   function ensure() {
     if (dialog) return dialog;
@@ -116,7 +116,7 @@
     const match = hash.match(/^#feedback=report:([a-f0-9]{32})$/);
     if (match) showStatus(match[1]);
   }
-  window.KampTrailFeedback = {version:'2.46.4', open};
+  window.KampTrailFeedback = {version:'2.46.5', open};
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('kt-feedback-open')?.addEventListener('click', () => open());
     document.querySelectorAll('[data-feedback-kind]').forEach(button => button.addEventListener('click', () => open(button.dataset.feedbackKind)));
