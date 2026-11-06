@@ -1,7 +1,7 @@
 /* BoB entry states and device-local engagement. No analytics network client. */
 (function(root){
   'use strict';
-  const VERSION='2.46.4';
+  const VERSION='2.46.5';
   const MODES=Object.freeze({
     'overnight-parking':{label:'Overnight parking',note:'Parking-related listings. A marker does not establish overnight permission. Confirm with the property manager.'},
     'rest-areas':{label:'Official rest areas',note:'Official rest-area layer is on. Coverage is incomplete. A location or stay limit does not establish overnight permission.'},
@@ -49,11 +49,15 @@
   const dismissed={};try{Object.assign(dismissed,JSON.parse(sessionStorage.getItem('kt_beta_dismissed')||'{}'));}catch{}
   function dismiss(kind){dismissed[kind]=true;try{sessionStorage.setItem('kt_beta_dismissed',JSON.stringify(dismissed));}catch{}render();}
   function button(label,action){const b=document.createElement('button');b.type='button';b.className='btn';b.textContent=t(label);b.onclick=action;return b;}
+  function hasActivity(){return !!(sessionSearches||sessionViews.size||s.savedThisPage);}
+  function installAvailable(){return eligible(s).install&&hasActivity()&&!s.installed;}
   function render(){
     const e=eligible(s),section=document.getElementById('beta-testing');if(section)section.hidden=!e.tester;
+    // The toolbar consumes this state; the nudge remains the only install suggestion.
+    root.dispatchEvent(new CustomEvent('kamptrail:installavailability'));
     const n=document.getElementById('kt-use-nudge');if(!n)return;n.replaceChildren();n.hidden=true;
     // Returning arrivals still wait for an action in this document before a suggestion.
-    if(!sessionSearches&&!sessionViews.size&&!s.savedThisPage)return;
+    if(!hasActivity())return;
     const installed=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true||s.installed;
     const kind=e.install&&!installed&&!dismissed.install?'install':e.tester&&!dismissed.tester?'tester':null;
     if(!kind)return;
@@ -84,6 +88,6 @@
   root.addEventListener('kamptrail:filterschanged',()=>{if(entryApplied&&!matchesEntry(entry.mode,root.kamptrailFilters))clearEntry();});
   root.addEventListener('appinstalled',()=>{beginActivity();s.installed=true;persist();track('pwa_installed');render();});
   document.getElementById('kt-recent')?.addEventListener('click',recent);
-  root.KampTrailBeta={version:VERSION,entry,search,viewPlace,saveStop(site){beginActivity();const kind=savedPlaceKind(site);if(kind==='campsite'){s.savedThisPage=true;use('saves');}else persist();track('stop_saved',{place_kind:kind});},track,render,recent,setReporter(fn){if(typeof fn!=='function')return;reporter=fn;for(const event of events)try{reporter(event);}catch{}},events:()=>events.slice(),status:()=>({...s,...eligible(s)})};
+  root.KampTrailBeta={version:VERSION,entry,search,viewPlace,saveStop(site){beginActivity();const kind=savedPlaceKind(site);if(kind==='campsite'){s.savedThisPage=true;use('saves');}else persist();track('stop_saved',{place_kind:kind});},track,render,recent,installAvailable,setReporter(fn){if(typeof fn!=='function')return;reporter=fn;for(const event of events)try{reporter(event);}catch{}},events:()=>events.slice(),status:()=>({...s,...eligible(s)})};
   track('landing');if(newVisit&&s.visits>1)track('return_session');render();
 })(typeof window==='object'?window:globalThis);
