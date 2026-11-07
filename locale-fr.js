@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.46.6', messages:{
+  global.KampTrailI18nFr = {version:'2.46.7', messages:{
   "KampTrail map preview near Moab, Utah": "Aperçu de la carte KampTrail près de Moab, Utah",
   "Check land management, save your stops and plan your trip.": "Consultez qui gère les terrains, enregistrez vos étapes et préparez votre voyage.",
   "Choose a state or search to start.": "Choisissez un État ou lancez une recherche pour commencer.",
@@ -31,6 +31,7 @@
   "Not now": "Pas maintenant",
   "Show all campsites": "Afficher tous les campings",
   "Dump stations": "Stations de vidange",
+  "Water & Dump Stations": "Eau et stations de vidange",
   "Reported free camping": "Camping gratuit selon la source",
   "BLM places and public land": "Lieux BLM et terres publiques",
   "Parking-related listings. A marker does not establish overnight permission. Confirm with the property manager.": "Lieux liés au stationnement. Un repère ne confirme pas l’autorisation de passer la nuit. Vérifiez auprès du gestionnaire.",

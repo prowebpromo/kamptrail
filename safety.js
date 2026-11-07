@@ -1,7 +1,7 @@
 /* Local acknowledgement only. No account, server receipt or browsing restriction. */
 (function () {
   'use strict';
-  const VERSION = '2.46.6';
+  const VERSION = '2.46.7';
   const ACK_VERSION = '2026-11-02', KEY = 'kt_safety_ack_v1';
   const t = key => window.KampTrailI18n?.t(key) ?? key;
   let sessionAccepted = false, pending = null, required = false;

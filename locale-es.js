@@ -1,5 +1,5 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.6',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.7',messages:{
   "KampTrail map preview near Moab, Utah": "Vista previa del mapa de KampTrail cerca de Moab, Utah",
   "Check land management, save your stops and plan your trip.": "Consulta quién gestiona el terreno, guarda tus paradas y planifica tu viaje.",
   "Choose a state or search to start.": "Elige un estado o busca para empezar.",
@@ -29,6 +29,7 @@
   "Not now": "Ahora no",
   "Show all campsites": "Mostrar todos los campings",
   "Dump stations": "Estaciones de descarga",
+  "Water & Dump Stations": "Agua y estaciones de descarga",
   "Reported free camping": "Acampada gratuita según la fuente",
   "BLM places and public land": "Lugares de BLM y terrenos públicos",
   "Parking-related listings. A marker does not establish overnight permission. Confirm with the property manager.": "Lugares relacionados con estacionamiento. Un marcador no confirma permiso para pernoctar. Consulta al administrador.",
