@@ -61,6 +61,8 @@ def require(condition, reason='invalid_forecast'):
 
 def timestamp(value):
     require(isinstance(value, str) and STAMP.fullmatch(value) is not None)
+    # Python 3.14 fromisoformat accepts hour 24; keep rejecting it on every runtime.
+    require(value[11:13] < '24')
     try:
         result = datetime.fromisoformat(value.replace('Z', '+00:00')).timestamp()
     except (ValueError, OverflowError):
