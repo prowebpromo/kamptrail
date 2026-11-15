@@ -253,6 +253,16 @@ The branch is a source checkpoint. The rebuilt snapshots and indexes stay uncomm
 
 Run `bash scripts/tourism-type-admission/run-all.sh /absolute/path/to/main-checkout /absolute/path/to/output` from this worktree. It replays the snapshots, builds the indexes, writes the ledger, repeats the rebuild, runs the provenance and admission verifiers, checks the owner decisions and quotes, runs the continuity check and writes `key-digests.txt`.
 
+### Clean-checkout tests and CI
+
+`npm test` now prepares an isolated temporary candidate checkout before running the existing unit suite. It replays all 50 states from retained offline inputs, builds the candidate index and full review ledger, checks the dated owner decisions and every published id, and runs the admission verifier with a byte-for-byte index rebuild. The source checkout's released snapshots and indexes remain unchanged. All existing ledger and browser/index parity assertions run against the same generated candidate. The temporary checkout is removed when the suite finishes.
+
+The frozen classifier in `tests/fixtures/tourism-baseline/` comes from release baseline `f9752ecb8090a6e3452896c23eaa374e65c59694`; `provenance.json` pins its Git blob and normalized SHA-256, plus the released index seed. This is source code for offline comparison, not a candidate production dataset or a policy decision. A changed released seed fails preparation and requires an explicit baseline review. Copied JSON and GeoJSON regain repository LF line endings after a Windows checkout; retained elevation and other manifest checksums are still validated without alteration. The existing historical review workflow above remains available.
+
+For a persistent disposable checkout, run `node scripts/tourism-type-admission/test-fixture.js --output=/absolute/fresh/directory` with an output directory outside this source checkout. Run `npm test`, `npm run build:search`, browser tests, or `npm run build` from its `candidate` subdirectory. Install dependencies in the source checkout first; the fixture links those dependencies and writes its own test reports and build outputs. CI prepares this checkout once and uses it for all suites and packaging. Generated candidate data and ledger files remain uncommitted. This repair does not mark the draft ready, approve the 27 review holds, settle the two decision-4 exceptions or seven pending admissions, merge, or deploy it.
+
+The draft regression job allows 45 minutes for offline generation and cross-checks plus the unchanged suites. The prior 25-minute limit covered the suites without this source-only draft preparation; local Windows preparation alone exceeded 20 minutes. Hosted CI will establish the Linux duration. No checks or assertions were dropped to fit the time limit.
+
 ## Code changes
 
 - `data-quality.js`: `HELD_PUBLISHED_LABELS` (38: 9 pending withdrawals, 2 decision-4 exceptions, 27 review holds), `OWNER_REVIEWED_LABELS` (44 labels accepted from own records, each bound to its ledger field and quote, `type_evidence.kind = owner_reviewed_own_record`), the pending-withdrawal set, the two pinned lodging points and the Shaw House closure notice pinned to its retrieval and wording. Names no longer set a type outside the ledger. The 7 Other listings use the existing pending-admission path.

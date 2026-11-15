@@ -122,7 +122,7 @@ function publishedHosts(directory) {
   return hosts;
 }
 
-function buildFromDirectory(directory) {
+function buildFromDirectory(directory, {identityDirectory=directory}={}) {
   const files = fs.readdirSync(directory).filter(name => /^[A-Z]{2}_merged\.geojson$/.test(name)).sort();
   if (files.length !== 50) {
     throw new Error(`Expected 50 saved state snapshots; found ${files.length}. Search index was not replaced.`);
@@ -141,7 +141,7 @@ function buildFromDirectory(directory) {
       if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
     }
     return {state, geojson};
-  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory),amenitySidecars);
+  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(identityDirectory),publishedHosts(identityDirectory),amenitySidecars);
 }
 
 if (require.main === module) {

@@ -28,7 +28,9 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=10
-    timeout-minutes: 25
+    # Source-only draft preparation adds all-state replay, ledger and independent
+    # verifier builds before the unchanged regression suites.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,31 +49,42 @@ jobs:
           php-version: '8.3'
           extensions: pdo_sqlite, pdo_mysql, gd, mbstring, fileinfo, exif, curl, zlib
           coverage: none
+      - name: Rebuild the source-only tourism draft in an isolated offline fixture
+        working-directory: ${{ github.workspace }}
+        run: node scripts/tourism-type-admission/test-fixture.js --output="${{ runner.temp }}/kamptrail-tourism"
       - run: npm test
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
         env:
           KT_REQUIRE_PHP: '1'
       - name: Verify community and routing APIs on MySQL
         run: node --test --test-concurrency=1 tests/community.test.js tests/routing-api.test.js tests/permissions-api.test.js
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
         env:
           KT_REQUIRE_PHP: '1'
           KT_TEST_MYSQL_DSN: 'mysql:host=127.0.0.1;port=3306;dbname=kamptrail_test;charset=utf8mb4'
       - name: Restore a disposable MySQL backup including photos
         run: node --test tests/mysql-backup.test.js
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
         env:
           KT_MYSQL_CONTAINER: ${{ job.services.mysql.id }}
       - run: npm run test:python
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
       - run: npx playwright install --with-deps chromium
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
       - run: npm run build:search
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
       - run: npm run test:browser
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
       - run: npm run build
+        working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
       - uses: actions/upload-artifact@v4
         with:
           name: kamptrail-static
-          path: dist/kamptrail
+          path: ${{ runner.temp }}/kamptrail-tourism/candidate/dist/kamptrail
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: browser-test-report
           path: |
-            playwright-report
-            test-results
+            ${{ runner.temp }}/kamptrail-tourism/candidate/playwright-report
+            ${{ runner.temp }}/kamptrail-tourism/candidate/test-results

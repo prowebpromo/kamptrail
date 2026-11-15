@@ -67,7 +67,7 @@ for(const [group,ids] of Object.entries(request.groups))for(const id of ids){
 }
 const count=k=>rows.reduce((a,r)=>(a[r[k]]=(a[r[k]]||0)+1,a),{});
 const out={version:2,decided:'2026-11-01 08:16 and 08:18, and 20:24 ET (Chuck Price, owner)',evidence:{file:rel,sha256:crypto.createHash('sha256').update(evidenceBytes).digest('hex'),run:'https://github.com/prowebpromo/kamptrail/actions/runs/41350953975',retrieved_at:evidence.retrieved_at},
-  baseline_commit:require('child_process').execFileSync('git',['rev-parse','HEAD'],{cwd:baseRoot,encoding:'utf8'}).trim(),
+  baseline_commit:H.baselineCommit(baseRoot,arg('baseline-commit')),
   observed_fields:'observed.* copied from the evidence file; derived.*, decision and action computed by this script; current.* from the baseline catalogue; candidate.* from this build',
   by_decision:count('decision'),problems,records:rows};
 fs.writeFileSync(path.join(root,'docs/tourism/owner-decisions-2026-11-01.json'),JSON.stringify(out,null,1)+'\n');

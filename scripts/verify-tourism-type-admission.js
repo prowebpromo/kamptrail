@@ -124,16 +124,10 @@ if(CN.size!==A.size)fail('catalogue_differs_from_index','catalogue',{catalogue:C
 // 6. Determinism: the committed index rebuilds byte for byte.
 // The build seeds identity from the released index (baseline), exactly as scripts/tourism-type-admission/rebuild.sh does.
 const {buildFromDirectory,coordinateIndex}=require('./build-search-index');
-const seedDir=fs.mkdtempSync(path.join(require('node:os').tmpdir(),'tta-seed-'));
-for(const n of fs.readdirSync(path.join(root,'data/campsites')))if(/^[A-Z]{2}_merged\.geojson$|^(ridb-sites|ridb-amenities|usfs-site-amenities)\.json$/.test(n))fs.symlinkSync(path.join(root,'data/campsites',n),path.join(seedDir,n));
-fs.symlinkSync(path.join(root,'data/campsites/agency'),path.join(seedDir,'agency'));
-if(fs.existsSync(path.join(root,'data/campsites/elevation')))fs.symlinkSync(path.join(root,'data/campsites/elevation'),path.join(seedDir,'elevation'));
-fs.copyFileSync(path.join(baseline,'data/campsites/search-index.json'),path.join(seedDir,'search-index.json'));
-const rebuilt=JSON.stringify(buildFromDirectory(seedDir))+'\n';
-fs.rmSync(seedDir,{recursive:true,force:true});
+const rebuilt=JSON.stringify(buildFromDirectory(path.join(root,'data/campsites'),{identityDirectory:path.join(baseline,'data/campsites')}))+'\n';
 if(rebuilt!==fs.readFileSync(path.join(root,'data/campsites/search-index.json'),'utf8'))fail('index_not_reproducible','search-index.json');
 if(JSON.stringify(coordinateIndex(ia.sites))+'\n'!==fs.readFileSync(path.join(root,'data/campsites/coordinate-index.json'),'utf8'))fail('coordinate_index','coordinate-index.json');
-const report={baseline_commit:require('node:child_process').execFileSync('git',['rev-parse','HEAD'],{cwd:baseline,encoding:'utf8'}).trim(),
+const report={baseline_commit:H.baselineCommit(baseline,arg('baseline-commit')),
   output_hashes:Object.fromEntries([...states.map(s=>`data/campsites/${s}_merged.geojson`),'data/campsites/search-index.json','data/campsites/coordinate-index.json','data/campsites/withdrawn.json'].filter(r=>fs.existsSync(path.join(root,r))).map(r=>[r,sha(path.join(root,r))])),
   snapshot:snap,saved_links_checked:checked,saved_links_moving_host:moved,withdrawn:W.listings.length,access_holds:holds,ledger_records:L.size,delta_count:deltas.length,deltas,unexpected_delta_count:unexpected.length,unexpected_deltas:unexpected.slice(0,200)};
 report.output_digest=crypto.createHash('sha256').update(JSON.stringify(report.output_hashes)).digest('hex');

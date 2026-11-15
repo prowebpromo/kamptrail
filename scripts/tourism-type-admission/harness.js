@@ -41,4 +41,9 @@ function catalogue(DQ,I,{browser=false,statesOrder=I.collections}={}){
   features.forEach(attach);
   return {features,stateById};
 }
-module.exports={loadDQ,inputs,catalogue,read};
+// An offline test baseline can name its pinned source revision without a Git checkout.
+function baselineCommit(root, revision){
+  if(revision){if(!/^[a-f0-9]{40}$/.test(revision))throw new Error('Expected a full baseline commit SHA');return revision;}
+  return require('node:child_process').execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
+}
+module.exports={loadDQ,inputs,catalogue,read,baselineCommit};
