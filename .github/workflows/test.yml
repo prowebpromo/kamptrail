@@ -14,7 +14,9 @@ permissions:
   contents: read
 jobs:
   regression:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
     services:
       mysql:
         image: mysql:8.0
@@ -69,7 +71,10 @@ jobs:
           KT_MYSQL_CONTAINER: ${{ job.services.mysql.id }}
       - run: npm run test:python
         working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
-      - run: npx playwright install --with-deps chromium
+      - name: Verify runner Chrome binary and version
+        run: |
+          test -x "$CHROMIUM_PATH"
+          "$CHROMIUM_PATH" --version
         working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
       - run: npm run build:search
         working-directory: ${{ runner.temp }}/kamptrail-tourism/candidate
