@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
@@ -36,7 +36,7 @@ jobs:
         run: |
           if [[ -z "$RIDB_API_KEY" ]]; then echo 'Set RECREATION_GOV_API_KEY or RIDB_API_KEY'; exit 1; fi
           python scripts/fetch_ridb_facility_evidence.py --ids "$FACILITY_IDS" --out ridb-facility-evidence.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
           name: ridb-facility-evidence

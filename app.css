@@ -392,6 +392,20 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-site-feedback{margin:40px auto;padding:32px}
 .kt-site-feedback-actions{gap:12px}
 .kt-legal-nav{margin-top:24px;padding-top:16px;gap:4px 22px}
+/* These informational sections follow the map and remain below the initial
+   viewport at these heights. Remember their real size after first rendering. */
+@media(max-height:1000px){
+ @supports(content-visibility:auto){
+  body:not(.kt-workspace) #how-it-works,
+  body:not(.kt-workspace) #about-chuck{content-visibility:auto}
+  #how-it-works{contain-intrinsic-size:auto none auto 565px}
+  #about-chuck{contain-intrinsic-size:auto none auto 300px}
+ }
+}
+@media(max-height:1000px) and (max-width:760px){
+ #how-it-works{contain-intrinsic-size:auto none auto 1420px}
+ #about-chuck{contain-intrinsic-size:auto none auto 675px}
+}
 @media(min-width:761px) and (max-width:1000px){
  .kt-hero-message{padding:36px 28px}.kt-home-hero h2{font-size:38px}.kt-home-hero .kt-hero-copy{font-size:15px}
 }

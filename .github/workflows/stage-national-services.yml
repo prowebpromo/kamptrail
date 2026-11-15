@@ -35,7 +35,7 @@ jobs:
       states: ${{ steps.plan.outputs.states }}
       regions: ${{ steps.plan.outputs.regions }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - id: plan
         env:
           REQUESTED_STATES: ${{ inputs.states || 'ALL' }}
@@ -61,11 +61,11 @@ jobs:
       matrix:
         state: ${{ fromJSON(needs.plan.outputs.states) }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
       - name: Install checksum-pinned native parser
@@ -81,7 +81,7 @@ jobs:
         run: python -u scripts/stage_services.py --regions "$SERVICE_STATE" --batch "$BATCH" --stage "$RUNNER_TEMP/stage" --scratch "$RUNNER_TEMP/public-pbf"
       - name: Keep state proof, including failure receipt
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: services-state-${{ matrix.state }}
           overwrite: true
@@ -96,15 +96,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8.0.2
         with:
+          digest-mismatch: warn # Preserve v4 warning behavior; existing verification steps remain authoritative.
           pattern: services-state-*
           path: ${{ runner.temp }}/stage
           merge-multiple: true
@@ -116,7 +117,7 @@ jobs:
       - id: receipt
         run: echo "name=services-complete-candidate-${{ github.run_id }}-${{ github.run_attempt }}" >> "$GITHUB_OUTPUT"
       - name: Keep public assets, exact normalized sources and checkpoint proof
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: services-complete-candidate-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/candidate

@@ -5,23 +5,29 @@ jobs:
   lhci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
 
       # Node present (good practice, some actions assume it)
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 22
 
-      # Serve the repo as a static site on :8080
+      - name: Install release build dependencies
+        run: npm ci
+
+      - name: Build the production release bundle
+        run: node scripts/build-release.js
+
+      # Audit the same production package that is published, served on :8080
       - name: Start static server
         run: |
           npm i -g http-server@14
-          nohup http-server -p 8080 -c-1 . >/dev/null 2>&1 &
+          nohup http-server -p 8080 -c-1 dist/kamptrail >/dev/null 2>&1 &
           sleep 3
 
       # Run Lighthouse using an action that includes Chrome
       - name: Run Lighthouse
-        uses: treosh/lighthouse-ci-action@v11
+        uses: treosh/lighthouse-ci-action@12.6.2
         with:
           urls: |
             http://localhost:8080
