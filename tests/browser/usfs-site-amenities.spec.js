@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 const ridbSource=require('../../data/campsites/ridb-amenities.json').source;
 const usfsSource=require('../../data/campsites/usfs-site-amenities.json').source;
@@ -18,6 +19,7 @@ async function open(page,context,{facility,name,ridbFacility='123'}){
   await page.route('**/data/campsites/ridb-amenities.json',r=>json(r,ridb));
   await page.route('**/data/campsites/usfs-site-amenities.json',r=>json(r,usfs));
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
+  await bindCampsiteFixture(page,{states:['NY'],features:[camp]});
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.1,zoom:11})));
   const evidenceRequested=page.waitForResponse('**/data/campsites/usfs-site-amenities.json');
   await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());

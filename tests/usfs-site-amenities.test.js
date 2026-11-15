@@ -67,7 +67,11 @@ test('weekly workflow validates the built file with the client validator and res
 test('committed Forest Service file validates, is dated and keeps agency text apart from classes',()=>{
   const data=JSON.parse(fs.readFileSync('data/campsites/usfs-site-amenities.json','utf8'));
   assert.equal(Q.validUSFSSiteAmenities(data),true);
-  assert.equal(data.source.retrieved,'2026-10-31');assert.match(data.source.rows_sha256,/^[a-f0-9]{64}$/);
+  const health=JSON.parse(fs.readFileSync('data/health.json','utf8')).sources.usfs_sites.scopes.US;
+  assert.match(health.last_success,/^\d{4}-\d{2}-\d{2}T/,'the sidecar has its own successful source check');
+  if(data.source.basis==='layer_query')assert.equal(data.source.retrieved,health.last_success.slice(0,10),'a live layer query retains its own successful retrieval day');
+  else assert.ok(data.source.retrieved<=health.last_success.slice(0,10),'an imported snapshot keeps its original date rather than its later import date');
+  assert.match(data.source.rows_sha256,/^[a-f0-9]{64}$/);
   assert.ok(fs.statSync('data/campsites/usfs-site-amenities.json').size<2*1024*1024);
   const all=Object.values(data.facilities).flatMap(f=>f.records);
   assert.ok(all.some(r=>r.water?.class==='drinking_water'&&r.water.qualifiers?.includes('hand_pump')));

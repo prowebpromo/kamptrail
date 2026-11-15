@@ -12,6 +12,7 @@ const {identityHosts}=require('../scripts/build-identity-hosts.js');
 const {listingRow}=require('../scripts/build-search-index.js');
 const DQ=require('../data-quality.js');
 const dir=path.join(root,'data/campsites');
+const {webcrypto}=require('node:crypto');
 const indexText=fs.readFileSync(path.join(dir,'search-index.json'),'utf8'),index=JSON.parse(indexText),byId=new Map(index.sites.map(s=>[s.id,s]));
 
 function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0}={}){
@@ -32,12 +33,14 @@ function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0}={}){
     }
     if(code&&fail.has(code))return {ok:false,status:503,json:async()=>({})};
     const file=path.join(root,rel);if(!fs.existsSync(file))return {ok:false,status:404,json:async()=>({})};
-    return {ok:true,json:async()=>JSON.parse(fs.readFileSync(file,'utf8'))};
+    return new Response(fs.readFileSync(file));
   };
   const context={console:{warn(){},log(){},error(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,document:{addEventListener(){}},dispatchEvent(){},
     L:{markerClusterGroup:()=>cluster,divIcon:o=>o,marker:()=>({bindPopup(){return this;},on(){return this;},setPopupContent(){return this;}})}};
   context.window=context;vm.createContext(context);
+  context.crypto=webcrypto;context.TextEncoder=TextEncoder;
   vm.runInContext(fs.readFileSync(path.join(root,'data-quality.js'),'utf8'),context);
+  vm.runInContext(fs.readFileSync(path.join(root,'listing-history.js'),'utf8'),context);
   vm.runInContext(fs.readFileSync(path.join(root,'data-loader.js'),'utf8'),context);
   return {api:context.KampTrailData,DQ:context.DataQuality,map,requests,serveHosts:()=>{host.mode='served';}};
 }

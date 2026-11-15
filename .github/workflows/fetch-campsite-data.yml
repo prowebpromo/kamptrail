@@ -111,6 +111,12 @@ jobs:
             echo 'Set RECREATION_GOV_API_KEY or RIDB_API_KEY before a RIDB-only refresh'
             exit 1
           fi
+      - name: Freeze published identities before refreshing sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD > "$RUNNER_TEMP/history-baseline-ref"
+          cp data/campsites/search-index.json "$RUNNER_TEMP/previous-search-index.json"
       - name: Refresh sources and rebuild visible snapshots
         shell: bash
         run: |
@@ -183,7 +189,15 @@ jobs:
           else echo 'BLM refresh failed; saved records kept.' >> "$GITHUB_STEP_SUMMARY"; node scripts/record_health.js record blm US failed; fi
           python scripts/build_agency_states.py
       - name: Rebuild national campsite-name search
-        run: node scripts/build-search-index.js
+        id: history_build
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-search-index.js
+          # Only successful source scopes may retire an absent/unpublishable own record.
+          node scripts/build-listing-history.js --base-ref "$(cat "$RUNNER_TEMP/history-baseline-ref")" --previous-index "$RUNNER_TEMP/previous-search-index.json"
+          # Reserve all original historical identities before final active publication.
+          node scripts/build-search-index.js
       - name: Refresh Recreation.gov site details (RV lengths, hookups, fees, stay limits)
         # Public bulk export, no API key. The builder refuses a shrunken result and keeps saved data.
         continue-on-error: true
@@ -311,7 +325,7 @@ jobs:
             exit 1
           fi
       - name: Keep the unverified refresh for review when verification fails
-        if: ${{ failure() && (steps.verify_refresh.outcome == 'failure' || steps.commit_refresh.outcome == 'failure') }}
+        if: ${{ failure() && (steps.history_build.outcome == 'failure' || steps.verify_refresh.outcome == 'failure' || steps.commit_refresh.outcome == 'failure') }}
         uses: actions/upload-artifact@v4
         with:
           name: unverified-refresh-${{ github.run_id }}-${{ github.run_attempt }}
@@ -347,9 +361,17 @@ jobs:
         run: python scripts/recheck_usfs_fee_pages.py
       - name: Refresh complete official agency sources
         run: |
+          set -euo pipefail
+          git rev-parse HEAD > "$RUNNER_TEMP/history-baseline-ref"
+          cp data/campsites/search-index.json "$RUNNER_TEMP/previous-search-index.json"
+          node scripts/record_health.js start
           python scripts/fetch_usfs_recreation.py
+          node scripts/record_health.js record usfs US fresh
           python scripts/fetch_blm_recreation.py
+          node scripts/record_health.js record blm US fresh
           python scripts/build_agency_states.py
+          node scripts/build-search-index.js
+          node scripts/build-listing-history.js --base-ref "$(cat "$RUNNER_TEMP/history-baseline-ref")" --previous-index "$RUNNER_TEMP/previous-search-index.json"
           node scripts/build-search-index.js
       - name: Check the reviewed census before committing
         env:
@@ -369,11 +391,17 @@ jobs:
                   p = Path('data/sources') / (name + '.json')
                   summary.write(f'{name} SHA-256: `{hashlib.sha256(p.read_bytes()).hexdigest()}`\n\n')
           PY
-      - name: Validate source contracts
-        run: python -m unittest discover -s scripts/tests -p 'test_*.py'
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, gd, mbstring, fileinfo, exif, curl, zlib
+      - name: Verify agency identities and historical reservations before committing
+        run: |
+          set -euo pipefail
+          npm ci
+          bash scripts/verify-refresh.sh HEAD
       - name: Record agency freshness
         run: |
-          node scripts/record_health.js start
           node scripts/record_health.js record usfs US fresh
           node scripts/record_health.js record blm US fresh
       - name: Commit only to the selected branch
@@ -385,6 +413,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add data/sources/usfs-fee-checks.json data/sources/usfs.json data/sources/blm.json data/sources/agency-quarantine.json data/campsites/agency data/campsites/search-index.json data/campsites/identity-hosts.json data/health.json
+          git add data/campsites/withdrawn.json data/campsites/index.json data/campsites/coordinate-index.json
           if ! git diff --staged --quiet; then
             git commit -m 'Refresh complete official agency camping evidence and search snapshots'
             git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
@@ -508,6 +537,15 @@ jobs:
           if-no-files-found: error
       - name: Rebuild search with the complete elevation snapshot
         run: node scripts/build-search-index.js
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, gd, mbstring, fileinfo, exif, curl, zlib
+      - name: Verify elevation identities and historical reservations before committing
+        run: |
+          set -euo pipefail
+          npm ci
+          bash scripts/verify-refresh.sh HEAD
       - name: Commit elevation only to the unchanged selected branch
         id: commit
         timeout-minutes: 5
@@ -519,6 +557,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add -A data/sources/elevation.json data/campsites/elevation data/campsites/search-index.json data/campsites/identity-hosts.json
+          git add data/campsites/withdrawn.json data/campsites/index.json data/campsites/coordinate-index.json
           if ! git diff --staged --quiet; then
             git commit -m 'Add validated USGS elevation evidence and search snapshots'
             git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"

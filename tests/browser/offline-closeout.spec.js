@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test, expect} = require('@playwright/test');
 const pixel = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=', 'base64');
 test.use({serviceWorkers:'block', viewport:{width:390,height:844}});
@@ -32,6 +33,7 @@ async function ready(page,context) {
   await page.route('**/data/campsites/index.json',route=>json(route,{states:[{state:'NY',count:3}],total_sites:3}));
   await page.route('**/data/campsites/agency/index.json',route=>json(route,{version:1,states:[]}));
   await page.route('**/data/campsites/*_merged.geojson',route=>json(route,{type:'FeatureCollection',features}));
+  await bindCampsiteFixture(page,{states:['NY'],features});
   await page.route('**/data/campsites/ridb-sites.json',route=>json(route,{version:2,facilities:{}}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75,zoom:12})));
   await page.goto('/');

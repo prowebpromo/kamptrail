@@ -1,6 +1,7 @@
 const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist','kamptrail');
-const files=['googled752656373e8ed52.html','consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js','beta.js','plan.html','about.html','record-overrides.js','provider-config.json','shell.js','map-loader.js','locale-es.js','robots.txt','sitemap.xml','favicon.ico','icon-maskable-192.png','icon-maskable-512.png','media/onboarding/desktop.webp','media/hero/moab-map-preview-small.webp','media/hero/lakeside-mobile.webp','index.html','locale.js','locale-fr.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','updates.html','tools.html','guides.html','resources.css','media/about/chuck-and-cindy.jpg','media/hero/lakeside-photo.webp','media/hero/moab-map-preview.webp','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','brand-mark.svg','apple-touch-icon.png','favicon-32.png','media/onboarding/browse.jpg','media/onboarding/filters.jpg','media/onboarding/offline.jpg','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
+const {replaceScriptBlock}=require('./release-script-block.js');
+const files=['googled752656373e8ed52.html','consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js','beta.js','plan.html','about.html','record-overrides.js','provider-config.json','shell.js','map-loader.js','locale-es.js','robots.txt','sitemap.xml','favicon.ico','icon-maskable-192.png','icon-maskable-512.png','media/onboarding/desktop.webp','media/hero/moab-map-preview-small.webp','media/hero/lakeside-mobile.webp','index.html','locale.js','locale-fr.js','how-to.html','app.js','app.css','manifest.json','service-worker.js','data-quality.js','listing-history.js','data-loader.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','updates.html','tools.html','guides.html','resources.css','media/about/chuck-and-cindy.jpg','media/hero/lakeside-photo.webp','media/hero/moab-map-preview.webp','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js','forecast.js','services.js','brand-mark.svg','apple-touch-icon.png','favicon-32.png','media/onboarding/browse.jpg','media/onboarding/filters.jpg','media/onboarding/offline.jpg','icon-192.png','icon-512.png','og.png','LICENSE','DATA_SOURCES.md'];
 (async()=>{
   require('./build-record-overrides.js').build();
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-permissions.js')],{cwd:root,stdio:'inherit'});
@@ -10,6 +11,9 @@ const files=['googled752656373e8ed52.html','consent-analytics.js','consent-contr
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
   await fs.cp(path.join(root,'media','how-to'),path.join(out,'media','how-to'),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});
+  // Historical identities ship with the exact current catalogue that reserves them.
+  const {raw:historyRaw}=require('./validate-history-release.js').validateHistoryRelease(path.join(root,'data/campsites'));
+  await fs.writeFile(path.join(out,'data/campsites/withdrawn.json'),historyRaw);
   for(const file of await fs.readdir(path.join(root,'data','campsites'))){if(/^[A-Z]{2}_merged\.geojson$/.test(file)||['index.json','search-index.json','identity-hosts.json','ridb-sites.json','coordinate-index.json'].includes(file))await fs.copyFile(path.join(root,'data','campsites',file),path.join(out,'data','campsites',file));}
   const amenityPath=path.join(root,'data','campsites','ridb-amenities.json');
   if(await fs.stat(amenityPath).then(s=>s.isFile()).catch(()=>false)){
@@ -138,13 +142,13 @@ const files=['googled752656373e8ed52.html','consent-analytics.js','consent-contr
   await fs.writeFile(path.join(out,'app.bundle.js'),packed.code);
   const scriptTags=mapModules.map(file=>`  <script type="application/x-kamptrail-map" data-src="${file}?v=${require('../package.json').version}"></script>\n`).join('');
   const htmlFile=path.join(out,'index.html');
-  await fs.writeFile(htmlFile,(await fs.readFile(htmlFile,'utf8')).replace(scriptTags,`  <script type="application/x-kamptrail-map" data-src="app.bundle.js?v=${require('../package.json').version}"></script>\n`));
+  await fs.writeFile(htmlFile,replaceScriptBlock(await fs.readFile(htmlFile,'utf8'),scriptTags,`  <script type="application/x-kamptrail-map" data-src="app.bundle.js?v=${require('../package.json').version}"></script>\n`,'Map'));
   const analyticsModules=['consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js'];
   const analyticsSource=(await Promise.all(analyticsModules.map(file=>fs.readFile(path.join(root,file),'utf8')))).join('\n;\n');
   const analyticsPacked=await require('esbuild').transform(analyticsSource,{minify:true,target:'es2020',legalComments:'inline'});
   await fs.writeFile(path.join(out,'analytics.bundle.js'),analyticsPacked.code);
   const analyticsTags=analyticsModules.map(file=>`  <script defer src="${file}?v=${require('../package.json').version}"></script>\n`).join('');
-  await fs.writeFile(htmlFile,(await fs.readFile(htmlFile,'utf8')).replace(analyticsTags,`  <script defer src="analytics.bundle.js?v=${require('../package.json').version}"></script>\n`));
+  await fs.writeFile(htmlFile,replaceScriptBlock(await fs.readFile(htmlFile,'utf8'),analyticsTags,`  <script defer src="analytics.bundle.js?v=${require('../package.json').version}"></script>\n`,'Analytics'));
   const swFile=path.join(out,'service-worker.js');
   let worker=await fs.readFile(swFile,'utf8');
   for(const file of mapModules)worker=worker.replaceAll("'"+file+"',",'').replaceAll(",'"+file+"'",'');

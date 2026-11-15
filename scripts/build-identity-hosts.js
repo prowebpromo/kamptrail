@@ -12,7 +12,9 @@ function identityHosts(indexText) {
   if (index?.version !== 1 || !Array.isArray(index.sites)) throw new Error('Invalid search index');
   const rows = [...index.sites].filter(s => (s.legacy_ids || []).length).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
   for (const s of rows) hosts[s.id] = [...s.legacy_ids];
-  return {version: 1, index_sites: index.sites.length, index_sha256: crypto.createHash('sha256').update(indexText, 'utf8').digest('hex'), hosts};
+  if(index.history_sha256!==undefined&&!/^[a-f0-9]{64}$/.test(index.history_sha256))throw new Error('Invalid listing history binding');
+  return {version: 1, index_sites: index.sites.length, index_sha256: crypto.createHash('sha256').update(indexText, 'utf8').digest('hex'), hosts,
+    ...(index.history_sha256?{history_sha256:index.history_sha256}:{})};
 }
 
 if (require.main === module) {

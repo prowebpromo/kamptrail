@@ -58,6 +58,32 @@
   };  const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0});
   const esc=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const safeUrl=value=>{try{const u=new URL(value);return /^https?:$/.test(u.protocol)?u.href:null;}catch{return null;}};
+  let history=null,historyTask=null,historyIds=new Map(),historyDigest=null,indexTask=null,catalogueGeneration=0;
+  const historyDigests=new WeakMap();
+  const historyUnavailable=(binding=false)=>Object.assign(new Error(t('Listing history is unavailable. Reconnect and retry before opening campsite records.')),{historyBinding:binding});
+  async function ensureHistory(){
+    if(history)return history;
+    if(!historyTask){const generation=catalogueGeneration;historyTask=(async()=>{
+      state.historyStatus='loading';
+      try{const data=await fetchJSON('data/campsites/withdrawn.json');if(generation!==catalogueGeneration)throw historyUnavailable();history=window.KampTrailListingHistory.validateHistory(data);historyDigest=historyDigests.get(data);historyIds=window.KampTrailListingHistory.historyMap(history);state.historyStatus='ready';return history;}
+      catch(error){if(generation===catalogueGeneration)state.historyStatus='unavailable';throw historyUnavailable();}
+      finally{if(generation===catalogueGeneration){historyTask=null;notify();}}
+    })();}
+    return historyTask;
+  }
+  const activeFeature=feature=>history?window.KampTrailListingHistory.filterActiveFeature(feature,history):null;
+  function checkHistoryBinding(data){if(!historyDigest||data?.history_sha256!==historyDigest){state.historyMismatch=true;throw historyUnavailable(true);}}
+  async function ensureAdmission(){await ensureHistory();if(!state.index)await loadIndex();checkHistoryBinding(state.index);state.historyStatus='ready';}
+  async function decodeDataset(response,target,url){
+    if(target?.kind==='geojson'){
+      const raw=await response.text(),hash=[...new Uint8Array(await window.crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw)))].map(v=>v.toString(16).padStart(2,'0')).join('');
+      if(state.index?.source_sha256?.[url]!==hash)throw historyUnavailable(true);
+      return JSON.parse(raw);
+    }
+    if(target?.kind!=='history')return response.json();
+    const raw=await response.text(),data=JSON.parse(raw);window.KampTrailListingHistory.validateHistory(data);
+    historyDigests.set(data,[...new Uint8Array(await window.crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw)))].map(v=>v.toString(16).padStart(2,'0')).join(''));return data;
+  }
   function getVisibleStates(map=state.map) {
     if(!map)return [];
     const b=map.getBounds(),s=b.getSouth(),n=b.getNorth(),west=b.getWest(),east=b.getEast();
@@ -73,12 +99,13 @@
       const scope = new URL('./', window.location.href), target = new URL(url, window.location.href);
       if (target.origin !== scope.origin || !target.href.startsWith(scope.href)) return null;
       const relative = target.pathname.slice(scope.pathname.length);
-      const kinds={'data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/ridb-amenities.json':'amenityEvidence','data/campsites/usfs-site-amenities.json':'usfsSiteEvidence','data/campsites/search-index.json':'search','data/campsites/identity-hosts.json':'identityHosts'};
+      const kinds={'data/campsites/withdrawn.json':'history','data/campsites/index.json':'index','data/campsites/agency/index.json':'agencyIndex','data/campsites/ridb-sites.json':'sites','data/campsites/ridb-amenities.json':'amenityEvidence','data/campsites/usfs-site-amenities.json':'usfsSiteEvidence','data/campsites/search-index.json':'search','data/campsites/identity-hosts.json':'identityHosts'};
       if (!relative.endsWith('.geojson') && !kinds[relative]) return null;
       return {name:`kamptrail:${scope.href}:data-v1`, url:target.href, index:kinds[relative]==='index', kind:kinds[relative]||'geojson'};
     } catch { return null; }
   }
   function validDataset(data, target) {
+    if(target?.kind==='history'){try{window.KampTrailListingHistory.validateHistory(data);return true;}catch{return false;}}
     if (target?.index) return Array.isArray(data?.states) && Number.isFinite(data.total_sites) && data.total_sites >= 0;
     if (target?.kind === 'agencyIndex') return data?.version === 1 && Array.isArray(data.states);
     if (target?.kind === 'sites') return [1, 2].includes(data?.version) && !!data.facilities && typeof data.facilities === 'object';
@@ -89,13 +116,16 @@
     return data?.type === 'FeatureCollection' && Array.isArray(data.features);
   }
   async function fetchJSON(url) {
+    const generation=catalogueGeneration;
     const controller=new AbortController(), target=datasetCacheTarget(url);
     const timer=setTimeout(()=>controller.abort(),12000);
     try {
       const response=await fetch(url,{signal:controller.signal});
       if(!response.ok)throw new Error(`HTTP ${response.status}`);
       const copy=target && typeof response.clone==='function' ? response.clone() : null;
-      const data=await response.json();
+      const parseTarget=target||(url==='data/campsites/withdrawn.json'?{kind:'history'}:url.endsWith('.geojson')?{kind:'geojson'}:null);
+      const data=await decodeDataset(response,parseTarget,url);
+      if(generation!==catalogueGeneration)throw historyUnavailable();
       if (target && !validDataset(data,target)) throw new Error('Invalid campsite data');
       // Persist the original, validated response even before a service worker controls this visit.
       if (target && copy) {
@@ -104,13 +134,14 @@
       }
       return data;
     } catch(error) {
+      if(generation!==catalogueGeneration)throw historyUnavailable();
       if (target) {
         try {
           const cache=await window.caches.open(target.name), cached=await cache.match(target.url);
-          if (cached?.ok) { const data=await cached.json();if(validDataset(data,target))return data; }
+          if (cached?.ok) { const data=await decodeDataset(cached,target,url);if(validDataset(data,target))return data; }
         } catch(cacheError) { console.warn('Saved data could not be read:',cacheError.message); }
       }
-      throw error;
+      if(error.historyBinding){state.historyMismatch=true;notify();}throw error;
     } finally {clearTimeout(timer);}
   }
 
@@ -119,7 +150,8 @@
     if(typeof CustomEvent==='function')window.dispatchEvent(new CustomEvent('kamptrail:dataupdated',{detail}));
   }
   async function loadIndex() {
-    try{state.index=await fetchJSON('data/campsites/index.json');}catch(err){console.warn('Campsite index unavailable; state loading is still available.',err.message);}
+    if(!indexTask){const generation=catalogueGeneration;indexTask=(async()=>{await ensureHistory();const data=await fetchJSON('data/campsites/index.json');if(generation!==catalogueGeneration)throw historyUnavailable();checkHistoryBinding(data);state.index=data;return data;})().catch(error=>{if(generation===catalogueGeneration)state.historyStatus='unavailable';throw historyUnavailable();}).finally(()=>{if(generation===catalogueGeneration)indexTask=null;});}
+    return indexTask;
   }
   // Static terrain samples have a separate validated cache. A stable per-state alias
   // survives manifest rotation; coordinate identity is checked again before use.
@@ -182,10 +214,12 @@
   let identity=null; // {preferredIds,previousHosts,aliases} from identity-hosts.json, or null when unavailable.
   let identityTask=null,identityTried=0,identityTimer=null;
   async function loadIdentityHosts(){
+    const generation=catalogueGeneration;
     identityTried=Date.now();
-    try{const data=await fetchJSON('data/campsites/identity-hosts.json');if(!DataQuality.validIdentityHosts(data))throw new Error('Invalid identity hosts');identity={...DataQuality.identityOptions(data),ownerOnly:true,aliases:data.hosts};}
+    try{await ensureAdmission();const data=await fetchJSON('data/campsites/identity-hosts.json');if(generation!==catalogueGeneration)return false;checkHistoryBinding(data);if(!DataQuality.validIdentityHosts(data))throw new Error('Invalid identity hosts');identity={...DataQuality.identityOptions(data),ownerOnly:true,aliases:data.hosts};}
     catch(err){console.warn('Listing identity hosts unavailable; nearby records stay separate until they load.',err.message);}
-    finally{identityTask=null;}
+    finally{if(generation===catalogueGeneration)identityTask=null;}
+    if(generation!==catalogueGeneration)return false;
     if(identity){
       clearTimeout(identityTimer);
       // Reconcile once: records shown separately join their published listing. Every id shown or
@@ -202,7 +236,7 @@
   function scheduleIdentityRetry(){clearTimeout(identityTimer);identityTimer=setTimeout(()=>ensureIdentity(true),30000);identityTimer?.unref?.();}
   window.addEventListener?.('online',()=>ensureIdentity(true));
   function identityOptions(){
-    if(identity)return identity;
+    if(identity&&history)return {...identity,preferredIds:new Set([...identity.preferredIds].filter(id=>!historyIds.has(id))),previousHosts:new Map([...identity.previousHosts].filter(([id,host])=>!historyIds.has(id)&&!historyIds.has(host))),aliases:Object.fromEntries(Object.entries(identity.aliases).filter(([id])=>!historyIds.has(id)).map(([id,ids])=>[id,ids.filter(alias=>!historyIds.has(alias))]))};
     // Fallback without the published hosts: no proximity merge, so no merge the index would not
     // make and no host election that depends on load order. The same record seen in two state files
     // still joins by its id. Nearby records of one place can show as separate markers until the
@@ -218,12 +252,12 @@
     const input=[];
     for(const code of [...stateInputs.keys()].sort())for(const f of stateInputs.get(code)){attachSidecars(f);input.push(f);}
     const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},identityOptions());
-    state.allCampsites=cleaned.features;
+    state.allCampsites=cleaned.features.map(activeFeature).filter(Boolean);
     for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
   }
   function setStateInput(features,stateCode) {
-    const incoming=DataQuality.publicationCandidates(features,{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode})).filter(Boolean);
+    const incoming=DataQuality.publicationCandidates(features.map(activeFeature).filter(Boolean),{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode})).filter(Boolean);
     incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
     stateInputs.set(stateCode,incoming);
   }
@@ -250,13 +284,16 @@
   }
   const stateFeatures=code=>[...(mergedRaw.get(code)||[]),...(agencyRaw.get(code)||[])];
   async function loadAgencyIndex() {
+    const generation=catalogueGeneration;
     try{
       const data=await fetchJSON('data/campsites/agency/index.json');
+      if(generation!==catalogueGeneration)return;
       if(!Array.isArray(data?.states))throw new Error('Invalid agency index');
       state.agencyStates=new Set(data.states);state.agencyCounts=data.counts&&typeof data.counts==='object'?data.counts:{};
       state.agencyIndex='ok';delete state.agencyIndexError;
     }
     catch(err){
+      if(generation!==catalogueGeneration)return;
       // A previously loaded index stays in use; only a visit without one reports the failure.
       if(state.agencyIndex!=='ok'){state.agencyIndex='failed';state.agencyIndexError=errorText(err);}
       console.warn('Agency campsite index unavailable; Recreation.gov and OSM listings still load.',err.message);
@@ -266,6 +303,7 @@
   // merge and the catalogue is rebuilt once, with the same identity rules as a normal load.
   function retryAgency(){
     if(state.agencyRetry)return state.agencyRetry;
+    const generation=catalogueGeneration;
     state.agencyRetry=(async()=>{
       try{
         // Stay 'failed' until the retry resolves it, so the notice clears only on real recovery.
@@ -273,6 +311,7 @@
         if(state.agencyIndex==='ok'){
           const codes=[...state.loadedStates].filter(c=>state.agencyStates.has(c)&&!state.loading.has(c)&&(agencyFailed.has(c)||!agencyRaw.has(c))).sort();
           const results=await Promise.all(codes.map(async c=>[c,await fetchAgencyState(c)]));
+          if(generation!==catalogueGeneration)return api.getLoadStatus();
           let changed=false;
           for(const [code,result] of results){
             // A state can finish a fresh load during the retry; its own result is newer.
@@ -282,7 +321,7 @@
           }
           if(changed)rebuildCatalogue();
         }
-      }finally{state.agencyRetry=null;}
+      }finally{if(generation===catalogueGeneration)state.agencyRetry=null;}
       updateMarkers();
       return api.getLoadStatus();
     })();
@@ -313,21 +352,26 @@
     if(state.loading.has(code))return state.loading.get(code);
     const last=state.failed.get(code);
     if(!retry&&last&&Date.now()-last.at<15000)return;
+    const generation=catalogueGeneration;
     const task=(async()=>{
       try{
+        await ensureAdmission();
+        if(generation!==catalogueGeneration)return;
         const agency=state.agencyStates?.has(code)?fetchAgencyState(code):null;
         const data=await fetchJSON(`data/campsites/${code}_merged.geojson`);
         if(data?.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid campsite data');
-        mergedRaw.set(code,data.features);recordAgency(code,await agency);
+        const agencyResult=await agency;if(generation!==catalogueGeneration)return;
+        mergedRaw.set(code,data.features);recordAgency(code,agencyResult);
         mergeLoaded(stateFeatures(code),code);
         state.loadedStates.add(code);state.failed.delete(code);
         updateMarkers(); // Terrain lookup must not delay otherwise usable campsite markers.
         await loadElevation(code,retry);
       }catch(error){
+        if(generation!==catalogueGeneration)return;
         const message=error.name==='AbortError'?'Request timed out':error.message;
         state.failed.set(code,{error:message,at:Date.now()});
         console.warn(`Campsites for ${code} could not load: ${message}`);
-      }finally{state.loading.delete(code);}
+      }finally{if(generation===catalogueGeneration)state.loading.delete(code);}
     })();
     state.loading.set(code,task);notify();
     await task;
@@ -630,7 +674,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.46.7',
+    version:'2.47.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -656,13 +700,14 @@
       // Identity hosts are awaited at most 3 s beside the other metadata. A slow or failed file never
       // blocks the map: listings load in the no-merge fallback and reconcile when the file arrives.
       const hosts=ensureIdentity(true);
-      await Promise.all([loadIndex(),loadSiteDetails(),loadAgencyIndex(),Promise.race([hosts,new Promise(r=>{const t=setTimeout(r,3000);t?.unref?.();})])]);
+      await Promise.all([ensureHistory().catch(()=>{}),loadIndex().catch(()=>{}),loadSiteDetails(),loadAgencyIndex(),Promise.race([hosts,new Promise(r=>{const t=setTimeout(r,3000);t?.unref?.();})])]);
       if(state.overview&&map.hasLayer(state.overview))map.removeLayer(state.overview);state.overview=null;
       await onView();
     },
     loadSearchIndex(force=false){
+      const generation=catalogueGeneration;
       if(force)state.searchIndexPromise=null;
-      if(!state.searchIndexPromise)state.searchIndexPromise=fetchJSON('data/campsites/search-index.json').then(d=>{if(d.version!==1||!Array.isArray(d.sites))throw new Error('Search index unavailable');return d;}).catch(e=>{state.searchIndexPromise=null;throw e;});
+      if(!state.searchIndexPromise)state.searchIndexPromise=ensureAdmission().then(()=>fetchJSON('data/campsites/search-index.json')).then(d=>{if(generation!==catalogueGeneration)throw historyUnavailable();checkHistoryBinding(d);if(d.version!==1||!Array.isArray(d.sites))throw new Error('Search index unavailable');return {...d,sites:d.sites.filter(s=>!historyIds.has(String(s.id))).map(s=>({...s,legacy_ids:(s.legacy_ids||[]).filter(id=>!historyIds.has(String(id)))}))};}).catch(e=>{if(generation===catalogueGeneration)state.searchIndexPromise=null;throw e;});
       return state.searchIndexPromise;
     },
     // Read-only render of one listing's popup markup, for tests and the evidence fixture.
@@ -673,14 +718,24 @@
     getAllCampsites:()=>state.allCampsites,
     // Any id ever published (canonical or legacy) finds its listing, also while only some of its states are loaded.
     // Every published id of one listing: its index id first, then its legacy ids.
-    identityIds(id){const key=String(id),host=api.publishedId(key);return [...new Set([host,...(identity?.aliases[host]||[]),key])];},
+    identityIds(id){const key=String(id);if(historyIds.has(key))return [key];const host=api.publishedId(key);return [...new Set([host,...(identity?.aliases[host]||[]),key])].filter(alias=>!historyIds.has(alias));},
     getCampsiteById(id){
+      if(!history||historyIds.has(String(id)))return undefined;
       const key=String(id),wanted=[key,...api.identityIds(key)];
       for(const want of wanted){const site=state.allCampsites.find(s=>s.properties.id===want||s.properties.legacy_ids?.includes(want));if(site)return site;}
       return undefined;
     },
     // The listing's id in the published index. A listing shown before all its states load can carry a member's own id.
-    publishedId(id){const key=String(id);return identity?.previousHosts.get(key)||key;},
+    publishedId(id){const key=String(id);if(historyIds.has(key))return key;const host=identity?.previousHosts.get(key);return host&&!historyIds.has(host)?host:key;},
+    async resolveListing(id){
+      const key=String(id);await ensureHistory();
+      const record=historyIds.get(key);if(record)return {kind:'historical',record,feature:window.KampTrailListingHistory.historicalFeature(record)};
+      let feature=api.getCampsiteById(key);
+      if(!feature){const index=await api.loadSearchIndex(),entry=index.sites.find(s=>s.id===key||s.legacy_ids?.includes(key));if(entry)await api.loadStates(entry.states);feature=api.getCampsiteById(key);}
+      return feature?{kind:'active',feature}:{kind:'missing'};
+    },
+    getHistoricalById:id=>historyIds.get(String(id)),
+    async retryHistory(){catalogueGeneration++;history=null;historyTask=null;indexTask=null;historyDigest=null;historyIds=new Map();state.historyMismatch=false;state.index=null;state.searchIndexPromise=null;identity=null;identityTask=null;stateInputs.clear();mergedRaw.clear();agencyRaw.clear();agencyFailed.clear();state.agencyStates=new Set();state.agencyCounts={};state.agencyIndex='pending';delete state.agencyIndexError;state.agencyRetry=null;state.loading.clear();state.loadedStates.clear();state.failed.clear();state.allCampsites=[];updateMarkers();await ensureAdmission();await loadAgencyIndex();state.historyStatus='ready';ensureIdentity(true);await onView();notify();return api.getLoadStatus();},
     getIdentityStatus:()=>({hosts:identity?'published':'fallback',shown:shownIds.size}),
     // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
     async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
@@ -696,7 +751,7 @@
     refreshForecast:()=>requestForecast(true),
     getForecastStatus(){const f=api.getCurrentFilters(),forecast=window.KampTrailForecast;return{...forecast?.status(),unknown:forecast?.active(f)?api.getVisibleCampsites({...f,forecastMinC:null,forecastMaxC:null}).filter(s=>!forecast.get(s,f.forecastHours)).length:0};},
     getElevationStatus(){const f=api.getCurrentFilters();return{loading:[...elevationStatus.values()].includes('loading'),saved:[...elevationStatus.values()].includes('saved'),unavailable:[...elevationStatus].filter(([,v])=>v==='unavailable').map(([k])=>k),unknown:DataQuality.elevationRange(f).active?api.getVisibleCampsites({...f,elevationMin:null,elevationMax:null}).filter(s=>!DataQuality.elevationInfo(s)).length:0};},
-    getLoadStatus:()=>({loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0,overview:!detailVisible(),catalogueTotal:Object.values(stateTotals()).reduce((a,b)=>a+b,0),
+    getLoadStatus:()=>({history:state.historyMismatch?'unavailable':state.historyStatus||'pending',loadedStates:[...state.loadedStates],loadingStates:[...state.loading.keys()],failedStates:[...state.failed].map(([code,f])=>({state:code,error:f.error})),totalSites:state.allCampsites.length,loading:state.loading.size>0,overview:!detailVisible(),catalogueTotal:Object.values(stateTotals()).reduce((a,b)=>a+b,0),
       // Forest Service and BLM listings: 'ok', 'failed' or 'pending' for the index, and loaded states whose agency file failed.
       agencyIndex:state.agencyIndex,...(state.agencyIndexError?{agencyIndexError:state.agencyIndexError}:{}),agencyFailedStates:[...agencyFailed].map(([code,f])=>({state:code,error:f.error})).sort((a,b)=>a.state.localeCompare(b.state))}),
     retryAgency,

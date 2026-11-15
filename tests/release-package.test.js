@@ -46,6 +46,10 @@ test('built release contains agency index dependencies and supports a custom-dom
   }
   execFileSync(process.execPath,['scripts/build-release.js'],{cwd:root,env:{...env,KAMPTRAIL_PUBLIC_URL:'https://kamptrail.com/'},stdio:'pipe'});
   const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
+  const worker=fs.readFileSync(path.join(out,'service-worker.js'),'utf8');
+  const shell=require('node:vm').runInNewContext('('+worker.match(/const SHELL = (\[[\s\S]*?\]);/)[1]+')');
+  for(const [,src]of html.matchAll(/<script\b[^>]*\b(?:data-)?src="([^"]+)"/g))assert.ok(shell.includes(src.split('?')[0]),`Offline shell must cache the script actually requested by packaged HTML: ${src}`);
+  assert.match(html,/data-src="app\.bundle\.js\?v=/);assert.match(html,/src="analytics\.bundle\.js\?v=/);
   assert.equal(html.match(/<meta name="kamptrail-version" content="([^"]+)">/)?.[1],require('../package.json').version,'Packaged app metadata must match the release version');
   assert.match(html,/<link rel="canonical" href="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:url" content="https:\/\/kamptrail\.com\/">/);
@@ -63,6 +67,9 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.equal(fs.readFileSync(path.join(permissionDir,'.htaccess'),'utf8'),'Require all denied\n','Generated identity data must be denied over HTTP');
   assert.equal(fs.readdirSync(permissionDir).filter(name=>/^[a-f0-9]{2}\.json$/.test(name)).length,256,'Every protected identity bucket is packaged');
   assert.ok(fs.existsSync(path.join(out,'permissions.js')));
+  assert.ok(fs.existsSync(path.join(out,'listing-history.js')));
+  assert.deepEqual(fs.readFileSync(path.join(out,'data/campsites/withdrawn.json')),fs.readFileSync(path.join(root,'data/campsites/withdrawn.json')),'Packaged historical identities retain the exact reviewed bytes');
+  require('../scripts/validate-history-release.js').validateHistoryRelease(path.join(out,'data/campsites'));
   const amenities=JSON.parse(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'));
   assert.equal(require('../data-quality.js').validRIDBAmenities(amenities),true);
   assert.equal(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'),fs.readFileSync(path.join(root,'data/campsites/ridb-amenities.json'),'utf8'));

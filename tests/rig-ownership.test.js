@@ -5,6 +5,7 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const Q=require('../data-quality.js');
 const {CampsiteMerger}=require('../scripts/merge_campsite_data');
 const {buildSearchIndex}=require('../scripts/build-search-index');
+const {frozenOwnership,currentOwnership,assertHistorical,assertOwnOsmTags}=require('./helpers/ownership-source-fixture');
 
 const osm=(id,tags={},coords=[-105,40],name='Pine Campground')=>({type:'Feature',geometry:{type:'Point',coordinates:coords},properties:{id:`osm:way:${id}`,osm_id:id,osm_type:'way',tourism:'camp_site',name,schema_version:3,source:'openstreetmap',source_retrieved_at:'2026-10-29T02:53:12Z',...tags}});
 const ridb=(fid,extra={},coords=[-105,40],name='Pine Campground')=>({type:'Feature',geometry:{type:'Point',coordinates:coords},properties:{id:`ridb:${fid}`,facility_id:String(fid),name,schema_version:3,source:'recreation.gov',description:'A campground with camping.',fee_status:'unknown',amenities:[],rig_friendly:[],...extra}});
@@ -75,13 +76,13 @@ test('the national index publishes only own-source rig categories',()=>{
   assert.deepEqual(by['ridb:40'],[]);assert.deepEqual(by['osm:way:42'],['trailer']);
 });
 
-test('published rig fixture matches the committed data, listing by listing',()=>{
+test('frozen published rig source fixture retains every original listing outcome',()=>{
   const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/rig-tag-ownership-cases.json'),'utf8'));
-  const index=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/campsites/search-index.json'),'utf8')).sites,by=new Map(index.map(s=>[s.id,s]));
+  const {by}=frozenOwnership();
   assert.ok(fixture.cases.length>=fixture.summary.listings_with_rig_change);
   for(const id of ['ridb:232324','ridb:274260','osm:node:11810571792','usfs:26883','ridb:242362','osm:way:259289402'])assert.ok(fixture.cases.some(c=>c.id===id),id);
   for(const c of fixture.cases){
-    const s=by.get(c.id);assert.ok(s,c.id);const r=s.m.r||[];
+    const p=by.get(c.id);assert.ok(p,c.id);const r=Q.rigFilterSet(p);
     assert.equal(r.includes('tent'),c.tents_after,c.id+' tents');assert.equal(r.includes('trailer'),c.trailers_after,c.id+' trailers');
     // Never gained, and every borrowed value is attributed to a member.
     assert.ok(!(c.tents_after&&!c.tents_before)&&!(c.trailers_after&&!c.trailers_before),c.id);
@@ -89,6 +90,28 @@ test('published rig fixture matches the committed data, listing by listing',()=>
   }
   const csv=fs.readFileSync(path.join(__dirname,'fixtures/rig-tag-ownership-cases.csv'),'utf8').trim().split('\n');
   assert.equal(csv.length-1,fixture.cases.length);
+});
+
+test('all current rig fixture IDs retain own-source categories while archived IDs have only historical identity',()=>{
+  const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/rig-tag-ownership-cases.json'),'utf8')),context=currentOwnership(),historical=[];
+  let active=0;
+  for(const c of fixture.cases){
+    const row=context.indexBy.get(c.id);if(!row){assertHistorical(c.id,context);historical.push(c.id);continue;}active++;
+    const p=context.by.get(c.id);assert.ok(p,c.id+' current source feature missing');assertOwnOsmTags(p,'osm_rig_tags',context);
+    const categories=row.m.r||[];
+    // Frozen sources above retain the original expected flags. Current own-source
+    // tags may legitimately change later, but borrowed values still cannot classify.
+    assert.deepEqual(categories,Q.rigFilterSet(p),c.id+' current index and own-source evidence disagree');
+    for(const category of categories){
+      const evidence=Q.rigEvidence(p).categories[category];assert.equal(evidence.status,'present',c.id+' current rig category lacks own positive evidence');
+      assert.ok(evidence.positive.length,c.id+' current rig category lacks a positive source');for(const source of evidence.positive)assert.equal(source.record,p.id,c.id+' another record classified the listing');
+      if(p.osm_rig_tags)assert.equal(String(p.osm_rig_tags[{tent:'tents',trailer:'caravans',rv:'motorhome'}[category]]).trim().toLowerCase(),'yes',c.id+' rig category is not supported by its own tag');
+      else {assert.equal(p.rig_record?.source_record_id,p.id,c.id+' own rig-list attribution missing');assert.ok(context.ownSources.get(p.id)?.some(source=>(source.rig_friendly||[]).map(v=>v==='RV'?'rv':v).includes(category)),c.id+' category absent from its own source record');}
+    }
+    for(const member of p.rig_members||[])assert.notEqual(member.source_record_id,p.id,c.id+' own and absorbed rig evidence conflated');
+  }
+  assert.equal(active+historical.length,245);
+  for(const id of ['osm:node:1060578769','osm:node:1596375040','osm:node:1922410822','osm:node:2332493731'])assert.ok(historical.includes(id),id+' historical reservation disappeared');
 });
 
 test('provenance debt guard: campsite client code never reads operator, and website only as the agency record own link',()=>{

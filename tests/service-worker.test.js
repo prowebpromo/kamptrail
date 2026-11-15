@@ -7,6 +7,12 @@ function worker(fetcher) {
   return {handlers,stores,caches};
 }
 const good={type:'FeatureCollection',features:[]};
+
+test('historical identity registry bypasses generic caches for exact-byte page validation',()=>{
+  const w=worker();let intercepted=false;
+  w.handlers.fetch({request:new Request('https://example.test/kamptrail/data/campsites/withdrawn.json'),respondWith:()=>{intercepted=true;}});
+  assert.equal(intercepted,false);
+});
 test('2.40 upgrade retires the shipped 2.39 shell while keeping saved campsite data',async()=>{
   const w=worker(),prefix='kamptrail:https://example.test/kamptrail/:';
   const previous=await w.caches.open(prefix+'kt-v73');

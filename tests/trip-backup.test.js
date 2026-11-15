@@ -5,10 +5,10 @@ const feature=(id,type='established')=>({type:'Feature',geometry:{type:'Point',c
 const stop=(id='usfs:legacy-1',type)=>({id,feature:feature(id,type),note:'Private note <script>literal text</script>\nSecond line',arrive:'2026-11-05',depart:'2026-11-07'});
 const documentFor=stops=>JSON.stringify({format:'kamptrail-trip',version:1,stops});
 const fileFor=text=>({size:new Blob([text]).size,text:async()=>text});
-function boot(){
+function boot(overrides={}){
  const stored=new Map(),messages=[],calls={confirm:0,persist:0,events:0};let failWrite=false,answer=true;
  const env={Blob,console,sessionStorage:{getItem:()=>null},localStorage:{getItem:key=>stored.get(key)||null,setItem(key,value){if(failWrite)throw new Error('QuotaExceededError');stored.set(key,value);}},navigator:{storage:{persist(){calls.persist++;return Promise.resolve(false);}}},showToast:(message,kind)=>messages.push({message,kind}),confirm(){calls.confirm++;return answer;},CustomEvent:class{constructor(type,options){this.type=type;this.detail=options.detail;}},dispatchEvent(){calls.events++;}};
- env.window=env;vm.runInNewContext(source,env);
+ Object.assign(env,overrides);env.window=env;vm.runInNewContext(source,env);
  return {trip:env.KampTrailTrip,stored,messages,calls,failWrite(value){failWrite=value;},answer(value){answer=value;}};
 }
 const plain=value=>JSON.parse(JSON.stringify(value));
@@ -20,6 +20,21 @@ test('JSON backup restores exact published IDs, snapshots, dates, notes and cust
  const recovered=boot();assert.equal(await recovered.trip.importBackup(fileFor(backup)),true);
  assert.deepEqual(plain(recovered.trip.getStops()),original);assert.deepEqual(JSON.parse(recovered.stored.get('kt_trip')),original);
  assert.equal(recovered.calls.confirm,0);assert.equal(recovered.calls.persist,1);
+});
+
+test('asynchronous current-data enrichment changes display and route revision without rewriting the saved snapshot',async()=>{
+ let current=null;
+ const w=boot({KampTrailData:{getCampsiteById:()=>current}}),original=[stop('published-legacy-id')];
+ await w.trip.importBackup(fileFor(documentFor(original)));const stored=w.stored.get('kt_trip'),backup=w.trip.buildBackup(),revision=w.trip.getRevision();
+ await Promise.resolve();
+ current={...feature('current-canonical-id'),geometry:{type:'Point',coordinates:[-111.5,41.25]},properties:{...feature('current-canonical-id').properties,name:'Enriched current listing',legacy_ids:['published-legacy-id'],own_evidence:{source:'later state response',verified:false}}};
+ const shown=w.trip.getStops()[0];
+ assert.equal(shown.id,'published-legacy-id');assert.equal(shown.feature.properties.name,'Enriched current listing');assert.deepEqual(plain(shown.feature.geometry.coordinates),[-111.5,41.25]);
+ assert.equal(shown.note,original[0].note);assert.equal(shown.arrive,original[0].arrive);assert.equal(shown.depart,original[0].depart);
+ assert.equal(w.trip.getRevision(),revision+1,'Current geometry changes invalidate route revisions');
+ shown.feature.properties.name='Caller edit';assert.equal(current.properties.name,'Enriched current listing','Resolved display is a clone');
+ assert.equal(w.trip.buildBackup(),backup);assert.equal(w.stored.get('kt_trip'),stored);assert.deepEqual(JSON.parse(backup).stops,original);
+ current=null;assert.deepEqual(plain(w.trip.getStops()),original,'The original snapshot remains the fallback when current data is unavailable');
 });
 test('restore replaces atomically only after confirmation and supports an intentional empty backup',async()=>{
  const w=boot(),old=[stop('old')],next=[stop('new')];await w.trip.importBackup(fileFor(documentFor(old)));

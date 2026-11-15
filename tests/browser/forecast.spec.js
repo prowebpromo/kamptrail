@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 test.use({serviceWorkers:'block'});
 const {createHash}=require('node:crypto');
@@ -21,6 +22,7 @@ async function fixture(page,context,{zoom=11,mobile=false,corrupt=false}={}){
  await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:1,facilities:{}}));
  await page.route('**/data/campsites/search-index.json',r=>json(r,search));
  await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features}));
+ await bindCampsiteFixture(page,{states:['NY'],features,search});
  await page.route('**/data/campsites/elevation/**',r=>r.fulfill({status:503,body:'unavailable'}));
  await page.route('**/data/campsites/coordinate-index.json',r=>{requests.push(r.request().url());return json(r,{version:1,sha256:catalogue,count:6});});
  await page.route('**/api/forecast.php?*',r=>{requests.push(r.request().url());return new URL(r.request().url()).searchParams.get('kind')==='index'?json(r,{ok:true,server_now:iso(serverNow),manifest}):r.fulfill({contentType:'application/json',body:raw+(invalidBytes?' ':'')});});

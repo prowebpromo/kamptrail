@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 const AxeBuilder=require('@axe-core/playwright').default;
 // The app's worker can claim the first visit before state loading starts and
@@ -19,6 +20,7 @@ async function fixture(page,context,{mobile=false,unknown=false,openStatus=null,
  }
  await page.route('**/data/campsites/*_merged.geojson',r=>r.fulfill({contentType:'application/geo+json',body:JSON.stringify({type:'FeatureCollection',features:[feature]})}));
  await page.route('**/data/campsites/agency/*.geojson',r=>r.fulfill({contentType:'application/geo+json',body:'{"type":"FeatureCollection","features":[]}'}));
+ await bindCampsiteFixture(page,{states:['CO'],features:[feature]});
  await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:39.33,lng:-108.7,zoom:11})));
  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('usfs:123')&&!KampTrailData.getLoadStatus().loading);await page.evaluate(()=>KampTrailData.focusCampsite('usfs:123'));
  await page.getByRole('button',{name:'Fee evidence',exact:true}).click();return{box:page.locator('.kt-fee-records'),errors};

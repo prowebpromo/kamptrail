@@ -2,6 +2,7 @@ const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const fs=require('node:fs');
+const {withEmptyHistory,webcrypto}=require('./helpers/listing-history-fixture.js');
 function harness(fetcher, overrides={}) {
   const evented=target=>Object.assign(target,{handlers:{},on(type,fn){(this.handlers[type]||=[]).push(fn);return this;},fire(type,event={}){for(const fn of this.handlers[type]||[])fn(event);return this;}});
   const events=[], cluster={layers:[],addLayers(items){this.layers.push(...items);},removeLayer(item){this.layers=this.layers.filter(x=>x!==item);}};
@@ -9,16 +10,113 @@ function harness(fetcher, overrides={}) {
   const map=evented({getBounds:()=>bounds,addLayer(){},removeLayer(){},hasLayer(){return false;},getZoom:()=>10,setView(){},closePopup(){const marker=this._popup;if(marker){this._popup=null;marker.opened=false;marker.fire('popupclose');this.fire('popupclose');}}});
   const context={console:{warn(){},log(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts.detail;}},document:{addEventListener(){}},dispatchEvent:e=>events.push(e),L:{markerClusterGroup:()=>cluster,divIcon:o=>o,marker:(coords,opts)=>evented({coords,opts,bindPopup(html){this.html=html;return this;},setPopupContent(html){this.html=html;return this;},isPopupOpen(){return !!this.opened;},isOpen(){return !!this.opened;},openPopup(){this.opened=true;map._popup=this;return this;}})}};
   Object.assign(context,overrides);
+  if(overrides.historyFixture!==false)context.fetch=withEmptyHistory(context.fetch);context.crypto=webcrypto;context.TextEncoder=TextEncoder;
   context.window=context;
   vm.createContext(context);
   vm.runInContext(fs.readFileSync('data-quality.js','utf8'),context);
+  vm.runInContext(fs.readFileSync('listing-history.js','utf8'),context);
   vm.runInContext(fs.readFileSync('data-loader.js','utf8'),context);
   return {api:context.KampTrailData,context,map,bounds,cluster,events};
 }
 const feature=(props={})=>({type:'Feature',geometry:{type:'Point',coordinates:[-75.1,43]},properties:{name:'Campsite',...props}});
 const response=data=>({ok:true,json:async()=>data});
 
+function historicalFixture(){
+ const history={version:1,listings:[{id:'osm:node:99',legacy_ids:['old-saved-id'],name:'Original Historical Camp',lat:43,lng:-75.1,states:['NY'],source_dates:[{source_record_id:'osm:node:99',retrieved_at:'2026-10-01',updated_at:null}],source_urls:[{source_record_id:'osm:node:99',url:'https://www.openstreetmap.org/node/99'}],reason:'historical_identity_pending_reconciliation',archived_at:'2026-11-15T12:00:00Z'}]};
+ const raw=JSON.stringify(history)+'\n',hash=require('node:crypto').createHash('sha256').update(raw).digest('hex');
+ const rows=[feature({id:'osm:node:99',osm_id:99,osm_type:'node',tourism:'camp_site',name:'Original Historical Camp'}),feature({id:'ridb:123',facility_id:123,name:'Current Campground',legacy_ids:['osm:node:99','old-saved-id']})];
+ const sourceRaw=JSON.stringify({type:'FeatureCollection',features:rows}),sourceHash=require('node:crypto').createHash('sha256').update(sourceRaw).digest('hex');
+ const searchRaw=JSON.stringify({version:1,history_sha256:hash,sites:[{id:'ridb:123',name:'Current Campground',legacy_ids:['osm:node:99','old-saved-id'],states:['NY']},{id:'osm:node:99',name:'Original Historical Camp',legacy_ids:['old-saved-id'],states:['NY']}]}),searchHash=require('node:crypto').createHash('sha256').update(searchRaw).digest('hex');
+ const fetcher=async url=>{
+  if(url.endsWith('withdrawn.json'))return new Response(raw);
+  if(url==='data/campsites/index.json')return new Response(JSON.stringify({states:[{state:'NY',count:1}],total_sites:1,history_sha256:hash,source_sha256:{'data/campsites/NY_merged.geojson':sourceHash}}));
+  if(url.endsWith('search-index.json'))return new Response(searchRaw);
+  if(url.endsWith('identity-hosts.json'))return new Response(JSON.stringify({version:1,index_sites:2,index_sha256:searchHash,history_sha256:hash,hosts:{'ridb:123':['osm:node:99','old-saved-id']}}));
+  if(url.endsWith('_merged.geojson'))return new Response(sourceRaw);
+  return new Response('{}');
+ };
+ return {history,raw,hash,fetcher,sourceRaw,sourceHash};
+}
+
+test('historical own IDs and aliases never become current data, identity aliases, markers or search results',async()=>{
+ const f=historicalFixture(),h=harness(f.fetcher,{historyFixture:false});await h.api.init(h.map);
+ assert.deepEqual([...h.api.getAllCampsites()].map(s=>s.properties.id),['ridb:123']);
+ assert.equal(h.api.getCampsiteById('old-saved-id'),undefined);assert.equal(h.api.getCampsiteById('osm:node:99'),undefined);
+ assert.equal(h.api.identityIds('ridb:123').includes('old-saved-id'),false);
+ assert.equal(h.api.getIdentityStatus().hosts,'published');
+ const search=await h.api.loadSearchIndex();assert.equal(search.sites.length,1);assert.equal(search.sites[0].legacy_ids.length,0);
+ const result=await h.api.resolveListing('old-saved-id');assert.equal(result.kind,'historical');assert.equal(result.feature.properties.id,'osm:node:99');
+ assert.equal(result.record.source_dates[0].updated_at,null);assert.equal(result.feature.properties.fee_status,undefined);assert.equal(result.feature.properties.rig_friendly,undefined);
+ assert.equal(h.cluster.layers.length,1);
+});
+
+test('missing history fails closed for state and search admission and explicit retry recovers',async()=>{
+ const f=historicalFixture();let unavailable=true;
+ const h=harness(url=>unavailable&&url.endsWith('withdrawn.json')?Promise.reject(Error('offline')):f.fetcher(url),{historyFixture:false});
+ await h.api.init(h.map);assert.equal(h.api.getAllCampsites().length,0);assert.equal(h.api.getLoadStatus().history,'unavailable');
+ await assert.rejects(h.api.loadSearchIndex(),/Listing history is unavailable/);
+ unavailable=false;await h.api.retryHistory();await h.api.loadStates(['NY']);assert.equal(h.api.getAllCampsites().length,1);
+});
+
+test('validated historical records resolve from offline cache, but old registry with newer index fails closed',async()=>{
+ const f=historicalFixture(),caches=cacheStorage(),location={href:'https://example.test/kamptrail/'};
+ const first=harness(f.fetcher,{historyFixture:false,caches,location});await first.api.init(first.map);
+ const offline=harness(async()=>{throw Error('offline');},{historyFixture:false,caches,location});await offline.api.init(offline.map);
+ assert.equal((await offline.api.resolveListing('old-saved-id')).record.id,'osm:node:99');assert.equal(offline.api.getAllCampsites().length,1);
+ const mixed=harness(async url=>{if(url==='data/campsites/index.json')return new Response(JSON.stringify({states:[],total_sites:1,history_sha256:'0'.repeat(64)}));throw Error('offline');},{historyFixture:false,caches,location});
+ await mixed.api.init(mixed.map);assert.equal(mixed.api.getAllCampsites().length,0);assert.equal(mixed.api.getLoadStatus().history,'unavailable');await assert.rejects(mixed.api.loadSearchIndex());
+});
+
 const amenityPayload=()=>({version:1,source:{name:'Recreation.gov RIDB full export',url:'https://ridb.recreation.gov/downloads/RIDBFullExport_V1_CSV.zip',sha256:'a'.repeat(64),inspected_at:'2026-10-30T12:00:00Z',original_retrieved_at:null,attribute_updated_at:null,archive_entry_time:'2026-10-21T18:46:28',archive_entry_timezone:null,basis:'frozen_public_export_cache',http_last_modified:null},facilities:{'123':{sites:2,amenities:{drinking_water:{reported:1,negative:0,unknown:1,conflict:0,qualifiers:{peak_season:1,hand_pump:1}},shower:{reported:1,negative:0,unknown:0,conflict:0,qualifiers:{coin:1}},picnic_table:{reported:0,negative:1,unknown:0,conflict:1,qualifiers:{}}}}}});
+
+test('old bound metadata rejects newer state bytes and Retry accepts a coherent generation',async()=>{
+ const f=historicalFixture(),caches=cacheStorage(),location={href:'https://example.test/kamptrail/'};let newer=true;
+ const h=harness(url=>url.endsWith('_merged.geojson')&&newer?Promise.resolve(new Response(f.sourceRaw+' ')):f.fetcher(url),{historyFixture:false,caches,location});
+ await h.api.init(h.map);assert.equal(h.api.getAllCampsites().length,0);assert.equal(h.api.getLoadStatus().history,'unavailable');
+ assert.equal(caches.writes.some(url=>url.endsWith('_merged.geojson')),false);
+ newer=false;await h.api.retryHistory();assert.equal(h.api.getAllCampsites().length,1);assert.equal(h.api.getLoadStatus().history,'ready');
+});
+
+test('retry replaces mismatched metadata and removes newly historical IDs already shown in this visit',async()=>{
+ const f=historicalFixture(),next=JSON.parse(f.raw);next.listings.push({...next.listings[0],id:'ridb:123',legacy_ids:[],name:'Current Campground',source_dates:[{source_record_id:'ridb:123',retrieved_at:null,updated_at:null}],source_urls:[]});
+ const nextRaw=JSON.stringify(next)+'\n',nextHash=require('node:crypto').createHash('sha256').update(nextRaw).digest('hex');let phase='old';
+ const h=harness(async url=>{
+  if(url.endsWith('withdrawn.json'))return new Response(phase==='coherent'?nextRaw:f.raw);
+  if(url==='data/campsites/index.json'&&phase!=='old')return new Response(JSON.stringify({states:[{state:'NY',count:0}],total_sites:0,history_sha256:nextHash,source_sha256:{'data/campsites/NY_merged.geojson':f.sourceHash}}));
+  return f.fetcher(url);
+ },{historyFixture:false});
+ await h.api.init(h.map);assert.equal(h.api.getAllCampsites().length,1);
+ phase='mismatched';await assert.rejects(h.api.retryHistory());assert.equal(h.api.getAllCampsites().length,0);
+ phase='coherent';await h.api.retryHistory();assert.equal(h.api.getAllCampsites().length,0);assert.equal(h.api.getCampsiteById('ridb:123'),undefined);assert.equal((await h.api.resolveListing('ridb:123')).kind,'historical');
+});
+
+function agencyGenerationFixture(){
+ const f=historicalFixture(),agency=id=>JSON.stringify({type:'FeatureCollection',features:[feature({id:'blm-area:'+id,name:'Agency campground '+id,type:'dispersed',source:'Bureau of Land Management',sources:['Bureau of Land Management'],camping_activity:'BLM camping area',schema_version:3,state:'NY',amenities:[],rig_friendly:[]})]});
+ const oldRaw=agency(321),newRaw=agency(322),digest=raw=>require('node:crypto').createHash('sha256').update(raw).digest('hex');
+ const mode={phase:'old',fail:false,delay:false};let release,started;
+ const waiting=new Promise(resolve=>started=resolve);
+ const fetcher=async url=>{
+  if(url==='data/campsites/index.json'){const d=await (await f.fetcher(url)).json();return new Response(JSON.stringify({...d,source_sha256:{...d.source_sha256,'data/campsites/agency/NY.geojson':digest(mode.phase==='old'?oldRaw:newRaw)}}));}
+  if(url==='data/campsites/agency/index.json')return new Response(JSON.stringify({version:1,states:['NY'],counts:{NY:1}}));
+  if(url==='data/campsites/agency/NY.geojson'){if(mode.delay&&mode.phase==='old'){started();return new Promise(resolve=>{release=()=>resolve(new Response(oldRaw));});}return mode.fail?new Response('unavailable',{status:503}):new Response(mode.phase==='old'?oldRaw:newRaw);}
+  return f.fetcher(url);
+ };
+ return {mode,fetcher,waiting,release:()=>release()};
+}
+
+test('history retry cannot retain old agency raw data when the new generation agency request fails',async()=>{
+ const f=agencyGenerationFixture(),h=harness(f.fetcher,{historyFixture:false});await h.api.init(h.map);assert.equal(h.api.getAllCampsites().length,2);
+ f.mode.phase='new';f.mode.fail=true;await h.api.retryHistory();
+ assert.deepEqual([...h.api.getAllCampsites()].map(s=>s.properties.id),['ridb:123']);assert.equal(h.api.getLoadStatus().agencyFailedStates[0].state,'NY');
+});
+
+test('a delayed old agency response cannot reinsert old records or failures after a generation retry',async()=>{
+ const f=agencyGenerationFixture(),h=harness(f.fetcher,{historyFixture:false});
+ h.map.getBounds=()=>({getSouth:()=>-10,getNorth:()=>-9,getWest:()=>-140,getEast:()=>-139,contains:()=>false});
+ await h.api.init(h.map);f.mode.delay=true;const oldLoad=h.api.loadStates(['NY']);await f.waiting;
+ f.mode.phase='new';await h.api.retryHistory();await h.api.loadStates(['NY']);f.release();await oldLoad;
+ assert.deepEqual([...h.api.getAllCampsites()].map(s=>s.properties.id).sort(),['blm-area:322','ridb:123']);assert.equal(h.api.getLoadStatus().history,'ready');assert.equal(h.api.getLoadStatus().agencyFailedStates.length,0);
+});
 
 test('optional amenity details retain record scope, qualifiers and safe source links, and filters match the shown scope',async()=>{
   const caches=cacheStorage(),location={href:'https://example.test/kamptrail/'};
@@ -204,7 +302,8 @@ test('first online visit caches raw validated data before any worker controls it
   const first=harness(async url=>url.endsWith('index.json')?indexed():dataset(),{caches,location});
   await first.api.init(first.map);
   const key='kamptrail:https://example.test/kamptrail/:data-v1';
-  assert.ok(caches.stores.has(key));assert.equal(caches.writes.length,2);
+  assert.ok(caches.stores.has(key));assert.equal(caches.writes.length,3);
+  assert.ok(caches.stores.get(key).has('https://example.test/kamptrail/data/campsites/withdrawn.json'));
   const raw=await caches.stores.get(key).get('https://example.test/kamptrail/data/campsites/NY_merged.geojson').clone().json();
   assert.equal(raw.features[0].properties.id,undefined); // Original source response, not normalized runtime data.
   const offline=harness(async()=>{throw new TypeError('Offline');},{caches,location});

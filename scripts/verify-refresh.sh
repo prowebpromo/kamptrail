@@ -10,6 +10,11 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 # Every id in the baseline's published index must still resolve to the same listing.
 git show "$baseline:data/campsites/search-index.json" > "$tmp/previous-search-index.json"
-node scripts/check-id-continuity.js "$tmp/previous-search-index.json" data/campsites/search-index.json data/campsites/withdrawn.json
+if git cat-file -e "$baseline:data/campsites/withdrawn.json" 2>/dev/null; then
+  git show "$baseline:data/campsites/withdrawn.json" > "$tmp/previous-withdrawn.json"
+else
+  printf '%s\n' '{"version":1,"listings":[]}' > "$tmp/previous-withdrawn.json"
+fi
+node scripts/check-id-continuity.js "$tmp/previous-search-index.json" data/campsites/search-index.json data/campsites/withdrawn.json "$tmp/previous-withdrawn.json"
 npm test
 python -m unittest discover -s scripts/tests -p 'test_*.py'

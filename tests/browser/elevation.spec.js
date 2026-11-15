@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 test.use({serviceWorkers:'block'});
 const {createHash}=require('node:crypto');
@@ -19,6 +20,7 @@ async function fixture(page,context,{zoom=11,mobile=false}={}){
  await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:1,facilities:{}}));
  await page.route('**/data/campsites/search-index.json',r=>json(r,search));
  await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features}));
+ await bindCampsiteFixture(page,{states:['NY'],features,search});
  await page.route('**/data/campsites/elevation/**',r=>{elevationRequests.push(r.request().url());return r.request().url().endsWith('/index.json')?json(r,manifest):r.fulfill({contentType:'application/json',body:raw});});
  // Seed only the first visit so reload exercises the app's persisted map position.
  await page.addInitScript(zoom=>{if(localStorage.getItem('kt_last_position')===null)localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.085,zoom}));},zoom);

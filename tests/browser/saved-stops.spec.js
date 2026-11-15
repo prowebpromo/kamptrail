@@ -46,6 +46,9 @@ test('legacy stop recovery waits for the data loader and resolves an alias witho
   // 2.33.0: the stored id is kept; the listing it resolves to is shown.
   expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].id)).toBe('CA-001');
   expect(await page.evaluate(()=>KampTrailTrip.getStops()[0].feature.properties.id)).toBe('ridb:1');
+  const captured=await page.evaluate(()=>localStorage.getItem('kt_trip'));expect(JSON.parse(captured)[0].feature).toEqual(site);
+  await page.evaluate(()=>{testCurrent={...testCurrent,geometry:{type:'Point',coordinates:[-120,37]},properties:{...testCurrent.properties,name:'Enriched later listing'}};window.dispatchEvent(new Event('kamptrail:dataupdated'));});
+  await expect(page.locator('#kt-trip-list')).toContainText('Enriched later listing');expect(await page.evaluate(()=>localStorage.getItem('kt_trip'))).toBe(captured);
 });
 
 test('mobile dialog closes with Escape, restores focus, and stays above the app',async({page})=>{
