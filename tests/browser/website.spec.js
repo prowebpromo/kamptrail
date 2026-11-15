@@ -1,5 +1,21 @@
 const {test,expect}=require('@playwright/test');const AxeBuilder=require('@axe-core/playwright').default;
 test.use({serviceWorkers:'block'});
+for(const width of [390,1440])test(`deferred homepage sections remain reachable by keyboard and anchors at ${width}px`,async({page})=>{
+ await page.setViewportSize({width,height:900});await page.goto('/');
+ const sections=page.locator('#how-it-works,#about-chuck');
+ const initial=await sections.evaluateAll(nodes=>nodes.map(n=>({top:n.getBoundingClientRect().top,visibility:getComputedStyle(n).contentVisibility})));
+ expect(initial.every(n=>n.top>900&&n.visibility==='auto')).toBe(true);
+ const reached=new Set();
+ for(let i=0;i<120&&reached.size<2;i++){
+  await page.keyboard.press('Tab');
+  const id=await page.evaluate(()=>document.activeElement?.closest('#how-it-works,#about-chuck')?.id);
+  if(id)reached.add(id);
+ }
+ expect([...reached].sort()).toEqual(['about-chuck','how-it-works']);
+ await page.locator('a[href="#how-it-works"]').first().click();
+ await expect(page.locator('#workflow-title')).toBeInViewport();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
 test('website planning and founder pages form a usable mobile path without loading the map runtime',async({page})=>{
  await page.setViewportSize({width:390,height:844});const requests=[];page.on('request',r=>requests.push(r.url()));
  for(const file of ['plan.html','about.html','tools.html','guides.html']){await page.goto('/'+file);await expect(page.locator('h1')).toHaveCount(1);await expect(page.locator('nav.kt-site-nav a[aria-current="page"]')).toHaveCount(1);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);}

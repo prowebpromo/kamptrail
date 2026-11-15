@@ -33,10 +33,10 @@ jobs:
       states: ${{ steps.plan.outputs.states }}
       run: ${{ steps.plan.outputs.run }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
       - name: Choose states
@@ -78,10 +78,10 @@ jobs:
       matrix:
         state: ${{ fromJSON(needs.plan.outputs.states) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
       - name: Install checksum-pinned native parser
@@ -96,7 +96,7 @@ jobs:
             --stage "$RUNNER_TEMP/stage" --scratch "$RUNNER_TEMP/pbf"
       - name: Keep the staged state and its status, including a failure
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: clearances-state-${{ matrix.state }}
           overwrite: true
@@ -112,18 +112,19 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
       - name: Download every staged state
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8.0.2
         with:
+          digest-mismatch: warn # Preserve v4 warning behavior; existing verification steps remain authoritative.
           pattern: clearances-state-*
           path: ${{ runner.temp }}/stage
           merge-multiple: true

@@ -83,11 +83,11 @@ jobs:
       RIDB_API_KEY: ${{ secrets.RECREATION_GOV_API_KEY || secrets.RIDB_API_KEY }}
       SERVICES_BATCH: ${{ github.run_id }}-${{ github.sha }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.11'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
       - run: pip install requests
@@ -233,8 +233,9 @@ jobs:
         id: service-candidate
         if: ${{ github.event_name == 'schedule' && needs.national-services-stage.result == 'success' }}
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8.0.2
         with:
+          digest-mismatch: warn # Preserve v4 warning behavior; existing verification steps remain authoritative.
           name: ${{ needs.national-services-stage.outputs.candidate_artifact }}
           path: ${{ runner.temp }}/national-service-candidate
       - name: Validate against current main and promote complete service evidence
@@ -326,7 +327,7 @@ jobs:
           fi
       - name: Keep the unverified refresh for review when verification fails
         if: ${{ failure() && (steps.history_build.outcome == 'failure' || steps.verify_refresh.outcome == 'failure' || steps.commit_refresh.outcome == 'failure') }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: unverified-refresh-${{ github.run_id }}-${{ github.run_attempt }}
           # Every path the commit step stages, so the exact failing refresh state is kept.
@@ -347,13 +348,13 @@ jobs:
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.ref_name }}
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.11'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
       - run: pip install -r requirements.txt pyyaml
@@ -436,7 +437,7 @@ jobs:
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.ref_name }}
       - name: Require a selected branch
@@ -444,10 +445,10 @@ jobs:
           set -euo pipefail
           [[ "$GITHUB_REF_TYPE" == branch ]] || { echo 'Select a branch, not a tag'; exit 1; }
           git check-ref-format --branch "$GITHUB_REF_NAME"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.11'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
       - run: pip install -r requirements.txt pyyaml
@@ -455,7 +456,7 @@ jobs:
         run: python -m unittest discover -s scripts/tests -p 'test_*.py'
       - name: Restore resumable elevation checkpoint
         id: restore
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6.1.0
         with:
           path: .elevation-checkpoint/elevation.json
           # Fixed provider/schema namespace, scoped to this branch; GitHub cache eviction applies.
@@ -521,14 +522,14 @@ jobs:
       - name: Save resumable elevation checkpoint
         if: ${{ always() && steps.checkpoint.outputs.ready == 'true' }}
         timeout-minutes: 5
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6.1.0
         with:
           path: .elevation-checkpoint/elevation.json
           key: ${{ steps.restore.outputs.cache-primary-key }}
       - name: Keep a seven-day recovery artifact
         if: ${{ always() && steps.checkpoint.outputs.ready == 'true' }}
         timeout-minutes: 5
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: elevation-checkpoint-${{ github.run_id }}-${{ github.run_attempt }}
           path: .elevation-checkpoint/elevation.json
@@ -581,7 +582,7 @@ jobs:
     env:
       SERVICE_STATE: ${{ inputs.service_state || 'UT' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.ref_name }}
       - name: Require the reviewed pilot and a selected branch
@@ -590,10 +591,10 @@ jobs:
           [[ "$GITHUB_REF_TYPE" == branch ]] || { echo 'Select a branch, not a tag'; exit 1; }
           [[ "$SERVICE_STATE" == UT ]] || { echo 'Only the reviewed Utah pilot is enabled'; exit 1; }
           git check-ref-format --branch "$GITHUB_REF_NAME"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
       - run: pip install -r requirements.txt pyyaml
@@ -613,7 +614,7 @@ jobs:
           node scripts/build-services.js
           node scripts/record_health.js record services_extracts "$SERVICE_STATE" fresh
       - name: Preserve public source summaries
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: services-source-${{ github.run_id }}-${{ github.run_attempt }}
           path: |

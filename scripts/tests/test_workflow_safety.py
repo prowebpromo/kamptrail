@@ -26,6 +26,22 @@ def shell_expression_steps(text):
 
 
 class WorkflowSafetyTests(unittest.TestCase):
+    def test_lighthouse_audits_the_built_production_package(self):
+        workflow = yaml.safe_load((WORKFLOWS / 'lhci.yml').read_text())
+        steps = workflow['jobs']['lhci']['steps']
+        install = next(i for i, s in enumerate(steps) if s.get('run') == 'npm ci')
+        build = next(i for i, s in enumerate(steps) if s.get('run') == 'node scripts/build-release.js')
+        serve = next(i for i, s in enumerate(steps) if s.get('name') == 'Start static server')
+        audit = next(i for i, s in enumerate(steps) if s.get('uses', '').startswith('treosh/lighthouse-ci-action@'))
+        self.assertLess(install, build)
+        self.assertLess(build, serve)
+        self.assertLess(serve, audit)
+        self.assertIn('http-server -p 8080 -c-1 dist/kamptrail ', steps[serve]['run'])
+        self.assertEqual(steps[audit]['with']['configPath'], '.lighthouserc.json')
+        self.assertTrue(steps[audit]['with']['uploadArtifacts'])
+        policy = json.loads((ROOT / '.lighthouserc.json').read_text())['ci']['assert']['assertions']
+        self.assertEqual(policy['categories:performance'], ['warn', {'minScore': 0.9}])
+
     def test_history_is_built_after_refresh_from_a_frozen_baseline_before_final_index(self):
         jobs = yaml.safe_load(OWNER.read_text())['jobs']
         steps = jobs['fetch-data']['steps']
@@ -120,7 +136,7 @@ class WorkflowSafetyTests(unittest.TestCase):
         self.assertEqual(jobs['elevation']['timeout-minutes'], 360)
         self.assertNotIn('concurrency', jobs['elevation'])
         steps = jobs['elevation']['steps']
-        checkout = next(s for s in steps if s.get('uses') == 'actions/checkout@v4')
+        checkout = next(s for s in steps if s.get('uses', '').startswith('actions/checkout@'))
         self.assertEqual(checkout['with']['ref'], '${{ github.ref_name }}')
         commit = next(s for s in steps if s.get('id') == 'commit')['run']
         self.assertIn('git rev-parse FETCH_HEAD', commit)
@@ -137,13 +153,13 @@ class WorkflowSafetyTests(unittest.TestCase):
         self.assertNotIn('continue-on-error', sample)
         self.assertIn('--catalogue data/campsites/search-index.json', sample['run'])
         commit_index = next(i for i, s in enumerate(steps) if s.get('id') == 'commit')
-        checkpoint_steps = [s for s in steps if s.get('id') == 'checkpoint' or s.get('uses') in
-                            ('actions/cache/save@v4', 'actions/upload-artifact@v4')]
+        checkpoint_steps = [s for s in steps if s.get('id') == 'checkpoint' or s.get('uses', '').startswith(
+                            ('actions/cache/save@', 'actions/upload-artifact@'))]
         self.assertEqual(len(checkpoint_steps), 3)
         for step in checkpoint_steps:
             self.assertIn('always()', step['if'])
             self.assertLess(steps.index(step), commit_index)
-        artifact = next(s for s in checkpoint_steps if s.get('uses') == 'actions/upload-artifact@v4')
+        artifact = next(s for s in checkpoint_steps if s.get('uses', '').startswith('actions/upload-artifact@'))
         self.assertEqual(artifact['with']['retention-days'], 7)
         self.assertTrue(artifact['with']['include-hidden-files'])
         self.assertEqual(artifact['with']['path'], '.elevation-checkpoint/elevation.json')
@@ -164,7 +180,7 @@ class WorkflowSafetyTests(unittest.TestCase):
         # BaseLoader preserves the GitHub YAML 1.2 "on" key instead of YAML 1.1's boolean.
         trigger = yaml.load((WORKFLOWS / 'test.yml').read_text(), Loader=yaml.BaseLoader)['on']
         self.assertEqual(trigger['workflow_call']['inputs']['ref']['type'], 'string')
-        checkout = next(s for s in regression['jobs']['regression']['steps'] if s.get('uses') == 'actions/checkout@v4')
+        checkout = next(s for s in regression['jobs']['regression']['steps'] if s.get('uses', '').startswith('actions/checkout@'))
         self.assertEqual(checkout['with']['ref'], '${{ inputs.ref || github.sha }}')
 
     def test_checkpoint_bootstrap_merge_and_failure_preservation_execute_offline(self):

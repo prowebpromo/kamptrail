@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 22
           cache: npm
@@ -42,7 +42,7 @@ jobs:
       - run: npm ci
       - name: Repeat the three stabilized pointer paths
         run: npx playwright test tests/browser/features.spec.js tests/browser/reports.spec.js tests/browser/rest-areas.spec.js --grep 'layers control offers|a camper reports a fee correction|source failure and offline views' --repeat-each=3 --reporter=list
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.2
         if: failure()
         with:
           name: homepage-pointer-failures
